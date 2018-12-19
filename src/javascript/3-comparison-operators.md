@@ -132,6 +132,7 @@ QUnit.test("Object == (String || Number)", function(){
 });
 </script>
 ```
+@codepen
 
 
 ## Solution
