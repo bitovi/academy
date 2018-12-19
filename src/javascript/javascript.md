@@ -20,3 +20,10 @@ Before starting:
 1. Create a `training` folder.
 2. Download and unzip the [js-exercises](https://drive.google.com/open?id=0Bx-kNqf-wxZeeHNyWkZjTFpJMEE)
    folder into your `training` folder.
+
+
+## Overview
+
+We are going to be figuring out how JavaScript works in memory.
+
+<img src="./static/img/js-handout.png" width="100%"/>
