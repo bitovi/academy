@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "document": "bit-docs -d",
+    "document-build": "bit-docs -df",
     "publish": "npm run document && node publish.js"
   },
   "repository": {
