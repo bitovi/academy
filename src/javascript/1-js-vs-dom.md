@@ -1,5 +1,6 @@
 @page javascript/js-vs-dom JavaScript and the DOM
 @parent javascript 1
+@outline 2
 
 @description Understand the browser ecosystem and how JavaScript
 fits in.
