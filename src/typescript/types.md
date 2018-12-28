@@ -7,44 +7,44 @@
 
 ### Boolean
 
-```javascript
-let loading: boolean = true;
+```typescript
+let isCarnivore: boolean = true;
 ```
 
 ### Number
 
-```javascript
-let decimal: number = 7;
+```typescript
+let teeth: number = 100;
 let hex: number = 0xF00D;
 ```
 
 ### String
 
-```javascript
-let name: string = 'Jennifer';
+```typescript
+let name: string = 'Leoplurodon';
 ```
 
 #### Quick tip - template strings
 
 Strings that have embedded expressions.
 
-```javascript
-let myTemplateString: string = `I think ${ name } is pretty cool
+```typescript
+let myTemplateString: string = `I think ${ name }'s are pretty cool.
 
-Her favorite number is ${ decimal }.`;
+They have ${ teeth } teeth.`;
 ```
 
 ### Array
 
-```javascript
+```typescript
 let list: number[] = [1, 2, 3];
 
-let pets: Array<string> = ['Sake','Apollo','Butter']
+let raptors: Array<string> = ['Blue','Charlie','Delta']
 ```
 
 ### Tuple
 
-```javascript
+```typescript
 let sillyList: [number, string];
 
 sillyList = [5, "boop"]; //typescript is happy
@@ -56,14 +56,14 @@ sillyList = ["boop", 5]; //will error
 
 Enums allow the aliasing of names to a list of numeric values. Like most indexing, enums start their first member at 0.
 
-```javascript
+```typescript
 enum Color { Red, Green, Blue }
 let greenColor: Color = Color.Green
 ```
 
 Enums can have their first value manually set, or manually set all values
 
-```javascript
+```typescript
 enum Month { January = 1, February, March, April, May, June }
 let feb = Month[2];
 
@@ -75,7 +75,7 @@ let may = Month[5];
 
 Any describes a variable where we may not know the type.
 
-```javascript
+```typescript
 let my3rdPartyData: any = 5;
 ```
 
@@ -83,7 +83,7 @@ let my3rdPartyData: any = 5;
 
 No type at all - commonly used with functions that don't return a value.
 
-```javascript
+```typescript
 function buttonClick(): void {
   console.log('I clicked a button');
 }
@@ -96,7 +96,7 @@ Null and Undefined are two separate types, and subtypes of all other types, mean
 
 The never type represents a value that will never occur.
 
-```javascript
+```typescript
 function error(message: string): never {
     throw new Error(message);
 }
@@ -106,7 +106,7 @@ function error(message: string): never {
 
 The object type represents all non-primitive types.
 
-```javascript
+```typescript
 // All primitive types
 type Primitive =
   | boolean
@@ -125,7 +125,7 @@ type NonPrimitive = object;
 
 Type assertions are a way to override the inferring of types. There are two different syntaxes, angle-brackets and as.
 
-```javascript
+```typescript
 let someValue: any = "this is a string";
 
 let strLength: number = (<string>someValue).length;

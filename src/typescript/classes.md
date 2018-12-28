@@ -22,7 +22,7 @@ ironMan.sayHi();
 ```
 
 
-```javascript
+```typescript
 //class way
 class Avenger {
 
@@ -44,7 +44,7 @@ ironMan.sayHi();
 A constructor is a way to automatically declare members on a class.
 
 
-```javascript
+```typescript
 class Dinosaur {
   name: string;
   constructor(theName: string) {
@@ -55,7 +55,7 @@ class Dinosaur {
 
 It's quite a common pattern, which is why Typescript also provides a shorthand.
 
-```javascript
+```typescript
 class Dinosaur {
   constructor(public name: string) {
   }
@@ -66,7 +66,7 @@ class Dinosaur {
 
 Inheritance is a way to extend functionality of existing classes.
 
-```javascript
+```typescript
 class Dinosaur {
   move(distanceInFeet: number = 0) {
       console.log(`Animal moved ${distanceInFeet}m.`);
@@ -89,7 +89,7 @@ blue.talk();
 
 Static properties are able to be shared by all instances of the class.
 
-```javascript
+```typescript
 class Chatbot {
   static instances = 0;
   constructor() {
@@ -105,7 +105,7 @@ console.log(Chatbot.instances); // 2
 
 ### Public modifier
 
-```javascript
+```typescript
 class Dinosaur {
     public name: string;
     constructor(theName: string) {
@@ -126,7 +126,7 @@ In Typescript all members are public by default, meaning they are publicly visib
 
 Members marked private are unable to be accessed from outside their containing class.
 
-```javascript
+```typescript
 class Dinosaur {
     private name: string;
     constructor(theName: string) { this.name = theName; }
@@ -154,7 +154,7 @@ dino = employee; // Error: 'Animal' and 'Employee' are not compatible
 
 Protected modifiers are similar to private modifiers in that they can't be accessed but they CAN be accessed by deriving classes.
 
-```javascript
+```typescript
 class Dinosaur {
   public name: string;
   private dna: string;
@@ -180,7 +180,7 @@ class geneticallyModifiedDinosaur extends Dinosaur {
 
 ### Readonly modifier
 
-```javascript
+```typescript
 class Leoplurodon {
     readonly location: string;
     readonly numberOfFlippers: number = 4;
