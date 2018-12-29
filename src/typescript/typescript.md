@@ -1,17 +1,24 @@
 @page typescript Typescript
 @parent bit-u 3
-@description HERE IS A DESCRIPTION
+@description Intro to Typescript
 
 @body
 
-THis is the start of the body.
-
-Outline:
 
 - What and why of typescript
-- some other stuff
-- more stuff
-  - subs stuff
+  - Typing
+  - Object Oriented Programming
+  - Compilation
+- IDE support
+  - VS Code
+  - Atom
+- Types
+- Classes
+- Interface
+- Functions
+- Generics
+- Modules
+
 
 ```typescript
 function greeter(person: string) {
