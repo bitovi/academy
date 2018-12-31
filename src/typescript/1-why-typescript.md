@@ -27,6 +27,13 @@ Let's install Typescript globally
 npm install -g typescript
 ```
 
+Create a folder to save our test files in
+
+```shell
+mkdir typescript-practice
+cd typescript-practice
+```
+
 Let's create a quick typescript file and open it in our favorite editor.
 
 ```shell
