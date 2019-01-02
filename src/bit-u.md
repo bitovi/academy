@@ -29,6 +29,7 @@ of everything completely necessary to provide excellent technology delivery.
    - Imperative vs Declarative
    - MVVM
 5. Client and Services
+6. RXJS ![Credit Card Form](https://user-images.githubusercontent.com/78602/27451508-d86e9bd8-5754-11e7-954b-a812e1ed63b1.png "Credit Card Form")
 
 ## Design
 

@@ -3,6 +3,8 @@
 
 @description Why Typescript has secured a place in the JavaScript ecosystem.
 
+@body
+
 ## Why Typescript
 
 Typescript is a typed superset of JavaScript that compiles to plain JavaScript. Typed support helps enhance code quality and readability, assists in self-documenting, and the compiler does typechecking to catch errors before runtime. Typescript offers more modern(think ES6) features of JavaScript and the use of classes and interfaces to write code in an object oriented sense.
