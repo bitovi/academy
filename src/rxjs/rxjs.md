@@ -161,107 +161,184 @@ template: '<input (blur)="$elementBlur.emit(true)"  (value)="elementValue$.emit(
 <script src="https://unpkg.com/@angular/platform-browser-dynamic@6.0.5/bundles/platform-browser-dynamic.umd.js"></script>
 <my-app></my-app>
 <script type="typescript">
-// app.js
 
-const { Component, VERSION } = ng.core;
-const {Subject, BehaviorSubject} = rxjs;
-const {map, merge, scan} = rxjs.operators;
-
-
-const cleanCardNumber = map( (card) => {
-  if (card) {
-    return card.replace(/[\s-]/g, "");
-  }
+const cleanCardNumber = map((card) => {
+	if (card) {
+		return card.replace(/[\s-]/g, "");
+	}
 });
 
-const expiryParts = map( (expiry) => {
-  if (expiry) {
-    return expiry.split("-")
-  }
+const expiryParts = map((expiry) => {
+	if (expiry) {
+		return expiry.split("-")
+	}
 });
 
-const validateCard = map( (card)=> {
-    if (!card) {
-        return "There is no card"
-    }
-    if (card.length !== 16) {
-        return "There should be 16 characters in a card";
-    }
+const validateCard = map((card) => {
+	if (!card) {
+		return "There is no card"
+	}
+	if (card.length !== 2) {
+		return "There should be 16 characters in a card";
+	}
 });
 
-const validateExpiry = map( (expiry)=> {
-    if (!expiry) {
-        return "There is no expiry. Format  MM-YY";
-    }
-    if (expiry.length !== 2 || expiry[0].length !== 2 || expiry[1].length !== 2) {
-        return "Expirty must be formatted like MM-YY";
-    }
+const validateExpiry = map((expiry) => {
+	if (!expiry) {
+		return "There is no expiry. Format  MM-YY";
+	}
+	if (expiry.length !== 2 || expiry[0].length !== 2 || expiry[1].length !== 2) {
+		return "Expirty must be formatted like MM-YY";
+	}
 });
 
+const validateCVC = map((cvc) => {
+	if (!cvc) {
+		return "There is no CVC code";
+	}
+	if (cvc.length !== 3) {
+		return "The CVC must be at least 3 numbers";
+	}
+	if (isNaN(parseInt(cvc))) {
+		return "The CVC must be numbers";
+	}
+});
 
-function showOnlyWhenBlurredOnce( errorObservable, blurredObservable ){
-    const errorEvent = errorObservable.pipe(
-        map((error) => {
-            if (!error) {
-                return {
-                    type: "valid"
-                }
-            } else {
-                return {
-                    type: "invalid",
-                    message: error
-                }
-            }
-        })
-    );
+function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
+	const errorEvent = errorObservable.pipe(
+		map((error) => {
+			if (!error) {
+				return {
+					type: "valid"
+				}
+			} else {
+				return {
+					type: "invalid",
+					message: error
+				}
+			}
+		})
+	);
 
-    const focusEvents = blurredObservable.pipe(
-        map((isBlurred) => {
-            if (isBlurred === undefined) {
-                return {};
-            }
-            return isBlurred ? {
-                type: "blurred"
-            } : {
-                type: "focused"
-            };
-        })
-    );
+	const focusEvents = blurredObservable.pipe(
+		map((isBlurred) => {
+			if (isBlurred === undefined) {
+				return {};
+			}
+			return isBlurred ? {
+				type: "blurred"
+			} : {
+				type: "focused"
+			};
+		})
+	);
 
-    const valueState = scan( (previous, event) => {
-        switch (event.type) {
-            case "valid":
-                return Object.assign({}, previous, {
-                    isValid: true,
-                    showCardError: false
-                });
-            case "invalid":
-                return Object.assign({}, previous, {
-                    isValid: false,
-                    showCardError: previous.hasBeenBlurred
-                });
-            case "blurred":
-                return Object.assign({}, previous, {
-                    hasBeenBlurred: true,
-                    showCardError: !previous.isValid
-                });
-            default:
-                return previous;
-        }
-    }, {
-        hasBeenBlurred: false,
-        showCardError: false,
-        isValid: false
-    });
-    var merged = errorEvent.pipe(merge(focusEvents));
-    return merged.pipe( valueState ).pipe( map( state => state.showCardError ) );
+	const valueState = scan((previous, event) => {
+		switch (event.type) {
+			case "valid":
+				return Object.assign({}, previous, {
+					isValid: true,
+					showCardError: false
+				});
+			case "invalid":
+				return Object.assign({}, previous, {
+					isValid: false,
+					showCardError: previous.hasBeenBlurred
+				});
+			case "blurred":
+				return Object.assign({}, previous, {
+					hasBeenBlurred: true,
+					showCardError: !previous.isValid
+				});
+			default:
+				return previous;
+		}
+	}, {
+		hasBeenBlurred: false,
+		showCardError: false,
+		isValid: false
+	});
+	var merged = errorEvent.pipe(merge(focusEvents));
+	return merged.pipe(valueState).pipe(map(state => state.showCardError));
 }
 
+function isCardInvalid(cardError, expiryError, cvcError) {
+	return combineLatest(cardError, expiryError, cvcError, function(cardError, expiryError, cvcError) {
+		return !!(cardError || expiryError || cvcError)
+	})
+}
 
-@@Component({
+function combineCard(cardNumber, expiry, cvc) {
+	return combineLatest(cardNumber, expiry, cvc, function(cardNumber, expiry, cvc) {
+		return {
+			cardNumber,
+			expiry,
+			cvc
+		};
+	})
+}
+
+function paymentPromises(payClicked, card) {
+	return combineLatest(payClicked, card, (payClicked, card) => {
+		if (payClicked) {
+			console.log("Asking for token with", card);
+			return new Promise(function(resolve) {
+				setTimeout(function() {
+					resolve(1000);
+				}, 2000);
+			});
+		}
+	});
+}
+
+const paymentStatusObservable = pipe(
+	map((promise) => {
+		console.log("paymentStatusObservable map", promise);
+		if (promise) {
+			// STREAM<STATUS>
+			var later = from(promise).pipe(
+				map((value) => {
+					console.log("resolved promise!")
+					return {
+						status: "resolved",
+						value: value
+					};
+				})
+			);
+
+			var res = concat( of ({
+					status: "pending"
+				}),
+				later
+			);
+			return res;
+		} else {
+			// STREAM
+			return of({
+				status: "waiting"
+			});
+		}
+	}),
+	startWith([{
+		status: "waiting"
+	}])
+);
+
+
+function disablePaymentButton(isCardInvalid, paymentStatus) {
+	return combineLatest(isCardInvalid, paymentStatus, function(isCardInvalid, paymentStatus) {
+		return (isCardInvalid === true) || !paymentStatus || paymentStatus.status === "pending";
+	})
+}
+
+var log = function(name) {
+	return tap(ev => console.log(name, ev))
+}
+
+@Component({
   selector: 'my-app',
   template: `
-   <form (click)="pay($event)">
+   <form (submit)="pay($event)">
 
     <div class="message"
         *ngIf="(showCardError | async)">{{ (cardError | async) }}</div>
@@ -287,8 +364,11 @@ function showOnlyWhenBlurredOnce( errorObservable, blurredObservable ){
         (blur)="userCVCBlurred.next( true )"
         [class.is-error]="showCVCError | async"/>
 
-    <button disabled:from="disablePaymentButton.value">
+    <button [disabled]="disablePaymentButton | async">
+           {{ ( (paymentStatus | async)?.status === "pending" ) ? "Paying" : "Pay" }}
     </button>
+
+		{{ (card | async)?.cvc }}
    </form>
   `
 })
@@ -302,6 +382,8 @@ class AppComponent {
   userCVC = new BehaviorSubject<String>();
   userCVCBlurred = new Subject<Boolean>();
 
+  payClicked = new Subject();
+
   constructor() {
     this.cardNumber = this.userCardNumber.pipe(cleanCardNumber);
     this.cardError = this.cardNumber.pipe(validateCard);
@@ -313,10 +395,32 @@ class AppComponent {
 
     this.cvc = this.userCVC;
     this.cvcError = this.cvc.pipe(validateCVC);
-    this.showCVCError = showOnlyWhenBlurredOnce(this.cvcError = this, this.userCVCBlurred);
+    this.showCVCError = showOnlyWhenBlurredOnce(this.cvcError, this.userCVCBlurred);
+
+    this.isCardInvalid = isCardInvalid(this.cardError, this.expiryError, this.cvcError);
+
+
+    this.card = combineCard(this.cardNumber, this.expiry, this.cvc)
+			.pipe(multicast(new Subject()), refCount());
+
+
+    const payments = paymentPromises(this.payClicked, this.card)
+			.pipe( log("payment") );
+		//payments.subscribe( (data) => {console.log("subscribe payments",data)})
+
+		const paymentsObservables = payments.pipe(paymentStatusObservable);
+		//paymentsObservables.subscribe( (data) => {console.log("subscribe paymentsObservables",data)})
+
+    this.paymentStatus = paymentsObservables.pipe( mergeAll() ).pipe(multicast(new Subject()), refCount());
+
+		this.disablePaymentButton = disablePaymentButton(this.isCardInvalid, this.paymentStatus);
+
   }
   pay(event){
+		console.log("PAY CLICKED");
     event.preventDefault();
+    this.payClicked.next(true);  //a
+		console.log("EMITTED");
   }
 }
 
@@ -325,7 +429,7 @@ const { BrowserModule } = ng.platformBrowser;
 const { NgModule } = ng.core;
 const { CommonModule } = ng.common;
 
-@@NgModule({
+@NgModule({
   imports: [
     BrowserModule,
     CommonModule,
