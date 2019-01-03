@@ -10,12 +10,21 @@
 <script type="typescript">
 // app.js
 const { Component, VERSION } = ng.core;
-const { Subject, BehaviorSubject, combineLatest, of, from, concat, pipe } = rxjs;
-const { map, tap, merge, scan, mergeAll,  multicast, refCount, startWith } = rxjs.operators;
+const { Subject, BehaviorSubject, merge, combineLatest, of, from, concat, pipe } = rxjs;
+const { map, tap, scan, mergeAll,  multicast, refCount, startWith } = rxjs.operators;
 
 const cleanCardNumber = map((card) => {
     if (card) {
         return card.replace(/[\s-]/g, "");
+    }
+});
+
+const validateCard = map((card) => {
+    if (!card) {
+        return "There is no card"
+    }
+    if (card.length !== 16) {
+        return "There should be 16 characters in a card";
     }
 });
 
@@ -26,15 +35,6 @@ const log = function(name) {
 const expiryParts = map((expiry) => {
     if (expiry) {
         return expiry.split("-")
-    }
-});
-
-const validateCard = map((card) => {
-    if (!card) {
-        return "There is no card"
-    }
-    if (card.length !== 16) {
-        return "There should be 16 characters in a card";
     }
 });
 
@@ -88,6 +88,8 @@ function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
         })
     );
 
+    var merged = merge(errorEvent, focusEvents);
+    
     const valueState = scan((previous, event) => {
         switch (event.type) {
             case "valid":
@@ -113,7 +115,7 @@ function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
         showCardError: false,
         isValid: false
     });
-    var merged = errorEvent.pipe(merge(focusEvents));
+
     return merged.pipe(valueState).pipe(map(state => state.showCardError));
 }
 
