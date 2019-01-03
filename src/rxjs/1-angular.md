@@ -1,7 +1,7 @@
 @page rxjs/angular RxJS in Angular
 @parent RxJS 1
 
-@description Learn how to read and write observables in Angular
+@description Learn how to read and write observables in Angular.
 
 @body
 
@@ -28,7 +28,7 @@ The form HTML for the interface looks like:
 <form>
     <div class="message"></div>
 
-    <input type="text" name="number" placeholder="Card Number"/>
+    <input type="text" name="cardNumber" placeholder="Card Number"/>
 
     <input type="text" name="expiry" placeholder="MM-YY"/>
 
@@ -83,7 +83,7 @@ app.userCardNumber.next("1111-2222-3333-4444"); //logs "1111-2222-3333-4444"
 You can call `next` in the DOM as follows:
 
 ```html
- <input type="text" name="number" placeholder="Card Number"
+ <input type="text" name="cardNumber" placeholder="Card Number"
         (input)="userCardNumber.next( $event.target.value )"/>
 ```
 

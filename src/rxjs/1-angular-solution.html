@@ -10,7 +10,7 @@
 <script type="typescript">
 // app.js
 const { Component, VERSION } = ng.core;
-const {BehaviorSubject} = rxjs;
+const { BehaviorSubject } = rxjs;
 
 @Component({
     selector: 'my-app',
@@ -19,7 +19,7 @@ const {BehaviorSubject} = rxjs;
 
             <div class="message"></div>
 
-            <input type="text" name="number" placeholder="Card Number"
+            <input type="text" name="cardNumber" placeholder="Card Number"
                 (input)="userCardNumber.next( $event.target.value )"/>
 
             <input type="text" name="expiry" placeholder="MM-YY"/>
@@ -84,7 +84,7 @@ input {
   transition: background-color 0.5s ease;
   transition: outline-color 0.5s ease;
 }
-input[name=number] {
+input[name=cardNumber] {
   border-bottom: 0;
 }
 input[name=expiry],
