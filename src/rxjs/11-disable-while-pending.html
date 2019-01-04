@@ -10,7 +10,7 @@
 <script type="typescript">
 // app.js
 const { Component, VERSION } = ng.core;
-const { Subject, BehaviorSubject, merge, combineLatest, of, from, concat, pipe } = rxjs;
+const { BehaviorSubject, Subject, merge, combineLatest, of, from, concat, pipe } = rxjs;
 const { map, tap, scan, mergeAll,  multicast, refCount, startWith } = rxjs.operators;
 
 const cleanCardNumber = map((card) => {
@@ -19,43 +19,16 @@ const cleanCardNumber = map((card) => {
     }
 });
 
+const log = function(name) {
+    return tap(ev => console.log(name, ev))
+}
+
 const validateCard = map((card) => {
     if (!card) {
         return "There is no card"
     }
     if (card.length !== 16) {
         return "There should be 16 characters in a card";
-    }
-});
-
-const log = function(name) {
-    return tap(ev => console.log(name, ev))
-}
-
-const expiryParts = map((expiry) => {
-    if (expiry) {
-        return expiry.split("-")
-    }
-});
-
-const validateExpiry = map((expiry) => {
-    if (!expiry) {
-        return "There is no expiry. Format  MM-YY";
-    }
-    if (expiry.length !== 2 || expiry[0].length !== 2 || expiry[1].length !== 2) {
-        return "Expirty must be formatted like MM-YY";
-    }
-});
-
-const validateCVC = map((cvc) => {
-    if (!cvc) {
-        return "There is no CVC code";
-    }
-    if (cvc.length !== 3) {
-        return "The CVC must be at least 3 numbers";
-    }
-    if (isNaN(parseInt(cvc))) {
-        return "The CVC must be numbers";
     }
 });
 
@@ -89,7 +62,7 @@ function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
     );
 
     var merged = merge(errorEvent, focusEvents);
-    
+
     const valueState = scan((previous, event) => {
         switch (event.type) {
             case "valid":
@@ -118,6 +91,33 @@ function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
 
     return merged.pipe(valueState).pipe(map(state => state.showCardError));
 }
+
+const expiryParts = map((expiry) => {
+    if (expiry) {
+        return expiry.split("-")
+    }
+});
+
+const validateExpiry = map((expiry) => {
+    if (!expiry) {
+        return "There is no expiry. Format  MM-YY";
+    }
+    if (expiry.length !== 2 || expiry[0].length !== 2 || expiry[1].length !== 2) {
+        return "Expirty must be formatted like MM-YY";
+    }
+});
+
+const validateCVC = map((cvc) => {
+    if (!cvc) {
+        return "There is no CVC code";
+    }
+    if (cvc.length !== 3) {
+        return "The CVC must be at least 3 numbers";
+    }
+    if (isNaN(parseInt(cvc))) {
+        return "The CVC must be numbers";
+    }
+});
 
 function isCardInvalid(cardError, expiryError, cvcError) {
     return combineLatest(cardError, expiryError, cvcError, function(cardError, expiryError, cvcError) {
@@ -184,7 +184,7 @@ function disablePaymentButton(isCardInvalid, paymentStatus) {
     })
 }
 
-@@Component({
+@Component({
     selector: 'my-app',
     template: `
         <form (submit)="pay($event)">
@@ -247,9 +247,9 @@ class AppComponent {
 
         this.isCardInvalid = isCardInvalid(this.cardError, this.expiryError, this.cvcError);
 
-        this.card = combineCard(this.cardNumber, this.expiry, this.cvc);
+        const card = combineCard(this.cardNumber, this.expiry, this.cvc);
 
-        const payments = paymentPromises(this.payClicked, this.card);
+        const payments = paymentPromises(this.payClicked, card);
 
         const paymentsObservables = payments.pipe(paymentStatusObservable);
 
@@ -268,7 +268,7 @@ const { BrowserModule } = ng.platformBrowser;
 const { NgModule } = ng.core;
 const { CommonModule } = ng.common;
 
-@@NgModule({
+@NgModule({
     imports: [
         BrowserModule,
         CommonModule,
@@ -279,16 +279,14 @@ const { CommonModule } = ng.common;
 })
 class AppModule {}
 
-const {
-    platformBrowserDynamic
-} = ng.platformBrowserDynamic;
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
 
 platformBrowserDynamic()
     .bootstrapModule(AppModule)
     .catch(err => console.error(err));
 </script>
 <style>
-@@import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
 body {
   background-color: rgba(8, 211, 67, 0.3);
   padding: 2%;
