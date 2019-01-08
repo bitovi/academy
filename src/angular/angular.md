@@ -30,3 +30,7 @@ In this guide, we will ....
   - reactive programming
   - lazy loading
   - unit testing
+
+
+1. why Angular
+2. Building our first app
