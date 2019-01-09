@@ -5,7 +5,7 @@
 
 @body
 
-## The Problem
+## The problem
 
 In this section, we will:
 

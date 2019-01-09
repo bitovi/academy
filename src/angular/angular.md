@@ -1,5 +1,6 @@
 @page angular Angular
 @parent bit-u 4
+@hide
 
 @description Learn the basics of Angular.
 
