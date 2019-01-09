@@ -5,7 +5,7 @@
 
 ## Functions in Typescript
 
-In typescript we're able to annotate function parameters to better guard our code. The following execution of a function will throw an error when compiled if not called with two parameters that are numbers.
+In typescript we're able to annotate function parameters to better guard our code. The following execution of a function will throw an error when compiled if called with two parameters that are not numbers.
 
 ```typescript
 function add(x: number, y: number): number {
@@ -13,16 +13,18 @@ function add(x: number, y: number): number {
 }
 ```
 
-We can also annotate what functions return.
-
+We can also annotate what a function should return.
 
 ```typescript
 interface Result {
+  success: boolean
+  error?: string
+}
 
+function logResponse(): Result {
+  return { success: false, error: 'path not found'}
 }
 ```
-
-
 
 ### Optional Parameters
 
@@ -58,5 +60,7 @@ let uberDino = buildDinosaur('Indominous Rex', "Velociraptor", "Tyrannosaurus re
 If you're familiar with ES6, you may know that using the fat arrow (=>) captures the context of this where it's used. The functionality is the same in Typescript.
 
 
+### Exercise 1
 
-### Overloads
+Write a function that an unknown number of integer argumnents and adds them together.
+

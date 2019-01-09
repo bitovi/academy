@@ -25,7 +25,7 @@ ironMan.sayHi();
 ```typescript
 //class way
 class Avenger {
-
+  name: string;
   constructor(name) {
     this.name = name;
   }
@@ -192,3 +192,71 @@ class Leoplurodon {
 let firstStop = new Leoplurodon("On the way to Candy Mountain");
 firstStop.location = "On a bridge"; // error! location is readonly.
 ```
+
+### Exercise 1
+
+Recreate this prototype using typescript classes.
+
+```typescript
+function Counter(initialValue:number) {
+  this.value = initialValue;
+}
+
+Counter.prototype.increment = function() {
+  this.value = this.value + 1;
+  console.log('The new value is ' + this.value);
+}
+
+let myCounter = new Counter(5);
+myCounter.increment();
+//The new value is 6
+```
+
+<details>
+<summary>Solution</summary>
+
+```typescript
+class Counter {
+  value: number;
+
+  constructor(value) {
+    this.value = value;
+  }
+
+  increment() {
+    this.value = this.value + 1;
+    console.log(`The new value is ${this.value}`);
+  }
+}
+let counter = new Counter(7);
+counter.increment();
+//The new value is 8
+```
+</details>
+
+### Exercise 2
+
+Create a new class that inherits from the ``Counter`` class and has a method that increases the value by a custom amount. 
+
+<details>
+<summary>Solution</summary>
+
+```typescript
+class CustomCounter extends Counter {
+  add(customVal:number) {
+    this.value = this.value + customVal;
+    console.log(`The new value is ${this.value}`);
+  }
+}
+
+const myCustomCounter = new CustomCounter(7);
+myCustomCounter.increment();
+//The new value is 8
+myCustomCounter.add(12);
+//The new value is 20
+```
+</details>
+
+
+
+

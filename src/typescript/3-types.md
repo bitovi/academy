@@ -134,3 +134,46 @@ let otherValue: any = "this is a string";
 
 let otherLength: number = (otherValue as string).length;
 ```
+
+### Exercise
+
+Fix the following type errors so this code will compile:
+
+```typescript
+let isLoading: boolean = true;
+isLoading = 'false';
+
+let inventory: Array<number> = [];
+
+inventory.push('tacos', 'hamburgers');
+
+function greet(name: string, age: number): void{
+  console.log(`${name} is ${age} years young.`)
+}
+
+greet(30, 'Jessica')
+
+greet('Tom', 42, 'software')
+
+```
+
+<details>
+<summary>Solution</summary>
+```typescript
+let isLoading: boolean = true;
+isLoading = false;
+
+let inventory: Array<string> = [];
+
+inventory.push('tacos', 'hamburgers');
+
+function greet(name: string, age: number): void{
+  console.log(`${name} is ${age} years young.`)
+}
+
+greet('Jessica', 30)
+
+greet('Tom', 42,)
+
+```
+</details>
