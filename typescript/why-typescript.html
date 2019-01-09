@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/typescript/1-why-typescript.md
+	@page typescript/why-typescript
+######################################################################## -->
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bitovi University - Why Typescript</title>
+	
+	<link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+	
+</head>
+
+<body>
+	<header></header>
+	<div class="content">
+	
+		<nav class="sidebar">
+	
+		
+			<ul>
+				<li class="">
+					<a class="home" href="../index.html" title="Home">
+						Home
+					</a>
+				</li>
+			</ul>
+		
+		
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../advanced-javascript-training.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../RxJS.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+	</ul>
+
+
+	
+</nav>
+
+	
+	<article class="main">
+		
+			<section class="title">
+	<h1>Why Typescript <code>page</code></h1>
+</section>
+
+		
+
+		
+			
+				<section class="description">
+    <p>Why Typescript has secured a place in the JavaScript ecosystem.</p>
+
+</section>
+
+			
+		
+
+		
+			
+				
+			
+			
+				<section class="body">
+    <h2>Why Typescript</h2>
+<p>Typescript is a typed superset of JavaScript that compiles to plain JavaScript. Typed support helps enhance code quality and readability, assists in self-documenting, and the compiler does typechecking to catch errors before runtime. Typescript offers more modern(think ES6) features of JavaScript and the use of classes and interfaces to write code in an object oriented sense.</p>
+<h3>Typechecking</h3>
+<p>Typechecking is the process of verifying and enforcing the constraints of types.</p>
+<h3>Static vs. Dynamic Typing</h3>
+<p>Plain JavaScript is a dynamically typed language, meaning it doesn't know the type of a variable until run-time when it's instantiated. If there's a bug in the code related to falsely assuming a type, it won't throw an error until we're already running our code. It's worth noting that you can declare types in dynamically typed languages, but it's not required, as these languages attempt to infer the type of variables based on their values. This inference does come with a performance cost because the typechecking is done at runtime.</p>
+<p>Typescript uses static typing, so types are checked when the code compiles. The concept of &quot;static&quot; comes from the idea of variables being static, meaning once you set a variable to a type it can't(shouldn't) be changed.</p>
+<h3>Compilation</h3>
+<p>In order to use Typescript in the browser, we must compile to plain JavaScript first. We can do this from our terminal, but most often Typescript will be compiled during our build process.</p>
+<p>Let's install Typescript globally</p>
+<pre><code class="language-shell">npm install -g typescript
+</code></pre>
+<p>Create a folder to save our test files in</p>
+<pre><code class="language-shell">mkdir typescript-practice
+cd typescript-practice
+</code></pre>
+<p>Let's create a quick typescript file and open it in our favorite editor.</p>
+<pre><code class="language-shell">touch helloworld.ts
+</code></pre>
+<p>We'll write some basic Typescript next</p>
+<pre><code class="language-javascript">function greeter(person: string) {
+    return &quot;Hello, &quot; + person;
+}
+
+let user = &quot;World&quot;;
+
+document.body.innerHTML = greeter(user);
+</code></pre>
+<p>We'll compile our code by running</p>
+<pre><code class="language-shell">tsc helloworld.ts
+</code></pre>
+<p>Change your user variable to an integer and compile again. What do you think will happen?</p>
+<h3>Webpack demo here?</h3>
+
+</section>
+
+			
+		
+	</article>
+</div>
+
+	<footer></footer>
+
+	<script type="text/javascript">
+		var docObject = {"src":{"path":"src/typescript/1-why-typescript.md"},"description":"Why Typescript has secured a place in the JavaScript ecosystem. \n","name":"typescript/why-typescript","title":"Why Typescript","type":"page","parent":"typescript","order":0,"comment":" ","pathToRoot":"../.."};
+	</script>
+
+	
+		<script>
+		  steal = {
+		    instantiated: {
+		      "bundles/bit-docs-site/static.css!$css" : null
+		    }
+		  }
+		</script>
+		<script type='text/javascript'
+				data-main="bit-docs-site/static"
+				src="../static/steal.production.js"></script>
+	
+</body>
+
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/typescript/7-generics.md
+	@page typescript/generics
+######################################################################## -->
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bitovi University - Generics</title>
+	
+	<link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+	
+</head>
+
+<body>
+	<header></header>
+	<div class="content">
+	
+		<nav class="sidebar">
+	
+		
+			<ul>
+				<li class="">
+					<a class="home" href="../index.html" title="Home">
+						Home
+					</a>
+				</li>
+			</ul>
+		
+		
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../advanced-javascript-training.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../RxJS.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+	</ul>
+
+
+	
+</nav>
+
+	
+	<article class="main">
+		
+			<section class="title">
+	<h1>Generics <code>page</code></h1>
+</section>
+
+		
+
+		
+			
+				<section class="description">
+    <p>Generics</p>
+<h2>Generics</h2>
+<p>Generics are a way of writing abstract code that allows the determination of types to be handled when the code is used. Generics let us reuse code for different types and improve maintainability.</p>
+<pre><code class="language-typescript">function identity&lt;MyType&gt;(arg: MyType): MyType {
+    return arg;
+}
+
+let sampleFunc = identity&lt;string&gt;(&quot;this is my string&quot;);
+</code></pre>
+<p>Let's look at making a basic class to collect a list of things.</p>
+<pre><code class="language-typescript">class Collection {
+  private list: any[];
+  push(thing) {
+    this.list.push(thing);
+  }
+}
+</code></pre>
+<p>The good - we can push any type to this list. The bad - we can push any type to this list.</p>
+<pre><code class="language-typescript">let myList = Collection();
+myList.push('tacos');
+myList.push(25);
+myList.push({name: 'Blue', breed: 'Velociraptor', speed: 50})
+</code></pre>
+<p>myList now holds an assortment of types that won't be fun to iterate through and deal with. Let's build a generic class instead.</p>
+<pre><code class="language-typescript">class GenericCollection&lt;T&gt; {
+  private list: T[];
+  pushItem(thing:T) {
+    this.list.push(thing);
+  }
+}
+</code></pre>
+<p>Now when we initialize this class we can specify a type to use.</p>
+<pre><code class="language-typescript">
+let myListOfStrings = new GenericCollection&lt;string&gt;();
+myListOfStrings.pushItem('booop');
+myListOfStrings.pushItem(5); //error Argument type of '5' is not assignable to parameter of type 'string'
+
+
+let myListOfNumbers = new GenericCollection&lt;number&gt;();
+myListOfNumbers.pushItem(5);
+myListOfNumbers.pushItem('boop'); //error Argument type of '&quot;boop&quot;' is not assignable to parameter of type 'number'
+
+interface Dinosaur {
+  name: string;
+  breed: string;
+  teeth: number;
+}
+
+let myListOfDinosaurs = new GenericCollection&lt;Dinosaur&gt;();
+let otherDino = {
+  name: 'Blue',
+  breed: 'Velociraptor',
+  teeth: 100
+}
+
+myListOfDinosaurs.pushItem(otherDino);
+
+myListOfDinosaurs.pushItem({name: 'Charlie'}); //error Argument type '{ name: string; }' is not assignable to parameter of type 'Dinosaur'.
+</code></pre>
+<p>Thanks to generics we're able to use the same class in multiple different scenarios with any type.</p>
+
+</section>
+
+			
+		
+
+		
+			
+				
+			
+			
+		
+	</article>
+</div>
+
+	<footer></footer>
+
+	<script type="text/javascript">
+		var docObject = {"src":{"path":"src/typescript/7-generics.md"},"description":"Generics \n## Generics\n\nGenerics are a way of writing abstract code that allows the determination of types to be handled when the code is used. Generics let us reuse code for different types and improve maintainability.\n\n```typescript\nfunction identity<MyType>(arg: MyType): MyType {\n    return arg;\n}\n\nlet sampleFunc = identity<string>(\"this is my string\");\n```\n\nLet's look at making a basic class to collect a list of things.\n\n```typescript\nclass Collection {\n  private list: any[];\n  push(thing) {\n    this.list.push(thing);\n  }\n}\n```\n\nThe good - we can push any type to this list. The bad - we can push any type to this list.\n\n```typescript\nlet myList = Collection();\nmyList.push('tacos');\nmyList.push(25);\nmyList.push({name: 'Blue', breed: 'Velociraptor', speed: 50})\n```\n\nmyList now holds an assortment of types that won't be fun to iterate through and deal with. Let's build a generic class instead.\n\n```typescript\nclass GenericCollection<T> {\n  private list: T[];\n  pushItem(thing:T) {\n    this.list.push(thing);\n  }\n}\n```\n\nNow when we initialize this class we can specify a type to use.\n\n```typescript\n\nlet myListOfStrings = new GenericCollection<string>();\nmyListOfStrings.pushItem('booop');\nmyListOfStrings.pushItem(5); //error Argument type of '5' is not assignable to parameter of type 'string'\n\n\nlet myListOfNumbers = new GenericCollection<number>();\nmyListOfNumbers.pushItem(5);\nmyListOfNumbers.pushItem('boop'); //error Argument type of '\"boop\"' is not assignable to parameter of type 'number'\n\ninterface Dinosaur {\n  name: string;\n  breed: string;\n  teeth: number;\n}\n\nlet myListOfDinosaurs = new GenericCollection<Dinosaur>();\nlet otherDino = {\n  name: 'Blue',\n  breed: 'Velociraptor',\n  teeth: 100\n}\n\nmyListOfDinosaurs.pushItem(otherDino);\n\nmyListOfDinosaurs.pushItem({name: 'Charlie'}); //error Argument type '{ name: string; }' is not assignable to parameter of type 'Dinosaur'.\n```\n\nThanks to generics we're able to use the same class in multiple different scenarios with any type.\n\n","name":"typescript/generics","title":"Generics","type":"page","parent":"typescript","order":6,"pathToRoot":"../.."};
+	</script>
+
+	
+		<script>
+		  steal = {
+		    instantiated: {
+		      "bundles/bit-docs-site/static.css!$css" : null
+		    }
+		  }
+		</script>
+		<script type='text/javascript'
+				data-main="bit-docs-site/static"
+				src="../static/steal.production.js"></script>
+	
+</body>
+
+</html>

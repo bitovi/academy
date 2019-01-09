@@ -10,7 +10,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>bit-u - React</title>
+	<title>Bitovi University - React</title>
 	
 	<link rel="stylesheet" type="text/css" href="./static/bundles/bit-docs-site/static.css">
 	
@@ -25,7 +25,7 @@
 		
 			<ul>
 				<li class="">
-					<a class="home" href="BitDocs.html" title="Home">
+					<a class="home" href="index.html" title="Home">
 						Home
 					</a>
 				</li>
@@ -35,18 +35,26 @@
 	<ul>
 		
 			
+		
+			
 				
 					<li class="
            						
            						">
 						<a class="page"
-							href="front-end.html"
-							title="Everything you need to know know to be technically proficient at delivering business value using front-end technology.">
-							Front-end
+							href="advanced-javascript-training.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
 						</a>
 						
 					</li>
 				
+			
+		
+			
+		
+			
+		
 			
 		
 			
@@ -55,10 +63,9 @@
            						
            						">
 						<a class="page"
-							href="javascript.html"
-							title="This covers all the hard but important stuff you should know
-when learning JavaScript.">
-							JavaScript
+							href="RxJS.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							RxJS
 						</a>
 						
 					</li>
@@ -66,81 +73,7 @@ when learning JavaScript.">
 			
 		
 			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="dom.html"
-							title="">
-							DOM
-						</a>
-						
-					</li>
-				
-			
 		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="typescript.html"
-							title="">
-							Typescript
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="angular.html"
-							title="Learn the basics of Angular.">
-							Angular
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="current
-           						parent
-           						expanded">
-						<a class="page"
-							href="React.html"
-							title="">
-							React
-						</a>
-						
-							
-
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="marketing.html"
-							title="">
-							Marketing
-						</a>
-						
-					</li>
-				
 			
 		
 	</ul>
@@ -161,7 +94,14 @@ when learning JavaScript.">
 		
 			
 				<section class="description">
-    
+    <pre><code class="language-html">&lt;div id=&quot;root&quot;&gt;&lt;/div&gt;
+&lt;script crossorigin src=&quot;//unpkg.com/react@16/umd/react.development.js&quot;&gt;&lt;/script&gt;
+&lt;script crossorigin src=&quot;//unpkg.com/react-dom@16/umd/react-dom.development.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;jsx&quot;&gt;
+const name = 'Josh Perez';
+const element = &lt;h1&gt;Hello, {name}&lt;/h1&gt;;
+</code></pre>
+
 </section>
 
 			
@@ -173,19 +113,12 @@ when learning JavaScript.">
 			
 			
 				<section class="body">
-    <pre><code class="language-html">&lt;div id=&quot;root&quot;&gt;&lt;/div&gt;
-&lt;script crossorigin src=&quot;//unpkg.com/react@16/umd/react.development.js&quot;&gt;&lt;/script&gt;
-&lt;script crossorigin src=&quot;//unpkg.com/react-dom@16/umd/react-dom.development.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;jsx&quot;&gt;
-const name = 'Josh Perez';
-const element = &lt;h1&gt;Hello, {name}&lt;/h1&gt;;
-
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
-&lt;/script&gt;
-</code></pre>
+    <p>ReactDOM.render(
+element,
+document.getElementById('root')
+);</p>
+</script>
+```
 <div class='codepen'></div>
 
 </section>
@@ -198,7 +131,7 @@ ReactDOM.render(
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/react/react.md"},"description":"\n","name":"React","title":"React","type":"page","parent":"bit-u","order":5,"pathToRoot":".."};
+		var docObject = {"src":{"path":"src/react/react.md"},"description":"\n```html\n<div id=\"root\"></div>\n<script crossorigin src=\"//unpkg.com/react@16/umd/react.development.js\"><\/script>\n<script crossorigin src=\"//unpkg.com/react-dom@16/umd/react-dom.development.js\"><\/script>\n<script type=\"jsx\">\nconst name = 'Josh Perez';\nconst element = <h1>Hello, {name}</h1>;\n","name":"React","title":"React","type":"page","parent":"bit-u","order":5,"hide":true,"pathToRoot":".."};
 	</script>
 
 	

@@ -1,0 +1,3 @@
+window.Prism = {
+	manual: true
+};

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/rxjs/0-basics.md
+	@page rxjs/basics
+######################################################################## -->
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bitovi University - Basics</title>
+	
+	<link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+	
+</head>
+
+<body>
+	<header></header>
+	<div class="content">
+	
+		<nav class="sidebar">
+	
+		
+			<ul>
+				<li class="">
+					<a class="home" href="../index.html" title="Home">
+						Home
+					</a>
+				</li>
+			</ul>
+		
+		
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../advanced-javascript-training.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../RxJS.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							RxJS
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="basics.html"
+							title="Learn RxJS.">
+							Basics
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="angular.html"
+							title="Learn how to read and write observables in Angular.">
+							RxJS in Angular
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="clean-card-number.html"
+							title="Learn how to map an observable value to another observable value.">
+							Clean card number
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="debugging.html"
+							title="Learn how to debug RxJS.">
+							Debugging
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="card-error.html"
+							title="Map one observable to another observable again!">
+							Card error
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="error-on-blur.html"
+							title="Learn how to perform the reducer pattern.">
+							Error on blur
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="expiry.html"
+							title="Apply what you&#x27;ve learned from previous sections to the expiry field.">
+							Expiry
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="cvc.html"
+							title="Apply what you&#x27;ve learned from previous sections to the cvc field.">
+							CVC
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="disable-pay-button.html"
+							title="">
+							Disable pay button
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="request-payment.html"
+							title="">
+							Request payment
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="show-paying.html"
+							title="Learn how to flatten an observable that emits observables.  Learn how to order observables.">
+							Show paying
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="disable-while-pending.html"
+							title="Learn how to convert an observable to a multicast subject.">
+							Disable while pending
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+	</ul>
+
+
+	
+</nav>
+
+	
+	<article class="main">
+		
+			<section class="title">
+	<h1>Basics <code>page</code></h1>
+</section>
+
+		
+
+		
+			
+				<section class="description">
+    <p>Learn RxJS.</p>
+
+</section>
+
+			
+		
+
+		
+			
+				
+			
+			
+				<section class="body">
+    <h2>Basics</h2>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const {Observable} = rxjs;
+
+const observable = Observable.create(function (observer) {
+  observer.next(1);
+  observer.next(2);
+  observer.next(3);
+  setTimeout(() =&gt; {
+    observer.next(4);
+    observer.complete();
+  }, 1000);
+});
+
+console.log('just before subscribe');
+observable.subscribe({
+  next: x =&gt; console.log('got value ' + x),
+  error: err =&gt; console.error('something wrong occurred: ' + err),
+  complete: () =&gt; console.log('done'),
+});
+console.log('just after subscribe');
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<p>Now lets count those numbers:</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const {Observable} = rxjs;
+
+const numberMaker = Observable.create(function (observer) {
+    observer.next(1);
+    observer.next(2);
+    observer.next(3);
+    setTimeout(() =&gt; {
+        observer.next(4);
+        observer.complete();
+    }, 1000);
+});
+
+const numberSummer = Observable.create(function (observer) {
+    var sum = 0;
+    var subscription = numberMaker.subscribe({
+        next: number =&gt; {
+            sum += number;
+            observer.next(sum);
+        },
+        error: err =&gt; observer.error(err),
+        complete: () =&gt; observer.complete(),
+    });
+    return () =&gt; {
+        subscription.unsubscribe();
+    };
+})
+
+console.log('just before subscribe');
+numberSummer.subscribe({
+    next: x =&gt; console.log('got value ' + x),
+    error: err =&gt; console.error('something wrong occurred: ' + err),
+    complete: () =&gt; console.log('done'),
+});
+console.log('just after subscribe');
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<h2>Observables vs Subjects</h2>
+<p>The following will log <em>'observable execution'</em> each time <code>observable.subscribe</code>
+is called:</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const {Observable} = rxjs;
+
+const observable = Observable.create(function (observer) {
+  console.log(&quot;observable execution&quot;);
+  observer.next(1);
+  setTimeout(function(){
+    observer.next(2);
+    observer.complete();
+  });
+});
+
+console.log('subscriptionA - start');
+var subscriptionA = observable.subscribe({
+  next: x =&gt; console.log('subscriptionA got value ' + x)
+});
+console.log('subscriptionA - end');
+
+console.log('subscriptionB - start');
+var subscriptionB = observable.subscribe({
+  next: x =&gt; console.log('subscriptionB got value ' + x)
+});
+console.log('subscriptionB - end');
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<p>The following subscriptions are called when <code>.next</code> is called.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const {Observable} = rxjs;
+
+const subject = new Subject&lt;number&gt;();
+
+subject.subscribe({
+  next: (v) =&gt; console.log(`observerA: ${v}`)
+});
+subject.subscribe({
+  next: (v) =&gt; console.log(`observerB: ${v}`)
+});
+
+subject.next(1);
+subject.next(2);
+subject.complete();
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+
+</section>
+
+			
+		
+	</article>
+</div>
+
+	<footer></footer>
+
+	<script type="text/javascript">
+		var docObject = {"src":{"path":"src/rxjs/0-basics.md"},"description":"Learn RxJS. \n","name":"rxjs/basics","title":"Basics","type":"page","parent":"RxJS","order":0,"comment":" ","pathToRoot":"../.."};
+	</script>
+
+	
+		<script>
+		  steal = {
+		    instantiated: {
+		      "bundles/bit-docs-site/static.css!$css" : null
+		    }
+		  }
+		</script>
+		<script type='text/javascript'
+				data-main="bit-docs-site/static"
+				src="../static/steal.production.js"></script>
+	
+</body>
+
+</html>

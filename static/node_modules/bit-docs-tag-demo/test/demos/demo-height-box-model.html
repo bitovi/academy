@@ -1,0 +1,12 @@
+<div id="demo-html"></div>
+<script id="demo-source">
+	for (var i = 0; i < 5; i += 1) {
+		var div = document.createElement("div");
+		div.style.height = "100px";
+		div.textContent = "100px";
+		document.body.appendChild(div);
+	}
+	var frame = window.frameElement;
+	frame.style.paddingTop = "100px";
+	frame.style.paddingBottom = "100px";
+</script>

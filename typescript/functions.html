@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/typescript/6-functions.md
+	@page typescript/functions
+######################################################################## -->
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bitovi University - Functions</title>
+	
+	<link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+	
+</head>
+
+<body>
+	<header></header>
+	<div class="content">
+	
+		<nav class="sidebar">
+	
+		
+			<ul>
+				<li class="">
+					<a class="home" href="../index.html" title="Home">
+						Home
+					</a>
+				</li>
+			</ul>
+		
+		
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../advanced-javascript-training.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../RxJS.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+	</ul>
+
+
+	
+</nav>
+
+	
+	<article class="main">
+		
+			<section class="title">
+	<h1>Functions <code>page</code></h1>
+</section>
+
+		
+
+		
+			
+				<section class="description">
+    <p>Functions in Typescript</p>
+<h2>Functions in Typescript</h2>
+<p>In typescript we're able to annotate function parameters to better guard our code. The following execution of a function will throw an error when compiled if not called with two parameters that are numbers.</p>
+<pre><code class="language-typescript">function add(x: number, y: number): number {
+  return x + y;
+}
+</code></pre>
+<p>We can also annotate what functions return.</p>
+<pre><code class="language-typescript">interface Result {
+
+}
+</code></pre>
+<h3>Optional Parameters</h3>
+<pre><code class="language-typescript">function buildDinosaur(name: string, breed: string, teeth?:number) {
+  if (teeth) {
+    console.log(`${name} is a ${breed} and has ${teeth} teeth.`);
+  }
+  else {
+    console.log(`${name} is a ${breed}.`);
+  }
+}
+
+let newDino = buildDinosaur('Blue', 'Velociraptor', 80);
+let otherDino = buildDinosaur('Charlie'); //error an argument for 'breed' was not provided
+</code></pre>
+<h3>Rest Parameters</h3>
+<p>Rest parameters are a way to pass in an unknown number of arguments to a function. Rest params are signaled to the transpiler by passing an ellipsis(...) followed by the parameter name.</p>
+<pre><code class="language-typescript">function buildDinosaur(breed: string, ...dna: string[]) {
+  console.log(`The ${breed} has dna from ${dna.join(&quot;, &quot;)}`)
+}
+
+let uberDino = buildDinosaur('Indominous Rex', &quot;Velociraptor&quot;, &quot;Tyrannosaurus rex&quot;,&quot;Therizinosaurus&quot;, &quot;cuttlefish&quot;);
+//The Indominous Rex has dna from Velociraptor, Tyrannosaurus rex, Therizinosaurus, cuttlefish
+</code></pre>
+<h3>This &amp; =&gt; Functions</h3>
+<p>If you're familiar with ES6, you may know that using the fat arrow (=&gt;) captures the context of this where it's used. The functionality is the same in Typescript.</p>
+<h3>Overloads</h3>
+
+</section>
+
+			
+		
+
+		
+			
+				
+			
+			
+		
+	</article>
+</div>
+
+	<footer></footer>
+
+	<script type="text/javascript">
+		var docObject = {"src":{"path":"src/typescript/6-functions.md"},"description":"Functions in Typescript \n## Functions in Typescript\n\nIn typescript we're able to annotate function parameters to better guard our code. The following execution of a function will throw an error when compiled if not called with two parameters that are numbers.\n\n```typescript\nfunction add(x: number, y: number): number {\n  return x + y;\n}\n```\n\nWe can also annotate what functions return.\n\n\n```typescript\ninterface Result {\n\n}\n```\n\n\n\n### Optional Parameters\n\n```typescript\nfunction buildDinosaur(name: string, breed: string, teeth?:number) {\n  if (teeth) {\n    console.log(`${name} is a ${breed} and has ${teeth} teeth.`);\n  }\n  else {\n    console.log(`${name} is a ${breed}.`);\n  }\n}\n\nlet newDino = buildDinosaur('Blue', 'Velociraptor', 80);\nlet otherDino = buildDinosaur('Charlie'); //error an argument for 'breed' was not provided\n```\n\n### Rest Parameters\n\nRest parameters are a way to pass in an unknown number of arguments to a function. Rest params are signaled to the transpiler by passing an ellipsis(...) followed by the parameter name.\n\n```typescript\nfunction buildDinosaur(breed: string, ...dna: string[]) {\n  console.log(`The ${breed} has dna from ${dna.join(\", \")}`)\n}\n\nlet uberDino = buildDinosaur('Indominous Rex', \"Velociraptor\", \"Tyrannosaurus rex\",\"Therizinosaurus\", \"cuttlefish\");\n//The Indominous Rex has dna from Velociraptor, Tyrannosaurus rex, Therizinosaurus, cuttlefish\n```\n\n### This & => Functions\n\nIf you're familiar with ES6, you may know that using the fat arrow (=>) captures the context of this where it's used. The functionality is the same in Typescript.\n\n\n\n### Overloads\n\n","name":"typescript/functions","title":"Functions","type":"page","parent":"typescript","order":5,"pathToRoot":"../.."};
+	</script>
+
+	
+		<script>
+		  steal = {
+		    instantiated: {
+		      "bundles/bit-docs-site/static.css!$css" : null
+		    }
+		  }
+		</script>
+		<script type='text/javascript'
+				data-main="bit-docs-site/static"
+				src="../static/steal.production.js"></script>
+	
+</body>
+
+</html>

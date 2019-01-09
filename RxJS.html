@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/rxjs/rxjs.md
+	@page RxJS
+######################################################################## -->
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bitovi University - RxJS</title>
+	
+	<link rel="stylesheet" type="text/css" href="./static/bundles/bit-docs-site/static.css">
+	
+</head>
+
+<body>
+	<header></header>
+	<div class="content">
+	
+		<nav class="sidebar">
+	
+		
+			<ul>
+				<li class="">
+					<a class="home" href="index.html" title="Home">
+						Home
+					</a>
+				</li>
+			</ul>
+		
+		
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="advanced-javascript-training.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="RxJS.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							RxJS
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="rxjs/basics.html"
+							title="Learn RxJS.">
+							Basics
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="rxjs/angular.html"
+							title="Learn how to read and write observables in Angular.">
+							RxJS in Angular
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="rxjs/clean-card-number.html"
+							title="Learn how to map an observable value to another observable value.">
+							Clean card number
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="rxjs/debugging.html"
+							title="Learn how to debug RxJS.">
+							Debugging
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="rxjs/card-error.html"
+							title="Map one observable to another observable again!">
+							Card error
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="rxjs/error-on-blur.html"
+							title="Learn how to perform the reducer pattern.">
+							Error on blur
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="rxjs/expiry.html"
+							title="Apply what you&#x27;ve learned from previous sections to the expiry field.">
+							Expiry
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="rxjs/cvc.html"
+							title="Apply what you&#x27;ve learned from previous sections to the cvc field.">
+							CVC
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="rxjs/disable-pay-button.html"
+							title="">
+							Disable pay button
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="rxjs/request-payment.html"
+							title="">
+							Request payment
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="rxjs/show-paying.html"
+							title="Learn how to flatten an observable that emits observables.  Learn how to order observables.">
+							Show paying
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="rxjs/disable-while-pending.html"
+							title="Learn how to convert an observable to a multicast subject.">
+							Disable while pending
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+	</ul>
+
+
+	
+</nav>
+
+	
+	<article class="main">
+		
+			<section class="title">
+	<h1>RxJS <code>page</code></h1>
+</section>
+
+		
+
+		
+			
+				<section class="description">
+    <p>Learn RxJS by creating a validating credit card form.</p>
+
+</section>
+
+			
+		
+
+		
+			
+				
+			
+			
+				<section class="body">
+    <h2>Overview</h2>
+<p>In this tutorial we will create the following validating credit card form:</p>
+<p data-height="373" data-theme-id="0" data-slug-hash="vvpNJz" data-default-tab="js,result" data-user="justinbmeyer" data-pen-title="Angular + RXJS" class="codepen">See the Pen <a href="https://codepen.io/justinbmeyer/pen/vvpNJz/">Angular + RXJS</a> by Justin Meyer (<a href="https://codepen.io/justinbmeyer">@justinbmeyer</a>) on <a href="https://codepen.io">CodePen</a>.</p>
+<p>This credit card form:</p>
+<ul>
+<li>Validates input as a user types, but <em>only</em> once a user blurs an input element.</li>
+<li>Enables the <strong>PAY</strong> button once the credit card information is valid.</li>
+<li>Disables the <strong>PAY</strong> button and changes its text to <strong>PAYING</strong> while payment is being processed.</li>
+<li>Logs a success message when payment has completed.</li>
+<li>Simulates a payment with a <code>Promise</code> that resolves in 2 seconds.</li>
+</ul>
+<p>We will use <a href="https://rxjs-dev.firebaseapp.com/">RxJS</a> and <a href="https://v6.angular.io/docs">Angular 6</a>
+for this example.  All code examples will be able to work in a <a href="https://codepen.io/justinbmeyer/pen/vvpNJz">CodePen</a> so you just need a browser to complete this tutorial!</p>
+<p>Each section of the guide is broken down into the following sections:</p>
+<ul>
+<li><strong>The problem</strong> — A description of what the section is trying to accomplish.</li>
+<li><strong>What you need to know</strong> — Information about CanJS that is useful for solving the problem.</li>
+<li><strong>The solution</strong> — The solution to the problem.</li>
+</ul>
+<p>The following presentation shows how the observables are wired up.  This will
+be a useful reference for understanding how the tutorial works:</p>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vS1c0TjlkqGDCI0-R_QUvmZ3oFFTcapVK8zLosgq94g3_w2rQPifGHwZy209xadXI0EchaaB60vCcqj/embed?start=false&loop=false&delayms=3000" frameborder="0" width="640" height="374" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<h2>Outline</h2>
+<ul>
+<li>Basics - Learn how to create observables</li>
+<li>RxJS in Angular - Read and write to observables in Angular</li>
+<li>Debugging - How to debug observables without messing up state</li>
+<li>Clean card number - How to use <code>map</code></li>
+<li>Card error - Use <code>map</code> again</li>
+<li>Error on blur - Only show the card error when blurred - <code>merge</code>, <code>scan</code></li>
+<li>Expiry - Read, validate, and show the error of the expiry</li>
+<li>CVC - Read, validate, and show the error of the CVC</li>
+<li>Disable pay button - Disable the pay button if any part of the card has an error - <code>combineLatest</code></li>
+<li>Request payment - Make a request when the pay button is clicked</li>
+<li>Show paying - Update the pay button's text while payments are pending</li>
+<li>Disable the payment button while payments are pending</li>
+</ul>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+</section>
+
+			
+		
+	</article>
+</div>
+
+	<footer></footer>
+
+	<script type="text/javascript">
+		var docObject = {"src":{"path":"src/rxjs/rxjs.md"},"description":"Learn RxJS by creating a validating credit card form. \n","name":"RxJS","title":"RxJS","type":"page","parent":"bit-u","order":5,"comment":" ","pathToRoot":".."};
+	</script>
+
+	
+		<script>
+		  steal = {
+		    instantiated: {
+		      "bundles/bit-docs-site/static.css!$css" : null
+		    }
+		  }
+		</script>
+		<script type='text/javascript'
+				data-main="bit-docs-site/static"
+				src="./static/steal.production.js"></script>
+	
+</body>
+
+</html>

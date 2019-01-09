@@ -1,0 +1,21 @@
+@import "locate://bootstrap/module_b.less";
+
+@location: "locate://bootstrap/other.png";
+
+
+#test-element {
+  .mixin-b();
+  .mixin-c();
+  background-image: url("locate://img-pack/other.png");
+}
+
+#test-element-2 {
+  background-image: url(@location);
+}
+
+// this path variable won't be correctly relative to the file we imported it from
+// less only rewrites 'url()' to be relative its parent
+// this background image url will be broken
+#test-element-3 {
+	background-image: url(@imported-location);
+}

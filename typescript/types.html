@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/typescript/3-types.md
+	@page typescript/types
+######################################################################## -->
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bitovi University - Types</title>
+	
+	<link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+	
+</head>
+
+<body>
+	<header></header>
+	<div class="content">
+	
+		<nav class="sidebar">
+	
+		
+			<ul>
+				<li class="">
+					<a class="home" href="../index.html" title="Home">
+						Home
+					</a>
+				</li>
+			</ul>
+		
+		
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../advanced-javascript-training.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../RxJS.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+	</ul>
+
+
+	
+</nav>
+
+	
+	<article class="main">
+		
+			<section class="title">
+	<h1>Types <code>page</code></h1>
+</section>
+
+		
+
+		
+			
+				<section class="description">
+    <p>Basic Types.</p>
+<h2>Basic Types</h2>
+<h3>Boolean</h3>
+<pre><code class="language-typescript">let isCarnivore: boolean = true;
+</code></pre>
+<h3>Number</h3>
+<pre><code class="language-typescript">let teeth: number = 100;
+let hex: number = 0xF00D;
+</code></pre>
+<h3>String</h3>
+<pre><code class="language-typescript">let name: string = 'Leoplurodon';
+</code></pre>
+<h4>Quick tip - template strings</h4>
+<p>Strings that have embedded expressions.</p>
+<pre><code class="language-typescript">let myTemplateString: string = `I think ${ name }'s are pretty cool.
+
+They have ${ teeth } teeth.`;
+</code></pre>
+<h3>Array</h3>
+<pre><code class="language-typescript">let list: number[] = [1, 2, 3];
+
+let raptors: Array&lt;string&gt; = ['Blue','Charlie','Delta']
+</code></pre>
+<h3>Tuple</h3>
+<pre><code class="language-typescript">let sillyList: [number, string];
+
+sillyList = [5, &quot;boop&quot;]; //typescript is happy
+
+sillyList = [&quot;boop&quot;, 5]; //will error
+</code></pre>
+<h3>Enum</h3>
+<p>Enums allow the aliasing of names to a list of numeric values. Like most indexing, enums start their first member at 0.</p>
+<pre><code class="language-typescript">enum Color { Red, Green, Blue }
+let greenColor: Color = Color.Green
+</code></pre>
+<p>Enums can have their first value manually set, or manually set all values</p>
+<pre><code class="language-typescript">enum Month { January = 1, February, March, April, May, June }
+let feb = Month[2];
+
+enum Month { January = 1, March = 3, May = 5}
+let may = Month[5];
+</code></pre>
+<h3>Any</h3>
+<p>Any describes a variable where we may not know the type.</p>
+<pre><code class="language-typescript">let my3rdPartyData: any = 5;
+</code></pre>
+<h3>Void</h3>
+<p>No type at all - commonly used with functions that don't return a value.</p>
+<pre><code class="language-typescript">function buttonClick(): void {
+  console.log('I clicked a button');
+}
+</code></pre>
+<h3>Null &amp; Undefined</h3>
+<p>Null and Undefined are two separate types, and subtypes of all other types, meaning they can be assigned to another type like string or number unless the --strictNullChecks flag is used.</p>
+<h3>Never</h3>
+<p>The never type represents a value that will never occur.</p>
+<pre><code class="language-typescript">function error(message: string): never {
+    throw new Error(message);
+}
+</code></pre>
+<h3>object</h3>
+<p>The object type represents all non-primitive types.</p>
+<pre><code class="language-typescript">// All primitive types
+type Primitive =
+  | boolean
+  | number
+  | string
+  | symbol
+  | null
+  | undefined;
+
+// All non-primitive types
+type NonPrimitive = object;
+
+</code></pre>
+<h3>Type assertions</h3>
+<p>Type assertions are a way to override the inferring of types. There are two different syntaxes, angle-brackets and as.</p>
+<pre><code class="language-typescript">let someValue: any = &quot;this is a string&quot;;
+
+let strLength: number = (&lt;string&gt;someValue).length;
+
+let otherValue: any = &quot;this is a string&quot;;
+
+let otherLength: number = (otherValue as string).length;
+</code></pre>
+
+</section>
+
+			
+		
+
+		
+			
+				
+			
+			
+		
+	</article>
+</div>
+
+	<footer></footer>
+
+	<script type="text/javascript">
+		var docObject = {"src":{"path":"src/typescript/3-types.md"},"description":"Basic Types. \n## Basic Types\n\n### Boolean\n\n```typescript\nlet isCarnivore: boolean = true;\n```\n\n### Number\n\n```typescript\nlet teeth: number = 100;\nlet hex: number = 0xF00D;\n```\n\n### String\n\n```typescript\nlet name: string = 'Leoplurodon';\n```\n\n#### Quick tip - template strings\n\nStrings that have embedded expressions.\n\n```typescript\nlet myTemplateString: string = `I think ${ name }'s are pretty cool.\n\nThey have ${ teeth } teeth.`;\n```\n\n### Array\n\n```typescript\nlet list: number[] = [1, 2, 3];\n\nlet raptors: Array<string> = ['Blue','Charlie','Delta']\n```\n\n### Tuple\n\n```typescript\nlet sillyList: [number, string];\n\nsillyList = [5, \"boop\"]; //typescript is happy\n\nsillyList = [\"boop\", 5]; //will error\n```\n\n### Enum\n\nEnums allow the aliasing of names to a list of numeric values. Like most indexing, enums start their first member at 0.\n\n```typescript\nenum Color { Red, Green, Blue }\nlet greenColor: Color = Color.Green\n```\n\nEnums can have their first value manually set, or manually set all values\n\n```typescript\nenum Month { January = 1, February, March, April, May, June }\nlet feb = Month[2];\n\nenum Month { January = 1, March = 3, May = 5}\nlet may = Month[5];\n```\n\n### Any\n\nAny describes a variable where we may not know the type.\n\n```typescript\nlet my3rdPartyData: any = 5;\n```\n\n### Void\n\nNo type at all - commonly used with functions that don't return a value.\n\n```typescript\nfunction buttonClick(): void {\n  console.log('I clicked a button');\n}\n```\n### Null & Undefined\n\nNull and Undefined are two separate types, and subtypes of all other types, meaning they can be assigned to another type like string or number unless the --strictNullChecks flag is used.\n\n### Never\n\nThe never type represents a value that will never occur.\n\n```typescript\nfunction error(message: string): never {\n    throw new Error(message);\n}\n```\n\n### object\n\nThe object type represents all non-primitive types.\n\n```typescript\n// All primitive types\ntype Primitive =\n  | boolean\n  | number\n  | string\n  | symbol\n  | null\n  | undefined;\n\n// All non-primitive types\ntype NonPrimitive = object;\n\n```\n\n### Type assertions\n\nType assertions are a way to override the inferring of types. There are two different syntaxes, angle-brackets and as.\n\n```typescript\nlet someValue: any = \"this is a string\";\n\nlet strLength: number = (<string>someValue).length;\n\nlet otherValue: any = \"this is a string\";\n\nlet otherLength: number = (otherValue as string).length;\n```\n\n","name":"typescript/types","title":"Types","type":"page","parent":"typescript","order":2,"pathToRoot":"../.."};
+	</script>
+
+	
+		<script>
+		  steal = {
+		    instantiated: {
+		      "bundles/bit-docs-site/static.css!$css" : null
+		    }
+		  }
+		</script>
+		<script type='text/javascript'
+				data-main="bit-docs-site/static"
+				src="../static/steal.production.js"></script>
+	
+</body>
+
+</html>

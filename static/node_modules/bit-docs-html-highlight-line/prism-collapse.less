@@ -1,0 +1,79 @@
+pre code {
+	.collapse.collapsed {
+		color: black;
+		text-align: center;
+		background-color: #eee;
+		border-top: 1px solid #ccc;
+		border-bottom: 1px solid #ccc;
+		padding: calc(~"0.25em - 1px") 0;
+		margin: 0 -1em;
+
+		> .collapse-code {
+			display: none;
+		}
+
+		&:hover {
+			opacity: .6;
+			cursor: pointer;
+		}
+
+		&:before {
+			display: block;
+			content: '⇅ EXPAND ⇅';
+			margin: 0 auto;
+
+			width: 1em;
+			height: 1em;
+			line-height: 1em;
+		}
+	}
+}
+
+pre.line-numbers code {
+	> .line-numbers-rows > .collapse.collapsed {
+		border: none;
+		padding: 0;
+		margin: 0;
+		height: 1.5em;
+
+		opacity: 0;
+
+		> .collapse-lines {
+			position: absolute;
+			height: 0;
+			overflow: hidden;
+		}
+
+		&:before {
+			display: none;
+		}
+	}
+}
+
+
+/* conditional positioning of colored bar */
+
+pre[data-line] code .collapse.collapsed {
+	margin-left: -3.8em;
+}
+
+pre.line-numbers code .collapse.collapsed {
+	margin-left: -4em;
+}
+
+
+/* line-numbers overwrites so that spans can be nested */
+
+.line-numbers-rows span {
+    pointer-events: none;
+    display: block;
+    counter-increment: linenumber;
+}
+
+.line-numbers-rows span:before {
+    content: counter(linenumber);
+    color: #999;
+    display: block;
+    padding-right: .8em;
+    text-align: right;
+}

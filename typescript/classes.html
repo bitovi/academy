@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/typescript/4-classes.md
+	@page typescript/classes
+######################################################################## -->
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bitovi University - Classes</title>
+	
+	<link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+	
+</head>
+
+<body>
+	<header></header>
+	<div class="content">
+	
+		<nav class="sidebar">
+	
+		
+			<ul>
+				<li class="">
+					<a class="home" href="../index.html" title="Home">
+						Home
+					</a>
+				</li>
+			</ul>
+		
+		
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../advanced-javascript-training.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../RxJS.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+	</ul>
+
+
+	
+</nav>
+
+	
+	<article class="main">
+		
+			<section class="title">
+	<h1>Classes <code>page</code></h1>
+</section>
+
+		
+
+		
+			
+				<section class="description">
+    <p>Classes in Typescript</p>
+<h2>Classes in Typescript</h2>
+<p>A class in JavaScript is a clean way to define prototype based functions. Classes allow us to take an object-oriented approach to building our JavaScript applications.</p>
+<pre><code class="language-javascript">//prototype way
+function Avenger(name) {
+  this.name = name;
+}
+
+Avenger.prototype.sayHi = function() {
+  alert(this.name);
+}
+
+let ironMan = new Avenger(&quot;Tony&quot;);
+ironMan.sayHi();
+</code></pre>
+<pre><code class="language-typescript">//class way
+class Avenger {
+
+  constructor(name) {
+    this.name = name;
+  }
+
+  sayHi() {
+    alert(this.name);
+  }
+
+}
+
+let ironMan = new Avenger(&quot;Tony&quot;);
+ironMan.sayHi();
+</code></pre>
+<h3>Constructor</h3>
+<p>A constructor is a way to automatically declare members on a class.</p>
+<pre><code class="language-typescript">class Dinosaur {
+  name: string;
+  constructor(theName: string) {
+    this.name = theName;
+  }
+}
+</code></pre>
+<p>It's quite a common pattern, which is why Typescript also provides a shorthand.</p>
+<pre><code class="language-typescript">class Dinosaur {
+  constructor(public name: string) {
+  }
+}
+</code></pre>
+<h3>Inheritance</h3>
+<p>Inheritance is a way to extend functionality of existing classes.</p>
+<pre><code class="language-typescript">class Dinosaur {
+  move(distanceInFeet: number = 0) {
+      console.log(`Animal moved ${distanceInFeet}m.`);
+  }
+}
+
+class Velociraptor extends Dinosaur {
+    talk() {
+        console.log('screech');
+    }
+}
+
+const blue = new Velociraptor();
+blue.talk();
+blue.move(10);
+blue.talk();
+</code></pre>
+<h3>Statics</h3>
+<p>Static properties are able to be shared by all instances of the class.</p>
+<pre><code class="language-typescript">class Chatbot {
+  static instances = 0;
+  constructor() {
+    Chatbot.instances++;
+  }
+}
+
+var chat1 = new Chatbot();
+var chat2 = new Chatbot();
+console.log(Chatbot.instances); // 2
+</code></pre>
+<h3>Public modifier</h3>
+<pre><code class="language-typescript">class Dinosaur {
+    public name: string;
+    constructor(theName: string) {
+      this.name = theName;
+    }
+    public walk(distanceInFeet: number) {
+      console.log(`${this.name} walked ${distanceInFeet} feet.`);
+    }
+}
+
+let myDino = new Dinosaur('Mildred');
+myDino.walk(7) // Mildred walked 7 feet.
+</code></pre>
+<p>In Typescript all members are public by default, meaning they are publicly visible and accessible.</p>
+<h3>Private modifier</h3>
+<p>Members marked private are unable to be accessed from outside their containing class.</p>
+<pre><code class="language-typescript">class Dinosaur {
+    private name: string;
+    constructor(theName: string) { this.name = theName; }
+}
+
+class Trex extends Dinosaur {
+    private type: string = 'carnivore';
+    constructor() { super(&quot;Trex&quot;); }
+}
+
+class Employee {
+    private name: string;
+    constructor(theName: string) { this.name = theName; }
+}
+
+let dino = new Dinosaur(&quot;Buddy&quot;);
+let trex = new Trex();
+let employee = new Employee(&quot;Arnold&quot;);
+
+dino = trex;
+dino = employee; // Error: 'Animal' and 'Employee' are not compatible
+</code></pre>
+<h3>Protected modifier</h3>
+<p>Protected modifiers are similar to private modifiers in that they can't be accessed but they CAN be accessed by deriving classes.</p>
+<pre><code class="language-typescript">class Dinosaur {
+  public name: string;
+  private dna: string;
+  protected teethCount: number;
+}
+
+// EFFECT ON INSTANCES
+var indominusRex = new Dinosaur();
+indominusRex.name; // okay
+indominusRex.dna; // ERROR : private
+indominusRex.teethCount; // ERROR : protected
+
+// EFFECT ON CHILD CLASSES
+class geneticallyModifiedDinosaur extends Dinosaur {
+  constructor() {
+    super();
+      this.name; // okay
+      this.dna; // ERROR: private
+      this.teethCount; // okay
+  }
+}
+</code></pre>
+<h3>Readonly modifier</h3>
+<pre><code class="language-typescript">class Leoplurodon {
+    readonly location: string;
+    readonly numberOfFlippers: number = 4;
+    readonly magic:boolean = true;
+    constructor (theLocation: string) {
+        this.location = theLocation;
+    }
+}
+let firstStop = new Leoplurodon(&quot;On the way to Candy Mountain&quot;);
+firstStop.location = &quot;On a bridge&quot;; // error! location is readonly.
+</code></pre>
+
+</section>
+
+			
+		
+
+		
+			
+				
+			
+			
+		
+	</article>
+</div>
+
+	<footer></footer>
+
+	<script type="text/javascript">
+		var docObject = {"src":{"path":"src/typescript/4-classes.md"},"description":"Classes in Typescript \n## Classes in Typescript\n\nA class in JavaScript is a clean way to define prototype based functions. Classes allow us to take an object-oriented approach to building our JavaScript applications.\n\n```javascript\n//prototype way\nfunction Avenger(name) {\n  this.name = name;\n}\n\nAvenger.prototype.sayHi = function() {\n  alert(this.name);\n}\n\nlet ironMan = new Avenger(\"Tony\");\nironMan.sayHi();\n```\n\n\n```typescript\n//class way\nclass Avenger {\n\n  constructor(name) {\n    this.name = name;\n  }\n\n  sayHi() {\n    alert(this.name);\n  }\n\n}\n\nlet ironMan = new Avenger(\"Tony\");\nironMan.sayHi();\n```\n### Constructor\n\nA constructor is a way to automatically declare members on a class.\n\n\n```typescript\nclass Dinosaur {\n  name: string;\n  constructor(theName: string) {\n    this.name = theName;\n  }\n}\n```\n\nIt's quite a common pattern, which is why Typescript also provides a shorthand.\n\n```typescript\nclass Dinosaur {\n  constructor(public name: string) {\n  }\n}\n```\n\n### Inheritance\n\nInheritance is a way to extend functionality of existing classes.\n\n```typescript\nclass Dinosaur {\n  move(distanceInFeet: number = 0) {\n      console.log(`Animal moved ${distanceInFeet}m.`);\n  }\n}\n\nclass Velociraptor extends Dinosaur {\n    talk() {\n        console.log('screech');\n    }\n}\n\nconst blue = new Velociraptor();\nblue.talk();\nblue.move(10);\nblue.talk();\n```\n\n### Statics\n\nStatic properties are able to be shared by all instances of the class.\n\n```typescript\nclass Chatbot {\n  static instances = 0;\n  constructor() {\n    Chatbot.instances++;\n  }\n}\n\nvar chat1 = new Chatbot();\nvar chat2 = new Chatbot();\nconsole.log(Chatbot.instances); // 2\n```\n\n\n### Public modifier\n\n```typescript\nclass Dinosaur {\n    public name: string;\n    constructor(theName: string) {\n      this.name = theName;\n    }\n    public walk(distanceInFeet: number) {\n      console.log(`${this.name} walked ${distanceInFeet} feet.`);\n    }\n}\n\nlet myDino = new Dinosaur('Mildred');\nmyDino.walk(7) // Mildred walked 7 feet.\n```\n\nIn Typescript all members are public by default, meaning they are publicly visible and accessible.\n\n### Private modifier\n\nMembers marked private are unable to be accessed from outside their containing class.\n\n```typescript\nclass Dinosaur {\n    private name: string;\n    constructor(theName: string) { this.name = theName; }\n}\n\nclass Trex extends Dinosaur {\n    private type: string = 'carnivore';\n    constructor() { super(\"Trex\"); }\n}\n\nclass Employee {\n    private name: string;\n    constructor(theName: string) { this.name = theName; }\n}\n\nlet dino = new Dinosaur(\"Buddy\");\nlet trex = new Trex();\nlet employee = new Employee(\"Arnold\");\n\ndino = trex;\ndino = employee; // Error: 'Animal' and 'Employee' are not compatible\n```\n\n### Protected modifier\n\nProtected modifiers are similar to private modifiers in that they can't be accessed but they CAN be accessed by deriving classes.\n\n```typescript\nclass Dinosaur {\n  public name: string;\n  private dna: string;\n  protected teethCount: number;\n}\n\n// EFFECT ON INSTANCES\nvar indominusRex = new Dinosaur();\nindominusRex.name; // okay\nindominusRex.dna; // ERROR : private\nindominusRex.teethCount; // ERROR : protected\n\n// EFFECT ON CHILD CLASSES\nclass geneticallyModifiedDinosaur extends Dinosaur {\n  constructor() {\n    super();\n      this.name; // okay\n      this.dna; // ERROR: private\n      this.teethCount; // okay\n  }\n}\n```\n\n### Readonly modifier\n\n```typescript\nclass Leoplurodon {\n    readonly location: string;\n    readonly numberOfFlippers: number = 4;\n    readonly magic:boolean = true;\n    constructor (theLocation: string) {\n        this.location = theLocation;\n    }\n}\nlet firstStop = new Leoplurodon(\"On the way to Candy Mountain\");\nfirstStop.location = \"On a bridge\"; // error! location is readonly.\n```\n\n","name":"typescript/classes","title":"Classes","type":"page","parent":"typescript","order":3,"pathToRoot":"../.."};
+	</script>
+
+	
+		<script>
+		  steal = {
+		    instantiated: {
+		      "bundles/bit-docs-site/static.css!$css" : null
+		    }
+		  }
+		</script>
+		<script type='text/javascript'
+				data-main="bit-docs-site/static"
+				src="../static/steal.production.js"></script>
+	
+</body>
+
+</html>

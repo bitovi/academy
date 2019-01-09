@@ -3,14 +3,14 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/angular/1-setup.md
+	source: src/angular/1-why-angular.md
 	@page angular-setup
 ######################################################################## -->
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>bit-u - Setup</title>
+	<title>Bitovi University - Setup</title>
 	
 	<link rel="stylesheet" type="text/css" href="./static/bundles/bit-docs-site/static.css">
 	
@@ -25,7 +25,7 @@
 		
 			<ul>
 				<li class="">
-					<a class="home" href="BitDocs.html" title="Home">
+					<a class="home" href="index.html" title="Home">
 						Home
 					</a>
 				</li>
@@ -35,19 +35,6 @@
 	<ul>
 		
 			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="front-end.html"
-							title="Everything you need to know know to be technically proficient at delivering business value using front-end technology.">
-							Front-end
-						</a>
-						
-					</li>
-				
-			
 		
 			
 				
@@ -55,14 +42,19 @@
            						
            						">
 						<a class="page"
-							href="javascript.html"
-							title="This covers all the hard but important stuff you should know
-when learning JavaScript.">
-							JavaScript
+							href="advanced-javascript-training.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
 						</a>
 						
 					</li>
 				
+			
+		
+			
+		
+			
+		
 			
 		
 			
@@ -71,9 +63,9 @@ when learning JavaScript.">
            						
            						">
 						<a class="page"
-							href="dom.html"
-							title="">
-							DOM
+							href="RxJS.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							RxJS
 						</a>
 						
 					</li>
@@ -81,88 +73,7 @@ when learning JavaScript.">
 			
 		
 			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="typescript.html"
-							title="">
-							Typescript
-						</a>
-						
-					</li>
-				
-			
 		
-			
-				
-					<li class="
-           						parent
-           						expanded">
-						<a class="page"
-							href="angular.html"
-							title="Learn the basics of Angular.">
-							Angular
-						</a>
-						
-							
-	<ul>
-		
-			
-				
-					<li class="current
-           						parent
-           						expanded">
-						<a class="page"
-							href="angular-setup.html"
-							title="A description of this part.">
-							Setup
-						</a>
-						
-							
-
-						
-					</li>
-				
-			
-		
-	</ul>
-
-
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="React.html"
-							title="">
-							React
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="marketing.html"
-							title="">
-							Marketing
-						</a>
-						
-					</li>
-				
 			
 		
 	</ul>
@@ -208,6 +119,60 @@ when learning JavaScript.">
 <p>Change <code>foo.js</code> to:</p>
 <pre><code class="language-js">var foo = &quot;bar&quot;;
 </code></pre>
+<h2>Example with angular 6</h2>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@6.0.5/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@6.0.5/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@6.0.5/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@6.0.5/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@6.0.5/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+// app.js
+
+const { Component, VERSION } = ng.core;
+
+@Component({
+  selector: 'my-app',
+  template: `
+   &lt;h1&gt;{{title}} &lt;/h1&gt;
+    TODO: Define your Angular ${VERSION.major} component.
+  `
+})
+class AppComponent {  
+  title=&quot;hello world angular 6&quot;;
+  constructor() {
+    // TODO: Define your Angular component implementation
+  }
+}
+
+
+// main.js
+const { BrowserModule } = ng.platformBrowser;
+const { NgModule } = ng.core;
+const { CommonModule } = ng.common;
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    CommonModule,
+  ],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
 
 </section>
 
@@ -219,7 +184,7 @@ when learning JavaScript.">
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/angular/1-setup.md"},"description":"A description of this part. \n\n","name":"angular-setup","title":"Setup","type":"page","parent":"angular","order":1,"comment":" ","pathToRoot":".."};
+		var docObject = {"src":{"path":"src/angular/1-why-angular.md"},"description":"A description of this part. \n\n","name":"angular-setup","title":"Setup","type":"page","parent":"angular","order":1,"comment":" ","pathToRoot":".."};
 	</script>
 
 	

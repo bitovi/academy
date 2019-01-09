@@ -1,0 +1,30 @@
+<body>
+	<script>
+		window.QUnit = window.parent.QUnit;
+		window.removeMyself = window.parent.removeMyself;
+	</script>
+
+	<script src="../../node_modules/steal/steal.js"
+		data-config="../config.js">
+	</script>
+
+	<script>
+		System['import']('less_error/main').then(function(){
+			if(window.QUnit) {
+				QUnit.ok(false, "Should not have loaded");
+				QUnit.start();
+				removeMyself();
+			} else {
+				console.log("Should not have loaded");
+			}
+		}, function(err){
+			if (!window.QUnit) {
+				console.error(err);
+			} else {
+				QUnit.ok(/not-exists\.less/.test(err.message), "Message contains code snippet to the missing stylesheet.");
+				QUnit.start();
+				removeMyself();
+			}
+		});
+	</script>
+</body>

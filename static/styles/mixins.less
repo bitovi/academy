@@ -1,0 +1,248 @@
+/**
+ * @parent bit-docs-generate-html/site/default/static
+ * @module bit-docs-generate-html/site/default/static/styles/mixins.less
+ *
+ * @description Mixins for site-wide visual layout.
+ *
+ * @body
+ *
+ * Mixins are useful as reusable rules that can be added into any declaration:
+ * - [bit-docs-generate-html/site/default/static/styles/mixins.less.display-flex]
+ * - [bit-docs-generate-html/site/default/static/styles/mixins.less.flex-auto]
+ * - [bit-docs-generate-html/site/default/static/styles/mixins.less.flex-column]
+ * - [bit-docs-generate-html/site/default/static/styles/mixins.less.flex-initial]
+ * - [bit-docs-generate-html/site/default/static/styles/mixins.less.flex-none]
+ * - [bit-docs-generate-html/site/default/static/styles/mixins.less.flex-row]
+ * - [bit-docs-generate-html/site/default/static/styles/mixins.less.helper-flex]
+ * - [bit-docs-generate-html/site/default/static/styles/mixins.less.helper-padding]
+ *
+ * Read more about mixins at
+ * [lesscss.org](http://lesscss.org/features/#mixins-feature).
+ */
+
+#helper {
+  /**
+   * @property {ParametricMixin} helper-padding #helper.padding
+   *
+   * Sets padding for passed sides.
+   *
+   * @signature `#helper.padding(@sides; @amount: @defaultPadding);`
+   *
+   * @param {String} @sides A space-separated list of "sides", like `left right`.
+   *
+   * @param {Number} @amount An amount of padding in pixels, defaults to
+   * [bit-docs-generate-html/site/default/static/styles/variables.less.defaultPadding].
+   * 
+   * @body
+   *
+   * ### Use
+   *
+   * ```less
+   * .container {
+   *   #helper.padding(left right; 50px);
+   * }
+   * ```
+   */
+  .padding(@sides; @amount: @defaultPadding) {
+    .property-names(padding; @sides; @amount);
+  }
+
+  /**
+   * @property {ParametricMixin} helper-flex #helper.flex
+   *
+   * Sets flexbox "grow" and "shrink" in most compatible way.
+   *
+   * @signature `#helper.flex(@grow: 0, @shrink: 1);`
+   *
+   * @param {Number} @grow The amount this flex item should grow, defaults to 0.
+   *
+   * @param {Number} @shrink The amount this flex item should shrink, defaults to 1.
+   * 
+   * @body
+   *
+   * ### Use
+   *
+   * ```less
+   * .flex-none {
+   *   #helper.flex(0; 0);
+   * }
+   * ```
+   */
+  .flex(@grow: 0; @shrink: 1) {
+    -webkit-box-flex: @grow;
+    -webkit-flex: @grow @shrink auto;
+    -moz-box-flex: @grow;
+    -ms-flex: @grow @shrink auto;
+    flex: @grow @shrink auto;
+  }
+
+  /**
+   * @property {ParametricMixin} helper-property-names #helper.property-names
+   * @hide
+   *
+   * Helper for setting multiple dash properties to same value.
+   *
+   * @signature `#helper.property-names(@p; @s; @v: 0);`
+   *
+   * @param {String} @p The property name to prepend before the dash and string.
+   *
+   * @param {String} @s A space-separated list of strings to iterate over.
+   *
+   * @param {Number} @v The value to set each concatenated property to, defaults to 0.
+   * 
+   * @body
+   *
+   * ### Use
+   *
+   * ```less
+   * .top-left-margin {
+   *   .property-names(margin; top left; 100px);
+   * }
+   *
+   * .special img {
+   *   .top-left-margin;
+   * }
+   * ```
+   */
+  .property-names(@p; @s; @v: 0) {
+    .-(@i: length(@s)) when (@i > 0) {
+      @n: extract(@s, @i);
+      & {@{p}-@{n}: @v}
+      .-((@i - 1));
+    } .-;
+  }
+}
+
+// Flexbox (flexbugs: https://github.com/philipwalton/flexbugs)
+
+/**
+ * @property {Mixin} display-flex .display-flex
+ *
+ * Sets the display to flex using vendor prefixes.
+ *
+ * @body
+ *
+ * ### Use
+ *
+ * ```less
+ * body {
+ *   .display-flex;
+ * }
+ * ```
+ */
+.display-flex {
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: -moz-box;
+	display: -ms-flexbox;
+	display: flex;
+}
+
+/**
+ * @property {Mixin} flex-row .flex-row
+ *
+ * Sets the display to flex and direction to row using vendor prefixes.
+ *
+ * @body
+ *
+ * ### Use
+ *
+ * ```less
+ * body {
+ *   .flex-row;
+ * }
+ * ```
+ */
+.flex-row {
+  .display-flex;
+	-webkit-box-orient: horizontal;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: row;
+	-moz-box-orient: horizontal;
+	-moz-box-direction: normal;
+	-ms-flex-direction: row;
+	flex-direction: row;
+}
+
+/**
+ * @property {Mixin} flex-column .flex-column
+ *
+ * Sets the display to flex and direction to column using vendor prefixes.
+ *
+ * @body
+ *
+ * ### Use
+ *
+ * ```less
+ * body {
+ *   .flex-column;
+ * }
+ * ```
+ */
+.flex-column {
+  .display-flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	-moz-box-orient: vertical;
+	-moz-box-direction: normal;
+	-ms-flex-direction: column;
+	flex-direction: column;
+}
+
+/**
+ * @property {Mixin} flex-initial .flex-initial
+ *
+ * Emulates `flex: initial;` in a compatible way using vendor prefixes.
+ *
+ * @body
+ *
+ * ### Use
+ *
+ * ```less
+ * body {
+ *   .flex-initial;
+ * }
+ * ```
+ */
+.flex-initial {
+  #helper.flex();
+}
+
+/**
+ * @property {Mixin} flex-auto .flex-auto
+ *
+ * Emulates `flex: auto;` in a compatible way using vendor prefixes.
+ *
+ * @body
+ *
+ * ### Use
+ *
+ * ```less
+ * body {
+ *   .flex-auto;
+ * }
+ * ```
+ */
+.flex-auto {
+  #helper.flex(1);
+}
+
+/**
+ * @property {Mixin} flex-none .flex-none
+ *
+ * Emulates `flex: none;` in a compatible way using vendor prefixes.
+ *
+ * @body
+ *
+ * ### Use
+ *
+ * ```less
+ * body {
+ *   .flex-none;
+ * }
+ * ```
+ */
+.flex-none {
+  #helper.flex(0; 0);
+}
