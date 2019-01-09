@@ -11,7 +11,7 @@
 // app.js
 const { Component, VERSION } = ng.core;
 const { BehaviorSubject, Subject, merge, combineLatest, of, from, concat, pipe } = rxjs;
-const { map, tap, scan, mergeAll,  multicast, refCount, startWith } = rxjs.operators;
+const { map, tap, scan, mergeAll, startWith, multicast, refCount } = rxjs.operators;
 
 const cleanCardNumber = map((card) => {
     if (card) {
@@ -135,9 +135,9 @@ function combineCard(cardNumber, expiry, cvc) {
     })
 }
 
-function paymentPromises(payClicked, card) {
-    return combineLatest(payClicked, card, (payClicked, card) => {
-        if (payClicked) {
+function paymentPromises(paySubmitted, card) {
+    return combineLatest(paySubmitted, card, (paySubmitted, card) => {
+        if (paySubmitted) {
             console.log("Asking for token with", card);
             return new Promise(function(resolve) {
                 setTimeout(function() {
@@ -229,7 +229,7 @@ class AppComponent {
     userCVC = new BehaviorSubject<String>();
     userCVCBlurred = new Subject<Boolean>();
 
-    payClicked = new Subject();
+    paySubmitted = new Subject();
 
     constructor() {
         this.cardNumber = this.userCardNumber.pipe(cleanCardNumber)
@@ -249,7 +249,7 @@ class AppComponent {
 
         const card = combineCard(this.cardNumber, this.expiry, this.cvc);
 
-        const payments = paymentPromises(this.payClicked, card);
+        const payments = paymentPromises(this.paySubmitted, card);
 
         const paymentsObservables = payments.pipe(paymentStatusObservable);
 
@@ -259,7 +259,7 @@ class AppComponent {
     }
     pay(event) {
         event.preventDefault();
-        this.payClicked.next(true);
+        this.paySubmitted.next(true);
     }
 }
 

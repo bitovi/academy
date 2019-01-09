@@ -10,7 +10,7 @@
 In this section, we will:
 
 - Only show the cardNumber error if the user blurs the card number input. Once the user blurs,
-  we will update the cardNumber error, if there is one, on every future keystroke.
+  we will update the displayed cardNumber error, if there is one, on every future keystroke.
 - Add class="is-error" to the input when it has an error.
 
 We will do this with:

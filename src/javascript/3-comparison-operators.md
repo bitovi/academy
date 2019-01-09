@@ -1,16 +1,16 @@
-@page javascript/js-comparison JS Comparison Operators
-@parent javascript 3
+@page advanced-javascript-training/js-comparison Comparison Operators
+@parent advanced-javascript-training 3
 @description This week we covered comparisons in JavaScript! The showdown between == and === is on!
 
-This week's agenda:
+@body
+
+## Overview
 
 - Byte comparisons
 - Memory address comparisons
 - `==` state machine
 - `===` state machine
 - Live examples!
-
-@body
 
 ## Video
 

@@ -1,6 +1,6 @@
 @page React React
 @parent bit-u 5
-
+@hide
 
 ```html
 <div id="root"></div>

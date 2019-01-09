@@ -1,5 +1,5 @@
-@page javascript/js-vs-dom JavaScript and the DOM
-@parent javascript 1
+@page advanced-javascript-training/js-vs-dom JavaScript and the DOM
+@parent advanced-javascript-training 1
 @outline 2
 
 @description Understand the browser ecosystem and how JavaScript
@@ -12,13 +12,3 @@ fits in.
 ## Slides
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRizqN85NRqtdpytt6ch7_Dy00PoxfqdVA6PswSLkb8WYzYFbsiW64jqdnTkDbChnZvA0efH8Y6Jfv4/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-
-## Content
-
-Ask yourself, is the following JavaScript?
-
-```js
-document.getElementById('dog')
-```
-
-The answer is sorta.  
