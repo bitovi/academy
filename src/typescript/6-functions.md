@@ -22,8 +22,14 @@ interface Result {
 }
 
 function logResponse(): Result {
+  return 'path not found'
+}
+//Type '"path not found"' is not assignable to type 'Result'.
+
+function logResponse(): Result {
   return { success: false, error: 'path not found'}
 }
+//works!
 ```
 
 ### Optional Parameters
@@ -62,5 +68,20 @@ If you're familiar with ES6, you may know that using the fat arrow (=>) captures
 
 ### Exercise 1
 
-Write a function that an unknown number of integer argumnents and adds them together.
+Write a function that takes a number and an unknown number of numbers, and returns the total of the numbers times their multiplier added together. 
+
+<details>
+<summary>solution</summary>
+```typescript
+ function powerUp(multiplier, ...nums: number[]) {
+   let total = 0;
+     for(var i = 0; i < nums.length; i++) {
+       total = total + nums[i]*multiplier;
+     }
+   return total;
+  }
+
+let sum = powerUp(7, 1, 3, 6, 8);
+```
+</details>
 

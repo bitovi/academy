@@ -115,51 +115,6 @@ myFunc(() => {
 });
 ```
 
-### Partials
-
-A common use case in apps is having a model that we may represent with an interface. 
-
-```typescript
-interface Location {
-  latitude: number;
-  longitude: number;
-}
-interface DinoModel {
-  id: string;
-  name: string;
-  height: number;
-  location: Location;
-}
-```
-
-Consider the following add and update functions:
-
-```typescript
-class DinoPark {
-  add(dino: DinoModel) {
-    //creates new dino
-  }
-  updateLocation(dino: DinoModel) {
-    //updates existing dino
-  }
-}
-```
-
-We may not need to pass an object with all the properties described in the ``DinoModel`` interface, we may just want the id and value we're updating. This is where partials come into play. Partials are a helper that describes all properties as optional. 
-
-
-```typescript
-class DinoPark {
-  updateLocation(dino: Partial<DinoModel>) {
-    //updates existing dino
-  }
-}
-
-let IslaSornaPark = new DinoPark();
-IslaSornaPark.updateLocation({id: '12a51', location: {latitude: 19.8968, longitude: 155.5828}}) 
-//works!
-```
-
 ### Exercise 1
 
 Create an interface to define a restaurant class that had required properties of ``name``, ``image``, and ``address``, where image is optional and address has nested properties ``street``, ``city``, ``state``, and ``zip``.

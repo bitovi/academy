@@ -60,6 +60,4 @@ We'll compile our code by running
 tsc helloworld.ts
 ```
 
-Change your user variable to an integer and compile again. What do you think will happen?
-
-### Webpack demo here?
+Change your ``user`` variable to an integer and compile again. What do you think will happen?

@@ -1,6 +1,5 @@
 @page angular Angular
 @parent bit-u 4
-@hide
 
 @description Learn the basics of Angular.
 
@@ -31,6 +30,7 @@ In this guide, we will ....
   - reactive programming
   - lazy loading
   - unit testing
+  - typescript namespacing
 
 
 1. why Angular
