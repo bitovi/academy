@@ -3,7 +3,7 @@
 
 @description Building Our First App
 
-@body 
+@body
 
 
 ## Intro to the CLI
