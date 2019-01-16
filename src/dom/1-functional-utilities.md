@@ -28,9 +28,6 @@ We will learn about:
 [jQuery.extend](https://api.jquery.com/jquery.extend/) merge the contents of of an object
 onto another object.
 
-```js
-
-```
 
 
 ## Exercise: `$.isArray`
@@ -48,108 +45,79 @@ onto another object.
 ## Solution
 
 ```html
-<p>Welcome to the closures exercise! Open the JavaScript panel
-    to implement the make functions. </p>
 <div id="qunit"></div>
+<div id="qunit-fixture"></div>
 <link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.12.0.css">
 <script src="//code.jquery.com/qunit/qunit-1.12.0.js"></script>
-
+<script src="//bitovi.github.io/university/static/scripts/jquery-test.js"></script>
 <script type="module">
-/* make util code here! */
+(function() {
+  $ = function(selector) {};
 
-const make = {};
-
-[`a`, `div`, `span`, `form`, `h1`, `h2`, `h3`, `h4`].forEach(function(name){
-    make[name] = function(){
-        return document.createElement(name);
+  $.extend = function(target, object) {
+    for (var prop in object) {
+      if (object.hasOwnProperty(prop)) {
+        target[prop] = object[prop];
+      }
     }
-});
+    return target;
+  };
 
-/* end make util code */
+  // Static methods
+  $.extend($, {
+    isArray: function(obj) {
+      return Object.prototype.toString.call(obj) === "[object Array]";
+    },
+    isArrayLike: function(obj) {
+      return obj &&
+        typeof obj === "object" &&
+        (   obj.length === 0 ||
+            typeof obj.length === "number" &&
+            obj.length > 0 &&
+            obj.length - 1 in obj );
 
-// Test code. There's no need to edit the following:
-QUnit.test('$.extend', function(){
-
-    var target = {first: 'Justin'},
-    object = {last: 'Meyer'};
-
-    var result = $.extend(target,object);
-
-    equal( result, target, 'target and result are equal');
-    deepEqual(result, {first: 'Justin', last: 'Meyer'}, 'properties added correctly');
-});
-
-QUnit.test('$.isArray', function(){
-
-    equal( $.isArray([]), true, 'An array is an array' );
-    equal( $.isArray(arguments), false, 'Arguments are not an array' );
-
-    var iframe = document.createElement('iframe');
-    document.body.appendChild(iframe);
-
-    var IframeArray = iframe.contentWindow.Array;
-
-    equal( $.isArray( new IframeArray() ), true, 'Arrays from other iframes are Arrays' );
-
-    document.body.removeChild(iframe);
-});
-
-QUnit.test('$.each', function(){
-    expect(9);
-    var collection = ['a','b'];
-    var res = $.each(collection, function(index, value){
-        if(index === 0 )	equal(value, 'a');
-        else if(index === 1 ) equal(value, 'b');
-        else ok(false,'called back with a bad index');
-    });
-    equal(collection, res);
-
-    collection = {foo: 'bar', zed: 'ted'};
-    res = $.each(collection, function(prop, value){
-        if(prop === 'foo' )		 equal(value, 'bar');
-        else if(prop === 'zed' ) equal(value, 'ted');
-        else ok(false,'called back with a bad index');
-    });
-    equal(collection, res);
-
-    var collection = {0:'a', 1:'b', length: 2};
-    var res = $.each(collection, function(index, value){
-        if(index === 0 )	equal(value, 'a');
-        else if(index === 1 ) equal(value, 'b');
-        else ok(false,'called back with a bad index');
-    });
-    equal(collection, res);
-});
-
-QUnit.test('$.makeArray', function(){
-
-    var childNodes = document.body.childNodes;
-
-    ok(! $.isArray(childNodes), 'node lists are not arrays' );
-
-    var childArray = $.makeArray(childNodes);
-
-    ok( $.isArray(childArray), 'made an array'	);
-
-    equal(childArray.length, childNodes.length, 'lengths are the same');
-
-    for(var i =0; i < childArray.length; i++){
-        equal(childArray[i], childNodes[i], 'array index '+i+' is equal.');
-    }
-});
-
-QUnit.test('$.proxy', function(){
-
-    var dog = {
-        name: 'fido',
-        speak: function(words){
-            return this.name + ' says '+words;
+    },
+    each: function(collection, cb) {
+      if ($.isArrayLike(collection)) {
+        for (var i = 0; i < collection.length; i++) {
+          if (cb.call(this, i, collection[i]) === false) {
+            break;
+          }
         }
-    };
+      } else {
+        for (var prop in collection) {
+          if (collection.hasOwnProperty(prop)) {
+            if (cb.call(this, prop, collection[prop]) === false) {
+              break;
+            }
+          }
+        }
+      }
+      return collection;
+    },
+    makeArray: function(arr) {
+      if ($.isArray(arr)) {
+        return arr;
+      }
+      var array = [];
+      $.each(arr, function(i, item) {
+        array[i] = item;
+      });
+      return array;
+    },
+    proxy: function(fn, context) {
+      return function() {
+        return fn.apply(context, arguments);
+      };
+    }
+  });
 
-    var speakProxy = $.proxy(dog.speak, dog);
+  $.extend($.prototype, {
+    // These will be added later.
+  });
 
-    equal( speakProxy('woof!'), 'fido says woof!' );
-});
+})();
 </script>
+
 ```
+@codepen
