@@ -276,109 +276,58 @@ onto another object.</p>
 <h2>Exercise: <code>$.makeArray</code></h2>
 <h2>Exercise: <code>$.proxy</code></h2>
 <h2>Solution</h2>
-<pre><code class="language-html">&lt;p&gt;Welcome to the closures exercise! Open the JavaScript panel
-    to implement the make functions. &lt;/p&gt;
-&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
+<pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
 &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
 &lt;script src=&quot;//code.jquery.com/qunit/qunit-1.12.0.js&quot;&gt;&lt;/script&gt;
-
+&lt;script src=&quot;//bitovi.github.io/university/static/scripts/jquery-test.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;module&quot;&gt;
-/* make util code here! */
+(function() {
+  $ = function(selector) {};
 
-const make = {};
+  $.extend = function(target, object) {};
 
-[`a`, `div`, `span`, `form`, `h1`, `h2`, `h3`, `h4`].forEach(function(name){
-    make[name] = function(){
-        return document.createElement(name);
-    }
-});
+  // Static methods
+  $.extend($, {
+    isArray: function(obj) {},
+    isArrayLike: function(obj) {},
+    each: function(collection, cb) {},
+    makeArray: function(arr) {},
+    proxy: function(fn, context) {}
+  });
 
-/* end make util code */
+  $.extend($.prototype, {
+    html: function(newHtml) {},
+    val: function(newVal) {},
+    text: function(newText) {},
+    find: function(selector) {},
+    next: function() {},
+    prev: function() {},
+    parent: function() {},
+    children: function() {},
+    attr: function(attrName, value) {},
+    css: function(cssPropName, value) {},
+    width: function() {},
+    offset: function() {},
+    hide: function() {},
+    show: function() {},
 
-// Test code. There's no need to edit the following:
-QUnit.test('$.extend', function(){
+    // Events
+    bind: function(eventName, handler) {},
+    unbind: function(eventName, handler) {},
+    has: function(selector) {},
+    on: function(eventType, selector, handler) {},
+    off: function(eventType, selector, handler) {},
+    data: function(propName, data) {},
 
-    var target = {first: 'Justin'},
-    object = {last: 'Meyer'};
+    // Extra
+    addClass: function(className) {},
+    removeClass: function(className) {},
+    append: function(element) {}
+  });
 
-    var result = $.extend(target,object);
-
-    equal( result, target, 'target and result are equal');
-    deepEqual(result, {first: 'Justin', last: 'Meyer'}, 'properties added correctly');
-});
-
-QUnit.test('$.isArray', function(){
-
-    equal( $.isArray([]), true, 'An array is an array' );
-    equal( $.isArray(arguments), false, 'Arguments are not an array' );
-
-    var iframe = document.createElement('iframe');
-    document.body.appendChild(iframe);
-
-    var IframeArray = iframe.contentWindow.Array;
-
-    equal( $.isArray( new IframeArray() ), true, 'Arrays from other iframes are Arrays' );
-
-    document.body.removeChild(iframe);
-});
-
-QUnit.test('$.each', function(){
-    expect(9);
-    var collection = ['a','b'];
-    var res = $.each(collection, function(index, value){
-        if(index === 0 )    equal(value, 'a');
-        else if(index === 1 ) equal(value, 'b');
-        else ok(false,'called back with a bad index');
-    });
-    equal(collection, res);
-
-    collection = {foo: 'bar', zed: 'ted'};
-    res = $.each(collection, function(prop, value){
-        if(prop === 'foo' )      equal(value, 'bar');
-        else if(prop === 'zed' ) equal(value, 'ted');
-        else ok(false,'called back with a bad index');
-    });
-    equal(collection, res);
-
-    var collection = {0:'a', 1:'b', length: 2};
-    var res = $.each(collection, function(index, value){
-        if(index === 0 )    equal(value, 'a');
-        else if(index === 1 ) equal(value, 'b');
-        else ok(false,'called back with a bad index');
-    });
-    equal(collection, res);
-});
-
-QUnit.test('$.makeArray', function(){
-
-    var childNodes = document.body.childNodes;
-
-    ok(! $.isArray(childNodes), 'node lists are not arrays' );
-
-    var childArray = $.makeArray(childNodes);
-
-    ok( $.isArray(childArray), 'made an array'  );
-
-    equal(childArray.length, childNodes.length, 'lengths are the same');
-
-    for(var i =0; i &lt; childArray.length; i++){
-        equal(childArray[i], childNodes[i], 'array index '+i+' is equal.');
-    }
-});
-
-QUnit.test('$.proxy', function(){
-
-    var dog = {
-        name: 'fido',
-        speak: function(words){
-            return this.name + ' says '+words;
-        }
-    };
-
-    var speakProxy = $.proxy(dog.speak, dog);
-
-    equal( speakProxy('woof!'), 'fido says woof!' );
-});
+  $.buildFragment = function(html) {};
+})();
 &lt;/script&gt;
 </code></pre>
 
