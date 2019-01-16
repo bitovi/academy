@@ -118,7 +118,7 @@ The following subscriptions are called when `.next` is called.
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
 <script type="typescript">
-const {Observable} = rxjs;
+const {Subject} = rxjs;
 
 const subject = new Subject<number>();
 
