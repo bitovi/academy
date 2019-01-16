@@ -1,5 +1,6 @@
 @page typescript Typescript
 @parent bit-u 3
+@hide
 @description Intro to Typescript
 
 @body
