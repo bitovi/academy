@@ -199,7 +199,9 @@ Open the ``angular.json`` file, and make the following changes to include these 
 
 ### creating components
 
-Let's begin to build out the main views of our app. We'll need a home view, and restaurant list page to show all the restaurants we can order from. 
+Let's begin to build out the main views of our app. We'll need a home view, and restaurant list page to show all the restaurants we can order from. In Angular, Components are the basic building blocks that help us craft the UI. They are classes that handle views, allow management of user interaction, and displaying information via data binding. Data binding is the term for connecting data or information to the UI. An example would be an input field that a user enters a value into.
+
+##lifecycle information here
 
 ```shell
 ng g component home
@@ -239,9 +241,71 @@ Update the ``home.component.html`` file to be:
 </div>
 ```
 
+Update the ``restauarant.component.html`` file to be:
+
+```html
+<div class="restaurants">
+  <h2 class="page-header">Restaurants</h2>
+
+  <div class="restaurant loading" *ngIf="restaurants.isPending"></div>
+  <ng-container *ngIf="restaurants.value.length">
+    <div class="restaurant" *ngFor="let restaurant of restaurants.value">
+
+      <img src="" width="100" height="100">
+      <h3>{{restaurant.name}}</h3>
+
+      <div class="address" *ngIf="restaurant.address">
+        {{restaurant.address.street}}<br />{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
+      </div>
+
+      <div class="hours-price">
+        $$$<br />
+        Hours: M-F 10am-11pm
+        <span class="open-now">Open Now</span>
+      </div>
+
+      <a class="btn" [routerLink]="['/restaurants', restaurant.slug]">
+        Details
+      </a>
+      <br />
+    </div>
+  </ng-container>
+</div>
+```
+
+In the ``restaurant.component.ts`` file:
+
+```typescript
+import { Component, OnInit } from '@angular/core';
+
+export interface data {
+  value: any[];
+  isPending: boolean;
+}
+
+@Component({
+  selector: 'pmo-restaurant',
+  templateUrl: './restaurant.component.html',
+  styleUrls: ['./restaurant.component.less']
+})
+export class RestaurantComponent implements OnInit {
+  public restaurants: data = {
+    value: [],
+    isPending: true
+  }
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+```
+
+
 ### adding routing
 
-To be able to navigate to our restaurant compoent, we'll need routing. We already told Angular we'd like to set up routing, so it generated ``src/app/app-routing.module.ts`` for us. 
+To be able to navigate to our restaurant compoent, we'll need routing. We already told Angular we'd like to set up routing, so it generated ``src/app/app-routing.module.ts`` for us and included it in our root module.
 
 To create a route to our restaurants component, we'll need to import our restaraunts component and update our routes variable to include the new path. 
 
