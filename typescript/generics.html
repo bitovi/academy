@@ -52,6 +52,37 @@
 			
 		
 			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../dom-jquery-training.html"
+							title="Outline
+
+$ = function(selector) { /*...*/ };
+
+$.extend($.prototype, {
+    html: function(string) {    /*...*/ },
+    val: function(value) {      /*...*/ },
+    text: function(string) {    /*...*/ },
+    find: function(el) {        /*...*/ },
+    next: function() {          /*...*/ },
+    prev: function() {          /*...*/ },
+    parent: function() {        /*...*/ },
+    children: function() {      /*...*/ },
+    attr: function(attr, val) { /*...*/ },
+    css: function(style, val) { /*...*/ },
+    width: function() {         /*...*/ },
+    hide: function() {          /*...*/ },
+    show: function() {          /*...*/ }
+});">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
 		
 			
 		
@@ -154,6 +185,30 @@ myListOfDinosaurs.pushItem(otherDino);
 myListOfDinosaurs.pushItem({name: 'Charlie'}); //error Argument type '{ name: string; }' is not assignable to parameter of type 'Dinosaur'.
 </code></pre>
 <p>Thanks to generics we're able to use the same class in multiple different scenarios with any type.</p>
+<h3>Exercise 1</h3>
+<pre><code class="language-typescript">function randomIntElem(theArray: number[]): number {
+    let randomIndex = Math.floor(Math.random()*theArray.length);
+    return theArray[randomIndex];
+}
+ 
+let numbers: number[] = [103, 458, 472, 458];
+let randomNumber: number = randomIntElem(positions);
+</code></pre>
+<p>This function will return a random value. Rewrite it as a generic that can return a random string from a list of strings</p>
+<pre><code class="language-typescript">let dinosaurs: string[] = ['trex', 'velociraptor', 'triceratops', 'pterodactyl'];
+let randomDino: string = randomThing(dinosaurs);
+</code></pre>
+<p><details>
+<summary>Solution</summary></p>
+<pre><code class="language-typescript">
+function randomThing&lt;T&gt;(anArray: T[]): T {
+  let randomIndex = Math.floor(Math.random()*anArray.length);
+  return anArray[randomIndex];
+}
+let dinosaurs: string[] = ['trex', 'velociraptor', 'triceratops', 'pterodactyl'];
+let randomDino: string = randomThing(dinosaurs);
+</code></pre>
+<p></details></p>
 
 </section>
 
@@ -172,7 +227,7 @@ myListOfDinosaurs.pushItem({name: 'Charlie'}); //error Argument type '{ name: st
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/typescript/7-generics.md"},"description":"Generics \n## Generics\n\nGenerics are a way of writing abstract code that allows the determination of types to be handled when the code is used. Generics let us reuse code for different types and improve maintainability.\n\n```typescript\nfunction identity<MyType>(arg: MyType): MyType {\n    return arg;\n}\n\nlet sampleFunc = identity<string>(\"this is my string\");\n```\n\nLet's look at making a basic class to collect a list of things.\n\n```typescript\nclass Collection {\n  private list: any[];\n  push(thing) {\n    this.list.push(thing);\n  }\n}\n```\n\nThe good - we can push any type to this list. The bad - we can push any type to this list.\n\n```typescript\nlet myList = Collection();\nmyList.push('tacos');\nmyList.push(25);\nmyList.push({name: 'Blue', breed: 'Velociraptor', speed: 50})\n```\n\nmyList now holds an assortment of types that won't be fun to iterate through and deal with. Let's build a generic class instead.\n\n```typescript\nclass GenericCollection<T> {\n  private list: T[];\n  pushItem(thing:T) {\n    this.list.push(thing);\n  }\n}\n```\n\nNow when we initialize this class we can specify a type to use.\n\n```typescript\n\nlet myListOfStrings = new GenericCollection<string>();\nmyListOfStrings.pushItem('booop');\nmyListOfStrings.pushItem(5); //error Argument type of '5' is not assignable to parameter of type 'string'\n\n\nlet myListOfNumbers = new GenericCollection<number>();\nmyListOfNumbers.pushItem(5);\nmyListOfNumbers.pushItem('boop'); //error Argument type of '\"boop\"' is not assignable to parameter of type 'number'\n\ninterface Dinosaur {\n  name: string;\n  breed: string;\n  teeth: number;\n}\n\nlet myListOfDinosaurs = new GenericCollection<Dinosaur>();\nlet otherDino = {\n  name: 'Blue',\n  breed: 'Velociraptor',\n  teeth: 100\n}\n\nmyListOfDinosaurs.pushItem(otherDino);\n\nmyListOfDinosaurs.pushItem({name: 'Charlie'}); //error Argument type '{ name: string; }' is not assignable to parameter of type 'Dinosaur'.\n```\n\nThanks to generics we're able to use the same class in multiple different scenarios with any type.\n\n","name":"typescript/generics","title":"Generics","type":"page","parent":"typescript","order":6,"pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/typescript/7-generics.md"},"description":"Generics \n## Generics\n\nGenerics are a way of writing abstract code that allows the determination of types to be handled when the code is used. Generics let us reuse code for different types and improve maintainability.\n\n```typescript\nfunction identity<MyType>(arg: MyType): MyType {\n    return arg;\n}\n\nlet sampleFunc = identity<string>(\"this is my string\");\n```\n\nLet's look at making a basic class to collect a list of things.\n\n```typescript\nclass Collection {\n  private list: any[];\n  push(thing) {\n    this.list.push(thing);\n  }\n}\n```\n\nThe good - we can push any type to this list. The bad - we can push any type to this list.\n\n```typescript\nlet myList = Collection();\nmyList.push('tacos');\nmyList.push(25);\nmyList.push({name: 'Blue', breed: 'Velociraptor', speed: 50})\n```\n\nmyList now holds an assortment of types that won't be fun to iterate through and deal with. Let's build a generic class instead.\n\n```typescript\nclass GenericCollection<T> {\n  private list: T[];\n  pushItem(thing:T) {\n    this.list.push(thing);\n  }\n}\n```\n\nNow when we initialize this class we can specify a type to use.\n\n```typescript\n\nlet myListOfStrings = new GenericCollection<string>();\nmyListOfStrings.pushItem('booop');\nmyListOfStrings.pushItem(5); //error Argument type of '5' is not assignable to parameter of type 'string'\n\n\nlet myListOfNumbers = new GenericCollection<number>();\nmyListOfNumbers.pushItem(5);\nmyListOfNumbers.pushItem('boop'); //error Argument type of '\"boop\"' is not assignable to parameter of type 'number'\n\ninterface Dinosaur {\n  name: string;\n  breed: string;\n  teeth: number;\n}\n\nlet myListOfDinosaurs = new GenericCollection<Dinosaur>();\nlet otherDino = {\n  name: 'Blue',\n  breed: 'Velociraptor',\n  teeth: 100\n}\n\nmyListOfDinosaurs.pushItem(otherDino);\n\nmyListOfDinosaurs.pushItem({name: 'Charlie'}); //error Argument type '{ name: string; }' is not assignable to parameter of type 'Dinosaur'.\n```\n\nThanks to generics we're able to use the same class in multiple different scenarios with any type.\n\n### Exercise 1\n\n```typescript\nfunction randomIntElem(theArray: number[]): number {\n    let randomIndex = Math.floor(Math.random()*theArray.length);\n    return theArray[randomIndex];\n}\n \nlet numbers: number[] = [103, 458, 472, 458];\nlet randomNumber: number = randomIntElem(positions);\n```\n\nThis function will return a random value. Rewrite it as a generic that can return a random string from a list of strings\n\n```typescript\nlet dinosaurs: string[] = ['trex', 'velociraptor', 'triceratops', 'pterodactyl'];\nlet randomDino: string = randomThing(dinosaurs);\n```\n\n\n<details>\n<summary>Solution</summary>\n```typescript\n\nfunction randomThing<T>(anArray: T[]): T {\n  let randomIndex = Math.floor(Math.random()*anArray.length);\n  return anArray[randomIndex];\n}\nlet dinosaurs: string[] = ['trex', 'velociraptor', 'triceratops', 'pterodactyl'];\nlet randomDino: string = randomThing(dinosaurs);\n```\n</details>\n","name":"typescript/generics","title":"Generics","type":"page","parent":"typescript","order":6,"pathToRoot":"../.."};
 	</script>
 
 	

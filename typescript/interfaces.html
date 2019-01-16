@@ -52,6 +52,37 @@
 			
 		
 			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../dom-jquery-training.html"
+							title="Outline
+
+$ = function(selector) { /*...*/ };
+
+$.extend($.prototype, {
+    html: function(string) {    /*...*/ },
+    val: function(value) {      /*...*/ },
+    text: function(string) {    /*...*/ },
+    find: function(el) {        /*...*/ },
+    next: function() {          /*...*/ },
+    prev: function() {          /*...*/ },
+    parent: function() {        /*...*/ },
+    children: function() {      /*...*/ },
+    attr: function(attr, val) { /*...*/ },
+    css: function(style, val) { /*...*/ },
+    width: function() {         /*...*/ },
+    hide: function() {          /*...*/ },
+    show: function() {          /*...*/ }
+});">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
 		
 			
 		
@@ -182,6 +213,45 @@ myFunc(() =&gt; {
     console.log('all good here')
 });
 </code></pre>
+<h3>Exercise 1</h3>
+<p>Create an interface to define a restaurant class that had required properties of <code>name</code>, <code>image</code>, and <code>address</code>, where image is optional and address has nested properties <code>street</code>, <code>city</code>, <code>state</code>, and <code>zip</code>.</p>
+<p><details>
+<summary>Solution</summary></p>
+<pre><code class="language-typescript">
+interface Address {
+  street: string;
+  city: string;
+  state: string;
+  zip: string;
+}
+interface Restaurant {
+  name: string;
+  image?: Images;
+  address: Address;
+}
+</code></pre>
+<p></details></p>
+<h3>Exercise 2</h3>
+<p>Create a function that takes a parameter that is the interface <code>Restaurant</code> created previously and returns a slug for the restaurant by replacing any spaces with dashes.</p>
+<p><details>
+<summary>Solution</summary></p>
+<pre><code class="language-typescript">function createRestaurantSlug(restaurant: Restaurant) {
+  return restaurant.name.replace(' ', '-');
+}
+
+let myRestaurant = {
+  name: &quot;Orange Bees&quot;, 
+  address: {
+    street: '123 Main',
+    city: 'Sandusky',
+    state: 'Ohio',
+    zip: '12345'
+  }
+}
+let newEaterie = createRestaurantSlug(myRestaurant);
+//Orange-Bees
+</code></pre>
+<p></details></p>
 
 </section>
 
@@ -200,7 +270,7 @@ myFunc(() =&gt; {
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/typescript/5-interfaces.md"},"description":"Interfaces in Typescript \n## Interfaces in Typescript\n\nAn interface in Typescript is a way to define the syntax an entity should adhere to. An interface defines the members - properties, methods, and events. It may be easy to think of it as the signature of an API. It's worth noting that interfaces aren't transpiled into our output Javascript, they're simply used for typechecking during the development process.\n\n```typescript\ninterface Dinosaur {\n  name: string;\n  breed: string;\n  height: number;\n  location: string;\n}\n\nfunction trackDino(dino: Dinosaur) {\n  console.log(dino.location);\n}\n\nlet blue = {name: 'blue', breed: 'Velociraptor', height: 7, location: 'Section B'};\ntrackDino(blue); // Section B\n```\n\n### Optional Properties\n\n```typescript\ninterface Dinosaur {\n  name: string;\n  breed: string;\n  height?: number;\n  location: string;\n}\n```\n\n### Classes Implementing Interfaces\n\nIn that a class needing to follow an object structure, we can use interfaces to define that 'contract'.\n\n```typescript\ninterface Dinosaur {\n  name: string;\n  breed: string;\n  height?: number;\n  location: string;\n}\n\n\nclass clonedDino implements Dinosaur {\n  name: string;\n  breed: string;\n  height?: number;\n  location: string;\n  roar() {\n    console.log('roar');\n  };\n}\n```\n\n### Type Assertion\n\nWe briefly mentioned type assertion when talk about types, but when dealing with interfaces it can be a great tool for making sure our code behaves in the way we expect.\n\nFor instance, consider the following code:\n\n```typescript\nvar myObj = {};\nmyObj.name = 'Blue'; //property 'name' does not exist on type '{}'\nmyObj.height = 6; //property 'height' does not exist on type '{}'\n```\n\nWhen we create object literals in typescript, they are inferred to be objects with zero properties. To fix this, we can use type assertions to let the compiler explicitly know what we want from our object.\n\n```typescript\ninterface Dinosaur {\n  name: string;\n  height: number;\n}\n\nvar myObj = {} as Dinosaur;\nmyObj.name = 'Blue';\nmyObj.height = 6;\n```\n\n### Describing Objects\n\n```typescript\ninterface DinoInfo {\n  name:string;\n  location:string;\n}\n\nfunction owensCatcher(info: DinoInfo) {\n  console.log(`Owen caught ${info.name} at ${info.location}`);\n}\n\nowensCatcher({name: 'Blue', location: 'Section B'}); // Owen caught Blue at Section B\nowensCatcher({name: 'Charlie'}); //property 'location' is missing //error\n```\n\n### Describing Functions\n\n```typescript\ninterface MyCallback {\n    (error: Error, response?: string): void;\n}\n\nfunction myFunc(callback: MyCallback) {\n  callback(null, 'a response')\n}\n\nmyFunc(() => {\n    console.log('all good here')\n});\n```\n\n","name":"typescript/interfaces","title":"Interfaces","type":"page","parent":"typescript","order":4,"pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/typescript/5-interfaces.md"},"description":"Interfaces in Typescript \n## Interfaces in Typescript\n\nAn interface in Typescript is a way to define the syntax an entity should adhere to. An interface defines the members - properties, methods, and events. It may be easy to think of it as the signature of an API. It's worth noting that interfaces aren't transpiled into our output Javascript, they're simply used for typechecking during the development process.\n\n```typescript\ninterface Dinosaur {\n  name: string;\n  breed: string;\n  height: number;\n  location: string;\n}\n\nfunction trackDino(dino: Dinosaur) {\n  console.log(dino.location);\n}\n\nlet blue = {name: 'blue', breed: 'Velociraptor', height: 7, location: 'Section B'};\ntrackDino(blue); // Section B\n```\n\n### Optional Properties\n\n```typescript\ninterface Dinosaur {\n  name: string;\n  breed: string;\n  height?: number;\n  location: string;\n}\n```\n\n### Classes Implementing Interfaces\n\nIn that a class needing to follow an object structure, we can use interfaces to define that 'contract'.\n\n```typescript\ninterface Dinosaur {\n  name: string;\n  breed: string;\n  height?: number;\n  location: string;\n}\n\n\nclass clonedDino implements Dinosaur {\n  name: string;\n  breed: string;\n  height?: number;\n  location: string;\n  roar() {\n    console.log('roar');\n  };\n}\n```\n\n### Type Assertion\n\nWe briefly mentioned type assertion when talk about types, but when dealing with interfaces it can be a great tool for making sure our code behaves in the way we expect.\n\nFor instance, consider the following code:\n\n```typescript\nvar myObj = {};\nmyObj.name = 'Blue'; //property 'name' does not exist on type '{}'\nmyObj.height = 6; //property 'height' does not exist on type '{}'\n```\n\nWhen we create object literals in typescript, they are inferred to be objects with zero properties. To fix this, we can use type assertions to let the compiler explicitly know what we want from our object.\n\n```typescript\ninterface Dinosaur {\n  name: string;\n  height: number;\n}\n\nvar myObj = {} as Dinosaur;\nmyObj.name = 'Blue';\nmyObj.height = 6;\n```\n\n### Describing Objects\n\n```typescript\ninterface DinoInfo {\n  name:string;\n  location:string;\n}\n\nfunction owensCatcher(info: DinoInfo) {\n  console.log(`Owen caught ${info.name} at ${info.location}`);\n}\n\nowensCatcher({name: 'Blue', location: 'Section B'}); // Owen caught Blue at Section B\nowensCatcher({name: 'Charlie'}); //property 'location' is missing //error\n```\n\n### Describing Functions\n\n```typescript\ninterface MyCallback {\n    (error: Error, response?: string): void;\n}\n\nfunction myFunc(callback: MyCallback) {\n  callback(null, 'a response')\n}\n\nmyFunc(() => {\n    console.log('all good here')\n});\n```\n\n### Exercise 1\n\nCreate an interface to define a restaurant class that had required properties of ``name``, ``image``, and ``address``, where image is optional and address has nested properties ``street``, ``city``, ``state``, and ``zip``.\n\n<details>\n<summary>Solution</summary>\n\n```typescript\n\ninterface Address {\n  street: string;\n  city: string;\n  state: string;\n  zip: string;\n}\ninterface Restaurant {\n  name: string;\n  image?: Images;\n  address: Address;\n}\n```\n</details>\n\n### Exercise 2\n\nCreate a function that takes a parameter that is the interface ```Restaurant``` created previously and returns a slug for the restaurant by replacing any spaces with dashes. \n\n<details>\n<summary>Solution</summary>\n\n```typescript\nfunction createRestaurantSlug(restaurant: Restaurant) {\n  return restaurant.name.replace(' ', '-');\n}\n\nlet myRestaurant = {\n  name: \"Orange Bees\", \n  address: {\n    street: '123 Main',\n    city: 'Sandusky',\n    state: 'Ohio',\n    zip: '12345'\n  }\n}\nlet newEaterie = createRestaurantSlug(myRestaurant);\n//Orange-Bees\n```\n</details>\n","name":"typescript/interfaces","title":"Interfaces","type":"page","parent":"typescript","order":4,"pathToRoot":"../.."};
 	</script>
 
 	

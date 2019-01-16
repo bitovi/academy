@@ -52,6 +52,37 @@
 			
 		
 			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../dom-jquery-training.html"
+							title="Outline
+
+$ = function(selector) { /*...*/ };
+
+$.extend($.prototype, {
+    html: function(string) {    /*...*/ },
+    val: function(value) {      /*...*/ },
+    text: function(string) {    /*...*/ },
+    find: function(el) {        /*...*/ },
+    next: function() {          /*...*/ },
+    prev: function() {          /*...*/ },
+    parent: function() {        /*...*/ },
+    children: function() {      /*...*/ },
+    attr: function(attr, val) { /*...*/ },
+    css: function(style, val) { /*...*/ },
+    width: function() {         /*...*/ },
+    hide: function() {          /*...*/ },
+    show: function() {          /*...*/ }
+});">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
 		
 			
 		
@@ -96,15 +127,26 @@
 				<section class="description">
     <p>Functions in Typescript</p>
 <h2>Functions in Typescript</h2>
-<p>In typescript we're able to annotate function parameters to better guard our code. The following execution of a function will throw an error when compiled if not called with two parameters that are numbers.</p>
+<p>In typescript we're able to annotate function parameters to better guard our code. The following execution of a function will throw an error when compiled if called with two parameters that are not numbers.</p>
 <pre><code class="language-typescript">function add(x: number, y: number): number {
   return x + y;
 }
 </code></pre>
-<p>We can also annotate what functions return.</p>
+<p>We can also annotate what a function should return.</p>
 <pre><code class="language-typescript">interface Result {
-
+  success: boolean
+  error?: string
 }
+
+function logResponse(): Result {
+  return 'path not found'
+}
+//Type '&quot;path not found&quot;' is not assignable to type 'Result'.
+
+function logResponse(): Result {
+  return { success: false, error: 'path not found'}
+}
+//works!
 </code></pre>
 <h3>Optional Parameters</h3>
 <pre><code class="language-typescript">function buildDinosaur(name: string, breed: string, teeth?:number) {
@@ -130,7 +172,21 @@ let uberDino = buildDinosaur('Indominous Rex', &quot;Velociraptor&quot;, &quot;T
 </code></pre>
 <h3>This &amp; =&gt; Functions</h3>
 <p>If you're familiar with ES6, you may know that using the fat arrow (=&gt;) captures the context of this where it's used. The functionality is the same in Typescript.</p>
-<h3>Overloads</h3>
+<h3>Exercise 1</h3>
+<p>Write a function that takes a number and an unknown number of numbers, and returns the total of the numbers times their multiplier added together.</p>
+<p><details>
+<summary>solution</summary></p>
+<pre><code class="language-typescript"> function powerUp(multiplier, ...nums: number[]) {
+   let total = 0;
+     for(var i = 0; i &lt; nums.length; i++) {
+       total = total + nums[i]*multiplier;
+     }
+   return total;
+  }
+
+let sum = powerUp(7, 1, 3, 6, 8);
+</code></pre>
+<p></details></p>
 
 </section>
 
@@ -149,7 +205,7 @@ let uberDino = buildDinosaur('Indominous Rex', &quot;Velociraptor&quot;, &quot;T
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/typescript/6-functions.md"},"description":"Functions in Typescript \n## Functions in Typescript\n\nIn typescript we're able to annotate function parameters to better guard our code. The following execution of a function will throw an error when compiled if not called with two parameters that are numbers.\n\n```typescript\nfunction add(x: number, y: number): number {\n  return x + y;\n}\n```\n\nWe can also annotate what functions return.\n\n\n```typescript\ninterface Result {\n\n}\n```\n\n\n\n### Optional Parameters\n\n```typescript\nfunction buildDinosaur(name: string, breed: string, teeth?:number) {\n  if (teeth) {\n    console.log(`${name} is a ${breed} and has ${teeth} teeth.`);\n  }\n  else {\n    console.log(`${name} is a ${breed}.`);\n  }\n}\n\nlet newDino = buildDinosaur('Blue', 'Velociraptor', 80);\nlet otherDino = buildDinosaur('Charlie'); //error an argument for 'breed' was not provided\n```\n\n### Rest Parameters\n\nRest parameters are a way to pass in an unknown number of arguments to a function. Rest params are signaled to the transpiler by passing an ellipsis(...) followed by the parameter name.\n\n```typescript\nfunction buildDinosaur(breed: string, ...dna: string[]) {\n  console.log(`The ${breed} has dna from ${dna.join(\", \")}`)\n}\n\nlet uberDino = buildDinosaur('Indominous Rex', \"Velociraptor\", \"Tyrannosaurus rex\",\"Therizinosaurus\", \"cuttlefish\");\n//The Indominous Rex has dna from Velociraptor, Tyrannosaurus rex, Therizinosaurus, cuttlefish\n```\n\n### This & => Functions\n\nIf you're familiar with ES6, you may know that using the fat arrow (=>) captures the context of this where it's used. The functionality is the same in Typescript.\n\n\n\n### Overloads\n\n","name":"typescript/functions","title":"Functions","type":"page","parent":"typescript","order":5,"pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/typescript/6-functions.md"},"description":"Functions in Typescript \n## Functions in Typescript\n\nIn typescript we're able to annotate function parameters to better guard our code. The following execution of a function will throw an error when compiled if called with two parameters that are not numbers.\n\n```typescript\nfunction add(x: number, y: number): number {\n  return x + y;\n}\n```\n\nWe can also annotate what a function should return.\n\n```typescript\ninterface Result {\n  success: boolean\n  error?: string\n}\n\nfunction logResponse(): Result {\n  return 'path not found'\n}\n//Type '\"path not found\"' is not assignable to type 'Result'.\n\nfunction logResponse(): Result {\n  return { success: false, error: 'path not found'}\n}\n//works!\n```\n\n### Optional Parameters\n\n```typescript\nfunction buildDinosaur(name: string, breed: string, teeth?:number) {\n  if (teeth) {\n    console.log(`${name} is a ${breed} and has ${teeth} teeth.`);\n  }\n  else {\n    console.log(`${name} is a ${breed}.`);\n  }\n}\n\nlet newDino = buildDinosaur('Blue', 'Velociraptor', 80);\nlet otherDino = buildDinosaur('Charlie'); //error an argument for 'breed' was not provided\n```\n\n### Rest Parameters\n\nRest parameters are a way to pass in an unknown number of arguments to a function. Rest params are signaled to the transpiler by passing an ellipsis(...) followed by the parameter name.\n\n```typescript\nfunction buildDinosaur(breed: string, ...dna: string[]) {\n  console.log(`The ${breed} has dna from ${dna.join(\", \")}`)\n}\n\nlet uberDino = buildDinosaur('Indominous Rex', \"Velociraptor\", \"Tyrannosaurus rex\",\"Therizinosaurus\", \"cuttlefish\");\n//The Indominous Rex has dna from Velociraptor, Tyrannosaurus rex, Therizinosaurus, cuttlefish\n```\n\n### This & => Functions\n\nIf you're familiar with ES6, you may know that using the fat arrow (=>) captures the context of this where it's used. The functionality is the same in Typescript.\n\n\n### Exercise 1\n\nWrite a function that takes a number and an unknown number of numbers, and returns the total of the numbers times their multiplier added together. \n\n<details>\n<summary>solution</summary>\n```typescript\n function powerUp(multiplier, ...nums: number[]) {\n   let total = 0;\n     for(var i = 0; i < nums.length; i++) {\n       total = total + nums[i]*multiplier;\n     }\n   return total;\n  }\n\nlet sum = powerUp(7, 1, 3, 6, 8);\n```\n</details>\n\n\n","name":"typescript/functions","title":"Functions","type":"page","parent":"typescript","order":5,"pathToRoot":"../.."};
 	</script>
 
 	
