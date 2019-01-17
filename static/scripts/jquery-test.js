@@ -106,7 +106,11 @@ QUnit.test('$.proxy', function(){
 });
 
 QUnit.test('new $(selector)', function(){
-	document.getElementById('qunit-fixture').innerHTML = '<ul id="contacts"><li class="contact"/><li class="contact"/></ul>';
+	document.getElementById('qunit-fixture').innerHTML = `
+		<ul id="contacts">
+			<li class="contact"/>
+			<li class="contact"/>
+		</ul>`;
 
 	var $contacts = new $('#contacts li.contact');
 	equal( $contacts.length,  2, 'There are 2 contacts');
