@@ -31,7 +31,7 @@ window.PACKAGES = packages;
 				clearTimeout(pageScrollTimer);
 				pageScrollTimer = setTimeout(function(){
 					window.history.replaceState({ articleScroll: articleContainer.scrollTop }, null, window.location.href);
-				});
+				},50);
 			} else {
 				setArticleScroll();
 			}

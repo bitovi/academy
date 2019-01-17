@@ -470,6 +470,36 @@ the `textContent`.  For that, you'll need to know:
 
 ### The problem
 
+[collection.find](https://api.jquery.com/find/) gets the descendants of each element in the current set of matched elements filtered by a selector.
+
+```html
+<ul class="level-1">
+  <li class="item-i">I</li>
+  <li class="item-ii">II
+    <ul class="level-2">
+      <li class="item-a">A</li>
+      <li class="item-b">B
+        <ul class="level-3">
+          <li class="item-1">1</li>
+          <li class="item-2">2</li>
+          <li class="item-3">3</li>
+        </ul>
+      </li>
+      <li class="item-c">C</li>
+    </ul>
+  </li>
+  <li class="item-iii">III</li>
+</ul>
+<script type="module">
+import "https://unpkg.com/jquery@3/dist/jquery.js";
+
+$( "li.item-ii" )
+	.find( "li" )
+	.css( "border", "solid 1px red" );
+</script>
+```
+@codepen
+
 <details>
 <summary>Click to see test code</summary>
 
@@ -488,6 +518,35 @@ QUnit.test('$.fn.find', function(){
 
 ### What you need to know
 
+- [parentNode.querySelectorAll](https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll) can be used to find all elements that match a selector who are
+  descendants of the `parentNode` element.
+- The [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) can be used to push multiple items to an array.
+  ```js
+  const letters = ["a","b"];
+  const lettersToAdd = ["x","y"];
+  letters.push(...lettersToAdd);
+
+  console.log(letters)
+  // logs ["a","b","c","d"]
+  ```
+  @codepen
+
+  This can be done with `Array.prototype.push.apply` in older browsers.
+
+- You need to make `$()` accept an array of nodes similar to how jQuery does:
+
+  ```html
+  <div id="first">First</div>
+  <span id="second">Second</div>
+  <script type="module">
+  import "https://unpkg.com/jquery@3/dist/jquery.js";
+
+  $([first, second])
+  	.css( "border", "solid 1px red" );
+  </script>
+  ```
+  @codepen
+
 ### The solution
 
 <details>
@@ -501,12 +560,13 @@ QUnit.test('$.fn.find', function(){
     var elements;
     if (typeof selector === "string") {
       elements = document.querySelectorAll(selector);
-    } else if ($.isArray(selector)) {
+    } else if ($.isArrayLike(selector)) {
       elements = selector;
     }
     [].push.apply(this, elements);
   };
 ```
+@highlight 5-10
 
 
 ```js
@@ -524,6 +584,85 @@ QUnit.test('$.fn.find', function(){
 </details>
 
 
+## Bonus Exercise: Eliminate duplicate code in `.html`, `.val`, and `.text`
+
+### The problem
+
+Use meta programming techniques to reduce the duplicate code in the
+ `.html`, `.val`, and `.text` functions.
+
+```js
+      html: function(newHtml) {
+        if(arguments.length) {
+          return $.each(this, function(i, element) {
+            element.innerHTML = newHtml;
+          });
+        } else {
+          return this[0].innerHTML;
+        }
+      },
+      val: function(newVal) {
+        if(arguments.length) {
+          return $.each(this, function(i, element) {
+            element.value = newVal;
+          });
+        } else {
+          return this[0].value;
+        }
+      },
+      text: function(newText) {
+        if (arguments.length) {
+          return $.each(this, function(i, element) {
+            element.textContent = newText;
+          });
+        } else {
+          return this[0].textContent;
+        }
+      },
+```
+
+### What you need to know
+
+- You can call a function that returns a function.
+  ```js
+  var makeLogger = function(text) {
+    return function(){
+      console.log(text);
+    }
+  }
+  var logMe = makeLogger("me");
+  logMe() //logs "me"
+  ```
+  @codepen
+
+### The solution
+
+
+<details>
+<summary>Click to see the solution</summary>
+
+```js
+function makeSimpleGetterSetter(prop) {
+	return function(){
+		if(arguments.length) {
+			return $.each(this, function(i, element) {
+				element[prop] = newHtml;
+			});
+		} else {
+			return this[0][prop];
+		}
+	}
+}
+```
+
+```js
+      html: makeSimpleGetterSetter("innerHTML"),
+      val: makeSimpleGetterSetter("value"),
+      text: makeSimpleGetterSetter("textContent"),
+```
+
+
+</details>
 
 
 ## Complete Solution
@@ -544,7 +683,7 @@ QUnit.test('$.fn.find', function(){
     var elements;
     if (typeof selector === "string") {
       elements = document.querySelectorAll(selector);
-    } else if ($.isArray(selector)) {
+    } else if ($.isArrayLike(selector)) {
       elements = selector;
     }
     [].push.apply(this, elements);
