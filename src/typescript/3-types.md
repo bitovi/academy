@@ -1,9 +1,15 @@
-@page typescript/types Types
-@parent typescript 2
+@page typescript/types Using Types in TypeScript
+@parent typescript 3
 
-@description Basic Types.
+@description Starting to use types in TypeScript.
+
+@body
 
 ## Basic Types
+
+Types are what determine how much memory is allocated to save a value. Types also detemine what operations or methods can be performed on a value. Types like strings can't have mathmatical operations performed on them, but methods like ``.length`` can be used.
+
+This section will explore how types are annotated when writing TypeScript and discuss type inference done by TypeScript
 
 ### Boolean
 
@@ -102,25 +108,6 @@ function error(message: string): never {
 }
 ```
 
-### object
-
-The object type represents all non-primitive types.
-
-```typescript
-// All primitive types
-type Primitive =
-  | boolean
-  | number
-  | string
-  | symbol
-  | null
-  | undefined;
-
-// All non-primitive types
-type NonPrimitive = object;
-
-```
-
 ### Type Inference 
 
 When we don't provide explict types for our variables, Typescript will do it's best to infer the types, and it's very good at it. The following code will not compile due to type inference.
@@ -165,7 +152,7 @@ let otherValue: any = "this is a string";
 let otherLength: number = (otherValue as string).length;
 ```
 
-### Exercise
+### Exercise 1
 
 Fix the following type errors so this code will compile:
 
@@ -206,3 +193,7 @@ greet('Tom', 42, 'software')
 
 ```
 </details>
+
+### Exercise 2
+
+Declare a variable that

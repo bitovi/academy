@@ -1,5 +1,5 @@
 @page typescript/why-typescript Why TypeScript
-@parent typescript 0
+@parent typescript 1
 
 @description Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript.
 

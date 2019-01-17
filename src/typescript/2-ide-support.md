@@ -1,5 +1,5 @@
 @page typeScript/ide-support IDE Support
-@parent typescript 1
+@parent typescript 2
 
 @description IDE Support for TypeScript
 
@@ -80,4 +80,4 @@ let user = "Universe";
 document.body.innerHTML = greeter(user);
 ```
 
-Use your editor's module error detection help you import find the bug and the ``greeter`` function correctly. 
+Use your editor's module error detection help you find the bug and import the ``greeter`` function correctly.
