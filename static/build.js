@@ -63,6 +63,7 @@ module.exports = function(options, folders){
 			staticDistPromises.push(fsx.copy(path.join(folders.build, "dist"), path.join(folders.dist)));
 			// moving images over too
 			staticDistPromises.push(fsx.copy(path.join(folders.build, "img"), path.join(folders.dist,"img")));
+			staticDistPromises.push(fsx.copy(path.join(folders.build, "scripts"), path.join(folders.dist,"scripts")));
 
 			return Q.all(staticDistPromises);
 		});

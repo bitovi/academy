@@ -1,0 +1,142 @@
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+<link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.12.0.css">
+<script src="//code.jquery.com/qunit/qunit-1.12.0.js"></script>
+<script src="//bitovi.github.io/university/static/scripts/jquery-test.js"></script>
+<script type="module">
+(function() {
+  $ = function(selector) {
+    if ( !(this instanceof $) ) {
+      return new $(selector);
+    }
+    var elements;
+    if (typeof selector === "string") {
+      elements = document.querySelectorAll(selector);
+    } else if ($.isArrayLike(selector)) {
+      elements = selector;
+    }
+    [].push.apply(this, elements);
+  };
+
+  $.extend = function(target, object) {
+    for (var prop in object) {
+      if (object.hasOwnProperty(prop)) {
+        target[prop] = object[prop];
+      }
+    }
+    return target;
+  };
+
+  // Static methods
+  $.extend($, {
+    isArray: function(obj) {
+      return Object.prototype.toString.call(obj) === "[object Array]";
+    },
+    isArrayLike: function(obj) {
+      return obj &&
+        typeof obj === "object" &&
+        (   obj.length === 0 ||
+            typeof obj.length === "number" &&
+            obj.length > 0 &&
+            obj.length - 1 in obj );
+
+    },
+    each: function(collection, cb) {
+      if ($.isArrayLike(collection)) {
+        for (var i = 0; i < collection.length; i++) {
+          if (cb.call(this, i, collection[i]) === false) {
+            break;
+          }
+        }
+      } else {
+        for (var prop in collection) {
+          if (collection.hasOwnProperty(prop)) {
+            if (cb.call(this, prop, collection[prop]) === false) {
+              break;
+            }
+          }
+        }
+      }
+      return collection;
+    },
+    makeArray: function(arr) {
+      if ($.isArray(arr)) {
+        return arr;
+      }
+      var array = [];
+      $.each(arr, function(i, item) {
+        array[i] = item;
+      });
+      return array;
+    },
+    proxy: function(fn, context) {
+      return function() {
+        return fn.apply(context, arguments);
+      };
+    }
+  });
+
+  function makeTraverser(traverser) {
+    return function() {
+      var elements = [], args = arguments;
+      $.each(this, function(i, element) {
+        var els = traverser.apply(element, args);
+        if ($.isArrayLike(els)) {
+          elements.push.apply(elements, els);
+        } else if (els) {
+          elements.push(els);
+        }
+      });
+      return $(elements);
+    };
+  }
+
+  $.extend($.prototype, {
+      html: function(newHtml) {
+        if(arguments.length) {
+          return $.each(this, function(i, element) {
+            element.innerHTML = newHtml;
+          });
+        } else {
+          return this[0].innerHTML;
+        }
+      },
+      val: function(newVal) {
+        if(arguments.length) {
+          return $.each(this, function(i, element) {
+            element.value = newVal;
+          });
+        } else {
+          return this[0].value;
+        }
+      },
+      text: function(newText) {
+        if (arguments.length) {
+          return $.each(this, function(i, element) {
+            element.textContent = newText;
+          });
+        } else {
+          return this[0].textContent;
+        }
+      },
+      find: makeTraverser(function(selector) {
+        return this.querySelectorAll(selector);
+      }),
+      parent: makeTraverser(function() {
+        return this.parentNode;
+      }),
+      next: makeTraverser(function() {
+        return this.nextElementSibling;
+      }),
+      prev: makeTraverser(function() {
+        return this.previousElementSibling;
+      }),
+      children: makeTraverser(function() {
+        return this.children;
+      }),
+      attr: function(attrName, value) { },
+      css: function(cssPropName, value) { }
+  });
+
+})();
+</script>

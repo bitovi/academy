@@ -1,33 +1,16 @@
 @page typescript Typescript
 @parent bit-u 3
-@description Intro to Typescript
 @hide
+@description Intro to Typescript
 
 @body
 
+## Outline
 
-- What and why of typescript
-  - Typing
-  - Object Oriented Programming
-  - Compilation
-- IDE support
-  - VS Code
-  - Atom
+- Why We Like Typescript
+- IDE Setup & Support
 - Types
 - Classes
-- Interface
+- Interfaces
 - Functions
 - Generics
-- Modules
-
-
-```typescript
-function greeter(person: string) {
-    return "Hello, " + person;
-}
-
-let user = "Jane User";
-
-document.body.innerHTML = greeter(user);
-```
-@codepen

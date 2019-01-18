@@ -78,3 +78,36 @@ myListOfDinosaurs.pushItem({name: 'Charlie'}); //error Argument type '{ name: st
 ```
 
 Thanks to generics we're able to use the same class in multiple different scenarios with any type.
+
+### Exercise 1
+
+```typescript
+function randomIntElem(theArray: number[]): number {
+    let randomIndex = Math.floor(Math.random()*theArray.length);
+    return theArray[randomIndex];
+}
+ 
+let numbers: number[] = [103, 458, 472, 458];
+let randomNumber: number = randomIntElem(positions);
+```
+
+This function will return a random value. Rewrite it as a generic that can return a random string from a list of strings
+
+```typescript
+let dinosaurs: string[] = ['trex', 'velociraptor', 'triceratops', 'pterodactyl'];
+let randomDino: string = randomThing(dinosaurs);
+```
+
+
+<details>
+<summary>Solution</summary>
+```typescript
+
+function randomThing<T>(anArray: T[]): T {
+  let randomIndex = Math.floor(Math.random()*anArray.length);
+  return anArray[randomIndex];
+}
+let dinosaurs: string[] = ['trex', 'velociraptor', 'triceratops', 'pterodactyl'];
+let randomDino: string = randomThing(dinosaurs);
+```
+</details>

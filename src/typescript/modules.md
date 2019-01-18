@@ -3,6 +3,8 @@
 
 @description Modules
 
+@hide 
+
 ## Modules
 
 Modules are a way of grouping code to be executed within their own scope, opposed to a global scope. Modules give us a way to write DRY code, scope our variables, re-use parts of our code, are more easily tested, and mostly help us avoid writing applications full of that dreadful spaghetti code. In Typescript, modules are categorized into two types - internal(called namespaces) and external(just called modules).
