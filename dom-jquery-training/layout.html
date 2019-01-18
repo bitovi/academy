@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/dom/5-layout.md
+	@page dom-jquery-training/layout
+######################################################################## -->
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Bitovi University - Layout</title>
+	
+	<link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+	
+</head>
+
+<body>
+	<header></header>
+	<div class="content">
+	
+		<nav class="sidebar">
+	
+		
+			<ul>
+				<li class="">
+					<a class="home" href="../index.html" title="Home">
+						Home
+					</a>
+				</li>
+			</ul>
+		
+		
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../advanced-javascript-training.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../dom-jquery-training.html"
+							title="Outline
+
+$ = function(selector) { /*...*/ };
+
+$.extend($.prototype, {
+    html: function(string) {    /*...*/ },
+    val: function(value) {      /*...*/ },
+    text: function(string) {    /*...*/ },
+    find: function(el) {        /*...*/ },
+    next: function() {          /*...*/ },
+    prev: function() {          /*...*/ },
+    parent: function() {        /*...*/ },
+    children: function() {      /*...*/ },
+    attr: function(attr, val) { /*...*/ },
+    css: function(style, val) { /*...*/ },
+    width: function() {         /*...*/ },
+    hide: function() {          /*...*/ },
+    show: function() {          /*...*/ }
+});">
+							DOM and jQuery
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="functional-utilities.html"
+							title="">
+							Functional Utilities
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="finding-elements.html"
+							title="">
+							Finding Elements
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="traversing-elements.html"
+							title="Learn how to move from one element to the next and a bit of meta programming.">
+							Traversing Elements
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="attributes-and-properties.html"
+							title="Learn about the attributes and properties on an element.">
+							Attributes and Properties
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="layout.html"
+							title="Learn">
+							Layout
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="events-part-1.html"
+							title="dom-jquery-training/events-part-1">
+							Events Part 1
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="events-part-2.html"
+							title="dom-jquery-training/events-part-2">
+							Events Part 2
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="tabs-widget.html"
+							title="">
+							Tabs Widget
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../RxJS.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+	</ul>
+
+
+	
+</nav>
+
+	
+	<article class="main">
+		
+			<section class="title">
+	<h1>Layout <code>page</code></h1>
+</section>
+
+		
+
+		
+			
+				<section class="description">
+    <p>Learn</p>
+
+</section>
+
+			
+		
+
+		
+			
+				
+			
+			
+				<section class="body">
+    <h2>Slides</h2>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTgZLYnFJSyxLhJ4k49f9zLRxBCi5LHUmQxxNL-4K1q6vNUojKCxxYte77y5QExxEP-np_rdS6HxmOO/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<h2>Slider Demo</h2>
+<pre><code class="language-html">&lt;style&gt;
+.slider {
+    border: solid 1px blue;
+    background-color: red;
+    height: 40px;
+    width: 40px;
+    cursor: ew-resize;
+    position: relative;
+}
+.container, percent-slider {
+    border: solid 4px black;
+    padding: 5px;
+    display: block;
+}
+&lt;/style&gt;
+
+&lt;slider-demo&gt;&lt;/slider-demo&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+import { Component } from &quot;//unpkg.com/can@5/core.mjs&quot;;
+
+function width(el) {
+    var cs = window.getComputedStyle(el,null)
+    return el.clientWidth - parseFloat( cs.getPropertyValue(&quot;padding-left&quot;) )
+        - parseFloat( cs.getPropertyValue(&quot;padding-left&quot;) );
+}
+
+Component.extend({
+    tag: &quot;percent-slider&quot;,
+    view: `
+        &lt;div class='slider'
+
+        on:mousedown='startDrag(scope.event.clientX)'/&gt;`,
+    ViewModel: {
+        start: {type: &quot;number&quot;, default: 0},
+        end: {type: &quot;number&quot;, default: 1},
+        currentValue: {
+            default: function(){
+                return this.value || 0;
+            },
+            set(value) {
+                return Math.min( Math.max(this.start, value), this.end) || 0;
+            }
+        },
+        width: {type: &quot;number&quot;, default: 0},
+        get left(){
+            var left = ( (this.currentValue - this.start) / (this.end - this.start) ) * this.width;
+            return Math.min( Math.max(0, left), this.width) || 0;
+        },
+        connectedCallback(el) {
+            // derive the width
+            this.width = width(el) - el.firstElementChild.offsetWidth;
+            this.listenTo(window,&quot;resize&quot;, () =&gt; {
+                console.log(&quot;resize&quot;);
+                this.width = width(el) - el.firstElementChild.offsetWidth;
+            });
+
+            // Produce dragmove and dragup events on the view-model
+            this.listenTo(&quot;startClientX&quot;, () =&gt; {
+                var startLeft = this.left;
+                this.listenTo(document,&quot;mousemove&quot;, (event)=&gt;{
+                    this.dispatch(&quot;dragmove&quot;, [event.clientX - this.startClientX + startLeft]);
+                });
+                this.listenTo(document,&quot;mouseup&quot;, (event)=&gt;{
+                    this.dispatch(&quot;dragup&quot;, [event.clientX - this.startClientX + startLeft]);
+                    this.stopListening(document);
+                })
+            });
+            // Update the slider position when currentValue changes
+            this.listenTo(&quot;dragmove&quot;, (ev, left)=&gt; {
+                this.currentValue = this.start + (left / this.width) * (this.end - this.start);
+            },&quot;notify&quot;);
+
+            // If the value is set, update the current value
+            this.listenTo(&quot;value&quot;, (ev, newValue) =&gt; {
+                this.currentValue = newValue;
+            }, &quot;notify&quot;);
+
+            // Update the value on a dragmove
+            this.listenTo(&quot;dragup&quot;, (ev, left)=&gt; {
+                this.currentValue = this.start + (left / this.width) * (this.end - this.start);
+            },&quot;notify&quot;);
+
+            this.listenTo(&quot;left&quot;, function(ev, left){
+                el.firstElementChild.style.left = &quot;&quot;+left+&quot;px&quot;;
+            },&quot;notify&quot;);
+            el.firstElementChild.style.left = this.left;
+
+            return this.stopListening.bind(this);
+        },
+        startClientX: &quot;any&quot;,
+        startDrag(clientX) {
+            this.startClientX = clientX;
+        }
+    }
+});
+
+Component.extend({
+    tag: &quot;slider-demo&quot;,
+    view: `
+        &lt;percent-slider currentValue:bind='this.value' el:this:to=&quot;this.valueSlider&quot;/&gt;
+        &lt;div&gt;Value &lt;strong id='progress'&gt;{{this.value}}&lt;/strong&gt;&lt;/div&gt;
+
+        &lt;percent-slider start:from='0' end:from='40' currentValue:bind='this.padding' /&gt;
+        &lt;div&gt;Container padding &lt;strong id='progress'&gt;{{this.padding}}&lt;/strong&gt;&lt;/div&gt;
+
+        &lt;percent-slider start:from='10' end:from='70' currentValue:bind='this.width' /&gt;
+        &lt;div&gt;Height / Width &lt;strong id='progress'&gt;{{this.width}}&lt;/strong&gt;&lt;/div&gt;
+    `,
+    ViewModel: {
+        value: {default: 0.5},
+        padding: {default: 20},
+        width: {default: 40},
+        valueSlider: &quot;any&quot;,
+        connectedCallback(el) {
+            const setPadding = (ev, newPadding) =&gt; {
+                this.valueSlider.style.padding = &quot;&quot;+newPadding+&quot;px&quot;;
+                window.dispatchEvent( new Event(&quot;resize&quot;) );
+            }
+            this.listenTo(&quot;padding&quot;, setPadding);
+            setPadding(null, this.padding);
+
+            const setHeightWidth = (ev, newWidth) =&gt; {
+                 this.valueSlider.firstElementChild.style.width = &quot;&quot;+newWidth+&quot;px&quot;;
+                 this.valueSlider.firstElementChild.style.height = &quot;&quot;+newWidth+&quot;px&quot;;
+                 window.dispatchEvent( new Event(&quot;resize&quot;) );
+            };
+            this.listenTo(&quot;width&quot;, setHeightWidth);
+            setHeightWidth(null, this.width);
+        }
+    }
+})
+
+&lt;/script&gt;
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='101-108,only'></div>
+<h2>Exercise: <code>collection.width() -&gt; number</code></h2>
+<h3>The problem</h3>
+<p><details>
+<summary>Click to see test code</summary></p>
+<pre><code class="language-js">QUnit
+</code></pre>
+<p></details></p>
+<h3>What you need to know</h3>
+<h3>The solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-js">solution
+</code></pre>
+<p></details></p>
+<h2>Exercise: <code>collection.show()</code> and <code>collection.hide()</code></h2>
+<h3>The problem</h3>
+<p><details>
+<summary>Click to see test code</summary></p>
+<pre><code class="language-js">QUnit
+</code></pre>
+<p></details></p>
+<h3>What you need to know</h3>
+<h3>The solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-js">solution
+</code></pre>
+<p></details></p>
+
+</section>
+
+			
+		
+	</article>
+</div>
+
+	<footer></footer>
+
+	<script type="text/javascript">
+		var docObject = {"src":{"path":"src/dom/5-layout.md"},"description":"Learn \n","name":"dom-jquery-training/layout","title":"Layout","type":"page","parent":"dom-jquery-training","order":5,"comment":" ","pathToRoot":"../.."};
+	</script>
+
+	
+		<script>
+		  steal = {
+		    instantiated: {
+		      "bundles/bit-docs-site/static.css!$css" : null
+		    }
+		  }
+		</script>
+		<script type='text/javascript'
+				data-main="bit-docs-site/static"
+				src="../static/steal.production.js"></script>
+	
+</body>
+
+</html>

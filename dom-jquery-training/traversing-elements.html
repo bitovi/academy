@@ -100,12 +100,27 @@ $.extend($.prototype, {
 		
 			
 				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="finding-elements.html"
+							title="">
+							Finding Elements
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
 					<li class="current
            						parent
            						expanded">
 						<a class="page"
 							href="traversing-elements.html"
-							title="">
+							title="Learn how to move from one element to the next and a bit of meta programming.">
 							Traversing Elements
 						</a>
 						
@@ -123,7 +138,7 @@ $.extend($.prototype, {
            						">
 						<a class="page"
 							href="attributes-and-properties.html"
-							title="">
+							title="Learn about the attributes and properties on an element.">
 							Attributes and Properties
 						</a>
 						
@@ -137,9 +152,9 @@ $.extend($.prototype, {
            						
            						">
 						<a class="page"
-							href="finding-elements.html"
-							title="">
-							Styles and Layout
+							href="layout.html"
+							title="Learn">
+							Layout
 						</a>
 						
 					</li>
@@ -153,7 +168,7 @@ $.extend($.prototype, {
            						">
 						<a class="page"
 							href="events-part-1.html"
-							title="">
+							title="dom-jquery-training/events-part-1">
 							Events Part 1
 						</a>
 						
@@ -168,7 +183,7 @@ $.extend($.prototype, {
            						">
 						<a class="page"
 							href="events-part-2.html"
-							title="">
+							title="dom-jquery-training/events-part-2">
 							Events Part 2
 						</a>
 						
@@ -240,7 +255,8 @@ $.extend($.prototype, {
 		
 			
 				<section class="description">
-    
+    <p>Learn how to move from one element to the next and a bit of meta programming.</p>
+
 </section>
 
 			
@@ -251,6 +267,570 @@ $.extend($.prototype, {
 				
 			
 			
+				<section class="body">
+    <h2>Overveiw</h2>
+<p>We will learn about:</p>
+<ul>
+<li>Creating next/prev/parent/children functions</li>
+<li>Re-factoring methods</li>
+</ul>
+<h2>Video</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/fDjdaO2XtP0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2>Slides</h2>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRjiGAVqwMHNDiV1g0oWkCW5CZTvNXKGcmb1xJszsD7Z479EJTmRCXnzhjkuJj2fru_vOYxZw-sb7t1/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<h2>Setup</h2>
+<p>Run the following example in CodePen:</p>
+<pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
+&lt;script src=&quot;//code.jquery.com/qunit/qunit-1.12.0.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//bitovi.github.io/university/static/scripts/jquery-test.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;module&quot;&gt;
+(function() {
+  $ = function(selector) {
+    if ( !(this instanceof $) ) {
+      return new $(selector);
+    }
+    var elements;
+    if (typeof selector === &quot;string&quot;) {
+      elements = document.querySelectorAll(selector);
+    } else if ($.isArrayLike(selector)) {
+      elements = selector;
+    }
+    [].push.apply(this, elements);
+  };
+
+  $.extend = function(target, object) {
+    for (var prop in object) {
+      if (object.hasOwnProperty(prop)) {
+        target[prop] = object[prop];
+      }
+    }
+    return target;
+  };
+
+  // Static methods
+  $.extend($, {
+    isArray: function(obj) {
+      return Object.prototype.toString.call(obj) === &quot;[object Array]&quot;;
+    },
+    isArrayLike: function(obj) {
+      return obj &amp;&amp;
+        typeof obj === &quot;object&quot; &amp;&amp;
+        (   obj.length === 0 ||
+            typeof obj.length === &quot;number&quot; &amp;&amp;
+            obj.length &gt; 0 &amp;&amp;
+            obj.length - 1 in obj );
+
+    },
+    each: function(collection, cb) {
+      if ($.isArrayLike(collection)) {
+        for (var i = 0; i &lt; collection.length; i++) {
+          if (cb.call(this, i, collection[i]) === false) {
+            break;
+          }
+        }
+      } else {
+        for (var prop in collection) {
+          if (collection.hasOwnProperty(prop)) {
+            if (cb.call(this, prop, collection[prop]) === false) {
+              break;
+            }
+          }
+        }
+      }
+      return collection;
+    },
+    makeArray: function(arr) {
+      if ($.isArray(arr)) {
+        return arr;
+      }
+      var array = [];
+      $.each(arr, function(i, item) {
+        array[i] = item;
+      });
+      return array;
+    },
+    proxy: function(fn, context) {
+      return function() {
+        return fn.apply(context, arguments);
+      };
+    }
+  });
+
+  function makeSimpleGetterSetter(prop) {
+    return function(value){
+      if(arguments.length) {
+        return $.each(this, function(i, element) {
+          element[prop] = value;
+        });
+      } else {
+        return this[0][prop];
+      }
+    }
+  }
+
+  $.extend($.prototype, {
+      html: makeSimpleGetterSetter(&quot;innerHTML&quot;),
+      val: makeSimpleGetterSetter(&quot;value&quot;),
+      text: makeSimpleGetterSetter(&quot;textContent&quot;),
+      find: function(selector) {
+        var elements = [];
+        $.each(this, function(i, element){
+            var result = element.querySelectorAll(selector);
+            elements.push(...result);
+            // Or elements.push.apply(elements, result);
+        })
+        return new $(elements);
+      },
+      parent: function() { },
+      next: function() { },
+      prev: function() { },
+      children: function() { }
+  });
+
+})();
+&lt;/script&gt;
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='104-107,only'></div>
+<p>Each exercise builds on the previous exercise.  There is a completed solution
+at the end of this page.</p>
+<h2>Exercise: <code>collection.parent() -&gt; collection</code></h2>
+<h3>The problem</h3>
+<p><a href="https://api.jquery.com/parent/">collection.parent</a> gets the parent of each element in the current set of matched elements.</p>
+<pre><code class="language-html">&lt;ul class=&quot;level-1&quot;&gt;
+  &lt;li class=&quot;item-i&quot;&gt;I&lt;/li&gt;
+  &lt;li class=&quot;item-ii&quot;&gt;II
+    &lt;ul class=&quot;level-2&quot;&gt;
+      &lt;li class=&quot;item-a&quot;&gt;A&lt;/li&gt;
+      &lt;li class=&quot;item-b&quot;&gt;B
+        &lt;ul class=&quot;level-3&quot;&gt;
+          &lt;li class=&quot;item-1&quot;&gt;1&lt;/li&gt;
+          &lt;li class=&quot;item-2&quot;&gt;2&lt;/li&gt;
+          &lt;li class=&quot;item-3&quot;&gt;3&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li class=&quot;item-c&quot;&gt;C&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;item-iii&quot;&gt;III&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script type=&quot;module&quot;&gt;
+import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+
+$( &quot;li.item-a&quot; ).parent().css( &quot;border&quot;, &quot;solid 1px red&quot; );
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<p><details>
+<summary>Click to see test code</summary></p>
+<pre><code class="language-js">QUnit.test('$.fn.parent', function(){
+    var $lis = $('#qunit-fixture')
+        .html('&lt;ul&gt;&lt;li/&gt;&lt;li/&gt;&lt;/ul&gt;&lt;ul&gt;&lt;li/&gt;&lt;li/&gt;&lt;/ul&gt;')
+        .find('li:first-child');
+
+    equal($lis.length, 2, 'got 2 uls');
+    equal($lis.parent().length, 2, 'got 2 lis');
+});
+</code></pre>
+<p></details></p>
+<h3>What you need to know</h3>
+<ul>
+<li>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/parentNode">parentNode</a> property
+returns an elements parent node.</li>
+</ul>
+<h3>The solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-js">      parent: function() {
+        var parents = [];
+        $.each(this, function(i, element){
+          parents.push(element.parentNode)
+        });
+        return $(parents);
+      },
+</code></pre>
+<p></details></p>
+<h2>Exercise: <code>collection.next() -&gt; collection</code></h2>
+<h3>The problem</h3>
+<p><a href="https://api.jquery.com/next/">collection.next</a> gets the immediately following sibling of each element in the set of matched elements.</p>
+<pre><code class="language-html">&lt;ul&gt;
+  &lt;li&gt;list item 1&lt;/li&gt;
+  &lt;li&gt;list item 2&lt;/li&gt;
+  &lt;li class=&quot;third-item&quot;&gt;list item 3&lt;/li&gt;
+  &lt;li&gt;list item 4&lt;/li&gt;
+  &lt;li&gt;list item 5&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script type=&quot;module&quot;&gt;
+import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+
+$( &quot;li.third-item&quot; ).next().css( &quot;border&quot;, &quot;solid 1px red&quot; );
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<p><details>
+<summary>Click to see test code</summary></p>
+<pre><code class="language-js">QUnit.test('$.fn.next', function(){
+    var $lis = $('#qunit-fixture')
+        .html('&lt;ul&gt; &lt;li&gt;&lt;/li&gt; &lt;li&gt;&lt;/li&gt; &lt;/ul&gt; &lt;ul&gt; &lt;li&gt;&lt;/li&gt; &lt;li&gt;&lt;/li&gt; &lt;/ul&gt;')
+        .find('li:first-child');
+
+    equal($lis.length, 2, 'got 2 lis');
+    equal($lis.next().length, 2, 'got 2 lis');
+    equal($lis.next().next().length, 0, 'got 0 lis');
+});
+</code></pre>
+<p></details></p>
+<h3>What you need to know</h3>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/NonDocumentTypeChildNode/nextElementSibling">nextElementSibling</a>
+returns the element immediately following the specified one in its parent's children list, or <code>null</code> if the specified element is the last one in the list.</li>
+</ul>
+<h3>The solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-js">      next: function() {
+        var nexts = [];
+        $.each(this, function(i, element){
+          if(element.nextElementSibling) {
+            nexts.push( element.nextElementSibling );
+          }
+        });
+        return $(nexts);
+      },
+</code></pre>
+<p></details></p>
+<h2>Exercise: <code>collection.prev() -&gt; collection</code></h2>
+<h3>The problem</h3>
+<p><a href="https://api.jquery.com/prev/">collection.prev</a> get the immediately preceding sibling of each element in the set of matched elements.</p>
+<p><details>
+<summary>Click to see test code</summary></p>
+<pre><code class="language-js">QUnit.test('$.fn.prev', function(){
+    var $lis = $('#qunit-fixture')
+        .html('&lt;ul&gt;&lt;li/&gt;&lt;li/&gt;&lt;/ul&gt;&lt;ul&gt;&lt;li/&gt;&lt;li/&gt;&lt;/ul&gt;')
+        .find('li:last-child');
+
+    equal($lis.length, 2, 'got 2 uls');
+    equal($lis.prev().length, 2, 'got 2 lis');
+    equal($lis.prev().prev().length, 0, 'got 2 lis');
+});
+</code></pre>
+<p></details></p>
+<h3>What you need to know</h3>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/NonDocumentTypeChildNode/previousElementSibling">previousElementSibling</a>
+returns the Element immediately prior to the specified one in its parent's children list, or <code>null</code> if the specified element is the first one in the list.</li>
+</ul>
+<h3>The solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-js">      prev: function() {
+        var prevs = [];
+        $.each(this, function(i, element){
+          if(element.previousElementSibling) {
+            prevs.push( element.previousElementSibling );
+          }
+        });
+        return $(prevs);
+      },
+</code></pre>
+<p></details></p>
+<h2>Exercise: <code>collection.children() -&gt; collection</code></h2>
+<h3>The problem</h3>
+<p><a href="https://api.jquery.com/children/">collection.children</a> get the children of each element in the set of matched elements.</p>
+<pre><code class="language-html">&lt;ul class=&quot;level-1&quot;&gt;
+  &lt;li class=&quot;item-i&quot;&gt;I&lt;/li&gt;
+  &lt;li class=&quot;item-ii&quot;&gt;II
+    &lt;ul class=&quot;level-2&quot;&gt;
+      &lt;li class=&quot;item-a&quot;&gt;A&lt;/li&gt;
+      &lt;li class=&quot;item-b&quot;&gt;B
+        &lt;ul class=&quot;level-3&quot;&gt;
+          &lt;li class=&quot;item-1&quot;&gt;1&lt;/li&gt;
+          &lt;li class=&quot;item-2&quot;&gt;2&lt;/li&gt;
+          &lt;li class=&quot;item-3&quot;&gt;3&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+      &lt;li class=&quot;item-c&quot;&gt;C&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;item-iii&quot;&gt;III&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script type=&quot;module&quot;&gt;
+import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+
+$( &quot;ul.level-2&quot; ).children().css( &quot;border&quot;, &quot;solid 1px red&quot; );
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<p><details>
+<summary>Click to see test code</summary></p>
+<pre><code class="language-js">QUnit.test('$.fn.children', function(){
+    var $ul = $('#qunit-fixture')
+        .html('&lt;ul&gt;&lt;li/&gt;&lt;li/&gt;&lt;/ul&gt;&lt;ul&gt;&lt;li/&gt;&lt;li/&gt;&lt;/ul&gt;')
+        .children();
+
+    equal($ul.length, 2, 'got 2 uls');
+    equal($ul.children().length, 4, 'got four lis');
+});
+</code></pre>
+<p></details></p>
+<h3>What you need to know</h3>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/children">children</a> returns
+the child elements of the node upon which it was called.</li>
+</ul>
+<h3>The solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-js">      children: function() {
+        var children = [];
+        $.each(this, function(i, element){
+          children.push(...element.children );
+        });
+        return $(children);
+      },
+</code></pre>
+<p></details></p>
+<h2>Exercise: eliminate duplicate code in <code>.find</code>, <code>.parent</code>, <code>.next</code>, <code>.prev</code>, and <code>.children</code>.</h2>
+<h3>The problem</h3>
+<p>Use meta programming techniques to reduce the duplicate code in the <code>.find</code>, <code>.parent</code>, <code>.next</code>, <code>.prev</code>, and <code>.children</code>
+functions.</p>
+<pre><code class="language-js">      find: function(selector) {
+        var elements = [];
+        $.each(this, function(i, element){
+            var result = element.querySelectorAll(selector);
+            elements.push(...result);
+            // Or elements.push.apply(elements, result);
+        })
+        return new $(elements);
+      },
+      parent: function() {
+        var parents = [];
+        $.each(this, function(i, element){
+          parents.push(element.parentNode)
+        });
+        return $(parents);
+      },
+      next: function() {
+        var nexts = [];
+        $.each(this, function(i, element){
+          if(element.nextElementSibling) {
+            nexts.push( element.nextElementSibling );
+          }
+        });
+        return $(nexts);
+      },
+      prev: function() {
+        var prevs = [];
+        $.each(this, function(i, element){
+          if(element.previousElementSibling) {
+            prevs.push( element.previousElementSibling );
+          }
+        });
+        return $(prevs);
+      },
+      children: function() {
+        var children = [];
+        $.each(this, function(i, element){
+          children.push(...element.children );
+        });
+        return $(children);
+      },
+</code></pre>
+<p>Make a <code>makeTraverser(traverse)</code> function that takes a <code>traverse</code> function and
+produces a function.</p>
+<p>The <code>traverse</code> function should be called for each element in
+the source collection. When calling <code>traverse</code>, it's <code>this</code> should be each element.</p>
+<p>The <code>traverse</code> functions should be able to return <code>null</code> and <code>element</code> or an array-like
+object of <code>elements</code>.</p>
+<h3>What you need to know</h3>
+<p>You know everything you need to know. You can do it!</p>
+<h3>The solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-js">  function makeTraverser(traverser) {
+    return function() {
+      var elements = [], args = arguments;
+      $.each(this, function(i, element) {
+        var els = traverser.apply(element, args);
+        if ($.isArrayLike(els)) {
+          elements.push.apply(elements, els);
+        } else if (els) {
+          elements.push(els);
+        }
+      });
+      return $(elements);
+    };
+  }
+</code></pre>
+<pre><code class="language-js">      find: makeTraverser(function(selector) {
+        return this.querySelectorAll(selector);
+      }),
+      parent: makeTraverser(function() {
+        return this.parentNode;
+      }),
+      next: makeTraverser(function() {
+        return this.nextElementSibling;
+      }),
+      prev: makeTraverser(function() {
+        return this.previousElementSibling;
+      }),
+      children: makeTraverser(function() {
+        return this.children;
+      })
+</code></pre>
+<p></details></p>
+<h2>Completed Solution</h2>
+<pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
+&lt;script src=&quot;//code.jquery.com/qunit/qunit-1.12.0.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//bitovi.github.io/university/static/scripts/jquery-test.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;module&quot;&gt;
+(function() {
+  $ = function(selector) {
+    if ( !(this instanceof $) ) {
+      return new $(selector);
+    }
+    var elements;
+    if (typeof selector === &quot;string&quot;) {
+      elements = document.querySelectorAll(selector);
+    } else if ($.isArrayLike(selector)) {
+      elements = selector;
+    }
+    [].push.apply(this, elements);
+  };
+
+  $.extend = function(target, object) {
+    for (var prop in object) {
+      if (object.hasOwnProperty(prop)) {
+        target[prop] = object[prop];
+      }
+    }
+    return target;
+  };
+
+  // Static methods
+  $.extend($, {
+    isArray: function(obj) {
+      return Object.prototype.toString.call(obj) === &quot;[object Array]&quot;;
+    },
+    isArrayLike: function(obj) {
+      return obj &amp;&amp;
+        typeof obj === &quot;object&quot; &amp;&amp;
+        (   obj.length === 0 ||
+            typeof obj.length === &quot;number&quot; &amp;&amp;
+            obj.length &gt; 0 &amp;&amp;
+            obj.length - 1 in obj );
+
+    },
+    each: function(collection, cb) {
+      if ($.isArrayLike(collection)) {
+        for (var i = 0; i &lt; collection.length; i++) {
+          if (cb.call(this, i, collection[i]) === false) {
+            break;
+          }
+        }
+      } else {
+        for (var prop in collection) {
+          if (collection.hasOwnProperty(prop)) {
+            if (cb.call(this, prop, collection[prop]) === false) {
+              break;
+            }
+          }
+        }
+      }
+      return collection;
+    },
+    makeArray: function(arr) {
+      if ($.isArray(arr)) {
+        return arr;
+      }
+      var array = [];
+      $.each(arr, function(i, item) {
+        array[i] = item;
+      });
+      return array;
+    },
+    proxy: function(fn, context) {
+      return function() {
+        return fn.apply(context, arguments);
+      };
+    }
+  });
+
+  function makeTraverser(traverser) {
+    return function() {
+      var elements = [], args = arguments;
+      $.each(this, function(i, element) {
+        var els = traverser.apply(element, args);
+        if ($.isArrayLike(els)) {
+          elements.push.apply(elements, els);
+        } else if (els) {
+          elements.push(els);
+        }
+      });
+      return $(elements);
+    };
+  }
+
+  $.extend($.prototype, {
+      html: function(newHtml) {
+        if(arguments.length) {
+          return $.each(this, function(i, element) {
+            element.innerHTML = newHtml;
+          });
+        } else {
+          return this[0].innerHTML;
+        }
+      },
+      val: function(newVal) {
+        if(arguments.length) {
+          return $.each(this, function(i, element) {
+            element.value = newVal;
+          });
+        } else {
+          return this[0].value;
+        }
+      },
+      text: function(newText) {
+        if (arguments.length) {
+          return $.each(this, function(i, element) {
+            element.textContent = newText;
+          });
+        } else {
+          return this[0].textContent;
+        }
+      },
+      find: makeTraverser(function(selector) {
+        return this.querySelectorAll(selector);
+      }),
+      parent: makeTraverser(function() {
+        return this.parentNode;
+      }),
+      next: makeTraverser(function() {
+        return this.nextElementSibling;
+      }),
+      prev: makeTraverser(function() {
+        return this.previousElementSibling;
+      }),
+      children: makeTraverser(function() {
+        return this.children;
+      })
+  });
+
+})();
+&lt;/script&gt;
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='122-136,only'></div>
+
+</section>
+
+			
 		
 	</article>
 </div>
@@ -258,7 +838,7 @@ $.extend($.prototype, {
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/dom/3-traversing-elements.md"},"description":"\n","name":"dom-jquery-training/traversing-elements","title":"Traversing Elements","type":"page","parent":"dom-jquery-training","order":3,"pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/dom/3-traversing-elements.md"},"description":"Learn how to move from one element to the next and a bit of meta programming. \n\n","name":"dom-jquery-training/traversing-elements","title":"Traversing Elements","type":"page","parent":"dom-jquery-training","order":3,"comment":" ","pathToRoot":"../.."};
 	</script>
 
 	

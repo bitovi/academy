@@ -104,8 +104,23 @@ $.extend($.prototype, {
            						
            						">
 						<a class="page"
-							href="traversing-elements.html"
+							href="finding-elements.html"
 							title="">
+							Finding Elements
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="traversing-elements.html"
+							title="Learn how to move from one element to the next and a bit of meta programming.">
 							Traversing Elements
 						</a>
 						
@@ -120,7 +135,7 @@ $.extend($.prototype, {
            						expanded">
 						<a class="page"
 							href="attributes-and-properties.html"
-							title="">
+							title="Learn about the attributes and properties on an element.">
 							Attributes and Properties
 						</a>
 						
@@ -137,9 +152,9 @@ $.extend($.prototype, {
            						
            						">
 						<a class="page"
-							href="finding-elements.html"
-							title="">
-							Styles and Layout
+							href="layout.html"
+							title="Learn">
+							Layout
 						</a>
 						
 					</li>
@@ -153,7 +168,7 @@ $.extend($.prototype, {
            						">
 						<a class="page"
 							href="events-part-1.html"
-							title="">
+							title="dom-jquery-training/events-part-1">
 							Events Part 1
 						</a>
 						
@@ -168,7 +183,7 @@ $.extend($.prototype, {
            						">
 						<a class="page"
 							href="events-part-2.html"
-							title="">
+							title="dom-jquery-training/events-part-2">
 							Events Part 2
 						</a>
 						
@@ -240,7 +255,8 @@ $.extend($.prototype, {
 		
 			
 				<section class="description">
-    
+    <p>Learn about the attributes and properties on an element.</p>
+
 </section>
 
 			
@@ -251,6 +267,470 @@ $.extend($.prototype, {
 				
 			
 			
+				<section class="body">
+    <h2>Overview</h2>
+<p>We will learn about:</p>
+<ul>
+<li>The difference between attributes and properties</li>
+<li>How to set and read styles on an element</li>
+</ul>
+<h2>Slides</h2>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQQSSVUteY_8gHdxcxuVeGXX548wxO_i_BfxGiohaYTuR_lskKGFIg9rCc-zfP-KIvckvqn2UvAOJ0O/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<h2>Setup</h2>
+<p>Run the following example in CodePen:</p>
+<pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
+&lt;script src=&quot;//code.jquery.com/qunit/qunit-1.12.0.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//bitovi.github.io/university/static/scripts/jquery-test.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;module&quot;&gt;
+(function() {
+  $ = function(selector) {
+    if ( !(this instanceof $) ) {
+      return new $(selector);
+    }
+    var elements;
+    if (typeof selector === &quot;string&quot;) {
+      elements = document.querySelectorAll(selector);
+    } else if ($.isArrayLike(selector)) {
+      elements = selector;
+    }
+    [].push.apply(this, elements);
+  };
+
+  $.extend = function(target, object) {
+    for (var prop in object) {
+      if (object.hasOwnProperty(prop)) {
+        target[prop] = object[prop];
+      }
+    }
+    return target;
+  };
+
+  // Static methods
+  $.extend($, {
+    isArray: function(obj) {
+      return Object.prototype.toString.call(obj) === &quot;[object Array]&quot;;
+    },
+    isArrayLike: function(obj) {
+      return obj &amp;&amp;
+        typeof obj === &quot;object&quot; &amp;&amp;
+        (   obj.length === 0 ||
+            typeof obj.length === &quot;number&quot; &amp;&amp;
+            obj.length &gt; 0 &amp;&amp;
+            obj.length - 1 in obj );
+
+    },
+    each: function(collection, cb) {
+      if ($.isArrayLike(collection)) {
+        for (var i = 0; i &lt; collection.length; i++) {
+          if (cb.call(this, i, collection[i]) === false) {
+            break;
+          }
+        }
+      } else {
+        for (var prop in collection) {
+          if (collection.hasOwnProperty(prop)) {
+            if (cb.call(this, prop, collection[prop]) === false) {
+              break;
+            }
+          }
+        }
+      }
+      return collection;
+    },
+    makeArray: function(arr) {
+      if ($.isArray(arr)) {
+        return arr;
+      }
+      var array = [];
+      $.each(arr, function(i, item) {
+        array[i] = item;
+      });
+      return array;
+    },
+    proxy: function(fn, context) {
+      return function() {
+        return fn.apply(context, arguments);
+      };
+    }
+  });
+
+  function makeTraverser(traverser) {
+    return function() {
+      var elements = [], args = arguments;
+      $.each(this, function(i, element) {
+        var els = traverser.apply(element, args);
+        if ($.isArrayLike(els)) {
+          elements.push.apply(elements, els);
+        } else if (els) {
+          elements.push(els);
+        }
+      });
+      return $(elements);
+    };
+  }
+
+  $.extend($.prototype, {
+      html: function(newHtml) {
+        if(arguments.length) {
+          return $.each(this, function(i, element) {
+            element.innerHTML = newHtml;
+          });
+        } else {
+          return this[0].innerHTML;
+        }
+      },
+      val: function(newVal) {
+        if(arguments.length) {
+          return $.each(this, function(i, element) {
+            element.value = newVal;
+          });
+        } else {
+          return this[0].value;
+        }
+      },
+      text: function(newText) {
+        if (arguments.length) {
+          return $.each(this, function(i, element) {
+            element.textContent = newText;
+          });
+        } else {
+          return this[0].textContent;
+        }
+      },
+      find: makeTraverser(function(selector) {
+        return this.querySelectorAll(selector);
+      }),
+      parent: makeTraverser(function() {
+        return this.parentNode;
+      }),
+      next: makeTraverser(function() {
+        return this.nextElementSibling;
+      }),
+      prev: makeTraverser(function() {
+        return this.previousElementSibling;
+      }),
+      children: makeTraverser(function() {
+        return this.children;
+      }),
+      attr: function(attrName, value) { },
+      css: function(cssPropName, value) { }
+  });
+
+})();
+&lt;/script&gt;
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='137-138,only'></div>
+<p>Each exercise builds on the previous exercise.  There is a completed solution
+at the end of this page.</p>
+<h2>Exercise: <code>collection.attr( attrName [,value] )</code></h2>
+<h3>The problem</h3>
+<p><a href="http://api.jquery.com/attr/">collection.attr</a> either:</p>
+<ul>
+<li>Gets the value of an attribute for the first element in the set of matched elements, or</li>
+<li>sets one or more attributes for every matched element.</li>
+</ul>
+<pre><code class="language-html">&lt;a id=&quot;link-less&quot;&gt;Bitovi&lt;/a&gt;
+&lt;script type=&quot;module&quot;&gt;
+import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+
+$( &quot;a&quot; ).attr(&quot;href&quot;,&quot;https://bitovi.com&quot;);
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<p><details>
+<summary>Click to see test code</summary></p>
+<pre><code class="language-js">QUnit.test('$.fn.attr', function(){
+    equal( $('#qunit-fixture').attr('id'), 'qunit-fixture' ,'can read id' );
+
+    $('#qunit-fixture').html('&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;');
+
+    $('#qunit-fixture span').attr('foo','bar');
+
+    equal($('#qunit-fixture span')[0].getAttribute('foo'), 'bar', 'attribute set successfully');
+    equal($('#qunit-fixture span')[1].getAttribute('foo'), 'bar', 'attribute set successfully');
+
+    $('#qunit-fixture span')[0].setAttribute('foo','BAR');
+
+    equal($('#qunit-fixture span').attr('foo'), 'BAR', 'read the first item in the collection\'s attr');
+});
+</code></pre>
+<p></details></p>
+<h3>What you need to know</h3>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getAttribute">getAttribute</a> reads an attribute value</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/setAttribute">setAttribute</a> sets an attribute value</li>
+</ul>
+<h3>The solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-js">    attr: function(attrName, value) {
+      if (arguments.length == 2) {
+        return $.each(this, function(i, element) {
+          element.setAttribute(attrName, value);
+        });
+      } else {
+        return this[0] &amp;&amp; this[0].getAttribute(attrName);
+      }
+    },
+</code></pre>
+<p></details></p>
+<h2>Exercise: <code>collection.css( propertyName [,value] )</code></h2>
+<h3>The problem</h3>
+<p><a href="http://api.jquery.com/css/">collection.css</a> either:</p>
+<ul>
+<li>Gets the value of a computed style property for the first element in the set of matched elements,</li>
+<li>or sets one or more CSS properties for every matched element.</li>
+</ul>
+<pre><code class="language-html">&lt;div&gt;Foo Bar&lt;/div&gt;
+&lt;script type=&quot;module&quot;&gt;
+import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+
+$( &quot;div&quot; ).css(&quot;backgroundColor&quot;, &quot;green&quot;);
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<p><details>
+<summary>Click to see test code</summary></p>
+<pre><code class="language-js">QUnit.test('$.fn.css', function(){
+    $('#qunit-fixture')
+        .html('&lt;span&gt;Content&lt;/span&gt;&lt;span&gt;Second&lt;/span&gt;');
+
+    equal(
+        $('#qunit-fixture span').css('padding-left'),
+        '20px');
+
+    $('#qunit-fixture span').css('paddingLeft', '40px');
+
+    equal(
+        $('#qunit-fixture span').css('padding-left'),
+        '40px',
+        'first span set to 40px');
+    equal(
+        $('#qunit-fixture span:nth-child(2)')
+            .css('padding-left'),
+        '40px',
+        'second span set to 40px');
+});
+</code></pre>
+<p></details></p>
+<h3>What you need to know</h3>
+<ul>
+<li><p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style">style</a> property
+is used to set and get the inline style of an element.</p>
+<pre><code class="language-html">&lt;div id=&quot;theDiv&quot;&gt;theDiv&lt;/div&gt;
+&lt;script type=&quot;module&quot;&gt;
+theDiv.style.color = &quot;red&quot;;
+
+console.log(theDiv.outerHTML)
+//logs &quot;&lt;div id=&quot;theDiv&quot; style=&quot;color: red;&quot;&gt;theDiv&lt;/div&gt;&quot;
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div></li>
+<li><p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle">window.getComputedStyle</a>
+returns an object containing the values of all CSS properties of an element.</p>
+<pre><code class="language-html">&lt;p id=&quot;theP&quot;&gt;Hello&lt;/p&gt;
+&lt;style&gt;
+p {
+  color: green;
+}
+&lt;/style&gt;
+&lt;script type=&quot;module&quot;&gt;
+let computedStyles = window.getComputedStyle(theP);
+console.log( computedStyles.getPropertyValue('color') )
+// logs &quot;rgb(0, 128, 0)&quot;
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div></li>
+</ul>
+<h3>The solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-js">    css: function(cssPropName, value) {
+      if (arguments.length == 2) {
+        return $.each(this, function(i, element) {
+          element.style[cssPropName] = value;
+        });
+      } else {
+        return this[0] &amp;&amp;
+          document.getComputedStyle(this[0])
+            .getPropertyValue(cssPropName);
+      }
+    },
+</code></pre>
+<p></details></p>
+<h3>Complete Solution</h3>
+<pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
+&lt;script src=&quot;//code.jquery.com/qunit/qunit-1.12.0.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//bitovi.github.io/university/static/scripts/jquery-test.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;module&quot;&gt;
+(function() {
+  $ = function(selector) {
+    if ( !(this instanceof $) ) {
+      return new $(selector);
+    }
+    var elements;
+    if (typeof selector === &quot;string&quot;) {
+      elements = document.querySelectorAll(selector);
+    } else if ($.isArrayLike(selector)) {
+      elements = selector;
+    }
+    [].push.apply(this, elements);
+  };
+
+  $.extend = function(target, object) {
+    for (var prop in object) {
+      if (object.hasOwnProperty(prop)) {
+        target[prop] = object[prop];
+      }
+    }
+    return target;
+  };
+
+  // Static methods
+  $.extend($, {
+    isArray: function(obj) {
+      return Object.prototype.toString.call(obj) === &quot;[object Array]&quot;;
+    },
+    isArrayLike: function(obj) {
+      return obj &amp;&amp;
+        typeof obj === &quot;object&quot; &amp;&amp;
+        (   obj.length === 0 ||
+            typeof obj.length === &quot;number&quot; &amp;&amp;
+            obj.length &gt; 0 &amp;&amp;
+            obj.length - 1 in obj );
+
+    },
+    each: function(collection, cb) {
+      if ($.isArrayLike(collection)) {
+        for (var i = 0; i &lt; collection.length; i++) {
+          if (cb.call(this, i, collection[i]) === false) {
+            break;
+          }
+        }
+      } else {
+        for (var prop in collection) {
+          if (collection.hasOwnProperty(prop)) {
+            if (cb.call(this, prop, collection[prop]) === false) {
+              break;
+            }
+          }
+        }
+      }
+      return collection;
+    },
+    makeArray: function(arr) {
+      if ($.isArray(arr)) {
+        return arr;
+      }
+      var array = [];
+      $.each(arr, function(i, item) {
+        array[i] = item;
+      });
+      return array;
+    },
+    proxy: function(fn, context) {
+      return function() {
+        return fn.apply(context, arguments);
+      };
+    }
+  });
+
+  function makeTraverser(traverser) {
+    return function() {
+      var elements = [], args = arguments;
+      $.each(this, function(i, element) {
+        var els = traverser.apply(element, args);
+        if ($.isArrayLike(els)) {
+          elements.push.apply(elements, els);
+        } else if (els) {
+          elements.push(els);
+        }
+      });
+      return $(elements);
+    };
+  }
+
+  $.extend($.prototype, {
+      html: function(newHtml) {
+        if(arguments.length) {
+          return $.each(this, function(i, element) {
+            element.innerHTML = newHtml;
+          });
+        } else {
+          return this[0].innerHTML;
+        }
+      },
+      val: function(newVal) {
+        if(arguments.length) {
+          return $.each(this, function(i, element) {
+            element.value = newVal;
+          });
+        } else {
+          return this[0].value;
+        }
+      },
+      text: function(newText) {
+        if (arguments.length) {
+          return $.each(this, function(i, element) {
+            element.textContent = newText;
+          });
+        } else {
+          return this[0].textContent;
+        }
+      },
+      find: makeTraverser(function(selector) {
+        return this.querySelectorAll(selector);
+      }),
+      parent: makeTraverser(function() {
+        return this.parentNode;
+      }),
+      next: makeTraverser(function() {
+        return this.nextElementSibling;
+      }),
+      prev: makeTraverser(function() {
+        return this.previousElementSibling;
+      }),
+      children: makeTraverser(function() {
+        return this.children;
+      }),
+      attr: function(attrName, value) {
+        if (arguments.length == 2) {
+          return $.each(this, function(i, element) {
+            element.setAttribute(attrName, value);
+          });
+        } else {
+          return this[0] &amp;&amp; this[0].getAttribute(attrName);
+        }
+      },
+      css: function(cssPropName, value) {
+        if (arguments.length == 2) {
+          return $.each(this, function(i, element) {
+            element.style[cssPropName] = value;
+          });
+        } else {
+          return this[0] &amp;&amp;
+            document.getComputedStyle(this[0])
+              .getPropertyValue(cssPropName);
+        }
+      }
+  });
+
+})();
+&lt;/script&gt;
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='137-156,only'></div>
+
+</section>
+
+			
 		
 	</article>
 </div>
@@ -258,7 +738,7 @@ $.extend($.prototype, {
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/dom/4-attributes-and-properties.md"},"description":"\n","name":"dom-jquery-training/attributes-and-properties","title":"Attributes and Properties","type":"page","parent":"dom-jquery-training","order":4,"pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/dom/4-attributes-and-properties.md"},"description":"Learn about the attributes and properties on an element. ","name":"dom-jquery-training/attributes-and-properties","title":"Attributes and Properties","type":"page","parent":"dom-jquery-training","order":4,"comment":" ","pathToRoot":"../.."};
 	</script>
 
 	

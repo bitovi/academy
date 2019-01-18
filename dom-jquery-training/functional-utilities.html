@@ -107,8 +107,23 @@ $.extend($.prototype, {
            						
            						">
 						<a class="page"
-							href="traversing-elements.html"
+							href="finding-elements.html"
 							title="">
+							Finding Elements
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="traversing-elements.html"
+							title="Learn how to move from one element to the next and a bit of meta programming.">
 							Traversing Elements
 						</a>
 						
@@ -123,7 +138,7 @@ $.extend($.prototype, {
            						">
 						<a class="page"
 							href="attributes-and-properties.html"
-							title="">
+							title="Learn about the attributes and properties on an element.">
 							Attributes and Properties
 						</a>
 						
@@ -137,9 +152,9 @@ $.extend($.prototype, {
            						
            						">
 						<a class="page"
-							href="finding-elements.html"
-							title="">
-							Styles and Layout
+							href="layout.html"
+							title="Learn">
+							Layout
 						</a>
 						
 					</li>
@@ -153,7 +168,7 @@ $.extend($.prototype, {
            						">
 						<a class="page"
 							href="events-part-1.html"
-							title="">
+							title="dom-jquery-training/events-part-1">
 							Events Part 1
 						</a>
 						
@@ -168,7 +183,7 @@ $.extend($.prototype, {
            						">
 						<a class="page"
 							href="events-part-2.html"
-							title="">
+							title="dom-jquery-training/events-part-2">
 							Events Part 2
 						</a>
 						
@@ -264,18 +279,392 @@ $.extend($.prototype, {
 <iframe width="560" height="315" src="https://www.youtube.com/embed/ZyItGFJivaQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <h2>Slides</h2>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQS1BOdGeK3-TEHbLt_mWjc7Z3TAd5dk6lFCDEvOy5cXLHzrYx7OsmVAP72vwDvTxJ_lLG0y5UqEUfc/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-<h2>Exercise: <code>$.extend</code></h2>
-<h3>The problem</h3>
-<p><a href="https://api.jquery.com/jquery.extend/">jQuery.extend</a> merge the contents of of an object
-onto another object.</p>
-<pre><code class="language-js">
+<h2>Setup</h2>
+<p>Run the following example in CodePen:</p>
+<pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
+&lt;script src=&quot;//code.jquery.com/qunit/qunit-1.12.0.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//bitovi.github.io/university/static/scripts/jquery-test.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;module&quot;&gt;
+(function() {
+  $ = function(selector) { };
+
+  $.extend = function(target, object) { };
+
+  // Static methods
+  $.extend($, {
+    isArray: function(obj) { },
+    isArrayLike: function(obj) { },
+    each: function(collection, cb) { },
+    makeArray: function(arr) { },
+    proxy: function(fn, context) { }
+  });
+
+  $.extend($.prototype, {
+    // These will be added later.
+  });
+
+})();
+&lt;/script&gt;
+
 </code></pre>
-<h2>Exercise: <code>$.isArray</code></h2>
-<h2>Exercise: <code>$.isArrayLike</code></h2>
-<h2>Exercise: <code>$.each</code></h2>
+<div class='codepen'></div>
+<p>Each exercise builds on the previous exercise.  There is a completed solution
+at the end of this page.</p>
+<h2>Exercise: <code>$.extend( target, source ) -&gt; target</code></h2>
+<h3>The problem</h3>
+<p><a href="https://api.jquery.com/jquery.extend/">jQuery.extend</a> merges the contents of a <code>source</code>
+object onto the <code>target</code> object.</p>
+<p>Test code:</p>
+<pre><code class="language-js">QUnit.test('$.extend', function(){
+
+    var target = {first: 'Justin'},
+        object = {last: 'Meyer'};
+
+    var result = $.extend(target,object);
+
+    equal( result, target, 'target and result are equal');
+    deepEqual(result, {first: 'Justin', last: 'Meyer'}, 'properties added correctly');
+});
+</code></pre>
+<blockquote>
+<p><strong>PRO TIP</strong>: Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign">Object.assign</a> in a modern app.</p>
+</blockquote>
+<h3>What you need to know</h3>
+<ul>
+<li>Loop through an object's enumerable properties with a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in">for-in loop</a>:
+<pre><code class="language-js">var obj = {foo: &quot;bar&quot;, zed: &quot;ted&quot;};
+for(var prop in obj) {
+  console.log(prop) //logs &quot;foo&quot; then &quot;zed&quot;
+}
+</code></pre>
+<div class='codepen'></div></li>
+<li>Read a property with a string using the <code>[]</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors">member operator</a>.
+<pre><code class="language-js">var obj = {foo: &quot;bar&quot;};
+var prop = &quot;foo&quot;;
+console.log(obj[prop]) //logs &quot;bar&quot;
+</code></pre>
+<div class='codepen'></div></li>
+<li>Assign a property with a string using the <code>[]</code> member operator:
+<pre><code class="language-js">var obj = {};
+var prop = &quot;foo&quot;;
+obj[prop] = &quot;bar&quot;
+console.log(obj.prop) //logs &quot;bar&quot;
+</code></pre></li>
+<li>Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty">Object.prototype.hasOwnProperty</a> to detect if an object has
+the specified property as it's own property:
+<pre><code class="language-js">var obj = {foo: &quot;bar&quot;};
+console.log(obj.hasOwnProperty(&quot;foo&quot;)) //logs true
+</code></pre>
+<div class='codepen'></div></li>
+</ul>
+<h3>The solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-js">  $.extend = function(target, object) {
+    for (var prop in object) {
+      if (object.hasOwnProperty(prop)) {
+        target[prop] = object[prop];
+      }
+    }
+    return target;
+  };
+</code></pre>
+<p></details></p>
+<h2>Exercise: <code>$.isArray( obj ) -&gt; boolean</code></h2>
+<h3>The problem</h3>
+<p><a href="http://api.jquery.com/jquery.isarray/">jQuery.isArray</a> determines whether the argument is an array.</p>
+<p>Test code:</p>
+<pre><code class="language-js">QUnit.test('$.isArray', function(){
+
+    equal( $.isArray([]), true, 'An array is an array' );
+    equal( $.isArray(arguments), false, 'Arguments are not an array' );
+
+    var iframe = document.createElement('iframe');
+    document.body.appendChild(iframe);
+
+    var IframeArray = iframe.contentWindow.Array;
+
+    equal( $.isArray( new IframeArray() ), true,
+        'Arrays from other iframes are Arrays' );
+
+    document.body.removeChild(iframe);
+});
+</code></pre>
+<blockquote>
+<p><strong>PRO TIP</strong>: Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/isArray">Array.isArray</a> in a modern app.</p>
+</blockquote>
+<h3>What you need to know</h3>
+<ul>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString">Object.prototype.toString</a> called on built-in types returns the object class name:</p>
+<pre><code class="language-js">console.log( Object.prototype.toString.call(new Date) )
+//logs &quot;[object Date]&quot;
+</code></pre>
+ <div class='codepen'></div></li>
+</ul>
+<h3>The solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-js">    isArray: function(obj) {
+      return Object.prototype.toString.call(obj) === &quot;[object Array]&quot;;
+    },
+</code></pre>
+<p></details></p>
+<h2>Exercise: <code>$.isArrayLike(obj) -&gt; boolean</code></h2>
+<h3>The problem</h3>
+<p>jQuery uses an internal <code>isArrayLike</code> method to detect if an object looks like an
+array. A value is array-like if:</p>
+<ul>
+<li>it is an object.</li>
+<li>the object has a number length property:
+<ul>
+<li>the length property is 0, or</li>
+<li>the length is greater than 0 and there is a <code>length - 1</code> property.</li>
+</ul></li>
+</ul>
+<p>Test code:</p>
+<pre><code class="language-js">QUnit.test('$.isArrayLike', function(){
+    equal( $.isArrayLike([]), true, 'An array is array like' );
+    equal( $.isArrayLike(arguments), true, 'Arguments is array like' );
+    equal( $.isArrayLike({length: 0}), true, 'length: 0 is array like' );
+    equal( $.isArrayLike({length: 5, &quot;4&quot;: undefined}), true,
+        'length &gt; 0 and has property is array like' );
+
+    equal( $.isArrayLike(null), false, 'Null is not array like' );
+    equal( $.isArrayLike({}), false, 'Plain object is not array like' );
+    equal( $.isArrayLike({length: -1}), false,
+        'length: -1 is not array like' );
+});
+</code></pre>
+<h3>What you need to know</h3>
+<ul>
+<li>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in">in operator </a> returns <code>true</code> if the specified property is in the specified object or its prototype chain.
+<pre><code class="language-js">var obj = {foo: &quot;bar&quot;};
+console.log( &quot;foo&quot; in obj ) //logs true
+</code></pre>
+<div class='codepen'></div></li>
+</ul>
+<h3>The solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-js">    isArrayLike: function(obj) {
+      return obj &amp;&amp;
+        typeof obj === &quot;object&quot; &amp;&amp;
+        (   obj.length === 0 ||
+            typeof obj.length === &quot;number&quot; &amp;&amp;
+            obj.length &gt; 0 &amp;&amp;
+            obj.length - 1 in obj );
+
+    },
+</code></pre>
+<p></details></p>
+<h2>Exercise: <code>$.each( obj , cb(index, value) ) -&gt; obj</code></h2>
+<h3>The problem</h3>
+<p><a href="http://api.jquery.com/jquery.each/">jQuery.each</a> loops through objects and
+arrays, calling the <code>cb</code> callback for each value.</p>
+<pre><code class="language-js">import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+
+var collection = ['a', 'b'];
+$.each(collection, function(index, item) {
+    console.log(item + ' is at index ' + index);
+    // logs &quot;a is at 0&quot;
+    //      &quot;b is at 1&quot;
+});
+
+collection = {foo: 'bar', zed: 'ted'};
+res = $.each(collection, function(prop, value){
+    console.log('prop: ' + prop + ', value: ' + value);
+    // logs &quot;prop: foo, value: bar&quot;
+    //      &quot;prop: zed, value: ted&quot;
+});
+</code></pre>
+<div class='codepen'></div>
+<p><details>
+<summary>Click to see test code</summary></p>
+<pre><code class="language-js">QUnit.test('$.each', function(){
+    expect(9);
+    var collection = ['a','b'];
+    var res = $.each(collection, function(index, value){
+        if(index === 0 )    equal(value, 'a');
+        else if(index === 1 ) equal(value, 'b');
+        else ok(false,'called back with a bad index');
+    });
+    equal(collection, res);
+
+    collection = {foo: 'bar', zed: 'ted'};
+    res = $.each(collection, function(prop, value){
+        if(prop === 'foo' )      equal(value, 'bar');
+        else if(prop === 'zed' ) equal(value, 'ted');
+        else ok(false,'called back with a bad index');
+    });
+    equal(collection, res);
+
+    collection = {0:'a', 1:'b', length: 2};
+    res = $.each(collection, function(index, value){
+        if(index === 0 )    equal(value, 'a');
+        else if(index === 1 ) equal(value, 'b');
+        else ok(false,'called back with a bad index');
+    });
+    equal(collection, res);
+});
+</code></pre>
+<p></details></p>
+<blockquote>
+<p>Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach">forEach</a> on arrays in apps.</p>
+</blockquote>
+<h3>What you need to know</h3>
+<ul>
+<li>Use a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration#for_statement">for statement</a> to loop through something array-like:
+<pre><code class="language-js">var items = [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;];
+for(var i = 0; i &lt; items.length; i++) {
+  console.log( items[i] ) // logs &quot;a&quot;, &quot;b&quot;, &quot;c&quot;
+}
+</code></pre></li>
+</ul>
+<h3>The solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-js">    each: function(collection, cb) {
+      if ($.isArrayLike(collection)) {
+        for (var i = 0; i &lt; collection.length; i++) {
+          if (cb.call(this, i, collection[i]) === false) {
+            break;
+          }
+        }
+      } else {
+        for (var prop in collection) {
+          if (collection.hasOwnProperty(prop)) {
+            if (cb.call(this, prop, collection[prop]) === false) {
+              break;
+            }
+          }
+        }
+      }
+      return collection;
+    },
+</code></pre>
+<p></details></p>
 <h2>Exercise: <code>$.makeArray</code></h2>
+<h3>The problem</h3>
+<p><a href="https://api.jquery.com/jQuery.makeArray/">jQuery.makeArray</a> converts an array-like object into a true JavaScript array.  For example, it can make arrays of the following:</p>
+<pre><code class="language-js">$.makeArray( document.body.childNodes );
+
+$.makeArray( document.getElementsByTagName('*') );
+
+$.makeArray( arguments );
+
+$.makeArray( $('li') );
+</code></pre>
+<p><details>
+<summary>Click to see test code</summary></p>
+<pre><code class="language-js">QUnit.test('$.makeArray', function(){
+
+    var childNodes = document.body.childNodes;
+
+    ok(! $.isArray(childNodes), 'node lists are not arrays' );
+
+    var childArray = $.makeArray(childNodes);
+
+    ok( $.isArray(childArray), 'made an array'  );
+
+    equal(childArray.length, childNodes.length, 'lengths are the same');
+
+    for(var i =0; i &lt; childArray.length; i++){
+        equal(childArray[i], childNodes[i], 'array index '+i+' is equal.');
+    }
+});
+</code></pre>
+<p></details></p>
+<h3>What you need to know</h3>
+<p>You already know everything you need to know. You can do it!</p>
+<h3>The solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-js">    makeArray: function(arr) {
+      if ($.isArray(arr)) {
+        return arr;
+      }
+      var array = [];
+      $.each(arr, function(i, item) {
+        array[i] = item;
+      });
+      return array;
+    },
+</code></pre>
+<p></details></p>
 <h2>Exercise: <code>$.proxy</code></h2>
-<h2>Solution</h2>
+<h3>The problem</h3>
+<p><a href="https://api.jquery.com/jQuery.proxy/">jQuery.proxy</a> takes a function and returns a new one that will always have a particular context.</p>
+<p>The following logs <code>&quot;undefined says woof&quot;</code> instead of <code>&quot;fido says woof&quot;</code>:</p>
+<pre><code class="language-js">var dog = {
+    nickname: 'fido',
+    speak: function(){
+        console.log(this.nickname + ' says woof');
+    }
+};
+
+setTimeout(dog.speak, 500);
+</code></pre>
+<div class='codepen'></div>
+<p><code>$.proxy</code> fixes this:</p>
+<pre><code class="language-js">import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+
+var dog = {
+    nickname: 'fido',
+    speak: function(){
+        console.log(this.nickname + ' says woof');
+    }
+};
+
+setTimeout($.proxy(dog.speak, dog), 500);
+</code></pre>
+<div class='codepen'></div>
+<p><details>
+<summary>Click to see the test code</summary></p>
+<pre><code class="language-js">QUnit.test('$.proxy', function(){
+
+    var dog = {
+        name: 'fido',
+        speak: function(words){
+            return this.name + ' says '+words;
+        }
+    };
+
+    var speakProxy = $.proxy(dog.speak, dog);
+
+    equal( speakProxy('woof!'), 'fido says woof!' );
+});
+</code></pre>
+<p></details></p>
+<blockquote>
+<p><strong>PRO TIP</strong>: Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind">Function.prototype.bind</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">arrow functions</a> instead of <code>$.proxy</code>.</p>
+</blockquote>
+<h3>What you need to know</h3>
+<ul>
+<li><p>Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply">Function.prototype.apply</a> to call a function with a specified <code>this</code>
+and arguments:</p>
+<pre><code class="language-js">var cat = {name: &quot;sparky&quot;};
+
+var dog = {
+  name: &quot;fido&quot;,
+  speak() { console.log(this.name + &quot;says woof&quot;); }
+}
+
+dog.speak.apply(cat,[]) //logs &quot;sparky says woof&quot;
+</code></pre></li>
+</ul>
+<h3>The solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-js">    proxy: function(fn, context) {
+      return function() {
+        return fn.apply(context, arguments);
+      };
+    },
+</code></pre>
+<p></details></p>
+<h2>Completed Solution</h2>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
 &lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
 &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
@@ -285,51 +674,73 @@ onto another object.</p>
 (function() {
   $ = function(selector) {};
 
-  $.extend = function(target, object) {};
+  $.extend = function(target, object) {
+    for (var prop in object) {
+      if (object.hasOwnProperty(prop)) {
+        target[prop] = object[prop];
+      }
+    }
+    return target;
+  };
 
   // Static methods
   $.extend($, {
-    isArray: function(obj) {},
-    isArrayLike: function(obj) {},
-    each: function(collection, cb) {},
-    makeArray: function(arr) {},
-    proxy: function(fn, context) {}
+    isArray: function(obj) {
+      return Object.prototype.toString.call(obj) === &quot;[object Array]&quot;;
+    },
+    isArrayLike: function(obj) {
+      return obj &amp;&amp;
+        typeof obj === &quot;object&quot; &amp;&amp;
+        (   obj.length === 0 ||
+            typeof obj.length === &quot;number&quot; &amp;&amp;
+            obj.length &gt; 0 &amp;&amp;
+            obj.length - 1 in obj );
+
+    },
+    each: function(collection, cb) {
+      if ($.isArrayLike(collection)) {
+        for (var i = 0; i &lt; collection.length; i++) {
+          if (cb.call(this, i, collection[i]) === false) {
+            break;
+          }
+        }
+      } else {
+        for (var prop in collection) {
+          if (collection.hasOwnProperty(prop)) {
+            if (cb.call(this, prop, collection[prop]) === false) {
+              break;
+            }
+          }
+        }
+      }
+      return collection;
+    },
+    makeArray: function(arr) {
+      if ($.isArray(arr)) {
+        return arr;
+      }
+      var array = [];
+      $.each(arr, function(i, item) {
+        array[i] = item;
+      });
+      return array;
+    },
+    proxy: function(fn, context) {
+      return function() {
+        return fn.apply(context, arguments);
+      };
+    }
   });
 
   $.extend($.prototype, {
-    html: function(newHtml) {},
-    val: function(newVal) {},
-    text: function(newText) {},
-    find: function(selector) {},
-    next: function() {},
-    prev: function() {},
-    parent: function() {},
-    children: function() {},
-    attr: function(attrName, value) {},
-    css: function(cssPropName, value) {},
-    width: function() {},
-    offset: function() {},
-    hide: function() {},
-    show: function() {},
-
-    // Events
-    bind: function(eventName, handler) {},
-    unbind: function(eventName, handler) {},
-    has: function(selector) {},
-    on: function(eventType, selector, handler) {},
-    off: function(eventType, selector, handler) {},
-    data: function(propName, data) {},
-
-    // Extra
-    addClass: function(className) {},
-    removeClass: function(className) {},
-    append: function(element) {}
+    // These will be added later.
   });
 
-  $.buildFragment = function(html) {};
 })();
 &lt;/script&gt;
+
 </code></pre>
+<div class='codepen'></div>
 
 </section>
 

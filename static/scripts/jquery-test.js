@@ -12,7 +12,7 @@ QUnit.module('$ functional utils');
 QUnit.test('$.extend', function(){
 
 	var target = {first: 'Justin'},
-	object = {last: 'Meyer'};
+		object = {last: 'Meyer'};
 
 	var result = $.extend(target,object);
 
@@ -35,6 +35,18 @@ QUnit.test('$.isArray', function(){
 	document.body.removeChild(iframe);
 });
 
+QUnit.test('$.isArrayLike', function(){
+	equal( $.isArrayLike([]), true, 'An array is array like' );
+	equal( $.isArrayLike(arguments), true, 'Arguments is array like' );
+	equal( $.isArrayLike({length: 0}), true, 'length: 0 is array like' );
+	equal( $.isArrayLike({length: 5, "4": undefined}), true,
+		'length > 0 and has property is array like' );
+
+	equal( $.isArrayLike(null), false, 'Null is not array like' );
+	equal( $.isArrayLike({}), false, 'Plain object is not array like' );
+	equal( $.isArrayLike({length: -1}), false, 'length: -1 is not array like' );
+});
+
 QUnit.test('$.each', function(){
 	expect(9);
 	var collection = ['a','b'];
@@ -53,8 +65,8 @@ QUnit.test('$.each', function(){
 	});
 	equal(collection, res);
 
-	var collection = {0:'a', 1:'b', length: 2};
-	var res = $.each(collection, function(index, value){
+	collection = {0:'a', 1:'b', length: 2};
+	res = $.each(collection, function(index, value){
 		if(index === 0 )	equal(value, 'a');
 		else if(index === 1 ) equal(value, 'b');
 		else ok(false,'called back with a bad index');
@@ -94,7 +106,11 @@ QUnit.test('$.proxy', function(){
 });
 
 QUnit.test('new $(selector)', function(){
-	document.getElementById('qunit-fixture').innerHTML = '<ul id="contacts"><li class="contact"/><li class="contact"/></ul>';
+	document.getElementById('qunit-fixture').innerHTML = `
+		<ul id="contacts">
+			<li class="contact"/>
+			<li class="contact"/>
+		</ul>`;
 
 	var $contacts = new $('#contacts li.contact');
 	equal( $contacts.length,  2, 'There are 2 contacts');
@@ -161,15 +177,6 @@ QUnit.test('$.fn.find', function(){
 	equal($ul.find('li').length, 4, 'got four lis');
 });
 
-QUnit.test('$.fn.children', function(){
-	var $ul = $('#qunit-fixture')
-		.html('<ul><li/><li/></ul><ul><li/><li/></ul>')
-		.children();
-
-	equal($ul.length, 2, 'got 2 uls');
-	equal($ul.children().length, 4, 'got four lis');
-});
-
 QUnit.test('$.fn.parent', function(){
 	var $lis = $('#qunit-fixture')
 		.html('<ul><li/><li/></ul><ul><li/><li/></ul>')
@@ -197,6 +204,15 @@ QUnit.test('$.fn.prev', function(){
 	equal($lis.length, 2, 'got 2 uls');
 	equal($lis.prev().length, 2, 'got 2 lis');
 	equal($lis.prev().prev().length, 0, 'got 2 lis');
+});
+
+QUnit.test('$.fn.children', function(){
+	var $ul = $('#qunit-fixture')
+		.html('<ul><li/><li/></ul><ul><li/><li/></ul>')
+		.children();
+
+	equal($ul.length, 2, 'got 2 uls');
+	equal($ul.children().length, 4, 'got four lis');
 });
 
 QUnit.test('$.fn.attr', function(){
