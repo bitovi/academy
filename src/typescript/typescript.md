@@ -1,33 +1,17 @@
 @page typescript Typescript
 @parent bit-u 3
-@description Intro to Typescript
-@hide
+@description Intro to TypeScript
 
 @body
 
+## Outline
 
-- What and why of typescript
-  - Typing
-  - Object Oriented Programming
-  - Compilation
-- IDE support
-  - VS Code
-  - Atom
+Google chose to write Angular in TypeScript to take advantage of it's typechecking magic. While this may mean a bit of a learning curve for new Angular developers, this guide will cover the basics of TypeScript and work through examples to learn to harness the power of TypeScript.
+
+- Why We Like TypeScript
+- IDE Setup & Support
 - Types
-- Classes
-- Interface
 - Functions
+- Classes
+- Interfaces
 - Generics
-- Modules
-
-
-```typescript
-function greeter(person: string) {
-    return "Hello, " + person;
-}
-
-let user = "Jane User";
-
-document.body.innerHTML = greeter(user);
-```
-@codepen

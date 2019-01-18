@@ -187,3 +187,25 @@ Desktop:
 article .codepen:before {
     content: "Run in your browser";
 }
+
+html {
+    color: #404040;
+    font: normal normal normal 1rem/1.6 -apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+@media (min-width: 700px) {
+    body {
+        font-size: 1.1rem;
+    }
+}
+
+:not(pre)>code {
+    padding: 3px 5px;
+    border: none;
+    font-family: Menlo,Roboto Mono,Courier New,monospace;
+    font-weight: 400;
+    color: #111;
+    border-radius: 4px;
+    background: rgba(0,0,0,.06);
+}

@@ -11,7 +11,11 @@ Let's empower our user to be able to select restaurants based on their city. The
 
 ![Place My Order App city state picker](../static/img/restaurant-list.png "Place My Order App city state picker")
 
+<<<<<<< HEAD
 We can start by adding two new methods to our ``restaurantService``. 
+=======
+We can start by adding two new methods to our ``RestaurantService``. 
+>>>>>>> typescript
 
 ```typescript
 import { Injectable } from '@angular/core';
@@ -42,4 +46,10 @@ export class RestaurantService {
     return this.httpClient.get<Config>('/api/cities');
   }
 }
+<<<<<<< HEAD
 ```
+=======
+```
+
+We want our list of states available initially for the user to interact with, so we'll add the call to our ``RestaurantService getStates`` method in our
+>>>>>>> typescript

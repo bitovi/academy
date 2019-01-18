@@ -1,9 +1,15 @@
 @page typescript/types Types
-@parent typescript 2
+@parent typescript 3
 
-@description Basic Types.
+@description Starting to use types in TypeScript.
+
+@body
 
 ## Basic Types
+
+Types are what determine how much memory is allocated to save a value. Types also detemine what operations or methods can be performed on a value. Types like strings can't have mathmatical operations performed on them, but methods like ``.length`` can be used.
+
+This section will explore how types are annotated when writing TypeScript and discuss type inference done by TypeScript.
 
 ### Boolean
 
@@ -85,7 +91,7 @@ No type at all - commonly used with functions that don't return a value.
 
 ```typescript
 function buttonClick(): void {
-  console.log('I clicked a button');
+  console.log('I clicked a button that returns nothing');
 }
 ```
 ### Null & Undefined
@@ -102,24 +108,35 @@ function error(message: string): never {
 }
 ```
 
-### object
+### Type Inference 
 
-The object type represents all non-primitive types.
+When we don't provide explict types for our variables, Typescript will do it's best to infer the types, and it's very good at it. The following code will not compile due to type inference.
 
 ```typescript
-// All primitive types
-type Primitive =
-  | boolean
-  | number
-  | string
-  | symbol
-  | null
-  | undefined;
-
-// All non-primitive types
-type NonPrimitive = object;
-
+let name = 'blue';
+let height = 6;
+name = height; //Type 'number' is not assignable to type 'string'
 ```
+
+Type can also be inferred from complex objects.
+
+```typescript
+let junkList = [1, 'seven', 3, 6];
+junkList.push('thirteen'); //works
+junkList.push(true); //Argument of type 'true' is not assignable to parameter of type 'string | number'.
+```
+
+Typescript will infer the return value of a function as well. 
+
+```typescript
+function multiplier(a: number, b: number ){
+  return a*b;
+}
+var multiplied: number = multiplier(2,3); //works
+var str: string = multiplier(10,20); //Type 'number' is not assignable to type 'string'.
+```
+
+Type inference can be a very helpful tool in refactoring code and helping better document expectations for our code.
 
 ### Type assertions
 
@@ -134,3 +151,49 @@ let otherValue: any = "this is a string";
 
 let otherLength: number = (otherValue as string).length;
 ```
+
+### Exercise 1
+
+Fix the following type errors so this code will compile:
+
+```typescript
+let isLoading: boolean = true;
+isLoading = 'false';
+
+let inventory: Array<number> = [];
+
+inventory.push('tacos', 'hamburgers');
+
+function greet(name: string, age: number): void{
+  console.log(`${name} is ${age} years young.`)
+}
+
+greet(30, 'Jessica')
+
+greet('Tom', 42, 'software')
+```
+
+<details>
+  <summary>Solution</summary>
+  ```typescript
+  let isLoading: boolean = true;
+  isLoading = false;
+
+  let inventory: Array<string> = [];
+
+  inventory.push('tacos', 'hamburgers');
+
+  function greet(name: string, age: number): void{
+    console.log(`${name} is ${age} years young.`)
+  }
+
+  greet('Jessica', 30)
+
+  greet('Tom', 42,)
+
+```
+</details>
+
+### Exercise 2
+
+Declare a variable that

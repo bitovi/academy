@@ -8,6 +8,7 @@
 
 ## Building our Restaurants List
 
+<<<<<<< HEAD
 We've done some work to create a Place My Order API for use in this app.
 
 ```bash
@@ -199,3 +200,6 @@ We'll now build out the view for an individual restaurant. Let's start with crea
 ```bash
 ng g component restaurant/detail
 ``` -->
+=======
+In the last section we generated a restaurants component and didn't do anything with it. Let's get some restaurant data to feed to it. 
+>>>>>>> typescript

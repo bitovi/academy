@@ -30,6 +30,7 @@ In this guide, we will ....
   - reactive programming
   - lazy loading
   - unit testing
+  - typescript namespacing
 
 
 1. why Angular

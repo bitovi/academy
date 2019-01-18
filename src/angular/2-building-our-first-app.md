@@ -357,3 +357,5 @@ Open the app.component.html and change it to:
 </header>
 <router-outlet></router-outlet>
 ```
+
+We now have a nice navigation for our users to change between views. 
