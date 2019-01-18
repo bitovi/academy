@@ -7,29 +7,39 @@
 
 ## Classes in TypeScript
 
-A class in JavaScript is a structured way to define prototype based functions. Classes allow us to take an object-oriented approach to building our JavaScript applications that may seem more familiar than the JavaScript "prototype" way.
+For those newer to Object-oriented programming, classes are special functions that help us abstract our code. Classes can define function expressions and function declarations.
+
+In JavaScript, a class is a structured way to define what you may have seen before - prototype based functions. This allows us to take an object-oriented approach to building our JavaScript applications. 
 
 @sourceref ./5-1-javascript-prototype.html
 @codepen
 
+In the TypeScript class example, the 'name' member is initialized on line 4. We'll look at setting the name via the constructor next. 
 @sourceref ./5-2-typescript-class.html
 @codepen
+@highlight 4
+
 
 ### Constructor
 
-A constructor is a way to initialize members on a class.
+The constructor method is how to create and initialize a new object with members. The constructor is used when we call a class with the ``new`` keyword, because it constructs and retuns a new object for us with properties we gave it.
 
 @sourceref ./5-3-class-constructor.html
 @codepen
 
-It's quite a common pattern, which is why TypeScript also provides a shorthand.
+When declaring members, it's also possible to instantiate a value on them.
+
+@sourceref ./5-3-class-constructor-initialized.html
+@codepen
+
+Using the constructor to set public members is quite a common pattern, which is why TypeScript also provides a shorthand.
 
 @sourceref ./5-4-constructor-short.html
 @codepen
 
 ### Inheritance
 
-Inheritance is a way to extend functionality of existing classes. If the devired class contains it's own constructor function, it MUST call a super method with params matching that of it's parent class. Super is a call to the parent constructor method to ensure the properties are set for the parent. 
+Inheritance is a way to extend functionality of existing classes. If the devired class contains it's own constructor function, it MUST call a super method with params matching that of it's parent class. Super is a call to the parent constructor method to ensure the properties are set for the parent. The following shows accessing the move mehtod from the parent class and adding run and talk methods to the child class.
 
 @sourceref ./5-5-inheritance.html
 @codepen
@@ -72,64 +82,72 @@ Readonly modifieds allow properties to be read, but not changed.
 
 ### Exercise 1
 
-Recreate this prototype using TypeScript classes.
+Open your editor create a new file ``hellodino.ts``, and recreate this prototype using TypeScript classes.
 
 ```typescript
-function Counter(initialValue) {
-  this.value = initialValue;
+function DinoKeeper(name) {
+  this.name = name;
 }
 
-Counter.prototype.increment = function() {
-  this.value = this.value + 1;
-  console.log('The new value is ' + this.value);
+DinoKeeper.prototype.sayHi = function() {
+  console.log(this.name + ' says "hi"');
 }
 
-let myCounter = new Counter(5);
-myCounter.increment();
-//The new value is 6
+let employee1 = new DinoKeeper("Joe");
+employee1.sayHi();
+//Joe says "hi"
 ```
+
+Hint* When you run:
+
+```bash
+tsc hellodino.ts
+```
+
+Your code should output to look like the above prototype version!
 
 <details>
 <summary>Solution</summary>
 
 ```typescript
-class Counter {
-  value: number;
+class DinoKeeper {
+  name: string;
 
-  constructor(value) {
-    this.value = value;
+  constructor(name:string) {
+    this.name = name;
   }
 
-  increment() {
-    this.value = this.value + 1;
-    console.log(`The new value is ${this.value}`);
+  sayHi() {
+    console.log(`${this.name} says "hi"`);
   }
 }
-let counter = new Counter(7);
-counter.increment();
-//The new value is 8
+let employee1 = new DinoKeeper("Joe);
+employee1.sayHi();
+//Joe says "hi"
 ```
 </details>
 
 ### Exercise 2
 
-Create a new class that inherits from the ``Counter`` class and has a method that increases the value by a custom amount. 
+Create a new ``Specialist`` class that inherits from the ``DinoKeeper``. This new class class should be able to accept an additonal ``experience`` public member that is a number, and have a ``safetyQuote`` method that console.logs("Never turn your back to the cage. Trust me, I have _years_ years of experience")
 
 <details>
 <summary>Solution</summary>
 
 ```typescript
-class CustomCounter extends Counter {
-  add(customVal:number) {
-    this.value = this.value + customVal;
-    console.log(`The new value is ${this.value}`);
+class Specialist extends DinoKeeper {
+  constructor(name: string, public experience: number) {
+    super(name);
+  }
+
+  safetyQuote() {
+    console.log(`Never turn your back to the cage. Trust me, I have ${this.experience} years of experience`);
+
   }
 }
 
-const myCustomCounter = new CustomCounter(7);
-myCustomCounter.increment();
-//The new value is 8
-myCustomCounter.add(12);
-//The new value is 20
+let employee2 = new Specialist("Owen", 14);
+employee2.sayHi(); //Owen says 'hi'
+employee2.safetyQuote(); //Never turn your back to the cage. Trust me, I have 14 years of experience
 ```
 </details>

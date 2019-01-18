@@ -1,4 +1,4 @@
-@page typescript/types Using Types in TypeScript
+@page typescript/types Types
 @parent typescript 3
 
 @description Starting to use types in TypeScript.
@@ -9,7 +9,7 @@
 
 Types are what determine how much memory is allocated to save a value. Types also detemine what operations or methods can be performed on a value. Types like strings can't have mathmatical operations performed on them, but methods like ``.length`` can be used.
 
-This section will explore how types are annotated when writing TypeScript and discuss type inference done by TypeScript
+This section will explore how types are annotated when writing TypeScript and discuss type inference done by TypeScript.
 
 ### Boolean
 
