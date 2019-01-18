@@ -22,6 +22,107 @@ We will learn about:
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vR_aHX8TbUJ8hqrD2OalxvG9kjjq1wweo8Sz3HaCAPdyILn4QWKJhdxOeA9-UOzQLMB6J5E7FRPbZ2J/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
+
+## Setup
+
+Run the following example in CodePen:
+
+```html
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+<link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.12.0.css">
+<script src="//code.jquery.com/qunit/qunit-1.12.0.js"></script>
+<script src="//bitovi.github.io/university/static/scripts/jquery-test.js"></script>
+<script type="module">
+(function() {
+  $ = function(selector) {
+    if ( !(this instanceof $) ) {
+      return new $(selector);
+    }
+    var elements;
+    if (typeof selector === "string") {
+      elements = document.querySelectorAll(selector);
+    } else if ($.isArrayLike(selector)) {
+      elements = selector;
+    }
+    [].push.apply(this, elements);
+  };
+
+  $.extend = function(target, object) {
+    for (var prop in object) {
+      if (object.hasOwnProperty(prop)) {
+        target[prop] = object[prop];
+      }
+    }
+    return target;
+  };
+
+  // Static methods
+  $.extend($, {
+    isArray: function(obj) {
+      return Object.prototype.toString.call(obj) === "[object Array]";
+    },
+    isArrayLike: function(obj) {
+      return obj &&
+        typeof obj === "object" &&
+        (   obj.length === 0 ||
+            typeof obj.length === "number" &&
+            obj.length > 0 &&
+            obj.length - 1 in obj );
+
+    },
+    each: function(collection, cb) {
+      if ($.isArrayLike(collection)) {
+        for (var i = 0; i < collection.length; i++) {
+          if (cb.call(this, i, collection[i]) === false) {
+            break;
+          }
+        }
+      } else {
+        for (var prop in collection) {
+          if (collection.hasOwnProperty(prop)) {
+            if (cb.call(this, prop, collection[prop]) === false) {
+              break;
+            }
+          }
+        }
+      }
+      return collection;
+    },
+    makeArray: function(arr) {
+      if ($.isArray(arr)) {
+        return arr;
+      }
+      var array = [];
+      $.each(arr, function(i, item) {
+        array[i] = item;
+      });
+      return array;
+    },
+    proxy: function(fn, context) {
+      return function() {
+        return fn.apply(context, arguments);
+      };
+    }
+  });
+
+  $.extend($.prototype, {
+      html: function(newHtml) { },
+      val: function(newVal) { },
+      text: function(newText) { },
+      find: function(selector) { }
+  });
+
+})();
+</script>
+
+```
+@codepen
+@highlight 80-83,only
+
+Each exercise builds on the previous exercise.  There is a completed solution
+at the end of this page.
+
 ## Exercise: `new $(selector) -> collection`
 
 ### The problem
@@ -643,10 +744,10 @@ Use meta programming techniques to reduce the duplicate code in the
 
 ```js
 function makeSimpleGetterSetter(prop) {
-	return function(){
+	return function(value){
 		if(arguments.length) {
 			return $.each(this, function(i, element) {
-				element[prop] = newHtml;
+				element[prop] = value;
 			});
 		} else {
 			return this[0][prop];

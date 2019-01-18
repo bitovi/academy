@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/bitovi/university#readme",
   "devDependencies": {
-    "bit-docs": "0.0.11",
+    "bit-docs": "0.1.0",
     "gh-pages": "^2.0.1"
   },
   "bit-docs": {
@@ -41,6 +41,7 @@
       "pattern": "src/**/*.{js,md}"
     },
     "parent": "bit-u",
-    "static": "static"
+    "static": "static",
+    "watch": true
   }
 }

@@ -15,6 +15,10 @@ window.PACKAGES = packages;
 		window.addEventListener("load", function(){
 			windowLoaded = true;
 		});
+		// only wait 1 second at most
+		setTimeout(function(){
+			windowLoaded = true;
+		},1000);
 
 		function setArticleScroll(){
 			var articleScroll = window.history.state && window.history.state.articleScroll;

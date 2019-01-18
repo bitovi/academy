@@ -177,15 +177,6 @@ QUnit.test('$.fn.find', function(){
 	equal($ul.find('li').length, 4, 'got four lis');
 });
 
-QUnit.test('$.fn.children', function(){
-	var $ul = $('#qunit-fixture')
-		.html('<ul><li/><li/></ul><ul><li/><li/></ul>')
-		.children();
-
-	equal($ul.length, 2, 'got 2 uls');
-	equal($ul.children().length, 4, 'got four lis');
-});
-
 QUnit.test('$.fn.parent', function(){
 	var $lis = $('#qunit-fixture')
 		.html('<ul><li/><li/></ul><ul><li/><li/></ul>')
@@ -213,6 +204,15 @@ QUnit.test('$.fn.prev', function(){
 	equal($lis.length, 2, 'got 2 uls');
 	equal($lis.prev().length, 2, 'got 2 lis');
 	equal($lis.prev().prev().length, 0, 'got 2 lis');
+});
+
+QUnit.test('$.fn.children', function(){
+	var $ul = $('#qunit-fixture')
+		.html('<ul><li/><li/></ul><ul><li/><li/></ul>')
+		.children();
+
+	equal($ul.length, 2, 'got 2 uls');
+	equal($ul.children().length, 4, 'got four lis');
 });
 
 QUnit.test('$.fn.attr', function(){
