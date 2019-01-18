@@ -36,15 +36,15 @@ QUnit.test('$.isArray', function(){
 });
 
 QUnit.test('$.isArrayLike', function(){
-	equal( $.isArrayLike([]), true, 'An array is array like' );
-	equal( $.isArrayLike(arguments), true, 'Arguments is array like' );
-	equal( $.isArrayLike({length: 0}), true, 'length: 0 is array like' );
-	equal( $.isArrayLike({length: 5, "4": undefined}), true,
+	ok( $.isArrayLike([]), 'An array is array like' );
+	ok( $.isArrayLike(arguments), 'Arguments is array like' );
+	ok( $.isArrayLike({length: 0}), 'length: 0 is array like' );
+	ok( $.isArrayLike({length: 5, "4": undefined}),
 		'length > 0 and has property is array like' );
 
-	equal( $.isArrayLike(null), false, 'Null is not array like' );
-	equal( $.isArrayLike({}), false, 'Plain object is not array like' );
-	equal( $.isArrayLike({length: -1}), false, 'length: -1 is not array like' );
+	ok( !$.isArrayLike(null), 'Null is not array like' );
+	ok( !$.isArrayLike({}), 'Plain object is not array like' );
+	ok( !$.isArrayLike({length: -1}), 'length: -1 is not array like' );
 });
 
 QUnit.test('$.each', function(){
