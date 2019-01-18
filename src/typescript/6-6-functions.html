@@ -1,0 +1,13 @@
+<script type="typescript">
+interface MyCallback {
+  (error: Error, response?: string): void;
+}
+
+function myFunc(callback: MyCallback) {
+  callback(null, 'a response')
+}
+
+myFunc(() => {
+  console.log('all good here')
+});
+</script>
