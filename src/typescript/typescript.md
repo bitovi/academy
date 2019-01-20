@@ -1,4 +1,4 @@
-@page typescript Typescript
+@page typescript TypeScript
 @parent bit-u 3
 @description Intro to TypeScript
 
