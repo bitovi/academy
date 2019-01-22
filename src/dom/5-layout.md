@@ -1,6 +1,7 @@
 @page dom-jquery-training/layout Layout
 @parent dom-jquery-training 5
-@description Learn
+@description Learn how the browser lays out elements in the page and how to
+get an elements dimensions and location.
 
 @body
 
@@ -19,26 +20,69 @@ widgets. The following
 @highlight 100-107,only
 
 
+## Setup
+
+Run the following example in CodePen:
+
+@sourceref ./5-layout-begin.html
+@codepen
+@highlight 158-161,only
+
+Each exercise builds on the previous exercise. There is a completed solution at the end of this page.
 
 ## Exercise: `collection.width() -> number`
 
 ### The problem
 
+[collection.width](http://api.jquery.com/width/) gets the current computed width for the first element in the set of matched elements.
+
+```html
+<div class="outer"><div class="inner">Hi</div></div>
+<style>
+.outer {width: 100px;}
+.inner { border: solid 5px green; padding: 10px }
+</style>
+<script type="module">
+import "https://unpkg.com/jquery@3/dist/jquery.js";
+
+console.log( $(".inner").width() ) //logs 70
+</script>
+```
+@codepen
+
 <details>
 <summary>Click to see test code</summary>
 ```js
-QUnit
+QUnit.test('$.fn.width', function(){
+	// .big-width { width: 1000px; ... }
+	// #qunit-fixture div { padding: 20px; border: solid 10px black; }
+	$('#qunit-fixture')
+		.html('<div class="big-width"><div>Element</div></div>');
+	equal(
+		$('#qunit-fixture .big-width div').width(),
+		1000 - 60,
+		'width is correct');
+});
 ```
 </details>
 
 ### What you need to know
+
+- The [clientWidth](https://developer.mozilla.org/en-US/docs/Web/API/Element/clientWidth)
+  property returns the width of the element including the padding.
+- You can read the computed `padding-left` and `padding-right` style properties.
+
 
 ### The solution
 
 <details>
 <summary>Click to see the solution</summary>
 ```js
-solution
+    width: function() {
+      var paddingLeft = parseInt(this.css("padding-left"), 10),
+      paddingRight = parseInt(this.css("padding-right"), 10);
+      return this[0].clientWidth - paddingLeft - paddingRight;
+    },
 ```
 </details>
 
@@ -46,6 +90,44 @@ solution
 
 ### The problem
 
+[collection.show()](http://api.jquery.com/show/) and
+[collection.hide()](http://api.jquery.com/hide/) show or hide the elements
+in the collection.
+
+
+<details>
+<summary>Click to see test code</summary>
+```js
+QUnit.test('$.fn.show and $.fn.hide', function(){
+	$('#qunit-fixture').html('<div id="el">text</div>');
+
+	equal( $('#el').hide()[0].style.display, 'none');
+	equal( $('#el').show()[0].style.display, '');
+});
+```
+</details>
+
+### What you need to know
+
+### The solution
+
+<details>
+<summary>Click to see the solution</summary>
+```js
+    hide: function() {
+      return this.css("display", "none");
+    },
+    show: function() {
+      return this.css("display", "");
+    },
+```
+</details>
+
+## Bonus Exercise: `collection.offset()`
+
+
+### The problem
+
 <details>
 <summary>Click to see test code</summary>
 ```js
@@ -63,6 +145,7 @@ QUnit
 solution
 ```
 </details>
+
 
 
 ## Complete solution
