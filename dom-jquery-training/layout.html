@@ -284,6 +284,8 @@ $.extend($.prototype, {
     <h2>Slides</h2>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTgZLYnFJSyxLhJ4k49f9zLRxBCi5LHUmQxxNL-4K1q6vNUojKCxxYte77y5QExxEP-np_rdS6HxmOO/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 <h2>Slider Demo</h2>
+<p>Understanding how the DOM is positioned helps build dynamic
+widgets. The following</p>
 <pre><code class="language-html">&lt;style&gt;
 .slider {
     border: solid 1px blue;
@@ -337,7 +339,6 @@ Component.extend({
             // derive the width
             this.width = width(el) - el.firstElementChild.offsetWidth;
             this.listenTo(window,&quot;resize&quot;, () =&gt; {
-                console.log(&quot;resize&quot;);
                 this.width = width(el) - el.firstElementChild.offsetWidth;
             });
 
@@ -370,7 +371,7 @@ Component.extend({
             this.listenTo(&quot;left&quot;, function(ev, left){
                 el.firstElementChild.style.left = &quot;&quot;+left+&quot;px&quot;;
             },&quot;notify&quot;);
-            el.firstElementChild.style.left = this.left;
+            el.firstElementChild.style.left = &quot;&quot;+this.left+&quot;px&quot;;
 
             return this.stopListening.bind(this);
         },
@@ -421,7 +422,7 @@ Component.extend({
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='101-108,only'></div>
+<div line-highlight='100-107,only'></div>
 <h2>Exercise: <code>collection.width() -&gt; number</code></h2>
 <h3>The problem</h3>
 <p><details>
@@ -450,6 +451,190 @@ Component.extend({
 <pre><code class="language-js">solution
 </code></pre>
 <p></details></p>
+<h2>Complete solution</h2>
+<pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
+&lt;script src=&quot;//code.jquery.com/qunit/qunit-1.12.0.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//bitovi.github.io/university/static/scripts/jquery-test.js&quot;&gt;&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//bitovi.github.io/university/static/scripts/jquery-test.css&quot;&gt;
+&lt;script type=&quot;module&quot;&gt;
+(function() {
+  $ = function(selector) {
+    if ( !(this instanceof $) ) {
+      return new $(selector);
+    }
+    var elements;
+    if (typeof selector === &quot;string&quot;) {
+      elements = document.querySelectorAll(selector);
+    } else if ($.isArrayLike(selector)) {
+      elements = selector;
+    }
+    [].push.apply(this, elements);
+  };
+
+  $.extend = function(target, object) {
+    for (var prop in object) {
+      if (object.hasOwnProperty(prop)) {
+        target[prop] = object[prop];
+      }
+    }
+    return target;
+  };
+
+  // Static methods
+  $.extend($, {
+    isArray: function(obj) {
+      return Object.prototype.toString.call(obj) === &quot;[object Array]&quot;;
+    },
+    isArrayLike: function(obj) {
+      return obj &amp;&amp;
+        typeof obj === &quot;object&quot; &amp;&amp;
+        (   obj.length === 0 ||
+            typeof obj.length === &quot;number&quot; &amp;&amp;
+            obj.length &gt; 0 &amp;&amp;
+            obj.length - 1 in obj );
+
+    },
+    each: function(collection, cb) {
+      if ($.isArrayLike(collection)) {
+        for (var i = 0; i &lt; collection.length; i++) {
+          if (cb.call(this, i, collection[i]) === false) {
+            break;
+          }
+        }
+      } else {
+        for (var prop in collection) {
+          if (collection.hasOwnProperty(prop)) {
+            if (cb.call(this, prop, collection[prop]) === false) {
+              break;
+            }
+          }
+        }
+      }
+      return collection;
+    },
+    makeArray: function(arr) {
+      if ($.isArray(arr)) {
+        return arr;
+      }
+      var array = [];
+      $.each(arr, function(i, item) {
+        array[i] = item;
+      });
+      return array;
+    },
+    proxy: function(fn, context) {
+      return function() {
+        return fn.apply(context, arguments);
+      };
+    }
+  });
+
+  function makeTraverser(traverser) {
+    return function() {
+      var elements = [], args = arguments;
+      $.each(this, function(i, element) {
+        var els = traverser.apply(element, args);
+        if ($.isArrayLike(els)) {
+          elements.push.apply(elements, els);
+        } else if (els) {
+          elements.push(els);
+        }
+      });
+      return $(elements);
+    };
+  }
+
+  $.extend($.prototype, {
+    html: function(newHtml) {
+      if(arguments.length) {
+        return $.each(this, function(i, element) {
+          element.innerHTML = newHtml;
+        });
+      } else {
+        return this[0].innerHTML;
+      }
+    },
+    val: function(newVal) {
+      if(arguments.length) {
+        return $.each(this, function(i, element) {
+          element.value = newVal;
+        });
+      } else {
+        return this[0].value;
+      }
+    },
+    text: function(newText) {
+      if (arguments.length) {
+        return $.each(this, function(i, element) {
+          element.textContent = newText;
+        });
+      } else {
+        return this[0].textContent;
+      }
+    },
+    find: makeTraverser(function(selector) {
+      return this.querySelectorAll(selector);
+    }),
+    parent: makeTraverser(function() {
+      return this.parentNode;
+    }),
+    next: makeTraverser(function() {
+      return this.nextElementSibling;
+    }),
+    prev: makeTraverser(function() {
+      return this.previousElementSibling;
+    }),
+    children: makeTraverser(function() {
+      return this.children;
+    }),
+    attr: function(attrName, value) {
+      if (arguments.length == 2) {
+        return $.each(this, function(i, element) {
+          element.setAttribute(attrName, value);
+        });
+      } else {
+        return this[0] &amp;&amp; this[0].getAttribute(attrName);
+      }
+    },
+    css: function(cssPropName, value) {
+      if (arguments.length == 2) {
+        return $.each(this, function(i, element) {
+          element.style[cssPropName] = value;
+        });
+      } else {
+        return this[0] &amp;&amp;
+          window.getComputedStyle(this[0])
+            .getPropertyValue(cssPropName);
+      }
+    },
+    width: function() {
+      var paddingLeft = parseInt(this.css(&quot;padding-left&quot;), 10),
+      paddingRight = parseInt(this.css(&quot;padding-right&quot;), 10);
+      return this[0].clientWidth - paddingLeft - paddingRight;
+    },
+    hide: function() {
+      return this.css(&quot;display&quot;, &quot;none&quot;);
+    },
+    show: function() {
+      return this.css(&quot;display&quot;, &quot;&quot;);
+    },
+    offset: function() {
+      var offset = this[0].getBoundingClientRect();
+      return {
+        top: offset.top + window.pageYOffset,
+        left: offset.left + window.pageXOffset
+      };
+    }
+  });
+
+})();
+&lt;/script&gt;
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='158-175,only'></div>
 
 </section>
 
