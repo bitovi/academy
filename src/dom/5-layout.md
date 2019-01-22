@@ -11,9 +11,12 @@
 
 ## Slider Demo
 
+Understanding how the DOM is positioned helps build dynamic
+widgets. The following
+
 @sourceref ./slider.html
 @codepen
-@highlight 101-108,only
+@highlight 100-107,only
 
 
 
@@ -60,3 +63,10 @@ QUnit
 solution
 ```
 </details>
+
+
+## Complete solution
+
+@sourceref ./5-layout-end.html
+@codepen
+@highlight 158-175,only

@@ -51,7 +51,6 @@ Component.extend({
             // derive the width
             this.width = width(el) - el.firstElementChild.offsetWidth;
             this.listenTo(window,"resize", () => {
-                console.log("resize");
                 this.width = width(el) - el.firstElementChild.offsetWidth;
             });
 
@@ -84,7 +83,7 @@ Component.extend({
             this.listenTo("left", function(ev, left){
                 el.firstElementChild.style.left = ""+left+"px";
             },"notify");
-            el.firstElementChild.style.left = this.left;
+            el.firstElementChild.style.left = ""+this.left+"px";
 
             return this.stopListening.bind(this);
         },
