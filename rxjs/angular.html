@@ -85,6 +85,19 @@ $.extend($.prototype, {
 			
 		
 			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../typescript.html"
+							title="Intro to TypeScript">
+							TypeScript
+						</a>
+						
+					</li>
+				
+			
 		
 			
 		
@@ -109,7 +122,7 @@ $.extend($.prototype, {
            						">
 						<a class="page"
 							href="basics.html"
-							title="Learn RxJS.">
+							title="Learn the basics of RxJS.">
 							Basics
 						</a>
 						
@@ -331,12 +344,25 @@ $.extend($.prototype, {
     <h2>The problem</h2>
 <p>In this section, we will:</p>
 <ul>
-<li>Create a codepen with an Angular &quot;Hello World&quot;.</li>
+<li>Create a CodePen setup with Angular and the HTML of our form.</li>
 <li>Write values to a <a href="https://rxjs-dev.firebaseapp.com/guide/subject">Subject</a>
 and write out the value of the subject in the template.</li>
 </ul>
+<p>We will do this by:</p>
+<ul>
+<li>Creating a <code>userCardNumber</code> <code>BehaviorSubject</code>.</li>
+<li>Writing the value of the <code>cardNumber</code> input to the <code>userCardNumber</code> <code>BehaviorSubject</code> on the <code>input</code> event.</li>
+<li>Writing the value of <code>cardNumber</code> out in the template under the <code>&lt;/form&gt;</code>
+element like:
+<pre><code class="language-html">&lt;/form&gt;
+UserCardNumber: {{ GET-CARD-NUMBER-HERE }} &lt;br/&gt;
+</code></pre></li>
+</ul>
 <h2>What you need to know</h2>
-<p>The following creates a &quot;Hello World&quot; with Angular and RxJS</p>
+<p>Click <em>&quot;Run in your browser&quot;</em> at the bottom of the following
+example to launch a CodePen with Angular and the HTML of
+the credit card form. You will edit this CodePen for the
+remainder of this tutorial.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@6.0.5/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -353,7 +379,19 @@ const { Component, VERSION } = ng.core;
 @Component({
   selector: 'my-app',
   template: `
-        &lt;h1&gt;Hello World&lt;/h1&gt;
+      &lt;form&gt;
+          &lt;div class=&quot;message&quot;&gt;&lt;/div&gt;
+
+          &lt;input type=&quot;text&quot; name=&quot;cardNumber&quot; placeholder=&quot;Card Number&quot;/&gt;
+
+          &lt;input type=&quot;text&quot; name=&quot;expiry&quot; placeholder=&quot;MM-YY&quot;/&gt;
+
+          &lt;input type=&quot;text&quot; name=&quot;cvc&quot; placeholder=&quot;CVC&quot;/&gt;
+
+          &lt;button&gt;
+            PAY
+          &lt;/button&gt;
+      &lt;/form&gt;
     `
 })
 class AppComponent {
@@ -464,21 +502,7 @@ form {
 
 </code></pre>
 <div class='codepen'></div>
-<p>The form HTML for the interface looks like:</p>
-<pre><code class="language-html">&lt;form&gt;
-    &lt;div class=&quot;message&quot;&gt;&lt;/div&gt;
-
-    &lt;input type=&quot;text&quot; name=&quot;cardNumber&quot; placeholder=&quot;Card Number&quot;/&gt;
-
-    &lt;input type=&quot;text&quot; name=&quot;expiry&quot; placeholder=&quot;MM-YY&quot;/&gt;
-
-    &lt;input type=&quot;text&quot; name=&quot;cvc&quot; placeholder=&quot;CVC&quot;/&gt;
-
-    &lt;button&gt;
-        PAY
-    &lt;/button&gt;
-&lt;/form&gt;
-</code></pre>
+<div line-highlight='12-59,only'></div>
 <p>Initialize a <a href="https://rxjs-dev.firebaseapp.com/api/index/class/BehaviorSubject">BehaviorSubject</a> instance on a <code>class</code> like the following:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
@@ -494,7 +518,24 @@ console.log(app.userCardNumber) // logs Observable
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='6'></div>
-<p>Emit a value on a Subject by calling <code>next()</code>:</p>
+<p>A <code>BehaviorSubject</code> is just like a <code>Subject</code> except that it
+remembers its last value.  Any new subscribers will immediately
+be sent the last value.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const {BehaviorSubject} = rxjs;
+
+var subject = new BehaviorSubject&lt;String&gt;();
+
+subject.next(&quot;THE PAST&quot;);
+
+subject.subscribe((value) =&gt; console.log(value));
+// logs &quot;THE PAST&quot;
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='9-10'></div>
+<p>Emit a value on a Subject by calling <code>subject.next()</code>:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const {BehaviorSubject} = rxjs;
@@ -511,10 +552,12 @@ app.userCardNumber.next(&quot;1111-2222-3333-4444&quot;); //logs &quot;1111-2222
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<p>You can call <code>next</code> in the DOM as follows:</p>
+<div line-highlight='13'></div>
+<p>You can call <code>subject.next()</code> in the DOM as follows:</p>
 <pre><code class="language-html"> &lt;input type=&quot;text&quot; name=&quot;cardNumber&quot; placeholder=&quot;Card Number&quot;
         (input)=&quot;userCardNumber.next( $event.target.value )&quot;/&gt;
 </code></pre>
+<div line-highlight='2'></div>
 <p>Use <code>| async</code> to write out an observable's value in a template as follows:</p>
 <pre><code class="language-html">UserCardNumber: {{ (userCardNumber | async) }} &lt;br/&gt;
 </code></pre>

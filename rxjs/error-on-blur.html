@@ -85,6 +85,19 @@ $.extend($.prototype, {
 			
 		
 			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../typescript.html"
+							title="Intro to TypeScript">
+							TypeScript
+						</a>
+						
+					</li>
+				
+			
 		
 			
 		
@@ -109,7 +122,7 @@ $.extend($.prototype, {
            						">
 						<a class="page"
 							href="basics.html"
-							title="Learn RxJS.">
+							title="Learn the basics of RxJS.">
 							Basics
 						</a>
 						
@@ -421,9 +434,12 @@ data:</p>
 pattern is used here for illustrative purposes. It is able to support a larger
 set of stream transformations than <code>combine</code>.</p>
 </blockquote></li>
-<li><p>Subject v BehaviorSubject</p></li>
-<li><p>[class.-isError] trick</p></li>
-<li><p>promote to event, merge, reduce (scan)</p></li>
+<li><p>For a blur event, we should not save the last publish value
+so a <code>Subject</code> will work  better than a <code>BehaviorSubject</code>.</p></li>
+<li><p>Use <a href="https://angular.io/guide/template-syntax#property-binding--property-">a property binding</a> to set a property or attribute on an element.<br />
+To add <code>my-class</code> to the <code>className</code> when <code>testValue</code> is truthy:</p>
+<pre><code class="language-html">&lt;div [class.my-class]=&quot;testValue&quot;&gt;
+</code></pre></li>
 </ul>
 <h2>The solution</h2>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;

@@ -4,7 +4,7 @@
 
 	INSTEAD CHANGE:
 	source: src/typescript/2-ide-support.md
-	@page typescript/ide-support
+	@page typeScript/ide-support
 ######################################################################## -->
 <html lang="en">
 <head>
@@ -85,6 +85,136 @@ $.extend($.prototype, {
 			
 		
 			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../typescript.html"
+							title="Intro to TypeScript">
+							TypeScript
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../typescript/why-typescript.html"
+							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript.">
+							Why TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="ide-support.html"
+							title="IDE Support for TypeScript">
+							IDE Support
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../typescript/types.html"
+							title="Starting to use types in TypeScript.">
+							Types
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../typescript/functions.html"
+							title="Functions in TypeScript">
+							Functions
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../typescript/classes.html"
+							title="Classes in TypeScript">
+							Classes
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../typescript/interfaces.html"
+							title="Interfaces in TypeScript">
+							Interfaces
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../typescript/generics.html"
+							title="Using generics in TypeScript.">
+							Generics
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
 		
 			
 		
@@ -125,7 +255,7 @@ $.extend($.prototype, {
 		
 			
 				<section class="description">
-    <p>IDE Support for Typescript</p>
+    <p>IDE Support for TypeScript</p>
 
 </section>
 
@@ -138,11 +268,12 @@ $.extend($.prototype, {
 			
 			
 				<section class="body">
-    <h2>IDE Support for Typescript</h2>
+    <h2>Overview</h2>
 <h3>Visual Studio Code</h3>
-<p>VS Code is Microsoft's modern take on an IDE for app development. (Ps, Typescript is a Microsoft Open Source project) VS Code has built in Typescript support for syntax highlighting, IntelliSense code completion, and linting.</p>
+<p><a href="https://code.visualstudio.com/" target="_blank">VS Code</a> is Microsoft's modern take on an IDE for app development (P.S. TypeScript is a Microsoft Open Source project).  VS Code has built in TypeScript support for syntax highlighting, IntelliSense code completion, and linting.</p>
+<p><a href="../static/img/vs-code-screenshot.png" target="\_blank"><img src="../static/img/vs-code-screenshot.png" width="100%"/></a></p>
 <h4>tsconfig.json</h4>
-<p>You can customize your Typescript compiling and linting options by creating a tsconfig.json file in the root directory of your Typescript project.</p>
+<p>Customize the TypeScript compiling and linting options by creating a <code>tsconfig.json</code> file in the root directory of your TypeScript project.</p>
 <pre><code class="language-javascript">{
     &quot;compilerOptions&quot;: {
         &quot;target&quot;: &quot;es5&quot;,
@@ -152,9 +283,11 @@ $.extend($.prototype, {
 }
 </code></pre>
 <h3>Linting</h3>
-<p>tsconfig.json</p>
+<p>The following options will lint unused local variables and parameters.</p>
+<p><code>tsconfig.json</code></p>
 <pre><code class="language-javascript">{
     &quot;compilerOptions&quot;: {
+        ...
         &quot;noUnusedLocals&quot;: true,
         &quot;noUnusedParameters&quot;: true,
         ...
@@ -162,8 +295,29 @@ $.extend($.prototype, {
 }
 </code></pre>
 <h3>Atom</h3>
-<p>Atom is another good modern IDE that easily supports and aids in Typescript development with the installation of the atom-typescript plugin.</p>
-<p>atom-typescript https://atom.io/packages/atom-typescript</p>
+<p>Atom is another good modern IDE that easily supports and aids in TypeScript development with the installation of the <a href="https://atom.io/packages/atom-typeScript" target="_blank"> atom-typeScript plugin</a>.</p>
+<p><a href="../static/img/atom-screenshot.png" target="\_blank"><img src="../static/img/atom-screenshot.png" width="100%"/></a></p>
+<h3>Exercise</h3>
+<p>In the same directory as your <code>helloworld.ts file</code>, create <code>hellouniverse.ts</code>.</p>
+<p>Change your <code>helloworld.ts</code> file to be:</p>
+<pre><code class="language-typescript">function greeter(person: string) {
+    return &quot;Hello, &quot; + person;
+}
+
+let user = &quot;World&quot;;
+
+document.body.innerHTML = greeter(user);
+
+export default greeter;
+</code></pre>
+<p>In your <code>hellouniverse.ts</code> file add:</p>
+<pre><code class="language-typescript">import greeter from './greeter'
+
+let user = &quot;Universe&quot;;
+
+document.body.innerHTML = greeter(user);
+</code></pre>
+<p>Use your editor's module error detection help you find the bug and import the <code>greeter</code> function correctly.</p>
 
 </section>
 
@@ -175,7 +329,7 @@ $.extend($.prototype, {
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/typescript/2-ide-support.md"},"description":"IDE Support for Typescript \n","name":"typescript/ide-support","title":"IDE Support","type":"page","parent":"typescript","order":1,"comment":" ","pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/typescript/2-ide-support.md"},"description":"IDE Support for TypeScript \n","name":"typeScript/ide-support","title":"IDE Support","type":"page","parent":"typescript","order":2,"comment":" ","pathToRoot":"../.."};
 	</script>
 
 	

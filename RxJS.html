@@ -85,6 +85,19 @@ $.extend($.prototype, {
 			
 		
 			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="typescript.html"
+							title="Intro to TypeScript">
+							TypeScript
+						</a>
+						
+					</li>
+				
+			
 		
 			
 		
@@ -109,7 +122,7 @@ $.extend($.prototype, {
            						">
 						<a class="page"
 							href="rxjs/basics.html"
-							title="Learn RxJS.">
+							title="Learn the basics of RxJS.">
 							Basics
 						</a>
 						
@@ -344,24 +357,25 @@ for this example.  All code examples will be able to work in a <a href="https://
 <li><strong>What you need to know</strong> — Information about CanJS that is useful for solving the problem.</li>
 <li><strong>The solution</strong> — The solution to the problem.</li>
 </ul>
+<h2>Outline</h2>
+<ul>
+<li><a href="rxjs/basics.html" title="Learn the basics of RxJS.">Basics</a> - Learn how to create observables</li>
+<li><a href="rxjs/angular.html" title="Learn how to read and write observables in Angular.">RxJS in Angular</a> - Read and write to observables in Angular</li>
+<li><a href="rxjs/clean-card-number.html" title="Learn how to map an observable value to another observable value.">Clean card number</a> - How to use <code>map</code></li>
+<li><a href="rxjs/debugging.html" title="Learn how to debug RxJS.">Debugging</a> - How to debug observables without messing up state</li>
+<li><a href="rxjs/card-error.html" title="Map one observable to another observable again!">Card error</a> - Use <code>map</code> again</li>
+<li><a href="rxjs/error-on-blur.html" title="Learn how to perform the reducer pattern.">Error on blur</a> - Only show the card error when blurred - <code>merge</code>, <code>scan</code></li>
+<li><a href="rxjs/expiry.html" title="Apply what you've learned from previous sections to the expiry field.">Expiry</a> - Read, validate, and show the error of the expiry</li>
+<li><a href="rxjs/cvc.html" title="Apply what you've learned from previous sections to the cvc field.">CVC</a> - Read, validate, and show the error of the CVC</li>
+<li><a href="rxjs/disable-pay-button.html" title="">Disable pay button</a> - Disable the pay button if any part of the card has an error - <code>combineLatest</code></li>
+<li><a href="rxjs/request-payment.html" title="">Request payment</a> - Make a request when the pay button is clicked</li>
+<li><a href="rxjs/show-paying.html" title="Learn how to flatten an observable that emits observables.  Learn how to order observables.">Show paying</a> - Update the pay button's text while payments are pending</li>
+<li><a href="rxjs/disable-while-pending.html" title="Learn how to convert an observable to a multicast subject.">Disable while pending</a> - Disable the payment button while payments are pending</li>
+</ul>
+<h2>Logic Flow</h2>
 <p>The following presentation shows how the observables are wired up.  This will
 be a useful reference for understanding how the tutorial works:</p>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vS1c0TjlkqGDCI0-R_QUvmZ3oFFTcapVK8zLosgq94g3_w2rQPifGHwZy209xadXI0EchaaB60vCcqj/embed?start=false&loop=false&delayms=3000" frameborder="0" width="640" height="374" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-<h2>Outline</h2>
-<ul>
-<li>Basics - Learn how to create observables</li>
-<li>RxJS in Angular - Read and write to observables in Angular</li>
-<li>Debugging - How to debug observables without messing up state</li>
-<li>Clean card number - How to use <code>map</code></li>
-<li>Card error - Use <code>map</code> again</li>
-<li>Error on blur - Only show the card error when blurred - <code>merge</code>, <code>scan</code></li>
-<li>Expiry - Read, validate, and show the error of the expiry</li>
-<li>CVC - Read, validate, and show the error of the CVC</li>
-<li>Disable pay button - Disable the pay button if any part of the card has an error - <code>combineLatest</code></li>
-<li>Request payment - Make a request when the pay button is clicked</li>
-<li>Show paying - Update the pay button's text while payments are pending</li>
-<li>Disable the payment button while payments are pending</li>
-</ul>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
 </section>

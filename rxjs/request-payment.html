@@ -85,6 +85,19 @@ $.extend($.prototype, {
 			
 		
 			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../typescript.html"
+							title="Intro to TypeScript">
+							TypeScript
+						</a>
+						
+					</li>
+				
+			
 		
 			
 		
@@ -109,7 +122,7 @@ $.extend($.prototype, {
            						">
 						<a class="page"
 							href="basics.html"
-							title="Learn RxJS.">
+							title="Learn the basics of RxJS.">
 							Basics
 						</a>
 						
@@ -371,13 +384,15 @@ the request is made.</p></li>
 template and call a method with the event.</p>
 <pre><code class="language-html">&lt;form (submit)=&quot;pay($event)&quot;&gt;
 </code></pre>
-<p>Methods are on your component:</p>
+<p>Methods are on your component look like:</p>
 <pre><code class="language-typescript">class AppComponent {
     pay(){
 
     }
 }
 </code></pre></li>
+<li><p>Call <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault">event.preventDefault()</a> to prevent an submit event from posting
+to a url.</p></li>
 </ul>
 <h2>The solution</h2>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;

@@ -85,6 +85,136 @@ $.extend($.prototype, {
 			
 		
 			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../typescript.html"
+							title="Intro to TypeScript">
+							TypeScript
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="why-typescript.html"
+							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript.">
+							Why TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../typeScript/ide-support.html"
+							title="IDE Support for TypeScript">
+							IDE Support
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="types.html"
+							title="Starting to use types in TypeScript.">
+							Types
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="functions.html"
+							title="Functions in TypeScript">
+							Functions
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="classes.html"
+							title="Classes in TypeScript">
+							Classes
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="interfaces.html"
+							title="Interfaces in TypeScript">
+							Interfaces
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="generics.html"
+							title="Using generics in TypeScript.">
+							Generics
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
 		
 			
 		
@@ -125,8 +255,22 @@ $.extend($.prototype, {
 		
 			
 				<section class="description">
-    <p>Basic Types.</p>
-<h2>Basic Types</h2>
+    <p>Starting to use types in TypeScript.</p>
+
+</section>
+
+			
+		
+
+		
+			
+				
+			
+			
+				<section class="body">
+    <h2>Basic Types</h2>
+<p>Types are what determine how much memory is allocated to save a value. Types also detemine what operations or methods can be performed on a value. Types like strings can't have mathmatical operations performed on them, but methods like <code>.length</code> can be used.</p>
+<p>This section will explore how types are annotated when writing TypeScript and discuss type inference done by TypeScript.</p>
 <h3>Boolean</h3>
 <pre><code class="language-typescript">let isCarnivore: boolean = true;
 </code></pre>
@@ -185,21 +329,6 @@ let may = Month[5];
     throw new Error(message);
 }
 </code></pre>
-<h3>object</h3>
-<p>The object type represents all non-primitive types.</p>
-<pre><code class="language-typescript">// All primitive types
-type Primitive =
-  | boolean
-  | number
-  | string
-  | symbol
-  | null
-  | undefined;
-
-// All non-primitive types
-type NonPrimitive = object;
-
-</code></pre>
 <h3>Type Inference</h3>
 <p>When we don't provide explict types for our variables, Typescript will do it's best to infer the types, and it's very good at it. The following code will not compile due to type inference.</p>
 <pre><code class="language-typescript">let name = 'blue';
@@ -229,7 +358,7 @@ let otherValue: any = &quot;this is a string&quot;;
 
 let otherLength: number = (otherValue as string).length;
 </code></pre>
-<h3>Exercise</h3>
+<h3>Exercise 1</h3>
 <p>Fix the following type errors so this code will compile:</p>
 <pre><code class="language-typescript">let isLoading: boolean = true;
 isLoading = 'false';
@@ -265,16 +394,11 @@ greet('Tom', 42,)
 
 </code></pre>
 <p></details></p>
+<h3>Exercise 2</h3>
+<p>Declare a variable that</p>
 
 </section>
 
-			
-		
-
-		
-			
-				
-			
 			
 		
 	</article>
@@ -283,7 +407,7 @@ greet('Tom', 42,)
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/typescript/3-types.md"},"description":"Basic Types. \n## Basic Types\n\n### Boolean\n\n```typescript\nlet isCarnivore: boolean = true;\n```\n\n### Number\n\n```typescript\nlet teeth: number = 100;\nlet hex: number = 0xF00D;\n```\n\n### String\n\n```typescript\nlet name: string = 'Leoplurodon';\n```\n\n#### Quick tip - template strings\n\nStrings that have embedded expressions.\n\n```typescript\nlet myTemplateString: string = `I think ${ name }'s are pretty cool.\n\nThey have ${ teeth } teeth.`;\n```\n\n### Array\n\n```typescript\nlet list: number[] = [1, 2, 3];\n\nlet raptors: Array<string> = ['Blue','Charlie','Delta']\n```\n\n### Tuple\n\n```typescript\nlet sillyList: [number, string];\n\nsillyList = [5, \"boop\"]; //typescript is happy\n\nsillyList = [\"boop\", 5]; //will error\n```\n\n### Enum\n\nEnums allow the aliasing of names to a list of numeric values. Like most indexing, enums start their first member at 0.\n\n```typescript\nenum Color { Red, Green, Blue }\nlet greenColor: Color = Color.Green\n```\n\nEnums can have their first value manually set, or manually set all values\n\n```typescript\nenum Month { January = 1, February, March, April, May, June }\nlet feb = Month[2];\n\nenum Month { January = 1, March = 3, May = 5}\nlet may = Month[5];\n```\n\n### Any\n\nAny describes a variable where we may not know the type.\n\n```typescript\nlet my3rdPartyData: any = 5;\n```\n\n### Void\n\nNo type at all - commonly used with functions that don't return a value.\n\n```typescript\nfunction buttonClick(): void {\n  console.log('I clicked a button that returns nothing');\n}\n```\n### Null & Undefined\n\nNull and Undefined are two separate types, and subtypes of all other types, meaning they can be assigned to another type like string or number unless the --strictNullChecks flag is used.\n\n### Never\n\nThe never type represents a value that will never occur.\n\n```typescript\nfunction error(message: string): never {\n    throw new Error(message);\n}\n```\n\n### object\n\nThe object type represents all non-primitive types.\n\n```typescript\n// All primitive types\ntype Primitive =\n  | boolean\n  | number\n  | string\n  | symbol\n  | null\n  | undefined;\n\n// All non-primitive types\ntype NonPrimitive = object;\n\n```\n\n### Type Inference \n\nWhen we don't provide explict types for our variables, Typescript will do it's best to infer the types, and it's very good at it. The following code will not compile due to type inference.\n\n```typescript\nlet name = 'blue';\nlet height = 6;\nname = height; //Type 'number' is not assignable to type 'string'\n```\n\nType can also be inferred from complex objects.\n\n```typescript\nlet junkList = [1, 'seven', 3, 6];\njunkList.push('thirteen'); //works\njunkList.push(true); //Argument of type 'true' is not assignable to parameter of type 'string | number'.\n```\n\nTypescript will infer the return value of a function as well. \n\n```typescript\nfunction multiplier(a: number, b: number ){\n  return a*b;\n}\nvar multiplied: number = multiplier(2,3); //works\nvar str: string = multiplier(10,20); //Type 'number' is not assignable to type 'string'.\n```\n\nType inference can be a very helpful tool in refactoring code and helping better document expectations for our code.\n\n### Type assertions\n\nType assertions are a way to override the inferring of types. There are two different syntaxes, angle-brackets and as.\n\n```typescript\nlet someValue: any = \"this is a string\";\n\nlet strLength: number = (<string>someValue).length;\n\nlet otherValue: any = \"this is a string\";\n\nlet otherLength: number = (otherValue as string).length;\n```\n\n### Exercise\n\nFix the following type errors so this code will compile:\n\n```typescript\nlet isLoading: boolean = true;\nisLoading = 'false';\n\nlet inventory: Array<number> = [];\n\ninventory.push('tacos', 'hamburgers');\n\nfunction greet(name: string, age: number): void{\n  console.log(`${name} is ${age} years young.`)\n}\n\ngreet(30, 'Jessica')\n\ngreet('Tom', 42, 'software')\n```\n\n<details>\n  <summary>Solution</summary>\n  ```typescript\n  let isLoading: boolean = true;\n  isLoading = false;\n\n  let inventory: Array<string> = [];\n\n  inventory.push('tacos', 'hamburgers');\n\n  function greet(name: string, age: number): void{\n    console.log(`${name} is ${age} years young.`)\n  }\n\n  greet('Jessica', 30)\n\n  greet('Tom', 42,)\n\n```\n</details>\n","name":"typescript/types","title":"Types","type":"page","parent":"typescript","order":2,"pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/typescript/3-types.md"},"description":"Starting to use types in TypeScript. \n","name":"typescript/types","title":"Types","type":"page","parent":"typescript","order":3,"comment":" ","pathToRoot":"../.."};
 	</script>
 
 	

@@ -3,14 +3,14 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/angular/1-why-angular.md
+	source: src/angular/4-data-binding.md
 	@page angular-setup
 ######################################################################## -->
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Bitovi University - Setup</title>
+	<title>Bitovi University - Data Binding</title>
 	
 	<link rel="stylesheet" type="text/css" href="./static/bundles/bit-docs-site/static.css">
 	
@@ -85,6 +85,19 @@ $.extend($.prototype, {
 			
 		
 			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="typescript.html"
+							title="Intro to TypeScript">
+							TypeScript
+						</a>
+						
+					</li>
+				
+			
 		
 			
 		
@@ -117,7 +130,7 @@ $.extend($.prototype, {
 	<article class="main">
 		
 			<section class="title">
-	<h1>Setup <code>page</code></h1>
+	<h1>Data Binding <code>page</code></h1>
 </section>
 
 		
@@ -125,7 +138,7 @@ $.extend($.prototype, {
 		
 			
 				<section class="description">
-    <p>A description of this part.</p>
+    <p>Data Binding</p>
 
 </section>
 
@@ -138,72 +151,40 @@ $.extend($.prototype, {
 			
 			
 				<section class="body">
-    <h2>The problem</h2>
-<p>In this part, we will:</p>
-<ul>
-<li>x</li>
-<li>y</li>
-<li>z</li>
-</ul>
-<h2>What you need to know</h2>
-<h2>The solution</h2>
-<p>Change <code>foo.js</code> to:</p>
-<pre><code class="language-js">var foo = &quot;bar&quot;;
-</code></pre>
-<h2>Example with angular 6</h2>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/core@6.0.5/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/common@6.0.5/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/compiler@6.0.5/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@6.0.5/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@6.0.5/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
-&lt;my-app&gt;&lt;/my-app&gt;
-&lt;script type=&quot;typescript&quot;&gt;
-// app.js
+    <h2>Data Binding</h2>
+<p>Let's empower our user to be able to select restaurants based on their city. There will be a dropdown to allow a user to pick their state, and a second dropdown populated by cities in those state.</p>
+<p><img src="../static/img/restaurant-list.png" alt="Place My Order App city state picker" title="Place My Order App city state picker" /></p>
+<p>We can start by adding two new methods to our <code>RestaurantService</code>.</p>
+<pre><code class="language-typescript">import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
-const { Component, VERSION } = ng.core;
+import { Restaurant } from './restaurant';
 
-@Component({
-  selector: 'my-app',
-  template: `
-   &lt;h1&gt;{{title}} &lt;/h1&gt;
-    TODO: Define your Angular ${VERSION.major} component.
-  `
-})
-class AppComponent {  
-  title=&quot;hello world angular 6&quot;;
-  constructor() {
-    // TODO: Define your Angular component implementation
-  }
+export interface Config {
+  data: Restaurant[];
 }
 
-
-// main.js
-const { BrowserModule } = ng.platformBrowser;
-const { NgModule } = ng.core;
-const { CommonModule } = ng.common;
-
-@NgModule({
-  imports: [
-    BrowserModule,
-    CommonModule,
-  ],
-  declarations: [AppComponent],
-  bootstrap: [AppComponent],
-  providers: []
+@Injectable({
+  providedIn: 'root'
 })
-class AppModule {}
+export class RestaurantService {
 
-const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+  constructor(private httpClient: HttpClient) { }
 
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch(err =&gt; console.error(err));
-&lt;/script&gt;
+  getRestaurants() {
+    return this.httpClient.get&lt;Config&gt;('/api/restaurants');
+  }
+
+  getStates() {
+    return this.httpClient.get&lt;Config&gt;('/api/states');
+  }
+
+  getCities() {
+    return this.httpClient.get&lt;Config&gt;('/api/cities');
+  }
+}
 </code></pre>
-<div class='codepen'></div>
+<p>We want our list of states available initially for the user to interact with, so we'll add the call to our <code>RestaurantService getStates</code> method in our</p>
 
 </section>
 
@@ -215,7 +196,7 @@ platformBrowserDynamic()
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/angular/1-why-angular.md"},"description":"A description of this part. \n\n","name":"angular-setup","title":"Setup","type":"page","parent":"angular","order":1,"comment":" ","pathToRoot":".."};
+		var docObject = {"src":{"path":"src/angular/4-data-binding.md"},"description":"Data Binding \n","name":"angular-setup","title":"Data Binding","type":"page","parent":"angular","order":1,"comment":" ","pathToRoot":".."};
 	</script>
 
 	
