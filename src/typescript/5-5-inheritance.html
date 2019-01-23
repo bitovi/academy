@@ -3,7 +3,7 @@ class Dinosaur {
   constructor(public name: string) {}
 
   move(distanceInFeet: number = 0) {
-    console.log(`${this.name} moved ${distanceInFeet}m.`);
+    console.log(`${this.name} moved ${distanceInFeet} feet.`);
   }
 }
 
@@ -15,12 +15,15 @@ class Velociraptor extends Dinosaur {
     console.log(`${this.name} runs at ${this.speed}mph.`);
   }
   talk() {
-    console.log(`${this.name} screeches`);
+    console.log(`${this.name} screeches.`);
   }
 }
 
 let blue = new Velociraptor('Blue', 55);
 blue.move(10);
+//Logs "Blue moved 10 feet."
 blue.talk();
+//Logs "Blue screeches."
 blue.run();
+//Logs "Blue runs at 55mph."
 </script>

@@ -11,7 +11,7 @@ In this section we will explore how to annotate functions parameters and return 
 
 ## Functions in TypeScript
 
-In TypeScript we're able to annotate function parameters to better guard our code. The following execution of a function will throw an error when compiled if called with two parameters that are not numbers.
+In TypeScript we're able to annotate function parameters to better guard our code. If the following code is called  with two parameters that are not numbers TypeScript's compiler will throw an error when compiled.
 
 ```typescript
 function add(x: number, y: number): number {

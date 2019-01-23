@@ -7,7 +7,7 @@
 
 ## Overview
 
-WHY USER SHOULD RAD
+Interfaces are a powerful way to enforce types and document expectations for how our code should run. Interfaces can be used in classes to create very robust components that are clearly documented by the shape defined by the Interface. This section will cover how to write Interfaces, setting optional properties, and the power of using Interfaces in Classes and Functions. 
 
 ## Interfaces in TypeScript
 
@@ -26,17 +26,14 @@ Some times all properties on an object don't need to be required, using the ``?`
 
 ### Classes Implementing Interfaces
 
-In the case that a class needs to follow an object structure, we can use interfaces to define that 'contract'.
-
-EXPLAIN MORE HERE - MIXING IN CLASSES VS. INTERFACES. WHY INTERFACES OVER CLASSES. LOOSE COUPLING
-SHOW BENEFITS OF INTERFACE. SHOW FUNCTION TAKING INTERFACE
+In the case that a class needs to follow an object structure, we can use interfaces to define that 'contract'. 
 
 @sourceref ./6-3-classes.html
 @codepen
 
 ### Interfaces in Functions
 
-Interfaces are incredibly useful in describing the shape of objects we want to use in multiple situations. The following functions both require a ``Dinosaur`` object shape we've defined in the interface.
+Interfaces are incredibly useful in describing the shape of objects we want to use in multiple situations. The following functions both require a ``Dinosaur`` object shape we've defined in the ``Dinosaur`` interface.
 
 @sourceref ./6-3-2-functions.html
 @codepen
@@ -52,8 +49,6 @@ For instance, consider the following code:
 
 When we create object literals in TypeScript, they are inferred to be objects with zero properties. To fix this, we can use type assertions to let the compiler explicitly know what we want from our object.
 
-BETTER EXAMPLE OF WHY TO CAST
-
 @sourceref ./6-4-2-type-assertion.html
 @codepen
 
@@ -67,18 +62,38 @@ If we have a function expecting a specific object, we can define what that objec
 
 ### Describing Functions
 
-We can also use interfaces to describe what a function is expected to return.
-
-SHOW BETTER EXAMPLE. CAN FIXTURE? WHICH IS LIKE EXPRESS MIDDLEWARE, ADDS TWO NUMBERS AND RETURNS NUMBER
+We can also use interfaces to describe what a function is expected to return. The following sample shows a response congif Interface that should be returned by the ``securityCheck`` method.
 
 @sourceref ./6-6-functions.html
 @codepen
+@highlight 2-5,27
 
 ### Exercise 1
 
-Create an interface to define a ``DinoPark`` class that had required properties of ``name``, ``image``, and ``address``, where ``image`` is optional and ``address`` is an object with properties ``street``, ``city``, ``state``, and ``zip``.
+Create an interface to define a ``DinoPark`` object shown below:
 
-GIVE EXAMPLE OBJECT, DEFINE WHICH TYPES, USE BULLET POINTS
+```javascript
+let park = {
+  name: '',
+  image: '',
+  address: {
+    street: '',
+    city: '',
+    state: '',
+    zip: ''
+  }
+}
+```
+
+Hint: the interface should have properties and types:
+
+- ``name`` (string)
+- ``image`` (string) (optional)
+- ``address``
+  - ``street`` (string)
+  - ``city`` (string)
+  - ``state``(string)
+  - ``zip`` (string)
 
 <details>
 <summary>Solution</summary>
@@ -102,9 +117,7 @@ interface DinoPark {
 
 ### Exercise 2
 
-Create a function that takes a parameter that is the interface ```DinoPark``` created previously and returns a slug for the dinopark by replacing any spaces with dashes.
-
-SHOW EXAMPLE OF TWO THINGS USING SAME INTERFACE. ADD TEST CODE(add this to bottom of working page)?
+Create a function ``createParkSlug`` that takes a parameter that is the interface ```DinoPark``` created previously and returns a slug for the park by replacing any spaces with dashes.
 
 <details>
 <summary>Solution</summary>
@@ -124,7 +137,8 @@ let islaSornaPark = {
   }
 }
 let islaSornaSlug = createParkSlug(islaSornaPark);
-//Isla-Sorna-Park
+console.log(islaSornaSlug);
+//Logs "Isla-Sorna-Park"
 ```
 
 </details>

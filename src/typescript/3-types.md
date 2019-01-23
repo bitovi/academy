@@ -1,15 +1,17 @@
 @page typescript/types Types
 @parent typescript 3
 
-@description Starting to use types in TypeScript.
+@description Learn how to declare types in TypeScript.
 
 @body
+
+## Overview 
+
+This section will explain how to declare the various types used in TypeScript, discuss how type can be inferred, and show how to assert types.  
 
 ## Basic Types
 
 Types are what determine how much memory is allocated to save a value. Types also determine what operations or methods can be performed on a value. Types like strings can't have mathematical operations performed on them, but methods like ``.length`` can be used.
-
-This section will explore how types are annotated when writing TypeScript and discuss type inference done by TypeScript.
 
 ### Boolean
 
@@ -98,7 +100,7 @@ function buttonClick(): void {
 
 ### Null & Undefined
 
-Null and Undefined are two separate types, and subtypes of all other types, meaning they can be assigned to another type like string or number unless the --strictNullChecks flag is used.
+Null and Undefined are two separate types, and subtypes of all other types, meaning they can be assigned to another type like string or number unless the <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html" target="_blank">--strictNullChecks</a> flag is used.
 
 ### Never
 
@@ -112,12 +114,13 @@ function error(message: string): never {
 
 ## Type Inference
 
-When we don't provide explicit types for our variables, TypeScript will do it's best to infer the types, and it's very good at it. The following code will not compile due to type inference.
+When we don't provide explicit types for our variables, TypeScript will do its best to infer the types, and it's very good at it. The following code will not compile due to type inference.
 
 ```typescript
 let name = 'Sally';
 let height = 6;
-name = height; //Type 'number' is not assignable to type 'string'
+name = height; 
+//Type 'number' is not assignable to type 'string'
 ```
 
 Type can also be inferred from complex objects.
@@ -131,7 +134,8 @@ let person = {
     street: 'Rodeo Drive'
   }
 };
-person.name('Cecilia'); //works
+person.name('Cecilia');
+//works
 person.name(6);
  //Type '6' is not assignable to type 'string'.
  person.address.number = 'five fifty-five';
@@ -144,8 +148,10 @@ TypeScript will infer the return value of a function as well.
 function multiplier(a: number, b: number ){
   return a*b;
 }
-var multiplied: number = multiplier(2,3); //works
-var str: string = multiplier(10,20); //Type 'number' is not assignable to type 'string'.
+var multiplied: number = multiplier(2,3);
+//works
+var str: string = multiplier(10,20);
+//Type 'number' is not assignable to type 'string'.
 ```
 
 Type inference can be a very helpful tool in refactoring code and helping better document expectations for our code.

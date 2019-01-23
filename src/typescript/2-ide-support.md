@@ -7,7 +7,7 @@
 
 ## Overview
 
-We'll review some TypeScript configuration options to help us optimize our workflow, and look at IDEs that have great TypeScript support for building TypeScript projects.
+In this section we'll learn about TypeScript configuration options to help us optimize our workflow, and look at IDEs that have great TypeScript support for building TypeScript projects.
 
 ## Configuring TypeScript
 
@@ -60,7 +60,6 @@ Integrated Development Environments have come a long way in supporting modern we
 
 <a href="../static/img/vs-code-screenshot.png" target="\_blank"><img src="../static/img/vs-code-screenshot.png" width="100%"/></a>
 
-
 ### Atom
 
 Atom is another good modern IDE that easily supports and aids in TypeScript development with the installation of the <a href="https://atom.io/packages/atom-typeScript" target="_blank"> atom-typeScript plugin</a>.
@@ -96,4 +95,17 @@ let user = 1;
 document.body.innerHTML = greeter(user);
 ```
 
-Use your editor's module error detection help you find the bug and import the ``greeter`` function correctly.
+Use your preferred editor's error detection help you find the bug and use the ``greeter`` function correctly.
+
+<details>
+<summary>solution</summary>
+
+```typescript
+import greeter from './helloworld'
+
+let user = 'universe;
+
+document.body.innerHTML = greeter(user);
+```
+
+</details>

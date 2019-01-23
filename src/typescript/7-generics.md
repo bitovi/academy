@@ -1,22 +1,18 @@
 @page typescript/generics Generics
 @parent typescript 7
 
-@description Using generics in TypeScript. 
+@description Using Generics in TypeScript.
 
 @body
 
 
 ## Overview
 
-WHY GENERICS 
+Generics are a useful approach to writing abstract code that can be used in a variety of scenarios, or where this tutorial is concerned, with a variety of types. This section will cover more about what Generics are, why they are useful and how to create a linked list using Generics in TypeScript.  
 
 ## Generics
 
-Generics are a way of writing abstract code that allows the determination of types to be handled when the code is used. Generics let us reuse code for different types and improve maintainability. 
-
-ALLOWS YOU TO WRITE LINKED LIST WITH TYPE SAFETY - EXPLICITLY SHOW MAINTAINABILITY
-
-INTRODUCE EXAMPLE, EXPLAIN WHY GENERICS, EXPLAIN SYNTAX
+Generics are a way of writing abstract code that allows the determination of types to be handled when the code is used. Generics let us reuse code for different types and improve maintainability, as we don't have to duplicate the function for every type. A great example of the power of Generics is creating a linked list with type safety.
 
 @sourceref ./7-1-basic.html
 @codepen
@@ -31,9 +27,7 @@ The good - we can push any type to this list. The bad - we can push any type to 
 @sourceref ./7-3-bad-collection.html
 @codepen
 
-myList now holds an assortment of types that won't be fun to iterate through and deal with. Let's build a generic class instead.
-
-EXPLAIN DEAL WITH LOSING TYPE SAFETY - SHOW METHODS ON STRINGS VS. NUMBERS
+myList now holds an assortment of types that won't be fun to iterate through and deal with. If we attempt to use a method like ``.length`` on a number, or ``.toPrecision(0)`` on a string we'll run into errors. Let's build a generic class instead.
 
 @sourceref ./7-4-good-collection.html
 @codepen
@@ -47,15 +41,8 @@ Thanks to generics we're able to use the same class in multiple different scenar
 
 ### Exercise 1
 
-```typescript
-function randomIntElem(theArray: number[]): number {
-    let randomIndex = Math.floor(Math.random()*theArray.length);
-    return theArray[randomIndex];
-}
- 
-let numbers: number[] = [103, 458, 472, 458];
-let randomNumber: number = randomIntElem(positions);
-```
+@sourceref ./7-exercise-1-start.html
+@codepen
 
 This function will return a random value. Rewrite it as a generic that can return a random string from a list of strings
 
@@ -64,23 +51,10 @@ let dinosaurs: string[] = ['trex', 'velociraptor', 'triceratops', 'pterodactyl']
 let randomDino: string = randomThing(dinosaurs);
 ```
 
-
 <details>
 <summary>Solution</summary>
-```typescript
 
-function randomThing<T>(anArray: T[]): T {
-  let randomIndex = Math.floor(Math.random()*anArray.length);
-  return anArray[randomIndex];
-}
-let dinosaurs: string[] = ['trex', 'velociraptor', 'triceratops', 'pterodactyl'];
-let randomDino: string = randomThing(dinosaurs);
-```
+@sourceref ./7-exercise-1-solution.html
+@codepen
+
 </details>
-
-
-### Exercise 2
-
-write tree class
-
-WORK IN INTERFACES AND CLASSES
