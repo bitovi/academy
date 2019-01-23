@@ -6,13 +6,16 @@
 		cursor: pointer;
 	}
 	body, table {
-		font-size: 20px;
+		font-size: 1.1em;
+	}
+	.event-data {
+		font-size: 0.9em;
 	}
 </style>
 </head>
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-8">
+		<div class="col-md-9">
 			<h2>Types of events</h2>
 			<form class="submit reset">
 				<table class="table">
@@ -209,12 +212,9 @@
 			<div style="height: 500px;"></div>
 		</div>
 
-		<div class="col-md-4 font-size-large well">
+		<div class="col-md-3 font-size-large well">
 			<h2>
 				Event data
-				<small>
-					<input id="filter" type="checkbox" checked> Moz/Webkit/Caps</input>
-				</small>
 			</h2>
 			<strong>{</strong><br/>
 			<ul id="event-data" style="padding-left: 25px;" class="list-unstyled"></ul>
@@ -340,7 +340,6 @@ events.forEach(function(eventData){
 
 	[].forEach.call(eventData.elements, function(element){
 		element.addEventListener(eventData.event, function(event){
-			debugger;
 			if(eventData.handler) {
 				eventData.handler.call(this, event);
 			}
@@ -359,7 +358,6 @@ function makeOtherEventsOn(object, appendAfter) {
 			detailedEvents.add(property.substr(2));
 		}
 	}
-	console.log(otherEventsList);
 	otherEventsList.sort().reverse().forEach(function(event){
 		var content = $(`<tr>
 			<td id="${event}ed" class="input"> ${event} </td>
