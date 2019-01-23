@@ -1,7 +1,7 @@
 @page typescript/generics Generics
 @parent typescript 7
 
-@description Using Generics in TypeScript.
+@description Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript.
 
 @body
 

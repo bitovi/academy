@@ -1,7 +1,7 @@
 @page typescript/functions Functions
 @parent typescript 4
 
-@description Functions in TypeScript
+@description Learn how to annotate functions parameters and return values, usw different parameter types available, and bind ``this``.
 
 @body
 
@@ -18,7 +18,8 @@ function add(x: number, y: number): number {
   return x + y;
 }
 
-add(1, 'three'); //Argument of type '"foo"' is not assignable to parameter of type 'number'.
+add(1, 'three');
+//Argument of type '"foo"' is not assignable to parameter of type 'number'.
 ```
 
 We can also annotate what a function should return.
@@ -42,7 +43,7 @@ function logResponse(): Result {
 
 ### Optional Parameters
 
-Sometimes when writing functions, we don't need every parameter to be satisfied. TypeScript allows us to mark optional parameters(or properties) with a ``?`` so the compiler will not error if an optional param isn't passed.
+Sometimes when writing functions, we don't need every parameter to be satisfied. TypeScript allows us to mark optional parameters (or properties) with a ``?`` so the compiler will not error if an optional param isn't passed.
 
 ```typescript
 function buildDinosaur(name: string, breed: string, teeth?:number) {
@@ -54,14 +55,17 @@ function buildDinosaur(name: string, breed: string, teeth?:number) {
   }
 }
 
-let newDino = buildDinosaur('Blue', 'Velociraptor', 80); //works
-let otherDino = buildDinosaur('Delta', 'Velociraptor'); //also works
-let otherOtherDino = buildDinosaur('Charlie'); //error an argument for 'breed' was not provided
+let newDino = buildDinosaur('Blue', 'Velociraptor', 80);
+//works
+let otherDino = buildDinosaur('Delta', 'Velociraptor');
+//also works
+let otherOtherDino = buildDinosaur('Charlie');
+//error an argument for 'breed' was not provided
 ```
 
 ### Rest Parameters
 
-Rest parameters are a way to pass in an unknown number of arguments to a function. Rest params are signaled to the transpiler by passing an ellipsis(...) followed by the parameter name.
+Rest parameters are a way to pass in an unknown number of arguments to a function. Rest params are signaled to the transpiler by passing an ellipsis (...) followed by the parameter name.
 
 ```typescript
 function buildDinosaur(breed: string, ...dna: string[]) {

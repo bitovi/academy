@@ -1,7 +1,7 @@
 @page typescript/classes Classes
 @parent typescript 5
 
-@description Classes in TypeScript
+@description  Learn to use classes and inheritance in TypeScript, about the ``constructor`` method, and how to use public, private, protected, and readonly modifiers.
 
 @body
 
@@ -11,7 +11,7 @@ For those newer to Object-oriented programming, classes are special functions th
 
 ## Classes in TypeScript
 
-In JavaScript, a class is a structured way to define what you may have seen before - prototype based constructor functions. This allows us to take an object-oriented approach to building our JavaScript applications. Since ECMAScript 2015 Classes have been available in JavaScript, the difference with classes in TypeScript is the strictness of enforcing types on members.
+In JavaScript, a class is a structured way to define what you may have seen before - prototype based constructor functions. This allows us to take an object-oriented approach to building our JavaScript applications. Since ECMAScript 2015 classes have been available, the difference with classes in TypeScript is the strictness of enforcing types on members.
 
 The following shows creating a ParkEmployee constructor function with a ``sayHi`` method.
 

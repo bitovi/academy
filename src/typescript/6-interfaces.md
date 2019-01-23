@@ -1,13 +1,13 @@
 @page typescript/interfaces Interfaces
 @parent typescript 6
 
-@description Interfaces in TypeScript
+@description Learn how to write Interfaces, set optional properties, and about the power of using interfaces in classes and functions
 
 @body
 
 ## Overview
 
-Interfaces are a powerful way to enforce types and document expectations for how our code should run. Interfaces can be used in classes to create very robust components that are clearly documented by the shape defined by the Interface. This section will cover how to write Interfaces, setting optional properties, and the power of using Interfaces in Classes and Functions. 
+Interfaces are a powerful way to enforce types and document expectations for how our code should run. Interfaces can be used in classes to create very robust components that are clearly documented by the shape defined by the interface. This section will cover how to write interfaces, setting optional properties, and the power of using interfaces in classes and functions. 
 
 ## Interfaces in TypeScript
 
@@ -26,7 +26,7 @@ Some times all properties on an object don't need to be required, using the ``?`
 
 ### Classes Implementing Interfaces
 
-In the case that a class needs to follow an object structure, we can use interfaces to define that 'contract'. 
+In the case that a class needs to follow an object structure, we can use interfaces to define that 'contract'.
 
 @sourceref ./6-3-classes.html
 @codepen
@@ -62,7 +62,7 @@ If we have a function expecting a specific object, we can define what that objec
 
 ### Describing Functions
 
-We can also use interfaces to describe what a function is expected to return. The following sample shows a response congif Interface that should be returned by the ``securityCheck`` method.
+We can also use interfaces to describe what a function is expected to return. The following sample shows a ``ResponseConfig`` interface that should be returned by the ``securityCheck`` method.
 
 @sourceref ./6-6-functions.html
 @codepen
