@@ -12,32 +12,31 @@ Generics are a useful approach to writing abstract code that can be used in a va
 
 ## Generics
 
-Generics are a way of writing abstract code that allows the determination of types to be handled when the code is used. Generics let us reuse code for different types and improve maintainability, as we don't have to duplicate the function for every type. A great example of the power of Generics is creating a linked list with type safety.
+Generics are a way of writing abstract code that allows the determination of types to be handled when the code is used. Generics let us reuse code for different types and improve maintainability, as we don't have to duplicate the function for every type. A great example of the power of generics is creating a linked list with type safety.
 
-@sourceref ./7-1-basic.html
+The following is an example of a linked list for strings:
+
+@sourceref ./7-0-linked-list.html
 @codepen
 
-Let's look at making a basic class to collect a list of things.
+Let's look at transforming this to use generics to use this list for more than just strings. First, we change our interface to take a generic type. 
 
-@sourceref ./7-2-collection.html
+@sourceref ./7-0-1-interface.html
 @codepen
 
-The good - we can push any type to this list. The bad - we can push any type to this list.
+The angle brackets with the T indicate that we have a type variable ``<T>``, and can take what the user provides between the brackets when using the interface. For example, a string: 
 
-@sourceref ./7-3-bad-collection.html
+@sourceref ./7-0-1-interface-string.html
 @codepen
+@highlight 13
 
-myList now holds an assortment of types that won't be fun to iterate through and deal with. If we attempt to use a method like ``.length`` on a number, or ``.toPrecision(0)`` on a string we'll run into errors. Let's build a generic class instead.
+Next we can refactor our class to take our new generic.
 
-@sourceref ./7-4-good-collection.html
+@sourceref ./7-0-2-new-class.html
 @codepen
+@highlight 12,13,14
 
-Now when we initialize this class we can specify a type to use.
-
-@sourceref ./7-5-generic-collection.html
-@codepen
-
-Thanks to generics we're able to use the same class in multiple different scenarios with any type.
+Thanks to generics we're able to use the same ``LinkedList`` class in multiple different scenarios with any type.
 
 ### Exercise 1
 

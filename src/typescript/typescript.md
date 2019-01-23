@@ -14,5 +14,5 @@ Google chose to write Angular in TypeScript to take advantage of its typecheckin
 - Types - basic types and how to enforce them. 
 - Functions - how to annotate functions parameters and return values, different parameter types available, and how to bind ``this``
 - Classes - using classes and inheritance in TypeScript, explaining the ``constructor`` method, and using public, private, protected, and readonly modifiers. 
-- Interfaces - writing Interfaces, setting optional properties, and the power of using Interfaces in Classes and Functions
-- Generics - explaining what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript.
+- Interfaces - writing Interfaces, setting optional properties, and the power of using interfaces in classes and Functions
+- Generics - explaining what generics are, why they are useful, and how to create a linked list using generics in TypeScript.
