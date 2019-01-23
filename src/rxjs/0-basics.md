@@ -179,11 +179,10 @@ published values on one observable to published observables
 on another observable.  In fact, using these operators is
 a majority of what you will do with RxJS.
 
-But for now, lets see how to transform:
-
-- the numbers published on the `numberMaker` observable into
-- the running sum of the `numberMaker` those numbers published  
-  on `numberSummer`
+But for now, lets see how to transform  
+... the numbers published on the `numberMaker` observable ...    
+into  
+... a running sum published by `numberSummer`.
 
 Read the inline comments below to see how this works.
 
