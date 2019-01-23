@@ -14,7 +14,19 @@ const { Component, VERSION } = ng.core;
 @Component({
   selector: 'my-app',
   template: `
-        <h1>Hello World</h1>
+      <form>
+          <div class="message"></div>
+
+          <input type="text" name="cardNumber" placeholder="Card Number"/>
+
+          <input type="text" name="expiry" placeholder="MM-YY"/>
+
+          <input type="text" name="cvc" placeholder="CVC"/>
+
+          <button>
+            PAY
+          </button>
+      </form>
     `
 })
 class AppComponent {

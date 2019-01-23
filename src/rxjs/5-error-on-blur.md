@@ -119,9 +119,14 @@ We will do this with:
   > pattern is used here for illustrative purposes. It is able to support a larger
   > set of stream transformations than `combine`.
 
-- Subject v BehaviorSubject
-- [class.-isError] trick
-- promote to event, merge, reduce (scan)
+- For a blur event, we should not save the last publish value
+  so a `Subject` will work  better than a `BehaviorSubject`.
+- Use [a property binding](https://angular.io/guide/template-syntax#property-binding--property-) to set a property or attribute on an element.  
+  To add `my-class` to the `className` when `testValue` is truthy:
+
+  ```html
+  <div [class.my-class]="testValue">
+  ```
 
 
 ## The solution

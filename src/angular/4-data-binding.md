@@ -7,11 +7,11 @@
 
 ## Data Binding
 
-Let's empower our user to be able to select restaurants based on their city. There will be a dropdown to allow a user to pick their state, and a second dropdown populated by cities in those state. 
+Let's empower our user to be able to select restaurants based on their city. There will be a dropdown to allow a user to pick their state, and a second dropdown populated by cities in those state.
 
 ![Place My Order App city state picker](../static/img/restaurant-list.png "Place My Order App city state picker")
 
-We can start by adding two new methods to our ``RestaurantService``. 
+We can start by adding two new methods to our ``RestaurantService``.
 
 ```typescript
 import { Injectable } from '@angular/core';
@@ -23,7 +23,7 @@ export interface Config {
   data: Restaurant[];
 }
 
-@Injectable({
+@@Injectable({
   providedIn: 'root'
 })
 export class RestaurantService {
@@ -33,11 +33,11 @@ export class RestaurantService {
   getRestaurants() {
     return this.httpClient.get<Config>('/api/restaurants');
   }
-  
+
   getStates() {
     return this.httpClient.get<Config>('/api/states');
   }
-  
+
   getCities() {
     return this.httpClient.get<Config>('/api/cities');
   }

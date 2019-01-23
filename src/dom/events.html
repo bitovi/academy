@@ -1,0 +1,426 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css" rel="stylesheet"/>
+<style>
+	.pointer {
+		cursor: pointer;
+	}
+	body, table {
+		font-size: 1.1em;
+	}
+	.event-data {
+		font-size: 0.9em;
+	}
+	.left {
+		position: fixed;
+		left: 0px; top: 0px; right: 25%; bottom: 0px;
+		overflow: auto;
+	}
+	.right {
+		position: fixed;
+		right: 0px; top: 0px; left: 75%; bottom: 0px;
+		overflow: auto;
+	}
+</style>
+<div class="left">
+	<h2>Types of events</h2>
+	<form class="submit reset">
+		<table class="table">
+			<tr>
+				<th colspan="2">
+					Mouse Events
+				</th>
+			</tr>
+			<tr>
+				<td id="clicked">click</td>
+				<td class="click pointer" >
+					When a click happens on the same screen location.  Happens after the mouseup.
+				</td>
+			</tr>
+			<tr>
+				<td id="dblclicked">dblclick</td>
+				<td class="dblclick pointer" >
+					When two clicks happen on the same screen location.  Happens after the second click.
+				</td>
+			</tr>
+			<tr>
+				<td id="contextmenued">contextmenu</td>
+				<td class="contextmenu pointer">
+					Called when the right mouse button is clicked.
+				</td>
+			</tr>
+			<tr>
+				<td  id="mousedowned">mousedown</td>
+				<td class="mousedown pointer">
+					Called when the mouse is pressed down.
+				</td>
+			</tr>
+			<tr>
+				<td  id="mouseuped" >mouseup</td>
+				<td class="mouseup pointer">
+					Called when a mouse button raises.
+				</td>
+			</tr>
+			<tr>
+				<td  id="mouseovered">mouseover</td>
+				<td class="mouseover pointer">
+					Called when a mouse moves over an element.
+				</td>
+			</tr>
+			<tr>
+				<td  id="mouseouted">mouseout</td>
+				<td  class="mouseout pointer">
+					Called when a mouse moves out of an element
+				</td>
+			</tr>
+			<tr>
+				<td id="mousemoveed">mousemove</td>
+				<td  class="mousemove pointer">
+					Called when a mouse moves at least 1 pixel over an element.
+				</td>
+			</tr>
+			<tr><td id="mouseentered"> mouseenter </td>
+				<td class="mouseenter">Called when mouse enters an element from outside elements.</td>
+			</tr>
+			<tr><td id="mouseleaveed"> mouseleave </td>
+				<td class="mouseleave">Called when mouse leaves an element to outside elements.</td>
+			</tr>
+			<tr><th colspan="2">HTML Events</th></tr>
+			<tr>
+				<td id="loaded" >
+					load
+				</td>
+				<td>
+					Occurs when the DOM implementation finishes loading all
+					content within a document, all frames within a FRAMESET, or an OBJECT element.
+				</td>
+			</tr>
+			<tr><td id="DOMContentLoadeded">DOMContentLoaded</td>
+				<td>Called when the document is ready and parsed, but before images and other resources are loaded</td>
+			</tr>
+			<tr><td class="unloaded"> unload </td>
+				<td>Occurs when the DOM implementation removes a document from a window or frame.</td>
+			</tr>
+			<tr><td class="beforeunloaded"> beforeunloaded </td>
+				<td>Occurs when the DOM implementation removes a document from a window or frame, but allows limited
+				JavaScript interaction.</td>
+			</tr>
+			<tr><td class="aborted"> abort </td>
+				<td>Occurs when page loading is stopped before an image has been allowed to completely load.</td>
+			</tr>
+
+			<tr><td class="errored"> error </td>
+				<td>Occurs when an image does not load properly or when an error occurs during script execution.</td>
+			</tr>
+
+			<tr><td id="selected"> select </td>
+				<td>
+					Occurs when a user selects some text in a text field. <input class="select" value="select this text"/>
+				</td>
+			</tr>
+
+			<tr><td id="changeed"> change </td>
+				<td>Called after a control loses focus and its value is different.
+					<select  class="change">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+					</select>
+					<input class="change" value="change this text"/>
+					<input type="radio" class="change" name="change_choice" value="1" /> 1 or
+					<input type="radio" class="change" name="change_choice" value="2"/> 2
+
+					<input type="checkbox" class="change" name="change_choice2" value="1" /> this or
+					<input type="checkbox" class="change" name="change_choice2" value="2"/> that
+				</td>
+			</tr>
+			<tr><td id="reseted"> reset </td>
+				<td>
+					Calls when a form is reset. <input type="reset" class="btn btn-default" value="Reset"/>
+				</td>
+			</tr>
+			<tr><td id="submited"> submit </td>
+				<td>When a form is submitted, you can return false to cancel.
+					<input type="submit" class="btn btn-default" value="Submit me"/>
+				</td>
+			</tr>
+
+			<tr><td id="focused" > focus </td>
+				<td>
+					<input class="focus" value="focus me"/>
+				</td>
+			</tr>
+			<tr><td id="blured"> blur </td>
+				<td>
+					<input class="blur" value="Blur me"/>
+				</td>
+			</tr>
+
+			<tr><td id="resizeed"> resize </td>
+				<td>
+					Occurs when a frameset or document is resized.
+				</td>
+
+			</tr>
+
+			<tr><td id="scrolled"> scroll </td>
+				<td >
+					<div class="scroll bg-info" style="height: 50px; overflow: auto">
+						<div>Large block<br/>
+						1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr><td id="hashchangeed"> hashchange </td>
+				<td >
+					Happens when the <a href="#hash"><code>#hash</code></a> changes.
+				</td>
+			</tr>
+			<tr>
+				<th colspan="2">Key Events</th>
+			</tr>
+
+			<tr><td id="keydowned"> keydown </td>
+				<td>
+					<input type="input" value="" class="keydown"/>
+				</td>
+			</tr>
+			<tr><td id="keypressed"> keypress </td>
+				<td>
+					<input type="input" value="" class="keypress"/>
+				</td>
+			</tr>
+			<tr><td id="keyuped" class="keyup"> keyup </td>
+				<td>
+					<input type="input" value="" class="keyup"/>
+				</td>
+			</tr>
+			<tr><td id="inputed" class="input"> input </td>
+				<td>
+					<input type="input" value="" class="input"/>
+				</td>
+			</tr>
+			<tr>
+				<th colspan="2">Drag Events</th>
+			</tr>
+			<tr><td id="dragstarted"> dragstart </td>
+				<td>
+					<div id="draggable" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)">
+						This div is draggable
+					</div>
+				</td>
+			</tr>
+			<tr><td id="dragended"> dragend </td>
+				<td>
+
+				</td>
+			</tr>
+			<tr><td id="dragentered"> dragenter </td>
+				<td>
+					<div class="droppable">Drag Over Me</div>
+				</td>
+			</tr>
+			<tr id="element-other-events">
+				<th colspan="2">Other Events On a &lt;div&gt;</th>
+			</tr>
+			<tr id="document-other-events">
+				<th colspan="2">Other Events On The document</th>
+			</tr>
+			<tr id="window-other-events">
+				<th colspan="2">Other Events On The window</th>
+			</tr>
+		</table>
+	</form>
+
+
+
+
+	<div style="height: 500px;"></div>
+</div>
+
+<div class="right">
+	<h2 id="event-name">
+		Event data
+	</h2>
+	<strong>{</strong><br/>
+	<ul id="event-data" style="padding-left: 25px;" class="list-unstyled"></ul>
+	<strong>}</strong>
+</div>
+
+<script type="module">
+import "https://unpkg.com/jquery@3/dist/jquery.js";
+
+var events = [
+	// Mouseevents
+	'click',
+	'dblclick',
+	'mousedown',
+	'mouseup',
+	'mouseover',
+	'mouseout',
+	'mousemove',
+	'mouseenter',
+	'mouseleave',
+	// HTML events
+	'contextmenu',
+	'select',
+	'change',
+	'submit',
+	'reset',
+	'focus',
+	'blur',
+	'scroll',
+	{event: 'load', elements: [window]},
+	{event: 'unload', elements: [window]},
+	{event: 'beforeunload', elements: [window], handler: function(ev){
+		//ev.preventDefault();
+		//ev.returnValue = "Are you sure you want to quit?";
+	}},
+	{event: 'resize', elements: [window]},
+	{event: 'DOMContentLoaded', elements: [document]},
+	{event: 'abort', elements: [window]},
+	{event: 'hashchange', elements: [window]},
+
+	// Key events
+	'keydown',
+	'keypress',
+	'keyup',
+	'input',
+
+	// Dragstart
+	{event: 'dragstart', elements: [document], handler(event){
+		event.target.style.backgroundColor = "#ff8080";
+	}},
+	{event: 'dragend', elements: [document], handler(event){
+		event.target.style.backgroundColor = "";
+	}},
+	{event: 'dragenter', elements: [document], handler(event){
+		if ( event.target.className == "droppable" ) {
+			event.target.style.background = "purple";
+		}
+	}}
+
+];
+
+var detailedEvents = new Set();
+
+var useFilter = true,
+	//array of regex: all caps, moz- prefix, webkit- prefix
+	filters = [/^([A-Z,_]+)$/, /moz/, /webkit/],
+	filterOut = function(s) {
+		for(var i = 0; i < filters.length; i++) {
+			if(filters[i].test(s)) return true;
+		}
+
+		return false;
+	},
+	lastEvent = null,
+	animate = function(selector) {
+		$(selector).removeClass()
+		.addClass('fadeIn animated bg-success')
+		.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+			$(selector).removeClass('fadeIn animated');
+		});
+	},
+	printNice = function(value) {
+		if(typeof value !== "object" && typeof value !== "function" || (value === null)) {
+			return ""+value;
+		} else if(typeof value === "function") {
+			return "fn(){}"
+		} else if(value === window) {
+			return "window"
+		} else if(value === document){
+			return "document"
+		} else if(value instanceof HTMLElement) {
+			return $("<span>").text("<"+value.nodeName+">")
+				.on("mouseenter", function(){
+					$(value).css({backgroundColor: "#ff8080"})
+				}).on("mouseleave", function(){
+					$(value).css({backgroundColor: ""})
+				});
+		} else if(typeof value.length === "number" && (value.length >= 0)) {
+			var arr = [].map.call(value, function(value){
+				return printNice(value)
+			});
+			if(arr.length > 2) {
+				arr = arr.slice(0,2)
+				arr.push("...")
+			}
+			return "["+arr.join(", ") +"]";
+		}
+
+		else {
+			return value;
+		}
+	},
+	showEventData = function(evName, ev) {
+		lastEvent = {
+			name: evName,
+			ev: ev
+		};
+		$("#event-name").text(ev.type+" event:");
+		var data = $('#event-data').html('');
+
+		console.log(evName, this, ev);
+
+		for(var k in ev) {
+			if(!useFilter || (useFilter && !filterOut(k))) {
+				var li = $('<li>').append('<strong>' + k + ':</strong> ')
+					.append(printNice(ev[k]))
+				data.append(li);
+			}
+		}
+	};
+
+$('#filter').on('change', function(ev) {
+	useFilter = $(this).is(':checked');
+	showEventData(lastEvent.name, lastEvent.ev);
+});
+
+events.forEach(function(eventData){
+	if(typeof eventData === "string") {
+		eventData =  {event: eventData, elements: document.getElementsByClassName(eventData) }
+	}
+	detailedEvents.add(eventData.event);
+
+	[].forEach.call(eventData.elements, function(element){
+		element.addEventListener(eventData.event, function(event){
+			if(eventData.handler) {
+				eventData.handler.call(this, event);
+			}
+			showEventData.call(this, eventData.event, event);
+			animate('#' + eventData.event + 'ed');
+		}, false);
+	});
+});
+
+function makeOtherEventsOn(object, appendAfter) {
+	var otherEventsList = [];
+	for(var property in object) {
+
+		if(property.substr(0,2) === "on" && !detailedEvents.has(property.substr(2))) {
+			otherEventsList.push(property.substr(2));
+			detailedEvents.add(property.substr(2));
+		}
+	}
+	otherEventsList.sort().reverse().forEach(function(event){
+		var content = $(`<tr>
+			<td id="${event}ed" class="input"> ${event} </td>
+			<td tabindex="0" class='example'>${event}</td>
+		</tr>`)
+		content.find(".example").on(event, function(e){
+			showEventData.call(this, event, e);
+			animate('#' + event + 'ed');
+		})
+		appendAfter.after(
+			content
+		)
+	});
+}
+makeOtherEventsOn(document.createElement("div"), $("#element-other-events"));
+
+makeOtherEventsOn(document, $("#document-other-events"));
+
+makeOtherEventsOn(window, $("#window-other-events"));
+
+</script>

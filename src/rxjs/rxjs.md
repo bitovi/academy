@@ -28,29 +28,27 @@ Each section of the guide is broken down into the following sections:
 - __What you need to know__ — Information about CanJS that is useful for solving the problem.
 - __The solution__ — The solution to the problem.
 
+## Outline
+
+- [rxjs/basics] - Learn how to create observables
+- [rxjs/angular] - Read and write to observables in Angular
+- [rxjs/clean-card-number] - How to use `map`
+- [rxjs/debugging] - How to debug observables without messing up state
+- [rxjs/card-error] - Use `map` again
+- [rxjs/error-on-blur] - Only show the card error when blurred - `merge`, `scan`
+- [rxjs/expiry] - Read, validate, and show the error of the expiry
+- [rxjs/cvc] - Read, validate, and show the error of the CVC
+- [rxjs/disable-pay-button] - Disable the pay button if any part of the card has an error - `combineLatest`
+- [rxjs/request-payment] - Make a request when the pay button is clicked
+- [rxjs/show-paying] - Update the pay button's text while payments are pending
+- [rxjs/disable-while-pending] - Disable the payment button while payments are pending
+
+## Logic Flow
+
 The following presentation shows how the observables are wired up.  This will
 be a useful reference for understanding how the tutorial works:
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vS1c0TjlkqGDCI0-R_QUvmZ3oFFTcapVK8zLosgq94g3_w2rQPifGHwZy209xadXI0EchaaB60vCcqj/embed?start=false&loop=false&delayms=3000" frameborder="0" width="640" height="374" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-
-
-## Outline
-
-- Basics - Learn how to create observables
-- RxJS in Angular - Read and write to observables in Angular
-- Debugging - How to debug observables without messing up state
-- Clean card number - How to use `map`
-- Card error - Use `map` again
-- Error on blur - Only show the card error when blurred - `merge`, `scan`
-- Expiry - Read, validate, and show the error of the expiry
-- CVC - Read, validate, and show the error of the CVC
-- Disable pay button - Disable the pay button if any part of the card has an error - `combineLatest`
-- Request payment - Make a request when the pay button is clicked
-- Show paying - Update the pay button's text while payments are pending
-- Disable the payment button while payments are pending
-
-
-
 
 
 

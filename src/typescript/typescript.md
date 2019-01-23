@@ -1,11 +1,15 @@
 @page typescript TypeScript
 @parent bit-u 3
 <<<<<<< HEAD
+<<<<<<< HEAD
 @hide
 @description Intro to Typescript
 =======
 @description Intro to TypeScript
 >>>>>>> typescript
+=======
+@description Intro to TypeScript
+>>>>>>> 7e6633b68f093619db74396bd5dae49b27938040
 
 @body
 

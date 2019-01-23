@@ -56,7 +56,7 @@ In this section, we will:
   ```html
   <form (submit)="pay($event)">
   ```
-  Methods are on your component:
+  Methods are on your component look like:
   ```typescript
   class AppComponent {
       pay(){
@@ -64,6 +64,8 @@ In this section, we will:
       }
   }
   ```
+- Call [event.preventDefault()](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) to prevent an submit event from posting
+  to a url.
 
 ## The solution
 

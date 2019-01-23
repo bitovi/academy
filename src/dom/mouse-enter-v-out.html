@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+<style>
+.vis-mouseenter {
+	padding: 20px;
+	margin: 10px;
+}
+</style>
+<div class="container-fluid">
+	<h3>mouseenter vs mouseover</h3>
+
+	<div class="col-md-4 vis-mouseenter bg-info">
+		<strong>Outer</strong>
+		mouseenter: <span class="enter">0</span>
+		mouseleave: <span class="leave">0</span>
+
+		<div class="vis-mouseenter bg-danger">
+			<strong>Inner</strong>
+			mouseenter: <span class="enter">0</span>
+			mouseleave: <span class="leave">0</span>
+		</div>
+	</div>
+
+	<div class="col-md-4 vis-mouseenter bg-info">
+		<strong>Outer</strong>
+		mouseover: <span class="over">0</span>
+		mouseout: <span class="out">0</span>
+
+		<div class="vis-mouseenter bg-danger">
+			<strong>Inner</strong>
+			mouseover: <span class="over">0</span>
+			mouseout: <span class="out">0</span>
+		</div>
+	</div>
+</div>
+
+<script type="module">
+import "https://unpkg.com/jquery@3/dist/jquery.js";
+$.each(['mouseenter', 'mouseleave', 'mouseover', 'mouseout'], function(i, evName) {
+	$('.vis-mouseenter').on(evName, function(ev) {
+		var el = $(this).children('.' + evName.replace('mouse', '')),
+		i = +el.html();
+
+		el.html(++i);
+	});
+});
+</script>
