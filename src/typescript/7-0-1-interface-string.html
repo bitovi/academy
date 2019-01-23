@@ -1,0 +1,21 @@
+<script type="typescript">
+class LinkedListItem<T> {
+  value: T;
+  next?: LinkedListItem<T>;
+
+  constructor(val) {
+    this.value = val;
+    this.next = null;
+  }
+}
+
+function createNewItem(val: string) {
+  let newItem = new LinkedListItem<string>(val);
+  console.log(newItem.value);
+}
+
+createNewItem(5);
+//Argument of type '5' is not assignable to parameter of type 'string'.
+createNewItem('five');  
+//Logs "five"
+</script>

@@ -1,9 +1,17 @@
 @page typescript/types Types
-@parent typescript 2
+@parent typescript 3
 
-@description Basic Types.
+@description Learn how to declare types in TypeScript.
+
+@body
+
+## Overview 
+
+This section will explain how to declare the various types used in TypeScript, discuss how type can be inferred, and show how to assert types.  
 
 ## Basic Types
+
+Types are what determine how much memory is allocated to save a value. Types also determine what operations or methods can be performed on a value. Types like strings can't have mathematical operations performed on them, but methods like ``.length`` can be used.
 
 ### Boolean
 
@@ -77,6 +85,7 @@ Any describes a variable where we may not know the type.
 
 ```typescript
 let my3rdPartyData: any = 5;
+my3rdPartyData = 'five;
 ```
 
 ### Void
@@ -88,9 +97,10 @@ function buttonClick(): void {
   console.log('I clicked a button that returns nothing');
 }
 ```
+
 ### Null & Undefined
 
-Null and Undefined are two separate types, and subtypes of all other types, meaning they can be assigned to another type like string or number unless the --strictNullChecks flag is used.
+Null and Undefined are two separate types, and subtypes of all other types, meaning they can be assigned to another type like string or number unless the <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html" target="_blank">--strictNullChecks</a> flag is used.
 
 ### Never
 
@@ -102,51 +112,46 @@ function error(message: string): never {
 }
 ```
 
-### object
+## Type Inference
 
-The object type represents all non-primitive types.
-
-```typescript
-// All primitive types
-type Primitive =
-  | boolean
-  | number
-  | string
-  | symbol
-  | null
-  | undefined;
-
-// All non-primitive types
-type NonPrimitive = object;
-
-```
-
-### Type Inference 
-
-When we don't provide explict types for our variables, Typescript will do it's best to infer the types, and it's very good at it. The following code will not compile due to type inference.
+When we don't provide explicit types for our variables, TypeScript will do its best to infer the types, and it's very good at it. The following code will not compile due to type inference.
 
 ```typescript
-let name = 'blue';
+let name = 'Sally';
 let height = 6;
-name = height; //Type 'number' is not assignable to type 'string'
+name = height; 
+//Type 'number' is not assignable to type 'string'
 ```
 
 Type can also be inferred from complex objects.
 
 ```typescript
-let junkList = [1, 'seven', 3, 6];
-junkList.push('thirteen'); //works
-junkList.push(true); //Argument of type 'true' is not assignable to parameter of type 'string | number'.
+let person = {
+  name: 'Sally',
+  height: 6,
+  address: {
+    number: 555,
+    street: 'Rodeo Drive'
+  }
+};
+person.name('Cecilia');
+//works
+person.name(6);
+ //Type '6' is not assignable to type 'string'.
+ person.address.number = 'five fifty-five';
+ //Type '"five fifty-five"' is not assignable to type 'number'.
 ```
 
-Typescript will infer the return value of a function as well. 
+TypeScript will infer the return value of a function as well.
 
 ```typescript
 function multiplier(a: number, b: number ){
   return a*b;
 }
-var multiplied: number = multiplier(2,3); //works
-var str: string = multiplier(10,20); //Type 'number' is not assignable to type 'string'.
+var multiplied: number = multiplier(2,3);
+//works
+var str: string = multiplier(10,20);
+//Type 'number' is not assignable to type 'string'.
 ```
 
 Type inference can be a very helpful tool in refactoring code and helping better document expectations for our code.
@@ -165,7 +170,9 @@ let otherValue: any = "this is a string";
 let otherLength: number = (otherValue as string).length;
 ```
 
-### Exercise
+The ``as`` syntax is usually preferred, the ``<type>`` conflicts with JSX syntax.
+
+### Exercise 1
 
 Fix the following type errors so this code will compile:
 
@@ -188,6 +195,7 @@ greet('Tom', 42, 'software')
 
 <details>
   <summary>Solution</summary>
+
   ```typescript
   let isLoading: boolean = true;
   isLoading = false;
@@ -205,4 +213,19 @@ greet('Tom', 42, 'software')
   greet('Tom', 42,)
 
 ```
+
+</details>
+
+### Exercise 2
+
+Create a variable that takes a type of Date.
+
+<details>
+<summary>Solution</summary>
+
+```typescript
+let myDate: Date;
+myDate = new Date(6-11-1993);
+```
+
 </details>
