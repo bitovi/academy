@@ -2,6 +2,12 @@
 @parent dom-jquery-training 6
 @body
 
+## Overview
+
+
+## Exercise: `collection.bind`
+
+
 ### The problem
 
 <details>

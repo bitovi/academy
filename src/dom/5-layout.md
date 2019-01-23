@@ -109,6 +109,9 @@ QUnit.test('$.fn.show and $.fn.hide', function(){
 
 ### What you need to know
 
+- To hide an element, set its display to `"none"`.
+- To show an element, set its display to `""`.
+
 ### The solution
 
 <details>
@@ -128,21 +131,83 @@ QUnit.test('$.fn.show and $.fn.hide', function(){
 
 ### The problem
 
+[collection.offset()](http://api.jquery.com/offset/) returns the current coordinates of the first element relative to the document.
+
+
+```html
+<div class="outer"><div class="inner">Hi</div></div>
+<style>
+.outer {
+	position: absolute;
+	left: 20px; top: 30px;
+}
+.inner {
+	border: solid 1px green; padding: 10px;
+	position: relative;
+	left: 10px; top: 10px;
+}
+</style>
+<script type="module">
+import "https://unpkg.com/jquery@3/dist/jquery.js";
+
+console.log( $(".inner").offset() )
+//logs { left: 30, top: 40 }
+</script>
+```
+@codepen
+
 <details>
 <summary>Click to see test code</summary>
 ```js
-QUnit
+QUnit.test('$.fn.offset', function(){
+	var bigWidth = document.createElement('div'),
+	row1 = document.createElement('div'),
+	row2 = document.createElement('div'),
+	pos = document.createElement('div');
+
+	bigWidth.className = 'big-width';
+	row1.className = 'row';
+	row2.className = 'row';
+	pos.id = 'pos';
+
+	bigWidth.appendChild(row1);
+	bigWidth.appendChild(row2);
+	row2.appendChild(pos);
+
+	document.body.appendChild(bigWidth);
+
+	var offset = $('#pos').offset();
+
+	equal( offset.top, 120, 'top' );
+	equal( offset.left, -990, 'left');
+
+	//cleaning up after our test
+	var node = $('.big-width')[0];
+	node.parentNode.removeChild(node);
+});
 ```
 </details>
 
 ### What you need to know
+
+- [getBoundingClientRect](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect)
+  gives an element's position relative to the window.
+- [pageXOffset](https://developer.mozilla.org/en-US/docs/Web/API/Window/pageXOffset) and
+  [pageYOffset](https://developer.mozilla.org/en-US/docs/Web/API/Window/pageXOffset) give how far
+  the window has been scrolled.
 
 ### The solution
 
 <details>
 <summary>Click to see the solution</summary>
 ```js
-solution
+    offset: function() {
+      var offset = this[0].getBoundingClientRect();
+      return {
+        top: offset.top + window.pageYOffset,
+        left: offset.left + window.pageXOffset
+      };
+    }
 ```
 </details>
 
