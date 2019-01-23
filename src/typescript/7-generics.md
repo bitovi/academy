@@ -5,9 +5,18 @@
 
 @body
 
+
+## Overview
+
+WHY GENERICS 
+
 ## Generics
 
-Generics are a way of writing abstract code that allows the determination of types to be handled when the code is used. Generics let us reuse code for different types and improve maintainability.
+Generics are a way of writing abstract code that allows the determination of types to be handled when the code is used. Generics let us reuse code for different types and improve maintainability. 
+
+ALLOWS YOU TO WRITE LINKED LIST WITH TYPE SAFETY - EXPLICITLY SHOW MAINTAINABILITY
+
+INTRODUCE EXAMPLE, EXPLAIN WHY GENERICS, EXPLAIN SYNTAX
 
 @sourceref ./7-1-basic.html
 @codepen
@@ -23,6 +32,8 @@ The good - we can push any type to this list. The bad - we can push any type to 
 @codepen
 
 myList now holds an assortment of types that won't be fun to iterate through and deal with. Let's build a generic class instead.
+
+EXPLAIN DEAL WITH LOSING TYPE SAFETY - SHOW METHODS ON STRINGS VS. NUMBERS
 
 @sourceref ./7-4-good-collection.html
 @codepen
@@ -66,3 +77,10 @@ let dinosaurs: string[] = ['trex', 'velociraptor', 'triceratops', 'pterodactyl']
 let randomDino: string = randomThing(dinosaurs);
 ```
 </details>
+
+
+### Exercise 2
+
+write tree class
+
+WORK IN INTERFACES AND CLASSES

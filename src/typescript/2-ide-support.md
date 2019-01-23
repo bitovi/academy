@@ -7,6 +7,52 @@
 
 ## Overview
 
+We'll review some TypeScript configuration options to help us optimize our workflow, and look at IDEs that have great TypeScript support for building TypeScript projects.
+
+## Configuring TypeScript
+
+We're able to configure how our projects use TypeScript from selecting which files to compile to removing comments from those files. This is done through the creation of a ``tsconfig.json`` file.
+
+### tsconfig.json
+
+Customize the TypeScript compiling and linting options by creating a ``tsconfig.json`` file in the root directory of your TypeScript project. The following config will 
+- specify ECMAScript target version as 'es5'
+- specify module code generation (from 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015' or 'esnext')
+- generate source map files
+- remove comments from compiled code
+
+```javascript
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "sourceMap": true,
+        "removeComments": true
+    }
+}
+```
+
+Full configuration options are available here: <a href="http://json.schemastore.org/tsconfig" target="_blank">http://json.schemastore.org/tsconfig</a>
+
+### Linting
+
+We can also configure linting options to catch bugs and help enforce uniform styling. The following options will warn on unused local variables and parameters, and expressions or declarations implying 'any'.
+
+```javascript
+{
+    "compilerOptions": {
+        ...
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitAny": true
+        ...
+	}
+}
+```
+
+## IDEs
+
+Integrated Development Environments have come a long way in supporting modern web development. With little to no configuration they offer built-in debugging, Git integration, command line useage, and robust packages for additional addons.
 
 ### Visual Studio Code
 
@@ -14,36 +60,6 @@
 
 <a href="../static/img/vs-code-screenshot.png" target="\_blank"><img src="../static/img/vs-code-screenshot.png" width="100%"/></a>
 
-
-#### tsconfig.json
-
-Customize the TypeScript compiling and linting options by creating a ``tsconfig.json`` file in the root directory of your TypeScript project.
-
-```javascript
-{
-    "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
-        "sourceMap": true
-    }
-}
-```
-
-### Linting
-
-The following options will lint unused local variables and parameters.
-
-``tsconfig.json``
-```javascript
-{
-    "compilerOptions": {
-        ...
-        "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        ...
-	}
-}
-```
 
 ### Atom
 
@@ -73,9 +89,9 @@ export default greeter;
 In your ``hellouniverse.ts`` file add:
 
 ```typescript
-import greeter from './greeter'
+import greeter from './helloworld'
 
-let user = "Universe";
+let user = 1;
 
 document.body.innerHTML = greeter(user);
 ```
