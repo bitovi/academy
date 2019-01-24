@@ -85,136 +85,6 @@ $.extend($.prototype, {
 			
 		
 			
-				
-					<li class="
-           						parent
-           						expanded">
-						<a class="page"
-							href="../typescript.html"
-							title="Intro to TypeScript">
-							TypeScript
-						</a>
-						
-							
-	<ul>
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="why-typescript.html"
-							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript.">
-							Why TypeScript
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../typeScript/ide-support.html"
-							title="IDE Support for TypeScript">
-							IDE Support
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="current
-           						parent
-           						expanded">
-						<a class="page"
-							href="types.html"
-							title="Starting to use types in TypeScript.">
-							Types
-						</a>
-						
-							
-
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="functions.html"
-							title="Functions in TypeScript">
-							Functions
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="classes.html"
-							title="Classes in TypeScript">
-							Classes
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="interfaces.html"
-							title="Interfaces in TypeScript">
-							Interfaces
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="generics.html"
-							title="Using generics in TypeScript.">
-							Generics
-						</a>
-						
-					</li>
-				
-			
-		
-			
-		
-	</ul>
-
-
-						
-					</li>
-				
-			
 		
 			
 		
@@ -255,7 +125,7 @@ $.extend($.prototype, {
 		
 			
 				<section class="description">
-    <p>Starting to use types in TypeScript.</p>
+    <p>Learn how to declare types in TypeScript.</p>
 
 </section>
 
@@ -268,9 +138,10 @@ $.extend($.prototype, {
 			
 			
 				<section class="body">
-    <h2>Basic Types</h2>
-<p>Types are what determine how much memory is allocated to save a value. Types also detemine what operations or methods can be performed on a value. Types like strings can't have mathmatical operations performed on them, but methods like <code>.length</code> can be used.</p>
-<p>This section will explore how types are annotated when writing TypeScript and discuss type inference done by TypeScript.</p>
+    <h2>Overview</h2>
+<p>This section will explain how to declare the various types used in TypeScript, discuss how type can be inferred, and show how to assert types.</p>
+<h2>Basic Types</h2>
+<p>Types are what determine how much memory is allocated to save a value. Types also determine what operations or methods can be performed on a value. Types like strings can't have mathematical operations performed on them, but methods like <code>.length</code> can be used.</p>
 <h3>Boolean</h3>
 <pre><code class="language-typescript">let isCarnivore: boolean = true;
 </code></pre>
@@ -314,6 +185,7 @@ let may = Month[5];
 <h3>Any</h3>
 <p>Any describes a variable where we may not know the type.</p>
 <pre><code class="language-typescript">let my3rdPartyData: any = 5;
+my3rdPartyData = 'five;
 </code></pre>
 <h3>Void</h3>
 <p>No type at all - commonly used with functions that don't return a value.</p>
@@ -322,30 +194,44 @@ let may = Month[5];
 }
 </code></pre>
 <h3>Null &amp; Undefined</h3>
-<p>Null and Undefined are two separate types, and subtypes of all other types, meaning they can be assigned to another type like string or number unless the --strictNullChecks flag is used.</p>
+<p>Null and Undefined are two separate types, and subtypes of all other types, meaning they can be assigned to another type like string or number unless the <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html" target="_blank">--strictNullChecks</a> flag is used.</p>
 <h3>Never</h3>
 <p>The never type represents a value that will never occur.</p>
 <pre><code class="language-typescript">function error(message: string): never {
     throw new Error(message);
 }
 </code></pre>
-<h3>Type Inference</h3>
-<p>When we don't provide explict types for our variables, Typescript will do it's best to infer the types, and it's very good at it. The following code will not compile due to type inference.</p>
-<pre><code class="language-typescript">let name = 'blue';
+<h2>Type Inference</h2>
+<p>When we don't provide explicit types for our variables, TypeScript will do its best to infer the types, and it's very good at it. The following code will not compile due to type inference.</p>
+<pre><code class="language-typescript">let name = 'Sally';
 let height = 6;
-name = height; //Type 'number' is not assignable to type 'string'
+name = height; 
+//Type 'number' is not assignable to type 'string'
 </code></pre>
 <p>Type can also be inferred from complex objects.</p>
-<pre><code class="language-typescript">let junkList = [1, 'seven', 3, 6];
-junkList.push('thirteen'); //works
-junkList.push(true); //Argument of type 'true' is not assignable to parameter of type 'string | number'.
+<pre><code class="language-typescript">let person = {
+  name: 'Sally',
+  height: 6,
+  address: {
+    number: 555,
+    street: 'Rodeo Drive'
+  }
+};
+person.name('Cecilia');
+//works
+person.name(6);
+ //Type '6' is not assignable to type 'string'.
+ person.address.number = 'five fifty-five';
+ //Type '&quot;five fifty-five&quot;' is not assignable to type 'number'.
 </code></pre>
-<p>Typescript will infer the return value of a function as well.</p>
+<p>TypeScript will infer the return value of a function as well.</p>
 <pre><code class="language-typescript">function multiplier(a: number, b: number ){
   return a*b;
 }
-var multiplied: number = multiplier(2,3); //works
-var str: string = multiplier(10,20); //Type 'number' is not assignable to type 'string'.
+var multiplied: number = multiplier(2,3);
+//works
+var str: string = multiplier(10,20);
+//Type 'number' is not assignable to type 'string'.
 </code></pre>
 <p>Type inference can be a very helpful tool in refactoring code and helping better document expectations for our code.</p>
 <h3>Type assertions</h3>
@@ -358,6 +244,7 @@ let otherValue: any = &quot;this is a string&quot;;
 
 let otherLength: number = (otherValue as string).length;
 </code></pre>
+<p>The <code>as</code> syntax is usually preferred, the <code>&lt;type&gt;</code> conflicts with JSX syntax.</p>
 <h3>Exercise 1</h3>
 <p>Fix the following type errors so this code will compile:</p>
 <pre><code class="language-typescript">let isLoading: boolean = true;
@@ -395,7 +282,13 @@ greet('Tom', 42,)
 </code></pre>
 <p></details></p>
 <h3>Exercise 2</h3>
-<p>Declare a variable that</p>
+<p>Create a variable that takes a type of Date.</p>
+<p><details>
+<summary>Solution</summary></p>
+<pre><code class="language-typescript">let myDate: Date;
+myDate = new Date(6-11-1993);
+</code></pre>
+<p></details></p>
 
 </section>
 
@@ -407,7 +300,7 @@ greet('Tom', 42,)
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/typescript/3-types.md"},"description":"Starting to use types in TypeScript. \n","name":"typescript/types","title":"Types","type":"page","parent":"typescript","order":3,"comment":" ","pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/typescript/3-types.md"},"description":"Learn how to declare types in TypeScript. \n","name":"typescript/types","title":"Types","type":"page","parent":"typescript","order":3,"comment":" ","pathToRoot":"../.."};
 	</script>
 
 	

@@ -85,19 +85,6 @@ $.extend($.prototype, {
 			
 		
 			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../typescript.html"
-							title="Intro to TypeScript">
-							TypeScript
-						</a>
-						
-					</li>
-				
-			
 		
 			
 		
@@ -440,6 +427,10 @@ source.next(&quot;2&quot;);  // logs mapToNumber
     .pipe( mapToNumber )
     .pipe( log(&quot;number&quot;, value) );
 </code></pre>
+<blockquote>
+<p><strong>NOTE:</strong> Notice that to log <code>number</code>, we call <code>.pipe( log(...) )</code>
+on the on what would be the <code>number</code> observable.</p>
+</blockquote>
 <h2>The solution</h2>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;

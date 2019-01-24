@@ -85,136 +85,6 @@ $.extend($.prototype, {
 			
 		
 			
-				
-					<li class="
-           						parent
-           						expanded">
-						<a class="page"
-							href="../typescript.html"
-							title="Intro to TypeScript">
-							TypeScript
-						</a>
-						
-							
-	<ul>
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="why-typescript.html"
-							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript.">
-							Why TypeScript
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../typeScript/ide-support.html"
-							title="IDE Support for TypeScript">
-							IDE Support
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="types.html"
-							title="Starting to use types in TypeScript.">
-							Types
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="functions.html"
-							title="Functions in TypeScript">
-							Functions
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="classes.html"
-							title="Classes in TypeScript">
-							Classes
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="current
-           						parent
-           						expanded">
-						<a class="page"
-							href="interfaces.html"
-							title="Interfaces in TypeScript">
-							Interfaces
-						</a>
-						
-							
-
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="generics.html"
-							title="Using generics in TypeScript.">
-							Generics
-						</a>
-						
-					</li>
-				
-			
-		
-			
-		
-	</ul>
-
-
-						
-					</li>
-				
-			
 		
 			
 		
@@ -255,7 +125,7 @@ $.extend($.prototype, {
 		
 			
 				<section class="description">
-    <p>Interfaces in TypeScript</p>
+    <p>Learn how to write Interfaces, set optional properties, and about the power of using interfaces in classes and functions</p>
 
 </section>
 
@@ -268,8 +138,10 @@ $.extend($.prototype, {
 			
 			
 				<section class="body">
-    <h2>Interfaces in TypeScript</h2>
-<p>An interface in TypeScript is a way to define the syntax an entity should adhere to. An interface defines the members - properties, methods, and events. It may be easy to think of it as the signature of an API. It's worth noting that interfaces aren't transpiled into our output JavaScript, they're simply used for typechecking during the development process.</p>
+    <h2>Overview</h2>
+<p>Interfaces are a powerful way to enforce types and document expectations for how our code should run. Interfaces can be used in classes to create very robust components that are clearly documented by the shape defined by the interface. This section will cover how to write interfaces, setting optional properties, and the power of using interfaces in classes and functions.</p>
+<h2>Interfaces in TypeScript</h2>
+<p>An interface in TypeScript is a way to define the shape an entity should adhere to. An interface defines the members - properties, methods, and events. It may be easy to think of it as the signature of an API. It's worth noting that interfaces aren't transpiled into our output JavaScript, they're simply used for typechecking during the development process.</p>
 <pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
 interface Dinosaur {
   name: string;
@@ -282,12 +154,15 @@ function trackDino(dino: Dinosaur) {
   console.log(dino.location);
 }
 
-let blue = {name: 'blue', breed: 'Velociraptor', height: 7, location: 'Section B'};
-trackDino(blue); // Section B
+let blue = {name: 'blue', breed: 'Velociraptor', 
+height: 7, location: 'Section B'};
+trackDino(blue);
+//Logs &quot;Section B&quot;
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
 <h3>Optional Properties</h3>
+<p>Some times all properties on an object don't need to be required, using the <code>?</code> lets us tell the TypeScript compiler which parties aren't required.</p>
 <pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
 interface Dinosaur {
   name: string;
@@ -296,13 +171,20 @@ interface Dinosaur {
   location: string;
 }
 
-let blue = {name: 'blue', breed: 'Velociraptor', location: 'Section B'}; //works
-trackDino(blue); // Section B
+function trackDino(dino: Dinosaur) {
+  console.log(dino.location);
+}
+
+let blue = {name: 'blue', breed: 'Velociraptor', location: 'Section B'};
+//works
+trackDino(blue);
+//Logs &quot;Section B&quot;
 &lt;/script&gt;
 </code></pre>
+<div line-highlight='5'></div>
 <div class='codepen'></div>
 <h3>Classes Implementing Interfaces</h3>
-<p>In that a class needing to follow an object structure, we can use interfaces to define that 'contract'.</p>
+<p>In the case that a class needs to follow an object structure, we can use interfaces to define that 'contract'.</p>
 <pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
 interface Dinosaur {
   name: string;
@@ -312,7 +194,7 @@ interface Dinosaur {
 }
 
 
-class clonedDino implements Dinosaur {
+class ClonedDino implements Dinosaur {
   name: string;
   breed: string;
   height?: number;
@@ -324,13 +206,57 @@ class clonedDino implements Dinosaur {
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
+<h3>Interfaces in Functions</h3>
+<p>Interfaces are incredibly useful in describing the shape of objects we want to use in multiple situations. The following functions both require a <code>Dinosaur</code> object shape we've defined in the <code>Dinosaur</code> interface.</p>
+<pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
+interface Dinosaur {
+  name: string;
+  breed: string;
+  location: string;
+}
+
+let dinoA = {
+  name: 'Blue', 
+  breed: 'Velociraptor', 
+  location: 'Section B'
+}
+
+let dinoB = {
+  name: 'Sally',
+  location: 'Section C'
+}
+
+function dinoCatcher(dinosaur: Dinosaur) {
+  console.log(`Caught ${dinosaur.name} at ${dinosaur.location}`);
+}
+
+dinoCatcher(dinoA);
+//works!
+dinoCatcher(dinoB);
+//Argument of type '{ name: string; location: string; }' is not assignable to parameter of type 'Dinosaur'.
+//Property 'breed' is missing in type '{ name: string; location: string; }'.
+
+function dinoTransporter(dinosaur: Dinosaur, newLocation: string): Dinosaur {
+  dinosaur.location = newLocation
+  return dinosaur
+}
+
+let dinoLocationA = dinoTransporter(dinoA, 'Paddock 1');
+//Works!
+let dinoLocationB = dinoTransporter(dinoB, 'Paddock 1');
+//Argument of type '{ name: string; location: string; }' is not assignable to parameter of type 'Dinosaur'.    
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
 <h3>Type Assertion</h3>
 <p>We briefly mentioned type assertion when talk about types, but when dealing with interfaces it can be a great tool for making sure our code behaves in the way we expect.</p>
 <p>For instance, consider the following code:</p>
 <pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
 var myObj = {};
-myObj.name = 'Blue'; //property 'name' does not exist on type '{}'
-myObj.height = 6; //property 'height' does not exist on type '{}'
+myObj.name = 'Blue';
+//property 'name' does not exist on type '{}'
+myObj.height = 6;
+//property 'height' does not exist on type '{}'
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
@@ -348,7 +274,7 @@ myObj.height = 6;
 </code></pre>
 <div class='codepen'></div>
 <h3>Describing Objects</h3>
-<p>If we have a function expecting a specific object, we can define what that object sould look like by specifying an interface for it:</p>
+<p>If we have a function expecting a specific object, we can define what that object should look like by specifying an interface for it:</p>
 <pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
 interface DinoInfo {
   name:string;
@@ -359,30 +285,79 @@ function owensCatcher(info: DinoInfo) {
   console.log(`Owen caught ${info.name} at ${info.location}`);
 }
 
-owensCatcher({name: 'Blue', location: 'Section B'}); // Owen caught Blue at Section B
-owensCatcher({name: 'Charlie'}); //property 'location' is missing //error
+owensCatcher({name: 'Blue', location: 'Section B'});
+//Logs &quot;Owen caught Blue at Section B&quot;
+owensCatcher({name: 'Charlie'});
+//property 'location' is missing //error
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
 <h3>Describing Functions</h3>
-<p>We can also use interfaces to describe what a function is expected to return.</p>
+<p>We can also use interfaces to describe what a function is expected to return. The following sample shows a <code>ResponseConfig</code> interface that should be returned by the <code>securityCheck</code> method.</p>
 <pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
-interface MyCallback {
-  (error: Error, response?: string): void;
+interface ResponseConfig {
+  error?: string;
+  response: string;
 }
 
-function myFunc(callback: MyCallback) {
-  callback(null, 'a response')
+class DinoCage {
+  static cageInstances: number = 0;
+  static dinos: number = 0;
+  constructor(dinos: number) {
+    DinoCage.dinos = DinoCage.dinos + dinos;
+    DinoCage.cageInstances++;
+  }
+  
+  static countDinos() {
+    return `${this.dinos} dinosaurs`;
+  }
 }
 
-myFunc(() =&gt; {
-  console.log('all good here')
-});
+class RaptorCage extends DinoCage {
+  public raptors: number;
+  constructor (dinos: number) {
+    super(dinos);
+    this.raptors = dinos;
+  }
+  
+  public securityCheck() : ResponseConfig {
+    if (this.raptors &lt; 7) {
+      return { response: 'security check passes'}
+    }
+    else {
+      return {error: &quot;FAILURE&quot;, response: 'hold on to your butts'}
+    }
+  }
+}
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
+<div line-highlight='2-5,27'></div>
 <h3>Exercise 1</h3>
-<p>Create an interface to define a <code>DinoPark</code> class that had required properties of <code>name</code>, <code>image</code>, and <code>address</code>, where <code>image</code> is optional and <code>address</code> is an object with properties <code>street</code>, <code>city</code>, <code>state</code>, and <code>zip</code>.</p>
+<p>Create an interface to define a <code>DinoPark</code> object shown below:</p>
+<pre><code class="language-javascript">let park = {
+  name: '',
+  image: '',
+  address: {
+    street: '',
+    city: '',
+    state: '',
+    zip: ''
+  }
+}
+</code></pre>
+<p>Hint: the interface should have properties and types:</p>
+<ul>
+<li><code>name</code> (string)</li>
+<li><code>image</code> (string) (optional)</li>
+<li><code>address</code>
+<ul>
+<li><code>street</code> (string)</li>
+<li><code>city</code> (string)</li>
+<li><code>state</code>(string)</li>
+<li><code>zip</code> (string)</li>
+</ul></li>
+</ul>
 <p><details>
 <summary>Solution</summary></p>
 <pre><code class="language-typescript">
@@ -400,11 +375,11 @@ interface DinoPark {
 </code></pre>
 <p></details></p>
 <h3>Exercise 2</h3>
-<p>Create a function that takes a parameter that is the interface <code>DinoPark</code> created previously and returns a slug for the dinopark by replacing any spaces with dashes.</p>
+<p>Create a function <code>createParkSlug</code> that takes a parameter that is the interface <code>DinoPark</code> created previously and returns a slug for the park by replacing any spaces with dashes.</p>
 <p><details>
 <summary>Solution</summary></p>
 <pre><code class="language-typescript">function createParkSlug(dinoPark: DinoPark) {
-  return dinoPark.name.replace(' ', '-');
+  return dinoPark.name.replace(/ /g, '-');
 }
 
 let islaSornaPark = {
@@ -416,8 +391,9 @@ let islaSornaPark = {
     zip: '12345'
   }
 }
-let islaSornaSlud = createParkSlug(islaSornaPark);
-//Isla-Sorna-Park
+let islaSornaSlug = createParkSlug(islaSornaPark);
+console.log(islaSornaSlug);
+//Logs &quot;Isla-Sorna-Park&quot;
 </code></pre>
 <p></details></p>
 
@@ -431,7 +407,7 @@ let islaSornaSlud = createParkSlug(islaSornaPark);
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/typescript/6-interfaces.md"},"description":"Interfaces in TypeScript \n","name":"typescript/interfaces","title":"Interfaces","type":"page","parent":"typescript","order":6,"comment":" ","pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/typescript/6-interfaces.md"},"description":"Learn how to write Interfaces, set optional properties, and about the power of using interfaces in classes and functions \n","name":"typescript/interfaces","title":"Interfaces","type":"page","parent":"typescript","order":6,"comment":" ","pathToRoot":"../.."};
 	</script>
 
 	

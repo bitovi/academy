@@ -85,136 +85,6 @@ $.extend($.prototype, {
 			
 		
 			
-				
-					<li class="
-           						parent
-           						expanded">
-						<a class="page"
-							href="../typescript.html"
-							title="Intro to TypeScript">
-							TypeScript
-						</a>
-						
-							
-	<ul>
-		
-			
-				
-					<li class="current
-           						parent
-           						expanded">
-						<a class="page"
-							href="why-typescript.html"
-							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript.">
-							Why TypeScript
-						</a>
-						
-							
-
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../typeScript/ide-support.html"
-							title="IDE Support for TypeScript">
-							IDE Support
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="types.html"
-							title="Starting to use types in TypeScript.">
-							Types
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="functions.html"
-							title="Functions in TypeScript">
-							Functions
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="classes.html"
-							title="Classes in TypeScript">
-							Classes
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="interfaces.html"
-							title="Interfaces in TypeScript">
-							Interfaces
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="generics.html"
-							title="Using generics in TypeScript.">
-							Generics
-						</a>
-						
-					</li>
-				
-			
-		
-			
-		
-	</ul>
-
-
-						
-					</li>
-				
-			
 		
 			
 		
@@ -269,15 +139,15 @@ $.extend($.prototype, {
 			
 				<section class="body">
     <h2>What is TypeScript?</h2>
-<p>TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. Typing helps enhance code quality and readability, assists in self-documenting, and the compiler uses <em>typechecking</em> to catch errors before runtime. TypeScript offers more modern(think ES6) features of JavaScript and the use of classes and interfaces to write code in an object oriented sense.</p>
-<p><a href="../static/img/typescript-error.png" target="\_blank"><img src="../static/img/typescript-error.png" width="100%"/></a></p>
+<p>TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. Typing helps enhance code quality and readability, assists in self-documenting, and the compiler uses <em>typechecking</em> to catch errors before runtime. TypeScript offers more modern (think ES6) features of JavaScript and the use of classes and interfaces to write code in an object oriented sense.</p>
+<p><a href="../static/img/typescript-error-compiling.png" target="\_blank"><img src="../static/img/typescript-error-compiling.png" width="100%"/></a></p>
 <h3>Typechecking</h3>
 <p>Typechecking is the process of verifying and enforcing the constraints of types.</p>
 <h3>Static vs. Dynamic Typing</h3>
-<p>Plain JavaScript is a dynamically typed language, meaning it doesn't know the type of a value assigned to a variable until run-time when it's instantiated. If there's a bug in the code related to falsely assuming a type, it won't throw an error until we're already running our code. It's worth noting that you can declare types in dynamically typed languages, but it's not required as they will attempt to infer the type of variables based on their values. This inference does come with a performance cost because the typechecking is done at runtime.</p>
-<p>TypeScript uses static typing, so types are checked when the code compiles. The concept of &quot;static&quot; comes from the idea of variables being static, meaning once you set a variable to a type it can't(shouldn't) be changed.</p>
+<p>Plain JavaScript is a dynamically typed language, meaning it doesn't know the type of a value assigned to a variable until run-time when it's instantiated. If there's a bug in the code related to falsely assuming a type, it won't throw an error until we're already running our code.</p>
+<p>TypeScript uses static typing, which allows us to specify what type a variable should hold, and types are checked when the code compiles alerting us of any incorrect usages of a variable assignment. The concept of &quot;static&quot; comes from the idea of variables being static, meaning once you set a variable to a type it can't (shouldn't) be changed.</p>
 <h3>Compilation</h3>
-<p>In order to use TypeScript in the browser, we must compile to plain JavaScript first. We will do this using our terminal in this example, but most often TypeScript is be compiled during a build process.</p>
+<p>In order to use TypeScript in the browser, we must compile the TypeScript code to plain JavaScript first. We will do this using our terminal in this example, but most often TypeScript is be compiled during a build process.</p>
 <p>Let's install TypeScript globally</p>
 <pre><code class="language-shell">npm install -g typescript
 </code></pre>
@@ -300,8 +170,12 @@ document.body.innerHTML = greeter(user);
 <p>We'll compile our code by running:</p>
 <pre><code class="language-shell">tsc helloworld.ts
 </code></pre>
-<p>Provided there are no errors, this wil compile the TypeScript to JavaScript file <code>helloworld.js</code></p>
-<p>Change your <code>user</code> variable to an integer and compile again. What do you think will happen?</p>
+<p>Provided there are no errors, this will compile the TypeScript to JavaScript file <code>helloworld.js</code></p>
+<p>Change your <code>user</code> variable to a number and compile again. What do you think will happen?</p>
+<p><details>
+<summary>error message</summary>
+<a href="../static/img/typescript-error-compiling.png" target="\_blank"><img src="../static/img/typescript-error-compiling.png" width="100%"/></a>
+</details></p>
 
 </section>
 

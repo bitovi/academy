@@ -85,19 +85,6 @@ $.extend($.prototype, {
 			
 		
 			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../typescript.html"
-							title="Intro to TypeScript">
-							TypeScript
-						</a>
-						
-					</li>
-				
-			
 		
 			
 		
@@ -366,7 +353,6 @@ const observable = Observable.create(function (observer) {
   observer.next(1);
   observer.next(2);
   observer.next(3);
-  observer.complete();
 });
 
 function subscriber(){
@@ -389,7 +375,6 @@ const observable = Observable.create(function (observer) {
   observer.next(1);
   observer.next(2);
   observer.next(3);
-  observer.complete();
 });
 
 function subscriberA( value ) {
@@ -406,7 +391,7 @@ observable.subscribe( subscriberB );
 </code></pre>
 <div class='codepen'></div>
 <h3>Lifecycles</h3>
-<p>RxJS observables have lifecycle.  They can publish values over
+<p>RxJS observables have a lifecycle.  They can publish values over
 time and complete. They can also publish errors.  You can listen
 to all three events with the following:</p>
 <pre><code class="language-js">observable.subscribe({
@@ -446,6 +431,8 @@ console.log('just after subscribe');
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
+<p>When an observable <em>completes</em>, all of its subscribers are
+unsubscribed. This helps avoid memory leaks.</p>
 <blockquote>
 <p><strong>NOTE:</strong> When the observable is subscribed,
 the <code>1</code> value is published synchronously. Then
@@ -458,6 +445,7 @@ the subscription like:</p>
 <pre><code class="language-js">var subscription = observable.subscribe( ... );
 subscription.unsubscribe();
 </code></pre>
+<p>Unsubscribing prevents receiving future notifications and avoids memory leaks.</p>
 <p>The following unsubscribes after the first published value. Notice that
 the <code>subscriber</code> function is only called once.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
@@ -484,12 +472,10 @@ var subscription = observable.subscribe(
 published values on one observable to published observables
 on another observable.  In fact, using these operators is
 a majority of what you will do with RxJS.</p>
-<p>But for now, lets see how to transform:</p>
-<ul>
-<li>the numbers published on the <code>numberMaker</code> observable into</li>
-<li>the running sum of the <code>numberMaker</code> those numbers published<br />
-on <code>numberSummer</code></li>
-</ul>
+<p>But for now, lets see how to transform<br />
+... the numbers published on the <code>numberMaker</code> observable ...<br />
+into<br />
+... a running sum published by <code>numberSummer</code>.</p>
 <p>Read the inline comments below to see how this works.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;

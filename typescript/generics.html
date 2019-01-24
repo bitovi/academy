@@ -85,136 +85,6 @@ $.extend($.prototype, {
 			
 		
 			
-				
-					<li class="
-           						parent
-           						expanded">
-						<a class="page"
-							href="../typescript.html"
-							title="Intro to TypeScript">
-							TypeScript
-						</a>
-						
-							
-	<ul>
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="why-typescript.html"
-							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript.">
-							Why TypeScript
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../typeScript/ide-support.html"
-							title="IDE Support for TypeScript">
-							IDE Support
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="types.html"
-							title="Starting to use types in TypeScript.">
-							Types
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="functions.html"
-							title="Functions in TypeScript">
-							Functions
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="classes.html"
-							title="Classes in TypeScript">
-							Classes
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="interfaces.html"
-							title="Interfaces in TypeScript">
-							Interfaces
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="current
-           						parent
-           						expanded">
-						<a class="page"
-							href="generics.html"
-							title="Using generics in TypeScript.">
-							Generics
-						</a>
-						
-							
-
-						
-					</li>
-				
-			
-		
-			
-		
-	</ul>
-
-
-						
-					</li>
-				
-			
 		
 			
 		
@@ -255,7 +125,7 @@ $.extend($.prototype, {
 		
 			
 				<section class="description">
-    <p>Using generics in TypeScript.</p>
+    <p>Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript.</p>
 
 </section>
 
@@ -268,102 +138,303 @@ $.extend($.prototype, {
 			
 			
 				<section class="body">
-    <h2>Generics</h2>
-<p>Generics are a way of writing abstract code that allows the determination of types to be handled when the code is used. Generics let us reuse code for different types and improve maintainability.</p>
+    <h2>Overview</h2>
+<p>Generics are a useful approach to writing abstract code that can be used in a variety of scenarios, or where this tutorial is concerned, with a variety of types. This section will cover more about what Generics are, why they are useful and how to create a linked list using Generics in TypeScript.</p>
+<h2>Generics</h2>
+<p>Generics are a way of writing abstract code that allows the determination of types to be handled when the code is used. Generics let us reuse code for different types and improve maintainability, as we don't have to duplicate the function for every type. A great example of the power of generics is creating a linked list with type safety.</p>
+<p>The following is an example of a linked list for strings:</p>
 <pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
-function identity&lt;MyType&gt;(arg: MyType): MyType {
-    return arg;
+class LinkedListItem {
+  value: string;
+  next?: LinkedListItem;
 }
 
-let sampleFunc = identity&lt;string&gt;(&quot;this is my string&quot;);
-&lt;/script&gt;
-</code></pre>
-<div class='codepen'></div>
-<p>Let's look at making a basic class to collect a list of things.</p>
-<pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
-class Collection {
-  private list: any[];
-  push(thing) {
-    this.list.push(thing);
+class LinkedList {
+  private head: LinkedListItem;
+  constructor(item: LinkedListItem) {
+    this.head = item;
+  }
+
+  insert(val, previousItem: LinkedListItem) {
+    let newItem: LinkedListItem = new LinkedListItem(val);
+    let currentItem: LinkedListItem = this.head;
+
+    if (!currentItem) {
+        this.head = newItem;
+    } else {
+        while (true) {
+            if (currentItem === previousItem) {
+                let tempNextItem = previousItem.next;
+                currentItem.next = newItem;
+                newItem.next = tempNextItem;
+                break;
+            } else {
+                currentItem = currentItem.next;
+            }
+        }
+    }
+  }
+
+  append(val) {
+    let currentItem: LinkedListItem = this.head;
+    let newItem = new LinkedListItem(val);
+
+    if (!currentItem) {
+        this.head = newItem;
+    } else {
+        while (true) {
+            if (currentItem.next) {
+                currentItem = currentItem.next;
+            } else {
+                currentItem.next = newItem;
+                break;
+            }
+        }
+    }
+  }
+
+  prepend(val) {
+    let newItem = new LinkedListItem(val);
+    let oldHead = this.head;
+
+    this.head = newItem;
+    newItem.next = oldHead;
+  }
+
+  delete(val) {
+    var currentItem = this.head;
+
+    if (!currentItem) {
+        return;
+    }
+
+    if (currentItem.value === val) {
+        this.head = currentItem.next;
+    } else {
+        var previous = null;
+
+        while (true) {
+            if (currentItem.value === val) {
+                if (currentItem.next) { // special case for last element
+                    previous.next = currentItem.next;
+                } else {
+                    previous.next = null;
+                }
+                currentItem = null; // avoid memory leaks
+                break;
+            } else {
+                previous = currentItem;
+                currentItem = currentItem.next;
+            }
+        }
+    }
+  }
+
+  showInArray() {
+    let arr = [];
+    let currentItem = this.head;
+
+    while (true) {
+        arr.push(currentItem.value);
+
+        if (currentItem.next) {
+            currentItem = currentItem.next;
+        } else {
+            break;
+        }
+    }
+
+    return arr;
   }
 }
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<p>The good - we can push any type to this list. The bad - we can push any type to this list.</p>
+<p>Let's look at transforming this to use generics to use this list for more than just strings. First, we change our interface to take a generic type.</p>
 <pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
-let myList = Collection();
-myList.push('tacos');
-myList.push(25);
-myList.push({name: 'Blue', breed: 'Velociraptor', speed: 50})
+interface LinkedListItem&lt;T&gt; {
+    value: T;
+    next?: LinkedListItem&lt;T&gt;;
+}
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<p>myList now holds an assortment of types that won't be fun to iterate through and deal with. Let's build a generic class instead.</p>
+<p>The angle brackets with the T indicate that we have a type variable <code>&lt;T&gt;</code>, and can take what the user provides between the brackets when using the interface. For example, a string:</p>
 <pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
-class GenericCollection&lt;T&gt; {
-  private list: T[];
-  pushItem(thing:T) {
-    this.list.push(thing);
+class LinkedListItem&lt;T&gt; {
+  value: T;
+  next?: LinkedListItem&lt;T&gt;;
+
+  constructor(val) {
+    this.value = val;
+    this.next = null;
   }
 }
+
+function createNewItem(val: string) {
+  let newItem = new LinkedListItem&lt;string&gt;(val);
+  console.log(newItem.value);
+}
+
+createNewItem(5);
+//Argument of type '5' is not assignable to parameter of type 'string'.
+createNewItem('five');  
+//Logs &quot;five&quot;
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<p>Now when we initialize this class we can specify a type to use.</p>
+<div line-highlight='13'></div>
+<p>Next we can refactor our class to take our new generic.</p>
 <pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
-let myListOfStrings = new GenericCollection&lt;string&gt;();
-myListOfStrings.pushItem('booop');
-myListOfStrings.pushItem(5); //error Argument type of '5' is not assignable to parameter of type 'string'
+class LinkedListItem&lt;T&gt; {
+    value: T;
+    next?: LinkedListItem&lt;T&gt;;
+  
+    constructor(val) {
+      this.value = val;
+      this.next = null;
+    }
+  }
 
+class LinkedList&lt;T&gt; {
+  private head: LinkedListItem&lt;T&gt;;
+  constructor(item: LinkedListItem&lt;T&gt;) {
+    this.head = item;
+  }
 
-let myListOfNumbers = new GenericCollection&lt;number&gt;();
-myListOfNumbers.pushItem(5);
-myListOfNumbers.pushItem('boop'); //error Argument type of '&quot;boop&quot;' is not assignable to parameter of type 'number'
+  insert(val, previousItem: LinkedListItem&lt;T&gt;) {
+    let newItem: LinkedListItem&lt;T&gt; = new LinkedListItem&lt;T&gt;(val);
+    let currentItem: LinkedListItem&lt;T&gt; = this.head;
 
-interface Dinosaur {
-  name: string;
-  breed: string;
-  teeth: number;
+    if (!currentItem) {
+        this.head = newItem;
+    } else {
+        while (true) {
+            if (currentItem === previousItem) {
+                let tempNextItem = previousItem.next;
+                currentItem.next = newItem;
+                newItem.next = tempNextItem;
+                break;
+            } else {
+                currentItem = currentItem.next;
+            }
+        }
+    }
+  }
+
+  append(val) {
+    let currentItem: LinkedListItem&lt;T&gt; = this.head;
+    let newItem = new LinkedListItem&lt;T&gt;(val);
+
+    if (!currentItem) {
+        this.head = newItem;
+    } else {
+        while (true) {
+            if (currentItem.next) {
+                currentItem = currentItem.next;
+            } else {
+                currentItem.next = newItem;
+                break;
+            }
+        }
+    }
+  }
+
+  prepend(val) {
+    let newItem = new LinkedListItem&lt;T&gt;(val);
+    let oldHead = this.head;
+
+    this.head = newItem;
+    newItem.next = oldHead;
+  }
+
+  delete(val) {
+    var currentItem = this.head;
+
+    if (!currentItem) {
+        return;
+    }
+
+    if (currentItem.value === val) {
+        this.head = currentItem.next;
+    } else {
+        var previous = null;
+
+        while (true) {
+            if (currentItem.value === val) {
+                if (currentItem.next) { // special case for last element
+                    previous.next = currentItem.next;
+                } else {
+                    previous.next = null;
+                }
+                currentItem = null; // avoid memory leaks
+                break;
+            } else {
+                previous = currentItem;
+                currentItem = currentItem.next;
+            }
+        }
+    }
+  }
+
+  showInArray() {
+    let arr = [];
+    let currentItem = this.head;
+
+    while (true) {
+        arr.push(currentItem.value);
+
+        if (currentItem.next) {
+            currentItem = currentItem.next;
+        } else {
+            break;
+        }
+    }
+
+    return arr;
+  }
 }
 
-let myListOfDinosaurs = new GenericCollection&lt;Dinosaur&gt;();
-let otherDino = {
-  name: 'Blue',
-  breed: 'Velociraptor',
-  teeth: 100
-}
+let myNumberList = new LinkedList&lt;number&gt;({value: 5});
+myNumberList.append(6);
+myNumberList.append(3);
+myNumberList.prepend(7);
 
-myListOfDinosaurs.pushItem(otherDino);
-
-myListOfDinosaurs.pushItem({name: 'Charlie'}); //error Argument type '{ name: string; }' is not assignable to parameter of type 'Dinosaur'.
+console.log(myNumberList.showInArray());
+//Logs &quot;[7, 5, 6, 3]&quot;
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<p>Thanks to generics we're able to use the same class in multiple different scenarios with any type.</p>
+<div line-highlight='12,13,14'></div>
+<p>Thanks to generics we're able to use the same <code>LinkedList</code> class in multiple different scenarios with any type.</p>
 <h3>Exercise 1</h3>
-<pre><code class="language-typescript">function randomIntElem(theArray: number[]): number {
-    let randomIndex = Math.floor(Math.random()*theArray.length);
-    return theArray[randomIndex];
+<pre><code class="language-html">&lt;script type=&quot;type&quot;&gt;
+function randomIntElem(theArray: number[]): number {
+  let randomIndex = Math.floor(Math.random()*theArray.length);
+  return theArray[randomIndex];
 }
- 
+
 let numbers: number[] = [103, 458, 472, 458];
 let randomNumber: number = randomIntElem(positions);
+&lt;/script&gt;
 </code></pre>
+<div class='codepen'></div>
 <p>This function will return a random value. Rewrite it as a generic that can return a random string from a list of strings</p>
 <pre><code class="language-typescript">let dinosaurs: string[] = ['trex', 'velociraptor', 'triceratops', 'pterodactyl'];
 let randomDino: string = randomThing(dinosaurs);
 </code></pre>
 <p><details>
 <summary>Solution</summary></p>
-<pre><code class="language-typescript">
-function randomThing&lt;T&gt;(anArray: T[]): T {
+<pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
+function randomIntElem&lt;T&gt;(anArray: T[]): T {
   let randomIndex = Math.floor(Math.random()*anArray.length);
   return anArray[randomIndex];
 }
 let dinosaurs: string[] = ['trex', 'velociraptor', 'triceratops', 'pterodactyl'];
-let randomDino: string = randomThing(dinosaurs);
+let randomDino: string = randomIntElem(dinosaurs);
+&lt;/script&gt;
 </code></pre>
+<div class='codepen'></div>
 <p></details></p>
 
 </section>
@@ -376,7 +447,7 @@ let randomDino: string = randomThing(dinosaurs);
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/typescript/7-generics.md"},"description":"Using generics in TypeScript.  \n","name":"typescript/generics","title":"Generics","type":"page","parent":"typescript","order":7,"comment":" ","pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/typescript/7-generics.md"},"description":"Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript. \n","name":"typescript/generics","title":"Generics","type":"page","parent":"typescript","order":7,"comment":" ","pathToRoot":"../.."};
 	</script>
 
 	

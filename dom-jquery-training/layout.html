@@ -150,7 +150,7 @@ $.extend($.prototype, {
            						expanded">
 						<a class="page"
 							href="layout.html"
-							title="Learn">
+							title="Learn how the browser lays out elements in the page and how to get an elements dimensions and location.">
 							Layout
 						</a>
 						
@@ -168,7 +168,7 @@ $.extend($.prototype, {
            						">
 						<a class="page"
 							href="events-part-1.html"
-							title="dom-jquery-training/events-part-1">
+							title="Learn the basics of DOM events.">
 							Events Part 1
 						</a>
 						
@@ -215,19 +215,6 @@ $.extend($.prototype, {
 			
 		
 			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../typescript.html"
-							title="Intro to TypeScript">
-							TypeScript
-						</a>
-						
-					</li>
-				
-			
 		
 			
 		
@@ -268,7 +255,7 @@ $.extend($.prototype, {
 		
 			
 				<section class="description">
-    <p>Learn</p>
+    <p>Learn how the browser lays out elements in the page and how to get an elements dimensions and location.</p>
 
 </section>
 
@@ -423,32 +410,325 @@ Component.extend({
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='100-107,only'></div>
+<h2>Setup</h2>
+<p>Run the following example in CodePen:</p>
+<pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
+&lt;script src=&quot;//code.jquery.com/qunit/qunit-1.12.0.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//bitovi.github.io/university/static/scripts/jquery-test.js&quot;&gt;&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//bitovi.github.io/university/static/scripts/jquery-test.css&quot;&gt;
+&lt;script type=&quot;module&quot;&gt;
+(function() {
+  $ = function(selector) {
+    if ( !(this instanceof $) ) {
+      return new $(selector);
+    }
+    var elements;
+    if (typeof selector === &quot;string&quot;) {
+      elements = document.querySelectorAll(selector);
+    } else if ($.isArrayLike(selector)) {
+      elements = selector;
+    }
+    [].push.apply(this, elements);
+  };
+
+  $.extend = function(target, object) {
+    for (var prop in object) {
+      if (object.hasOwnProperty(prop)) {
+        target[prop] = object[prop];
+      }
+    }
+    return target;
+  };
+
+  // Static methods
+  $.extend($, {
+    isArray: function(obj) {
+      return Object.prototype.toString.call(obj) === &quot;[object Array]&quot;;
+    },
+    isArrayLike: function(obj) {
+      return obj &amp;&amp;
+        typeof obj === &quot;object&quot; &amp;&amp;
+        (   obj.length === 0 ||
+            typeof obj.length === &quot;number&quot; &amp;&amp;
+            obj.length &gt; 0 &amp;&amp;
+            obj.length - 1 in obj );
+
+    },
+    each: function(collection, cb) {
+      if ($.isArrayLike(collection)) {
+        for (var i = 0; i &lt; collection.length; i++) {
+          if (cb.call(this, i, collection[i]) === false) {
+            break;
+          }
+        }
+      } else {
+        for (var prop in collection) {
+          if (collection.hasOwnProperty(prop)) {
+            if (cb.call(this, prop, collection[prop]) === false) {
+              break;
+            }
+          }
+        }
+      }
+      return collection;
+    },
+    makeArray: function(arr) {
+      if ($.isArray(arr)) {
+        return arr;
+      }
+      var array = [];
+      $.each(arr, function(i, item) {
+        array[i] = item;
+      });
+      return array;
+    },
+    proxy: function(fn, context) {
+      return function() {
+        return fn.apply(context, arguments);
+      };
+    }
+  });
+
+  function makeTraverser(traverser) {
+    return function() {
+      var elements = [], args = arguments;
+      $.each(this, function(i, element) {
+        var els = traverser.apply(element, args);
+        if ($.isArrayLike(els)) {
+          elements.push.apply(elements, els);
+        } else if (els) {
+          elements.push(els);
+        }
+      });
+      return $(elements);
+    };
+  }
+
+  $.extend($.prototype, {
+    html: function(newHtml) {
+      if(arguments.length) {
+        return $.each(this, function(i, element) {
+          element.innerHTML = newHtml;
+        });
+      } else {
+        return this[0].innerHTML;
+      }
+    },
+    val: function(newVal) {
+      if(arguments.length) {
+        return $.each(this, function(i, element) {
+          element.value = newVal;
+        });
+      } else {
+        return this[0].value;
+      }
+    },
+    text: function(newText) {
+      if (arguments.length) {
+        return $.each(this, function(i, element) {
+          element.textContent = newText;
+        });
+      } else {
+        return this[0].textContent;
+      }
+    },
+    find: makeTraverser(function(selector) {
+      return this.querySelectorAll(selector);
+    }),
+    parent: makeTraverser(function() {
+      return this.parentNode;
+    }),
+    next: makeTraverser(function() {
+      return this.nextElementSibling;
+    }),
+    prev: makeTraverser(function() {
+      return this.previousElementSibling;
+    }),
+    children: makeTraverser(function() {
+      return this.children;
+    }),
+    attr: function(attrName, value) {
+      if (arguments.length == 2) {
+        return $.each(this, function(i, element) {
+          element.setAttribute(attrName, value);
+        });
+      } else {
+        return this[0] &amp;&amp; this[0].getAttribute(attrName);
+      }
+    },
+    css: function(cssPropName, value) {
+      if (arguments.length == 2) {
+        return $.each(this, function(i, element) {
+          element.style[cssPropName] = value;
+        });
+      } else {
+        return this[0] &amp;&amp;
+          window.getComputedStyle(this[0])
+            .getPropertyValue(cssPropName);
+      }
+    },
+    width: function() { },
+    hide: function() { },
+    show: function() { },
+    offset: function() { }
+  });
+
+})();
+&lt;/script&gt;
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='158-161,only'></div>
+<p>Each exercise builds on the previous exercise. There is a completed solution at the end of this page.</p>
 <h2>Exercise: <code>collection.width() -&gt; number</code></h2>
 <h3>The problem</h3>
+<p><a href="http://api.jquery.com/width/">collection.width</a> gets the current computed width for the first element in the set of matched elements.</p>
+<pre><code class="language-html">&lt;div class=&quot;outer&quot;&gt;&lt;div class=&quot;inner&quot;&gt;Hi&lt;/div&gt;&lt;/div&gt;
+&lt;style&gt;
+.outer {width: 100px;}
+.inner { border: solid 5px green; padding: 10px }
+&lt;/style&gt;
+&lt;script type=&quot;module&quot;&gt;
+import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+
+console.log( $(&quot;.inner&quot;).width() ) //logs 70
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
 <p><details>
 <summary>Click to see test code</summary></p>
-<pre><code class="language-js">QUnit
+<pre><code class="language-js">QUnit.test('$.fn.width', function(){
+    // .big-width { width: 1000px; ... }
+    // #qunit-fixture div { padding: 20px; border: solid 10px black; }
+    $('#qunit-fixture')
+        .html('&lt;div class=&quot;big-width&quot;&gt;&lt;div&gt;Element&lt;/div&gt;&lt;/div&gt;');
+    equal(
+        $('#qunit-fixture .big-width div').width(),
+        1000 - 60,
+        'width is correct');
+});
 </code></pre>
 <p></details></p>
 <h3>What you need to know</h3>
+<ul>
+<li>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/clientWidth">clientWidth</a>
+property returns the width of the element including the padding.</li>
+<li>You can read the computed <code>padding-left</code> and <code>padding-right</code> style properties.</li>
+</ul>
 <h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<pre><code class="language-js">solution
+<pre><code class="language-js">    width: function() {
+      var paddingLeft = parseInt(this.css(&quot;padding-left&quot;), 10),
+      paddingRight = parseInt(this.css(&quot;padding-right&quot;), 10);
+      return this[0].clientWidth - paddingLeft - paddingRight;
+    },
 </code></pre>
 <p></details></p>
 <h2>Exercise: <code>collection.show()</code> and <code>collection.hide()</code></h2>
 <h3>The problem</h3>
+<p><a href="http://api.jquery.com/show/">collection.show()</a> and
+<a href="http://api.jquery.com/hide/">collection.hide()</a> show or hide the elements
+in the collection.</p>
 <p><details>
 <summary>Click to see test code</summary></p>
-<pre><code class="language-js">QUnit
+<pre><code class="language-js">QUnit.test('$.fn.show and $.fn.hide', function(){
+    $('#qunit-fixture').html('&lt;div id=&quot;el&quot;&gt;text&lt;/div&gt;');
+
+    equal( $('#el').hide()[0].style.display, 'none');
+    equal( $('#el').show()[0].style.display, '');
+});
 </code></pre>
 <p></details></p>
 <h3>What you need to know</h3>
+<ul>
+<li>To hide an element, set its display to <code>&quot;none&quot;</code>.</li>
+<li>To show an element, set its display to <code>&quot;&quot;</code>.</li>
+</ul>
 <h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<pre><code class="language-js">solution
+<pre><code class="language-js">    hide: function() {
+      return this.css(&quot;display&quot;, &quot;none&quot;);
+    },
+    show: function() {
+      return this.css(&quot;display&quot;, &quot;&quot;);
+    },
+</code></pre>
+<p></details></p>
+<h2>Bonus Exercise: <code>collection.offset()</code></h2>
+<h3>The problem</h3>
+<p><a href="http://api.jquery.com/offset/">collection.offset()</a> returns the current coordinates of the first element relative to the document.</p>
+<pre><code class="language-html">&lt;div class=&quot;outer&quot;&gt;&lt;div class=&quot;inner&quot;&gt;Hi&lt;/div&gt;&lt;/div&gt;
+&lt;style&gt;
+.outer {
+    position: absolute;
+    left: 20px; top: 30px;
+}
+.inner {
+    border: solid 1px green; padding: 10px;
+    position: relative;
+    left: 10px; top: 10px;
+}
+&lt;/style&gt;
+&lt;script type=&quot;module&quot;&gt;
+import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+
+console.log( $(&quot;.inner&quot;).offset() )
+//logs { left: 30, top: 40 }
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<p><details>
+<summary>Click to see test code</summary></p>
+<pre><code class="language-js">QUnit.test('$.fn.offset', function(){
+    var bigWidth = document.createElement('div'),
+    row1 = document.createElement('div'),
+    row2 = document.createElement('div'),
+    pos = document.createElement('div');
+
+    bigWidth.className = 'big-width';
+    row1.className = 'row';
+    row2.className = 'row';
+    pos.id = 'pos';
+
+    bigWidth.appendChild(row1);
+    bigWidth.appendChild(row2);
+    row2.appendChild(pos);
+
+    document.body.appendChild(bigWidth);
+
+    var offset = $('#pos').offset();
+
+    equal( offset.top, 120, 'top' );
+    equal( offset.left, -990, 'left');
+
+    //cleaning up after our test
+    var node = $('.big-width')[0];
+    node.parentNode.removeChild(node);
+});
+</code></pre>
+<p></details></p>
+<h3>What you need to know</h3>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect">getBoundingClientRect</a>
+gives an element's position relative to the window.</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/pageXOffset">pageXOffset</a> and
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/pageXOffset">pageYOffset</a> give how far
+the window has been scrolled.</li>
+</ul>
+<h3>The solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-js">    offset: function() {
+      var offset = this[0].getBoundingClientRect();
+      return {
+        top: offset.top + window.pageYOffset,
+        left: offset.left + window.pageXOffset
+      };
+    }
 </code></pre>
 <p></details></p>
 <h2>Complete solution</h2>
@@ -646,7 +926,7 @@ Component.extend({
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/dom/5-layout.md"},"description":"Learn \n","name":"dom-jquery-training/layout","title":"Layout","type":"page","parent":"dom-jquery-training","order":5,"comment":" ","pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/dom/5-layout.md"},"description":"Learn how the browser lays out elements in the page and how to get an elements dimensions and location.\n\n","name":"dom-jquery-training/layout","title":"Layout","type":"page","parent":"dom-jquery-training","order":5,"comment":" ","pathToRoot":"../.."};
 	</script>
 
 	

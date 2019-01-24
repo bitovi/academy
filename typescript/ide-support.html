@@ -85,136 +85,6 @@ $.extend($.prototype, {
 			
 		
 			
-				
-					<li class="
-           						parent
-           						expanded">
-						<a class="page"
-							href="../typescript.html"
-							title="Intro to TypeScript">
-							TypeScript
-						</a>
-						
-							
-	<ul>
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../typescript/why-typescript.html"
-							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript.">
-							Why TypeScript
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="current
-           						parent
-           						expanded">
-						<a class="page"
-							href="ide-support.html"
-							title="IDE Support for TypeScript">
-							IDE Support
-						</a>
-						
-							
-
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../typescript/types.html"
-							title="Starting to use types in TypeScript.">
-							Types
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../typescript/functions.html"
-							title="Functions in TypeScript">
-							Functions
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../typescript/classes.html"
-							title="Classes in TypeScript">
-							Classes
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../typescript/interfaces.html"
-							title="Interfaces in TypeScript">
-							Interfaces
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../typescript/generics.html"
-							title="Using generics in TypeScript.">
-							Generics
-						</a>
-						
-					</li>
-				
-			
-		
-			
-		
-	</ul>
-
-
-						
-					</li>
-				
-			
 		
 			
 		
@@ -255,7 +125,7 @@ $.extend($.prototype, {
 		
 			
 				<section class="description">
-    <p>IDE Support for TypeScript</p>
+    <p>Learn about TypeScript configurations and IDES good for TypeScript Development.</p>
 
 </section>
 
@@ -269,34 +139,50 @@ $.extend($.prototype, {
 			
 				<section class="body">
     <h2>Overview</h2>
-<h3>Visual Studio Code</h3>
-<p><a href="https://code.visualstudio.com/" target="_blank">VS Code</a> is Microsoft's modern take on an IDE for app development (P.S. TypeScript is a Microsoft Open Source project).  VS Code has built in TypeScript support for syntax highlighting, IntelliSense code completion, and linting.</p>
-<p><a href="../static/img/vs-code-screenshot.png" target="\_blank"><img src="../static/img/vs-code-screenshot.png" width="100%"/></a></p>
-<h4>tsconfig.json</h4>
-<p>Customize the TypeScript compiling and linting options by creating a <code>tsconfig.json</code> file in the root directory of your TypeScript project.</p>
+<p>In this section we'll learn about TypeScript configuration options to help us optimize our workflow, and look at IDEs that have great TypeScript support for building TypeScript projects.</p>
+<h2>Configuring TypeScript</h2>
+<p>We're able to configure how our projects use TypeScript from selecting which files to compile to removing comments from those files. This is done through the creation of a <code>tsconfig.json</code> file.</p>
+<h3>tsconfig.json</h3>
+<p>Customize the TypeScript compiling and linting options by creating a <code>tsconfig.json</code> file in the root directory of your TypeScript project. The following config will</p>
+<ul>
+<li>specify ECMAScript target version as 'es5'</li>
+<li>specify module code generation (from 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015' or 'esnext')</li>
+<li>generate source map files</li>
+<li>remove comments from compiled code</li>
+</ul>
 <pre><code class="language-javascript">{
     &quot;compilerOptions&quot;: {
         &quot;target&quot;: &quot;es5&quot;,
         &quot;module&quot;: &quot;commonjs&quot;,
-        &quot;sourceMap&quot;: true
+        &quot;sourceMap&quot;: true,
+        &quot;removeComments&quot;: true
     }
 }
 </code></pre>
+<p>Full configuration options are available here: <a href="http://json.schemastore.org/tsconfig" target="_blank">http://json.schemastore.org/tsconfig</a></p>
 <h3>Linting</h3>
-<p>The following options will lint unused local variables and parameters.</p>
-<p><code>tsconfig.json</code></p>
+<p>We can also configure linting options to catch bugs and help enforce uniform styling. The following options will warn on unused local variables and parameters, and expressions or declarations implying 'any'.</p>
 <pre><code class="language-javascript">{
     &quot;compilerOptions&quot;: {
         ...
         &quot;noUnusedLocals&quot;: true,
         &quot;noUnusedParameters&quot;: true,
+        &quot;noImplicitAny&quot;: true
         ...
     }
 }
 </code></pre>
+<h2>IDEs</h2>
+<p>Integrated Development Environments have come a long way in supporting modern web development. With little to no configuration they offer built-in debugging, Git integration, command line useage, and robust packages for additional addons.</p>
+<h3>Visual Studio Code</h3>
+<p><a href="https://code.visualstudio.com/" target="_blank">VS Code</a> is Microsoft's modern take on an IDE for app development (P.S. TypeScript is a Microsoft Open Source project).  VS Code has built in TypeScript support for syntax highlighting, IntelliSense code completion, and linting.</p>
+<p><a href="../static/img/vs-code-screenshot.png" target="\_blank"><img src="../static/img/vs-code-screenshot.png" width="100%" alt="Visual Studio Code screenshot" /></a></p>
 <h3>Atom</h3>
 <p>Atom is another good modern IDE that easily supports and aids in TypeScript development with the installation of the <a href="https://atom.io/packages/atom-typeScript" target="_blank"> atom-typeScript plugin</a>.</p>
-<p><a href="../static/img/atom-screenshot.png" target="\_blank"><img src="../static/img/atom-screenshot.png" width="100%"/></a></p>
+<p><a href="../static/img/atom-screenshot.png" target="\_blank"><img src="../static/img/atom-screenshot.png" width="100%" alt="Atom screenshot" /></a></p>
+<h3>Webstorm</h3>
+<p><a href="https://www.jetbrains.com/webstorm/download/" target="_blank">Webstorm</a> is a platform by JetBrains that is loved for its great code refactoring assistance and version control integration, but it does require a paid subscription.</p>
+<p><a href="../static/img/webstorm-screenshot.png" target="\_blank"><img src="../static/img/webstorm-screenshot.png" width="100%" alt="Webstorm screenshot" /></a></p>
 <h3>Exercise</h3>
 <p>In the same directory as your <code>helloworld.ts file</code>, create <code>hellouniverse.ts</code>.</p>
 <p>Change your <code>helloworld.ts</code> file to be:</p>
@@ -311,13 +197,22 @@ document.body.innerHTML = greeter(user);
 export default greeter;
 </code></pre>
 <p>In your <code>hellouniverse.ts</code> file add:</p>
-<pre><code class="language-typescript">import greeter from './greeter'
+<pre><code class="language-typescript">import greeter from './helloworld'
 
-let user = &quot;Universe&quot;;
+let user = 1;
 
 document.body.innerHTML = greeter(user);
 </code></pre>
-<p>Use your editor's module error detection help you find the bug and import the <code>greeter</code> function correctly.</p>
+<p>Use your preferred editor's error detection help you find the bug and use the <code>greeter</code> function correctly.</p>
+<p><details>
+<summary>solution</summary></p>
+<pre><code class="language-typescript">import greeter from './helloworld'
+
+let user = 'Universe';
+
+document.body.innerHTML = greeter(user);
+</code></pre>
+<p></details></p>
 
 </section>
 
@@ -329,7 +224,7 @@ document.body.innerHTML = greeter(user);
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/typescript/2-ide-support.md"},"description":"IDE Support for TypeScript \n","name":"typeScript/ide-support","title":"IDE Support","type":"page","parent":"typescript","order":2,"comment":" ","pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/typescript/2-ide-support.md"},"description":"Learn about TypeScript configurations and IDES good for TypeScript Development. \n","name":"typeScript/ide-support","title":"IDE Support","type":"page","parent":"typescript","order":2,"comment":" ","pathToRoot":"../.."};
 	</script>
 
 	

@@ -85,19 +85,6 @@ $.extend($.prototype, {
 			
 		
 			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../typescript.html"
-							title="Intro to TypeScript">
-							TypeScript
-						</a>
-						
-					</li>
-				
-			
 		
 			
 		
@@ -353,12 +340,15 @@ we will update the displayed cardNumber error, if there is one, on every future 
 <li>A <code>userCardNumberBlurred</code> <code>Subject</code> that emits when the <code>cardNumber</code> input is blurred.</li>
 <li>A <code>showCardError</code> that emits true when the <code>cardNumber</code> error should be shown.</li>
 <li>A <code>showOnlyWhenBlurredOnce(errorObservable, blurredObservable)</code> function that returns
-the <code>showCardError</code> observable from two source observables.</li>
+the <code>showCardError</code> observable from two source observables.<br />
+<code>showOnlyWhenBlurredOnce</code> should use the <strong>event-reducer</strong> pattern to
+promote the <code>errorObservable</code> and <code>blurredObservable</code> into events and
+reduce those events into the <code>showCardError</code> observable.</li>
 </ul>
 <h2>What you need to know</h2>
 <ul>
-<li><p>One of the most useful patterns in constructing streams is the event-reducer
-pattern. On a high-level it involves making streams events, and using those
+<li><p>One of the most useful patterns in constructing streams is the <strong>event-reducer</strong>
+pattern. On a high-level it involves turning values into events, and using those
 events to update a stateful object.</p>
 <p>For example, we might have a <code>first</code> and a <code>last</code> stream:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
@@ -377,8 +367,8 @@ function sequentially(value, dueTime, period){
 const first = sequentially([&quot;Justin&quot;, &quot;Ramiya&quot;], 0, 1000);
 const last = sequentially([&quot;Shah&quot;, &quot;Meyer&quot;], 500, 1000);
 
-first.subscribe( v =&gt; console.log(&quot;f&quot;, v));
-last.subscribe( v =&gt; console.log(&quot;l&quot;, v))
+first.subscribe( v =&gt; console.log(&quot;first&quot;, v));
+last.subscribe( v =&gt; console.log(&quot;last&quot;, v))
 // first: ---Justin---RamiyaX
 // last:  ------Shah__---Meyer_X
 &lt;/script&gt;

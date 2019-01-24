@@ -150,7 +150,7 @@ $.extend($.prototype, {
            						">
 						<a class="page"
 							href="layout.html"
-							title="Learn">
+							title="Learn how the browser lays out elements in the page and how to get an elements dimensions and location.">
 							Layout
 						</a>
 						
@@ -165,7 +165,7 @@ $.extend($.prototype, {
            						">
 						<a class="page"
 							href="events-part-1.html"
-							title="dom-jquery-training/events-part-1">
+							title="Learn the basics of DOM events.">
 							Events Part 1
 						</a>
 						
@@ -215,19 +215,6 @@ $.extend($.prototype, {
 			
 		
 			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../typescript.html"
-							title="Intro to TypeScript">
-							TypeScript
-						</a>
-						
-					</li>
-				
-			
 		
 			
 		
@@ -275,7 +262,69 @@ $.extend($.prototype, {
 			
 			
 				<section class="body">
-    <h3>The problem</h3>
+    <h2>Overview</h2>
+<h2>Propagation Demo</h2>
+<pre><code class="language-html">&lt;style&gt;
+    * {font-family: Consolas, Monaco, Menlo, monospace; font-size: 1.2em}
+    a {display: block; margin-left: 20px;}
+    div {margin-left: 20px;}
+&lt;/style&gt;
+&amp;lt;body&amp;gt;
+&lt;div class=&quot;well&quot;&gt;
+    &amp;lt;div&amp;gt;
+    &lt;a href=&quot;#someHash&quot;&gt;&amp;lt;a&amp;gt;&amp;lt;/a&amp;gt;&lt;/a&gt;
+    &amp;lt;/div&amp;gt;
+&lt;/div&gt;
+&amp;lt;/body&amp;gt;
+&lt;script type=&quot;module&quot;&gt;
+    /*
+    What happens if we:
+        - stopPropagation() within the body's capture phase listener?
+        - stopPropagation() within the div's target phase listener?
+        - remove innerHTML within the body's capture phase listener?
+     */
+
+
+    var body = document.querySelector('body'),
+        div = document.querySelector('div'),
+        a = document.querySelector('a');
+
+    body.addEventListener('click', function(ev) {
+        console.log('body bubbled!', ev);
+    });
+
+    body.addEventListener('click', function(ev) {
+        ev.stopImmediatePropagation();
+        ev.preventDefault();
+        console.log('body captured 1!');
+    }, true);
+
+    body.addEventListener('click', function(ev) {
+        console.log('body captured 2!');
+    }, true);
+
+    div.addEventListener('click', function() {
+        console.log('div bubbled!');
+    });
+
+    div.addEventListener('click', function() {
+        console.log('div captured!');
+    }, true);
+
+    a.addEventListener('click', function() {
+        console.log('a bubble phase!');
+    });
+
+    a.addEventListener('click', function() {
+        console.log('a capture phase!');
+    }, true);
+&lt;/script&gt;
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='1,only'></div>
+<h2>Exercise</h2>
+<h3>The problem</h3>
 <p><details>
 <summary>Click to see test code</summary></p>
 <pre><code class="language-js">QUnit
