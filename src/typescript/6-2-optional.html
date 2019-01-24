@@ -6,6 +6,12 @@ interface Dinosaur {
   location: string;
 }
 
-let blue = {name: 'blue', breed: 'Velociraptor', location: 'Section B'}; //works
-trackDino(blue); // Section B
+function trackDino(dino: Dinosaur) {
+  console.log(dino.location);
+}
+
+let blue = {name: 'blue', breed: 'Velociraptor', location: 'Section B'};
+//works
+trackDino(blue);
+//Logs "Section B"
 </script>

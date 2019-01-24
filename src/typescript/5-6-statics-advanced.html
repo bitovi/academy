@@ -1,9 +1,4 @@
 <script type="typescript">
-interface ResponseConfig {
-  error?: string;
-  response: string;
-}
-
 class DinoCage {
   static cageInstances: number = 0;
   static dinos: number = 0;
@@ -24,13 +19,24 @@ class RaptorCage extends DinoCage {
     this.raptors = dinos;
   }
   
-  public securityCheck() : ResponseConfig {
+  public securityCheck() {
     if (this.raptors < 7) {
-      return { response: 'security check passes'}
+      return 'security check passes'
     }
     else {
-      return {error: "FAILURE", response: 'hold on to your butts'}
+      return 'hold on to your butts'
     }
   }
 }
+
+var paddock1 = new DinoCage(2);
+var paddock2 = new DinoCage(3);
+var uberPaddock1 = new RaptorCage(6);
+var uberPaddock2 = new RaptorCage(8); 
+console.log(DinoCage.cageInstances); 
+//Logs "3" 
+console.log(DinoCage.countDinos()); 
+//Logs "19 dinosaurs"
+console.log(uberPaddock2.securityCheck()); 
+//Logs "hold on to your butts"
 </script>
