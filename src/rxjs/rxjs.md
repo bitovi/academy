@@ -5,6 +5,19 @@
 
 @body
 
+## Before You Begin
+
+<a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">
+<img src="https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.png?width=200"
+  style="float:left"/> <span style="margin-top: 10px;display: inline-block;">Click here to join<br/>Bitovi's Slack Community</span></a>
+
+Join Bitovi's Slack Community to get help on Bitovi University courses or other
+Angular, React, CanJS and JavaScript problems.
+
+Please ask questions related to RxJS and Angular in the [Angular Chat Room](https://bitovi-community.slack.com/messages/CFD2J3HT3).
+
+If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/university/issues) or email `contact@bitovi.com`.
+
 ## Overview
 
 In this tutorial we will create the following validating credit card form:
@@ -53,3 +66,15 @@ be a useful reference for understanding how the tutorial works:
 
 
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+
+## Tips
+
+- Open Developer Tools and stack CodePen vertically:   
+  <img src="./static/img/codepen-stack.png" width="50%" alt="CodePen stacked" title="CodePen stacked"
+    style="border: solid 1px #808080"/>
+- Save your CodePen
+- If you can't figure out what is breaking, use an [online diff checker](https://www.diffchecker.com/) to
+  compare your code with the solution.  
+  <img src="./static/img/diff-checker.png" width="50%" alt="Diff Checker" title="DiffChecker"
+    style="border: solid 1px #808080"/>
