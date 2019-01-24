@@ -122,7 +122,8 @@ const number = source
     .pipe( log("number", value) );
 ```
 
-
+> __NOTE:__ Notice that to log `number`, we call `.pipe( log(...) )`
+> on the on what would be the `number` observable. 
 
 ## The solution
 

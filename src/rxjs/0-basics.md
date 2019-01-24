@@ -39,7 +39,6 @@ const observable = Observable.create(function (observer) {
   observer.next(1);
   observer.next(2);
   observer.next(3);
-  observer.complete();
 });
 
 function subscriber(){
@@ -65,7 +64,6 @@ const observable = Observable.create(function (observer) {
   observer.next(1);
   observer.next(2);
   observer.next(3);
-  observer.complete();
 });
 
 function subscriberA( value ) {
@@ -85,7 +83,7 @@ observable.subscribe( subscriberB );
 
 ### Lifecycles
 
-RxJS observables have lifecycle.  They can publish values over
+RxJS observables have a lifecycle.  They can publish values over
 time and complete. They can also publish errors.  You can listen
 to all three events with the following:
 
@@ -132,6 +130,9 @@ console.log('just after subscribe');
 ```
 @codepen
 
+When an observable _completes_, all of its subscribers are
+unsubscribed. This helps avoid memory leaks.
+
 > __NOTE:__ When the observable is subscribed,
 > the `1` value is published synchronously. Then
 > `'just after subscribe'` is logged.
@@ -146,6 +147,8 @@ the subscription like:
 var subscription = observable.subscribe( ... );
 subscription.unsubscribe();
 ```
+
+Unsubscribing prevents receiving future notifications and avoids memory leaks.
 
 The following unsubscribes after the first published value. Notice that
 the `subscriber` function is only called once.

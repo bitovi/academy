@@ -97,18 +97,18 @@
 			<tr><td id="DOMContentLoadeded">DOMContentLoaded</td>
 				<td>Called when the document is ready and parsed, but before images and other resources are loaded</td>
 			</tr>
-			<tr><td class="unloaded"> unload </td>
+			<tr><td id="unloaded"> unload </td>
 				<td>Occurs when the DOM implementation removes a document from a window or frame.</td>
 			</tr>
-			<tr><td class="beforeunloaded"> beforeunloaded </td>
+			<tr><td id="beforeunloaded"> beforeunloaded </td>
 				<td>Occurs when the DOM implementation removes a document from a window or frame, but allows limited
 				JavaScript interaction.</td>
 			</tr>
-			<tr><td class="aborted"> abort </td>
+			<tr><td id="aborted"> abort </td>
 				<td>Occurs when page loading is stopped before an image has been allowed to completely load.</td>
 			</tr>
 
-			<tr><td class="errored"> error </td>
+			<tr><td id="errored"> error </td>
 				<td>Occurs when an image does not load properly or when an error occurs during script execution.</td>
 			</tr>
 
@@ -200,6 +200,9 @@
 					<input type="input" value="" class="input"/>
 				</td>
 			</tr>
+			<tr id='pointer-events'>
+				<th colspan="2">Pointer Events</th>
+			</tr>
 			<tr>
 				<th colspan="2">Drag Events</th>
 			</tr>
@@ -220,8 +223,10 @@
 					<div class="droppable">Drag Over Me</div>
 				</td>
 			</tr>
+
+
 			<tr id="element-other-events">
-				<th colspan="2">Other Events On a &lt;div&gt;</th>
+				<th colspan="2">Other Events On a div element</th>
 			</tr>
 			<tr id="document-other-events">
 				<th colspan="2">Other Events On The document</th>
@@ -250,6 +255,8 @@
 <script type="module">
 import "https://unpkg.com/jquery@3/dist/jquery.js";
 
+// Long term, everything should be produced from JavaScript.
+// Currently, it is a mix of HTML and JS driving everything.
 var events = [
 	// Mouseevents
 	'click',
@@ -276,6 +283,7 @@ var events = [
 		//ev.preventDefault();
 		//ev.returnValue = "Are you sure you want to quit?";
 	}},
+	{event: 'error', elements: [window]},
 	{event: 'resize', elements: [window]},
 	{event: 'DOMContentLoaded', elements: [document]},
 	{event: 'abort', elements: [window]},
@@ -298,8 +306,19 @@ var events = [
 		if ( event.target.className == "droppable" ) {
 			event.target.style.background = "purple";
 		}
-	}}
+	}},
 
+	{event: 'pointercancel', parent: "pointer-events"},
+	{event: 'pointermove', parent: "pointer-events"},
+	{event: 'pointerout', parent: "pointer-events"},
+	{event: 'pointerover', parent: "pointer-events"},
+	{event: 'pointerleave', parent: "pointer-events"},
+	{event: 'pointerenter', parent: "pointer-events"},
+	{event: 'pointerup', parent: "pointer-events"},
+	{event: 'pointerdown', parent: "pointer-events"},
+
+	{event: 'fullscreenchange', parent: 'document-other-events', elements: [document]},
+	{event: 'fullscreenerror', parent: 'document-other-events', elements: [document]},
 ];
 
 var detailedEvents = new Set();
@@ -382,17 +401,46 @@ events.forEach(function(eventData){
 		eventData =  {event: eventData, elements: document.getElementsByClassName(eventData) }
 	}
 	detailedEvents.add(eventData.event);
+	var hasRow = $('#' + eventData.event + 'ed').length;
+	if(! hasRow && !eventData.elements) {
+		$("#"+eventData.parent).after( makeContentForEvent(eventData.event) );
+	} else {
+		if(!hasRow) {
+			$("#"+eventData.parent).after( makeRowContent(eventData.event) );
+		}
 
-	[].forEach.call(eventData.elements, function(element){
-		element.addEventListener(eventData.event, function(event){
-			if(eventData.handler) {
-				eventData.handler.call(this, event);
-			}
-			showEventData.call(this, eventData.event, event);
-			animate('#' + eventData.event + 'ed');
-		}, false);
-	});
+		[].forEach.call(eventData.elements, function(element){
+			element.addEventListener(eventData.event, function(event){
+				if(eventData.handler) {
+					eventData.handler.call(this, event);
+				}
+				showEventData.call(this, eventData.event, event);
+				animate('#' + eventData.event + 'ed');
+			}, false);
+		});
+	}
+
+
+
+
 });
+
+function makeRowContent(event) {
+	return $(`<tr>
+		<td id="${event}ed" class="input"> ${event} </td>
+		<td tabindex="0" class='example'>${event}</td>
+	</tr>`)
+}
+
+function makeContentForEvent(event) {
+	var content = makeRowContent(event);
+
+	content.find(".example").on(event, function(e){
+		showEventData.call(this, event, e);
+		animate('#' + event + 'ed');
+	})
+	return content;
+}
 
 function makeOtherEventsOn(object, appendAfter) {
 	var otherEventsList = [];
@@ -404,17 +452,7 @@ function makeOtherEventsOn(object, appendAfter) {
 		}
 	}
 	otherEventsList.sort().reverse().forEach(function(event){
-		var content = $(`<tr>
-			<td id="${event}ed" class="input"> ${event} </td>
-			<td tabindex="0" class='example'>${event}</td>
-		</tr>`)
-		content.find(".example").on(event, function(e){
-			showEventData.call(this, event, e);
-			animate('#' + event + 'ed');
-		})
-		appendAfter.after(
-			content
-		)
+		appendAfter.after( makeContentForEvent(event) );
 	});
 }
 makeOtherEventsOn(document.createElement("div"), $("#element-other-events"));
@@ -422,5 +460,12 @@ makeOtherEventsOn(document.createElement("div"), $("#element-other-events"));
 makeOtherEventsOn(document, $("#document-other-events"));
 
 makeOtherEventsOn(window, $("#window-other-events"));
+
+
+document.addEventListener("fullscreenchange", function( event ) {
+
+    console.log("CHANGE");
+
+});
 
 </script>

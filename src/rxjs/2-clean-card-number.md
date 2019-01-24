@@ -11,7 +11,7 @@ another observable value.
 In this section, we will:
 
 - Create a `this.cardNumber` observable that contains the
-  text of the `cardNumber` input without spaces (`\s`) or dashes (`-`).
+  text of the `userCardNumber` input without spaces (`\s`) or dashes (`-`).
 - Write out the value of the `this.cardNumber` observable.
 
 ## What you need to know

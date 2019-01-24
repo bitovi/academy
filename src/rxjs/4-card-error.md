@@ -13,7 +13,7 @@ In this section, we will:
   16 digits.
 - Create a `cardError` observable that represents this error.
 - `cardError` should emit:
-  - _"There is no card"_ if the `carrdNumber` is falsy.
+  - _"There is no card"_ if the `cardNumber` is falsy.
   - _""There should be 16 characters in a card""_ characters if the length of `cardNumber`
     is not 16 digits.
 - `cardError` should be displayed within the `<div class="message">` element.

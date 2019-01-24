@@ -1,0 +1,55 @@
+<style>
+	* {font-family: Consolas, Monaco, Menlo, monospace; font-size: 1.2em}
+	a {display: block; margin-left: 20px;}
+	div {margin-left: 20px;}
+</style>
+&lt;body&gt;
+<div class="well">
+	&lt;div&gt;
+	<a href="#someHash">&lt;a&gt;&lt;/a&gt;</a>
+	&lt;/div&gt;
+</div>
+&lt;/body&gt;
+<script type="module">
+	/*
+	What happens if we:
+		- stopPropagation() within the body's capture phase listener?
+		- stopPropagation() within the div's target phase listener?
+		- remove innerHTML within the body's capture phase listener?
+	 */
+
+
+	var body = document.querySelector('body'),
+		div = document.querySelector('div'),
+		a = document.querySelector('a');
+
+	body.addEventListener('click', function(ev) {
+		console.log('body bubbled!', ev);
+	});
+
+	body.addEventListener('click', function(ev) {
+		ev.stopImmediatePropagation();
+		ev.preventDefault();
+		console.log('body captured 1!');
+	}, true);
+
+	body.addEventListener('click', function(ev) {
+		console.log('body captured 2!');
+	}, true);
+
+	div.addEventListener('click', function() {
+		console.log('div bubbled!');
+	});
+
+	div.addEventListener('click', function() {
+		console.log('div captured!');
+	}, true);
+
+	a.addEventListener('click', function() {
+		console.log('a bubble phase!');
+	});
+
+	a.addEventListener('click', function() {
+		console.log('a capture phase!');
+	}, true);
+</script>

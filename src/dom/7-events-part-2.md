@@ -2,6 +2,17 @@
 @parent dom-jquery-training 7
 @body
 
+## Overview
+
+
+## Propagation Demo
+
+@sourceref ./propagation.html
+@codepen
+@highlight 1,only
+
+## Exercise
+
 ### The problem
 
 <details>

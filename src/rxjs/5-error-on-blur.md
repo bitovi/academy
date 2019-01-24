@@ -18,14 +18,17 @@ We will do this with:
 - A `userCardNumberBlurred` `Subject` that emits when the `cardNumber` input is blurred.
 - A `showCardError` that emits true when the `cardNumber` error should be shown.
 - A `showOnlyWhenBlurredOnce(errorObservable, blurredObservable)` function that returns
-  the `showCardError` observable from two source observables.
+  the `showCardError` observable from two source observables.  
+  `showOnlyWhenBlurredOnce` should use the __event-reducer__ pattern to
+  promote the `errorObservable` and `blurredObservable` into events and
+  reduce those events into the `showCardError` observable.
 
 
 
 ## What you need to know
 
-- One of the most useful patterns in constructing streams is the event-reducer
-  pattern. On a high-level it involves making streams events, and using those
+- One of the most useful patterns in constructing streams is the __event-reducer__
+  pattern. On a high-level it involves turning values into events, and using those
   events to update a stateful object.
 
   For example, we might have a `first` and a `last` stream:
@@ -47,8 +50,8 @@ We will do this with:
   const first = sequentially(["Justin", "Ramiya"], 0, 1000);
   const last = sequentially(["Shah", "Meyer"], 500, 1000);
 
-  first.subscribe( v => console.log("f", v));
-  last.subscribe( v => console.log("l", v))
+  first.subscribe( v => console.log("first", v));
+  last.subscribe( v => console.log("last", v))
   // first: ---Justin---RamiyaX
   // last:  ------Shah__---Meyer_X
   </script>
