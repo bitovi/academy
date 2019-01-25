@@ -41,8 +41,9 @@ const observable = Observable.create(function (observer) {
   observer.next(3);
 });
 
-function subscriber(){
-    console.log('got value ' + x); // Logs 1, 2, 3
+function subscriber( value ){
+    console.log('got value ' + value);
+    // Logs 1, 2, 3
 }
 
 observable.subscribe( subscriber );
