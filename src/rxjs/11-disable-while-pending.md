@@ -102,4 +102,4 @@ Read more about this technique on [RxJS's documentation](https://rxjs-dev.fireba
 
 @sourceref ./11-disable-while-pending.html
 @codepen
-@highlight 14,181-185,216,219-220,256-258,only
+@highlight 14,171-175,206,209-210,246-248,only

@@ -136,4 +136,4 @@ We will do this with:
 
 @sourceref ./5-error-on-blur.html
 @codepen
-@highlight 13-14,35-93,101,105-106,122,128,only
+@highlight 13-14,35-83,101,105-106,122,128,only

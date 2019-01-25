@@ -185,4 +185,4 @@ observables and then _flatten_ that observable with `mergeAll`.
 
 @sourceref ./10-show-paying.html
 @codepen
-@highlight 13-14,151-179,211,250-252,only
+@highlight 13-14,141-169,201,240-242,only

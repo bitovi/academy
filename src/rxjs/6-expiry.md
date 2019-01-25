@@ -49,4 +49,4 @@ You already know everything you need to know.  Apply what you learned from
 
 @sourceref ./6-expiry.html
 @codepen
-@highlight 95-108,118-119,126-129,145-146,154-156,only
+@highlight 85-98,108-109,116-119,135-136,144-146,only

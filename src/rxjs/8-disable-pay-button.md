@@ -52,4 +52,4 @@ Let’s disable the Pay button until the card, expiry, and cvc are valid.
 
 @sourceref ./8-disable-pay-button.html
 @codepen
-@highlight 13,122-126,157,189,only
+@highlight 13,112-116,147,179,only

@@ -102,4 +102,4 @@ In this section, we will:
 
 @sourceref ./9-request-payment.html
 @codepen
-@highlight 14,128-149,154,198,216-224,226-229,only
+@highlight 14,118-139,144,188,206-214,216-219,only
