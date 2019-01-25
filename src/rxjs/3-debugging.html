@@ -20,7 +20,7 @@ const cleanCardNumber = map((card) => {
 });
 
 const log = function(name) {
-    return tap(ev => console.log(name, ev))
+    return tap(value => console.log(name, value))
 }
 
 @Component({

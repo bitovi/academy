@@ -110,7 +110,7 @@ We can generalize this pattern with a `log` operator like:
 
 ```js
 const log = function(name) {
-    return tap(ev => console.log(name, ev))
+    return tap(value => console.log(name, value))
 }
 ```
 
