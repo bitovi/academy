@@ -1,5 +1,5 @@
 @page rxjs/debugging Debugging
-@parent RxJS 3
+@parent RxJS 4
 
 @description Learn how to debug RxJS.
 
@@ -123,10 +123,10 @@ const number = source
 ```
 
 > __NOTE:__ Notice that to log `number`, we call `.pipe( log(...) )`
-> on the on what would be the `number` observable. 
+> on the on what would be the `number` observable.
 
 ## The solution
 
-@sourceref ./3-debugging.html
+@sourceref ./4-debugging.html
 @codepen
-@highlight 14,22-24,52-53,only
+@highlight 14,31-33,62,only

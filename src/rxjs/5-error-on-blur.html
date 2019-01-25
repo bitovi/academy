@@ -19,10 +19,6 @@ const cleanCardNumber = map((card) => {
     }
 });
 
-const log = function(name) {
-    return tap(value => console.log(name, value))
-}
-
 const validateCard = map((card) => {
     if (!card) {
         return "There is no card"
@@ -31,6 +27,10 @@ const validateCard = map((card) => {
         return "There should be 16 characters in a card";
     }
 });
+
+const log = function(name) {
+    return tap(value => console.log(name, value))
+}
 
 function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
 

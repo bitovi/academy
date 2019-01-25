@@ -1,5 +1,5 @@
 @page rxjs/card-error Card error
-@parent RxJS 4
+@parent RxJS 3
 
 @description Map one observable to another observable again!
 
@@ -26,6 +26,6 @@ You know everything you need to know already.
 
 ## The solution
 
-@sourceref ./4-card-error.html
+@sourceref ./3-card-error.html
 @codepen
-@highlight 26-33,40,63,only
+@highlight 22-29,50,58,only

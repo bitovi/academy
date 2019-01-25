@@ -19,10 +19,6 @@ const cleanCardNumber = map((card) => {
     }
 });
 
-const log = function(name) {
-    return tap(value => console.log(name, value))
-}
-
 const validateCard = map((card) => {
     if (!card) {
         return "There is no card"
@@ -51,15 +47,14 @@ const validateCard = map((card) => {
             </button>
         </form>
         UserCardNumber: {{ (userCardNumber | async) }} <br/>
-		CardNumber: {{ (cardNumber | async) }} <br/>
+        CardNumber: {{ (cardNumber | async) }} <br/>
     `
 })
 class AppComponent {
     userCardNumber = new BehaviorSubject<String>();
 
     constructor() {
-        this.cardNumber = this.userCardNumber.pipe(cleanCardNumber)
-            .pipe( log("cardNumber") );
+        this.cardNumber = this.userCardNumber.pipe(cleanCardNumber);
         this.cardError = this.cardNumber.pipe(validateCard);
     }
 }
