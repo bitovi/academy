@@ -67,8 +67,39 @@ In this section, we will:
 - Call [event.preventDefault()](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) to prevent an submit event from posting
   to a url.
 
+- [withLatestFrom](https://rxjs-dev.firebaseapp.com/api/operators/withLatestFrom) works like
+  [combineLatest](https://rxjs-dev.firebaseapp.com/api/index/function/combineLatest), but it
+  only publishes when the source observable emits a value. It publishes an array
+  with the last source value and sibling values.
+
+  ```js
+  source.pipe( withLatestFrom(siblingObservable1, siblingObservable2, ...) )
+  ```
+
+  The following will log the latest random number whenever
+  the page is clicked:
+
+  ```html
+  <div id="clickMe">Click Me</div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+  <script type="typescript">
+  const {fromEvent, interval} = rxjs;
+  const {map, withLatestFrom} = rxjs.operators;
+
+  let randomNumbers = interval(1000).pipe( map( () => Math.random() ) );
+
+  let clicks = fromEvent(clickMe, "click");
+
+  clicks.pipe( withLatestFrom(randomNumbers) )
+    .subscribe( ( [clickEvent, number ] ) => {
+      console.log(number);
+    } );
+  </script>
+  ```
+  @codepen
+
 ## The solution
 
 @sourceref ./9-request-payment.html
 @codepen
-@highlight 128-149,154,198,216-224,226-229,only
+@highlight 14,128-149,154,198,216-224,226-229,only

@@ -11,7 +11,7 @@
 // app.js
 const { Component, VERSION } = ng.core;
 const { BehaviorSubject, Subject, merge, combineLatest, of, from, concat, pipe } = rxjs;
-const { map, tap, scan, mergeAll, startWith } = rxjs.operators;
+const { map, tap, scan, withLatestFrom, mergeAll, startWith } = rxjs.operators;
 
 const cleanCardNumber = map((card) => {
     if (card) {
@@ -136,16 +136,16 @@ function combineCard(cardNumber, expiry, cvc) {
 }
 
 function paymentPromises(paySubmitted, card) {
-    return combineLatest(paySubmitted, card, (paySubmitted, card) => {
-        if (paySubmitted) {
+    return paySubmitted.pipe( withLatestFrom(card) )
+        .pipe( map( ( [paySubmitted, card] ) => {
+
             console.log("Asking for token with", card);
             return new Promise(function(resolve) {
                 setTimeout(function() {
                     resolve(1000);
                 }, 2000);
             });
-        }
-    });
+        }) );
 }
 
 const paymentStatusObservable = pipe(
