@@ -10,6 +10,10 @@
 In this section, we will:
 
 - Learn how to debug RxJS observables.
+
+
+## How to solve this problem
+
 - Create a `log` helper that `console.log`s emitted values without causing side-effects.
 - Use the `log` helper to log values emitted by `cardNumber`.
 
@@ -26,85 +30,84 @@ The problem with this is that:
 2. Observables (in contrast to Subjects) run their initialization code every time
    there is a new subscriber.
 
-The following shows subscribing to the intermediate `number` value results in
-extra `mapToNumber` calls:
+Many times you want to subscribe to an intermediate observable to see its
+value.
+
+The following example creates:
+
+1. `randomNumbers` to emit random numbers.
+2. `floats0to100` to emit the random numbers multiplied by 100.
+3. `ints0to100` to emit the multiplied numbers rounded to the nearest integer.
+
+If you `subscribe` to `floats0to100` to see its values, you will notice
+that the `float` values do __not__ match the `int` values!!
+
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
 <script type="typescript">
-const {Subject} = rxjs;
+const {Observable} = rxjs;
 const {map} = rxjs.operators;
 
-const mapToNumber = map( (value) => {
-    console.log("mapToNumber");
-    return +value;
-} );
-const square = map( value => value*value );
+let randomNumbers = Observable.create( (observer) => {
+    observer.next( Math.random() );
+    observer.next( Math.random() );
+    observer.next( Math.random() );
+});
 
-const source = new Subject();
-const number = source.pipe( mapToNumber );
+// Operators
+const toTimes100 = map( (value) => value * 100 );
+const toRound = map( Math.round );
 
-number.subscribe((value) => {
-    console.log("number", value);
+let floats0to100 = randomNumbers.pipe( toTimes100 );
+
+//floats0to100.subscribe((value) => {
+//    console.log("float", value);
+//})
+
+let ints0to100 = floats0to100.pipe( toRound );
+
+ints0to100.subscribe((value) => {
+    console.log("int", value);
 })
-
-const squareNumber = number.pipe( square );
-
-squareNumber.subscribe( (value) => {
-    console.log("squareNumber", value);
-} );
-
-source.next(true); // logs mapToNumber
-                   //      number 1
-                   //      mapToNumber
-                   //      squareNumber 1
-
-source.next("2");  // logs mapToNumber
-                   //      number 2
-                   //      mapToNumber
-                   //      squareNumber 4
 </script>
 ```
 @codepen
+
 
 The [tap](https://rxjs-dev.firebaseapp.com/api/operators/tap) operator allows you
 to perform a side-effect (such as logging) on every emission on a source observable.
 
-The following uses tap to log number values:
+The following uses tap to log `floats0to100` values so they match:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
 <script type="typescript">
-const {Subject} = rxjs;
+const {Observable} = rxjs;
 const {map, tap} = rxjs.operators;
 
-const mapToNumber = map( (value) => {
-    console.log("mapToNumber");
-    return +value;
-} );
-const square = map( value => value*value );
+let randomNumbers = Observable.create( (observer) => {
+    observer.next( Math.random() );
+    observer.next( Math.random() );
+    observer.next( Math.random() );
+});
 
-const source = new Subject();
-const number = source
-    .pipe( mapToNumber )
-    .pipe( tap( (value) => console.log("number", value) ) );
+// Operators
+const toTimes100 = map( (value) => value * 100 );
+const toRound = map( Math.round );
 
-const squareNumber = number.pipe( square );
+let floats0to100 = randomNumbers.pipe( toTimes100 )
+    .pipe( tap( (value) => console.log("float", value) ) );
 
-squareNumber.subscribe( (value) => {
-    console.log("squareNumber", value);
-} );
+let ints0to100 = floats0to100.pipe( toRound );
 
-source.next(true); // logs mapToNumber
-                   //      number 1
-                   //      squareNumber 1
-
-source.next("2");  // logs mapToNumber
-                   //      number 2
-                   //      squareNumber 4
+ints0to100.subscribe((value) => {
+    console.log("int", value);
+});
 </script>
 ```
 @codepen
+@highlight 17
 
 We can generalize this pattern with a `log` operator like:
 
