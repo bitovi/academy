@@ -18,6 +18,7 @@ Please ask questions related to RxJS and Angular in the [Angular Chat Room](http
 
 If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/university/issues) or email `contact@bitovi.com`.
 
+
 ## Overview
 
 In this tutorial we will create the following validating credit card form:
@@ -78,3 +79,12 @@ be a useful reference for understanding how the tutorial works:
   compare your code with the solution.  
   <img src="./static/img/diff-checker.png" width="50%" alt="Diff Checker" title="DiffChecker"
     style="border: solid 1px #808080"/>
+
+## Prerequisites
+
+- This guide makes a minor use of [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).  A basic understanding of promises is required.
+- This guide makes a minor use of TypeScript. TypeScript knowledge is _not_ required, but it
+  might help to make sense of the solutions.  The [typescript] guide is more than sufficient
+  background.
+- This guide uses Angular. However, most of the Angular parts are explained. Angular experience is
+  not required; however, experience in some other modern web framework __is__ required.

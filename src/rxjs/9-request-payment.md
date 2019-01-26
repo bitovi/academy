@@ -10,11 +10,20 @@
 In this section, we will:
 
 - Simulate making a 2 second AJAX request to create a payment when someone submits the form.  
-- Create a `pay` method that is called when the form is submitted.
-- Create a `paySubmitted` `Subject` that emits `true` when
+- Log `console.log("Asking for token with", card)` when the request is made.
+- Log `console.log("payment complete!");` when the payment is complete.
+
+
+## How to solve the problem
+
+- Create a `appComponent.pay(event)` method that is called when the form is submitted.
+- Create a `appComponent.paySubmitted` `Subject` that emits `true` when
   `pay` is called.
-- Create a `card` observable that emits an object with the
-  `cardNumber`, `expiry`, and `cvc`:
+- Create a `card` observable like:
+  ```js
+  const card = combineCard(this.cardNumber, this.expiry, this.cvc);
+  ```
+  `card` should publish objects with the `cardNumber`, `expiry`, and `cvc`:
   ```js
   {
       cardNumber,
@@ -22,10 +31,12 @@ In this section, we will:
       cvc
   };
   ```
-- Create a `payments` observable that emits promises. Those
-  promises resolve when the payment is complete. The `payments`
-  observable should combine the `paySubmitted` and `card`
-  observables.
+- Create a `payments` observable like:
+  ```js
+  const payments = paymentPromises(this.paySubmitted, card);
+  ```
+  `payments` publishes [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) when `this.paySubmitted` emits a value. Those
+  promises resolve when the payment is complete.
 
   The `payments` observable
   will not be used in the template so we will need to
@@ -41,15 +52,6 @@ In this section, we will:
   the request is made.
 
 ## What you need to know
-
-- Use the following to create a Promise that takes 2 seconds to resolve:
-  ```js
-  new Promise(function(resolve) {
-      setTimeout(function() {
-        resolve(1000);
-      }, 2000);
-  });
-  ```
 
 - Use `(event)="method($event)"` to listen to an event in the
   template and call a method with the event.
@@ -97,6 +99,15 @@ In this section, we will:
   </script>
   ```
   @codepen
+
+- Use the following to create a Promise that takes 2 seconds to resolve:
+  ```js
+  new Promise(function(resolve) {
+      setTimeout(function() {
+        resolve(1000);
+      }, 2000);
+  });
+  ```
 
 ## The solution
 

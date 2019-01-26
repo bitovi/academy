@@ -138,10 +138,10 @@ function paymentPromises(paySubmitted, card) {
         }) );
 }
 
-const paymentStatusObservable = pipe(
+const toPaymentStatusObservable = pipe(
     map((promise) => {
         if (promise) {
-            // Observable<STATUS>
+            // Observable<PaymentStatus>
             return concat(
                 of ({
                     status: "pending"
@@ -157,15 +157,15 @@ const paymentStatusObservable = pipe(
                 )
             );
         } else {
-            // Observable<STATUS>
+            // Observable<PaymentStatus>
             return of({
                 status: "waiting"
             });
         }
     }),
-    startWith([{
+    startWith( of({
         status: "waiting"
-    }])
+    }) )
 );
 
 function disablePaymentButton(isCardInvalid, paymentStatus) {
@@ -241,9 +241,9 @@ class AppComponent {
 
         const payments = paymentPromises(this.paySubmitted, card);
 
-        const paymentsObservables = payments.pipe(paymentStatusObservable);
+        const paymentStatusObservables = payments.pipe(toPaymentStatusObservable);
 
-        this.paymentStatus = paymentsObservables.pipe(mergeAll()).pipe(multicast(new Subject()), refCount());
+        this.paymentStatus = paymentStatusObservables.pipe(mergeAll()).pipe(multicast(new Subject()), refCount());
 
         this.disablePaymentButton = disablePaymentButton(this.isCardInvalid, this.paymentStatus);
     }
