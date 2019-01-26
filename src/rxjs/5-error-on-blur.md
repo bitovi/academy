@@ -130,7 +130,11 @@ In this section, we will:
   ```html
   <div [class.my-class]="testValue">
   ```
-
+- [ngIf](https://angular.io/api/common/NgIf) is used to conditionally render
+  an element. The following will show the `div` if `expression` is truthy:
+  ```html
+  <div *ngIf="expression">Show this</div>
+  ```
 
 ## The solution
 
