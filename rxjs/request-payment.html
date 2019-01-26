@@ -166,9 +166,9 @@ $.extend($.prototype, {
            						
            						">
 						<a class="page"
-							href="debugging.html"
-							title="Learn how to debug RxJS.">
-							Debugging
+							href="card-error.html"
+							title="Map one observable to another observable again!">
+							Card error
 						</a>
 						
 					</li>
@@ -181,9 +181,9 @@ $.extend($.prototype, {
            						
            						">
 						<a class="page"
-							href="card-error.html"
-							title="Map one observable to another observable again!">
-							Card error
+							href="debugging.html"
+							title="Learn how to debug RxJS.">
+							Debugging
 						</a>
 						
 					</li>
@@ -343,22 +343,30 @@ $.extend($.prototype, {
     <h2>The problem</h2>
 <p>In this section, we will:</p>
 <ul>
-<li><p>Simulate making a 2 second AJAX request to create a payment when someone submits the form.</p></li>
-<li><p>Create a <code>pay</code> method that is called when the form is submitted.</p></li>
-<li><p>Create a <code>paySubmitted</code> <code>Subject</code> that emits <code>true</code> when
+<li>Simulate making a 2 second AJAX request to create a payment when someone submits the form.</li>
+<li>Log <code>console.log(&quot;Asking for token with&quot;, card)</code> when the request is made.</li>
+<li>Log <code>console.log(&quot;payment complete!&quot;);</code> when the payment is complete.</li>
+</ul>
+<h2>How to solve the problem</h2>
+<ul>
+<li><p>Create a <code>appComponent.pay(event)</code> method that is called when the form is submitted.</p></li>
+<li><p>Create a <code>appComponent.paySubmitted</code> <code>Subject</code> that emits <code>true</code> when
 <code>pay</code> is called.</p></li>
-<li><p>Create a <code>card</code> observable that emits an object with the
-<code>cardNumber</code>, <code>expiry</code>, and <code>cvc</code>:</p>
+<li><p>Create a <code>card</code> observable like:</p>
+<pre><code class="language-js">const card = combineCard(this.cardNumber, this.expiry, this.cvc);
+</code></pre>
+<p><code>card</code> should publish objects with the <code>cardNumber</code>, <code>expiry</code>, and <code>cvc</code>:</p>
 <pre><code class="language-js">{
     cardNumber,
     expiry,
     cvc
 };
 </code></pre></li>
-<li><p>Create a <code>payments</code> observable that emits promises. Those
-promises resolve when the payment is complete. The <code>payments</code>
-observable should combine the <code>paySubmitted</code> and <code>card</code>
-observables.</p>
+<li><p>Create a <code>payments</code> observable like:</p>
+<pre><code class="language-js">const payments = paymentPromises(this.paySubmitted, card);
+</code></pre>
+<p><code>payments</code> publishes <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promises</a> when <code>this.paySubmitted</code> emits a value. Those
+promises resolve when the payment is complete.</p>
 <p>The <code>payments</code> observable
 will not be used in the template so we will need to
 subscribe to it as follows:</p>
@@ -373,13 +381,6 @@ the request is made.</p></li>
 </ul>
 <h2>What you need to know</h2>
 <ul>
-<li><p>Use the following to create a Promise that takes 2 seconds to resolve:</p>
-<pre><code class="language-js">new Promise(function(resolve) {
-    setTimeout(function() {
-      resolve(1000);
-    }, 2000);
-});
-</code></pre></li>
 <li><p>Use <code>(event)=&quot;method($event)&quot;</code> to listen to an event in the
 template and call a method with the event.</p>
 <pre><code class="language-html">&lt;form (submit)=&quot;pay($event)&quot;&gt;
@@ -393,6 +394,38 @@ template and call a method with the event.</p>
 </code></pre></li>
 <li><p>Call <a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault">event.preventDefault()</a> to prevent an submit event from posting
 to a url.</p></li>
+<li><p><a href="https://rxjs-dev.firebaseapp.com/api/operators/withLatestFrom">withLatestFrom</a> works like
+<a href="https://rxjs-dev.firebaseapp.com/api/index/function/combineLatest">combineLatest</a>, but it
+only publishes when the source observable emits a value. It publishes an array
+with the last source value and sibling values.</p>
+<pre><code class="language-js">source.pipe( withLatestFrom(siblingObservable1, siblingObservable2, ...) )
+</code></pre>
+<p>The following will log the latest random number whenever
+the page is clicked:</p>
+<pre><code class="language-html">&lt;div id=&quot;clickMe&quot;&gt;Click Me&lt;/div&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const {fromEvent, interval} = rxjs;
+const {map, withLatestFrom} = rxjs.operators;
+
+let randomNumbers = interval(1000).pipe( map( () =&gt; Math.random() ) );
+
+let clicks = fromEvent(clickMe, &quot;click&quot;);
+
+clicks.pipe( withLatestFrom(randomNumbers) )
+  .subscribe( ( [clickEvent, number ] ) =&gt; {
+    console.log(number);
+  } );
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div></li>
+<li><p>Use the following to create a Promise that takes 2 seconds to resolve:</p>
+<pre><code class="language-js">new Promise(function(resolve) {
+    setTimeout(function() {
+      resolve(1000);
+    }, 2000);
+});
+</code></pre></li>
 </ul>
 <h2>The solution</h2>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -408,17 +441,13 @@ to a url.</p></li>
 // app.js
 const { Component, VERSION } = ng.core;
 const { BehaviorSubject, Subject, merge, combineLatest } = rxjs;
-const { map, tap, scan } = rxjs.operators;
+const { map, tap, scan, withLatestFrom } = rxjs.operators;
 
 const cleanCardNumber = map((card) =&gt; {
     if (card) {
         return card.replace(/[\s-]/g, &quot;&quot;);
     }
 });
-
-const log = function(name) {
-    return tap(ev =&gt; console.log(name, ev))
-}
 
 const validateCard = map((card) =&gt; {
     if (!card) {
@@ -429,54 +458,45 @@ const validateCard = map((card) =&gt; {
     }
 });
 
+const log = function(name) {
+    return tap(value =&gt; console.log(name, value))
+}
+
 function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
-    const errorEvent = errorObservable.pipe(
+
+    const errorEvents = errorObservable.pipe(
         map((error) =&gt; {
-            if (!error) {
-                return {
-                    type: &quot;valid&quot;
-                }
-            } else {
-                return {
-                    type: &quot;invalid&quot;,
-                    message: error
-                }
-            }
+            return {type: error ? &quot;invalid&quot; : &quot;valid&quot;}
         })
     );
 
     const focusEvents = blurredObservable.pipe(
         map((isBlurred) =&gt; {
-            if (isBlurred === undefined) {
-                return {};
-            }
-            return isBlurred ? {
-                type: &quot;blurred&quot;
-            } : {
-                type: &quot;focused&quot;
-            };
+            return {type: isBlurred ? &quot;blurred&quot; : &quot;focused&quot;};
         })
     );
 
-    var merged = merge(errorEvent, focusEvents);
+    var events = merge(errorEvents, focusEvents);
 
-    const valueState = scan((previous, event) =&gt; {
+    const eventsToState = scan((previous, event) =&gt; {
         switch (event.type) {
             case &quot;valid&quot;:
-                return Object.assign({}, previous, {
+                return {...previous,
                     isValid: true,
                     showCardError: false
-                });
+                };
             case &quot;invalid&quot;:
-                return Object.assign({}, previous, {
+                return {
+                    ...previous,
                     isValid: false,
                     showCardError: previous.hasBeenBlurred
-                });
+                };
             case &quot;blurred&quot;:
-                return Object.assign({}, previous, {
+                return {
+                    ...previous,
                     hasBeenBlurred: true,
                     showCardError: !previous.isValid
-                });
+                };
             default:
                 return previous;
         }
@@ -486,7 +506,10 @@ function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
         isValid: false
     });
 
-    return merged.pipe(valueState).pipe(map(state =&gt; state.showCardError));
+    var state = events.pipe(eventsToState);
+
+    return state.pipe( map(state =&gt; state.showCardError) );
+
 }
 
 const expiryParts = map((expiry) =&gt; {
@@ -533,16 +556,16 @@ function combineCard(cardNumber, expiry, cvc) {
 }
 
 function paymentPromises(paySubmitted, card) {
-    return combineLatest(paySubmitted, card, (paySubmitted, card) =&gt; {
-        if (paySubmitted) {
+    return paySubmitted.pipe( withLatestFrom(card) )
+        .pipe( map( ( [paySubmitted, card] ) =&gt; {
+
             console.log(&quot;Asking for token with&quot;, card);
             return new Promise(function(resolve) {
                 setTimeout(function() {
                     resolve(1000);
                 }, 2000);
             });
-        }
-    });
+        }) );
 }
 
 @Component({
@@ -727,7 +750,7 @@ form {
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='128-149,154,198,216-224,226-229,only'></div>
+<div line-highlight='14,118-139,144,188,206-214,216-219,only'></div>
 
 </section>
 

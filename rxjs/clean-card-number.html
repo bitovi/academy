@@ -169,9 +169,9 @@ $.extend($.prototype, {
            						
            						">
 						<a class="page"
-							href="debugging.html"
-							title="Learn how to debug RxJS.">
-							Debugging
+							href="card-error.html"
+							title="Map one observable to another observable again!">
+							Card error
 						</a>
 						
 					</li>
@@ -184,9 +184,9 @@ $.extend($.prototype, {
            						
            						">
 						<a class="page"
-							href="card-error.html"
-							title="Map one observable to another observable again!">
-							Card error
+							href="debugging.html"
+							title="Learn how to debug RxJS.">
+							Debugging
 						</a>
 						
 					</li>
@@ -344,9 +344,17 @@ $.extend($.prototype, {
     <h2>The problem</h2>
 <p>In this section, we will:</p>
 <ul>
+<li>Write out the user entered card number without
+spaces or dashes.</li>
+</ul>
+<h2>How to solve this problem</h2>
+<ul>
 <li>Create a <code>this.cardNumber</code> observable that contains the
 text of the <code>userCardNumber</code> input without spaces (<code>\s</code>) or dashes (<code>-</code>).</li>
-<li>Write out the value of the <code>this.cardNumber</code> observable.</li>
+<li>Create a <code>cleanCardNumber</code> operator that maps the <code>this.userCardNumber</code> to <code>this.cardNumber</code>.</li>
+<li>Write out the value of the <code>this.cardNumber</code> observable like:
+<pre><code class="language-html">CardNumber: {{ (cardNumber | async) }} &lt;br/&gt;
+</code></pre></li>
 </ul>
 <h2>What you need to know</h2>
 <ul>

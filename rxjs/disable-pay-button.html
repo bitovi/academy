@@ -166,9 +166,9 @@ $.extend($.prototype, {
            						
            						">
 						<a class="page"
-							href="debugging.html"
-							title="Learn how to debug RxJS.">
-							Debugging
+							href="card-error.html"
+							title="Map one observable to another observable again!">
+							Card error
 						</a>
 						
 					</li>
@@ -181,9 +181,9 @@ $.extend($.prototype, {
            						
            						">
 						<a class="page"
-							href="card-error.html"
-							title="Map one observable to another observable again!">
-							Card error
+							href="debugging.html"
+							title="Learn how to debug RxJS.">
+							Debugging
 						</a>
 						
 					</li>
@@ -341,18 +341,24 @@ $.extend($.prototype, {
 			
 				<section class="body">
     <h2>The problem</h2>
-<p>Let’s disable the Pay button until the card, expiry, and cvc are valid.</p>
+<p>In this section, we will:</p>
+<ul>
+<li>disable the Pay button until the card, expiry, and cvc are valid.</li>
+</ul>
+<h2>How to solve this problem</h2>
+<ul>
+<li>Create a <code>this.isCardInvalid</code> property publishes <code>true</code> if
+either <code>this.cardError</code> <code>this.expiryError</code>, or <code>this.cvcError</code> are truthy.</li>
+</ul>
 <h2>What you need to know</h2>
 <ul>
-<li><p><a href="https://rxjs-dev.firebaseapp.com/api/index/function/combineLatest">combineLatest</a> can combine several values into a single value:</p>
+<li><p>The <a href="https://rxjs-dev.firebaseapp.com/api/index/function/combineLatest">combineLatest</a> static method combines several values into a single value:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const {of, zip, timer, from, combineLatest} = rxjs;
 
 function sequentially(value, dueTime, period){
-    return zip(
-        from(value),
-        timer(dueTime, period),
+    return zip( from(value), timer(dueTime, period),
         value =&gt; value
     )
 }
@@ -362,7 +368,9 @@ const last = sequentially([&quot;Shah&quot;, &quot;Meyer&quot;], 500, 1000);
 
 // first: ---Justin---RamiyaX
 // last:  ------Shah__---Meyer_X
-const fullName = combineLatest(first, last, (first, last) =&gt; { return   first +&quot; &quot;+ last; });
+const fullName = combineLatest(first, last,
+    (first, last) =&gt; { return first +&quot; &quot;+ last; }
+);
 
 fullName.subscribe(console.log);
 // fullName: ---Justin Shah
@@ -370,7 +378,8 @@ fullName.subscribe(console.log);
 //             -Ramiya MeyerX
 &lt;/script&gt;
 </code></pre>
-<div class='codepen'></div></li>
+<div class='codepen'></div>
+<div line-highlight='3,16-18'></div></li>
 <li><p><code>[property]=&quot;value&quot;</code> can set an element property or attribute
 from another value:</p>
 <pre><code class="language-html">&lt;button [disabled]=&quot;value&quot;&gt;
@@ -398,10 +407,6 @@ const cleanCardNumber = map((card) =&gt; {
     }
 });
 
-const log = function(name) {
-    return tap(ev =&gt; console.log(name, ev))
-}
-
 const validateCard = map((card) =&gt; {
     if (!card) {
         return &quot;There is no card&quot;
@@ -411,54 +416,45 @@ const validateCard = map((card) =&gt; {
     }
 });
 
+const log = function(name) {
+    return tap(value =&gt; console.log(name, value))
+}
+
 function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
-    const errorEvent = errorObservable.pipe(
+
+    const errorEvents = errorObservable.pipe(
         map((error) =&gt; {
-            if (!error) {
-                return {
-                    type: &quot;valid&quot;
-                }
-            } else {
-                return {
-                    type: &quot;invalid&quot;,
-                    message: error
-                }
-            }
+            return {type: error ? &quot;invalid&quot; : &quot;valid&quot;}
         })
     );
 
     const focusEvents = blurredObservable.pipe(
         map((isBlurred) =&gt; {
-            if (isBlurred === undefined) {
-                return {};
-            }
-            return isBlurred ? {
-                type: &quot;blurred&quot;
-            } : {
-                type: &quot;focused&quot;
-            };
+            return {type: isBlurred ? &quot;blurred&quot; : &quot;focused&quot;};
         })
     );
 
-    var merged = merge(errorEvent, focusEvents);
+    var events = merge(errorEvents, focusEvents);
 
-    const valueState = scan((previous, event) =&gt; {
+    const eventsToState = scan((previous, event) =&gt; {
         switch (event.type) {
             case &quot;valid&quot;:
-                return Object.assign({}, previous, {
+                return {...previous,
                     isValid: true,
                     showCardError: false
-                });
+                };
             case &quot;invalid&quot;:
-                return Object.assign({}, previous, {
+                return {
+                    ...previous,
                     isValid: false,
                     showCardError: previous.hasBeenBlurred
-                });
+                };
             case &quot;blurred&quot;:
-                return Object.assign({}, previous, {
+                return {
+                    ...previous,
                     hasBeenBlurred: true,
                     showCardError: !previous.isValid
-                });
+                };
             default:
                 return previous;
         }
@@ -468,7 +464,10 @@ function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
         isValid: false
     });
 
-    return merged.pipe(valueState).pipe(map(state =&gt; state.showCardError));
+    var state = events.pipe(eventsToState);
+
+    return state.pipe( map(state =&gt; state.showCardError) );
+
 }
 
 const expiryParts = map((expiry) =&gt; {
@@ -670,7 +669,7 @@ form {
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='13,122-126,157,189,only'></div>
+<div line-highlight='13,112-116,147,179,only'></div>
 
 </section>
 

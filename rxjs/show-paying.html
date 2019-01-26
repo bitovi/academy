@@ -166,9 +166,9 @@ $.extend($.prototype, {
            						
            						">
 						<a class="page"
-							href="debugging.html"
-							title="Learn how to debug RxJS.">
-							Debugging
+							href="card-error.html"
+							title="Map one observable to another observable again!">
+							Card error
 						</a>
 						
 					</li>
@@ -181,9 +181,9 @@ $.extend($.prototype, {
            						
            						">
 						<a class="page"
-							href="card-error.html"
-							title="Map one observable to another observable again!">
-							Card error
+							href="debugging.html"
+							title="Learn how to debug RxJS.">
+							Debugging
 						</a>
 						
 					</li>
@@ -345,11 +345,12 @@ $.extend($.prototype, {
 <p>In this section, we will:</p>
 <ul>
 <li>Change the button's text to <strong>Paying</strong> while the
-<code>payments</code> promise is pending.</li>
+<code>payments</code> promise is pending and to <strong>Pay</strong> while
+waiting to pay or payment has completed.</li>
 </ul>
-<p>We will do this with:</p>
+<h2>How to solve this problem</h2>
 <ul>
-<li>A <code>this.paymentStatus</code> observable that emits paymentStatus objects:
+<li><p>Create a <code>this.paymentStatus</code> observable that emits <strong>paymentStatus</strong> objects:</p>
 <ul>
 <li><code>{status: &quot;waiting&quot;}</code> - when the form is waiting to be
 submitted.</li>
@@ -357,14 +358,52 @@ submitted.</li>
 <li><code>{status: &quot;resolved&quot;, value}</code> - when the promise
 has resolved.  Includes the resolved value.</li>
 </ul></li>
-<li>A <code>paymentStatusObservable</code> operator that
-emits observables that emit paymentStatus objects.</li>
+<li><p>To create <code>this.paymentStatus</code> we first will need to
+create a <code>paymentStatusObservables</code> observable from payments like:</p>
+<pre><code class="language-js">const paymentStatusObservables = payments.pipe(toPaymentStatusObservable);
+</code></pre>
+<p>The <code>toPaymentStatusObservable</code> operator will convert the promises in
+<code>payments</code> to Observables that publish <strong>paymentStatus</strong> objects. This means
+that  <code>paymentStatusObservables</code> is an Observable of Observables of
+<strong>paymentStatus</strong> objects like: <code>Observable&lt;Observable&lt;PaymentStatus&gt;&gt;</code>.</p>
+<p>For example, when a payment promise is published from <code>payments</code>, <code>paymentStatusObservables</code> will publish an Observable that publishes:</p>
+<ol>
+<li><code>{status: &quot;pending&quot;}</code>, and then</li>
+<li><code>{status: &quot;resolved&quot;, value}</code>.</li>
+</ol>
+<p>Then, when a new payment promise is published from <code>payments</code> again,  <code>paymentStatusObservables</code> will publish an new Observable that publishes similar <strong>paymentStatus</strong> objects.</p>
+<p>Finally, <code>this.paymentStatus</code> will be a result of merging (or flattening)
+the observables emitted by <code>paymentStatusObservables</code>.</p></li>
 </ul>
 <h2>What you need to know</h2>
 <p>This is a tricky problem. A promise has state (if it's pending or resolved). We need
 to convert this state to observables.  The pattern is to map the promises to an observable of
 observables and then <em>flatten</em> that observable with <code>mergeAll</code>.</p>
 <ul>
+<li><p><a href="https://rxjs-dev.firebaseapp.com/api/index/function/from">from</a> - converts a
+<code>Promise</code> to an observable.  The following <code>thousand</code> observable emits
+<code>1000</code> when <code>promise</code> resolves:</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const {from} = rxjs;
+
+const promise = new Promise(function(resolve) {
+    setTimeout(function() {
+      resolve(1000);
+    }, 2000);
+});
+
+var thousand = from(promise);
+
+thousand.subscribe(console.log);
+// thousand: 1000X
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<blockquote>
+<p>HINT: <code>from</code> and <code>map</code> can be used to convert the payment promises to
+an observable that emits <code>{status: &quot;resolved&quot;, value}</code>.</p>
+</blockquote></li>
 <li><p><a href="https://rxjs-dev.firebaseapp.com/api/index/function/concat">concat</a> concatenates streams so events are produced in order.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
@@ -389,9 +428,15 @@ fullName.subscribe(console.log);
 // letters: ---A---B-x---y
 &lt;/script&gt;
 </code></pre>
-<div class='codepen'></div></li>
+<div class='codepen'></div>
+<blockquote>
+<p>HINT: <code>concat</code> can be used to make an observable emit a <code>{status: &quot;pending&quot;}</code>
+<strong>paymentStatus</strong> object before emitting the <code>{status: &quot;resolved&quot;, value}</code> <strong>paymentStatus</strong> object.</p>
+</blockquote></li>
 <li><p><a href="https://rxjs-dev.firebaseapp.com/api/operators/startWith">startWith</a>
 returns an Observable that emits the items you specify as arguments before it begins to emit items emitted by the source Observable.</p>
+<p>The following uses <code>startWith</code> to add  <code>&quot;A&quot;</code> before the <code>&quot;X&quot;</code> and <code>&quot;Y&quot;</code>
+values are emitted.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const {of, zip, timer, from} = rxjs;
@@ -408,78 +453,36 @@ function sequentially(value, dueTime, period){
 const xAndY = sequentially([&quot;X&quot;, &quot;Y&quot;], 0, 1000);
 // xAndY:   ---X---YX
 
-const letters = xAndY.pipe( startWith(&quot;A&quot;) );
+const letters = xAndY.pipe( startWith( &quot;A&quot; ) );
 
 letters.subscribe(console.log);
 // letters: A-X---Y
 &lt;/script&gt;
 </code></pre>
-<div class='codepen'></div></li>
-<li><p><a href="https://rxjs-dev.firebaseapp.com/api/operators/mergeAll">mergeAll</a> takes an observable that emits inner observables
-and emits what the inner observables emits.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;typescript&quot;&gt;
-const {of, zip, timer, from} = rxjs;
-const {map, mergeAll} = rxjs.operators;
-
-function sequentially(value, dueTime, period){
-    return zip(
-        from(value),
-        timer(dueTime, period),
-        value =&gt; value
-    )
-}
-
-const count = sequentially([1, 2], 0, 500);
-// count: 1--2X
-
-const observableOfObservables = count.pipe( map((count) =&gt; {
-  return sequentially([10+count, 20+count],0,1000);
-}) );
-// spawned 1: 11----21X
-// spawned 1: --12----22X
-
-const numbers = observableOfObservables.pipe( mergeAll() );
-
-numbers.subscribe(console.log);
-// numbers: 11--12--21-22X
-&lt;/script&gt;
-</code></pre>
-<div class='codepen'></div></li>
+<div class='codepen'></div>
+<div line-highlight='17'></div>
+<blockquote>
+<p>HINT: <code>startWith</code> is used by <code>toPaymentStatusObservable</code> to make sure
+a payment status of &quot;waiting&quot; is published first.</p>
+</blockquote></li>
+</ul>
+<ul>
 <li><p><a href="https://rxjs-dev.firebaseapp.com/api/index/function/of">of</a> converts a value (or values)
-to a promise.</p>
+to a observable.</p>
 <pre><code class="language-typescript">of(10, 20, 30)
-.subscribe(
-  next =&gt; console.log('next:', next),
-  err =&gt; console.log('error:', err),
-  () =&gt; console.log('the end'),
-);
+.subscribe( next =&gt; console.log('next:', next) );
 // result:
 // 'next: 10'
 // 'next: 20'
 // 'next: 30'
-</code></pre></li>
-<li><p><a href="https://rxjs-dev.firebaseapp.com/api/index/function/from">from</a> - converts an observable
-from a <code>Promise</code> or other values (like an iterable):</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;typescript&quot;&gt;
-const {from} = rxjs;
-
-const promise = new Promise(function(resolve) {
-    setTimeout(function() {
-      resolve(1000);
-    }, 2000);
-});
-
-var thousand = from(promise);
-
-thousand.subscribe(console.log);
-// thousand: 1000X
-&lt;/script&gt;
 </code></pre>
-<div class='codepen'></div></li>
+<blockquote>
+<p>HINT: <code>of</code> can be used to convert plain <strong>paymentStatus</strong> objects into an observable
+that emits the <strong>paymentStatus</strong> object.</p>
+</blockquote></li>
 <li><p>The static <a href="https://rxjs-dev.firebaseapp.com/api/index/function/pipe">pipe</a> function can be used
-to combine operators:</p>
+to combine operators. The following makes a <code>squareStartingWith2</code> operator that ensures
+a <code>2</code> will be the first number squared and a <code>4</code> the first value emitted:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const {from, pipe, Subject} = rxjs;
@@ -499,7 +502,52 @@ square.subscribe( console.log ) //-&gt; logs 4
 number.next(3)                  //-&gt; logs 9
 &lt;/script&gt;
 </code></pre>
-<div class='codepen'></div></li>
+<div class='codepen'></div>
+<blockquote>
+<p>HINT: <code>pipe</code> can be used to combine:</p>
+<ul>
+<li>a <code>map</code> operator that will take a payment promise and map that to an
+Observable of payment status objects.</li>
+<li>a <code>startWith</code> operator that ensures an Observable that emits <code>{status: &quot;waiting&quot;}</code>
+is emitted first.</li>
+</ul>
+</blockquote></li>
+<li><p><a href="https://rxjs-dev.firebaseapp.com/api/operators/mergeAll">mergeAll</a> takes an observable that emits inner observables
+and emits what the inner observables emits.</p>
+<p>In the following example, <code>observables</code> emits:</p>
+<ol>
+<li>An observable that emits numbers, then</li>
+<li>An observable that emits letters.</li>
+</ol>
+<p><code>mergeAll</code> <em>flattens</em> <code>observables</code> so that <code>values</code> emits
+the numbers and letters directly.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const {of} = rxjs;
+const {mergeAll} = rxjs.operators;
+
+const numbers = of(1,2,3);
+const letters = of(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;);
+
+const observables = of(numbers, letters)
+// observables: [1-2-3]-[a-b-c]X
+// count: 1--2X
+
+const values = observables.pipe( mergeAll() );
+
+values.subscribe(console.log);
+// numbers: 1-2-3-a-b-cX
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='13'></div></li>
+<li><p>Read a value from an observable's last emitted value with the
+conditional operator (<code>?.</code>) like:</p>
+<pre><code class="language-html">{{ ( (paymentStatus | async)?.status }}
+</code></pre></li>
+<li><p>Use the ternary operator (<code>condition ? truthy : falsy</code>) in Angular like:</p>
+<pre><code class="language-html">{{ status === &quot;pending&quot; ? &quot;Paying&quot; : &quot;Pay&quot; }}
+</code></pre></li>
 </ul>
 <h2>The solution</h2>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -515,17 +563,13 @@ number.next(3)                  //-&gt; logs 9
 // app.js
 const { Component, VERSION } = ng.core;
 const { BehaviorSubject, Subject, merge, combineLatest, of, from, concat, pipe } = rxjs;
-const { map, tap, scan, mergeAll, startWith } = rxjs.operators;
+const { map, tap, scan, withLatestFrom, mergeAll, startWith } = rxjs.operators;
 
 const cleanCardNumber = map((card) =&gt; {
     if (card) {
         return card.replace(/[\s-]/g, &quot;&quot;);
     }
 });
-
-const log = function(name) {
-    return tap(ev =&gt; console.log(name, ev))
-}
 
 const validateCard = map((card) =&gt; {
     if (!card) {
@@ -536,54 +580,45 @@ const validateCard = map((card) =&gt; {
     }
 });
 
+const log = function(name) {
+    return tap(value =&gt; console.log(name, value))
+}
+
 function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
-    const errorEvent = errorObservable.pipe(
+
+    const errorEvents = errorObservable.pipe(
         map((error) =&gt; {
-            if (!error) {
-                return {
-                    type: &quot;valid&quot;
-                }
-            } else {
-                return {
-                    type: &quot;invalid&quot;,
-                    message: error
-                }
-            }
+            return {type: error ? &quot;invalid&quot; : &quot;valid&quot;}
         })
     );
 
     const focusEvents = blurredObservable.pipe(
         map((isBlurred) =&gt; {
-            if (isBlurred === undefined) {
-                return {};
-            }
-            return isBlurred ? {
-                type: &quot;blurred&quot;
-            } : {
-                type: &quot;focused&quot;
-            };
+            return {type: isBlurred ? &quot;blurred&quot; : &quot;focused&quot;};
         })
     );
 
-    var merged = merge(errorEvent, focusEvents);
+    var events = merge(errorEvents, focusEvents);
 
-    const valueState = scan((previous, event) =&gt; {
+    const eventsToState = scan((previous, event) =&gt; {
         switch (event.type) {
             case &quot;valid&quot;:
-                return Object.assign({}, previous, {
+                return {...previous,
                     isValid: true,
                     showCardError: false
-                });
+                };
             case &quot;invalid&quot;:
-                return Object.assign({}, previous, {
+                return {
+                    ...previous,
                     isValid: false,
                     showCardError: previous.hasBeenBlurred
-                });
+                };
             case &quot;blurred&quot;:
-                return Object.assign({}, previous, {
+                return {
+                    ...previous,
                     hasBeenBlurred: true,
                     showCardError: !previous.isValid
-                });
+                };
             default:
                 return previous;
         }
@@ -593,7 +628,10 @@ function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
         isValid: false
     });
 
-    return merged.pipe(valueState).pipe(map(state =&gt; state.showCardError));
+    var state = events.pipe(eventsToState);
+
+    return state.pipe( map(state =&gt; state.showCardError) );
+
 }
 
 const expiryParts = map((expiry) =&gt; {
@@ -640,22 +678,22 @@ function combineCard(cardNumber, expiry, cvc) {
 }
 
 function paymentPromises(paySubmitted, card) {
-    return combineLatest(paySubmitted, card, (paySubmitted, card) =&gt; {
-        if (paySubmitted) {
+    return paySubmitted.pipe( withLatestFrom(card) )
+        .pipe( map( ( [paySubmitted, card] ) =&gt; {
+
             console.log(&quot;Asking for token with&quot;, card);
             return new Promise(function(resolve) {
                 setTimeout(function() {
                     resolve(1000);
                 }, 2000);
             });
-        }
-    });
+        }) );
 }
 
-const paymentStatusObservable = pipe(
+const toPaymentStatusObservable = pipe(
     map((promise) =&gt; {
         if (promise) {
-            // Observable&lt;STATUS&gt;
+            // Observable&lt;PaymentStatus&gt;
             return concat(
                 of ({
                     status: &quot;pending&quot;
@@ -671,15 +709,15 @@ const paymentStatusObservable = pipe(
                 )
             );
         } else {
-            // Observable&lt;STATUS&gt;
+            // Observable&lt;PaymentStatus&gt;
             return of({
                 status: &quot;waiting&quot;
             });
         }
     }),
-    startWith([{
+    startWith( of({
         status: &quot;waiting&quot;
-    }])
+    }) )
 );
 
 @Component({
@@ -751,9 +789,9 @@ class AppComponent {
 
         const payments = paymentPromises(this.paySubmitted, card);
 
-        const paymentsObservables = payments.pipe(paymentStatusObservable);
+        const paymentStatusObservables = payments.pipe(toPaymentStatusObservable);
 
-        this.paymentStatus = paymentsObservables.pipe(mergeAll());
+        this.paymentStatus = paymentStatusObservables.pipe(mergeAll());
     }
     pay(event) {
         event.preventDefault();
@@ -862,7 +900,7 @@ form {
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='13-14,151-179,211,250-252,only'></div>
+<div line-highlight='13-14,141-169,201,240-242,only'></div>
 
 </section>
 

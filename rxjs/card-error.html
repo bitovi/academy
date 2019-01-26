@@ -3,7 +3,7 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/rxjs/4-card-error.md
+	source: src/rxjs/3-card-error.md
 	@page rxjs/card-error
 ######################################################################## -->
 <html lang="en">
@@ -162,21 +162,6 @@ $.extend($.prototype, {
 		
 			
 				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="debugging.html"
-							title="Learn how to debug RxJS.">
-							Debugging
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
 					<li class="current
            						parent
            						expanded">
@@ -188,6 +173,21 @@ $.extend($.prototype, {
 						
 							
 
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="debugging.html"
+							title="Learn how to debug RxJS.">
+							Debugging
+						</a>
 						
 					</li>
 				
@@ -346,11 +346,14 @@ $.extend($.prototype, {
 <ul>
 <li>Display an error message if the user has not entered a card or the card number is not
 16 digits.</li>
+</ul>
+<h2>How to solve this problem</h2>
+<ul>
 <li>Create a <code>cardError</code> observable that represents this error.</li>
 <li><code>cardError</code> should emit:
 <ul>
 <li><em>&quot;There is no card&quot;</em> if the <code>cardNumber</code> is falsy.</li>
-<li><em>&quot;&quot;There should be 16 characters in a card&quot;&quot;</em> characters if the length of <code>cardNumber</code>
+<li><em>&quot;There should be 16 characters in a card&quot;</em> characters if the length of <code>cardNumber</code>
 is not 16 digits.</li>
 </ul></li>
 <li><code>cardError</code> should be displayed within the <code>&lt;div class=&quot;message&quot;&gt;</code> element.</li>
@@ -381,10 +384,6 @@ const cleanCardNumber = map((card) =&gt; {
         return card.replace(/[\s-]/g, &quot;&quot;);
     }
 });
-
-const log = function(name) {
-    return tap(ev =&gt; console.log(name, ev))
-}
 
 const validateCard = map((card) =&gt; {
     if (!card) {
@@ -421,8 +420,7 @@ class AppComponent {
     userCardNumber = new BehaviorSubject&lt;String&gt;();
 
     constructor() {
-        this.cardNumber = this.userCardNumber.pipe(cleanCardNumber)
-            .pipe( log(&quot;cardNumber&quot;) );
+        this.cardNumber = this.userCardNumber.pipe(cleanCardNumber);
         this.cardError = this.cardNumber.pipe(validateCard);
     }
 }
@@ -528,7 +526,7 @@ form {
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='26-33,40,63,only'></div>
+<div line-highlight='22-29,36,58,only'></div>
 
 </section>
 
@@ -540,7 +538,7 @@ form {
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/rxjs/4-card-error.md"},"description":"Map one observable to another observable again! \n","name":"rxjs/card-error","title":"Card error","type":"page","parent":"RxJS","order":4,"comment":" ","pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/rxjs/3-card-error.md"},"description":"Map one observable to another observable again! \n","name":"rxjs/card-error","title":"Card error","type":"page","parent":"RxJS","order":3,"comment":" ","pathToRoot":"../.."};
 	</script>
 
 	

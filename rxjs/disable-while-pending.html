@@ -166,9 +166,9 @@ $.extend($.prototype, {
            						
            						">
 						<a class="page"
-							href="debugging.html"
-							title="Learn how to debug RxJS.">
-							Debugging
+							href="card-error.html"
+							title="Map one observable to another observable again!">
+							Card error
 						</a>
 						
 					</li>
@@ -181,9 +181,9 @@ $.extend($.prototype, {
            						
            						">
 						<a class="page"
-							href="card-error.html"
-							title="Map one observable to another observable again!">
-							Card error
+							href="debugging.html"
+							title="Learn how to debug RxJS.">
+							Debugging
 						</a>
 						
 					</li>
@@ -347,10 +347,10 @@ $.extend($.prototype, {
 <li>Disable the payment button while the promise is pending (or the card is invalid).</li>
 <li>Make sure that submitting the form does not produce two requests.</li>
 </ul>
-<p>We will do this with:</p>
+<h2>How to solve this problem</h2>
 <ul>
-<li>A <code>this.disablePaymentButton</code> observable that combines <code>isCardInvalid</code> and <code>paymentStatus</code> using a <code>disablePaymentButton</code> operator.</li>
-<li><code>this.paymentStatus</code> converted to a multicast <code>Subject</code>.</li>
+<li>Create a <code>this.disablePaymentButton</code> observable that combines <code>isCardInvalid</code> and <code>paymentStatus</code> using a <code>disablePaymentButton</code> operator.</li>
+<li>Convert <code>this.paymentStatus</code> to a multicast <code>Subject</code>.</li>
 </ul>
 <h2>What you need to know</h2>
 <p>Observables and their operators execute with every new subscription. This can cause problems
@@ -434,17 +434,13 @@ numbers.next(2);
 // app.js
 const { Component, VERSION } = ng.core;
 const { BehaviorSubject, Subject, merge, combineLatest, of, from, concat, pipe } = rxjs;
-const { map, tap, scan, mergeAll, startWith, multicast, refCount } = rxjs.operators;
+const { map, tap, scan, withLatestFrom, mergeAll, startWith, multicast, refCount } = rxjs.operators;
 
 const cleanCardNumber = map((card) =&gt; {
     if (card) {
         return card.replace(/[\s-]/g, &quot;&quot;);
     }
 });
-
-const log = function(name) {
-    return tap(ev =&gt; console.log(name, ev))
-}
 
 const validateCard = map((card) =&gt; {
     if (!card) {
@@ -455,54 +451,45 @@ const validateCard = map((card) =&gt; {
     }
 });
 
+const log = function(name) {
+    return tap(value =&gt; console.log(name, value))
+}
+
 function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
-    const errorEvent = errorObservable.pipe(
+
+    const errorEvents = errorObservable.pipe(
         map((error) =&gt; {
-            if (!error) {
-                return {
-                    type: &quot;valid&quot;
-                }
-            } else {
-                return {
-                    type: &quot;invalid&quot;,
-                    message: error
-                }
-            }
+            return {type: error ? &quot;invalid&quot; : &quot;valid&quot;}
         })
     );
 
     const focusEvents = blurredObservable.pipe(
         map((isBlurred) =&gt; {
-            if (isBlurred === undefined) {
-                return {};
-            }
-            return isBlurred ? {
-                type: &quot;blurred&quot;
-            } : {
-                type: &quot;focused&quot;
-            };
+            return {type: isBlurred ? &quot;blurred&quot; : &quot;focused&quot;};
         })
     );
 
-    var merged = merge(errorEvent, focusEvents);
+    var events = merge(errorEvents, focusEvents);
 
-    const valueState = scan((previous, event) =&gt; {
+    const eventsToState = scan((previous, event) =&gt; {
         switch (event.type) {
             case &quot;valid&quot;:
-                return Object.assign({}, previous, {
+                return {...previous,
                     isValid: true,
                     showCardError: false
-                });
+                };
             case &quot;invalid&quot;:
-                return Object.assign({}, previous, {
+                return {
+                    ...previous,
                     isValid: false,
                     showCardError: previous.hasBeenBlurred
-                });
+                };
             case &quot;blurred&quot;:
-                return Object.assign({}, previous, {
+                return {
+                    ...previous,
                     hasBeenBlurred: true,
                     showCardError: !previous.isValid
-                });
+                };
             default:
                 return previous;
         }
@@ -512,7 +499,10 @@ function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
         isValid: false
     });
 
-    return merged.pipe(valueState).pipe(map(state =&gt; state.showCardError));
+    var state = events.pipe(eventsToState);
+
+    return state.pipe( map(state =&gt; state.showCardError) );
+
 }
 
 const expiryParts = map((expiry) =&gt; {
@@ -559,22 +549,22 @@ function combineCard(cardNumber, expiry, cvc) {
 }
 
 function paymentPromises(paySubmitted, card) {
-    return combineLatest(paySubmitted, card, (paySubmitted, card) =&gt; {
-        if (paySubmitted) {
+    return paySubmitted.pipe( withLatestFrom(card) )
+        .pipe( map( ( [paySubmitted, card] ) =&gt; {
+
             console.log(&quot;Asking for token with&quot;, card);
             return new Promise(function(resolve) {
                 setTimeout(function() {
                     resolve(1000);
                 }, 2000);
             });
-        }
-    });
+        }) );
 }
 
-const paymentStatusObservable = pipe(
+const toPaymentStatusObservable = pipe(
     map((promise) =&gt; {
         if (promise) {
-            // Observable&lt;STATUS&gt;
+            // Observable&lt;PaymentStatus&gt;
             return concat(
                 of ({
                     status: &quot;pending&quot;
@@ -590,15 +580,15 @@ const paymentStatusObservable = pipe(
                 )
             );
         } else {
-            // Observable&lt;STATUS&gt;
+            // Observable&lt;PaymentStatus&gt;
             return of({
                 status: &quot;waiting&quot;
             });
         }
     }),
-    startWith([{
+    startWith( of({
         status: &quot;waiting&quot;
-    }])
+    }) )
 );
 
 function disablePaymentButton(isCardInvalid, paymentStatus) {
@@ -674,9 +664,9 @@ class AppComponent {
 
         const payments = paymentPromises(this.paySubmitted, card);
 
-        const paymentsObservables = payments.pipe(paymentStatusObservable);
+        const paymentStatusObservables = payments.pipe(toPaymentStatusObservable);
 
-        this.paymentStatus = paymentsObservables.pipe(mergeAll()).pipe(multicast(new Subject()), refCount());
+        this.paymentStatus = paymentStatusObservables.pipe(mergeAll()).pipe(multicast(new Subject()), refCount());
 
         this.disablePaymentButton = disablePaymentButton(this.isCardInvalid, this.paymentStatus);
     }
@@ -787,7 +777,7 @@ form {
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='14,181-185,216,219-220,256-258,only'></div>
+<div line-highlight='14,171-175,206,209-210,246-248,only'></div>
 
 </section>
 

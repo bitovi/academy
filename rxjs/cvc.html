@@ -166,9 +166,9 @@ $.extend($.prototype, {
            						
            						">
 						<a class="page"
-							href="debugging.html"
-							title="Learn how to debug RxJS.">
-							Debugging
+							href="card-error.html"
+							title="Map one observable to another observable again!">
+							Card error
 						</a>
 						
 					</li>
@@ -181,9 +181,9 @@ $.extend($.prototype, {
            						
            						">
 						<a class="page"
-							href="card-error.html"
-							title="Map one observable to another observable again!">
-							Card error
+							href="debugging.html"
+							title="Learn how to debug RxJS.">
+							Debugging
 						</a>
 						
 					</li>
@@ -343,6 +343,7 @@ $.extend($.prototype, {
 				<section class="body">
     <h2>The problem</h2>
 <p>In this section, we will do for <code>cvc</code> what was done for <code>cardNumber</code> and <code>expiry</code>.</p>
+<h2>How to solve this problem</h2>
 <p>First:</p>
 <ul>
 <li>Write the <code>&lt;input name=&quot;cvc&quot;/&gt;</code> value to a <code>BehaviorSubject</code> called <code>this.userCVC</code>.</li>
@@ -401,10 +402,6 @@ const cleanCardNumber = map((card) =&gt; {
     }
 });
 
-const log = function(name) {
-    return tap(ev =&gt; console.log(name, ev))
-}
-
 const validateCard = map((card) =&gt; {
     if (!card) {
         return &quot;There is no card&quot;
@@ -414,54 +411,45 @@ const validateCard = map((card) =&gt; {
     }
 });
 
+const log = function(name) {
+    return tap(value =&gt; console.log(name, value))
+}
+
 function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
-    const errorEvent = errorObservable.pipe(
+
+    const errorEvents = errorObservable.pipe(
         map((error) =&gt; {
-            if (!error) {
-                return {
-                    type: &quot;valid&quot;
-                }
-            } else {
-                return {
-                    type: &quot;invalid&quot;,
-                    message: error
-                }
-            }
+            return {type: error ? &quot;invalid&quot; : &quot;valid&quot;}
         })
     );
 
     const focusEvents = blurredObservable.pipe(
         map((isBlurred) =&gt; {
-            if (isBlurred === undefined) {
-                return {};
-            }
-            return isBlurred ? {
-                type: &quot;blurred&quot;
-            } : {
-                type: &quot;focused&quot;
-            };
+            return {type: isBlurred ? &quot;blurred&quot; : &quot;focused&quot;};
         })
     );
 
-    var merged = merge(errorEvent, focusEvents);
+    var events = merge(errorEvents, focusEvents);
 
-    const valueState = scan((previous, event) =&gt; {
+    const eventsToState = scan((previous, event) =&gt; {
         switch (event.type) {
             case &quot;valid&quot;:
-                return Object.assign({}, previous, {
+                return {...previous,
                     isValid: true,
                     showCardError: false
-                });
+                };
             case &quot;invalid&quot;:
-                return Object.assign({}, previous, {
+                return {
+                    ...previous,
                     isValid: false,
                     showCardError: previous.hasBeenBlurred
-                });
+                };
             case &quot;blurred&quot;:
-                return Object.assign({}, previous, {
+                return {
+                    ...previous,
                     hasBeenBlurred: true,
                     showCardError: !previous.isValid
-                });
+                };
             default:
                 return previous;
         }
@@ -471,7 +459,10 @@ function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
         isValid: false
     });
 
-    return merged.pipe(valueState).pipe(map(state =&gt; state.showCardError));
+    var state = events.pipe(eventsToState);
+
+    return state.pipe( map(state =&gt; state.showCardError) );
+
 }
 
 const expiryParts = map((expiry) =&gt; {
@@ -665,7 +656,7 @@ form {
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='110-120,133-134,146-149,166-167,179-181,only'></div>
+<div line-highlight='100-110,123-124,136-139,156-157,169-171,only'></div>
 
 </section>
 

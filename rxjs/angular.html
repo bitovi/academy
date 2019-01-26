@@ -169,9 +169,9 @@ $.extend($.prototype, {
            						
            						">
 						<a class="page"
-							href="debugging.html"
-							title="Learn how to debug RxJS.">
-							Debugging
+							href="card-error.html"
+							title="Map one observable to another observable again!">
+							Card error
 						</a>
 						
 					</li>
@@ -184,9 +184,9 @@ $.extend($.prototype, {
            						
            						">
 						<a class="page"
-							href="card-error.html"
-							title="Map one observable to another observable again!">
-							Card error
+							href="debugging.html"
+							title="Learn how to debug RxJS.">
+							Debugging
 						</a>
 						
 					</li>
@@ -348,11 +348,11 @@ $.extend($.prototype, {
 <li>Write values to a <a href="https://rxjs-dev.firebaseapp.com/guide/subject">Subject</a>
 and write out the value of the subject in the template.</li>
 </ul>
-<p>We will do this by:</p>
+<h2>How to solve this problem</h2>
 <ul>
-<li>Creating a <code>userCardNumber</code> <code>BehaviorSubject</code>.</li>
-<li>Writing the value of the <code>cardNumber</code> input to the <code>userCardNumber</code> <code>BehaviorSubject</code> on the <code>input</code> event.</li>
-<li>Writing the value of <code>cardNumber</code> out in the template under the <code>&lt;/form&gt;</code>
+<li>Create a <code>userCardNumber</code> <code>BehaviorSubject</code>.</li>
+<li>Write the value of the <code>cardNumber</code> input to the <code>userCardNumber</code> <code>BehaviorSubject</code> on the <code>input</code> event.</li>
+<li>Write the value of <code>cardNumber</code> out in the template under the <code>&lt;/form&gt;</code>
 element like:
 <pre><code class="language-html">&lt;/form&gt;
 UserCardNumber: {{ GET-CARD-NUMBER-HERE }} &lt;br/&gt;
