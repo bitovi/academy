@@ -145,11 +145,7 @@ observables and then _flatten_ that observable with `mergeAll`.
   to a observable.
   ```typescript
   of(10, 20, 30)
-  .subscribe(
-    next => console.log('next:', next),
-    err => console.log('error:', err),
-    () => console.log('the end'),
-  );
+  .subscribe( next => console.log('next:', next) );
   // result:
   // 'next: 10'
   // 'next: 20'
@@ -160,7 +156,8 @@ observables and then _flatten_ that observable with `mergeAll`.
   > that emits the __paymentStatus__ object.
 
 - The static [pipe](https://rxjs-dev.firebaseapp.com/api/index/function/pipe) function can be used
-  to combine operators:
+  to combine operators. The following makes a `squareStartingWith2` operator that ensures
+  a `2` will be the first number squared and a `4` the first value emitted:
 
   ```html
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
@@ -193,36 +190,34 @@ observables and then _flatten_ that observable with `mergeAll`.
 - [mergeAll](https://rxjs-dev.firebaseapp.com/api/operators/mergeAll) takes an observable that emits inner observables
   and emits what the inner observables emits.
 
+  In the following example, `observables` emits:
+  1. An observable that emits numbers, then
+  2. An observable that emits letters.
+
+  `mergeAll` _flattens_ `observables` so that `values` emits
+  the numbers and letters directly.
+
   ```html
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
   <script type="typescript">
-  const {of, zip, timer, from} = rxjs;
-  const {map, mergeAll} = rxjs.operators;
+  const {of} = rxjs;
+  const {mergeAll} = rxjs.operators;
 
-  function sequentially(value, dueTime, period){
-      return zip(
-          from(value),
-          timer(dueTime, period),
-          value => value
-      )
-  }
+  const numbers = of(1,2,3);
+  const letters = of("a","b","c");
 
-  const count = sequentially([1, 2], 0, 500);
+  const observables = of(numbers, letters)
+  // observables: [1-2-3]-[a-b-c]X
   // count: 1--2X
 
-  const observableOfObservables = count.pipe( map((count) => {
-    return sequentially([10+count, 20+count],0,1000);
-  }) );
-  // spawned 1: 11----21X
-  // spawned 1: --12----22X
+  const values = observables.pipe( mergeAll() );
 
-  const numbers = observableOfObservables.pipe( mergeAll() );
-
-  numbers.subscribe(console.log);
-  // numbers: 11--12--21-22X
+  values.subscribe(console.log);
+  // numbers: 1-2-3-a-b-cX
   </script>
   ```
   @codepen
+  @highlight 13
 
 - Read a value from an observable's last emitted value with the
   conditional operator (`?.`) like:
