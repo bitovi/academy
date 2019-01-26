@@ -9,6 +9,8 @@
 
 In this section, we will do for `cvc` what was done for `cardNumber` and `expiry`.
 
+## How to solve this problem
+
 First:
 
 - Write the `<input name="cvc"/>` value to a `BehaviorSubject` called `this.userCVC`.

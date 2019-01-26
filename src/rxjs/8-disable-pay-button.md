@@ -11,9 +11,9 @@ In this section, we will:
 
 - disable the Pay button until the card, expiry, and cvc are valid.
 
-We will do this by:
+## How to solve this problem
 
-- Creating a `this.isCardInvalid` property publishes `true` if
+- Create a `this.isCardInvalid` property publishes `true` if
   either `this.cardError` `this.expiryError`, or `this.cvcError` are truthy.
 
 

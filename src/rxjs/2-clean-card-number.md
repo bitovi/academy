@@ -13,11 +13,11 @@ In this section, we will:
 - Write out the user entered card number without
   spaces or dashes.
 
-We will do this by:
+## How to solve this problem
 
-- Creating a `this.cardNumber` observable that contains the
+- Create a `this.cardNumber` observable that contains the
   text of the `userCardNumber` input without spaces (`\s`) or dashes (`-`).
-- Creating a `cleanCardNumber` operator that maps the `this.userCardNumber` to `this.cardNumber`.
+- Create a `cleanCardNumber` operator that maps the `this.userCardNumber` to `this.cardNumber`.
 - Write out the value of the `this.cardNumber` observable like:
   ```html
   CardNumber: {{ (cardNumber | async) }} <br/>

@@ -9,6 +9,8 @@
 
 In this section, we will do for `expiry` what was done for `cardNumber`.
 
+## How to solve this problem
+
 First:
 
 - Write the `<input name="expiry"/>` value to a `BehaviorSubject` called `this.userExpiry`.

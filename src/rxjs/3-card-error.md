@@ -11,10 +11,14 @@ In this section, we will:
 
 - Display an error message if the user has not entered a card or the card number is not
   16 digits.
+
+## How to solve this problem
+
+
 - Create a `cardError` observable that represents this error.
 - `cardError` should emit:
   - _"There is no card"_ if the `cardNumber` is falsy.
-  - _"There should be 16 characters in a card_ characters if the length of `cardNumber`
+  - _"There should be 16 characters in a card"_ characters if the length of `cardNumber`
     is not 16 digits.
 - `cardError` should be displayed within the `<div class="message">` element.
 
@@ -28,4 +32,4 @@ You know everything you need to know already.
 
 @sourceref ./3-card-error.html
 @codepen
-@highlight 22-29,50,58,only
+@highlight 22-29,36,58,only

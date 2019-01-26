@@ -13,11 +13,11 @@ In this section, we will:
 - Write values to a [Subject](https://rxjs-dev.firebaseapp.com/guide/subject)
   and write out the value of the subject in the template.
 
-We will do this by:
+## How to solve this problem
 
-- Creating a `userCardNumber` `BehaviorSubject`.
-- Writing the value of the `cardNumber` input to the `userCardNumber` `BehaviorSubject` on the `input` event.
-- Writing the value of `cardNumber` out in the template under the `</form>`
+- Create a `userCardNumber` `BehaviorSubject`.
+- Write the value of the `cardNumber` input to the `userCardNumber` `BehaviorSubject` on the `input` event.
+- Write the value of `cardNumber` out in the template under the `</form>`
   element like:
   ```html
   </form>

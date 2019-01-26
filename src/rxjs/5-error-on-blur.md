@@ -13,11 +13,11 @@ In this section, we will:
   we will update the displayed cardNumber error, if there is one, on every future keystroke.
 - Add class="is-error" to the input when it has an error.
 
-We will do this with:
+## How to solve this problem
 
-- A `userCardNumberBlurred` `Subject` that emits when the `cardNumber` input is blurred.
-- A `showCardError` that emits true when the `cardNumber` error should be shown.
-- A `showOnlyWhenBlurredOnce(errorObservable, blurredObservable)` function that returns
+- Create a `this.userCardNumberBlurred` `Subject` that emits when the `cardNumber` input is blurred.
+- Create a `this.showCardError` that emits true when the `cardNumber` error should be shown.
+- Create a `showOnlyWhenBlurredOnce(errorObservable, blurredObservable)` operator that returns
   the `showCardError` observable from two source observables.  
   `showOnlyWhenBlurredOnce` should use the __event-reducer__ pattern to
   promote the `errorObservable` and `blurredObservable` into events and
