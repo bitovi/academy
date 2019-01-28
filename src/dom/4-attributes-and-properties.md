@@ -21,7 +21,7 @@ Run the following example in CodePen:
 
 @sourceref ./4-attributes-and-properties-begin.html
 @codepen
-@highlight 137-138,only
+@highlight 138-141,only
 
 Each exercise builds on the previous exercise.  There is a completed solution
 at the end of this page.
@@ -193,18 +193,74 @@ QUnit.test('$.fn.css', function(){
 <details>
 <summary>Click to see test code</summary>
 ```js
-QUnit
+QUnit.test('$.fn.addClass and $.fn.removeClass', function(){
+	var count = function(reg, str){
+		var c = 0;
+		str.replace(reg, function(){
+			c++;
+		});
+		return c;
+	};
+
+	var $divs = $('#qunit-fixture').html('<div class="foo"></div><div class="foob"></div>')
+		.children();
+
+	$divs.addClass('foo');
+
+	equal( 1, count( /foo/,$divs[0].className ), 'only one foo' );
+	equal( 1, count( /foo/,$divs[1].className ), 'only one foo' );
+
+
+	$divs.addClass('foob');
+
+	equal( 1, count( /foob/,$divs[0].className ), 'only one foo' );
+	equal( 1, count( /foob/,$divs[1].className ), 'only one foo' );
+
+	$divs.removeClass('foob');
+	equal( 0, count( /foob/,$divs[0].className ), 'only one foo' );
+	equal( 0, count( /foob/,$divs[1].className ), 'only one foo' );
+
+	$divs.removeClass('foo');
+	equal( 0, count( /foo/,$divs[0].className ), 'only one foo' );
+	equal( 0, count( /foo/,$divs[1].className ), 'only one foo' );
+});
 ```
 </details>
 
 ### What you need to know
+
+- An element's [classList](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList)
+  lets you add and remove class names on it.
+  ```html
+  <style>
+  .red {background-color: red}
+  .green {background-color: green}
+  </style>
+  <div class="red" id="hi">Hello</div>
+  <script type="module">
+  setTimeout(function(){
+    hi.classList.add("green");
+    hi.classList.remove("red");
+  },1000);
+  </script>
+  ```
+  @codepen
 
 ### The solution
 
 <details>
 <summary>Click to see the solution</summary>
 ```js
-solution
+      addClass: function(className) {
+        return $.each(this, function(i, element) {
+          element.classList.add(className);
+        });
+      },
+      removeClass: function(className) {
+        return $.each(this, function(i, element) {
+          element.classList.remove(className);
+        });
+      }
 ```
 </details>
 
@@ -214,4 +270,4 @@ solution
 
 @sourceref ./4-attributes-and-properties-end.html
 @codepen
-@highlight 137-156,only
+@highlight 138-167,only

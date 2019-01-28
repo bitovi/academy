@@ -155,6 +155,16 @@
             .getPropertyValue(cssPropName);
       }
     },
+    addClass: function(className) {
+      return $.each(this, function(i, element) {
+        element.classList.add(className);
+      });
+    },
+    removeClass: function(className) {
+      return $.each(this, function(i, element) {
+        element.classList.remove(className);
+      });
+    },
     width: function() { },
     hide: function() { },
     show: function() { },

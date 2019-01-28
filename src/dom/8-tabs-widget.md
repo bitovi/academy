@@ -47,27 +47,3 @@ QUnit
 solution
 ```
 </details>
-
-
-
-## Exercise: `$.fn.tabs`
-
-### The problem
-
-<details>
-<summary>Click to see test code</summary>
-```js
-QUnit
-```
-</details>
-
-### What you need to know
-
-### The solution
-
-<details>
-<summary>Click to see the solution</summary>
-```js
-solution
-```
-</details>

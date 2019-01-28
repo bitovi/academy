@@ -26,7 +26,7 @@ Run the following example in CodePen:
 
 @sourceref ./5-layout-begin.html
 @codepen
-@highlight 158-161,only
+@highlight 168-171,only
 
 Each exercise builds on the previous exercise. There is a completed solution at the end of this page.
 
@@ -217,4 +217,4 @@ QUnit.test('$.fn.offset', function(){
 
 @sourceref ./5-layout-end.html
 @codepen
-@highlight 158-175,only
+@highlight 168-185,only

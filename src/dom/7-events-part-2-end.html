@@ -155,6 +155,16 @@
             .getPropertyValue(cssPropName);
       }
     },
+    addClass: function(className) {
+      return $.each(this, function(i, element) {
+        element.classList.add(className);
+      });
+    },
+    removeClass: function(className) {
+      return $.each(this, function(i, element) {
+        element.classList.remove(className);
+      });
+    },
     width: function() {
       var paddingLeft = parseInt(this.css("padding-left"), 10),
       paddingRight = parseInt(this.css("padding-right"), 10);
@@ -186,7 +196,7 @@
     is: function(selector){
       var matched = false;
       $.each(this, function(i, element){
-        if( this.matches( selector) ) {
+        if( element.matches( selector) ) {
           matched = true;
         }
       });

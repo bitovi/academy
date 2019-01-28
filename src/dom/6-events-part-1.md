@@ -37,6 +37,16 @@ The following shows why mouseenter is usually prefered over mouseover:
 @codepen
 @highlight 9,only
 
+## Setup
+
+Run the following example in CodePen:
+
+@sourceref ./6-events-part-1-begin.html
+@codepen
+@highlight 186-187,only
+
+Each exercise builds on the previous exercise. There is a completed solution at the end of this page.
+
 ## Exercise: `collection.bind` and `collection.unbind`
 
 
@@ -115,4 +125,4 @@ QUnit.test('$.fn.bind and $.fn.unbind', function(){
 
 @sourceref ./6-events-part-1-end.html
 @codepen
-@highlight 176-185,only
+@highlight 186-195,only

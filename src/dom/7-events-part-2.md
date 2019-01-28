@@ -58,7 +58,7 @@ Run the following example in CodePen:
 
 @sourceref ./7-events-part-2-begin.html
 @codepen
-@highlight 186-189,only
+@highlight 196-199,only
 
 Each exercise builds on the previous exercise. There is a completed solution at the end of this page.
 
@@ -383,4 +383,4 @@ QUnit.test('$.fn.off', function(){
 
 @sourceref ./7-events-part-2-end.html
 @codepen
-@highlight 186-262,only
+@highlight 196-272,only
