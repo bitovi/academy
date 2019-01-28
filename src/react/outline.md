@@ -32,10 +32,17 @@
 * The React Way
   * "Everything is a Component"
   * Progression from megalith to render components
+
+## Projects
+
 * Prop Types
   * Simple types: `string`, `number`, `bool`, `function`, `node`
   * Complex types: `instanceOf`, `objectOf`, `arrayOf`, `shape`, `oneOf`, `oneOfType`
+* Hooks (not released yet)
+* Controlled vs Uncontrolled
+* Data Down Actions Up
 * Rendering in React
+  * Lifecycle Callbacks
   * the `ref` prop
   * the `key` prop
 
