@@ -180,7 +180,7 @@ $.extend($.prototype, {
            						expanded">
 						<a class="page"
 							href="events-part-2.html"
-							title="dom-jquery-training/events-part-2">
+							title="Learn about event propagation and event delegation.">
 							Events Part 2
 						</a>
 						
@@ -198,7 +198,7 @@ $.extend($.prototype, {
            						">
 						<a class="page"
 							href="tabs-widget.html"
-							title="">
+							title="Create a tabs widget using your own version of jQuery.">
 							Tabs Widget
 						</a>
 						
@@ -267,6 +267,12 @@ $.extend($.prototype, {
 
 		
 			
+				<section class="description">
+    <p>Learn about event propagation and event delegation.</p>
+
+</section>
+
+			
 		
 
 		
@@ -276,7 +282,24 @@ $.extend($.prototype, {
 			
 				<section class="body">
     <h2>Overview</h2>
+<p>In this part, we will:</p>
+<ul>
+<li>Learn about event propagation</li>
+<li>Learn about event delegation</li>
+</ul>
+<h2>Slides</h2>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vT8tm1B2yfrIZxSPMtKhMHf_nCGgUbwu6kmDgOQqp6sskZqqmCMUvDmeYRBsQ8o_RECYtIwhFBHB0UM/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<h2>Video</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qoW-EYuESZA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <h2>Propagation Demo</h2>
+<p>The following listens to <code>click</code> on a nested body, div, and
+anchor element in both the <code>capture</code> and <code>bubble</code> phase
+and logs which handler is being dispatched.</p>
+<p>See what happens:</p>
+<ul>
+<li>when different propagation methods are called</li>
+<li>when the DOM is modified during event dispatching</li>
+</ul>
 <pre><code class="language-html">&lt;style&gt;
     * {font-family: Consolas, Monaco, Menlo, monospace; font-size: 1.2em}
     a {display: block; margin-left: 20px;}
@@ -290,66 +313,847 @@ $.extend($.prototype, {
 &lt;/div&gt;
 &amp;lt;/body&amp;gt;
 &lt;script type=&quot;module&quot;&gt;
-    /*
-    What happens if we:
-        - stopPropagation() within the body's capture phase listener?
-        - stopPropagation() within the div's target phase listener?
-        - remove innerHTML within the body's capture phase listener?
-     */
+/*
+What happens if we:
+    - stopPropagation() within the body's capture phase listener?
+    - stopImmediatePropagation() within the body's capture phase listener?
+    - remove innerHTML within the body's capture phase listener?
+ */
 
+var body = document.querySelector('body'),
+    div = document.querySelector('div'),
+    a = document.querySelector('a');
 
-    var body = document.querySelector('body'),
-        div = document.querySelector('div'),
-        a = document.querySelector('a');
+body.addEventListener('click', function(ev) {
+    console.log('&lt;- body bubbled');
+});
 
-    body.addEventListener('click', function(ev) {
-        console.log('body bubbled!', ev);
-    });
+body.addEventListener('click', function(ev) {
+    // ev.stopImmediatePropagation();
+    // ev.preventDefault();
+    // this.innerHTML = &quot;&quot;;
+    console.log('-&gt; body captured');
+}, true);
 
-    body.addEventListener('click', function(ev) {
-        ev.stopImmediatePropagation();
-        ev.preventDefault();
-        console.log('body captured 1!');
-    }, true);
+div.addEventListener('click', function() {
+    console.log('&lt;- div bubbled');
+});
 
-    body.addEventListener('click', function(ev) {
-        console.log('body captured 2!');
-    }, true);
+div.addEventListener('click', function() {
+    console.log('-&gt; div captured');
+}, true);
 
-    div.addEventListener('click', function() {
-        console.log('div bubbled!');
-    });
+a.addEventListener('click', function() {
+    console.log('&lt;- a bubble phase');
+});
 
-    div.addEventListener('click', function() {
-        console.log('div captured!');
-    }, true);
-
-    a.addEventListener('click', function() {
-        console.log('a bubble phase!');
-    });
-
-    a.addEventListener('click', function() {
-        console.log('a capture phase!');
-    }, true);
+a.addEventListener('click', function() {
+    console.log('-&gt; a capture phase');
+}, true);
 &lt;/script&gt;
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='1,only'></div>
-<h2>Exercise</h2>
+<div line-highlight='6-12,16-18,30-32,only'></div>
+<h2>Delegation Demo</h2>
+<p>The following shows using event delegation to listen to
+when any anchor is clicked in the page.</p>
+<pre><code class="language-html">&lt;style&gt;
+    * {font-family: Consolas, Monaco, Menlo, monospace; font-size: 1.2em}
+    a {display: block; margin-left: 20px;}
+    div {margin-left: 20px;}
+&lt;/style&gt;
+&amp;lt;body&amp;gt;
+&lt;div class=&quot;well&quot;&gt;
+    &amp;lt;div&amp;gt;
+    &lt;a href=&quot;#someHash&quot;&gt;&amp;lt;a&amp;gt;&amp;lt;/a&amp;gt;&lt;/a&gt;
+    &lt;a href=&quot;#thisHash&quot;&gt;&amp;lt;a&amp;gt; &lt;span&gt;&amp;lt;span&amp;gt;  &amp;lt;/span&amp;gt;&lt;/span&gt; &amp;lt;/a&amp;gt;&lt;/a&gt;
+    &amp;lt;/div&amp;gt;
+&lt;/div&gt;
+&amp;lt;/body&amp;gt;
+&lt;script type=&quot;module&quot;&gt;
+document.body.addEventListener(&quot;click&quot;, function(ev){
+    if( ev.target.matches(&quot;a&quot;) ) {
+        console.log(&quot;clicked on an anchor!&quot;);
+    }
+}, false);
+&lt;/script&gt;
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='15-19,only'></div>
+<p>Notice that when the <code>&lt;span&gt;</code> within the <code>&lt;a&gt;</code> is is clicked,
+nothing is logged.  This is because the <code>event.target</code>
+was the <code>&lt;span&gt;</code> and not an <code>&lt;a&gt;</code>.</p>
+<pre><code class="language-html">&lt;style&gt;
+    * {font-family: Consolas, Monaco, Menlo, monospace; font-size: 1.2em}
+    a {display: block; margin-left: 20px;}
+    div {margin-left: 20px;}
+&lt;/style&gt;
+&amp;lt;body&amp;gt;
+&lt;div class=&quot;well&quot;&gt;
+    &amp;lt;div&amp;gt;
+    &lt;a href=&quot;#someHash&quot;&gt;&amp;lt;a&amp;gt;&amp;lt;/a&amp;gt;&lt;/a&gt;
+    &lt;a href=&quot;#thisHash&quot;&gt;&amp;lt;a&amp;gt; &lt;span&gt;&amp;lt;span&amp;gt;  &amp;lt;/span&amp;gt;&lt;/span&gt; &amp;lt;/a&amp;gt;&lt;/a&gt;
+    &amp;lt;/div&amp;gt;
+&lt;/div&gt;
+&amp;lt;/body&amp;gt;
+&lt;script type=&quot;module&quot;&gt;
+document.body.addEventListener(&quot;click&quot;, function(ev){
+    var current = ev.target;
+    do {
+        if(current.matches(&quot;a&quot;)) {
+            console.log(&quot;clicked on an anchor!&quot;);
+        }
+        current = current.parentNode;
+    } while ( current &amp;&amp; current !== ev.currentTarget )
+}, false);
+&lt;/script&gt;
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='15-23,only'></div>
+<h2>Setup</h2>
+<p>Run the following example in CodePen:</p>
+<pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
+&lt;script src=&quot;//code.jquery.com/qunit/qunit-1.12.0.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//bitovi.github.io/university/static/scripts/jquery-test.js&quot;&gt;&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//bitovi.github.io/university/static/scripts/jquery-test.css&quot;&gt;
+&lt;script type=&quot;module&quot;&gt;
+(function() {
+  $ = function(selector) {
+    if ( !(this instanceof $) ) {
+      return new $(selector);
+    }
+    var elements;
+    if (typeof selector === &quot;string&quot;) {
+      elements = document.querySelectorAll(selector);
+    } else if ($.isArrayLike(selector)) {
+      elements = selector;
+    }
+    [].push.apply(this, elements);
+  };
+
+  $.extend = function(target, object) {
+    for (var prop in object) {
+      if (object.hasOwnProperty(prop)) {
+        target[prop] = object[prop];
+      }
+    }
+    return target;
+  };
+
+  // Static methods
+  $.extend($, {
+    isArray: function(obj) {
+      return Object.prototype.toString.call(obj) === &quot;[object Array]&quot;;
+    },
+    isArrayLike: function(obj) {
+      return obj &amp;&amp;
+        typeof obj === &quot;object&quot; &amp;&amp;
+        (   obj.length === 0 ||
+            typeof obj.length === &quot;number&quot; &amp;&amp;
+            obj.length &gt; 0 &amp;&amp;
+            obj.length - 1 in obj );
+
+    },
+    each: function(collection, cb) {
+      if ($.isArrayLike(collection)) {
+        for (var i = 0; i &lt; collection.length; i++) {
+          if (cb.call(this, i, collection[i]) === false) {
+            break;
+          }
+        }
+      } else {
+        for (var prop in collection) {
+          if (collection.hasOwnProperty(prop)) {
+            if (cb.call(this, prop, collection[prop]) === false) {
+              break;
+            }
+          }
+        }
+      }
+      return collection;
+    },
+    makeArray: function(arr) {
+      if ($.isArray(arr)) {
+        return arr;
+      }
+      var array = [];
+      $.each(arr, function(i, item) {
+        array[i] = item;
+      });
+      return array;
+    },
+    proxy: function(fn, context) {
+      return function() {
+        return fn.apply(context, arguments);
+      };
+    }
+  });
+
+  function makeTraverser(traverser) {
+    return function() {
+      var elements = [], args = arguments;
+      $.each(this, function(i, element) {
+        var els = traverser.apply(element, args);
+        if ($.isArrayLike(els)) {
+          elements.push.apply(elements, els);
+        } else if (els) {
+          elements.push(els);
+        }
+      });
+      return $(elements);
+    };
+  }
+
+  $.extend($.prototype, {
+    html: function(newHtml) {
+      if(arguments.length) {
+        return $.each(this, function(i, element) {
+          element.innerHTML = newHtml;
+        });
+      } else {
+        return this[0].innerHTML;
+      }
+    },
+    val: function(newVal) {
+      if(arguments.length) {
+        return $.each(this, function(i, element) {
+          element.value = newVal;
+        });
+      } else {
+        return this[0].value;
+      }
+    },
+    text: function(newText) {
+      if (arguments.length) {
+        return $.each(this, function(i, element) {
+          element.textContent = newText;
+        });
+      } else {
+        return this[0].textContent;
+      }
+    },
+    find: makeTraverser(function(selector) {
+      return this.querySelectorAll(selector);
+    }),
+    parent: makeTraverser(function() {
+      return this.parentNode;
+    }),
+    next: makeTraverser(function() {
+      return this.nextElementSibling;
+    }),
+    prev: makeTraverser(function() {
+      return this.previousElementSibling;
+    }),
+    children: makeTraverser(function() {
+      return this.children;
+    }),
+    attr: function(attrName, value) {
+      if (arguments.length == 2) {
+        return $.each(this, function(i, element) {
+          element.setAttribute(attrName, value);
+        });
+      } else {
+        return this[0] &amp;&amp; this[0].getAttribute(attrName);
+      }
+    },
+    css: function(cssPropName, value) {
+      if (arguments.length == 2) {
+        return $.each(this, function(i, element) {
+          element.style[cssPropName] = value;
+        });
+      } else {
+        return this[0] &amp;&amp;
+          window.getComputedStyle(this[0])
+            .getPropertyValue(cssPropName);
+      }
+    },
+    width: function() {
+      var paddingLeft = parseInt(this.css(&quot;padding-left&quot;), 10),
+      paddingRight = parseInt(this.css(&quot;padding-right&quot;), 10);
+      return this[0].clientWidth - paddingLeft - paddingRight;
+    },
+    hide: function() {
+      return this.css(&quot;display&quot;, &quot;none&quot;);
+    },
+    show: function() {
+      return this.css(&quot;display&quot;, &quot;&quot;);
+    },
+    offset: function() {
+      var offset = this[0].getBoundingClientRect();
+      return {
+        top: offset.top + window.pageYOffset,
+        left: offset.left + window.pageXOffset
+      };
+    },
+    bind: function(eventName, handler) {
+      return $.each(this, function(i, element) {
+        element.addEventListener(eventName, handler, false);
+      });
+    },
+    unbind: function(eventName, handler) {
+      return $.each(this, function(i, element) {
+        element.removeEventListener(eventName, handler, false);
+      });
+    },
+    is: function(selector){ },
+    data: function(propName, value) { }
+    on: function(eventType, selector, handler) { },
+    off: function(eventType, selector, handler) { }
+  });
+
+})();
+&lt;/script&gt;
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='186-189,only'></div>
+<p>Each exercise builds on the previous exercise. There is a completed solution at the end of this page.</p>
+<h2>Bonus Exercise <code>collection.is(selector) -&gt; boolean</code></h2>
 <h3>The problem</h3>
+<p><a href="https://api.jquery.com/is/">collection.is</a> checks the current matched set of elements against a selector.</p>
+<pre><code class="language-js">import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+
+var elements = $([
+    document.createElement(&quot;div&quot;),
+    document.createElement(&quot;span&quot;)
+]);
+
+console.log( elements.is(&quot;div&quot;) ) //-&gt; true
+</code></pre>
+<div class='codepen'></div>
 <p><details>
 <summary>Click to see test code</summary></p>
-<pre><code class="language-js">QUnit
+<pre><code class="language-js">QUnit.test('$.fn.is', function(){
+
+    expect(3);
+
+    var elements = $([
+        document.createElement(&quot;div&quot;),
+        document.createElement(&quot;span&quot;)
+    ]);
+
+    ok(elements.is(&quot;div&quot;), &quot;is div&quot;);
+    ok(elements.is(&quot;span&quot;), &quot;is span&quot;);
+    ok(!elements.is(&quot;a&quot;), &quot;is a&quot;);
+});
 </code></pre>
 <p></details></p>
 <h3>What you need to know</h3>
+<ul>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/matches">matches</a> returns if an
+element matches a selector:</p>
+<pre><code class="language-html">&lt;div id=&quot;hello&quot;&gt;Hello World&lt;/div&gt;
+&lt;script type=&quot;module&quot;&gt;
+console.log( hello.matches(&quot;div&quot;) ) //-&gt; true
+&lt;/script&gt;  
+</code></pre>
+<div class='codepen'></div></li>
+</ul>
 <h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<pre><code class="language-js">solution
+<pre><code class="language-js">    is: function(selector){
+      var matched = false;
+      $.each(this, function(i, element){
+        if( this.matches( selector) ) {
+          matched = true;
+        }
+      });
+      return matched;
+    },
 </code></pre>
 <p></details></p>
+<h2>Bonus Exercise <code>collection.data(key [, value])</code></h2>
+<h3>The problem</h3>
+<p><a href="https://api.jquery.com/data/">collection.data</a> stores arbitrary data associated with the matched elements or return the value at the named data store for the first element in the set of matched elements.</p>
+<pre><code class="language-html">&lt;div id=&quot;hello&quot;&gt;Hello World&lt;/div&gt;
+&lt;script type=&quot;module&quot;&gt;
+import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+
+$(&quot;#hello&quot;).data(&quot;foo&quot;, &quot;bar&quot;);
+
+console.log( $(&quot;#hello&quot;).data(&quot;foo&quot;) ) //-&gt; &quot;bar&quot;
+&lt;/script&gt;  
+</code></pre>
+<div class='codepen'></div>
+<p><details>
+<summary>Click to see test code</summary></p>
+<pre><code class="language-js">QUnit.test('$.fn.data', function(){
+
+    $('#qunit-fixture').html('&lt;div id=&quot;el&quot;&gt;text&lt;/div&gt;');
+
+    $('#el').data('foo', 'bar');
+
+    equal( $('#el').data('foo'), 'bar' ,'got back bar' );
+});
+</code></pre>
+<p></details></p>
+<h3>What you need to know</h3>
+<ul>
+<li><p>Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap">WeakMap</a>
+to store data associated with an object in such a way that when the object is removed the data
+will be also be removed from the <code>WeakMap</code> and available for garbage collection.</p>
+<pre><code class="language-js">var map = new WeakMap();
+
+(function(){
+  var key = {name: &quot;key&quot;};
+  var value = {name: &quot;value&quot;};
+  map.set(key, value);
+})();
+setTimeout(function(){
+  console.log( map );
+  // In chrome, you can see the contents of the weakmap
+  // and it will not have the key and value.
+},500);
+</code></pre>
+<div class='codepen'></div></li>
+</ul>
+<h3>The solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-js">    data: (function(){
+      var data = new WeakMap();
+      return function(propName, value) {
+        if (arguments.length == 2) {
+          // set the data for every item in the collection
+          return $.each(this, function(i, el) {
+            var elData = data.get(el);
+            if (!elData) {
+              elData = {};
+              data.set(el, elData);
+            }
+            elData[propName] = value;
+          });
+        } else {
+          // return the data in the first value
+          var el = this[0], elData = data.get(el);
+          return elData &amp;&amp; elData[propName];
+        }
+      };
+    })(),
+</code></pre>
+<p></details></p>
+<h2>Bonus Exercise <code>collection.on(eventType, selector, handler)</code></h2>
+<h3>The problem</h3>
+<p><a href="https://api.jquery.com/on/">collection.on</a> attaches a delegate event listener.</p>
+<pre><code class="language-html">&lt;ul id=&quot;root&quot;&gt;
+    &lt;li&gt;First&lt;/li&gt;
+    &lt;li&gt;Second&lt;/li&gt;
+&lt;/ul&gt;
+&lt;script type=&quot;module&quot;&gt;
+import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+
+$(&quot;#root&quot;).on(&quot;click&quot;,&quot;li&quot;, function(){
+    console.log(&quot;clicked an li&quot;);
+});
+&lt;/script&gt;  
+</code></pre>
+<div class='codepen'></div>
+<p><details>
+<summary>Click to see test code</summary></p>
+<pre><code class="language-js">QUnit.test('$.fn.on', function(){
+    expect(3);
+
+    var handler = function(){
+        equal(this.nodeName.toLowerCase(), 'li', 'called back with an LI')
+    }
+
+    var $ul = $('#qunit-fixture').html(`
+        &lt;ul&gt;
+            &lt;li&gt;&lt;span id=&quot;one&quot;/&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;span id=&quot;two&quot;/&gt;&lt;/li&gt;
+        &lt;/ul&gt;`)
+        .children()
+
+    $ul.on('click', 'li', handler);
+
+    clickIt( $('#one')[0] );
+    clickIt( $('#two')[0] );
+
+    $ul.html('&lt;li&gt;&lt;span id=&quot;three&quot;&gt;&lt;/span&gt;&lt;/li&gt;');
+    clickIt( $('#three')[0] );
+});
+</code></pre>
+<p></details></p>
+<h3>What you need to know</h3>
+<ul>
+<li>Instead of binding the <code>handler</code>, you'll need to bind a <code>delegator</code> that
+will conditionally call the <code>handler</code>.</li>
+<li>Use <code>.data</code> to store the <code>delegator</code> and <code>handler</code> in an object
+like <code>{delegator, handler}</code>.  That object should be stored in a data structure that
+looks like:
+<pre><code class="language-js">$([element]).data(&quot;events&quot;) //-&gt; {
+//   click: { li: [ {delegator, handler} ] }   
+// }
+</code></pre></li>
+</ul>
+<h3>The solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-js">    on: function(eventType, selector, handler) {
+      // Create delegator function
+      var delegator = function(ev) {
+        var cur = ev.target;
+        do {
+          if ( $([ cur ]).is(selector) ) {
+            handler.call(cur, ev);
+          }
+          cur = cur.parentNode;
+        } while (cur &amp;&amp; cur !== ev.currentTarget);
+      };
+
+      return $.each(this, function(i, element) {
+        // store delegators by event and selector in
+        // $.data
+        var events = $([ element ]).data(&quot;events&quot;), eventTypeEvents;
+        if (!events) {
+          $([ element ]).data(&quot;events&quot;, events = {});
+        }
+        if (!(eventTypeEvents = events[eventType])) {
+          eventTypeEvents = events[eventType] = {};
+        }
+        if (!eventTypeEvents[selector]) {
+          eventTypeEvents[selector] = [];
+        }
+        eventTypeEvents[selector].push({
+          handler: handler,
+          delegator: delegator
+        });
+        element.addEventListener(eventType, delegator, false);
+      });
+    },
+</code></pre>
+<p></details></p>
+<h2>Bonus Exercise <code>collection.off(eventType, selector, handler)</code></h2>
+<h3>The problem</h3>
+<p><a href="https://api.jquery.com/off/">collection.off</a> stops listening for a delegate listener.</p>
+<p><details>
+<summary>Click to see test code</summary></p>
+<pre><code class="language-js">QUnit.test('$.fn.off', function(){
+    expect(0);
+
+    var handler = function(){
+        equal(this.nodeName.toLowerCase(), 'li', 'called back with an LI')
+    }
+
+    var $ul = $('#qunit-fixture').html(`
+        &lt;ul&gt;
+            &lt;li&gt;&lt;span id=&quot;one&quot;/&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;span id=&quot;two&quot;/&gt;&lt;/li&gt;
+        &lt;/ul&gt;`)
+        .children();
+
+    $ul.on('click', 'li', handler);
+    $ul.off('click', 'li', handler);
+
+    clickIt( $('#three')[0] );
+});
+</code></pre>
+<p></details></p>
+<h3>What you need to know</h3>
+<ul>
+<li>You will need to find the delegate for the handler passed to <code>.off()</code> and then
+call <code>.removeEventListener</code>.</li>
+</ul>
+<h3>The solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-js">    off: function(eventType, selector, handler) {
+      return $.each(this, function(i, element) {
+        // Find the delegator object for the handler
+        // and remove it.
+        var events = $([ element ]).data(&quot;events&quot;);
+        if (events[eventType] &amp;&amp; events[eventType][selector]) {
+          var delegates = events[eventType][selector], i = 0;
+          while (i &lt; delegates.length) {
+            if (delegates[i].handler === handler) {
+              element.removeEventListener(eventType, delegates[i].delegator, false);
+              delegates.splice(i, 1);
+            } else {
+              i++;
+            }
+          }
+        }
+      });
+    }
+</code></pre>
+<p></details></p>
+<h2>Complete solution</h2>
+<pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
+&lt;script src=&quot;//code.jquery.com/qunit/qunit-1.12.0.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//bitovi.github.io/university/static/scripts/jquery-test.js&quot;&gt;&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//bitovi.github.io/university/static/scripts/jquery-test.css&quot;&gt;
+&lt;script type=&quot;module&quot;&gt;
+(function() {
+  $ = function(selector) {
+    if ( !(this instanceof $) ) {
+      return new $(selector);
+    }
+    var elements;
+    if (typeof selector === &quot;string&quot;) {
+      elements = document.querySelectorAll(selector);
+    } else if ($.isArrayLike(selector)) {
+      elements = selector;
+    }
+    [].push.apply(this, elements);
+  };
+
+  $.extend = function(target, object) {
+    for (var prop in object) {
+      if (object.hasOwnProperty(prop)) {
+        target[prop] = object[prop];
+      }
+    }
+    return target;
+  };
+
+  // Static methods
+  $.extend($, {
+    isArray: function(obj) {
+      return Object.prototype.toString.call(obj) === &quot;[object Array]&quot;;
+    },
+    isArrayLike: function(obj) {
+      return obj &amp;&amp;
+        typeof obj === &quot;object&quot; &amp;&amp;
+        (   obj.length === 0 ||
+            typeof obj.length === &quot;number&quot; &amp;&amp;
+            obj.length &gt; 0 &amp;&amp;
+            obj.length - 1 in obj );
+
+    },
+    each: function(collection, cb) {
+      if ($.isArrayLike(collection)) {
+        for (var i = 0; i &lt; collection.length; i++) {
+          if (cb.call(this, i, collection[i]) === false) {
+            break;
+          }
+        }
+      } else {
+        for (var prop in collection) {
+          if (collection.hasOwnProperty(prop)) {
+            if (cb.call(this, prop, collection[prop]) === false) {
+              break;
+            }
+          }
+        }
+      }
+      return collection;
+    },
+    makeArray: function(arr) {
+      if ($.isArray(arr)) {
+        return arr;
+      }
+      var array = [];
+      $.each(arr, function(i, item) {
+        array[i] = item;
+      });
+      return array;
+    },
+    proxy: function(fn, context) {
+      return function() {
+        return fn.apply(context, arguments);
+      };
+    }
+  });
+
+  function makeTraverser(traverser) {
+    return function() {
+      var elements = [], args = arguments;
+      $.each(this, function(i, element) {
+        var els = traverser.apply(element, args);
+        if ($.isArrayLike(els)) {
+          elements.push.apply(elements, els);
+        } else if (els) {
+          elements.push(els);
+        }
+      });
+      return $(elements);
+    };
+  }
+
+  $.extend($.prototype, {
+    html: function(newHtml) {
+      if(arguments.length) {
+        return $.each(this, function(i, element) {
+          element.innerHTML = newHtml;
+        });
+      } else {
+        return this[0].innerHTML;
+      }
+    },
+    val: function(newVal) {
+      if(arguments.length) {
+        return $.each(this, function(i, element) {
+          element.value = newVal;
+        });
+      } else {
+        return this[0].value;
+      }
+    },
+    text: function(newText) {
+      if (arguments.length) {
+        return $.each(this, function(i, element) {
+          element.textContent = newText;
+        });
+      } else {
+        return this[0].textContent;
+      }
+    },
+    find: makeTraverser(function(selector) {
+      return this.querySelectorAll(selector);
+    }),
+    parent: makeTraverser(function() {
+      return this.parentNode;
+    }),
+    next: makeTraverser(function() {
+      return this.nextElementSibling;
+    }),
+    prev: makeTraverser(function() {
+      return this.previousElementSibling;
+    }),
+    children: makeTraverser(function() {
+      return this.children;
+    }),
+    attr: function(attrName, value) {
+      if (arguments.length == 2) {
+        return $.each(this, function(i, element) {
+          element.setAttribute(attrName, value);
+        });
+      } else {
+        return this[0] &amp;&amp; this[0].getAttribute(attrName);
+      }
+    },
+    css: function(cssPropName, value) {
+      if (arguments.length == 2) {
+        return $.each(this, function(i, element) {
+          element.style[cssPropName] = value;
+        });
+      } else {
+        return this[0] &amp;&amp;
+          window.getComputedStyle(this[0])
+            .getPropertyValue(cssPropName);
+      }
+    },
+    width: function() {
+      var paddingLeft = parseInt(this.css(&quot;padding-left&quot;), 10),
+      paddingRight = parseInt(this.css(&quot;padding-right&quot;), 10);
+      return this[0].clientWidth - paddingLeft - paddingRight;
+    },
+    hide: function() {
+      return this.css(&quot;display&quot;, &quot;none&quot;);
+    },
+    show: function() {
+      return this.css(&quot;display&quot;, &quot;&quot;);
+    },
+    offset: function() {
+      var offset = this[0].getBoundingClientRect();
+      return {
+        top: offset.top + window.pageYOffset,
+        left: offset.left + window.pageXOffset
+      };
+    },
+    bind: function(eventName, handler) {
+      return $.each(this, function(i, element) {
+        element.addEventListener(eventName, handler, false);
+      });
+    },
+    unbind: function(eventName, handler) {
+      return $.each(this, function(i, element) {
+        element.removeEventListener(eventName, handler, false);
+      });
+    },
+    is: function(selector){
+      var matched = false;
+      $.each(this, function(i, element){
+        if( this.matches( selector) ) {
+          matched = true;
+        }
+      });
+      return matched;
+    },
+    data: (function(){
+      var data = new WeakMap();
+      return function(propName, value) {
+        if (arguments.length == 2) {
+          return $.each(this, function(i, el) {
+            var elData = data.get(el);
+            if (!elData) {
+              elData = {};
+              data.set(el, elData);
+            }
+            elData[propName] = value;
+          });
+        } else {
+          var el = this[0], elData = data.get(el);
+          return elData &amp;&amp; elData[propName];
+        }
+      };
+    })(),
+    on: function(eventType, selector, handler) {
+      // Create delegator function
+      var delegator = function(ev) {
+        var cur = ev.target;
+        do {
+          if ( $([ cur ]).is(selector) ) {
+            handler.call(cur, ev);
+          }
+          cur = cur.parentNode;
+        } while (cur &amp;&amp; cur !== ev.currentTarget);
+      };
+
+      return $.each(this, function(i, element) {
+        // store delegators by event and selector in
+        // $.data
+        var events = $([ element ]).data(&quot;events&quot;), eventTypeEvents;
+        if (!events) {
+          $([ element ]).data(&quot;events&quot;, events = {});
+        }
+        if (!(eventTypeEvents = events[eventType])) {
+          eventTypeEvents = events[eventType] = {};
+        }
+        if (!eventTypeEvents[selector]) {
+          eventTypeEvents[selector] = [];
+        }
+        eventTypeEvents[selector].push({
+          handler: handler,
+          delegator: delegator
+        });
+        element.addEventListener(eventType, delegator, false);
+      });
+    },
+    off: function(eventType, selector, handler) {
+      return $.each(this, function(i, element) {
+        // Find the delegator object for the handler
+        // and remove it.
+        var events = $([ element ]).data(&quot;events&quot;);
+        if (events[eventType] &amp;&amp; events[eventType][selector]) {
+          var delegates = events[eventType][selector], i = 0;
+          while (i &lt; delegates.length) {
+            if (delegates[i].handler === handler) {
+              element.removeEventListener(eventType, delegates[i].delegator, false);
+              delegates.splice(i, 1);
+            } else {
+              i++;
+            }
+          }
+        }
+      });
+    }
+  });
+
+})();
+&lt;/script&gt;
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='186-262,only'></div>
 
 </section>
 
@@ -361,7 +1165,7 @@ $.extend($.prototype, {
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/dom/7-events-part-2.md"},"description":"","name":"dom-jquery-training/events-part-2","title":"Events Part 2","type":"page","parent":"dom-jquery-training","order":7,"comment":" ","pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/dom/7-events-part-2.md"},"description":"Learn about event propagation and event delegation. ","name":"dom-jquery-training/events-part-2","title":"Events Part 2","type":"page","parent":"dom-jquery-training","order":7,"comment":" ","pathToRoot":"../.."};
 	</script>
 
 	

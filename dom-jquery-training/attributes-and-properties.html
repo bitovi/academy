@@ -183,7 +183,7 @@ $.extend($.prototype, {
            						">
 						<a class="page"
 							href="events-part-2.html"
-							title="dom-jquery-training/events-part-2">
+							title="Learn about event propagation and event delegation.">
 							Events Part 2
 						</a>
 						
@@ -198,7 +198,7 @@ $.extend($.prototype, {
            						">
 						<a class="page"
 							href="tabs-widget.html"
-							title="">
+							title="Create a tabs widget using your own version of jQuery.">
 							Tabs Widget
 						</a>
 						
@@ -575,7 +575,21 @@ console.log( computedStyles.getPropertyValue('color') )
     },
 </code></pre>
 <p></details></p>
-<h3>Complete Solution</h3>
+<h2>Bonus Exercise: <code>collection.addClass(className)</code> and <code>collection.removeClass(className)</code></h2>
+<h3>The problem</h3>
+<p><details>
+<summary>Click to see test code</summary></p>
+<pre><code class="language-js">QUnit
+</code></pre>
+<p></details></p>
+<h3>What you need to know</h3>
+<h3>The solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-js">solution
+</code></pre>
+<p></details></p>
+<h2>Complete Solution</h2>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
 &lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
 &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
@@ -731,6 +745,16 @@ console.log( computedStyles.getPropertyValue('color') )
             window.getComputedStyle(this[0])
               .getPropertyValue(cssPropName);
         }
+      },
+      addClass: function(className) {
+        return $.each(this, function(i, element) {
+          element.classList.add(className);
+        });
+      },
+      removeClass: function(className) {
+        return $.each(this, function(i, element) {
+          element.classList.remove(className);
+        });
       }
   });
 
