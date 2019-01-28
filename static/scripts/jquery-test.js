@@ -396,5 +396,5 @@ QUnit.test('$.fn.off', function(){
 	$ul.on('click', 'li', handler);
 	$ul.off('click', 'li', handler);
 
-	clickIt( $('#three')[0] );
+	clickIt( $('#one')[0] );
 });

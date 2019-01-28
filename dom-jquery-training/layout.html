@@ -582,6 +582,16 @@ Component.extend({
             .getPropertyValue(cssPropName);
       }
     },
+    addClass: function(className) {
+      return $.each(this, function(i, element) {
+        element.classList.add(className);
+      });
+    },
+    removeClass: function(className) {
+      return $.each(this, function(i, element) {
+        element.classList.remove(className);
+      });
+    },
     width: function() { },
     hide: function() { },
     show: function() { },
@@ -593,7 +603,7 @@ Component.extend({
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='158-161,only'></div>
+<div line-highlight='168-171,only'></div>
 <p>Each exercise builds on the previous exercise. There is a completed solution at the end of this page.</p>
 <h2>Exercise: <code>collection.width() -&gt; number</code></h2>
 <h3>The problem</h3>
@@ -902,6 +912,16 @@ the window has been scrolled.</li>
             .getPropertyValue(cssPropName);
       }
     },
+    addClass: function(className) {
+      return $.each(this, function(i, element) {
+        element.classList.add(className);
+      });
+    },
+    removeClass: function(className) {
+      return $.each(this, function(i, element) {
+        element.classList.remove(className);
+      });
+    },
     width: function() {
       var paddingLeft = parseInt(this.css(&quot;padding-left&quot;), 10),
       paddingRight = parseInt(this.css(&quot;padding-right&quot;), 10);
@@ -927,7 +947,7 @@ the window has been scrolled.</li>
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='158-175,only'></div>
+<div line-highlight='168-185,only'></div>
 
 </section>
 

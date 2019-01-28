@@ -572,6 +572,16 @@ document.body.addEventListener(&quot;click&quot;, function(ev){
             .getPropertyValue(cssPropName);
       }
     },
+    addClass: function(className) {
+      return $.each(this, function(i, element) {
+        element.classList.add(className);
+      });
+    },
+    removeClass: function(className) {
+      return $.each(this, function(i, element) {
+        element.classList.remove(className);
+      });
+    },
     width: function() {
       var paddingLeft = parseInt(this.css(&quot;padding-left&quot;), 10),
       paddingRight = parseInt(this.css(&quot;padding-right&quot;), 10);
@@ -611,7 +621,7 @@ document.body.addEventListener(&quot;click&quot;, function(ev){
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='186-189,only'></div>
+<div line-highlight='196-199,only'></div>
 <p>Each exercise builds on the previous exercise. There is a completed solution at the end of this page.</p>
 <h2>Bonus Exercise <code>collection.is(selector) -&gt; boolean</code></h2>
 <h3>The problem</h3>
@@ -1041,6 +1051,16 @@ call <code>.removeEventListener</code>.</li>
             .getPropertyValue(cssPropName);
       }
     },
+    addClass: function(className) {
+      return $.each(this, function(i, element) {
+        element.classList.add(className);
+      });
+    },
+    removeClass: function(className) {
+      return $.each(this, function(i, element) {
+        element.classList.remove(className);
+      });
+    },
     width: function() {
       var paddingLeft = parseInt(this.css(&quot;padding-left&quot;), 10),
       paddingRight = parseInt(this.css(&quot;padding-right&quot;), 10);
@@ -1072,7 +1092,7 @@ call <code>.removeEventListener</code>.</li>
     is: function(selector){
       var matched = false;
       $.each(this, function(i, element){
-        if( this.matches( selector) ) {
+        if( element.matches( selector) ) {
           matched = true;
         }
       });
@@ -1153,7 +1173,7 @@ call <code>.removeEventListener</code>.</li>
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='186-262,only'></div>
+<div line-highlight='196-272,only'></div>
 
 </section>
 

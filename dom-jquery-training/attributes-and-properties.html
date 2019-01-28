@@ -429,7 +429,9 @@ $.extend($.prototype, {
         return this.children;
       }),
       attr: function(attrName, value) { },
-      css: function(cssPropName, value) { }
+      css: function(cssPropName, value) { },
+      addClass: function(className) { },
+      removeClass: function(className) { }
   });
 
 })();
@@ -437,7 +439,7 @@ $.extend($.prototype, {
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='137-138,only'></div>
+<div line-highlight='138-141,only'></div>
 <p>Each exercise builds on the previous exercise.  There is a completed solution
 at the end of this page.</p>
 <h2>Exercise: <code>collection.attr( attrName [,value] )</code></h2>
@@ -580,14 +582,70 @@ console.log( computedStyles.getPropertyValue('color') )
 <h3>The problem</h3>
 <p><details>
 <summary>Click to see test code</summary></p>
-<pre><code class="language-js">QUnit
+<pre><code class="language-js">QUnit.test('$.fn.addClass and $.fn.removeClass', function(){
+    var count = function(reg, str){
+        var c = 0;
+        str.replace(reg, function(){
+            c++;
+        });
+        return c;
+    };
+
+    var $divs = $('#qunit-fixture').html('&lt;div class=&quot;foo&quot;&gt;&lt;/div&gt;&lt;div class=&quot;foob&quot;&gt;&lt;/div&gt;')
+        .children();
+
+    $divs.addClass('foo');
+
+    equal( 1, count( /foo/,$divs[0].className ), 'only one foo' );
+    equal( 1, count( /foo/,$divs[1].className ), 'only one foo' );
+
+
+    $divs.addClass('foob');
+
+    equal( 1, count( /foob/,$divs[0].className ), 'only one foo' );
+    equal( 1, count( /foob/,$divs[1].className ), 'only one foo' );
+
+    $divs.removeClass('foob');
+    equal( 0, count( /foob/,$divs[0].className ), 'only one foo' );
+    equal( 0, count( /foob/,$divs[1].className ), 'only one foo' );
+
+    $divs.removeClass('foo');
+    equal( 0, count( /foo/,$divs[0].className ), 'only one foo' );
+    equal( 0, count( /foo/,$divs[1].className ), 'only one foo' );
+});
 </code></pre>
 <p></details></p>
 <h3>What you need to know</h3>
+<ul>
+<li>An element's <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/classList">classList</a>
+lets you add and remove class names on it.
+<pre><code class="language-html">&lt;style&gt;
+.red {background-color: red}
+.green {background-color: green}
+&lt;/style&gt;
+&lt;div class=&quot;red&quot; id=&quot;hi&quot;&gt;Hello&lt;/div&gt;
+&lt;script type=&quot;module&quot;&gt;
+setTimeout(function(){
+  hi.classList.add(&quot;green&quot;);
+  hi.classList.remove(&quot;red&quot;);
+},1000);
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div></li>
+</ul>
 <h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<pre><code class="language-js">solution
+<pre><code class="language-js">      addClass: function(className) {
+        return $.each(this, function(i, element) {
+          element.classList.add(className);
+        });
+      },
+      removeClass: function(className) {
+        return $.each(this, function(i, element) {
+          element.classList.remove(className);
+        });
+      }
 </code></pre>
 <p></details></p>
 <h2>Complete Solution</h2>
