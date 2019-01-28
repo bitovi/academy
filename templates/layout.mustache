@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+{{{generatedWarning}}}
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{{getTitle}}</title>
+	{{#unless (siteConfig "devBuild")}}
+	<link rel="stylesheet" type="text/css" href="{{pathToDest}}/static/bundles/bit-docs-site/static.css">
+	{{/unless}}
+</head>
+
+<body>
+	<header>{{> header.mustache}}</header>
+	{{{content}}}
+	<footer>{{> footer.mustache}}</footer>
+
+	<script type="text/javascript">
+		var docObject = {{{docObjectString}}};
+	</script>
+
+	{{#if (siteConfig "devBuild")}}
+		<script type='text/javascript'
+			data-main="bit-docs-site/static"
+			src="{{pathToDest}}/static/node_modules/steal/steal.js"></script>
+	{{else}}
+		<script>
+		  steal = {
+		    instantiated: {
+		      "bundles/bit-docs-site/static.css!$css" : null
+		    }
+		  }
+		</script>
+		<script type='text/javascript'
+				data-main="bit-docs-site/static"
+				src="{{pathToDest}}/static/steal.production.js"></script>
+	{{/if}}
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-29"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-2302003-29');
+</script>
+
+</body>
+
+</html>

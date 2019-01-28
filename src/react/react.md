@@ -5,6 +5,11 @@
 
 @body
 
+## Course Status
+
+This course is currently being authored.  The following are external
+guides we find useful to learn React. 
+
 ## Before You Begin
 
 Before approaching React, you will want to have some familiarity with HTML and JavaScript. Specifically, you will need to understand functions, objects, and arrays. Additionally, you should be familiar with some of the more recent ECMAScript features, like arrow functions, let, and const. It is also good to have some familiarity with NPM, though it is not strictly necessary to begin.
