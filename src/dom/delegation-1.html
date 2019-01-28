@@ -1,0 +1,20 @@
+<style>
+	* {font-family: Consolas, Monaco, Menlo, monospace; font-size: 1.2em}
+	a {display: block; margin-left: 20px;}
+	div {margin-left: 20px;}
+</style>
+&lt;body&gt;
+<div class="well">
+	&lt;div&gt;
+	<a href="#someHash">&lt;a&gt;&lt;/a&gt;</a>
+	<a href="#thisHash">&lt;a&gt; <span>&lt;span&gt;  &lt;/span&gt;</span> &lt;/a&gt;</a>
+	&lt;/div&gt;
+</div>
+&lt;/body&gt;
+<script type="module">
+document.body.addEventListener("click", function(ev){
+	if( ev.target.matches("a") ) {
+		console.log("clicked on an anchor!");
+	}
+}, false);
+</script>

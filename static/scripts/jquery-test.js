@@ -240,6 +240,38 @@ QUnit.test('$.fn.css', function(){
 	equal( $('#qunit-fixture span:nth-child(2)').css('padding-left'),'40px', 'second span set to 40px');
 });
 
+QUnit.test('$.fn.addClass and $.fn.removeClass', function(){
+	var count = function(reg, str){
+		var c = 0;
+		str.replace(reg, function(){
+			c++;
+		});
+		return c;
+	};
+
+	var $divs = $('#qunit-fixture').html('<div class="foo"></div><div class="foob"></div>')
+		.children();
+
+	$divs.addClass('foo');
+
+	equal( 1, count( /foo/,$divs[0].className ), 'only one foo' );
+	equal( 1, count( /foo/,$divs[1].className ), 'only one foo' );
+
+
+	$divs.addClass('foob');
+
+	equal( 1, count( /foob/,$divs[0].className ), 'only one foo' );
+	equal( 1, count( /foob/,$divs[1].className ), 'only one foo' );
+
+	$divs.removeClass('foob');
+	equal( 0, count( /foob/,$divs[0].className ), 'only one foo' );
+	equal( 0, count( /foob/,$divs[1].className ), 'only one foo' );
+
+	$divs.removeClass('foo');
+	equal( 0, count( /foo/,$divs[0].className ), 'only one foo' );
+	equal( 0, count( /foo/,$divs[1].className ), 'only one foo' );
+});
+
 QUnit.test('$.fn.width', function(){
 	$('#qunit-fixture').html('<div class="big-width"><div>Element</div></div>');
 	equal( $('#qunit-fixture .big-width div').width(), 1000 - 60, 'width is correct');
@@ -301,6 +333,20 @@ QUnit.test('$.fn.bind and $.fn.unbind', function(){
 	clickIt( $('#el')[0] );
 });
 
+QUnit.test('$.fn.is', function(){
+
+	expect(3);
+
+	var elements = $([
+		document.createElement("div"),
+		document.createElement("span")
+	]);
+
+	ok(elements.is("div"), "is div");
+	ok(elements.is("span"), "is span");
+	ok(!elements.is("a"), "is a");
+});
+
 QUnit.test('$.fn.data', function(){
 
 	$('#qunit-fixture').html('<div id="el">text</div>');
@@ -310,14 +356,18 @@ QUnit.test('$.fn.data', function(){
 	equal( $('#el').data('foo'), 'bar' ,'got back bar' );
 });
 
-QUnit.test('$.fn.on and $.fn.off', function(){
+QUnit.test('$.fn.on', function(){
 	expect(3);
 
 	var handler = function(){
 		equal(this.nodeName.toLowerCase(), 'li', 'called back with an LI')
 	}
 
-	var $ul = $('#qunit-fixture').html('<ul><li><span id="one"/></li><li><span id="two"/></li></ul>')
+	var $ul = $('#qunit-fixture').html(`
+		<ul>
+			<li><span id="one"/></li>
+			<li><span id="two"/></li>
+		</ul>`)
 		.children()
 
 	$ul.on('click', 'li', handler);
@@ -327,40 +377,24 @@ QUnit.test('$.fn.on and $.fn.off', function(){
 
 	$ul.html('<li><span id="three"></span></li>');
 	clickIt( $('#three')[0] );
+});
 
+QUnit.test('$.fn.off', function(){
+	expect(0);
+
+	var handler = function(){
+		equal(this.nodeName.toLowerCase(), 'li', 'called back with an LI')
+	}
+
+	var $ul = $('#qunit-fixture').html(`
+		<ul>
+			<li><span id="one"/></li>
+			<li><span id="two"/></li>
+		</ul>`)
+		.children();
+
+	$ul.on('click', 'li', handler);
 	$ul.off('click', 'li', handler);
 
 	clickIt( $('#three')[0] );
-});
-
-QUnit.test('$.fn.addClass and $.fn.removeClass', function(){
-	var count = function(reg, str){
-		var c = 0;
-		str.replace(reg, function(){
-			c++;
-		});
-		return c;
-	};
-
-	var $divs = $('#qunit-fixture').html('<div class="foo"></div><div class="foob"></div>')
-		.children();
-
-	$divs.addClass('foo');
-
-	equal( 1, count( /foo/,$divs[0].className ), 'only one foo' );
-	equal( 1, count( /foo/,$divs[1].className ), 'only one foo' );
-
-
-	$divs.addClass('foob');
-
-	equal( 1, count( /foob/,$divs[0].className ), 'only one foo' );
-	equal( 1, count( /foob/,$divs[1].className ), 'only one foo' );
-
-	$divs.removeClass('foob');
-	equal( 0, count( /foob/,$divs[0].className ), 'only one foo' );
-	equal( 0, count( /foob/,$divs[1].className ), 'only one foo' );
-
-	$divs.removeClass('foo');
-	equal( 0, count( /foo/,$divs[0].className ), 'only one foo' );
-	equal( 0, count( /foo/,$divs[1].className ), 'only one foo' );
 });

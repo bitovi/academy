@@ -186,7 +186,31 @@ QUnit.test('$.fn.css', function(){
 </details>
 
 
-### Complete Solution
+## Bonus Exercise: `collection.addClass(className)` and `collection.removeClass(className)`
+
+### The problem
+
+<details>
+<summary>Click to see test code</summary>
+```js
+QUnit
+```
+</details>
+
+### What you need to know
+
+### The solution
+
+<details>
+<summary>Click to see the solution</summary>
+```js
+solution
+```
+</details>
+
+
+
+## Complete Solution
 
 @sourceref ./4-attributes-and-properties-end.html
 @codepen
