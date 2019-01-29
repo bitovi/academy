@@ -72,7 +72,7 @@
            						">
 						<a class="page"
 							href="functional-utilities.html"
-							title="">
+							title="Create some of jQuery&#x27;s functional utility methods.">
 							Functional Utilities
 						</a>
 						
@@ -87,7 +87,7 @@
            						">
 						<a class="page"
 							href="finding-elements.html"
-							title="">
+							title="Learn how to create a basic jQuery constructor function that can find elements in the page and manipulate them.">
 							Finding Elements
 						</a>
 						
@@ -590,6 +590,23 @@ console.log( computedStyles.getPropertyValue('color') )
 <p></details></p>
 <h2>Bonus Exercise: <code>collection.addClass(className)</code> and <code>collection.removeClass(className)</code></h2>
 <h3>The problem</h3>
+<p><a href="https://api.jquery.com/addclass/">collection.addClass</a> adds a class to each element's <code>className</code>.
+<a href="https://api.jquery.com/removeclass/">collection.removeClass</a> removes a class to each element's <code>className</code>.</p>
+<p>The following changes the <code>&lt;div&gt;</code> from green to red after one second.</p>
+<pre><code class="language-html">&lt;style&gt;
+.red {background-color: red}
+.green {background-color: green}
+&lt;/style&gt;
+&lt;div class=&quot;red&quot; id=&quot;hi&quot;&gt;Hello&lt;/div&gt;
+&lt;script type=&quot;module&quot;&gt;
+import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+
+setTimeout(function(){
+    $(&quot;#hi&quot;).addClass(&quot;green&quot;).removeClass(&quot;red&quot;);
+},1000);
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
 <p><details>
 <summary>Click to see test code</summary></p>
 <pre><code class="language-js">QUnit.test('$.fn.addClass and $.fn.removeClass', function(){
