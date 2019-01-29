@@ -247,15 +247,18 @@
 			
 				<section class="body">
     <h2>The Problem</h2>
-<pre><code class="language-js">// What is the value of b?
+<p>What is the value of <code>b</code> in the following code?</p>
+<pre><code class="language-html">&lt;script src=&quot;//bitovi.github.io/university/static/scripts/debugging/variables.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;module&quot;&gt;
+// What is the value of b?
 function a(){
-    var a = makeAVaraibles;
+    var a = makeAVariables;
     return function b(){
-        var b = makeBVaraibles;
+        var b = makeBVariables;
         return function c(){
-            var c = makeCVaraibles;
+            var c = makeCVariables;
             return function d(){
-                var d = makeDVaraibles;
+                var d = makeDVariables;
                 console.log(&quot;What is the value of b?&quot;);
                 debugger;
                 eval(&quot;&quot;);
@@ -264,6 +267,7 @@ function a(){
     };
 }
 a()()()();
+&lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
 <h2>What you need to know</h2>

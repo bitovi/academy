@@ -1,7 +1,7 @@
-makeAVaraibles = "t";
-makeBVaraibles = String.fromCharCode(100);
-makeCVaraibles = "s";
-makeDVaraibles = "g";
+makeAVariables = "t";
+makeBVariables = String.fromCharCode(100);
+makeCVariables = "s";
+makeDVariables = "g";
 
 getAnimalLetter = function(){
     getAnimalLetter = function(){
