@@ -3,14 +3,14 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/angular/3-adding-data.md
-	@page angular/adding-data
+	source: src/debugging-javascript/1-closures.md
+	@page debugging-javascript-training/closures
 ######################################################################## -->
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Bitovi University - Adding Data</title>
+	<title>Bitovi University - Closures</title>
 	
 	<link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
 	
@@ -69,13 +69,98 @@
 			
 				
 					<li class="
-           						
-           						">
+           						parent
+           						expanded">
 						<a class="page"
 							href="../debugging-javascript-training.html"
 							title="Learn how">
 							Debugging JavaScript
 						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="closures.html"
+							title="Closures">
+							Closures
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="stack.html"
+							title="Stack">
+							Stack
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="prototypes.html"
+							title="Prototypes">
+							Prototypes
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="conditional.html"
+							title="Conditional">
+							Conditional
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="property-changes.html"
+							title="Property Change">
+							Property Changes
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
 						
 					</li>
 				
@@ -140,7 +225,7 @@
 	<article class="main">
 		
 			<section class="title">
-	<h1>Adding Data <code>page</code></h1>
+	<h1>Closures <code>page</code></h1>
 </section>
 
 		
@@ -148,7 +233,7 @@
 		
 			
 				<section class="description">
-    <p>Adding Data</p>
+    <p>Closures</p>
 
 </section>
 
@@ -161,8 +246,50 @@
 			
 			
 				<section class="body">
-    <h2>Building our Restaurants List</h2>
-<p>In the last section we generated a restaurants component and didn't do anything with it. Let's get some restaurant data to feed to it.</p>
+    <h2>The Problem</h2>
+<pre><code class="language-js">// What is the value of b?
+function a(){
+    var a = makeAVaraibles;
+    return function b(){
+        var b = makeBVaraibles;
+        return function c(){
+            var c = makeCVaraibles;
+            return function d(){
+                var d = makeDVaraibles;
+                console.log(&quot;What is the value of b?&quot;);
+                debugger;
+                eval(&quot;&quot;);
+            };
+        };
+    };
+}
+a()()()();
+</code></pre>
+<div class='codepen'></div>
+<h2>What you need to know</h2>
+<pre><code class="language-js">function counter(){
+
+  var count = 0;
+
+  return function(){
+    debugger;
+    return ++count;
+  };
+
+};
+
+var c1 = counter();
+
+c1();
+
+c1();
+
+var c2 = counter();
+
+c2();
+</code></pre>
+<div class='codepen'></div>
+<p><img src="../static/img/debugging/closure.png" width="40%"/></p>
 
 </section>
 
@@ -174,7 +301,7 @@
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/angular/3-adding-data.md"},"description":"Adding Data \n","name":"angular/adding-data","title":"Adding Data","type":"page","parent":"angular","order":2,"comment":" ","pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/debugging-javascript/1-closures.md"},"description":"Closures \n","name":"debugging-javascript-training/closures","title":"Closures","type":"page","parent":"debugging-javascript-training","order":1,"comment":" ","pathToRoot":"../.."};
 	</script>
 
 	
