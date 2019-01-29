@@ -304,6 +304,153 @@
 <pre><code class="language-js">solution
 </code></pre>
 <p></details></p>
+<h2>Completed Solution</h2>
+<pre><code class="language-html">&lt;style&gt;
+/* adapted from https://codepen.io/talleyran/pen/XoPLvy */
+body {
+  font-family: Arial;
+  font-size: 18px;
+}
+.tabs {
+  display: flex;
+  margin: 0 0 0.4rem 0;
+  padding: 0;
+  position: relative;
+}
+.tabs li {
+  list-style: none;
+  padding: 0;
+  line-height: 1.3rem;
+}
+.tabs li a {
+  color: #173e4a;
+  padding: 1rem 1.7rem;
+  margin-left: -1rem;
+  text-decoration: none;
+  position: relative;
+}
+.tabs li a:link, .tabs li a:visited, .tabs li a:hover, .tabs li a:active, .tabs li a::selection {
+  outline: 0 !important;
+  background: none !important;
+}
+.tabs li:first-child a {
+  margin-left: 0.5rem;
+}
+.tabs li a:before {
+  content: &quot;&quot;;
+  position: absolute;
+  top: -0.5rem; left: 0;
+  background: #8BC3E8;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  transform: perspective(0.2rem) rotateX(2deg);
+  transform-origin: bottom;
+  box-shadow: 1px 2px 2px #293140;
+}
+.tabs li.active {
+  z-index: 1;
+}
+.tabs li.active a {
+  cursor: default;
+}
+.tabs li.active a:before {
+  background: #98F1FF;
+}
+.tabs li:not(.active) a:hover:before {
+  background: #A5C3FF;
+}
+
+.tab {
+  display: flex;
+  min-width: 30rem;
+  background: #98F1FF;
+  color: #173e4a;
+  border-radius: 0.2rem;
+  padding: 1.5rem;
+  z-index: 100;
+  position: relative;
+}
+.tab:before {
+  display: block;
+  position: absolute;
+  top: 1px; bottom: 0;
+  left: 0; right: 0;
+  z-index: -1;
+  content: &quot;&quot;;
+  border-radius: 0.2rem;
+  box-shadow: 1px 1px 1px #293140;
+}
+&lt;/style&gt;
+&lt;script src=&quot;//bitovi.github.io/university/static/scripts/my-jquery.js&quot;&gt;&lt;/script&gt;
+
+&lt;ul id='breeds'&gt;
+    &lt;li&gt;&lt;a href=&quot;#beagles&quot;&gt;Beagles&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#doberman&quot;&gt;Doberman&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href=&quot;#boxer&quot;&gt;Boxer&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id='beagles'&gt;
+  Beagle: &lt;img src='//bitovi.github.io/university/static/img/beagle.jpg' width=&quot;400px&quot;/&gt;
+&lt;/div&gt;
+&lt;div id='doberman'&gt;
+  Doberman: &lt;img src='//bitovi.github.io/university/static/img/doberman.jpg' width=&quot;400px&quot;/&gt;
+&lt;/div&gt;
+&lt;div id='boxer'&gt;
+  Boxer: &lt;img src='//bitovi.github.io/university/static/img/boxer.jpg' width=&quot;400px&quot;/&gt;
+&lt;/div&gt;
+&lt;script type=&quot;module&quot;&gt;
+const $ = window.$;
+
+(function(){
+  function tabContent(li) {
+    return $(li.find(&quot;a&quot;).attr(&quot;href&quot;));
+  }
+
+  function activate(li) {
+    if (active) {
+      active.removeClass(&quot;active&quot;);
+      tabContent(active).hide();
+    }
+    active = li.addClass(&quot;active&quot;);
+    tabContent(li).show();
+  }
+
+  $.fn.tabs = function(){
+    this.attr(&quot;class&quot;, &quot;tabs&quot;);
+    return $.each(this, function(i, element) {
+      var active,
+          $lis = $([ element ]).children();
+
+      activate( $([element]).find(&quot;li:first&quot;) );
+
+      $.each($lis, function(i, li) {
+
+        var content = tabContent($([ li ]));
+        content.addClass(&quot;tab&quot;);
+
+        if (i === 0) {
+          activate($([ li ]));
+        } else {
+          content.hide();
+        }
+      });
+
+      $lis.bind(&quot;click&quot;, function(event) {
+        activate($([ this ]));
+        event.preventDefault();
+      });
+    });
+  };
+})();
+
+$(&quot;#breeds&quot;).tabs()
+&lt;/script&gt;
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='2,only'></div>
 
 </section>
 
