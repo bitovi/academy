@@ -1,17 +1,21 @@
 @page typescript/functions Functions
 @parent typescript 4
 
-@description Learn how to annotate functions parameters and return values, usw different parameter types available, and bind ``this``.
+@description Learn how to annotate functions parameters and return values, use different parameter types available, and bind ``this``.
 
 @body
 
 ## Overview
 
-In this section we will explore how to annotate functions parameters and return values, how to use optional parameters & rest parameters, and how to bind ``this`` in TypeScript.  
+In this part, we will:
+
+- Annotate functions parameters and return values.
+- Use optional parameters & rest parameters
+- Bind `this` in TypeScript.  
 
 ## Functions in TypeScript
 
-In TypeScript we're able to annotate function parameters to better guard our code. If the following code is called  with two parameters that are not numbers TypeScript's compiler will throw an error when compiled.
+In TypeScript, we're able to annotate function parameters to better guard our code. If the following, `add` is called  with two parameters that are not numbers TypeScript's compiler will throw an error when compiled.
 
 ```typescript
 function add(x: number, y: number): number {
@@ -41,7 +45,7 @@ function logResponse(): Result {
 //works!
 ```
 
-### Optional Parameters
+## Optional Parameters
 
 Sometimes when writing functions, we don't need every parameter to be satisfied. TypeScript allows us to mark optional parameters (or properties) with a ``?`` so the compiler will not error if an optional param isn't passed.
 
@@ -63,7 +67,7 @@ let otherOtherDino = buildDinosaur('Charlie');
 //error an argument for 'breed' was not provided
 ```
 
-### Rest Parameters
+## Rest Parameters
 
 Rest parameters are a way to pass in an unknown number of arguments to a function. Rest params are signaled to the transpiler by passing an ellipsis (...) followed by the parameter name.
 
@@ -72,19 +76,22 @@ function buildDinosaur(breed: string, ...dna: string[]) {
   console.log(`The ${breed} has dna from ${dna.join(", ")}`)
 }
 
-let uberDino = buildDinosaur('Indominous Rex', "Velociraptor", 
+let uberDino = buildDinosaur('Indominous Rex', "Velociraptor",
 "Tyrannosaurus rex","Therizinosaurus", "cuttlefish");
-//logs "The Indominous Rex has dna from Velociraptor, 
-Tyrannosaurus rex, Therizinosaurus, cuttlefish"
+//logs "The Indominous Rex has dna from Velociraptor,
+//      Tyrannosaurus rex, Therizinosaurus, cuttlefish"
 ```
 
-### This & => Functions
+## This & => Functions
 
-If you're familiar with ES6, you may know that using the fat arrow (=>) captures the context of ``this`` where it's used. The functionality is the same in TypeScript.
+If you're familiar with ES6, you may know that using the fat arrow (=>) captures the context of `this` where it's used. The functionality is the same in TypeScript.
+
+
+Wrong `this`:
 
 ```typescript
-class dinoBuilder {
-  name = 'Trex;
+class DinoBuilder {
+  name = 'Trex';
   yawn() {
     setTimeout(function() {
       console.log(`${this.name} yawned.`)
@@ -92,13 +99,15 @@ class dinoBuilder {
   }
 }
 
-var dino = new dinoBuilder();
+var dino = new DinoBuilder();
 dino.yawn();
 // Logs "undefined yawned"
 ```
 
+Right `this`:
+
 ```typescript
-class dinoBuilder {
+class DinoBuilder {
   name = 'Trex';
   yawn() {
     setTimeout(() => {
@@ -107,41 +116,45 @@ class dinoBuilder {
   }
 }
 
-var dino = new dinoBuilder();
+var dino = new DinoBuilder();
 dino.yawn();
 // Logs "Trex yawned"
 ```
 
+Wrong `this`:
+
 ```typescript
-class dinoBuilder {
+class DinoBuilder {
   name = 'Trex';
   roar() {
     console.log(`${this.name} roared.`)
   }
 }
 
-var dino = new dinoBuilder();
+var dino = new DinoBuilder();
 
 let fierce = dino.roar;
 fierce();
 // Logs "undefined roared"
 ```
 
+Right `this`:
+
 ```typescript
-class dinoBuilder {
+class DinoBuilder {
   name = 'Trex';
   roar = () => {
     console.log(`${this.name} roared.`)
   }
 }
 
-var dino = new dinoBuilder();
+var dino = new DinoBuilder();
 let fierce = dino.roar;
 fierce();
 // Logs "Trex roared"
 ```
 
-### Exercise 1
+### Exercise: bonusMaker
 
 The following function takes a bonus multiplier amount parameter and a dinosaur name parameter, then takes the length of the dinosaur name and multiplies it by the multiplier to calculate a dinosaur park employee's bonus salary based on the complexity of the dinosaurs they make.  
 
@@ -157,4 +170,3 @@ Productivity in the park has been up, so modify this function to take an unknown
 @codepen
 
 </details>
-

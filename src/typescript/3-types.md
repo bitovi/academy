@@ -5,9 +5,13 @@
 
 @body
 
-## Overview 
+## Overview
 
-This section will explain how to declare the various types used in TypeScript, discuss how type can be inferred, and show how to assert types.  
+In this part, we will:
+
+- Explain how to declare the various types used in TypeScript
+- Discuss how types can be inferred
+- Show how to assert types.
 
 ## Basic Types
 
@@ -32,15 +36,13 @@ let hex: number = 0xF00D;
 let name: string = 'Leoplurodon';
 ```
 
-#### Quick tip - template strings
-
-Strings that have embedded expressions.
-
-```typescript
-let myTemplateString: string = `I think ${ name }'s are pretty cool.
-
-They have ${ teeth } teeth.`;
-```
+> __QUICK TIP:__ Template strings have embedded expressions.
+>
+> ```typescript
+> let myTemplateString: string = `I think ${ name }'s are pretty cool.
+>
+> They have ${ teeth } teeth.`;
+> ```
 
 ### Array
 
@@ -100,7 +102,7 @@ function buttonClick(): void {
 
 ### Null & Undefined
 
-Null and Undefined are two separate types, and subtypes of all other types, meaning they can be assigned to another type like string or number unless the <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html" target="_blank">--strictNullChecks</a> flag is used.
+Null and Undefined are two separate types, and subtypes of all other types, meaning they can be assigned to another type like string or number unless the <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html" target="\_blank">--strictNullChecks</a> flag is used.
 
 ### Never
 
@@ -119,7 +121,7 @@ When we don't provide explicit types for our variables, TypeScript will do its b
 ```typescript
 let name = 'Sally';
 let height = 6;
-name = height; 
+name = height;
 //Type 'number' is not assignable to type 'string'
 ```
 
@@ -134,12 +136,12 @@ let person = {
     street: 'Rodeo Drive'
   }
 };
-person.name('Cecilia');
+person.name = 'Cecilia';
 //works
-person.name(6);
- //Type '6' is not assignable to type 'string'.
- person.address.number = 'five fifty-five';
- //Type '"five fifty-five"' is not assignable to type 'number'.
+person.name = 6;
+//Type '6' is not assignable to type 'string'.
+person.address.number = 'five fifty-five';
+//Type '"five fifty-five"' is not assignable to type 'number'.
 ```
 
 TypeScript will infer the return value of a function as well.
@@ -150,7 +152,9 @@ function multiplier(a: number, b: number ){
 }
 var multiplied: number = multiplier(2,3);
 //works
-var str: string = multiplier(10,20);
+
+var str: string;
+str = multiplier(10,20);
 //Type 'number' is not assignable to type 'string'.
 ```
 
@@ -170,9 +174,9 @@ let otherValue: any = "this is a string";
 let otherLength: number = (otherValue as string).length;
 ```
 
-The ``as`` syntax is usually preferred, the ``<type>`` conflicts with JSX syntax.
+The ``as`` syntax is usually preferred because the `<type>` conflicts with JSX syntax.
 
-### Exercise 1
+### Exercise: Fix type errors
 
 Fix the following type errors so this code will compile:
 
@@ -216,7 +220,7 @@ greet('Tom', 42, 'software')
 
 </details>
 
-### Exercise 2
+### Exercise: Date me
 
 Create a variable that takes a type of Date.
 
@@ -224,8 +228,8 @@ Create a variable that takes a type of Date.
 <summary>Solution</summary>
 
 ```typescript
-let myDate: Date;
-myDate = new Date(6-11-1993);
+let me: Date;
+me = new Date("6-11-1993");
 ```
 
 </details>

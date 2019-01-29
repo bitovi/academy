@@ -15,7 +15,7 @@ We're able to configure how our projects use TypeScript from selecting which fil
 
 ### tsconfig.json
 
-Customize the TypeScript compiling and linting options by creating a ``tsconfig.json`` file in the root directory of your TypeScript project. The following config will 
+Customize the TypeScript compiling and linting options by creating a ``tsconfig.json`` file in the root directory of your TypeScript project. The following config will
 - specify ECMAScript target version as 'es5'
 - specify module code generation (from 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015' or 'esnext')
 - generate source map files
@@ -32,7 +32,7 @@ Customize the TypeScript compiling and linting options by creating a ``tsconfig.
 }
 ```
 
-Full configuration options are available here: <a href="http://json.schemastore.org/tsconfig" target="_blank">http://json.schemastore.org/tsconfig</a>
+Full configuration options are available here: <a href="http://json.schemastore.org/tsconfig" target="\_blank">http://json.schemastore.org/tsconfig</a>
 
 ### Linting
 
@@ -72,7 +72,7 @@ Atom is another good modern IDE that easily supports and aids in TypeScript deve
 
 <a href="../static/img/webstorm-screenshot.png" target="\_blank"><img src="../static/img/webstorm-screenshot.png" width="100%" alt="Webstorm screenshot" /></a>
 
-### Exercise
+## Exercise
 
 In the same directory as your ``helloworld.ts file``, create ``hellouniverse.ts``.
 
