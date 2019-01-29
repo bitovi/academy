@@ -73,7 +73,7 @@
            						expanded">
 						<a class="page"
 							href="../typescript.html"
-							title="Intro to Typescript">
+							title="This course covers TypeScript essentials. At the end, you should be ready to develop projects in TypeScript.">
 							TypeScript
 						</a>
 						
@@ -135,7 +135,7 @@
            						">
 						<a class="page"
 							href="functions.html"
-							title="Learn how to annotate functions parameters and return values, usw different parameter types available, and bind this.">
+							title="Learn how to annotate functions parameters and return values, use different parameter types available, and bind this.">
 							Functions
 						</a>
 						
@@ -264,7 +264,12 @@
 			
 				<section class="body">
     <h2>Overview</h2>
-<p>This section will explain how to declare the various types used in TypeScript, discuss how type can be inferred, and show how to assert types.</p>
+<p>In this part, we will:</p>
+<ul>
+<li>Explain how to declare the various types used in TypeScript</li>
+<li>Discuss how types can be inferred</li>
+<li>Show how to assert types.</li>
+</ul>
 <h2>Basic Types</h2>
 <p>Types are what determine how much memory is allocated to save a value. Types also determine what operations or methods can be performed on a value. Types like strings can't have mathematical operations performed on them, but methods like <code>.length</code> can be used.</p>
 <h3>Boolean</h3>
@@ -277,12 +282,13 @@ let hex: number = 0xF00D;
 <h3>String</h3>
 <pre><code class="language-typescript">let name: string = 'Leoplurodon';
 </code></pre>
-<h4>Quick tip - template strings</h4>
-<p>Strings that have embedded expressions.</p>
+<blockquote>
+<p><strong>QUICK TIP:</strong> Template strings have embedded expressions.</p>
 <pre><code class="language-typescript">let myTemplateString: string = `I think ${ name }'s are pretty cool.
 
 They have ${ teeth } teeth.`;
 </code></pre>
+</blockquote>
 <h3>Array</h3>
 <pre><code class="language-typescript">let list: number[] = [1, 2, 3];
 
@@ -319,7 +325,7 @@ my3rdPartyData = 'five;
 }
 </code></pre>
 <h3>Null &amp; Undefined</h3>
-<p>Null and Undefined are two separate types, and subtypes of all other types, meaning they can be assigned to another type like string or number unless the <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html" target="_blank">--strictNullChecks</a> flag is used.</p>
+<p>Null and Undefined are two separate types, and subtypes of all other types, meaning they can be assigned to another type like string or number unless the <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html" target="\_blank">--strictNullChecks</a> flag is used.</p>
 <h3>Never</h3>
 <p>The never type represents a value that will never occur.</p>
 <pre><code class="language-typescript">function error(message: string): never {
@@ -330,7 +336,7 @@ my3rdPartyData = 'five;
 <p>When we don't provide explicit types for our variables, TypeScript will do its best to infer the types, and it's very good at it. The following code will not compile due to type inference.</p>
 <pre><code class="language-typescript">let name = 'Sally';
 let height = 6;
-name = height; 
+name = height;
 //Type 'number' is not assignable to type 'string'
 </code></pre>
 <p>Type can also be inferred from complex objects.</p>
@@ -342,12 +348,12 @@ name = height;
     street: 'Rodeo Drive'
   }
 };
-person.name('Cecilia');
+person.name = 'Cecilia';
 //works
-person.name(6);
- //Type '6' is not assignable to type 'string'.
- person.address.number = 'five fifty-five';
- //Type '&quot;five fifty-five&quot;' is not assignable to type 'number'.
+person.name = 6;
+//Type '6' is not assignable to type 'string'.
+person.address.number = 'five fifty-five';
+//Type '&quot;five fifty-five&quot;' is not assignable to type 'number'.
 </code></pre>
 <p>TypeScript will infer the return value of a function as well.</p>
 <pre><code class="language-typescript">function multiplier(a: number, b: number ){
@@ -355,7 +361,9 @@ person.name(6);
 }
 var multiplied: number = multiplier(2,3);
 //works
-var str: string = multiplier(10,20);
+
+var str: string;
+str = multiplier(10,20);
 //Type 'number' is not assignable to type 'string'.
 </code></pre>
 <p>Type inference can be a very helpful tool in refactoring code and helping better document expectations for our code.</p>
@@ -369,8 +377,8 @@ let otherValue: any = &quot;this is a string&quot;;
 
 let otherLength: number = (otherValue as string).length;
 </code></pre>
-<p>The <code>as</code> syntax is usually preferred, the <code>&lt;type&gt;</code> conflicts with JSX syntax.</p>
-<h3>Exercise 1</h3>
+<p>The <code>as</code> syntax is usually preferred because the <code>&lt;type&gt;</code> conflicts with JSX syntax.</p>
+<h3>Exercise: Fix type errors</h3>
 <p>Fix the following type errors so this code will compile:</p>
 <pre><code class="language-typescript">let isLoading: boolean = true;
 isLoading = 'false';
@@ -406,12 +414,12 @@ greet('Tom', 42,)
 
 </code></pre>
 <p></details></p>
-<h3>Exercise 2</h3>
+<h3>Exercise: Date me</h3>
 <p>Create a variable that takes a type of Date.</p>
 <p><details>
 <summary>Solution</summary></p>
-<pre><code class="language-typescript">let myDate: Date;
-myDate = new Date(6-11-1993);
+<pre><code class="language-typescript">let me: Date;
+me = new Date(&quot;6-11-1993&quot;);
 </code></pre>
 <p></details></p>
 

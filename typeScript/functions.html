@@ -73,7 +73,7 @@
            						expanded">
 						<a class="page"
 							href="../typescript.html"
-							title="Intro to Typescript">
+							title="This course covers TypeScript essentials. At the end, you should be ready to develop projects in TypeScript.">
 							TypeScript
 						</a>
 						
@@ -132,7 +132,7 @@
            						expanded">
 						<a class="page"
 							href="functions.html"
-							title="Learn how to annotate functions parameters and return values, usw different parameter types available, and bind this.">
+							title="Learn how to annotate functions parameters and return values, use different parameter types available, and bind this.">
 							Functions
 						</a>
 						
@@ -250,7 +250,7 @@
 		
 			
 				<section class="description">
-    <p>Learn how to annotate functions parameters and return values, usw different parameter types available, and bind <code>this</code>.</p>
+    <p>Learn how to annotate functions parameters and return values, use different parameter types available, and bind <code>this</code>.</p>
 
 </section>
 
@@ -264,9 +264,14 @@
 			
 				<section class="body">
     <h2>Overview</h2>
-<p>In this section we will explore how to annotate functions parameters and return values, how to use optional parameters &amp; rest parameters, and how to bind <code>this</code> in TypeScript.</p>
+<p>In this part, we will:</p>
+<ul>
+<li>Annotate functions parameters and return values.</li>
+<li>Use optional parameters &amp; rest parameters</li>
+<li>Bind <code>this</code> in TypeScript.</li>
+</ul>
 <h2>Functions in TypeScript</h2>
-<p>In TypeScript we're able to annotate function parameters to better guard our code. If the following code is called  with two parameters that are not numbers TypeScript's compiler will throw an error when compiled.</p>
+<p>In TypeScript, we're able to annotate function parameters to better guard our code. If the following, <code>add</code> is called  with two parameters that are not numbers TypeScript's compiler will throw an error when compiled.</p>
 <pre><code class="language-typescript">function add(x: number, y: number): number {
   return x + y;
 }
@@ -290,7 +295,7 @@ function logResponse(): Result {
 }
 //works!
 </code></pre>
-<h3>Optional Parameters</h3>
+<h2>Optional Parameters</h2>
 <p>Sometimes when writing functions, we don't need every parameter to be satisfied. TypeScript allows us to mark optional parameters (or properties) with a <code>?</code> so the compiler will not error if an optional param isn't passed.</p>
 <pre><code class="language-typescript">function buildDinosaur(name: string, breed: string, teeth?:number) {
   if (teeth) {
@@ -308,21 +313,22 @@ let otherDino = buildDinosaur('Delta', 'Velociraptor');
 let otherOtherDino = buildDinosaur('Charlie');
 //error an argument for 'breed' was not provided
 </code></pre>
-<h3>Rest Parameters</h3>
+<h2>Rest Parameters</h2>
 <p>Rest parameters are a way to pass in an unknown number of arguments to a function. Rest params are signaled to the transpiler by passing an ellipsis (...) followed by the parameter name.</p>
 <pre><code class="language-typescript">function buildDinosaur(breed: string, ...dna: string[]) {
   console.log(`The ${breed} has dna from ${dna.join(&quot;, &quot;)}`)
 }
 
-let uberDino = buildDinosaur('Indominous Rex', &quot;Velociraptor&quot;, 
+let uberDino = buildDinosaur('Indominous Rex', &quot;Velociraptor&quot;,
 &quot;Tyrannosaurus rex&quot;,&quot;Therizinosaurus&quot;, &quot;cuttlefish&quot;);
-//logs &quot;The Indominous Rex has dna from Velociraptor, 
-Tyrannosaurus rex, Therizinosaurus, cuttlefish&quot;
+//logs &quot;The Indominous Rex has dna from Velociraptor,
+//      Tyrannosaurus rex, Therizinosaurus, cuttlefish&quot;
 </code></pre>
-<h3>This &amp; =&gt; Functions</h3>
+<h2>This &amp; =&gt; Functions</h2>
 <p>If you're familiar with ES6, you may know that using the fat arrow (=&gt;) captures the context of <code>this</code> where it's used. The functionality is the same in TypeScript.</p>
-<pre><code class="language-typescript">class dinoBuilder {
-  name = 'Trex;
+<p>Wrong <code>this</code>:</p>
+<pre><code class="language-typescript">class DinoBuilder {
+  name = 'Trex';
   yawn() {
     setTimeout(function() {
       console.log(`${this.name} yawned.`)
@@ -330,11 +336,12 @@ Tyrannosaurus rex, Therizinosaurus, cuttlefish&quot;
   }
 }
 
-var dino = new dinoBuilder();
+var dino = new DinoBuilder();
 dino.yawn();
 // Logs &quot;undefined yawned&quot;
 </code></pre>
-<pre><code class="language-typescript">class dinoBuilder {
+<p>Right <code>this</code>:</p>
+<pre><code class="language-typescript">class DinoBuilder {
   name = 'Trex';
   yawn() {
     setTimeout(() =&gt; {
@@ -343,36 +350,38 @@ dino.yawn();
   }
 }
 
-var dino = new dinoBuilder();
+var dino = new DinoBuilder();
 dino.yawn();
 // Logs &quot;Trex yawned&quot;
 </code></pre>
-<pre><code class="language-typescript">class dinoBuilder {
+<p>Wrong <code>this</code>:</p>
+<pre><code class="language-typescript">class DinoBuilder {
   name = 'Trex';
   roar() {
     console.log(`${this.name} roared.`)
   }
 }
 
-var dino = new dinoBuilder();
+var dino = new DinoBuilder();
 
 let fierce = dino.roar;
 fierce();
 // Logs &quot;undefined roared&quot;
 </code></pre>
-<pre><code class="language-typescript">class dinoBuilder {
+<p>Right <code>this</code>:</p>
+<pre><code class="language-typescript">class DinoBuilder {
   name = 'Trex';
   roar = () =&gt; {
     console.log(`${this.name} roared.`)
   }
 }
 
-var dino = new dinoBuilder();
+var dino = new DinoBuilder();
 let fierce = dino.roar;
 fierce();
 // Logs &quot;Trex roared&quot;
 </code></pre>
-<h3>Exercise 1</h3>
+<h3>Exercise: bonusMaker</h3>
 <p>The following function takes a bonus multiplier amount parameter and a dinosaur name parameter, then takes the length of the dinosaur name and multiplies it by the multiplier to calculate a dinosaur park employee's bonus salary based on the complexity of the dinosaurs they make.</p>
 <pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
 function bonusMaker(multiplier, name) {
@@ -415,7 +424,7 @@ console.log(WuBonus);
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/typescript/4-functions.md"},"description":"Learn how to annotate functions parameters and return values, usw different parameter types available, and bind ``this``. \n","name":"typescript/functions","title":"Functions","type":"page","parent":"typescript","order":4,"comment":" ","pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/typescript/4-functions.md"},"description":"Learn how to annotate functions parameters and return values, use different parameter types available, and bind ``this``. \n","name":"typescript/functions","title":"Functions","type":"page","parent":"typescript","order":4,"comment":" ","pathToRoot":"../.."};
 	</script>
 
 	
