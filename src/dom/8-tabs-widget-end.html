@@ -1,7 +1,142 @@
-<link rel="stylesheet" href="//bitovi.github.io/university/static/scripts/my-jquery.js">
+<style>
+/* adapted from https://codepen.io/talleyran/pen/XoPLvy */
+body {
+  font-family: Arial;
+  font-size: 18px;
+}
+.tabs {
+  display: flex;
+  margin: 0 0 0.4rem 0;
+  padding: 0;
+  position: relative;
+}
+.tabs li {
+  list-style: none;
+  padding: 0;
+  line-height: 1.3rem;
+}
+.tabs li a {
+  color: #173e4a;
+  padding: 1rem 1.7rem;
+  margin-left: -1rem;
+  text-decoration: none;
+  position: relative;
+}
+.tabs li a:link, .tabs li a:visited, .tabs li a:hover, .tabs li a:active, .tabs li a::selection {
+  outline: 0 !important;
+  background: none !important;
+}
+.tabs li:first-child a {
+  margin-left: 0.5rem;
+}
+.tabs li a:before {
+  content: "";
+  position: absolute;
+  top: -0.5rem; left: 0;
+  background: #8BC3E8;
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+  transform: perspective(0.2rem) rotateX(2deg);
+  transform-origin: bottom;
+  box-shadow: 1px 2px 2px #293140;
+}
+.tabs li.active {
+  z-index: 1;
+}
+.tabs li.active a {
+  cursor: default;
+}
+.tabs li.active a:before {
+  background: #98F1FF;
+}
+.tabs li:not(.active) a:hover:before {
+  background: #A5C3FF;
+}
+
+.tab {
+  display: flex;
+  min-width: 30rem;
+  background: #98F1FF;
+  color: #173e4a;
+  border-radius: 0.2rem;
+  padding: 1.5rem;
+  z-index: 100;
+  position: relative;
+}
+.tab:before {
+  display: block;
+  position: absolute;
+  top: 1px; bottom: 0;
+  left: 0; right: 0;
+  z-index: -1;
+  content: "";
+  border-radius: 0.2rem;
+  box-shadow: 1px 1px 1px #293140;
+}
+</style>
+<script src="//bitovi.github.io/university/static/scripts/my-jquery.js"></script>
+
+<ul id='breeds'>
+	<li><a href="#beagles">Beagles</a></li>
+	<li><a href="#doberman">Doberman</a></li>
+	<li><a href="#boxer">Boxer</a></li>
+</ul>
+<div id='beagles'>
+  Beagle: <img src='//bitovi.github.io/university/static/img/beagle.jpg' width="400px"/>
+</div>
+<div id='doberman'>
+  Doberman: <img src='//bitovi.github.io/university/static/img/doberman.jpg' width="400px"/>
+</div>
+<div id='boxer'>
+  Boxer: <img src='//bitovi.github.io/university/static/img/boxer.jpg' width="400px"/>
+</div>
 <script type="module">
+const $ = window.$;
 
-$.fn.tabs = function(){
+(function(){
+  function tabContent(li) {
+    return $(li.find("a").attr("href"));
+  }
 
-};
+  function activate(li) {
+    if (active) {
+      active.removeClass("active");
+      tabContent(active).hide();
+    }
+    active = li.addClass("active");
+    tabContent(li).show();
+  }
+
+  $.fn.tabs = function(){
+    this.attr("class", "tabs");
+    return $.each(this, function(i, element) {
+      var active,
+          $lis = $([ element ]).children();
+
+      activate( $([element]).find("li:first") );
+
+      $.each($lis, function(i, li) {
+
+        var content = tabContent($([ li ]));
+        content.addClass("tab");
+
+        if (i === 0) {
+          activate($([ li ]));
+        } else {
+          content.hide();
+        }
+      });
+
+      $lis.bind("click", function(event) {
+        activate($([ this ]));
+        event.preventDefault();
+      });
+    });
+  };
+})();
+
+$("#breeds").tabs()
 </script>

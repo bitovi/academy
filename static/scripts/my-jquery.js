@@ -67,7 +67,8 @@
       return function() {
         return fn.apply(context, arguments);
       };
-    }
+    },
+    fn: $.prototype
   });
 
   function makeTraverser(traverser) {

@@ -47,3 +47,10 @@ QUnit
 solution
 ```
 </details>
+
+
+## Completed Solution
+
+@sourceref ./8-tabs-widget-end.html
+@codepen
+@highlight 2,only
