@@ -1,8 +1,15 @@
 @page dom-jquery-training/tabs-widget Tabs Widget
-@parent dom-jquery-training 8
+@parent dom-jquery-training 9
 @description Create a tabs widget using your own version of jQuery.
 
 @body
+
+## Overview
+
+In this part, we will:
+
+- Setup `$.fn` for plugins.
+- Create a `$.fn.tabs` widget.
 
 ## Exercise: `$.fn`
 
@@ -51,6 +58,6 @@ solution
 
 ## Completed Solution
 
-@sourceref ./8-tabs-widget-end.html
+@sourceref ./9-tabs-widget-end.html
 @codepen
 @highlight 2,only

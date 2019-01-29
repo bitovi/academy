@@ -398,3 +398,17 @@ QUnit.test('$.fn.off', function(){
 
 	clickIt( $('#one')[0] );
 });
+
+QUnit.test("$.fn", function(){
+	expect(2);
+
+	var div = document.createElement("div");
+
+	$.fn.myPlugin = function(){
+		QUnit.equal(this.length, 1);
+		QUnit.equal(this[0], div);
+	};
+
+	$([div]).myPlugin();
+
+});
