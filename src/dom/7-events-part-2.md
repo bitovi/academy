@@ -63,7 +63,7 @@ Run the following example in CodePen:
 Each exercise builds on the previous exercise. There is a completed solution at the end of this page.
 
 
-## Bonus Exercise `collection.is(selector) -> boolean`
+## Bonus Exercise: `collection.is(selector) -> boolean`
 
 ### The problem
 
@@ -131,7 +131,7 @@ QUnit.test('$.fn.is', function(){
 </details>
 
 
-## Bonus Exercise `collection.data(key [, value])`
+## Bonus Exercise: `collection.data(key [, value])`
 
 ### The problem
 
@@ -214,7 +214,7 @@ QUnit.test('$.fn.data', function(){
 ```
 </details>
 
-## Bonus Exercise `collection.on(eventType, selector, handler)`
+## Bonus Exercise: `collection.on(eventType, selector, handler)`
 
 ### The problem
 
@@ -316,7 +316,7 @@ QUnit.test('$.fn.on', function(){
 ```
 </details>
 
-## Bonus Exercise `collection.off(eventType, selector, handler)`
+## Bonus Exercise: `collection.off(eventType, selector, handler)`
 
 ### The problem
 

@@ -12,6 +12,12 @@ In this section, we will:
 - Learn why adding properties to `$.fn` creates
   functions on jQuery collections.
 
+## Slides
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vREXUyrOD4QZr4jCHLaJoLceHH8jxVXSLwXnPVrkqi959816CqAYJ3O--gNgueasoNwbtyCnJd4EuC5/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+## Exercise: `$.fn`
+
 
 ### The Problem
 

@@ -37,15 +37,6 @@ The following shows why mouseenter is usually prefered over mouseover:
 @codepen
 @highlight 9,only
 
-## Setup
-
-Run the following example in CodePen:
-
-@sourceref ./6-events-part-1-begin.html
-@codepen
-@highlight 186-187,only
-
-Each exercise builds on the previous exercise. There is a completed solution at the end of this page.
 
 ## Exercise: `collection.bind` and `collection.unbind`
 
@@ -60,7 +51,7 @@ Run the following code in your browser to complete the exercise:
 
 @sourceref ./6-events-part-1-begin.html
 @codepen
-@highlight 176-177,only
+@highlight 186-187,only
 
 
 <details>

@@ -190,6 +190,27 @@ QUnit.test('$.fn.css', function(){
 
 ### The problem
 
+[collection.addClass](https://api.jquery.com/addclass/) adds a class to each element's `className`.
+[collection.removeClass](https://api.jquery.com/removeclass/) removes a class to each element's `className`.
+
+The following changes the `<div>` from green to red after one second.
+
+```html
+<style>
+.red {background-color: red}
+.green {background-color: green}
+</style>
+<div class="red" id="hi">Hello</div>
+<script type="module">
+import "https://unpkg.com/jquery@3/dist/jquery.js";
+
+setTimeout(function(){
+	$("#hi").addClass("green").removeClass("red");
+},1000);
+</script>
+```
+@codepen
+
 <details>
 <summary>Click to see test code</summary>
 ```js

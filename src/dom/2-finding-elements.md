@@ -1,18 +1,19 @@
 @page dom-jquery-training/finding-elements Finding Elements
 @parent dom-jquery-training 2
-
+@description Learn how to create a basic jQuery constructor function that can find elements in the page
+and manipulate them.
 
 @body
 
 ## Overview
 
-We will learn about:
+We will learn to:
 
-- Finding elements from the document
-- Creating the `$` function
-- Creating `text`/`html`/`val` functions
-- Finding elements from an element
-- Creating a `find` function
+- Find elements in the document
+- Create the `$` function
+- Create `text`/`html`/`val` functions
+- Find elements from an element and create `collection.find`
+- Create a `find` function
 
 ## Video
 

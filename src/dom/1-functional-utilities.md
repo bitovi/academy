@@ -1,6 +1,6 @@
 @page dom-jquery-training/functional-utilities Functional Utilities
 @parent dom-jquery-training 1
-@description
+@description Create some of jQuery's functional utility methods.
 
 @body
 

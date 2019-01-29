@@ -112,48 +112,9 @@ img {width: 400px;}
 <script type="module">
 const $ = window.$;
 
-(function(){
-  function tabContent(li) {
-    return $(li.find("a").attr("href"));
-  }
+$.fn.tabs = function(){
 
-  function activate(li) {
-    li.addClass("active");
-    tabContent(li).show();
-    return li;
-  }
-  function deactivate(li) {
-    li.removeClass("active");
-    tabContent(li).hide();
-    return li;
-  }
-
-  $.fn.tabs = function(){
-    this.addClass("tabs");
-    return $.each(this, function(i, element) {
-      var active,
-          $lis = $([ element ]).children();
-
-      $.each($lis, function(i, li) {
-        var $li = $([ li ]);
-        var $tab = tabContent($li);
-        $tab.addClass("tab");
-
-        if (i === 0) {
-          active = activate($li);
-        } else {
-          $tab.hide();
-        }
-      });
-
-      $lis.bind("click", function(event) {
-        deactivate( active );
-        active = activate( $([ this ]) );
-        event.preventDefault();
-      });
-    });
-  };
-})();
+};
 
 $("#breeds, #tech").tabs()
 </script>
