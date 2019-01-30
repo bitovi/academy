@@ -1,5 +1,5 @@
 @page RxJS RxJS
-@parent bit-u 5
+@parent bit-u 6
 
 @description Learn RxJS by creating a validating credit card form.
 

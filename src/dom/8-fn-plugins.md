@@ -19,7 +19,7 @@ In this section, we will:
 ## Exercise: `$.fn`
 
 
-### The Problem
+### The problem
 
 Make adding methods to `$.fn` add methods to
 jQuery collections.  
