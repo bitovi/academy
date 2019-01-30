@@ -1,6 +1,5 @@
 @page angular Angular
 @parent bit-u 4
-@hide
 @description Learn the basics of Angular.
 
 @body
@@ -12,26 +11,22 @@ In this guide, we will ....
 
 1. why angular
 2. intro to the CLI
-  - generation a new app
-  - adding a component
-  - adding a router
-  - adding a service
-  - adding a module
-  - updating versions
+   - generation a new app
+   - adding a component
+   - adding a router
+   - adding a service
+   - adding a module
+   - updating versions
 3. angular building blocks
-  - modules
-  - web components
-  - templates
-  - data binding
-  - dependency injection
-  - services
+   - modules
+   - web components
+   - templates
+   - data binding
+   - dependency injection
+   - services
 4. angular best practices
-  - debugging
-  - reactive programming
-  - lazy loading
-  - unit testing
-  - typescript namespacing
-
-
-1. why Angular
-2. Building our first app
+   - debugging
+   - reactive programming
+   - lazy loading
+   - unit testing
+   - typescript namespacing

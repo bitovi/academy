@@ -3,16 +3,25 @@
 
 @description Building Our First App
 
-@body 
+@body
+
+## Overview
+
+In this part, we will:
+
+- Install Angular's cli
+- Generate a new app
+- Create a __home__ and __restaurant__ component
+- Setup routing to navigate between these two components
 
 
 ## Intro to the CLI
 
-Angular has a CLI that does a lot of the initial legwork in setting up a minimal app, as well as letting you easy create and include new components on the fly. 
+Angular has a CLI that does a lot of the initial legwork in setting up a minimal app, as well as letting you easy create and include new components on the fly.
 
 ## Installation
 
-We'll start by globally installing the Angular CLI. 
+We'll start by globally installing the Angular CLI.
 
 ```shell
 npm install -g @angular/cli
@@ -25,14 +34,14 @@ We're going to build a restaurant menu and ordering application. The final resul
 ![Place My Order App screenshot](../static/img/place-my-order.png "Place My Order App screenshot")
 
 
-To create a new Angular Workspace, we run the 'ng new' command. 
+To create a new Angular Workspace, we run the 'ng new' command.
 
 ```shell
 ng new place-my-order  --prefix pmo
 cd place-my-order
 ```
 
-This will create a new Angular Workspace, generate an app module, needed config files, and test suite for your new Angular project. You'll be asked a series of set-up questions: 
+This will create a new Angular Workspace, generate an app module, needed config files, and test suite for your new Angular project. You'll be asked a series of set-up questions:
 1. Would you like to add Angular routing? (yes)
 2. Which stylesheet format would you like to use?
 
@@ -67,11 +76,11 @@ Can specify application vs. library
 
 ### - targets
 
-Used for customizing task commands(build, serve, test) from the default settings. 
+Used for customizing task commands(build, serve, test) from the default settings.
 
 ## Looking at Our Generated Workspace
 
-Let's walk through some of the files that were generated. 
+Let's walk through some of the files that were generated.
 
 ```code
 ├── angular.json
@@ -107,13 +116,13 @@ Let's walk through some of the files that were generated.
 
 ### angular.json
 
-This file is the config schema for an Angular Workspace. By default Angular configures Webpack for it's build process, and uses the angular.json file for the build information. 
+This file is the config schema for an Angular Workspace. By default Angular configures Webpack for it's build process, and uses the angular.json file for the build information.
 
 (Note, prior to Angular v6, this file was .angular-cli.json. When migrating versions, having the wrong workspace config file name is a cause for problems.)
 
 ### tsconfig.json
 
-This file contains our typescript compiling options. 
+This file contains our typescript compiling options.
 
 ### src/main.ts
 
@@ -121,7 +130,7 @@ This is the entry point of our application, it compiles and bootstraps our app.
 
 ### src/index.html
 
-This should feel familiar - our main index page. 
+This should feel familiar - our main index page.
 
 ```html
 <!doctype html>
@@ -145,16 +154,16 @@ This should feel familiar - our main index page.
 
 This file is the root module for our app. Every Angular app has at least one module that determines how to compile and launch and app. It uses the @ngModule decorator with four properties:
 
-- declarations [array]: where we include components, directives, and pipes that will be used by this module. 
-- imports [array]: where we include any other modules our app needs to use. This may include 3rd party modules like bootstrap datepickers, or modules we've created. 
+- declarations [array]: where we include components, directives, and pipes that will be used by this module.
+- imports [array]: where we include any other modules our app needs to use. This may include 3rd party modules like bootstrap datepickers, or modules we've created.
 - providers [array]: where we include services that we want used at the global app level
-- bootstrap [array]: where we include the root AppModule - this is the main Application view that hosts all of our other app views. 
+- bootstrap [array]: where we include the root AppModule - this is the main Application view that hosts all of our other app views.
 
 ## src/app/app.component.ts
 
 This is our root component, you saw it called in our index.html file as ``<app-root></app-root>``
 
-Let's change the markup to look like the home page of our place my order app. 
+Let's change the markup to look like the home page of our place my order app.
 
 ```
 <h1>Place My Order App: Coming Soon!</h1>
@@ -172,13 +181,13 @@ This will compile our code (any typescript errors will throw here), and once rea
 
 ### adding assets
 
-To get our app up and running quicker so we can focus on the architecture, we'll import some precreated styles and assets to save us time. 
+To get our app up and running quicker so we can focus on the architecture, we'll import some precreated styles and assets to save us time.
 
 ```shell
 npm install place-my-order-assets@0.1 --save
 ```
 
-Open the ``angular.json`` file, and make the following changes to include these files in our build process. 
+Open the ``angular.json`` file, and make the following changes to include these files in our build process.
 
 ```typescript
 ...
@@ -199,14 +208,14 @@ Open the ``angular.json`` file, and make the following changes to include these 
 
 ### creating components
 
-Let's begin to build out the main views of our app. We'll need a home view, and restaurant list page to show all the restaurants we can order from. 
+Let's begin to build out the main views of our app. We'll need a home view, and restaurant list page to show all the restaurants we can order from.
 
 ```shell
 ng g component home
 ng g component restaurant
 ```
 
-This will create two new components for us and import them in our root module. 
+This will create two new components for us and import them in our root module.
 
 ```code
 ├── src/
@@ -241,9 +250,9 @@ Update the ``home.component.html`` file to be:
 
 ### adding routing
 
-To be able to navigate to our restaurant compoent, we'll need routing. We already told Angular we'd like to set up routing, so it generated ``src/app/app-routing.module.ts`` for us. 
+To be able to navigate to our restaurant compoent, we'll need routing. We already told Angular we'd like to set up routing, so it generated ``src/app/app-routing.module.ts`` for us.
 
-To create a route to our restaurants component, we'll need to import our restaraunts component and update our routes variable to include the new path. 
+To create a route to our restaurants component, we'll need to import our restaraunts component and update our routes variable to include the new path.
 
 
 ```typescript
@@ -264,14 +273,14 @@ const routes: Routes = [
 ];
 ```
 
-Our router was already added to our index file during our initial app creation. 
+Our router was already added to our index file during our initial app creation.
 
 ```html
 // src/index.html
 <router-outlet></router-outlet>
 ```
 
-Navigate to <a href="http://localhost:4200/restaurants" target="_blank">localhost:4200/restaurants</a> to see the new view. You may have noticed the ```routerLink``` attribute on the a tag in our home component markup. This one of the ways we link to specific routes in our app. 
+Navigate to <a href="http://localhost:4200/restaurants" target="_blank">localhost:4200/restaurants</a> to see the new view. You may have noticed the ```routerLink``` attribute on the a tag in our home component markup. This one of the ways we link to specific routes in our app.
 
 ### Adding Navigation
 
@@ -294,4 +303,4 @@ Open the app.component.html and change it to:
 <router-outlet></router-outlet>
 ```
 
-We now have a nice navigation for our users to change between views. 
+We now have a nice navigation for our users to change between views.

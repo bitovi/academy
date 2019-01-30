@@ -1,5 +1,5 @@
 @page angular-setup Data Binding
-@parent angular 1
+@parent angular 3
 
 @description Data Binding
 
