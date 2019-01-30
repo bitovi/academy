@@ -1,6 +1,6 @@
 @page debugging-javascript-training/prototypes Prototypes
 @parent debugging-javascript-training 3
-@description Prototypes
+@description Learn how to explore an object's proto chain.
 
 @body
 

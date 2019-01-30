@@ -1,6 +1,6 @@
 @page debugging-javascript-training/scope Scope
 @parent debugging-javascript-training 1
-@description Closures
+@description Learn how to see the variables available in the scope.
 
 @body
 

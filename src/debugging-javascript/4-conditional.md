@@ -1,6 +1,6 @@
 @page debugging-javascript-training/conditional Conditional
 @parent debugging-javascript-training 4
-@description Conditional
+@description Learn how to set a conditional breakpoint.
 
 @body
 
