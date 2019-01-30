@@ -31,6 +31,12 @@ Learn how JavaScript works in memory.  Build your own `DOT` (ex: `foo.bar`) and 
 
 <img src="./static/img/js-handout.png" width="40%"/>
 
+#### [debugging-javascript-training]
+
+Learn the basics of JavaScript debugging.
+
+<img src="./static/img/debugging/stack.png" width="300px" style="border: solid 1px black"/>
+
 #### [dom-jquery-training]
 
 Build your own jQuery and use it to create a simple tabs widget.
@@ -48,6 +54,5 @@ Learn RxJS by creating a validating credit card form.
 
 Bitovi University is under active development. The following courses are currently being authored:
 
-- [typescript]
 - [angular]
-- [React]
+- [react]
