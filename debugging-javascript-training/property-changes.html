@@ -73,7 +73,7 @@
            						expanded">
 						<a class="page"
 							href="../debugging-javascript-training.html"
-							title="Learn how">
+							title="This course covers the basics of JavaScript debugging.">
 							Debug JavaScript
 						</a>
 						
@@ -87,7 +87,7 @@
            						">
 						<a class="page"
 							href="scope.html"
-							title="Closures">
+							title="Learn how to see the variables available in the scope.">
 							Scope
 						</a>
 						
@@ -102,7 +102,7 @@
            						">
 						<a class="page"
 							href="call-stack.html"
-							title="Learn how to debug the call stack.">
+							title="Learn how to trace how functions are called.">
 							Call Stack
 						</a>
 						
@@ -117,7 +117,7 @@
            						">
 						<a class="page"
 							href="prototypes.html"
-							title="Prototypes">
+							title="Learn how to explore an object&#x27;s proto chain.">
 							Prototypes
 						</a>
 						
@@ -132,7 +132,7 @@
            						">
 						<a class="page"
 							href="conditional.html"
-							title="Conditional">
+							title="Learn how to set a conditional breakpoint.">
 							Conditional
 						</a>
 						
@@ -147,7 +147,7 @@
            						expanded">
 						<a class="page"
 							href="property-changes.html"
-							title="Property Change">
+							title="Learn how to debug property changes.">
 							Property Changes
 						</a>
 						
@@ -233,7 +233,7 @@
 		
 			
 				<section class="description">
-    <p>Property Change</p>
+    <p>Learn how to debug property changes.</p>
 
 </section>
 
@@ -246,7 +246,96 @@
 			
 			
 				<section class="body">
-    
+    <h2>The problem</h2>
+<p>The following example creates an object <code>obj</code> whose <code>subject</code> property is changed
+by something called within <code>somethingWillMutate</code>.  What is the name of the
+function that changed <code>obj.subject</code>?</p>
+<pre><code class="language-html">&lt;script src=&quot;//bitovi.github.io/university/static/scripts/debugging/variables.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;module&quot;&gt;
+function propertyChange(){
+
+    var obj = {subject: &quot;JavaScript&quot;};
+
+    somethingWillMutate(obj);
+
+    console.log(&quot;what is the name of the function that changed obj.subject?&quot;);
+    debugger;
+}
+propertyChange();
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<h2>What you need to know</h2>
+<p>You can capture when a property is set using a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set">setter</a>.  A <em>setter</em> can be created with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Object.defineProperty</a> like:</p>
+<pre><code class="language-js">var propertyValue = object.property;
+Object.defineProperty(person,&quot;property&quot;,{
+    get: function(){
+        return propertyValue;
+    },
+    set: function(newValue){
+        debugger;  
+        propertyValue = newValue;
+    }
+});
+</code></pre>
+<p>This is used in the following example to discover where <code>person.name</code> is changed:</p>
+<pre><code class="language-html">&lt;script&gt;
+function checkIt(obj){ return checkName(obj.name); }
+function checkName(obj){ return true; }
+function addLastName(obj){ obj.name = &quot;Justin Meyer&quot;; }
+
+function wrapWithAddress(obj){
+    return {person: obj, address: &quot;Chicago, IL&quot;};
+}
+
+function doSomethingWithPerson(obj){
+    checkIt(obj);
+    addLastName(obj);
+    wrapWithAddress(obj);
+}
+&lt;/script&gt;
+&lt;script type=&quot;module&quot;&gt;
+var person = {name: &quot;Justin&quot;};
+
+var name = person.name;
+Object.defineProperty(person,&quot;name&quot;,{
+    get: function(){ return name; },
+    set: function(newValue){ debugger;  name = newValue; }
+});
+
+doSomethingWithPerson(person);
+console.log(person);
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='19-23'></div>
+<h2>The solution</h2>
+<pre><code class="language-html">&lt;script src=&quot;//bitovi.github.io/university/static/scripts/debugging/variables.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;module&quot;&gt;
+function propertyChange(){
+
+    var obj = {subject: &quot;JavaScript&quot;};
+
+    var subject = obj.subject;
+    Object.defineProperty(obj,&quot;subject&quot;,{
+        get: function(){ return subject; },
+        set: function(newValue){ debugger;  subject = newValue; }
+    });
+
+    somethingWillMutate(obj);
+
+    console.log(&quot;what is the name of the function that changed obj.subject?&quot;);
+}
+propertyChange();
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='7-11'></div>
+<p><details>
+<summary>Click to see the answer</summary></p>
+<p>The answer is <code>g</code>.</p>
+<p></details></p>
+
 </section>
 
 			
@@ -257,7 +346,7 @@
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/debugging-javascript/5-property-change.md"},"description":"Property Change \n","name":"debugging-javascript-training/property-changes","title":"Property Changes","type":"page","parent":"debugging-javascript-training","order":5,"comment":" ","pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/debugging-javascript/5-property-change.md"},"description":"Learn how to debug property changes. \n","name":"debugging-javascript-training/property-changes","title":"Property Changes","type":"page","parent":"debugging-javascript-training","order":5,"comment":" ","pathToRoot":"../.."};
 	</script>
 
 	
