@@ -3,14 +3,14 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/debugging-javascript/3-proto.md
-	@page debugging-javascript-training/prototypes
+	source: src/debugging-javascript/2-stack.md
+	@page debugging-javascript-training/call-stack
 ######################################################################## -->
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Bitovi University - Prototypes</title>
+	<title>Bitovi University - Call Stack</title>
 	
 	<link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
 	
@@ -97,14 +97,17 @@
 		
 			
 				
-					<li class="
-           						
-           						">
+					<li class="current
+           						parent
+           						expanded">
 						<a class="page"
 							href="call-stack.html"
 							title="Learn how to debug the call stack.">
 							Call Stack
 						</a>
+						
+							
+
 						
 					</li>
 				
@@ -112,17 +115,14 @@
 		
 			
 				
-					<li class="current
-           						parent
-           						expanded">
+					<li class="
+           						
+           						">
 						<a class="page"
 							href="prototypes.html"
 							title="Prototypes">
 							Prototypes
 						</a>
-						
-							
-
 						
 					</li>
 				
@@ -225,7 +225,7 @@
 	<article class="main">
 		
 			<section class="title">
-	<h1>Prototypes <code>page</code></h1>
+	<h1>Call Stack <code>page</code></h1>
 </section>
 
 		
@@ -233,7 +233,7 @@
 		
 			
 				<section class="description">
-    <p>Prototypes</p>
+    <p>Learn how to debug the call stack.</p>
 
 </section>
 
@@ -247,47 +247,62 @@
 			
 				<section class="body">
     <h2>The problem</h2>
-<p>What is the value of <code>frozen</code>'s <code>rated</code> property that it inherited from the <code>Entertainment</code>
-prototype?</p>
+<p>What is the name of the function that calls the <code>end</code> function below?</p>
 <pre><code class="language-html">&lt;script src=&quot;//bitovi.github.io/university/static/scripts/debugging/variables.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;module&quot;&gt;
-var Movie = function(){};
-Movie.prototype = new Entertainment();
-Movie.prototype.play = function(){};
-
-var AnimatedMovie = function(){};
-AnimatedMovie.prototype = new Movie();
-AnimatedMovie.prototype.isAnime = function(){};
-
-var frozen = new AnimatedMovie();
-console.log(&quot;frozen has a `rated` property, inherited from Entertainment. What is its value?&quot;)
-console.log(frozen);
+function end() {
+    console.log(&quot;What is the name of the function that calls end?&quot;);
+    debugger;
+}
+start();
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
 <h2>What you need to know</h2>
-<p>The following sets up the same <code>Animal</code>, <code>Chordate</code>, and <code>Mammal</code>
-inheritance chain from the <a href="../advanced-javascript-training/prototypes.html" title="Demystify .prototype and ._proto_! We'll cover what the &quot;new&quot; and &quot;instanceof&quot; operators are actually doing behind the scenes, and what prototype-based inheritance looks like in memory.">Prototypes</a> JavaScript course.</p>
-<pre><code class="language-js">Animal = function(name) { this.name = name; };
-Animal.prototype.eats = function(){ return this.name+&quot; eats.&quot;; };
-
-function Chordate(name){ this.name = name; };
-Chordate.prototype = new Animal();
-Chordate.prototype.hasSpine = true;
-
-function Mammal(name){  this.name = name; };
-Mammal.prototype = new Chordate();
-Mammal.prototype.hasHair = true;
-
-var m = new Mammal('dog');
-console.log(m);
+<p>In the following code, <code>a()</code> calls <code>b()</code>, <code>b()</code> calls <code>c()</code>, and <code>c()</code> calls <code>d()</code>:</p>
+<pre><code class="language-js">function a(){
+    var varA = &quot;A&quot;;
+    b();
+}
+function b(){
+    var varB = &quot;B&quot;;
+    c();
+}
+function c(){
+    var varC = &quot;C&quot;;
+    d();
+}
+function d(){
+    var varD = &quot;D&quot;;
+}
+a();
 </code></pre>
-<p>You can inspect the Mammal instance <code>m</code> and see its <code>__proto__</code> property:</p>
-<p><img src="../static/img/debugging/prototype.png"/></p>
+<div class='codepen'></div>
+<p>By adding a breakpoint in <code>d()</code>, you will see the following in the <strong>Call Stack</strong>:</p>
+<p><img src="../static/img/debugging/stack.png" style="border: solid 1px black; max-width: 429px"/></p>
+<p>Chrome can also track asynchrounous function calls.  In the following code,
+<code>setTimeout</code> is used to call the next function:</p>
+<pre><code class="language-js">function a(){
+    setTimeout(b,10);
+}
+function b(){
+    setTimeout(c,10);
+}
+function c(){
+    setTimeout(d,10);
+}
+function d(){
+    console.log(&quot;d&quot;);
+}
+a();
+</code></pre>
+<div class='codepen'></div>
+<p>By adding a breakpoint in <code>d()</code>, you will see the following in the <strong>Call Stack</strong>:</p>
+<p><img src="../static/img/debugging/async-stack.png" style="border: solid 1px black; max-width: 429px"/></p>
 <h2>The solution</h2>
 <p><details>
 <summary>Click to see the answer</summary></p>
-<p>The answer is <code>b</code>.</p>
+<p>The answer is <code>e</code>.</p>
 <p></details></p>
 
 </section>
@@ -300,7 +315,7 @@ console.log(m);
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/debugging-javascript/3-proto.md"},"description":"Prototypes \n","name":"debugging-javascript-training/prototypes","title":"Prototypes","type":"page","parent":"debugging-javascript-training","order":3,"comment":" ","pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/debugging-javascript/2-stack.md"},"description":"Learn how to debug the call stack. \n","name":"debugging-javascript-training/call-stack","title":"Call Stack","type":"page","parent":"debugging-javascript-training","order":2,"comment":" ","pathToRoot":"../.."};
 	</script>
 
 	

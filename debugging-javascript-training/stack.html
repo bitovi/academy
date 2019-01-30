@@ -74,7 +74,7 @@
 						<a class="page"
 							href="../debugging-javascript-training.html"
 							title="Learn how">
-							Debugging JavaScript
+							Debug JavaScript
 						</a>
 						
 							
@@ -102,7 +102,7 @@
            						expanded">
 						<a class="page"
 							href="stack.html"
-							title="Stack">
+							title="Learn how to debug the stack.">
 							Stack
 						</a>
 						
@@ -233,7 +233,7 @@
 		
 			
 				<section class="description">
-    <p>Stack</p>
+    <p>Learn how to debug the stack.</p>
 
 </section>
 
@@ -246,7 +246,57 @@
 			
 			
 				<section class="body">
-    
+    <h2>The problem</h2>
+<p>What is the name of the function that calls the <code>end</code> function below?</p>
+<pre><code class="language-html">&lt;script src=&quot;//bitovi.github.io/university/static/scripts/debugging/variables.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;module&quot;&gt;
+function end() {
+    console.log(&quot;What is the name of the function that calls end?&quot;);
+    debugger;
+}
+start();
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<h2>What you need to know</h2>
+<p>In the following code, <code>a()</code> calls <code>b()</code>, <code>b()</code> calls <code>c()</code>, and <code>c()</code> calls <code>d()</code>:</p>
+<pre><code class="language-js">function a(){
+    var varA = &quot;A&quot;;
+    b();
+}
+function b(){
+    var varB = &quot;B&quot;;
+    c();
+}
+function c(){
+    var varC = &quot;C&quot;;
+    d();
+}
+function d(){
+    var varD = &quot;D&quot;;
+}
+a();
+</code></pre>
+<div class='codepen'></div>
+<p>By adding a breakpoint in <code>d()</code>, you will see the following in the <strong>Call Stack</strong>:</p>
+<p><img src="../static/img/debugging/stack.png" style="border: solid 1px black; max-width: 429px"/></p>
+<p>Async stuff</p>
+<pre><code class="language-js">function a(){
+    setTimeout(b,10);
+}
+function b(){
+    setTimeout(c,10);
+}
+function c(){
+    setTimeout(d,10);
+}
+function d(){
+    console.log(&quot;d&quot;);
+}
+a();
+</code></pre>
+<h2>The solution</h2>
+
 </section>
 
 			
@@ -257,7 +307,7 @@
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/debugging-javascript/2-async.md"},"description":"Stack \n","name":"debugging-javascript-training/stack","title":"Stack","type":"page","parent":"debugging-javascript-training","order":2,"comment":" ","pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/debugging-javascript/2-async.md"},"description":"Learn how to debug the stack. \n","name":"debugging-javascript-training/stack","title":"Stack","type":"page","parent":"debugging-javascript-training","order":2,"comment":" ","pathToRoot":"../.."};
 	</script>
 
 	

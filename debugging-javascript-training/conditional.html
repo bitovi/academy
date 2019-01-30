@@ -74,7 +74,7 @@
 						<a class="page"
 							href="../debugging-javascript-training.html"
 							title="Learn how">
-							Debugging JavaScript
+							Debug JavaScript
 						</a>
 						
 							
@@ -86,9 +86,9 @@
            						
            						">
 						<a class="page"
-							href="closures.html"
+							href="scope.html"
 							title="Closures">
-							Closures
+							Scope
 						</a>
 						
 					</li>
@@ -101,9 +101,9 @@
            						
            						">
 						<a class="page"
-							href="stack.html"
-							title="Stack">
-							Stack
+							href="call-stack.html"
+							title="Learn how to debug the call stack.">
+							Call Stack
 						</a>
 						
 					</li>
@@ -246,7 +246,45 @@
 			
 			
 				<section class="body">
-    
+    <h2>The problem</h2>
+<pre><code class="language-html">&lt;script src=&quot;//bitovi.github.io/university/static/scripts/debugging/variables.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;module&quot;&gt;
+function conditional(){
+    let sum = 0;
+    for(let i = 0; i &lt; 2000; i++) {
+        var conditionalValue = getConditionalValue(i);
+        sum += conditionalValue;
+    }
+    console.log(&quot;What does getConditionalValue() return when `i` is 1000?&quot;);
+    debugger;
+    return sum;
+}
+conditional();
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<h2>What you need to know</h2>
+<p>Often you only want to break when your app is at a certain state. The following code
+creates 2000 random numbers:</p>
+<pre><code class="language-js">function getValue(i){
+    return Math.random() * i;
+}
+var arr = [];
+for(var i = 0; i &lt; 2000; i++) {
+    var value = getValue(i);
+    arr.push(value)
+}
+</code></pre>
+<p>Chrome lets you add conditional breakpoints that break when an expression evaluates to
+<em>truthy</em>.  Right click the line number you'd like to break on and enter the
+expression.</p>
+<p><img src="../static/img/debugging/conditional.png"/></p>
+<h2>The solution</h2>
+<p><details>
+<summary>Click to see the answer</summary></p>
+<p>The answer is <code>u</code>.</p>
+<p></details></p>
+
 </section>
 
 			
