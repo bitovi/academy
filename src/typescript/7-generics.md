@@ -6,6 +6,38 @@
 @body
 
 
+## Old School START!
+
+## Generics
+
+Generics are a way of writing abstract code that allows the determination of types to be handled when the code is used. Generics let us reuse code for different types and improve maintainability.
+
+@sourceref ./7-1-basic.html
+@codepen
+
+Let's look at making a basic class to collect a list of things.
+
+@sourceref ./7-2-collection.html
+@codepen
+
+The good - we can push any type to this list. The bad - we can push any type to this list.
+
+@sourceref ./7-3-bad-collection.html
+@codepen
+
+myList now holds an assortment of types that won't be fun to iterate through and deal with. Let's build a generic class instead.
+
+@sourceref ./7-4-good-collection.html
+@codepen
+
+Now when we initialize this class we can specify a type to use.
+
+@sourceref ./7-5-generic-collection.html
+@codepen
+
+
+## Old School END!
+
 ## Overview
 
 Generics are a useful approach to writing abstract code that can be used in a variety of scenarios, or where this tutorial is concerned, with a variety of types. This section will cover more about what Generics are, why they are useful and how to create a linked list using Generics in TypeScript.  
@@ -19,12 +51,12 @@ The following is an example of a linked list for strings:
 @sourceref ./7-0-linked-list.html
 @codepen
 
-Let's look at transforming this to use generics to use this list for more than just strings. First, we change our interface to take a generic type. 
+Let's look at transforming this to use generics to use this list for more than just strings. First, we change our interface to take a generic type.
 
 @sourceref ./7-0-1-interface.html
 @codepen
 
-The angle brackets with the T indicate that we have a type variable ``<T>``, and can take what the user provides between the brackets when using the interface. For example, a string: 
+The angle brackets with the T indicate that we have a type variable ``<T>``, and can take what the user provides between the brackets when using the interface. For example, a string:
 
 @sourceref ./7-0-1-interface-string.html
 @codepen
