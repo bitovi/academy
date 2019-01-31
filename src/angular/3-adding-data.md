@@ -8,7 +8,6 @@
 
 ## Building our Restaurants List
 
-<<<<<<< HEAD
 We've done some work to create a Place My Order API for use in this app.
 
 ```bash
@@ -30,8 +29,7 @@ Next make add an api script to your ``package.json``
 ```
 Double check the api is working by running ``npm run api`` and navigating to <a href="http://localhost:7070/restaurants" target="_blank">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data.
 
-
-Finally, we'll create a proxy file at the root of our Angular project to access our API for local development purposes. 
+Finally, we'll create a proxy file at the root of our Angular project to access our API for local development purposes.
 
 ```bash
 touch proxy.conf.json
@@ -51,7 +49,21 @@ touch proxy.conf.json
 }
 ```
 
-The next time we serve our app, we'll run it with the proxy config ``ng serve --proxy-config proxy.conf.json``
+Update the package.json `npm start` script to be `ng serve --proxy-config proxy.conf.json`
+
+```json
+"scripts": {
+  "ng": "ng",
+  "start": "ng serve --proxy-config proxy.conf.json",
+  "build": "ng build",
+  "test": "ng test",
+  "lint": "ng lint",
+  "e2e": "ng e2e",
+  "api": "place-my-order-api --port 7070"
+}
+```
+
+The next time we serve our app using `npm start` it will run it with the proxy config we created.
 
 For making HTTP requests to interact with an API, Angular provides a HttpClient Module. To use it we'll need to import it in the root module of our app and include it the imports array.
 
@@ -84,7 +96,7 @@ import { HomeComponent } from './home/home.component';
 export class AppModule { }
 ```
 
-Let's start by creating an interface to tell Typescript what we expect a restaurant object to look like:
+For clarity, let's move the interfaces we created earlier into their own file.  We'll use these interfaces to tell Typescript what we expect a restaurant and other relates objects to look like:
 
 ```bash
 touch src/app/restaurant/restaurant.ts
@@ -95,32 +107,31 @@ interface Item {
     name: string;
     price: number;
 }
-
 interface Menu {
-  lunch: Array<Item>;
-  dinner: Array<Item>;
+    lunch: Array<Item>;
+    dinner: Array<Item>;
 }
 
 interface Address {
-  street: string;
-  city: string;
-  state: string;
-  zip: string;
+    street: string;
+    city: string;
+    state: string;
+    zip: string;
 }
 
 interface Images {
-  thumbnail: string;
-  owner: string;
-  banner: string;
+    thumbnail: string;
+    owner: string;
+    banner: string;
 }
 
-export class Restaurant {
-  name: string;
-  slug: string;
-  images: Images;
-  menu: Menu;
-  address: Address;
-  _id: string;
+export interface Restaurant {
+    name: string;
+    slug: string;
+    images: Images;
+    menu: Menu;
+    address: Address;
+    _id: string;
 }
 ```
 
@@ -155,7 +166,7 @@ export class RestaurantService {
 }
 ```
 
-We'll then import our new service into our restaurant component.
+We'll then import our new service into our restaurant component. 
 
 ```typescript
 import { Component, OnInit } from '@angular/core';
@@ -187,19 +198,14 @@ export class RestaurantComponent implements OnInit {
 }
 ``` 
 
-You should now see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="_blank">localhost:4200/restaurants</a>! You may have noticed in our markup there's another use of routerLink
+You should now see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="_blank">localhost:4200/restaurants</a>! You may have noticed in our markup there's another use of routerLink:
 
 ```html
 <a class="btn" [routerLink]="['/restaurants', restaurant.slug]">
   Details
 </a>
 ```
-<!-- 
-We'll now build out the view for an individual restaurant. Let's start with creating a component for our restaurant detail view.
 
-```bash
-ng g component restaurant/detail
-``` -->
-=======
-In the last section we generated a restaurants component and didn't do anything with it. Let's get some restaurant data to feed to it. 
->>>>>>> typescript
+One of the ways to create a link is to pass in the individual parts to the `routerLink` directive. This will generate the path `/restaurants/crab-cafe` for the "crab cafe" restaurant from it's slug.
+
+
