@@ -154,7 +154,7 @@ fierce();
 // Logs "Trex roared"
 ```
 
-### Exercise: bonusMaker
+## Exercise: bonusMaker
 
 The following function takes a bonus multiplier amount parameter and a dinosaur name parameter, then takes the length of the dinosaur name and multiplies it by the multiplier to calculate a dinosaur park employee's bonus salary based on the complexity of the dinosaurs they make.  
 

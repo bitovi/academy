@@ -7,7 +7,7 @@
 
 ## Overview
 
-For those newer to Object-oriented programming, classes are special functions that help us abstract our code. Classes can define function expressions and function declarations. This section will cover using classes in TypeScript, the Constructor method, how to inherit classes, and use of public, private, protected, and readonly modifiers. 
+For those newer to Object-oriented programming, classes are special functions that help us abstract our code. Classes can define function expressions and function declarations. This section will cover using classes in TypeScript, the Constructor method, how to inherit classes, and use of public, private, protected, and readonly modifiers.
 
 ## Classes in TypeScript
 
@@ -134,7 +134,7 @@ class DinoKeeper {
     console.log(`${this.name} says "hi"`);
   }
 }
-let employee1 = new DinoKeeper("Joe);
+let employee1 = new DinoKeeper("Joe");
 employee1.sayHi();
 //Logs "Joe says "hi""
 ```
@@ -147,7 +147,7 @@ Create a new ``Specialist`` class that inherits from the ``DinoKeeper``. This ne
 ```typescript
 let employee2 = new Specialist("Owen", 14);
 employee2.sayHi(); //Owen says 'hi'
-employee2.safetyQuote(); 
+employee2.safetyQuote();
 //Logs "Never turn your back to the cage. Trust me, I have 14 years of experience"
 ```
 
@@ -168,7 +168,7 @@ class Specialist extends DinoKeeper {
 
 let employee2 = new Specialist("Owen", 14);
 employee2.sayHi(); //Owen says 'hi'
-employee2.safetyQuote(); 
+employee2.safetyQuote();
 //Logs "Never turn your back to the cage. Trust me, I have 14 years of experience"
 ```
 
