@@ -3,14 +3,14 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/typescript/2-ide-support.md
-	@page typeScript/ide-support
+	source: src/typescript/1-why-typescript.md
+	@page typescript/why-typescript
 ######################################################################## -->
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Bitovi University - IDE Support</title>
+	<title>Bitovi University - Why TypeScript</title>
 	
 	<link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
 	
@@ -97,28 +97,13 @@
 		
 			
 				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../typescript/why-typescript.html"
-							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript.">
-							Why TypeScript
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
 					<li class="current
            						parent
            						expanded">
 						<a class="page"
-							href="ide-support.html"
-							title="Learn about TypeScript configurations and IDES good for TypeScript Development.">
-							IDE Support
+							href="why-typescript.html"
+							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript.">
+							Why TypeScript
 						</a>
 						
 							
@@ -134,7 +119,22 @@
            						
            						">
 						<a class="page"
-							href="../typescript/types.html"
+							href="ide-support.html"
+							title="Learn about TypeScript configurations and IDES good for TypeScript Development.">
+							IDE Support
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="types.html"
 							title="Learn how to declare types in TypeScript.">
 							Types
 						</a>
@@ -149,7 +149,7 @@
            						
            						">
 						<a class="page"
-							href="../typescript/functions.html"
+							href="functions.html"
 							title="Learn how to annotate functions parameters and return values, use different parameter types available, and bind this.">
 							Functions
 						</a>
@@ -164,7 +164,7 @@
            						
            						">
 						<a class="page"
-							href="../typescript/classes.html"
+							href="classes.html"
 							title="Learn to use classes and inheritance in TypeScript, about the constructor method, and how to use public, private, protected, and readonly modifiers.">
 							Classes
 						</a>
@@ -179,7 +179,7 @@
            						
            						">
 						<a class="page"
-							href="../typescript/interfaces.html"
+							href="interfaces.html"
 							title="Learn how to write Interfaces, set optional properties, and about the power of using interfaces in classes and functions">
 							Interfaces
 						</a>
@@ -194,7 +194,7 @@
            						
            						">
 						<a class="page"
-							href="../typescript/generics.html"
+							href="generics.html"
 							title="Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript.">
 							Generics
 						</a>
@@ -246,6 +246,19 @@
 			
 		
 			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../angular.html"
+							title="Learn the basics of Angular.">
+							Angular
+						</a>
+						
+					</li>
+				
+			
 		
 	</ul>
 
@@ -257,7 +270,7 @@
 	<article class="main">
 		
 			<section class="title">
-	<h1>IDE Support <code>page</code></h1>
+	<h1>Why TypeScript <code>page</code></h1>
 </section>
 
 		
@@ -265,7 +278,7 @@
 		
 			
 				<section class="description">
-    <p>Learn about TypeScript configurations and IDES good for TypeScript Development.</p>
+    <p>Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript.</p>
 
 </section>
 
@@ -278,81 +291,44 @@
 			
 			
 				<section class="body">
-    <h2>Overview</h2>
-<p>In this section we'll learn about TypeScript configuration options to help us optimize our workflow, and look at IDEs that have great TypeScript support for building TypeScript projects.</p>
-<h2>Configuring TypeScript</h2>
-<p>We're able to configure how our projects use TypeScript from selecting which files to compile to removing comments from those files. This is done through the creation of a <code>tsconfig.json</code> file.</p>
-<h3>tsconfig.json</h3>
-<p>Customize the TypeScript compiling and linting options by creating a <code>tsconfig.json</code> file in the root directory of your TypeScript project. The following config will</p>
-<ul>
-<li>specify ECMAScript target version as 'es5'</li>
-<li>specify module code generation (from 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015' or 'esnext')</li>
-<li>generate source map files</li>
-<li>remove comments from compiled code</li>
-</ul>
-<pre><code class="language-javascript">{
-    &quot;compilerOptions&quot;: {
-        &quot;target&quot;: &quot;es5&quot;,
-        &quot;module&quot;: &quot;commonjs&quot;,
-        &quot;sourceMap&quot;: true,
-        &quot;removeComments&quot;: true
-    }
-}
+    <h2>What is TypeScript?</h2>
+<p>TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. Typing helps enhance code quality and readability, assists in self-documenting, and the compiler uses <em>typechecking</em> to catch errors before runtime. TypeScript offers more modern (think ES6) features of JavaScript and the use of classes and interfaces to write code in an object oriented sense.</p>
+<p><a href="../static/img/typescript-error-compiling.png" target="\_blank"><img src="../static/img/typescript-error-compiling.png" width="100%"/></a></p>
+<h3>Typechecking</h3>
+<p>Typechecking is the process of verifying and enforcing the constraints of types.</p>
+<h3>Static vs. Dynamic Typing</h3>
+<p>Plain JavaScript is a dynamically typed language, meaning it doesn't know the type of a value assigned to a variable until run-time when it's instantiated. If there's a bug in the code related to falsely assuming a type, it won't throw an error until we're already running our code.</p>
+<p>TypeScript uses static typing, which allows us to specify what type a variable should hold, and types are checked when the code compiles alerting us of any incorrect usages of a variable assignment. The concept of &quot;static&quot; comes from the idea of variables being static, meaning once you set a variable to a type it can't (shouldn't) be changed.</p>
+<h2>Exercise: Hello World</h2>
+<p>In order to use TypeScript in the browser, we must compile the TypeScript code to plain JavaScript first. We will do this using our terminal in this example, but most often TypeScript is be compiled during a build process.</p>
+<p>Let's install TypeScript globally</p>
+<pre><code class="language-shell">npm install -g typescript
 </code></pre>
-<p>Full configuration options are available here: <a href="http://json.schemastore.org/tsconfig" target="\_blank">http://json.schemastore.org/tsconfig</a></p>
-<h3>Linting</h3>
-<p>We can also configure linting options to catch bugs and help enforce uniform styling. The following options will warn on unused local variables and parameters, and expressions or declarations implying 'any'.</p>
-<pre><code class="language-javascript">{
-    &quot;compilerOptions&quot;: {
-        ...
-        &quot;noUnusedLocals&quot;: true,
-        &quot;noUnusedParameters&quot;: true,
-        &quot;noImplicitAny&quot;: true
-        ...
-    }
-}
+<p>Create a folder to save our test files in</p>
+<pre><code class="language-shell">mkdir typescript-practice
+cd typescript-practice
 </code></pre>
-<h2>IDEs</h2>
-<p>Integrated Development Environments have come a long way in supporting modern web development. With little to no configuration they offer built-in debugging, Git integration, command line useage, and robust packages for additional addons.</p>
-<h3>Visual Studio Code</h3>
-<p><a href="https://code.visualstudio.com/" target="_blank">VS Code</a> is Microsoft's modern take on an IDE for app development (P.S. TypeScript is a Microsoft Open Source project).  VS Code has built in TypeScript support for syntax highlighting, IntelliSense code completion, and linting.</p>
-<p><a href="../static/img/vs-code-screenshot.png" target="\_blank"><img src="../static/img/vs-code-screenshot.png" width="100%" alt="Visual Studio Code screenshot" /></a></p>
-<h3>Atom</h3>
-<p>Atom is another good modern IDE that easily supports and aids in TypeScript development with the installation of the <a href="https://atom.io/packages/atom-typeScript" target="_blank"> atom-typeScript plugin</a>.</p>
-<p><a href="../static/img/atom-screenshot.png" target="\_blank"><img src="../static/img/atom-screenshot.png" width="100%" alt="Atom screenshot" /></a></p>
-<h3>Webstorm</h3>
-<p><a href="https://www.jetbrains.com/webstorm/download/" target="_blank">Webstorm</a> is a platform by JetBrains that is loved for its great code refactoring assistance and version control integration, but it does require a paid subscription.</p>
-<p><a href="../static/img/webstorm-screenshot.png" target="\_blank"><img src="../static/img/webstorm-screenshot.png" width="100%" alt="Webstorm screenshot" /></a></p>
-<h2>Exercise</h2>
-<p>In the same directory as your <code>helloworld.ts file</code>, create <code>hellouniverse.ts</code>.</p>
-<p>Change your <code>helloworld.ts</code> file to be:</p>
-<pre><code class="language-typescript">function greeter(person: string) {
+<p>Let's create a quick TypeScript file and open it in our favorite editor.</p>
+<pre><code class="language-shell">touch helloworld.ts
+</code></pre>
+<p>We'll write some basic TypeScript next:</p>
+<pre><code class="language-javascript">function greeter(person: string) {
     return &quot;Hello, &quot; + person;
 }
 
 let user = &quot;World&quot;;
 
 document.body.innerHTML = greeter(user);
-
-export default greeter;
 </code></pre>
-<p>In your <code>hellouniverse.ts</code> file add:</p>
-<pre><code class="language-typescript">import greeter from './helloworld'
-
-let user = 1;
-
-document.body.innerHTML = greeter(user);
+<p>We'll compile our code by running:</p>
+<pre><code class="language-shell">tsc helloworld.ts
 </code></pre>
-<p>Use your preferred editor's error detection help you find the bug and use the <code>greeter</code> function correctly.</p>
+<p>Provided there are no errors, this will compile the TypeScript to JavaScript file <code>helloworld.js</code></p>
+<p>Change your <code>user</code> variable to a number and compile again. What do you think will happen?</p>
 <p><details>
-<summary>solution</summary></p>
-<pre><code class="language-typescript">import greeter from './helloworld'
-
-let user = 'Universe';
-
-document.body.innerHTML = greeter(user);
-</code></pre>
-<p></details></p>
+<summary>error message</summary>
+<a href="../static/img/typescript-error-compiling.png" target="\_blank"><img src="../static/img/typescript-error-compiling.png" width="100%"/></a>
+</details></p>
 
 </section>
 
@@ -364,7 +340,7 @@ document.body.innerHTML = greeter(user);
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/typescript/2-ide-support.md"},"description":"Learn about TypeScript configurations and IDES good for TypeScript Development. \n","name":"typeScript/ide-support","title":"IDE Support","type":"page","parent":"typescript","order":2,"comment":" ","pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/typescript/1-why-typescript.md"},"description":"Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript. \n","name":"typescript/why-typescript","title":"Why TypeScript","type":"page","parent":"typescript","order":1,"comment":" ","pathToRoot":"../.."};
 	</script>
 
 	
