@@ -10,28 +10,20 @@
 
 In this guide, we will ....
 
-1. why angular
-2. intro to the CLI
-  - generation a new app
-  - adding a component
-  - adding a router
-  - adding a service
-  - adding a module
-  - updating versions
-3. angular building blocks
-  - modules
-  - web components
-  - templates
-  - data binding
-  - dependency injection
-  - services
-4. angular best practices
-  - debugging
-  - reactive programming
-  - lazy loading
-  - unit testing
-  - typescript namespacing
-
-
-1. why Angular
+1. Why angular
 2. Building our first app
+3. Generating our first component
+4. Adding routing
+5. Creating navigation
+6. Writing a restaurant data service
+7. Pulling restaurant data into our view
+8. Creating city & state options for filtering restaurants
+9. Listening to form value changes
+10. Adding filtering params to restaurant service
+11. Writing unit tests
+12. Creating nested restaurant routes
+13. Building an order form
+14. Writing an order data service
+15. Creating an order history component
+16. Updating order history view with real time connection
+
