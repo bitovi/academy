@@ -1,4 +1,4 @@
-@page angular-setup Why Angular
+@page angular/why-angular Why Angular
 @parent angular 1
 
 @description Why Angular is a great choice for modern web application development. 
