@@ -1,10 +1,20 @@
-@page angular/adding-data Adding Data
-@parent angular 2
+@page angular/restaurant-service Writing a Restaurant Service
+@parent angular 6
 
-@description Adding Data
+@description Writing a Restaurant Service
 
 @body 
 
+## Overview
+
+In this part, we will:
+
+- Install the place-my-order API
+- Create a proxy to serve the API
+- Update `npm start` script
+- Move restaurant interface to it's own file
+- Generate a new service via the CLI
+- Write a method to make an http request
 
 ## Building our Restaurants List
 
@@ -67,9 +77,9 @@ The next time we serve our app using `npm start` it will run it with the proxy c
 
 For making HTTP requests to interact with an API, Angular provides a HttpClient Module. To use it we'll need to import it in the root module of our app and include it the imports array.
 
-```typescript
-// src/app/app.module.ts
+__src/app/app.module.ts__
 
+```typescript
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -141,7 +151,9 @@ Now that we have our interface defined, we'll create a Service to handle getting
 ng g service restaurant/restaurant
 ```
 
-In our newly created service file, we'll need to import HttpClient, and Observable from RxJS. 
+In our newly created service file, we'll need to import HttpClient.
+
+__src/app/restaurant/restaurant.service.ts__
 
 ```typescript
 import { Injectable } from '@angular/core';
@@ -165,47 +177,3 @@ export class RestaurantService {
   }
 }
 ```
-
-We'll then import our new service into our restaurant component. 
-
-```typescript
-import { Component, OnInit } from '@angular/core';
-import { RestaurantService, Config } from './restaurant.service';
-import { Restaurant } from './restaurant';
-
-@Component({
-  selector: 'pmo-restaurant',
-  templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less']
-})
-export class RestaurantComponent implements OnInit {
-  public restaurants: {
-    value: Restaurant[];
-    isPending: boolean;
-  }
-  config: Config;
-  constructor(private restaurantService: RestaurantService) { }
-
-  ngOnInit() {
-    this.restaurants.isPending = true;
-
-    this.restaurantService.getRestaurants().subscribe((res: Config) => {
-      this.restaurants.value = res.data;
-      this.restaurants.isPending = false;
-    });
-  }
-
-}
-``` 
-
-You should now see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="_blank">localhost:4200/restaurants</a>! You may have noticed in our markup there's another use of routerLink:
-
-```html
-<a class="btn" [routerLink]="['/restaurants', restaurant.slug]">
-  Details
-</a>
-```
-
-One of the ways to create a link is to pass in the individual parts to the `routerLink` directive. This will generate the path `/restaurants/crab-cafe` for the "crab cafe" restaurant from it's slug.
-
-

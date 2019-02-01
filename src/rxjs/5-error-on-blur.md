@@ -13,19 +13,22 @@ In this section, we will:
   we will update the displayed cardNumber error, if there is one, on every future keystroke.
 - Add class="is-error" to the input when it has an error.
 
-We will do this with:
+## How to solve this problem
 
-- A `userCardNumberBlurred` `Subject` that emits when the `cardNumber` input is blurred.
-- A `showCardError` that emits true when the `cardNumber` error should be shown.
-- A `showOnlyWhenBlurredOnce(errorObservable, blurredObservable)` function that returns
-  the `showCardError` observable from two source observables.
+- Create a `this.userCardNumberBlurred` `Subject` that emits when the `cardNumber` input is blurred.
+- Create a `this.showCardError` that emits true when the `cardNumber` error should be shown.
+- Create a `showOnlyWhenBlurredOnce(errorObservable, blurredObservable)` operator that returns
+  the `showCardError` observable from two source observables.  
+  `showOnlyWhenBlurredOnce` should use the __event-reducer__ pattern to
+  promote the `errorObservable` and `blurredObservable` into events and
+  reduce those events into the `showCardError` observable.
 
 
 
 ## What you need to know
 
-- One of the most useful patterns in constructing streams is the event-reducer
-  pattern. On a high-level it involves making streams events, and using those
+- One of the most useful patterns in constructing streams is the __event-reducer__
+  pattern. On a high-level it involves turning values into events, and using those
   events to update a stateful object.
 
   For example, we might have a `first` and a `last` stream:
@@ -47,8 +50,8 @@ We will do this with:
   const first = sequentially(["Justin", "Ramiya"], 0, 1000);
   const last = sequentially(["Shah", "Meyer"], 500, 1000);
 
-  first.subscribe( v => console.log("f", v));
-  last.subscribe( v => console.log("l", v))
+  first.subscribe( v => console.log("first", v));
+  last.subscribe( v => console.log("last", v))
   // first: ---Justin---RamiyaX
   // last:  ------Shah__---Meyer_X
   </script>
@@ -119,13 +122,22 @@ We will do this with:
   > pattern is used here for illustrative purposes. It is able to support a larger
   > set of stream transformations than `combine`.
 
-- Subject v BehaviorSubject
-- [class.-isError] trick
-- promote to event, merge, reduce (scan)
+- For a blur event, we should not save the last publish value
+  so a `Subject` will work  better than a `BehaviorSubject`.
+- Use [a property binding](https://angular.io/guide/template-syntax#property-binding--property-) to set a property or attribute on an element.  
+  To add `my-class` to the `className` when `testValue` is truthy:
 
+  ```html
+  <div [class.my-class]="testValue">
+  ```
+- [ngIf](https://angular.io/api/common/NgIf) is used to conditionally render
+  an element. The following will show the `div` if `expression` is truthy:
+  ```html
+  <div *ngIf="expression">Show this</div>
+  ```
 
 ## The solution
 
 @sourceref ./5-error-on-blur.html
 @codepen
-@highlight 13-14,35-93,101,105-106,122,128,only
+@highlight 13-14,35-83,91,95-96,112,118,only

@@ -1,20 +1,25 @@
 @page typescript/classes Classes
 @parent typescript 5
 
-@description Classes in TypeScript
+@description  Learn to use classes and inheritance in TypeScript, about the ``constructor`` method, and how to use public, private, protected, and readonly modifiers.
 
 @body
 
+## Overview
+
+For those newer to Object-oriented programming, classes are special functions that help us abstract our code. Classes can define function expressions and function declarations. This section will cover using classes in TypeScript, the Constructor method, how to inherit classes, and use of public, private, protected, and readonly modifiers.
+
 ## Classes in TypeScript
 
-For those newer to Object-oriented programming, classes are special functions that help us abstract our code. Classes can define function expressions and function declarations.
+In JavaScript, a class is a structured way to define what you may have seen before - prototype based constructor functions. This allows us to take an object-oriented approach to building our JavaScript applications. Since ECMAScript 2015 classes have been available, the difference with classes in TypeScript is the strictness of enforcing types on members.
 
-In JavaScript, a class is a structured way to define what you may have seen before - prototype based functions. This allows us to take an object-oriented approach to building our JavaScript applications. 
+The following shows creating a ParkEmployee constructor function with a ``sayHi`` method.
 
 @sourceref ./5-1-javascript-prototype.html
 @codepen
 
-In the TypeScript class example, the 'name' member is initialized on line 4. We'll look at setting the name via the constructor next. 
+In the TypeScript class example, the ``name`` member is defined on line 4. We'll look at setting the name via the constructor next.
+
 @sourceref ./5-2-typescript-class.html
 @codepen
 @highlight 4
@@ -22,7 +27,7 @@ In the TypeScript class example, the 'name' member is initialized on line 4. We'
 
 ### Constructor
 
-The constructor method is how to create and initialize a new object with members. The constructor is used when we call a class with the ``new`` keyword, because it constructs and retuns a new object for us with properties we gave it.
+The constructor method is how to initialize a new object with members. The constructor is called when we instantiate a new object from calling a class with the ``new`` keyword - it constructs and returns a new object for us with properties we gave it.
 
 @sourceref ./5-3-class-constructor.html
 @codepen
@@ -39,7 +44,7 @@ Using the constructor to set public members is quite a common pattern, which is 
 
 ### Inheritance
 
-Inheritance is a way to extend functionality of existing classes. If the devired class contains it's own constructor function, it MUST call a super method with params matching that of it's parent class. Super is a call to the parent constructor method to ensure the properties are set for the parent. The following shows accessing the move mehtod from the parent class and adding run and talk methods to the child class.
+Inheritance is a way to extend functionality of existing classes. If the derived class contains its own constructor function, it MUST call a super method with params matching that of its parent class. Super is a call to the parent constructor method to ensure the properties are set for the parent. The following shows accessing the move method from the parent class and adding run and talk methods to the child class.
 
 @sourceref ./5-5-inheritance.html
 @codepen
@@ -48,9 +53,15 @@ Inheritance is a way to extend functionality of existing classes. If the devired
 
 When you need a property to be shared across multiple instances, you can use static property. These are shared by all instances of the class as well as inheriting classes. Both members and methods on a class can be static. Each instance accesses the static value through prepending the name of the class.
 
+This example shows the use of a static property ``cageInstances`` to count the number of instances of ``DinoCage``:
+
 @sourceref ./5-6-statics.html
 @codepen
 
+This example shows a shared static property ``dinos`` to count the number of dinosaurs in cages across all instances:
+
+@sourceref ./5-6-statics-advanced.html
+@codepen
 
 ### Public modifier
 
@@ -68,14 +79,16 @@ Members marked private are unable to be accessed from outside their containing c
 
 ### Protected modifier
 
-Protected modifiers are similar to private modifiers in that they can't be accessed but they CAN be accessed by deriving classes.
+Protected modifiers are similar to private modifiers in that they can't be accessed but they CAN be accessed by deriving classes. The following example shows an inherited class that can access it's parent protected property ``teethCount``:
 
 @sourceref ./5-9-protected.html
 @codepen
+@highlight 5, 20
+
 
 ### Readonly modifier
 
-Readonly modifieds allow properties to be read, but not changed.
+Readonly modifiers allow properties to be read, but not changed.
 
 @sourceref ./5-10-readonly.html
 @codepen
@@ -121,15 +134,22 @@ class DinoKeeper {
     console.log(`${this.name} says "hi"`);
   }
 }
-let employee1 = new DinoKeeper("Joe);
+let employee1 = new DinoKeeper("Joe");
 employee1.sayHi();
-//Joe says "hi"
+//Logs "Joe says "hi""
 ```
 </details>
 
 ### Exercise 2
 
-Create a new ``Specialist`` class that inherits from the ``DinoKeeper``. This new class class should be able to accept an additonal ``experience`` public member that is a number, and have a ``safetyQuote`` method that console.logs("Never turn your back to the cage. Trust me, I have _years_ years of experience")
+Create a new ``Specialist`` class that inherits from the ``DinoKeeper``. This new class class should be able to accept an additional ``experience`` public member that is a number, and have a ``safetyQuote`` method that console.logs("Never turn your back to the cage. Trust me, I have _years_ years of experience")
+
+```typescript
+let employee2 = new Specialist("Owen", 14);
+employee2.sayHi(); //Owen says 'hi'
+employee2.safetyQuote();
+//Logs "Never turn your back to the cage. Trust me, I have 14 years of experience"
+```
 
 <details>
 <summary>Solution</summary>
@@ -141,13 +161,15 @@ class Specialist extends DinoKeeper {
   }
 
   safetyQuote() {
-    console.log(`Never turn your back to the cage. Trust me, I have ${this.experience} years of experience`);
-
+    console.log(`Never turn your back to the cage.
+    Trust me, I have ${this.experience} years of experience`);
   }
 }
 
 let employee2 = new Specialist("Owen", 14);
 employee2.sayHi(); //Owen says 'hi'
-employee2.safetyQuote(); //Never turn your back to the cage. Trust me, I have 14 years of experience
+employee2.safetyQuote();
+//Logs "Never turn your back to the cage. Trust me, I have 14 years of experience"
 ```
+
 </details>

@@ -19,10 +19,6 @@ const cleanCardNumber = map((card) => {
     }
 });
 
-const log = function(name) {
-    return tap(ev => console.log(name, ev))
-}
-
 const validateCard = map((card) => {
     if (!card) {
         return "There is no card"
@@ -32,54 +28,45 @@ const validateCard = map((card) => {
     }
 });
 
+const log = function(name) {
+    return tap(value => console.log(name, value))
+}
+
 function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
-    const errorEvent = errorObservable.pipe(
+
+    const errorEvents = errorObservable.pipe(
         map((error) => {
-            if (!error) {
-                return {
-                    type: "valid"
-                }
-            } else {
-                return {
-                    type: "invalid",
-                    message: error
-                }
-            }
+            return {type: error ? "invalid" : "valid"}
         })
     );
 
     const focusEvents = blurredObservable.pipe(
         map((isBlurred) => {
-            if (isBlurred === undefined) {
-                return {};
-            }
-            return isBlurred ? {
-                type: "blurred"
-            } : {
-                type: "focused"
-            };
+            return {type: isBlurred ? "blurred" : "focused"};
         })
     );
 
-    var merged = merge(errorEvent, focusEvents);
+    var events = merge(errorEvents, focusEvents);
 
-    const valueState = scan((previous, event) => {
+    const eventsToState = scan((previous, event) => {
         switch (event.type) {
             case "valid":
-                return Object.assign({}, previous, {
+                return {...previous,
                     isValid: true,
                     showCardError: false
-                });
+                };
             case "invalid":
-                return Object.assign({}, previous, {
+                return {
+                    ...previous,
                     isValid: false,
                     showCardError: previous.hasBeenBlurred
-                });
+                };
             case "blurred":
-                return Object.assign({}, previous, {
+                return {
+                    ...previous,
                     hasBeenBlurred: true,
                     showCardError: !previous.isValid
-                });
+                };
             default:
                 return previous;
         }
@@ -89,7 +76,10 @@ function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
         isValid: false
     });
 
-    return merged.pipe(valueState).pipe(map(state => state.showCardError));
+    var state = events.pipe(eventsToState);
+
+    return state.pipe( map(state => state.showCardError) );
+
 }
 
 const expiryParts = map((expiry) => {
@@ -103,7 +93,7 @@ const validateExpiry = map((expiry) => {
         return "There is no expiry. Format  MM-YY";
     }
     if (expiry.length !== 2 || expiry[0].length !== 2 || expiry[1].length !== 2) {
-        return "Expirty must be formatted like MM-YY";
+        return "Expiry must be formatted like MM-YY";
     }
 });
 

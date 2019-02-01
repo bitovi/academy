@@ -1,6 +1,5 @@
 @page angular Angular
 @parent bit-u 4
-
 @description Learn the basics of Angular.
 
 @body
@@ -19,7 +18,7 @@ In this guide, we will ....
 7. Pulling restaurant data into our view
 8. Creating city & state options for filtering restaurants
 9. Listening to form value changes
-10. Adding filtering params to restaurant service
+10. Updating restaurant service to use params
 11. Writing unit tests
 12. Creating nested restaurant routes
 13. Building an order form

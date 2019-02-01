@@ -12,10 +12,10 @@ In this section, we will:
 - Disable the payment button while the promise is pending (or the card is invalid).
 - Make sure that submitting the form does not produce two requests.
 
-We will do this with:
+## How to solve this problem
 
-- A `this.disablePaymentButton` observable that combines `isCardInvalid` and `paymentStatus` using a `disablePaymentButton` operator.
-- `this.paymentStatus` converted to a multicast `Subject`.
+- Create a `this.disablePaymentButton` observable that combines `isCardInvalid` and `paymentStatus` using a `disablePaymentButton` operator.
+- Convert `this.paymentStatus` to a multicast `Subject`.
 
 ## What you need to know
 
@@ -102,4 +102,4 @@ Read more about this technique on [RxJS's documentation](https://rxjs-dev.fireba
 
 @sourceref ./11-disable-while-pending.html
 @codepen
-@highlight 14,181-185,216,219-220,256-258,only
+@highlight 14,171-175,206,209-210,246-248,only

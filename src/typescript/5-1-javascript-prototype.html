@@ -1,13 +1,14 @@
-<script type="typescript">
+<script type="javascript">
 //prototype way
 function ParkEmployee(name) {
   this.name = name;
 }
 
 ParkEmployee.prototype.sayHi = function() {
-  alert(this.name);
+  console.log("Hi, my name is " + this.name);
 }
 
 let raptorGuy = new ParkEmployee("Owen");
 raptorGuy.sayHi();
+//Logs "Hi, my name is Owen"
 </script>

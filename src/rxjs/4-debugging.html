@@ -19,8 +19,17 @@ const cleanCardNumber = map((card) => {
     }
 });
 
+const validateCard = map((card) => {
+    if (!card) {
+        return "There is no card"
+    }
+    if (card.length !== 16) {
+        return "There should be 16 characters in a card";
+    }
+});
+
 const log = function(name) {
-    return tap(ev => console.log(name, ev))
+    return tap(value => console.log(name, value))
 }
 
 @Component({
@@ -51,6 +60,7 @@ class AppComponent {
     constructor() {
         this.cardNumber = this.userCardNumber.pipe(cleanCardNumber)
             .pipe( log("cardNumber") );
+        this.cardError = this.cardNumber.pipe(validateCard);
     }
 }
 

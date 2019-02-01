@@ -22,7 +22,7 @@
 
 ## Exercise: DOT operator
 
-### The Problem
+### The problem
 
 Write the __DOT__ (`.`) operator as if it was implemented in JS as a function.
 

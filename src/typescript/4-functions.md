@@ -1,55 +1,172 @@
 @page typescript/functions Functions
 @parent typescript 4
 
-@description Functions in TypeScript
+@description Learn how to annotate functions parameters and return values, use different parameter types available, and bind ``this``.
 
 @body
 
+## Overview
+
+In this part, we will:
+
+- Annotate functions parameters and return values.
+- Use optional parameters & rest parameters
+- Bind `this` in TypeScript.  
+
 ## Functions in TypeScript
 
-In typeScript we're able to annotate function parameters to better guard our code. The following execution of a function will throw an error when compiled if called with two parameters that are not numbers.
+In TypeScript, we're able to annotate function parameters to better guard our code. If the following, `add` is called  with two parameters that are not numbers TypeScript's compiler will throw an error when compiled.
 
-@sourceref ./4-1-basic-function.html
-@codepen
+```typescript
+function add(x: number, y: number): number {
+  return x + y;
+}
+
+add(1, 'three');
+//Argument of type '"foo"' is not assignable to parameter of type 'number'.
+```
 
 We can also annotate what a function should return.
 
-@sourceref ./4-2-annotated-return.html
+```typescript
+interface Result {
+  success: boolean
+  error?: string
+}
+
+function logResponse(): Result {
+  return 'path not found'
+}
+//Type '"path not found"' is not assignable to type 'Result'.
+
+function logResponse(): Result {
+  return { success: false, error: 'path not found'}
+}
+//works!
+```
+
+## Optional Parameters
+
+Sometimes when writing functions, we don't need every parameter to be satisfied. TypeScript allows us to mark optional parameters (or properties) with a ``?`` so the compiler will not error if an optional param isn't passed.
+
+```typescript
+function buildDinosaur(name: string, breed: string, teeth?:number) {
+  if (teeth) {
+    console.log(`${name} is a ${breed} and has ${teeth} teeth.`);
+  }
+  else {
+    console.log(`${name} is a ${breed}.`);
+  }
+}
+
+let newDino = buildDinosaur('Blue', 'Velociraptor', 80);
+//works
+let otherDino = buildDinosaur('Delta', 'Velociraptor');
+//also works
+let otherOtherDino = buildDinosaur('Charlie');
+//error an argument for 'breed' was not provided
+```
+
+## Rest Parameters
+
+Rest parameters are a way to pass in an unknown number of arguments to a function. Rest params are signaled to the transpiler by passing an ellipsis (...) followed by the parameter name.
+
+```typescript
+function buildDinosaur(breed: string, ...dna: string[]) {
+  console.log(`The ${breed} has dna from ${dna.join(", ")}`)
+}
+
+let uberDino = buildDinosaur('Indominous Rex', "Velociraptor",
+"Tyrannosaurus rex","Therizinosaurus", "cuttlefish");
+//logs "The Indominous Rex has dna from Velociraptor,
+//      Tyrannosaurus rex, Therizinosaurus, cuttlefish"
+```
+
+## This & => Functions
+
+If you're familiar with ES6, you may know that using the fat arrow (=>) captures the context of `this` where it's used. The functionality is the same in TypeScript.
+
+
+Wrong `this`:
+
+```typescript
+class DinoBuilder {
+  name = 'Trex';
+  yawn() {
+    setTimeout(function() {
+      console.log(`${this.name} yawned.`)
+    }, 50);
+  }
+}
+
+var dino = new DinoBuilder();
+dino.yawn();
+// Logs "undefined yawned"
+```
+
+Right `this`:
+
+```typescript
+class DinoBuilder {
+  name = 'Trex';
+  yawn() {
+    setTimeout(() => {
+      console.log(`${this.name} yawned.`)
+    }, 50);
+  }
+}
+
+var dino = new DinoBuilder();
+dino.yawn();
+// Logs "Trex yawned"
+```
+
+Wrong `this`:
+
+```typescript
+class DinoBuilder {
+  name = 'Trex';
+  roar() {
+    console.log(`${this.name} roared.`)
+  }
+}
+
+var dino = new DinoBuilder();
+
+let fierce = dino.roar;
+fierce();
+// Logs "undefined roared"
+```
+
+Right `this`:
+
+```typescript
+class DinoBuilder {
+  name = 'Trex';
+  roar = () => {
+    console.log(`${this.name} roared.`)
+  }
+}
+
+var dino = new DinoBuilder();
+let fierce = dino.roar;
+fierce();
+// Logs "Trex roared"
+```
+
+## Exercise: bonusMaker
+
+The following function takes a bonus multiplier amount parameter and a dinosaur name parameter, then takes the length of the dinosaur name and multiplies it by the multiplier to calculate a dinosaur park employee's bonus salary based on the complexity of the dinosaurs they make.  
+
+@sourceref ./4-exercise-start.html
 @codepen
 
-### Optional Parameters
-
-@sourceref ./4-3-optional-params.html
-@codepen
-
-### Rest Parameters
-
-Rest parameters are a way to pass in an unknown number of arguments to a function. Rest params are signaled to the transpiler by passing an ellipsis(...) followed by the parameter name.
-
-@sourceref ./4-4-rest-params.html
-@codepen
-
-### This & => Functions
-
-If you're familiar with ES6, you may know that using the fat arrow (=>) captures the context of this where it's used. The functionality is the same in Typescript.
-
-
-### Exercise 1
-
-Write a function that takes a number and an unknown number of numbers, and returns the total of the numbers times their multiplier added together.
+Productivity in the park has been up, so modify this function to take an unknown amount of names to get the length of and multiply by the bonus multiplier amount.
 
 <details>
 <summary>solution</summary>
-```typescript
- function powerUp(multiplier, ...nums: number[]) {
-   let total = 0;
-     for(var i = 0; i < nums.length; i++) {
-       total = total + nums[i]*multiplier;
-     }
-   return total;
-  }
 
-let sum = powerUp(7, 1, 3, 6, 8);
-```
+@sourceref ./4-exercise-solution.html
+@codepen
+
 </details>
-

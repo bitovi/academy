@@ -7,11 +7,19 @@
 
 ## The problem
 
-Let’s disable the Pay button until the card, expiry, and cvc are valid.
+In this section, we will:
+
+- disable the Pay button until the card, expiry, and cvc are valid.
+
+## How to solve this problem
+
+- Create a `this.isCardInvalid` property publishes `true` if
+  either `this.cardError` `this.expiryError`, or `this.cvcError` are truthy.
+
 
 ## What you need to know
 
-- [combineLatest](https://rxjs-dev.firebaseapp.com/api/index/function/combineLatest) can combine several values into a single value:
+- The [combineLatest](https://rxjs-dev.firebaseapp.com/api/index/function/combineLatest) static method combines several values into a single value:
 
   ```html
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
@@ -19,9 +27,7 @@ Let’s disable the Pay button until the card, expiry, and cvc are valid.
   const {of, zip, timer, from, combineLatest} = rxjs;
 
   function sequentially(value, dueTime, period){
-      return zip(
-          from(value),
-          timer(dueTime, period),
+      return zip( from(value), timer(dueTime, period),
           value => value
       )
   }
@@ -31,7 +37,9 @@ Let’s disable the Pay button until the card, expiry, and cvc are valid.
 
   // first: ---Justin---RamiyaX
   // last:  ------Shah__---Meyer_X
-  const fullName = combineLatest(first, last, (first, last) => { return   first +" "+ last; });
+  const fullName = combineLatest(first, last,
+      (first, last) => { return first +" "+ last; }
+  );
 
   fullName.subscribe(console.log);
   // fullName: ---Justin Shah
@@ -40,6 +48,7 @@ Let’s disable the Pay button until the card, expiry, and cvc are valid.
   </script>
   ```
   @codepen
+  @highlight 3,16-18
 
 - `[property]="value"` can set an element property or attribute
   from another value:
@@ -52,4 +61,4 @@ Let’s disable the Pay button until the card, expiry, and cvc are valid.
 
 @sourceref ./8-disable-pay-button.html
 @codepen
-@highlight 13,122-126,157,189,only
+@highlight 13,112-116,147,179,only

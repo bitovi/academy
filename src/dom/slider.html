@@ -1,0 +1,133 @@
+<style>
+.slider {
+    border: solid 1px blue;
+    background-color: red;
+    height: 40px;
+    width: 40px;
+    cursor: ew-resize;
+    position: relative;
+}
+.container, percent-slider {
+    border: solid 4px black;
+    padding: 5px;
+    display: block;
+}
+</style>
+
+<slider-demo></slider-demo>
+
+<script type="module">
+import { Component } from "//unpkg.com/can@5/core.mjs";
+
+function width(el) {
+    var cs = window.getComputedStyle(el,null)
+    return el.clientWidth - parseFloat( cs.getPropertyValue("padding-left") )
+        - parseFloat( cs.getPropertyValue("padding-left") );
+}
+
+Component.extend({
+    tag: "percent-slider",
+    view: `
+        <div class='slider'
+
+        on:mousedown='startDrag(scope.event.clientX)'/>`,
+    ViewModel: {
+        start: {type: "number", default: 0},
+        end: {type: "number", default: 1},
+        currentValue: {
+            default: function(){
+                return this.value || 0;
+            },
+            set(value) {
+                return Math.min( Math.max(this.start, value), this.end) || 0;
+            }
+        },
+        width: {type: "number", default: 0},
+        get left(){
+            var left = ( (this.currentValue - this.start) / (this.end - this.start) ) * this.width;
+            return Math.min( Math.max(0, left), this.width) || 0;
+        },
+        connectedCallback(el) {
+            // derive the width
+            this.width = width(el) - el.firstElementChild.offsetWidth;
+            this.listenTo(window,"resize", () => {
+                this.width = width(el) - el.firstElementChild.offsetWidth;
+            });
+
+            // Produce dragmove and dragup events on the view-model
+            this.listenTo("startClientX", () => {
+                var startLeft = this.left;
+                this.listenTo(document,"mousemove", (event)=>{
+                    this.dispatch("dragmove", [event.clientX - this.startClientX + startLeft]);
+                });
+                this.listenTo(document,"mouseup", (event)=>{
+                    this.dispatch("dragup", [event.clientX - this.startClientX + startLeft]);
+                    this.stopListening(document);
+                })
+            });
+            // Update the slider position when currentValue changes
+            this.listenTo("dragmove", (ev, left)=> {
+                this.currentValue = this.start + (left / this.width) * (this.end - this.start);
+            },"notify");
+
+            // If the value is set, update the current value
+            this.listenTo("value", (ev, newValue) => {
+                this.currentValue = newValue;
+            }, "notify");
+
+            // Update the value on a dragmove
+            this.listenTo("dragup", (ev, left)=> {
+                this.currentValue = this.start + (left / this.width) * (this.end - this.start);
+            },"notify");
+
+            this.listenTo("left", function(ev, left){
+                el.firstElementChild.style.left = ""+left+"px";
+            },"notify");
+            el.firstElementChild.style.left = ""+this.left+"px";
+
+            return this.stopListening.bind(this);
+        },
+        startClientX: "any",
+        startDrag(clientX) {
+            this.startClientX = clientX;
+        }
+    }
+});
+
+Component.extend({
+    tag: "slider-demo",
+    view: `
+        <percent-slider currentValue:bind='this.value' el:this:to="this.valueSlider"/>
+        <div>Value <strong id='progress'>{{this.value}}</strong></div>
+
+        <percent-slider start:from='0' end:from='40' currentValue:bind='this.padding' />
+        <div>Container padding <strong id='progress'>{{this.padding}}</strong></div>
+
+        <percent-slider start:from='10' end:from='70' currentValue:bind='this.width' />
+        <div>Height / Width <strong id='progress'>{{this.width}}</strong></div>
+    `,
+    ViewModel: {
+        value: {default: 0.5},
+        padding: {default: 20},
+        width: {default: 40},
+        valueSlider: "any",
+        connectedCallback(el) {
+            const setPadding = (ev, newPadding) => {
+                this.valueSlider.style.padding = ""+newPadding+"px";
+                window.dispatchEvent( new Event("resize") );
+            }
+            this.listenTo("padding", setPadding);
+            setPadding(null, this.padding);
+
+            const setHeightWidth = (ev, newWidth) => {
+                 this.valueSlider.firstElementChild.style.width = ""+newWidth+"px";
+                 this.valueSlider.firstElementChild.style.height = ""+newWidth+"px";
+                 window.dispatchEvent( new Event("resize") );
+            };
+            this.listenTo("width", setHeightWidth);
+            setHeightWidth(null, this.width);
+        }
+    }
+})
+
+</script>

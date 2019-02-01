@@ -9,6 +9,8 @@
 
 In this section, we will do for `expiry` what was done for `cardNumber`.
 
+## How to solve this problem
+
 First:
 
 - Write the `<input name="expiry"/>` value to a `BehaviorSubject` called `this.userExpiry`.
@@ -25,7 +27,7 @@ Second:
           return "There is no expiry. Format  MM-YY";
       }
       if (expiry.length !== 2 || expiry[0].length !== 2 || expiry[1].length !== 2) {
-          return "Expirty must be formatted like MM-YY";
+          return "Expiry must be formatted like MM-YY";
       }
   }
   ```
@@ -49,4 +51,4 @@ You already know everything you need to know.  Apply what you learned from
 
 @sourceref ./6-expiry.html
 @codepen
-@highlight 95-108,118-119,126-129,145-146,154-156,only
+@highlight 85-98,108-109,116-119,135-136,144-146,only
