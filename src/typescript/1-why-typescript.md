@@ -21,27 +21,57 @@ Plain JavaScript is a dynamically typed language, meaning it doesn't know the ty
 
 TypeScript uses static typing, which allows us to specify what type a variable should hold, and types are checked when the code compiles alerting us of any incorrect usages of a variable assignment. The concept of "static" comes from the idea of variables being static, meaning once you set a variable to a type it can't (shouldn't) be changed.
 
-## Exercise: Hello World
+## Exercise: `1-helloworld.ts`
+
+### Setup
+
+For this and following TypeScript exercises, we will be working in the
+[https://github.com/bitovi/typescript-training](https://github.com/bitovi/typescript-training)
+repository. To use it:
+
+1. Clone this repo:
+   ```shell
+   git clone https://github.com/bitovi/typescript-training.git
+   ```
+
+2. Open your terminal to that folder:
+   ```shell
+   cd typescript-training
+   ```
+
+3. Install node packages:
+   ```shell
+   npm i
+   ```
+4. Open the `typescript-training` folder in your editor:
+   ```shell
+   atom .
+   ```
+
+
+### The problem
+
+For this exercise, we will:
+
+- Create a simple _0-why-hello-world.ts_ TypeScript file that writes out `"Hello Wold"`
+  to the page.
+- Compile that code to JavaScript
+
+### What you need to know
+
 
 In order to use TypeScript in the browser, we must compile the TypeScript code to plain JavaScript first. We will do this using our terminal in this example, but most often TypeScript is be compiled during a build process.
 
-Let's install TypeScript globally
+Let's install TypeScript globally:
 
 ```shell
 npm install -g typescript
 ```
 
-Create a folder to save our test files in
+Let's create a _0-why-hello-world.ts_ file and open it in our favorite editor.
 
 ```shell
-mkdir typescript-practice
-cd typescript-practice
-```
-
-Let's create a quick TypeScript file and open it in our favorite editor.
-
-```shell
-touch helloworld.ts
+touch 0-why-hello-world.ts
 ```
 
 We'll write some basic TypeScript next:
@@ -59,10 +89,10 @@ document.body.innerHTML = greeter(user);
 We'll compile our code by running:
 
 ```shell
-tsc helloworld.ts
+tsc 0-why-hello-world.ts
 ```
 
-Provided there are no errors, this will compile the TypeScript to JavaScript file ``helloworld.js``
+Provided there are no errors, this will compile the TypeScript to JavaScript file `0-why-hello-world.js`
 
 Change your ``user`` variable to a number and compile again. What do you think will happen?
 

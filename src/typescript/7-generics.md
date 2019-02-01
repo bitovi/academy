@@ -12,6 +12,8 @@ In this part, we will:
 
 - Understand the purpose and basics of generic functions
 - Understand how to make generic classes
+- Understand how to make recursive generic classes
+- Create a TreeNode recursive generic class
 
 ## Basic Generics
 
@@ -225,11 +227,6 @@ myListOfDinosaurs.pushItem({name: 'Charlie'});
 @codepen
 
 
-## Old School END!
-
-## Overview
-
-Generics are a useful approach to writing abstract code that can be used in a variety of scenarios, or where this tutorial is concerned, with a variety of types. This section will cover more about what Generics are, why they are useful and how to create a linked list using Generics in TypeScript.  
 
 ## Recursive Generic Classes
 
