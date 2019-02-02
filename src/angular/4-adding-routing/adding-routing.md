@@ -21,27 +21,15 @@ To create a route to our restaurants component, we'll need to import our restaur
 
 __src/app/app-routing.module.ts__
 
-```typescript
-import { HomeComponent } from './home/home.component';
-import { RestaurantComponent } from './restaurant/restaurant.component';
+@sourceref ./app-routing.module.ts
+@highlight 3-15
 
-const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-  },
-  {
-    path: 'restaurants',
-    component: RestaurantComponent,
-  }
-];
-```
+Our router was already added to our index file during our initial app creation. But
+lets remove everything else:
 
-Our router was already added to our index file during our initial app creation.
+__src/app/app.component.html__
 
-__src/index.html__
-```html
-<router-outlet></router-outlet>
-```
+@sourceref ./app.component.html
+@highlight 1,only
 
-Navigate to <a href="http://localhost:4200/restaurants" target="_blank">localhost:4200/restaurants</a> to see the new view. You may have noticed the ```routerLink``` attribute on the a tag in our home component markup. This one of the ways we link to specific routes in our app.
+Navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a> to see the new view. You may have noticed the ```routerLink``` attribute on the a tag in our home component markup. This one of the ways we link to specific routes in our app.

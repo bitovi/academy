@@ -15,22 +15,11 @@ In this part, we will:
 
 Open the app.component.html and change it to:
 
-__src/index.html__
-```html
-<header>
-  <nav>
-   <h1>place-my-order.com</h1>
-   <ul>
-        <li>
-            <a routerLink="/home" routerLinkActive="active">Home</a>
-        </li>
-        <li>
-            <a routerLink="/restaurants" routerLinkActive="active">Restaurants</a>
-        </li>
-   </ul>
-  </nav>
-</header>
-<router-outlet></router-outlet>
-```
+
+__src/app/app.component.html__
+
+@sourceref ./app.component.html
+@highlight 1-13
+
 
 We now have a nice navigation for our users to change between views!

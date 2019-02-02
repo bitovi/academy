@@ -9,7 +9,7 @@
 
 In this part, we will:
 
-- Install precreated assets 
+- Install precreated assets
 - Generate home and restaurant components
 - Use pipes for image paths
 - Write an interface to describe our restaurant data
@@ -123,29 +123,17 @@ __src/app/restaurant/restaurant.component.html__
 
 #### > DETOUR! Pipes in Angular
 
-We're using an API in this demo that wasn't built for our exact purposes, and we need a different image path for our app to serve. <a href="https://angular.io/guide/pipes" target="_blank">Angular Pipes</a> come in handy to transform content in our templates. We'll create a pipe to help handle our image pathing:
+We're using an API in this demo that wasn't built for our exact purposes, and we need a different image path for our app to serve. <a href="https://angular.io/guide/pipes" target="\_blank">Angular Pipes</a> come in handy to transform content in our templates. We'll create a pipe to help handle our image pathing:
 
 ```bash
 ng g pipe imageUrl
 ```
 
-In our newly created `image-url.pipe.ts' update the code to be:
+In our newly created `image-url.pipe.ts` update the code to be:
 
 __src/app/image-url.pipe.ts__
 
-```typescript
-import { Pipe, PipeTransform } from '@angular/core';
-
-@Pipe({
-  name: 'imageUrl'
-})
-export class ImageUrlPipe implements PipeTransform {
-
-  transform(value: any): any {
-    return value.replace('node_modules/place-my-order-assets', './assets');
-  }
-}
-```
+@sourceref ./image-url.pipe.ts
 
 This pipe is called in the markup we added to our html page as:
 
@@ -159,62 +147,6 @@ Back to our main restaurant component, in the ``restaurant.component.ts`` file:
 
 __src/app/restaurant/restaurant.component.ts__
 
-```typescript
-import { Component, OnInit } from '@angular/core';
-
-interface Item {
-    name: string;
-    price: number;
-}
-interface Menu {
-    lunch: Array<Item>;
-    dinner: Array<Item>;
-}
-
-interface Address {
-    street: string;
-    city: string;
-    state: string;
-    zip: string;
-}
-
-interface Images {
-    thumbnail: string;
-    owner: string;
-    banner: string;
-}
-
-export interface Restaurant {
-    name: string;
-    slug: string;
-    images: Images;
-    menu: Menu;
-    address: Address;
-    _id: string;
-}
-  
-export interface Data<T> {
-  value: Array<T>;
-  isPending: boolean;
-}
-
-@Component({
-  selector: 'pmo-restaurant',
-  templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less']
-})
-export class RestaurantComponent implements OnInit {
-  public restaurants: Data<Restaurant> = {
-    value: [],
-    isPending: false
-  }
-
-  constructor() { }
-
-  ngOnInit() {
-  }
-
-}
-```
+@sourceref ./restaurant.component.ts
 
 We'll come back to this view to feed in data, but for now you'll notice we're using interfaces to help define what our data will look like.

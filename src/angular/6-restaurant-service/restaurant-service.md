@@ -3,7 +3,7 @@
 
 @description Writing a Restaurant Service
 
-@body 
+@body
 
 ## Overview
 
@@ -26,7 +26,7 @@ npm install place-my-order-api@1 --save
 
 Next make add an api script to your ``package.json``
 
-```json
+```js
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -37,7 +37,9 @@ Next make add an api script to your ``package.json``
     "api": "place-my-order-api --port 7070"
   }
 ```
-Double check the api is working by running ``npm run api`` and navigating to <a href="http://localhost:7070/restaurants" target="_blank">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data.
+@highlight 8
+
+Double check the api is working by running ``npm run api`` and navigating to <a href="http://localhost:7070/restaurants" target="\_blank">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data.
 
 Finally, we'll create a proxy file at the root of our Angular project to access our API for local development purposes.
 
@@ -45,7 +47,7 @@ Finally, we'll create a proxy file at the root of our Angular project to access 
 touch proxy.conf.json
 ```
 
-```json
+```js
 {
   "/api": {
     "target": "http://localhost:7070",
@@ -61,7 +63,7 @@ touch proxy.conf.json
 
 Update the package.json `npm start` script to be `ng serve --proxy-config proxy.conf.json`
 
-```json
+```js
 "scripts": {
   "ng": "ng",
   "start": "ng serve --proxy-config proxy.conf.json",
@@ -70,8 +72,9 @@ Update the package.json `npm start` script to be `ng serve --proxy-config proxy.
   "lint": "ng lint",
   "e2e": "ng e2e",
   "api": "place-my-order-api --port 7070"
-}
+},
 ```
+@highlight 3
 
 The next time we serve our app using `npm start` it will run it with the proxy config we created.
 
@@ -79,32 +82,7 @@ For making HTTP requests to interact with an API, Angular provides a HttpClient 
 
 __src/app/app.module.ts__
 
-```typescript
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { RestaurantComponent } from './restaurant/restaurant.component';
-import { HomeComponent } from './home/home.component';
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    RestaurantComponent,
-    HomeComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
-```
+@sourceref ./app.module.ts
 
 For clarity, let's move the interfaces we created earlier into their own file.  We'll use these interfaces to tell Typescript what we expect a restaurant and other relates objects to look like:
 
@@ -112,38 +90,7 @@ For clarity, let's move the interfaces we created earlier into their own file.  
 touch src/app/restaurant/restaurant.ts
 ```
 
-```typescript
-interface Item {
-    name: string;
-    price: number;
-}
-interface Menu {
-    lunch: Array<Item>;
-    dinner: Array<Item>;
-}
-
-interface Address {
-    street: string;
-    city: string;
-    state: string;
-    zip: string;
-}
-
-interface Images {
-    thumbnail: string;
-    owner: string;
-    banner: string;
-}
-
-export interface Restaurant {
-    name: string;
-    slug: string;
-    images: Images;
-    menu: Menu;
-    address: Address;
-    _id: string;
-}
-```
+@sourceref ./restaurant.ts
 
 Now that we have our interface defined, we'll create a Service to handle getting our restaurant data. Services are classes with narrow purposes that don't typically involve view-related functionality.
 
@@ -155,25 +102,4 @@ In our newly created service file, we'll need to import HttpClient.
 
 __src/app/restaurant/restaurant.service.ts__
 
-```typescript
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
-import { Restaurant } from './restaurant';
-
-export interface Config {
-  data: Restaurant[];
-}
-
-@Injectable({
-  providedIn: 'root'
-})
-export class RestaurantService {
-
-  constructor(private httpClient: HttpClient) { }
-
-  getRestaurants() {
-    return this.httpClient.get<Config>('/api/restaurants');
-  }
-}
-```
+@sourceref ./restaurant.service.ts

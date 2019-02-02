@@ -3,7 +3,7 @@
 
 @description Pulling Restaurant Data into Our View
 
-@body 
+@body
 
 ## Overview
 
@@ -18,36 +18,16 @@ We'll then import our new service into our restaurant component.
 
 __src/app/restaurant/restaurant.component.ts__
 
-```typescript
-import { Component, OnInit } from '@angular/core';
-import { RestaurantService, Config } from './restaurant.service';
-import { Restaurant } from './restaurant';
+@sourceref ./restaurant.component.ts
 
-@Component({
-  selector: 'pmo-restaurant',
-  templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less']
-})
-export class RestaurantComponent implements OnInit {
-  public restaurants: {
-    value: Restaurant[];
-    isPending: boolean;
-  }
-  config: Config;
-  constructor(private restaurantService: RestaurantService) { }
+### Importing `HttpClientModule` into _app.module.ts_
 
-  ngOnInit() {
-    this.restaurants.isPending = true;
+__src/app/app.module.ts__
 
-    this.restaurantService.getRestaurants().subscribe((res: Config) => {
-      this.restaurants.value = res.data;
-      this.restaurants.isPending = false;
-    });
-  }
-}
-``` 
+@sourceref ./app.module.ts
+@highlight 3,21
 
-You should now see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="_blank">localhost:4200/restaurants</a>! You may have noticed in our markup there's another use of routerLink:
+You should now see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>! You may have noticed in our markup there's another use of routerLink:
 
 ```html
 <a class="btn" [routerLink]="['/restaurants', restaurant.slug]">
