@@ -15,4 +15,4 @@ In this part, we will:
 __src/app/restaurant/restaurant.component.ts__
 
 @sourceref restaurant.component.ts
-@highlight 3,36,48-50,58,60-71
+@highlight 1,3,18,36,48-50,58,60-71

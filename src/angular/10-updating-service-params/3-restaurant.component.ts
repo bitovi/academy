@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { RestaurantService } from './restaurant.service';
+import { RestaurantService, Config, City, State } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data<T> {
@@ -23,14 +23,14 @@ export class RestaurantComponent implements OnInit, OnDestroy {
     isPending: false
   }
 
-  public states = {
-    isPending: false,
-    value: [{name: "Illinois"}, {name: "Wisconsin"}]
-  };
+  public states: Data<State> = {
+    value: [],
+    isPending: true
+  }
 
-  public cities = {
-    isPending: false,
-    value: [{name: "Springfield"},{name: "Madison"}]
+  public cities: Data<City> = {
+    value: [],
+    isPending: true
   }
 
   private subscription: Subscription;
@@ -43,6 +43,18 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.createForm();
+
+    this.restaurantService.getStates().subscribe((res: Config<State>) => {
+      this.states.value = res.data;
+      this.states.isPending = false;
+      this.form.get('state').enable();
+    });
+
+    this.restaurantService.getCities("IL").subscribe((res: Config<City>) => {
+      this.cities.value = res.data;
+      this.cities.isPending = false;
+      this.form.get('city').enable();
+    });
   }
 
   ngOnDestroy() {
@@ -51,8 +63,8 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
   createForm() {
     this.form = this.fb.group({
-      state: {value: '', disabled: false},
-      city: {value: '', disabled: false},
+      state: {value: '', disabled: true},
+      city: {value: '', disabled: true},
     });
 
     this.onChanges();

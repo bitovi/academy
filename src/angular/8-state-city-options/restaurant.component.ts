@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-import { RestaurantService, Config, City, State } from './restaurant.service';
+import { RestaurantService } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data<T> {
@@ -12,7 +12,7 @@ export interface Data<T> {
 @Component({
   selector: 'pmo-restaurant',
   templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.css']
+  styleUrls: ['./restaurant.component.less']
 })
 export class RestaurantComponent implements OnInit {
   form: FormGroup;

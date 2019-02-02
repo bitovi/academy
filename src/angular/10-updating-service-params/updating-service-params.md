@@ -3,7 +3,7 @@
 
 @description Updating Restaurant Service to use params
 
-@body 
+@body
 
 ## Overview
 
@@ -21,153 +21,18 @@ Import HttpParams, add state and city params to getRestaurants method. Add new m
 
 __src/app/restaurant/restaurant.service.ts__
 
-```typescript
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Restaurant } from './restaurant';
-
-export interface Config<T> {
-  data: Array<T>;
-}
-
-export interface State {
-  name: string;
-  short: string;
-}
-
-export interface City {
-  name: string;
-  state: string;
-}
-
-@Injectable({
-  providedIn: 'root'
-})
-export class RestaurantService {
-
-  constructor(private httpClient: HttpClient) { }
-
-  getRestaurants(state:string, city: string) { //HIGHLIGHT THIS LINE
-    let options = { params: new HttpParams().set('filter[address.state]', state).set('filter[address.city]', city) };
-    return this.httpClient.get<Config<Restaurant>>('/api/restaurants', options);
-  }
-}
-```
+@sourceref ./1-restaurant.service.ts
 
 ### Add getStates and getCities methods
 
 __src/app/restaurant/restaurant.service.ts__
 
-```typescript
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Restaurant } from './restaurant';
-
-export interface Config<T> {
-  data: Array<T>;
-}
-
-export interface State {
-  name: string;
-  short: string;
-}
-
-export interface City {
-  name: string;
-  state: string;
-}
-
-@Injectable({
-  providedIn: 'root'
-})
-export class RestaurantService {
-
-  constructor(private httpClient: HttpClient) { }
-
-  getRestaurants(state:string, city: string) { //HIGHLIGHT THIS LINE
-    let options = { params: new HttpParams().set('filter[address.state]', state).set('filter[address.city]', city) };
-    return this.httpClient.get<Config<Restaurant>>('/api/restaurants', options);
-  }
-
-  getStates() {
-    return this.httpClient.get<Config<State>>('/api/states');
-  }
-
-  getCities(state:string) {
-    const options = { params: new HttpParams().set('state', state)};
-    return this.httpClient.get<Config<City>>('/api/cities', options);
-  }
-}
-```
+@sourceref ./2-restaurant.service.ts
 
 __src/app/restaurant/restaurant.component.ts__
 
-```typescript
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
-
-import { RestaurantService, Config, City, State } from './restaurant.service';
-import { Restaurant } from './restaurant';
-
-export interface Data<T> {
-  value: Array<T>;
-  isPending: boolean;
-}
-
-@Component({
-  selector: 'pmo-restaurant',
-  templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less']
-})
-export class RestaurantComponent implements OnInit, OnDestroy {
-  form: FormGroup;
-
-  public restaurants: Data<Restaurant> = {
-    value: [],
-    isPending: false
-  }
-  private subscription: Subscription;
-
-
-  constructor(
-    private restaurantService: RestaurantService,
-    private fb: FormBuilder
-    ) {
-  }
-
-  ngOnInit() {
-    this.createForm();
-  }
-  
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
-  createForm() {
-    this.form = this.fb.group({
-      state: {value: '', disabled: true},
-      city: {value: '', disabled: true},
-    });
-
-    this.onChanges();
-  }
-
-  onChanges(): void {
-    const stateChanges = this.form.get('state').valueChanges.subscribe(val => {
-      console.log('state', val);
-    });
-    this.subscription = stateChanges;
-
-
-    const cityChanges = this.form.get('city').valueChanges.subscribe(val => {
-      console.log('city', val);
-    });
-    this.subscription.add(cityChanges);
-
-  }
-}
-```
+@sourceref ./3-restaurant.component.ts
+@highlight 5, 26-34,47-57,66-67
 
 ## Updating Component to add new service methods
 
@@ -304,12 +169,12 @@ export class RestaurantComponent implements OnInit {
   }
 
   onChanges(): void {
-    let state:string; 
+    let state:string;
     this.form.get('state').valueChanges.subscribe(val => {
       if (val) {
         //only enable city if state has value
         this.form.get('city').enable({
-          onlySelf: true, 
+          onlySelf: true,
           emitEvent: false
         });
         //if state has a value and has changed, clear previous city value
@@ -324,7 +189,7 @@ export class RestaurantComponent implements OnInit {
       else {
         //disable city if no value
         this.form.get('city').disable({
-          onlySelf: true, 
+          onlySelf: true,
           emitEvent: false
         });
         state = '';
@@ -347,7 +212,7 @@ export class RestaurantComponent implements OnInit {
       this.cities.value = res.data;
       this.cities.isPending = false;
       this.form.get('city').enable({
-        onlySelf: true, 
+        onlySelf: true,
         emitEvent: false
       });
     });
