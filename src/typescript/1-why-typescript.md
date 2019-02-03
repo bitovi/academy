@@ -57,6 +57,12 @@ For this exercise, we will:
   to the page.
 - Compile that code to JavaScript
 
+Run the following to make sure your solution works:
+
+```shell
+npm run 0-why
+```
+
 ### What you need to know
 
 
@@ -93,6 +99,10 @@ tsc 0-why-hello-world.ts
 ```
 
 Provided there are no errors, this will compile the TypeScript to JavaScript file `0-why-hello-world.js`
+
+
+
+## Bonus Challenge
 
 Change your ``user`` variable to a number and compile again. What do you think will happen?
 

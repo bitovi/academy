@@ -72,45 +72,67 @@ Atom is another good modern IDE that easily supports and aids in TypeScript deve
 
 <a href="../static/img/webstorm-screenshot.png" target="\_blank"><img src="../static/img/webstorm-screenshot.png" width="100%" alt="Webstorm screenshot" /></a>
 
-## Exercise
+## Exercise: Exporting and Importing
 
-In the same directory as your ``helloworld.ts file``, create ``hellouniverse.ts``.
+### The problem
 
-Change your ``helloworld.ts`` file to be:
+In this exercise, we will:
+
+- Update `1-ide-greeter.ts` to export the `greeter` function as the `default`
+  export.
+- Update `1-ide-hello-earth.ts` to import `greeter`, call `gretter` with `"Earth"`
+  and set the result as `document.body.innerHTML`.
+- Compile `1-ide-hello-earth.ts` to JavaScript so we can run it.
+
+Run the following to verify your solution works.
+
+```shell
+npm run 1-ide
+```
+
+### What you need to know
+
+- Export a default value like:
+  ```typescript
+  const value:string = "My Value";
+  export default value;
+  ```
+- Import a default value like:
+  ```typescript
+  import value from "./value-exporter";
+  ```
+
+### The solution
+
+Update `1-ide-greeter.ts` to:
 
 ```typescript
 function greeter(person: string) {
-    return "Hello, " + person;
+	return "Hello, " + person;
 }
-
-let user = "World";
-
-document.body.innerHTML = greeter(user);
 
 export default greeter;
 ```
+@highlight 5
 
-In your ``hellouniverse.ts`` file add:
-
-```typescript
-import greeter from './helloworld'
-
-let user = 1;
-
-document.body.innerHTML = greeter(user);
-```
-
-Use your preferred editor's error detection help you find the bug and use the ``greeter`` function correctly.
-
-<details>
-<summary>solution</summary>
+Update `1-ide-hello-earth.ts` to:
 
 ```typescript
-import greeter from './helloworld'
+import greeter from './1-ide-greeter';
 
-let user = 'Universe';
+document.body.innerHTML = greeter("Earth");
+```
+@highlight 1
 
-document.body.innerHTML = greeter(user);
+Compile `1-ide-hello-earth.ts` with:
+
+```shell
+tsc 1-ide-hello-earth.ts
 ```
 
-</details>
+
+
+### Things to explore
+
+- Hover over `greeter`, what does your IDE show?
+- Pass a number to `greeter`, what does your IDE show?

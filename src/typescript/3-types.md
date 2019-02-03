@@ -176,9 +176,11 @@ let otherLength: number = (otherValue as string).length;
 
 The ``as`` syntax is usually preferred because the `<type>` conflicts with JSX syntax.
 
-### Exercise: Fix type errors
+## Exercise: Fix type errors
 
-Fix the following type errors so this code will compile:
+### The problem
+
+`2a-fix-errors.ts` has several errors:
 
 ```typescript
 let isLoading: boolean = true;
@@ -188,48 +190,108 @@ let inventory: Array<number> = [];
 
 inventory.push('tacos', 'hamburgers');
 
-function greet(name: string, age: number): void{
-  console.log(`${name} is ${age} years young.`)
+function greet(name: string, age: number): string {
+  return `${name} is ${age} years young.`;
 }
 
-greet(30, 'Jessica')
+export const jessica = greet(30, 'Jessica')
 
-greet('Tom', 42, 'software')
+export const tom = greet('Tom', 42, 'software');
+
+export {isLoading, inventory};
 ```
 
+Can you fix the errors?
+
+The exports of `2a-fix-errors.ts` should look like:
+
+```typescript
+it("exports are correct", function(){
+	assert.equal( isLoading, false,
+		"isLoading");
+
+	assert.deepEqual(
+		inventory,
+		['tacos', 'hamburgers'],
+		"inventory");
+
+	assert.equal(jessica,
+		`Jessica is 30 years young.`,
+		"jessica");
+
+	assert.equal(tom,
+		`Tom is 42 years young.`,
+		"Tom");
+});
+```
+
+Run the following to verify your solution:
+
+```shell
+npm run 2a-types
+```
+
+### What you need to know
+
+You know everything already. You got this. Go you!
+
+### The solution
+
+
 <details>
-  <summary>Solution</summary>
+<summary>Click to see the solution</summary>
 
-  ```typescript
-  let isLoading: boolean = true;
-  isLoading = false;
+```typescript
+let isLoading: boolean = true;
+isLoading = false;
 
-  let inventory: Array<string> = [];
+let inventory: Array<string> = [];
 
-  inventory.push('tacos', 'hamburgers');
+inventory.push('tacos', 'hamburgers');
 
-  function greet(name: string, age: number): void{
-    console.log(`${name} is ${age} years young.`)
-  }
+function greet(name: string, age: number): string {
+  return `${name} is ${age} years young.`;
+}
 
-  greet('Jessica', 30)
+export const jessica = greet('Jessica', 30)
 
-  greet('Tom', 42,)
+export const tom = greet('Tom', 42);
+
+export {isLoading, inventory};
 
 ```
 
 </details>
 
-### Exercise: Date me
+## Exercise: Date it
 
-Create a variable that takes a type of Date.
+### The problem
+
+In this exercise, we will update `2b-date-export.ts` to:
+
+- Create a variable that takes a type of Date.
+- Assign that variable to an instance of `Date`
+- Export that variable as the default export.
+
+Run the following to verify your solution:
+
+```shell
+npm run 2b-types
+```
+
+### What you need to know
+
+- Use `new Date()` to create an instance of Date.
+
+### The solution
 
 <details>
-<summary>Solution</summary>
+<summary>Click to see the solution</summary>
 
 ```typescript
 let me: Date;
 me = new Date("6-11-1993");
+export default me;
 ```
 
 </details>
