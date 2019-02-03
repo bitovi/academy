@@ -1,9 +1,9 @@
-@page angular/nested-routes Creating nested restaurant routes
+@page angular/nested-routes Nested Restaurant Routes
 @parent angular 11
 
 @description Creating nested restaurant routes
 
-@body 
+@body
 
 ## Overview
 
@@ -24,137 +24,35 @@ ng g component restaurant/detail
 
 Add markup:
 
-__src/app/restaurant/detail/detail.component.ts__
+__src/app/restaurant/detail/detail.component.html__
 
-```html
-<ng-container *ngIf="isLoading">
-  <div class="loading"></div>
-</ng-container>
-<ng-container *ngIf="!isLoading">
-  <div class="restaurant-header" [ngStyle]="{'background-image': 'url('+ getUrl(restaurant.images.banner) + ')'}">
-  <div class="background">
-    <h2>{{restaurant.name}}</h2>
-
-    <div class="address" *ngIf="restaurant.address" >
-      {{restaurant.address.street}}<br />{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
-    </div>
-
-    <div class="hours-price">
-      $$$<br />
-      Hours: M-F 10am-11pm
-      <span class="open-now">Open Now</span>
-    </div>
-
-    <br />
-  </div>
-</div>
-
-<div class="restaurant-content">
-  <h3>The best food this side of the Mississippi</h3>
-
-  <p class="description">
-    <img src="{{restaurant.images.owner | imageUrl}}" />
-    Description for {{restaurant.name}}
-  </p>
-  <p class="order-link">
-    <a class="btn" [routerLink]="['/restaurants', restaurant.slug, 'order']">
-      Order from {{restaurant.name}}
-    </a>
-  </p>
-</div>
-</ng-container>
-```
+@sourceref ./detail.component.html
 
 
 For clarity, let's rename the component class name to be `RestaurantDetailComponent`.
 
 __src/app/restaurant/detail/detail.component.ts__
 
-```typescript
-import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'pmo-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.css']
-})
-export class RestaurantDetailComponent implements OnInit { //HIGHLIGHT LINE
-
-  constructor(
-
-  ) { }
-
-  ngOnInit() {
-
-  }
-}
-```
+@sourceref ./detail.component.ts
 
 We'll also have to update the component name where it was automatically declared in the app root module.
 
 __src/app/app.module.ts__
 
-```typescript
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
-
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { RestaurantComponent } from './restaurant/restaurant.component';
-import { HomeComponent } from './home/home.component';
-import { ImageUrlPipe } from './image-url.pipe';
-import { RestaurantDetailComponent } from './restaurant/detail/detail.component'; //HIGHLIGHT LINE
-
-
-@NgModule({
-  declarations: [
-    AppComponent,
-    RestaurantComponent,
-    HomeComponent,
-    ImageUrlPipe,
-    RestaurantDetailComponent //HIGHLIGHT LINE
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
-```
+@sourceref ./app.module.ts
 
 ## Creating a route for restaurant/{{restaurant-slug}}
 
 __src/app/app-routing.module.ts__
 
-```typescript
-import { HomeComponent } from './home/home.component';
-import { RestaurantComponent } from './restaurant/restaurant.component';
-
-const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-  },
-  {
-    path: 'restaurants',
-    component: RestaurantComponent,
-  },
-    {
-    path: 'restaurants/:slug',
-    component: RestaurantDetailComponent,
-  }
-];
-```
+@sourceref ./app-routing.module.ts
+@highlight 5,16-19
 
 ## Getting restaurant slug from the route
 
 __src/app/restaurant/detail/detail.component.ts__
 
-We need to get the slug from the route to determine which restaurant to fetch. We import `ActivatedRoute` into our component, and call `this.route.snapshot.paramMap.get('slug')` to get the slug. 
+We need to get the slug from the route to determine which restaurant to fetch. We import `ActivatedRoute` into our component, and call `this.route.snapshot.paramMap.get('slug')` to get the slug.
 
 ```typescript
 import { Component, OnInit } from '@angular/core';
@@ -173,7 +71,7 @@ export class RestaurantDetailComponent implements OnInit {
   isLoading: boolean = true;
 
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private restaurantService: RestaurantService
   ) { }
 
@@ -238,7 +136,7 @@ export class RestaurantService {
 
 ## Make call to get restaurant in component
 
-Now we can make a call in our restaurant detail component to get the restaurant data. 
+Now we can make a call in our restaurant detail component to get the restaurant data.
 
 __src/app/restaurant/detail/detail.component.ts__
 
@@ -259,7 +157,7 @@ export class RestaurantDetailComponent implements OnInit {
   isLoading: boolean = true;
 
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private restaurantService: RestaurantService
   ) { }
 
@@ -272,7 +170,7 @@ export class RestaurantDetailComponent implements OnInit {
       });
   }
 
-  getUrl(image:string): string { 
+  getUrl(image:string): string {
     // THIS IS A DIFFERENT WAY TO HANDLE THE IMAGE PATH
     return image.replace('node_modules/place-my-order-assets', './assets')
   }

@@ -66,7 +66,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
   onChanges(): void {
     let state:string;
-    this.form.get('state').valueChanges.subscribe(val => {
+    this.subscription = this.form.get('state').valueChanges.subscribe(val => {
       if (val) {
         //only enable city if state has value
         this.form.get('city').enable({
@@ -94,12 +94,12 @@ export class RestaurantComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.form.get('city').valueChanges.subscribe(val => {
+    this.subscription.add( this.form.get('city').valueChanges.subscribe(val => {
       if (val) {
         //make new call to get restaurants with state and city
         this.getRestaurants(state, val);
       }
-    });
+    }) );
   }
 
   getCities(state:string) {
