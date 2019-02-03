@@ -50,16 +50,9 @@ export class RestaurantComponent implements OnInit, OnDestroy {
       this.form.get('state').enable();
     });
 
-    this.restaurantService.getCities("IL").subscribe((res: Config<City>) => {
-      this.cities.value = res.data;
-      this.cities.isPending = false;
-      this.form.get('city').enable();
-    });
+    this.getCities("IL");
 
-    this.restaurantService.getRestaurants("IL","Chicago").subscribe((res: Config) => {
-      this.restaurants.value = res.data;
-      this.restaurants.isPending = false;
-    });
+    this.getRestaurants("IL","Chicago");
   }
 
   ngOnDestroy() {
@@ -85,5 +78,25 @@ export class RestaurantComponent implements OnInit, OnDestroy {
       console.log('city', val);
     });
     this.subscription.add(cityChanges);
+  }
+
+  getCities(state:string) {
+    this.cities.isPending = true;
+    this.restaurantService.getCities(state).subscribe((res: Config<City>) => {
+      this.cities.value = res.data;
+      this.cities.isPending = false;
+      this.form.get('city').enable({
+        onlySelf: true,
+        emitEvent: false
+      });
+    });
+  }
+
+  getRestaurants(state: string, city: string) { //HIGHLIGHT THIS LINE
+    this.restaurants.isPending = true;
+    this.restaurantService.getRestaurants(state, city).subscribe((res: Config) => {
+      this.restaurants.value = res.data;
+      this.restaurants.isPending = false;
+    });
   }
 }

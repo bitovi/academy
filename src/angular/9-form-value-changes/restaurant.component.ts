@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { RestaurantService } from './restaurant.service';
+import { RestaurantService, Config } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data<T> {
@@ -43,6 +43,11 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.createForm();
+
+    this.restaurantService.getRestaurants().subscribe((res: Config) => {
+      this.restaurants.value = res.data;
+      this.restaurants.isPending = false;
+    });
   }
 
   ngOnDestroy() {

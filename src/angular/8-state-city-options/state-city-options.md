@@ -1,4 +1,4 @@
-@page angular/state-city-options Creating city & state options for filtering restaurants
+@page angular/state-city-options City & State Options
 @parent angular 8
 
 @description Creating city & state options for filtering restaurants
@@ -29,6 +29,7 @@ We're going to use select boxes to handle our user's input. Angular's Reactive F
 __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./restaurant.component.ts
+@highlight 2,18,25-39,42,50-55
 
 ## Updating markup
 
