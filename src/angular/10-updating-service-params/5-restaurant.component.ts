@@ -114,7 +114,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
     });
   }
 
-  getRestaurants(state: string, city: string) { //HIGHLIGHT THIS LINE
+  getRestaurants(state: string, city: string) {
     this.restaurants.isPending = true;
     this.restaurantService.getRestaurants(state, city).subscribe((res: ResponseData) => {
       this.restaurants.value = res.data;

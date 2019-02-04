@@ -10,7 +10,7 @@
 In this part, we will:
 
 - Add two routes to our generated routing module
-- Look at hooking the router outlet into our markup
+- Hook the router outlet into our markup
 - Test that new routes are working
 
 ### Routing

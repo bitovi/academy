@@ -151,7 +151,7 @@ This should feel familiar - our main index page.
 
 ### src/app/app.module.ts
 
-This file is the root module for our app. Every Angular app has at least one module that determines how to compile and launch and app. It uses the @ngModule decorator with four properties:
+This file is the root module for our app. Every Angular app has at least one module that determines how to compile and launch and app. It uses the @NgModule decorator with four properties:
 
 - declarations [array]: where we include components, directives, and pipes that will be used by this module.
 - imports [array]: where we include any other modules our app needs to use. This may include 3rd party modules like bootstrap datepickers, or modules we've created.

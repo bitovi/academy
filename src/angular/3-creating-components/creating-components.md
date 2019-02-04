@@ -75,7 +75,7 @@ __src/app/home/home.component.html__
 </div>
 ```
 
-Update the `restaurant.component.html` file to be:
+We're going to add a lot of content to this template initially that we'll hook into later in this training. For the present it is okay to copy and past this code without completely understanding what each concept does. Update the `restaurant.component.html` file to be:
 
 __src/app/restaurant/restaurant.component.html__
 
@@ -107,6 +107,26 @@ __src/app/restaurant/restaurant.component.html__
 </div>
 ```
 
+### ng-container
+
+<a href="https://angular.io/guide/structural-directives#ngcontainer" target="_blank">ng-container</a> is an element that allows us to create template bindings without creating a dom element.
+
+### *ngIf
+
+<a href="https://angular.io/api/common/NgIf" target="_blank">ngIf</a> is a structural directive that allows us to conditionally render content. It can be paired with ng-template to render an `else` block. 
+
+```html
+<div *ngIf="myValIsTrue; else notTrue">
+</div>
+<ng-template #notTrue>
+  I render if myValIsTrue is not true
+</ng-template>
+```
+
+### *ngFor
+
+<a href="https://angular.io/api/common/NgForOf" target="_blank">ngFor</a> is a structural directive that allows to iteratively create content in our templates. 
+
 #### > DETOUR! Pipes in Angular
 
 We're using an API in this demo that wasn't built for our exact purposes, and we need a different image path for our app to serve. <a href="https://angular.io/guide/pipes" target="\_blank">Angular Pipes</a> come in handy to transform content in our templates. We'll create a pipe to help handle our image pathing:
@@ -115,7 +135,7 @@ We're using an API in this demo that wasn't built for our exact purposes, and we
 ng g pipe imageUrl
 ```
 
-In our newly created `image-url.pipe.ts` update the code to be:
+Angular CLI will generate the basics needed for a pipe component, but we're not going to pass any arguments to our pipe, so we can remove that param. In our newly created `image-url.pipe.ts` update the code to be:
 
 __src/app/image-url.pipe.ts__
 

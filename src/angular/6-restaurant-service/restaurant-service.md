@@ -90,7 +90,7 @@ __src/app/app.module.ts__
 @highlight 3, 19
 
 
-We're going to write interfaces to tell Typescript what we expect a restaurant and other relates objects to look like. We'll create a new file to house these.
+We're going to write interfaces to tell Typescript what we expect a restaurant and other related objects to look like. We'll create a new file to house these.
 
 ```bash
 touch src/app/restaurant/restaurant.ts
@@ -111,5 +111,6 @@ In our newly created service file, we'll need to import HttpClient.
 __src/app/restaurant/restaurant.service.ts__
 
 @sourceref ./restaurant.service.ts
+@highlight 2, 4, 6-8, 15, 17-19
 
 In the next step we'll call the `getRestaurants` method in our component to get the list of restaurants.
