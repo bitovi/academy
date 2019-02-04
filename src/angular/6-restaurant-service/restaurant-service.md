@@ -76,13 +76,15 @@ Update the package.json `npm start` script to be `ng serve --proxy-config proxy.
 ```
 @highlight 3
 
-The next time we serve our app using `npm start` it will run it with the proxy config we created.
+Now, restart our app using `npm start` and it will run it with the proxy config we created. To test that it's working, navigate to <a href="http://localhost:4200/api/restaurants" target="_blank">http://localhost:4200/api/restaurants</a> and you should be able to see a list of restaurants.
 
 For making HTTP requests to interact with an API, Angular provides a HttpClient Module. To use it we'll need to import it in the root module of our app and include it the imports array.
 
 __src/app/app.module.ts__
 
 @sourceref ./app.module.ts
+@highlight 3, 19
+
 
 For clarity, let's move the interfaces we created earlier into their own file.  We'll use these interfaces to tell Typescript what we expect a restaurant and other relates objects to look like:
 

@@ -42,7 +42,7 @@ cd place-my-order
 
 This will create a new Angular Workspace, generate an app module, needed config files, and test suite for your new Angular project. You'll be asked a series of set-up questions:
 1. Would you like to add Angular routing? (yes)
-2. Which stylesheet format would you like to use?
+2. Which stylesheet format would you like to use? (less)
 
 Note that we used the prefix property to set our own default prefix. Angular's default is "app", but a good naming convention is to use a short prefix related to your company or application name to easlily differentiate from 3rd party utilities.
 
@@ -167,7 +167,6 @@ Let's change the markup to look like the home page of our place my order app.
 ```
 <h1>Place My Order App: Coming Soon!</h1>
 <router-outlet></router-outlet>
-
 ```
 
 ### Serving Our App

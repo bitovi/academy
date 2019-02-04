@@ -24,8 +24,7 @@ __src/app/app-routing.module.ts__
 @sourceref ./app-routing.module.ts
 @highlight 3-15
 
-Our router was already added to our index file during our initial app creation. But
-lets remove everything else:
+Our router was already added to our index file during our initial app creation. Replace the whole file with the following: 
 
 __src/app/app.component.html__
 

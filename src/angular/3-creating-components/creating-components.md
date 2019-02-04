@@ -24,22 +24,10 @@ npm install place-my-order-assets@0.1 --save
 
 Open the ``angular.json`` file, and make the following changes to include these files in our build process. This will copy the images into our assets directory for when we serve our application.
 
-```typescript
-...
-"assets": [
-    "src/favicon.ico",
-    "src/assets",
-    {
-        "glob": "**/*",
-        "input": "./node_modules/place-my-order-assets/images/",
-        "output": "./assets/images"
-    }
-],
-"styles": [
-    "src/styles.less",
-    "./node_modules/place-my-order-assets/less/styles.less"
-],
-```
+@sourceref ./angular-json-assets.ts
+@highlight 25-39
+
+Any time changes are made to the `angular.json` file, we need to restart our server to catch the new changes. 
 
 ### Creating components
 
@@ -94,8 +82,7 @@ __src/app/restaurant/restaurant.component.html__
 ```html
 <div class="restaurants">
   <h2 class="page-header">Restaurants</h2>
-  <div class="restaurant loading" *ngIf="restaurants.isPending"></div>
-  <ng-container *ngIf="restaurants.value.length">
+  <ng-container *ngIf="restaurants.length">
     <div class="restaurant" *ngFor="let restaurant of restaurants.value">
 
       <img src="{{restaurant.images.thumbnail | imageUrl}}" width="100" height="100">
@@ -118,7 +105,6 @@ __src/app/restaurant/restaurant.component.html__
     </div>
   </ng-container>
 </div>
-
 ```
 
 #### > DETOUR! Pipes in Angular
