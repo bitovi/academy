@@ -31,7 +31,7 @@ __src/app/restaurant/detail/detail.component.html__
 @sourceref ./detail.component.html
 
 
-For clarity, let's rename the component class name to be `RestaurantDetailComponent`.
+For clarity, let's rename the component class name to be `RestaurantDetailComponent`. We've also added a method called by the html that will return a proper url path for our restaurant image. 
 
 __src/app/restaurant/detail/detail.component.ts__
 
