@@ -1,8 +1,5 @@
 <div class="order-form">
   <ng-container *ngIf="orderComplete; else showOrderForm">
-      <pmo-order-details [order]="completedOrder"></pmo-order-details>
-      <p><button (click)="startNewOrder()">
-        Place another order</button></p>
   </ng-container>
   <ng-template #showOrderForm>
     <h2>Order here</h2>

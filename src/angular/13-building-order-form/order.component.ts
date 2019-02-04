@@ -72,12 +72,13 @@ export class OrderComponent implements OnInit, OnDestroy {
       val.forEach((item: any) => {
         total += item.price;
       });
-      return Math.round(total * 100) / 100;
+      this.orderTotal = Math.round(total * 100) / 100;
     });
   }
 
   startNewOrder() {
     this.orderComplete = false;
+    this.completedOrder = this.orderForm.value;
     //CLEAR THE ORDER FORM
     this.createOrderForm();
   }

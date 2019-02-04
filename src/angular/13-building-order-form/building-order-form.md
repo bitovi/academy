@@ -10,6 +10,7 @@
 In this part, we will:
 
 - Create a new order component
+- Import a 3rd party lib
 - Create a custom component to handle item selection
 - Add new route for ordering from a restaurant
 - Get the restaurant from route params
@@ -26,16 +27,40 @@ __src/app/order/order.component.ts__
 
 @sourceref ./order.component.ts
 
+
+## Importing 3rd Party Plugins
+
+In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let's import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started" target="_blank>ngx-bootstrap</a>:
+
+```bash
+ng add ngx-bootstrap  --component tabs
+```
+
+Ng add is a convenient way to import 3rd party libs that will update `angular.json` and `package.json` with any changes we need. Don't forget to restart the client server!
+
+Next we need to import the plugin into our root app module. 
+
+__src/app/order/app.module.ts__
+
+@sourceref ./app.module.ts
+@highlight 5, 31
+
 __src/app/order/order.component.html__
 
-@sourceref ./order.component.html
+@sourceref ./order-1.component.html
 @highlight 13, 18
 
-We're going to build another component to use in our form to handle selecting order items. We use data-binding to pass data between components. We'll use the `@Input()` to get our list of items from the restaurant to display in our child component, and hook it into our Reactive Form using the `formControlName` attribute as shown above.
+We're going to build another component to use in our form to handle selecting order items. We use data-binding to pass data between components. We'll use the `@Input()` to get our list of items from the restaurant to display in our child component, and hook it into our Reactive Form using the `formControlName` attribute as shown below.
 
 ```html
 <pmo-menu-items [data]="restaurant.menu.lunch" formControlName="items"></pmo-menu-items>
 ```
+
+__src/app/order/order.component.html__
+
+@sourceref ./order-2.component.html
+@highlight 7-18
+
 
 ## Create Custom Checkbox Component
 

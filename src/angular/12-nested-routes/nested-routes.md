@@ -61,59 +61,15 @@ We need to get the slug from the route to determine which restaurant to fetch. W
 __src/app/restaurant/detail/detail.component.ts__
 
 @sourceref ./detail.component-2.ts
-@highlight 2, 16, 21
+@highlight 2, 12, 16
 
 ## Adding getRestaurant method to serivce
 
 We need to add one more method to our restaurant service to get a specific restaurant based on the slug. 
 
 __src/app/restaurant/restaurant.service.ts__
-
-```typescript
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Restaurant } from './restaurant';
-
-export interface Config<T> {
-  data: Array<T>;
-}
-
-export interface State {
-  name: string;
-  short: string;
-}
-
-export interface City {
-  name: string;
-  state: string;
-}
-
-@Injectable({
-  providedIn: 'root'
-})
-export class RestaurantService {
-
-  constructor(private httpClient: HttpClient) { }
-
-  getRestaurants(state:string, city: string) { //HIGHLIGHT THIS LINE
-    let options = { params: new HttpParams().set('filter[address.state]', state).set('filter[address.city]', city) };
-    return this.httpClient.get<Config<Restaurant>>('/api/restaurants', options);
-  }
-
-  getStates() {
-    return this.httpClient.get<Config<State>>('/api/states');
-  }
-
-  getCities(state:string) {
-    const options = { params: new HttpParams().set('state', state)};
-    return this.httpClient.get<Config<City>>('/api/cities', options);
-  }
-
-  getRestaurant(slug: string) {
-    return this.httpClient.get<Restaurant>('/api/restaurants/' + slug + '?');
-  }
-}
-```
+@sourceref ./restaurant.service.ts
+@highlight 40-42
 
 ## Make call to get restaurant in component
 
@@ -121,42 +77,7 @@ Now we can make a call in our restaurant detail component to get the restaurant 
 
 __src/app/restaurant/detail/detail.component.ts__
 
-```typescript
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+@sourceref ./detail.component-3.ts
+@highlight 4, 5, 13-14, 18, 23-27
 
-import { RestaurantService } from '../restaurant.service';
-import { Restaurant } from '../restaurant';
-
-@Component({
-  selector: 'pmo-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.css']
-})
-export class RestaurantDetailComponent implements OnInit {
-  restaurant: Restaurant;
-  isLoading: boolean = true;
-
-  constructor(
-    private route: ActivatedRoute,
-    private restaurantService: RestaurantService
-  ) { }
-
-  ngOnInit() {
-    const slug = this.route.snapshot.paramMap.get('slug');
-    this.restaurantService.getRestaurant(slug)
-     .subscribe((data:Restaurant) => { //HIGHLIGHT LINE
-       this.restaurant = data;
-       this.isLoading = false;
-      });
-  }
-
-  getUrl(image:string): string {
-    // THIS IS A DIFFERENT WAY TO HANDLE THE IMAGE PATH
-    return image.replace('node_modules/place-my-order-assets', './assets')
-  }
-
-}
-```
-
-Now when we navigate to  <a href="http://localhost:4200/restaurant/crab-place" target="_blank">localhost:4200/restaurant/crab-place</a> we'll see the detail view of the Crab Place restaurant
+Now when we navigate to  <a href="http://localhost:4200/restaurants/crab-place" target="_blank">localhost:4200/restaurants/crab-place</a> we'll see the detail view of the Crab Place restaurant

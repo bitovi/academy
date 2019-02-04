@@ -1,6 +1,5 @@
 import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Item }  from '../order.service';
 
 @Component({
   selector: 'pmo-menu-items',
@@ -16,7 +15,7 @@ import { Item }  from '../order.service';
 export class MenuItemsComponent implements ControlValueAccessor {
   @Input() data: [];
 
-  @Input('value') _value: Item[];
+  @Input('value') _value: any[];
 
   onChange: any = () => { };
   onTouched: any = () => { };
@@ -43,7 +42,7 @@ export class MenuItemsComponent implements ControlValueAccessor {
     this.value = value;
   }
 
-  toggleItem(item: Item) {
+  toggleItem(item: any) {
     let index = this._value.indexOf(item);
     if(index !== -1) {
       this._value.splice(index, 1)

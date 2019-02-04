@@ -45,6 +45,13 @@ __src/app/order/list.component.ts__
 
 @sourceref ./list.component.ts
 
+## Add Order History Route
+
+__src/app/app-routing.module.ts__
+
+@sourceref ./app-routing.module.ts
+@highlight 8, 27-30
+
 ## Adding Order History to Main Navigation
 
 Finally, let's add the order history path to the navigation. 
@@ -53,3 +60,5 @@ __src/app/app.component.html__
 
 @sourceref ./app.component.html
 @highlight 11-13
+
+You should now be able to navigate to <a href="http://localhost:4200/order-history" target="_blank">http://localhost:4200/order-history</a>. 

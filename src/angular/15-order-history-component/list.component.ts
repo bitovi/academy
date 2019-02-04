@@ -1,13 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Order, OrderService } from '../order.service';
+import { Order, Item, OrderService } from '../order.service';
 
 
 @Component({
   selector: 'pmo-order-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  styleUrls: ['./list.component.less']
 })
-export class OrderListComponent implements OnInit {
+export class ListComponent implements OnInit {
   @Input() orders: [];
   @Input() listTitle: string;
   @Input() status: string;
@@ -35,7 +35,11 @@ export class OrderListComponent implements OnInit {
     })
   }
 
-  total(items: []) {
-    return this.orderService.getTotal(items);
+  total(items: Item[]) {
+    let total = 0.0;
+      items.forEach((item: Item) => {
+        total += item.price;
+      });
+    return Math.round(total * 100) / 100;
   }
 }
