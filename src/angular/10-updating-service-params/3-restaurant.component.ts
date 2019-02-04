@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { RestaurantService, Config, City, State } from './restaurant.service';
+import { RestaurantService, ResponseData, City, State } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data<T> {
@@ -44,19 +44,19 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.createForm();
 
-    this.restaurantService.getStates().subscribe((res: Config<State>) => {
+    this.restaurantService.getStates().subscribe((res: ResponseData<State>) => {
       this.states.value = res.data;
       this.states.isPending = false;
       this.form.get('state').enable();
     });
 
-    this.restaurantService.getCities("IL").subscribe((res: Config<City>) => {
+    this.restaurantService.getCities("IL").subscribe((res: ResponseData<City>) => {
       this.cities.value = res.data;
       this.cities.isPending = false;
       this.form.get('city').enable();
     });
 
-    this.restaurantService.getRestaurants("IL","Chicago").subscribe((res: Config) => {
+    this.restaurantService.getRestaurants("IL","Chicago").subscribe((res: ResponseData) => {
       this.restaurants.value = res.data;
       this.restaurants.isPending = false;
     });

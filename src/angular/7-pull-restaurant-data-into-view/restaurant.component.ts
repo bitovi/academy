@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RestaurantService, Config } from './restaurant.service';
+import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data<T> {
@@ -17,12 +17,11 @@ export class RestaurantComponent implements OnInit {
     value: [],
     isPending: false
   };
-  config: Config;
   constructor(private restaurantService: RestaurantService) { }
 
   ngOnInit() {
 
-    this.restaurantService.getRestaurants().subscribe((res: Config) => {
+    this.restaurantService.getRestaurants().subscribe((res: ResponseData) => {
       this.restaurants.value = res.data;
       this.restaurants.isPending = false;
     });

@@ -22,4 +22,4 @@ __src/app/app.component.html__
 @highlight 1-13
 
 
-We now have a nice navigation for our users to change between views!
+We now have a nice navigation for our users to change between views! Click between the nav items to see the UI change. 

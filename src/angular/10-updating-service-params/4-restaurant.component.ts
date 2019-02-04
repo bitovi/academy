@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { RestaurantService, Config, City, State } from './restaurant.service';
+import { RestaurantService, ResponseData, City, State } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data<T> {
@@ -44,7 +44,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.createForm();
 
-    this.restaurantService.getStates().subscribe((res: Config<State>) => {
+    this.restaurantService.getStates().subscribe((res: ResponseData<State>) => {
       this.states.value = res.data;
       this.states.isPending = false;
       this.form.get('state').enable();
@@ -82,7 +82,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
   getCities(state:string) {
     this.cities.isPending = true;
-    this.restaurantService.getCities(state).subscribe((res: Config<City>) => {
+    this.restaurantService.getCities(state).subscribe((res: ResponseData<City>) => {
       this.cities.value = res.data;
       this.cities.isPending = false;
       this.form.get('city').enable({
@@ -94,7 +94,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
   getRestaurants(state: string, city: string) { //HIGHLIGHT THIS LINE
     this.restaurants.isPending = true;
-    this.restaurantService.getRestaurants(state, city).subscribe((res: Config) => {
+    this.restaurantService.getRestaurants(state, city).subscribe((res: ResponseData) => {
       this.restaurants.value = res.data;
       this.restaurants.isPending = false;
     });

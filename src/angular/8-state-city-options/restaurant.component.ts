@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-import { RestaurantService, Config } from './restaurant.service';
+import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data<T> {
@@ -41,7 +41,7 @@ export class RestaurantComponent implements OnInit {
   ngOnInit() {
     this.createForm();
 
-    this.restaurantService.getRestaurants().subscribe((res: Config) => {
+    this.restaurantService.getRestaurants().subscribe((res: ResponseData) => {
       this.restaurants.value = res.data;
       this.restaurants.isPending = false;
     });
