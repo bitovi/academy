@@ -50,6 +50,19 @@ Learn RxJS by creating a validating credit card form.
 <img src="https://user-images.githubusercontent.com/78602/27451508-d86e9bd8-5754-11e7-954b-a812e1ed63b1.png" width="50%" alt="Credit Card Form" title="Credit Card Form"/>
 
 
+#### [typescript]
+
+Learn the basics of TypeScript by completing seven exercises.
+
+```typescript
+class GenericCollection<T> {
+  private list: T[] = [];
+  pushItem( thing:T ) {
+    this.list.push(thing);
+  }
+}
+```
+
 ## Pending Courses
 
 Bitovi University is under active development. The following courses are currently being authored:
