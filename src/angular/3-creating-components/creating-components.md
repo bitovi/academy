@@ -156,4 +156,4 @@ __src/app/restaurant/restaurant.component.ts__
 @sourceref ./restaurant.component.ts
 @highlight 9
 
-We'll come back to this view to feed in data, but for now you'll notice we're setting a restaurants property to an empty array. Run ng serve, and your app should compile with no errors!
+We'll come back to this view to feed in data, but for now you'll notice we're setting a restaurants property to an empty array. Run `npm run start`, and your app should compile with no errors!

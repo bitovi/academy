@@ -53,6 +53,8 @@ __src/app/restaurant/restaurant.component.ts__
 @sourceref ./3-restaurant.component.ts
 @highlight 5,26-34,47-57,59,71-72
 
+psst. did you find the error in this code with your compiler?
+
 ## Add methods to retrieve data to component
 
 In the next step, we will want to change the list of cities and restaurants

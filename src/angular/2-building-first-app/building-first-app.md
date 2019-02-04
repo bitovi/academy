@@ -44,7 +44,7 @@ This will create a new Angular Workspace, generate an app module, needed config 
 1. Would you like to add Angular routing? (yes)
 2. Which stylesheet format would you like to use? (less)
 
-Note that we used the prefix property to set our own default prefix. Angular's default is "app", but a good naming convention is to use a short prefix related to your company or application name to easlily differentiate from 3rd party utilities.
+Note that we used the prefix property to set our own default prefix. Angular's default is "app", but a good naming convention is to use a short prefix related to your company or application name to easily differentiate from 3rd party utilities.
 
 ```html
 //this looks like it's one of our own app components
@@ -175,7 +175,7 @@ __src/app/app.component.html__
 ## Serving Our App
 
 ```shell
-ng serve
+npm run start
 ```
 
 This will compile our code (any typescript errors will throw here), and once ready we can view our app at <a href="http://localhost:4200" target="_blank">localhost:4200</a>
