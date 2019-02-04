@@ -96,6 +96,8 @@ We're going to write interfaces to tell Typescript what we expect a restaurant a
 touch src/app/restaurant/restaurant.ts
 ```
 
+__src/app/restaurant/restaurant.ts__
+
 @sourceref ./restaurant.ts
 
 Now that we have our interface defined, we'll create a Service to handle getting our restaurant data. Services are classes with narrow purposes that don't typically involve view-related functionality.
