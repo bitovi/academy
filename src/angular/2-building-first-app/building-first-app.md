@@ -23,7 +23,7 @@ Angular has a CLI that does a lot of the initial legwork in setting up a minimal
 We'll start by globally installing the Angular CLI.
 
 ```shell
-npm install -g @angular/cli
+npm install -g @angular/cli@7.0.0
 ```
 
 ## Generating a new app

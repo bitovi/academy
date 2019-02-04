@@ -18,6 +18,8 @@ In this part, we will:
 
 ## Create the Restaurant Detail Component
 
+The restaurant detail component will display information about the restaurant, and include a link to order from the menu, which we'll build the component for later. 
+
 ```bash
 ng g component restaurant/detail
 ```
@@ -33,15 +35,19 @@ For clarity, let's rename the component class name to be `RestaurantDetailCompon
 
 __src/app/restaurant/detail/detail.component.ts__
 
-@sourceref ./detail.component.ts
+@sourceref ./detail.component-1.ts
+@highlight 8
 
 We'll also have to update the component name where it was automatically declared in the app root module.
 
 __src/app/app.module.ts__
 
 @sourceref ./app.module.ts
+@highlight 12, 21
 
 ## Creating a route for restaurant/{{restaurant-slug}}
+
+Previously we've defined static paths with Angulars <a href="https://angular.io/guide/router" target="_blank">router</a>. To create a restaurant path, we'll need the slug after the slash to be dynamic. We can set a token for the router parameter with `:`
 
 __src/app/app-routing.module.ts__
 
@@ -50,41 +56,16 @@ __src/app/app-routing.module.ts__
 
 ## Getting restaurant slug from the route
 
-__src/app/restaurant/detail/detail.component.ts__
-
 We need to get the slug from the route to determine which restaurant to fetch. We import `ActivatedRoute` into our component, and call `this.route.snapshot.paramMap.get('slug')` to get the slug.
 
-```typescript
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+__src/app/restaurant/detail/detail.component.ts__
 
-import { RestaurantService } from '../restaurant.service';
-import { Restaurant } from '../restaurant';
-
-@Component({
-  selector: 'pmo-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.css']
-})
-export class RestaurantDetailComponent implements OnInit {
-  restaurant: Restaurant;
-  isLoading: boolean = true;
-
-  constructor(
-    private route: ActivatedRoute,
-    private restaurantService: RestaurantService
-  ) { }
-
-  ngOnInit() {
-    const slug = this.route.snapshot.paramMap.get('slug');
-  }
-
-}
-```
+@sourceref ./detail.component-2.ts
+@highlight 2, 16, 21
 
 ## Adding getRestaurant method to serivce
 
-We need to add one more method to our restaurant service to get a specific restaurant.
+We need to add one more method to our restaurant service to get a specific restaurant based on the slug. 
 
 __src/app/restaurant/restaurant.service.ts__
 

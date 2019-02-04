@@ -11,7 +11,7 @@ In this part, we will:
 - Install socket.io
 - Import and initialize socket.io
 - Create an environment variable
-- Update list view on socket events. 
+- Update list view on socket events.
 
 ## Installing Socket.io
 

@@ -12,6 +12,7 @@ In this part, we will:
 - Get all orders from our order service
 - Create a child component to handle different states of orders
 - Create ways to update and delete orders in the view
+- Add order history link to our main navigation
 
 ## Creating Order History Component
 
@@ -44,5 +45,11 @@ __src/app/order/list.component.ts__
 
 @sourceref ./list.component.ts
 
+## Adding Order History to Main Navigation
 
+Finally, let's add the order history path to the navigation. 
 
+__src/app/app.component.html__
+
+@sourceref ./app.component.html
+@highlight 11-13

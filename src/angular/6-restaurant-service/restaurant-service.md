@@ -39,7 +39,7 @@ Next make add an api script to your ``package.json``
 ```
 @highlight 8
 
-Double check the api is working by running ``npm run api`` and navigating to <a href="http://localhost:7070/restaurants" target="\_blank">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data.
+Double check the api is working by running ``npm run api`` and navigating to <a href="http://localhost:7070/restaurants" target="\_blank">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the api command from. 
 
 Finally, we'll create a proxy file at the root of our Angular project to access our API for local development purposes.
 
