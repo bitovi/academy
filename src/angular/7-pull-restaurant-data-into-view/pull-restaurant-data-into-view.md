@@ -30,7 +30,7 @@ We'll have to the restaurant component html to match our new restaurant object:
 __src/app/restaurant/restaurant.component.html__
 
 @sourceref ./restaurant.component.html
-@highlight 26, 27
+@highlight 3, 4
 
 You should now see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>! You may have noticed in our markup there's another use of routerLink:
 

@@ -20,6 +20,7 @@ export class RestaurantComponent implements OnInit {
   constructor(private restaurantService: RestaurantService) { }
 
   ngOnInit() {
+    this.restaurants.isPending = true;
     this.restaurantService.getRestaurants().subscribe((res: ResponseData) => {
       this.restaurants.value = res.data;
       this.restaurants.isPending = false;
