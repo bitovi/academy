@@ -29,7 +29,7 @@ Open the ``angular.json`` file, and make the following changes to include these 
 
 Any time changes are made to the `angular.json` file, we need to restart our server to catch the new changes. 
 
-### Creating components
+## Creating components
 
 Let's begin to build out the main views of our app. We'll need a home view, and restaurant list page to show all the restaurants we can order from. In Angular, Components are the basic building blocks that help us craft the UI. They are classes that handle views, allow management of user interaction, and displaying information via data binding. Data binding is the term for connecting data or information to the UI. An example would be an input field that a user enters a value into.
 
@@ -135,4 +135,4 @@ __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./restaurant.component.ts
 
-We'll come back to this view to feed in data, but for now you'll notice we're using interfaces to help define what our data will look like.
+We'll come back to this view to feed in data, but for now you'll notice we're setting a restaurants property to an empty array. Run ng serve, and your app should compile with no errors!

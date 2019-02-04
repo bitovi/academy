@@ -136,7 +136,7 @@ This should feel familiar - our main index page.
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>SamplePmo</title>
+        <title>PlaceMyOrder</title>
         <base href="/">
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -158,18 +158,21 @@ This file is the root module for our app. Every Angular app has at least one mod
 - providers [array]: where we include services that we want used at the global app level
 - bootstrap [array]: where we include the root AppModule - this is the main Application view that hosts all of our other app views.
 
-## src/app/app.component.ts
+### src/app/app.component.ts
 
 This is our root component, you saw it called in our index.html file as ``<app-root></app-root>``
 
+## Changing the markup
+
 Let's change the markup to look like the home page of our place my order app.
 
+__src/app/app.component.html__
 ```
 <h1>Place My Order App: Coming Soon!</h1>
 <router-outlet></router-outlet>
 ```
 
-### Serving Our App
+## Serving Our App
 
 ```shell
 ng serve

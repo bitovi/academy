@@ -32,7 +32,6 @@
               }
             ],
             "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.less",
               "./node_modules/place-my-order-assets/less/styles.less"
             ],
