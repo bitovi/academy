@@ -14,18 +14,12 @@ In this part, we will:
 
 ### Importing Service into Component
 
-We'll then import our new service into our restaurant component.
+We'll then import our new service and ResponseData interface into our restaurant component.
 
 __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./restaurant.component.ts
-
-### Importing `HttpClientModule` into _app.module.ts_
-
-__src/app/app.module.ts__
-
-@sourceref ./app.module.ts
-@highlight 3,21
+@highlight 2, 3, 5-8, 16-19, 20, 23-27
 
 You should now see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>! You may have noticed in our markup there's another use of routerLink:
 

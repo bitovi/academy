@@ -144,7 +144,7 @@ This should feel familiar - our main index page.
     </head>
     <body>
         //our entry component
-        <app-root></app-root>
+        <pmo-root></pmo-root>
     </body>
 </html>
 ```
@@ -167,7 +167,7 @@ This is our root component, you saw it called in our index.html file as ``<app-r
 Let's change the markup to look like the home page of our place my order app.
 
 __src/app/app.component.html__
-```
+```html
 <h1>Place My Order App: Coming Soon!</h1>
 <router-outlet></router-outlet>
 ```
