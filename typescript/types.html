@@ -260,6 +260,21 @@
 				
 			
 		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
 	</ul>
 
 
@@ -406,8 +421,9 @@ let otherValue: any = &quot;this is a string&quot;;
 let otherLength: number = (otherValue as string).length;
 </code></pre>
 <p>The <code>as</code> syntax is usually preferred because the <code>&lt;type&gt;</code> conflicts with JSX syntax.</p>
-<h3>Exercise: Fix type errors</h3>
-<p>Fix the following type errors so this code will compile:</p>
+<h2>Exercise: Fix type errors</h2>
+<h3>The problem</h3>
+<p><code>2a-fix-errors.ts</code> has several errors:</p>
 <pre><code class="language-typescript">let isLoading: boolean = true;
 isLoading = 'false';
 
@@ -415,16 +431,44 @@ let inventory: Array&lt;number&gt; = [];
 
 inventory.push('tacos', 'hamburgers');
 
-function greet(name: string, age: number): void{
-  console.log(`${name} is ${age} years young.`)
+function greet(name: string, age: number): string {
+  return `${name} is ${age} years young.`;
 }
 
-greet(30, 'Jessica')
+export const jessica = greet(30, 'Jessica')
 
-greet('Tom', 42, 'software')
+export const tom = greet('Tom', 42, 'software');
+
+export {isLoading, inventory};
 </code></pre>
+<p>Can you fix the errors?</p>
+<p>The exports of <code>2a-fix-errors.ts</code> should look like:</p>
+<pre><code class="language-typescript">it(&quot;exports are correct&quot;, function(){
+    assert.equal( isLoading, false,
+        &quot;isLoading&quot;);
+
+    assert.deepEqual(
+        inventory,
+        ['tacos', 'hamburgers'],
+        &quot;inventory&quot;);
+
+    assert.equal(jessica,
+        `Jessica is 30 years young.`,
+        &quot;jessica&quot;);
+
+    assert.equal(tom,
+        `Tom is 42 years young.`,
+        &quot;Tom&quot;);
+});
+</code></pre>
+<p>Run the following to verify your solution:</p>
+<pre><code class="language-shell">npm run 2a-types
+</code></pre>
+<h3>What you need to know</h3>
+<p>You know everything already. You got this. Go you!</p>
+<h3>The solution</h3>
 <p><details>
-<summary>Solution</summary></p>
+<summary>Click to see the solution</summary></p>
 <pre><code class="language-typescript">let isLoading: boolean = true;
 isLoading = false;
 
@@ -432,22 +476,39 @@ let inventory: Array&lt;string&gt; = [];
 
 inventory.push('tacos', 'hamburgers');
 
-function greet(name: string, age: number): void{
-  console.log(`${name} is ${age} years young.`)
+function greet(name: string, age: number): string {
+  return `${name} is ${age} years young.`;
 }
 
-greet('Jessica', 30)
+export const jessica = greet('Jessica', 30)
 
-greet('Tom', 42,)
+export const tom = greet('Tom', 42);
+
+export {isLoading, inventory};
 
 </code></pre>
 <p></details></p>
-<h3>Exercise: Date me</h3>
-<p>Create a variable that takes a type of Date.</p>
+<h2>Exercise: Date it</h2>
+<h3>The problem</h3>
+<p>In this exercise, we will update <code>2b-date-export.ts</code> to:</p>
+<ul>
+<li>Create a variable that takes a type of Date.</li>
+<li>Assign that variable to an instance of <code>Date</code></li>
+<li>Export that variable as the default export.</li>
+</ul>
+<p>Run the following to verify your solution:</p>
+<pre><code class="language-shell">npm run 2b-types
+</code></pre>
+<h3>What you need to know</h3>
+<ul>
+<li>Use <code>new Date()</code> to create an instance of Date.</li>
+</ul>
+<h3>The solution</h3>
 <p><details>
-<summary>Solution</summary></p>
+<summary>Click to see the solution</summary></p>
 <pre><code class="language-typescript">let me: Date;
 me = new Date(&quot;6-11-1993&quot;);
+export default me;
 </code></pre>
 <p></details></p>
 

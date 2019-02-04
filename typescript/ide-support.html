@@ -260,6 +260,21 @@
 				
 			
 		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
 	</ul>
 
 
@@ -336,36 +351,52 @@
 <h3>Webstorm</h3>
 <p><a href="https://www.jetbrains.com/webstorm/download/" target="\_blank">Webstorm</a> is a platform by JetBrains that is loved for its great code refactoring assistance and version control integration, but it does require a paid subscription.</p>
 <p><a href="../static/img/webstorm-screenshot.png" target="\_blank"><img src="../static/img/webstorm-screenshot.png" width="100%" alt="Webstorm screenshot" /></a></p>
-<h2>Exercise</h2>
-<p>In the same directory as your <code>helloworld.ts file</code>, create <code>hellouniverse.ts</code>.</p>
-<p>Change your <code>helloworld.ts</code> file to be:</p>
+<h2>Exercise: Exporting and Importing</h2>
+<h3>The problem</h3>
+<p>In this exercise, we will:</p>
+<ul>
+<li>Update <code>1-ide-greeter.ts</code> to export the <code>greeter</code> function as the <code>default</code>
+export.</li>
+<li>Update <code>1-ide-hello-earth.ts</code> to import <code>greeter</code>, call <code>gretter</code> with <code>&quot;Earth&quot;</code>
+and set the result as <code>document.body.innerHTML</code>.</li>
+<li>Compile <code>1-ide-hello-earth.ts</code> to JavaScript so we can run it.</li>
+</ul>
+<p>Run the following to verify your solution works.</p>
+<pre><code class="language-shell">npm run 1-ide
+</code></pre>
+<h3>What you need to know</h3>
+<ul>
+<li>Export a default value like:
+<pre><code class="language-typescript">const value:string = &quot;My Value&quot;;
+export default value;
+</code></pre></li>
+<li>Import a default value like:
+<pre><code class="language-typescript">import value from &quot;./value-exporter&quot;;
+</code></pre></li>
+</ul>
+<h3>The solution</h3>
+<p>Update <code>1-ide-greeter.ts</code> to:</p>
 <pre><code class="language-typescript">function greeter(person: string) {
     return &quot;Hello, &quot; + person;
 }
 
-let user = &quot;World&quot;;
-
-document.body.innerHTML = greeter(user);
-
 export default greeter;
 </code></pre>
-<p>In your <code>hellouniverse.ts</code> file add:</p>
-<pre><code class="language-typescript">import greeter from './helloworld'
+<div line-highlight='5'></div>
+<p>Update <code>1-ide-hello-earth.ts</code> to:</p>
+<pre><code class="language-typescript">import greeter from './1-ide-greeter';
 
-let user = 1;
-
-document.body.innerHTML = greeter(user);
+document.body.innerHTML = greeter(&quot;Earth&quot;);
 </code></pre>
-<p>Use your preferred editor's error detection help you find the bug and use the <code>greeter</code> function correctly.</p>
-<p><details>
-<summary>solution</summary></p>
-<pre><code class="language-typescript">import greeter from './helloworld'
-
-let user = 'Universe';
-
-document.body.innerHTML = greeter(user);
+<div line-highlight='1'></div>
+<p>Compile <code>1-ide-hello-earth.ts</code> with:</p>
+<pre><code class="language-shell">tsc 1-ide-hello-earth.ts
 </code></pre>
-<p></details></p>
+<h3>Things to explore</h3>
+<ul>
+<li>Hover over <code>greeter</code>, what does your IDE show?</li>
+<li>Pass a number to <code>greeter</code>, what does your IDE show?</li>
+</ul>
 
 </section>
 
