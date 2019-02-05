@@ -88,7 +88,7 @@
            						">
 						<a class="page"
 							href="../typescript.html"
-							title="This course covers TypeScript essentials. At the end, you should be ready to develop projects in TypeScript.">
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
 							TypeScript
 						</a>
 						
@@ -430,11 +430,10 @@
 <li>Install the place-my-order API</li>
 <li>Create a proxy to serve the API</li>
 <li>Update <code>npm start</code> script</li>
-<li>Move restaurant interface to it's own file</li>
 <li>Generate a new service via the CLI</li>
 <li>Write a method to make an http request</li>
 </ul>
-<h2>Building our Restaurants List</h2>
+<h2>Installing the Place My Order API</h2>
 <p>We've done some work to create a Place My Order API for use in this app.</p>
 <pre><code class="language-bash">npm install place-my-order-api@1 --save
 </code></pre>
@@ -450,8 +449,9 @@
   }
 </code></pre>
 <div line-highlight='8'></div>
-<p>Double check the api is working by running <code>npm run api</code> and navigating to <a href="http://localhost:7070/restaurants" target="\_blank">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data.</p>
-<p>Finally, we'll create a proxy file at the root of our Angular project to access our API for local development purposes.</p>
+<p>Double check the api is working by running <code>npm run api</code> and navigating to <a href="http://localhost:7070/restaurants" target="\_blank">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the api command from.</p>
+<h2>Create a Proxy to Serve API</h2>
+<p>Next, we'll create a proxy file at the root of our Angular project to access our API for local development purposes.</p>
 <pre><code class="language-bash">touch proxy.conf.json
 </code></pre>
 <pre><code class="language-js">{
@@ -479,6 +479,7 @@
 </code></pre>
 <div line-highlight='3'></div>
 <p>Now, restart our app using <code>npm start</code> and it will run it with the proxy config we created. To test that it's working, navigate to <a href="http://localhost:4200/api/restaurants" target="_blank">http://localhost:4200/api/restaurants</a> and you should be able to see a list of restaurants.</p>
+<h2>Importing <code>HttpClientModule</code> into <em>app.module.ts</em></h2>
 <p>For making HTTP requests to interact with an API, Angular provides a HttpClient Module. To use it we'll need to import it in the root module of our app and include it the imports array.</p>
 <p><strong>src/app/app.module.ts</strong></p>
 <pre><code class="language-ts">import { BrowserModule } from '@angular/platform-browser';
@@ -489,12 +490,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { HomeComponent } from './home/home.component';
+import { ImageUrlPipe } from './image-url.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     RestaurantComponent,
-    HomeComponent
+    HomeComponent,
+    ImageUrlPipe
   ],
   imports: [
     BrowserModule,
@@ -507,10 +510,11 @@ import { HomeComponent } from './home/home.component';
 export class AppModule { }
 
 </code></pre>
-<div line-highlight='3, 19'></div>
-<p>For clarity, let's move the interfaces we created earlier into their own file.  We'll use these interfaces to tell Typescript what we expect a restaurant and other relates objects to look like:</p>
+<div line-highlight='3,21'></div>
+<p>We're going to write interfaces to tell Typescript what we expect a restaurant and other related objects to look like. We'll create a new file to house these.</p>
 <pre><code class="language-bash">touch src/app/restaurant/restaurant.ts
 </code></pre>
+<p><strong>src/app/restaurant/restaurant.ts</strong></p>
 <pre><code class="language-ts">interface Item {
     name: string;
     price: number;
@@ -554,7 +558,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Restaurant } from './restaurant';
 
-export interface Config {
+export interface ResponseData {
   data: Restaurant[];
 }
 
@@ -566,11 +570,13 @@ export class RestaurantService {
   constructor(private httpClient: HttpClient) { }
 
   getRestaurants() {
-    return this.httpClient.get&lt;Config&gt;('/api/restaurants');
+    return this.httpClient.get&lt;ResponseData&gt;('/api/restaurants');
   }
 }
 
 </code></pre>
+<div line-highlight='2, 4, 6-8, 15, 17-19'></div>
+<p>In the next step we'll call the <code>getRestaurants</code> method in our component to get the list of restaurants.</p>
 
 </section>
 

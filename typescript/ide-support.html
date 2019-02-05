@@ -88,7 +88,7 @@
            						expanded">
 						<a class="page"
 							href="../typescript.html"
-							title="This course covers TypeScript essentials. At the end, you should be ready to develop projects in TypeScript.">
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
 							TypeScript
 						</a>
 						
@@ -341,7 +341,7 @@
 }
 </code></pre>
 <h2>IDEs</h2>
-<p>Integrated Development Environments have come a long way in supporting modern web development. With little to no configuration they offer built-in debugging, Git integration, command line useage, and robust packages for additional addons.</p>
+<p>Integrated Development Environments have come a long way in supporting modern web development. With little to no configuration IDEs offer built-in debugging, Git integration, command line usage, and robust packages for additional add-ons.</p>
 <h3>Visual Studio Code</h3>
 <p><a href="https://code.visualstudio.com/" target="\_blank">VS Code</a> is Microsoft's modern take on an IDE for app development (P.S. TypeScript is a Microsoft Open Source project).  VS Code has built in TypeScript support for syntax highlighting, IntelliSense code completion, and linting.</p>
 <p><a href="../static/img/vs-code-screenshot.png" target="\_blank"><img src="../static/img/vs-code-screenshot.png" width="100%" alt="Visual Studio Code screenshot" /></a></p>
@@ -357,13 +357,10 @@
 <ul>
 <li>Update <code>1-ide-greeter.ts</code> to export the <code>greeter</code> function as the <code>default</code>
 export.</li>
-<li>Update <code>1-ide-hello-earth.ts</code> to import <code>greeter</code>, call <code>gretter</code> with <code>&quot;Earth&quot;</code>
+<li>Update <code>1-ide-hello-earth.ts</code> to import <code>greeter</code>, call <code>greeter</code> with <code>&quot;Earth&quot;</code>
 and set the result as <code>document.body.innerHTML</code>.</li>
 <li>Compile <code>1-ide-hello-earth.ts</code> to JavaScript so we can run it.</li>
 </ul>
-<p>Run the following to verify your solution works.</p>
-<pre><code class="language-shell">npm run 1-ide
-</code></pre>
 <h3>What you need to know</h3>
 <ul>
 <li>Export a default value like:
@@ -374,8 +371,13 @@ export default value;
 <pre><code class="language-typescript">import value from &quot;./value-exporter&quot;;
 </code></pre></li>
 </ul>
+<p>Run the following to verify your solution works.</p>
+<pre><code class="language-shell">npm run 1-ide
+</code></pre>
 <h3>The solution</h3>
-<p>Update <code>1-ide-greeter.ts</code> to:</p>
+<p><details>
+<summary>Click to see the solution</summary>
+Update <code>1-ide-greeter.ts</code> to:</p>
 <pre><code class="language-typescript">function greeter(person: string) {
     return &quot;Hello, &quot; + person;
 }
@@ -392,6 +394,7 @@ document.body.innerHTML = greeter(&quot;Earth&quot;);
 <p>Compile <code>1-ide-hello-earth.ts</code> with:</p>
 <pre><code class="language-shell">tsc 1-ide-hello-earth.ts
 </code></pre>
+<p></details></p>
 <h3>Things to explore</h3>
 <ul>
 <li>Hover over <code>greeter</code>, what does your IDE show?</li>

@@ -88,7 +88,7 @@
            						">
 						<a class="page"
 							href="../typescript.html"
-							title="This course covers TypeScript essentials. At the end, you should be ready to develop projects in TypeScript.">
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
 							TypeScript
 						</a>
 						
@@ -429,12 +429,13 @@
 <ul>
 <li>Import new service into Restaurant Component</li>
 <li>Call <code>getRestaurants()</code> method in component</li>
+<li>Change restaurant markup to use new restaurant object</li>
 </ul>
-<h3>Importing Service into Component</h3>
-<p>We'll then import our new service into our restaurant component.</p>
+<h2>Importing Service into Component</h2>
+<p>We'll then import our new service and ResponseData interface into our restaurant component.</p>
 <p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
-import { RestaurantService, Config } from './restaurant.service';
+import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data&lt;T&gt; {
@@ -452,12 +453,11 @@ export class RestaurantComponent implements OnInit {
     value: [],
     isPending: false
   };
-  config: Config;
   constructor(private restaurantService: RestaurantService) { }
 
   ngOnInit() {
-
-    this.restaurantService.getRestaurants().subscribe((res: Config) =&gt; {
+    this.restaurants.isPending = true;
+    this.restaurantService.getRestaurants().subscribe((res: ResponseData) =&gt; {
       this.restaurants.value = res.data;
       this.restaurants.isPending = false;
     });
@@ -465,37 +465,39 @@ export class RestaurantComponent implements OnInit {
 }
 
 </code></pre>
-<h3>Importing <code>HttpClientModule</code> into <em>app.module.ts</em></h3>
-<p><strong>src/app/app.module.ts</strong></p>
-<pre><code class="language-ts">import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+<div line-highlight='2, 3, 5-8, 16-19, 20, 23-27'></div>
+<h2>Update Restaurant Component</h2>
+<p>We'll have to the restaurant component html to match our new restaurant object:</p>
+<p><strong>src/app/restaurant/restaurant.component.html</strong></p>
+<pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
+  &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
+  &lt;div class=&quot;restaurant loading&quot; *ngIf=&quot;restaurants.isPending&quot;&gt;&lt;/div&gt;
+  &lt;ng-container *ngIf=&quot;restaurants.value.length&quot;&gt;
+    &lt;div class=&quot;restaurant&quot; *ngFor=&quot;let restaurant of restaurants.value&quot;&gt;
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { RestaurantComponent } from './restaurant/restaurant.component';
-import { ImageUrlPipe } from './image-url.pipe';
+      &lt;img src=&quot;{{restaurant.images.thumbnail | imageUrl}}&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
+      &lt;h3&gt;{{restaurant.name}}&lt;/h3&gt;
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    RestaurantComponent,
-    ImageUrlPipe
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
+      &lt;div class=&quot;address&quot; *ngIf=&quot;restaurant.address&quot;&gt;
+        {{restaurant.address.street}}&lt;br /&gt;{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
+      &lt;/div&gt;
+
+      &lt;div class=&quot;hours-price&quot;&gt;
+        $$$&lt;br /&gt;
+        Hours: M-F 10am-11pm
+        &lt;span class=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
+      &lt;/div&gt;
+
+      &lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
+        Details
+      &lt;/a&gt;
+      &lt;br /&gt;
+    &lt;/div&gt;
+  &lt;/ng-container&gt;
+&lt;/div&gt;
 
 </code></pre>
-<div line-highlight='3,21'></div>
+<div line-highlight='3, 4'></div>
 <p>You should now see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>! You may have noticed in our markup there's another use of routerLink:</p>
 <pre><code class="language-html">&lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
   Details

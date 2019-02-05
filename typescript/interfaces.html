@@ -88,7 +88,7 @@
            						expanded">
 						<a class="page"
 							href="../typescript.html"
-							title="This course covers TypeScript essentials. At the end, you should be ready to develop projects in TypeScript.">
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
 							TypeScript
 						</a>
 						
@@ -502,7 +502,7 @@ class RaptorCage extends DinoCage {
 <div class='codepen'></div>
 <div line-highlight='2-5,27'></div>
 <h3>Exercise 1</h3>
-<p>Create an interface to define a <code>DinoPark</code> object shown below:</p>
+<p>Edit the files <code>5a-dino-park.ts</code> and <code>5a-address.ts</code> to create an interface to define a <code>DinoPark</code> object shown below:</p>
 <pre><code class="language-javascript">let park = {
   name: '',
   image: '',
@@ -543,7 +543,10 @@ interface DinoPark {
 </code></pre>
 <p></details></p>
 <h3>Exercise 2</h3>
-<p>Create a function <code>createParkSlug</code> that takes a parameter that is the interface <code>DinoPark</code> created previously and returns a slug for the park by replacing any spaces with dashes.</p>
+<p>In the <code>5b-create-park-slug.ts</code> file edit the <code>createParkSlug</code> function to take a parameter that is the interface <code>DinoPark</code> created previously and returns a slug for the park by replacing any spaces with dashes. Ex. the park &quot;Isla Sorna Park&quot; should return the slug <code>Isla-Sorna-Park</code>.</p>
+<p>Run the following to verify your solution:</p>
+<pre><code class="language-shell">npm run 5-interfaces
+</code></pre>
 <p><details>
 <summary>Solution</summary></p>
 <pre><code class="language-typescript">function createParkSlug(dinoPark: DinoPark) {

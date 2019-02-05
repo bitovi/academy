@@ -88,7 +88,7 @@
            						">
 						<a class="page"
 							href="../typescript.html"
-							title="This course covers TypeScript essentials. At the end, you should be ready to develop projects in TypeScript.">
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
 							TypeScript
 						</a>
 						
@@ -428,6 +428,7 @@
 <p>In this part, we will:</p>
 <ul>
 <li>Update getRestaurants service method to take params</li>
+<li>Convert ResponseData interface to generic</li>
 <li>Add service methods to get states and cities</li>
 <li>Add call to get states on component init</li>
 <li>Refactor getting restaurants into own function</li>
@@ -440,7 +441,43 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Restaurant } from './restaurant';
 
-export interface Config&lt;T&gt; {
+export interface ResponseData {
+  data: Restaurant[];
+}
+
+export interface State {
+  name: string;
+  short: string;
+}
+
+export interface City {
+  name: string;
+  state: string;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class RestaurantService {
+
+  constructor(private httpClient: HttpClient) { }
+
+  getRestaurants(state:string, city: string) {
+    let options = { params: new HttpParams().set('filter[address.state]', state).set('filter[address.city]', city) };
+    return this.httpClient.get&lt;ResponseData&gt;('/api/restaurants', options);
+  }
+}
+
+</code></pre>
+<div line-highlight='2, 26-28'></div>
+<h2>Convert ResponseData to Generic</h2>
+<p>Because our API returns different data types that follow the same structure, we can change our <code>ResponseData</code> interface to a generic to accept any kind of type, including the interfaces for city and state.</p>
+<p><strong>src/app/restaurant/restaurant.service.ts</strong></p>
+<pre><code class="language-ts">import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Restaurant } from './restaurant';
+
+export interface ResponseData&lt;T&gt; {
   data: Array&lt;T&gt;;
 }
 
@@ -461,13 +498,14 @@ export class RestaurantService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getRestaurants(state:string, city: string) { //HIGHLIGHT THIS LINE
+  getRestaurants(state:string, city: string) {
     let options = { params: new HttpParams().set('filter[address.state]', state).set('filter[address.city]', city) };
-    return this.httpClient.get&lt;Config&lt;Restaurant&gt;&gt;('/api/restaurants', options);
+    return this.httpClient.get&lt;ResponseData&lt;Restaurant&gt;&gt;('/api/restaurants', options);
   }
 }
 
 </code></pre>
+<div line-highlight='5-7, 28'></div>
 <h3>Get states and cities from the service layer</h3>
 <p>Add <code>getStates()</code> method that publishes states and a
 <code>getCities(state:string)</code> method that publishes a list of cities
@@ -477,7 +515,7 @@ for a provided state.</p>
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Restaurant } from './restaurant';
 
-export interface Config&lt;T&gt; {
+export interface ResponseData&lt;T&gt; {
   data: Array&lt;T&gt;;
 }
 
@@ -498,31 +536,31 @@ export class RestaurantService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getRestaurants(state:string, city: string) { //HIGHLIGHT THIS LINE
+  getRestaurants(state:string, city: string) {
     let options = { params: new HttpParams().set('filter[address.state]', state).set('filter[address.city]', city) };
-    return this.httpClient.get&lt;Config&lt;Restaurant&gt;&gt;('/api/restaurants', options);
+    return this.httpClient.get&lt;ResponseData&lt;Restaurant&gt;&gt;('/api/restaurants', options);
   }
 
   getStates() {
-    return this.httpClient.get&lt;Config&lt;State&gt;&gt;('/api/states');
+    return this.httpClient.get&lt;ResponseData&lt;State&gt;&gt;('/api/states');
   }
 
   getCities(state:string) {
     const options = { params: new HttpParams().set('state', state)};
-    return this.httpClient.get&lt;Config&lt;City&gt;&gt;('/api/cities', options);
+    return this.httpClient.get&lt;ResponseData&lt;City&gt;&gt;('/api/cities', options);
   }
 }
 
 </code></pre>
 <div line-highlight='31-38'></div>
-<p>Use those methods to get all states and cities in <code>IL</code>.
+<p>We'll use those methods to get all states and cities in <code>IL</code>.
 Enable the state and city forms.</p>
 <p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { RestaurantService, Config, City, State } from './restaurant.service';
+import { RestaurantService, ResponseData, City, State } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data&lt;T&gt; {
@@ -564,19 +602,19 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.createForm();
 
-    this.restaurantService.getStates().subscribe((res: Config&lt;State&gt;) =&gt; {
+    this.restaurantService.getStates().subscribe((res: ResponseData&lt;State&gt;) =&gt; {
       this.states.value = res.data;
       this.states.isPending = false;
       this.form.get('state').enable();
     });
 
-    this.restaurantService.getCities(&quot;IL&quot;).subscribe((res: Config&lt;City&gt;) =&gt; {
+    this.restaurantService.getCities(&quot;IL&quot;).subscribe((res: ResponseData&lt;City&gt;) =&gt; {
       this.cities.value = res.data;
       this.cities.isPending = false;
       this.form.get('city').enable();
     });
 
-    this.restaurantService.getRestaurants(&quot;IL&quot;,&quot;Chicago&quot;).subscribe((res: Config) =&gt; {
+    this.restaurantService.getRestaurants(&quot;IL&quot;,&quot;Chicago&quot;).subscribe((res: ResponseData) =&gt; {
       this.restaurants.value = res.data;
       this.restaurants.isPending = false;
     });
@@ -610,6 +648,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
 </code></pre>
 <div line-highlight='5,26-34,47-57,59,71-72'></div>
+<p>psst. did you find the error in this code with your compiler?</p>
 <h2>Add methods to retrieve data to component</h2>
 <p>In the next step, we will want to change the list of cities and restaurants
 as the user selects a state and/or city.  In <em>this</em> step, we will
@@ -625,7 +664,7 @@ restaurants for a city and state. We should also reset the <code>isPending</code
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { RestaurantService, Config, City, State } from './restaurant.service';
+import { RestaurantService, ResponseData, City, State } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data&lt;T&gt; {
@@ -667,7 +706,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.createForm();
 
-    this.restaurantService.getStates().subscribe((res: Config&lt;State&gt;) =&gt; {
+    this.restaurantService.getStates().subscribe((res: ResponseData&lt;State&gt;) =&gt; {
       this.states.value = res.data;
       this.states.isPending = false;
       this.form.get('state').enable();
@@ -705,7 +744,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
   getCities(state:string) {
     this.cities.isPending = true;
-    this.restaurantService.getCities(state).subscribe((res: Config&lt;City&gt;) =&gt; {
+    this.restaurantService.getCities(state).subscribe((res: ResponseData&lt;City&gt;) =&gt; {
       this.cities.value = res.data;
       this.cities.isPending = false;
       this.form.get('city').enable({
@@ -715,9 +754,9 @@ export class RestaurantComponent implements OnInit, OnDestroy {
     });
   }
 
-  getRestaurants(state: string, city: string) { //HIGHLIGHT THIS LINE
+  getRestaurants(state: string, city: string) {
     this.restaurants.isPending = true;
-    this.restaurantService.getRestaurants(state, city).subscribe((res: Config) =&gt; {
+    this.restaurantService.getRestaurants(state, city).subscribe((res: ResponseData&lt;Restaurant&gt;) =&gt; {
       this.restaurants.value = res.data;
       this.restaurants.isPending = false;
     });
@@ -732,7 +771,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { RestaurantService, Config, City, State } from './restaurant.service';
+import { RestaurantService, ResponseData, City, State } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data&lt;T&gt; {
@@ -774,7 +813,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.createForm();
 
-    this.restaurantService.getStates().subscribe((res: Config&lt;State&gt;) =&gt; {
+    this.restaurantService.getStates().subscribe((res: ResponseData&lt;State&gt;) =&gt; {
       this.states.value = res.data;
       this.states.isPending = false;
       this.form.get('state').enable();
@@ -834,7 +873,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
   getCities(state:string) {
     this.cities.isPending = true;
-    this.restaurantService.getCities(state).subscribe((res: Config&lt;City&gt;) =&gt; {
+    this.restaurantService.getCities(state).subscribe((res: ResponseData&lt;City&gt;) =&gt; {
       this.cities.value = res.data;
       this.cities.isPending = false;
       this.form.get('city').enable({
@@ -844,9 +883,9 @@ export class RestaurantComponent implements OnInit, OnDestroy {
     });
   }
 
-  getRestaurants(state: string, city: string) { //HIGHLIGHT THIS LINE
+  getRestaurants(state: string, city: string) {
     this.restaurants.isPending = true;
-    this.restaurantService.getRestaurants(state, city).subscribe((res: Config) =&gt; {
+    this.restaurantService.getRestaurants(state, city).subscribe((res: ResponseData) =&gt; {
       this.restaurants.value = res.data;
       this.restaurants.isPending = false;
     });
@@ -855,6 +894,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
 </code></pre>
 <div line-highlight='51-52,68-102'></div>
+<p>Now when you interact with the UI, cities won't be shown until a state is selected, restaurants will show once a city has been selected.</p>
 
 </section>
 

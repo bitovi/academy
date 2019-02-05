@@ -88,7 +88,7 @@
            						expanded">
 						<a class="page"
 							href="../typescript.html"
-							title="This course covers TypeScript essentials. At the end, you should be ready to develop projects in TypeScript.">
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
 							TypeScript
 						</a>
 						
@@ -577,13 +577,13 @@ firstStop.location = &quot;On a bridge&quot;; // error! location is readonly.
 </code></pre>
 <div class='codepen'></div>
 <h3>Exercise 1</h3>
-<p>Open your editor create a new file <code>hellodino.ts</code>, and recreate this prototype using TypeScript classes.</p>
+<p>Edit the file <code>4a-classes-hello-dino.ts</code> to recreate the prototype using TypeScript classes.</p>
 <pre><code class="language-typescript">function DinoKeeper(name) {
   this.name = name;
 }
 
 DinoKeeper.prototype.sayHi = function() {
-  console.log(this.name + ' says &quot;hi&quot;');
+  return this.name + ' says &quot;hi&quot;';
 }
 
 let employee1 = new DinoKeeper(&quot;Joe&quot;);
@@ -591,9 +591,9 @@ employee1.sayHi();
 //Joe says &quot;hi&quot;
 </code></pre>
 <p>Hint* When you run:</p>
-<pre><code class="language-bash">tsc hellodino.ts
+<pre><code class="language-bash">tsc 4a-classes-hello-dino.ts
 </code></pre>
-<p>Your code should output to look like the above prototype version!</p>
+<p>Your code should output to look like the above prototype version! Delete the compiled js file before running the tests in the next step.</p>
 <p><details>
 <summary>Solution</summary></p>
 <pre><code class="language-typescript">class DinoKeeper {
@@ -603,8 +603,8 @@ employee1.sayHi();
     this.name = name;
   }
 
-  sayHi() {
-    console.log(`${this.name} says &quot;hi&quot;`);
+  sayHi():string {
+    return `${this.name} says &quot;hi&quot;`;
   }
 }
 let employee1 = new DinoKeeper(&quot;Joe&quot;);
@@ -613,11 +613,13 @@ employee1.sayHi();
 </code></pre>
 <p></details></p>
 <h3>Exercise 2</h3>
-<p>Create a new <code>Specialist</code> class that inherits from the <code>DinoKeeper</code>. This new class class should be able to accept an additional <code>experience</code> public member that is a number, and have a <code>safetyQuote</code> method that console.logs(&quot;Never turn your back to the cage. Trust me, I have <em>years</em> years of experience&quot;)</p>
+<p>Edit the file <code>4a-classes-hello-dino.ts</code> to write a new <code>Specialist</code> class that inherits from the <code>DinoKeeper</code>. This new class class should be able to accept an additional <code>experience</code> public member that is a number, and have a <code>safetyQuote</code> method that console.logs(&quot;Never turn your back to the cage. Trust me, I have <em>years</em> years of experience&quot;)</p>
 <pre><code class="language-typescript">let employee2 = new Specialist(&quot;Owen&quot;, 14);
 employee2.sayHi(); //Owen says 'hi'
 employee2.safetyQuote();
 //Logs &quot;Never turn your back to the cage. Trust me, I have 14 years of experience&quot;
+</code></pre>
+<pre><code class="language-shell">npm run 4-classes
 </code></pre>
 <p><details>
 <summary>Solution</summary></p>
@@ -626,9 +628,9 @@ employee2.safetyQuote();
     super(name);
   }
 
-  safetyQuote() {
-    console.log(`Never turn your back to the cage.
-    Trust me, I have ${this.experience} years of experience`);
+  safetyQuote():string {
+    return `Never turn your back to the cage.
+    Trust me, I have ${this.experience} years of experience`;
   }
 }
 

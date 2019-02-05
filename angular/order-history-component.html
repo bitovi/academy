@@ -88,7 +88,7 @@
            						">
 						<a class="page"
 							href="../typescript.html"
-							title="This course covers TypeScript essentials. At the end, you should be ready to develop projects in TypeScript.">
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
 							TypeScript
 						</a>
 						
@@ -431,6 +431,7 @@
 <li>Get all orders from our order service</li>
 <li>Create a child component to handle different states of orders</li>
 <li>Create ways to update and delete orders in the view</li>
+<li>Add order history link to our main navigation</li>
 </ul>
 <h2>Creating Order History Component</h2>
 <pre><code class="language-bash">ng g component order/history
@@ -446,11 +447,11 @@ interface Data&lt;T&gt; {
 }
 
 @Component({
-  selector: 'pmo-order-history',
+  selector: 'pmo-history',
   templateUrl: './history.component.html',
-  styleUrls: ['./history.component.css']
+  styleUrls: ['./history.component.less']
 })
-export class OrderHistoryComponent implements OnInit {
+export class HistoryComponent implements OnInit {
   public orders: Data&lt;Order&gt; = {
     value: [],
     isPending: true
@@ -458,7 +459,7 @@ export class OrderHistoryComponent implements OnInit {
 
   constructor(
     private orderService: OrderService
-    ) { 
+    ) {
     }
 
   ngOnInit() {
@@ -594,15 +595,15 @@ export class OrderHistoryComponent implements OnInit {
 </code></pre>
 <p><strong>src/app/order/list.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, Input } from '@angular/core';
-import { Order, OrderService } from '../order.service';
+import { Order, Item, OrderService } from '../order.service';
 
 
 @Component({
   selector: 'pmo-order-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  styleUrls: ['./list.component.less']
 })
-export class OrderListComponent implements OnInit {
+export class ListComponent implements OnInit {
   @Input() orders: [];
   @Input() listTitle: string;
   @Input() status: string;
@@ -630,12 +631,83 @@ export class OrderListComponent implements OnInit {
     })
   }
 
-  total(items: []) {
-    return this.orderService.getTotal(items);
+  total(items: Item[]) {
+    let total = 0.0;
+      items.forEach((item: Item) =&gt; {
+        total += item.price;
+      });
+    return Math.round(total * 100) / 100;
   }
 }
 
 </code></pre>
+<div line-highlight='6'></div>
+<h2>Add Order History Route</h2>
+<p><strong>src/app/app-routing.module.ts</strong></p>
+<pre><code class="language-ts">import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { HomeComponent } from './home/home.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { RestaurantDetailComponent } from './restaurant/detail/detail.component';
+import { OrderComponent } from './order/order.component';
+import { HistoryComponent } from './order/history/history.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent,
+  },
+  {
+    path: 'restaurants',
+    component: RestaurantComponent,
+  },
+  {
+    path: 'restaurants/:slug',
+    component: RestaurantDetailComponent,
+  },
+  {
+    path: 'restaurants/:slug/:order',
+    component: OrderComponent,
+  },
+  {
+    path: 'order-history',
+    component: HistoryComponent
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+</code></pre>
+<div line-highlight='8, 27-30'></div>
+<h2>Adding Order History to Main Navigation</h2>
+<p>Finally, let's add the order history path to the navigation.</p>
+<p><strong>src/app/app.component.html</strong></p>
+<pre><code class="language-html">&lt;header&gt;
+  &lt;nav&gt;
+   &lt;h1&gt;place-my-order.com&lt;/h1&gt;
+   &lt;ul&gt;
+     &lt;li routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
+       &lt;a routerLink=&quot;/&quot; &gt;Home&lt;/a&gt;
+     &lt;/li&gt;
+     &lt;li [ngClass]=&quot;{'active' : rla.isActive} &quot;&gt;
+       &lt;a routerLink=&quot;/restaurants&quot; routerLinkActive #rla=&quot;routerLinkActive&quot;&gt;Restaurants&lt;/a&gt;
+     &lt;/li&gt;
+     &lt;li routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
+       &lt;a routerLink=&quot;/order-history&quot;&gt;Order History&lt;/a&gt;
+     &lt;/li&gt;
+   &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+&lt;router-outlet&gt;&lt;/router-outlet&gt;
+
+</code></pre>
+<div line-highlight='11-13'></div>
+<p>You should now be able to navigate to <a href="http://localhost:4200/order-history" target="_blank">http://localhost:4200/order-history</a>.</p>
 
 </section>
 

@@ -88,7 +88,7 @@
            						">
 						<a class="page"
 							href="../typescript.html"
-							title="This course covers TypeScript essentials. At the end, you should be ready to develop projects in TypeScript.">
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
 							TypeScript
 						</a>
 						
@@ -436,7 +436,7 @@
 <p>Angular has a CLI that does a lot of the initial legwork in setting up a minimal app, as well as letting you easy create and include new components on the fly.</p>
 <h2>Installation</h2>
 <p>We'll start by globally installing the Angular CLI.</p>
-<pre><code class="language-shell">npm install -g @angular/cli
+<pre><code class="language-shell">npm install -g @angular/cli@7.0.0
 </code></pre>
 <h2>Generating a new app</h2>
 <p>We're going to build a restaurant menu and ordering application. The final result will look like this:</p>
@@ -450,7 +450,7 @@ cd place-my-order
 <li>Would you like to add Angular routing? (yes)</li>
 <li>Which stylesheet format would you like to use? (less)</li>
 </ol>
-<p>Note that we used the prefix property to set our own default prefix. Angular's default is &quot;app&quot;, but a good naming convention is to use a short prefix related to your company or application name to easlily differentiate from 3rd party utilities.</p>
+<p>Note that we used the prefix property to set our own default prefix. Angular's default is &quot;app&quot;, but a good naming convention is to use a short prefix related to your company or application name to easily differentiate from 3rd party utilities.</p>
 <pre><code class="language-html">//this looks like it's one of our own app components
 &lt;pmo-header&gt;&lt;/pmo-header&gt;
 
@@ -516,7 +516,7 @@ cd place-my-order
 &lt;html lang=&quot;en&quot;&gt;
     &lt;head&gt;
         &lt;meta charset=&quot;utf-8&quot;&gt;
-        &lt;title&gt;SamplePmo&lt;/title&gt;
+        &lt;title&gt;PlaceMyOrder&lt;/title&gt;
         &lt;base href=&quot;/&quot;&gt;
 
         &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
@@ -524,26 +524,28 @@ cd place-my-order
     &lt;/head&gt;
     &lt;body&gt;
         //our entry component
-        &lt;app-root&gt;&lt;/app-root&gt;
+        &lt;pmo-root&gt;&lt;/pmo-root&gt;
     &lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
 <h3>src/app/app.module.ts</h3>
-<p>This file is the root module for our app. Every Angular app has at least one module that determines how to compile and launch and app. It uses the @ngModule decorator with four properties:</p>
+<p>This file is the root module for our app. Every Angular app has at least one module that determines how to compile and launch and app. It uses the @NgModule decorator with four properties:</p>
 <ul>
 <li>declarations [array]: where we include components, directives, and pipes that will be used by this module.</li>
 <li>imports [array]: where we include any other modules our app needs to use. This may include 3rd party modules like bootstrap datepickers, or modules we've created.</li>
 <li>providers [array]: where we include services that we want used at the global app level</li>
 <li>bootstrap [array]: where we include the root AppModule - this is the main Application view that hosts all of our other app views.</li>
 </ul>
-<h2>src/app/app.component.ts</h2>
+<h3>src/app/app.component.ts</h3>
 <p>This is our root component, you saw it called in our index.html file as <code>&lt;app-root&gt;&lt;/app-root&gt;</code></p>
+<h2>Changing the markup</h2>
 <p>Let's change the markup to look like the home page of our place my order app.</p>
-<pre><code>&lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;
+<p><strong>src/app/app.component.html</strong></p>
+<pre><code class="language-html">&lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;
 &lt;router-outlet&gt;&lt;/router-outlet&gt;
 </code></pre>
-<h3>Serving Our App</h3>
-<pre><code class="language-shell">ng serve
+<h2>Serving Our App</h2>
+<pre><code class="language-shell">npm run start
 </code></pre>
 <p>This will compile our code (any typescript errors will throw here), and once ready we can view our app at <a href="http://localhost:4200" target="_blank">localhost:4200</a></p>
 

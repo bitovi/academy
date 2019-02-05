@@ -88,7 +88,7 @@
            						">
 						<a class="page"
 							href="../typescript.html"
-							title="This course covers TypeScript essentials. At the end, you should be ready to develop projects in TypeScript.">
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
 							TypeScript
 						</a>
 						
@@ -428,11 +428,13 @@
 <p>In this part, we will:</p>
 <ul>
 <li>Create a new order component</li>
+<li>Import a 3rd party lib</li>
 <li>Create a custom component to handle item selection</li>
 <li>Add new route for ordering from a restaurant</li>
 <li>Get the restaurant from route params</li>
 </ul>
 <h2>Creating a New Order Form Component</h2>
+<p>Our order form is how we can create new orders. We'll use a reactive form to get data from the users, use a custom validation function to make sure at least once item has been selected, and calculate the order total every time a new item is selected or unselected.</p>
 <pre><code class="language-bash">ng g component order
 </code></pre>
 <p><strong>src/app/order/order.component.ts</strong></p>
@@ -444,7 +446,7 @@ import { RestaurantService } from '../restaurant/restaurant.service';
 import { Restaurant } from '../restaurant/restaurant';
 import { Subscription } from 'rxjs';
 
-
+//CUSTOM VALIDATION FUNCTION TO ENSURE THAT THE ITEMS FORM VALUE CONTAINS AT LEAST ONE ITEM. 
 function minLengthArray(min: number) {
   return (c: AbstractControl): {[key: string]: any} =&gt; {
       if (c.value.length &gt;= min)
@@ -477,6 +479,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    //GETTING THE RESTAURANT FROM THE ROUTE SLUG
     const slug = this.route.snapshot.paramMap.get('slug');
 
     this.restaurantService.getRestaurant(slug).subscribe((data:Restaurant) =&gt; {
@@ -496,35 +499,134 @@ export class OrderComponent implements OnInit, OnDestroy {
       name: [null],
       address:  [null],
       phone: [null],
-      items: [[], minLengthArray(1)]
+      //PASSING OUR CUSTOM VALIDATION FUNCTION TO THIS FORM CONTROL
+      items: [[], minLengthArray(1)] 
     });
     this.onChanges();
   }
 
   onChanges() {
+    // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
     this.subscription = this.orderForm.get('items').valueChanges.subscribe(val =&gt; {
       let total = 0.0;
       val.forEach((item: any) =&gt; {
         total += item.price;
       });
-      return Math.round(total * 100) / 100;
+      this.orderTotal = Math.round(total * 100) / 100;
     });
   }
 
   startNewOrder() {
     this.orderComplete = false;
+    this.completedOrder = this.orderForm.value;
+    //CLEAR THE ORDER FORM
     this.createOrderForm();
   }
 
 }
 
 </code></pre>
+<h2>Importing 3rd Party Plugins</h2>
+<p>In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let's import a well supported one, &lt;a href=&quot;https://valor-software.com/ngx-bootstrap/#/documentation#getting-started&quot; target=&quot;_blank&gt;ngx-bootstrap</a>:</p>
+<pre><code class="language-bash">ng add ngx-bootstrap  --component tabs
+</code></pre>
+<p>Ng add is a convenient way to import 3rd party libs that will update <code>angular.json</code> and <code>package.json</code> with any changes we need. Don't forget to restart the client server!</p>
+<p>Next we need to import the plugin into our root app module.</p>
+<p><strong>src/app/order/app.module.ts</strong></p>
+<pre><code class="language-ts">import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { ImageUrlPipe } from './image-url.pipe';
+import { RestaurantDetailComponent } from './restaurant/detail/detail.component';
+import { OrderComponent } from './order/order.component';
+import { MenuItemsComponent } from './order/menu-items/menu-items.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    RestaurantComponent,
+    ImageUrlPipe,
+    RestaurantDetailComponent,
+    OrderComponent,
+    MenuItemsComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    TabsModule.forRoot()
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+</code></pre>
+<div line-highlight='5, 31'></div>
+<p><strong>src/app/order/order.component.html</strong></p>
+<pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
+    &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
+    &lt;/ng-container&gt;
+    &lt;ng-template #showOrderForm&gt;
+      &lt;h2&gt;Order here&lt;/h2&gt;
+      &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+        &lt;tabset&gt;
+            &lt;tab heading=&quot;Lunch Menu&quot;&gt;
+              &lt;ul class=&quot;list-group&quot; &gt;
+                &lt;li&gt;lunch item&lt;/li&gt;
+              &lt;/ul&gt;
+            &lt;/tab&gt;
+            &lt;tab heading=&quot;Dinner menu&quot;&gt;
+              &lt;ul class=&quot;list-group&quot; &gt;
+                &lt;li&gt;dinner item&lt;/li&gt;
+              &lt;/ul&gt;
+            &lt;/tab&gt;
+          &lt;/tabset&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+          &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
+          &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
+          &lt;p&gt;Please enter your name.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+          &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
+          &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
+          &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+          &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
+          &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+          &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;submit&quot;&gt;
+          &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
+            &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
+            &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
+              Place My Order!
+            &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
+  &lt;/ng-template&gt;
+  &lt;/div&gt;
+  
+  
+  
+</code></pre>
+<div line-highlight='13, 18'></div>
+<p>We're going to build another component to use in our form to handle selecting order items. We use data-binding to pass data between components. We'll use the <code>@Input()</code> to get our list of items from the restaurant to display in our child component, and hook it into our Reactive Form using the <code>formControlName</code> attribute as shown below.</p>
+<pre><code class="language-html">&lt;pmo-menu-items [data]=&quot;restaurant.menu.lunch&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
+</code></pre>
 <p><strong>src/app/order/order.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
   &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
-      &lt;pmo-order-details [order]=&quot;completedOrder&quot;&gt;&lt;/pmo-order-details&gt;
-      &lt;p&gt;&lt;button (click)=&quot;startNewOrder()&quot;&gt;
-        Place another order&lt;/button&gt;&lt;/p&gt;
   &lt;/ng-container&gt;
   &lt;ng-template #showOrderForm&gt;
     &lt;h2&gt;Order here&lt;/h2&gt;
@@ -570,18 +672,14 @@ export class OrderComponent implements OnInit, OnDestroy {
 
 
 </code></pre>
-<div line-highlight='13, 18'></div>
-<p>We're going to build another component to use in our form to handle selecting order items. We use data-binding to pass data between components. We'll use the <code>@Input()</code> to get our list of items from the restaurant to display in our child component, and hook it into our Reactive Form using the <code>formControlName</code> attribute as shown above.</p>
-<pre><code class="language-html">&lt;pmo-menu-items [data]=&quot;restaurant.menu.lunch&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
-</code></pre>
+<div line-highlight='7-18'></div>
 <h2>Create Custom Checkbox Component</h2>
 <pre><code class="language-bash">ng g component order/menu-items
 </code></pre>
-<p>We want to give an array of item objects to our parent form based on which checkboxes are selected. We can do this by using Angulars Control Value Accessor to act as a bridge between our form and the UI we build. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is. =</p>
+<p>We want to give an array of item objects to our parent form based on which checkboxes are selected. We can do this by using Angulars <a href="https://angular.io/api/forms/ControlValueAccessor" target="_blank">Control Value Accessor</a> to act as a bridge between our form and the UI we build. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.</p>
 <p><strong>src/app/order/menu-items.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { Item }  from '../order.service';
 
 @Component({
   selector: 'pmo-menu-items',
@@ -597,7 +695,7 @@ import { Item }  from '../order.service';
 export class MenuItemsComponent implements ControlValueAccessor {
   @Input() data: [];
 
-  @Input('value') _value: Item[];
+  @Input('value') _value: any[];
 
   onChange: any = () =&gt; { };
   onTouched: any = () =&gt; { };
@@ -624,7 +722,7 @@ export class MenuItemsComponent implements ControlValueAccessor {
     this.value = value;
   }
 
-  toggleItem(item: Item) {
+  toggleItem(item: any) {
     let index = this._value.indexOf(item);
     if(index !== -1) {
       this._value.splice(index, 1)
@@ -646,6 +744,11 @@ export class MenuItemsComponent implements ControlValueAccessor {
   &lt;/label&gt;
 &lt;/li&gt;
 </code></pre>
+<p>Other concepts used here:</p>
+<h3>forwardRef</h3>
+<p><a href="https://angular.io/api/core/forwardRef" target="_bank">https://angular.io/api/core/forwardRef</a> Used to reference a token that may not be defined when we need it.</p>
+<h3>NG_VALUE_ACCESSOR</h3>
+<p><a href="https://angular.io/api/forms/NG_VALUE_ACCESSOR" target="_blank">https://angular.io/api/forms/NG_VALUE_ACCESSOR</a> Used to provide the control value accessor for a form control.</p>
 <h2>Create New Route for Ordering</h2>
 <p><strong>src/app/app-routing.module.ts</strong></p>
 <pre><code class="language-ts">import { NgModule } from '@angular/core';

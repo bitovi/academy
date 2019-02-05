@@ -88,7 +88,7 @@
            						">
 						<a class="page"
 							href="../typescript.html"
-							title="This course covers TypeScript essentials. At the end, you should be ready to develop projects in TypeScript.">
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
 							TypeScript
 						</a>
 						
@@ -435,7 +435,7 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { RestaurantService, Config } from './restaurant.service';
+import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data&lt;T&gt; {
@@ -477,7 +477,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.createForm();
 
-    this.restaurantService.getRestaurants().subscribe((res: Config) =&gt; {
+    this.restaurantService.getRestaurants().subscribe((res: ResponseData) =&gt; {
       this.restaurants.value = res.data;
       this.restaurants.isPending = false;
     });
@@ -511,6 +511,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
 </code></pre>
 <div line-highlight='1,3,18,36,53-55,63,65-76'></div>
+<p>When you interact with the dropdown menus, you should see their values logged to the console as you change them.</p>
 
 </section>
 

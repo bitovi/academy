@@ -88,7 +88,7 @@
            						">
 						<a class="page"
 							href="../typescript.html"
-							title="This course covers TypeScript essentials. At the end, you should be ready to develop projects in TypeScript.">
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
 							TypeScript
 						</a>
 						
@@ -467,12 +467,12 @@ export class AppModule { }
 </code></pre>
 <div line-highlight='5,24'></div>
 <h2>Creating Reactive Forms</h2>
-<p>We're going to use select boxes to handle our user's input. Angular's Reactive Forms API provides a clean way to get data from user input and do work based on it. We create a basic form in our <code>RestaurantComponent</code> by importing the API and creating a new form:</p>
+<p>We're going to use select boxes to handle our user's input. Angular's <a href="https://angular.io/guide/reactive-forms" target="_blank">Reactive Forms</a> API provides a clean way to get data from user input and do work based on it. We create a basic form in our <code>RestaurantComponent</code> by importing the API and creating a new form:</p>
 <p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
-import { RestaurantService, Config } from './restaurant.service';
+import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data&lt;T&gt; {
@@ -512,7 +512,7 @@ export class RestaurantComponent implements OnInit {
   ngOnInit() {
     this.createForm();
 
-    this.restaurantService.getRestaurants().subscribe((res: Config) =&gt; {
+    this.restaurantService.getRestaurants().subscribe((res: ResponseData) =&gt; {
       this.restaurants.value = res.data;
       this.restaurants.isPending = false;
     });
@@ -583,6 +583,7 @@ export class RestaurantComponent implements OnInit {
 &lt;/div&gt;
 
 </code></pre>
+<div line-highlight='3-24'></div>
 
 </section>
 

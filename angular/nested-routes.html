@@ -88,7 +88,7 @@
            						">
 						<a class="page"
 							href="../typescript.html"
-							title="This course covers TypeScript essentials. At the end, you should be ready to develop projects in TypeScript.">
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
 							TypeScript
 						</a>
 						
@@ -435,6 +435,7 @@
 <li>Get restaurant data from service based on slug</li>
 </ul>
 <h2>Create the Restaurant Detail Component</h2>
+<p>The restaurant detail component will display information about the restaurant, and include a link to order from the menu, which we'll build the component for later.</p>
 <pre><code class="language-bash">ng g component restaurant/detail
 </code></pre>
 <p>Add markup:</p>
@@ -477,7 +478,7 @@
 &lt;/ng-container&gt;
 
 </code></pre>
-<p>For clarity, let's rename the component class name to be <code>RestaurantDetailComponent</code>.</p>
+<p>For clarity, let's rename the component class name to be <code>RestaurantDetailComponent</code>. We've also added a method called by the html that will return a proper url path for our restaurant image.</p>
 <p><strong>src/app/restaurant/detail/detail.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 
@@ -486,7 +487,7 @@
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.less']
 })
-export class RestaurantDetailComponent implements OnInit { //HIGHLIGHT LINE
+export class RestaurantDetailComponent implements OnInit {
 
   constructor(
 
@@ -503,6 +504,7 @@ export class RestaurantDetailComponent implements OnInit { //HIGHLIGHT LINE
 }
 
 </code></pre>
+<div line-highlight='8'></div>
 <p>We'll also have to update the component name where it was automatically declared in the app root module.</p>
 <p><strong>src/app/app.module.ts</strong></p>
 <pre><code class="language-ts">import { BrowserModule } from '@angular/platform-browser';
@@ -516,7 +518,7 @@ import { AppComponent } from './app.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { HomeComponent } from './home/home.component';
 import { ImageUrlPipe } from './image-url.pipe';
-import { RestaurantDetailComponent } from './restaurant/detail/detail.component'; //HIGHLIGHT LINE
+import { RestaurantDetailComponent } from './restaurant/detail/detail.component';
 
 
 @NgModule({
@@ -525,7 +527,7 @@ import { RestaurantDetailComponent } from './restaurant/detail/detail.component'
     RestaurantComponent,
     HomeComponent,
     ImageUrlPipe,
-    RestaurantDetailComponent //HIGHLIGHT LINE
+    RestaurantDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -539,7 +541,9 @@ import { RestaurantDetailComponent } from './restaurant/detail/detail.component'
 export class AppModule { }
 
 </code></pre>
+<div line-highlight='12, 21'></div>
 <h2>Creating a route for restaurant/{{restaurant-slug}}</h2>
+<p>Previously we've defined static paths with Angulars <a href="https://angular.io/guide/router" target="_blank">router</a>. To create a restaurant path, we'll need the slug after the slash to be dynamic. We can set a token for the router parameter with <code>:</code></p>
 <p><strong>src/app/app-routing.module.ts</strong></p>
 <pre><code class="language-ts">import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -571,41 +575,43 @@ export class AppRoutingModule { }
 </code></pre>
 <div line-highlight='5,16-19'></div>
 <h2>Getting restaurant slug from the route</h2>
-<p><strong>src/app/restaurant/detail/detail.component.ts</strong></p>
 <p>We need to get the slug from the route to determine which restaurant to fetch. We import <code>ActivatedRoute</code> into our component, and call <code>this.route.snapshot.paramMap.get('slug')</code> to get the slug.</p>
-<pre><code class="language-typescript">import { Component, OnInit } from '@angular/core';
+<p><strong>src/app/restaurant/detail/detail.component.ts</strong></p>
+<pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { RestaurantService } from '../restaurant.service';
-import { Restaurant } from '../restaurant';
-
+@Component({
   selector: 'pmo-detail',
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.css']
+  styleUrls: ['./detail.component.less']
 })
 export class RestaurantDetailComponent implements OnInit {
-  restaurant: Restaurant;
-  isLoading: boolean = true;
 
   constructor(
-    private route: ActivatedRoute,
-    private restaurantService: RestaurantService
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit() {
     const slug = this.route.snapshot.paramMap.get('slug');
   }
 
+  getUrl(image:string): string {
+    // THIS IS A DIFFERENT WAY TO HANDLE THE IMAGE PATH
+    return image.replace('node_modules/place-my-order-assets', './assets')
+  }
+
 }
+
 </code></pre>
+<div line-highlight='2, 12, 16'></div>
 <h2>Adding getRestaurant method to serivce</h2>
-<p>We need to add one more method to our restaurant service to get a specific restaurant.</p>
+<p>We need to add one more method to our restaurant service to get a specific restaurant based on the slug.</p>
 <p><strong>src/app/restaurant/restaurant.service.ts</strong></p>
-<pre><code class="language-typescript">import { Injectable } from '@angular/core';
+<pre><code class="language-ts">import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Restaurant } from './restaurant';
 
-export interface Config&lt;T&gt; {
+export interface ResponseData&lt;T&gt; {
   data: Array&lt;T&gt;;
 }
 
@@ -619,6 +625,7 @@ export interface City {
   state: string;
 }
 
+@Injectable({
   providedIn: 'root'
 })
 export class RestaurantService {
@@ -627,16 +634,16 @@ export class RestaurantService {
 
   getRestaurants(state:string, city: string) { //HIGHLIGHT THIS LINE
     let options = { params: new HttpParams().set('filter[address.state]', state).set('filter[address.city]', city) };
-    return this.httpClient.get&lt;Config&lt;Restaurant&gt;&gt;('/api/restaurants', options);
+    return this.httpClient.get&lt;ResponseData&lt;Restaurant&gt;&gt;('/api/restaurants', options);
   }
 
   getStates() {
-    return this.httpClient.get&lt;Config&lt;State&gt;&gt;('/api/states');
+    return this.httpClient.get&lt;ResponseData&lt;State&gt;&gt;('/api/states');
   }
 
   getCities(state:string) {
     const options = { params: new HttpParams().set('state', state)};
-    return this.httpClient.get&lt;Config&lt;City&gt;&gt;('/api/cities', options);
+    return this.httpClient.get&lt;ResponseData&lt;City&gt;&gt;('/api/cities', options);
   }
 
   getRestaurant(slug: string) {
@@ -644,18 +651,20 @@ export class RestaurantService {
   }
 }
 </code></pre>
+<div line-highlight='40-42'></div>
 <h2>Make call to get restaurant in component</h2>
 <p>Now we can make a call in our restaurant detail component to get the restaurant data.</p>
 <p><strong>src/app/restaurant/detail/detail.component.ts</strong></p>
-<pre><code class="language-typescript">import { Component, OnInit } from '@angular/core';
+<pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { RestaurantService } from '../restaurant.service';
 import { Restaurant } from '../restaurant';
 
+@Component({
   selector: 'pmo-detail',
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.css']
+  styleUrls: ['./detail.component.less']
 })
 export class RestaurantDetailComponent implements OnInit {
   restaurant: Restaurant;
@@ -669,7 +678,7 @@ export class RestaurantDetailComponent implements OnInit {
   ngOnInit() {
     const slug = this.route.snapshot.paramMap.get('slug');
     this.restaurantService.getRestaurant(slug)
-     .subscribe((data:Restaurant) =&gt; { //HIGHLIGHT LINE
+     .subscribe((data:Restaurant) =&gt; {
        this.restaurant = data;
        this.isLoading = false;
       });
@@ -681,8 +690,10 @@ export class RestaurantDetailComponent implements OnInit {
   }
 
 }
+
 </code></pre>
-<p>Now when we navigate to  <a href="http://localhost:4200/restaurant/crab-place" target="_blank">localhost:4200/restaurant/crab-place</a> we'll see the detail view of the Crab Place restaurant</p>
+<div line-highlight='4, 5, 13-14, 18, 23-27'></div>
+<p>Now when we navigate to  <a href="http://localhost:4200/restaurants/crab-place" target="_blank">localhost:4200/restaurants/crab-place</a> we'll see the detail view of the Crab Place restaurant</p>
 
 </section>
 
@@ -694,7 +705,7 @@ export class RestaurantDetailComponent implements OnInit {
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/angular/12-nested-routes/nested-routes.md"},"description":"Creating nested restaurant routes \n","name":"angular/nested-routes","title":"Nested Restaurant Routes","type":"page","parent":"angular","order":12,"comment":" ","component":["({","({"],"injectable":"({","pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/angular/12-nested-routes/nested-routes.md"},"description":"Creating nested restaurant routes \n","name":"angular/nested-routes","title":"Nested Restaurant Routes","type":"page","parent":"angular","order":12,"comment":" ","pathToRoot":"../.."};
 	</script>
 
 	

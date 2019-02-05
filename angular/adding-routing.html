@@ -88,7 +88,7 @@
            						">
 						<a class="page"
 							href="../typescript.html"
-							title="This course covers TypeScript essentials. At the end, you should be ready to develop projects in TypeScript.">
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
 							TypeScript
 						</a>
 						
@@ -428,7 +428,7 @@
 <p>In this part, we will:</p>
 <ul>
 <li>Add two routes to our generated routing module</li>
-<li>Look at hooking the router outlet into our markup</li>
+<li>Hook the router outlet into our markup</li>
 <li>Test that new routes are working</li>
 </ul>
 <h3>Routing</h3>
@@ -466,6 +466,10 @@ export class AppRoutingModule { }
 </code></pre>
 <div line-highlight='1,only'></div>
 <p>Navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a> to see the new view. You may have noticed the <code>routerLink</code> attribute on the a tag in our home component markup. This one of the ways we link to specific routes in our app.</p>
+<pre><code class="language-html">&lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
+  Details
+&lt;/a&gt;
+</code></pre>
 
 </section>
 

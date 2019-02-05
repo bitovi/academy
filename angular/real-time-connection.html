@@ -88,7 +88,7 @@
            						">
 						<a class="page"
 							href="../typescript.html"
-							title="This course covers TypeScript essentials. At the end, you should be ready to develop projects in TypeScript.">
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
 							TypeScript
 						</a>
 						
@@ -475,11 +475,11 @@ interface Data&lt;T&gt; {
 }
 
 @Component({
-  selector: 'pmo-order-history',
+  selector: 'pmo-history',
   templateUrl: './history.component.html',
-  styleUrls: ['./history.component.css']
+  styleUrls: ['./history.component.less']
 })
-export class OrderHistoryComponent implements OnInit {
+export class HistoryComponent implements OnInit {
   public orders: Data&lt;Order&gt; = {
     value: [],
     isPending: true
