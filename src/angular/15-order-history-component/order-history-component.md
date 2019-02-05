@@ -31,7 +31,7 @@ __src/app/order/history.component.html__
 
 ## Creating a Child Component to Handle Order States
 
-Orders can have states of new, preparing, delivery, and delivered, and we want to have different actions to take in the UI based on an orders status. This new component will take a variety of different data sources. 
+Orders can have states of new, preparing, delivery, and delivered, and we want to have different actions to take in the UI based on an orders status. This new component will take a variety of different data sources.
 
 ```bash
 ng g component order/list
@@ -44,6 +44,7 @@ __src/app/order/list.component.html__
 __src/app/order/list.component.ts__
 
 @sourceref ./list.component.ts
+@highlight 6
 
 ## Add Order History Route
 
