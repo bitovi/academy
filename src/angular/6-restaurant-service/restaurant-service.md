@@ -38,7 +38,7 @@ Next make add an api script to your ``package.json``
 ```
 @highlight 8
 
-Double check the api is working by running ``npm run api`` and navigating to <a href="http://localhost:7070/restaurants" target="\_blank">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the api command from. 
+Double check the api is working by running ``npm run api`` and navigating to <a href="http://localhost:7070/restaurants" target="\_blank">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the api command from.
 
 
 ## Create a Proxy to Serve API
@@ -87,7 +87,7 @@ For making HTTP requests to interact with an API, Angular provides a HttpClient 
 __src/app/app.module.ts__
 
 @sourceref ./app.module.ts
-@highlight 3, 19
+@highlight 3,21
 
 
 We're going to write interfaces to tell Typescript what we expect a restaurant and other related objects to look like. We'll create a new file to house these.

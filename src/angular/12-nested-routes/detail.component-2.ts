@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'pmo-detail',
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.css']
+  styleUrls: ['./detail.component.less']
 })
 export class RestaurantDetailComponent implements OnInit {
 

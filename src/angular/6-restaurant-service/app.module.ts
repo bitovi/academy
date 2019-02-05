@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { HomeComponent } from './home/home.component';
+import { ImageUrlPipe } from './image-url.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     RestaurantComponent,
-    HomeComponent
+    HomeComponent,
+    ImageUrlPipe
   ],
   imports: [
     BrowserModule,

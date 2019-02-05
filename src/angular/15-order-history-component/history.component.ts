@@ -10,7 +10,7 @@ interface Data<T> {
 @Component({
   selector: 'pmo-history',
   templateUrl: './history.component.html',
-  styleUrls: ['./history.component.css']
+  styleUrls: ['./history.component.less']
 })
 export class HistoryComponent implements OnInit {
   public orders: Data<Order> = {
@@ -20,7 +20,7 @@ export class HistoryComponent implements OnInit {
 
   constructor(
     private orderService: OrderService
-    ) { 
+    ) {
     }
 
   ngOnInit() {
