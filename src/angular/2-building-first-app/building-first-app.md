@@ -23,7 +23,7 @@ Angular has a CLI that does a lot of the initial legwork in setting up a minimal
 We'll start by globally installing the Angular CLI.
 
 ```shell
-npm install -g @angular/cli
+npm install -g @angular/cli@7.0.0
 ```
 
 ## Generating a new app
@@ -44,7 +44,7 @@ This will create a new Angular Workspace, generate an app module, needed config 
 1. Would you like to add Angular routing? (yes)
 2. Which stylesheet format would you like to use? (less)
 
-Note that we used the prefix property to set our own default prefix. Angular's default is "app", but a good naming convention is to use a short prefix related to your company or application name to easlily differentiate from 3rd party utilities.
+Note that we used the prefix property to set our own default prefix. Angular's default is "app", but a good naming convention is to use a short prefix related to your company or application name to easily differentiate from 3rd party utilities.
 
 ```html
 //this looks like it's one of our own app components
@@ -136,7 +136,7 @@ This should feel familiar - our main index page.
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>SamplePmo</title>
+        <title>PlaceMyOrder</title>
         <base href="/">
 
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -144,35 +144,38 @@ This should feel familiar - our main index page.
     </head>
     <body>
         //our entry component
-        <app-root></app-root>
+        <pmo-root></pmo-root>
     </body>
 </html>
 ```
 
 ### src/app/app.module.ts
 
-This file is the root module for our app. Every Angular app has at least one module that determines how to compile and launch and app. It uses the @ngModule decorator with four properties:
+This file is the root module for our app. Every Angular app has at least one module that determines how to compile and launch and app. It uses the @NgModule decorator with four properties:
 
 - declarations [array]: where we include components, directives, and pipes that will be used by this module.
 - imports [array]: where we include any other modules our app needs to use. This may include 3rd party modules like bootstrap datepickers, or modules we've created.
 - providers [array]: where we include services that we want used at the global app level
 - bootstrap [array]: where we include the root AppModule - this is the main Application view that hosts all of our other app views.
 
-## src/app/app.component.ts
+### src/app/app.component.ts
 
 This is our root component, you saw it called in our index.html file as ``<app-root></app-root>``
 
+## Changing the markup
+
 Let's change the markup to look like the home page of our place my order app.
 
-```
+__src/app/app.component.html__
+```html
 <h1>Place My Order App: Coming Soon!</h1>
 <router-outlet></router-outlet>
 ```
 
-### Serving Our App
+## Serving Our App
 
 ```shell
-ng serve
+npm run start
 ```
 
 This will compile our code (any typescript errors will throw here), and once ready we can view our app at <a href="http://localhost:4200" target="_blank">localhost:4200</a>

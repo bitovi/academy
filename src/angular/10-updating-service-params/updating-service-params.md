@@ -10,6 +10,7 @@
 In this part, we will:
 
 - Update getRestaurants service method to take params
+- Convert ResponseData interface to generic
 - Add service methods to get states and cities
 - Add call to get states on component init
 - Refactor getting restaurants into own function
@@ -21,7 +22,17 @@ Import HttpParams, add state and city params to getRestaurants method. Add new m
 
 __src/app/restaurant/restaurant.service.ts__
 
-@sourceref ./1-restaurant.service.ts
+@sourceref ./restaurant-1.service.ts
+@highlight 2, 26-28
+
+## Convert ResponseData to Generic
+
+Because our API returns different data types that follow the same structure, we can change our `ResponseData` interface to a generic to accept any kind of type, including the interfaces for city and state.
+
+__src/app/restaurant/restaurant.service.ts__
+
+@sourceref ./restaurant-2.service.ts
+@highlight 5-7, 28
 
 ### Get states and cities from the service layer
 
@@ -31,16 +42,18 @@ for a provided state.
 
 __src/app/restaurant/restaurant.service.ts__
 
-@sourceref ./2-restaurant.service.ts
+@sourceref ./restaurant-3.service.ts
 @highlight 31-38
 
-Use those methods to get all states and cities in `IL`.
+We'll use those methods to get all states and cities in `IL`.
 Enable the state and city forms.
 
 __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./3-restaurant.component.ts
 @highlight 5,26-34,47-57,59,71-72
+
+psst. did you find the error in this code with your compiler?
 
 ## Add methods to retrieve data to component
 
@@ -64,3 +77,5 @@ __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./5-restaurant.component.ts
 @highlight 51-52,68-102
+
+Now when you interact with the UI, cities won't be shown until a state is selected, restaurants will show once a city has been selected.

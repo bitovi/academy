@@ -29,7 +29,7 @@ Open the ``angular.json`` file, and make the following changes to include these 
 
 Any time changes are made to the `angular.json` file, we need to restart our server to catch the new changes. 
 
-### Creating components
+## Creating components
 
 Let's begin to build out the main views of our app. We'll need a home view, and restaurant list page to show all the restaurants we can order from. In Angular, Components are the basic building blocks that help us craft the UI. They are classes that handle views, allow management of user interaction, and displaying information via data binding. Data binding is the term for connecting data or information to the UI. An example would be an input field that a user enters a value into.
 
@@ -75,7 +75,7 @@ __src/app/home/home.component.html__
 </div>
 ```
 
-Update the `restaurant.component.html` file to be:
+We're going to add a lot of content to this template initially that we'll hook into later in this training. For the present it is okay to copy and past this code without completely understanding what each concept does. Update the `restaurant.component.html` file to be:
 
 __src/app/restaurant/restaurant.component.html__
 
@@ -107,6 +107,26 @@ __src/app/restaurant/restaurant.component.html__
 </div>
 ```
 
+### ng-container
+
+<a href="https://angular.io/guide/structural-directives#ngcontainer" target="_blank">ng-container</a> is an element that allows us to create template bindings without creating a dom element.
+
+### *ngIf
+
+<a href="https://angular.io/api/common/NgIf" target="_blank">ngIf</a> is a structural directive that allows us to conditionally render content. It can be paired with ng-template to render an `else` block. 
+
+```html
+<div *ngIf="myValIsTrue; else notTrue">
+</div>
+<ng-template #notTrue>
+  I render if myValIsTrue is not true
+</ng-template>
+```
+
+### *ngFor
+
+<a href="https://angular.io/api/common/NgForOf" target="_blank">ngFor</a> is a structural directive that allows to iteratively create content in our templates. 
+
 #### > DETOUR! Pipes in Angular
 
 We're using an API in this demo that wasn't built for our exact purposes, and we need a different image path for our app to serve. <a href="https://angular.io/guide/pipes" target="\_blank">Angular Pipes</a> come in handy to transform content in our templates. We'll create a pipe to help handle our image pathing:
@@ -115,7 +135,7 @@ We're using an API in this demo that wasn't built for our exact purposes, and we
 ng g pipe imageUrl
 ```
 
-In our newly created `image-url.pipe.ts` update the code to be:
+Angular CLI will generate the basics needed for a pipe component, but we're not going to pass any arguments to our pipe, so we can remove that param. In our newly created `image-url.pipe.ts` update the code to be:
 
 __src/app/image-url.pipe.ts__
 
@@ -134,5 +154,6 @@ Back to our main restaurant component, in the ``restaurant.component.ts`` file:
 __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./restaurant.component.ts
+@highlight 9
 
-We'll come back to this view to feed in data, but for now you'll notice we're using interfaces to help define what our data will look like.
+We'll come back to this view to feed in data, but for now you'll notice we're setting a restaurants property to an empty array. Run `npm run start`, and your app should compile with no errors!

@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./restaurant.component.less']
 })
 export class RestaurantComponent implements OnInit {
-  public restaurants: [];
+  public restaurants: [] = [];
 
   constructor() { }
 

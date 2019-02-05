@@ -6,7 +6,7 @@ import { RestaurantService } from '../restaurant/restaurant.service';
 import { Restaurant } from '../restaurant/restaurant';
 import { Subscription } from 'rxjs';
 
-
+//CUSTOM VALIDATION FUNCTION TO ENSURE THAT THE ITEMS FORM VALUE CONTAINS AT LEAST ONE ITEM. 
 function minLengthArray(min: number) {
   return (c: AbstractControl): {[key: string]: any} => {
       if (c.value.length >= min)
@@ -39,6 +39,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    //GETTING THE RESTAURANT FROM THE ROUTE SLUG
     const slug = this.route.snapshot.paramMap.get('slug');
 
     this.restaurantService.getRestaurant(slug).subscribe((data:Restaurant) => {
@@ -58,23 +59,27 @@ export class OrderComponent implements OnInit, OnDestroy {
       name: [null],
       address:  [null],
       phone: [null],
-      items: [[], minLengthArray(1)]
+      //PASSING OUR CUSTOM VALIDATION FUNCTION TO THIS FORM CONTROL
+      items: [[], minLengthArray(1)] 
     });
     this.onChanges();
   }
 
   onChanges() {
+    // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
     this.subscription = this.orderForm.get('items').valueChanges.subscribe(val => {
       let total = 0.0;
       val.forEach((item: any) => {
         total += item.price;
       });
-      return Math.round(total * 100) / 100;
+      this.orderTotal = Math.round(total * 100) / 100;
     });
   }
 
   startNewOrder() {
     this.orderComplete = false;
+    this.completedOrder = this.orderForm.value;
+    //CLEAR THE ORDER FORM
     this.createOrderForm();
   }
 

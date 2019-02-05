@@ -24,7 +24,7 @@ __src/app/app.module.ts__
 
 ## Creating Reactive Forms
 
-We're going to use select boxes to handle our user's input. Angular's Reactive Forms API provides a clean way to get data from user input and do work based on it. We create a basic form in our `RestaurantComponent` by importing the API and creating a new form:
+We're going to use select boxes to handle our user's input. Angular's <a href="https://angular.io/guide/reactive-forms" target="_blank">Reactive Forms</a> API provides a clean way to get data from user input and do work based on it. We create a basic form in our `RestaurantComponent` by importing the API and creating a new form:
 
 __src/app/restaurant/restaurant.component.ts__
 
@@ -38,3 +38,4 @@ Update the ``restaurant.component.html`` file to be:
 __src/app/restaurant/restaurant.component.html__
 
 @sourceref ./restaurant.component.html
+@highlight 3-24

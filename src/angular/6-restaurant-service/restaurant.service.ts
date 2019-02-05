@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { Restaurant } from './restaurant';
 
-export interface Config {
+export interface ResponseData {
   data: Restaurant[];
 }
 
@@ -15,6 +15,6 @@ export class RestaurantService {
   constructor(private httpClient: HttpClient) { }
 
   getRestaurants() {
-    return this.httpClient.get<Config>('/api/restaurants');
+    return this.httpClient.get<ResponseData>('/api/restaurants');
   }
 }

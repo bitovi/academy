@@ -11,7 +11,7 @@ In this part, we will:
 - Install socket.io
 - Import and initialize socket.io
 - Create an environment variable
-- Update list view on socket events. 
+- Update list view on socket events.
 
 ## Installing Socket.io
 
@@ -32,7 +32,7 @@ We need to tell Socket.io where to listen for changes. Locally this is localhost
 
 Open `src/environments/environment.ts` and change it to:
 
-@sourceref ./environment.ts 
+@sourceref ./environment.ts
  
  We'll use `apiUrl` for our Socket.io connection, and listen for `orders created`, `order updated`, and `orders deleted` events to change our list on:
 

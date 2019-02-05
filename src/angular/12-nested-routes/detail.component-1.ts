@@ -5,7 +5,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.less']
 })
-export class RestaurantDetailComponent implements OnInit { //HIGHLIGHT LINE
+export class RestaurantDetailComponent implements OnInit {
 
   constructor(
 

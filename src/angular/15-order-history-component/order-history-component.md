@@ -12,6 +12,7 @@ In this part, we will:
 - Get all orders from our order service
 - Create a child component to handle different states of orders
 - Create ways to update and delete orders in the view
+- Add order history link to our main navigation
 
 ## Creating Order History Component
 
@@ -30,7 +31,7 @@ __src/app/order/history.component.html__
 
 ## Creating a Child Component to Handle Order States
 
-Orders can have states of new, preparing, delivery, and delivered, and we want to have different actions to take in the UI based on an orders status. This new component will take a variety of different data sources. 
+Orders can have states of new, preparing, delivery, and delivered, and we want to have different actions to take in the UI based on an orders status. This new component will take a variety of different data sources.
 
 ```bash
 ng g component order/list
@@ -43,6 +44,22 @@ __src/app/order/list.component.html__
 __src/app/order/list.component.ts__
 
 @sourceref ./list.component.ts
+@highlight 6
 
+## Add Order History Route
 
+__src/app/app-routing.module.ts__
 
+@sourceref ./app-routing.module.ts
+@highlight 8, 27-30
+
+## Adding Order History to Main Navigation
+
+Finally, let's add the order history path to the navigation. 
+
+__src/app/app.component.html__
+
+@sourceref ./app.component.html
+@highlight 11-13
+
+You should now be able to navigate to <a href="http://localhost:4200/order-history" target="_blank">http://localhost:4200/order-history</a>. 

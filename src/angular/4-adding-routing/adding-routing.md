@@ -10,7 +10,7 @@
 In this part, we will:
 
 - Add two routes to our generated routing module
-- Look at hooking the router outlet into our markup
+- Hook the router outlet into our markup
 - Test that new routes are working
 
 ### Routing
@@ -32,3 +32,9 @@ __src/app/app.component.html__
 @highlight 1,only
 
 Navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a> to see the new view. You may have noticed the ```routerLink``` attribute on the a tag in our home component markup. This one of the ways we link to specific routes in our app.
+
+```html
+<a class="btn" [routerLink]="['/restaurants', restaurant.slug]">
+  Details
+</a>
+```
