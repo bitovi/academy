@@ -52,7 +52,7 @@ We can also configure linting options to catch bugs and help enforce uniform sty
 
 ## IDEs
 
-Integrated Development Environments have come a long way in supporting modern web development. With little to no configuration they offer built-in debugging, Git integration, command line useage, and robust packages for additional addons.
+Integrated Development Environments have come a long way in supporting modern web development. With little to no configuration IDEs offer built-in debugging, Git integration, command line usage, and robust packages for additional add-ons.
 
 ### Visual Studio Code
 
@@ -80,15 +80,9 @@ In this exercise, we will:
 
 - Update `1-ide-greeter.ts` to export the `greeter` function as the `default`
   export.
-- Update `1-ide-hello-earth.ts` to import `greeter`, call `gretter` with `"Earth"`
+- Update `1-ide-hello-earth.ts` to import `greeter`, call `greeter` with `"Earth"`
   and set the result as `document.body.innerHTML`.
 - Compile `1-ide-hello-earth.ts` to JavaScript so we can run it.
-
-Run the following to verify your solution works.
-
-```shell
-npm run 1-ide
-```
 
 ### What you need to know
 
@@ -102,8 +96,16 @@ npm run 1-ide
   import value from "./value-exporter";
   ```
 
+Run the following to verify your solution works.
+
+```shell
+npm run 1-ide
+```
+
 ### The solution
 
+<details>
+<summary>Click to see the solution</summary>
 Update `1-ide-greeter.ts` to:
 
 ```typescript
@@ -130,7 +132,7 @@ Compile `1-ide-hello-earth.ts` with:
 tsc 1-ide-hello-earth.ts
 ```
 
-
+</details>
 
 ### Things to explore
 

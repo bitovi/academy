@@ -95,7 +95,7 @@ Readonly modifiers allow properties to be read, but not changed.
 
 ### Exercise 1
 
-Open your editor create a new file ``hellodino.ts``, and recreate this prototype using TypeScript classes.
+Edit the file `4a-classes-hello-dino.ts` to recreate the prototype using TypeScript classes.
 
 ```typescript
 function DinoKeeper(name) {
@@ -103,7 +103,7 @@ function DinoKeeper(name) {
 }
 
 DinoKeeper.prototype.sayHi = function() {
-  console.log(this.name + ' says "hi"');
+  return this.name + ' says "hi"';
 }
 
 let employee1 = new DinoKeeper("Joe");
@@ -114,10 +114,11 @@ employee1.sayHi();
 Hint* When you run:
 
 ```bash
-tsc hellodino.ts
+tsc 4a-classes-hello-dino.ts
 ```
 
-Your code should output to look like the above prototype version!
+Your code should output to look like the above prototype version! Delete the compiled js file before running the tests in the next step.
+
 
 <details>
 <summary>Solution</summary>
@@ -130,25 +131,31 @@ class DinoKeeper {
     this.name = name;
   }
 
-  sayHi() {
-    console.log(`${this.name} says "hi"`);
+  sayHi():string {
+    return `${this.name} says "hi"`;
   }
 }
 let employee1 = new DinoKeeper("Joe");
 employee1.sayHi();
 //Logs "Joe says "hi""
 ```
+
 </details>
 
 ### Exercise 2
 
-Create a new ``Specialist`` class that inherits from the ``DinoKeeper``. This new class class should be able to accept an additional ``experience`` public member that is a number, and have a ``safetyQuote`` method that console.logs("Never turn your back to the cage. Trust me, I have _years_ years of experience")
+Edit the file `4a-classes-hello-dino.ts` to write a new ``Specialist`` class that inherits from the ``DinoKeeper``. This new class class should be able to accept an additional ``experience`` public member that is a number, and have a ``safetyQuote`` method that console.logs("Never turn your back to the cage. Trust me, I have _years_ years of experience")
 
 ```typescript
 let employee2 = new Specialist("Owen", 14);
 employee2.sayHi(); //Owen says 'hi'
 employee2.safetyQuote();
 //Logs "Never turn your back to the cage. Trust me, I have 14 years of experience"
+```
+
+
+```shell
+npm run 4-classes
 ```
 
 <details>
@@ -160,9 +167,9 @@ class Specialist extends DinoKeeper {
     super(name);
   }
 
-  safetyQuote() {
-    console.log(`Never turn your back to the cage.
-    Trust me, I have ${this.experience} years of experience`);
+  safetyQuote():string {
+    return `Never turn your back to the cage.
+    Trust me, I have ${this.experience} years of experience`;
   }
 }
 

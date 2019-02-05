@@ -161,7 +161,14 @@ The following function takes a bonus multiplier amount parameter and a dinosaur 
 @sourceref ./4-exercise-start.html
 @codepen
 
-Productivity in the park has been up, so modify this function to take an unknown amount of names to get the length of and multiply by the bonus multiplier amount.
+Productivity in the park has been up, so open the `3-functions-bonusMaker.ts` file and  modify this function to take an unknown amount of names to get the length of and multiply by the bonus multiplier amount.
+
+
+Run the following to verify your solution:
+
+```shell
+npm run 3-functions
+```
 
 <details>
 <summary>solution</summary>

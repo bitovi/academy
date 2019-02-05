@@ -260,7 +260,7 @@ Thanks to generics we're able to use the same ``LinkedList`` class in multiple d
 
 ### The Problem
 
-Update __6-tree-node.ts__ to create a recursive `TreeNode` class that can house a `value` and be used to create a tree structure of `left` and `right` nodes.
+Update the `6-tree-node.ts` file to create a recursive `TreeNode` class that can house a `value` and be used to create a tree structure of `left` and `right` nodes.
 
 For example, we will be able to create a `TreeNode` with a root value and
 comparison function as follows:

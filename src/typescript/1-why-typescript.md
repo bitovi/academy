@@ -66,12 +66,18 @@ npm run 0-why
 ### What you need to know
 
 
-In order to use TypeScript in the browser, we must compile the TypeScript code to plain JavaScript first. We will do this using our terminal in this example, but most often TypeScript is be compiled during a build process.
+In order to use TypeScript in the browser, we must compile the TypeScript code to plain JavaScript first. We will do this using our terminal in this example, but most often TypeScript will be compiled during a build process.
 
 Let's install TypeScript globally:
 
 ```shell
 npm install -g typescript
+```
+
+Double check it has installed properly with
+
+```shell
+tsc -v
 ```
 
 Let's create a _0-why-hello-world.ts_ file and open it in our favorite editor.

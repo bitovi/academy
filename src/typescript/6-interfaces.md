@@ -70,7 +70,7 @@ We can also use interfaces to describe what a function is expected to return. Th
 
 ### Exercise 1
 
-Create an interface to define a ``DinoPark`` object shown below:
+Edit the files `5a-dino-park.ts` and `5a-address.ts` to create an interface to define a ``DinoPark`` object shown below:
 
 ```javascript
 let park = {
@@ -117,7 +117,13 @@ interface DinoPark {
 
 ### Exercise 2
 
-Create a function ``createParkSlug`` that takes a parameter that is the interface ```DinoPark``` created previously and returns a slug for the park by replacing any spaces with dashes.
+In the `5b-create-park-slug.ts` file edit the ``createParkSlug`` function to take a parameter that is the interface ```DinoPark``` created previously and returns a slug for the park by replacing any spaces with dashes. Ex. the park "Isla Sorna Park" should return the slug `Isla-Sorna-Park`.
+
+Run the following to verify your solution:
+
+```shell
+npm run 5-interfaces
+```
 
 <details>
 <summary>Solution</summary>
