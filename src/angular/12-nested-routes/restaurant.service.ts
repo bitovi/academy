@@ -23,7 +23,7 @@ export class RestaurantService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getRestaurants(state:string, city: string) { //HIGHLIGHT THIS LINE
+  getRestaurants(state:string, city: string) {
     let options = { params: new HttpParams().set('filter[address.state]', state).set('filter[address.city]', city) };
     return this.httpClient.get<ResponseData<Restaurant>>('/api/restaurants', options);
   }
