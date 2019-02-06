@@ -11,7 +11,6 @@ In this part, we will:
 
 - Annotate functions parameters and return values.
 - Use optional parameters & rest parameters
-- Bind `this` in TypeScript.  
 
 ## Functions in TypeScript
 
@@ -82,77 +81,7 @@ let uberDino = buildDinosaur('Indominous Rex', "Velociraptor",
 //      Tyrannosaurus rex, Therizinosaurus, cuttlefish"
 ```
 
-## This & => Functions
 
-If you're familiar with ES6, you may know that using the fat arrow (=>) captures the context of `this` where it's used. The functionality is the same in TypeScript.
-
-
-Wrong `this`:
-
-```typescript
-class DinoBuilder {
-  name = 'Trex';
-  yawn() {
-    setTimeout(function() {
-      console.log(`${this.name} yawned.`)
-    }, 50);
-  }
-}
-
-var dino = new DinoBuilder();
-dino.yawn();
-// Logs "undefined yawned"
-```
-
-Right `this`:
-
-```typescript
-class DinoBuilder {
-  name = 'Trex';
-  yawn() {
-    setTimeout(() => {
-      console.log(`${this.name} yawned.`)
-    }, 50);
-  }
-}
-
-var dino = new DinoBuilder();
-dino.yawn();
-// Logs "Trex yawned"
-```
-
-Wrong `this`:
-
-```typescript
-class DinoBuilder {
-  name = 'Trex';
-  roar() {
-    console.log(`${this.name} roared.`)
-  }
-}
-
-var dino = new DinoBuilder();
-
-let fierce = dino.roar;
-fierce();
-// Logs "undefined roared"
-```
-
-Right `this`:
-
-```typescript
-class DinoBuilder {
-  name = 'Trex';
-  roar = () => {
-    console.log(`${this.name} roared.`)
-  }
-}
-
-var dino = new DinoBuilder();
-let fierce = dino.roar;
-fierce();
-// Logs "Trex roared"
-```
 
 ## Exercise: bonusMaker
 

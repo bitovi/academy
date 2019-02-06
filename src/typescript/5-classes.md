@@ -7,7 +7,13 @@
 
 ## Overview
 
-For those newer to Object-oriented programming, classes are special functions that help us abstract our code. Classes can define function expressions and function declarations. This section will cover using classes in TypeScript, the Constructor method, how to inherit classes, and use of public, private, protected, and readonly modifiers.
+For those newer to Object-oriented programming, classes are special functions that help us abstract our code. Classes can define function expressions and function declarations. This section will cover:
+
+- Using classes in TypeScript,
+- The Constructor method,
+- How to inherit classes,
+- The use of public, private, protected, and readonly modifiers, and
+- How to manage `this` in classes.
 
 ## Classes in TypeScript
 
@@ -93,7 +99,79 @@ Readonly modifiers allow properties to be read, but not changed.
 @sourceref ./5-10-readonly.html
 @codepen
 
-### Exercise 1
+## This and `=>` Functions
+
+If you're familiar with ES6, you may know that using the fat arrow (=>) captures the context of `this` where it's used. The functionality is the same in TypeScript.
+
+
+Wrong `this`:
+
+```typescript
+class DinoBuilder {
+  name = 'Trex';
+  yawn() {
+    setTimeout(function() {
+      console.log(`${this.name} yawned.`)
+    }, 50);
+  }
+}
+
+var dino = new DinoBuilder();
+dino.yawn();
+// Logs "undefined yawned"
+```
+
+Right `this`:
+
+```typescript
+class DinoBuilder {
+  name = 'Trex';
+  yawn() {
+    setTimeout(() => {
+      console.log(`${this.name} yawned.`)
+    }, 50);
+  }
+}
+
+var dino = new DinoBuilder();
+dino.yawn();
+// Logs "Trex yawned"
+```
+
+Wrong `this`:
+
+```typescript
+class DinoBuilder {
+  name = 'Trex';
+  roar() {
+    console.log(`${this.name} roared.`)
+  }
+}
+
+var dino = new DinoBuilder();
+
+let fierce = dino.roar;
+fierce();
+// Logs "undefined roared"
+```
+
+Right `this`:
+
+```typescript
+class DinoBuilder {
+  name = 'Trex';
+  roar = () => {
+    console.log(`${this.name} roared.`)
+  }
+}
+
+var dino = new DinoBuilder();
+let fierce = dino.roar;
+fierce();
+// Logs "Trex roared"
+```
+
+## Exercise 1
 
 Edit the file `4a-classes-hello-dino.ts` to recreate the prototype using TypeScript classes.
 
@@ -142,9 +220,9 @@ employee1.sayHi();
 
 </details>
 
-### Exercise 2
+## Exercise 2
 
-Edit the file `4a-classes-hello-dino.ts` to write a new ``Specialist`` class that inherits from the ``DinoKeeper``. This new class class should be able to accept an additional ``experience`` public member that is a number, and have a ``safetyQuote`` method that console.logs("Never turn your back to the cage. Trust me, I have _years_ years of experience")
+Edit the file `4a-specialist.ts` to write a new ``Specialist`` class that inherits from the ``DinoKeeper``. This new class class should be able to accept an additional ``experience`` public member that is a number, and have a ``safetyQuote`` method that console.logs("Never turn your back to the cage. Trust me, I have _years_ years of experience")
 
 ```typescript
 let employee2 = new Specialist("Owen", 14);
