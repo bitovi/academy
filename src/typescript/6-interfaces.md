@@ -112,7 +112,7 @@ interface DinoPark {
 export default DinoPark;
 ```
 
-__5a-dino-park.ts__
+__5a-address.ts__
 
 ```typescript
 interface Address {
