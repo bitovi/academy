@@ -147,7 +147,7 @@
            						">
 						<a class="page"
 							href="functions.html"
-							title="Learn how to annotate functions parameters and return values, use different parameter types available, and bind this.">
+							title="Learn how to annotate functions parameters and return values, use different parameter types available.">
 							Functions
 						</a>
 						
@@ -414,7 +414,7 @@ cardNumber.next(&quot;1234&quot;)
 </code></pre>
 <p>Let's look at making a basic class to collect a list of things.</p>
 <pre><code class="language-typescript">class Collection {
-  private list: any[];
+  private list: any[] = [];
   push(thing) {
     this.list.push(thing);
   }
@@ -477,272 +477,93 @@ myListOfDinosaurs.pushItem({name: 'Charlie'});
 //error Argument type '{ name: string; }' is not assignable to parameter of type 'Dinosaur'.
 </code></pre>
 <div class='codepen'></div>
+<div line-highlight='8,14,25'></div>
 <h2>Recursive Generic Classes</h2>
-<p>A great example of the power of generics is creating a linked list with type safety.</p>
-<p>The following is an example of a linked list for strings:</p>
-<pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
-class LinkedListItem {
-  value: string;
-  next?: LinkedListItem;
-}
+<p>A great example of the power of generics is creating a linked list with type
+safety.  We will create a simple linked list that supports:</p>
+<ul>
+<li>Adding values to the front of the list with <code>linkedList.unshift(value)</code>.</li>
+<li>Removing and returning the front values with <code>linkedList.shift()</code>.</li>
+<li>Reading the front of the list with <code>linkedList.head</code>.</li>
+<li>Reading the end of the list with <code>linkedList.tail</code>.</li>
+</ul>
+<p>We can use it with strings like:</p>
+<pre><code class="language-typescript">var linkedList = new LinkedList&lt;string&gt;();
 
-class LinkedList {
-  private head: LinkedListItem;
-  constructor(item: LinkedListItem) {
-    this.head = item;
-  }
+linkedList.unshift(&quot;a&quot;);
+linkedList.unshift(&quot;b&quot;);
 
-  insert(val, previousItem: LinkedListItem) {
-    let newItem: LinkedListItem = new LinkedListItem(val);
-    let currentItem: LinkedListItem = this.head;
 
-    if (!currentItem) {
-        this.head = newItem;
-    } else {
-        while (true) {
-            if (currentItem === previousItem) {
-                let tempNextItem = previousItem.next;
-                currentItem.next = newItem;
-                newItem.next = tempNextItem;
-                break;
-            } else {
-                currentItem = currentItem.next;
-            }
-        }
-    }
-  }
+console.log( linkedList.shift() ) //logs &quot;b&quot;
 
-  append(val) {
-    let currentItem: LinkedListItem = this.head;
-    let newItem = new LinkedListItem(val);
-
-    if (!currentItem) {
-        this.head = newItem;
-    } else {
-        while (true) {
-            if (currentItem.next) {
-                currentItem = currentItem.next;
-            } else {
-                currentItem.next = newItem;
-                break;
-            }
-        }
-    }
-  }
-
-  prepend(val) {
-    let newItem = new LinkedListItem(val);
-    let oldHead = this.head;
-
-    this.head = newItem;
-    newItem.next = oldHead;
-  }
-
-  delete(val) {
-    var currentItem = this.head;
-
-    if (!currentItem) {
-        return;
-    }
-
-    if (currentItem.value === val) {
-        this.head = currentItem.next;
-    } else {
-        var previous = null;
-
-        while (true) {
-            if (currentItem.value === val) {
-                if (currentItem.next) { // special case for last element
-                    previous.next = currentItem.next;
-                } else {
-                    previous.next = null;
-                }
-                currentItem = null; // avoid memory leaks
-                break;
-            } else {
-                previous = currentItem;
-                currentItem = currentItem.next;
-            }
-        }
-    }
-  }
-
-  showInArray() {
-    let arr = [];
-    let currentItem = this.head;
-
-    while (true) {
-        arr.push(currentItem.value);
-
-        if (currentItem.next) {
-            currentItem = currentItem.next;
-        } else {
-            break;
-        }
-    }
-
-    return arr;
-  }
-}
-&lt;/script&gt;
+console.log( linkedList.shift() ) //logs &quot;a&quot;
 </code></pre>
-<div class='codepen'></div>
-<p>Let's look at transforming this to use generics to use this list for more than just strings. First, we change our interface to take a generic type.</p>
-<pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
-interface LinkedListItem&lt;T&gt; {
+<p>Or with numbers like:</p>
+<pre><code class="language-typescript">var linkedList = new LinkedList&lt;number&gt;();
+
+linkedList.unshift(100);
+linkedList.unshift(200);
+
+console.log( linkedList.head ) //logs 200
+
+console.log( linkedList.tail ) //logs 100
+</code></pre>
+<p>The implementation looks like this:</p>
+<pre><code class="language-typescript">// Define node that has a value and points to the
+// next item in the list.
+class LinkedListNode&lt;T&gt; {
     value: T;
-    next?: LinkedListItem&lt;T&gt;;
-}
-&lt;/script&gt;
-</code></pre>
-<div class='codepen'></div>
-<p>The angle brackets with the T indicate that we have a type variable <code>&lt;T&gt;</code>, and can take what the user provides between the brackets when using the interface. For example, a string:</p>
-<pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
-class LinkedListItem&lt;T&gt; {
-  value: T;
-  next?: LinkedListItem&lt;T&gt;;
+    next?: LinkedListNode&lt;T&gt;;
 
-  constructor(val) {
-    this.value = val;
-    this.next = null;
-  }
-}
-
-function createNewItem(val: string) {
-  let newItem = new LinkedListItem&lt;string&gt;(val);
-  console.log(newItem.value);
-}
-
-createNewItem(5);
-//Argument of type '5' is not assignable to parameter of type 'string'.
-createNewItem('five');  
-//Logs &quot;five&quot;
-&lt;/script&gt;
-</code></pre>
-<div class='codepen'></div>
-<div line-highlight='13'></div>
-<p>Next we can refactor our class to take our new generic.</p>
-<pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
-class LinkedListItem&lt;T&gt; {
-    value: T;
-    next?: LinkedListItem&lt;T&gt;;
-  
-    constructor(val) {
-      this.value = val;
-      this.next = null;
+    constructor(val: T) {
+        this.value = val;
+        this.next = null;
     }
-  }
+}
 
 class LinkedList&lt;T&gt; {
-  private head: LinkedListItem&lt;T&gt;;
-  constructor(item: LinkedListItem&lt;T&gt;) {
-    this.head = item;
-  }
+    private _head: LinkedListNode&lt;T&gt;;
+    private _tail: LinkedListNode&lt;T&gt;;
 
-  insert(val, previousItem: LinkedListItem&lt;T&gt;) {
-    let newItem: LinkedListItem&lt;T&gt; = new LinkedListItem&lt;T&gt;(val);
-    let currentItem: LinkedListItem&lt;T&gt; = this.head;
+    // Adds to the start of the list.
+    unshift(value: T) {
+        var node = new LinkedListNode(value);
 
-    if (!currentItem) {
-        this.head = newItem;
-    } else {
-        while (true) {
-            if (currentItem === previousItem) {
-                let tempNextItem = previousItem.next;
-                currentItem.next = newItem;
-                newItem.next = tempNextItem;
-                break;
-            } else {
-                currentItem = currentItem.next;
-            }
+        // The existing head is now next.
+        if(this._head) {
+            node.next = this._head;
+        }
+
+        this._head = node;
+
+        // If there wasn't a tail, this is the first node
+        if(!this._tail) {
+            this._tail = node;
         }
     }
-  }
+    // removes first
+    shift(){
+        let value: T;
 
-  append(val) {
-    let currentItem: LinkedListItem&lt;T&gt; = this.head;
-    let newItem = new LinkedListItem&lt;T&gt;(val);
-
-    if (!currentItem) {
-        this.head = newItem;
-    } else {
-        while (true) {
-            if (currentItem.next) {
-                currentItem = currentItem.next;
-            } else {
-                currentItem.next = newItem;
-                break;
-            }
+        // If there was a head,
+        // set head to whatever is after it.
+        if(this._head) {
+            value = this._head.value;
+            this._head = this._head.next;
         }
-    }
-  }
 
-  prepend(val) {
-    let newItem = new LinkedListItem&lt;T&gt;(val);
-    let oldHead = this.head;
-
-    this.head = newItem;
-    newItem.next = oldHead;
-  }
-
-  delete(val) {
-    var currentItem = this.head;
-
-    if (!currentItem) {
-        return;
-    }
-
-    if (currentItem.value === val) {
-        this.head = currentItem.next;
-    } else {
-        var previous = null;
-
-        while (true) {
-            if (currentItem.value === val) {
-                if (currentItem.next) { // special case for last element
-                    previous.next = currentItem.next;
-                } else {
-                    previous.next = null;
-                }
-                currentItem = null; // avoid memory leaks
-                break;
-            } else {
-                previous = currentItem;
-                currentItem = currentItem.next;
-            }
+        // If there is no more head, the
+        // list is empty.
+        if(!this._head) {
+            this._tail = null;
         }
-    }
-  }
-
-  showInArray() {
-    let arr = [];
-    let currentItem = this.head;
-
-    while (true) {
-        arr.push(currentItem.value);
-
-        if (currentItem.next) {
-            currentItem = currentItem.next;
-        } else {
-            break;
-        }
+        return value;
     }
 
-    return arr;
-  }
+    get head() { return this._head.value }
+    get tail() {return this._tail.value }
 }
-
-let myNumberList = new LinkedList&lt;number&gt;({value: 5});
-myNumberList.append(6);
-myNumberList.append(3);
-myNumberList.prepend(7);
-
-console.log(myNumberList.showInArray());
-//Logs &quot;[7, 5, 6, 3]&quot;
-&lt;/script&gt;
 </code></pre>
-<div class='codepen'></div>
-<div line-highlight='12,13,14'></div>
 <p>Thanks to generics we're able to use the same <code>LinkedList</code> class in multiple different scenarios with any type.</p>
 <h2>Exercise: <code>TreeNode</code></h2>
 <h3>The Problem</h3>
@@ -799,14 +620,14 @@ class TreeNode&lt;T&gt; {
     add(val: T){
         if( this.compare(this.value, val) &gt;= 1 ) {
             if(this.left == null) {
-                this.left = new TreeNode&lt;T&gt;(val, this.compare);
+                this.left = new TreeNode(val, this.compare);
             } else {
                 this.left.add(val);
             }
 
         } else {
             if(this.right == null) {
-                this.right = new TreeNode&lt;T&gt;(val, this.compare);
+                this.right = new TreeNode(val, this.compare);
             } else {
                 this.right.add(val);
             }

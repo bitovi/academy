@@ -147,7 +147,7 @@
            						">
 						<a class="page"
 							href="functions.html"
-							title="Learn how to annotate functions parameters and return values, use different parameter types available, and bind this.">
+							title="Learn how to annotate functions parameters and return values, use different parameter types available.">
 							Functions
 						</a>
 						
@@ -307,7 +307,14 @@
 			
 				<section class="body">
     <h2>Overview</h2>
-<p>For those newer to Object-oriented programming, classes are special functions that help us abstract our code. Classes can define function expressions and function declarations. This section will cover using classes in TypeScript, the Constructor method, how to inherit classes, and use of public, private, protected, and readonly modifiers.</p>
+<p>For those newer to Object-oriented programming, classes are special functions that help us abstract our code. Classes can define function expressions and function declarations. This section will cover:</p>
+<ul>
+<li>Using classes in TypeScript,</li>
+<li>The Constructor method,</li>
+<li>How to inherit classes,</li>
+<li>The use of public, private, protected, and readonly modifiers, and</li>
+<li>How to manage <code>this</code> in classes.</li>
+</ul>
 <h2>Classes in TypeScript</h2>
 <p>In JavaScript, a class is a structured way to define what you may have seen before - prototype based constructor functions. This allows us to take an object-oriented approach to building our JavaScript applications. Since ECMAScript 2015 classes have been available, the difference with classes in TypeScript is the strictness of enforcing types on members.</p>
 <p>The following shows creating a ParkEmployee constructor function with a <code>sayHi</code> method.</p>
@@ -576,7 +583,64 @@ firstStop.location = &quot;On a bridge&quot;; // error! location is readonly.
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<h3>Exercise 1</h3>
+<h2>This and <code>=&gt;</code> Functions</h2>
+<p>If you're familiar with ES6, you may know that using the fat arrow (=&gt;) captures the context of <code>this</code> where it's used. The functionality is the same in TypeScript.</p>
+<p>Wrong <code>this</code>:</p>
+<pre><code class="language-typescript">class DinoBuilder {
+  name = 'Trex';
+  yawn() {
+    setTimeout(function() {
+      console.log(`${this.name} yawned.`)
+    }, 50);
+  }
+}
+
+var dino = new DinoBuilder();
+dino.yawn();
+// Logs &quot;undefined yawned&quot;
+</code></pre>
+<p>Right <code>this</code>:</p>
+<pre><code class="language-typescript">class DinoBuilder {
+  name = 'Trex';
+  yawn() {
+    setTimeout(() =&gt; {
+      console.log(`${this.name} yawned.`)
+    }, 50);
+  }
+}
+
+var dino = new DinoBuilder();
+dino.yawn();
+// Logs &quot;Trex yawned&quot;
+</code></pre>
+<p>Wrong <code>this</code>:</p>
+<pre><code class="language-typescript">class DinoBuilder {
+  name = 'Trex';
+  roar() {
+    console.log(`${this.name} roared.`)
+  }
+}
+
+var dino = new DinoBuilder();
+
+let fierce = dino.roar;
+fierce();
+// Logs &quot;undefined roared&quot;
+</code></pre>
+<p>Right <code>this</code>:</p>
+<pre><code class="language-typescript">class DinoBuilder {
+  name = 'Trex';
+  roar = () =&gt; {
+    console.log(`${this.name} roared.`)
+  }
+}
+
+var dino = new DinoBuilder();
+let fierce = dino.roar;
+fierce();
+// Logs &quot;Trex roared&quot;
+</code></pre>
+<h2>Exercise 1</h2>
 <p>Edit the file <code>4a-classes-hello-dino.ts</code> to recreate the prototype using TypeScript classes.</p>
 <pre><code class="language-typescript">function DinoKeeper(name) {
   this.name = name;
@@ -612,8 +676,8 @@ employee1.sayHi();
 //Logs &quot;Joe says &quot;hi&quot;&quot;
 </code></pre>
 <p></details></p>
-<h3>Exercise 2</h3>
-<p>Edit the file <code>4a-classes-hello-dino.ts</code> to write a new <code>Specialist</code> class that inherits from the <code>DinoKeeper</code>. This new class class should be able to accept an additional <code>experience</code> public member that is a number, and have a <code>safetyQuote</code> method that console.logs(&quot;Never turn your back to the cage. Trust me, I have <em>years</em> years of experience&quot;)</p>
+<h2>Exercise 2</h2>
+<p>Edit the file <code>4a-specialist.ts</code> to write a new <code>Specialist</code> class that inherits from the <code>DinoKeeper</code>. This new class class should be able to accept an additional <code>experience</code> public member that is a number, and have a <code>safetyQuote</code> method that console.logs(&quot;Never turn your back to the cage. Trust me, I have <em>years</em> years of experience&quot;)</p>
 <pre><code class="language-typescript">let employee2 = new Specialist(&quot;Owen&quot;, 14);
 employee2.sayHi(); //Owen says 'hi'
 employee2.safetyQuote();

@@ -147,7 +147,7 @@
            						">
 						<a class="page"
 							href="functions.html"
-							title="Learn how to annotate functions parameters and return values, use different parameter types available, and bind this.">
+							title="Learn how to annotate functions parameters and return values, use different parameter types available.">
 							Functions
 						</a>
 						
@@ -307,7 +307,12 @@
 			
 				<section class="body">
     <h2>Overview</h2>
-<p>Interfaces are a powerful way to enforce types and document expectations for how our code should run. Interfaces can be used in classes to create very robust components that are clearly documented by the shape defined by the interface. This section will cover how to write interfaces, setting optional properties, and the power of using interfaces in classes and functions.</p>
+<p>Interfaces are a powerful way to enforce types and document what our code provides. Interfaces used in classes allow &quot;loose coupling&quot; while providing a shape - multiple classes can use interfaces in many different ways. This section will cover how to write interfaces, setting optional properties, and the power of using interfaces in classes and functions. This section will cover:</p>
+<ul>
+<li>How to write interfaces,</li>
+<li>Setting optional properties, and</li>
+<li>The power of using interfaces in classes and functions.</li>
+</ul>
 <h2>Interfaces in TypeScript</h2>
 <p>An interface in TypeScript is a way to define the shape an entity should adhere to. An interface defines the members - properties, methods, and events. It may be easy to think of it as the signature of an API. It's worth noting that interfaces aren't transpiled into our output JavaScript, they're simply used for typechecking during the development process.</p>
 <pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
@@ -528,18 +533,26 @@ class RaptorCage extends DinoCage {
 </ul>
 <p><details>
 <summary>Solution</summary></p>
-<pre><code class="language-typescript">
-interface Address {
-  street: string;
-  city: string;
-  state: string;
-  zip: string;
-}
+<p><strong>5a-dino-park.ts</strong></p>
+<pre><code class="language-typescript">import Address from &quot;./5a-address&quot;;
+
 interface DinoPark {
   name: string;
   image?: Images;
   address: Address;
+ }
+
+export default DinoPark;
+</code></pre>
+<p><strong>5a-address.ts</strong></p>
+<pre><code class="language-typescript">interface Address {
+  street: string;
+  city: string;
+  state: string;
+  zip: string
 }
+
+export default Address;
 </code></pre>
 <p></details></p>
 <h3>Exercise 2</h3>
@@ -549,22 +562,11 @@ interface DinoPark {
 </code></pre>
 <p><details>
 <summary>Solution</summary></p>
-<pre><code class="language-typescript">function createParkSlug(dinoPark: DinoPark) {
+<pre><code class="language-typescript">import DinoPark from &quot;./5a-dino-park&quot;;
+
+export function createParkSlug(dinoPark: DinoPark) {
   return dinoPark.name.replace(/ /g, '-');
 }
-
-let islaSornaPark = {
-  name: &quot;Isla Sorna Park&quot;, 
-  address: {
-    street: '123 Main',
-    city: 'Sandusky',
-    state: 'Ohio',
-    zip: '12345'
-  }
-}
-let islaSornaSlug = createParkSlug(islaSornaPark);
-console.log(islaSornaSlug);
-//Logs &quot;Isla-Sorna-Park&quot;
 </code></pre>
 <p></details></p>
 
