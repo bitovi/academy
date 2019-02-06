@@ -1,7 +1,7 @@
 @page typescript/functions Functions
 @parent typescript 4
 
-@description Learn how to annotate functions parameters and return values, use different parameter types available, and bind ``this``.
+@description Learn how to annotate functions parameters and return values, use different parameter types available.
 
 @body
 
