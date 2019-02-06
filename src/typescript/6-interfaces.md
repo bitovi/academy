@@ -98,19 +98,31 @@ Hint: the interface should have properties and types:
 <details>
 <summary>Solution</summary>
 
-```typescript
+__5a-dino-park.ts__
 
-interface Address {
-  street: string;
-  city: string;
-  state: string;
-  zip: string;
-}
+```typescript
+import Address from "./5a-address";
+
 interface DinoPark {
   name: string;
   image?: Images;
   address: Address;
+ }
+
+export default DinoPark;
+```
+
+__5a-dino-park.ts__
+
+```typescript
+interface Address {
+  street: string;
+  city: string;
+  state: string;
+  zip: string
 }
+
+export default Address;
 ```
 
 </details>
@@ -129,22 +141,11 @@ npm run 5-interfaces
 <summary>Solution</summary>
 
 ```typescript
-function createParkSlug(dinoPark: DinoPark) {
+import DinoPark from "./5a-dino-park";
+
+export function createParkSlug(dinoPark: DinoPark) {
   return dinoPark.name.replace(/ /g, '-');
 }
-
-let islaSornaPark = {
-  name: "Isla Sorna Park", 
-  address: {
-    street: '123 Main',
-    city: 'Sandusky',
-    state: 'Ohio',
-    zip: '12345'
-  }
-}
-let islaSornaSlug = createParkSlug(islaSornaPark);
-console.log(islaSornaSlug);
-//Logs "Isla-Sorna-Park"
 ```
 
 </details>
