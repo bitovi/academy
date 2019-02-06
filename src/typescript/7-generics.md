@@ -333,14 +333,14 @@ class TreeNode<T> {
 	add(val: T){
 		if( this.compare(this.value, val) >= 1 ) {
 			if(this.left == null) {
-				this.left = new TreeNode<T>(val, this.compare);
+				this.left = new TreeNode(val, this.compare);
 			} else {
 				this.left.add(val);
 			}
 
 		} else {
 			if(this.right == null) {
-				this.right = new TreeNode<T>(val, this.compare);
+				this.right = new TreeNode(val, this.compare);
 			} else {
 				this.right.add(val);
 			}

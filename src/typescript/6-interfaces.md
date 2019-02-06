@@ -7,7 +7,7 @@
 
 ## Overview
 
-Interfaces are a powerful way to enforce types and document expectations for how our code should run. Interfaces can be used in classes to create very robust components that are clearly documented by the shape defined by the interface. This section will cover how to write interfaces, setting optional properties, and the power of using interfaces in classes and functions. 
+Interfaces are a powerful way to enforce types and document expectations for how our code should run. Interfaces used in classes allow "loose coupling" while providing a shape - multiple classes can use interfaces in many different ways. This section will cover how to write interfaces, setting optional properties, and the power of using interfaces in classes and functions.
 
 ## Interfaces in TypeScript
 
