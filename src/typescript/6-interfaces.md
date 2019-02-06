@@ -110,7 +110,7 @@ import Address from "./5a-address";
 
 interface DinoPark {
   name: string;
-  image?: Images;
+  image?: string;
   address: Address;
  }
 
