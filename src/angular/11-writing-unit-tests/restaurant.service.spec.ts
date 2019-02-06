@@ -54,9 +54,8 @@ describe('RestaurantService', () => {
       expect(cities).toEqual(mockCities);
     });
     
-    let url = '/api/cities?filter[state]=MO';
+    let url = '/api/cities?state=MO';
     const req = httpMock.expectOne(url);
-
     expect(req.request.method).toEqual('GET');
     req.flush(mockCities);
 
@@ -92,14 +91,12 @@ describe('RestaurantService', () => {
       ]
     };
       
-    restaurantService.getRestaurants('MO', 'Kansas City').subscribe((restaurants) => {
+    restaurantService.getRestaurants('NH', 'Salem').subscribe((restaurants) => {
       expect(restaurants).toEqual(mockRestaurants);
     });
     
-    let url = 'api/restaurants?filter%5Baddress.state%5D=MO&filter%5Baddress.city%5D=Kansas+City';
+    let url = '/api/restaurants?address.state=NH&address.city=Salem';
     const req = httpMock.expectOne(url);
-    console.log('request', req);
-
     expect(req.request.method).toEqual('GET');
     req.flush(mockRestaurants);
 
@@ -138,6 +135,7 @@ describe('RestaurantService', () => {
     
     let url = '/api/restaurants/potato-palace?';
     const req = httpMock.expectOne(url);
+   
 
     expect(req.request.method).toEqual('GET');
     req.flush(mockRestaurant);
