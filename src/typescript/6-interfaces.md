@@ -7,8 +7,8 @@
 
 ## Overview
 
-Interfaces are a powerful way to enforce types and document what our code provides. When used with classes,
-Interfaces provide the benefits of multiple inheritance without its implementation difficulties. They allow several classes to share a standard set of methods and constants without requiring these methods and constants to be implemented by a common superclass. This section will cover:
+
+Interfaces are a powerful way to enforce types and document what our code provides. Interfaces used in classes allow "loose coupling" while providing a shape - multiple classes can use interfaces in many different ways. This section will cover how to write interfaces, setting optional properties, and the power of using interfaces in classes and functions. This section will cover:
 
 - How to write interfaces,
 - Setting optional properties, and
