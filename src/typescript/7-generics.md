@@ -60,12 +60,12 @@ You don't see a compile time error because `hiObj` object looks like `{value: an
 
 Getting a compile time error can be solved in a variety of __inelegant__ ways:
 
-- Define the type of the variables:
+- Way 1 - Define the type of the variables:
   ```typescript
   let fourObj: {value: number} = wrapAsValue(4);
   let hiObj:   {value: string} = wrapAsValue("hi");
   ```
-- Write multiple functions:
+- Way 2 - Write multiple functions:
   ```typescript
   function wrapStringAsValue(value: string) {
     return {value: value};
@@ -74,7 +74,7 @@ Getting a compile time error can be solved in a variety of __inelegant__ ways:
     return {value: value};
   }
   ```
-- Overload `wrapAsValue` signatures:
+- Way 3 - Overload `wrapAsValue` signatures:
   ```typescript
   function wrapAsValue(value: string): {value: string};
   function wrapAsValue(value: number): {value: number};

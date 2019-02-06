@@ -39,33 +39,47 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    //GET THE RESTAURANT FROM THE ROUTE SLUG
-    
+    //GETTING THE RESTAURANT FROM THE ROUTE SLUG
+    const slug = this.route.snapshot.paramMap.get('slug');
+
+    this.restaurantService.getRestaurant(slug).subscribe((data:Restaurant) => {
+      this.restaurant = data;
+      this.isLoading = false;      
+      this.createOrderForm();
+    })
   }
 
   ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 
   createOrderForm() {
-    //CREATE AN ORDER FORM TO COLLECT: RESTAURANT ID, NAME, ADDRESS, PHONE, AND ITEMS
-    // ITEMS SHOULD USE THE CUSTOM MINLENGTH ARRAY VALIDATION
     this.orderForm = this.formBuilder.group({
+      restaurant: [this.restaurant._id],
+      name: [null],
+      address:  [null],
+      phone: [null],
+      //PASSING OUR CUSTOM VALIDATION FUNCTION TO THIS FORM CONTROL
+      items: [[], minLengthArray(1)] 
     });
     this.onChanges();
   }
 
   onChanges() {
-    // SUBSCRIBE TO THE ITEMS FORMCONTROL CHANGE TO CALCULATE A NEW TOTAL
-      // let total = 0.0;
-      // val.forEach((item: any) => {
-      //   total += item.price;
-      // });
-      // this.orderTotal = Math.round(total * 100) / 100;
+    // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
+    this.subscription = this.orderForm.get('items').valueChanges.subscribe(val => {
+      let total = 0.0;
+      val.forEach((item: any) => {
+        total += item.price;
+      });
+      this.orderTotal = Math.round(total * 100) / 100;
+    });
   }
 
   startNewOrder() {
     this.orderComplete = false;
     this.completedOrder = this.orderForm.value;
+    //CLEAR THE ORDER FORM
     this.createOrderForm();
   }
 

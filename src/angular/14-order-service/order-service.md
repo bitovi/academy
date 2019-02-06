@@ -28,11 +28,17 @@ __src/app/order/order.service.ts__
 
 ## Adding Methods
 
-With our order service we'll want to be able to create new orders, updating existing orders, delete orders, and view all orders. 
+With our order service we'll want to be able to create new orders, updating existing orders, delete orders, and view all orders. Implement a `getOrders` method that makes a get request to `'/api/orders'`. Don't forget to import HttpClient into this service!
+
+<details>
+<summary>Click to see solution</summary>
+
+Don't worry, we did the heavy lifting for the rest of the methods ;)
 
 __src/app/order/order.service.ts__
 @sourceref ./order-2.service.ts
 @highlight 2, 23, 25-27, 29-33, 35-39, 40-43
+</details>
 
 ## Importing the Service into the Order Component
 

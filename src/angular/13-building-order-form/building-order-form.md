@@ -10,10 +10,10 @@
 In this part, we will:
 
 - Create a new order component
+- Get the restaurant from route params
+- Add new route for ordering from a restaurant
 - Import a 3rd party lib
 - Create a custom component to handle item selection
-- Add new route for ordering from a restaurant
-- Get the restaurant from route params
 
 ## Creating a New Order Form Component
 
@@ -23,14 +23,56 @@ Our order form is how we can create new orders. We'll use a reactive form to get
 ng g component order
 ```
 
+We've covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes.
+
+This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation" target="_blank">validation</a>. Here's an example of a form with form controls with different validation, and one thats value is set to an array. 
+
+```typescript
+function coolKidsChecker(isACoolKid: string) {
+  return (c: AbstractControl): {[key: string]: any} => {
+      if (c.value === isACoolKid)
+          return null;
+      return { 'coolKidsChecker': {valid: false }};
+  }
+}
+
+this.myValidatingForm = this.formBuilder.group({
+  aRequiredField: [null, Validators.required]
+  aCustomRequiredField: [null, coolKidsChecker('yes')],
+  anArrayField: [[]]
+});
+```
+
+Implement these concepts for this component following the comments in this code snippet:
+
 __src/app/order/order.component.ts__
 
 @sourceref ./order.component.ts
 
+psst. don't forget to unsubscribe!
+
+
+<details>
+<summary>Click to view solution</summary>
+
+__src/app/order/order.component.ts__
+
+@sourceref ./order.component-solution.ts
+</details>
+
+## Create New Route for Ordering
+
+__src/app/app-routing.module.ts__
+
+@sourceref ./app-routing.module.ts
+@highlight 7, 22-25
+
+Now when we navigate to <a href="http://localhost:4200/restaurants/crab-place/order" target="_blank">http://localhost:4200/restaurants/crab-place/order</a> you should see the order form with options for the restaurant items shown. Next we'll create the order service that will allow us to create a new order from data submitted from this form. 
+
 
 ## Importing 3rd Party Plugins
 
-In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let's import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started" target="_blank>ngx-bootstrap</a>:
+In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let's import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started" target="_blank">ngx-bootstrap</a>:
 
 ```bash
 ng add ngx-bootstrap  --component tabs
@@ -55,12 +97,6 @@ We're going to build another component to use in our form to handle selecting or
 ```html
 <pmo-menu-items [data]="restaurant.menu.lunch" formControlName="items"></pmo-menu-items>
 ```
-
-__src/app/order/order.component.html__
-
-@sourceref ./order-2.component.html
-@highlight 7-18
-
 
 ## Create Custom Checkbox Component
 
@@ -89,11 +125,9 @@ Other concepts used here:
 
 <a href="https://angular.io/api/forms/NG_VALUE_ACCESSOR" target="_blank">https://angular.io/api/forms/NG_VALUE_ACCESSOR</a> Used to provide the control value accessor for a form control.
 
-## Create New Route for Ordering
+### Use new menu items component in order form
 
-__src/app/app-routing.module.ts__
+__src/app/order/order.component.html__
 
-@sourceref ./app-routing.module.ts
-@highlight 7, 22-25
-
-Now when we navigate to <a href="http://localhost:4200/restaurants/crab-place/order" target="_blank">http://localhost:4200/restaurants/crab-place/order</a> you should see the order form with options for the restaurant items shown. Next we'll create the order service that will allow us to create a new order from data submitted from this form. 
+@sourceref ./order-2.component.html
+@highlight 7-18
