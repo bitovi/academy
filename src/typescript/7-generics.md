@@ -151,7 +151,7 @@ Let's look at making a basic class to collect a list of things.
 
 ```typescript
 class Collection {
-  private list: any[];
+  private list: any[] = [];
   push(thing) {
     this.list.push(thing);
   }
@@ -225,6 +225,7 @@ myListOfDinosaurs.pushItem({name: 'Charlie'});
 //error Argument type '{ name: string; }' is not assignable to parameter of type 'Dinosaur'.
 ```
 @codepen
+@highlight 8,14,25
 
 
 
