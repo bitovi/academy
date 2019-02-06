@@ -344,11 +344,11 @@ because strings do not have a <code>toFixed()</code> method.</p>
 <p>You don't see a compile time error because <code>hiObj</code> object looks like <code>{value: any}</code> to TypeScript.</p>
 <p>Getting a compile time error can be solved in a variety of <strong>inelegant</strong> ways:</p>
 <ul>
-<li>Define the type of the variables:
+<li>Way 1 - Define the type of the variables:
 <pre><code class="language-typescript">let fourObj: {value: number} = wrapAsValue(4);
 let hiObj:   {value: string} = wrapAsValue(&quot;hi&quot;);
 </code></pre></li>
-<li>Write multiple functions:
+<li>Way 2 - Write multiple functions:
 <pre><code class="language-typescript">function wrapStringAsValue(value: string) {
   return {value: value};
 }
@@ -356,7 +356,7 @@ function wrapNumberAsValue(value: number) {
   return {value: value};
 }
 </code></pre></li>
-<li>Overload <code>wrapAsValue</code> signatures:
+<li>Way 3 - Overload <code>wrapAsValue</code> signatures:
 <pre><code class="language-typescript">function wrapAsValue(value: string): {value: string};
 function wrapAsValue(value: number): {value: number};
 function wrapAsValue(value: any) {

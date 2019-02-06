@@ -240,7 +240,7 @@
 						<a class="page"
 							href="pull-restaurant-data-into-view.html"
 							title="Pulling Restaurant Data into Our View">
-							Pulling restaurant data into our view
+							Use Restaurant API data
 						</a>
 						
 					</li>
@@ -464,7 +464,10 @@ export class OrderService {
 }
 </code></pre>
 <h2>Adding Methods</h2>
-<p>With our order service we'll want to be able to create new orders, updating existing orders, delete orders, and view all orders.</p>
+<p>With our order service we'll want to be able to create new orders, updating existing orders, delete orders, and view all orders. Implement a <code>getOrders</code> method that makes a get request to <code>'/api/orders'</code>. Don't forget to import HttpClient into this service!</p>
+<p><details>
+<summary>Click to see solution</summary></p>
+<p>Don't worry, we did the heavy lifting for the rest of the methods ;)</p>
 <p><strong>src/app/order/order.service.ts</strong></p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -513,6 +516,7 @@ export class OrderService {
 
 </code></pre>
 <div line-highlight='2, 23, 25-27, 29-33, 35-39, 40-43'></div>
+</details>
 <h2>Importing the Service into the Order Component</h2>
 <p><strong>src/app/order/order.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
