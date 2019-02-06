@@ -11,7 +11,6 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
 import { ImageUrlPipe } from './image-url.pipe';
 import { RestaurantDetailComponent } from './restaurant/detail/detail.component';
 import { OrderComponent } from './order/order.component';
-import { MenuItemsComponent } from './order/menu-items/menu-items.component';
 
 @NgModule({
   declarations: [
@@ -20,8 +19,7 @@ import { MenuItemsComponent } from './order/menu-items/menu-items.component';
     RestaurantComponent,
     ImageUrlPipe,
     RestaurantDetailComponent,
-    OrderComponent,
-    MenuItemsComponent
+    OrderComponent
   ],
   imports: [
     BrowserModule,

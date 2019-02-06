@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, FormArray, AbstractControl } from '@angular/for
 
 import { RestaurantService } from '../restaurant/restaurant.service';
 import { Restaurant } from '../restaurant/restaurant';
+import { OrderService, Order, Item } from './order.service';
 import { Subscription } from 'rxjs';
 
 
@@ -26,7 +27,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   isLoading: boolean = true;
   items: FormArray;
   orderTotal: number = 0.0;
-  completedOrder: any;
+  completedOrder: Order;
   orderComplete: boolean = false;
   orderProcessing: boolean = false;
   private subscription: Subscription;
@@ -34,6 +35,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute, 
     private restaurantService: RestaurantService,
+    private orderService: OrderService,
     private formBuilder: FormBuilder 
   ) { 
   }
@@ -66,7 +68,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   onChanges() {
     this.subscription = this.orderForm.get('items').valueChanges.subscribe(val => {
       let total = 0.0;
-      val.forEach((item: any) => {
+      val.forEach((item: Item) => {
         total += item.price;
       });
       this.orderTotal = Math.round(total * 100) / 100;
@@ -75,7 +77,11 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.orderProcessing = true;
-    //call createOrder here
+    this.orderService.createOrder(this.orderForm.value).subscribe((res: Order) => {
+      this.completedOrder = res;
+      this.orderComplete = true;
+      this.orderProcessing = false;
+    });
   }
 
   startNewOrder() {

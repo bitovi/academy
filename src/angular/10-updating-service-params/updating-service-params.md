@@ -25,14 +25,22 @@ __src/app/restaurant/restaurant.service.ts__
 @sourceref ./restaurant-1.service.ts
 @highlight 2, 26-28
 
+Take a look at your console trying to compile your app. What error do you see?
+
 ## Convert ResponseData to Generic
 
-Because our API returns different data types that follow the same structure, we can change our `ResponseData` interface to a generic to accept any kind of type, including the interfaces for city and state.
+Because our API returns different data types that follow the same structure, we need change our `ResponseData` interface to accept any kind of type, including the interfaces for city and state. Change the `ResponseData` interface in the `src/app/restaurant/restaurant.service.ts` to use generics!
+
+<details>
+<summary>Click to see solution</summary>
 
 __src/app/restaurant/restaurant.service.ts__
 
 @sourceref ./restaurant-2.service.ts
 @highlight 5-7, 28
+
+</details>
+
 
 ### Get states and cities from the service layer
 
@@ -45,8 +53,7 @@ __src/app/restaurant/restaurant.service.ts__
 @sourceref ./restaurant-3.service.ts
 @highlight 31-38
 
-We'll use those methods to get all states and cities in `IL`.
-Enable the state and city forms.
+We'll use those methods to get all states and cities in `IL`. We'll also want to disable down dropdowns when the component first loads, then enable them as their respective dropdown lists are retrieved.
 
 __src/app/restaurant/restaurant.component.ts__
 

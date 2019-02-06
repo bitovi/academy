@@ -39,3 +39,5 @@ __src/app/restaurant/restaurant.component.html__
 
 @sourceref ./restaurant.component.html
 @highlight 3-24
+
+When you visit <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>, there will now be state and city dropdown options populated with fake data.

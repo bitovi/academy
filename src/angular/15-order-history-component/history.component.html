@@ -6,7 +6,7 @@
     <div class="actions">Action</div>
   </div>
 
-  <pmo-order-list
+  <pmo-list
     [orders]="newOrders"
     listTitle="New Orders"
     status="new"
@@ -14,9 +14,9 @@
     action="preparing"
     actionTitle="Preparing"
     emptyMessage="No new orders">
-    </pmo-order-list>
+    </pmo-list>
 
-    <pmo-order-list
+    <pmo-list
     [orders]="preparingOrders"
     listTitle="Preparing"
     status="preparing"
@@ -24,9 +24,9 @@
     action="delivery"
     actionTitle="Out for delivery"
     emptyMessage="No orders preparing">
-    </pmo-order-list>
+    </pmo-list>
 
-    <pmo-order-list
+    <pmo-list
     [orders]="deliveryOrders"
     listTitle="Out for delivery"
     status="delivery"
@@ -34,13 +34,13 @@
     action="delivered"
     actionTitle="Delivered"
     emptyMessage="No orders are being delivered">
-    </pmo-order-list>
+    </pmo-list>
 
-    <pmo-order-list
+    <pmo-list
     [orders]="deliveredOrders"
     listTitle="Delivery"
     status="delivered"
     statusTitle="Delivered"
     emptyMessage="No delivered orders">
-    </pmo-order-list>
+    </pmo-list>
 </div>

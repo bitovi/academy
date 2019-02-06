@@ -43,7 +43,7 @@ Double check the api is working by running ``npm run api`` and navigating to <a 
 
 ## Create a Proxy to Serve API
 
-Next, we'll create a proxy file at the root of our Angular project to access our API for local development purposes.
+Next, we'll create a <a href="https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md" target="_blank">proxy</a> file at the root of our Angular project to access our API for local development purposes.
 
 ```bash
 touch proxy.conf.json

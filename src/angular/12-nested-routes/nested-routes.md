@@ -80,4 +80,4 @@ __src/app/restaurant/detail/detail.component.ts__
 @sourceref ./detail.component-3.ts
 @highlight 4, 5, 13-14, 18, 23-27
 
-Now when we navigate to  <a href="http://localhost:4200/restaurants/crab-place" target="_blank">localhost:4200/restaurants/crab-place</a> we'll see the detail view of the Crab Place restaurant
+Now when we click the detail button on a restaurant from the restaurants view we'll see the detail view of that restaurant.

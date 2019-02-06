@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { OrderService, Order } from '../order.service';
+import { ResponseData } from '../../restaurant/restaurant.service';
 
 interface Data<T> {
   value: Array<T>;
@@ -11,8 +13,13 @@ interface Data<T> {
   styleUrls: ['./history.component.less']
 })
 export class HistoryComponent implements OnInit {
+  public orders: Data<Order> = {
+    value: [],
+    isPending: true
+  }
 
   constructor(
+    private orderService: OrderService
     ) {
     }
 
@@ -22,7 +29,9 @@ export class HistoryComponent implements OnInit {
   }
 
   getOrders() {
-   //get orders here
+    this.orderService.getOrders().subscribe((res: ResponseData<Order>) => {
+      this.orders.value = res.data;
+    });
   }
 
   get newOrders() {

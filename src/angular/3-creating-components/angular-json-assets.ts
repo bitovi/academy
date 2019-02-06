@@ -35,7 +35,8 @@
               "src/styles.less",
               "./node_modules/place-my-order-assets/less/styles.less"
             ],
-            "scripts": []
+            "scripts": [],
+            "es5BrowserSupport": true
           },
           "configurations": {
             "production": {

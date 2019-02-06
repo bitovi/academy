@@ -62,12 +62,19 @@ __src/app/order/order.component.ts__
 
 ## Create New Route for Ordering
 
+Now, create a route for our new component! The path should be `/restaurants/{{slug}}/order`. 
+
+<details>
+<summary>Click to view solution</summary>
+
 __src/app/app-routing.module.ts__
 
 @sourceref ./app-routing.module.ts
 @highlight 7, 22-25
 
-Now when we navigate to <a href="http://localhost:4200/restaurants/crab-place/order" target="_blank">http://localhost:4200/restaurants/crab-place/order</a> you should see the order form with options for the restaurant items shown. Next we'll create the order service that will allow us to create a new order from data submitted from this form. 
+</details>
+
+Now when we navigate to <a href="http://localhost:4200/restaurants/crab-place/order" target="_blank">http://localhost:4200/restaurants/crab-place/order</a> you should see the order form with options for the restaurant items shown. Next we'll create the order service that will allow us to create a new order from data submitted from this form.
 
 
 ## Importing 3rd Party Plugins
@@ -85,20 +92,24 @@ Next we need to import the plugin into our root app module.
 __src/app/order/app.module.ts__
 
 @sourceref ./app.module.ts
-@highlight 5, 31
+@highlight 5, 29
+
+Now let's add the markup to our order component implementing the tabs widget.
 
 __src/app/order/order.component.html__
 
 @sourceref ./order-1.component.html
-@highlight 13, 18
+@highlight 7-18
+
+Now when we view the order form of our route, we'll see a nice form and tabs for lunch and dinner menu options.
+
+## Create Custom Checkbox Component
 
 We're going to build another component to use in our form to handle selecting order items. We use data-binding to pass data between components. We'll use the `@Input()` to get our list of items from the restaurant to display in our child component, and hook it into our Reactive Form using the `formControlName` attribute as shown below.
 
 ```html
 <pmo-menu-items [data]="restaurant.menu.lunch" formControlName="items"></pmo-menu-items>
 ```
-
-## Create Custom Checkbox Component
 
 ```bash
 ng g component order/menu-items
@@ -130,4 +141,6 @@ Other concepts used here:
 __src/app/order/order.component.html__
 
 @sourceref ./order-2.component.html
-@highlight 7-18
+@highlight 10, 15
+
+We now have a form that updates the items formcontrol when items are selected and shows the user an updated total!
