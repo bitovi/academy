@@ -231,29 +231,99 @@ myListOfDinosaurs.pushItem({name: 'Charlie'});
 
 ## Recursive Generic Classes
 
-A great example of the power of generics is creating a linked list with type safety.
+A great example of the power of generics is creating a linked list with type
+safety.  We will create a simple linked list that supports:
 
-The following is an example of a linked list for strings:
+- Adding values to the front of the list with `linkedList.unshift(value)`.
+- Removing and returning the front values with `linkedList.shift()`.
+- Reading the front of the list with `linkedList.head`.
+- Reading the end of the list with `linkedList.tail`.
 
-@sourceref ./7-0-linked-list.html
-@codepen
+We can use it with strings like:
 
-Let's look at transforming this to use generics to use this list for more than just strings. First, we change our interface to take a generic type.
+```typescript
+var linkedList = new LinkedList<string>();
 
-@sourceref ./7-0-1-interface.html
-@codepen
+linkedList.unshift("a");
+linkedList.unshift("b");
 
-The angle brackets with the T indicate that we have a type variable ``<T>``, and can take what the user provides between the brackets when using the interface. For example, a string:
 
-@sourceref ./7-0-1-interface-string.html
-@codepen
-@highlight 13
+console.log( linkedList.shift() ) //logs "b"
 
-Next we can refactor our class to take our new generic.
+console.log( linkedList.shift() ) //logs "a"
+```
 
-@sourceref ./7-0-2-new-class.html
-@codepen
-@highlight 12,13,14
+Or with numbers like:
+
+```typescript
+var linkedList = new LinkedList<number>();
+
+linkedList.unshift(100);
+linkedList.unshift(200);
+
+console.log( linkedList.head ) //logs 200
+
+console.log( linkedList.tail ) //logs 100
+```
+
+The implementation looks like this:
+
+```typescript
+// Define node that has a value and points to the
+// next item in the list.
+class LinkedListNode<T> {
+	value: T;
+	next?: LinkedListNode<T>;
+
+	constructor(val: T) {
+		this.value = val;
+		this.next = null;
+	}
+}
+
+class LinkedList<T> {
+	private _head: LinkedListNode<T>;
+	private _tail: LinkedListNode<T>;
+
+	// Adds to the start of the list.
+	unshift(value: T) {
+		var node = new LinkedListNode(value);
+
+		// The existing head is now next.
+		if(this._head) {
+			node.next = this._head;
+		}
+
+		this._head = node;
+
+		// If there wasn't a tail, this is the first node
+		if(!this._tail) {
+			this._tail = node;
+		}
+	}
+	// removes first
+	shift(){
+		let value: T;
+
+		// If there was a head,
+		// set head to whatever is after it.
+		if(this._head) {
+			value = this._head.value;
+			this._head = this._head.next;
+		}
+
+		// If there is no more head, the
+		// list is empty.
+		if(!this._head) {
+			this._tail = null;
+		}
+		return value;
+	}
+
+	get head() { return this._head.value }
+	get tail() {return this._tail.value }
+}
+```
 
 Thanks to generics we're able to use the same ``LinkedList`` class in multiple different scenarios with any type.
 
