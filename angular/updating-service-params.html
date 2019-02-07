@@ -370,6 +370,21 @@
 				
 			
 		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="writing-unit-tests.html"
+							title="Writing Unit Tests">
+							Writing Unit Tests
+						</a>
+						
+					</li>
+				
+			
+		
 	</ul>
 
 
@@ -470,8 +485,13 @@ export class RestaurantService {
 
 </code></pre>
 <div line-highlight='2, 26-28'></div>
-<h2>Convert ResponseData to Generic</h2>
-<p>Because our API returns different data types that follow the same structure, we can change our <code>ResponseData</code> interface to a generic to accept any kind of type, including the interfaces for city and state.</p>
+<p>Take a look at your console trying to compile your app. What error do you see?</p>
+<h2>Exercise: Convert ResponseData to Generic</h2>
+<h3>The problem</h3>
+<p>Because our API returns different data types that follow the same structure, we need change our <code>ResponseData</code> interface to accept any kind of type, including the interfaces for city and state. Change the <code>ResponseData</code> interface in the <code>src/app/restaurant/restaurant.service.ts</code> to use generics!</p>
+<h3>What you need to know</h3>
+<p>You already know how to use generics, you TypeScript guru!</p>
+<h3>The solution</h3>
 <p><strong>src/app/restaurant/restaurant.service.ts</strong></p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -507,7 +527,7 @@ export class RestaurantService {
 </code></pre>
 <div line-highlight='5-7, 28'></div>
 <h3>Get states and cities from the service layer</h3>
-<p>Add <code>getStates()</code> method that publishes states and a
+<p>We're going to a <code>getStates()</code> method that publishes states and a
 <code>getCities(state:string)</code> method that publishes a list of cities
 for a provided state.</p>
 <p><strong>src/app/restaurant/restaurant.service.ts</strong></p>
@@ -553,8 +573,7 @@ export class RestaurantService {
 
 </code></pre>
 <div line-highlight='31-38'></div>
-<p>We'll use those methods to get all states and cities in <code>IL</code>.
-Enable the state and city forms.</p>
+<p>We'll use those methods to get all states and cities in <code>IL</code>. We'll also want to disable down dropdowns when the component first loads, then enable them as their respective dropdown lists are retrieved.</p>
 <p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -614,7 +633,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
       this.form.get('city').enable();
     });
 
-    this.restaurantService.getRestaurants(&quot;IL&quot;,&quot;Chicago&quot;).subscribe((res: ResponseData) =&gt; {
+    this.restaurantService.getRestaurants(&quot;IL&quot;,&quot;Chicago&quot;).subscribe((res: ResponseData&lt;Restaurant&gt;) =&gt; {
       this.restaurants.value = res.data;
       this.restaurants.isPending = false;
     });
@@ -648,7 +667,6 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
 </code></pre>
 <div line-highlight='5,26-34,47-57,59,71-72'></div>
-<p>psst. did you find the error in this code with your compiler?</p>
 <h2>Add methods to retrieve data to component</h2>
 <p>In the next step, we will want to change the list of cities and restaurants
 as the user selects a state and/or city.  In <em>this</em> step, we will
@@ -885,7 +903,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
   getRestaurants(state: string, city: string) {
     this.restaurants.isPending = true;
-    this.restaurantService.getRestaurants(state, city).subscribe((res: ResponseData) =&gt; {
+    this.restaurantService.getRestaurants(state, city).subscribe((res: ResponseData&lt;Restaurant&gt;) =&gt; {
       this.restaurants.value = res.data;
       this.restaurants.isPending = false;
     });

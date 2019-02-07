@@ -370,6 +370,21 @@
 				
 			
 		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="writing-unit-tests.html"
+							title="Writing Unit Tests">
+							Writing Unit Tests
+						</a>
+						
+					</li>
+				
+			
+		
 	</ul>
 
 
@@ -436,6 +451,74 @@
 <h2>Creating Order History Component</h2>
 <pre><code class="language-bash">ng g component order/history
 </code></pre>
+<h3>The problem</h3>
+<p>In this component, we want to see a history of all orders. Import the order service into this new component and make the call to get all orders.</p>
+<p><strong>src/app/order/history.component.ts</strong></p>
+<pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
+
+interface Data&lt;T&gt; {
+  value: Array&lt;T&gt;;
+  isPending: boolean;
+}
+
+@Component({
+  selector: 'pmo-history',
+  templateUrl: './history.component.html',
+  styleUrls: ['./history.component.less']
+})
+export class HistoryComponent implements OnInit {
+
+  constructor(
+    ) {
+    }
+
+  ngOnInit() {
+    this.getOrders();
+
+  }
+
+  getOrders() {
+   //get orders here
+  }
+
+  get newOrders() {
+    let orders =  this.orders.value.filter((order) =&gt; {
+      return order.status === &quot;new&quot;;
+    });
+    return orders;
+  }
+
+   get preparingOrders() {
+    let orders =  this.orders.value.filter((order) =&gt; {
+      return order.status === &quot;preparing&quot;;
+    });
+    return orders;
+   }
+
+   get deliveryOrders() {
+    let orders =  this.orders.value.filter((order) =&gt; {
+      return order.status === &quot;delivery&quot;;
+    });
+    return orders;
+   }
+
+   get deliveredOrders() {
+    let orders =  this.orders.value.filter((order) =&gt; {
+      return order.status === &quot;delivered&quot;;
+    });
+    return orders;
+   }
+
+}
+
+</code></pre>
+<h3>What you need to know</h3>
+<ul>
+<li>how to import a service</li>
+<li>how to subscribe to a method on a service</li>
+</ul>
+<hr />
+<h3>The solution</h3>
 <p><strong>src/app/order/history.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 import { OrderService, Order } from '../order.service';
@@ -514,49 +597,132 @@ export class HistoryComponent implements OnInit {
     &lt;div class=&quot;actions&quot;&gt;Action&lt;/div&gt;
   &lt;/div&gt;
 
-  &lt;pmo-order-list
-    [orders]=&quot;newOrders&quot;
-    listTitle=&quot;New Orders&quot;
-    status=&quot;new&quot;
-    statusTitle=&quot;New Order!&quot;
-    action=&quot;preparing&quot;
-    actionTitle=&quot;Preparing&quot;
-    emptyMessage=&quot;No new orders&quot;&gt;
-    &lt;/pmo-order-list&gt;
-
-    &lt;pmo-order-list
-    [orders]=&quot;preparingOrders&quot;
-    listTitle=&quot;Preparing&quot;
-    status=&quot;preparing&quot;
-    statusTitle=&quot;Preparing&quot;
-    action=&quot;delivery&quot;
-    actionTitle=&quot;Out for delivery&quot;
-    emptyMessage=&quot;No orders preparing&quot;&gt;
-    &lt;/pmo-order-list&gt;
-
-    &lt;pmo-order-list
-    [orders]=&quot;deliveryOrders&quot;
-    listTitle=&quot;Out for delivery&quot;
-    status=&quot;delivery&quot;
-    statusTitle=&quot;Out for delivery&quot;
-    action=&quot;delivered&quot;
-    actionTitle=&quot;Delivered&quot;
-    emptyMessage=&quot;No orders are being delivered&quot;&gt;
-    &lt;/pmo-order-list&gt;
-
-    &lt;pmo-order-list
-    [orders]=&quot;deliveredOrders&quot;
-    listTitle=&quot;Delivery&quot;
-    status=&quot;delivered&quot;
-    statusTitle=&quot;Delivered&quot;
-    emptyMessage=&quot;No delivered orders&quot;&gt;
-    &lt;/pmo-order-list&gt;
+  &lt;ng-container *ngFor=&quot;let order of orders.value&quot;&gt;
+    &lt;div [ngClass]=&quot;['order', order.status? order.status: '']&quot;&gt;
+      &lt;address&gt;
+        {{order.name}} &lt;br /&gt;{{order.address}} &lt;br /&gt;{{order.phone}}
+      &lt;/address&gt;
+    
+      &lt;div class=&quot;items&quot;&gt;
+        &lt;ul&gt;
+          &lt;li *ngFor=&quot;let item of order.items&quot;&gt;{{item.name}}&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    
+      &lt;div class=&quot;total&quot;&gt;$order total?&lt;/div&gt;
+    
+      &lt;div class=&quot;actions&quot;&gt;
+        &lt;span class=&quot;badge&quot;&gt;Status title?&lt;/span&gt;
+          &lt;p class=&quot;action&quot; *ngIf=&quot;action&quot;&gt;
+            Mark as:
+            &lt;a href=&quot;javascript://&quot;&gt;
+              next step
+            &lt;/a&gt;
+          &lt;/p&gt;
+    
+        &lt;p class=&quot;action&quot;&gt;
+          &lt;a href=&quot;javascript://&quot; &gt;Delete&lt;/a&gt;
+        &lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/ng-container&gt;
 &lt;/div&gt;
 </code></pre>
+<h2>Add Order History Route</h2>
+<h3>The problem</h3>
+<p>Create a new route <code>/order-history</code> that shows the history component you created.</p>
+<h3>What you need to know</h3>
+<ul>
+<li>how to create a route</li>
+</ul>
+<hr />
+<h3>The solution</h3>
+<p><strong>src/app/app-routing.module.ts</strong></p>
+<pre><code class="language-ts">import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { HomeComponent } from './home/home.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { RestaurantDetailComponent } from './restaurant/detail/detail.component';
+import { OrderComponent } from './order/order.component';
+import { HistoryComponent } from './order/history/history.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent,
+  },
+  {
+    path: 'restaurants',
+    component: RestaurantComponent,
+  },
+  {
+    path: 'restaurants/:slug',
+    component: RestaurantDetailComponent,
+  },
+  {
+    path: 'restaurants/:slug/:order',
+    component: OrderComponent,
+  },
+  {
+    path: 'order-history',
+    component: HistoryComponent
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+</code></pre>
+<div line-highlight='8, 27-30'></div>
+<h2>Adding Order History to Main Navigation</h2>
+<h3>The Problem</h3>
+<p>Next, add the order history path you created to the navigation in the <code>src/app/app.component.html</code> file.</p>
+<h3>What you need to know</h3>
+<ul>
+<li>How to create a link to a route</li>
+</ul>
+<hr />
+<h3>The solution</h3>
+<p><strong>src/app/app.component.html</strong></p>
+<pre><code class="language-html">&lt;header&gt;
+  &lt;nav&gt;
+   &lt;h1&gt;place-my-order.com&lt;/h1&gt;
+   &lt;ul&gt;
+     &lt;li routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
+       &lt;a routerLink=&quot;/&quot; &gt;Home&lt;/a&gt;
+     &lt;/li&gt;
+     &lt;li [ngClass]=&quot;{'active' : rla.isActive} &quot;&gt;
+       &lt;a routerLink=&quot;/restaurants&quot; routerLinkActive #rla=&quot;routerLinkActive&quot;&gt;Restaurants&lt;/a&gt;
+     &lt;/li&gt;
+     &lt;li routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
+       &lt;a routerLink=&quot;/order-history&quot;&gt;Order History&lt;/a&gt;
+     &lt;/li&gt;
+   &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+&lt;router-outlet&gt;&lt;/router-outlet&gt;
+
+</code></pre>
+<div line-highlight='11-13'></div>
+<p>You should now be able to navigate to <a href="http://localhost:4200/order-history" target="_blank">http://localhost:4200/order-history</a> and see a list of all orders.</p>
 <h2>Creating a Child Component to Handle Order States</h2>
-<p>Orders can have states of new, preparing, delivery, and delivered, and we want to have different actions to take in the UI based on an orders status. This new component will take a variety of different data sources.</p>
+<p>Orders can have states of new, preparing, delivery, and delivered, and we want to have different actions to take in the UI based on an orders status. Let's refactor the UI displaying all the orders into a new component. This new component will take a variety of different inputs:</p>
+<ul>
+<li>orders: an array of orders based on status property</li>
+<li>listTitle: &quot;NewOrders&quot;/&quot;Preparing&quot;/&quot;Out for Delivery&quot;/&quot;Delivery&quot;</li>
+<li>status: &quot;new&quot;/&quot;preparing&quot;/&quot;delivery&quot;/&quot;delivered&quot;</li>
+<li>statusTitle: &quot;New Order!&quot;/&quot;Preparing&quot;/&quot;Out for delivery&quot;/&quot;Delivered&quot;</li>
+<li>action: &quot;preparing&quot;/&quot;delivery&quot;/&quot;delivered&quot;</li>
+<li>actionTitle: &quot;preparing&quot;/&quot;Out for delivery&quot;/&quot;Delivered&quot;</li>
+<li>emptyMessage: &quot;No new orders&quot;/&quot;No orders preparing&quot;/&quot;No orders are being delivered&quot;/&quot;No delivered orders&quot;</li>
+</ul>
 <pre><code class="language-bash">ng g component order/list
 </code></pre>
+<p>The markup will look like this:</p>
 <p><strong>src/app/order/list.component.html</strong></p>
 <pre><code class="language-html">&lt;h4&gt;{{listTitle}}&lt;/h4&gt;
 &lt;div class=&quot;loading&quot; *ngIf=&quot;isPending&quot;&gt;&lt;/div&gt;
@@ -593,6 +759,27 @@ export class HistoryComponent implements OnInit {
 &lt;div class=&quot;order empty&quot;&gt;{{emptyMessage}}&lt;/div&gt;
 
 </code></pre>
+<h3>The Problem</h3>
+<p>Update this component to:</p>
+<ul>
+<li>take the above list of inputs</li>
+<li>have three methods
+<ul>
+<li><code>markAs(order, action)</code> that will update an order based on the action</li>
+<li><code>delete(order._id)</code> that will delete an order</li>
+<li><code>total(items)</code> that will return the order total</li>
+</ul></li>
+<li>have an <code>isPending</code> member that gets set before and after actions are performed</li>
+</ul>
+<p>You'll need to import <code>Input</code> from angular core, as well as <code>OrderService</code> and relevant interfaces to handle updating and deleting your orders.</p>
+<h3>What you need to know</h3>
+<ul>
+<li>set inputs on a component</li>
+<li>call methods on a service</li>
+<li>update a boolean member to show/hide content</li>
+</ul>
+<hr />
+<h3>The solution</h3>
 <p><strong>src/app/order/list.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, Input } from '@angular/core';
 import { Order, Item, OrderService } from '../order.service';
@@ -642,72 +829,63 @@ export class ListComponent implements OnInit {
 
 </code></pre>
 <div line-highlight='6'></div>
-<h2>Add Order History Route</h2>
-<p><strong>src/app/app-routing.module.ts</strong></p>
-<pre><code class="language-ts">import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+<h3>The problem</h3>
+<p>Refactor your <code>src/app/order/history.component.html</code> file to use the new list component for each order subgroup: new orders, preparing orders, delivery orders, delivered orders.</p>
+<h3>What you need to know</h3>
+<ul>
+<li>How to pass properties to child components</li>
+</ul>
+<hr />
+<h3>The solution</h3>
+<p><strong>src/app/order/history.component.html</strong></p>
+<pre><code class="language-html">&lt;div class=&quot;order-history&quot;&gt;
+  &lt;div class=&quot;order header&quot;&gt;
+    &lt;address&gt;Name / Address / Phone&lt;/address&gt;
+    &lt;div class=&quot;items&quot;&gt;Order&lt;/div&gt;
+    &lt;div class=&quot;total&quot;&gt;Total&lt;/div&gt;
+    &lt;div class=&quot;actions&quot;&gt;Action&lt;/div&gt;
+  &lt;/div&gt;
 
-import { HomeComponent } from './home/home.component';
-import { RestaurantComponent } from './restaurant/restaurant.component';
-import { RestaurantDetailComponent } from './restaurant/detail/detail.component';
-import { OrderComponent } from './order/order.component';
-import { HistoryComponent } from './order/history/history.component';
+  &lt;pmo-list
+    [orders]=&quot;newOrders&quot;
+    listTitle=&quot;New Orders&quot;
+    status=&quot;new&quot;
+    statusTitle=&quot;New Order!&quot;
+    action=&quot;preparing&quot;
+    actionTitle=&quot;Preparing&quot;
+    emptyMessage=&quot;No new orders&quot;&gt;
+    &lt;/pmo-list&gt;
 
-const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-  },
-  {
-    path: 'restaurants',
-    component: RestaurantComponent,
-  },
-  {
-    path: 'restaurants/:slug',
-    component: RestaurantDetailComponent,
-  },
-  {
-    path: 'restaurants/:slug/:order',
-    component: OrderComponent,
-  },
-  {
-    path: 'order-history',
-    component: HistoryComponent
-  }
-];
+    &lt;pmo-list
+    [orders]=&quot;preparingOrders&quot;
+    listTitle=&quot;Preparing&quot;
+    status=&quot;preparing&quot;
+    statusTitle=&quot;Preparing&quot;
+    action=&quot;delivery&quot;
+    actionTitle=&quot;Out for delivery&quot;
+    emptyMessage=&quot;No orders preparing&quot;&gt;
+    &lt;/pmo-list&gt;
 
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
+    &lt;pmo-list
+    [orders]=&quot;deliveryOrders&quot;
+    listTitle=&quot;Out for delivery&quot;
+    status=&quot;delivery&quot;
+    statusTitle=&quot;Out for delivery&quot;
+    action=&quot;delivered&quot;
+    actionTitle=&quot;Delivered&quot;
+    emptyMessage=&quot;No orders are being delivered&quot;&gt;
+    &lt;/pmo-list&gt;
 
+    &lt;pmo-list
+    [orders]=&quot;deliveredOrders&quot;
+    listTitle=&quot;Delivery&quot;
+    status=&quot;delivered&quot;
+    statusTitle=&quot;Delivered&quot;
+    emptyMessage=&quot;No delivered orders&quot;&gt;
+    &lt;/pmo-list&gt;
+&lt;/div&gt;
 </code></pre>
-<div line-highlight='8, 27-30'></div>
-<h2>Adding Order History to Main Navigation</h2>
-<p>Finally, let's add the order history path to the navigation.</p>
-<p><strong>src/app/app.component.html</strong></p>
-<pre><code class="language-html">&lt;header&gt;
-  &lt;nav&gt;
-   &lt;h1&gt;place-my-order.com&lt;/h1&gt;
-   &lt;ul&gt;
-     &lt;li routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
-       &lt;a routerLink=&quot;/&quot; &gt;Home&lt;/a&gt;
-     &lt;/li&gt;
-     &lt;li [ngClass]=&quot;{'active' : rla.isActive} &quot;&gt;
-       &lt;a routerLink=&quot;/restaurants&quot; routerLinkActive #rla=&quot;routerLinkActive&quot;&gt;Restaurants&lt;/a&gt;
-     &lt;/li&gt;
-     &lt;li routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
-       &lt;a routerLink=&quot;/order-history&quot;&gt;Order History&lt;/a&gt;
-     &lt;/li&gt;
-   &lt;/ul&gt;
-  &lt;/nav&gt;
-&lt;/header&gt;
-&lt;router-outlet&gt;&lt;/router-outlet&gt;
-
-</code></pre>
-<div line-highlight='11-13'></div>
-<p>You should now be able to navigate to <a href="http://localhost:4200/order-history" target="_blank">http://localhost:4200/order-history</a>.</p>
+<p>Now as you click the actions of the orders and refresh the page, you can see their updated statuses. Next we'll use Socket.io to capture the events and instantly update the ui.</p>
 
 </section>
 

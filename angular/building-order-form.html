@@ -370,6 +370,21 @@
 				
 			
 		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="writing-unit-tests.html"
+							title="Writing Unit Tests">
+							Writing Unit Tests
+						</a>
+						
+					</li>
+				
+			
+		
 	</ul>
 
 
@@ -437,7 +452,111 @@
 <p>Our order form is how we can create new orders. We'll use a reactive form to get data from the users, use a custom validation function to make sure at least once item has been selected, and calculate the order total every time a new item is selected or unselected.</p>
 <pre><code class="language-bash">ng g component order
 </code></pre>
-<p>We've covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes.</p>
+<h2>Create New Route for Ordering</h2>
+<h3>The Problem</h3>
+<p>Now, create a route for our new component! The path should be <code>/restaurants/{{slug}}/order</code>.</p>
+<h3>What you need to know</h3>
+<p>You've created routes before! You got this!</p>
+<hr />
+<h3>Solution</h3>
+<p><strong>src/app/app-routing.module.ts</strong></p>
+<pre><code class="language-ts">import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { HomeComponent } from './home/home.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { RestaurantDetailComponent } from './restaurant/detail/detail.component';
+import { OrderComponent } from './order/order.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent,
+  },
+  {
+    path: 'restaurants',
+    component: RestaurantComponent,
+  },
+  {
+    path: 'restaurants/:slug',
+    component: RestaurantDetailComponent,
+  },
+  {
+    path: 'restaurants/:slug/:order',
+    component: OrderComponent,
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+</code></pre>
+<div line-highlight='7, 22-25'></div>
+<p>Now when we navigate to the <code>/order</code> path from a restaurant detail page you should see where the order form will go.</p>
+<p>In your new order component, edit the <strong>src/order/order.component.html</strong> file to be:</p>
+<p><strong>src/app/order/order.component.html</strong></p>
+<pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
+    &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
+    &lt;/ng-container&gt;
+    &lt;ng-template #showOrderForm&gt;
+      &lt;h2&gt;Order here&lt;/h2&gt;
+      &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+        &lt;ng-container *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
+          &lt;h4&gt;Lunch Menu&lt;/h4&gt;
+          &lt;div *ngFor=&quot;let item of restaurant.menu.lunch;&quot;&gt;
+            &lt;label&gt;
+              &lt;input type=&quot;checkbox&quot; formControlName=&quot;items&quot;&gt;
+              {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
+            &lt;/label&gt;
+          &lt;/div&gt;
+        &lt;/ng-container&gt;
+        &lt;ng-container *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
+            &lt;h4&gt;Dinner Menu&lt;/h4&gt;
+            &lt;div *ngFor=&quot;let item of restaurant.menu.dinner;&quot;&gt;
+              &lt;label&gt;
+                &lt;input type=&quot;checkbox&quot; formControlName=&quot;items&quot;&gt;
+                {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
+              &lt;/label&gt;
+            &lt;/div&gt;
+          &lt;/ng-container&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+          &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
+          &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
+          &lt;p&gt;Please enter your name.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+          &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
+          &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
+          &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+          &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
+          &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+          &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;submit&quot;&gt;
+          &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
+            &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
+            &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
+              Place My Order!
+            &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
+  &lt;/ng-template&gt;
+  &lt;/div&gt;
+</code></pre>
+<p>We've covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes. Let's practice those concepts.</p>
+<h3>The problem</h3>
+<p>The order form component needs to get the restaurant from the route slug, and needs a reactive form to collect <code>restaurant</code>, <code>name</code>, <code>address</code>, <code>phone</code>, and <code>items</code>, abd a way to update the order total when the items form control changes.</p>
+<h3>What you need to know</h3>
+<ul>
+<li><p>How to get the restaurant from the route slug</p></li>
+<li><p>Create a reactive form</p></li>
+<li><p>Listen to form value changes</p></li>
+<li><p>Add validation:</p>
 <p>This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation" target="_blank">validation</a>. Here's an example of a form with form controls with different validation, and one thats value is set to an array.</p>
 <pre><code class="language-typescript">function coolKidsChecker(isACoolKid: string) {
   return (c: AbstractControl): {[key: string]: any} =&gt; {
@@ -452,8 +571,8 @@ this.myValidatingForm = this.formBuilder.group({
   aCustomRequiredField: [null, coolKidsChecker('yes')],
   anArrayField: [[]]
 });
-</code></pre>
-<p>Implement these concepts for this component following the comments in this code snippet:</p>
+</code></pre></li>
+</ul>
 <p><strong>src/app/order/order.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -529,9 +648,8 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
-<p>psst. don't forget to unsubscribe!</p>
-<p><details>
-<summary>Click to view solution</summary></p>
+<hr />
+<h3>The solution</h3>
 <p><strong>src/app/order/order.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -621,45 +739,6 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
-<p></details></p>
-<h2>Create New Route for Ordering</h2>
-<p><strong>src/app/app-routing.module.ts</strong></p>
-<pre><code class="language-ts">import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-import { HomeComponent } from './home/home.component';
-import { RestaurantComponent } from './restaurant/restaurant.component';
-import { RestaurantDetailComponent } from './restaurant/detail/detail.component';
-import { OrderComponent } from './order/order.component';
-
-const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-  },
-  {
-    path: 'restaurants',
-    component: RestaurantComponent,
-  },
-  {
-    path: 'restaurants/:slug',
-    component: RestaurantDetailComponent,
-  },
-  {
-    path: 'restaurants/:slug/:order',
-    component: OrderComponent,
-  }
-];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
-
-</code></pre>
-<div line-highlight='7, 22-25'></div>
-<p>Now when we navigate to <a href="http://localhost:4200/restaurants/crab-place/order" target="_blank">http://localhost:4200/restaurants/crab-place/order</a> you should see the order form with options for the restaurant items shown. Next we'll create the order service that will allow us to create a new order from data submitted from this form.</p>
 <h2>Importing 3rd Party Plugins</h2>
 <p>In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let's import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started" target="_blank">ngx-bootstrap</a>:</p>
 <pre><code class="language-bash">ng add ngx-bootstrap  --component tabs
@@ -680,7 +759,6 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
 import { ImageUrlPipe } from './image-url.pipe';
 import { RestaurantDetailComponent } from './restaurant/detail/detail.component';
 import { OrderComponent } from './order/order.component';
-import { MenuItemsComponent } from './order/menu-items/menu-items.component';
 
 @NgModule({
   declarations: [
@@ -689,8 +767,7 @@ import { MenuItemsComponent } from './order/menu-items/menu-items.component';
     RestaurantComponent,
     ImageUrlPipe,
     RestaurantDetailComponent,
-    OrderComponent,
-    MenuItemsComponent
+    OrderComponent
   ],
   imports: [
     BrowserModule,
@@ -705,7 +782,8 @@ import { MenuItemsComponent } from './order/menu-items/menu-items.component';
 export class AppModule { }
 
 </code></pre>
-<div line-highlight='5, 31'></div>
+<div line-highlight='5, 29'></div>
+<p>Now let's add the markup to our order component implementing the tabs widget.</p>
 <p><strong>src/app/order/order.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
     &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
@@ -754,11 +832,12 @@ export class AppModule { }
   
   
 </code></pre>
-<div line-highlight='13, 18'></div>
+<div line-highlight='7-18'></div>
+<p>Now when we view the order form of our route, we'll see a nice form and tabs for lunch and dinner menu options.</p>
+<h2>Create Custom Checkbox Component</h2>
 <p>We're going to build another component to use in our form to handle selecting order items. We use data-binding to pass data between components. We'll use the <code>@Input()</code> to get our list of items from the restaurant to display in our child component, and hook it into our Reactive Form using the <code>formControlName</code> attribute as shown below.</p>
 <pre><code class="language-html">&lt;pmo-menu-items [data]=&quot;restaurant.menu.lunch&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
 </code></pre>
-<h2>Create Custom Checkbox Component</h2>
 <pre><code class="language-bash">ng g component order/menu-items
 </code></pre>
 <p>We want to give an array of item objects to our parent form based on which checkboxes are selected. We can do this by using Angulars <a href="https://angular.io/api/forms/ControlValueAccessor" target="_blank">Control Value Accessor</a> to act as a bridge between our form and the UI we build. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.</p>
@@ -883,7 +962,8 @@ export class MenuItemsComponent implements ControlValueAccessor {
 
 
 </code></pre>
-<div line-highlight='7-18'></div>
+<div line-highlight='10, 15'></div>
+<p>We now have a form that updates the items formcontrol when items are selected and shows the user an updated total!</p>
 
 </section>
 

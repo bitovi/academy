@@ -370,6 +370,21 @@
 				
 			
 		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="writing-unit-tests.html"
+							title="Writing Unit Tests">
+							Writing Unit Tests
+						</a>
+						
+					</li>
+				
+			
+		
 	</ul>
 
 
@@ -632,7 +647,7 @@ export class RestaurantService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getRestaurants(state:string, city: string) { //HIGHLIGHT THIS LINE
+  getRestaurants(state:string, city: string) {
     let options = { params: new HttpParams().set('filter[address.state]', state).set('filter[address.city]', city) };
     return this.httpClient.get&lt;ResponseData&lt;Restaurant&gt;&gt;('/api/restaurants', options);
   }
@@ -693,7 +708,7 @@ export class RestaurantDetailComponent implements OnInit {
 
 </code></pre>
 <div line-highlight='4, 5, 13-14, 18, 23-27'></div>
-<p>Now when we navigate to  <a href="http://localhost:4200/restaurants/crab-place" target="_blank">localhost:4200/restaurants/crab-place</a> we'll see the detail view of the Crab Place restaurant</p>
+<p>Now when we click the detail button on a restaurant from the restaurants view we'll see the detail view of that restaurant.</p>
 
 </section>
 

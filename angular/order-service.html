@@ -370,6 +370,21 @@
 				
 			
 		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="writing-unit-tests.html"
+							title="Writing Unit Tests">
+							Writing Unit Tests
+						</a>
+						
+					</li>
+				
+			
+		
 	</ul>
 
 
@@ -436,7 +451,29 @@
 <h2>Creating the Order Service</h2>
 <pre><code class="language-bash">ng g service order/order
 </code></pre>
-<h3>Writing the Interfaces</h3>
+<h2>Writing the Interfaces</h2>
+<h3>The Problem</h3>
+<p>We'll need two interfaces - one to describe the order, one to describe items in the order. Write and export <code>Order</code> and <code>Item</code> inferfaces representing these objects in the new service.</p>
+<pre><code class="language-typescript">let myorder = {
+  _id: 'a123123bdd',
+  name: 'Jennifer', 
+  address: '123 Main st', 
+  phone: '867-5309'
+  status: 'new',
+  items: [
+    {
+      name: 'tacos',
+      price: 6.99
+    }
+  ]
+}
+</code></pre>
+<h3>What you need to know</h3>
+<ul>
+<li>How to write interfaces!</li>
+</ul>
+<hr />
+<h3>The solution</h3>
 <p><strong>src/app/order/order.service.ts</strong></p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
 
@@ -464,9 +501,14 @@ export class OrderService {
 }
 </code></pre>
 <h2>Adding Methods</h2>
+<h3>The Problem</h3>
 <p>With our order service we'll want to be able to create new orders, updating existing orders, delete orders, and view all orders. Implement a <code>getOrders</code> method that makes a get request to <code>'/api/orders'</code>. Don't forget to import HttpClient into this service!</p>
-<p><details>
-<summary>Click to see solution</summary></p>
+<h3>What you need to know</h3>
+<ul>
+<li>How to write a get request</li>
+</ul>
+<hr />
+<h3>The solution</h3>
 <p>Don't worry, we did the heavy lifting for the rest of the methods ;)</p>
 <p><strong>src/app/order/order.service.ts</strong></p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
@@ -516,8 +558,188 @@ export class OrderService {
 
 </code></pre>
 <div line-highlight='2, 23, 25-27, 29-33, 35-39, 40-43'></div>
-</details>
 <h2>Importing the Service into the Order Component</h2>
+<p>This is what the markup will look like to show a created order:</p>
+<p><strong>src/app/order/order.component.html</strong></p>
+<pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
+  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
+    &lt;h3&gt;Thanks for your order {{completedOrder.name}}!&lt;/h3&gt;
+    &lt;div&gt;&lt;label class=&quot;control-label&quot;&gt;
+      Confirmation Number: {{completedOrder._id}}&lt;/label&gt;
+    &lt;/div&gt;
+    
+    &lt;h4&gt;Items ordered:&lt;/h4&gt;
+    &lt;ul class=&quot;list-group panel&quot;&gt;
+      &lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of completedOrder.items&quot;&gt;
+        &lt;label&gt;
+          {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
+        &lt;/label&gt;
+      &lt;/li&gt;
+    
+      &lt;li class=&quot;list-group-item&quot;&gt;
+        &lt;label&gt;
+          Total &lt;span class=&quot;badge&quot;&gt;${{orderTotal}}&lt;/span&gt;
+        &lt;/label&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    
+    &lt;div&gt;&lt;label class=&quot;control-label&quot;&gt;
+      Phone: {{completedOrder.phone}}
+    &lt;/label&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;label class=&quot;control-label&quot;&gt;
+      Address: {{completedOrder.address}}
+      &lt;/label&gt;&lt;/div&gt;
+    &lt;p&gt;
+      &lt;button (click)=&quot;startNewOrder()&quot;&gt;
+        Place another order
+      &lt;/button&gt;
+    &lt;/p&gt;
+  &lt;/ng-container&gt;
+  &lt;ng-template #showOrderForm&gt;
+    &lt;h2&gt;Order here&lt;/h2&gt;
+    &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+      &lt;tabset&gt;
+        &lt;tab heading=&quot;Lunch Menu&quot;&gt;
+          &lt;ul class=&quot;list-group&quot; &gt;
+            &lt;pmo-menu-items [data]=&quot;restaurant.menu.lunch&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
+          &lt;/ul&gt;
+        &lt;/tab&gt;
+        &lt;tab heading=&quot;Dinner menu&quot;&gt;
+          &lt;ul class=&quot;list-group&quot; &gt;
+            &lt;pmo-menu-items [data]=&quot;restaurant.menu.dinner&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
+          &lt;/ul&gt;
+        &lt;/tab&gt;
+      &lt;/tabset&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
+        &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
+        &lt;p&gt;Please enter your name.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
+        &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
+        &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
+        &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+        &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;submit&quot;&gt;
+        &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
+          &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
+          &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
+            Place My Order!
+          &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/ng-template&gt;
+&lt;/div&gt;
+
+
+
+</code></pre>
+<div line-highlight='2-34'></div>
+<h3>The Problem</h3>
+<p>Now, import your order service into your order component, and implement the functionality to create a new order, and show the completed order upon a successful order creation. Don't forget to use the interfaces you created for order and item types!</p>
+<p><strong>src/app/order/order.component.ts</strong></p>
+<pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder, FormArray, AbstractControl } from '@angular/forms';
+
+import { RestaurantService } from '../restaurant/restaurant.service';
+import { Restaurant } from '../restaurant/restaurant';
+import { Subscription } from 'rxjs';
+
+
+function minLengthArray(min: number) {
+  return (c: AbstractControl): {[key: string]: any} =&gt; {
+      if (c.value.length &gt;= min)
+          return null;
+      return { 'minLengthArray': {valid: false }};
+  }
+}
+
+@Component({
+  selector: 'pmo-order',
+  templateUrl: './order.component.html',
+  styleUrls: ['./order.component.less']
+})
+export class OrderComponent implements OnInit, OnDestroy {
+  orderForm: FormGroup;
+  restaurant: Restaurant;
+  isLoading: boolean = true;
+  items: FormArray;
+  orderTotal: number = 0.0;
+  completedOrder: any;
+  orderComplete: boolean = false;
+  orderProcessing: boolean = false;
+  private subscription: Subscription;
+
+  constructor(
+    private route: ActivatedRoute, 
+    private restaurantService: RestaurantService,
+    private formBuilder: FormBuilder 
+  ) { 
+  }
+
+  ngOnInit() {
+    const slug = this.route.snapshot.paramMap.get('slug');
+
+    this.restaurantService.getRestaurant(slug).subscribe((data:Restaurant) =&gt; {
+      this.restaurant = data;
+      this.isLoading = false;      
+      this.createOrderForm();
+    })
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  createOrderForm() {
+    this.orderForm = this.formBuilder.group({
+      restaurant: [this.restaurant._id],
+      name: [null],
+      address:  [null],
+      phone: [null],
+      items: [[], minLengthArray(1)]
+    });
+    this.onChanges();
+  }
+
+  onChanges() {
+    this.subscription = this.orderForm.get('items').valueChanges.subscribe(val =&gt; {
+      let total = 0.0;
+      val.forEach((item: any) =&gt; {
+        total += item.price;
+      });
+      this.orderTotal = Math.round(total * 100) / 100;
+    });
+  }
+
+  onSubmit() {
+    this.orderProcessing = true;
+    //call createOrder here
+  }
+
+  startNewOrder() {
+    this.orderComplete = false;
+    this.orderTotal = 0.0;
+    this.createOrderForm();
+  }
+
+}
+
+</code></pre>
+<h3>What you need to know</h3>
+<ul>
+<li>how to import a service</li>
+<li>how to subscribe to a method on a service</li>
+<li>how to show/hide content using *ngIf</li>
+</ul>
+<hr />
+<h3>The Solution</h3>
 <p><strong>src/app/order/order.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -615,87 +837,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
 </code></pre>
 <div line-highlight='7, 30, 38, 71, 78-85'></div>
-<h2>Showing Completed Order</h2>
-<p><strong>src/app/order/order.component.html</strong></p>
-<pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
-  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
-    &lt;h3&gt;Thanks for your order {{completedOrder.name}}!&lt;/h3&gt;
-    &lt;div&gt;&lt;label class=&quot;control-label&quot;&gt;
-      Confirmation Number: {{completedOrder._id}}&lt;/label&gt;
-    &lt;/div&gt;
-    
-    &lt;h4&gt;Items ordered:&lt;/h4&gt;
-    &lt;ul class=&quot;list-group panel&quot;&gt;
-      &lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of completedOrder.items&quot;&gt;
-        &lt;label&gt;
-          {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
-        &lt;/label&gt;
-      &lt;/li&gt;
-    
-      &lt;li class=&quot;list-group-item&quot;&gt;
-        &lt;label&gt;
-          Total &lt;span class=&quot;badge&quot;&gt;${{orderTotal}}&lt;/span&gt;
-        &lt;/label&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-    
-    &lt;div&gt;&lt;label class=&quot;control-label&quot;&gt;
-      Phone: {{completedOrder.phone}}
-    &lt;/label&gt;&lt;/div&gt;
-    &lt;div&gt;&lt;label class=&quot;control-label&quot;&gt;
-      Address: {{completedOrder.address}}
-      &lt;/label&gt;&lt;/div&gt;
-    &lt;p&gt;
-      &lt;button (click)=&quot;startNewOrder()&quot;&gt;
-        Place another order
-      &lt;/button&gt;
-    &lt;/p&gt;
-  &lt;/ng-container&gt;
-  &lt;ng-template #showOrderForm&gt;
-    &lt;h2&gt;Order here&lt;/h2&gt;
-    &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
-      &lt;tabset&gt;
-        &lt;tab heading=&quot;Lunch Menu&quot;&gt;
-          &lt;ul class=&quot;list-group&quot; &gt;
-            &lt;pmo-menu-items [data]=&quot;restaurant.menu.lunch&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
-          &lt;/ul&gt;
-        &lt;/tab&gt;
-        &lt;tab heading=&quot;Dinner menu&quot;&gt;
-          &lt;ul class=&quot;list-group&quot; &gt;
-            &lt;pmo-menu-items [data]=&quot;restaurant.menu.dinner&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
-          &lt;/ul&gt;
-        &lt;/tab&gt;
-      &lt;/tabset&gt;
-      &lt;div class=&quot;form-group&quot;&gt;
-        &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-        &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
-        &lt;p&gt;Please enter your name.&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;form-group&quot;&gt;
-        &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-        &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
-        &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;form-group&quot;&gt;
-        &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
-        &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
-        &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;submit&quot;&gt;
-        &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
-          &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
-          &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
-            Place My Order!
-          &lt;/button&gt;
-      &lt;/div&gt;
-    &lt;/form&gt;
-&lt;/ng-template&gt;
-&lt;/div&gt;
-
-
-
-</code></pre>
-<div line-highlight='2-34'></div>
+<p>If you've implemented everything correctly, you should now be able to create an order from the UI and see a record of your completed order once it's created.</p>
 
 </section>
 
