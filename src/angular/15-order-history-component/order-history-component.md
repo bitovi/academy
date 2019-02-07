@@ -19,34 +19,6 @@ In this part, we will:
 ```bash
 ng g component order/history
 ```
-
-### The problem
-
-In this component, we want to see a history of all orders. Import the order service into this new component and make the call to get all orders.
-
-__src/app/order/history.component.ts__
-
-@sourceref ./history.component.ts
-
-### What you need to know
-
-- how to import a service
-- how to subscribe to a method on a service 
-
----
-
-### The solution
-
-__src/app/order/history.component.ts__
-
-@sourceref ./history.component-solution.ts
-@highlight 2, 22, 31-35
-
-
-__src/app/order/history.component.html__
-
-@sourceref ./history.component-1.html
-
 ## Add Order History Route
 
 ### The problem
@@ -87,6 +59,33 @@ __src/app/app.component.html__
 @highlight 11-13
 
 You should now be able to navigate to <a href="http://localhost:4200/order-history" target="_blank">http://localhost:4200/order-history</a> and see a list of all orders. 
+
+### The problem
+
+In this component, we want to see a history of all orders. Import the order service into this new component and make the call to get all orders.
+
+__src/app/order/history.component.ts__
+
+@sourceref ./history.component.ts
+
+### What you need to know
+
+- how to import a service
+- how to subscribe to a method on a service 
+
+---
+
+### The solution
+
+__src/app/order/history.component.ts__
+
+@sourceref ./history.component-solution.ts
+@highlight 2, 22, 31-35
+
+
+__src/app/order/history.component.html__
+
+@sourceref ./history.component-1.html
 
 ## Creating a Child Component to Handle Order States
 

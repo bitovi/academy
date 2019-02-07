@@ -3,7 +3,7 @@ import { Order, Item, OrderService } from '../order.service';
 
 
 @Component({
-  selector: 'pmo-order-list',
+  selector: 'pmo-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.less']
 })
