@@ -21,11 +21,21 @@ If you find bugs in this training or have suggestions, create an [issue](https:/
 
 In this guide, we will build this restaurant ordering app with Angular:
 
-<img src="../static/img/place-my-order.png" title="Place My Order App screenshot"
+<img src="./static/img/place-my-order.png" title="Place My Order App screenshot"
   style="max-width: 100%"/>
 
 You can see a DoneJS implementation of this application at [www.place-my-order.com](http://www.place-my-order.com).
 
+This application:
+
+- Is written in Angular 7
+- Is a single page application (SPA) that uses pushstate to simulate routing between several pages.
+  - A `home` page
+  - A `restaurant list` page that lets the user filter restaurants by state and city
+  - A `restaurant details` page that provides more information about a particular restaurant
+  - An `order` page that allows us to place an order for a restaurant
+  - A realtime `order history` page that tracks orders as they are created, being prepared, out for delivery,
+    delivered, and deleted
 
 ## Outline
 
