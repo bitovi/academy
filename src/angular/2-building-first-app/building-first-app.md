@@ -16,7 +16,7 @@ In this part, we will:
 
 ## Intro to the CLI
 
-Angular has a CLI that does a lot of the initial legwork in setting up a minimal app, as well as letting you easy create and include new components on the fly.
+Angular has a CLI that does a lot of the initial legwork in setting up a minimal app, as well as letting you easily create and include new components on the fly.
 
 ## Installation
 
@@ -32,6 +32,7 @@ We're going to build a restaurant menu and ordering application. The final resul
 
 ![Place My Order App screenshot](../static/img/place-my-order.png "Place My Order App screenshot")
 
+(reminder: You can see a DoneJS implementation of this application at [www.place-my-order.com](http://www.place-my-order.com))
 
 To create a new Angular Workspace, we run the 'ng new' command.
 
@@ -157,6 +158,8 @@ This file is the root module for our app. Every Angular app has at least one mod
 - imports [array]: where we include any other modules our app needs to use. This may include 3rd party modules like bootstrap datepickers, or modules we've created.
 - providers [array]: where we include services that we want used at the global app level
 - bootstrap [array]: where we include the root AppModule - this is the main Application view that hosts all of our other app views.
+
+Further reading: <a href="https://angular.io/guide/architecture-services#dependency-injection-di" target="_blank">Dependency Injection in Angular</a>
 
 ### src/app/app.component.ts
 

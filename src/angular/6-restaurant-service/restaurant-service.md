@@ -93,7 +93,7 @@ __src/app/app.module.ts__
 We're going to write interfaces to tell Typescript what we expect a restaurant and other related objects to look like. We'll create a new file to house these.
 
 ```bash
-touch src/app/restaurant/restaurant.ts
+ng g interface restaurant/restaurant
 ```
 
 __src/app/restaurant/restaurant.ts__
