@@ -467,26 +467,26 @@
 <pre><code class="language-shell">npm install place-my-order-assets@0.1 --save
 </code></pre>
 <p>Open the <code>angular.json</code> file, and make the following changes to include these files in our build process. This will copy the images into our assets directory for when we serve our application.</p>
-<pre><code class="language-ts">{
+<pre><code class="language-json">{
   &quot;$schema&quot;: &quot;./node_modules/@angular/cli/lib/config/schema.json&quot;,
   &quot;version&quot;: 1,
   &quot;newProjectRoot&quot;: &quot;projects&quot;,
   &quot;projects&quot;: {
-    &quot;sample-pmo&quot;: {
-      &quot;root&quot;: &quot;sample-pmo&quot;,
+    &quot;place-my-order&quot;: {
+      &quot;root&quot;: &quot;&quot;,
       &quot;sourceRoot&quot;: &quot;src&quot;,
       &quot;projectType&quot;: &quot;application&quot;,
       &quot;prefix&quot;: &quot;pmo&quot;,
       &quot;schematics&quot;: {
         &quot;@schematics/angular:component&quot;: {
-          &quot;styleext&quot;: &quot;less&quot;
+          &quot;style&quot;: &quot;less&quot;
         }
       },
       &quot;architect&quot;: {
         &quot;build&quot;: {
           &quot;builder&quot;: &quot;@angular-devkit/build-angular:browser&quot;,
           &quot;options&quot;: {
-            &quot;outputPath&quot;: &quot;dist/sample-pmo&quot;,
+            &quot;outputPath&quot;: &quot;dist/place-my-order&quot;,
             &quot;index&quot;: &quot;src/index.html&quot;,
             &quot;main&quot;: &quot;src/main.ts&quot;,
             &quot;polyfills&quot;: &quot;src/polyfills.ts&quot;,
@@ -537,18 +537,18 @@
         &quot;serve&quot;: {
           &quot;builder&quot;: &quot;@angular-devkit/build-angular:dev-server&quot;,
           &quot;options&quot;: {
-            &quot;browserTarget&quot;: &quot;sample-pmo:build&quot;
+            &quot;browserTarget&quot;: &quot;place-my-order:build&quot;
           },
           &quot;configurations&quot;: {
             &quot;production&quot;: {
-              &quot;browserTarget&quot;: &quot;sample-pmo:build:production&quot;
+              &quot;browserTarget&quot;: &quot;place-my-order:build:production&quot;
             }
           }
         },
         &quot;extract-i18n&quot;: {
           &quot;builder&quot;: &quot;@angular-devkit/build-angular:extract-i18n&quot;,
           &quot;options&quot;: {
-            &quot;browserTarget&quot;: &quot;sample-pmo:build&quot;
+            &quot;browserTarget&quot;: &quot;place-my-order:build&quot;
           }
         },
         &quot;test&quot;: {
@@ -559,8 +559,6 @@
             &quot;tsConfig&quot;: &quot;src/tsconfig.spec.json&quot;,
             &quot;karmaConfig&quot;: &quot;src/karma.conf.js&quot;,
             &quot;styles&quot;: [
-              &quot;./node_modules/bootstrap/dist/css/bootstrap.min.css&quot;,
-              &quot;./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css&quot;,
               &quot;src/styles.less&quot;
             ],
             &quot;scripts&quot;: [],
@@ -584,7 +582,7 @@
         }
       }
     },
-    &quot;sample-pmo-e2e&quot;: {
+    &quot;place-my-order-e2e&quot;: {
       &quot;root&quot;: &quot;e2e/&quot;,
       &quot;projectType&quot;: &quot;application&quot;,
       &quot;prefix&quot;: &quot;&quot;,
@@ -593,11 +591,11 @@
           &quot;builder&quot;: &quot;@angular-devkit/build-angular:protractor&quot;,
           &quot;options&quot;: {
             &quot;protractorConfig&quot;: &quot;e2e/protractor.conf.js&quot;,
-            &quot;devServerTarget&quot;: &quot;sample-pmo:serve&quot;
+            &quot;devServerTarget&quot;: &quot;place-my-order:serve&quot;
           },
           &quot;configurations&quot;: {
             &quot;production&quot;: {
-              &quot;devServerTarget&quot;: &quot;sample-pmo:serve:production&quot;
+              &quot;devServerTarget&quot;: &quot;place-my-order:serve:production&quot;
             }
           }
         },
@@ -613,8 +611,10 @@
       }
     }
   },
-  &quot;defaultProject&quot;: &quot;sample-pmo&quot;
+  &quot;defaultProject&quot;: &quot;place-my-order&quot;
 }
+        
+
 </code></pre>
 <div line-highlight='25-39,only'></div>
 <p><strong>Any time changes are made to the <code>angular.json</code> file, we need to restart our server to catch the new changes.</strong></p>
