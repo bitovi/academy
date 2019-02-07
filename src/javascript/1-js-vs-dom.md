@@ -1,6 +1,5 @@
 @page advanced-javascript-training/js-vs-dom JavaScript and the DOM
 @parent advanced-javascript-training 1
-@outline 2
 
 @description Understand the browser ecosystem and how JavaScript
 fits in.

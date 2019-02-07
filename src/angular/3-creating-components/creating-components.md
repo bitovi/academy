@@ -27,13 +27,13 @@ Open the ``angular.json`` file, and make the following changes to include these 
 @sourceref ./angular-json-assets.ts
 @highlight 25-39,only
 
-__Any time changes are made to the `angular.json` file, we need to restart our server to catch the new changes.__ 
+__Any time changes are made to the `angular.json` file, we need to restart our server to catch the new changes.__
 
 ## Creating components
 
 Let's begin to build out the main views of our app. We'll need a home view, and restaurant list page to show all the restaurants we can order from. In Angular, Components are the basic building blocks that help us craft the UI. They are classes that handle views, allow management of user interaction, and displaying information via data binding. Data binding is the term for connecting data or information to the UI. An example would be an input field that a user enters a value into.
 
-Recommended reading: <a href="https://angular.io/guide/lifecycle-hooks" target="_blank" >Angular Lifecyle Hooks</a>
+Recommended reading: <a href="https://angular.io/guide/lifecycle-hooks" target="\_blank" >Angular Lifecyle Hooks</a>
 
 ```shell
 ng g component home
@@ -109,11 +109,11 @@ __src/app/restaurant/restaurant.component.html__
 
 ### ng-container
 
-<a href="https://angular.io/guide/structural-directives#ngcontainer" target="_blank">ng-container</a> is an element that allows us to create template bindings without creating a dom element.
+<a href="https://angular.io/guide/structural-directives#ngcontainer" target="\_blank">ng-container</a> is an element that allows us to create template bindings without creating a dom element.
 
-### *ngIf
+### \*ngIf
 
-<a href="https://angular.io/api/common/NgIf" target="_blank">ngIf</a> is a structural directive that allows us to conditionally render content. It can be paired with ng-template to render an `else` block. 
+<a href="https://angular.io/api/common/NgIf" target="\_blank">ngIf</a> is a structural directive that allows us to conditionally render content. It can be paired with ng-template to render an `else` block.
 
 ```html
 <div *ngIf="myValIsTrue; else notTrue">
@@ -123,11 +123,11 @@ __src/app/restaurant/restaurant.component.html__
 </ng-template>
 ```
 
-### *ngFor
+### \*ngFor
 
-<a href="https://angular.io/api/common/NgForOf" target="_blank">ngFor</a> is a structural directive that allows to iteratively create content in our templates. 
+<a href="https://angular.io/api/common/NgForOf" target="\_blank">ngFor</a> is a structural directive that allows to iteratively create content in our templates.
 
-#### > DETOUR! Pipes in Angular
+## DETOUR! Pipes in Angular
 
 We're using an API in this demo that wasn't built for our exact purposes, and we need a different image path for our app to serve. <a href="https://angular.io/guide/pipes" target="\_blank">Angular Pipes</a> come in handy to transform content in our templates. We'll create a pipe to help handle our image pathing:
 
