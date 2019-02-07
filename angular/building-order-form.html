@@ -565,14 +565,14 @@ export class AppRoutingModule { }
 </code></pre>
 <p>We've covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes. Let's practice those concepts.</p>
 <h3>The problem</h3>
-<p>The order form component needs to get the restaurant from the route slug, and needs a reactive form to collect <code>restaurant</code>, <code>name</code>, <code>address</code>, <code>phone</code>, and <code>items</code>, abd a way to update the order total when the items form control changes.</p>
+<p>The order form component needs to get the restaurant from the route slug, and needs a reactive form to collect <code>restaurant</code>, <code>name</code>, <code>address</code>, <code>phone</code>, and <code>items</code>, and a way to update the order total when the items form control changes.</p>
 <h3>What you need to know</h3>
 <ul>
 <li><p>How to get the restaurant from the route slug</p></li>
 <li><p>Create a reactive form</p></li>
 <li><p>Listen to form value changes</p></li>
 <li><p>Add validation:</p>
-<p>This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation" target="_blank">validation</a>. Here's an example of a form with form controls with different validation, and one thats value is set to an array.</p>
+<p>This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation" target="\_blank">validation</a>. Here's an example of a form with form controls with different validation, and one thats value is set to an array.</p>
 <pre><code class="language-typescript">function coolKidsChecker(isACoolKid: string) {
   return (c: AbstractControl): {[key: string]: any} =&gt; {
       if (c.value === isACoolKid)
@@ -755,7 +755,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
 </code></pre>
 <h2>Importing 3rd Party Plugins</h2>
-<p>In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let's import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started" target="_blank">ngx-bootstrap</a>:</p>
+<p>In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let's import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started" target="\_blank">ngx-bootstrap</a>:</p>
 <pre><code class="language-bash">ng add ngx-bootstrap  --component tabs
 </code></pre>
 <p>Ng add is a convenient way to import 3rd party libs that will update <code>angular.json</code> and <code>package.json</code> with any changes we need. Don't forget to restart the client server!</p>
@@ -855,7 +855,7 @@ export class AppModule { }
 </code></pre>
 <pre><code class="language-bash">ng g component order/menu-items
 </code></pre>
-<p>We want to give an array of item objects to our parent form based on which checkboxes are selected. We can do this by using Angulars <a href="https://angular.io/api/forms/ControlValueAccessor" target="_blank">Control Value Accessor</a> to act as a bridge between our form and the UI we build. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.</p>
+<p>We want to give an array of item objects to our parent form based on which checkboxes are selected. We can do this by using Angulars <a href="https://angular.io/api/forms/ControlValueAccessor" target="\_blank">Control Value Accessor</a> to act as a bridge between our form and the UI we build. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.</p>
 <p><strong>src/app/order/menu-items.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
@@ -925,9 +925,9 @@ export class MenuItemsComponent implements ControlValueAccessor {
 </code></pre>
 <p>Other concepts used here:</p>
 <h3>forwardRef</h3>
-<p><a href="https://angular.io/api/core/forwardRef" target="_bank">https://angular.io/api/core/forwardRef</a> Used to reference a token that may not be defined when we need it.</p>
+<p><a href="https://angular.io/api/core/forwardRef" target="\_blank">https://angular.io/api/core/forwardRef</a> Used to reference a token that may not be defined when we need it.</p>
 <h3>NG_VALUE_ACCESSOR</h3>
-<p><a href="https://angular.io/api/forms/NG_VALUE_ACCESSOR" target="_blank">https://angular.io/api/forms/NG_VALUE_ACCESSOR</a> Used to provide the control value accessor for a form control.</p>
+<p><a href="https://angular.io/api/forms/NG_VALUE_ACCESSOR" target="\_blank">https://angular.io/api/forms/NG_VALUE_ACCESSOR</a> Used to provide the control value accessor for a form control.</p>
 <h3>Use new menu items component in order form</h3>
 <p><strong>src/app/order/order.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
