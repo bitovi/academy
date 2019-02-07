@@ -18,7 +18,7 @@ In this part, we will:
 
 ## Create the Restaurant Detail Component
 
-The restaurant detail component will display information about the restaurant, and include a link to order from the menu, which we'll build the component for later. 
+The restaurant detail component will display information about the restaurant, and include a link to order from the menu, which we'll build the component for later.
 
 ```bash
 ng g component restaurant/detail

@@ -23,60 +23,6 @@ Our order form is how we can create new orders. We'll use a reactive form to get
 ng g component order
 ```
 
-In your new order component, edit the __src/order/order.component.html__ file to be: 
-
-__src/app/order/order.component.html__
-
-@sourceref ./order-0.component.html
-
-We've covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes. Let's practice those concepts. 
-
-### The problem
-
-The order form component needs to get the restaurant from the route slug, and needs a reactive form to collect `restaurant`, `name`, `address`, `phone`, and `items`, abd a way to update the order total when the items form control changes. 
-
-### What you need to know
-
-- How to get the restaurant from the route slug
-- Create a reactive form
-- Listen to form value changes
-- Add validation:
-
-This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation" target="_blank">validation</a>. Here's an example of a form with form controls with different validation, and one thats value is set to an array. 
-
-```typescript
-function coolKidsChecker(isACoolKid: string) {
-  return (c: AbstractControl): {[key: string]: any} => {
-      if (c.value === isACoolKid)
-          return null;
-      return { 'coolKidsChecker': {valid: false }};
-  }
-}
-
-this.myValidatingForm = this.formBuilder.group({
-  aRequiredField: [null, Validators.required]
-  aCustomRequiredField: [null, coolKidsChecker('yes')],
-  anArrayField: [[]]
-});
-```
-
-
-__src/app/order/order.component.ts__
-
-@sourceref ./order.component.ts
-
-
-
-
-
----
-
-### The solution
-
-__src/app/order/order.component.ts__
-
-@sourceref ./order.component-solution.ts
-
 ## Create New Route for Ordering
 
 ### The Problem
@@ -99,7 +45,61 @@ __src/app/app-routing.module.ts__
 @highlight 7, 22-25
 
 
-Now when we navigate to <a href="http://localhost:4200/restaurants/crab-place/order" target="_blank">http://localhost:4200/restaurants/crab-place/order</a> you should see the order form with options for the restaurant items shown. Next we'll create the order service that will allow us to create a new order from data submitted from this form.
+Now when we navigate to the `/order` path from a restaurant detail page you should see where the order form will go. 
+
+In your new order component, edit the __src/order/order.component.html__ file to be:
+
+__src/app/order/order.component.html__
+
+@sourceref ./order-0.component.html
+
+We've covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes. Let's practice those concepts. 
+
+### The problem
+
+The order form component needs to get the restaurant from the route slug, and needs a reactive form to collect `restaurant`, `name`, `address`, `phone`, and `items`, abd a way to update the order total when the items form control changes. 
+
+### What you need to know
+
+- How to get the restaurant from the route slug
+- Create a reactive form
+- Listen to form value changes
+- Add validation:
+
+  This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation" target="_blank">validation</a>. Here's an example of a form with form controls with different validation, and one thats value is set to an array. 
+
+  ```typescript
+  function coolKidsChecker(isACoolKid: string) {
+    return (c: AbstractControl): {[key: string]: any} => {
+        if (c.value === isACoolKid)
+            return null;
+        return { 'coolKidsChecker': {valid: false }};
+    }
+  }
+
+  this.myValidatingForm = this.formBuilder.group({
+    aRequiredField: [null, Validators.required]
+    aCustomRequiredField: [null, coolKidsChecker('yes')],
+    anArrayField: [[]]
+  });
+  ```
+
+
+__src/app/order/order.component.ts__
+
+@sourceref ./order.component.ts
+
+
+
+
+
+---
+
+### The solution
+
+__src/app/order/order.component.ts__
+
+@sourceref ./order.component-solution.ts
 
 
 ## Importing 3rd Party Plugins

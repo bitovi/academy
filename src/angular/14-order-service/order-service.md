@@ -22,7 +22,7 @@ ng g service order/order
 
 ## Writing the Interfaces
 
-### Problem 1
+### The Problem
 
 We'll need two interfaces - one to describe the order, one to describe items in the order. Write and export `Order` and `Item` inferfaces representing these objects in the new service.
 
@@ -42,9 +42,13 @@ let myorder = {
 }
 ```
 
+### What you need to know
+
+- How to write interfaces!
+
 ---
 
-### Solution 1
+### The solution
 
 __src/app/order/order.service.ts__
 
@@ -52,16 +56,18 @@ __src/app/order/order.service.ts__
 
 ## Adding Methods
 
-### Problem 2
+### The Problem
 
 With our order service we'll want to be able to create new orders, updating existing orders, delete orders, and view all orders. Implement a `getOrders` method that makes a get request to `'/api/orders'`. Don't forget to import HttpClient into this service!
 
 
+### What you need to know
 
+- How to write a get request
 
 ---
 
-### Solution 2
+### The solution
 
 Don't worry, we did the heavy lifting for the rest of the methods ;)
 
@@ -78,16 +84,23 @@ __src/app/order/order.component.html__
 @sourceref ./order.component.html
 @highlight 2-34
 
-### Problem 3
+### The Problem
 
 Now, import your order service into your order component, and implement the functionality to create a new order, and show the completed order upon a successful order creation. Don't forget to use the interfaces you created for order and item types!
 
 __src/app/order/order.component.ts__
 @sourceref ./order.component.ts
 
+
+### What you need to know
+
+- how to import a service
+- how to subscribe to a method on a service
+- how to show/hide content using *ngIf
+
 ---
 
-### Solution 3
+### The Solution
 
 __src/app/order/order.component.ts__
 @sourceref ./order.component-solution.ts
