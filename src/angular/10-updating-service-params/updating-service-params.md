@@ -34,6 +34,10 @@ Take a look at your console trying to compile your app. What error do you see?
 
 Because our API returns different data types that follow the same structure, we need change our `ResponseData` interface to accept any kind of type, including the interfaces for city and state. Change the `ResponseData` interface in the `src/app/restaurant/restaurant.service.ts` to use generics!
 
+### What you need to know
+
+You already know how to use generics, you TypeScript guru!
+
 ### The solution
 
 __src/app/restaurant/restaurant.service.ts__
@@ -46,8 +50,7 @@ __src/app/restaurant/restaurant.service.ts__
 
 ### Get states and cities from the service layer
 
-
-Add `getStates()` method that publishes states and a
+We're going to a `getStates()` method that publishes states and a
 `getCities(state:string)` method that publishes a list of cities
 for a provided state.
 
