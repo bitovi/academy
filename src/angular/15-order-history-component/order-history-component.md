@@ -19,6 +19,7 @@ In this part, we will:
 ```bash
 ng g component order/history
 ```
+### Problem 1
 
 In this component, we want to see a history of all orders. Import the order service into this new component and make the call to get all orders. 
 
@@ -26,13 +27,15 @@ __src/app/order/history.component.ts__
 
 @sourceref ./history.component.ts
 
-<details>
-<summary>Click to see solution</summary>
+---
+
+### Solution 1
+
 __src/app/order/history.component.ts__
 
 @sourceref ./history.component-solution.ts
 @highlight 2, 22, 31-35
-</details>
+
 
 __src/app/order/history.component.html__
 
@@ -40,29 +43,34 @@ __src/app/order/history.component.html__
 
 ## Add Order History Route
 
+### Problem 2
+
 Add a new route `/order-history` that shows the history component you created. 
 
-<details>
-<summary>Click to see solution</summary>
+---
+
+### Solution 2
 
 __src/app/app-routing.module.ts__
 
 @sourceref ./app-routing.module.ts
 @highlight 8, 27-30
-</details>
+
 
 ## Adding Order History to Main Navigation
 
+### Problem 3
+
 Next, add the order history path you created to the navigation in the `src/app/app.component.html` file.
 
-<details>
-<summary>Click to see solution</summary>
+---
+
+### Solution 3
 
 __src/app/app.component.html__
 
 @sourceref ./app.component.html
 @highlight 11-13
-</details>
 
 You should now be able to navigate to <a href="http://localhost:4200/order-history" target="_blank">http://localhost:4200/order-history</a> and see a list of all orders. 
 
@@ -87,6 +95,8 @@ __src/app/order/list.component.html__
 
 @sourceref ./list.component.html
 
+### Problem 4
+
 Update this component to:
 - take the above list of inputs
 - have three methods
@@ -94,27 +104,29 @@ Update this component to:
   - `delete(order._id)` that will delete an order
   - `total(items)` that will return the order total
 - have an `isPending` member that gets set before and after actions are performed
-
   
 You'll need to import `Input` from angular core, as well as `OrderService` and relevant interfaces to handle updating and deleting your orders.
   
-<details>
-<summary>Click to see solution</summary>
+---
+
+### Solution 4
+
 __src/app/order/list.component.ts__
 
 @sourceref ./list.component.ts
 @highlight 6
-</details>
+
+### Problem 5
 
 Now refactor your `src/app/order/history.component.html` file to use the new list component for each order subgroup: new orders, preparing orders, delivery orders, delivered orders.
 
-<details>
-<summary>Click to see solution</summary>
+---
+
+### Solution 5
 
 __src/app/order/history.component.html__
 
 @sourceref ./history.component.html
 
-</details>
 
 Now as you click the actions of the orders and refresh the page, you can see their updated statuses. Next we'll use Socket.io to capture the events and instantly update the ui.

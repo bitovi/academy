@@ -43,6 +43,8 @@ this.myValidatingForm = this.formBuilder.group({
 });
 ```
 
+### Problem 1
+
 Implement these concepts for this component following the comments in this code snippet:
 
 __src/app/order/order.component.ts__
@@ -52,27 +54,36 @@ __src/app/order/order.component.ts__
 psst. don't forget to unsubscribe!
 
 
-<details>
-<summary>Click to view solution</summary>
+
+
+
+---
+
+### Solution 1
 
 __src/app/order/order.component.ts__
 
 @sourceref ./order.component-solution.ts
-</details>
 
 ## Create New Route for Ordering
 
+### Problem 2
+
 Now, create a route for our new component! The path should be `/restaurants/{{slug}}/order`. 
 
-<details>
-<summary>Click to view solution</summary>
+
+
+
+
+---
+
+### Solution 2
 
 __src/app/app-routing.module.ts__
 
 @sourceref ./app-routing.module.ts
 @highlight 7, 22-25
 
-</details>
 
 Now when we navigate to <a href="http://localhost:4200/restaurants/crab-place/order" target="_blank">http://localhost:4200/restaurants/crab-place/order</a> you should see the order form with options for the restaurant items shown. Next we'll create the order service that will allow us to create a new order from data submitted from this form.
 
