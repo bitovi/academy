@@ -3,14 +3,14 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/angular/1-why-angular/why-angular.md
-	@page angular/why-angular
+	source: src/angular/17-deploy-app/deploy-app.md
+	@page angular/deploy-app
 ######################################################################## -->
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Bitovi University - Why Angular</title>
+	<title>Bitovi University - Deploy App</title>
 	
 	<link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
 	
@@ -144,17 +144,14 @@
 		
 			
 				
-					<li class="current
-           						parent
-           						expanded">
+					<li class="
+           						
+           						">
 						<a class="page"
 							href="why-angular.html"
 							title="Why Angular is a great choice for modern web application development.">
 							Why Angular
 						</a>
-						
-							
-
 						
 					</li>
 				
@@ -372,14 +369,17 @@
 		
 			
 				
-					<li class="
-           						
-           						">
+					<li class="current
+           						parent
+           						expanded">
 						<a class="page"
 							href="deploy-app.html"
 							title="Deploying App">
 							Deploy App
 						</a>
+						
+							
+
 						
 					</li>
 				
@@ -433,7 +433,7 @@
 	<article class="main">
 		
 			<section class="title">
-	<h1>Why Angular <code>page</code></h1>
+	<h1>Deploy App <code>page</code></h1>
 </section>
 
 		
@@ -441,7 +441,7 @@
 		
 			
 				<section class="description">
-    <p>Why Angular is a great choice for modern web application development.</p>
+    <p>Deploying App</p>
 
 </section>
 
@@ -454,19 +454,62 @@
 			
 			
 				<section class="body">
-    <h2>Angular in the Modern Web Development Ecosphere</h2>
-<p>Angular was first released in 2010 as a new framework in the MV* space alongside libraries like Backbone, Knockout, and Dojo.</p>
-<h2>The Pros</h2>
-<h3>1. An Opinionated Framework</h3>
-<p>Developers have to make a lot of decisions on a daily basis, which can often create decision fatigue. The great part about using an opinionated framework is being able to shift your focus from build configs, high level architecture decisions,   to writing the actual client-specific functioning pieces of the application.</p>
-<p>The use of Typescript to force type checking improves workflow by catching errors at compile time allowing teams to catch potential errors much faster.</p>
-<h3>2. Testing Built In</h3>
-<p>Spinning up a new Angular Workspace automatically creates a test suite, with a working karma config, and new test spec files for any component generated.</p>
-<h3>3. Harnesses the Power of Webpack</h3>
-<p>Webpack is a module bundler that also handles transforming resources, like Less or Typescript.
-Angular streamlines the build process by masking Webpack config complexity with the Angular CLI.</p>
-<h3>4. Google-Backed and Supported Product</h3>
-<p>Having a heavy hitting tech titan backing a library can make it a very sustainable choice to use.</p>
+    <h2>Overview</h2>
+<p>In this part, we will:</p>
+<ul>
+<li>Create a Firebase account</li>
+<li>Create a new project in Firebase</li>
+<li>Install Firebase cli tools</li>
+<li>Link our Place My Order app to the Firebase app</li>
+<li>Deploy app to Firebase</li>
+<li>Update npm script to include deploy</li>
+</ul>
+<h2>Create Firebase account</h2>
+<p>Go to <a href="https://console.firebase.google.com" target="_blank">https://console.firebase.google.com</a> and sign in or create new account.</p>
+<h2>Create new project</h2>
+<p>Create a new project called <code>place my order</code> in the Firebase console.</p>
+<h2>Install Firebase CLI</h2>
+<pre><code class="language-shell">npm install -g firebase-tools
+</code></pre>
+<p>Now, log into firebase.</p>
+<pre><code class="language-shell">firebase login
+</code></pre>
+<p>This will launch a page in your browser asking you to authenticate.</p>
+<h2>Link Place My Order app to new Firebase app</h2>
+<pre><code class="language-shell">firebase init
+</code></pre>
+<ol>
+<li>Which Firebase CLI features do you want to setup for this folder? (hosting)</li>
+<li>Select a default Firebase project for this directory? (don't setup a default project)</li>
+<li>What do you want to use as your public directory? (dist/place-my-order)</li>
+<li>Configure as a single-page app (rewrite all urls to /index.html)? (yes)</li>
+</ol>
+<pre><code class="language-shell">firebase use --add
+</code></pre>
+<ol>
+<li>Which project do you want to add? (select your place-my-order project)</li>
+<li>What alias do you want to use for this project? (prod)</li>
+</ol>
+<h2>Deploy App</h2>
+<p>We need to get our app ready to deploy, so we'll create a build with the production flag.</p>
+<pre><code class="language-shell">ng build --production
+</code></pre>
+<pre><code class="language-shell">firebase deploy
+firebase open hosting:site
+</code></pre>
+<p>Now when we view our project url from the page Firebase launches we'll see our app!</p>
+<h2>Update npm scrips</h2>
+<pre><code class="language-json"> &quot;scripts&quot;: {
+    &quot;ng&quot;: &quot;ng&quot;,
+    &quot;start&quot;: &quot;ng serve --proxy-config proxy.conf.json&quot;,
+    &quot;build&quot;: &quot;ng build&quot;,
+    &quot;test&quot;: &quot;ng test&quot;,
+    &quot;lint&quot;: &quot;ng lint&quot;,
+    &quot;e2e&quot;: &quot;ng e2e&quot;,
+    &quot;api&quot;: &quot;place-my-order-api --port 7070&quot;,
+    &quot;deploy&quot;: &quot;ng build --prod &amp;&amp; firebase deploy&quot;
+  },
+</code></pre>
 
 </section>
 
@@ -478,7 +521,7 @@ Angular streamlines the build process by masking Webpack config complexity with 
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/angular/1-why-angular/why-angular.md"},"description":"Why Angular is a great choice for modern web application development.  \n","name":"angular/why-angular","title":"Why Angular","type":"page","parent":"angular","order":1,"comment":" ","pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/angular/17-deploy-app/deploy-app.md"},"description":"Deploying App  ","name":"angular/deploy-app","title":"Deploy App","type":"page","parent":"angular","order":17,"comment":" ","pathToRoot":"../.."};
 	</script>
 
 	

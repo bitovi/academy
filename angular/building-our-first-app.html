@@ -376,6 +376,21 @@
            						
            						">
 						<a class="page"
+							href="deploy-app.html"
+							title="Deploying App">
+							Deploy App
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="writing-unit-tests.html"
 							title="Writing Unit Tests">
 							Writing Unit Tests
@@ -448,7 +463,7 @@
 <li>Learn to serve our app</li>
 </ul>
 <h2>Intro to the CLI</h2>
-<p>Angular has a CLI that does a lot of the initial legwork in setting up a minimal app, as well as letting you easy create and include new components on the fly.</p>
+<p>Angular has a CLI that does a lot of the initial legwork in setting up a minimal app, as well as letting you easily create and include new components on the fly.</p>
 <h2>Installation</h2>
 <p>We'll start by globally installing the Angular CLI.</p>
 <pre><code class="language-shell">npm install -g @angular/cli@7
@@ -456,6 +471,7 @@
 <h2>Generating a new app</h2>
 <p>We're going to build a restaurant menu and ordering application. The final result will look like this:</p>
 <p><img src="../static/img/place-my-order.png" alt="Place My Order App screenshot" title="Place My Order App screenshot" /></p>
+<p>(reminder: You can see a DoneJS implementation of this application at <a href="http://www.place-my-order.com">www.place-my-order.com</a>)</p>
 <p>To create a new Angular Workspace, we run the 'ng new' command.</p>
 <pre><code class="language-shell">ng new place-my-order  --prefix pmo
 cd place-my-order
@@ -551,6 +567,7 @@ cd place-my-order
 <li>providers [array]: where we include services that we want used at the global app level</li>
 <li>bootstrap [array]: where we include the root AppModule - this is the main Application view that hosts all of our other app views.</li>
 </ul>
+<p>Further reading: <a href="https://angular.io/guide/architecture-services#dependency-injection-di" target="_blank">Dependency Injection in Angular</a></p>
 <h3>src/app/app.component.ts</h3>
 <p>This is our root component, you saw it called in our index.html file as <code>&lt;app-root&gt;&lt;/app-root&gt;</code></p>
 <h2>Changing the markup</h2>

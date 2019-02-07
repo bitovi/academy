@@ -376,6 +376,21 @@
            						
            						">
 						<a class="page"
+							href="deploy-app.html"
+							title="Deploying App">
+							Deploy App
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="writing-unit-tests.html"
 							title="Writing Unit Tests">
 							Writing Unit Tests
@@ -451,6 +466,87 @@
 <h2>Creating Order History Component</h2>
 <pre><code class="language-bash">ng g component order/history
 </code></pre>
+<h2>Add Order History Route</h2>
+<h3>The problem</h3>
+<p>Create a new route <code>/order-history</code> that shows the history component you created.</p>
+<h3>What you need to know</h3>
+<ul>
+<li>how to create a route</li>
+</ul>
+<hr />
+<h3>The solution</h3>
+<p><strong>src/app/app-routing.module.ts</strong></p>
+<pre><code class="language-ts">import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+import { HomeComponent } from './home/home.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { RestaurantDetailComponent } from './restaurant/detail/detail.component';
+import { OrderComponent } from './order/order.component';
+import { HistoryComponent } from './order/history/history.component';
+
+const routes: Routes = [
+  {
+    path: '',
+    component: HomeComponent,
+  },
+  {
+    path: 'restaurants',
+    component: RestaurantComponent,
+  },
+  {
+    path: 'restaurants/:slug',
+    component: RestaurantDetailComponent,
+  },
+  {
+    path: 'restaurants/:slug/:order',
+    component: OrderComponent,
+  },
+  {
+    path: 'order-history',
+    component: HistoryComponent
+  }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+
+</code></pre>
+<div line-highlight='8, 27-30'></div>
+<h2>Adding Order History to Main Navigation</h2>
+<h3>The Problem</h3>
+<p>Next, add the order history path you created to the navigation in the <code>src/app/app.component.html</code> file.</p>
+<h3>What you need to know</h3>
+<ul>
+<li>How to create a link to a route</li>
+</ul>
+<hr />
+<h3>The solution</h3>
+<p><strong>src/app/app.component.html</strong></p>
+<pre><code class="language-html">&lt;header&gt;
+  &lt;nav&gt;
+   &lt;h1&gt;place-my-order.com&lt;/h1&gt;
+   &lt;ul&gt;
+     &lt;li routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
+       &lt;a routerLink=&quot;/&quot; &gt;Home&lt;/a&gt;
+     &lt;/li&gt;
+     &lt;li [ngClass]=&quot;{'active' : rla.isActive} &quot;&gt;
+       &lt;a routerLink=&quot;/restaurants&quot; routerLinkActive #rla=&quot;routerLinkActive&quot;&gt;Restaurants&lt;/a&gt;
+     &lt;/li&gt;
+     &lt;li routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
+       &lt;a routerLink=&quot;/order-history&quot;&gt;Order History&lt;/a&gt;
+     &lt;/li&gt;
+   &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+&lt;router-outlet&gt;&lt;/router-outlet&gt;
+
+</code></pre>
+<div line-highlight='11-13'></div>
+<p>You should now be able to navigate to <a href="http://localhost:4200/order-history" target="_blank">http://localhost:4200/order-history</a> and see a list of all orders.</p>
 <h3>The problem</h3>
 <p>In this component, we want to see a history of all orders. Import the order service into this new component and make the call to get all orders.</p>
 <p><strong>src/app/order/history.component.ts</strong></p>
@@ -628,87 +724,6 @@ export class HistoryComponent implements OnInit {
   &lt;/ng-container&gt;
 &lt;/div&gt;
 </code></pre>
-<h2>Add Order History Route</h2>
-<h3>The problem</h3>
-<p>Create a new route <code>/order-history</code> that shows the history component you created.</p>
-<h3>What you need to know</h3>
-<ul>
-<li>how to create a route</li>
-</ul>
-<hr />
-<h3>The solution</h3>
-<p><strong>src/app/app-routing.module.ts</strong></p>
-<pre><code class="language-ts">import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-import { HomeComponent } from './home/home.component';
-import { RestaurantComponent } from './restaurant/restaurant.component';
-import { RestaurantDetailComponent } from './restaurant/detail/detail.component';
-import { OrderComponent } from './order/order.component';
-import { HistoryComponent } from './order/history/history.component';
-
-const routes: Routes = [
-  {
-    path: '',
-    component: HomeComponent,
-  },
-  {
-    path: 'restaurants',
-    component: RestaurantComponent,
-  },
-  {
-    path: 'restaurants/:slug',
-    component: RestaurantDetailComponent,
-  },
-  {
-    path: 'restaurants/:slug/:order',
-    component: OrderComponent,
-  },
-  {
-    path: 'order-history',
-    component: HistoryComponent
-  }
-];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
-
-</code></pre>
-<div line-highlight='8, 27-30'></div>
-<h2>Adding Order History to Main Navigation</h2>
-<h3>The Problem</h3>
-<p>Next, add the order history path you created to the navigation in the <code>src/app/app.component.html</code> file.</p>
-<h3>What you need to know</h3>
-<ul>
-<li>How to create a link to a route</li>
-</ul>
-<hr />
-<h3>The solution</h3>
-<p><strong>src/app/app.component.html</strong></p>
-<pre><code class="language-html">&lt;header&gt;
-  &lt;nav&gt;
-   &lt;h1&gt;place-my-order.com&lt;/h1&gt;
-   &lt;ul&gt;
-     &lt;li routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
-       &lt;a routerLink=&quot;/&quot; &gt;Home&lt;/a&gt;
-     &lt;/li&gt;
-     &lt;li [ngClass]=&quot;{'active' : rla.isActive} &quot;&gt;
-       &lt;a routerLink=&quot;/restaurants&quot; routerLinkActive #rla=&quot;routerLinkActive&quot;&gt;Restaurants&lt;/a&gt;
-     &lt;/li&gt;
-     &lt;li routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
-       &lt;a routerLink=&quot;/order-history&quot;&gt;Order History&lt;/a&gt;
-     &lt;/li&gt;
-   &lt;/ul&gt;
-  &lt;/nav&gt;
-&lt;/header&gt;
-&lt;router-outlet&gt;&lt;/router-outlet&gt;
-
-</code></pre>
-<div line-highlight='11-13'></div>
-<p>You should now be able to navigate to <a href="http://localhost:4200/order-history" target="_blank">http://localhost:4200/order-history</a> and see a list of all orders.</p>
 <h2>Creating a Child Component to Handle Order States</h2>
 <p>Orders can have states of new, preparing, delivery, and delivered, and we want to have different actions to take in the UI based on an orders status. Let's refactor the UI displaying all the orders into a new component. This new component will take a variety of different inputs:</p>
 <ul>
@@ -786,7 +801,7 @@ import { Order, Item, OrderService } from '../order.service';
 
 
 @Component({
-  selector: 'pmo-order-list',
+  selector: 'pmo-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.less']
 })
