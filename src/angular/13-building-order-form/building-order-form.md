@@ -23,11 +23,13 @@ Our order form is how we can create new orders. We'll use a reactive form to get
 ng g component order
 ```
 
-We've covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes.
+In your new order component, edit the __src/order/order.component.html__ file to be: 
 
-Update the __src/order/order.component.html__ to be: 
+__src/app/order/order.component.html__
 
+@sourceref ./order-0.component.html
 
+We've covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes. Let's practice those concepts. 
 
 ### The problem
 
