@@ -156,4 +156,19 @@ __src/app/restaurant/restaurant.component.ts__
 @sourceref ./restaurant.component.ts
 @highlight 9
 
-We'll come back to this view to feed in data, but for now you'll notice we're setting a restaurants property to an empty array. Run `npm run start`, and your app should compile with no errors!
+We'll come back to this view to feed in data, but for now you'll notice we're setting a restaurants property to an empty array.
+
+### Viewing New Components
+
+Open your __src/app/app.component.html__ file and update it to be:
+
+```html
+<h1>Place My Order App: Coming Soon!</h1>
+<router-outlet></router-outlet>
+
+<pmo-home></pmo-home>
+
+<pmo-restaurant></pmo-restaurant>
+```
+
+ Run `npm run start`, and your app should compile with no errors, and you'll be able to see the home and restaurants components. Next we'll move them to their own pages with unique routes. 
