@@ -19,17 +19,23 @@ In this part, we will:
 ```bash
 ng g component order/history
 ```
-### Problem 1
 
-In this component, we want to see a history of all orders. Import the order service into this new component and make the call to get all orders. 
+### The problem
+
+In this component, we want to see a history of all orders. Import the order service into this new component and make the call to get all orders.
 
 __src/app/order/history.component.ts__
 
 @sourceref ./history.component.ts
 
+### What you need to know
+
+- how to import a service
+- how to subscribe to a method on a service 
+
 ---
 
-### Solution 1
+### The solution
 
 __src/app/order/history.component.ts__
 
@@ -43,13 +49,17 @@ __src/app/order/history.component.html__
 
 ## Add Order History Route
 
-### Problem 2
+### The problem
 
-Add a new route `/order-history` that shows the history component you created. 
+Create a new route `/order-history` that shows the history component you created. 
+
+### What you need to know
+
+- how to create a route
 
 ---
 
-### Solution 2
+### The solution
 
 __src/app/app-routing.module.ts__
 
@@ -59,13 +69,17 @@ __src/app/app-routing.module.ts__
 
 ## Adding Order History to Main Navigation
 
-### Problem 3
+### The Problem
 
 Next, add the order history path you created to the navigation in the `src/app/app.component.html` file.
 
+### What you need to know
+
+- How to create a link to a route
+
 ---
 
-### Solution 3
+### The solution
 
 __src/app/app.component.html__
 
@@ -95,7 +109,7 @@ __src/app/order/list.component.html__
 
 @sourceref ./list.component.html
 
-### Problem 4
+### The Problem
 
 Update this component to:
 - take the above list of inputs
@@ -106,23 +120,34 @@ Update this component to:
 - have an `isPending` member that gets set before and after actions are performed
   
 You'll need to import `Input` from angular core, as well as `OrderService` and relevant interfaces to handle updating and deleting your orders.
+
+### What you need to know
+
+- set inputs on a component
+- call methods on a service
+- update a boolean member to show/hide content
   
 ---
 
-### Solution 4
+### The solution
 
 __src/app/order/list.component.ts__
 
 @sourceref ./list.component.ts
 @highlight 6
 
-### Problem 5
+### The problem
 
-Now refactor your `src/app/order/history.component.html` file to use the new list component for each order subgroup: new orders, preparing orders, delivery orders, delivered orders.
+Refactor your `src/app/order/history.component.html` file to use the new list component for each order subgroup: new orders, preparing orders, delivery orders, delivered orders.
+
+
+### What you need to know
+
+- How to pass properties to child components
 
 ---
 
-### Solution 5
+### The solution
 
 __src/app/order/history.component.html__
 
