@@ -56,7 +56,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
       this.form.get('city').enable();
     });
 
-    this.restaurantService.getRestaurants("IL","Chicago").subscribe((res: ResponseData) => {
+    this.restaurantService.getRestaurants("IL","Chicago").subscribe((res: ResponseData<Restaurant>) => {
       this.restaurants.value = res.data;
       this.restaurants.isPending = false;
     });
