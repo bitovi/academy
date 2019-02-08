@@ -298,6 +298,21 @@
            						
            						">
 						<a class="page"
+							href="writing-unit-tests.html"
+							title="Write a service unit test">
+							Writing Unit Tests
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="nested-routes.html"
 							title="Creating nested restaurant routes">
 							Nested Restaurant Routes
@@ -379,21 +394,6 @@
 							href="deploy-app.html"
 							title="Deploying App">
 							Deploy App
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="writing-unit-tests.html"
-							title="Writing Unit Tests">
-							Writing Unit Tests
 						</a>
 						
 					</li>
@@ -855,7 +855,461 @@ export class AppModule { }
 </code></pre>
 <pre><code class="language-bash">ng g component order/menu-items
 </code></pre>
-<p>We want to give an array of item objects to our parent form based on which checkboxes are selected. We can do this by using Angulars <a href="https://angular.io/api/forms/ControlValueAccessor" target="\_blank">Control Value Accessor</a> to act as a bridge between our form and the UI we build. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.</p>
+<p>Go ahead and put your new component in the order history component.</p>
+<p><strong>src/app/order/order-starter.component.html</strong></p>
+<pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
+    &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
+    &lt;/ng-container&gt;
+    &lt;ng-template #showOrderForm&gt;
+      &lt;h2&gt;Order here&lt;/h2&gt;
+      &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+        &lt;tabset&gt;
+            &lt;tab heading=&quot;Lunch Menu&quot;&gt;
+              &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot;&gt;&lt;/&lt;pmo-menu-items&gt;
+            &lt;/tab&gt;
+            &lt;tab heading=&quot;Dinner menu&quot;&gt;
+              &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot;&gt;&lt;/&lt;pmo-menu-items&gt;
+            &lt;/tab&gt;
+          &lt;/tabset&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+          &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
+          &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
+          &lt;p&gt;Please enter your name.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+          &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
+          &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
+          &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+          &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
+          &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+          &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;submit&quot;&gt;
+          &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
+            &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
+            &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
+              Place My Order!
+            &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
+  &lt;/ng-template&gt;
+  &lt;/div&gt;
+</code></pre>
+<div line-highlight='9, 12'></div>
+<h2>Exercise: Passing properties to child components</h2>
+<h3>The Problem</h3>
+<p>We want the menu-items component take an array of menu items and iterate through them in the template.</p>
+<p>Each menu item should have this markup:</p>
+<pre><code class="language-html"> &lt;label&gt;
+    &lt;input type=&quot;checkbox&quot;&gt;
+    ITEM_NAME &lt;span class=&quot;badge&quot;&gt;$ ITEM_PRICE&lt;/span&gt;
+&lt;/label&gt;
+</code></pre>
+<h3>What you need to know</h3>
+<ul>
+<li>How to use *ngFor</li>
+<li>How to use <a href="https://angular.io/api/core/Input" target="_blank">Input</a> to pass properties:</li>
+</ul>
+<pre><code class="language-ts">@Component({
+  selector: 'bank-account',
+  template: `
+    Bank: {{bank.name}}
+    Account Id: {{id}}
+  `
+})
+class BankAccount {
+  // This property is bound using its original name.
+  @Input() bank: {
+    name: string,
+    code: string
+  };
+  // this property value is bound to a different property name
+  // when this component is instantiated in a template.
+  @Input('account-id') id: string;
+  // this property is not bound, and is not automatically updated by Angular
+  normalizedBankName: string;
+}
+ 
+@Component({
+  selector: 'app',
+  template: `
+    &lt;bank-account [bank]=&quot;bankInfo&quot; account-id=&quot;4747&quot;&gt;&lt;/bank-account&gt;
+  `
+})
+ 
+class App {
+  bankInfo = {
+    name: 'Really Cool Bank',
+    code: 'RCB'
+  }
+}
+</code></pre>
+<h3>The solution</h3>
+<p><strong>src/app/order/menu-items.component.html</strong></p>
+<pre><code class="language-html">&lt;div *ngFor=&quot;let item of items&quot;&gt;
+    &lt;label&gt;
+      &lt;input type=&quot;checkbox&quot;&gt;
+      {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
+    &lt;/label&gt;
+  &lt;/div&gt;
+</code></pre>
+<p><strong>src/app/order/menu-items.component.ts</strong></p>
+<pre><code class="language-ts">import { Component, OnInit, Input } from '@angular/core';
+
+@Component({
+  selector: 'pmo-menu-items',
+  templateUrl: './menu-items.component.html',
+  styleUrls: ['./menu-items.component.less']
+})
+export class MenuItemsComponent implements OnInit {
+  @Input() items: [];
+  
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+}
+
+</code></pre>
+<p><strong>src/app/order/order.component.html</strong></p>
+<pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
+    &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
+    &lt;/ng-container&gt;
+    &lt;ng-template #showOrderForm&gt;
+      &lt;h2&gt;Order here&lt;/h2&gt;
+      &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+        &lt;tabset&gt;
+            &lt;tab heading=&quot;Lunch Menu&quot;&gt;
+              &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot;&gt;&lt;/&lt;pmo-menu-items&gt;
+            &lt;/tab&gt;
+            &lt;tab heading=&quot;Dinner menu&quot;&gt;
+              &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot;&gt;&lt;/&lt;pmo-menu-items&gt;
+            &lt;/tab&gt;
+          &lt;/tabset&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+          &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
+          &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
+          &lt;p&gt;Please enter your name.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+          &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
+          &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
+          &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+          &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
+          &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+          &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;submit&quot;&gt;
+          &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
+            &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
+            &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
+              Place My Order!
+            &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
+  &lt;/ng-template&gt;
+  &lt;/div&gt;
+</code></pre>
+<div line-highlight='9, 12'></div>
+<h2>Exercise: Attaching event handlers</h2>
+<h3>The Problem</h3>
+<p>Next, we want to know when a checkbox has been checked or unchecked, and update an array called <code>selectedItems</code> containing all checked items.</p>
+<h3>What you need to know</h3>
+<ul>
+<li>How to attach a click event and call a method:</li>
+</ul>
+<pre><code class="language-ts">@Component({
+  selector: 'app-click-me',
+  template: `
+    &lt;button (click)=&quot;onClickMe()&quot;&gt;Click me!&lt;/button&gt;
+    {{clickMessage}}`
+})
+export class ClickMeComponent {
+  clickMessage = '';
+
+  onClickMe() {
+    this.clickMessage = 'You are my hero!';
+  }
+}
+</code></pre>
+<ul>
+<li>Use <code>array.splice(index,1)</code> to remove an item from an array.</li>
+<li>Listen to <code>change</code> to know when an checkbox has changed its value.</li>
+</ul>
+<h3>The Solution</h3>
+<p><strong>src/app/order/menu-items.component.html</strong></p>
+<pre><code class="language-html">&lt;div *ngFor=&quot;let item of items&quot;&gt;
+  &lt;label&gt;
+    &lt;input type=&quot;checkbox&quot; (change)=&quot;changeFunc(item)&quot; &gt;
+    {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
+  &lt;/label&gt;
+&lt;/div&gt;
+</code></pre>
+<p><strong>src/app/order/menu-items.component.ts</strong></p>
+<pre><code class="language-ts">import { Component, OnInit, Input } from '@angular/core';
+
+interface Item {
+  name: string;
+  price: number
+}
+
+@Component({
+  selector: 'pmo-menu-items',
+  templateUrl: './menu-items.component.html',
+  styleUrls: ['./menu-items.component.less']
+})
+export class MenuItemsComponent implements OnInit {
+  @Input() items: [];
+  selectedItems: Item[] = [];
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+  changeFunc(item: Item) {
+    let index = this.selectedItems.indexOf(item);
+    if(index &gt; -1) {
+      this.selectedItems.splice(index, 1);
+    }
+    else {
+      this.selectedItems.push(item);
+    }
+  }
+
+}
+
+</code></pre>
+<h2>Exercise: Emitting data to parent components</h2>
+<h3>The Problem</h3>
+<p>Now we want to let the form know what the selected items are.</p>
+<h3>What you need to know</h3>
+<ul>
+<li>How to emit a value to a parent component (presumably to update our form value)</li>
+</ul>
+<pre><code class="language-ts">@Component({
+  selector: 'zippy',
+  template: `
+  &lt;div class=&quot;zippy&quot;&gt;
+    &lt;div (click)=&quot;toggle()&quot;&gt;Toggle&lt;/div&gt;
+    &lt;div [hidden]=&quot;!visible&quot;&gt;
+      &lt;ng-content&gt;&lt;/ng-content&gt;
+    &lt;/div&gt;
+ &lt;/div&gt;`})
+export class Zippy {
+  visible: boolean = true;
+  @Output() open: EventEmitter&lt;any&gt; = new EventEmitter();
+  @Output() close: EventEmitter&lt;any&gt; = new EventEmitter();
+ 
+  toggle() {
+    this.visible = !this.visible;
+    if (this.visible) {
+      this.open.emit(&quot;OPEN&quot;);
+    } else {
+      this.close.emit(&quot;CLOSE&quot;);
+    }
+  }
+}
+
+@Component({
+  selector: 'app',
+  template: `
+    &lt;zippy (open)=&quot;opened($event)&quot; (close)=&quot;closed($event)&quot;&gt;&lt;/zippy&gt;
+  `
+})
+class App {
+  opened(message) {
+    console.log(message) //-&gt; OPEN
+  };
+  closed(message) {
+    console.log(message) //-&gt; CLOSE
+  }
+}
+</code></pre>
+<h3>The Solution</h3>
+<p><strong>src/app/order/menu-items.component.ts</strong></p>
+<pre><code class="language-ts">import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+
+interface Item {
+  name: string;
+  price: number
+}
+
+@Component({
+  selector: 'pmo-menu-items',
+  templateUrl: './menu-items.component.html',
+  styleUrls: ['./menu-items.component.less']
+})
+export class MenuItemsComponent implements OnInit {
+  @Input() items: [];
+  selectedItems: Item[] = [];
+  @Output() itemsChanged: EventEmitter&lt;any&gt; = new EventEmitter();
+
+  constructor() { }
+
+  ngOnInit() {
+  }
+
+  changeFunc(item: Item) {
+    let index = this.selectedItems.indexOf(item);
+    if(index &gt; -1) {
+      this.selectedItems.splice(index, 1);
+    }
+    else {
+      this.selectedItems.push(item);
+    }
+    this.itemsChanged.emit(this.selectedItems);
+  }
+
+}
+
+</code></pre>
+<p><strong>src/app/order/order.component.html</strong></p>
+<pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
+    &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
+    &lt;/ng-container&gt;
+    &lt;ng-template #showOrderForm&gt;
+      &lt;h2&gt;Order here&lt;/h2&gt;
+      &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+        &lt;tabset&gt;
+          &lt;tab heading=&quot;Lunch Menu&quot;&gt;
+            &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot; (itemsChanged)=&quot;getChange($event)&quot; &gt;&lt;/pmo-menu-items&gt;
+          &lt;/tab&gt;
+          &lt;tab heading=&quot;Dinner menu&quot;&gt;
+            &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot; (itemsChanged)=&quot;getChange($event)&quot; &gt;&lt;/pmo-menu-items&gt;
+          &lt;/tab&gt;
+        &lt;/tabset&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+          &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
+          &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
+          &lt;p&gt;Please enter your name.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+          &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
+          &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
+          &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;form-group&quot;&gt;
+          &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
+          &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+          &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;submit&quot;&gt;
+          &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
+            &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
+            &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
+              Place My Order!
+            &lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
+  &lt;/ng-template&gt;
+  &lt;/div&gt;
+</code></pre>
+<div line-highlight='9, 12'></div>
+<p><strong>src/app/order/order.component.ts</strong></p>
+<pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FormGroup, FormBuilder, FormArray, AbstractControl } from '@angular/forms';
+
+import { RestaurantService } from '../restaurant/restaurant.service';
+import { Restaurant } from '../restaurant/restaurant';
+import { Subscription } from 'rxjs';
+
+//CUSTOM VALIDATION FUNCTION TO ENSURE THAT THE ITEMS FORM VALUE CONTAINS AT LEAST ONE ITEM. 
+function minLengthArray(min: number) {
+  return (c: AbstractControl): {[key: string]: any} =&gt; {
+      if (c.value.length &gt;= min)
+          return null;
+      return { 'minLengthArray': {valid: false }};
+  }
+}
+
+@Component({
+  selector: 'pmo-order',
+  templateUrl: './order.component.html',
+  styleUrls: ['./order.component.less']
+})
+export class OrderComponent implements OnInit, OnDestroy {
+  orderForm: FormGroup;
+  restaurant: Restaurant;
+  isLoading: boolean = true;
+  items: FormArray;
+  orderTotal: number = 0.0;
+  completedOrder: any;
+  orderComplete: boolean = false;
+  orderProcessing: boolean = false;
+  private subscription: Subscription;
+
+  constructor(
+    private route: ActivatedRoute, 
+    private restaurantService: RestaurantService,
+    private formBuilder: FormBuilder
+  ) { 
+  }
+
+  ngOnInit() {
+    let slug = this.route.snapshot.paramMap.get('slug');
+    this.restaurantService.getRestaurant(slug).subscribe((res:Restaurant) =&gt; {
+      this.restaurant = res;
+      this.createOrderForm();
+      
+    });    
+   
+  }
+
+  ngOnDestroy(): void {
+  }
+
+  createOrderForm() {
+    //CREATE AN ORDER FORM TO COLLECT: RESTAURANT ID, NAME, ADDRESS, PHONE, AND ITEMS
+    // ITEMS SHOULD USE THE CUSTOM MINLENGTH ARRAY VALIDATION
+    this.orderForm = this.formBuilder.group({
+      restaurant: [{value: this.restaurant._id}],
+      name: [''],
+      address: [''],
+      phone: [''],
+      items: [[], minLengthArray(1)]
+    });
+    this.onChanges();
+  }
+
+  getChange(newItems: []) {
+    let currentItems = this.orderForm.get('items').value;
+
+    for (let i = 0; i &lt; newItems.length; i++) {
+      let item = newItems[i];
+      let idx = currentItems.indexOf(item);
+      if (idx === -1) {
+        currentItems.push(item);
+      }
+      
+    }
+    this.orderForm.get('items').patchValue(newItems);
+  }
+
+  onChanges() {
+      //  let total = 0.0;
+      //   val.forEach((item: any) =&gt; {
+      //     total += item.price;
+      //   });
+      //   this.orderTotal = Math.round(total * 100) / 100;
+  }
+
+  startNewOrder() {
+    this.orderComplete = false;
+    this.completedOrder = this.orderForm.value;
+    this.createOrderForm();
+  }
+
+}
+</code></pre>
+<div line-highlight='67-79'></div>
+<p>Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the  <a href="https://angular.io/api/forms/ControlValueAccessor" target="_blank">Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.</p>
 <p><strong>src/app/order/menu-items.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';

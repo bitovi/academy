@@ -294,6 +294,24 @@
 		
 			
 				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="writing-unit-tests.html"
+							title="Write a service unit test">
+							Writing Unit Tests
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
 					<li class="
            						
            						">
@@ -382,24 +400,6 @@
 				
 			
 		
-			
-				
-					<li class="current
-           						parent
-           						expanded">
-						<a class="page"
-							href="writing-unit-tests.html"
-							title="Writing Unit Tests">
-							Writing Unit Tests
-						</a>
-						
-							
-
-						
-					</li>
-				
-			
-		
 	</ul>
 
 
@@ -441,7 +441,7 @@
 		
 			
 				<section class="description">
-    <p>Writing Unit Tests</p>
+    <p>Write a service unit test</p>
 
 </section>
 
@@ -457,56 +457,15 @@
     <h2>Overview</h2>
 <p>In this part, we will:</p>
 <ul>
-<li>Learn to run tests</li>
-<li>Test components</li>
-<li>Understand NO_ERROR_SCHEMA</li>
-<li>Test components with services
-<ul>
-<li>Learn to mock services</li>
-</ul></li>
-<li>Test child components</li>
-<li>Test services</li>
-<li>Test pipes</li>
+<li>Get our existing tests to pass</li>
+<li>Run our tests</li>
+<li>Write a test to get cities and states</li>
 </ul>
-<h2>Running Tests</h2>
-<p>When using the angular cli, any new component, service, pipe, etc, will have a .spec file generated alongside it with a default &quot;this thing exists and can be initialized&quot; type test.</p>
-<p>Tests are run from the command <code>npm test</code>.</p>
-<h2>Testing Components</h2>
-<p>Let's look at the base app component the angular cli created, <code>src/app/app.component.ts</code>. We made some changes to the markup of this component but never updated our tests. The test is currently failing, because it's expecting the h1 tag to contain &quot;PlaceMyOrder&quot;. At this point in our development, the h1 in the home page currently contains &quot;place-my-order.com&quot;, so let's update the test to expect that by changing the <code>src/app/app.component.spec.ts</code> file.</p>
-<h2>Testing Components with Child Components</h2>
-<pre><code class="language-typescript">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { HistoryComponent } from './history.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-
-describe('HistoryComponent', () =&gt; {
-  let component: HistoryComponent;
-  let fixture: ComponentFixture&lt;HistoryComponent&gt;;
-
-  beforeEach(async(() =&gt; {
-    TestBed.configureTestingModule({
-      declarations: [ HistoryComponent ],
-      schemas: [NO_ERRORS_SCHEMA]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() =&gt; {
-    fixture = TestBed.createComponent(HistoryComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () =&gt; {
-    expect(component).toBeTruthy();
-  });
-});
-</code></pre>
-<h2>Testing Components with Services</h2>
-<h2>Updating base passing tests</h2>
-<p><details>
-<summary>Click to view tests</summary></p>
-<p><strong>src/app/app.component.spec.ts</strong></p>
+<h2>Get our unit tests to work again</h2>
+<p>Update the following three files:</p>
+<ol>
+<li><strong>src/app/app.component.spec.ts</strong></li>
+</ol>
 <pre><code class="language-ts">import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
@@ -544,7 +503,9 @@ describe('AppComponent', () =&gt; {
 });
 
 </code></pre>
-<p><strong>src/app/image-url.pipe.spec.ts</strong></p>
+<ol start="2">
+<li><strong>src/app/image-url.pipe.spec.ts</strong></li>
+</ol>
 <pre><code class="language-ts">import { ImageUrlPipe } from './image-url.pipe';
 
 describe('ImageUrlPipe', () =&gt; {
@@ -559,7 +520,9 @@ describe('ImageUrlPipe', () =&gt; {
   })
 });
 </code></pre>
-<p><strong>src/app/restaurant.component.spec.ts</strong></p>
+<ol start="3">
+<li><strong>src/app/restaurant.component.spec.ts</strong></li>
+</ol>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RestaurantComponent } from './restaurant.component';
@@ -628,6 +591,11 @@ describe('RestaurantComponent', () =&gt; {
 });
 
 </code></pre>
+<h2>Run our tests</h2>
+<p>Run the following in your terminal:</p>
+<pre><code class="language-shell">ng test
+</code></pre>
+<h2>Exercise: Write restaurant service test</h2>
 <p><strong>src/app/restaurant.service.spec.ts</strong></p>
 <pre><code class="language-ts">import { TestBed } from '@angular/core/testing';
 
@@ -640,7 +608,7 @@ describe('RestaurantService', () =&gt; {
 
   beforeEach(() =&gt; TestBed.configureTestingModule({
     imports: [HttpClientTestingModule],
-    providers: [ 
+    providers: [
       RestaurantService
     ]
   }));
@@ -664,7 +632,7 @@ describe('RestaurantService', () =&gt; {
     restaurantService.getStates().subscribe((states) =&gt; {
       expect(states).toEqual(mockStates);
     });
-    
+
     let url = '/api/states';
     const req = httpMock.expectOne(url);
 
@@ -684,7 +652,7 @@ describe('RestaurantService', () =&gt; {
     restaurantService.getCities('MO').subscribe((cities) =&gt; {
       expect(cities).toEqual(mockCities);
     });
-    
+
     let url = '/api/cities?state=MO';
     const req = httpMock.expectOne(url);
     expect(req.request.method).toEqual('GET');
@@ -693,90 +661,11 @@ describe('RestaurantService', () =&gt; {
     httpMock.verify();
   })
 
-  it('should make a get request to restaurants', () =&gt; {
-    const mockRestaurants = {
-      data: [
-        {&quot;name&quot;:&quot;Brunch Place&quot;,
-        &quot;slug&quot;:&quot;brunch-place&quot;,
-        &quot;images&quot;:{
-          &quot;thumbnail&quot;:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-          &quot;owner&quot;:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
-          &quot;banner&quot;:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;},
-          &quot;menu&quot;:{
-            &quot;lunch&quot;:[
-              {&quot;name&quot;:&quot;Ricotta Gnocchi&quot;,&quot;price&quot;:15.99},
-              {&quot;name&quot;:&quot;Garlic Fries&quot;,&quot;price&quot;:15.99},
-              {&quot;name&quot;:&quot;Charred Octopus&quot;,&quot;price&quot;:25.99}
-            ],
-            &quot;dinner&quot;:[
-              {&quot;name&quot;:&quot;Steamed Mussels&quot;,&quot;price&quot;:21.99},
-              {&quot;name&quot;:&quot;Roasted Salmon&quot;,&quot;price&quot;:23.99},
-              {&quot;name&quot;:&quot;Crab Pancakes with Sorrel Syrup&quot;,&quot;price&quot;:35.99}
-            ]
-          },
-          &quot;address&quot;:{
-            &quot;street&quot;:&quot;2451 W Washburne Ave&quot;,
-            &quot;city&quot;:&quot;Ann Arbor&quot;,&quot;state&quot;:&quot;MI&quot;,&quot;zip&quot;:&quot;53295&quot;},
-            &quot;_id&quot;:&quot;xugqxQIX5rPJTLBv&quot;
-          }
-      ]
-    };
-      
-    restaurantService.getRestaurants('NH', 'Salem').subscribe((restaurants) =&gt; {
-      expect(restaurants).toEqual(mockRestaurants);
-    });
-    
-    let url = '/api/restaurants?address.state=NH&amp;address.city=Salem';
-    const req = httpMock.expectOne(url);
-    expect(req.request.method).toEqual('GET');
-    req.flush(mockRestaurants);
-
-    httpMock.verify();
-  });
-
-  it('should make a get request to restaurant', () =&gt; {
-    const mockRestaurant = {
-      &quot;name&quot;:&quot;Brunch Place&quot;,
-      &quot;slug&quot;:&quot;brunch-place&quot;,
-      &quot;images&quot;:{
-        &quot;thumbnail&quot;:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-        &quot;owner&quot;:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
-        &quot;banner&quot;:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;},
-        &quot;menu&quot;:{
-          &quot;lunch&quot;:[
-            {&quot;name&quot;:&quot;Ricotta Gnocchi&quot;,&quot;price&quot;:15.99},
-            {&quot;name&quot;:&quot;Garlic Fries&quot;,&quot;price&quot;:15.99},
-            {&quot;name&quot;:&quot;Charred Octopus&quot;,&quot;price&quot;:25.99}
-          ],
-          &quot;dinner&quot;:[
-            {&quot;name&quot;:&quot;Steamed Mussels&quot;,&quot;price&quot;:21.99},
-            {&quot;name&quot;:&quot;Roasted Salmon&quot;,&quot;price&quot;:23.99},
-            {&quot;name&quot;:&quot;Crab Pancakes with Sorrel Syrup&quot;,&quot;price&quot;:35.99}
-          ]
-        },
-        &quot;address&quot;:{
-          &quot;street&quot;:&quot;2451 W Washburne Ave&quot;,
-          &quot;city&quot;:&quot;Ann Arbor&quot;,&quot;state&quot;:&quot;MI&quot;,&quot;zip&quot;:&quot;53295&quot;},
-          &quot;_id&quot;:&quot;xugqxQIX5rPJTLBv&quot;
-        };
-
-    restaurantService.getRestaurant('potato-palace').subscribe((restaurant) =&gt; {
-      expect(restaurant).toEqual(mockRestaurant);
-    });
-    
-    let url = '/api/restaurants/potato-palace?';
-    const req = httpMock.expectOne(url);
-   
-
-    expect(req.request.method).toEqual('GET');
-    req.flush(mockRestaurant);
-
-    httpMock.verify();
-  })
 
 });
 
 </code></pre>
+<h2>Other tests to get working later</h2>
 <p><strong>src/app/restaurant/detail/detail.component.spec.ts</strong></p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -1072,6 +961,44 @@ describe('ListComponent', () =&gt; {
 });
 
 </code></pre>
+<h2>Running Tests</h2>
+<p>When using the angular cli, any new component, service, pipe, etc, will have a .spec file generated alongside it with a default &quot;this thing exists and can be initialized&quot; type test.</p>
+<p>Tests are run from the command <code>npm test</code>.</p>
+<h2>Testing Components</h2>
+<p>Let's look at the base app component the angular cli created, <code>src/app/app.component.ts</code>. We made some changes to the markup of this component but never updated our tests. The test is currently failing, because it's expecting the h1 tag to contain &quot;PlaceMyOrder&quot;. At this point in our development, the h1 in the home page currently contains &quot;place-my-order.com&quot;, so let's update the test to expect that by changing the <code>src/app/app.component.spec.ts</code> file.</p>
+<h2>Testing Components with Child Components</h2>
+<pre><code class="language-typescript">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { HistoryComponent } from './history.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
+describe('HistoryComponent', () =&gt; {
+  let component: HistoryComponent;
+  let fixture: ComponentFixture&lt;HistoryComponent&gt;;
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      declarations: [ HistoryComponent ],
+      schemas: [NO_ERRORS_SCHEMA]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(HistoryComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+});
+</code></pre>
+<h2>Testing Components with Services</h2>
+<h2>Updating base passing tests</h2>
+<p><details>
+<summary>Click to view tests</summary></p>
 <p></details></p>
 
 </section>
@@ -1084,7 +1011,7 @@ describe('ListComponent', () =&gt; {
 	<footer></footer>
 
 	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/angular/11-writing-unit-tests/writing-unit-tests.md"},"description":"Writing Unit Tests \n","name":"angular/writing-unit-tests","title":"Writing Unit Tests","type":"page","parent":"angular","order":17,"comment":" ","pathToRoot":"../.."};
+		var docObject = {"src":{"path":"src/angular/11-writing-unit-tests/writing-unit-tests.md"},"description":"Write a service unit test \n","name":"angular/writing-unit-tests","title":"Writing Unit Tests","type":"page","parent":"angular","order":11,"comment":" ","pathToRoot":"../.."};
 	</script>
 
 	

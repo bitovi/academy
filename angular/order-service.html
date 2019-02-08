@@ -298,6 +298,21 @@
            						
            						">
 						<a class="page"
+							href="writing-unit-tests.html"
+							title="Write a service unit test">
+							Writing Unit Tests
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="nested-routes.html"
 							title="Creating nested restaurant routes">
 							Nested Restaurant Routes
@@ -385,21 +400,6 @@
 				
 			
 		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="writing-unit-tests.html"
-							title="Writing Unit Tests">
-							Writing Unit Tests
-						</a>
-						
-					</li>
-				
-			
-		
 	</ul>
 
 
@@ -457,22 +457,182 @@
     <h2>Overview</h2>
 <p>In this part, we will:</p>
 <ul>
+<li>Get your tests to pass again.</li>
 <li>Create a new order service</li>
 <li>Write interfaces to describe orders and items in orders</li>
-<li>Add methods to our service</li>
+<li>Add data methods to our service</li>
 <li>Import our new order service to our component &amp; create an order</li>
 <li>Show completed order in UI</li>
 </ul>
+<h2>Get tests working again</h2>
+<p>Update the following two files to get all tests passing again:</p>
+<p><strong>src/app/order/order.component.spec.ts</strong></p>
+<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { OrderComponent } from './order.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import {ReactiveFormsModule} from &quot;@angular/forms&quot;;
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
+import { RestaurantService } from '../restaurant/restaurant.service';
+import { MenuItemsComponent } from './menu-items/menu-items.component';
+
+describe('OrderComponent', () =&gt; {
+  let component: OrderComponent;
+  let fixture: ComponentFixture&lt;OrderComponent&gt;;
+
+
+  class restaurantServiceStub {
+    getRestaurant() {
+      return of({
+        name: 'crab palace',
+        menu: {
+          lunch: [
+            {
+              name: 'tacos',
+              price: 3.99
+            }
+          ],
+          dinner: [
+            {
+              name: 'burrito',
+              price: 7.99
+            }
+          ]
+        }
+      })
+    }
+  }
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      declarations: [ OrderComponent, MenuItemsComponent ],
+      imports: [ ReactiveFormsModule, ],
+      schemas: [ NO_ERRORS_SCHEMA ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              paramMap: {
+                get() {
+                  return of({slug: 'crab-palace'})
+                }
+              }
+            }
+          }
+        },
+        { provide: RestaurantService, useClass: restaurantServiceStub },
+      ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(OrderComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+});
+
+</code></pre>
+<p><strong>src/app/restaurant/detail/detail.component.spec.ts</strong></p>
+<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { RestaurantDetailComponent } from './detail.component';
+import { ImageUrlPipe } from 'src/app/image-url.pipe';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
+import { RestaurantService } from '../restaurant.service';
+import { RouterTestingModule } from '@angular/router/testing';
+
+describe('RestaurantDetailComponent', () =&gt; {
+  let component: RestaurantDetailComponent;
+  let fixture: ComponentFixture&lt;RestaurantDetailComponent&gt;;
+
+  let fakeRestaurants = [
+    {&quot;name&quot;:&quot;Brunch Place&quot;,
+    &quot;slug&quot;:&quot;brunch-place&quot;,
+    &quot;images&quot;:{
+      &quot;thumbnail&quot;:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+      &quot;owner&quot;:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
+      &quot;banner&quot;:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;},
+      &quot;menu&quot;:{
+        &quot;lunch&quot;:[
+          {&quot;name&quot;:&quot;Ricotta Gnocchi&quot;,&quot;price&quot;:15.99},
+          {&quot;name&quot;:&quot;Garlic Fries&quot;,&quot;price&quot;:15.99},
+          {&quot;name&quot;:&quot;Charred Octopus&quot;,&quot;price&quot;:25.99}
+        ],
+        &quot;dinner&quot;:[
+          {&quot;name&quot;:&quot;Steamed Mussels&quot;,&quot;price&quot;:21.99},
+          {&quot;name&quot;:&quot;Roasted Salmon&quot;,&quot;price&quot;:23.99},
+          {&quot;name&quot;:&quot;Crab Pancakes with Sorrel Syrup&quot;,&quot;price&quot;:35.99}
+        ]
+      },
+      &quot;address&quot;:{
+        &quot;street&quot;:&quot;2451 W Washburne Ave&quot;,
+        &quot;city&quot;:&quot;Ann Arbor&quot;,&quot;state&quot;:&quot;MI&quot;,&quot;zip&quot;:&quot;53295&quot;},
+        &quot;_id&quot;:&quot;xugqxQIX5rPJTLBv&quot;
+      }
+    ];
+
+  class restaurantServiceStub {
+    getRestaurant() {
+      return of(fakeRestaurants[0])
+    }
+  }
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      declarations: [ RestaurantDetailComponent, ImageUrlPipe ],
+      imports: [ RouterTestingModule ],
+      providers: [
+        { provide: RestaurantService, useClass: restaurantServiceStub },
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            snapshot: {
+              paramMap: {
+                get() {
+                  return of({slug: 'crab-palace'})
+                }
+              }
+            }
+          }
+        }
+      ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(RestaurantDetailComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+});
+
+</code></pre>
+<p>Run the following to confirm:</p>
+<pre><code class="language-shell">ng test
+</code></pre>
 <h2>Creating the Order Service</h2>
 <pre><code class="language-bash">ng g service order/order
 </code></pre>
-<h2>Writing the Interfaces</h2>
+<h2>Exercise: Export Items and Order interfaces</h2>
 <h3>The Problem</h3>
-<p>We'll need two interfaces - one to describe the order, one to describe items in the order. Write and export <code>Order</code> and <code>Item</code> inferfaces representing these objects in the new service.</p>
+<p>We'll need two interfaces - one to describe the order, one to describe items in the order. Write and export <code>Order</code> and <code>Item</code> interfaces representing these objects in the new service.</p>
 <pre><code class="language-typescript">let myorder = {
   _id: 'a123123bdd',
-  name: 'Jennifer', 
-  address: '123 Main st', 
+  name: 'Jennifer',
+  address: '123 Main st',
   phone: '867-5309'
   status: 'new',
   items: [
@@ -515,14 +675,196 @@ export class OrderService {
 
 }
 </code></pre>
-<h2>Adding Methods</h2>
+<h2>Exercise: Finish the order service</h2>
 <h3>The Problem</h3>
-<p>With our order service we'll want to be able to create new orders, updating existing orders, delete orders, and view all orders. Implement a <code>getOrders</code> method that makes a get request to <code>'/api/orders'</code>. Don't forget to import HttpClient into this service!</p>
+<p>With our order service we'll want to be able to create new orders, updating existing orders, delete orders, and view all orders.</p>
+<p>Paste the following into <strong>src/app/order/order.service.spec.ts</strong>:</p>
+<pre><code class="language-ts">import { TestBed } from '@angular/core/testing';
+
+import { OrderService } from './order.service';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpRequest } from '@angular/common/http';
+
+describe('OrderService', () =&gt; {
+  let httpMock : HttpTestingController;
+  let orderService: OrderService;
+  beforeEach(() =&gt; TestBed.configureTestingModule({
+    imports: [HttpClientTestingModule],
+    providers: [
+      OrderService
+    ]
+  }));
+
+  beforeEach(() =&gt; {
+    httpMock = TestBed.get(HttpTestingController);
+    orderService = TestBed.get(OrderService);
+  })
+
+  it('should make a get request to get orders', () =&gt; {
+    const mockOrder = {
+      data: [
+        {_id: 'adsfsdf',
+        name: 'Jennifer',
+        address: '123 main',
+        phone: '555-555-5555',
+        status: 'new',
+        items: [
+          {
+            name: 'nummy fries',
+            price: 2.56
+          }
+        ]}
+      ]
+    };
+
+    orderService.getOrders().subscribe((orders) =&gt; {
+      expect(orders).toEqual(mockOrder);
+    });
+
+    let url = '/api/orders';
+    const req = httpMock.expectOne(url);
+
+    expect(req.request.method).toEqual('GET');
+    req.flush(mockOrder);
+
+    httpMock.verify();
+  });
+
+  it('should make a get request to create an order', () =&gt; {
+    const mockOrder = {
+      data: [
+        {_id: 'adsfsdf',
+        name: 'Jennifer',
+        address: '123 main',
+        phone: '555-555-5555',
+        status: 'old',
+        items: [
+          {
+            name: 'nummy fries',
+            price: 2.56
+          }
+        ]}
+      ]
+    };
+
+    const createdOrder = {
+      _id: 'adsfsdf',
+      name: 'Jennifer',
+      address: '123 main',
+      phone: '555-555-5555',
+      status: 'new',
+      items: [
+        {
+          name: 'nummy fries',
+          price: 2.56
+        }
+      ]}
+
+    orderService.createOrder(mockOrder.data[0]).subscribe((orders) =&gt; {
+      expect(orders).toEqual(mockOrder);
+    });
+
+    let url = '/api/orders';
+    httpMock.expectOne((request: HttpRequest&lt;any&gt;) =&gt; {
+      console.log(request.body);
+      return request.method == 'POST'
+        &amp;&amp; request.url == url
+        &amp;&amp; JSON.stringify(request.body) == JSON.stringify(createdOrder);
+    }).flush(mockOrder);
+
+    httpMock.verify();
+  });
+
+  it('should make a put request to update an order', () =&gt; {
+    const mockOrder = {
+      data: [
+        {_id: 'adsfsdf',
+        name: 'Jennifer',
+        address: '123 main',
+        phone: '555-555-5555',
+        status: 'old',
+        items: [
+          {
+            name: 'nummy fries',
+            price: 2.56
+          }
+        ]}
+      ]
+    };
+
+    const createdOrder = {
+      _id: 'adsfsdf',
+      name: 'Jennifer',
+      address: '123 main',
+      phone: '555-555-5555',
+      status: 'delivered',
+      items: [
+        {
+          name: 'nummy fries',
+          price: 2.56
+        }
+      ]};
+
+    orderService.updateOrder(mockOrder.data[0], 'delivered').subscribe((orders) =&gt; {
+      expect(orders).toEqual(mockOrder);
+    });
+
+    let url = '/api/orders/adsfsdf';
+    httpMock.expectOne((request: HttpRequest&lt;any&gt;) =&gt; {
+      console.log(request.body);
+      return request.method == 'PUT'
+        &amp;&amp; request.url == url
+        &amp;&amp; JSON.stringify(request.body) == JSON.stringify(createdOrder);
+    }).flush(mockOrder);
+
+    httpMock.verify();
+  });
+
+  it('should make a delete request to delete an order', () =&gt; {
+    const mockOrder = {
+      data: [
+        {_id: 'adsfsdf',
+        name: 'Jennifer',
+        address: '123 main',
+        phone: '555-555-5555',
+        status: 'old',
+        items: [
+          {
+            name: 'nummy fries',
+            price: 2.56
+          }
+        ]}
+      ]
+    };
+
+    orderService.deleteOrder('adsfsdf').subscribe((orders) =&gt; {
+      expect(orders).toEqual(mockOrder);
+    });
+
+    let url = '/api/orders/adsfsdf';
+    const req = httpMock.expectOne(url);
+
+    expect(req.request.method).toEqual('DELETE');
+    req.flush(mockOrder);
+
+    httpMock.verify();
+  });
+});
+
+</code></pre>
+<p>Now, try to understand what this test is doing and
+implement the remainder of <code>order.service.ts</code> to
+get the tests to pass.</p>
+<p>Run your tests with:</p>
+<pre><code class="language-shell">ng test
+</code></pre>
 <h3>What you need to know</h3>
 <ul>
-<li>How to write a get request</li>
+<li>You will need to look at the test code to determine
+the method signatures on <code>OrderService</code>.</li>
+<li>You will need to make sure <code>HttpClient</code> is imported and
+added as a property in the  <code>OrderService</code> constructor.</li>
 </ul>
-<hr />
 <h3>The solution</h3>
 <p>Don't worry, we did the heavy lifting for the rest of the methods ;)</p>
 <p><strong>src/app/order/order.service.ts</strong></p>
