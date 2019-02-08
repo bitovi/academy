@@ -87,19 +87,38 @@ You should now be able to navigate to <a href="http://localhost:4200/order-histo
 In this exercise, we will:
 
 - List all orders in the `HistoryComponent`.
-- Make sure the `<div>` for each order has a class name of _'order'_ and the `order.status` value.
+- Make sure the `<div>` for each order has a class name of _'order'_ and the
+  `order.status` value. Make sure you've created a new order.
 
 
-In this component, we want to see a history of all orders. Import the order service into this new component and make the call to get all orders.
+Start this exercise by:
 
-__src/app/order/history.component.ts__
+1\. Copying the following into __src/app/order/history.component.ts__. You will fill out its
+`getOrders` method.  The getters like `newOrders` will be used later.
 
 @sourceref ./history.component.ts
+@highlight 15-17,25
+
+2\. Copy the following into __src/app/order/history.component.html__.  You will need to
+make it loop through orders and add the right class names to the outer `<div>` for each order.
+
+@sourceref ./0-history.component.html
+@highlight 9,10
 
 ### What you need to know
 
-- how to import a service
-- how to subscribe to a method on a service
+You've already seen:
+
+- How to import a service and get data out of it.  Hint: Import it and create a
+  property in the constructor.
+- How to loop through values in HTML.  Hint: `*ngFor`.
+
+For this step, you'll need to know how to add multiple class names.  You can do this with
+`[ngClass]` and setting it to an array like:
+
+```html
+<div [ngClass]="['first','second']">
+```
 
 ---
 
@@ -108,12 +127,13 @@ __src/app/order/history.component.ts__
 __src/app/order/history.component.ts__
 
 @sourceref ./history.component-solution.ts
-@highlight 2, 22, 31-35
+@highlight 2, 22, 31-35, only
 
 
 __src/app/order/history.component.html__
 
 @sourceref ./history.component-1.html
+@highlight 9-10,only
 
 ## Creating a Child Component to Handle Order States
 
