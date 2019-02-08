@@ -866,7 +866,6 @@ the method signatures on <code>OrderService</code>.</li>
 added as a property in the  <code>OrderService</code> constructor.</li>
 </ul>
 <h3>The solution</h3>
-<p>Don't worry, we did the heavy lifting for the rest of the methods ;)</p>
 <p><strong>src/app/order/order.service.ts</strong></p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -914,10 +913,28 @@ export class OrderService {
 }
 
 </code></pre>
-<div line-highlight='2, 23, 25-27, 29-33, 35-39, 40-43'></div>
-<h2>Importing the Service into the Order Component</h2>
-<p>This is what the markup will look like to show a created order:</p>
-<p><strong>src/app/order/order.component.html</strong></p>
+<div line-highlight='2, 23, 25-27, 29-33, 35-39, 40-43, only'></div>
+<h2>Exercise: Using the order service in the order component</h2>
+<h3>The Problem</h3>
+<p>For this problem, we will:</p>
+<ul>
+<li>Create an order when the user submits a service.</li>
+<li>Disable the button while the order is being processed.</li>
+<li>Show the completed order to the user.</li>
+<li>Let the user start a new order.</li>
+</ul>
+<p>How we will solve this:</p>
+<ul>
+<li>We will import the order service, and save it as <code>orderService</code> in the
+<code>OrderComponent</code>'s <code>constructor</code>.</li>
+<li>Call <code>orderService</code>'s <code>createOrder</code> with the <code>orderForm</code>'s values.</li>
+<li>While the order is being created <code>orderProcessing</code> should be <code>true</code>.</li>
+<li>Once complete, <code>orderComplete</code> should be set to <code>true</code>
+and set back to <code>false</code> when <code>.startNewOrder()</code> is called.</li>
+<li>We will save the completed order in <code>completedOrder</code>.</li>
+</ul>
+<p>Before starting:</p>
+<p>1. Update <strong>src/app/order/order.component.html</strong> to show the completed order:</p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
   &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
     &lt;h3&gt;Thanks for your order {{completedOrder.name}}!&lt;/h3&gt;
@@ -996,10 +1013,9 @@ export class OrderService {
 
 
 </code></pre>
-<div line-highlight='2-34'></div>
-<h3>The Problem</h3>
-<p>Now, import your order service into your order component, and implement the functionality to create a new order, and show the completed order upon a successful order creation. Don't forget to use the interfaces you created for order and item types!</p>
-<p><strong>src/app/order/order.component.ts</strong></p>
+<div line-highlight='2-34,only'></div>
+<p>2. Update <strong>src/app/order/order.component.ts</strong> to have a <code>onSubmit</code> method and
+a <code>startNewOrder</code> that will start a new order.</p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, FormArray, AbstractControl } from '@angular/forms';
@@ -1089,10 +1105,11 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
+<div line-highlight='76-85,only'></div>
 <h3>What you need to know</h3>
 <ul>
 <li>how to import a service</li>
-<li>how to subscribe to a method on a service</li>
+<li>how to call a method on a service and get the result</li>
 <li>how to show/hide content using *ngIf</li>
 </ul>
 <hr />
@@ -1193,7 +1210,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
-<div line-highlight='7, 30, 38, 71, 78-85'></div>
+<div line-highlight='7, 30, 38, 71, 78-85,only'></div>
 <p>If you've implemented everything correctly, you should now be able to create an order from the UI and see a record of your completed order once it's created.</p>
 
 </section>
