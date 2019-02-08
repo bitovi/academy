@@ -463,18 +463,28 @@
 <li>Create ways to update and delete orders in the view</li>
 <li>Add order history link to our main navigation</li>
 </ul>
-<h2>Creating Order History Component</h2>
-<pre><code class="language-bash">ng g component order/history
-</code></pre>
-<h2>Add Order History Route</h2>
+<h2>Exercise: Generate a <code>HistoryComponent</code> and route to it</h2>
 <h3>The problem</h3>
-<p>Create a new route <code>/order-history</code> that shows the history component you created.</p>
-<h3>What you need to know</h3>
+<p>In this problem, we will:</p>
 <ul>
-<li>how to create a route</li>
+<li>Generate a <code>HistoryComponent</code> in <code>src/app/order/history/history.component.ts</code></li>
+<li>Show <code>HistoryComponent</code> when we navigate to <code>/order-history</code></li>
+</ul>
+<p>When complete, you should be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see <em>'history works!'</em>.</p>
+<h3>What you need to know</h3>
+<p>You got this already, but just in case, here's some hints:</p>
+<ul>
+<li>How to generate a component
+<pre><code class="language-shell">ng g component PATH
+</code></pre></li>
+<li>Update <code>app-routing.module.ts</code> to import the component you want and create a path to it.</li>
 </ul>
 <hr />
 <h3>The solution</h3>
+<p>First, run:</p>
+<pre><code class="language-bash">ng g component order/history
+</code></pre>
+<p>Then route to the component:</p>
 <p><strong>src/app/app-routing.module.ts</strong></p>
 <pre><code class="language-ts">import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -515,14 +525,17 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 </code></pre>
-<div line-highlight='8, 27-30'></div>
-<h2>Adding Order History to Main Navigation</h2>
+<div line-highlight='8, 27-30,only'></div>
+<h2>Exercise: Add <code>HistoryComponent</code> to navigation</h2>
 <h3>The Problem</h3>
-<p>Next, add the order history path you created to the navigation in the <code>src/app/app.component.html</code> file.</p>
-<h3>What you need to know</h3>
+<p>In this problem, we will:</p>
 <ul>
-<li>How to create a link to a route</li>
+<li>Add a <strong>Order History</strong> link to the navigation bar at the top of the page.</li>
+<li>Add the class name <code>active</code> to the link if we are on the <code>OrderHistory</code> page.</li>
 </ul>
+<h3>What you need to know</h3>
+<p>You've seen this before. Checkout how the <strong>Home</strong> link works in
+<code>app.component.html</code>.</p>
 <hr />
 <h3>The solution</h3>
 <p><strong>src/app/app.component.html</strong></p>
@@ -545,9 +558,15 @@ export class AppRoutingModule { }
 &lt;router-outlet&gt;&lt;/router-outlet&gt;
 
 </code></pre>
-<div line-highlight='11-13'></div>
-<p>You should now be able to navigate to <a href="http://localhost:4200/order-history" target="_blank">http://localhost:4200/order-history</a> and see a list of all orders.</p>
+<div line-highlight='11-13,only'></div>
+<p>You should now be able to navigate to <a href="http://localhost:4200/order-history" target="\_blank">http://localhost:4200/order-history</a> and see a list of all orders.</p>
+<h2>Exercise: List all orders</h2>
 <h3>The problem</h3>
+<p>In this exercise, we will:</p>
+<ul>
+<li>List all orders in the <code>HistoryComponent</code>.</li>
+<li>Make sure the <code>&lt;div&gt;</code> for each order has a class name of <em>'order'</em> and the <code>order.status</code> value.</li>
+</ul>
 <p>In this component, we want to see a history of all orders. Import the order service into this new component and make the call to get all orders.</p>
 <p><strong>src/app/order/history.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
@@ -694,19 +713,19 @@ export class HistoryComponent implements OnInit {
   &lt;/div&gt;
 
   &lt;ng-container *ngFor=&quot;let order of orders.value&quot;&gt;
-    &lt;div [ngClass]=&quot;['order', order.status? order.status: '']&quot;&gt;
+    &lt;div [ngClass]=&quot;['order', order.status]&quot;&gt;
       &lt;address&gt;
         {{order.name}} &lt;br /&gt;{{order.address}} &lt;br /&gt;{{order.phone}}
       &lt;/address&gt;
-    
+
       &lt;div class=&quot;items&quot;&gt;
         &lt;ul&gt;
           &lt;li *ngFor=&quot;let item of order.items&quot;&gt;{{item.name}}&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/div&gt;
-    
+
       &lt;div class=&quot;total&quot;&gt;$order total?&lt;/div&gt;
-    
+
       &lt;div class=&quot;actions&quot;&gt;
         &lt;span class=&quot;badge&quot;&gt;Status title?&lt;/span&gt;
           &lt;p class=&quot;action&quot; *ngIf=&quot;action&quot;&gt;
@@ -715,7 +734,7 @@ export class HistoryComponent implements OnInit {
               next step
             &lt;/a&gt;
           &lt;/p&gt;
-    
+
         &lt;p class=&quot;action&quot;&gt;
           &lt;a href=&quot;javascript://&quot; &gt;Delete&lt;/a&gt;
         &lt;/p&gt;
@@ -723,6 +742,7 @@ export class HistoryComponent implements OnInit {
     &lt;/div&gt;
   &lt;/ng-container&gt;
 &lt;/div&gt;
+
 </code></pre>
 <h2>Creating a Child Component to Handle Order States</h2>
 <p>Orders can have states of new, preparing, delivery, and delivered, and we want to have different actions to take in the UI based on an orders status. Let's refactor the UI displaying all the orders into a new component. This new component will take a variety of different inputs:</p>
