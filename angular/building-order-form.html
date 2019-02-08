@@ -849,7 +849,7 @@ export class AppModule { }
 </code></pre>
 <div line-highlight='7-18'></div>
 <p>Now when we view the order form of our route, we'll see a nice form and tabs for lunch and dinner menu options.</p>
-<h2>Exercise: Create Custom Checkbox Component</h2>
+<h2>Create Custom Checkbox Component</h2>
 <p>We're going to build another component to use in our form to handle selecting order items. We use data-binding to pass data between components. We'll use the <code>@Input()</code> to get our list of items from the restaurant to display in our child component, and hook it into our Reactive Form using the <code>formControlName</code> attribute as shown below.</p>
 <pre><code class="language-html">&lt;pmo-menu-items [data]=&quot;restaurant.menu.lunch&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
 </code></pre>
