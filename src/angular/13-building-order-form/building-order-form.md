@@ -140,7 +140,105 @@ We're going to build another component to use in our form to handle selecting or
 ng g component order/menu-items
 ```
 
-We want to give an array of item objects to our parent form based on which checkboxes are selected. We can do this by using Angulars <a href="https://angular.io/api/forms/ControlValueAccessor" target="_blank">Control Value Accessor</a> to act as a bridge between our form and the UI we build. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.
+Go ahead and put your new component in the order history component. 
+
+__src/app/order/order-starter.component.html__
+
+@sourceref ./child-component/order-0.component.html
+@highlight 9, 12
+
+## Exercise: Passing properties to child components
+
+### The Problem 
+
+We want the menu-items component take an array of menu items and iterate through them in the template.
+
+Each menu item should have this markup:
+
+```html
+ <label>
+    <input type="checkbox">
+    item name <span class="badge">$ item price</span>
+</label>
+```
+
+### What you need to know
+
+- How to use *ngFor
+- How to use <a href="https://angular.io/api/core/Input" target="_blank">Input</a> to pass properties:
+
+
+    @sourceref ./input-example.ts
+
+### The solution
+
+__src/app/order/menu-items.component.html__
+
+@sourceref ./child-component/menu-items-0.component.html
+
+__src/app/order/menu-items.component.ts__
+
+@sourceref ./child-component/menu-items-0.component.ts
+
+__src/app/order/order.component.html__
+
+@sourceref ./child-component/order-0.component.html
+@highlight 9, 12
+
+## Exercise: Attaching event handlers
+
+
+### The Problem
+
+Next, we want to know when a checkbox has been checked or unchecked, and update an array called `selectedItems` containing all checked items.
+
+### What you need to know
+
+- How to attach a click event:
+
+    @sourceref ./click-example.ts
+
+### The Solution
+
+__src/app/order/menu-items.component.html__
+
+@sourceref ./child-component/menu-items-1.component.html
+
+__src/app/order/menu-items.component.ts__
+
+@sourceref ./child-component/menu-items-1.component.ts
+
+## Exercise: Emitting data to parent components
+
+
+### The Problem
+
+Now we want to let the form know what the selected items are.
+
+### What you need to know
+
+- How to emit a value to a parent component(presumably to update our form value)
+
+    @sourceref ./event-emitter-example.ts
+
+### The Solution
+
+__src/app/order/menu-items.component.ts__
+
+@sourceref ./child-component/menu-items-2.component.ts
+
+__src/app/order/order.component.html__
+
+@sourceref ./child-component/order-2.component.html
+@highlight 9, 12
+
+__src/app/order/order.component.ts__
+
+@sourceref ./child-component/order-2.component.ts
+@highlight 67-79
+
+
+Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the  <a href="https://angular.io/api/forms/ControlValueAccessor" target="_blank">Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.
 
 __src/app/order/menu-items.component.ts__
 

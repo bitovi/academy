@@ -1,0 +1,6 @@
+<div *ngFor="let item of items">
+  <label>
+    <input type="checkbox" (click)="changeFunc(item)" >
+    {{item.name}} <span class="badge">${{item.price}}</span>
+  </label>
+</div>
