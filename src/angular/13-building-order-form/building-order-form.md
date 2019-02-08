@@ -128,7 +128,7 @@ __src/app/order/order.component.html__
 
 Now when we view the order form of our route, we'll see a nice form and tabs for lunch and dinner menu options.
 
-## Create Custom Checkbox Component
+## Exercise: Create Custom Checkbox Component
 
 We're going to build another component to use in our form to handle selecting order items. We use data-binding to pass data between components. We'll use the `@Input()` to get our list of items from the restaurant to display in our child component, and hook it into our Reactive Form using the `formControlName` attribute as shown below.
 
@@ -140,16 +140,16 @@ We're going to build another component to use in our form to handle selecting or
 ng g component order/menu-items
 ```
 
-Go ahead and put your new component in the order history component. 
+Go ahead and put your new component in the order history component.
 
-__src/app/order/order-starter.component.html__
+__src/app/order/order.component.html__
 
 @sourceref ./child-component/order-0.component.html
 @highlight 9, 12
 
 ## Exercise: Passing properties to child components
 
-### The Problem 
+### The Problem
 
 We want the menu-items component take an array of menu items and iterate through them in the template.
 
