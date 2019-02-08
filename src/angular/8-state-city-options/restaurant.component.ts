@@ -24,7 +24,7 @@ export class RestaurantComponent implements OnInit {
 
   public states = {
     isPending: false,
-    value: [{name: "Illinois"}, {name: "Wisconsin"}]
+    value: [{name: "Illinois", short: "IL"}, {name: "Wisconsin", short: "WI"}]
   };
 
   public cities = {

@@ -24,7 +24,7 @@ npm install place-my-order-assets@0.1 --save
 
 Open the ``angular.json`` file, and make the following changes to include these files in our build process. This will copy the images into our assets directory for when we serve our application.
 
-@sourceref ./angular-json-assets.ts
+@sourceref ./angular.json
 @highlight 25-39,only
 
 __Any time changes are made to the `angular.json` file, we need to restart our server to catch the new changes.__
@@ -79,11 +79,12 @@ We're going to add a lot of content to this template initially that we'll hook i
 
 __src/app/restaurant/restaurant.component.html__
 
+
 ```html
 <div class="restaurants">
   <h2 class="page-header">Restaurants</h2>
   <ng-container *ngIf="restaurants.length">
-    <div class="restaurant" *ngFor="let restaurant of restaurants.value">
+    <div class="restaurant" *ngFor="let restaurant of restaurants">
 
       <img src="{{restaurant.images.thumbnail | imageUrl}}" width="100" height="100">
       <h3>{{restaurant.name}}</h3>
@@ -171,4 +172,4 @@ Open your __src/app/app.component.html__ file and update it to be:
 <pmo-restaurant></pmo-restaurant>
 ```
 
- Run `npm run start`, and your app should compile with no errors, and you'll be able to see the home and restaurants components. Next we'll move them to their own pages with unique routes. 
+ Run `npm run start`, and your app should compile with no errors, and you'll be able to see the home and restaurants components. Next we'll move them to their own pages with unique routes.
