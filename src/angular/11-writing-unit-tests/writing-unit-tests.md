@@ -1,7 +1,7 @@
 @page angular/writing-unit-tests Writing Unit Tests
-@parent angular 17
+@parent angular 11
 
-@description Writing Unit Tests
+@description Write a service unit test
 
 @body
 
@@ -9,18 +9,66 @@
 
 In this part, we will:
 
-- Learn to run tests
-- Test components
-- Understand NO_ERROR_SCHEMA
-- Test components with services
-  - Learn to mock services
-- Test child components
-- Test services
-- Test pipes
+- Get our existing tests to pass
+- Run our tests
+- Write a test to get cities and states
+
+## Get our unit tests to work again
+
+Update the following three files:
+
+1. __src/app/app.component.spec.ts__
+
+@sourceref ./app.component.spec.ts
+
+2. __src/app/image-url.pipe.spec.ts__
+
+@sourceref ./image-url.pipe.spec.ts
+
+3. __src/app/restaurant.component.spec.ts__
+
+@sourceref ./restaurant.component.spec.ts
+
+## Run our tests
+
+Run the following in your terminal:
+
+```shell
+ng test
+```
+
+## Exercise: Write restaurant service test
+
+__src/app/restaurant.service.spec.ts__
+
+@sourceref ./restaurant.service.spec.ts
+
+
+## Other tests to get working later
+
+__src/app/restaurant/detail/detail.component.spec.ts__
+
+@sourceref ./detail.component.spec.ts
+
+__src/app/order/order.component.spec.ts__
+
+@sourceref ./order.component.spec.ts
+
+__src/app/order/order.service.spec.ts__
+
+@sourceref ./order.service.spec.ts
+
+__src/app/order/history/history.component.spec.ts__
+
+@sourceref ./history.component.spec.ts
+
+__src/app/order/list/list.component.spec.ts__
+
+@sourceref ./list.component.spec.ts
 
 ## Running Tests
 
-When using the angular cli, any new component, service, pipe, etc, will have a .spec file generated alongside it with a default "this thing exists and can be initialized" type test. 
+When using the angular cli, any new component, service, pipe, etc, will have a .spec file generated alongside it with a default "this thing exists and can be initialized" type test.
 
 Tests are run from the command `npm test`.
 
@@ -70,43 +118,6 @@ describe('HistoryComponent', () => {
 <summary>Click to view tests</summary>
 
 
-__src/app/app.component.spec.ts__
 
-@sourceref ./app.component.spec.ts
-
-__src/app/image-url.pipe.spec.ts__
-
-@sourceref ./image-url.pipe.spec.ts
-
-__src/app/restaurant.component.spec.ts__
-
-@sourceref ./restaurant.component.spec.ts
-
-__src/app/restaurant.service.spec.ts__
-
-@sourceref ./restaurant.service.spec.ts
-
-__src/app/restaurant/detail/detail.component.spec.ts__
-
-@sourceref ./detail.component.spec.ts
-
-__src/app/order/order.component.spec.ts__
-
-@sourceref ./order.component.spec.ts
-
-__src/app/order/order.service.spec.ts__
-
-@sourceref ./order.service.spec.ts
-
-__src/app/order/history/history.component.spec.ts__
-
-@sourceref ./history.component.spec.ts
-
-__src/app/order/list/list.component.spec.ts__
-
-@sourceref ./list.component.spec.ts
 
 </details>
-
-
-
