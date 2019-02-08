@@ -103,41 +103,57 @@ ng test
 
 ### The solution
 
-Don't worry, we did the heavy lifting for the rest of the methods ;)
-
 __src/app/order/order.service.ts__
 @sourceref ./order-2.service.ts
-@highlight 2, 23, 25-27, 29-33, 35-39, 40-43
+@highlight 2, 23, 25-27, 29-33, 35-39, 40-43, only
 
-## Importing the Service into the Order Component
-
-This is what the markup will look like to show a created order:
-
-__src/app/order/order.component.html__
-
-@sourceref ./order.component.html
-@highlight 2-34
+## Exercise: Using the order service in the order component
 
 ### The Problem
 
-Now, import your order service into your order component, and implement the functionality to create a new order, and show the completed order upon a successful order creation. Don't forget to use the interfaces you created for order and item types!
+For this problem, we will:
 
-__src/app/order/order.component.ts__
+- Create an order when the user submits a service.
+- Disable the button while the order is being processed.
+- Show the completed order to the user.
+- Let the user start a new order.
+
+How we will solve this:
+
+- We will import the order service, and save it as `orderService` in the
+  `OrderComponent`'s `constructor`.
+- Call `orderService`'s `createOrder` with the `orderForm`'s values.
+- While the order is being created `orderProcessing` should be `true`.
+- Once complete, `orderComplete` should be set to `true`
+  and set back to `false` when `.startNewOrder()` is called.
+- We will save the completed order in `completedOrder`.
+
+Before starting:
+
+1\. Update __src/app/order/order.component.html__ to show the completed order:
+
+@sourceref ./order.component.html
+@highlight 2-34,only
+
+2\. Update __src/app/order/order.component.ts__ to have a `onSubmit` method and
+    a `startNewOrder` that will start a new order.
+
 @sourceref ./order.component.ts
+@highlight 76-85,only
 
 
 ### What you need to know
 
 - how to import a service
-- how to subscribe to a method on a service
-- how to show/hide content using *ngIf
+- how to call a method on a service and get the result
+- how to show/hide content using \*ngIf
 
----
+----
 
 ### The Solution
 
 __src/app/order/order.component.ts__
 @sourceref ./order.component-solution.ts
-@highlight 7, 30, 38, 71, 78-85
+@highlight 7, 30, 38, 71, 78-85,only
 
 If you've implemented everything correctly, you should now be able to create an order from the UI and see a record of your completed order once it's created.
