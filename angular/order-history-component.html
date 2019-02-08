@@ -797,21 +797,101 @@ export class HistoryComponent implements OnInit {
 
 </code></pre>
 <div line-highlight='9-10,only'></div>
-<h2>Creating a Child Component to Handle Order States</h2>
-<p>Orders can have states of new, preparing, delivery, and delivered, and we want to have different actions to take in the UI based on an orders status. Let's refactor the UI displaying all the orders into a new component. This new component will take a variety of different inputs:</p>
+<h2>Exercise: Creating a Child Component to Handle Order States</h2>
+<h3>The problem</h3>
+<p>In this exercise, we will:</p>
 <ul>
-<li>orders: an array of orders based on status property</li>
-<li>listTitle: &quot;NewOrders&quot;/&quot;Preparing&quot;/&quot;Out for Delivery&quot;/&quot;Delivery&quot;</li>
-<li>status: &quot;new&quot;/&quot;preparing&quot;/&quot;delivery&quot;/&quot;delivered&quot;</li>
-<li>statusTitle: &quot;New Order!&quot;/&quot;Preparing&quot;/&quot;Out for delivery&quot;/&quot;Delivered&quot;</li>
-<li>action: &quot;preparing&quot;/&quot;delivery&quot;/&quot;delivered&quot;</li>
-<li>actionTitle: &quot;preparing&quot;/&quot;Out for delivery&quot;/&quot;Delivered&quot;</li>
-<li>emptyMessage: &quot;No new orders&quot;/&quot;No orders preparing&quot;/&quot;No orders are being delivered&quot;/&quot;No delivered orders&quot;</li>
+<li>Group the orders by status.</li>
+<li>Allow the user to change the status of an order.</li>
+<li>Allow the user to delete an order.</li>
 </ul>
-<pre><code class="language-bash">ng g component order/list
+<p><strong>NOTE!!</strong> To see that an order has changed, you will have to refresh the page!</p>
+<p>To complete this we will:</p>
+<ul>
+<li>Create a <code>ListComponent</code> in <strong>src/app/order/list/list.component.ts</strong> that will take a list
+of orders and other values like:
+<pre><code class="language-html">&lt;pmo-list
+  [orders]=&quot;newOrders&quot;
+  listTitle=&quot;New Orders&quot;
+  status=&quot;new&quot;
+  statusTitle=&quot;New Order!&quot;
+  action=&quot;preparing&quot;
+  actionTitle=&quot;Preparing&quot;
+  emptyMessage=&quot;No new orders&quot;&gt;
+  &lt;/pmo-list&gt;
+</code></pre></li>
+<li><code>ListComponent</code> will take the following values:
+<ul>
+<li><code>orders</code> - an array of orders based on status property</li>
+<li><code>listTitle</code> - A title for the list: &quot;NewOrders&quot; , &quot;Preparing&quot; , &quot;Out for Delivery&quot; , &quot;Delivery&quot;</li>
+<li><code>status</code> - Which status the list is &quot;new&quot;, &quot;preparing&quot;, &quot;delivery&quot;, &quot;delivered&quot;</li>
+<li><code>statusTitle</code> - Another title for the status: &quot;New Order!&quot;, &quot;Preparing&quot;, &quot;Out for delivery&quot;,  &quot;Delivered&quot;</li>
+<li><code>action</code> - What status items can be moved to: &quot;preparing&quot;, &quot;delivery&quot;, &quot;delivered&quot;</li>
+<li><code>actionTitle</code> - A title for the action: &quot;Preparing&quot;, &quot;Out for delivery&quot;, &quot;Delivered&quot;</li>
+<li><code>emptyMessage</code> - What to show when there are no orders in the list: &quot;No new orders&quot;, &quot;No orders preparing&quot;, &quot;No orders are being delivered&quot;, &quot;No delivered orders&quot;</li>
+</ul></li>
+<li><code>ListComponent</code> will have the following methods:
+<ul>
+<li><code>markAs(order, action)</code> that will update an order based on the action</li>
+<li><code>delete(order._id)</code> that will delete an order</li>
+<li><code>total(items)</code> that will return the order total</li>
+</ul></li>
+</ul>
+<p>Before staring, follow these steps:</p>
+<p>1. Create the <code>ListComponent</code>:</p>
+<pre><code class="language-shell">ng g component order/list
 </code></pre>
-<p>The markup will look like this:</p>
-<p><strong>src/app/order/list.component.html</strong></p>
+<p>2. Update <strong>src/app/order/history.component.html</strong> to use <code>&lt;pmo-list&gt;</code>:</p>
+<pre><code class="language-html">&lt;div class=&quot;order-history&quot;&gt;
+  &lt;div class=&quot;order header&quot;&gt;
+    &lt;address&gt;Name / Address / Phone&lt;/address&gt;
+    &lt;div class=&quot;items&quot;&gt;Order&lt;/div&gt;
+    &lt;div class=&quot;total&quot;&gt;Total&lt;/div&gt;
+    &lt;div class=&quot;actions&quot;&gt;Action&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;pmo-list
+    [orders]=&quot;newOrders&quot;
+    listTitle=&quot;New Orders&quot;
+    status=&quot;new&quot;
+    statusTitle=&quot;New Order!&quot;
+    action=&quot;preparing&quot;
+    actionTitle=&quot;Preparing&quot;
+    emptyMessage=&quot;No new orders&quot;&gt;
+    &lt;/pmo-list&gt;
+
+  &lt;pmo-list
+    [orders]=&quot;preparingOrders&quot;
+    listTitle=&quot;Preparing&quot;
+    status=&quot;preparing&quot;
+    statusTitle=&quot;Preparing&quot;
+    action=&quot;delivery&quot;
+    actionTitle=&quot;Out for delivery&quot;
+    emptyMessage=&quot;No orders preparing&quot;&gt;
+    &lt;/pmo-list&gt;
+
+  &lt;pmo-list
+    [orders]=&quot;deliveryOrders&quot;
+    listTitle=&quot;Out for delivery&quot;
+    status=&quot;delivery&quot;
+    statusTitle=&quot;Out for delivery&quot;
+    action=&quot;delivered&quot;
+    actionTitle=&quot;Delivered&quot;
+    emptyMessage=&quot;No orders are being delivered&quot;&gt;
+    &lt;/pmo-list&gt;
+
+  &lt;pmo-list
+    [orders]=&quot;deliveredOrders&quot;
+    listTitle=&quot;Delivery&quot;
+    status=&quot;delivered&quot;
+    statusTitle=&quot;Delivered&quot;
+    emptyMessage=&quot;No delivered orders&quot;&gt;
+    &lt;/pmo-list&gt;
+&lt;/div&gt;
+
+</code></pre>
+<div line-highlight='9-45,only'></div>
+<p>3. Update <strong>src/app/order/list/list.component.html</strong> to its final html:</p>
 <pre><code class="language-html">&lt;h4&gt;{{listTitle}}&lt;/h4&gt;
 &lt;div class=&quot;loading&quot; *ngIf=&quot;isPending&quot;&gt;&lt;/div&gt;
 &lt;ng-container *ngFor=&quot;let order of orders&quot;&gt;
@@ -847,24 +927,11 @@ export class HistoryComponent implements OnInit {
 &lt;div class=&quot;order empty&quot;&gt;{{emptyMessage}}&lt;/div&gt;
 
 </code></pre>
-<h3>The Problem</h3>
-<p>Update this component to:</p>
-<ul>
-<li>take the above list of inputs</li>
-<li>have three methods
-<ul>
-<li><code>markAs(order, action)</code> that will update an order based on the action</li>
-<li><code>delete(order._id)</code> that will delete an order</li>
-<li><code>total(items)</code> that will return the order total</li>
-</ul></li>
-<li>have an <code>isPending</code> member that gets set before and after actions are performed</li>
-</ul>
-<p>You'll need to import <code>Input</code> from angular core, as well as <code>OrderService</code> and relevant interfaces to handle updating and deleting your orders.</p>
 <h3>What you need to know</h3>
+<p>You'll need to remember how to:</p>
 <ul>
-<li>set inputs on a component</li>
-<li>call methods on a service</li>
-<li>update a boolean member to show/hide content</li>
+<li>Add <code>@Input()</code>s to a component so it can be passed values.</li>
+<li>Call methods on a service that you get from the <code>constructor</code>.</li>
 </ul>
 <hr />
 <h3>The solution</h3>
@@ -886,23 +953,18 @@ export class ListComponent implements OnInit {
   @Input() action: string;
   @Input() actionTitle: string;
   @Input() emptyMessage: string;
-  isPending: boolean = false;
 
   constructor(private orderService: OrderService) { }
 
   ngOnInit() {}
 
   markAs(order: Order, action: string) {
-    this.isPending = true;
     this.orderService.updateOrder(order, action).subscribe(() =&gt; {
-      this.isPending = false;
     });
   }
-  
+
   delete(id:string) {
-    this.isPending = true;
     this.orderService.deleteOrder(id).subscribe(() =&gt; {
-      this.isPending = false;
     })
   }
 
@@ -916,64 +978,7 @@ export class ListComponent implements OnInit {
 }
 
 </code></pre>
-<div line-highlight='6'></div>
-<h3>The problem</h3>
-<p>Refactor your <code>src/app/order/history.component.html</code> file to use the new list component for each order subgroup: new orders, preparing orders, delivery orders, delivered orders.</p>
-<h3>What you need to know</h3>
-<ul>
-<li>How to pass properties to child components</li>
-</ul>
-<hr />
-<h3>The solution</h3>
-<p><strong>src/app/order/history.component.html</strong></p>
-<pre><code class="language-html">&lt;div class=&quot;order-history&quot;&gt;
-  &lt;div class=&quot;order header&quot;&gt;
-    &lt;address&gt;Name / Address / Phone&lt;/address&gt;
-    &lt;div class=&quot;items&quot;&gt;Order&lt;/div&gt;
-    &lt;div class=&quot;total&quot;&gt;Total&lt;/div&gt;
-    &lt;div class=&quot;actions&quot;&gt;Action&lt;/div&gt;
-  &lt;/div&gt;
-
-  &lt;pmo-list
-    [orders]=&quot;newOrders&quot;
-    listTitle=&quot;New Orders&quot;
-    status=&quot;new&quot;
-    statusTitle=&quot;New Order!&quot;
-    action=&quot;preparing&quot;
-    actionTitle=&quot;Preparing&quot;
-    emptyMessage=&quot;No new orders&quot;&gt;
-    &lt;/pmo-list&gt;
-
-    &lt;pmo-list
-    [orders]=&quot;preparingOrders&quot;
-    listTitle=&quot;Preparing&quot;
-    status=&quot;preparing&quot;
-    statusTitle=&quot;Preparing&quot;
-    action=&quot;delivery&quot;
-    actionTitle=&quot;Out for delivery&quot;
-    emptyMessage=&quot;No orders preparing&quot;&gt;
-    &lt;/pmo-list&gt;
-
-    &lt;pmo-list
-    [orders]=&quot;deliveryOrders&quot;
-    listTitle=&quot;Out for delivery&quot;
-    status=&quot;delivery&quot;
-    statusTitle=&quot;Out for delivery&quot;
-    action=&quot;delivered&quot;
-    actionTitle=&quot;Delivered&quot;
-    emptyMessage=&quot;No orders are being delivered&quot;&gt;
-    &lt;/pmo-list&gt;
-
-    &lt;pmo-list
-    [orders]=&quot;deliveredOrders&quot;
-    listTitle=&quot;Delivery&quot;
-    status=&quot;delivered&quot;
-    statusTitle=&quot;Delivered&quot;
-    emptyMessage=&quot;No delivered orders&quot;&gt;
-    &lt;/pmo-list&gt;
-&lt;/div&gt;
-</code></pre>
-<p>Now as you click the actions of the orders and refresh the page, you can see their updated statuses. Next we'll use Socket.io to capture the events and instantly update the ui.</p>
+<div line-highlight='2,11-17,19,23-39'></div>
 
 </section>
 
