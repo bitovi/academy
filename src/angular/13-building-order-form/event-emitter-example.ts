@@ -15,9 +15,24 @@ export class Zippy {
   toggle() {
     this.visible = !this.visible;
     if (this.visible) {
-      this.open.emit(null);
+      this.open.emit("OPEN");
     } else {
-      this.close.emit(null);
+      this.close.emit("CLOSE");
     }
+  }
+}
+
+@Component({
+  selector: 'app',
+  template: `
+    <zippy (open)="opened($event)" (close)="closed($event)"></zippy>
+  `
+})
+class App {
+  opened(message) {
+    console.log(message) //-> OPEN
+  };
+  closed(message) {
+    console.log(message) //-> CLOSE
   }
 }

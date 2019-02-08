@@ -158,7 +158,7 @@ Each menu item should have this markup:
 ```html
  <label>
     <input type="checkbox">
-    item name <span class="badge">$ item price</span>
+    ITEM_NAME <span class="badge">$ ITEM_PRICE</span>
 </label>
 ```
 
@@ -194,9 +194,12 @@ Next, we want to know when a checkbox has been checked or unchecked, and update 
 
 ### What you need to know
 
-- How to attach a click event:
+- How to attach a click event and call a method:
 
     @sourceref ./click-example.ts
+
+- Use `array.splice(index,1)` to remove an item from an array.
+- Listen to `change` to know when an checkbox has changed its value.
 
 ### The Solution
 
@@ -217,7 +220,7 @@ Now we want to let the form know what the selected items are.
 
 ### What you need to know
 
-- How to emit a value to a parent component(presumably to update our form value)
+- How to emit a value to a parent component (presumably to update our form value)
 
     @sourceref ./event-emitter-example.ts
 
