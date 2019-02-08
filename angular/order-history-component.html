@@ -565,10 +565,12 @@ export class AppRoutingModule { }
 <p>In this exercise, we will:</p>
 <ul>
 <li>List all orders in the <code>HistoryComponent</code>.</li>
-<li>Make sure the <code>&lt;div&gt;</code> for each order has a class name of <em>'order'</em> and the <code>order.status</code> value.</li>
+<li>Make sure the <code>&lt;div&gt;</code> for each order has a class name of <em>'order'</em> and the
+<code>order.status</code> value. Make sure you've created a new order.</li>
 </ul>
-<p>In this component, we want to see a history of all orders. Import the order service into this new component and make the call to get all orders.</p>
-<p><strong>src/app/order/history.component.ts</strong></p>
+<p>Start this exercise by:</p>
+<p>1. Copying the following into <strong>src/app/order/history.component.ts</strong>. You will fill out its
+<code>getOrders</code> method.  The getters like <code>newOrders</code> will be used later.</p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 
 interface Data&lt;T&gt; {
@@ -627,11 +629,61 @@ export class HistoryComponent implements OnInit {
 }
 
 </code></pre>
+<div line-highlight='15-17,25'></div>
+<p>2. Copy the following into <strong>src/app/order/history.component.html</strong>.  You will need to
+make it loop through orders and add the right class names to the outer <code>&lt;div&gt;</code> for each order.</p>
+<pre><code class="language-html">&lt;div class=&quot;order-history&quot;&gt;
+  &lt;div class=&quot;order header&quot;&gt;
+    &lt;address&gt;Name / Address / Phone&lt;/address&gt;
+    &lt;div class=&quot;items&quot;&gt;Order&lt;/div&gt;
+    &lt;div class=&quot;total&quot;&gt;Total&lt;/div&gt;
+    &lt;div class=&quot;actions&quot;&gt;Action&lt;/div&gt;
+  &lt;/div&gt;
+
+  &lt;ng-container LOOP_HERE&gt;
+    &lt;div class=&quot;ADD RIGHT CLASS NAMES&quot;&gt;
+      &lt;address&gt;
+        {{order.name}} &lt;br /&gt;{{order.address}} &lt;br /&gt;{{order.phone}}
+      &lt;/address&gt;
+
+      &lt;div class=&quot;items&quot;&gt;
+        &lt;ul&gt;
+          &lt;li *ngFor=&quot;let item of order.items&quot;&gt;{{item.name}}&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/div&gt;
+
+      &lt;div class=&quot;total&quot;&gt;$order total?&lt;/div&gt;
+
+      &lt;div class=&quot;actions&quot;&gt;
+        &lt;span class=&quot;badge&quot;&gt;Status title?&lt;/span&gt;
+          &lt;p class=&quot;action&quot; *ngIf=&quot;action&quot;&gt;
+            Mark as:
+            &lt;a href=&quot;javascript://&quot;&gt;
+              next step
+            &lt;/a&gt;
+          &lt;/p&gt;
+
+        &lt;p class=&quot;action&quot;&gt;
+          &lt;a href=&quot;javascript://&quot; &gt;Delete&lt;/a&gt;
+        &lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/ng-container&gt;
+&lt;/div&gt;
+
+</code></pre>
+<div line-highlight='9,10'></div>
 <h3>What you need to know</h3>
+<p>You've already seen:</p>
 <ul>
-<li>how to import a service</li>
-<li>how to subscribe to a method on a service</li>
+<li>How to import a service and get data out of it.  Hint: Import it and create a
+property in the constructor.</li>
+<li>How to loop through values in HTML.  Hint: <code>*ngFor</code>.</li>
 </ul>
+<p>For this step, you'll need to know how to add multiple class names.  You can do this with
+<code>[ngClass]</code> and setting it to an array like:</p>
+<pre><code class="language-html">&lt;div [ngClass]=&quot;['first','second']&quot;&gt;
+</code></pre>
 <hr />
 <h3>The solution</h3>
 <p><strong>src/app/order/history.component.ts</strong></p>
@@ -702,7 +754,7 @@ export class HistoryComponent implements OnInit {
 }
 
 </code></pre>
-<div line-highlight='2, 22, 31-35'></div>
+<div line-highlight='2, 22, 31-35, only'></div>
 <p><strong>src/app/order/history.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-history&quot;&gt;
   &lt;div class=&quot;order header&quot;&gt;
@@ -744,6 +796,7 @@ export class HistoryComponent implements OnInit {
 &lt;/div&gt;
 
 </code></pre>
+<div line-highlight='9-10,only'></div>
 <h2>Creating a Child Component to Handle Order States</h2>
 <p>Orders can have states of new, preparing, delivery, and delivered, and we want to have different actions to take in the UI based on an orders status. Let's refactor the UI displaying all the orders into a new component. This new component will take a variety of different inputs:</p>
 <ul>
