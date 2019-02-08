@@ -15,23 +15,18 @@ export class ListComponent implements OnInit {
   @Input() action: string;
   @Input() actionTitle: string;
   @Input() emptyMessage: string;
-  isPending: boolean = false;
 
   constructor(private orderService: OrderService) { }
 
   ngOnInit() {}
 
   markAs(order: Order, action: string) {
-    this.isPending = true;
     this.orderService.updateOrder(order, action).subscribe(() => {
-      this.isPending = false;
     });
   }
-  
+
   delete(id:string) {
-    this.isPending = true;
     this.orderService.deleteOrder(id).subscribe(() => {
-      this.isPending = false;
     })
   }
 

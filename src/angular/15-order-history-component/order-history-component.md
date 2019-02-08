@@ -135,44 +135,73 @@ __src/app/order/history.component.html__
 @sourceref ./history.component-1.html
 @highlight 9-10,only
 
-## Creating a Child Component to Handle Order States
+## Exercise: Creating a Child Component to Handle Order States
 
-Orders can have states of new, preparing, delivery, and delivered, and we want to have different actions to take in the UI based on an orders status. Let's refactor the UI displaying all the orders into a new component. This new component will take a variety of different inputs:
-- orders: an array of orders based on status property
-- listTitle: "NewOrders"/"Preparing"/"Out for Delivery"/"Delivery"
-- status: "new"/"preparing"/"delivery"/"delivered"
-- statusTitle: "New Order!"/"Preparing"/"Out for delivery"/"Delivered"
-- action: "preparing"/"delivery"/"delivered"
-- actionTitle: "preparing"/"Out for delivery"/"Delivered"
-- emptyMessage: "No new orders"/"No orders preparing"/"No orders are being delivered"/"No delivered orders"
+### The problem
 
-```bash
-ng g component order/list
-```
+In this exercise, we will:
 
-The markup will look like this:
+- Group the orders by status.
+- Allow the user to change the status of an order.
+- Allow the user to delete an order.
 
-__src/app/order/list.component.html__
+__NOTE!!__ To see that an order has changed, you will have to refresh the page!
 
-@sourceref ./list.component.html
+To complete this we will:
 
-### The Problem
-
-Update this component to:
-- take the above list of inputs
-- have three methods
+- Create a `ListComponent` in __src/app/order/list/list.component.ts__ that will take a list
+  of orders and other values like:
+  ```html
+  <pmo-list
+    [orders]="newOrders"
+    listTitle="New Orders"
+    status="new"
+    statusTitle="New Order!"
+    action="preparing"
+    actionTitle="Preparing"
+    emptyMessage="No new orders">
+    </pmo-list>
+  ```
+- `ListComponent` will take the following values:
+  - `orders` - an array of orders based on status property
+  - `listTitle` - A title for the list: "NewOrders" , "Preparing" , "Out for Delivery" , "Delivery"
+  - `status` - Which status the list is "new", "preparing", "delivery", "delivered"
+  - `statusTitle` - Another title for the status: "New Order!", "Preparing", "Out for delivery",  "Delivered"
+  - `action` - What status items can be moved to: "preparing", "delivery", "delivered"
+  - `actionTitle` - A title for the action: "Preparing", "Out for delivery", "Delivered"
+  - `emptyMessage` - What to show when there are no orders in the list: "No new orders", "No orders preparing", "No orders are being delivered", "No delivered orders"
+- `ListComponent` will have the following methods:
   - `markAs(order, action)` that will update an order based on the action
   - `delete(order._id)` that will delete an order
   - `total(items)` that will return the order total
-- have an `isPending` member that gets set before and after actions are performed
 
-You'll need to import `Input` from angular core, as well as `OrderService` and relevant interfaces to handle updating and deleting your orders.
+
+Before staring, follow these steps:
+
+1\. Create the `ListComponent`:
+
+```shell
+ng g component order/list
+```
+
+2\. Update __src/app/order/history.component.html__ to use `<pmo-list>`:
+
+@sourceref ./history.component.html
+@highlight 9-45,only
+
+
+3\. Update __src/app/order/list/list.component.html__ to its final html:
+
+@sourceref ./list.component.html
+
+
 
 ### What you need to know
 
-- set inputs on a component
-- call methods on a service
-- update a boolean member to show/hide content
+You'll need to remember how to:
+
+- Add `@Input()`s to a component so it can be passed values.
+- Call methods on a service that you get from the `constructor`.
 
 ---
 
@@ -181,24 +210,4 @@ You'll need to import `Input` from angular core, as well as `OrderService` and r
 __src/app/order/list.component.ts__
 
 @sourceref ./list.component.ts
-@highlight 6
-
-### The problem
-
-Refactor your `src/app/order/history.component.html` file to use the new list component for each order subgroup: new orders, preparing orders, delivery orders, delivered orders.
-
-
-### What you need to know
-
-- How to pass properties to child components
-
----
-
-### The solution
-
-__src/app/order/history.component.html__
-
-@sourceref ./history.component.html
-
-
-Now as you click the actions of the orders and refresh the page, you can see their updated statuses. Next we'll use Socket.io to capture the events and instantly update the ui.
+@highlight 2,11-17,19,23-39
