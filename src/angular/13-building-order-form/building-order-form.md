@@ -128,7 +128,7 @@ __src/app/order/order.component.html__
 
 Now when we view the order form of our route, we'll see a nice form and tabs for lunch and dinner menu options.
 
-## Exercise: Create Custom Checkbox Component
+## Create Custom Checkbox Component
 
 We're going to build another component to use in our form to handle selecting order items. We use data-binding to pass data between components. We'll use the `@Input()` to get our list of items from the restaurant to display in our child component, and hook it into our Reactive Form using the `formControlName` attribute as shown below.
 
