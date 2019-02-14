@@ -1,5 +1,6 @@
 @page react React
 @parent bit-u 5
+@hide
 
 @description This guide introduces React, the things you should learn before approaching React, and some advanced React topics.
 
@@ -8,7 +9,7 @@
 ## Course Status
 
 This course is currently being authored.  The following are external
-guides we find useful to learn React. 
+guides we find useful to learn React.
 
 ## Before You Begin
 
