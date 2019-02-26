@@ -87,7 +87,7 @@ Any describes a variable where we may not know the type.
 
 ```typescript
 let my3rdPartyData: any = 5;
-my3rdPartyData = 'five;
+my3rdPartyData = 'five';
 ```
 
 ### Void

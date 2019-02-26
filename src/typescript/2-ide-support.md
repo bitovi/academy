@@ -21,6 +21,8 @@ Customize the TypeScript compiling and linting options by creating a ``tsconfig.
 - generate source map files
 - remove comments from compiled code
 
+The following is just example config code. Don't add this to your project or the tests for the TypeScript exercises will fail. 
+
 ```javascript
 {
     "compilerOptions": {

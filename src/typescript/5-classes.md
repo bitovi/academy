@@ -222,7 +222,7 @@ employee1.sayHi();
 
 ## Exercise 2
 
-Edit the file `4a-specialist.ts` to write a new ``Specialist`` class that inherits from the ``DinoKeeper``. This new class should be able to accept an additional ``experience`` public member that is a number, and have a ``safetyQuote`` method that console.logs("Never turn your back to the cage. Trust me, I have _years_ years of experience")
+Edit the file `4a-specialist.ts` to write a new ``Specialist`` class that inherits from the ``DinoKeeper``. This new class should be able to accept an additional ``experience`` public member that is a number, and have a ``safetyQuote`` method that returns("Never turn your back to the cage. Trust me, I have _${experience}_ years of experience")
 
 ```typescript
 let employee2 = new Specialist("Owen", 14);
