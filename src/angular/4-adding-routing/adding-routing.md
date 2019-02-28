@@ -15,7 +15,44 @@ In this part, we will:
 
 ### Routing
 
-To be able to navigate to our restaurant component, we'll need routing. We already told Angular we'd like to set up routing, so it generated `src/app/app-routing.module.ts` for us and included it in our root module.
+To be able to navigate between different views in our app, we'll need routing. We already told Angular we'd like to set up routing, so it generated `src/app/app-routing.module.ts` for us and included it in our root module. The router module takes an array of routes we can generate in a few different ways:
+
+## Setting Paths to Components 
+
+@sourceref ./route-component.html
+@codepen
+@highlight 19-22, only
+
+### Using Wildcards
+
+### Redirecting Routes
+
+### Setting Paths to Modules
+
+
+### <base-href>
+
+In our index.html file, the angular cli included `<base href="/>`. This tells the router how to compose URLs. 
+
+```html
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>PlaceMyOrder</title>
+        <base href="/">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+    </head>
+    <body>
+        <pmo-root></pmo-root>
+    </body>
+</html>
+```
+@highlight 6
+
+
 
 To create a route to our restaurants component, we'll need to import our restaurants component and update our routes variable to include the new path.
 

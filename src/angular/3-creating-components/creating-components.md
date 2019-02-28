@@ -10,9 +10,12 @@
 In this part, we will:
 
 - Install precreated assets
-- Generate home and restaurant components
-- Use pipes for image paths
-- Write an interface to describe our restaurant data
+- Create a home component
+- Use interpolation binding in our home component view
+- Learn about directives
+- Create a restaurant component that shows a list of restaurants
+- Learn about pipes
+- Create a pipe to create an image path
 
 ### Adding Assets
 
@@ -58,7 +61,7 @@ __src/app/home/home.component.html__
 ```html
 <div class="homepage">
   <img src="./assets/images/homepage-hero.jpg" alt="Restaurant table with glasses." width="250" height="380" />
-  <h1>Ordering food has never been easier</h1>
+  <h1>{{title}}</h1>
   <p>
     We make it easier than ever to order gourmet food
     from your favorite local restaurants.
@@ -69,7 +72,14 @@ __src/app/home/home.component.html__
 </div>
 ```
 
-### Viewing New Components
+In Angular, the double curly braces are the interpolation binding syntax. We can set the value of {{title}} in our component as a member on our component class:
+
+__src/app/home/home.component.ts__
+
+@sourceref ./home.component.ts
+@highlight 9
+
+## Viewing New Components
 
 One of the ways components can be rendered is by putting them in markup. Open your __src/app/app.component.html__ file and update it to be:
 
@@ -82,50 +92,62 @@ One of the ways components can be rendered is by putting them in markup. Open yo
 
  Run `npm run start`, and your app should compile with no errors, and you'll be able to see the home component. Later we'll move the home component to it's own page with a unique route.
 
- ### Generating A Restaurant Component
+## Template Directives
 
-Let's create one more component to flesh out our app a bit more. 
+Template directives in Angular help us iterate through and manipulate data we've bound to the DOM. Here are a few more common ones: 
+
+### ng-container
+
+<a href="https://angular.io/guide/structural-directives#ngcontainer" target="\_blank">ng-container</a> is an element that allows us to create template bindings without creating a dom element.
+
+@sourceref ./ng-container.html
+@codepen
+@highlight 17-20,only
+
+### \*ngIf
+
+<a href="https://angular.io/api/common/NgIf" target="\_blank">ngIf</a> is a structural directive that allows us to conditionally render content. It can be paired with ng-template to render an `else` block.
+
+@sourceref ./ng-if.html
+@codepen
+@highlight 17-21, 25,only
+
+### \*ngFor
+
+<a href="https://angular.io/api/common/NgForOf" target="\_blank">ngFor</a> is a structural directive that allows to iteratively create content in our templates.
+
+@sourceref ./ng-for.html
+@codepen
+@highlight 14-26,only
+
+## Generating A Restaurant Component
+
+Let's create our restaurant component as well. This will be a component that displays a list of restaurants.
 
 ```shell
 ng g component restaurant
 ```
 
-We're going to add a lot of content to this template initially that we'll hook into later in this training. For the present it is okay to copy and past this code without completely understanding what each concept does. Update the `restaurant.component.html` file to be:
+For now, we'll use fake data for a list of restaurants in the component, and put the data in a setTimeout to simulate an api call. Update the __src/app/restaurant/restaurant.component.ts__ to be:
+
+@sourceref ./restaurant.component.ts
+
+Update the `restaurant.component.html` file to be:
 
 __src/app/restaurant/restaurant.component.html__
 
 ```html
 <div class="restaurants">
   <h2 class="page-header">Restaurants</h2>
-  <ng-container *ngIf="restaurants.length">
-    <div class="restaurant" *ngFor="let restaurant of restaurants">
+  <!-- if restaurants has a length show the list -->
 
-      <img src="{{restaurant.images.thumbnail}}" width="100" height="100">
-      <h3>{{restaurant.name}}</h3>
+    <!-- inside this container, show the following markup for each restaurant -->
+    <div class="restaurant">
 
-      <div class="address" *ngIf="restaurant.address">
-        {{restaurant.address.street}}<br />{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
-      </div>
-
-      <div class="hours-price">
-        $$$<br />
-        Hours: M-F 10am-11pm
-        <span class="open-now">Open Now</span>
-      </div>
-
-      <a class="btn" [routerLink]="['/restaurants', restaurant.slug]">
-        Details
-      </a>
-      <br />
     </div>
-  </ng-container>
+    <!-- end of restaurant markup -->
 </div>
 ```
-
-In our template, we're referencing a variable `restaurants`. For now we'll set that to an empty array in our component, knowing we'll populate with real data later on. Edit the __src/app/restaurant/restaurant.component.ts__ file to be:
-
-@sourceref ./restaurant.component.ts
-@highlight 9
 
 To see our view working, we can paste it into our __src/app/app.component.html__ file just like with the home component:
 
@@ -136,31 +158,48 @@ To see our view working, we can paste it into our __src/app/app.component.html__
 <pmo-restaurant></pmo-restaurant>
 ```
 
-### Template Directives
+## Exercise: Write Restaurant Component Markup that Displays a List of Restaurants
 
-#### ng-container
 
-<a href="https://angular.io/guide/structural-directives#ngcontainer" target="\_blank">ng-container</a> is an element that allows us to create template bindings without creating a dom element.
+### The problem
 
-#### \*ngIf
+We want to display a list of restaurants in our UI once the data has been set on the restaurants member.  
 
-<a href="https://angular.io/api/common/NgIf" target="\_blank">ngIf</a> is a structural directive that allows us to conditionally render content. It can be paired with ng-template to render an `else` block.
+### What you need to know
+
+We covered the directives you'll need to use above!
+
+Here is the markup to show for each restaurant:
 
 ```html
-<div *ngIf="myValIsTrue; else notTrue">
+<img src="{{restaurant.images.thumbnail}}" width="100" height="100">
+<h3>{{restaurant.name}}</h3>
+
+<div class="address" *ngIf="restaurant.address">
+  {{restaurant.address.street}}<br />{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
 </div>
-<ng-template #notTrue>
-  I render if myValIsTrue is not true
-</ng-template>
+
+<div class="hours-price">
+  $$$<br />
+  Hours: M-F 10am-11pm
+  <span class="open-now">Open Now</span>
+</div>
+
+<a class="btn" [routerLink]="['/restaurants', restaurant.slug]">
+  Details
+</a>
+<br />
 ```
 
-#### \*ngFor
+### The solution
 
-<a href="https://angular.io/api/common/NgForOf" target="\_blank">ngFor</a> is a structural directive that allows to iteratively create content in our templates.
+@sourceref ./restaurant.component.html
+@highlight 3,4
+
 
 ### DETOUR! Pipes in Angular
 
-You may have noticed an image error in our render html page.We're using an API in this demo that wasn't built for our exact purposes, and we need a different image path for our app to serve. <a href="https://angular.io/guide/pipes" target="\_blank">Angular Pipes</a> come in handy to transform content in our templates. We'll create a pipe to help handle our image pathing:
+You may have noticed an image error in our rendered html page. We're using an API in this demo that wasn't built for our exact purposes, and we need a different image path for our app to serve. <a href="https://angular.io/guide/pipes" target="\_blank">Angular Pipes</a> come in handy to transform content in our templates. We'll create a pipe to help handle our image pathing:
 
 ```bash
 ng g pipe imageUrl
@@ -203,7 +242,6 @@ __src/app/restaurant/restaurant.component.html__
   </ng-container>
 </div>
 ```
-
 @highlight 6
 
 #### END DETOUR
