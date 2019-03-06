@@ -91,18 +91,18 @@ header, footer {
   .main:extend(.container) {
     overflow-x: hidden; // fix to hide <pre> code overflow
 
-		// Collapse <p> for parameters, returns, and non-nested options
-		.parameters, .returns, div.options {
-			margin-bottom: 1em;
+    // Collapse <p> for parameters, returns, and non-nested options
+    .parameters, .returns, div.options {
+      margin-bottom: 1em;
 
-			p:first-of-type {
-				display: inline;
+      p:first-of-type {
+        display: inline;
 
-				& + * {
-					margin-top: 1em;
-				}
-			}
-		}
+        & + * {
+          margin-top: 1em;
+        }
+      }
+    }
   }
 }
 
@@ -153,7 +153,6 @@ Desktop:
 
   .content {
     .flex-auto; // fill remaining height
-
     .flex-row;
 
     // Note: Don't add border, padding or margin to a flex-row or flex-column,
@@ -172,69 +171,117 @@ Desktop:
 }
 
 .codepen {
-    border: solid 1px #dfdfdf;
-    display: block;
-    position: relative;
-    text-align: center;
-    top: -1.1rem;
-    border-top: none;
-    background-color: #dfdfdf;
-    color: gray;
-    padding: 3px;
-    cursor: pointer;
-    line-height: 18px;
+  border: solid 1px #dfdfdf;
+  display: block;
+  position: relative;
+  text-align: center;
+  top: -1.1rem;
+  border-top: none;
+  background-color: #dfdfdf;
+  color: gray;
+  padding: 3px;
+  cursor: pointer;
+  line-height: 18px;
 }
 article .codepen:before {
-    content: "Run in your browser";
+  content: "Run in your browser";
 }
 
 html {
-    color: #404040;
-    font: normal normal normal 1rem/1.6 -apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,Helvetica,Arial,sans-serif;
-    -webkit-font-smoothing: antialiased;
+  color: #404040;
+  font: normal normal normal 1rem/1.6 Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
 }
 
 h2 {
-    margin-top: 4em;
+  margin-top: 4em;
 }
 
 @media (min-width: 700px) {
-    body {
-        font-size: 1.1rem;
-    }
+  body {
+    font-size: 1.1rem;
+  }
 }
 
 :not(pre)>code {
-    padding: 3px 5px;
-    border: none;
-    font-family: Menlo,Roboto Mono,Courier New,monospace;
-    font-weight: 400;
-    color: #111;
-    border-radius: 4px;
-    background: rgba(0,0,0,.06);
+  padding: 3px 5px;
+  border: none;
+  font-family: Menlo,Roboto Mono,Courier New,monospace;
+  font-weight: 400;
+  font-size: .6em;
+  color: #111;
+  border-radius: 4px;
+  background: rgba(0,0,0,.06);
 }
 
 blockquote {
-    background: #f4f4f4;
-    padding: 15px 30px;
-    margin: 15px 0;
-    position: relative;
-    border-left: 15px solid #ccc;
-    border-right: 2px solid #ccc;
+  background: #f4f4f4;
+  padding: 15px 30px;
+  margin: 15px 0;
+  position: relative;
+  border-left: 15px solid #ccc;
+  border-right: 2px solid #ccc;
 }
 
 article details {
-    border: 1px solid #dfdfdf;
-    background-color: #fdfdfd;
-    border-radius: 1px;
-    padding: 1em 1em .5em 1em;
+  border: 1px solid #dfdfdf;
+  background-color: #fdfdfd;
+  border-radius: 1px;
+  padding: 1em 1em .5em 1em;
 }
 article details[open] summary {
-    margin-bottom: .5em;
+  margin-bottom: .5em;
 }
 article summary {
-    font-weight: 700;
-    margin: -.5em -.5em 0;
-    padding: .5em;
-    cursor: pointer;
+  font-weight: 700;
+  margin: -.5em -.5em 0;
+  padding: .5em;
+  cursor: pointer;
+}
+
+// Theme Styles
+
+body {
+  padding-bottom: 60px;
+}
+
+header {
+  width: 100%;
+  border-top: 6px solid #CB3035;
+  padding: 15px 0 10px 25px;
+}
+
+.sidebar {
+  a {
+    color: #4078c0;
+    font-size: .9em;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+    &:active {
+      font-weight: bold;
+      text-decoration: underline;
+    }
+    &.home {
+      border-bottom: 1px solid #eee;
+      display: block;
+      padding-bottom: 15px;
+    }
+  }
+  ul {
+    ul {
+      border-left: 1px solid #eee;
+    }
+  }
+}
+
+h1 {
+  font-size: 1.5em;
+}
+h2 {
+  font-size: 1.3em;
+}
+h3 {
+  font-size: 1.3em;
 }
