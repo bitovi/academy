@@ -1,0 +1,106 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js"/></script>
+<script src="https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js"/></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js"></script>
+<script src="https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js"></script>
+<script src="https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js"></script>
+<script src="https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js"></script>
+<script src="https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js"></script>
+<script src="https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js"></script>
+<base href="/">
+<my-app></my-app>
+<script type="typescript">
+// app.js
+const { Component, NgModule, VERSION } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { Routes, RouterModule } = ng.router;
+
+@Component({
+  selector: 'my-app',
+  template: `
+    <p>Look at me!</p>
+    <router-outlet></router-outlet>
+  `
+})
+class AppComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'about-component',
+  template: `
+    <p>A very sweet component!</p>
+  `
+})
+class AboutComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'unfound-component',
+  template: `
+    <p>These are not the components you are looking for.</p>
+  `
+})
+class PageNotFoundComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'child-component',
+  template: `
+    <p>I'm in a child module!</p>
+  `
+})
+class ChildComponent {
+  constructor() {
+  }
+}
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    CommonModule
+  ],
+  declarations: [ChildComponent],
+  bootstrap: [ChildComponent],
+  providers: []
+})
+class ChildModule {}
+
+const routes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: '',  redirectTo: '/about', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent },
+  { path: 'mymodule',  loadChildren: ChildModule}
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+class AppRoutingModule { }
+
+@NgModule({
+  declarations: [AppComponent, AboutComponent, PageNotFoundComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    AppRoutingModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err => console.error(err));
+</script>
+

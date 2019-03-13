@@ -9,27 +9,25 @@
 <my-app></my-app>
 <script type="typescript">
 // app.js
-const { Component, VERSION } = ng.core;
+const { Component, VERSION, Pipe, PipeTransform } = ng.core;
+
+
+@Pipe({name: 'exponentialStrength'})
+class ExponentialStrengthPipe implements PipeTransform {
+  transform(value: number, exponent: string): number {
+    let exp = parseFloat(exponent);
+    return Math.pow(value, isNaN(exp) ? 1 : exp);
+  }
+}
 
 @Component({
   selector: 'my-app',
   template: `
-    <ng-container>
-      <p>Inspect me using dev tools. Look, Ma, no ng-container!</p>
-    </ng-container>
-    <ng-container *ngIf="certainThing">
-      <ng-container *ngFor="let thing of myThings">{{thing.name}} {{thing.id}}</ng-container>
-    </ng-container>
+  <h2>Power Booster</h2>
+  <p>Super power boost: {{2 | exponentialStrength: 10}}</p>
   `
 })
 class AppComponent {
-  public certainThing: boolean = true;
-  myThings : any[] = [
-    {name: 'Blue', id: 001},
-    {name: 'Charlie', id: 002},
-    {name: 'Delta', id: 003},
-    {name: 'Echo', id: 004}
-  ]
   constructor() {
   }
 }
@@ -40,11 +38,9 @@ const { NgModule } = ng.core;
 const { CommonModule } = ng.common;
 
 @NgModule({
-  imports: [
-    BrowserModule,
-    CommonModule,
-  ],
-  declarations: [AppComponent],
+  imports: [ BrowserModule,
+  CommonModule],
+  declarations: [AppComponent, ExponentialStrengthPipe],
   bootstrap: [AppComponent],
   providers: []
 })

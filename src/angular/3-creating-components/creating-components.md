@@ -38,23 +38,59 @@ Let's begin to build out the main views of our app. We'll need a home view, and 
 
 Recommended reading: <a href="https://angular.io/guide/lifecycle-hooks" target="\_blank" >Angular Lifecyle Hooks</a>
 
-```shell
-ng g component home
-```
+## Exercise: Creating a Home Component With a Dynamic Title Member
 
-This will create a new component for us and import it in our root module.
+### The problem
 
-```code
-├── src/
-|   ├── app/
-|   |   ├── home/
-|   |       |── home.component.ts
-|   |       |── home.component.spec.ts
-|   |       |── home.component.less
-|   |       |── home.component.html
-```
+We want to create a component that displays some information about our application with a dynamic title we can change in an `h1` tag. Set this title initially to have a string value of "Ordering food has never been easier".
+
+### What you need to know
+
+- How to generate a component:
+
+  ```shell
+  ng g component home
+  ```
+
+  This will create a new component for us and import it in our root module.
+
+  ```code
+  ├── src/
+  |   ├── app/
+  |   |   ├── home/
+  |   |       |── home.component.ts
+  |   |       |── home.component.spec.ts
+  |   |       |── home.component.less
+  |   |       |── home.component.html
+  ```
+
+- How to bind data to the dom:
+
+  @sourceref ./template.html
+  @codepen
+  @highlight 17,21,only
+
 
 Update the `home.component.html` file to be:
+
+__src/app/home/home.component.html__
+
+```html
+<div class="homepage">
+  <img src="./assets/images/homepage-hero.jpg" alt="Restaurant table with glasses." width="250" height="380" />
+  <h1>place a dynamic title here</h1>
+  <p>
+    We make it easier than ever to order gourmet food
+    from your favorite local restaurants.
+  </p>
+  <p>
+     <a class="btn" routerLink="/restaurants" role="button">Choose a Restaurant</a>
+  </p>
+</div>
+```
+
+
+### The solution
 
 __src/app/home/home.component.html__
 
@@ -72,8 +108,6 @@ __src/app/home/home.component.html__
 </div>
 ```
 
-In Angular, the double curly braces are the interpolation binding syntax. We can set the value of {{title}} in our component as a member on our component class:
-
 __src/app/home/home.component.ts__
 
 @sourceref ./home.component.ts
@@ -81,7 +115,7 @@ __src/app/home/home.component.ts__
 
 ## Viewing New Components
 
-One of the ways components can be rendered is by putting them in markup. Open your __src/app/app.component.html__ file and update it to be:
+One of the ways components can be rendered is by putting them in markup. We'll do this by putting our `<pmo-home></pmo-home>` tag in our base app component markup. Open your __src/app/app.component.html__ file and update it to be:
 
 ```html
 <h1>Place My Order App: Coming Soon!</h1>
@@ -89,6 +123,7 @@ One of the ways components can be rendered is by putting them in markup. Open yo
 
 <pmo-home></pmo-home>
 ```
+@highlight 4
 
  Run `npm run start`, and your app should compile with no errors, and you'll be able to see the home component. Later we'll move the home component to it's own page with a unique route.
 
@@ -96,17 +131,9 @@ One of the ways components can be rendered is by putting them in markup. Open yo
 
 Template directives in Angular help us iterate through and manipulate data we've bound to the DOM. Here are a few more common ones: 
 
-### ng-container
-
-<a href="https://angular.io/guide/structural-directives#ngcontainer" target="\_blank">ng-container</a> is an element that allows us to create template bindings without creating a dom element.
-
-@sourceref ./ng-container.html
-@codepen
-@highlight 17-20,only
-
 ### \*ngIf
 
-<a href="https://angular.io/api/common/NgIf" target="\_blank">ngIf</a> is a structural directive that allows us to conditionally render content. It can be paired with ng-template to render an `else` block.
+<a href="https://angular.io/api/common/NgIf" target="\_blank">ngIf</a> is a structural directive that allows us to conditionally render content. It can be paired with <a href="https://angular.io/guide/structural-directives#the-ng-template" target="_blank">ng-template</a> to render an `else` block.
 
 @sourceref ./ng-if.html
 @codepen
@@ -119,6 +146,14 @@ Template directives in Angular help us iterate through and manipulate data we've
 @sourceref ./ng-for.html
 @codepen
 @highlight 14-26,only
+
+### ng-container
+
+<a href="https://angular.io/guide/structural-directives#ngcontainer" target="\_blank">ng-container</a> is an element that allows us to create template bindings without creating a dom element. Only one structural directive is allowed per host element(to avoid confusion around which directive would take precedence) making this directive handy for when we have several logic directives to apply to content.  
+
+@sourceref ./ng-container.html
+@codepen
+@highlight 17-20,only
 
 ## Generating A Restaurant Component
 
@@ -199,19 +234,35 @@ Here is the markup to show for each restaurant:
 
 ### DETOUR! Pipes in Angular
 
-You may have noticed an image error in our rendered html page. We're using an API in this demo that wasn't built for our exact purposes, and we need a different image path for our app to serve. <a href="https://angular.io/guide/pipes" target="\_blank">Angular Pipes</a> come in handy to transform content in our templates. We'll create a pipe to help handle our image pathing:
+You may have noticed an image error in our rendered html page. We're using an API in this demo that wasn't built for our exact purposes, and we need a different image path for our app to serve. <a href="https://angular.io/guide/pipes" target="\_blank">Angular Pipes</a> come in handy to transform content in our templates. Pipes allow us to transform data to display to the user in our HTML without modifying the original source.  
 
-```bash
-ng g pipe imageUrl
-```
+## Exercise: Create a pipe that returns the correct image path for files
 
-Angular CLI will generate the basics needed for a pipe component, but we're not going to pass any arguments to our pipe, so we can remove that param. In our newly created `image-url.pipe.ts` update the code to be:
+### The problem
+
+We want to write a pipe that takes an image url and transforms it to the path we actually want to serve the image from. `node_modules/place-my-order-assets` -> `./assets`.  
+
+### What You Need to know
+
+- How to create a pipe
+
+  ```bash
+  ng g pipe imageUrl
+  ```
+
+  This will generate a pipe file: `image-url.pipe.ts`
+
+- How pipes are used
+
+  @sourceref ./pipe.html
+  @codepen
+  @highlight 15-21, 27,only
+
+### The Solution
 
 __src/app/image-url.pipe.ts__
 
 @sourceref ./image-url.pipe.ts
-
-We'll add this pipe in the markup on line 6:
 
 __src/app/restaurant/restaurant.component.html__
 
@@ -243,5 +294,3 @@ __src/app/restaurant/restaurant.component.html__
 </div>
 ```
 @highlight 6
-
-#### END DETOUR

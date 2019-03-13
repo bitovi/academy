@@ -14,22 +14,11 @@ const { Component, VERSION } = ng.core;
 @Component({
   selector: 'my-app',
   template: `
-    <ng-container>
-      <p>Inspect me using dev tools. Look, Ma, no ng-container!</p>
-    </ng-container>
-    <ng-container *ngIf="certainThing">
-      <ng-container *ngFor="let thing of myThings">{{thing.name}} {{thing.id}}</ng-container>
-    </ng-container>
+   <p>{{myData}}</p>
   `
 })
 class AppComponent {
-  public certainThing: boolean = true;
-  myThings : any[] = [
-    {name: 'Blue', id: 001},
-    {name: 'Charlie', id: 002},
-    {name: 'Delta', id: 003},
-    {name: 'Echo', id: 004}
-  ]
+  public myData: string = 'Hello world.';
   constructor() {
   }
 }

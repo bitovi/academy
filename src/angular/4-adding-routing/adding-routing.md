@@ -17,18 +17,37 @@ In this part, we will:
 
 To be able to navigate between different views in our app, we'll need routing. We already told Angular we'd like to set up routing, so it generated `src/app/app-routing.module.ts` for us and included it in our root module. The router module takes an array of routes we can generate in a few different ways:
 
-## Setting Paths to Components 
+## Setting Paths to Components
 
-@sourceref ./route-component.html
+The following example will render the AboutComponent in the router-outlet when the path is `/about`:
+
+@sourceref ./path-route.html
 @codepen
-@highlight 19-22, only
+@highlight 43, only
 
 ### Using Wildcards
 
+The next example uses the wildcard path, which will render the PageNotFoundComponent when any unregistered route is hit:
+
+@sourceref ./wildcard-route.html
+@codepen
+@highlight 55, only
+
 ### Redirecting Routes
+
+This example shows one route redirecting to another:
+
+@sourceref ./redirect-route.html
+@codepen
+@highlight 56, only
 
 ### Setting Paths to Modules
 
+As our applications grow, it doesn't make sense to load all the code at once. Thanks to lazyloading, we can wait to render modules until a specific route requiring them is hit:
+
+@sourceref ./lazyload-route.html
+@codepen
+@highlight 46, only
 
 ### <base-href>
 
@@ -52,26 +71,35 @@ In our index.html file, the angular cli included `<base href="/>`. This tells th
 ```
 @highlight 6
 
+## Exercise: Edit the Routing Module to Have Routes for Home and Component
 
-
-To create a route to our restaurants component, we'll need to import our restaurants component and update our routes variable to include the new path.
-
-__src/app/app-routing.module.ts__
-
-@sourceref ./app-routing.module.ts
-@highlight 3-15
-
-Our router was already added to our index file during our initial app creation. Replace the whole file with the following: 
+Our router outlet was already added to our __src/app/app.component.html__ file during our initial app creation. Replace the whole file with the following: 
 
 __src/app/app.component.html__
 
 @sourceref ./app.component.html
 @highlight 1,only
 
-Navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a> to see the new view. You may have noticed the ```routerLink``` attribute on the a tag in our home component markup. This one of the ways we link to specific routes in our app.
+### The problem
+
+We need to set up routes for the home view and restaurant view. When the route is `''`, the `HomeComponent` should display, and when the route is `/restaurants` the `RestaurantComponent` should display. Make these changes in __src/app/app-routing.module.ts__. If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>. (You may have noticed the ```routerLink``` attribute on the a tag in our home component markup. This one of the ways we link to specific routes in our app.)
+
 
 ```html
 <a class="btn" [routerLink]="['/restaurants', restaurant.slug]">
   Details
 </a>
 ```
+
+### What You Need to know
+
+Everything you need to know what covered above!
+
+### The Solution
+
+__src/app/app-routing.module.ts__
+
+@sourceref ./app-routing.module.ts
+@highlight 3-15
+
+
