@@ -155,6 +155,12 @@ Template directives in Angular help us iterate through and manipulate data we've
 @codepen
 @highlight 17-20,only
 
+### ng-class
+
+@sourceref ./ng-class.html
+@codepen
+@highlight 17-20,only
+
 ## Generating A Restaurant Component
 
 Let's create our restaurant component as well. This will be a component that displays a list of restaurants.

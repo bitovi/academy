@@ -10,36 +10,58 @@
 <base href="/">
 <my-app></my-app>
 <script type="typescript">
-// app.js
-const { Component, NgModule, VERSION } = ng.core;
+const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
 const { Routes, RouterModule } = ng.router;
 
+@Injectable({
+  providedIn: 'root'
+})
+class UsersService {
+  private users = [
+  {
+    name: 'Jennifer',
+    id: 1,
+    role: 'admin'
+  },
+  {
+    name: 'Steve',
+    id: 2,
+    role: 'user'
+  },
+  {
+    name: 'Alice',
+    id: 3,
+    role: 'developer'
+  }]
+
+  constructor() { }
+
+  getUsers() {
+    return this.users;
+  }
+
+  getUser(id: number) {
+    return this.users.find(x => x.id === id)
+  }
+}
+
+
 @Component({
   selector: 'my-app',
   template: `
-    <p>Look at me!</p>
     <ul class="nav">
       <li routerLinkActive="active">
         <a routerLink="/about" >About</a>
-      </li>
-      <li routerLinkActive="active">
-        <a routerLink="/merp">Not an actual route</a>
-      </li>
-      <li routerLinkActive="active">
-        <a routerLink="/blarg">Another not actual route</a>
-      </li>
-      <li routerLinkActive="active">
-        <a routerLink="boop">/boop - I will reroute to /about</a>
       </li>
     </ul>
     <router-outlet></router-outlet>
   `
 })
 class AppComponent {
-  constructor() {
-  }
+  constructor() {}
+
 }
 
 @Component({
@@ -54,30 +76,40 @@ class AboutComponent {
 }
 
 @Component({
-  selector: 'unfound-component',
+  selector: 'home-component',
   template: `
-    <p>These are not the components you are looking for.</p>
+    <p>A home component!</p>
+    <ul>
+      <li *ngFor="let user of users">
+        {{user.name}}
+      </li>
+    </ul>
   `
 })
-class PageNotFoundComponent {
-  constructor() {
+class HomeComponent implements OnInit{
+  private users: any[] = [];
+
+  constructor(private usersService: UsersService) {
+  }
+
+  ngOnInit() {
+    this.users = usersService.getUsers();
   }
 }
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
-  { path: 'boop',  redirectTo: '/about', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent }
-];
-
+  { path: '**', component: HomeComponent }
+]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 class AppRoutingModule { }
 
+                 
 @NgModule({
-  declarations: [AppComponent, AboutComponent, PageNotFoundComponent],
+  declarations: [AppComponent, AboutComponent, HomeComponent],
   imports: [
     BrowserModule,
     CommonModule,

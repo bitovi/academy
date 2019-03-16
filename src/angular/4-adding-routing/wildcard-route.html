@@ -20,6 +20,17 @@ const { Routes, RouterModule } = ng.router;
   selector: 'my-app',
   template: `
     <p>Look at me!</p>
+    <ul class="nav">
+      <li routerLinkActive="active">
+        <a routerLink="/about" >About</a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/merp">/merp - Not an actual route</a>
+      </li>
+      <li routerLinkActive="active">
+        <a routerLink="/blarg">/blarg - Another not actual route</a>
+      </li>
+    </ul>
     <router-outlet></router-outlet>
   `
 })
@@ -31,7 +42,7 @@ class AppComponent {
 @Component({
   selector: 'about-component',
   template: `
-    <p>A very sweet component!</p>
+    <p>An about component!</p>
   `
 })
 class AboutComponent {
@@ -52,6 +63,7 @@ class PageNotFoundComponent {
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
+  { path: '',  redirectTo: '/about', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 

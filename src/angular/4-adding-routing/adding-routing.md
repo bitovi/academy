@@ -15,7 +15,7 @@ In this part, we will:
 
 ### Routing
 
-To be able to navigate between different views in our app, we'll need routing. We already told Angular we'd like to set up routing, so it generated `src/app/app-routing.module.ts` for us and included it in our root module. The router module takes an array of routes we can generate in a few different ways:
+To be able to navigate between different views in our app, we'll need routing. We already told Angular we'd like to set up routing, so it generated `src/app/app-routing.module.ts` for us and included it in our root module. The router module takes an array of routes we can generate in a few different ways that will render content in the `router-outlet` directive.
 
 ## Setting Paths to Components
 
@@ -23,7 +23,7 @@ The following example will render the AboutComponent in the router-outlet when t
 
 @sourceref ./path-route.html
 @codepen
-@highlight 43, only
+@highlight 57, only
 
 ### Using Wildcards
 
@@ -31,7 +31,7 @@ The next example uses the wildcard path, which will render the PageNotFoundCompo
 
 @sourceref ./wildcard-route.html
 @codepen
-@highlight 55, only
+@highlight 67, only
 
 ### Redirecting Routes
 
@@ -39,15 +39,15 @@ This example shows one route redirecting to another:
 
 @sourceref ./redirect-route.html
 @codepen
-@highlight 56, only
+@highlight 69, only
 
 ### Setting Paths to Modules
 
-As our applications grow, it doesn't make sense to load all the code at once. Thanks to lazyloading, we can wait to render modules until a specific route requiring them is hit:
+As our applications grow, it doesn't make sense to load all the code at once. Thanks to <a href="https://angular.io/guide/lazy-loading-ngmodules" target="_blank">lazyloading</a>, we can wait to render modules until a specific route requiring them is hit. (This demo does not work in Codepen unfortunately)
 
 @sourceref ./lazyload-route.html
 @codepen
-@highlight 46, only
+@highlight 112, only
 
 ### <base-href>
 
@@ -84,7 +84,6 @@ __src/app/app.component.html__
 
 We need to set up routes for the home view and restaurant view. When the route is `''`, the `HomeComponent` should display, and when the route is `/restaurants` the `RestaurantComponent` should display. Make these changes in __src/app/app-routing.module.ts__. If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>. (You may have noticed the ```routerLink``` attribute on the a tag in our home component markup. This one of the ways we link to specific routes in our app.)
 
-
 ```html
 <a class="btn" [routerLink]="['/restaurants', restaurant.slug]">
   Details
@@ -101,5 +100,3 @@ __src/app/app-routing.module.ts__
 
 @sourceref ./app-routing.module.ts
 @highlight 3-15
-
-

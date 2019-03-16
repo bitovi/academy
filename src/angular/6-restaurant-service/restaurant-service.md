@@ -80,6 +80,14 @@ Update the package.json `npm start` script to be `ng serve --proxy-config proxy.
 
 Now, restart our app using `npm start` and it will run it with the proxy config we created. To test that it's working, navigate to <a href="http://localhost:4200/api/restaurants" target="_blank">http://localhost:4200/api/restaurants</a> and you should be able to see a list of restaurants.
 
+## Angular Services
+
+Angular <a href="https://angular.io/guide/architecture-services" target="_blank">Services</a> are pieces of functionality that may not need to be tied to a view like components. A common example of a service is making an HTTP request to get data. Many components may require functionality to fetch data, and a Service can help abstract that logic into one place to be used across components.
+
+@sourceref ./service.html
+@codepen
+@highlight 18-45,61,111, only
+
 ## Importing `HttpClientModule` into _app.module.ts_
 
 For making HTTP requests to interact with an API, Angular provides a HttpClient Module. To use it we'll need to import it in the root module of our app and include it the imports array.

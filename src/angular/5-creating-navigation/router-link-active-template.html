@@ -10,7 +10,6 @@
 <base href="/">
 <my-app></my-app>
 <script type="typescript">
-// app.js
 const { Component, NgModule, VERSION } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
@@ -19,25 +18,20 @@ const { Routes, RouterModule } = ng.router;
 @Component({
   selector: 'my-app',
   template: `
-    <p>Look at me!</p>
-    <ul class="nav">
-      <li routerLinkActive="active">
-        <a routerLink="/about" >About</a>
-      </li>
-      <li routerLinkActive="active">
-        <a routerLink="/merp">Not an actual route</a>
-      </li>
-      <li routerLinkActive="active">
-        <a routerLink="/blarg">Another not actual route</a>
-      </li>
-      <li routerLinkActive="active">
-        <a routerLink="boop">/boop - I will reroute to /about</a>
-      </li>
-    </ul>
-    <router-outlet></router-outlet>
+  <ul class="nav">
+    <li routerLinkActive="my-active-class" >
+      <a routerLink="/about" >About</a>
+    </li>
+    <li routerLinkActive #rla="routerLinkActive" [ngClass]="{'my-active-class' : rla.isActive}" >
+      <a [routerLink]="['/users', userId]">User 1</a>
+    </li>
+  </ul>
+  <p *ngIf="rla.isActive">The users/1 route is active. 💖💖💖</p> 
+  <router-outlet></router-outlet>
   `
 })
 class AppComponent {
+  public userId: number = 1;
   constructor() {
   }
 }
@@ -54,30 +48,42 @@ class AboutComponent {
 }
 
 @Component({
-  selector: 'unfound-component',
+  selector: 'home-component',
   template: `
-    <p>These are not the components you are looking for.</p>
+    <p>A home component!</p>
   `
 })
-class PageNotFoundComponent {
+class HomeComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'user-component',
+  template: `
+    <p>A user component!</p>
+  `
+})
+class UserComponent {
   constructor() {
   }
 }
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
-  { path: 'boop',  redirectTo: '/about', pathMatch: 'full' },
-  { path: '**', component: PageNotFoundComponent }
-];
-
+  { path: '', component: HomeComponent },
+  { path: 'users/:id', component: UserComponent },
+  { path: '**', component: HomeComponent }
+]
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 class AppRoutingModule { }
 
+                 
 @NgModule({
-  declarations: [AppComponent, AboutComponent, PageNotFoundComponent],
+  declarations: [AppComponent, AboutComponent, HomeComponent, UserComponent],
   imports: [
     BrowserModule,
     CommonModule,
@@ -94,4 +100,9 @@ platformBrowserDynamic()
   .bootstrapModule(AppModule)
   .catch(err => console.error(err));
 </script>
+<style>
+  .my-active-class {
+    background: pink;
+  }
+</style>
 
