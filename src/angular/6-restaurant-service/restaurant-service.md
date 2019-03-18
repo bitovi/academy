@@ -148,14 +148,14 @@ let restaurant = {
     banner: '' //string
   }],
   menu: {
-    lunch: [
+    lunch: [{
       name: '', //string
       price: '' //number
-    ],
-    dinner: [
+    }],
+    dinner: [{
       name: '', //string
       price: '' //number
-    ]
+    }]
   },
   address: {
     street: '', //string
