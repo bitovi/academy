@@ -14,6 +14,7 @@ In this part, we will:
 - Update `npm start` script
 - Generate a new service via the CLI
 - Write a method to make an http request
+- Write interfaces to describe response object and restaurant object
 
 ## Installing the Place My Order API
 
@@ -86,7 +87,7 @@ Angular <a href="https://angular.io/guide/architecture-services" target="_blank"
 
 @sourceref ./service.html
 @codepen
-@highlight 18-45,61,111, only
+@highlight 18-48,83-87,93,96, only
 
 ## Importing `HttpClientModule` into _app.module.ts_
 
@@ -97,28 +98,105 @@ __src/app/app.module.ts__
 @sourceref ./app.module.ts
 @highlight 3,21
 
+## Using HTTPClient to make a request
 
-We're going to write interfaces to tell Typescript what we expect a restaurant and other related objects to look like. We'll create a new file to house these.
+@sourceref ./http.html
+@codepen
+@highlight 23,25-27,29-31, only
 
-```bash
-ng g interface restaurant/restaurant
+## Exercise: Write a Restaurant Service to fetch a list of restaurants
+
+### The problem
+
+We want to write a service with a method `getRestaurants` that uses httpClient to get a list of restaurants from our `/api/restaurants` url.
+
+### What You Need to Know
+
+- How to create a service via the CLI
+
+  ```bash
+    ng g service restaurant/restaurant
+  ```
+
+- How to use httpClient to make a get request
+
+### Solution
+
+__src/app/restaurant/restaurant.service.ts__
+
+@sourceref ./restaurant.service-1.ts
+
+## Take Advantage of TypeScript
+
+Thanks to TypeScript we can write interfaces to describe what we expect objects to look like. Consider the user service above returning an array of users. This interface describes what a user(and array of users) should look like:
+
+@sourceref ./service-interface.html
+@codepen
+@highlight 18-22,28, only
+
+## Exercise: Write an Interface to Describe the Restaurant Object and Data Response
+
+We're going to write interfaces to tell Typescript what we expect a restaurant and other related objects to look like. A `Restaurant` interface should represent an object like this:
+
+```javascript
+let restaurant = {
+  name: '', //string
+  slug: '', //string
+  images: [{
+    thumbnail: '', //string
+    owner: '', //string
+    banner: '' //string
+  }],
+  menu: {
+    lunch: [
+      name: '', //string
+      price: '' //number
+    ],
+    dinner: [
+      name: '', //string
+      price: '' //number
+    ]
+  },
+  address: {
+    street: '', //string
+    city: '', //string
+    state: '', //string
+    zip: '' //string
+  },
+  _id: '' //string
+}
 ```
+
+We'll also need to write a `ResponseData` interface to describe the response from our get request, which looks like:
+
+```javascript
+let response = {
+  data: [] //array of restaurants
+}
+```
+
+This interface can be written in the __src/app/restaurant/restaurant.service.ts__ file. *Hint, you'll need to import the `restaurant` interface
+for this interface.
+
+## What You Need to Know
+
+- How to generate an interface via the CLI
+
+  ```bash
+    ng g interface restaurant/restaurant
+  ```
+
+- How to write an interface in TypeScript
+
+## Solution
 
 __src/app/restaurant/restaurant.ts__
 
 @sourceref ./restaurant.ts
 
-Now that we have our interface defined, we'll create a Service to handle getting our restaurant data. Services are classes with narrow purposes that don't typically involve view-related functionality.
-
-```bash
-ng g service restaurant/restaurant
-```
-
-In our newly created service file, we'll need to import HttpClient.
-
 __src/app/restaurant/restaurant.service.ts__
 
 @sourceref ./restaurant.service.ts
-@highlight 2, 4, 6-8, 15, 17-19
+@highlight 4,6-8, 18
 
 In the next step we'll call the `getRestaurants` method in our component to get the list of restaurants.

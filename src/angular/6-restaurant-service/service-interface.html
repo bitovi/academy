@@ -15,11 +15,17 @@ const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
 const { Routes, RouterModule } = ng.router;
 
+interface User {
+  name: string;
+  id: number;
+  role: string;
+}
+
 @Injectable({
   providedIn: 'root'
 })
 class UsersService {
-  private users = [
+  private users: User[] = [
   {
     name: 'Jennifer',
     id: 1,
@@ -60,6 +66,7 @@ class UsersService {
 })
 class AppComponent {
   constructor() {}
+
 }
 
 @Component({
@@ -72,6 +79,7 @@ class AboutComponent {
   constructor() {
   }
 }
+
 
 @Component({
   selector: 'home-component',

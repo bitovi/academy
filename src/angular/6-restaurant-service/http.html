@@ -12,40 +12,25 @@
 <script type="typescript">
 const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
-const { CommonModule } = ng.common;
+const { CommonModule, HttpClient } = ng.common;
 const { Routes, RouterModule } = ng.router;
 
 @Injectable({
   providedIn: 'root'
 })
 class UsersService {
-  private users = [
-  {
-    name: 'Jennifer',
-    id: 1,
-    role: 'admin'
-  },
-  {
-    name: 'Steve',
-    id: 2,
-    role: 'user'
-  },
-  {
-    name: 'Alice',
-    id: 3,
-    role: 'developer'
-  }]
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   getUsers() {
-    return this.users;
+    return this.httpClient.get<any>('/api/users');
   }
 
   getUser(id: number) {
-    return this.users.find(x => x.id === id)
+    return this.httpClient.get<any>('/api/users/' + id);
   }
 }
+
 
 @Component({
   selector: 'my-app',
@@ -60,6 +45,7 @@ class UsersService {
 })
 class AppComponent {
   constructor() {}
+
 }
 
 @Component({
@@ -72,6 +58,7 @@ class AboutComponent {
   constructor() {
   }
 }
+
 
 @Component({
   selector: 'home-component',
