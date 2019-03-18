@@ -87,7 +87,7 @@ Angular <a href="https://angular.io/guide/architecture-services" target="_blank"
 
 @sourceref ./service.html
 @codepen
-@highlight 18-48,83-87,93,96, only
+@highlight 18-48 only
 
 ## Importing `HttpClientModule` into _app.module.ts_
 

@@ -15,13 +15,29 @@ In this part, we will:
 
 ## Importing Service into Component
 
-We'll then import our new service and ResponseData interface into our restaurant component.
+To use a service in a component, we use dependency injection to pass the service in the component constructor function. We're then able to access methods on it for use in our component
+
+@sourceref ./di.html
+@codepen
+@highlight 90, only
+
+## Exercise: Inject Restaurants Service in Restaurants component and call the `getRestaurants` function
+
+## The Problem
+
+We want to be able to use the `getRestaurants` method in our component to display a list of restaurants.
+
+## What you need to know
+
+- How to inject a service into a component
+- How to call a method from a class
+
+## Solution
 
 __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./restaurant.component.ts
 @highlight 2, 3, 5-8, 16-19, 20, 23-27
-
 
 ## Update Restaurant Component
 
