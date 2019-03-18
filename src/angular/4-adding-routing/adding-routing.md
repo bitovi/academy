@@ -73,7 +73,7 @@ In our index.html file, the angular cli included `<base href="/>`. This tells th
 
 ## Exercise: Edit the Routing Module to Have Routes for Home and Component
 
-Our router outlet was already added to our __src/app/app.component.html__ file during our initial app creation. Replace the whole file with the following: 
+Our router outlet was already added to our __src/app/app.component.html__ file during our initial app creation. Replace the whole file with the following:
 
 __src/app/app.component.html__
 
@@ -92,7 +92,7 @@ We need to set up routes for the home view and restaurant view. When the route i
 
 ### What You Need to know
 
-Everything you need to know what covered above!
+- How to create routes that serve components
 
 ### The Solution
 
