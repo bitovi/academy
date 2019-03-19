@@ -51,7 +51,7 @@ As our applications grow, it doesn't make sense to load all the code at once. Th
 
 ### <base-href>
 
-In our index.html file, the angular cli included `<base href="/>`. This tells the router how to compose URLs. 
+In our index.html file, the angular cli included `<base href="/>`. This tells the router how to compose URLs - the value in the "href" attribute specifies the base URL for all relative URLs contained in the app. 
 
 ```html
 <!doctype html>

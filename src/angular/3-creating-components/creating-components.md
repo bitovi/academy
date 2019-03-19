@@ -10,6 +10,8 @@
 In this part, we will:
 
 - Install precreated assets
+- Learn about components
+- Learn about displaying data in component templates
 - Create a home component
 - Use interpolation binding in our home component view
 - Learn about directives
@@ -25,18 +27,28 @@ To get our app up and running quicker so we can focus on the architecture, we'll
 npm install place-my-order-assets@0.1 --save
 ```
 
-Open the ``angular.json`` file, and make the following changes to include these files in our build process. This will copy the images into our assets directory for when we serve our application.
+Open the ``angular.json`` file, and make the following changes to include these files in our build process. This will copy the images into our assets directory for when we serve our application. 
+
+> Pay close attention that you're making these changes under the "build" key and not the "test" key, as the code looks very similar. The build key should be close to line 17.
 
 @sourceref ./angular.json
 @highlight 25-39,only
 
 __Any time changes are made to the `angular.json` file, we need to restart our server to catch the new changes.__
 
-## Creating components
+## Creating Components
 
 Let's begin to build out the main views of our app. We'll need a home view, and restaurant list page to show all the restaurants we can order from. In Angular, Components are the basic building blocks that help us craft the UI. They are classes that handle views, allow management of user interaction, and displaying information via data binding. Data binding is the term for connecting data or information to the UI. An example would be an input field that a user enters a value into.
 
 Recommended reading: <a href="https://angular.io/guide/lifecycle-hooks" target="\_blank" >Angular Lifecyle Hooks</a>
+
+## Binding Data to Components
+
+Like all modern JS frameworks, Angular provides us a way of displaying data dynamically in the DOM. Properties declared in a component can be used in the component template with double curly brace syntax: `{{myTitle}}`
+
+  @sourceref ./template.html
+  @codepen
+  @highlight 17,21,only
 
 ## Exercise: Creating a Home Component With a Dynamic Title Member
 
@@ -64,11 +76,20 @@ We want to create a component that displays some information about our applicati
   |   |       |── home.component.html
   ```
 
-- How to bind data to the dom:
+- How to bind data to the dom
+- How to view your new component
 
-  @sourceref ./template.html
-  @codepen
-  @highlight 17,21,only
+  One of the ways components can be rendered is by putting them in markup. We'll do this by putting our `<pmo-home></pmo-home>` tag in our base app component markup. Open your __src/app/app.component.html__ file and update it to be:
+
+  ```html
+  <h1>Place My Order App: Coming Soon!</h1>
+  <router-outlet></router-outlet>
+
+  <pmo-home></pmo-home>
+  ```
+  @highlight 4
+
+  Run `npm run start`, and your app should compile with no errors, and you'll be able to see the home component. Later we'll move the home component to it's own page with a unique route.
 
 
 Update the `home.component.html` file to be:
@@ -88,7 +109,6 @@ __src/app/home/home.component.html__
   </p>
 </div>
 ```
-
 
 ### The solution
 
@@ -112,20 +132,6 @@ __src/app/home/home.component.ts__
 
 @sourceref ./home.component.ts
 @highlight 9
-
-## Viewing New Components
-
-One of the ways components can be rendered is by putting them in markup. We'll do this by putting our `<pmo-home></pmo-home>` tag in our base app component markup. Open your __src/app/app.component.html__ file and update it to be:
-
-```html
-<h1>Place My Order App: Coming Soon!</h1>
-<router-outlet></router-outlet>
-
-<pmo-home></pmo-home>
-```
-@highlight 4
-
- Run `npm run start`, and your app should compile with no errors, and you'll be able to see the home component. Later we'll move the home component to it's own page with a unique route.
 
 ## Template Directives
 
@@ -156,6 +162,8 @@ Template directives in Angular help us iterate through and manipulate data we've
 @highlight 17-20,only
 
 ### ng-class
+
+The <a href="https://angular.io/api/common/NgClass" target="_blank">ng-class</a> directive is a way to set classes on elements based on boolean logic. ng-class can take a single class, an array of classes, key value pairs with boolean values, or regexes.
 
 @sourceref ./ng-class.html
 @codepen

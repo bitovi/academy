@@ -14,7 +14,7 @@ In this part, we will:
 
 ## RouterLink
 
-You may have noticed the links in the routing examples to switch between views. They used the <a href="https://angular.io/api/router/RouterLink" target="_blank">routerLink</a> directive. The routerLink takes a property of a path that can be static or built dynamically, and 
+You may have noticed the links in the routing examples to switch between views. They used the <a href="https://angular.io/api/router/RouterLink" target="_blank">routerLink</a> directive. The routerLink takes a property of a path that can be static or built dynamically based on properties on the component.  
 
 ### Static Segment
 
@@ -26,7 +26,7 @@ You may have noticed the links in the routing examples to switch between views. 
 
 @sourceref ./dynamic-path.html
 @codepen
-@highlight 26,34, only
+@highlight 26,33, only
 
 ## RouterLinkActive
 
@@ -36,7 +36,7 @@ The <a href="https://angular.io/api/router/RouterLinkActive" target="_blank">rou
 
 @sourceref ./router-link-active-basic.html
 @codepen
-@highlight 25, only
+@highlight 23, only
 
 ## Adding an active class with options
 
@@ -48,7 +48,7 @@ Using `{exact: true}` will only set the class if the path match is exactly equal
 
 ## Adding an active class with template variable
 
-RouterLinkActive can also be used to set template variables to check the active status of the route. 
+RouterLinkActive can also be used to set <a href="https://angular.io/api/router/RouterLinkActive#template-variable-references" target="_blank">template variables</a> to check the active status of the route. In this example we're creating a template variable `myroutervariable` to represent our route and it's active state for logic in our template.
 
 @sourceref ./router-link-active-template.html
 @codepen
