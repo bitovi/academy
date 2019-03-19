@@ -1,0 +1,191 @@
+<style>
+.main {
+  padding: 0 30px;
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+}
+.main-content {
+  width: 70%;
+}
+.main-content .title h1 {
+  font-size: 26px;
+  margin-bottom: 30px;
+}
+.main-content .description p {
+  margin-bottom: 15px;
+  line-height: 1.8;
+}
+.main-content .bold {
+  font-weight: bold;
+}
+.main-content .body h2 {
+  font-size: 24px;
+  margin-top: 2em !important;
+}
+.main-content .body ul {
+  margin-left: 45px;
+}
+.main-content .body ul li {
+  margin-bottom: 15px;
+  list-style-type: disc;
+}
+
+.sidebar-right {
+  position: fixed;
+  z-index: 1;
+  top: 117px;
+  right: 20px;
+  width: 300px;
+  padding: 0 30px;
+}
+.sidebar-right .content-nav {
+  border-bottom: 1px solid #ccc;
+  margin-top: 22px;
+  padding-bottom: 30px;
+}
+.sidebar-right .content-nav h6 {
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom: 1px solid #ccc;
+  margin-top: 0;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+}
+.sidebar-right .content-nav ul {
+  padding-top: 10px;
+}
+.sidebar-right .content-nav li {
+  list-style: none;
+  border: 1px solid red;
+}
+.sidebar-right .widget {
+  border-bottom: 1px solid #ccc;
+  margin: 5px 0;
+  padding: 15px 0;
+}
+.sidebar-right .widget p {
+  font-size: 14px;
+  margin: 0;
+}
+.sidebar-right .widget .bold {
+  font-weight: bold;
+}
+.sidebar-right .widget .bug p {
+  color: #666;
+}
+
+.list-group.vertical-steps {
+  font-size: 14px;
+  line-height: 1;
+  margin: 0;
+  padding-left: 10px;
+}
+.list-group.vertical-steps .list-group-item {
+  border: none;
+  border-left: 3px solid #ccc;
+  box-sizing: border-box;
+  border-radius: 0;
+  counter-increment: step-counter;
+  margin: 0;
+  padding: 0 0 20px 20px;
+}
+.list-group.vertical-steps .list-group-item.active {
+  background-color: transparent;
+  color: inherit;
+}
+.list-group.vertical-steps .list-group-item:last-child {
+  border-left: 3px solid transparent;
+  padding-bottom: 0;
+}
+.list-group.vertical-steps .list-group-item::before {
+  border-radius: 50%;
+  background-color: #ccc;
+  color: #ccc;
+  content: counter(step-counter);
+  display: inline-block;
+  float: left;
+  height: 15px;
+  line-height: 10px;
+  margin-left: -29px;
+  text-align: center;  
+  width: 15px;  
+}
+.list-group.vertical-steps .list-group-item span,
+.list-group.vertical-steps .list-group-item a {
+  display: block;
+  overflow: hidden;
+  padding-top: 0;
+}
+.list-group.vertical-steps .list-group-item.active::before {
+  background-color: #3163A4;
+  color: #3163A4;
+}
+.list-group.vertical-steps .list-group-item.completed {
+  border-left: 3px solid #3163A4;
+}
+.list-group.vertical-steps .list-group-item.completed::before {
+  background-color: #3163A4;
+  color: #3163A4;
+}
+.list-group.vertical-steps .list-group-item.completed:last-child {
+  border-left: 3px solid transparent;
+}
+</style>
+
+<div class="content">
+	{{#unless hidesidebar}}
+		{{> sidebar.mustache}}
+	{{/unless}}
+	<article class="main">
+    <div class="main-content">
+  		{{#unless hidetitle}}
+  			{{> title.mustache}}
+  		{{/unless}}
+
+  		{{#unless hidedescription}}
+  			{{#if description}}
+  				{{> description.mustache}}
+  			{{/if}}
+  		{{/unless}}
+
+  		{{#unless hideBody}}
+  			{{#if signatures}}
+  				{{#each signatures}}
+  					{{> signature.mustache}}
+  				{{/each}}
+  			{{else}}
+  				{{#types}}
+  					{{> signature.mustache}}
+  				{{/types}}
+  			{{/if}}
+  			{{#if body}}
+  				{{> body.mustache}}
+  			{{/if}}
+  		{{/unless}}
+    </div>
+    
+    {{#unless hidecontentnav}}
+      <div class="sidebar-right">
+        <div class="content-nav">
+          <h6>On this page</h6>
+          <ul class="list-group vertical-steps">
+            <li class="list-group-item completed"><span>Overview</span></li>
+            <li class="list-group-item active"><span>Videos</span</li>
+            <li class="list-group-item"><span>Slides</span</li>
+            <li class="list-group-item"><span>Exercise</span</li>
+          </ul>  
+        </div>
+        <div class="widget slack">
+          <p class="bold">Get Help</p>
+          <p>If you need help with an exercise, please reach out to us on Slack.</p>
+          <img src="https://i.ibb.co/XS6n24B/slack.png">
+        </div>
+        <div class="widget bug">
+          <p>If you find bugs in this training or have suggestions, create an issue or email contact@bitovi.com</p>
+        </div>
+      </div>
+    {{/unless}}
+    
+	</article>
+</div>

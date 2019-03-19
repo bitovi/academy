@@ -1,8 +1,8 @@
-# university
+# Academy
 
 
 Everything we know about frontend, backend, and design consulting and management.  Go to
-https://bitovi.github.io/university/ to learn what we know.
+https://bitovi.github.io/academy/ to learn what we know.
 
 
 ## Developing
@@ -23,7 +23,7 @@ Run:
 ```
 
 This will take a while the first time.  The site will be created in
-the `university/doc` folder.  Use `http-server` or something similar to view.
+the `academy/doc` folder.  Use `http-server` or something similar to view.
 
 If you are making changes to styles, adding images, or anything else, you will need to run
 a `force` build with:
@@ -36,7 +36,7 @@ a `force` build with:
 
 ### Adding styles
 
-Change `university/static/styles/styles.less`, then run:
+Change `academy/static/styles/styles.less`, then run:
 
 ```
 ./node_modules/.bin/bit-docs -fd
@@ -47,7 +47,7 @@ This will take a while.
 
 ### Adding images
 
-Add images to `university/img`, then run:
+Add images to `academy/img`, then run:
 
 ```
 ./node_modules/.bin/bit-docs -fd

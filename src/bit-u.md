@@ -1,71 +1,142 @@
 @page bit-u Bitovi University
+@hidesidebar
+@hidetitle
+@hidedescription
+@hidecontentnav
 @description Welcome to Bitovi University. Learn front-end development, design,
 and management in these free courses!
 
 @body
+<style>
+</style>
 
-## Purpose
+<div class="container">
+<div class="hero-banner">
+<h1>Bitovi Academy</h1>
+<h2>Welcome to Bitovi Academy. An online training resource covering topics on front-end development, javascript, design, and product management, in 7 free courses!</h2>
+</div>
+<div class="academy-intro">
+<h3>Purpose of Bitovi Academy</h3>
+<p>Hey this is an awesome training, we’re always working to make it better.<br>
+What to expect from trainings? How to take the trainings?<br>
+Drop into the slack room and we can guide you through the hard parts.</p>
+<img src="./static/img/slack.png" width="150">
+</div>
+<div class="courses-intro">
+<h4>The following courses are currently available</h4>
+</div>
+</div><!-- close container -->
 
-Bitovi is a front-end consulting company obsessed with making technology delivery
-better and sharing that knowledge with its clients and the community. To excel at technology
-delivery, there is an unlimited set of things you need to know.
+<div class="courses-container">
+<div class="courses">
 
-Bitovi University is our attempt to create high-quality
-trainings for the most important concepts in front-end technology delivery.
+<div class="course">
+<div class="course-logo">
+<img src="./static/img/javascript.png" width="100">
+</div>
+<h5>Advanced JavaScript</h5>
+<p>This course covers all the hard but important stuff you should know when learning JavaScript.</p>
+<p>Audience: Intermediate JS developers<br>
+Goal: Understand how JavaScript works, what's going on "under the hood"<br>
+Time: 6 hours</p>
+</div>
+<div class="course">
+<div class="course-logo">
+<img src="./static/img/jquery.png" width="240">
+</div>
+<h5>DOM and jQuery</h5>
+<p>This course covers all the hard but important stuff you should know when learning JavaScript.</p>
+<p>Audience: Intermediate JS developers<br>
+Goal: Understand how JavaScript works, what's going on "under the hood"<br>
+Time: 6 hours</p>
+</div>
+<div class="course">
+<div class="course-logo">
+<img src="./static/img/javascript.png" width="100">
+</div>
+<h5>Debug JavaScript</h5>
+<p>This course covers all the hard but important stuff you should know when learning JavaScript.</p>
+<p>Audience: Intermediate JS developers<br>
+Goal: Understand how JavaScript works, what's going on "under the hood"<br>
+Time: 6 hours</p>
+</div>
 
-## Get Help
+</div>
+<div class="courses">
 
-If you need help with an exercise, please reach out to us on
-[gitter](https://gitter.im/bitovi/js-training). If you'd like us (Bitovi)
-to teach you and your organization this material, you can hire us
-at [https://www.bitovi.com/training](https://www.bitovi.com/training).
+<div class="course">
+<div class="course-logo">
+<img src="./static/img/typescript.png" width="200">
+</div>
+<h5>TypeScript</h5>
+<p>This course covers all the hard but important stuff you should know when learning JavaScript.</p>
+<p>Audience: Intermediate JS developers<br>
+Goal: Understand how JavaScript works, what's going on "under the hood"<br>
+Time: 6 hours</p>
+</div>
 
-## Overview
+<div class="course">
+<div class="course-logo">
+<img src="./static/img/rxjs.png" width="150">
+</div>
+<h5>RxJS</h5>
+<p>This course covers all the hard but important stuff you should know when learning JavaScript.</p>
+<p>Audience: Intermediate JS developers<br>
+Goal: Understand how JavaScript works, what's going on "under the hood"<br>
+Time: 6 hours</p>
+</div>
 
-The following courses are currently available:
+<div class="course">
+<div class="course-logo">
+<img src="./static/img/angular.png" width="100">
+</div>
+<h5>Angular</h5>
+<p>This course covers all the hard but important stuff you should know when learning JavaScript.</p>
+<p>Audience: Intermediate JS developers<br>
+Goal: Understand how JavaScript works, what's going on "under the hood"<br>
+Time: 6 hours</p>
+</div>
 
+</div><!-- close courses -->
+</div><!-- close courses-container -->
 
-#### [advanced-javascript-training]
+<div class="courses-intro">
+<h4>The following courses are coming soon</h4>
+</div>
 
-Learn how JavaScript works in memory.  Build your own `DOT` (ex: `foo.bar`) and `NEW` operator (ex: `new Animal()`).
+<div class="courses-container">
+<div class="courses">
 
-<img src="./static/img/js-handout.png" width="40%"/>
+<div class="course">
+<div class="course-logo">
+<img src="./static/img/javascript.png" width="100">
+</div>
+<h5>Advanced JavaScript</h5>
+<p>This course covers all the hard but important stuff you should know when learning JavaScript.</p>
+<p>Audience: Intermediate JS developers<br>
+Goal: Understand how JavaScript works, what's going on "under the hood"<br>
+Time: 6 hours</p>
+</div>
 
-#### [debugging-javascript-training]
+<div class="course">
+<div class="course-logo">
+<img src="./static/img/react.png" width="130">
+</div>
+<h5>React</h5>
+<p>This course covers all the hard but important stuff you should know when learning JavaScript.</p>
+<p>Audience: Intermediate JS developers<br>
+Goal: Understand how JavaScript works, what's going on "under the hood"<br>
+Time: 6 hours</p>
+</div>
 
-Learn the basics of JavaScript debugging.
+<div class="course">
+<div class="course-logo">
+<img src="./static/img/slack.png" width="200">
+</div>
+<h5>Have an idea?</h5>
+<p>Reach out to our team via Slack. We can help answer any questions you have about our courses or suggest a new 
+course.</p>
+</div>
 
-<img src="./static/img/debugging/stack.png" width="300px" style="border: solid 1px black"/>
-
-#### [dom-jquery-training]
-
-Build your own jQuery and use it to create a simple tabs widget.
-
-<img src="./static/img/tabs.png" width="30%"/>
-
-#### [RxJS]
-
-Learn RxJS by creating a validating credit card form.
-
-<img src="https://user-images.githubusercontent.com/78602/27451508-d86e9bd8-5754-11e7-954b-a812e1ed63b1.png" width="50%" alt="Credit Card Form" title="Credit Card Form"/>
-
-
-#### [typescript]
-
-Learn the basics of TypeScript by completing seven exercises.
-
-```typescript
-class GenericCollection<T> {
-  private list: T[] = [];
-  pushItem( thing:T ) {
-    this.list.push(thing);
-  }
-}
-```
-
-## Pending Courses
-
-Bitovi University is under active development. The following courses are currently being authored:
-
-- [angular]
-- [react]
+</div><!-- close courses -->
+</div><!-- close courses-container -->
