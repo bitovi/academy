@@ -9,7 +9,7 @@
 
 In this part, we will:
 
-- Install precreated assets
+- Install already created assets
 - Learn about components
 - Learn about displaying data in component templates
 - Create a home component
@@ -19,7 +19,7 @@ In this part, we will:
 - Learn about pipes
 - Create a pipe to create an image path
 
-### Adding Assets
+## Adding Assets
 
 To get our app up and running quicker so we can focus on the architecture, we'll import some pre-created styles and assets to save us time.
 
@@ -54,7 +54,29 @@ Like all modern JS frameworks, Angular provides us a way of displaying data dyna
 
 ### The problem
 
-We want to create a component that displays some information about our application with a dynamic title we can change in an `h1` tag. Set this title initially to have a string value of "Ordering food has never been easier".
+We want to create a component that displays a title read from a component's `myData` property.
+The component should provide the following HTML:
+
+```html
+<div class="homepage">
+  <img src="./assets/images/homepage-hero.jpg" alt="Restaurant table with glasses." width="250" height="380" />
+  <h1>TITLE_GOES_HERE</h1>
+  <p>
+    We make it easier than ever to order gourmet food
+    from your favorite local restaurants.
+  </p>
+  <p>
+     <a class="btn" routerLink="/restaurants" role="button">Choose a Restaurant</a>
+  </p>
+</div>
+```
+
+> Notice the `TITLE_GOES_HERE` part of the HTML. `TITLE_GOES_HERE` should be replaced by
+> something that reads the component's `myData` property.
+
+The component's `myData` property should have a string value of
+`"Ordering food has never been easier"`.
+
 
 ### What you need to know
 
@@ -135,11 +157,11 @@ __src/app/home/home.component.ts__
 
 ## Template Directives
 
-Template directives in Angular help us iterate through and manipulate data we've bound to the DOM. Here are a few more common ones: 
+Template directives in Angular help us iterate through and manipulate data we've bound to the DOM. Here are a few more common ones:
 
 ### \*ngIf
 
-<a href="https://angular.io/api/common/NgIf" target="\_blank">ngIf</a> is a structural directive that allows us to conditionally render content. It can be paired with <a href="https://angular.io/guide/structural-directives#the-ng-template" target="_blank">ng-template</a> to render an `else` block.
+<a href="https://angular.io/api/common/NgIf" target="\_blank">ngIf</a> is a structural directive that allows us to conditionally render content. It can be paired with <a href="https://angular.io/guide/structural-directives#the-ng-template" target="\_blank">ng-template</a> to render an `else` block.
 
 @sourceref ./ng-if.html
 @codepen
@@ -155,7 +177,7 @@ Template directives in Angular help us iterate through and manipulate data we've
 
 ### ng-container
 
-<a href="https://angular.io/guide/structural-directives#ngcontainer" target="\_blank">ng-container</a> is an element that allows us to create template bindings without creating a dom element. Only one structural directive is allowed per host element(to avoid confusion around which directive would take precedence) making this directive handy for when we have several logic directives to apply to content.  
+<a href="https://angular.io/guide/structural-directives#ngcontainer" target="\_blank">ng-container</a> is an element that allows us to create template bindings without creating a DOM element. Only one structural directive is allowed per host element (to avoid confusion around which directive would take precedence) making this directive handy for when we have several logic directives to apply to content.  
 
 @sourceref ./ng-container.html
 @codepen
