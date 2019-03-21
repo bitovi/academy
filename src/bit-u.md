@@ -8,6 +8,19 @@ and management in these free courses!
 
 @body
 <style>
+.main-content {
+  width: 100%;
+}
+.container {
+  padding: 0;
+}
+.content {
+  margin: 0;
+}
+.hero-banner {
+  margin-left: -30px;
+  margin-right: -30px;
+}
 </style>
 
 <div class="container">
@@ -31,6 +44,7 @@ Drop into the slack room and we can guide you through the hard parts.</p>
 <div class="courses">
 
 <div class="course">
+<a href="/doc/advanced-javascript-training.html">
 <div class="course-logo">
 <img src="./static/img/javascript.png" width="100">
 </div>
@@ -39,8 +53,11 @@ Drop into the slack room and we can guide you through the hard parts.</p>
 <p>Audience: Intermediate JS developers<br>
 Goal: Understand how JavaScript works, what's going on "under the hood"<br>
 Time: 6 hours</p>
+</a>
 </div>
+
 <div class="course">
+<a href="/doc/dom-jquery-training.html">
 <div class="course-logo">
 <img src="./static/img/jquery.png" width="240">
 </div>
@@ -49,8 +66,11 @@ Time: 6 hours</p>
 <p>Audience: Intermediate JS developers<br>
 Goal: Understand how JavaScript works, what's going on "under the hood"<br>
 Time: 6 hours</p>
+</a>
 </div>
+
 <div class="course">
+<a href="/doc/debugging-javascript-training.html">
 <div class="course-logo">
 <img src="./static/img/javascript.png" width="100">
 </div>
@@ -59,12 +79,14 @@ Time: 6 hours</p>
 <p>Audience: Intermediate JS developers<br>
 Goal: Understand how JavaScript works, what's going on "under the hood"<br>
 Time: 6 hours</p>
+</a>
 </div>
 
 </div>
 <div class="courses">
 
 <div class="course">
+<a href="/doc/typescript.html">
 <div class="course-logo">
 <img src="./static/img/typescript.png" width="200">
 </div>
@@ -73,9 +95,11 @@ Time: 6 hours</p>
 <p>Audience: Intermediate JS developers<br>
 Goal: Understand how JavaScript works, what's going on "under the hood"<br>
 Time: 6 hours</p>
+</a>
 </div>
 
 <div class="course">
+<a href="/doc/RxJS.html">
 <div class="course-logo">
 <img src="./static/img/rxjs.png" width="150">
 </div>
@@ -84,9 +108,11 @@ Time: 6 hours</p>
 <p>Audience: Intermediate JS developers<br>
 Goal: Understand how JavaScript works, what's going on "under the hood"<br>
 Time: 6 hours</p>
+</a>
 </div>
 
 <div class="course">
+<a href="/doc/angular.html">
 <div class="course-logo">
 <img src="./static/img/angular.png" width="100">
 </div>
@@ -95,6 +121,7 @@ Time: 6 hours</p>
 <p>Audience: Intermediate JS developers<br>
 Goal: Understand how JavaScript works, what's going on "under the hood"<br>
 Time: 6 hours</p>
+</a>
 </div>
 
 </div><!-- close courses -->
