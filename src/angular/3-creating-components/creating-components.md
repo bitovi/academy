@@ -191,6 +191,12 @@ The <a href="https://angular.io/api/common/NgClass" target="_blank">ng-class</a>
 @codepen
 @highlight 17-20,only
 
+Notice in the above example our `ng-class` is surrounded by `[ ]`. This signals that we're passing in an object, instead of just a string. When using <a href="https://angular.io/guide/template-syntax#property-binding--property-" target="_blank">property binding</a>, `ngClass="value"` will evaluate the value as a string of _"value"_ and `[ngClass]="value"` as whatever the component property value is.
+
+@sourceref ./ng-class-property.html
+@codepen
+@highlight 17,19,23,only
+
 ## Generating A Restaurant Component
 
 Let's create our restaurant component as well. This will be a component that displays a list of restaurants.
@@ -272,35 +278,19 @@ Here is the markup to show for each restaurant:
 
 You may have noticed an image error in our rendered html page. We're using an API in this demo that wasn't built for our exact purposes, and we need a different image path for our app to serve. <a href="https://angular.io/guide/pipes" target="\_blank">Angular Pipes</a> come in handy to transform content in our templates. Pipes allow us to transform data to display to the user in our HTML without modifying the original source.  
 
+Angular comes with several built-it pipes like DatePipe, UpperCasePipe, LowerCasePipe, CurrencyPipe, and PercentPipe. These pipes can be used in templates to modify the way data displays. We can build custom pipes as well. Pipes require one parameter - the value we can to change, but can take an additional parameters as well.
+
+This example takes the value to be transformed and a parameter to use as an exponential multiplier.
+
+@sourceref ./pipe.html
+@codepen
+@highlight 15-21, 27,only
+
 ## Exercise: Create a pipe that returns the correct image path for files
 
 ### The problem
 
-We want to write a pipe that takes an image url and transforms it to the path we actually want to serve the image from. `node_modules/place-my-order-assets` -> `./assets`.  
-
-### What You Need to know
-
-- How to create a pipe
-
-  ```bash
-  ng g pipe imageUrl
-  ```
-
-  This will generate a pipe file: `image-url.pipe.ts`
-
-- How pipes are used
-
-  @sourceref ./pipe.html
-  @codepen
-  @highlight 15-21, 27,only
-
-### The Solution
-
-__src/app/image-url.pipe.ts__
-
-@sourceref ./image-url.pipe.ts
-
-__src/app/restaurant/restaurant.component.html__
+We want to write a pipe that takes an image url and transforms it to the path we actually want to serve the image from. `node_modules/place-my-order-assets` -> `./assets`.  This pipe will be used on our restaurant image thumbnail. Update your __src/app/restaurant/restaurant.component.html__ file to be: 
 
 ```html
 <div class="restaurants">
@@ -330,3 +320,23 @@ __src/app/restaurant/restaurant.component.html__
 </div>
 ```
 @highlight 6
+
+### What You Need to know
+
+- How to create a pipe
+
+  ```bash
+  ng g pipe imageUrl
+  ```
+
+  This will generate a pipe file: `image-url.pipe.ts`
+
+- How pipes are used
+
+### The Solution
+
+__src/app/image-url.pipe.ts__
+
+@sourceref ./image-url.pipe.ts
+
+

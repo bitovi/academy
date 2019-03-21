@@ -41,6 +41,7 @@ Next make add an api script to your ``package.json``
 
 Double check the api is working by running ``npm run api`` and navigating to <a href="http://localhost:7070/restaurants" target="\_blank">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the api command from.
 
+> You must have the API running for your app to work. If you don't see data, make sure that you've run `npm run api` in another terminal window or in your editor
 
 ## Create a Proxy to Serve API
 
@@ -91,7 +92,7 @@ Angular <a href="https://angular.io/guide/architecture-services" target="_blank"
 
 ## Importing `HttpClientModule` into _app.module.ts_
 
-For making HTTP requests to interact with an API, Angular provides a HttpClient Module. To use it we'll need to import it in the root module of our app and include it the imports array.
+For making HTTP requests to interact with an API, Angular provides <a href="https://angular.io/api/common/http/HttpClientModule" target="_blank">HttpClient Module</a>. To use it we'll need to import it in the root module of our app and include it the imports array.
 
 __src/app/app.module.ts__
 
@@ -99,6 +100,8 @@ __src/app/app.module.ts__
 @highlight 3,21
 
 ## Using HTTPClient to make a request
+
+<a href="https://angular.io/api/common/http/HttpClient" target="_blank">HTTPClient</a> is a class with methods for making HTTP requests. Methods will return <a href="https://angular.io/guide/observables" target="_blank">Observables</a>. This tutorial won't cover RxJS in depth, but it's worth being aware of Angulars heavy use of it.  
 
 @sourceref ./http.html
 @codepen
