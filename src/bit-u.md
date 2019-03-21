@@ -34,7 +34,8 @@ and management in these free courses!
 <li>Hands on courses are the best way of learning and retaining difficult concepts.</li>
 <li>If you get stuck, help is <b>always</b> just a <a href="https://bitovi.com/community/slack">slack</a> message away. </li>
 <li>It's free and <a href="https://github.com/bitovi/university">open source</a>.</li>
-</p>
+</ol>
+<a href="https://bitovi.com/community/slack"><img src="./static/img/slack.png" width="150"></a>
 </div>
 <div class="courses-intro">
 <h4>The following courses are currently available</h4>
