@@ -13,14 +13,15 @@ and management in these free courses!
 <div class="container">
 <div class="hero-banner">
 <h1>Bitovi Academy</h1>
-<h2>Welcome to Bitovi Academy. An online training resource covering topics on front-end development, javascript, design, and product management, in 7 free courses!</h2>
+<h2>Welcome to Bitovi Academy! A training resource covering topics from front-end development to design, and product management. Learn what is essential to building your next app.</h2>
 </div>
 <div class="academy-intro">
-<h3>Purpose of Bitovi Academy</h3>
-<p>Hey this is an awesome training, we’re always working to make it better.<br>
-What to expect from trainings? How to take the trainings?<br>
-Drop into the slack room and we can guide you through the hard parts.</p>
-<img src="./static/img/slack.png" width="150">
+<h3>Why Bitovi Academy?</h3>
+<ol>
+<li>Hands on courses are the best way of learning and retaining difficult concepts.</li>
+<li>If you get stuck, help is <b>always</b> just a <a href="https://bitovi.com/community/slack">slack</a> message away. </li>
+<li>It's free and <a href="https://github.com/bitovi/university">open source</a>.</li>
+</p>
 </div>
 <div class="courses-intro">
 <h4>The following courses are currently available</h4>
@@ -134,7 +135,7 @@ Time: 6 hours</p>
 <img src="./static/img/slack.png" width="200">
 </div>
 <h5>Have an idea?</h5>
-<p>Reach out to our team via Slack. We can help answer any questions you have about our courses or suggest a new 
+<p>Reach out to our team via Slack. We can help answer any questions you have about our courses or suggest a new
 course.</p>
 </div>
 
