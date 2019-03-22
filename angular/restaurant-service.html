@@ -8,17 +8,20 @@
 ######################################################################## -->
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Bitovi University - Writing a Restaurant Service</title>
-	
-	<link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
-	
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bitovi University - Writing a Restaurant Service</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
 </head>
 
 <body>
-	<header></header>
-	<div class="content">
+  <header>
+    <img src="../static/img/logo.svg" alt="Bitovi" class="logo" width="100">
+    
+  </header>
+  <div class="content">
 	
 		<nav class="sidebar">
 	
@@ -449,6 +452,7 @@
 <li>Update <code>npm start</code> script</li>
 <li>Generate a new service via the CLI</li>
 <li>Write a method to make an http request</li>
+<li>Write interfaces to describe response object and restaurant object</li>
 </ul>
 <h2>Installing the Place My Order API</h2>
 <p>We've done some work to create a Place My Order API for use in this app.</p>
@@ -467,8 +471,11 @@
 </code></pre>
 <div line-highlight='8'></div>
 <p>Double check the api is working by running <code>npm run api</code> and navigating to <a href="http://localhost:7070/restaurants" target="\_blank">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the api command from.</p>
+<blockquote>
+<p>You must have the API running for your app to work. If you don't see data, make sure that you've run <code>npm run api</code> in another terminal window or in your editor.</p>
+</blockquote>
 <h2>Create a Proxy to Serve API</h2>
-<p>Next, we'll create a <a href="https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md" target="_blank">proxy</a> file at the root of our Angular project to access our API for local development purposes.</p>
+<p>Next, we'll create a <a href="https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md" target="\_blank">proxy</a> file at the root of our Angular project to access our API for local development purposes.</p>
 <pre><code class="language-bash">touch proxy.conf.json
 </code></pre>
 <pre><code class="language-js">{
@@ -495,9 +502,141 @@
 },
 </code></pre>
 <div line-highlight='3'></div>
-<p>Now, restart our app using <code>npm start</code> and it will run it with the proxy config we created. To test that it's working, navigate to <a href="http://localhost:4200/api/restaurants" target="_blank">http://localhost:4200/api/restaurants</a> and you should be able to see a list of restaurants.</p>
+<p>Now, <strong>restart</strong> our app using <code>npm start</code> and it will run it with the proxy config we created. To test that it's working, navigate to <a href="http://localhost:4200/api/restaurants" target="\_blank">http://localhost:4200/api/restaurants</a> and you should be able to see a list of restaurants.</p>
+<h2>Angular Services</h2>
+<p>Angular <a href="https://angular.io/guide/architecture-services" target="\_blank">Services</a> are pieces of functionality that may not need to be tied to a view like components. A common example of a service is making an HTTP request to get data. Many components may require functionality to fetch data, and a Service can help abstract that logic into one place to be used across components.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { Routes, RouterModule } = ng.router;
+
+@Injectable({
+  providedIn: 'root'
+})
+class UsersService {
+  private users = [
+  {
+    name: 'Jennifer',
+    id: 1,
+    role: 'admin'
+  },
+  {
+    name: 'Steve',
+    id: 2,
+    role: 'user'
+  },
+  {
+    name: 'Alice',
+    id: 3,
+    role: 'developer'
+  }]
+
+  constructor() { }
+
+  getUsers() {
+    return this.users;
+  }
+
+  getUser(id: number) {
+    return this.users.find(x =&gt; x.id === id)
+  }
+}
+
+@Component({
+  selector: 'my-app',
+  template: `
+    &lt;ul class=&quot;nav&quot;&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  `
+})
+class AppComponent {
+  constructor() {}
+}
+
+@Component({
+  selector: 'about-component',
+  template: `
+    &lt;p&gt;An about component!&lt;/p&gt;
+  `
+})
+class AboutComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'home-component',
+  template: `
+    &lt;p&gt;A home component!&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li *ngFor=&quot;let user of users&quot;&gt;
+        {{user.name}}
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  `
+})
+class HomeComponent implements OnInit{
+  private users: any[] = [];
+
+  constructor(private usersService: UsersService) {}
+
+  ngOnInit() {
+    this.users = usersService.getUsers();
+  }
+}
+
+const routes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: '**', component: HomeComponent }
+]
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+class AppRoutingModule { }
+
+                 
+@NgModule({
+  declarations: [AppComponent, AboutComponent, HomeComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    AppRoutingModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='18-48 only'></div>
 <h2>Importing <code>HttpClientModule</code> into <em>app.module.ts</em></h2>
-<p>For making HTTP requests to interact with an API, Angular provides a HttpClient Module. To use it we'll need to import it in the root module of our app and include it the imports array.</p>
+<p>For making HTTP requests to interact with an API, Angular provides <a href="https://angular.io/api/common/http/HttpClientModule" target="_blank">HttpClient Module</a>. To use it we'll need to import it in the root module of our app and include it the imports array.</p>
 <p><strong>src/app/app.module.ts</strong></p>
 <pre><code class="language-ts">import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -528,9 +667,337 @@ export class AppModule { }
 
 </code></pre>
 <div line-highlight='3,21'></div>
-<p>We're going to write interfaces to tell Typescript what we expect a restaurant and other related objects to look like. We'll create a new file to house these.</p>
-<pre><code class="language-bash">ng g interface restaurant/restaurant
+<h2>Using HTTPClient to make a request</h2>
+<p><a href="https://angular.io/api/common/http/HttpClient" target="_blank">HTTPClient</a> is a class with methods for making HTTP requests. Methods will return <a href="https://angular.io/guide/observables" target="_blank">Observables</a>. This tutorial won't cover RxJS in depth, but it's worth being aware of Angulars heavy use of it.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule, HttpClient } = ng.common;
+const { Routes, RouterModule } = ng.router;
+
+@Injectable({
+  providedIn: 'root'
+})
+class UsersService {
+
+  constructor(private httpClient: HttpClient) { }
+
+  getUsers() {
+    return this.httpClient.get&lt;any&gt;('/api/users');
+  }
+
+  getUser(id: number) {
+    return this.httpClient.get&lt;any&gt;('/api/users/' + id);
+  }
+}
+
+
+@Component({
+  selector: 'my-app',
+  template: `
+    &lt;ul class=&quot;nav&quot;&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  `
+})
+class AppComponent {
+  constructor() {}
+
+}
+
+@Component({
+  selector: 'about-component',
+  template: `
+    &lt;p&gt;An about component!&lt;/p&gt;
+  `
+})
+class AboutComponent {
+  constructor() {
+  }
+}
+
+
+@Component({
+  selector: 'home-component',
+  template: `
+    &lt;p&gt;A home component!&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li *ngFor=&quot;let user of users&quot;&gt;
+        {{user.name}}
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  `
+})
+class HomeComponent implements OnInit{
+  private users: any[] = [];
+
+  constructor(private usersService: UsersService) {}
+
+  ngOnInit() {
+    this.users = usersService.getUsers();
+  }
+}
+
+const routes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: '**', component: HomeComponent }
+]
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+class AppRoutingModule { }
+
+                 
+@NgModule({
+  declarations: [AppComponent, AboutComponent, HomeComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    AppRoutingModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
 </code></pre>
+<div class='codepen'></div>
+<div line-highlight='23,25-27,29-31, only'></div>
+<h2>Exercise: Write a Restaurant Service to fetch a list of restaurants</h2>
+<h3>The problem</h3>
+<p>We want to write a service with a method <code>getRestaurants</code> that uses httpClient to get a list of restaurants from our <code>/api/restaurants</code> url.</p>
+<h3>What You Need to Know</h3>
+<ul>
+<li><p>How to create a service via the CLI</p>
+<pre><code class="language-bash">  ng g service restaurant/restaurant
+</code></pre></li>
+<li><p>How to use httpClient to make a get request</p></li>
+</ul>
+<h3>Solution</h3>
+<p><strong>src/app/restaurant/restaurant.service.ts</strong></p>
+<pre><code class="language-ts">import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class RestaurantService {
+
+  constructor(private httpClient: HttpClient) { }
+
+  getRestaurants() {
+    return this.httpClient.get('/api/restaurants');
+  }
+}
+
+</code></pre>
+<h2>Take Advantage of TypeScript</h2>
+<p>Thanks to TypeScript we can write interfaces to describe what we expect objects to look like. Consider the user service above returning an array of users. This interface describes what a user(and array of users) should look like:</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { Routes, RouterModule } = ng.router;
+
+interface User {
+  name: string;
+  id: number;
+  role: string;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+class UsersService {
+  private users: User[] = [
+  {
+    name: 'Jennifer',
+    id: 1,
+    role: 'admin'
+  },
+  {
+    name: 'Steve',
+    id: 2,
+    role: 'user'
+  },
+  {
+    name: 'Alice',
+    id: 3,
+    role: 'developer'
+  }]
+
+  constructor() { }
+
+  getUsers() {
+    return this.users;
+  }
+
+  getUser(id: number) {
+    return this.users.find(x =&gt; x.id === id)
+  }
+}
+
+@Component({
+  selector: 'my-app',
+  template: `
+    &lt;ul class=&quot;nav&quot;&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  `
+})
+class AppComponent {
+  constructor() {}
+
+}
+
+@Component({
+  selector: 'about-component',
+  template: `
+    &lt;p&gt;An about component!&lt;/p&gt;
+  `
+})
+class AboutComponent {
+  constructor() {
+  }
+}
+
+
+@Component({
+  selector: 'home-component',
+  template: `
+    &lt;p&gt;A home component!&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li *ngFor=&quot;let user of users&quot;&gt;
+        {{user.name}}
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  `
+})
+class HomeComponent implements OnInit{
+  private users: any[] = [];
+
+  constructor(private usersService: UsersService) {}
+
+  ngOnInit() {
+    this.users = usersService.getUsers();
+  }
+}
+
+const routes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: '**', component: HomeComponent }
+]
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+class AppRoutingModule { }
+
+                 
+@NgModule({
+  declarations: [AppComponent, AboutComponent, HomeComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    AppRoutingModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='18-22,28, only'></div>
+<h2>Exercise: Write an Interface to Describe the Restaurant Object and Data Response</h2>
+<p>We're going to write interfaces to tell Typescript what we expect a restaurant and other related objects to look like. A <code>Restaurant</code> interface should represent an object like this:</p>
+<pre><code class="language-javascript">let restaurant = {
+  name: '', //string
+  slug: '', //string
+  images: [{
+    thumbnail: '', //string
+    owner: '', //string
+    banner: '' //string
+  }],
+  menu: {
+    lunch: [{
+      name: '', //string
+      price: '' //number
+    }],
+    dinner: [{
+      name: '', //string
+      price: '' //number
+    }]
+  },
+  address: {
+    street: '', //string
+    city: '', //string
+    state: '', //string
+    zip: '' //string
+  },
+  _id: '' //string
+}
+</code></pre>
+<p>We'll also need to write a <code>ResponseData</code> interface to describe the response from our get request, which looks like:</p>
+<pre><code class="language-javascript">let response = {
+  data: [] //array of restaurants
+}
+</code></pre>
+<p>This interface can be written in the <strong>src/app/restaurant/restaurant.service.ts</strong> file. *Hint, you'll need to import the <code>restaurant</code> interface
+for this interface.</p>
+<h2>What You Need to Know</h2>
+<ul>
+<li><p>How to generate an interface via the CLI</p>
+<pre><code class="language-bash">  ng g interface restaurant/restaurant
+</code></pre></li>
+<li><p>How to write an interface in TypeScript</p></li>
+</ul>
+<h2>Solution</h2>
 <p><strong>src/app/restaurant/restaurant.ts</strong></p>
 <pre><code class="language-ts">interface Item {
     name: string;
@@ -565,10 +1032,6 @@ export interface Restaurant {
 }
 
 </code></pre>
-<p>Now that we have our interface defined, we'll create a Service to handle getting our restaurant data. Services are classes with narrow purposes that don't typically involve view-related functionality.</p>
-<pre><code class="language-bash">ng g service restaurant/restaurant
-</code></pre>
-<p>In our newly created service file, we'll need to import HttpClient.</p>
 <p><strong>src/app/restaurant/restaurant.service.ts</strong></p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -592,7 +1055,7 @@ export class RestaurantService {
 }
 
 </code></pre>
-<div line-highlight='2, 4, 6-8, 15, 17-19'></div>
+<div line-highlight='4,6-8, 18'></div>
 <p>In the next step we'll call the <code>getRestaurants</code> method in our component to get the list of restaurants.</p>
 
 </section>
@@ -602,24 +1065,24 @@ export class RestaurantService {
 	</article>
 </div>
 
-	<footer></footer>
+  <footer></footer>
 
-	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/angular/6-restaurant-service/restaurant-service.md"},"description":"Writing a Restaurant Service \n","name":"angular/restaurant-service","title":"Writing a Restaurant Service","type":"page","parent":"angular","order":6,"comment":" ","pathToRoot":"../.."};
-	</script>
+  <script type="text/javascript">
+    var docObject = {"src":{"path":"src/angular/6-restaurant-service/restaurant-service.md"},"description":"Writing a Restaurant Service \n","name":"angular/restaurant-service","title":"Writing a Restaurant Service","type":"page","parent":"angular","order":6,"comment":" ","pathToRoot":"../.."};
+  </script>
 
-	
-		<script>
-		  steal = {
-		    instantiated: {
-		      "bundles/bit-docs-site/static.css!$css" : null
-		    }
-		  }
-		</script>
-		<script type='text/javascript'
-				data-main="bit-docs-site/static"
-				src="../static/steal.production.js"></script>
-	
+  
+    <script>
+      steal = {
+        instantiated: {
+          "bundles/bit-docs-site/static.css!$css" : null
+        }
+      }
+    </script>
+    <script type='text/javascript'
+        data-main="bit-docs-site/static"
+        src="../static/steal.production.js"></script>
+  
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-29"></script>
@@ -632,5 +1095,4 @@ export class RestaurantService {
 </script>
 
 </body>
-
 </html>

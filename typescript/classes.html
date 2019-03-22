@@ -8,17 +8,20 @@
 ######################################################################## -->
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Bitovi University - Classes</title>
-	
-	<link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
-	
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bitovi University - Classes</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
 </head>
 
 <body>
-	<header></header>
-	<div class="content">
+  <header>
+    <img src="../static/img/logo.svg" alt="Bitovi" class="logo" width="100">
+    
+  </header>
+  <div class="content">
 	
 		<nav class="sidebar">
 	
@@ -664,7 +667,7 @@ employee1.sayHi();
 </code></pre>
 <p></details></p>
 <h2>Exercise 2</h2>
-<p>Edit the file <code>4a-specialist.ts</code> to write a new <code>Specialist</code> class that inherits from the <code>DinoKeeper</code>. This new class should be able to accept an additional <code>experience</code> public member that is a number, and have a <code>safetyQuote</code> method that console.logs(&quot;Never turn your back to the cage. Trust me, I have <em>years</em> years of experience&quot;)</p>
+<p>Edit the file <code>4a-specialist.ts</code> to write a new <code>Specialist</code> class that inherits from the <code>DinoKeeper</code>. This new class should be able to accept an additional <code>experience</code> public member that is a number, and have a <code>safetyQuote</code> method that returns(&quot;Never turn your back to the cage. Trust me, I have <em>${experience}</em> years of experience&quot;)</p>
 <pre><code class="language-typescript">let employee2 = new Specialist(&quot;Owen&quot;, 14);
 employee2.sayHi(); //Owen says 'hi'
 employee2.safetyQuote();
@@ -699,24 +702,24 @@ employee2.safetyQuote();
 	</article>
 </div>
 
-	<footer></footer>
+  <footer></footer>
 
-	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/typescript/5-classes.md"},"description":"Learn to use classes and inheritance in TypeScript, about the ``constructor`` method, and how to use public, private, protected, and readonly modifiers. \n","name":"typescript/classes","title":"Classes","type":"page","parent":"typescript","order":5,"comment":" ","pathToRoot":"../.."};
-	</script>
+  <script type="text/javascript">
+    var docObject = {"src":{"path":"src/typescript/5-classes.md"},"description":"Learn to use classes and inheritance in TypeScript, about the ``constructor`` method, and how to use public, private, protected, and readonly modifiers. \n","name":"typescript/classes","title":"Classes","type":"page","parent":"typescript","order":5,"comment":" ","pathToRoot":"../.."};
+  </script>
 
-	
-		<script>
-		  steal = {
-		    instantiated: {
-		      "bundles/bit-docs-site/static.css!$css" : null
-		    }
-		  }
-		</script>
-		<script type='text/javascript'
-				data-main="bit-docs-site/static"
-				src="../static/steal.production.js"></script>
-	
+  
+    <script>
+      steal = {
+        instantiated: {
+          "bundles/bit-docs-site/static.css!$css" : null
+        }
+      }
+    </script>
+    <script type='text/javascript'
+        data-main="bit-docs-site/static"
+        src="../static/steal.production.js"></script>
+  
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-29"></script>
@@ -729,5 +732,4 @@ employee2.safetyQuote();
 </script>
 
 </body>
-
 </html>

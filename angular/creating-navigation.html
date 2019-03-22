@@ -8,17 +8,20 @@
 ######################################################################## -->
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Bitovi University - Creating Navigation</title>
-	
-	<link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
-	
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bitovi University - Creating Navigation</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
 </head>
 
 <body>
-	<header></header>
-	<div class="content">
+  <header>
+    <img src="../static/img/logo.svg" alt="Bitovi" class="logo" width="100">
+    
+  </header>
+  <div class="content">
 	
 		<nav class="sidebar">
 	
@@ -444,30 +447,600 @@
     <h2>Overview</h2>
 <p>In this part, we will:</p>
 <ul>
-<li>Use routerlink to create navigation links</li>
+<li>Use routerLink to create navigation links</li>
+<li>Use routerLinkActive to highlight current navigation</li>
 </ul>
-<h3>Adding Navigation</h3>
-<p>Open the app.component.html and change it to:</p>
-<p><strong>src/app/app.component.html</strong></p>
+<h2>RouterLink</h2>
+<p>You may have noticed the links in the routing examples to switch between views. They used the <a href="https://angular.io/api/router/RouterLink" target="\_blank">routerLink</a> directive. The routerLink takes a property of a path that can be static or built dynamically based on properties on the component.</p>
+<h3>Static Segment</h3>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { Routes, RouterModule } = ng.router;
+
+@Component({
+  selector: 'my-app',
+  template: `
+  &lt;ul class=&quot;nav&quot;&gt;
+    &lt;li routerLinkActive=&quot;active&quot;&gt;
+      &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  `
+})
+class AppComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'about-component',
+  template: `
+    &lt;p&gt;An about component!&lt;/p&gt;
+  `
+})
+class AboutComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'home-component',
+  template: `
+    &lt;p&gt;A home component!&lt;/p&gt;
+  `
+})
+class HomeComponent {
+  constructor() {
+  }
+}
+
+const routes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: '', component: HomeComponent }
+  { path: '**', component: HomeComponent }
+]
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+class AppRoutingModule { }
+
+                 
+@NgModule({
+  declarations: [AppComponent, AboutComponent, HomeComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    AppRoutingModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='23, only'></div>
+<h3>Dynamic Segment</h3>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { Routes, RouterModule } = ng.router;
+
+@Component({
+  selector: 'my-app',
+  template: `
+  &lt;ul class=&quot;nav&quot;&gt;
+    &lt;li routerLinkActive=&quot;active&quot;&gt;
+      &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li routerLinkActive=&quot;active&quot;&gt;
+      &lt;a [routerLink]=&quot;['/users', userId]&quot;&gt;User 1&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  `
+})
+class AppComponent {
+  public userId: number = 1;
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'about-component',
+  template: `
+    &lt;p&gt;An about component!&lt;/p&gt;
+  `
+})
+class AboutComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'home-component',
+  template: `
+    &lt;p&gt;A home component!&lt;/p&gt;
+  `
+})
+class HomeComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'user-component',
+  template: `
+    &lt;p&gt;A user component!&lt;/p&gt;
+  `
+})
+class UserComponent {
+  constructor() {
+  }
+}
+
+const routes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: '', component: HomeComponent },
+  { path: 'users/:id', component: UserComponent },
+  { path: '**', component: HomeComponent }
+]
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+class AppRoutingModule { }
+
+                 
+@NgModule({
+  declarations: [AppComponent, AboutComponent, HomeComponent, UserComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    AppRoutingModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='26,33, only'></div>
+<h2>RouterLinkActive</h2>
+<p>The <a href="https://angular.io/api/router/RouterLinkActive" target="\_blank">routerLinkActive</a> directive lets you add a CSS class to an element when the link's route becomes active.</p>
+<h3>Adding a basic active class</h3>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { Routes, RouterModule } = ng.router;
+
+@Component({
+  selector: 'my-app',
+  template: `
+  &lt;ul class=&quot;nav&quot;&gt;
+    &lt;li&gt;
+      &lt;a routerLink=&quot;/about&quot; routerLinkActive=&quot;my-active-class&quot;&gt;About&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+      &lt;a [routerLink]=&quot;['/users', userId]&quot;&gt;User 1&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  `
+})
+class AppComponent {
+  public userId: number = 1;
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'about-component',
+  template: `
+    &lt;p&gt;An about component!&lt;/p&gt;
+  `
+})
+class AboutComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'home-component',
+  template: `
+    &lt;p&gt;A home component!&lt;/p&gt;
+  `
+})
+class HomeComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'user-component',
+  template: `
+    &lt;p&gt;A user component!&lt;/p&gt;
+  `
+})
+class UserComponent {
+  constructor() {
+  }
+}
+
+const routes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: '', component: HomeComponent },
+  { path: 'users/:id', component: UserComponent },
+  { path: '**', component: HomeComponent }
+]
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+class AppRoutingModule { }
+
+                 
+@NgModule({
+  declarations: [AppComponent, AboutComponent, HomeComponent, UserComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    AppRoutingModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+&lt;style&gt;
+  .my-active-class {
+    background: pink;
+  }
+&lt;/style&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='23, only'></div>
+<h3>Adding an active class with options</h3>
+<p>Using <code>{exact: true}</code> will only set the class if the path match is exactly equal. <code>{exact: true}</code> can also be applied to parents of routerlinks</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { Routes, RouterModule } = ng.router;
+
+@Component({
+  selector: 'my-app',
+  template: `
+  &lt;ul class=&quot;nav&quot;&gt;
+    &lt;li routerLinkActive=&quot;my-active-class&quot; &gt;
+      &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li routerLinkActive=&quot;my-active-class&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
+      &lt;a [routerLink]=&quot;['/users', userId]&quot;&gt;User 1&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li routerLinkActive=&quot;my-active-class&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a routerLink=&quot;/user/1&quot;&gt;User 1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a routerLink=&quot;/user/2&quot;&gt;User 2&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  `
+})
+class AppComponent {
+  public userId: number = 1;
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'about-component',
+  template: `
+    &lt;p&gt;An about component!&lt;/p&gt;
+  `
+})
+class AboutComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'home-component',
+  template: `
+    &lt;p&gt;A home component!&lt;/p&gt;
+  `
+})
+class HomeComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'user-component',
+  template: `
+    &lt;p&gt;A user component!&lt;/p&gt;
+  `
+})
+class UserComponent {
+  constructor() {
+  }
+}
+
+const routes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: '', component: HomeComponent },
+  { path: 'users/:id', component: UserComponent },
+  { path: '**', component: HomeComponent }
+]
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+class AppRoutingModule { }
+
+                 
+@NgModule({
+  declarations: [AppComponent, AboutComponent, HomeComponent, UserComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    AppRoutingModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+&lt;style&gt;
+  .my-active-class {
+    background: pink;
+  }
+&lt;/style&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='25-26,28-31, only'></div>
+<h3>Adding an active class with template variable</h3>
+<p>RouterLinkActive can also be used to set <a href="https://angular.io/api/router/RouterLinkActive#template-variable-references" target="\_blank">template variables</a> to check the active status of the route. In this example we're creating a template variable <code>myroutervariable</code> to represent our route and it's active state for logic in our template.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { Routes, RouterModule } = ng.router;
+
+@Component({
+  selector: 'my-app',
+  template: `
+  &lt;ul class=&quot;nav&quot;&gt;
+    &lt;li routerLinkActive=&quot;my-active-class&quot; &gt;
+      &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li routerLinkActive #myroutervariable=&quot;routerLinkActive&quot; [ngClass]=&quot;{'my-active-class' : myroutervariable.isActive}&quot; &gt;
+      &lt;a [routerLink]=&quot;['/users', userId]&quot;&gt;User 1&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;p *ngIf=&quot;myroutervariable.isActive&quot;&gt;The users/1 route is active. 💖💖💖&lt;/p&gt; 
+  &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  `
+})
+class AppComponent {
+  public userId: number = 1;
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'about-component',
+  template: `
+    &lt;p&gt;An about component!&lt;/p&gt;
+  `
+})
+class AboutComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'home-component',
+  template: `
+    &lt;p&gt;A home component!&lt;/p&gt;
+  `
+})
+class HomeComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'user-component',
+  template: `
+    &lt;p&gt;A user component!&lt;/p&gt;
+  `
+})
+class UserComponent {
+  constructor() {
+  }
+}
+
+const routes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: '', component: HomeComponent },
+  { path: 'users/:id', component: UserComponent },
+  { path: '**', component: HomeComponent }
+]
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+class AppRoutingModule { }
+
+                 
+@NgModule({
+  declarations: [AppComponent, AboutComponent, HomeComponent, UserComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    AppRoutingModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+&lt;style&gt;
+  .my-active-class {
+    background: pink;
+  }
+&lt;/style&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='25-29, only'></div>
+<h2>Exercise: Building Navigation for Our App</h2>
+<h3>The problem</h3>
+<p>We want navigation in our <strong>src/app/app.component.html</strong> file that will route to our home and restaurant components when clicked, as well as show an <code>active</code> class on the <code>li</code> element when the route is active.</p>
+<p>The markup structure should look like this:</p>
 <pre><code class="language-html">&lt;header&gt;
     &lt;nav&gt;
      &lt;h1&gt;place-my-order.com&lt;/h1&gt;
      &lt;ul&gt;
-       &lt;li routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
-         &lt;a routerLink=&quot;/&quot; &gt;Home&lt;/a&gt;
+       &lt;li&gt;
+         &lt;a&gt;Home&lt;/a&gt;
        &lt;/li&gt;
-       &lt;li [ngClass]=&quot;{'active' : rla.isActive} &quot;&gt;
-         &lt;a routerLink=&quot;/restaurants&quot; routerLinkActive #rla=&quot;routerLinkActive&quot;&gt;Restaurants&lt;/a&gt;
+       &lt;li&gt;
+         &lt;a&gt;Restaurants&lt;/a&gt;
        &lt;/li&gt;
      &lt;/ul&gt;
     &lt;/nav&gt;
   &lt;/header&gt;
-  &lt;router-outlet&gt;&lt;/router-outlet&gt;
+</code></pre>
+<h3>What You Need to Know</h3>
+<ul>
+<li>How to use the routerLink directive</li>
+<li>How to use the routerLinkActive directive</li>
+</ul>
+<p>You will know you've completed the exercise correctly when you can click the nav items to see the UI change.</p>
+<h3>Solution</h3>
+<p><strong>src/app/app.component.html</strong></p>
+<pre><code class="language-html">&lt;header&gt;
+  &lt;nav&gt;
+    &lt;h1&gt;place-my-order.com&lt;/h1&gt;
+    &lt;ul&gt;
+      &lt;li routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
+        &lt;a routerLink=&quot;/&quot; &gt;Home&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li [ngClass]=&quot;{'active' : rla.isActive} &quot;&gt;
+        &lt;a routerLink=&quot;/restaurants&quot; routerLinkActive #rla=&quot;routerLinkActive&quot;&gt;Restaurants&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+&lt;router-outlet&gt;&lt;/router-outlet&gt;
   
 
 </code></pre>
-<div line-highlight='1-13'></div>
-<p>We now have a nice navigation for our users to change between views! Click between the nav items to see the UI change.</p>
+<div line-highlight='4-11'></div>
 
 </section>
 
@@ -476,24 +1049,24 @@
 	</article>
 </div>
 
-	<footer></footer>
+  <footer></footer>
 
-	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/angular/5-creating-navigation/creating-navigation.md"},"description":"Creating Navigation \n","name":"angular/creating-navigation","title":"Creating Navigation","type":"page","parent":"angular","order":5,"comment":" ","pathToRoot":"../.."};
-	</script>
+  <script type="text/javascript">
+    var docObject = {"src":{"path":"src/angular/5-creating-navigation/creating-navigation.md"},"description":"Creating Navigation \n","name":"angular/creating-navigation","title":"Creating Navigation","type":"page","parent":"angular","order":5,"comment":" ","pathToRoot":"../.."};
+  </script>
 
-	
-		<script>
-		  steal = {
-		    instantiated: {
-		      "bundles/bit-docs-site/static.css!$css" : null
-		    }
-		  }
-		</script>
-		<script type='text/javascript'
-				data-main="bit-docs-site/static"
-				src="../static/steal.production.js"></script>
-	
+  
+    <script>
+      steal = {
+        instantiated: {
+          "bundles/bit-docs-site/static.css!$css" : null
+        }
+      }
+    </script>
+    <script type='text/javascript'
+        data-main="bit-docs-site/static"
+        src="../static/steal.production.js"></script>
+  
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-29"></script>
@@ -506,5 +1079,4 @@
 </script>
 
 </body>
-
 </html>

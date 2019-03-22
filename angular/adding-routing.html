@@ -8,17 +8,20 @@
 ######################################################################## -->
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Bitovi University - Adding Routing</title>
-	
-	<link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
-	
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bitovi University - Adding Routing</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
 </head>
 
 <body>
-	<header></header>
-	<div class="content">
+  <header>
+    <img src="../static/img/logo.svg" alt="Bitovi" class="logo" width="100">
+    
+  </header>
+  <div class="content">
 	
 		<nav class="sidebar">
 	
@@ -449,8 +452,486 @@
 <li>Test that new routes are working</li>
 </ul>
 <h3>Routing</h3>
-<p>To be able to navigate to our restaurant component, we'll need routing. We already told Angular we'd like to set up routing, so it generated <code>src/app/app-routing.module.ts</code> for us and included it in our root module.</p>
-<p>To create a route to our restaurants component, we'll need to import our restaurants component and update our routes variable to include the new path.</p>
+<p>To be able to navigate between different views in our app, we'll need routing. We already told Angular we'd like to set up routing, so it generated <code>src/app/app-routing.module.ts</code> for us and included it in our root module. The router module takes an array of routes we can generate in a few different ways that will render content in the <code>router-outlet</code> directive.</p>
+<h2>Setting Paths to Components</h2>
+<p>The following example will render the AboutComponent in the router-outlet when the path is <code>/about</code>:</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//unpkg.com/mock-url@^5.0.0&quot; type=&quot;module&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;mock-url pushstate:from=&quot;true&quot;&gt;&lt;/mock-url&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { Routes, RouterModule } = ng.router;
+
+@Component({
+  selector: 'my-app',
+  template: `
+  &lt;ul class=&quot;nav&quot;&gt;
+    &lt;li routerLinkActive=&quot;active&quot;&gt;
+      &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li routerLinkActive=&quot;active&quot;&gt;
+        &lt;a routerLink=&quot;&quot; &gt;Home&lt;/a&gt;
+      &lt;/li&gt;
+  &lt;/ul&gt;
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  `
+})
+class AppComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'about-component',
+  template: `
+    &lt;p&gt;An about component!&lt;/p&gt;
+  `
+})
+class AboutComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'home-component',
+  template: `
+    &lt;p&gt;A home component!&lt;/p&gt;
+  `
+})
+class HomeComponent {
+  constructor() {
+  }
+}
+
+const routes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: '**', component: HomeComponent }
+]
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+class AppRoutingModule { }
+
+                 
+@NgModule({
+  declarations: [AppComponent, AboutComponent, HomeComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    AppRoutingModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='57, only'></div>
+<h3>Using Wildcards</h3>
+<p>The next example uses the wildcard path, which will render the PageNotFoundComponent when any unregistered route is hit:</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+// app.js
+const { Component, NgModule, VERSION } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { Routes, RouterModule } = ng.router;
+
+@Component({
+  selector: 'my-app',
+  template: `
+    &lt;p&gt;Look at me!&lt;/p&gt;
+    &lt;ul class=&quot;nav&quot;&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+        &lt;a routerLink=&quot;/merp&quot;&gt;/merp - Not an actual route&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+        &lt;a routerLink=&quot;/blarg&quot;&gt;/blarg - Another not actual route&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  `
+})
+class AppComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'about-component',
+  template: `
+    &lt;p&gt;An about component!&lt;/p&gt;
+  `
+})
+class AboutComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'unfound-component',
+  template: `
+    &lt;p&gt;These are not the components you are looking for.&lt;/p&gt;
+  `
+})
+class PageNotFoundComponent {
+  constructor() {
+  }
+}
+
+const routes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: '',  redirectTo: '/about', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+class AppRoutingModule { }
+
+@NgModule({
+  declarations: [AppComponent, AboutComponent, PageNotFoundComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    AppRoutingModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='67, only'></div>
+<h3>Redirecting Routes</h3>
+<p>This example shows one route redirecting to another:</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+// app.js
+const { Component, NgModule, VERSION } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { Routes, RouterModule } = ng.router;
+
+@Component({
+  selector: 'my-app',
+  template: `
+    &lt;p&gt;Look at me!&lt;/p&gt;
+    &lt;ul class=&quot;nav&quot;&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+        &lt;a routerLink=&quot;/merp&quot;&gt;Not an actual route&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+        &lt;a routerLink=&quot;/blarg&quot;&gt;Another not actual route&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+        &lt;a routerLink=&quot;boop&quot;&gt;/boop - I will reroute to /about&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  `
+})
+class AppComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'about-component',
+  template: `
+    &lt;p&gt;An about component!&lt;/p&gt;
+  `
+})
+class AboutComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'unfound-component',
+  template: `
+    &lt;p&gt;These are not the components you are looking for.&lt;/p&gt;
+  `
+})
+class PageNotFoundComponent {
+  constructor() {
+  }
+}
+
+const routes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: 'boop',  redirectTo: '/about', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent }
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+class AppRoutingModule { }
+
+@NgModule({
+  declarations: [AppComponent, AboutComponent, PageNotFoundComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    AppRoutingModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='69, only'></div>
+<h3>Setting Paths to Modules</h3>
+<p>As our applications grow, it doesn't make sense to load all the code at once. Thanks to <a href="https://angular.io/guide/lazy-loading-ngmodules" target="_blank">lazyloading</a>, we can wait to render modules until a specific route requiring them is hit. (This demo does not work in Codepen unfortunately)</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+  // app.js
+  const { Component, NgModule, VERSION } = ng.core;
+  const { BrowserModule } = ng.platformBrowser;
+  const { CommonModule } = ng.common;
+  const { Routes, RouterModule } = ng.router;
+  
+  const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+  
+  @Component({
+    selector: 'my-app',
+    template: `
+      &lt;p&gt;Look at me!&lt;/p&gt;
+      &lt;ul class=&quot;nav&quot;&gt;
+        &lt;li routerLinkActive=&quot;active&quot;&gt;
+          &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li routerLinkActive=&quot;active&quot;&gt;
+          &lt;a routerLink=&quot;boop&quot;&gt;/boop - I will reroute to /about&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li routerLinkActive=&quot;active&quot;&gt;
+          &lt;a routerLink=&quot;/mymodule&quot;&gt;/mymodule - I will load the child module&lt;/a&gt;
+        &lt;/li&gt;
+      &lt;/ul&gt;
+      &lt;router-outlet&gt;&lt;/router-outlet&gt;
+    `
+  })
+  class AppComponent {
+    constructor() {
+    }
+  }
+  
+  @Component({
+    selector: 'about-component',
+    template: `
+      &lt;p&gt;A very sweet component!&lt;/p&gt;
+    `
+  })
+  class AboutComponent {
+    constructor() {
+    }
+  }
+  
+  @Component({
+    selector: 'unfound-component',
+    template: `
+      &lt;p&gt;These are not the components you are looking for.&lt;/p&gt;
+    `
+  })
+  class PageNotFoundComponent {
+    constructor() {
+    }
+  }
+  
+  @Component({
+    selector: 'child-component',
+    template: `
+      &lt;p&gt;I'm in a child module!&lt;/p&gt;
+    `
+  })
+  class ChildComponent {
+    constructor() {
+      console.log('loading child component');
+    }
+  }
+  
+  const childRoutes: Routes = [
+    {
+      path: '',
+      component: ChildComponent
+    }
+  ];
+  
+  @NgModule({
+    imports: [RouterModule.forChild(childRoutes)]
+  })
+  class ChildRoutingModule { }
+  
+  @NgModule({
+    imports: [
+      BrowserModule,
+      CommonModule
+    ],
+    declarations: [ChildComponent],
+    bootstrap: [ChildComponent],
+    providers: []
+  })
+  class ChildModule {
+    constructor() {
+      console.log('loading child module');
+    }
+  }
+
+  platformBrowserDynamic()
+    .bootstrapModule(ChildModule)
+    .catch(err =&gt; console.error(err));
+  
+  const routes: Routes = [
+    { path: 'about', component: AboutComponent },
+    { path: 'boop',  redirectTo: '/about', pathMatch: 'full' },
+    { path: 'mymodule', loadChildren: ChildModule},
+     { path: '**', component: PageNotFoundComponent }
+  ];
+  
+  @NgModule({
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
+  })
+  class AppRoutingModule { }
+  
+  @NgModule({
+    declarations: [AppComponent, AboutComponent, PageNotFoundComponent],
+    imports: [
+      BrowserModule,
+      CommonModule,
+      AppRoutingModule
+    ],
+    bootstrap: [AppComponent],
+    providers: []
+  })
+  class AppModule {}
+  
+  platformBrowserDynamic()
+    .bootstrapModule(AppModule)
+    .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='112, only'></div>
+<h3>&lt;base-href&gt;</h3>
+<p>In our index.html file, the angular cli included <code>&lt;base href=&quot;/&gt;</code>. This tells the router how to compose URLs - the value in the &quot;href&quot; attribute specifies the base URL for all relative URLs contained in the app.</p>
+<pre><code class="language-html">&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot;&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt;PlaceMyOrder&lt;/title&gt;
+        &lt;base href=&quot;/&quot;&gt;
+
+        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+        &lt;link rel=&quot;icon&quot; type=&quot;image/x-icon&quot; href=&quot;favicon.ico&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;pmo-root&gt;&lt;/pmo-root&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+<div line-highlight='6'></div>
+<h2>Exercise: Edit the Routing Module to Have Routes for Home and Component</h2>
+<p>Our router outlet was already added to our <strong>src/app/app.component.html</strong> file during our initial app creation. Replace the whole file with the following:</p>
+<p><strong>src/app/app.component.html</strong></p>
+<pre><code class="language-html">&lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;
+&lt;router-outlet&gt;&lt;/router-outlet&gt;
+</code></pre>
+<div line-highlight='1,only'></div>
+<h3>The problem</h3>
+<p>We need to set up routes for the home view and restaurant view. When the route is <code>''</code>, the <code>HomeComponent</code> should display, and when the route is <code>/restaurants</code> the <code>RestaurantComponent</code> should display. Make these changes in <strong>src/app/app-routing.module.ts</strong>. If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>. (You may have noticed the <code>routerLink</code> attribute on the a tag in our home component markup. This one of the ways we link to specific routes in our app.)</p>
+<pre><code class="language-html">&lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
+  Details
+&lt;/a&gt;
+</code></pre>
+<h3>What You Need to know</h3>
+<ul>
+<li>How to create routes that serve components</li>
+</ul>
+<h3>The Solution</h3>
 <p><strong>src/app/app-routing.module.ts</strong></p>
 <pre><code class="language-ts">import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -476,17 +957,6 @@ export class AppRoutingModule { }
 
 </code></pre>
 <div line-highlight='3-15'></div>
-<p>Our router was already added to our index file during our initial app creation. Replace the whole file with the following:</p>
-<p><strong>src/app/app.component.html</strong></p>
-<pre><code class="language-html">&lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;
-&lt;router-outlet&gt;&lt;/router-outlet&gt;
-</code></pre>
-<div line-highlight='1,only'></div>
-<p>Navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a> to see the new view. You may have noticed the <code>routerLink</code> attribute on the a tag in our home component markup. This one of the ways we link to specific routes in our app.</p>
-<pre><code class="language-html">&lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
-  Details
-&lt;/a&gt;
-</code></pre>
 
 </section>
 
@@ -495,24 +965,24 @@ export class AppRoutingModule { }
 	</article>
 </div>
 
-	<footer></footer>
+  <footer></footer>
 
-	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/angular/4-adding-routing/adding-routing.md"},"description":"Adding Routing \n","name":"angular/adding-routing","title":"Adding Routing","type":"page","parent":"angular","order":4,"comment":" ","pathToRoot":"../.."};
-	</script>
+  <script type="text/javascript">
+    var docObject = {"src":{"path":"src/angular/4-adding-routing/adding-routing.md"},"description":"Adding Routing \n","name":"angular/adding-routing","title":"Adding Routing","type":"page","parent":"angular","order":4,"comment":" ","pathToRoot":"../.."};
+  </script>
 
-	
-		<script>
-		  steal = {
-		    instantiated: {
-		      "bundles/bit-docs-site/static.css!$css" : null
-		    }
-		  }
-		</script>
-		<script type='text/javascript'
-				data-main="bit-docs-site/static"
-				src="../static/steal.production.js"></script>
-	
+  
+    <script>
+      steal = {
+        instantiated: {
+          "bundles/bit-docs-site/static.css!$css" : null
+        }
+      }
+    </script>
+    <script type='text/javascript'
+        data-main="bit-docs-site/static"
+        src="../static/steal.production.js"></script>
+  
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-29"></script>
@@ -525,5 +995,4 @@ export class AppRoutingModule { }
 </script>
 
 </body>
-
 </html>

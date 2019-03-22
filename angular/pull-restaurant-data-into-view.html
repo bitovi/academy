@@ -8,17 +8,20 @@
 ######################################################################## -->
 <html lang="en">
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Bitovi University - Use Restaurant API data</title>
-	
-	<link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
-	
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bitovi University - Use Restaurant API data</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
 </head>
 
 <body>
-	<header></header>
-	<div class="content">
+  <header>
+    <img src="../static/img/logo.svg" alt="Bitovi" class="logo" width="100">
+    
+  </header>
+  <div class="content">
 	
 		<nav class="sidebar">
 	
@@ -449,7 +452,146 @@
 <li>Change restaurant markup to use new restaurant object</li>
 </ul>
 <h2>Importing Service into Component</h2>
-<p>We'll then import our new service and ResponseData interface into our restaurant component.</p>
+<p>To use a service in a component, we use dependency injection to pass the service in the component constructor function. We're then able to access methods on it for use in our component</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { Routes, RouterModule } = ng.router;
+
+@Injectable({
+  providedIn: 'root'
+})
+class UsersService {
+  private users = [
+  {
+    name: 'Jennifer',
+    id: 1,
+    role: 'admin'
+  },
+  {
+    name: 'Steve',
+    id: 2,
+    role: 'user'
+  },
+  {
+    name: 'Alice',
+    id: 3,
+    role: 'developer'
+  }]
+
+  constructor() { }
+
+  getUsers() {
+    return this.users;
+  }
+
+  getUser(id: number) {
+    return this.users.find(x =&gt; x.id === id)
+  }
+}
+
+@Component({
+  selector: 'my-app',
+  template: `
+    &lt;ul class=&quot;nav&quot;&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  `
+})
+class AppComponent {
+  constructor() {}
+}
+
+@Component({
+  selector: 'about-component',
+  template: `
+    &lt;p&gt;An about component!&lt;/p&gt;
+  `
+})
+class AboutComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'home-component',
+  template: `
+    &lt;p&gt;A home component!&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li *ngFor=&quot;let user of users&quot;&gt;
+        {{user.name}}
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  `
+})
+class HomeComponent implements OnInit{
+  private users: any[] = [];
+
+  constructor(private usersService: UsersService) {}
+
+  ngOnInit() {
+    this.users = usersService.getUsers();
+  }
+}
+
+const routes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: '**', component: HomeComponent }
+]
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+class AppRoutingModule { }
+
+                 
+@NgModule({
+  declarations: [AppComponent, AboutComponent, HomeComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    AppRoutingModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='90, only'></div>
+<h2>Exercise: Inject Restaurants Service in Restaurants component and call the <code>getRestaurants</code> function</h2>
+<h2>The Problem</h2>
+<p>We want to be able to use the <code>getRestaurants</code> method in our component to display a list of restaurants.</p>
+<h2>What you need to know</h2>
+<ul>
+<li>How to inject a service into a component</li>
+<li>How to call a method from a class</li>
+</ul>
+<h2>Solution</h2>
 <p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 import { RestaurantService, ResponseData } from './restaurant.service';
@@ -529,24 +671,24 @@ export class RestaurantComponent implements OnInit {
 	</article>
 </div>
 
-	<footer></footer>
+  <footer></footer>
 
-	<script type="text/javascript">
-		var docObject = {"src":{"path":"src/angular/7-pull-restaurant-data-into-view/pull-restaurant-data-into-view.md"},"description":"Pulling Restaurant Data into Our View \n","name":"angular/pull-restaurant-data-into-view","title":"Use Restaurant API data","type":"page","parent":"angular","order":7,"comment":" ","pathToRoot":"../.."};
-	</script>
+  <script type="text/javascript">
+    var docObject = {"src":{"path":"src/angular/7-pull-restaurant-data-into-view/pull-restaurant-data-into-view.md"},"description":"Pulling Restaurant Data into Our View \n","name":"angular/pull-restaurant-data-into-view","title":"Use Restaurant API data","type":"page","parent":"angular","order":7,"comment":" ","pathToRoot":"../.."};
+  </script>
 
-	
-		<script>
-		  steal = {
-		    instantiated: {
-		      "bundles/bit-docs-site/static.css!$css" : null
-		    }
-		  }
-		</script>
-		<script type='text/javascript'
-				data-main="bit-docs-site/static"
-				src="../static/steal.production.js"></script>
-	
+  
+    <script>
+      steal = {
+        instantiated: {
+          "bundles/bit-docs-site/static.css!$css" : null
+        }
+      }
+    </script>
+    <script type='text/javascript'
+        data-main="bit-docs-site/static"
+        src="../static/steal.production.js"></script>
+  
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-29"></script>
@@ -559,5 +701,4 @@ export class RestaurantComponent implements OnInit {
 </script>
 
 </body>
-
 </html>
