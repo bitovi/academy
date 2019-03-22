@@ -7,6 +7,8 @@
 <script src="https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js"></script>
 <script src="https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js"></script>
 <script src="https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js"></script>
+<script src="//unpkg.com/mock-url@^5.0.0" type="module"></script>
+<mock-url pushstate:from="true"></mock-url>
 <base href="/">
 <my-app></my-app>
 <script type="typescript">
@@ -110,7 +112,7 @@
     { path: 'about', component: AboutComponent },
     { path: 'boop',  redirectTo: '/about', pathMatch: 'full' },
     { path: 'mymodule', loadChildren: ChildModule},
-     { path: '**', component: PageNotFoundComponent }
+    { path: '**', component: PageNotFoundComponent }
   ];
   
   @NgModule({

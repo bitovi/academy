@@ -113,6 +113,8 @@ __src/app/app.module.ts__
 
 We want to write a service with a method `getRestaurants` that uses httpClient to get a list of restaurants from our `/api/restaurants` url.
 
+##ADD TEST CODE
+
 ### What You Need to Know
 
 - How to create a service via the CLI
@@ -121,7 +123,7 @@ We want to write a service with a method `getRestaurants` that uses httpClient t
     ng g service restaurant/restaurant
   ```
 
-- How to use httpClient to make a get request
+- How to use httpClient to make a get request (you learned this in section above! ✔️)
 
 ### Solution
 
@@ -136,6 +138,8 @@ Thanks to TypeScript we can write interfaces to describe what we expect objects 
 @sourceref ./service-interface.html
 @codepen
 @highlight 18-22,28, only
+
+To learn more about interfaces in TypeScript, check out our guide: 
 
 ## Exercise: Write an Interface to Describe the Restaurant Object and Data Response
 
@@ -189,7 +193,7 @@ for this interface.
     ng g interface restaurant/restaurant
   ```
 
-- How to write an interface in TypeScript
+- How to write an interface in TypeScript (you learned this in section above! ✔️)
 
 ## Solution
 

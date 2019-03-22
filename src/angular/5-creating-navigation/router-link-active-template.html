@@ -7,6 +7,8 @@
 <script src="https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js"></script>
 <script src="https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js"></script>
 <script src="https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js"></script>
+<script src="//unpkg.com/mock-url@^5.0.0" type="module"></script>
+<mock-url pushstate:from="true"></mock-url>
 <base href="/">
 <my-app></my-app>
 <script type="typescript">
@@ -22,7 +24,8 @@ const { Routes, RouterModule } = ng.router;
     <li routerLinkActive="my-active-class" >
       <a routerLink="/about" >About</a>
     </li>
-    <li routerLinkActive #myroutervariable="routerLinkActive" [ngClass]="{'my-active-class' : myroutervariable.isActive}" >
+    <li routerLinkActive #myroutervariable="routerLinkActive" 
+      [ngClass]="{'my-active-class' : myroutervariable.isActive}" >
       <a [routerLink]="['/users', userId]">User 1</a>
     </li>
   </ul>

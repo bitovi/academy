@@ -18,15 +18,19 @@ You may have noticed the links in the routing examples to switch between views. 
 
 ### Static Segment
 
+The following is an example of a hard coded path:
+
 @sourceref ./static-path.html
 @codepen
-@highlight 23, only
+@highlight 25, only
 
 ### Dynamic Segment
 
+The following is an example of a path being built from different pieces of data. In reusable components we'll often want to dynamically create paths based on a piece of datas unique property values. 
+
 @sourceref ./dynamic-path.html
 @codepen
-@highlight 26,33, only
+@highlight 28,35, only
 
 ## RouterLinkActive
 
@@ -36,7 +40,7 @@ The <a href="https://angular.io/api/router/RouterLinkActive" target="\_blank">ro
 
 @sourceref ./router-link-active-basic.html
 @codepen
-@highlight 23, only
+@highlight 25, only
 
 ### Adding an active class with options
 
@@ -44,7 +48,7 @@ Using `{exact: true}` will only set the class if the path match is exactly equal
 
 @sourceref ./router-link-active-options.html
 @codepen
-@highlight 25-26,28-31, only
+@highlight 24-25,27-30, only
 
 ### Adding an active class with template variable
 
@@ -52,7 +56,7 @@ RouterLinkActive can also be used to set <a href="https://angular.io/api/router/
 
 @sourceref ./router-link-active-template.html
 @codepen
-@highlight 25-29, only
+@highlight 27-31, only
 
 ## Exercise: Building Navigation for Our App
 

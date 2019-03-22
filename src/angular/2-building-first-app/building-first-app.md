@@ -185,3 +185,12 @@ __src/app/app.component.html__
 
 When you save your changes, you should see the new h1 tag in your browser at  <a href="http://localhost:4200" target="_blank">localhost:4200</a>.
 
+
+## Running Tests
+
+When we use the CLI to create modules, components, services, etc, it will create spec files for us. Run tests with `npm run test` in the command line. You should see one test failure. Open __src/app/app.component.spec.ts__ and update it so the test will pass with the changes we made to __src/app/app.component.html__
+
+### Solution
+
+@sourceref ./app.component.spec.ts
+@highlight 33

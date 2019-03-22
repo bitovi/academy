@@ -23,7 +23,7 @@ The following example will render the AboutComponent in the router-outlet when t
 
 @sourceref ./path-route.html
 @codepen
-@highlight 57, only
+@highlight 62, only
 
 ### Using Wildcards
 
@@ -31,7 +31,7 @@ The next example uses the wildcard path, which will render the PageNotFoundCompo
 
 @sourceref ./wildcard-route.html
 @codepen
-@highlight 67, only
+@highlight 69, only
 
 ### Redirecting Routes
 
@@ -39,7 +39,7 @@ This example shows one route redirecting to another:
 
 @sourceref ./redirect-route.html
 @codepen
-@highlight 69, only
+@highlight 71, only
 
 ### Setting Paths to Modules
 
@@ -47,11 +47,11 @@ As our applications grow, it doesn't make sense to load all the code at once. Th
 
 @sourceref ./lazyload-route.html
 @codepen
-@highlight 112, only
+@highlight 114, only
 
 ### <base-href>
 
-In our index.html file, the angular cli included `<base href="/>`. This tells the router how to compose URLs - the value in the "href" attribute specifies the base URL for all relative URLs contained in the app. 
+In our index.html file, the angular cli included `<base href="/>`. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base" target="_blank">here</a>, but it's important to know this is how the Angular router will how to compose URLs - the value in the "href" attribute specifies the base URL for all relative URLs contained in the app.
 
 ```html
 <!doctype html>
@@ -73,7 +73,7 @@ In our index.html file, the angular cli included `<base href="/>`. This tells th
 
 ## Exercise: Edit the Routing Module to Have Routes for Home and Component
 
-Our router outlet was already added to our __src/app/app.component.html__ file during our initial app creation. Replace the whole file with the following:
+Our router outlet was already added to our __src/app/app.component.html__ file during our initial app creation. However, we're going to remove everything in this file and replace the whole file contents with the following:
 
 __src/app/app.component.html__
 
@@ -92,7 +92,7 @@ We need to set up routes for the home view and restaurant view. When the route i
 
 ### What You Need to know
 
-- How to create routes that serve components
+- How to create routes that serve components (you learned this in section above! ✔️)
 
 ### The Solution
 

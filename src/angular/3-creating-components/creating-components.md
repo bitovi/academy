@@ -77,6 +77,13 @@ The component should provide the following HTML:
 The component's `title` property should have a string value of
 `"Ordering food has never been easier"`.
 
+### To Verify Your Solution is Correct
+
+Update the spec file  __src/app/home/home.component.spec.ts__ to be:
+
+@sourceref ./home.component.spec.ts
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ### What you need to know
 
@@ -98,8 +105,8 @@ The component's `title` property should have a string value of
   |   |       |── home.component.html
   ```
 
-- How to bind data to the DOM
-- How to view your new component
+- How to bind data to the DOM (you learned this in the Binding Data to Components section above! ✔️)
+- How to view your new component:
 
   One of the ways components can be rendered is by putting them in markup. We'll do this by putting our `<pmo-home></pmo-home>` tag in our base app component markup. Open your __src/app/app.component.html__ file and update it to be:
 
@@ -165,7 +172,7 @@ Template directives in Angular help us iterate through and manipulate data we've
 
 @sourceref ./ng-if.html
 @codepen
-@highlight 17-21, 25,only
+@highlight 17-22, 26,only
 
 ### \*ngFor
 
@@ -181,7 +188,7 @@ Template directives in Angular help us iterate through and manipulate data we've
 
 @sourceref ./ng-container.html
 @codepen
-@highlight 17-20,only
+@highlight 17-22,only
 
 ### ng-class
 
@@ -189,7 +196,7 @@ The <a href="https://angular.io/api/common/NgClass" target="_blank">ng-class</a>
 
 @sourceref ./ng-class.html
 @codepen
-@highlight 17-20,only
+@highlight 17, 19, 21, 23,25, 27-30, 34, only
 
 Notice in the above example our `ng-class` is surrounded by `[ ]`. This signals that we're passing in an object, instead of just a string. When using <a href="https://angular.io/guide/template-syntax#property-binding--property-" target="_blank">property binding</a>, `ngClass="value"` will evaluate the value as a string of _"value"_ and `[ngClass]="value"` as whatever the component property value is.
 
@@ -242,6 +249,14 @@ To see our view working, we can paste it into our __src/app/app.component.html__
 
 We want to display a list of restaurants in our UI once the data has been set on the restaurants member.  
 
+### To Verify Your Solution is Correct
+
+Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
+
+@sourceref ./restaurant.component.spec.ts
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+
 ### What you need to know
 
 We covered the directives you'll need to use above!
@@ -284,7 +299,7 @@ This example takes the value to be transformed and a parameter to use as an expo
 
 @sourceref ./pipe.html
 @codepen
-@highlight 15-21, 27,only
+@highlight 15-20, 26,only
 
 ## Exercise: Create a pipe that returns the correct image path for files
 
@@ -331,7 +346,17 @@ We want to write a pipe that takes an image url and transforms it to the path we
 
   This will generate a pipe file: `image-url.pipe.ts`
 
-- How pipes are used
+- How pipes are used (you learned this in section above! ✔️)
+
+> Hint: Use String.prototype.replace to create the new path with image name.
+
+### To Verify Your Solution is Correct
+
+Update the spec file  __src/app/image-url.pipe.spec.ts__ to be:
+
+@sourceref ./image-url.pipe.spec.ts
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ### The Solution
 
