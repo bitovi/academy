@@ -17,24 +17,26 @@
 </head>
 
 <body>
-  <header>
-    <img src="../static/img/logo.svg" alt="Bitovi" class="logo" width="100">
+	<div class="header">
+  	<div class="logo">
+    	<a href="https://www.bitovi.com/">Bitovi</a>
+  	</div>
+	  <ul>
+	    <li><a href="https://www.bitovi.com/services">Services</a></li>
+	    <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+	    <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+	    <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+	    <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+	    <li><a href="https://www.bitovi.com/contact">Contact Us</a></li>
+	    <li><a href=".." class="active">Academy</a></li>
+	   </ul>
+	 </div>
+
+	<div class="content">
+	
+		<div class="sidebar-left">
+  
     
-  </header>
-  <div class="content">
-	
-		<nav class="sidebar">
-	
-		
-			<ul>
-				<li class="">
-					<a class="home" href="../index.html" title="Home">
-						Home
-					</a>
-				</li>
-			</ul>
-		
-		
 	<ul>
 		
 			
@@ -416,34 +418,36 @@
 	</ul>
 
 
-	
-</nav>
+  
+  <p class="border"><a href="..#courses">View More Courses</a></p>
+</div>
 
 	
 	<article class="main">
-		
-			<section class="title">
+    <div class="main-content">
+  		
+  			<section class="title">
 	<h1>Creating Components <code>page</code></h1>
 </section>
 
-		
+  		
 
-		
-			
-				<section class="description">
+  		
+  			
+  				<section class="description">
     <p>Creating Our First Components</p>
 
 </section>
 
-			
-		
+  			
+  		
 
-		
-			
-				
-			
-			
-				<section class="body">
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
     <h2>Overview</h2>
 <p>In this part, we will:</p>
 <ul>
@@ -695,6 +699,52 @@ something that reads the component's <code>title</code> property.</p>
 </blockquote>
 <p>The component's <code>title</code> property should have a string value of
 <code>&quot;Ordering food has never been easier&quot;</code>.</p>
+<h3>To Verify Your Solution is Correct</h3>
+<p>Update the spec file  <strong>src/app/home/home.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { HomeComponent } from './home.component';
+
+describe('HomeComponent', () =&gt; {
+  let component: HomeComponent;
+  let fixture: ComponentFixture&lt;HomeComponent&gt;;
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      declarations: [ HomeComponent ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(HomeComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  it('should render title in a h1 tag', () =&gt; {
+    const fixture = TestBed.createComponent(HomeComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain('Ordering food has never been easier');
+  });
+
+  it('should have a member &quot;title&quot; on the component', () =&gt; {
+    const fixture = TestBed.createComponent(HomeComponent);
+    fixture.detectChanges();
+    expect(fixture.componentInstance.title).toContain('Ordering food has never been easier');
+  });
+
+});
+
+</code></pre>
+<blockquote>
+<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+</blockquote>
 <h3>What you need to know</h3>
 <ul>
 <li><p>How to generate a component:</p>
@@ -709,8 +759,8 @@ something that reads the component's <code>title</code> property.</p>
 |   |       |── home.component.less
 |   |       |── home.component.html
 </code></pre></li>
-<li><p>How to bind data to the DOM</p></li>
-<li><p>How to view your new component</p>
+<li><p>How to bind data to the DOM (you learned this in the Binding Data to Components section above! ✔️)</p></li>
+<li><p>How to view your new component:</p>
 <p>One of the ways components can be rendered is by putting them in markup. We'll do this by putting our <code>&lt;pmo-home&gt;&lt;/pmo-home&gt;</code> tag in our base app component markup. Open your <strong>src/app/app.component.html</strong> file and update it to be:</p>
 <pre><code class="language-html">&lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;
 &lt;router-outlet&gt;&lt;/router-outlet&gt;
@@ -827,7 +877,7 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='17-21, 25,only'></div>
+<div line-highlight='17-22, 26,only'></div>
 <h3>*ngFor</h3>
 <p><a href="https://angular.io/api/common/NgForOf" target="\_blank">ngFor</a> is a structural directive that allows to iteratively create content in our templates.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -948,7 +998,7 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='17-20,only'></div>
+<div line-highlight='17-22,only'></div>
 <h3>ng-class</h3>
 <p>The <a href="https://angular.io/api/common/NgClass" target="_blank">ng-class</a> directive is a way to set classes on elements based on boolean logic. ng-class can take a single class, an array of classes, key value pairs with boolean values, or regexes.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -977,10 +1027,10 @@ const { Component, VERSION } = ng.core;
 
   &lt;div [ngClass]=&quot;{'class1 class2 class3' : true}&quot;&gt;...&lt;/div&gt;
 
-    &lt;div [ngClass]=&quot;{'my-active-class' : classIsActive}&quot;&gt;
-      Setting classes
-    &lt;/div&gt;
-    &lt;button (click)=&quot;classIsActive = classIsActive ? false: true&quot;&gt;set class active&lt;/button&gt; 
+  &lt;div [ngClass]=&quot;{'my-active-class' : classIsActive}&quot;&gt;
+    Setting classes
+  &lt;/div&gt;
+  &lt;button (click)=&quot;classIsActive = classIsActive ? false: true&quot;&gt;set class active&lt;/button&gt; 
   `
 })
 class AppComponent {
@@ -1020,7 +1070,7 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='17-20,only'></div>
+<div line-highlight='17, 19, 21, 23,25, 27-30, 34, only'></div>
 <p>Notice in the above example our <code>ng-class</code> is surrounded by <code>[ ]</code>. This signals that we're passing in an object, instead of just a string. When using <a href="https://angular.io/guide/template-syntax#property-binding--property-" target="_blank">property binding</a>, <code>ngClass=&quot;value&quot;</code> will evaluate the value as a string of <em>&quot;value&quot;</em> and <code>[ngClass]=&quot;value&quot;</code> as whatever the component property value is.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1224,6 +1274,78 @@ export class RestaurantComponent implements OnInit {
 <h2>Exercise: Write Restaurant Component Markup that Displays a List of Restaurants</h2>
 <h3>The problem</h3>
 <p>We want to display a list of restaurants in our UI once the data has been set on the restaurants member.</p>
+<h3>To Verify Your Solution is Correct</h3>
+<p>Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+
+import { RestaurantComponent } from './restaurant.component';
+
+describe('RestaurantComponent', () =&gt; {
+  let component: RestaurantComponent;
+  let fixture: ComponentFixture&lt;RestaurantComponent&gt;;
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ],
+      declarations: [ RestaurantComponent ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(RestaurantComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  it('should render title in a h2 tag', () =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h2').textContent).toContain('Restaurants');
+  });
+
+  it('should not show any restaurants markup if no restaurants', () =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.restaurant')).toBe(null);
+  });
+
+  it('should have two .restaurant divs',  &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick(501);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let restaurantDivs = compiled.getElementsByClassName('restaurant');
+    let hoursDivs = compiled.getElementsByClassName('hours-price');
+    expect(restaurantDivs.length).toEqual(2);
+    expect(hoursDivs.length).toEqual(2);
+  }));
+
+  it('should display restaurant information',  &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick(501);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.restaurant h3').textContent).toContain('Poutine Palace');
+  }));
+
+});
+
+</code></pre>
+<blockquote>
+<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+</blockquote>
 <h3>What you need to know</h3>
 <p>We covered the directives you'll need to use above!</p>
 <p>Here is the markup to show for each restaurant:</p>
@@ -1334,7 +1456,7 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='15-21, 27,only'></div>
+<div line-highlight='15-20, 26,only'></div>
 <h2>Exercise: Create a pipe that returns the correct image path for files</h2>
 <h3>The problem</h3>
 <p>We want to write a pipe that takes an image url and transforms it to the path we actually want to serve the image from. <code>node_modules/place-my-order-assets</code> -&gt; <code>./assets</code>.  This pipe will be used on our restaurant image thumbnail. Update your <strong>src/app/restaurant/restaurant.component.html</strong> file to be:</p>
@@ -1371,8 +1493,30 @@ platformBrowserDynamic()
 <pre><code class="language-bash">ng g pipe imageUrl
 </code></pre>
 <p>This will generate a pipe file: <code>image-url.pipe.ts</code></p></li>
-<li><p>How pipes are used</p></li>
+<li><p>How pipes are used (you learned this in section above! ✔️)</p></li>
 </ul>
+<blockquote>
+<p>Hint: Use String.prototype.replace to create the new path with image name.</p>
+</blockquote>
+<h3>To Verify Your Solution is Correct</h3>
+<p>Update the spec file  <strong>src/app/image-url.pipe.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { ImageUrlPipe } from './image-url.pipe';
+
+describe('ImageUrlPipe', () =&gt; {
+  it('create an instance', () =&gt; {
+    const pipe = new ImageUrlPipe();
+    expect(pipe).toBeTruthy();
+  });
+
+  it('returns a string with proper assets path', () =&gt; {
+    const pipe = new ImageUrlPipe();
+    expect(pipe.transform('node_modules/place-my-order-assets/tacos.png')).toBe('./assets/tacos.png');
+  })
+});
+</code></pre>
+<blockquote>
+<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+</blockquote>
 <h3>The Solution</h3>
 <p><strong>src/app/image-url.pipe.ts</strong></p>
 <pre><code class="language-ts">import { Pipe, PipeTransform } from '@angular/core';
@@ -1391,8 +1535,32 @@ export class ImageUrlPipe implements PipeTransform {
 
 </section>
 
-			
-		
+  			
+  		
+    </div>
+    
+    
+      <div class="sidebar-right">
+        <!--<div class="content-nav">
+          <h6>On this page</h6>
+          <ul class="list-group vertical-steps">
+            <li class="list-group-item completed"><span>Overview</span></li>
+            <li class="list-group-item active"><span>Videos</span</li>
+            <li class="list-group-item"><span>Slides</span</li>
+            <li class="list-group-item"><span>Exercise</span</li>
+          </ul>  
+        </div>-->
+        <div class="widget slack">
+          <p class="bold">Get Help</p>
+          <p>If you need help with an exercise, please reach out to us on Slack.</p>
+          <img src="https://i.ibb.co/XS6n24B/slack.png">
+        </div>
+        <div class="widget bug">
+          <p>If you find bugs in this training or have suggestions, create an issue or email contact@bitovi.com</p>
+        </div>
+      </div>
+    
+    
 	</article>
 </div>
 

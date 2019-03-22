@@ -17,24 +17,26 @@
 </head>
 
 <body>
-  <header>
-    <img src="../static/img/logo.svg" alt="Bitovi" class="logo" width="100">
+	<div class="header">
+  	<div class="logo">
+    	<a href="https://www.bitovi.com/">Bitovi</a>
+  	</div>
+	  <ul>
+	    <li><a href="https://www.bitovi.com/services">Services</a></li>
+	    <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+	    <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+	    <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+	    <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+	    <li><a href="https://www.bitovi.com/contact">Contact Us</a></li>
+	    <li><a href=".." class="active">Academy</a></li>
+	   </ul>
+	 </div>
+
+	<div class="content">
+	
+		<div class="sidebar-left">
+  
     
-  </header>
-  <div class="content">
-	
-		<nav class="sidebar">
-	
-		
-			<ul>
-				<li class="">
-					<a class="home" href="../index.html" title="Home">
-						Home
-					</a>
-				</li>
-			</ul>
-		
-		
 	<ul>
 		
 			
@@ -416,34 +418,36 @@
 	</ul>
 
 
-	
-</nav>
+  
+  <p class="border"><a href="..#courses">View More Courses</a></p>
+</div>
 
 	
 	<article class="main">
-		
-			<section class="title">
+    <div class="main-content">
+  		
+  			<section class="title">
 	<h1>Adding Routing <code>page</code></h1>
 </section>
 
-		
+  		
 
-		
-			
-				<section class="description">
+  		
+  			
+  				<section class="description">
     <p>Adding Routing</p>
 
 </section>
 
-			
-		
+  			
+  		
 
-		
-			
-				
-			
-			
-				<section class="body">
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
     <h2>Overview</h2>
 <p>In this part, we will:</p>
 <ul>
@@ -465,8 +469,8 @@
 &lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;//unpkg.com/mock-url@^5.0.0&quot; type=&quot;module&quot;&gt;&lt;/script&gt;
-&lt;base href=&quot;/&quot;&gt;
 &lt;mock-url pushstate:from=&quot;true&quot;&gt;&lt;/mock-url&gt;
+&lt;base href=&quot;/&quot;&gt;
 &lt;my-app&gt;&lt;/my-app&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const { Component, NgModule, VERSION } = ng.core;
@@ -548,7 +552,7 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='57, only'></div>
+<div line-highlight='62, only'></div>
 <h3>Using Wildcards</h3>
 <p>The next example uses the wildcard path, which will render the PageNotFoundComponent when any unregistered route is hit:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -560,6 +564,8 @@ platformBrowserDynamic()
 &lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//unpkg.com/mock-url@^5.0.0&quot; type=&quot;module&quot;&gt;&lt;/script&gt;
+&lt;mock-url pushstate:from=&quot;true&quot;&gt;&lt;/mock-url&gt;
 &lt;base href=&quot;/&quot;&gt;
 &lt;my-app&gt;&lt;/my-app&gt;
 &lt;script type=&quot;typescript&quot;&gt;
@@ -648,7 +654,7 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='67, only'></div>
+<div line-highlight='69, only'></div>
 <h3>Redirecting Routes</h3>
 <p>This example shows one route redirecting to another:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -660,6 +666,8 @@ platformBrowserDynamic()
 &lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//unpkg.com/mock-url@^5.0.0&quot; type=&quot;module&quot;&gt;&lt;/script&gt;
+&lt;mock-url pushstate:from=&quot;true&quot;&gt;&lt;/mock-url&gt;
 &lt;base href=&quot;/&quot;&gt;
 &lt;my-app&gt;&lt;/my-app&gt;
 &lt;script type=&quot;typescript&quot;&gt;
@@ -751,7 +759,7 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='69, only'></div>
+<div line-highlight='71, only'></div>
 <h3>Setting Paths to Modules</h3>
 <p>As our applications grow, it doesn't make sense to load all the code at once. Thanks to <a href="https://angular.io/guide/lazy-loading-ngmodules" target="_blank">lazyloading</a>, we can wait to render modules until a specific route requiring them is hit. (This demo does not work in Codepen unfortunately)</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -763,6 +771,8 @@ platformBrowserDynamic()
 &lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//unpkg.com/mock-url@^5.0.0&quot; type=&quot;module&quot;&gt;&lt;/script&gt;
+&lt;mock-url pushstate:from=&quot;true&quot;&gt;&lt;/mock-url&gt;
 &lt;base href=&quot;/&quot;&gt;
 &lt;my-app&gt;&lt;/my-app&gt;
 &lt;script type=&quot;typescript&quot;&gt;
@@ -866,7 +876,7 @@ platformBrowserDynamic()
     { path: 'about', component: AboutComponent },
     { path: 'boop',  redirectTo: '/about', pathMatch: 'full' },
     { path: 'mymodule', loadChildren: ChildModule},
-     { path: '**', component: PageNotFoundComponent }
+    { path: '**', component: PageNotFoundComponent }
   ];
   
   @NgModule({
@@ -895,9 +905,9 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='112, only'></div>
+<div line-highlight='114, only'></div>
 <h3>&lt;base-href&gt;</h3>
-<p>In our index.html file, the angular cli included <code>&lt;base href=&quot;/&gt;</code>. This tells the router how to compose URLs - the value in the &quot;href&quot; attribute specifies the base URL for all relative URLs contained in the app.</p>
+<p>In our index.html file, the angular cli included <code>&lt;base href=&quot;/&gt;</code>. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base" target="_blank">here</a>, but it's important to know this is how the Angular router will how to compose URLs - the value in the &quot;href&quot; attribute specifies the base URL for all relative URLs contained in the app.</p>
 <pre><code class="language-html">&lt;!doctype html&gt;
 &lt;html lang=&quot;en&quot;&gt;
     &lt;head&gt;
@@ -915,7 +925,7 @@ platformBrowserDynamic()
 </code></pre>
 <div line-highlight='6'></div>
 <h2>Exercise: Edit the Routing Module to Have Routes for Home and Component</h2>
-<p>Our router outlet was already added to our <strong>src/app/app.component.html</strong> file during our initial app creation. Replace the whole file with the following:</p>
+<p>Our router outlet was already added to our <strong>src/app/app.component.html</strong> file during our initial app creation. However, we're going to remove everything in this file and replace the whole file contents with the following:</p>
 <p><strong>src/app/app.component.html</strong></p>
 <pre><code class="language-html">&lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;
 &lt;router-outlet&gt;&lt;/router-outlet&gt;
@@ -929,7 +939,7 @@ platformBrowserDynamic()
 </code></pre>
 <h3>What You Need to know</h3>
 <ul>
-<li>How to create routes that serve components</li>
+<li>How to create routes that serve components (you learned this in section above! ✔️)</li>
 </ul>
 <h3>The Solution</h3>
 <p><strong>src/app/app-routing.module.ts</strong></p>
@@ -960,8 +970,32 @@ export class AppRoutingModule { }
 
 </section>
 
-			
-		
+  			
+  		
+    </div>
+    
+    
+      <div class="sidebar-right">
+        <!--<div class="content-nav">
+          <h6>On this page</h6>
+          <ul class="list-group vertical-steps">
+            <li class="list-group-item completed"><span>Overview</span></li>
+            <li class="list-group-item active"><span>Videos</span</li>
+            <li class="list-group-item"><span>Slides</span</li>
+            <li class="list-group-item"><span>Exercise</span</li>
+          </ul>  
+        </div>-->
+        <div class="widget slack">
+          <p class="bold">Get Help</p>
+          <p>If you need help with an exercise, please reach out to us on Slack.</p>
+          <img src="https://i.ibb.co/XS6n24B/slack.png">
+        </div>
+        <div class="widget bug">
+          <p>If you find bugs in this training or have suggestions, create an issue or email contact@bitovi.com</p>
+        </div>
+      </div>
+    
+    
 	</article>
 </div>
 

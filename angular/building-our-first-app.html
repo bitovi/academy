@@ -17,24 +17,26 @@
 </head>
 
 <body>
-  <header>
-    <img src="../static/img/logo.svg" alt="Bitovi" class="logo" width="100">
+	<div class="header">
+  	<div class="logo">
+    	<a href="https://www.bitovi.com/">Bitovi</a>
+  	</div>
+	  <ul>
+	    <li><a href="https://www.bitovi.com/services">Services</a></li>
+	    <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+	    <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+	    <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+	    <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+	    <li><a href="https://www.bitovi.com/contact">Contact Us</a></li>
+	    <li><a href=".." class="active">Academy</a></li>
+	   </ul>
+	 </div>
+
+	<div class="content">
+	
+		<div class="sidebar-left">
+  
     
-  </header>
-  <div class="content">
-	
-		<nav class="sidebar">
-	
-		
-			<ul>
-				<li class="">
-					<a class="home" href="../index.html" title="Home">
-						Home
-					</a>
-				</li>
-			</ul>
-		
-		
 	<ul>
 		
 			
@@ -416,34 +418,36 @@
 	</ul>
 
 
-	
-</nav>
+  
+  <p class="border"><a href="..#courses">View More Courses</a></p>
+</div>
 
 	
 	<article class="main">
-		
-			<section class="title">
+    <div class="main-content">
+  		
+  			<section class="title">
 	<h1>Building Our First App <code>page</code></h1>
 </section>
 
-		
+  		
 
-		
-			
-				<section class="description">
+  		
+  			
+  				<section class="description">
     <p>Building Our First App</p>
 
 </section>
 
-			
-		
+  			
+  		
 
-		
-			
-				
-			
-			
-				<section class="body">
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
     <h2>Overview</h2>
 <p>In this part, we will:</p>
 <ul>
@@ -571,11 +575,76 @@ cd place-my-order
 &lt;router-outlet&gt;&lt;/router-outlet&gt;
 </code></pre>
 <p>When you save your changes, you should see the new h1 tag in your browser at  <a href="http://localhost:4200" target="_blank">localhost:4200</a>.</p>
+<h2>Running Tests</h2>
+<p>When we use the CLI to create modules, components, services, etc, it will create spec files for us. Run tests with <code>npm run test</code> in the command line. You should see one test failure. Open <strong>src/app/app.component.spec.ts</strong> and update it so the test will pass with the changes we made to <strong>src/app/app.component.html</strong></p>
+<h3>Solution</h3>
+<pre><code class="language-ts">import { TestBed, async } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AppComponent } from './app.component';
+
+describe('AppComponent', () =&gt; {
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ],
+      declarations: [
+        AppComponent
+      ],
+    }).compileComponents();
+  }));
+
+  it('should create the app', () =&gt; {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
+  });
+
+  it(`should have as title 'place-my-order'`, () =&gt; {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app.title).toEqual('place-my-order');
+  });
+
+  it('should render title in a h1 tag', () =&gt; {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain('Place My Order App: Coming Soon!');
+  });
+});
+
+</code></pre>
+<div line-highlight='33'></div>
 
 </section>
 
-			
-		
+  			
+  		
+    </div>
+    
+    
+      <div class="sidebar-right">
+        <!--<div class="content-nav">
+          <h6>On this page</h6>
+          <ul class="list-group vertical-steps">
+            <li class="list-group-item completed"><span>Overview</span></li>
+            <li class="list-group-item active"><span>Videos</span</li>
+            <li class="list-group-item"><span>Slides</span</li>
+            <li class="list-group-item"><span>Exercise</span</li>
+          </ul>  
+        </div>-->
+        <div class="widget slack">
+          <p class="bold">Get Help</p>
+          <p>If you need help with an exercise, please reach out to us on Slack.</p>
+          <img src="https://i.ibb.co/XS6n24B/slack.png">
+        </div>
+        <div class="widget bug">
+          <p>If you find bugs in this training or have suggestions, create an issue or email contact@bitovi.com</p>
+        </div>
+      </div>
+    
+    
 	</article>
 </div>
 

@@ -17,24 +17,26 @@
 </head>
 
 <body>
-  <header>
-    <img src="../static/img/logo.svg" alt="Bitovi" class="logo" width="100">
+	<div class="header">
+  	<div class="logo">
+    	<a href="https://www.bitovi.com/">Bitovi</a>
+  	</div>
+	  <ul>
+	    <li><a href="https://www.bitovi.com/services">Services</a></li>
+	    <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+	    <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+	    <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+	    <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+	    <li><a href="https://www.bitovi.com/contact">Contact Us</a></li>
+	    <li><a href=".." class="active">Academy</a></li>
+	   </ul>
+	 </div>
+
+	<div class="content">
+	
+		<div class="sidebar-left">
+  
     
-  </header>
-  <div class="content">
-	
-		<nav class="sidebar">
-	
-		
-			<ul>
-				<li class="">
-					<a class="home" href="../index.html" title="Home">
-						Home
-					</a>
-				</li>
-			</ul>
-		
-		
 	<ul>
 		
 			
@@ -416,34 +418,36 @@
 	</ul>
 
 
-	
-</nav>
+  
+  <p class="border"><a href="..#courses">View More Courses</a></p>
+</div>
 
 	
 	<article class="main">
-		
-			<section class="title">
+    <div class="main-content">
+  		
+  			<section class="title">
 	<h1>Writing a Restaurant Service <code>page</code></h1>
 </section>
 
-		
+  		
 
-		
-			
-				<section class="description">
+  		
+  			
+  				<section class="description">
     <p>Writing a Restaurant Service</p>
 
 </section>
 
-			
-		
+  			
+  		
 
-		
-			
-				
-			
-			
-				<section class="body">
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
     <h2>Overview</h2>
 <p>In this part, we will:</p>
 <ul>
@@ -593,13 +597,18 @@ class AboutComponent {
 })
 class HomeComponent implements OnInit{
   private users: any[] = [];
+  private usersService;
 
-  constructor(private usersService: UsersService) {}
+  constructor(private usersService: UsersService) {
+  
+  }
 
   ngOnInit() {
-    this.users = usersService.getUsers();
+    this.users = this.usersService.getUsers();
   }
 }
+//THIS IS A HACK JUST FOR CODEPEN TO WORK
+HomeComponent.parameters = [UsersService];
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -789,12 +798,13 @@ platformBrowserDynamic()
 <h2>Exercise: Write a Restaurant Service to fetch a list of restaurants</h2>
 <h3>The problem</h3>
 <p>We want to write a service with a method <code>getRestaurants</code> that uses httpClient to get a list of restaurants from our <code>/api/restaurants</code> url.</p>
+<p>##ADD TEST CODE</p>
 <h3>What You Need to Know</h3>
 <ul>
 <li><p>How to create a service via the CLI</p>
 <pre><code class="language-bash">  ng g service restaurant/restaurant
 </code></pre></li>
-<li><p>How to use httpClient to make a get request</p></li>
+<li><p>How to use httpClient to make a get request (you learned this in section above! ✔️)</p></li>
 </ul>
 <h3>Solution</h3>
 <p><strong>src/app/restaurant/restaurant.service.ts</strong></p>
@@ -954,6 +964,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='18-22,28, only'></div>
+<p>To learn more about interfaces in TypeScript, check out our guide:</p>
 <h2>Exercise: Write an Interface to Describe the Restaurant Object and Data Response</h2>
 <p>We're going to write interfaces to tell Typescript what we expect a restaurant and other related objects to look like. A <code>Restaurant</code> interface should represent an object like this:</p>
 <pre><code class="language-javascript">let restaurant = {
@@ -995,7 +1006,7 @@ for this interface.</p>
 <li><p>How to generate an interface via the CLI</p>
 <pre><code class="language-bash">  ng g interface restaurant/restaurant
 </code></pre></li>
-<li><p>How to write an interface in TypeScript</p></li>
+<li><p>How to write an interface in TypeScript (you learned this in section above! ✔️)</p></li>
 </ul>
 <h2>Solution</h2>
 <p><strong>src/app/restaurant/restaurant.ts</strong></p>
@@ -1060,8 +1071,32 @@ export class RestaurantService {
 
 </section>
 
-			
-		
+  			
+  		
+    </div>
+    
+    
+      <div class="sidebar-right">
+        <!--<div class="content-nav">
+          <h6>On this page</h6>
+          <ul class="list-group vertical-steps">
+            <li class="list-group-item completed"><span>Overview</span></li>
+            <li class="list-group-item active"><span>Videos</span</li>
+            <li class="list-group-item"><span>Slides</span</li>
+            <li class="list-group-item"><span>Exercise</span</li>
+          </ul>  
+        </div>-->
+        <div class="widget slack">
+          <p class="bold">Get Help</p>
+          <p>If you need help with an exercise, please reach out to us on Slack.</p>
+          <img src="https://i.ibb.co/XS6n24B/slack.png">
+        </div>
+        <div class="widget bug">
+          <p>If you find bugs in this training or have suggestions, create an issue or email contact@bitovi.com</p>
+        </div>
+      </div>
+    
+    
 	</article>
 </div>
 

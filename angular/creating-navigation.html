@@ -17,24 +17,26 @@
 </head>
 
 <body>
-  <header>
-    <img src="../static/img/logo.svg" alt="Bitovi" class="logo" width="100">
+	<div class="header">
+  	<div class="logo">
+    	<a href="https://www.bitovi.com/">Bitovi</a>
+  	</div>
+	  <ul>
+	    <li><a href="https://www.bitovi.com/services">Services</a></li>
+	    <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+	    <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+	    <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+	    <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+	    <li><a href="https://www.bitovi.com/contact">Contact Us</a></li>
+	    <li><a href=".." class="active">Academy</a></li>
+	   </ul>
+	 </div>
+
+	<div class="content">
+	
+		<div class="sidebar-left">
+  
     
-  </header>
-  <div class="content">
-	
-		<nav class="sidebar">
-	
-		
-			<ul>
-				<li class="">
-					<a class="home" href="../index.html" title="Home">
-						Home
-					</a>
-				</li>
-			</ul>
-		
-		
 	<ul>
 		
 			
@@ -416,34 +418,36 @@
 	</ul>
 
 
-	
-</nav>
+  
+  <p class="border"><a href="..#courses">View More Courses</a></p>
+</div>
 
 	
 	<article class="main">
-		
-			<section class="title">
+    <div class="main-content">
+  		
+  			<section class="title">
 	<h1>Creating Navigation <code>page</code></h1>
 </section>
 
-		
+  		
 
-		
-			
-				<section class="description">
+  		
+  			
+  				<section class="description">
     <p>Creating Navigation</p>
 
 </section>
 
-			
-		
+  			
+  		
 
-		
-			
-				
-			
-			
-				<section class="body">
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
     <h2>Overview</h2>
 <p>In this part, we will:</p>
 <ul>
@@ -453,6 +457,7 @@
 <h2>RouterLink</h2>
 <p>You may have noticed the links in the routing examples to switch between views. They used the <a href="https://angular.io/api/router/RouterLink" target="\_blank">routerLink</a> directive. The routerLink takes a property of a path that can be static or built dynamically based on properties on the component.</p>
 <h3>Static Segment</h3>
+<p>The following is an example of a hard coded path:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -462,6 +467,8 @@
 &lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//unpkg.com/mock-url@^5.0.0&quot; type=&quot;module&quot;&gt;&lt;/script&gt;
+&lt;mock-url pushstate:from=&quot;true&quot;&gt;&lt;/mock-url&gt;
 &lt;base href=&quot;/&quot;&gt;
 &lt;my-app&gt;&lt;/my-app&gt;
 &lt;script type=&quot;typescript&quot;&gt;
@@ -510,7 +517,7 @@ class HomeComponent {
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
-  { path: '', component: HomeComponent }
+  { path: '', component: HomeComponent },
   { path: '**', component: HomeComponent }
 ]
 @NgModule({
@@ -542,8 +549,9 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='23, only'></div>
+<div line-highlight='25, only'></div>
 <h3>Dynamic Segment</h3>
+<p>The following is an example of a path being built from different pieces of data. In reusable components we'll often want to dynamically create paths based on a piece of datas unique property values.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -553,6 +561,8 @@ platformBrowserDynamic()
 &lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//unpkg.com/mock-url@^5.0.0&quot; type=&quot;module&quot;&gt;&lt;/script&gt;
+&lt;mock-url pushstate:from=&quot;true&quot;&gt;&lt;/mock-url&gt;
 &lt;base href=&quot;/&quot;&gt;
 &lt;my-app&gt;&lt;/my-app&gt;
 &lt;script type=&quot;typescript&quot;&gt;
@@ -649,7 +659,7 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='26,33, only'></div>
+<div line-highlight='28,35, only'></div>
 <h2>RouterLinkActive</h2>
 <p>The <a href="https://angular.io/api/router/RouterLinkActive" target="\_blank">routerLinkActive</a> directive lets you add a CSS class to an element when the link's route becomes active.</p>
 <h3>Adding a basic active class</h3>
@@ -662,6 +672,8 @@ platformBrowserDynamic()
 &lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//unpkg.com/mock-url@^5.0.0&quot; type=&quot;module&quot;&gt;&lt;/script&gt;
+&lt;mock-url pushstate:from=&quot;true&quot;&gt;&lt;/mock-url&gt;
 &lt;base href=&quot;/&quot;&gt;
 &lt;my-app&gt;&lt;/my-app&gt;
 &lt;script type=&quot;typescript&quot;&gt;
@@ -763,7 +775,7 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='23, only'></div>
+<div line-highlight='25, only'></div>
 <h3>Adding an active class with options</h3>
 <p>Using <code>{exact: true}</code> will only set the class if the path match is exactly equal. <code>{exact: true}</code> can also be applied to parents of routerlinks</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -775,6 +787,8 @@ platformBrowserDynamic()
 &lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//unpkg.com/mock-url@^5.0.0&quot; type=&quot;module&quot;&gt;&lt;/script&gt;
+&lt;mock-url pushstate:from=&quot;true&quot;&gt;&lt;/mock-url&gt;
 &lt;base href=&quot;/&quot;&gt;
 &lt;my-app&gt;&lt;/my-app&gt;
 &lt;script type=&quot;typescript&quot;&gt;
@@ -882,7 +896,7 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='25-26,28-31, only'></div>
+<div line-highlight='24-25,27-30, only'></div>
 <h3>Adding an active class with template variable</h3>
 <p>RouterLinkActive can also be used to set <a href="https://angular.io/api/router/RouterLinkActive#template-variable-references" target="\_blank">template variables</a> to check the active status of the route. In this example we're creating a template variable <code>myroutervariable</code> to represent our route and it's active state for logic in our template.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -894,6 +908,8 @@ platformBrowserDynamic()
 &lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//unpkg.com/mock-url@^5.0.0&quot; type=&quot;module&quot;&gt;&lt;/script&gt;
+&lt;mock-url pushstate:from=&quot;true&quot;&gt;&lt;/mock-url&gt;
 &lt;base href=&quot;/&quot;&gt;
 &lt;my-app&gt;&lt;/my-app&gt;
 &lt;script type=&quot;typescript&quot;&gt;
@@ -909,7 +925,8 @@ const { Routes, RouterModule } = ng.router;
     &lt;li routerLinkActive=&quot;my-active-class&quot; &gt;
       &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
     &lt;/li&gt;
-    &lt;li routerLinkActive #myroutervariable=&quot;routerLinkActive&quot; [ngClass]=&quot;{'my-active-class' : myroutervariable.isActive}&quot; &gt;
+    &lt;li routerLinkActive #myroutervariable=&quot;routerLinkActive&quot; 
+      [ngClass]=&quot;{'my-active-class' : myroutervariable.isActive}&quot; &gt;
       &lt;a [routerLink]=&quot;['/users', userId]&quot;&gt;User 1&lt;/a&gt;
     &lt;/li&gt;
   &lt;/ul&gt;
@@ -996,7 +1013,7 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='25-29, only'></div>
+<div line-highlight='27-31, only'></div>
 <h2>Exercise: Building Navigation for Our App</h2>
 <h3>The problem</h3>
 <p>We want navigation in our <strong>src/app/app.component.html</strong> file that will route to our home and restaurant components when clicked, as well as show an <code>active</code> class on the <code>li</code> element when the route is active.</p>
@@ -1044,8 +1061,32 @@ platformBrowserDynamic()
 
 </section>
 
-			
-		
+  			
+  		
+    </div>
+    
+    
+      <div class="sidebar-right">
+        <!--<div class="content-nav">
+          <h6>On this page</h6>
+          <ul class="list-group vertical-steps">
+            <li class="list-group-item completed"><span>Overview</span></li>
+            <li class="list-group-item active"><span>Videos</span</li>
+            <li class="list-group-item"><span>Slides</span</li>
+            <li class="list-group-item"><span>Exercise</span</li>
+          </ul>  
+        </div>-->
+        <div class="widget slack">
+          <p class="bold">Get Help</p>
+          <p>If you need help with an exercise, please reach out to us on Slack.</p>
+          <img src="https://i.ibb.co/XS6n24B/slack.png">
+        </div>
+        <div class="widget bug">
+          <p>If you find bugs in this training or have suggestions, create an issue or email contact@bitovi.com</p>
+        </div>
+      </div>
+    
+    
 	</article>
 </div>
 
