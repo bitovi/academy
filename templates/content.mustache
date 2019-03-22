@@ -1,0 +1,56 @@
+<div class="content">
+	{{#unless hidesidebar}}
+		{{> sidebar.mustache}}
+	{{/unless}}
+	<article class="main">
+    <div class="main-content">
+  		{{#unless hidetitle}}
+  			{{> title.mustache}}
+  		{{/unless}}
+
+  		{{#unless hidedescription}}
+  			{{#if description}}
+  				{{> description.mustache}}
+  			{{/if}}
+  		{{/unless}}
+
+  		{{#unless hideBody}}
+  			{{#if signatures}}
+  				{{#each signatures}}
+  					{{> signature.mustache}}
+  				{{/each}}
+  			{{else}}
+  				{{#types}}
+  					{{> signature.mustache}}
+  				{{/types}}
+  			{{/if}}
+  			{{#if body}}
+  				{{> body.mustache}}
+  			{{/if}}
+  		{{/unless}}
+    </div>
+    
+    {{#unless hidecontentnav}}
+      <div class="sidebar-right">
+        <!--<div class="content-nav">
+          <h6>On this page</h6>
+          <ul class="list-group vertical-steps">
+            <li class="list-group-item completed"><span>Overview</span></li>
+            <li class="list-group-item active"><span>Videos</span</li>
+            <li class="list-group-item"><span>Slides</span</li>
+            <li class="list-group-item"><span>Exercise</span</li>
+          </ul>  
+        </div>-->
+        <div class="widget slack">
+          <p class="bold">Get Help</p>
+          <p>If you need help with an exercise, please reach out to us on Slack.</p>
+          <img src="https://i.ibb.co/XS6n24B/slack.png">
+        </div>
+        <div class="widget bug">
+          <p>If you find bugs in this training or have suggestions, create an issue or email contact@bitovi.com</p>
+        </div>
+      </div>
+    {{/unless}}
+    
+	</article>
+</div>

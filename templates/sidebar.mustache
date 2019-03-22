@@ -1,0 +1,6 @@
+<div class="sidebar-left">
+  {{#with (getCurrentTree)}}
+    {{>menu.mustache}}
+  {{/with}}
+  <p class="border"><a href="{{pathToDest}}#courses">View More Courses</a></p>
+</div>

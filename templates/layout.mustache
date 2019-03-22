@@ -11,11 +11,23 @@
 </head>
 
 <body>
-  <header>
-    <img src="{{pathToDest}}/static/img/logo.svg" alt="Bitovi" class="logo" width="100">
-    {{> header.mustache}}
-  </header>
-  {{{content}}}
+	<div class="header">
+  	<div class="logo">
+    	<a href="https://www.bitovi.com/">Bitovi</a>
+  	</div>
+	  <ul>
+	    <li><a href="https://www.bitovi.com/services">Services</a></li>
+	    <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+	    <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+	    <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+	    <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+	    <li><a href="https://www.bitovi.com/contact">Contact Us</a></li>
+	    <li><a href="{{pathToDest}}" class="active">Academy</a></li>
+	   </ul>
+	 </div>
+
+	{{{content}}}
+
   <footer>{{> footer.mustache}}</footer>
 
   <script type="text/javascript">
