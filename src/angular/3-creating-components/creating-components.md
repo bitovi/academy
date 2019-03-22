@@ -27,7 +27,7 @@ To get our app up and running quicker so we can focus on the architecture, we'll
 npm install place-my-order-assets@0.1 --save
 ```
 
-Open the ``angular.json`` file, and make the following changes to include these files in our build process. This will copy the images into our assets directory for when we serve our application. 
+Open the ``angular.json`` file, and make the following changes to include these files in our build process. This will copy the images into our assets directory for when we serve our application.
 
 > Pay close attention that you're making these changes under the "build" key and not the "test" key, as the code looks very similar. The build key should be close to line 17.
 
@@ -54,7 +54,7 @@ Like all modern JS frameworks, Angular provides us a way of displaying data dyna
 
 ### The problem
 
-We want to create a component that displays a title read from a component's `myData` property.
+We want to create a component that displays a title read from a component's `title` property.
 The component should provide the following HTML:
 
 ```html
@@ -72,9 +72,9 @@ The component should provide the following HTML:
 ```
 
 > Notice the `TITLE_GOES_HERE` part of the HTML. `TITLE_GOES_HERE` should be replaced by
-> something that reads the component's `myData` property.
+> something that reads the component's `title` property.
 
-The component's `myData` property should have a string value of
+The component's `title` property should have a string value of
 `"Ordering food has never been easier"`.
 
 
@@ -98,7 +98,7 @@ The component's `myData` property should have a string value of
   |   |       |── home.component.html
   ```
 
-- How to bind data to the dom
+- How to bind data to the DOM
 - How to view your new component
 
   One of the ways components can be rendered is by putting them in markup. We'll do this by putting our `<pmo-home></pmo-home>` tag in our base app component markup. Open your __src/app/app.component.html__ file and update it to be:
@@ -290,7 +290,7 @@ This example takes the value to be transformed and a parameter to use as an expo
 
 ### The problem
 
-We want to write a pipe that takes an image url and transforms it to the path we actually want to serve the image from. `node_modules/place-my-order-assets` -> `./assets`.  This pipe will be used on our restaurant image thumbnail. Update your __src/app/restaurant/restaurant.component.html__ file to be: 
+We want to write a pipe that takes an image url and transforms it to the path we actually want to serve the image from. `node_modules/place-my-order-assets` -> `./assets`.  This pipe will be used on our restaurant image thumbnail. Update your __src/app/restaurant/restaurant.component.html__ file to be:
 
 ```html
 <div class="restaurants">
@@ -338,5 +338,3 @@ We want to write a pipe that takes an image url and transforms it to the path we
 __src/app/image-url.pipe.ts__
 
 @sourceref ./image-url.pipe.ts
-
-

@@ -41,11 +41,11 @@ Next make add an api script to your ``package.json``
 
 Double check the api is working by running ``npm run api`` and navigating to <a href="http://localhost:7070/restaurants" target="\_blank">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the api command from.
 
-> You must have the API running for your app to work. If you don't see data, make sure that you've run `npm run api` in another terminal window or in your editor
+> You must have the API running for your app to work. If you don't see data, make sure that you've run `npm run api` in another terminal window or in your editor.
 
 ## Create a Proxy to Serve API
 
-Next, we'll create a <a href="https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md" target="_blank">proxy</a> file at the root of our Angular project to access our API for local development purposes.
+Next, we'll create a <a href="https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md" target="\_blank">proxy</a> file at the root of our Angular project to access our API for local development purposes.
 
 ```bash
 touch proxy.conf.json
@@ -80,11 +80,11 @@ Update the package.json `npm start` script to be `ng serve --proxy-config proxy.
 ```
 @highlight 3
 
-Now, restart our app using `npm start` and it will run it with the proxy config we created. To test that it's working, navigate to <a href="http://localhost:4200/api/restaurants" target="_blank">http://localhost:4200/api/restaurants</a> and you should be able to see a list of restaurants.
+Now, __restart__ our app using `npm start` and it will run it with the proxy config we created. To test that it's working, navigate to <a href="http://localhost:4200/api/restaurants" target="\_blank">http://localhost:4200/api/restaurants</a> and you should be able to see a list of restaurants.
 
 ## Angular Services
 
-Angular <a href="https://angular.io/guide/architecture-services" target="_blank">Services</a> are pieces of functionality that may not need to be tied to a view like components. A common example of a service is making an HTTP request to get data. Many components may require functionality to fetch data, and a Service can help abstract that logic into one place to be used across components.
+Angular <a href="https://angular.io/guide/architecture-services" target="\_blank">Services</a> are pieces of functionality that may not need to be tied to a view like components. A common example of a service is making an HTTP request to get data. Many components may require functionality to fetch data, and a Service can help abstract that logic into one place to be used across components.
 
 @sourceref ./service.html
 @codepen

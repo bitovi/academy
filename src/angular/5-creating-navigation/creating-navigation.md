@@ -14,7 +14,7 @@ In this part, we will:
 
 ## RouterLink
 
-You may have noticed the links in the routing examples to switch between views. They used the <a href="https://angular.io/api/router/RouterLink" target="_blank">routerLink</a> directive. The routerLink takes a property of a path that can be static or built dynamically based on properties on the component.  
+You may have noticed the links in the routing examples to switch between views. They used the <a href="https://angular.io/api/router/RouterLink" target="\_blank">routerLink</a> directive. The routerLink takes a property of a path that can be static or built dynamically based on properties on the component.  
 
 ### Static Segment
 
@@ -30,15 +30,15 @@ You may have noticed the links in the routing examples to switch between views. 
 
 ## RouterLinkActive
 
-The <a href="https://angular.io/api/router/RouterLinkActive" target="_blank">routerLinkActive</a> directive lets you add a CSS class to an element when the link's route becomes active.
+The <a href="https://angular.io/api/router/RouterLinkActive" target="\_blank">routerLinkActive</a> directive lets you add a CSS class to an element when the link's route becomes active.
 
-## Adding a basic active class
+### Adding a basic active class
 
 @sourceref ./router-link-active-basic.html
 @codepen
 @highlight 23, only
 
-## Adding an active class with options
+### Adding an active class with options
 
 Using `{exact: true}` will only set the class if the path match is exactly equal. `{exact: true}` can also be applied to parents of routerlinks
 
@@ -46,9 +46,9 @@ Using `{exact: true}` will only set the class if the path match is exactly equal
 @codepen
 @highlight 25-26,28-31, only
 
-## Adding an active class with template variable
+### Adding an active class with template variable
 
-RouterLinkActive can also be used to set <a href="https://angular.io/api/router/RouterLinkActive#template-variable-references" target="_blank">template variables</a> to check the active status of the route. In this example we're creating a template variable `myroutervariable` to represent our route and it's active state for logic in our template.
+RouterLinkActive can also be used to set <a href="https://angular.io/api/router/RouterLinkActive#template-variable-references" target="\_blank">template variables</a> to check the active status of the route. In this example we're creating a template variable `myroutervariable` to represent our route and it's active state for logic in our template.
 
 @sourceref ./router-link-active-template.html
 @codepen
