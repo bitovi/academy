@@ -4,47 +4,74 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js"></script>
 <script src="https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js"></script>
 <script src="https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js"></script>
+<script src="https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js"></script>
 <script src="https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js"></script>
 <script src="https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js"></script>
+<base href="/">
 <my-app></my-app>
 <script type="typescript">
-// app.js
-const { Component, VERSION } = ng.core;
+const { Component, NgModule, VERSION } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { Routes, RouterModule } = ng.router;
 
 @Component({
   selector: 'my-app',
   template: `
-    <ng-container>
-      <p>Inspect me using dev tools. Look, Ma, no ng-container!</p>
-    </ng-container>
-    <ng-container *ngIf="certainThing">
-      <ng-container *ngFor="let thing of myThings">{{thing.name}} {{thing.id}}</ng-container>
-    </ng-container>
+  <ul class="nav">
+    <li routerLinkActive="active">
+      <a routerLink="/about" >About</a>
+    </li>
+  </ul>
+    <router-outlet></router-outlet>
   `
 })
 class AppComponent {
-  public certainThing: boolean = true;
-  myThings : any[] = [
-    {name: 'Blue', id: 001},
-    {name: 'Charlie', id: 002},
-    {name: 'Delta', id: 003},
-    {name: 'Echo', id: 004}
-  ]
   constructor() {
   }
 }
 
-// main.js
-const { BrowserModule } = ng.platformBrowser;
-const { NgModule } = ng.core;
-const { CommonModule } = ng.common;
+@Component({
+  selector: 'about-component',
+  template: `
+    <p>An about component!</p>
+  `
+})
+class AboutComponent {
+  constructor() {
+  }
+}
 
+@Component({
+  selector: 'home-component',
+  template: `
+    <p>A home component!</p>
+  `
+})
+class HomeComponent {
+  constructor() {
+  }
+}
+
+const routes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: '', component: HomeComponent }
+  { path: '**', component: HomeComponent }
+]
 @NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+class AppRoutingModule { }
+
+                 
+@NgModule({
+  declarations: [AppComponent, AboutComponent, HomeComponent],
   imports: [
     BrowserModule,
     CommonModule,
+    AppRoutingModule
   ],
-  declarations: [AppComponent],
   bootstrap: [AppComponent],
   providers: []
 })

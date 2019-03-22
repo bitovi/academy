@@ -15,6 +15,7 @@ const { Component, VERSION } = ng.core;
   selector: 'my-app',
   template: `
     <div *ngIf="showMyContent; else showMyFalseTemplate">
+      I will render if showMyContent is true.
     </div>
     <ng-template #showMyFalseTemplate>
       I render if showMyContent is not true

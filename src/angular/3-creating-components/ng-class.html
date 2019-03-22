@@ -14,22 +14,24 @@ const { Component, VERSION } = ng.core;
 @Component({
   selector: 'my-app',
   template: `
-    <ng-container>
-      <p>Inspect me using dev tools. Look, Ma, no ng-container!</p>
-    </ng-container>
-    <ng-container *ngIf="certainThing">
-      <ng-container *ngFor="let thing of myThings">{{thing.name}} {{thing.id}}</ng-container>
-    </ng-container>
+  <div [ngClass]="'first second'">...</div>
+
+  <div [ngClass]="['first', 'second']">...</div>
+
+  <div [ngClass]="{'first': true, 'second': true, 'third': false}">...</div>
+
+  <div [ngClass]="stringExp|arrayExp|objExp">...</div>
+
+  <div [ngClass]="{'class1 class2 class3' : true}">...</div>
+
+    <div [ngClass]="{'my-active-class' : classIsActive}">
+      Setting classes
+    </div>
+    <button (click)="classIsActive = classIsActive ? false: true">set class active</button> 
   `
 })
 class AppComponent {
-  public certainThing: boolean = true;
-  myThings : any[] = [
-    {name: 'Blue', id: 001},
-    {name: 'Charlie', id: 002},
-    {name: 'Delta', id: 003},
-    {name: 'Echo', id: 004}
-  ]
+  public classIsActive: boolean = false;
   constructor() {
   }
 }
@@ -56,4 +58,9 @@ platformBrowserDynamic()
   .bootstrapModule(AppModule)
   .catch(err => console.error(err));
 </script>
-
+<style>
+    .my-active-class {
+      background: pink;
+    }
+  </style>
+  
