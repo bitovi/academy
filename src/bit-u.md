@@ -40,7 +40,7 @@ and management in these free courses!
 <li>If you get stuck, help is <b>always</b> just a <a href="https://bitovi.com/community/slack">slack</a> message away. </li>
 <li>It's free and <a href="https://github.com/bitovi/university">open source</a>.</li>
 </ol>
-<a href="https://bitovi.com/community/slack"><img src="./static/img/slack.png" width="150"></a>
+<a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y"><img src="./static/img/slack.png" width="150"></a>
 </div>
 <div class="courses-intro" id="courses">
 <h4>The following courses are currently available</h4>
