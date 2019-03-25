@@ -23,7 +23,9 @@
   "homepage": "https://github.com/bitovi/university#readme",
   "devDependencies": {
     "bit-docs": "0.1.0",
-    "gh-pages": "^2.0.1"
+    "gh-pages": "^2.0.1",
+    "html2canvas": "^1.0.0-alpha.12",
+    "steal-qunit": "^1.0.2"
   },
   "bit-docs": {
     "dependencies": {
@@ -45,5 +47,8 @@
     "html": {
       "templates": "templates"
     }
+  },
+  "dependencies": {
+    "steal": "^2.2.0"
   }
 }
