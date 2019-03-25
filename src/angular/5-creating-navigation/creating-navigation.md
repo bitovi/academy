@@ -14,7 +14,7 @@ In this part, we will:
 
 ## RouterLink
 
-You may have noticed the links in the routing examples to switch between views. They used the <a href="https://angular.io/api/router/RouterLink" target="\_blank">routerLink</a> directive. The routerLink takes a property of a path that can be static or built dynamically based on properties on the component.  
+You may have noticed the links in the routing examples to switch between views. They use the <a href="https://angular.io/api/router/RouterLink" target="\_blank">routerLink</a> directive. The routerLink takes a property of a path that can be static or built dynamically based on properties on the component.  
 
 ### Static Segment
 
@@ -87,7 +87,18 @@ The markup structure should look like this:
 - How to use the routerLink directive
 - How to use the routerLinkActive directive
 
-You will know you've completed the exercise correctly when you can click the nav items to see the UI change.
+### To Verify Your Solution is Correct
+
+You will know you've completed the exercise correctly when you can click the nav items to see the UI change and see the active class on the current nav item.
+
+![Place My Order App working nav](../static/img/pmo-working-nav.gif "Place My Order App working nav")
+
+
+Update the spec file  __src/app/app.component.spec.ts__ to be:
+
+@sourceref ./app.component.spec.ts
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ### Solution
 

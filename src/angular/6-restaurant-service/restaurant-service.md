@@ -88,7 +88,7 @@ Angular <a href="https://angular.io/guide/architecture-services" target="\_blank
 
 @sourceref ./service.html
 @codepen
-@highlight 18-48 only
+@highlight 18-48, only
 
 ## Importing `HttpClientModule` into _app.module.ts_
 
@@ -113,7 +113,6 @@ __src/app/app.module.ts__
 
 We want to write a service with a method `getRestaurants` that uses httpClient to get a list of restaurants from our `/api/restaurants` url.
 
-##ADD TEST CODE
 
 ### What You Need to Know
 
@@ -125,7 +124,20 @@ We want to write a service with a method `getRestaurants` that uses httpClient t
 
 - How to use httpClient to make a get request (you learned this in section above! ✔️)
 
+### To Verify Your Solution is Correct
+
+Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
+
+@sourceref ./restaurant.service.spec.ts
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+
 ### Solution
+
+__src/app/app.module.ts__
+
+@sourceref ./app.module.ts
+@highlight 3,21
 
 __src/app/restaurant/restaurant.service.ts__
 
@@ -139,11 +151,13 @@ Thanks to TypeScript we can write interfaces to describe what we expect objects 
 @codepen
 @highlight 18-22,28, only
 
-To learn more about interfaces in TypeScript, check out our guide: 
+To learn more about interfaces in TypeScript, check out our [typescript/interfaces TypeScript guide].
 
 ## Exercise: Write an Interface to Describe the Restaurant Object and Data Response
 
-We're going to write interfaces to tell Typescript what we expect a restaurant and other related objects to look like. A `Restaurant` interface should represent an object like this:
+### The problem
+
+We're going to write interfaces to tell Typescript what we expect a restaurant and other related objects to look like and use them in our restaurant service. A `Restaurant` interface should represent an object like this:
 
 ```javascript
 let restaurant = {
@@ -174,16 +188,7 @@ let restaurant = {
 }
 ```
 
-We'll also need to write a `ResponseData` interface to describe the response from our get request, which looks like:
-
-```javascript
-let response = {
-  data: [] //array of restaurants
-}
-```
-
-This interface can be written in the __src/app/restaurant/restaurant.service.ts__ file. *Hint, you'll need to import the `restaurant` interface
-for this interface.
+This interface can be written in the __src/app/restaurant/restaurant.service.ts__ file. *
 
 ## What You Need to Know
 
@@ -195,15 +200,30 @@ for this interface.
 
 - How to write an interface in TypeScript (you learned this in section above! ✔️)
 
-## Solution
-
-__src/app/restaurant/restaurant.ts__
-
-@sourceref ./restaurant.ts
+We've already written a `responseData` interface that will take an array of restaurants for you. Here's the code to get you started:
 
 __src/app/restaurant/restaurant.service.ts__
 
 @sourceref ./restaurant.service.ts
 @highlight 4,6-8, 18
+
+__src/app/restaurant/restaurant.ts__
+
+@sourceref ./restaurant-starter.ts
+
+### To Verify Your Solution is Correct
+
+Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
+
+@sourceref ./restaurant.service-with-interface.spec.ts
+@highlight 30, 80
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass! If you haven't implemented the interface correctly, you'll see a compile error before the tests runs
+
+## Solution
+
+__src/app/restaurant/restaurant.ts__
+
+@sourceref ./restaurant.ts
 
 In the next step we'll call the `getRestaurants` method in our component to get the list of restaurants.
