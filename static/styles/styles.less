@@ -258,21 +258,22 @@ a {
   display: flex;
   align-items: center;
   width: 100%;
-  padding: 30px;
+  padding: 17px 5px 19px 0;
   border-bottom: 1px solid #eee;
   .logo {
     a {
       display: block;
-      background: url('https://www.bitovi.com/hubfs/2171535/Bitovi_July_2016_Theme/Images/bitovi-logo.png') 15px 7px no-repeat;
+      background: url('../img/bitovi-logo-x2.png') 15px 7px no-repeat;
+      background-size: 108px 33px;
       text-indent: -9999px;
       width: 138px;
       height: 54px;
-      margin-right: 60px;
+      margin-right: 93px;
     }
   }
   ul {
     list-style: none;
-    margin: 0 0 0 -13px;
+    margin: 0;
     padding: 0;
     display: block;
     li {
@@ -283,7 +284,11 @@ a {
       a {
         color: #3E4548;
         font-size: 12px;
-        margin-right: 20px;
+        line-height: 27px;
+        margin-right: 12px;
+        margin-top: 15px;
+        margin-bottom: 10px;
+        display: inline-block;
         padding: 0 5px;
         text-transform: uppercase;
         text-decoration: none;
@@ -293,6 +298,40 @@ a {
         }
       }
     }
+  }
+  .hs-button {
+      cursor: pointer;
+      -webkit-appearance: none;
+      font-family: Lato, Arial, sans-serif;
+      text-decoration: none !important;
+      display: inline-block;
+      border-radius: 3px;
+      text-decoration: none;
+      background-image: none;
+      text-align: center;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+  .contact-popup {
+    font-weight: bold;
+    margin: 13px 20px 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .hs-button.button-smallest {
+    font-size: 14px;
+    line-height: 1.5;
+    padding: 4px 10px;
+  }
+  .hs-button.brand {
+    background-color: #CB3036;
+    border-color: #CB3036;
+    color: #ffffff;
+  }
+  .hs-button.brand:hover {
+    background-color: #E13235;
+    border-color: #E13235;
   }
 }
 
@@ -311,14 +350,14 @@ a {
     color: #fff;
     font-family: Lato, Arial, sans-serif;
     line-height: 1.1;
-    font-size: 46px;
+    font-size: 56px;
     font-weight: 300;
     text-align: center;
     margin: 0 auto 15px auto;
   }
   h2 {
     color: #fff;
-    font-size: 22px;
+    font-size: 18px !important;
     font-weight: normal;
     line-height: 1.6;
     width: 800px;
@@ -331,7 +370,9 @@ a {
   margin-bottom: 30px;
   text-align: center;
   h3 {
-    font-size: 22px;
+    font-size: 38px;
+    font-weight: 300;
+    margin-bottom: 10px;
   }
   p {
     font-size: 18px;
@@ -457,9 +498,6 @@ a {
 }
 .main-content {
   width: 70%;
-}
-.main-content ol li {
-  list-style: none;
 }
 .main-content .title h1 {
   font-size: 28px;
