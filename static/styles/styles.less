@@ -209,7 +209,7 @@ h2 {
   border: none;
   font-family: Menlo,Roboto Mono,Courier New,monospace;
   font-weight: 400;
-  font-size: .6em;
+  font-size: 0.9em;
   color: #111;
   border-radius: 4px;
   background: rgba(0,0,0,.06);
@@ -344,8 +344,8 @@ a {
   padding-top: 30px;
   border-top: 1px solid #eee;
   h4 {
-    font-size: 22px;
-    font-weight: normal;
+    font-size: 31px;
+    font-weight: 300;
     margin: 0;
   }
 }
@@ -366,6 +366,9 @@ a {
       margin: 0 auto 30px auto;
       padding: 15px;
       border: 1px solid #eee;
+      &:hover {
+        border: 1px solid #CCC;
+      }
       .course-logo {
         height: 120px;
         display: flex;
@@ -390,6 +393,7 @@ a {
 
 .sidebar-left {
   padding: 0 30px;
+  white-space: nowrap;
   ul {
     list-style: none;
     width: 100%;
@@ -425,7 +429,7 @@ a {
 }
 // Tidy this up
 .sidebar-left ul li a {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #eee;
   font-weight: bold;
   margin-bottom: 15px;
   padding-bottom: 15px;
@@ -443,7 +447,7 @@ a {
   display: none;
 }
 .sidebar-left .border {
-  border-top: 1px solid #ccc;
+  border-top: 1px solid #eee;
   padding-top: 15px;
 }
 
@@ -464,6 +468,9 @@ a {
 .main-content .title h1 {
   font-size: 28px;
   margin-bottom: 30px;
+  code {
+    font-size: .6em;
+  }
 }
 .main-content .description p {
   margin-bottom: 15px;
@@ -484,23 +491,40 @@ a {
   list-style-type: disc;
 }
 
+// Utility
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: #eee;
+  margin: 30px 0;
+}
+hr:first-of-type {
+  border: none;
+  height: 1px;
+  background-color: #eee;
+  margin-top: 30px;
+}
+
+// Sidebar Right
+
 .sidebar-right {
   position: fixed;
   z-index: 1;
   top: 117px;
   right: 20px;
   width: 300px;
-  padding: 0 30px;
+  padding: 0 15px;
 }
 .sidebar-right .content-nav {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #eee;
   margin-top: 22px;
   padding-bottom: 30px;
 }
 .sidebar-right .content-nav h6 {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: bold;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #eee;
   margin-top: 0;
   margin-bottom: 15px;
   padding-bottom: 15px;
@@ -510,23 +534,26 @@ a {
 }
 .sidebar-right .content-nav li {
   list-style: none;
-  border: 1px solid red;
 }
-.sidebar-right .widget {
-  border-bottom: 1px solid #ccc;
+.sidebar-right .pullout {
+  border-bottom: 1px solid #eee;
   margin: 5px 0;
-  padding: 15px 0;
+  padding: 15px 0 20px 0;
 }
-.sidebar-right .widget p {
+.sidebar-right .pullout p {
   font-size: 14px;
   margin: 0;
 }
-.sidebar-right .widget .bold {
+.sidebar-right .pullout h6 {
+  font-size: 15px;
   font-weight: bold;
+  margin: 0;
 }
-.sidebar-right .widget .bug p {
+.sidebar-right .bug p {
   color: #666;
 }
+
+// Sidebar Right: Content Navigation
 
 .list-group.vertical-steps {
   font-size: 14px;
@@ -543,6 +570,14 @@ a {
   margin: 0;
   padding: 0 0 20px 20px;
 }
+.list-group-item a {
+  padding: 0;
+  text-decoration: none;
+  &:visited {
+    color: #333;
+  }
+}
+
 .list-group.vertical-steps .list-group-item.active {
   background-color: transparent;
   color: inherit;
