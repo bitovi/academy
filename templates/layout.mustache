@@ -11,22 +11,22 @@
 </head>
 
 <body>
-	<div class="header">
-  	<div class="logo">
-    	<a href="https://www.bitovi.com/">Bitovi</a>
-  	</div>
-	  <ul>
-	    <li><a href="https://www.bitovi.com/services">Services</a></li>
-	    <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
-	    <li><a href="https://www.bitovi.com/about">Our Team</a></li>
-	    <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
-	    <li><a href="https://www.bitovi.com/blog">Blog</a></li>
-	    <li><a href="https://www.bitovi.com/contact">Contact Us</a></li>
-	    <li><a href="{{pathToDest}}" class="active">Academy</a></li>
-	   </ul>
-	 </div>
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href="{{pathToDest}}" class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="51-header-match">Contact Us</a>
+  </div>
 
-	{{{content}}}
+  {{{content}}}
 
   <footer>{{> footer.mustache}}</footer>
 
@@ -57,7 +57,6 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'UA-2302003-29');
 </script>
 

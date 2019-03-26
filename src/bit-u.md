@@ -26,6 +26,12 @@ and management in these free courses!
   text-indent: -20px;
   margin: 0;
 }
+.academy-intro ol {
+  margin-top: 0;
+}
+.academy-intro ol li {
+  list-style: none;
+}
 </style>
 
 <div class="container">
@@ -37,7 +43,7 @@ and management in these free courses!
 <h3>Why Bitovi Academy?</h3>
 <ol>
 <li>Hands on courses are the best way of learning and retaining difficult concepts.</li>
-<li>If you get stuck, help is <b>always</b> just a <a href="https://bitovi.com/community/slack">slack</a> message away. </li>
+<li>If you get stuck, help is <b>always</b> just a <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">slack</a> message away. </li>
 <li>It's free and <a href="https://github.com/bitovi/university">open source</a>.</li>
 </ol>
 <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y"><img src="./static/img/slack.png" width="150"></a>
