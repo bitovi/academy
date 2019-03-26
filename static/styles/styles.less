@@ -454,13 +454,12 @@ a {
 // Course Content
 
 .main {
-  padding: 0 30px;
-  width: 70%;
   display: flex;
   flex-direction: row;
+  padding-right: 0 !important;
 }
 .main-content {
-  width: 70%;
+  padding-right: 30px;
 }
 .main-content ol li {
   list-style: none;
@@ -509,12 +508,11 @@ hr:first-of-type {
 // Sidebar Right
 
 .sidebar-right {
-  position: fixed;
-  z-index: 1;
-  top: 117px;
-  right: 20px;
-  width: 300px;
-  padding: 0 15px;
+  position: sticky;
+  top: 0;
+  right: 0;
+  padding: 0 30px;
+  min-width: 300px;
 }
 .sidebar-right .content-nav {
   border-bottom: 1px solid #eee;
