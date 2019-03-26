@@ -30,7 +30,8 @@ To use reactive forms we must import our ReactiveFormsModule into the root app.
 
 ### FormControl
 
-The basic element of a reactive from is the FromControl. This class manages the form input model and connection to it's input element in the dom. 
+The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl" target="_blank">FormControl</a>. This class manages the form input model and connection to it's input element in the dom and inherits from the <a href="https://angular.io/api/forms/AbstractControl" target="_blank">AbstractControl</a>
+class. It's worth getting familiar with the methods available in this class(like setValidators and patchValue), as they're used quite often in reactive form development.
 
 @sourceref ./form-control.html
 @codepen
@@ -38,7 +39,7 @@ The basic element of a reactive from is the FromControl. This class manages the 
 
 ### FormGroup
 
-A FormGroup is a way of grouping FormControls and tracking the state of the entire form. Notice the way we connect our input in the markup is slightly different - we use `formControlName` to bind to the name value in our FormGroup.
+A FormGroup is a way of grouping FormControls and tracking the state of the entire form. Notice the way we connect our input in the markup is slightly different - we use `formControlName` to bind to the name value in our FormGroup. Groups can be nested within other groups or arrays.  
 
 @sourceref ./form-group.html
 @codepen
@@ -46,7 +47,7 @@ A FormGroup is a way of grouping FormControls and tracking the state of the enti
 
 ### FormArray
 
-FormArray aggregates FormControls into an array. It's different than FormGroup in that the controls inside are serialized as an array. FormArrays are very useful when dealing with repeated FormControls or dynamic forms that allow users to create additional inputs.
+FormArray aggregates FormControls into an array. It's different than FormGroup in that the controls inside are serialized as an array. FormArrays are very useful when dealing with repeated FormControls or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays. 
 
 @sourceref ./form-array.html
 @codepen
