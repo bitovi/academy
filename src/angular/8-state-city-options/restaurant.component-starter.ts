@@ -39,19 +39,11 @@ export class RestaurantComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.createForm();
     this.restaurants.isPending = true;
 
     this.restaurantService.getRestaurants().subscribe((res: ResponseData) => {
       this.restaurants.value = res.data;
       this.restaurants.isPending = false;
-    });
-  }
-
-  createForm() {
-    this.form = this.fb.group({
-      state: {value: '', disabled: false},
-      city: {value: '', disabled: false},
     });
   }
 
