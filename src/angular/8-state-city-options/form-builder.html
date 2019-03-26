@@ -7,6 +7,7 @@
 <script src="https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js"></script>
 <script src="https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js"></script>
 <script src="https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js"></script>
+<script src="https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js"></script>
 <base href="/">
 <my-app></my-app>
 <script type="typescript">
@@ -14,38 +15,7 @@ const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
 const { Routes, RouterModule } = ng.router;
-
-@Injectable({
-  providedIn: 'root'
-})
-class UsersService {
-  private users = [
-  {
-    name: 'Jennifer',
-    id: 1,
-    role: 'admin'
-  },
-  {
-    name: 'Steve',
-    id: 2,
-    role: 'user'
-  },
-  {
-    name: 'Alice',
-    id: 3,
-    role: 'developer'
-  }]
-
-  constructor() { }
-
-  getUsers() {
-    return this.users;
-  }
-
-  getUser(id: number) {
-    return this.users.find(x => x.id === id)
-  }
-}
+const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
 
 @Component({
   selector: 'my-app',
@@ -77,26 +47,40 @@ class AboutComponent {
   selector: 'home-component',
   template: `
     <p>A home component!</p>
-    <ul>
-      <li *ngFor="let user of users">
-        {{user.name}}
-      </li>
-    </ul>
+    <form [formGroup]="myQuickForm">
+      <label>
+          First name:
+          <input type="text" formControlName="firstName">
+        </label>
+        <label>
+          Last name:
+          <input type="text" formControlName="lastName">
+        </label>
+        <label>
+          Email:
+          <input type="text" formControlName="email">
+        </label>
+    </form>
   `
 })
 class HomeComponent implements OnInit{
-  private users: any[] = [];
+  myQuickForm: FormGroup;
 
-  constructor(private usersService: UsersService) {
+  constructor(private fb:FormBuilder) {
   
   }
 
   ngOnInit() {
-    this.users = this.usersService.getUsers();
+    this.myQuickForm = this.fb.group({
+      firstName: {value: '', disabled: false},
+      lastName: {value: '', disabled: false},
+      email: {value: '', disabled: false}
+    });
   }
 }
 //THIS IS A HACK JUST FOR CODEPEN TO WORK
-HomeComponent.parameters = [UsersService];
+HomeComponent.parameters = [FormBuilder];
+
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -114,7 +98,8 @@ class AppRoutingModule { }
   imports: [
     BrowserModule,
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule, 
+    ReactiveFormsModule
   ],
   bootstrap: [AppComponent],
   providers: []

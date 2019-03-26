@@ -77,14 +77,6 @@ The component should provide the following HTML:
 The component's `title` property should have a string value of
 `"Ordering food has never been easier"`.
 
-### To Verify Your Solution is Correct
-
-Update the spec file  __src/app/home/home.component.spec.ts__ to be:
-
-@sourceref ./home.component.spec.ts
-
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
-
 ### What you need to know
 
 - How to generate a component:
@@ -138,6 +130,14 @@ __src/app/home/home.component.html__
   </p>
 </div>
 ```
+
+### To Verify Your Solution is Correct
+
+Update the spec file  __src/app/home/home.component.spec.ts__ to be:
+
+@sourceref ./home.component.spec.ts
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ### The solution
 
@@ -244,18 +244,9 @@ To see our view working, we can paste it into our __src/app/app.component.html__
 
 ## Exercise: Write Restaurant Component Markup that Displays a List of Restaurants
 
-
 ### The problem
 
 We want to display a list of restaurants in our UI once the data has been set on the restaurants member.  
-
-### To Verify Your Solution is Correct
-
-Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
-
-@sourceref ./restaurant.component.spec.ts
-
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ### What you need to know
 
@@ -282,6 +273,14 @@ Here is the markup to show for each restaurant:
 </a>
 <br />
 ```
+
+### To Verify Your Solution is Correct
+
+Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
+
+@sourceref ./restaurant.component.spec.ts
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass! (you'll need to remove <pmo-home> and <pmo-restaurant> from the app.component.html file first)
 
 ### The solution
 
@@ -352,9 +351,15 @@ We want to write a pipe that takes an image url and transforms it to the path we
 
 ### To Verify Your Solution is Correct
 
+Update the restaurant spec file __src/app/restaurant/restaurant.component.spec.ts__ to include the new pipe:
+
+@sourceref ./restaurant.component.spec-with-pipe.ts
+@highlight 3,16, only
+
 Update the spec file  __src/app/image-url.pipe.spec.ts__ to be:
 
 @sourceref ./image-url.pipe.spec.ts
+
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 

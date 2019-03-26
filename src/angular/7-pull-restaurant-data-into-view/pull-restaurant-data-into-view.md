@@ -29,8 +29,18 @@ We want to be able to use the `getRestaurants` method in our component to displa
 
 ## What you need to know
 
-- How to inject a service into a component
+- How to inject a service into a component (you learned this in section above! ✔️)
 - How to call a method from a class
+
+> Hint - call the `getRestaurants` method on the ngOnInit function
+
+### To Verify Your Solution is Correct
+
+Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
+
+@sourceref ./restaurant.component.spec-no-html.ts
+@highlight 168-268, only
+We've temporarily commented out a few tests until the next section.
 
 ## Solution
 
@@ -46,7 +56,14 @@ We'll have to the restaurant component html to match our new restaurant object:
 __src/app/restaurant/restaurant.component.html__
 
 @sourceref ./restaurant.component.html
-@highlight 3, 4
+@highlight 3, 4, 5
+
+### To Verify Everything is Running Correctly
+
+Uncomment the tests in  __src/app/restaurant/restaurant.component.spec.ts__:
+
+@sourceref ./restaurant.component.spec.ts
+@highlight 147-166, only
 
 You should now see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>! You may have noticed in our markup there's another use of routerLink:
 

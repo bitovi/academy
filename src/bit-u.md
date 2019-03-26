@@ -167,7 +167,7 @@ too!</p>
 <img src="./static/img/javascript.png" width="100">
 </div>
 <h5>Your Course Here</h5>
-<p>Got an idea for a course? Let us know by <a href="https://github.com/bitovi/university/issues/new">creating an issue</a>.</p>
+<p>Got an idea for a course? Let us know by <a href="https://github.com/bitovi/university/issues/new">submitting an issue</a>.</p>
 
 </div>
 
@@ -177,9 +177,8 @@ too!</p>
 <div class="course-logo">
 <img src="./static/img/slack.png" width="200">
 </div>
-<h5>Having problems?</h5>
-<p>Reach out to our team via Slack. We can help answer any questions you have about our courses or suggest a new
-course.</p>
+<h5>Need Help?</h5>
+<p>Reach out to our team via Slack. We can help answer any questions you have about our courses.</p>
 </div>
 
 </div><!-- close courses -->

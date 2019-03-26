@@ -82,17 +82,21 @@ __src/app/app.component.html__
 
 ### The problem
 
-We need to set up routes for the home view and restaurant view. When the route is `''`, the `HomeComponent` should display, and when the route is `/restaurants` the `RestaurantComponent` should display. Make these changes in __src/app/app-routing.module.ts__. If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>. (You may have noticed the ```routerLink``` attribute on the a tag in our home component markup. This one of the ways we link to specific routes in our app.)
+We need to set up routes for the home view and restaurant view. When the route is `''`, the `HomeComponent` should display, and when the route is `/restaurants` the `RestaurantComponent` should display. Make these changes in __src/app/app-routing.module.ts__.
+
+### What You Need to know
+
+- How to create routes that serve components (you learned this in section above! ✔️)
+
+### To Verify Your Solution is Correct
+
+If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>. (You may have noticed the ```routerLink``` attribute on the a tag in our home component markup. This one of the ways we link to specific routes in our app.)
 
 ```html
 <a class="btn" [routerLink]="['/restaurants', restaurant.slug]">
   Details
 </a>
 ```
-
-### What You Need to know
-
-- How to create routes that serve components (you learned this in section above! ✔️)
 
 ### The Solution
 
