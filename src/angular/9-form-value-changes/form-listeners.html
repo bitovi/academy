@@ -63,12 +63,10 @@ class AboutComponent {
           <input type="text" formControlName="email">
         </label>
     </form>
-    <p>Name: {{$nameObservable | async}}</p>
   `
 })
 class HomeComponent implements OnInit{
   myQuickForm: FormGroup;
-  $nameObservable: Observable;
 
   constructor(private fb:FormBuilder) {
   
@@ -84,8 +82,6 @@ class HomeComponent implements OnInit{
     this.myQuickForm.valueChanges.subscribe((val) => {
       console.log(val);
     });
-
-    this.$nameObservable = this.myQuickForm.get('firstName').valueChanges;
   }
 }
 //THIS IS A HACK JUST FOR CODEPEN TO WORK

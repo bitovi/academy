@@ -41,7 +41,7 @@ We can listen to changes to values on FormControls and FormGroup using the value
 
 @sourceref ./form-listeners.html
 @codepen
-@highlight 66,71,84-86,88,only
+@highlight 82-84,only
 
 ## Exercise: Listen to Changes on the State and City formControls and console log their value
 
