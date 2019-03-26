@@ -9,6 +9,6 @@ export class RestaurantService {
   constructor(private httpClient: HttpClient) { }
 
   getRestaurants() {
-    return this.httpClient.get('/api/restaurants');
+    return this.httpClient.get<any>('/api/restaurants');
   }
 }
