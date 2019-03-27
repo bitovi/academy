@@ -50,6 +50,7 @@
     }
   },
   "dependencies": {
+    "pixelmatch": "^4.0.2",
     "steal": "^2.2.0"
   }
 }

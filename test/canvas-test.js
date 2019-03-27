@@ -1,6 +1,6 @@
 import html2canvas from "./html2canvas";
 import {detect} from "detect-browser";
-
+import pixelmatch from "pixelmatch";
 
 
 // ## Basic Helpers
@@ -44,7 +44,21 @@ export function resizeCanvas(canvas, scale) {
 	ctx.drawImage(tempCanvas,0,0,cw,ch,0,0, cw*scale,ch*scale );
 }
 
-export function copyToWidth(canvas, newWidth) {
+export function copyTo(canvas, newWidth, newHeight) {
+	var newCanvas = document.createElement("canvas");
+	newCanvas.width = newWidth;
+	newCanvas.height = newHeight;
+	var newCtx = newCanvas.getContext("2d");
+	if(canvas.getContext) {
+		newCtx.drawImage(canvas,0,0,canvas.width,canvas.height,0,0, canvas.width,canvas.height );
+	} else {
+		newCtx.putImageData(canvas,0,0 );
+	}
+
+	return newCanvas;
+}
+
+export function stretchToWidth(canvas, newWidth) {
 	var newHeight = canvas.height * ( newWidth / canvas.width );
 	var newCanvas = document.createElement("canvas");
 	newCanvas.width = newWidth;
@@ -68,6 +82,9 @@ function getImageData(image) {
 // ## Image or Canvas comparisons
 
 export function dataEqual(data1, data2) {
+	data1 = getImageData(data1);
+	data2 = getImageData(data2);
+
 	var len = data1.data.length;
 	for(var i = 0 ; i < len; i++) {
 		if(data1.data[i] !== data2.data[i]) {
@@ -80,7 +97,30 @@ export function dataEqual(data1, data2) {
 
 
 
-export function diff(newImage, oldImage) {
+export function diff(newImage, oldImage, options) {
+
+	var maxWidth = Math.max(newImage.width, oldImage.width),
+		maxHeight = Math.max(newImage.height, oldImage.height);
+
+	newImage = getImageData(newImage);
+	oldImage = getImageData(oldImage);
+
+	var canvas = document.createElement("canvas");
+	var ctx = canvas.getContext('2d');
+	var diffOut = ctx.createImageData(maxWidth, maxHeight);
+	canvas.width = maxWidth;
+	canvas.height = maxHeight;
+
+	var mismatched = pixelmatch(newImage.data, oldImage.data, diffOut.data, maxWidth, maxHeight, {threshold: 0})
+
+	if( mismatched ){
+		ctx.putImageData(diffOut, 0, 0);
+		return canvas;
+	}
+
+}
+
+export function basicDiff(newImage, oldImage) {
 	newImage = getImageData(newImage);
 	oldImage = getImageData(oldImage);
 
@@ -142,6 +182,7 @@ function makeBoxForCanvas(canvas, title) {
 	var div = document.createElement("div");
 	div.style.display = "inline-block";
 	div.style.border = "solid 1px black";
+	div.style.verticalAlign = "text-top";
 	var paragraph = document.createElement("p");
 	paragraph.textContent = title;
 	div.appendChild(paragraph)
@@ -160,19 +201,21 @@ function getWidth(){
 	);
 }
 
-export function diffContent(diffCanvas, newCanvas, oldCanvas, imageName) {
+export function diffContent(diffCanvas, newCanvas, oldCanvas, imageName, attempts) {
 	var width = Math.floor( getWidth() / 3 ) - 50;
 
 	// get links
 	var newCanvasDownload = downloadLink(newCanvas,imageName, "download new "+imageName);
 
-	var diffSized = copyToWidth(diffCanvas, width);
-	var newSized = copyToWidth(newCanvas, width);
-	var oldSized = copyToWidth(oldCanvas, width);
+	var diffSized = stretchToWidth(diffCanvas, width);
+	var newSized = stretchToWidth(newCanvas, width);
+	var oldSized = stretchToWidth(oldCanvas, width);
 
 	var diffContent = makeBoxForCanvas(diffSized, "Difference:");
-	var newContent = makeBoxForCanvas(newSized, "Current Rendering:");
-	newContent.querySelector("p").appendChild(newCanvasDownload);
+	var newContent = makeBoxForCanvas(newSized, "Current Rendering (downloads below image):");
+
+	newContent.appendChild( ulForAttempts(attempts, newCanvas) );
+
 	var oldContent = makeBoxForCanvas(oldSized, imageName);
 
 	var div = document.createElement("div");
@@ -180,6 +223,17 @@ export function diffContent(diffCanvas, newCanvas, oldCanvas, imageName) {
 	div.appendChild(newContent);
 	div.appendChild(oldContent);
 	return div;
+}
+
+function ulForAttempts(attempts, canvas) {
+	var ul = document.createElement("ul");
+	attempts.forEach(function(imageName){
+		var newCanvasDownload = downloadLink(canvas,imageName, imageName);
+		var li = document.createElement("li");
+		li.appendChild(newCanvasDownload);
+		ul.appendChild(li);
+	});
+	return ul;
 }
 
 /**
@@ -201,10 +255,13 @@ export function compareToSnapshot(options) {
 		var imageCanvas = results[1].canvas;
 		var imageName = results[1].name;
 
+		var next = downloadLink(iframeCanvas,imageName, imageName);
+		//console.log("lastLink", localStorage.getItem("initial") === next.getAttribute("href") );
+
 		var diffCanvas = diff(iframeCanvas, imageCanvas);
 		if(diffCanvas) {
 			return Promise.reject({
-				html: diffContent(diffCanvas, iframeCanvas, imageCanvas, imageName),
+				html: diffContent(diffCanvas, iframeCanvas, imageCanvas, imageName, results[1].attempts),
 				imageName: imageName
 			});
 		} else {
@@ -219,10 +276,13 @@ export function compareToSnapshot(options) {
 
 			var imageName = err.attempts[0];
 			var newCanvasDownload = downloadLink(iframeCanvas,imageName, imageName);
+			//localStorage.setItem("initial",newCanvasDownload.getAttribute("href"));
 			var p = document.createElement("p");
-			p.textContent = "There is no snapshot. Download the snapshot by right-clicking ";
-			p.appendChild(newCanvasDownload);
-			p.append(" and select 'Save Link As...'.");
+			p.textContent = "There is no snapshot. Download one of the following snapshots by right-clicking "+
+				"the link and selecting 'Save Link As...'. Downloads are ordered by specificity:";
+
+			var ul = ulForAttempts(err.attempts, iframeCanvas);
+			p.appendChild(ul);
 			return Promise.reject({
 				attempts: err.attempts,
 				html: p
@@ -235,9 +295,12 @@ export function compareToSnapshot(options) {
 
 export function findImage(options){
 	var browser = detect();
+	var dpr = (document.defaultView.devicePixelRatio || 1);
+	var dprName = dpr === 1 ? "sd" : (dpr === 2 ? "hd" : "dpr"+dpr);
 
 	var attempts = [
-		options.snapshotPrefix+"-"+options.width+"-"+browser.name+".png",
+		options.snapshotPrefix+"-"+options.width+"-"+dprName+"-"+browser.name+".png",
+		options.snapshotPrefix+"-"+options.width+"-"+dprName+".png",
 		options.snapshotPrefix+"-"+options.width+".png",
 		options.snapshotPrefix+".png"
 	];
@@ -247,7 +310,7 @@ export function findImage(options){
 	attempts.forEach(function(name){
 		base = base.catch(function(err){
 			return getCanvasForImage(options.snapshotDir+name).then(function(canvas){
-				return {canvas: canvas, name: name}
+				return {canvas: canvas, name: name, attempts: attempts}
 			})
 		})
 	});
@@ -310,14 +373,14 @@ export function getCanvasForImage(url) {
 
 		image.onload = function(){
 			var canvas = document.createElement("canvas");
-		    //document.body.appendChild(canvas);
+			//document.body.appendChild(canvas);
 
-		    canvas.width  = image.width;
-		    canvas.height = image.height;
+			canvas.width  = image.width;
+			canvas.height = image.height;
 
-		    var context = canvas.getContext("2d");
+			var context = canvas.getContext("2d");
 
-		    context.drawImage(image, 0, 0);
+			context.drawImage(image, 0, 0);
 			resolve(canvas);
 		}
 		image.onerror = reject;
