@@ -19,9 +19,9 @@ QUnit.asyncTest("style-guide looks right", function(){
 
 	compareToSnapshot({
 		url: "../doc/training/style-guide.html",
+		width: 1000,
 		snapshotDir: "./",
 		snapshotPrefix: "style-guide",
-		width: 1000
 	}).then(function(){
 		QUnit.ok(true, "equal");
 		QUnit.start();
