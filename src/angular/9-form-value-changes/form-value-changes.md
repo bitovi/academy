@@ -12,6 +12,10 @@ In this part, we will:
 - Learn about Observables and Subscriptions
 - Create subscription to form changes
 - Use onDestroy to unsubscribe from form changes
+- Learn about HttpParams
+- Create new methods on our RestaurantService
+- Learn about Generics
+- Get state and city data in the Restaurant Component
 
 ## Observables and Subscriptions
 
@@ -43,7 +47,7 @@ We can listen to changes to values on FormControls and FormGroup using the value
 @codepen
 @highlight 82-84,only
 
-## Exercise: Listen to Changes on the State and City formControls and console log their value
+## Exercise: Listen to Changes on the State and City formControls and log their value to the console
 
 ### The problem
 
@@ -66,3 +70,84 @@ __src/app/restaurant/restaurant.component.ts__
 @sourceref restaurant.component.ts
 @highlight 1,3,18,36,53-55,63,65-76
 
+Now that our dropdowns are working, let's populate them with real data. We can get our list of states immediately, but to get our cities, we'll want to make an get request based on the state the user selected.
+
+## Exercise: Write service methods to get states and cities
+
+### The Problem
+
+Write two new methods in the `RestaurantsService` to get state and city lists.
+
+Method 1 - `getStates` takes no params and makes a request to `'/api/states'`
+
+Method 2 - `getCities`, takes a string param called 'state' a makes a request to `'/api/cities?state="{state abbreviation here}"'`
+
+### What You Need to Know
+
+- how to use HttpParams:
+
+  HttpParams are part of Angulars HTTPClient API and help us create parameters for our requests.
+
+  @sourceref ./http-params.html
+  @codepen
+  @highlight 28,only
+
+### To Verify Your Solution is Correct
+
+Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
+
+@sourceref ./restaurant.service-citystate.spec.ts
+@highlight 124-161
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+
+### The Solution
+
+@sourceref ./restaurant.service-citystate.ts
+@highlight 2,20-22,24-27
+
+## Exercise: Use Generics to modify ResponseData interface to work with states and cities
+
+### The Problem
+
+We would like to use the `ResponseData` interface we wrote to describe the response for the state and city requests, but it only works with and array of type `Restaurant`. Convert the `ResponseData` interface use generics so it can take a type of `Restaurant`, `State`, or `City`. We've written the state & city interfaces for you.
+
+Update your __src/app/restaurant/restaurant.service.ts__ file to be:
+
+@sourceref ./restaurant.service-setup-generics.ts
+@highlight 9-12, 14-17
+
+### What You Need to Know
+
+- How to write a generic
+
+  For an in-depth understanding of generics in TypeScript, check out our [RxJS RxJS guide]. For now, generics are a way to abstract functions, interfaces, etc to use different types in different situations.
+
+  @sourceref ./generics.html
+  @codepen
+  @highlight 47-52,54-58,68-71,73-81, only
+
+### The Solution
+
+__src/app/restaurant/restaurant.service.ts__
+
+@sourceref ./restaurant.service-generics.ts
+@highlight 5-7,27,31,36
+
+## Exercise: Get cities and states based on dropdown values.
+
+### The Problem
+
+Now that our service is in working order, let's populate our dropdowns with state and city data. We will want our list of states to be available right away, but we will want to fetch our list of cities only after we have the state value selected by the user.
+
+Requirements
+
+1. Mark state and city dropdowns as disabled until they are populated with data
+2. Fetch the states list when the component first loads(`ngOnInit`) and populate the dropdown options with the values
+3. When the State FormControl value changes, fetch the list of cities with the selected state as the parameter.
+
+> Hint: You'll want to clear the fake data from the state and city value props.
+
+### What You Need to Know
+ 
+- How to call service methods in a component

@@ -10,41 +10,47 @@
 In this part, we will:
 
 - Update getRestaurants service method to take params
-- Convert ResponseData interface to generic
-- Add service methods to get states and cities
-- Add call to get states on component init
-- Refactor getting restaurants into own function
 - Make calls to get cities and restaurants on input change events
 
-## Changing http call to use params
 
-Import HttpParams, add state and city params to getRestaurants method. Add new methods to get states, and cities(with a state param)
+## Exercise: Update getRestaurants method to take params
 
-__src/app/restaurant/restaurant.service.ts__
+### The Problem
 
-@sourceref ./restaurant-1.service.ts
-@highlight 2, 26-28
+We want to modify our `getRestaurants` method to take two string parameters, one for city, and one for state. Update the __src/app/restaurant/restaurant.service.ts__ file to make this change, and update the __src/app/restaurant/restaurant.component.ts__ file to call the method with params "IL","Chicago".
 
-Take a look at your console trying to compile your app. What error do you see?
+### What You Need to Know
 
-## Exercise: Convert ResponseData to Generic
+- how to use HttpParams (you learned this in the section above! ✔️)
 
+### To Verify Your Solution is Correct
 
-### The problem
+Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
 
-Because our API returns different data types that follow the same structure, we need change our `ResponseData` interface to accept any kind of type, including the interfaces for city and state. Change the `ResponseData` interface in the `src/app/restaurant/restaurant.service.ts` to use generics!
+@sourceref ./restaurant.service-httpparams.spec.ts
+@highlight 79,83
 
-### What you need to know
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
-You already know how to use generics, you TypeScript guru!
-
-### The solution
+### Solution
 
 __src/app/restaurant/restaurant.service.ts__
 
-@sourceref ./restaurant-2.service.ts
-@highlight 5-7, 28
+@sourceref ./restaurant.service-httpparams.ts
+@highlight 2,16-18
 
+__src/app/restaurant/restaurant.component.ts__
+
+@sourceref ./restaurant.component-httpparams.ts
+@highlight 45
+
+
+
+## Exercise: Use Generics to modify ResponseData interface to work with states and cities
+
+## Exercise: Get cities and states in component
+
+## Exercise: Get cities and states based on dropdown values.
 
 
 

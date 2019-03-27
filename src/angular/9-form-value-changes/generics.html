@@ -3,6 +3,7 @@
 <script src="https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js"/></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js"></script>
 <script src="https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js"></script>
+<script src="https://unpkg.com/@angular/common@7.2.0/bundles/common-http.umd.js"></script>
 <script src="https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js"></script>
 <script src="https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js"></script>
 <script src="https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js"></script>
@@ -12,25 +13,9 @@
 <script type="typescript">
 const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
-const { CommonModule, HttpClient } = ng.common;
+const { CommonModule } = ng.common;
+const { HttpClient, HttpParams } = ng.common.http
 const { Routes, RouterModule } = ng.router;
-
-@Injectable({
-  providedIn: 'root'
-})
-class UsersService {
-
-  constructor(private httpClient: HttpClient) { }
-
-  getUsers() {
-    return this.httpClient.get<any>('/api/users');
-  }
-
-  getUser(id: number) {
-    return this.httpClient.get<any>('/api/users/' + id);
-  }
-}
-
 
 @Component({
   selector: 'my-app',
@@ -59,29 +44,47 @@ class AboutComponent {
   }
 }
 
+class GenericCollection<T> {
+  private list: T[] = [];
+  pushItem(thing:T) {
+    this.list.push(thing);
+  }
+}
+
+interface Dinosaur {
+  name: string;
+  breed: string;
+  teeth: number;
+}
 
 @Component({
   selector: 'home-component',
   template: `
     <p>A home component!</p>
-    <ul>
-      <li *ngFor="let user of users">
-        {{user.name}}
-      </li>
-    </ul>
+   
   `
 })
 class HomeComponent implements OnInit{
-  private users: any[] = [];
+  let myListOfStrings = new GenericCollection<string>();
+  myListOfStrings.pushItem('booop');
+  myListOfStrings.pushItem(5);
+  //error Argument type of '5' is not assignable to parameter of type 'string'
 
-  constructor(private usersService: UsersService) {}
+  let myListOfDinosaurs = new GenericCollection<Dinosaur>();
+  let otherDino = {
+    name: 'Blue',
+    breed: 'Velociraptor',
+    teeth: 100
+  }
+  myListOfDinosaurs.pushItem(otherDino);
+  myListOfDinosaurs.pushItem({name: 'Charlie'});
+  //error Argument type '{ name: string; }' is not assignable to parameter of type 'Dinosaur'.
+
+  constructor() {}
 
   ngOnInit() {
-    this.users = usersService.getUsers();
   }
 }
-//THIS IS A HACK JUST FOR CODEPEN TO WORK
-HomeComponent.parameters = [UsersService];
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },

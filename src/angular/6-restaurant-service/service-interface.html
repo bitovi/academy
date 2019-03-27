@@ -93,14 +93,16 @@ class AboutComponent {
   `
 })
 class HomeComponent implements OnInit{
-  private users: any[] = [];
+  private users: User[] = [];
 
   constructor(private usersService: UsersService) {}
 
   ngOnInit() {
-    this.users = usersService.getUsers();
+    this.users = this.usersService.getUsers();
   }
 }
+//THIS IS A HACK JUST FOR CODEPEN TO WORK
+HomeComponent.parameters = [UsersService];
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },

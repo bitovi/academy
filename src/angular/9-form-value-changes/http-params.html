@@ -3,6 +3,7 @@
 <script src="https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js"/></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js"></script>
 <script src="https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js"></script>
+<script src="https://unpkg.com/@angular/common@7.2.0/bundles/common-http.umd.js"></script>
 <script src="https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js"></script>
 <script src="https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js"></script>
 <script src="https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js"></script>
@@ -12,7 +13,8 @@
 <script type="typescript">
 const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
-const { CommonModule, HttpClient } = ng.common;
+const { CommonModule } = ng.common;
+const { HttpClient, HttpParams } = ng.common.http
 const { Routes, RouterModule } = ng.router;
 
 @Injectable({
@@ -23,14 +25,16 @@ class UsersService {
   constructor(private httpClient: HttpClient) { }
 
   getUsers() {
-    return this.httpClient.get<any>('/api/users');
+    const params = new HttpParams().set('_page', "1").set('_limit', "1");
+    return this.httpClient.get<any>('/api/users', {params});
   }
 
   getUser(id: number) {
     return this.httpClient.get<any>('/api/users/' + id);
   }
 }
-
+//THIS IS A HACK JUST FOR CODEPEN TO WORK
+//UsersService.parameters = [HttpClient];
 
 @Component({
   selector: 'my-app',

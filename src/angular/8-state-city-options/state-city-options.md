@@ -108,9 +108,7 @@ __src/app/restaurant/restaurant.component.ts__
 @sourceref ./restaurant.component.ts
 @highlight 2,18,25-39,42,50-55
 
-
 __src/app/restaurant/restaurant.component.html__
 
 @sourceref ./restaurant.component.html
 @highlight 3-24
-

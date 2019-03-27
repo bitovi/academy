@@ -151,6 +151,12 @@ Thanks to TypeScript we can write interfaces to describe what we expect objects 
 @codepen
 @highlight 18-22,28, only
 
+Arrays can also be written as:
+
+```javascript
+users: Array<User>
+```
+
 To learn more about interfaces in TypeScript, check out our [typescript/interfaces TypeScript guide].
 
 ## Exercise: Write an Interface to Describe the Restaurant Object and Data Response
