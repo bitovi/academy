@@ -1,6 +1,6 @@
 
 import QUnit from "steal-qunit";
-import {getCanvasForUrl, getCanvasForImage, diff, resizeCanvas} from "./canvas-test";
+import {compareToSnapshot, getCanvasForImage, dataEqual, getCanvasForUrl, downloadLink} from "./canvas-test";
 
 
 function makeBoxForCanvas(canvas, title) {
@@ -16,6 +16,33 @@ function makeBoxForCanvas(canvas, title) {
 }
 
 QUnit.asyncTest("style-guide looks right", function(){
+
+	next();
+
+	function next(){
+		compareToSnapshot({
+			url: "../doc/training/style-guide.html",
+			width: 1000,
+			snapshotDir: "./",
+			snapshotPrefix: "style-guide",
+		}).then(function(){
+			QUnit.ok(true, "equal");
+			QUnit.start();
+		}, function(err) {
+			var details = document.createElement("details");
+			details.innerHTML = "<summary>style-guide looks right</summary>";
+			details.appendChild(err.html);
+			document.body.appendChild(details);
+			QUnit.ok(false, "images do not match");
+			QUnit.start();
+		});
+	}
+
+	/*
+
+
+	/*
+
 	Promise.all([
 		getCanvasForUrl("../doc/training/style-guide.html"),
 		getCanvasForImage("./style-guide-reference.png")
@@ -27,6 +54,10 @@ QUnit.asyncTest("style-guide looks right", function(){
 		QUnit.ok(!diffCanvas, "Images are equal");
 
 		if(diffCanvas) {
+			//var display = displayForDiff(diffCanvas, iframeCanvas, imageCanvas)
+
+
+			document.body.appendChild( downloadLink(iframeCanvas, "foo-bar.png") )
 			resizeCanvas(diffCanvas, 0.5);
 			document.body.appendChild(makeBoxForCanvas(diffCanvas, "Difference:"));
 
@@ -40,5 +71,5 @@ QUnit.asyncTest("style-guide looks right", function(){
 
 
 		QUnit.start();
-	})
+	})*/
 });
