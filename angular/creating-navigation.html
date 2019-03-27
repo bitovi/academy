@@ -10,6 +10,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="mSJGNMM6kICvj0fQ3-0F3tGOrwjuakLPlS77LOhZmRQ" />
   <title>Bitovi University - Creating Navigation</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -17,22 +18,22 @@
 </head>
 
 <body>
-	<div class="header">
-  	<div class="logo">
-    	<a href="https://www.bitovi.com/">Bitovi</a>
-  	</div>
-	  <ul>
-	    <li><a href="https://www.bitovi.com/services">Services</a></li>
-	    <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
-	    <li><a href="https://www.bitovi.com/about">Our Team</a></li>
-	    <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
-	    <li><a href="https://www.bitovi.com/blog">Blog</a></li>
-	    <li><a href="https://www.bitovi.com/contact">Contact Us</a></li>
-	    <li><a href=".." class="active">Academy</a></li>
-	   </ul>
-	 </div>
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="51-header-match">Contact Us</a>
+  </div>
 
-	<div class="content">
+  <div class="content">
 	
 		<div class="sidebar-left">
   
@@ -455,7 +456,7 @@
 <li>Use routerLinkActive to highlight current navigation</li>
 </ul>
 <h2>RouterLink</h2>
-<p>You may have noticed the links in the routing examples to switch between views. They used the <a href="https://angular.io/api/router/RouterLink" target="\_blank">routerLink</a> directive. The routerLink takes a property of a path that can be static or built dynamically based on properties on the component.</p>
+<p>You may have noticed the links in the routing examples to switch between views. They use the <a href="https://angular.io/api/router/RouterLink" target="\_blank">routerLink</a> directive. The routerLink takes a property of a path that can be static or built dynamically based on properties on the component.</p>
 <h3>Static Segment</h3>
 <p>The following is an example of a hard coded path:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -1037,7 +1038,49 @@ platformBrowserDynamic()
 <li>How to use the routerLink directive</li>
 <li>How to use the routerLinkActive directive</li>
 </ul>
-<p>You will know you've completed the exercise correctly when you can click the nav items to see the UI change.</p>
+<h3>To Verify Your Solution is Correct</h3>
+<p>You will know you've completed the exercise correctly when you can click the nav items to see the UI change and see the active class on the current nav item.</p>
+<p><img src="../static/img/pmo-working-nav.gif" alt="Place My Order App working nav" title="Place My Order App working nav" /></p>
+<p>Update the spec file  <strong>src/app/app.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { TestBed, async } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AppComponent } from './app.component';
+
+describe('AppComponent', () =&gt; {
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ],
+      declarations: [
+        AppComponent
+      ]
+    }).compileComponents();
+  }));
+
+  it('should create the app', () =&gt; {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
+  });
+
+  it(`should have as title 'place-my-order'`, () =&gt; {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app.title).toEqual('place-my-order');
+  });
+
+  it('should render title in a h1 tag', () =&gt; {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain('place-my-order.com');
+  });
+});
+</code></pre>
+<blockquote>
+<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+</blockquote>
 <h3>Solution</h3>
 <p><strong>src/app/app.component.html</strong></p>
 <pre><code class="language-html">&lt;header&gt;
@@ -1067,23 +1110,23 @@ platformBrowserDynamic()
 
     
       <div class="sidebar-right">
-        <!--<div class="content-nav">
-          <h6>On this page</h6>
+        <div class="content-nav">
+          <h6>On this page...</h6>
           <ul class="list-group vertical-steps">
-            <li class="list-group-item completed"><span>Overview</span></li>
-            <li class="list-group-item active"><span>Videos</span</li>
-            <li class="list-group-item"><span>Slides</span</li>
-            <li class="list-group-item"><span>Exercise</span</li>
+            <li class="list-group-item completed"><a href="#"><span>Before You Begin</span></a></li>
+            <li class="list-group-item active"><a href="#"><span>Overview</span></a></li>
+            <li class="list-group-item"><a href="#"><span>Examples</span></a></li>
+            <li class="list-group-item"><a href="#"><span>Exercise</span></a></li>
           </ul>
-        </div>-->
-        <div class="widget slack">
-          <p class="bold">Get Help</p>
+        </div>
+        <div class="pullout slack">
+          <h6>Get help</h6>
           <p>If you need help with an exercise, please reach out to us on
              <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">Slack</a>.</p>
              <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y"><img src="https://i.ibb.co/XS6n24B/slack.png"/></a>
         </div>
-        <div class="widget bug">
-          <p>If you find bugs in this training or have suggestions,
+        <div class="pullout bug">
+          <p>If you find bugs in this training or have suggestions, please
              <a href="https://github.com/bitovi/university/issues/new">create an issue</a> or email
              <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/>.</p>
         </div>
@@ -1119,7 +1162,6 @@ platformBrowserDynamic()
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'UA-2302003-29');
 </script>
 

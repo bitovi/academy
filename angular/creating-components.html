@@ -10,6 +10,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="mSJGNMM6kICvj0fQ3-0F3tGOrwjuakLPlS77LOhZmRQ" />
   <title>Bitovi University - Creating Components</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -17,22 +18,22 @@
 </head>
 
 <body>
-	<div class="header">
-  	<div class="logo">
-    	<a href="https://www.bitovi.com/">Bitovi</a>
-  	</div>
-	  <ul>
-	    <li><a href="https://www.bitovi.com/services">Services</a></li>
-	    <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
-	    <li><a href="https://www.bitovi.com/about">Our Team</a></li>
-	    <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
-	    <li><a href="https://www.bitovi.com/blog">Blog</a></li>
-	    <li><a href="https://www.bitovi.com/contact">Contact Us</a></li>
-	    <li><a href=".." class="active">Academy</a></li>
-	   </ul>
-	 </div>
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="51-header-match">Contact Us</a>
+  </div>
 
-	<div class="content">
+  <div class="content">
 	
 		<div class="sidebar-left">
   
@@ -699,6 +700,45 @@ something that reads the component's <code>title</code> property.</p>
 </blockquote>
 <p>The component's <code>title</code> property should have a string value of
 <code>&quot;Ordering food has never been easier&quot;</code>.</p>
+<h3>What you need to know</h3>
+<ul>
+<li><p>How to generate a component:</p>
+<pre><code class="language-shell">ng g component home
+</code></pre>
+<p>This will create a new component for us and import it in our root module.</p>
+<pre><code class="language-code">├── src/
+|   ├── app/
+|   |   ├── home/
+|   |       |── home.component.ts
+|   |       |── home.component.spec.ts
+|   |       |── home.component.less
+|   |       |── home.component.html
+</code></pre></li>
+<li><p>How to bind data to the DOM (you learned this in the Binding Data to Components section above! ✔️)</p></li>
+<li><p>How to view your new component:</p>
+<p>One of the ways components can be rendered is by putting them in markup. We'll do this by putting our <code>&lt;pmo-home&gt;&lt;/pmo-home&gt;</code> tag in our base app component markup. Open your <strong>src/app/app.component.html</strong> file and update it to be:</p>
+<pre><code class="language-html">&lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;
+&lt;router-outlet&gt;&lt;/router-outlet&gt;
+
+&lt;pmo-home&gt;&lt;/pmo-home&gt;
+</code></pre>
+<div line-highlight='4'></div>
+<p>Run <code>npm run start</code>, and your app should compile with no errors, and you'll be able to see the home component. Later we'll move the home component to it's own page with a unique route.</p></li>
+</ul>
+<p>Update the <code>home.component.html</code> file to be:</p>
+<p><strong>src/app/home/home.component.html</strong></p>
+<pre><code class="language-html">&lt;div class=&quot;homepage&quot;&gt;
+  &lt;img src=&quot;./assets/images/homepage-hero.jpg&quot; alt=&quot;Restaurant table with glasses.&quot; width=&quot;250&quot; height=&quot;380&quot; /&gt;
+  &lt;h1&gt;place a dynamic title here&lt;/h1&gt;
+  &lt;p&gt;
+    We make it easier than ever to order gourmet food
+    from your favorite local restaurants.
+  &lt;/p&gt;
+  &lt;p&gt;
+     &lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;&gt;Choose a Restaurant&lt;/a&gt;
+  &lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
 <h3>To Verify Your Solution is Correct</h3>
 <p>Update the spec file  <strong>src/app/home/home.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -745,45 +785,6 @@ describe('HomeComponent', () =&gt; {
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h3>What you need to know</h3>
-<ul>
-<li><p>How to generate a component:</p>
-<pre><code class="language-shell">ng g component home
-</code></pre>
-<p>This will create a new component for us and import it in our root module.</p>
-<pre><code class="language-code">├── src/
-|   ├── app/
-|   |   ├── home/
-|   |       |── home.component.ts
-|   |       |── home.component.spec.ts
-|   |       |── home.component.less
-|   |       |── home.component.html
-</code></pre></li>
-<li><p>How to bind data to the DOM (you learned this in the Binding Data to Components section above! ✔️)</p></li>
-<li><p>How to view your new component:</p>
-<p>One of the ways components can be rendered is by putting them in markup. We'll do this by putting our <code>&lt;pmo-home&gt;&lt;/pmo-home&gt;</code> tag in our base app component markup. Open your <strong>src/app/app.component.html</strong> file and update it to be:</p>
-<pre><code class="language-html">&lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;
-&lt;router-outlet&gt;&lt;/router-outlet&gt;
-
-&lt;pmo-home&gt;&lt;/pmo-home&gt;
-</code></pre>
-<div line-highlight='4'></div>
-<p>Run <code>npm run start</code>, and your app should compile with no errors, and you'll be able to see the home component. Later we'll move the home component to it's own page with a unique route.</p></li>
-</ul>
-<p>Update the <code>home.component.html</code> file to be:</p>
-<p><strong>src/app/home/home.component.html</strong></p>
-<pre><code class="language-html">&lt;div class=&quot;homepage&quot;&gt;
-  &lt;img src=&quot;./assets/images/homepage-hero.jpg&quot; alt=&quot;Restaurant table with glasses.&quot; width=&quot;250&quot; height=&quot;380&quot; /&gt;
-  &lt;h1&gt;place a dynamic title here&lt;/h1&gt;
-  &lt;p&gt;
-    We make it easier than ever to order gourmet food
-    from your favorite local restaurants.
-  &lt;/p&gt;
-  &lt;p&gt;
-     &lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;&gt;Choose a Restaurant&lt;/a&gt;
-  &lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
 <h3>The solution</h3>
 <p><strong>src/app/home/home.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;homepage&quot;&gt;
@@ -1274,6 +1275,27 @@ export class RestaurantComponent implements OnInit {
 <h2>Exercise: Write Restaurant Component Markup that Displays a List of Restaurants</h2>
 <h3>The problem</h3>
 <p>We want to display a list of restaurants in our UI once the data has been set on the restaurants member.</p>
+<h3>What you need to know</h3>
+<p>We covered the directives you'll need to use above!</p>
+<p>Here is the markup to show for each restaurant:</p>
+<pre><code class="language-html">&lt;img src=&quot;{{restaurant.images.thumbnail}}&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
+&lt;h3&gt;{{restaurant.name}}&lt;/h3&gt;
+
+&lt;div class=&quot;address&quot; *ngIf=&quot;restaurant.address&quot;&gt;
+  {{restaurant.address.street}}&lt;br /&gt;{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
+&lt;/div&gt;
+
+&lt;div class=&quot;hours-price&quot;&gt;
+  $$$&lt;br /&gt;
+  Hours: M-F 10am-11pm
+  &lt;span class=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
+  Details
+&lt;/a&gt;
+&lt;br /&gt;
+</code></pre>
 <h3>To Verify Your Solution is Correct</h3>
 <p>Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
@@ -1344,29 +1366,8 @@ describe('RestaurantComponent', () =&gt; {
 
 </code></pre>
 <blockquote>
-<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass! (you'll need to remove &lt;pmo-home&gt; and &lt;pmo-restaurant&gt; from the app.component.html file first)</p>
 </blockquote>
-<h3>What you need to know</h3>
-<p>We covered the directives you'll need to use above!</p>
-<p>Here is the markup to show for each restaurant:</p>
-<pre><code class="language-html">&lt;img src=&quot;{{restaurant.images.thumbnail}}&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
-&lt;h3&gt;{{restaurant.name}}&lt;/h3&gt;
-
-&lt;div class=&quot;address&quot; *ngIf=&quot;restaurant.address&quot;&gt;
-  {{restaurant.address.street}}&lt;br /&gt;{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
-&lt;/div&gt;
-
-&lt;div class=&quot;hours-price&quot;&gt;
-  $$$&lt;br /&gt;
-  Hours: M-F 10am-11pm
-  &lt;span class=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
-&lt;/div&gt;
-
-&lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
-  Details
-&lt;/a&gt;
-&lt;br /&gt;
-</code></pre>
 <h3>The solution</h3>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
   &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
@@ -1499,6 +1500,76 @@ platformBrowserDynamic()
 <p>Hint: Use String.prototype.replace to create the new path with image name.</p>
 </blockquote>
 <h3>To Verify Your Solution is Correct</h3>
+<p>Update the restaurant spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to include the new pipe:</p>
+<pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ImageUrlPipe } from '../image-url.pipe';
+
+import { RestaurantComponent } from './restaurant.component';
+
+describe('RestaurantComponent', () =&gt; {
+  let component: RestaurantComponent;
+  let fixture: ComponentFixture&lt;RestaurantComponent&gt;;
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ],
+      declarations: [ RestaurantComponent, ImageUrlPipe ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(RestaurantComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  it('should render title in a h2 tag', () =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h2').textContent).toContain('Restaurants');
+  });
+
+  it('should not show any restaurants markup if no restaurants', () =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.restaurant')).toBe(null);
+  });
+
+  it('should have two .restaurant divs',  &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick(501);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let restaurantDivs = compiled.getElementsByClassName('restaurant');
+    let hoursDivs = compiled.getElementsByClassName('hours-price');
+    expect(restaurantDivs.length).toEqual(2);
+    expect(hoursDivs.length).toEqual(2);
+  }));
+
+  it('should display restaurant information',  &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick(501);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.restaurant h3').textContent).toContain('Poutine Palace');
+  }));
+
+});
+
+</code></pre>
+<div line-highlight='3,16, only'></div>
 <p>Update the spec file  <strong>src/app/image-url.pipe.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { ImageUrlPipe } from './image-url.pipe';
 
@@ -1541,23 +1612,23 @@ export class ImageUrlPipe implements PipeTransform {
 
     
       <div class="sidebar-right">
-        <!--<div class="content-nav">
-          <h6>On this page</h6>
+        <div class="content-nav">
+          <h6>On this page...</h6>
           <ul class="list-group vertical-steps">
-            <li class="list-group-item completed"><span>Overview</span></li>
-            <li class="list-group-item active"><span>Videos</span</li>
-            <li class="list-group-item"><span>Slides</span</li>
-            <li class="list-group-item"><span>Exercise</span</li>
+            <li class="list-group-item completed"><a href="#"><span>Before You Begin</span></a></li>
+            <li class="list-group-item active"><a href="#"><span>Overview</span></a></li>
+            <li class="list-group-item"><a href="#"><span>Examples</span></a></li>
+            <li class="list-group-item"><a href="#"><span>Exercise</span></a></li>
           </ul>
-        </div>-->
-        <div class="widget slack">
-          <p class="bold">Get Help</p>
+        </div>
+        <div class="pullout slack">
+          <h6>Get help</h6>
           <p>If you need help with an exercise, please reach out to us on
              <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">Slack</a>.</p>
              <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y"><img src="https://i.ibb.co/XS6n24B/slack.png"/></a>
         </div>
-        <div class="widget bug">
-          <p>If you find bugs in this training or have suggestions,
+        <div class="pullout bug">
+          <p>If you find bugs in this training or have suggestions, please
              <a href="https://github.com/bitovi/university/issues/new">create an issue</a> or email
              <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/>.</p>
         </div>
@@ -1593,7 +1664,6 @@ export class ImageUrlPipe implements PipeTransform {
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'UA-2302003-29');
 </script>
 

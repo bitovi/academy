@@ -3,15 +3,15 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/debugging-javascript/4-conditional.md
-	@page debugging-javascript-training/conditional
+	source: src/training/style-guide.md
+	@page training/style-guide
 ######################################################################## -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="mSJGNMM6kICvj0fQ3-0F3tGOrwjuakLPlS77LOhZmRQ" />
-  <title>Bitovi University - Conditional</title>
+  <title>Bitovi University - Style Guide</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -75,98 +75,13 @@
 			
 				
 					<li class="
-           						parent
-           						expanded">
+           						
+           						">
 						<a class="page"
 							href="../debugging-javascript-training.html"
 							title="This course covers the basics of JavaScript debugging.">
 							Debug JavaScript
 						</a>
-						
-							
-	<ul>
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="scope.html"
-							title="Learn how to see the variables available in the scope.">
-							Scope
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="call-stack.html"
-							title="Learn how to trace how functions are called.">
-							Call Stack
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="prototypes.html"
-							title="Learn how to explore an object&#x27;s proto chain.">
-							Prototypes
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="current
-           						parent
-           						expanded">
-						<a class="page"
-							href="conditional.html"
-							title="Learn how to set a conditional breakpoint.">
-							Conditional
-						</a>
-						
-							
-
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="property-changes.html"
-							title="Learn how to debug property changes.">
-							Property Changes
-						</a>
-						
-					</li>
-				
-			
-		
-	</ul>
-
-
 						
 					</li>
 				
@@ -224,13 +139,38 @@
 			
 				
 					<li class="
-           						
-           						">
+           						parent
+           						expanded">
 						<a class="page"
 							href="../training.html"
 							title="Learn how to prepare and give a training.">
 							Giving a Training
 						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="style-guide.html"
+							title="A document of all the styles. This is the description.">
+							Style Guide
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
 						
 					</li>
 				
@@ -248,7 +188,7 @@
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Conditional <code>page</code></h1>
+	<h1>Style Guide <code>page</code></h1>
 </section>
 
   		
@@ -256,7 +196,7 @@
   		
   			
   				<section class="description">
-    <p>Learn how to set a conditional breakpoint.</p>
+    <p>A document of all the styles. This is the description.</p>
 
 </section>
 
@@ -269,44 +209,99 @@
   			
   			
   				<section class="body">
-    <h2>The problem</h2>
-<pre><code class="language-html">&lt;script src=&quot;//bitovi.github.io/university/static/scripts/debugging/variables.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;module&quot;&gt;
-function conditional(){
-    let sum = 0;
-    for(let i = 0; i &lt; 2000; i++) {
-        var conditionalValue = getConditionalValue(i);
-        sum += conditionalValue;
-    }
-    console.log(&quot;What does getConditionalValue() return when `i` is 1000?&quot;);
-    debugger;
-    return sum;
-}
-conditional();
-&lt;/script&gt;
+    <h2>Headings</h2>
+<h2>H2</h2>
+<p>Paragraph</p>
+<h2>H2 with <code>code</code></h2>
+<h3>H3</h3>
+<p>Paragraph</p>
+<h4>H4</h4>
+<p>Paragraph</p>
+<h5>H5</h5>
+<p>Paragraph</p>
+<h6>H6</h6>
+<p>Paragraph</p>
+<h2>Block elements</h2>
+<p>A paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+<p>Another paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+<ul>
+<li>List element</li>
+<li>Another item</li>
+<li>Another item</li>
+</ul>
+<p>Another paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<ul>
+<li><p>List element</p>
+<ul>
+<li>nested</li>
+<li>next
+<ul>
+<li>deep
+<pre><code>foo
+</code></pre></li>
+</ul></li>
+</ul></li>
+<li><p>Another item</p></li>
+<li><p>Another item</p>
+<p>multiple paragraphs</p></li>
+</ul>
+<p>Another paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<ol>
+<li>Order lists</li>
+<li>Number two</li>
+<li>Number three</li>
+</ol>
+<blockquote>
+<p>Blockquote. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+</blockquote>
+<p><details>
+<summary>This is a summary element that shows a paragraph</summary></p>
+<p>Another paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+<p></details></p>
+<p><details>
+<summary>This is a summary element that shows a pre</summary></p>
+<pre><code class="language-js">foo();
+</code></pre>
+<p></details></p>
+<p>HTML code example:</p>
+<pre><code class="language-html">&lt;hello-world&gt;&lt;/hello-world&gt;
+</code></pre>
+<p>JS code example:</p>
+<pre><code class="language-js">console.log(&quot;Hello There&quot;)
+</code></pre>
+<p>CodePen example:</p>
+<pre><code class="language-js">console.log(&quot;Hello There&quot;)
 </code></pre>
 <div class='codepen'></div>
-<h2>What you need to know</h2>
-<p>Often you only want to break when your app is at a certain state. The following code
-creates 2000 random numbers:</p>
-<pre><code class="language-js">function getValue(i){
-    return Math.random() * i;
+<p>Highlight only example:</p>
+<pre><code class="language-js">function  myFunction(){
+
+
+  var message = &quot;Hello There&quot;;
+  console.log( message );
+
+
 }
-var arr = [];
-for(var i = 0; i &lt; 2000; i++) {
-    var value = getValue(i);
-    arr.push(value)
+
+myFunction();
+
+
+function  myFunction(){
+
+
+  var message = &quot;Hello There&quot;;
+  console.log( message );
+
+
 }
+
+myFunction();
+
 </code></pre>
-<p>Chrome lets you add conditional breakpoints that break when an expression evaluates to
-<em>truthy</em>.  Right click the line number you'd like to break on and enter the
-expression.</p>
-<p><img src="../static/img/debugging/conditional.png"/></p>
-<h2>The solution</h2>
-<p><details>
-<summary>Click to see the answer</summary></p>
-<p>The answer is <code>u</code>.</p>
-<p></details></p>
+<div line-highlight='5,17,only'></div>
+<h2>Text elements</h2>
+<p>The following is a very long sentence that will hopefully go across many lines because it
+is so long and filled with <code>code elements</code>, <strong>bold elements</strong>, <em>italic elements</em>, <a href="#">link elements</a>.</p>
 
 </section>
 
@@ -346,7 +341,7 @@ expression.</p>
   <footer></footer>
 
   <script type="text/javascript">
-    var docObject = {"src":{"path":"src/debugging-javascript/4-conditional.md"},"description":"Learn how to set a conditional breakpoint. \n","name":"debugging-javascript-training/conditional","title":"Conditional","type":"page","parent":"debugging-javascript-training","order":4,"comment":" ","pathToRoot":"../.."};
+    var docObject = {"src":{"path":"src/training/style-guide.md"},"description":"A document of all the styles. This is the description. \n","name":"training/style-guide","title":"Style Guide","type":"page","parent":"training","order":10,"comment":" ","pathToRoot":"../.."};
   </script>
 
   
