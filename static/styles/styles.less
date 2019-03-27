@@ -329,10 +329,6 @@ a {
 
 // Homepage
 
-.main {
-  width: 100% !important;
-}
-
 .hero-banner {
   background: url('../img/training-banner.jpg') no-repeat top center;
   background-size: cover;
@@ -425,7 +421,7 @@ a {
 // Sidebar Left
 
 .sidebar-left {
-  padding: 0 30px;
+  padding: 0 30px 0 15px;
   white-space: nowrap;
   ul {
     list-style: none;
@@ -489,8 +485,9 @@ a {
 .main {
   display: flex;
   flex-direction: row;
-  padding-right: 0 !important;
+  width: 100%;
 }
+
 .main-content {
   padding-right: 30px;
 }
@@ -538,11 +535,8 @@ hr:first-of-type {
 // Sidebar Right
 
 .sidebar-right {
-  position: sticky;
-  top: 0;
-  right: 0;
-  padding: 0 30px;
-  min-width: 300px;
+  padding: 0 15px;
+  width: 260px;
 }
 .sidebar-right .content-nav {
   border-bottom: 1px solid #eee;
