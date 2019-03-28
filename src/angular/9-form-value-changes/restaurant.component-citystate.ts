@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 import { RestaurantService, ResponseData, State, City } from './restaurant.service';
 import { Restaurant } from './restaurant';
-import { Subscription } from 'rxjs';
 
 export interface Data<T> {
   value: Array<T>;
@@ -15,7 +15,7 @@ export interface Data<T> {
   templateUrl: './restaurant.component.html',
   styleUrls: ['./restaurant.component.less']
 })
-export class RestaurantComponent implements OnInit {
+export class RestaurantComponent implements OnInit, OnDestroy {
   form: FormGroup;
 
   public restaurants: Data<Restaurant> = {
@@ -35,7 +35,6 @@ export class RestaurantComponent implements OnInit {
 
   private subscription: Subscription;
 
-
   constructor(
     private restaurantService: RestaurantService,
     private fb: FormBuilder
@@ -44,14 +43,12 @@ export class RestaurantComponent implements OnInit {
 
   ngOnInit() {
     this.createForm();
-    this.restaurants.isPending = true;
-    
-    this.restaurantService.getRestaurants().subscribe((res: ResponseData<Restaurant>) => {
-      this.restaurants.value = res.data;
-      this.restaurants.isPending = false;
-    });
 
     this.getStates();
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
   createForm() {
@@ -66,6 +63,7 @@ export class RestaurantComponent implements OnInit {
   onChanges(): void {
     let state:string;
     const stateChanges = this.form.get('state').valueChanges.subscribe(val => {
+      this.restaurants.value = [];
       if (val) {
         //only enable city if state has value
         this.form.get('city').enable({
@@ -93,7 +91,9 @@ export class RestaurantComponent implements OnInit {
 
 
     const cityChanges = this.form.get('city').valueChanges.subscribe(val => {
-      console.log('city', val);
+      if(val) {
+        this.getRestaurants();
+      }
     });
     this.subscription.add(cityChanges);
   }
@@ -118,4 +118,10 @@ export class RestaurantComponent implements OnInit {
     });
   }
 
+  getRestaurants() {
+    this.restaurantService.getRestaurants().subscribe((res: ResponseData<Restaurant>) => {
+      this.restaurants.value = res.data;
+      this.restaurants.isPending = false;
+    });
+  }
 }
