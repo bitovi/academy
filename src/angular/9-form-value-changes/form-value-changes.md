@@ -154,6 +154,12 @@ Requirements
  
 - How to call service methods in a component
 
+### To Verify Your Solution is Correct
+
+We need to remove a few tests that are no longer relevant to our app's current state. Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
+
+@sourceref ./restaurant.component.spec.ts
+
 ### The Solution
 
 __src/app/restaurant/restaurant.component.ts__

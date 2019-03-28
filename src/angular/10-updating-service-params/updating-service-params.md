@@ -10,18 +10,17 @@
 In this part, we will:
 
 - Update getRestaurants service method to take params
-- Make calls to get cities and restaurants on input change events
 
 
 ## Exercise: Update getRestaurants method to take params
 
 ### The Problem
 
-We want to modify our `getRestaurants` method to take two string parameters, one for city, and one for state. Update the __src/app/restaurant/restaurant.service.ts__ file to make this change, and update the __src/app/restaurant/restaurant.component.ts__ file to call the method with params "IL","Chicago".
+Now that we are able to capture a user's state and city preferences, we want to only return restaurants in the selected city. Modify the `getRestaurants` method in the __src/app/restaurant/restaurant.service.ts__ file to take two string parameters, one for city, and one for state.
 
 ### What You Need to Know
 
-- how to use HttpParams (you learned this in the section above! ✔️)
+- how to use HttpParams (you learned this in the previous section! ✔️)
 
 ### To Verify Your Solution is Correct
 
@@ -45,32 +44,9 @@ __src/app/restaurant/restaurant.component.ts__
 @highlight 45
 
 
-
-## Exercise: Use Generics to modify ResponseData interface to work with states and cities
-
-## Exercise: Get cities and states in component
-
 ## Exercise: Get cities and states based on dropdown values.
 
 
-
-### Get states and cities from the service layer
-
-We're going to a `getStates()` method that publishes states and a
-`getCities(state:string)` method that publishes a list of cities
-for a provided state.
-
-__src/app/restaurant/restaurant.service.ts__
-
-@sourceref ./restaurant-3.service.ts
-@highlight 31-38
-
-We'll use those methods to get all states and cities in `IL`. We'll also want to disable down dropdowns when the component first loads, then enable them as their respective dropdown lists are retrieved.
-
-__src/app/restaurant/restaurant.component.ts__
-
-@sourceref ./3-restaurant.component.ts
-@highlight 5,26-34,47-57,59,71-72
 
 
 ## Add methods to retrieve data to component
