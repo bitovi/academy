@@ -39,7 +39,7 @@ We want to be able to use the `getRestaurants` method in our component to displa
 Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
 
 @sourceref ./restaurant.component.spec-no-html.ts
-@highlight 168-268, only
+@highlight 168-268
 We've temporarily commented out a few tests until the next section.
 
 ## Solution

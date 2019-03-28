@@ -70,7 +70,7 @@ __src/app/restaurant/restaurant.component.ts__
 @sourceref restaurant.component.ts
 @highlight 1,3,18,36,53-55,63,65-76
 
-Now that our dropdowns are working, let's populate them with real data. We can get our list of states immediately, but to get our cities, we'll want to make an get request based on the state the user selected.
+Now that we know how to get values from our dropdowns, let's populate them with real data. We can get our list of states immediately, but to get our cities, we'll want to make an get request based on the state the user selected.
 
 ## Exercise: Write service methods to get states and cities
 
@@ -86,7 +86,7 @@ Method 2 - `getCities`, takes a string param called 'state' a makes a request to
 
 - how to use HttpParams:
 
-  HttpParams are part of Angulars HTTPClient API and help us create parameters for our requests.
+  <a href="https://angular.io/api/common/http/HttpParams" target="_blank">HttpParams</a> are part of Angulars HTTPClient API and help us create parameters for our requests.
 
   @sourceref ./http-params.html
   @codepen
@@ -144,10 +144,19 @@ Requirements
 
 1. Mark state and city dropdowns as disabled until they are populated with data
 2. Fetch the states list when the component first loads(`ngOnInit`) and populate the dropdown options with the values
-3. When the State FormControl value changes, fetch the list of cities with the selected state as the parameter.
+3. When the State FormControl value changes, fetch the list of cities with the selected state as the parameter
+4. If the state value changes, fetch the new list of cities, and reset the list of restaurants to an empty array
+5. When a City is selected, fetch the list of restaurants
 
-> Hint: You'll want to clear the fake data from the state and city value props.
+> Hint: You'll want to clear the fake data from the state and city value props, and move the call to get restaurants out of the ngOnInit function.
 
 ### What You Need to Know
  
 - How to call service methods in a component
+
+### The Solution
+
+__src/app/restaurant/restaurant.component.ts__
+
+@sourceref ./restaurant.component-citystate.ts
+@highlight 5,28,33,44-48,63-99, 101-107, 109-119,121-126
