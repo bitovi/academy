@@ -17,6 +17,9 @@ and management in these free courses!
 .content {
   margin: 0;
 }
+.main {
+  padding-top: 0;
+}
 .hero-banner {
   margin-left: -30px;
   margin-right: -30px;
