@@ -69,8 +69,11 @@ header, footer {
 }
 
 .content {
+  flex-grow: 1;
+  overflow-x: hidden;
+  overflow-y: hidden;
   // Navigation list will be flush with parent
-  margin-top: 30px;
+
   .sidebar:extend(.container) {
     ul {
       padding: 0;
@@ -425,8 +428,9 @@ a {
 // Sidebar Left
 
 .sidebar-left {
-  padding: 0 30px 0 15px;
+  padding: 30px 30px 30px 15px;
   white-space: nowrap;
+  overflow-y: auto;
   ul {
     list-style: none;
     width: 100%;
@@ -487,7 +491,7 @@ a {
 // Course Content
 
 .main {
-  padding: 0 30px;
+  padding: 30px 30px;
   width: 70%;
   display: flex;
   flex-direction: row;
