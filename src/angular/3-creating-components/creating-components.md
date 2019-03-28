@@ -250,7 +250,7 @@ We want to display a list of restaurants in our UI once the data has been set on
 
 ### What you need to know
 
-We covered the directives you'll need to use above!
+- We covered the directives you'll need to use above!
 
 Here is the markup to show for each restaurant:
 
@@ -280,7 +280,7 @@ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
 
 @sourceref ./restaurant.component.spec.ts
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass! (you'll need to remove <pmo-home> and <pmo-restaurant> from the app.component.html file first)
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ### The solution
 
