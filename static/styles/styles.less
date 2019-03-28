@@ -267,7 +267,10 @@ a {
       text-indent: -9999px;
       width: 138px;
       height: 54px;
-      margin-right: 93px;
+      margin-right: 140px;
+      @media (max-width: 900px) {
+        margin-right: 40px;
+      }
     }
   }
   ul {
@@ -310,6 +313,9 @@ a {
       text-align: center;
       vertical-align: middle;
       white-space: nowrap;
+      @media (max-width: 800px) {
+        display: none;
+      }
     }
   .hs-button.button-smallest {
     font-size: 14px;
@@ -488,13 +494,13 @@ a {
 
 .main {
   padding: 0 30px;
-  width: 70%;
+  // width: 70%;
   display: flex;
   flex-direction: row;
 }
-.main-content {
-  width: 70%;
-}
+// .main-content {
+//   width: 70%;
+// }
 .main-content .title h1 {
   font-size: 28px;
   margin-bottom: 30px;
