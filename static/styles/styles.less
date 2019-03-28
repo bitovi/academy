@@ -434,9 +434,12 @@ a {
 // Sidebar Left
 
 .sidebar-left {
-  padding: 30px 30px 30px 15px;
+  padding: 30px;
   white-space: nowrap;
   overflow-y: auto;
+  @media (max-width: 768px) {
+    padding-bottom: 0;
+  }
   ul {
     list-style: none;
     margin-right: 15px;
@@ -495,9 +498,11 @@ a {
 
 .main {
   padding: 30px 30px;
-  // width: 70%;
   display: flex;
   flex-direction: row;
+  @media (max-width: 768px) {
+    padding-top: 0;
+  }
 }
 // .main-content {
 //   width: 70%;
@@ -546,12 +551,15 @@ hr:first-of-type {
 // Sidebar Right
 
 .sidebar-right {
-  position: fixed;
-  z-index: 1;
-  top: 117px;
-  right: 20px;
-  width: 300px;
+  position: sticky;
+  top: 0;
+  right: 0;
+  width: 260px;
+  margin-left: 30px;
   padding: 0 15px;
+  @media (max-width: 768px) {
+    display: none;
+  }
 }
 .sidebar-right .content-nav {
   border-bottom: 1px solid #eee;
@@ -582,7 +590,7 @@ hr:first-of-type {
   margin: 0;
 }
 .sidebar-right .pullout h6 {
-  font-size: 15px;
+  font-size: 14px;
   font-weight: bold;
   margin: 0;
 }

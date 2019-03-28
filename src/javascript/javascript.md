@@ -5,8 +5,6 @@
 
 @body
 
-<hr />
-
 ## Before You Begin
 
 <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">
@@ -25,8 +23,6 @@ If you find bugs in this training or have suggestions, create an [issue](https:/
 - <em>Audience:</em> Intermediate JS developers.
 - <em>Goal:</em> Understand how JavaScript works, what's going on "under the hood".
 - <em>Time:</em> About 6 hours
-
-<hr />
 
 <strong>We are going to be figuring out how JavaScript works in memory. We will cover:</strong>
 
