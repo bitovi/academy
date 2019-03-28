@@ -159,4 +159,4 @@ Requirements
 __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./restaurant.component-citystate.ts
-@highlight 4,28,33,44-48,63-99, 101-107, 109-119,121-126
+@highlight 5,28,33,44-48,63-99, 101-107, 109-119,121-126
