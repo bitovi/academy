@@ -182,6 +182,7 @@ __src/app/app.component.html__
 <h1>Place My Order App: Coming Soon!</h1>
 <router-outlet></router-outlet>
 ```
+@highlight 1-2
 
 When you save your changes, you should see the new h1 tag in your browser at  <a href="http://localhost:4200" target="\_blank">localhost:4200</a>.
 
