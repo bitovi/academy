@@ -42,8 +42,8 @@ cd place-my-order
 ```
 
 This will create a new Angular Workspace, generate an app module, needed config files, and test suite for your new Angular project. You'll be asked a series of set-up questions:
-1. Would you like to add Angular routing? (yes)
-2. Which stylesheet format would you like to use? (less)
+1. Would you like to add Angular routing? (__yes__)
+2. Which stylesheet format would you like to use? (__Less__)
 
 Note that we used the prefix property to set our own default prefix. Angular's default is "app", but a good naming convention is to use a short prefix related to your company or application name to easily differentiate from 3rd party utilities.
 
