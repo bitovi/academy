@@ -159,7 +159,7 @@ This file is the root module for our app. Every Angular app has at least one mod
 - providers [array]: where we include services that we want used at the global app level
 - bootstrap [array]: where we include the root AppModule - this is the main Application view that hosts all of our other app views.
 
-Further reading: <a href="https://angular.io/guide/architecture-services#dependency-injection-di" target="_blank">Dependency Injection in Angular</a>
+Further reading: <a href="https://angular.io/guide/architecture-services#dependency-injection-di" target="\_blank">Dependency Injection in Angular</a>
 
 ### src/app/app.component.ts
 
@@ -171,7 +171,7 @@ This is our root component, you saw it called in our index.html file as ``<app-r
 npm run start
 ```
 
-The `start` script command value is `ng serve` which starts a development server on port 4200 by default using <a href="https://github.com/webpack/webpack-dev-server" target="_blank">webpack-dev-server</a>, and compiles a development version of the app. Any typescript errors will be caught by the compiler here, and once ready we can view our app at <a href="http://localhost:4200" target="_blank">localhost:4200</a>. `ng serve` also has live-reload functionality, meaning the browser will automatically reload as changes are saved and compiled.
+The `start` script command value is `ng serve` which starts a development server on port 4200 by default using <a href="https://github.com/webpack/webpack-dev-server" target="\_blank">webpack-dev-server</a>, and compiles a development version of the app. Any typescript errors will be caught by the compiler here, and once ready we can view our app at <a href="http://localhost:4200" target="\_blank">localhost:4200</a>. `ng serve` also has live-reload functionality, meaning the browser will automatically reload as changes are saved and compiled.
 
 ## Changing the markup
 
@@ -182,8 +182,9 @@ __src/app/app.component.html__
 <h1>Place My Order App: Coming Soon!</h1>
 <router-outlet></router-outlet>
 ```
+@highlight 1-2
 
-When you save your changes, you should see the new h1 tag in your browser at  <a href="http://localhost:4200" target="_blank">localhost:4200</a>.
+When you save your changes, you should see the new h1 tag in your browser at  <a href="http://localhost:4200" target="\_blank">localhost:4200</a>.
 
 
 ## Running Tests
@@ -192,5 +193,9 @@ When we use the CLI to create modules, components, services, etc, it will create
 
 ### Solution
 
+The change we needed to make for our tests to pass is on the highlighted line 37.
+
+We also included `schemas` metadata for our module. <a href="https://angular.io/api/core/NO_ERRORS_SCHEMA">NO_ERRORS_SCHEMA</a> will keep the compiler from throwing errors when unknown components are included in the tested components. In unit tests we often only want to test the very small piece of code we're work on and don't care about deeply nested components <a href="https://medium.com/@fivedicephoto/why-you-shouldnt-use-no-errors-schema-in-angular-unit-tests-cdd478c30782" target="\_blank">unless we're testing the props in a parent/child component relationship</a>. For our purposes in this training, it's safe to use here.  
+
 @sourceref ./app.component.spec.ts
-@highlight 33
+@highlight 37

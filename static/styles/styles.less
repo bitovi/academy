@@ -270,7 +270,10 @@ a {
       text-indent: -9999px;
       width: 138px;
       height: 54px;
-      margin-right: 93px;
+      margin-right: 140px;
+      @media (max-width: 900px) {
+        margin-right: 40px;
+      }
     }
   }
   ul {
@@ -313,6 +316,9 @@ a {
       text-align: center;
       vertical-align: middle;
       white-space: nowrap;
+      @media (max-width: 800px) {
+        display: none;
+      }
     }
   .hs-button.button-smallest {
     font-size: 14px;
@@ -433,20 +439,23 @@ a {
   overflow-y: auto;
   ul {
     list-style: none;
-    width: 100%;
     margin-right: 15px;
     margin-bottom: 0;
     margin-left: 0;
     padding-bottom: 0;
     padding-left: 0;
+    width: 100%;
     li {
       margin: 0;
       padding: 0;
       a {
         font-size: 14px;
-        padding: 5px 10px;
+        font-weight: bold;
         display: block;
-        whitespace: nowrap;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 15px;
+        padding: 5px 10px;
+        padding-bottom: 15px;
         text-decoration: none;
         &:hover {
           text-decoration: underline;
@@ -461,13 +470,6 @@ a {
     font-size: 14px;
     text-decoration: none;
   }
-}
-// Tidy this up
-.sidebar-left ul li a {
-  border-bottom: 1px solid #eee;
-  font-weight: bold;
-  margin-bottom: 15px;
-  padding-bottom: 15px;
 }
 .sidebar-left ul li ul a {
   border: none;
@@ -485,7 +487,7 @@ a {
   border-top: 1px solid #eee;
   padding-top: 15px;
 }
-.sidebar-left .current .page {
+.sidebar-left ul li ul .current a {
   font-weight: bold;
 }
 
@@ -493,13 +495,13 @@ a {
 
 .main {
   padding: 30px 30px;
-  width: 70%;
+  // width: 70%;
   display: flex;
   flex-direction: row;
 }
-.main-content {
-  width: 70%;
-}
+// .main-content {
+//   width: 70%;
+// }
 .main-content .title h1 {
   font-size: 28px;
   margin-bottom: 30px;

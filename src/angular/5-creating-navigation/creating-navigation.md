@@ -105,4 +105,4 @@ Update the spec file  __src/app/app.component.spec.ts__ to be:
 __src/app/app.component.html__
 
 @sourceref ./app.component.html
-@highlight 4-11
+@highlight 1-14

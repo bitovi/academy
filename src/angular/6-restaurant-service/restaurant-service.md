@@ -47,9 +47,11 @@ Double check the api is working by running ``npm run api`` and navigating to <a 
 
 Next, we'll create a <a href="https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md" target="\_blank">proxy</a> file at the root of our Angular project to access our API for local development purposes.
 
-```bash
+```shell
 touch proxy.conf.json
 ```
+
+Update the newly created __proxy.conf.json__ file with the following json:
 
 ```js
 {
@@ -88,7 +90,7 @@ Angular <a href="https://angular.io/guide/architecture-services" target="\_blank
 
 @sourceref ./service.html
 @codepen
-@highlight 18-48, only
+@highlight 18-48,81-83,90,95, only
 
 ## Importing `HttpClientModule` into _app.module.ts_
 
@@ -222,9 +224,9 @@ __src/app/restaurant/restaurant.ts__
 Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
 
 @sourceref ./restaurant.service-with-interface.spec.ts
-@highlight 30, 80
+@highlight 3,4,28-29,77,79,93-122
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass! If you haven't implemented the interface correctly, you'll see a compile error before the tests runs
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass! If you haven't written the interfaces correctly, you'll see a compile error before the tests runs
 
 ## Solution
 
