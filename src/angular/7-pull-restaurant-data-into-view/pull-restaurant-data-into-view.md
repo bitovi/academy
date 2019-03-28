@@ -32,7 +32,7 @@ We want to be able to use the `getRestaurants` method in our component to displa
 - How to inject a service into a component (you learned this in section above! ✔️)
 - How to call a method from a class
 
-> Hint - call the `getRestaurants` method on the ngOnInit function
+> Hint: Call the `getRestaurants` method in the `ngOnInit` method.
 
 ### To Verify Your Solution is Correct
 
