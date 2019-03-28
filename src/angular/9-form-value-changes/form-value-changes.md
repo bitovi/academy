@@ -86,7 +86,7 @@ Method 2 - `getCities`, takes a string param called 'state' a makes a request to
 
 - how to use HttpParams:
 
-  HttpParams are part of Angulars HTTPClient API and help us create parameters for our requests.
+  <a href="https://angular.io/api/common/http/HttpParams" target="_blank">HttpParams</a> are part of Angulars HTTPClient API and help us create parameters for our requests.
 
   @sourceref ./http-params.html
   @codepen
@@ -144,10 +144,18 @@ Requirements
 
 1. Mark state and city dropdowns as disabled until they are populated with data
 2. Fetch the states list when the component first loads(`ngOnInit`) and populate the dropdown options with the values
-3. When the State FormControl value changes, fetch the list of cities with the selected state as the parameter.
+3. When the State FormControl value changes, fetch the list of cities with the selected state as the parameter
+4. If the state changes, fetch the new list of cities
 
 > Hint: You'll want to clear the fake data from the state and city value props.
 
 ### What You Need to Know
  
 - How to call service methods in a component
+
+### The Solution
+
+__src/app/restaurant/restaurant.component.ts__
+
+@sourceref ./restaurant.component-citystate.ts
+@highlight 54, 66-98, 100-106, 108-117
