@@ -1,19 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'pmo-detail',
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.less']
 })
-export class RestaurantDetailComponent implements OnInit {
+export class DetailComponent implements OnInit {
 
-  constructor(
-    private route: ActivatedRoute
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-    const slug = this.route.snapshot.paramMap.get('slug');
   }
 
   getUrl(image:string): string {

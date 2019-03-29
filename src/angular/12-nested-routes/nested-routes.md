@@ -10,87 +10,64 @@
 In this part, we will:
 
 - Create a restaurant detail component
-- Add a route path with custom param
-- Add a get restaurant method to restaurant class
+- Add a route path with a param
 - Get restaurant slug from route param in component
 - Get restaurant data from service based on slug
 
-We're able to nest components and modules in Angular, and the CLI makes it even easier
+## Route Parameters & Child Views
 
-## Create a Component Inside an Existing Component
+A common pattern in SPA architecture is to serve a view of an individual piece of data from a path with an identifying parameter. Previously we've defined static paths with Angulars <a href="https://angular.io/guide/router" target="_blank">router</a>. To create a nested route, we'll need the slug after the slash to be dynamic. We can set a token for the router parameter with `:`. To get the slug from the route in a component, we use the <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a> interface.
+
+@sourceref ./nested-route.html
+@codepen
+@highlight 93-94,101,105,107,115,only
 
 ### The Problem
 
-We want to create a detail view for individual restaurants. 
+Create a new component called `details` in the restaurant component folder that is a detail view for an individual restaurant that is served from the path `'/restaurants/restaurant-slug'`. Create the route as well, and use the `getRestaurant` method on the RestaurantService to fetch the restaurant based on the route snapshot. The detail component should have a member 'restaurant' that is a type of Restaurant and an 'isLoading' member set to true or false based on when the restaurant data has been fetched.
 
 ### What You Need to Know
 
-- How to create a route with a param
 - How to create a nested component
+
   ```bash
   ng g component restaurant/detail
   ```
 
-## Create the Restaurant Detail Component
+  Add markup:
 
-The restaurant detail component will display information about the restaurant, and include a link to order from the menu, which we'll build the component for later.
+  __src/app/restaurant/detail/detail.component.html__
 
+  @sourceref ./detail.component.html
 
+  We've also added a method called by the html that will return a proper url path for our restaurant image.
 
-Add markup:
+  __src/app/restaurant/detail/detail.component.ts__
 
-__src/app/restaurant/detail/detail.component.html__
+  @sourceref ./detail.component-starter.ts
+  @highlight 15-18
 
-@sourceref ./detail.component.html
+- How to create a route with a param
+- How to get a route param using ActivatedRoute
 
+### To Verify Your Solution is Correct
 
- We've also added a method called by the html that will return a proper url path for our restaurant image. 
+When you click the detail button on a restaurant from the restaurant list view you'll see the detail view of that restaurant.
 
-__src/app/restaurant/detail/detail.component.ts__
+Update the spec file  __src/app/restaurant/detail.component.spec.ts__ to be:
 
-@sourceref ./detail.component-1.ts
-@highlight 8
+@sourceref ./detail.component.spec.ts
 
-We'll also have to update the component name where it was automatically declared in the app root module.
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
-__src/app/app.module.ts__
-
-@sourceref ./app.module.ts
-@highlight 12, 21
-
-## Creating a route for restaurant/{{restaurant-slug}}
-
-Previously we've defined static paths with Angulars <a href="https://angular.io/guide/router" target="_blank">router</a>. To create a restaurant path, we'll need the slug after the slash to be dynamic. We can set a token for the router parameter with `:`
+### The Solution
 
 __src/app/app-routing.module.ts__
 
 @sourceref ./app-routing.module.ts
 @highlight 5,16-19
 
-## Getting restaurant slug from the route
-
-We need to get the slug from the route to determine which restaurant to fetch. We import `ActivatedRoute` into our component, and call `this.route.snapshot.paramMap.get('slug')` to get the slug.
-
 __src/app/restaurant/detail/detail.component.ts__
 
-@sourceref ./detail.component-2.ts
-@highlight 2, 12, 16
-
-## Adding getRestaurant method to serivce
-
-We need to add one more method to our restaurant service to get a specific restaurant based on the slug. 
-
-__src/app/restaurant/restaurant.service.ts__
-@sourceref ./restaurant.service.ts
-@highlight 40-42
-
-## Make call to get restaurant in component
-
-Now we can make a call in our restaurant detail component to get the restaurant data.
-
-__src/app/restaurant/detail/detail.component.ts__
-
-@sourceref ./detail.component-3.ts
-@highlight 4, 5, 13-14, 18, 23-27
-
-Now when we click the detail button on a restaurant from the restaurants view we'll see the detail view of that restaurant.
+@sourceref ./detail.component.ts
+@highlight 2,4,5,13,14,16,19-24
