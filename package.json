@@ -38,7 +38,8 @@
       "bit-docs-prettify": "^0.4.1",
       "bit-docs-tag-demo": "^0.5.3",
       "bit-docs-html-codepen-link": "^1.3.2",
-      "bit-docs-html-highlight-line": "^0.5.4"
+      "bit-docs-html-highlight-line": "^0.5.4",
+	  "bit-docs-html-toc": "^1.0.0"
     },
     "glob": {
       "pattern": "src/**/*.{js,md}"

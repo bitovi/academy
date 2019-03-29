@@ -600,13 +600,13 @@ hr:first-of-type {
 
 // Sidebar Right: Content Navigation
 
-.list-group.vertical-steps {
+.content-nav > ul {
   font-size: 14px;
   line-height: 1;
   margin: 0;
   padding-left: 10px;
 }
-.list-group.vertical-steps .list-group-item {
+.content-nav li {
   border: none;
   border-left: 3px solid #ccc;
   box-sizing: border-box;
@@ -615,7 +615,7 @@ hr:first-of-type {
   margin: 0;
   padding: 0 0 20px 20px;
 }
-.list-group-item a {
+.content-nav a {
   padding: 0;
   text-decoration: none;
   &:visited {
@@ -623,15 +623,15 @@ hr:first-of-type {
   }
 }
 
-.list-group.vertical-steps .list-group-item.active {
+.content-nav a.active {
   background-color: transparent;
   color: inherit;
 }
-.list-group.vertical-steps .list-group-item:last-child {
+.content-nav li:last-child {
   border-left: 3px solid transparent;
   padding-bottom: 0;
 }
-.list-group.vertical-steps .list-group-item::before {
+.content-nav li::before {
   border-radius: 50%;
   background-color: #ccc;
   color: #ccc;
@@ -644,23 +644,22 @@ hr:first-of-type {
   text-align: center;
   width: 15px;
 }
-.list-group.vertical-steps .list-group-item span,
-.list-group.vertical-steps .list-group-item a {
+.content-nav li a {
   display: block;
   overflow: hidden;
   padding-top: 0;
 }
-.list-group.vertical-steps .list-group-item.active::before {
+.content-nav li.active::before {
   background-color: #3163A4;
   color: #3163A4;
 }
-.list-group.vertical-steps .list-group-item.completed {
+.content-nav li.completed {
   border-left: 3px solid #3163A4;
 }
-.list-group.vertical-steps .list-group-item.completed::before {
+.content-nav li.completed::before {
   background-color: #3163A4;
   color: #3163A4;
 }
-.list-group.vertical-steps .list-group-item.completed:last-child {
+.content-nav li.completed:last-child {
   border-left: 3px solid transparent;
 }
