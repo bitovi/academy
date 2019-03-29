@@ -500,14 +500,12 @@ a {
 
 .main {
   padding: 30px 30px;
-  display: flex;
-  flex-direction: row;
   @media (max-width: 768px) {
     padding-top: 0;
   }
 }
 .main-content {
-  width: ~"calc(100% - 260px)";
+  padding-right: 250px;
 }
 .main-content .title h1 {
   font-size: 28px;
@@ -553,10 +551,10 @@ hr:first-of-type {
 // Sidebar Right
 
 .sidebar-right {
-  position: sticky;
-  top: 0;
-  right: 0;
-  width: 260px;
+  position: fixed;
+  top: 85px;
+  right: 30px;
+  width: 240px;
   margin-left: 30px;
   padding: 0 15px;
   @media (max-width: 768px) {
