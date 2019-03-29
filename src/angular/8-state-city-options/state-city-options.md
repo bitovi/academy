@@ -10,7 +10,7 @@
 In this part, we will:
 
 - Learn About Reactive Forms
-- Import ReactiveFormsModule into our root app
+- Import `ReactiveFormsModule` into our root app
 - Create a reactive form in our Restaurant Component
 - Create a form in our markup and connect inputs to reactive form
 
@@ -22,7 +22,7 @@ We're going to use select boxes to handle our user's input. Angular's <a href="h
 
 ### ReactiveFormsModule
 
-To use reactive forms we must import our ReactiveFormsModule into the root app.
+To use reactive forms we must import our `ReactiveFormsModule` into the root app.
 
 @sourceref ./reactive-module.html
 @codepen
@@ -31,7 +31,9 @@ To use reactive forms we must import our ReactiveFormsModule into the root app.
 ### FormControl
 
 The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl" target="\_blank">FormControl</a>. This class manages the form input model and connection to it's input element in the dom and inherits from the <a href="https://angular.io/api/forms/AbstractControl" target="\_blank">AbstractControl</a>
-class. It's worth getting familiar with the methods available in this class (like setValidators and patchValue), as they're used quite often in reactive form development.
+class. 
+
+It's worth getting familiar with the methods available in this class (like `setValidators` and `patchValue`), as they're used quite often in reactive form development.
 
 @sourceref ./form-control.html
 @codepen
@@ -39,7 +41,7 @@ class. It's worth getting familiar with the methods available in this class (lik
 
 ### FormGroup
 
-A FormGroup is a way of grouping FormControls and tracking the state of the entire form. Notice the way we connect our input in the markup is slightly different - we use `formControlName` to bind to the name value in our FormGroup. Groups can be nested within other groups or arrays.  
+A `FormGroup` is a way of grouping `FormControl`s and tracking the state of the entire form. Notice the way we connect our input in the markup is slightly different - we use `formControlName` to bind to the name value in our `FormGroup`. Groups can be nested within other groups or arrays.  
 
 @sourceref ./form-group.html
 @codepen
@@ -47,7 +49,7 @@ A FormGroup is a way of grouping FormControls and tracking the state of the enti
 
 ### FormArray
 
-FormArray aggregates FormControls into an array. It's different than FormGroup in that the controls inside are serialized as an array. FormArrays are very useful when dealing with repeated FormControls or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.
+`FormArray` aggregates `FormControl`s into an array. It's different than `FormGroup` in that the controls inside are serialized as an array. `FormArray`s are very useful when dealing with repeated `FormControl`s or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.
 
 @sourceref ./form-array.html
 @codepen
@@ -69,10 +71,10 @@ We would like our user to be able to filter restaurants based on city and state.
 
 ### What you need to know
 
-- How to create a FormControl (you learned this in the section above! ✔️)
-- How to create a FormGroup (you learned this in the section above! ✔️)
-- How to use FormBuilder (you learned this in the section above! ✔️)
-- How to use ngFor (you learned this in the Creating Components section! ✔️)
+- How to create a `FormControl` (you learned this in the section above! ✔️)
+- How to create a `FormGroup` (you learned this in the section above! ✔️)
+- How to use `FormBuilder` (you learned this in the section above! ✔️)
+- How to use `ngFor` (you learned this in the Creating Components section! ✔️)
 
 Here's some code to get you started:
 

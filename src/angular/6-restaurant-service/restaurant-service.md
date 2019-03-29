@@ -9,7 +9,7 @@
 
 In this part, we will:
 
-- Install the place-my-order API
+- Install the `place-my-order` API
 - Create a proxy to serve the API
 - Update `npm start` script
 - Generate a new service via the CLI
@@ -41,7 +41,7 @@ Next make add an api script to your ``package.json``
 
 Double check the api is working by running ``npm run api`` and navigating to <a href="http://localhost:7070/restaurants" target="\_blank">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the api command from.
 
-> You must have the API running for your app to work. If you don't see data, make sure that you've run `npm run api` in another terminal window or in your editor.
+> You must have the API running for your app to work. If you don't see any data, make sure that you've run `npm run api` in another terminal window or in your editor.
 
 ## Create a Proxy to Serve API
 
@@ -86,7 +86,9 @@ Now, __restart__ our app using `npm start` and it will run it with the proxy con
 
 ## Angular Services
 
-Angular <a href="https://angular.io/guide/architecture-services" target="\_blank">Services</a> are pieces of functionality that may not need to be tied to a view like components. A common example of a service is making an HTTP request to get data. Many components may require functionality to fetch data, and a Service can help abstract that logic into one place to be used across components.
+Angular <a href="https://angular.io/guide/architecture-services" target="\_blank">Services</a> are pieces of functionality that may not need to be tied to a view like components. 
+
+A common example of a service is making an HTTP request to get data. Many components may require functionality to fetch data, and a Service can help abstract that logic into one place to be used across components.
 
 @sourceref ./service.html
 @codepen
@@ -113,7 +115,7 @@ __src/app/app.module.ts__
 
 ### The problem
 
-We want to write a service with a method `getRestaurants` that uses httpClient to get a list of restaurants from our `/api/restaurants` url.
+We want to write a service with a method `getRestaurants` that uses `httpClient` to get a list of restaurants from our `/api/restaurants` url.
 
 
 ### What You Need to Know
@@ -124,7 +126,7 @@ We want to write a service with a method `getRestaurants` that uses httpClient t
     ng g service restaurant/restaurant
   ```
 
-- How to use httpClient to make a get request (you learned this in section above! ✔️)
+- How to use `httpClient` to make a get request (you learned this in section above! ✔️)
 
 ### To Verify Your Solution is Correct
 
@@ -165,7 +167,7 @@ To learn more about interfaces in TypeScript, check out our [typescript/interfac
 
 ### The problem
 
-We're going to write interfaces to tell Typescript what we expect a restaurant and other related objects to look like and use them in our restaurant service. A `Restaurant` interface should represent an object like this:
+We're going to write interfaces to tell Typescript what we expect a restaurant and other related objects to look like, and use them in our restaurant service. A `Restaurant` interface should represent an object like this:
 
 ```javascript
 let restaurant = {

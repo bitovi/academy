@@ -31,7 +31,9 @@ __src/app/restaurant/restaurant.component.html__ to be:
 @sourceref ./restaurant.component.html
 @highlight 3, 4, 5
 
-Use this as a guide to figure out how to structure getting the call to get restaurants from the service - it's important to note that our new markup shows `restaurants` is now an object that has an `isPending` property and a `value` prop for the array of restaurants. Here's the generic interface for you to use that should represent what the new restaurant type is.
+Use this as a guide to figure out how to structure getting the call to get restaurants from the service - it's important to note that our new markup shows `restaurants` is now an object that has an `isPending` property and a `value` prop for the array of restaurants. 
+
+Here's the generic interface for you to use that should represent what the new restaurant type is.
 
 ```typescript
 export interface Data<T> {

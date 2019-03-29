@@ -1,7 +1,7 @@
 @page angular/adding-routing Adding Routing
 @parent angular 4
 
-@description Adding Routing
+@description Adding routing
 
 @body
 
@@ -15,11 +15,13 @@ In this part, we will:
 
 ### Routing
 
-To be able to navigate between different views in our app, we'll need routing. We already told Angular we'd like to set up routing, so it generated `src/app/app-routing.module.ts` for us and included it in our root module. The router module takes an array of routes we can generate in a few different ways that will render content in the `router-outlet` directive.
+To be able to navigate between different views in our app, we'll need routing. 
+
+We already told Angular we'd like to set up routing, so it generated `src/app/app-routing.module.ts` for us and included it in our root module. The router module takes an array of routes we can generate in a few different ways that will render content in the `router-outlet` directive.
 
 ## Setting Paths to Components
 
-The following example will render the AboutComponent in the router-outlet when the path is `/about`:
+The following example will render the `AboutComponent` in the router-outlet when the path is `/about`:
 
 @sourceref ./path-route.html
 @codepen
@@ -27,7 +29,7 @@ The following example will render the AboutComponent in the router-outlet when t
 
 ### Using Wildcards
 
-The next example uses the wildcard path, which will render the PageNotFoundComponent when any unregistered route is hit:
+The next example uses the wildcard path, which will render the `PageNotFoundComponent` when any unregistered route is hit:
 
 @sourceref ./wildcard-route.html
 @codepen
@@ -51,7 +53,7 @@ As our applications grow, it doesn't make sense to load all the code at once. Th
 
 ### <base-href>
 
-In our index.html file, the angular cli included `<base href="/>`. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base" target="_blank">here</a>, but it's important to know this is how the Angular router will how to compose URLs - the value in the "href" attribute specifies the base URL for all relative URLs contained in the app.
+In our `index.html` file, the angular cli included `<base href="/>`. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base" target="_blank">here</a>, but it's important to know this is how the Angular router will how to compose URLs - the value in the `href` attribute specifies the base URL for all relative URLs contained in the app.
 
 ```html
 <!doctype html>
@@ -90,7 +92,9 @@ We need to set up routes for the home view and restaurant view. When the route i
 
 ### To Verify Your Solution is Correct
 
-If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>. (You may have noticed the ```routerLink``` attribute on the a tag in our home component markup. This one of the ways we link to specific routes in our app.)
+If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>. 
+
+(You may have noticed the ```routerLink``` attribute on the a tag in our home component markup. This one of the ways we link to specific routes in our app.)
 
 ```html
 <a class="btn" [routerLink]="['/restaurants', restaurant.slug]">

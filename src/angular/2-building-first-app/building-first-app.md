@@ -1,7 +1,7 @@
 @page angular/building-our-first-app Building Our First App
 @parent angular 2
 
-@description Building Our First App
+@description Building our first app
 
 @body
 
@@ -16,11 +16,11 @@ In this part, we will:
 
 ## Intro to the CLI
 
-Angular has a CLI that does a lot of the initial legwork in setting up a minimal app, as well as letting you easily create and include new components on the fly.
+Angular has a CLI that does a lot of the initial legwork in setting up a minimal app. It also makes it really easy to create and include new components on the fly.
 
 ## Installation
 
-We'll start by globally installing the Angular CLI.
+We'll start by globally installing the Angular CLI using npm.
 
 ```shell
 npm install -g @angular/cli@7
@@ -28,24 +28,24 @@ npm install -g @angular/cli@7
 
 ## Generating a new app
 
-We're going to build a restaurant menu and ordering application. The final result will look like this:
+Our final goal is to build a restaurant menu and ordering application, which should look something like this:
 
 ![Place My Order App screenshot](../static/img/place-my-order.png "Place My Order App screenshot")
 
 (reminder: You can see a DoneJS implementation of this application at [www.place-my-order.com](http://www.place-my-order.com))
 
-To create a new Angular Workspace, we run the 'ng new' command.
+To create a new Angular Workspace, we run the `ng new` command.
 
 ```shell
 ng new place-my-order  --prefix pmo
 cd place-my-order
 ```
 
-This will create a new Angular Workspace, generate an app module, needed config files, and test suite for your new Angular project. You'll be asked a series of set-up questions:
+This will create a new Angular Workspace, generate an app module, and set you up with any needed config files and a test suite for your new Angular project. To kick the process off you'll be asked a series of set-up questions by the CLI:
 1. Would you like to add Angular routing? (__yes__)
 2. Which stylesheet format would you like to use? (__Less__)
 
-Note that we used the prefix property to set our own default prefix. Angular's default is "app", but a good naming convention is to use a short prefix related to your company or application name to easily differentiate from 3rd party utilities.
+Note that we used the `--prefix` property above to set our own default prefix. Angular's default prefix is `app`, but a good naming convention is to use a short prefix related to your company or application name, which helps to easily differentiate from 3rd party utilities.
 
 ```html
 //this looks like it's one of our own app components
@@ -53,28 +53,28 @@ Note that we used the prefix property to set our own default prefix. Angular's d
 
 //safe to assume this a 3rd party
 <tabset>
-    <tab heading="Basic title" id="tab1">Basic content</tab>
-    <tab heading="Basic Title 1">Basic content 1</tab>
-    <tab heading="Basic Title 2">Basic content 2</tab>
-  </tabset>
+  <tab heading="Basic title" id="tab1">Basic content</tab>
+  <tab heading="Basic Title 1">Basic content 1</tab>
+  <tab heading="Basic Title 2">Basic content 2</tab>
+</tabset>
 
 ```
 
 There are several more helpful properities that customize how a project is set up:
 
-### -root
+### --root
 
-Main directory for all project files. Default empty.
+Specifies the main directory for all project files. Default empty.
 
-### -sourceRoot
+### --sourceRoot
 
 Directory for all project source files.
 
-### -projectType
+### --projectType
 
-Can specify application vs. library
+Allows you to specify if this is an application or a library.
 
-### - targets
+### --targets
 
 Used for customizing task commands (build, serve, test) from the default settings.
 
@@ -116,9 +116,9 @@ Let's walk through some of the files that were generated.
 
 ### angular.json
 
-This file is the config schema for an Angular Workspace. By default Angular configures Webpack for it's build process, and uses the angular.json file for the build information.
+This file is the config schema for an Angular Workspace. By default Angular configures Webpack for it's build process, and uses the `angular.json` file to store the build information.
 
-(Note, prior to Angular v6, this file was .angular-cli.json. When migrating versions, having the wrong workspace config file name is a cause for problems.)
+(Note, prior to Angular v6, this file was `.angular-cli.json`. When migrating versions, having the wrong workspace config file name is a common cause for problems.)
 
 ### tsconfig.json
 
@@ -154,10 +154,10 @@ This should feel familiar - our main index page.
 
 This file is the root module for our app. Every Angular app has at least one module that determines how to compile and launch and app. It uses the @NgModule decorator with four properties:
 
-- declarations [array]: where we include components, directives, and pipes that will be used by this module.
-- imports [array]: where we include any other modules our app needs to use. This may include 3rd party modules like bootstrap datepickers, or modules we've created.
-- providers [array]: where we include services that we want used at the global app level
-- bootstrap [array]: where we include the root AppModule - this is the main Application view that hosts all of our other app views.
+- **declarations** `[array]`: where we include components, directives, and pipes that will be used by this module.
+- **imports** `[array]`: where we include any other modules our app needs to use. This may include 3rd party modules like bootstrap datepickers, or modules we've created.
+- **providers** `[array]`: where we include services that we want used at the global app level
+- **bootstrap** `[array]`: where we include the root AppModule - this is the main Application view that hosts all of our other app views.
 
 Further reading: <a href="https://angular.io/guide/architecture-services#dependency-injection-di" target="\_blank">Dependency Injection in Angular</a>
 
@@ -171,7 +171,7 @@ This is our root component, you saw it called in our index.html file as ``<app-r
 npm run start
 ```
 
-The `start` script command value is `ng serve` which starts a development server on port 4200 by default using <a href="https://github.com/webpack/webpack-dev-server" target="\_blank">webpack-dev-server</a>, and compiles a development version of the app. Any typescript errors will be caught by the compiler here, and once ready we can view our app at <a href="http://localhost:4200" target="\_blank">localhost:4200</a>. `ng serve` also has live-reload functionality, meaning the browser will automatically reload as changes are saved and compiled.
+The `start` script command value is `ng serve` which starts a development server on port `4200` by default using <a href="https://github.com/webpack/webpack-dev-server" target="\_blank">webpack-dev-server</a>, and compiles a development version of the app. Any typescript errors will be caught by the compiler here, and once ready we can view our app at <a href="http://localhost:4200" target="\_blank">localhost:4200</a>. `ng serve` also has live-reload functionality, meaning the browser will automatically reload as changes are saved and compiled.
 
 ## Changing the markup
 
@@ -184,18 +184,22 @@ __src/app/app.component.html__
 ```
 @highlight 1-2
 
-When you save your changes, you should see the new h1 tag in your browser at  <a href="http://localhost:4200" target="\_blank">localhost:4200</a>.
+When you save your changes, you should see the new `h1` tag in your browser at  <a href="http://localhost:4200" target="\_blank">localhost:4200</a>.
 
 
 ## Running Tests
 
-When we use the CLI to create modules, components, services, etc, it will create spec files for us. Run tests with `npm run test` in the command line. You should see one test failure. Open __src/app/app.component.spec.ts__ and update it so the test will pass with the changes we made to __src/app/app.component.html__
+When we use the CLI to create modules, components, services, etc, it will automatically create spec files for each of them. 
+
+To see the tests in action run `npm run test` in the command line. You should see one test failure. Open __src/app/app.component.spec.ts__ and update it so the test will pass with the changes we made to __src/app/app.component.html__
 
 ### Solution
 
 The change we needed to make for our tests to pass is on the highlighted line 37.
 
-We also included `schemas` metadata for our module. <a href="https://angular.io/api/core/NO_ERRORS_SCHEMA">NO_ERRORS_SCHEMA</a> will keep the compiler from throwing errors when unknown components are included in the tested components. In unit tests we often only want to test the very small piece of code we're work on and don't care about deeply nested components <a href="https://medium.com/@fivedicephoto/why-you-shouldnt-use-no-errors-schema-in-angular-unit-tests-cdd478c30782" target="\_blank">unless we're testing the props in a parent/child component relationship</a>. For our purposes in this training, it's safe to use here.  
+We also included `schemas` metadata for our module. <a href="https://angular.io/api/core/NO_ERRORS_SCHEMA">NO_ERRORS_SCHEMA</a> will keep the compiler from throwing errors when unknown components are included in the tested components. 
+
+In unit tests we often only want to test the very small piece of code we're work on and don't care about deeply nested components <a href="https://medium.com/@fivedicephoto/why-you-shouldnt-use-no-errors-schema-in-angular-unit-tests-cdd478c30782" target="\_blank">unless we're testing the props in a parent/child component relationship</a>. For our purposes in this training, it's safe to use here.  
 
 @sourceref ./app.component.spec.ts
 @highlight 37

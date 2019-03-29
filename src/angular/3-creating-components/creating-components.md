@@ -1,7 +1,7 @@
 @page angular/creating-components Creating Components
 @parent angular 3
 
-@description Creating Our First Components
+@description Creating our first components
 
 @body
 
@@ -29,7 +29,7 @@ npm install place-my-order-assets@0.1 --save
 
 Open the ``angular.json`` file, and make the following changes to include these files in our build process. This will copy the images into our assets directory for when we serve our application.
 
-> Pay close attention that you're making these changes under the "build" key and not the "test" key, as the code looks very similar. The build key should be close to line 17.
+> Pay close attention that you're making these changes under the `"build":` key and not the `"test":` key, as the code looks very similar. The build key should be close to line 17.
 
 @sourceref ./angular.json
 @highlight 25-39,only
@@ -38,7 +38,9 @@ __Any time changes are made to the `angular.json` file, we need to restart our s
 
 ## Creating Components
 
-Let's begin to build out the main views of our app. We'll need a home view, and restaurant list page to show all the restaurants we can order from. In Angular, Components are the basic building blocks that help us craft the UI. They are classes that handle views, allow management of user interaction, and displaying information via data binding. Data binding is the term for connecting data or information to the UI. An example would be an input field that a user enters a value into.
+Let's begin to build out the main views of our app. We'll need a home view, and restaurant list page to show all the restaurants we can order from. 
+
+In Angular, Components are the basic building blocks that help us craft the UI. They are classes that handle views, allow management of user interaction, and displaying information via data binding. Data binding is the term for connecting data or information to the UI. An example would be an input field that a user enters a value into.
 
 Recommended reading: <a href="https://angular.io/guide/lifecycle-hooks" target="\_blank" >Angular Lifecyle Hooks</a>
 
@@ -100,7 +102,9 @@ The component's `title` property should have a string value of
 - How to bind data to the DOM (you learned this in the Binding Data to Components section above! ✔️)
 - How to view your new component:
 
-  One of the ways components can be rendered is by putting them in markup. We'll do this by putting our `<pmo-home></pmo-home>` tag in our base app component markup. Open your __src/app/app.component.html__ file and update it to be:
+  One of the ways components can be rendered is by putting them in markup. We'll do this by putting our `<pmo-home></pmo-home>` tag in our base app component markup. 
+  
+  Open your __src/app/app.component.html__ file and update it to be:
 
   ```html
   <h1>Place My Order App: Coming Soon!</h1>
@@ -198,7 +202,9 @@ The <a href="https://angular.io/api/common/NgClass" target="_blank">ng-class</a>
 @codepen
 @highlight 17, 19, 21, 23,25, 27-30, 34, only
 
-Notice in the above example our `ng-class` is surrounded by `[ ]`. This signals that we're passing in an object, instead of just a string. When using <a href="https://angular.io/guide/template-syntax#property-binding--property-" target="_blank">property binding</a>, `ngClass="value"` will evaluate the value as a string of _"value"_ and `[ngClass]="value"` as whatever the component property value is.
+Notice in the above example our `ng-class` is surrounded by `[ ]`. This signals that we're passing in an object, instead of just a string. 
+
+When using <a href="https://angular.io/guide/template-syntax#property-binding--property-" target="_blank">property binding</a>, `ngClass="value"` will evaluate the value as a string of _"value"_ and `[ngClass]="value"` as whatever the component property value is.
 
 @sourceref ./ng-class-property.html
 @codepen
@@ -292,7 +298,9 @@ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
 
 You may have noticed an image error in our rendered html page. We're using an API in this demo that wasn't built for our exact purposes, and we need a different image path for our app to serve. <a href="https://angular.io/guide/pipes" target="\_blank">Angular Pipes</a> come in handy to transform content in our templates. Pipes allow us to transform data to display to the user in our HTML without modifying the original source.  
 
-Angular comes with several built-it pipes like DatePipe, UpperCasePipe, LowerCasePipe, CurrencyPipe, and PercentPipe. These pipes can be used in templates to modify the way data displays. We can build custom pipes as well. Pipes require one parameter - the value we can to change, but can take an additional parameters as well.
+Angular comes with several built-in pipes like `DatePipe`, `UpperCasePipe`, `LowerCasePipe`, `CurrencyPipe`, and `PercentPipe`. These pipes can be used in templates to modify the way data displays. 
+
+We can also build custom pipes as well. Pipes require one parameter - the value we want to change, but can take additional parameters as well.
 
 This example takes the value to be transformed and a parameter to use as an exponential multiplier.
 
