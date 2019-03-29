@@ -30,7 +30,7 @@
       <li><a href="https://www.bitovi.com/blog">Blog</a></li>
       <li><a href=".." class="active">Academy</a></li>
      </ul>
-     <a class="contact-popup hs-button brand button-smallest" href="51-header-match">Contact Us</a>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
   </div>
 
   <div class="content">
@@ -481,8 +481,9 @@
 </blockquote>
 <h2>Create a Proxy to Serve API</h2>
 <p>Next, we'll create a <a href="https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md" target="\_blank">proxy</a> file at the root of our Angular project to access our API for local development purposes.</p>
-<pre><code class="language-bash">touch proxy.conf.json
+<pre><code class="language-shell">touch proxy.conf.json
 </code></pre>
+<p>Update the newly created <strong>proxy.conf.json</strong> file with the following json:</p>
 <pre><code class="language-js">{
   &quot;/api&quot;: {
     &quot;target&quot;: &quot;http://localhost:7070&quot;,
@@ -643,7 +644,7 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='18-48, only'></div>
+<div line-highlight='18-48,81-83,90,95, only'></div>
 <h2>Importing <code>HttpClientModule</code> into <em>app.module.ts</em></h2>
 <p>For making HTTP requests to interact with an API, Angular provides <a href="https://angular.io/api/common/http/HttpClientModule" target="_blank">HttpClient Module</a>. To use it we'll need to import it in the root module of our app and include it the imports array.</p>
 <p><strong>src/app/app.module.ts</strong></p>
@@ -760,6 +761,8 @@ class HomeComponent implements OnInit{
     this.users = usersService.getUsers();
   }
 }
+//THIS IS A HACK JUST FOR CODEPEN TO WORK
+HomeComponent.parameters = [UsersService];
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -951,7 +954,7 @@ export class RestaurantService {
 
 </code></pre>
 <h2>Take Advantage of TypeScript</h2>
-<p>Thanks to TypeScript we can write interfaces to describe what we expect objects to look like. Consider the user service above returning an array of users. This interface describes what a user(and array of users) should look like:</p>
+<p>Thanks to TypeScript we can write interfaces to describe what we expect objects to look like. Consider the user service above returning an array of users. This interface describes what a user (and array of users) should look like:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1047,14 +1050,16 @@ class AboutComponent {
   `
 })
 class HomeComponent implements OnInit{
-  private users: any[] = [];
+  private users: User[] = [];
 
   constructor(private usersService: UsersService) {}
 
   ngOnInit() {
-    this.users = usersService.getUsers();
+    this.users = this.usersService.getUsers();
   }
 }
+//THIS IS A HACK JUST FOR CODEPEN TO WORK
+HomeComponent.parameters = [UsersService];
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -1090,6 +1095,9 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='18-22,28, only'></div>
+<p>Arrays can also be written as:</p>
+<pre><code class="language-javascript">users: Array&lt;User&gt;
+</code></pre>
 <p>To learn more about interfaces in TypeScript, check out our <a href="../typescript/interfaces.html" title="Learn how to write Interfaces, set optional properties, and about the power of using interfaces in classes and functions">TypeScript guide</a>.</p>
 <h2>Exercise: Write an Interface to Describe the Restaurant Object and Data Response</h2>
 <h3>The problem</h3>
@@ -1179,7 +1187,7 @@ export interface Restaurant {
 <p>Update the spec file  <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { TestBed } from '@angular/core/testing';
 
-import { RestaurantService } from './restaurant.service';
+import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
@@ -1204,70 +1212,59 @@ describe('RestaurantService', () =&gt; {
   });
  
   it('should make a get request to restaurants', () =&gt; {
-    it('should make a get request to restaurants', () =&gt; {
-      const mockRestaurants = {
-        data: [{
-        &quot;name&quot;:&quot;Brunch Place&quot;,
-        &quot;slug&quot;:&quot;brunch-place&quot;,
-        &quot;images&quot;:{
-          &quot;thumbnail&quot;:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-          &quot;owner&quot;:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
-          &quot;banner&quot;:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;},
-          &quot;menu&quot;:{
-            &quot;lunch&quot;:[
-              {&quot;name&quot;:&quot;Ricotta Gnocchi&quot;,&quot;price&quot;:15.99},
-              {&quot;name&quot;:&quot;Garlic Fries&quot;,&quot;price&quot;:15.99},
-              {&quot;name&quot;:&quot;Charred Octopus&quot;,&quot;price&quot;:25.99}
-            ],
-            &quot;dinner&quot;:[
-              {&quot;name&quot;:&quot;Steamed Mussels&quot;,&quot;price&quot;:21.99},
-              {&quot;name&quot;:&quot;Roasted Salmon&quot;,&quot;price&quot;:23.99},
-              {&quot;name&quot;:&quot;Crab Pancakes with Sorrel Syrup&quot;,&quot;price&quot;:35.99}
-            ]
-          },
-          &quot;address&quot;:{
-            &quot;street&quot;:&quot;2451 W Washburne Ave&quot;,
-            &quot;city&quot;:&quot;Ann Arbor&quot;,&quot;state&quot;:&quot;MI&quot;,&quot;zip&quot;:&quot;53295&quot;},
-            &quot;_id&quot;:&quot;xugqxQIX5rPJTLBv&quot;
-          },
-          {
-            &quot;name&quot;:&quot;Taco Joint&quot;,
-            &quot;slug&quot;:&quot;taco-joint&quot;,
-            &quot;images&quot;:{
-              &quot;thumbnail&quot;:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-              &quot;owner&quot;:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
-              &quot;banner&quot;:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;},
-              &quot;menu&quot;:{
-                &quot;lunch&quot;:[
-                  {&quot;name&quot;:&quot;Beef Tacos&quot;,&quot;price&quot;:15.99},
-                  {&quot;name&quot;:&quot;Chicken Tacos&quot;,&quot;price&quot;:15.99},
-                  {&quot;name&quot;:&quot;Guacamole&quot;,&quot;price&quot;:25.99}
-                ],
-                &quot;dinner&quot;:[
-                  {&quot;name&quot;:&quot;Shrimp Tacos&quot;,&quot;price&quot;:21.99},
-                  {&quot;name&quot;:&quot;Chicken Enchilada&quot;,&quot;price&quot;:23.99},
-                  {&quot;name&quot;:&quot;Elotes&quot;,&quot;price&quot;:35.99}
-                ]
-              },
-              &quot;address&quot;:{
-                &quot;street&quot;:&quot;13 N 21st St&quot;,
-                &quot;city&quot;:&quot;Chicago&quot;,&quot;state&quot;:&quot;IL&quot;,&quot;zip&quot;:&quot;53295&quot;},
-                &quot;_id&quot;:&quot;xugqxQIX5dfgdgTLBv&quot;
-              }]
-            };
-  
-      restaurantService.getRestaurants().subscribe((restaurants:ResponseData) =&gt; {
-        expect(restaurants).toEqual(mockRestaurants);
-      });
-  
-      let url = '/api/restaurants';
-      const req = httpMock.expectOne(url);
-  
-  
-      expect(req.request.method).toEqual('GET');
-      req.flush(mockRestaurants);
-  
-      httpMock.verify();
+    const mockRestaurants = {
+      data: [{
+      &quot;name&quot;:&quot;Brunch Place&quot;,
+      &quot;slug&quot;:&quot;brunch-place&quot;,
+      &quot;images&quot;:{
+        &quot;thumbnail&quot;:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+        &quot;owner&quot;:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
+        &quot;banner&quot;:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;},
+        &quot;menu&quot;:{
+          &quot;lunch&quot;:[
+            {&quot;name&quot;:&quot;Ricotta Gnocchi&quot;,&quot;price&quot;:15.99},
+            {&quot;name&quot;:&quot;Garlic Fries&quot;,&quot;price&quot;:15.99},
+            {&quot;name&quot;:&quot;Charred Octopus&quot;,&quot;price&quot;:25.99}
+          ],
+          &quot;dinner&quot;:[
+            {&quot;name&quot;:&quot;Steamed Mussels&quot;,&quot;price&quot;:21.99},
+            {&quot;name&quot;:&quot;Roasted Salmon&quot;,&quot;price&quot;:23.99},
+            {&quot;name&quot;:&quot;Crab Pancakes with Sorrel Syrup&quot;,&quot;price&quot;:35.99}
+          ]
+        },
+        &quot;address&quot;:{
+          &quot;street&quot;:&quot;2451 W Washburne Ave&quot;,
+          &quot;city&quot;:&quot;Ann Arbor&quot;,&quot;state&quot;:&quot;MI&quot;,&quot;zip&quot;:&quot;53295&quot;},
+          &quot;_id&quot;:&quot;xugqxQIX5rPJTLBv&quot;
+        },
+        {
+          &quot;name&quot;:&quot;Taco Joint&quot;,
+          &quot;slug&quot;:&quot;taco-joint&quot;,
+          &quot;images&quot;:{
+            &quot;thumbnail&quot;:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+            &quot;owner&quot;:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
+            &quot;banner&quot;:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;},
+            &quot;menu&quot;:{
+              &quot;lunch&quot;:[
+                {&quot;name&quot;:&quot;Beef Tacos&quot;,&quot;price&quot;:15.99},
+                {&quot;name&quot;:&quot;Chicken Tacos&quot;,&quot;price&quot;:15.99},
+                {&quot;name&quot;:&quot;Guacamole&quot;,&quot;price&quot;:25.99}
+              ],
+              &quot;dinner&quot;:[
+                {&quot;name&quot;:&quot;Shrimp Tacos&quot;,&quot;price&quot;:21.99},
+                {&quot;name&quot;:&quot;Chicken Enchilada&quot;,&quot;price&quot;:23.99},
+                {&quot;name&quot;:&quot;Elotes&quot;,&quot;price&quot;:35.99}
+              ]
+            },
+            &quot;address&quot;:{
+              &quot;street&quot;:&quot;13 N 21st St&quot;,
+              &quot;city&quot;:&quot;Chicago&quot;,&quot;state&quot;:&quot;IL&quot;,&quot;zip&quot;:&quot;53295&quot;},
+              &quot;_id&quot;:&quot;xugqxQIX5dfgdgTLBv&quot;
+            }]
+    };
+
+    restaurantService.getRestaurants().subscribe((restaurants:ResponseData) =&gt; {
+      expect(restaurants).toEqual(mockRestaurants);
     });
 
     let url = '/api/restaurants';
@@ -1278,7 +1275,7 @@ describe('RestaurantService', () =&gt; {
     req.flush(mockRestaurants);
 
     httpMock.verify();
-  });
+  })
 
   it('can set proper properties on restaurant type', () =&gt; {
     let restaurant: Restaurant = {
@@ -1313,9 +1310,9 @@ describe('RestaurantService', () =&gt; {
 
 });
 </code></pre>
-<div line-highlight='30, 80'></div>
+<div line-highlight='3,4,28-29,77,79,93-122'></div>
 <blockquote>
-<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass! If you haven't implemented the interface correctly, you'll see a compile error before the tests runs</p>
+<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass! If you haven't written the interfaces correctly, you'll see a compile error before the tests runs</p>
 </blockquote>
 <h2>Solution</h2>
 <p><strong>src/app/restaurant/restaurant.ts</strong></p>
@@ -1360,7 +1357,7 @@ export interface Restaurant {
   		
     </div>
 
-    
+    <!-- 
       <div class="sidebar-right">
         <div class="content-nav">
           <h6>On this page...</h6>
@@ -1383,7 +1380,7 @@ export interface Restaurant {
              <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/>.</p>
         </div>
       </div>
-    
+     -->
 
 	</article>
 </div>

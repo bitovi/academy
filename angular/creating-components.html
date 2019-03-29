@@ -30,7 +30,7 @@
       <li><a href="https://www.bitovi.com/blog">Blog</a></li>
       <li><a href=".." class="active">Academy</a></li>
      </ul>
-     <a class="contact-popup hs-button brand button-smallest" href="51-header-match">Contact Us</a>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
   </div>
 
   <div class="content">
@@ -1276,7 +1276,9 @@ export class RestaurantComponent implements OnInit {
 <h3>The problem</h3>
 <p>We want to display a list of restaurants in our UI once the data has been set on the restaurants member.</p>
 <h3>What you need to know</h3>
-<p>We covered the directives you'll need to use above!</p>
+<ul>
+<li>We covered the directives you'll need to use above!</li>
+</ul>
 <p>Here is the markup to show for each restaurant:</p>
 <pre><code class="language-html">&lt;img src=&quot;{{restaurant.images.thumbnail}}&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
 &lt;h3&gt;{{restaurant.name}}&lt;/h3&gt;
@@ -1366,7 +1368,7 @@ describe('RestaurantComponent', () =&gt; {
 
 </code></pre>
 <blockquote>
-<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass! (you'll need to remove &lt;pmo-home&gt; and &lt;pmo-restaurant&gt; from the app.component.html file first)</p>
+<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
 <h3>The solution</h3>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
@@ -1610,7 +1612,7 @@ export class ImageUrlPipe implements PipeTransform {
   		
     </div>
 
-    
+    <!-- 
       <div class="sidebar-right">
         <div class="content-nav">
           <h6>On this page...</h6>
@@ -1633,7 +1635,7 @@ export class ImageUrlPipe implements PipeTransform {
              <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/>.</p>
         </div>
       </div>
-    
+     -->
 
 	</article>
 </div>

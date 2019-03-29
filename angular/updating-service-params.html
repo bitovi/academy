@@ -30,7 +30,7 @@
       <li><a href="https://www.bitovi.com/blog">Blog</a></li>
       <li><a href=".." class="active">Academy</a></li>
      </ul>
-     <a class="contact-popup hs-button brand button-smallest" href="51-header-match">Contact Us</a>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
   </div>
 
   <div class="content">
@@ -453,62 +453,196 @@
 <p>In this part, we will:</p>
 <ul>
 <li>Update getRestaurants service method to take params</li>
-<li>Convert ResponseData interface to generic</li>
-<li>Add service methods to get states and cities</li>
-<li>Add call to get states on component init</li>
-<li>Refactor getting restaurants into own function</li>
-<li>Make calls to get cities and restaurants on input change events</li>
+<li>Update component to pass state and city params to service method</li>
 </ul>
-<h2>Changing http call to use params</h2>
-<p>Import HttpParams, add state and city params to getRestaurants method. Add new methods to get states, and cities(with a state param)</p>
-<p><strong>src/app/restaurant/restaurant.service.ts</strong></p>
-<pre><code class="language-ts">import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+<h2>Exercise: Update getRestaurants method to take state and city params</h2>
+<h3>The Problem</h3>
+<p>Now that we are able to capture a user's state and city preferences, we want to only return restaurants in the selected city. Modify the <code>getRestaurants</code> method in the <strong>src/app/restaurant/restaurant.service.ts</strong> file to take two string parameters, one for city, and one for state. The requested url with params should look like this: <code>'/api/restaurants?filter[address.state]=IL&amp;filter[address.city]=Chicago'</code></p>
+<p>In the <strong>src/app/restaurant/restaurant.component.ts</strong> file, update the call to the <code>getRestaurants</code> service method to use the city and state values capture from the user's form input.</p>
+<h3>What You Need to Know</h3>
+<ul>
+<li>How to use HttpParams (you learned this in the previous section! ✔️)</li>
+</ul>
+<h3>To Verify Your Solution is Correct</h3>
+<p>If you've implemented the solution correctly, when you use the select boxes to choose state and city, you should see a list of just restaurants from the selected city returned.</p>
+<p>Update the spec file  <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { TestBed } from '@angular/core/testing';
+
+import { ResponseData, RestaurantService, State, City } from './restaurant.service';
 import { Restaurant } from './restaurant';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-export interface ResponseData {
-  data: Restaurant[];
-}
+describe('RestaurantService', () =&gt; {
+  let httpMock : HttpTestingController;
+  let restaurantService: RestaurantService;
 
-export interface State {
-  name: string;
-  short: string;
-}
+  beforeEach(() =&gt; TestBed.configureTestingModule({
+    imports: [HttpClientTestingModule],
+    providers: [
+      RestaurantService
+    ]
+  }));
 
-export interface City {
-  name: string;
-  state: string;
-}
+  beforeEach(() =&gt; {
+    httpMock = TestBed.get(HttpTestingController);
+    restaurantService = TestBed.get(RestaurantService);
+  })
 
-@Injectable({
-  providedIn: 'root'
-})
-export class RestaurantService {
+  it('should be created', () =&gt; {
+    expect(restaurantService).toBeTruthy();
+  });
+ 
+  it('should make a get request to restaurants', () =&gt; {
+    const mockRestaurants = {
+      data: [{
+      &quot;name&quot;:&quot;Brunch Place&quot;,
+      &quot;slug&quot;:&quot;brunch-place&quot;,
+      &quot;images&quot;:{
+        &quot;thumbnail&quot;:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+        &quot;owner&quot;:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
+        &quot;banner&quot;:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;},
+        &quot;menu&quot;:{
+          &quot;lunch&quot;:[
+            {&quot;name&quot;:&quot;Ricotta Gnocchi&quot;,&quot;price&quot;:15.99},
+            {&quot;name&quot;:&quot;Garlic Fries&quot;,&quot;price&quot;:15.99},
+            {&quot;name&quot;:&quot;Charred Octopus&quot;,&quot;price&quot;:25.99}
+          ],
+          &quot;dinner&quot;:[
+            {&quot;name&quot;:&quot;Steamed Mussels&quot;,&quot;price&quot;:21.99},
+            {&quot;name&quot;:&quot;Roasted Salmon&quot;,&quot;price&quot;:23.99},
+            {&quot;name&quot;:&quot;Crab Pancakes with Sorrel Syrup&quot;,&quot;price&quot;:35.99}
+          ]
+        },
+        &quot;address&quot;:{
+          &quot;street&quot;:&quot;2451 W Washburne Ave&quot;,
+          &quot;city&quot;:&quot;Ann Arbor&quot;,&quot;state&quot;:&quot;MI&quot;,&quot;zip&quot;:&quot;53295&quot;},
+          &quot;_id&quot;:&quot;xugqxQIX5rPJTLBv&quot;
+        },
+        {
+          &quot;name&quot;:&quot;Taco Joint&quot;,
+          &quot;slug&quot;:&quot;taco-joint&quot;,
+          &quot;images&quot;:{
+            &quot;thumbnail&quot;:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+            &quot;owner&quot;:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
+            &quot;banner&quot;:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;},
+            &quot;menu&quot;:{
+              &quot;lunch&quot;:[
+                {&quot;name&quot;:&quot;Beef Tacos&quot;,&quot;price&quot;:15.99},
+                {&quot;name&quot;:&quot;Chicken Tacos&quot;,&quot;price&quot;:15.99},
+                {&quot;name&quot;:&quot;Guacamole&quot;,&quot;price&quot;:25.99}
+              ],
+              &quot;dinner&quot;:[
+                {&quot;name&quot;:&quot;Shrimp Tacos&quot;,&quot;price&quot;:21.99},
+                {&quot;name&quot;:&quot;Chicken Enchilada&quot;,&quot;price&quot;:23.99},
+                {&quot;name&quot;:&quot;Elotes&quot;,&quot;price&quot;:35.99}
+              ]
+            },
+            &quot;address&quot;:{
+              &quot;street&quot;:&quot;13 N 21st St&quot;,
+              &quot;city&quot;:&quot;Chicago&quot;,&quot;state&quot;:&quot;IL&quot;,&quot;zip&quot;:&quot;53295&quot;},
+              &quot;_id&quot;:&quot;xugqxQIX5dfgdgTLBv&quot;
+            }]
+          };
 
-  constructor(private httpClient: HttpClient) { }
+    restaurantService.getRestaurants(&quot;IL&quot;,&quot;Chicago&quot;).subscribe((restaurants:ResponseData&lt;Restaurant&gt;) =&gt; {
+      expect(restaurants).toEqual(mockRestaurants);
+    });
 
-  getRestaurants(state:string, city: string) {
-    let options = { params: new HttpParams().set('filter[address.state]', state).set('filter[address.city]', city) };
-    return this.httpClient.get&lt;ResponseData&gt;('/api/restaurants', options);
-  }
-}
+    let url = '/api/restaurants?filter%5Baddress.state%5D=IL&amp;filter%5Baddress.city%5D=Chicago';
+    //url parses to '/api/restaurants?filter[address.state]=IL&amp;filter[address.city]=Chicago'
+    const req = httpMock.expectOne(url);
 
+
+    expect(req.request.method).toEqual('GET');
+    req.flush(mockRestaurants);
+
+    httpMock.verify();
+  });
+
+  it('can set proper properties on restaurant type', () =&gt; {
+    let restaurant: Restaurant = {
+      name:&quot;Taco Joint&quot;,
+      slug:&quot;taco-joint&quot;,
+      images:{
+        thumbnail:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+        owner:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
+        banner:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+      },
+      menu:{
+        lunch:[
+          {name:&quot;Beef Tacos&quot;,&quot;price&quot;:15.99},
+          {name:&quot;Chicken Tacos&quot;,&quot;price&quot;:15.99},
+          {name:&quot;Guacamole&quot;,&quot;price&quot;:25.99}
+        ],
+        dinner:[
+          {name:&quot;Shrimp Tacos&quot;,&quot;price&quot;:21.99},
+          {name:&quot;Chicken Enchilada&quot;,&quot;price&quot;:23.99},
+          {name:&quot;Elotes&quot;,&quot;price&quot;:35.99}
+        ]
+      },
+      address:{
+        street:&quot;13 N 21st St&quot;,
+        city:&quot;Chicago&quot;,&quot;state&quot;:&quot;IL&quot;,&quot;zip&quot;:&quot;53295&quot;
+      },
+      _id:&quot;xugqxQIX5dfgdgTLBv&quot;
+    }
+    //will error if interface isn't implemented correctly
+    expect(true).toBe(true);
+  });
+
+  it('should make a get request to states', () =&gt; {
+    const mockStates = {
+      data: [
+        {name: 'Missouri', short: 'MO'}
+      ]
+    };
+
+    restaurantService.getStates().subscribe((states: ResponseData&lt;State&gt;) =&gt; {
+      expect(states).toEqual(mockStates);
+    });
+
+    let url = '/api/states';
+    const req = httpMock.expectOne(url);
+
+    expect(req.request.method).toEqual('GET');
+    req.flush(mockStates);
+
+    httpMock.verify();
+  });
+
+  it('should make a get request to cities', () =&gt; {
+    const mockCities = {
+      data: [
+        {name: 'Kansas City', state: 'MO'}
+      ]
+    };
+
+    restaurantService.getCities('MO').subscribe((cities: ResponseData&lt;City&gt;) =&gt; {
+      expect(cities).toEqual(mockCities);
+    });
+
+    let url = '/api/cities?state=MO';
+    const req = httpMock.expectOne(url);
+    expect(req.request.method).toEqual('GET');
+    req.flush(mockCities);
+
+    httpMock.verify();
+  });
+
+});
 </code></pre>
-<div line-highlight='2, 26-28'></div>
-<p>Take a look at your console trying to compile your app. What error do you see?</p>
-<h2>Exercise: Convert ResponseData to Generic</h2>
-<h3>The problem</h3>
-<p>Because our API returns different data types that follow the same structure, we need change our <code>ResponseData</code> interface to accept any kind of type, including the interfaces for city and state. Change the <code>ResponseData</code> interface in the <code>src/app/restaurant/restaurant.service.ts</code> to use generics!</p>
-<h3>What you need to know</h3>
-<p>You already know how to use generics, you TypeScript guru!</p>
-<h3>The solution</h3>
+<div line-highlight='79,83,84'></div>
+<blockquote>
+<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+</blockquote>
+<h3>Solution</h3>
 <p><strong>src/app/restaurant/restaurant.service.ts</strong></p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Restaurant } from './restaurant';
 
-export interface ResponseData&lt;T&gt; {
-  data: Array&lt;T&gt;;
+export interface ResponseData&lt;dataType&gt; {
+  data: Array&lt;dataType&gt;;
 }
 
 export interface State {
@@ -529,46 +663,8 @@ export class RestaurantService {
   constructor(private httpClient: HttpClient) { }
 
   getRestaurants(state:string, city: string) {
-    let options = { params: new HttpParams().set('filter[address.state]', state).set('filter[address.city]', city) };
-    return this.httpClient.get&lt;ResponseData&lt;Restaurant&gt;&gt;('/api/restaurants', options);
-  }
-}
-
-</code></pre>
-<div line-highlight='5-7, 28'></div>
-<h3>Get states and cities from the service layer</h3>
-<p>We're going to a <code>getStates()</code> method that publishes states and a
-<code>getCities(state:string)</code> method that publishes a list of cities
-for a provided state.</p>
-<p><strong>src/app/restaurant/restaurant.service.ts</strong></p>
-<pre><code class="language-ts">import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Restaurant } from './restaurant';
-
-export interface ResponseData&lt;T&gt; {
-  data: Array&lt;T&gt;;
-}
-
-export interface State {
-  name: string;
-  short: string;
-}
-
-export interface City {
-  name: string;
-  state: string;
-}
-
-@Injectable({
-  providedIn: 'root'
-})
-export class RestaurantService {
-
-  constructor(private httpClient: HttpClient) { }
-
-  getRestaurants(state:string, city: string) {
-    let options = { params: new HttpParams().set('filter[address.state]', state).set('filter[address.city]', city) };
-    return this.httpClient.get&lt;ResponseData&lt;Restaurant&gt;&gt;('/api/restaurants', options);
+    const params = new HttpParams().set('filter[address.state]', state).set('filter[address.city]', city);
+    return this.httpClient.get&lt;ResponseData&lt;Restaurant&gt;&gt;('/api/restaurants', {params});
   }
 
   getStates() {
@@ -576,20 +672,18 @@ export class RestaurantService {
   }
 
   getCities(state:string) {
-    const options = { params: new HttpParams().set('state', state)};
-    return this.httpClient.get&lt;ResponseData&lt;City&gt;&gt;('/api/cities', options);
+    const params = new HttpParams().set('state', state);
+    return this.httpClient.get&lt;ResponseData&lt;City&gt;&gt;('/api/cities', {params});
   }
 }
-
 </code></pre>
-<div line-highlight='31-38'></div>
-<p>We'll use those methods to get all states and cities in <code>IL</code>. We'll also want to disable down dropdowns when the component first loads, then enable them as their respective dropdown lists are retrieved.</p>
+<div line-highlight='26-29'></div>
 <p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-import { RestaurantService, ResponseData, City, State } from './restaurant.service';
+import { RestaurantService, ResponseData, State, City } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data&lt;T&gt; {
@@ -610,117 +704,14 @@ export class RestaurantComponent implements OnInit, OnDestroy {
     isPending: false
   }
 
-  public states: Data&lt;State&gt; = {
-    value: [],
-    isPending: true
-  }
+  public states = {
+    isPending: false,
+    value: []
+  };
 
-  public cities: Data&lt;City&gt; = {
-    value: [],
-    isPending: true
-  }
-
-  private subscription: Subscription;
-
-  constructor(
-    private restaurantService: RestaurantService,
-    private fb: FormBuilder
-    ) {
-  }
-
-  ngOnInit() {
-    this.createForm();
-
-    this.restaurantService.getStates().subscribe((res: ResponseData&lt;State&gt;) =&gt; {
-      this.states.value = res.data;
-      this.states.isPending = false;
-      this.form.get('state').enable();
-    });
-
-    this.restaurantService.getCities(&quot;IL&quot;).subscribe((res: ResponseData&lt;City&gt;) =&gt; {
-      this.cities.value = res.data;
-      this.cities.isPending = false;
-      this.form.get('city').enable();
-    });
-
-    this.restaurantService.getRestaurants(&quot;IL&quot;,&quot;Chicago&quot;).subscribe((res: ResponseData&lt;Restaurant&gt;) =&gt; {
-      this.restaurants.value = res.data;
-      this.restaurants.isPending = false;
-    });
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
-  createForm() {
-    this.form = this.fb.group({
-      state: {value: '', disabled: true},
-      city: {value: '', disabled: true},
-    });
-
-    this.onChanges();
-  }
-  onChanges(): void {
-    const stateChanges = this.form.get('state').valueChanges.subscribe(val =&gt; {
-      console.log('state', val);
-    });
-    this.subscription = stateChanges;
-
-
-    const cityChanges = this.form.get('city').valueChanges.subscribe(val =&gt; {
-      console.log('city', val);
-    });
-    this.subscription.add(cityChanges);
-  }
-}
-
-</code></pre>
-<div line-highlight='5,26-34,47-57,59,71-72'></div>
-<h2>Add methods to retrieve data to component</h2>
-<p>In the next step, we will want to change the list of cities and restaurants
-as the user selects a state and/or city.  In <em>this</em> step, we will
-add two functions:</p>
-<ul>
-<li><code>getCities(state: string)</code> which will update the list of cities for
-the given state. We should also reset the <code>isPending</code> state for cities.</li>
-<li><code>getRestaurants(state: string, city: string)</code> which will update the list of
-restaurants for a city and state. We should also reset the <code>isPending</code> state for restaurants.</li>
-</ul>
-<p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
-<pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
-
-import { RestaurantService, ResponseData, City, State } from './restaurant.service';
-import { Restaurant } from './restaurant';
-
-export interface Data&lt;T&gt; {
-  value: Array&lt;T&gt;;
-  isPending: boolean;
-}
-
-@Component({
-  selector: 'pmo-restaurant',
-  templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less']
-})
-export class RestaurantComponent implements OnInit, OnDestroy {
-  form: FormGroup;
-
-  public restaurants: Data&lt;Restaurant&gt; = {
-    value: [],
-    isPending: false
-  }
-
-  public states: Data&lt;State&gt; = {
-    value: [],
-    isPending: true
-  }
-
-  public cities: Data&lt;City&gt; = {
-    value: [],
-    isPending: true
+  public cities = {
+    isPending: false,
+    value: []
   }
 
   private subscription: Subscription;
@@ -734,15 +725,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.createForm();
 
-    this.restaurantService.getStates().subscribe((res: ResponseData&lt;State&gt;) =&gt; {
-      this.states.value = res.data;
-      this.states.isPending = false;
-      this.form.get('state').enable();
-    });
-
-    this.getCities(&quot;IL&quot;);
-
-    this.getRestaurants(&quot;IL&quot;,&quot;Chicago&quot;);
+    this.getStates();
   }
 
   ngOnDestroy() {
@@ -751,111 +734,8 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
   createForm() {
     this.form = this.fb.group({
-      state: {value: '', disabled: true},
-      city: {value: '', disabled: true},
-    });
-
-    this.onChanges();
-  }
-  onChanges(): void {
-    const stateChanges = this.form.get('state').valueChanges.subscribe(val =&gt; {
-      console.log('state', val);
-    });
-    this.subscription = stateChanges;
-
-
-    const cityChanges = this.form.get('city').valueChanges.subscribe(val =&gt; {
-      console.log('city', val);
-    });
-    this.subscription.add(cityChanges);
-  }
-
-  getCities(state:string) {
-    this.cities.isPending = true;
-    this.restaurantService.getCities(state).subscribe((res: ResponseData&lt;City&gt;) =&gt; {
-      this.cities.value = res.data;
-      this.cities.isPending = false;
-      this.form.get('city').enable({
-        onlySelf: true,
-        emitEvent: false
-      });
-    });
-  }
-
-  getRestaurants(state: string, city: string) {
-    this.restaurants.isPending = true;
-    this.restaurantService.getRestaurants(state, city).subscribe((res: ResponseData&lt;Restaurant&gt;) =&gt; {
-      this.restaurants.value = res.data;
-      this.restaurants.isPending = false;
-    });
-  }
-}
-
-</code></pre>
-<div line-highlight='53,55,83-101,only'></div>
-<h2>Make calls for cities and restaurants when inputs change</h2>
-<p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
-<pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
-
-import { RestaurantService, ResponseData, City, State } from './restaurant.service';
-import { Restaurant } from './restaurant';
-
-export interface Data&lt;T&gt; {
-  value: Array&lt;T&gt;;
-  isPending: boolean;
-}
-
-@Component({
-  selector: 'pmo-restaurant',
-  templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less']
-})
-export class RestaurantComponent implements OnInit, OnDestroy {
-  form: FormGroup;
-
-  public restaurants: Data&lt;Restaurant&gt; = {
-    value: [],
-    isPending: false
-  }
-
-  public states: Data&lt;State&gt; = {
-    value: [],
-    isPending: true
-  }
-
-  public cities: Data&lt;City&gt; = {
-    value: [],
-    isPending: true
-  }
-
-  private subscription: Subscription;
-
-  constructor(
-    private restaurantService: RestaurantService,
-    private fb: FormBuilder
-    ) {
-  }
-
-  ngOnInit() {
-    this.createForm();
-
-    this.restaurantService.getStates().subscribe((res: ResponseData&lt;State&gt;) =&gt; {
-      this.states.value = res.data;
-      this.states.isPending = false;
-      this.form.get('state').enable();
-    });
-  }
-
-  ngOnDestroy() {
-    this.subscription.unsubscribe();
-  }
-
-  createForm() {
-    this.form = this.fb.group({
-      state: {value: '', disabled: true},
-      city: {value: '', disabled: true},
+      state: {value: '', disabled: false},
+      city: {value: '', disabled: false},
     });
 
     this.onChanges();
@@ -863,7 +743,8 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
   onChanges(): void {
     let state:string;
-    this.subscription = this.form.get('state').valueChanges.subscribe(val =&gt; {
+    const stateChanges = this.form.get('state').valueChanges.subscribe(val =&gt; {
+      this.restaurants.value = [];
       if (val) {
         //only enable city if state has value
         this.form.get('city').enable({
@@ -873,7 +754,6 @@ export class RestaurantComponent implements OnInit, OnDestroy {
         //if state has a value and has changed, clear previous city value
         if (state != val) {
           this.form.get('city').patchValue('');
-          this.restaurants.value = [];
         }
         //fetch cities based on state val
         this.getCities(val);
@@ -886,17 +766,25 @@ export class RestaurantComponent implements OnInit, OnDestroy {
           emitEvent: false
         });
         state = '';
-        //clear restaurant list
-        this.restaurants.value = [];
       }
     });
+    this.subscription = stateChanges;
 
-    this.subscription.add( this.form.get('city').valueChanges.subscribe(val =&gt; {
-      if (val) {
-        //make new call to get restaurants with state and city
+
+    const cityChanges = this.form.get('city').valueChanges.subscribe(val =&gt; {
+      if(val) {
         this.getRestaurants(state, val);
       }
-    }) );
+    });
+    this.subscription.add(cityChanges);
+  }
+
+  getStates() {
+    this.restaurantService.getStates().subscribe((res: ResponseData&lt;State&gt;) =&gt; {
+      this.states.value = res.data;
+      this.states.isPending = false;
+      this.form.get('state').enable();
+    });
   }
 
   getCities(state:string) {
@@ -911,18 +799,15 @@ export class RestaurantComponent implements OnInit, OnDestroy {
     });
   }
 
-  getRestaurants(state: string, city: string) {
-    this.restaurants.isPending = true;
+  getRestaurants(state: string, city:string) {
     this.restaurantService.getRestaurants(state, city).subscribe((res: ResponseData&lt;Restaurant&gt;) =&gt; {
       this.restaurants.value = res.data;
       this.restaurants.isPending = false;
     });
   }
 }
-
 </code></pre>
-<div line-highlight='51-52,68-102'></div>
-<p>Now when you interact with the UI, cities won't be shown until a state is selected, restaurants will show once a city has been selected.</p>
+<div line-highlight='95,121,122'></div>
 
 </section>
 
@@ -930,7 +815,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   		
     </div>
 
-    
+    <!-- 
       <div class="sidebar-right">
         <div class="content-nav">
           <h6>On this page...</h6>
@@ -953,7 +838,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
              <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/>.</p>
         </div>
       </div>
-    
+     -->
 
 	</article>
 </div>
