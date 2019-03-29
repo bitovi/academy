@@ -16,7 +16,7 @@ In this part, we will:
 
 ## Reactive Forms
 
-We're going to use select boxes to handle our user's input. Angular's <a href="https://angular.io/guide/reactive-forms" target="_blank">Reactive Forms</a> API provides a clean way to get data from user input and do work based on it. 
+We're going to use select boxes to handle our user's input. Angular's <a href="https://angular.io/guide/reactive-forms" target="\_blank">Reactive Forms</a> API provides a clean way to get data from user input and do work based on it.
 
 > From the docs: Reactive forms use an explicit and immutable approach to managing the state of a form at a given point in time. Each change to the form state returns a new state, which maintains the integrity of the model between changes. Reactive forms are built around observable streams, where form inputs and values are provided as streams of input values, which can be accessed synchronously.
 
@@ -30,8 +30,8 @@ To use reactive forms we must import our ReactiveFormsModule into the root app.
 
 ### FormControl
 
-The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl" target="_blank">FormControl</a>. This class manages the form input model and connection to it's input element in the dom and inherits from the <a href="https://angular.io/api/forms/AbstractControl" target="_blank">AbstractControl</a>
-class. It's worth getting familiar with the methods available in this class(like setValidators and patchValue), as they're used quite often in reactive form development.
+The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl" target="\_blank">FormControl</a>. This class manages the form input model and connection to it's input element in the dom and inherits from the <a href="https://angular.io/api/forms/AbstractControl" target="\_blank">AbstractControl</a>
+class. It's worth getting familiar with the methods available in this class (like setValidators and patchValue), as they're used quite often in reactive form development.
 
 @sourceref ./form-control.html
 @codepen
@@ -47,7 +47,7 @@ A FormGroup is a way of grouping FormControls and tracking the state of the enti
 
 ### FormArray
 
-FormArray aggregates FormControls into an array. It's different than FormGroup in that the controls inside are serialized as an array. FormArrays are very useful when dealing with repeated FormControls or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays. 
+FormArray aggregates FormControls into an array. It's different than FormGroup in that the controls inside are serialized as an array. FormArrays are very useful when dealing with repeated FormControls or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.
 
 @sourceref ./form-array.html
 @codepen
@@ -55,7 +55,7 @@ FormArray aggregates FormControls into an array. It's different than FormGroup i
 
 ### FormBuilder
 
-<a href="https://angular.io/api/forms/FormBuilder" target="_blank">FormBuilder</a> is a shorthand way to quickly write forms by reducing boilerplate code of manually having to write `new FormControl`, `new FormGroup`, `new FormArray` repeatedly. 
+<a href="https://angular.io/api/forms/FormBuilder" target="\_blank">FormBuilder</a> is a shorthand way to quickly write forms by reducing boilerplate code of manually having to write `new FormControl`, `new FormGroup`, `new FormArray` repeatedly.
 
 @sourceref ./form-builder.html
 @codepen
@@ -72,9 +72,9 @@ We would like our user to be able to filter restaurants based on city and state.
 - How to create a FormControl (you learned this in the section above! ✔️)
 - How to create a FormGroup (you learned this in the section above! ✔️)
 - How to use FormBuilder (you learned this in the section above! ✔️)
-- How to use ngFor(you learned this in the Creating Components section! ✔️)
+- How to use ngFor (you learned this in the Creating Components section! ✔️)
 
-Here's some code to get you started: 
+Here's some code to get you started:
 
 __src/app/restaurant/restaurant.component.ts__
 

@@ -21,13 +21,13 @@ In this part, we will:
 
 For a more robust understanding of Observables, Subscriptions, and other RxJS core tenants check out our [RxJS RxJS guide]. For the following exercises, Observables are lazy collections of multiple values over time. We can subscribe to observables to get any new data, or create and add to Subscriptions of observables.
 
-This example shows creating a subscription to an observable, saving it's value to a member on the component and displaying it in the template. This is useful for when we want to capture and observables values and make changes based on them, but subscriptions do need to be cleaned up to avoid memory leaks. Whenever a component is destroyed an <a href="https://angular.io/api/core/OnDestroy" target="_blank">ngOnDestroy</a> method is called. This is a good place to put our cleanup code, like unsubscribing from observables.
+This example shows creating a subscription to an observable, saving it's value to a member on the component and displaying it in the template. This is useful for when we want to capture and observables values and make changes based on them, but subscriptions do need to be cleaned up to avoid memory leaks. Whenever a component is destroyed an <a href="https://angular.io/api/core/OnDestroy" target="\_blank">ngOnDestroy</a> method is called. This is a good place to put our cleanup code, like unsubscribing from observables.
 
 @sourceref ./observables-subscriptions.html
 @codepen
 @highlight 53,56,57,58,59,66-78,80-82,85-88,only
 
-This example shows creating a subscription to an observable, and using an <a href="https://angular.io/api/common/AsyncPipe" target="_blank">async pipe</a> to display the value. This is useful for displaying observable values in templates without the need to unsubscribe as that's handled by the pipe. 
+This example shows creating a subscription to an observable, and using an <a href="https://angular.io/api/common/AsyncPipe" target="\_blank">async pipe</a> to display the value. This is useful for displaying observable values in templates without the need to unsubscribe as that's handled by the pipe.
 
 @sourceref ./observables-subscriptions-async.html
 @codepen
@@ -41,7 +41,7 @@ This example creates a subscription, then adds to it.
 
 ## Listening to Form Changes
 
-We can listen to changes to values on FormControls and FormGroup using the valueChanges method, which emits an observable. The following example subscribes to any changes to the FormGroup(which must be unsubscribed on destroy to avoid memory leaks) and also subscribes to a single FormControl and displays the value using an async pipe.
+We can listen to changes to values on FormControls and FormGroup using the valueChanges method, which emits an observable. The following example subscribes to any changes to the FormGroup (which must be unsubscribed on destroy to avoid memory leaks) and also subscribes to a single FormControl and displays the value using an async pipe.
 
 @sourceref ./form-listeners.html
 @codepen
@@ -56,7 +56,7 @@ Our end goal is to be able to show restaurants based on state, then city. As we 
 ### What you need to know
 
 - how observables and subscriptions work (you learned this in the section above! ✔️)
-- how to subscribe to the valueChanges method on a FormGroup(or FormControl) (you learned this in the section above! ✔️)
+- how to subscribe to the valueChanges method on a FormGroup (or FormControl) (you learned this in the section above! ✔️)
 - how to unsubscribe (you learned this in the section above! ✔️)
 
 ### To Verify Your Solution is Correct
@@ -86,7 +86,7 @@ Method 2 - `getCities`, takes a string param called 'state' a makes a request to
 
 - how to use HttpParams:
 
-  <a href="https://angular.io/api/common/http/HttpParams" target="_blank">HttpParams</a> are part of Angulars HTTPClient API and help us create parameters for our requests.
+  <a href="https://angular.io/api/common/http/HttpParams" target="\_blank">HttpParams</a> are part of Angulars HTTPClient API and help us create parameters for our requests.
 
   @sourceref ./http-params.html
   @codepen
@@ -143,7 +143,7 @@ Now that our service is in working order, let's populate our dropdowns with stat
 Requirements
 
 1. Mark state and city dropdowns as disabled until they are populated with data
-2. Fetch the states list when the component first loads(`ngOnInit`) and populate the dropdown options with the values
+2. Fetch the states list when the component first loads (`ngOnInit`) and populate the dropdown options with the values
 3. When the State FormControl value changes, fetch the list of cities with the selected state as the parameter
 4. If the state value changes, fetch the new list of cities, and reset the list of restaurants to an empty array
 5. When a City is selected, fetch the list of restaurants
@@ -151,7 +151,7 @@ Requirements
 > Hint: You'll want to clear the fake data from the state and city value props, and move the call to get restaurants out of the ngOnInit function.
 
 ### What You Need to Know
- 
+
 - How to call service methods in a component
 
 ### To Verify Your Solution is Correct

@@ -147,7 +147,7 @@ __src/app/restaurant/restaurant.service.ts__
 
 ## Take Advantage of TypeScript
 
-Thanks to TypeScript we can write interfaces to describe what we expect objects to look like. Consider the user service above returning an array of users. This interface describes what a user(and array of users) should look like:
+Thanks to TypeScript we can write interfaces to describe what we expect objects to look like. Consider the user service above returning an array of users. This interface describes what a user (and array of users) should look like:
 
 @sourceref ./service-interface.html
 @codepen

@@ -76,7 +76,7 @@ Can specify application vs. library
 
 ### - targets
 
-Used for customizing task commands(build, serve, test) from the default settings.
+Used for customizing task commands (build, serve, test) from the default settings.
 
 ## Looking at Our Generated Workspace
 
