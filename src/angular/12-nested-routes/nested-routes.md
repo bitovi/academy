@@ -10,19 +10,32 @@
 In this part, we will:
 
 - Create a restaurant detail component
-- Rename the new component & update it's declaration
 - Add a route path with custom param
 - Add a get restaurant method to restaurant class
 - Get restaurant slug from route param in component
 - Get restaurant data from service based on slug
 
+We're able to nest components and modules in Angular, and the CLI makes it even easier
+
+## Create a Component Inside an Existing Component
+
+### The Problem
+
+We want to create a detail view for individual restaurants. 
+
+### What You Need to Know
+
+- How to create a route with a param
+- How to create a nested component
+  ```bash
+  ng g component restaurant/detail
+  ```
+
 ## Create the Restaurant Detail Component
 
 The restaurant detail component will display information about the restaurant, and include a link to order from the menu, which we'll build the component for later.
 
-```bash
-ng g component restaurant/detail
-```
+
 
 Add markup:
 
@@ -31,7 +44,7 @@ __src/app/restaurant/detail/detail.component.html__
 @sourceref ./detail.component.html
 
 
-For clarity, let's rename the component class name to be `RestaurantDetailComponent`. We've also added a method called by the html that will return a proper url path for our restaurant image. 
+ We've also added a method called by the html that will return a proper url path for our restaurant image. 
 
 __src/app/restaurant/detail/detail.component.ts__
 

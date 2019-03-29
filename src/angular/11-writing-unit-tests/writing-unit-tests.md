@@ -9,39 +9,19 @@
 
 In this part, we will:
 
-- Get our existing tests to pass
-- Run our tests
-- Write a test to get cities and states
+- Update a current unit test to match for our refactored service method
 
-## Get our unit tests to work again
+### Exercise: Write restaurant service test
 
-Update the following three files:
+### The Problem
 
-1\. __src/app/app.component.spec.ts__
+In the last section we updated an existing method on our RestaurantService. Update the unit test to test that the method works as desired by creating the correct url from parameters given.
 
-@sourceref ./app.component.spec.ts
-@highlight 18-19,31-33
+> Hint - you can look at the getCities method test for an example.
 
-2. __src/app/image-url.pipe.spec.ts__
+### The Solution 
 
-@sourceref ./image-url.pipe.spec.ts
-
-3. __src/app/restaurant.component.spec.ts__
-
-@sourceref ./restaurant.component.spec.ts
-@highlight 26,31,47-53
-
-## Run our tests
-
-Run the following in your terminal:
-
-```shell
-ng test
-```
-
-## Exercise: Write restaurant service test
-
-__src/app/restaurant.service.spec.ts__
+__src/app/restaurant/restaurant.service.spec.ts__
 
 @sourceref ./restaurant.service.spec.ts
-@highlight 7,10-15,18-19,38-41,43
+@highlight 79,83,84
