@@ -38,4 +38,4 @@ __src/app/restaurant/restaurant.service.ts__
 __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./restaurant.component-httpparams.ts
-@highlight 95,121,122
+@highlight 97,123,124

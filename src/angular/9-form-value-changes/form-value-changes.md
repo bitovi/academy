@@ -68,7 +68,7 @@ When you interact with the dropdown menus, you should see their values logged to
 __src/app/restaurant/restaurant.component.ts__
 
 @sourceref restaurant.component.ts
-@highlight 1,3,18,36,53-55,63,65-76
+@highlight 1,3,18,36,53-57,65,67-78
 
 Now that we know how to get values from our dropdowns, let's populate them with real data. We can get our list of states immediately, but to get our cities, we'll want to make an get request based on the state the user selected.
 
@@ -165,4 +165,4 @@ We need to remove a few tests that are no longer relevant to our app's current s
 __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./restaurant.component-citystate.ts
-@highlight 5,28,33,44-48,63-99, 101-107, 109-119,121-126
+@highlight 5,28,33,44-48,65-101, 103-109, 111-121,123-128
