@@ -32,10 +32,7 @@ Now, create a route for our new component! The path should be `/restaurants/{{sl
 
 ### What you need to know
 
-You've created routes before! You got this!
-
-
----
+- You've created routes before! You got this!
 
 ### Solution
 
@@ -84,16 +81,10 @@ The order form component needs to get the restaurant from the route slug, and ne
   });
   ```
 
-
 __src/app/order/order.component.ts__
 
 @sourceref ./order.component.ts
 
-
-
-
-
----
 
 ### The solution
 
