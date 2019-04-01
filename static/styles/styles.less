@@ -567,7 +567,6 @@ hr:first-of-type {
 .sidebar-right .content-nav {
   border-bottom: 1px solid #eee;
   margin-top: 22px;
-  padding-bottom: 15px;
 }
 .sidebar-right .content-nav h6 {
   font-size: 15px;
@@ -584,6 +583,7 @@ hr:first-of-type {
 .sidebar-right .content-nav li {
   list-style: none;
   font-size: 14px;
+  line-height: 17px;
 }
 .sidebar-right .pullout {
   border-bottom: 1px solid #eee;
@@ -604,6 +604,12 @@ hr:first-of-type {
 }
 
 // Sidebar Right: Content Navigation
+
+.content-nav ul {
+  height: 300px;
+  overflow-y: scroll;
+  padding-right: 15px;
+}
 
 .content-nav > ul {
   font-size: 14px;
@@ -627,7 +633,6 @@ hr:first-of-type {
     color: #333;
   }
 }
-
 .content-nav a.active {
   background-color: transparent;
   color: inherit;
