@@ -51,7 +51,6 @@ Helpful Plugins:
 
 Helpful Plugins:
 - <a href="https://next.angular.io/guide/language-service" target="_blank">Angular Language Service</a>
-- 
 
 ## Intro to the CLI
 
