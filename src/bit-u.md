@@ -10,6 +10,7 @@ and management in these free courses!
 <style>
 .main-content {
   width: 100%;
+  padding-right: 0;
 }
 .container {
   padding: 0;
