@@ -1097,6 +1097,7 @@ export class RestaurantComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.createForm();
     this.restaurants.isPending = true;
 
     this.restaurantService.getRestaurants().subscribe((res: ResponseData) =&gt; {
@@ -1105,10 +1106,14 @@ export class RestaurantComponent implements OnInit {
     });
   }
 
+  createForm() {
+    
+  }
+
 }
 
 </code></pre>
-<div line-highlight='18,25-28,30-33, only'></div>
+<div line-highlight='2,18,25-28,30-33,41,51-53 only'></div>
 <p>Don't forget to import reactiveForms in the root app module.</p>
 <p><strong>src/app/app.module.ts</strong></p>
 <pre><code class="language-ts">import { BrowserModule } from '@angular/platform-browser';

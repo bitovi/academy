@@ -453,18 +453,169 @@
 <p>In this part, we will:</p>
 <ul>
 <li>Create a restaurant detail component</li>
-<li>Rename the new component &amp; update it's declaration</li>
-<li>Add a route path with custom param</li>
-<li>Add a get restaurant method to restaurant class</li>
+<li>Add a route path with a param</li>
 <li>Get restaurant slug from route param in component</li>
 <li>Get restaurant data from service based on slug</li>
 </ul>
-<h2>Create the Restaurant Detail Component</h2>
-<p>The restaurant detail component will display information about the restaurant, and include a link to order from the menu, which we'll build the component for later.</p>
+<h2>Route Parameters &amp; Child Views</h2>
+<p>A common pattern in SPA architecture is to serve a view of an individual piece of data from a path with an identifying parameter. Previously we've defined static paths with Angulars <a href="https://angular.io/guide/router" target="_blank">router</a>. To create a nested route, we'll need the slug after the slash to be dynamic. We can set a token for the router parameter with <code>:</code>. To get the slug from the route in a component, we use the <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a> interface.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//unpkg.com/mock-url@^5.0.0&quot; type=&quot;module&quot;&gt;&lt;/script&gt;
+&lt;mock-url pushstate:from=&quot;true&quot;&gt;&lt;/mock-url&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { Routes, RouterModule, ActivatedRoute } = ng.router;
+
+interface User {
+  name: string;
+  id: number;
+  role: string;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+class UsersService {
+  private users: User[] = [
+  {
+    name: 'Jennifer',
+    id: 1,
+    role: 'admin'
+  },
+  {
+    name: 'Steve',
+    id: 2,
+    role: 'user'
+  },
+  {
+    name: 'Alice',
+    id: 3,
+    role: 'developer'
+  }]
+
+  constructor() { }
+
+  getUsers() {
+    return this.users;
+  }
+
+  getUser(id: string) {
+    return this.users.find(x =&gt; x.id === parseInt(id, 10))
+  }
+}
+
+@Component({
+  selector: 'my-app',
+  template: `
+  &lt;ul class=&quot;nav&quot;&gt;
+    &lt;li routerLinkActive=&quot;active&quot;&gt;
+      &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li routerLinkActive=&quot;active&quot;&gt;
+      &lt;a [routerLink]=&quot;['/users', userId]&quot;&gt;User 1&lt;/a&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  `
+})
+class AppComponent {
+  public userId: number = 1;
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'home-component',
+  template: `
+    &lt;p&gt;A home component!&lt;/p&gt;
+  `
+})
+class HomeComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'user-component',
+  template: `
+    &lt;p&gt;A user component!&lt;/p&gt;
+    &lt;p *ngIf=&quot;user&quot;&gt;
+      {{user.name}} is a {{user.role}}
+    &lt;/p&gt;
+  `
+})
+class UserComponent implements OnInit {
+  public user: User;
+
+  constructor(private route: ActivatedRoute, private usersService: UsersService) {
+  }
+
+  ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+
+    this.user = this.usersService.getUser(id);
+  }
+}
+//THIS IS A HACK JUST FOR CODEPEN TO WORK
+UserComponent.parameters = [ActivatedRoute, UsersService];
+
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'users/:id', component: UserComponent },
+  { path: '**', component: HomeComponent }
+]
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+class AppRoutingModule { }
+
+                 
+@NgModule({
+  declarations: [AppComponent, HomeComponent, UserComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    AppRoutingModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='93-94,101,105,107,115,only'></div>
+<h3>The Problem</h3>
+<p>Create a new component called <code>details</code> in the restaurant component folder that is a detail view for an individual restaurant that is served from the path <code>'/restaurants/restaurant-slug'</code>. Create the route as well, and use the <code>getRestaurant</code> method on the RestaurantService to fetch the restaurant based on the route snapshot. The detail component should have a member 'restaurant' that is a type of Restaurant and an 'isLoading' member set to true or false based on when the restaurant data has been fetched.</p>
+<h3>What You Need to Know</h3>
+<ul>
+<li><p>How to create a nested component</p>
 <pre><code class="language-bash">ng g component restaurant/detail
 </code></pre>
 <p>Add markup:</p>
-<p><strong>src/app/restaurant/detail/detail.component.html</strong></p>
+<p><strong>src/app/restaurant/detail/detail.component.html</strong></p></li>
+</ul>
 <pre><code class="language-html">&lt;ng-container *ngIf=&quot;isLoading&quot;&gt;
   &lt;div class=&quot;loading&quot;&gt;&lt;/div&gt;
 &lt;/ng-container&gt;
@@ -503,7 +654,7 @@
 &lt;/ng-container&gt;
 
 </code></pre>
-<p>For clarity, let's rename the component class name to be <code>RestaurantDetailComponent</code>. We've also added a method called by the html that will return a proper url path for our restaurant image.</p>
+<p>We've also added a method called by the html that will return a proper url path for our restaurant image.</p>
 <p><strong>src/app/restaurant/detail/detail.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 
@@ -512,69 +663,197 @@
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.less']
 })
-export class RestaurantDetailComponent implements OnInit {
+export class DetailComponent implements OnInit {
 
-  constructor(
-
-  ) { }
+  constructor() { }
 
   ngOnInit() {
-
   }
 
   getUrl(image:string): string {
     // THIS IS A DIFFERENT WAY TO HANDLE THE IMAGE PATH
     return image.replace('node_modules/place-my-order-assets', './assets')
   }
+
 }
 
 </code></pre>
-<div line-highlight='8'></div>
-<p>We'll also have to update the component name where it was automatically declared in the app root module.</p>
-<p><strong>src/app/app.module.ts</strong></p>
-<pre><code class="language-ts">import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+  <div line-highlight='15-18'></div>
+<ul>
+<li>How to create a route with a param</li>
+<li>How to get a route param using ActivatedRoute</li>
+</ul>
+<h3>To Verify Your Solution is Correct</h3>
+<p>When you click the detail button on a restaurant from the restaurant list view you'll see the detail view of that restaurant.</p>
+<p>Update the spec file  <strong>src/app/restaurant/detail.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { of, Observable } from 'rxjs'; 
+import { ActivatedRoute, convertToParamMap } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
 
-import { ReactiveFormsModule } from '@angular/forms';
+import { DetailComponent } from './detail.component';
+import { RestaurantService } from '../restaurant.service';
+import { ImageUrlPipe } from 'src/app/image-url.pipe';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { RestaurantComponent } from './restaurant/restaurant.component';
-import { HomeComponent } from './home/home.component';
-import { ImageUrlPipe } from './image-url.pipe';
-import { RestaurantDetailComponent } from './restaurant/detail/detail.component';
+class MockRestaurantService {
+  getRestaurant(slug:string) {
+    return of({
+        &quot;name&quot;: &quot;Poutine Palace&quot;,
+        &quot;slug&quot;: &quot;poutine-palace&quot;,
+        &quot;images&quot;: {
+          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+        },
+        &quot;menu&quot;: {
+          &quot;lunch&quot;: [
+            {
+              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+              &quot;price&quot;: 35.99
+            },
+            {
+              &quot;name&quot;: &quot;Steamed Mussels&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+              &quot;price&quot;: 35.99
+            }
+          ],
+          &quot;dinner&quot;: [
+            {
+              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+              &quot;price&quot;: 45.99
+            },
+            {
+              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+              &quot;price&quot;: 45.99
+            }
+          ]
+        },
+        &quot;address&quot;: {
+          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+          &quot;city&quot;: &quot;Green Bay&quot;,
+          &quot;state&quot;: &quot;WI&quot;,
+          &quot;zip&quot;: &quot;53205&quot;
+        },
+        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+      })
+  }
+}
 
+const MockActivatedRoute = {
+  snapshot: {
+    paramMap: {
+      get() {
+        return 'poutine-palace'
+      }
+    }
+  }
+}
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    RestaurantComponent,
-    HomeComponent,
-    ImageUrlPipe,
-    RestaurantDetailComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule
-  ],
-  providers: [],
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
+describe('DetailComponent', () =&gt; {
+  let component: DetailComponent;
+  let fixture: ComponentFixture&lt;DetailComponent&gt;;
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      declarations: [ DetailComponent, ImageUrlPipe ],
+      imports: [RouterTestingModule],
+      providers: [{
+        provide: RestaurantService,
+        useClass: MockRestaurantService
+      }, {
+        provide: ActivatedRoute,
+        useValue: MockActivatedRoute
+      }]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(DetailComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  it('should have an isLoading member set to true by default', () =&gt; {
+    const fixture = TestBed.createComponent(DetailComponent);
+    expect(fixture.componentInstance.isLoading).toEqual(true);
+  });
+
+  it('should get a restaurant based on route slug', () =&gt; {
+    let mockRestaurant = {
+      &quot;name&quot;: &quot;Poutine Palace&quot;,
+      &quot;slug&quot;: &quot;poutine-palace&quot;,
+      &quot;images&quot;: {
+        &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+        &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+        &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+      },
+      &quot;menu&quot;: {
+        &quot;lunch&quot;: [
+          {
+            &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+            &quot;price&quot;: 35.99
+          },
+          {
+            &quot;name&quot;: &quot;Steamed Mussels&quot;,
+            &quot;price&quot;: 21.99
+          },
+          {
+            &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+            &quot;price&quot;: 35.99
+          }
+        ],
+        &quot;dinner&quot;: [
+          {
+            &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+            &quot;price&quot;: 21.99
+          },
+          {
+            &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+            &quot;price&quot;: 45.99
+          },
+          {
+            &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+            &quot;price&quot;: 45.99
+          }
+        ]
+      },
+      &quot;address&quot;: {
+        &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+        &quot;city&quot;: &quot;Green Bay&quot;,
+        &quot;state&quot;: &quot;WI&quot;,
+        &quot;zip&quot;: &quot;53205&quot;
+      },
+      &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+    }
+    const fixture = TestBed.createComponent(DetailComponent);
+    fixture.detectChanges();
+    expect(fixture.componentInstance.restaurant).toEqual(mockRestaurant)
+  });
+});
 
 </code></pre>
-<div line-highlight='12, 21'></div>
-<h2>Creating a route for restaurant/{{restaurant-slug}}</h2>
-<p>Previously we've defined static paths with Angulars <a href="https://angular.io/guide/router" target="_blank">router</a>. To create a restaurant path, we'll need the slug after the slash to be dynamic. We can set a token for the router parameter with <code>:</code></p>
+<blockquote>
+<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+</blockquote>
+<h3>The Solution</h3>
 <p><strong>src/app/app-routing.module.ts</strong></p>
 <pre><code class="language-ts">import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
-import { RestaurantDetailComponent } from './restaurant/detail/detail.component';
+import { DetailComponent } from './restaurant/detail/detail.component';
 
 const routes: Routes = [
   {
@@ -587,7 +866,7 @@ const routes: Routes = [
   },
   {
     path: 'restaurants/:slug',
-    component: RestaurantDetailComponent,
+    component: DetailComponent
   }
 ];
 
@@ -596,89 +875,8 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
 </code></pre>
 <div line-highlight='5,16-19'></div>
-<h2>Getting restaurant slug from the route</h2>
-<p>We need to get the slug from the route to determine which restaurant to fetch. We import <code>ActivatedRoute</code> into our component, and call <code>this.route.snapshot.paramMap.get('slug')</code> to get the slug.</p>
-<p><strong>src/app/restaurant/detail/detail.component.ts</strong></p>
-<pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-
-@Component({
-  selector: 'pmo-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.less']
-})
-export class RestaurantDetailComponent implements OnInit {
-
-  constructor(
-    private route: ActivatedRoute
-  ) { }
-
-  ngOnInit() {
-    const slug = this.route.snapshot.paramMap.get('slug');
-  }
-
-  getUrl(image:string): string {
-    // THIS IS A DIFFERENT WAY TO HANDLE THE IMAGE PATH
-    return image.replace('node_modules/place-my-order-assets', './assets')
-  }
-
-}
-
-</code></pre>
-<div line-highlight='2, 12, 16'></div>
-<h2>Adding getRestaurant method to serivce</h2>
-<p>We need to add one more method to our restaurant service to get a specific restaurant based on the slug.</p>
-<p><strong>src/app/restaurant/restaurant.service.ts</strong></p>
-<pre><code class="language-ts">import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Restaurant } from './restaurant';
-
-export interface ResponseData&lt;T&gt; {
-  data: Array&lt;T&gt;;
-}
-
-export interface State {
-  name: string;
-  short: string;
-}
-
-export interface City {
-  name: string;
-  state: string;
-}
-
-@Injectable({
-  providedIn: 'root'
-})
-export class RestaurantService {
-
-  constructor(private httpClient: HttpClient) { }
-
-  getRestaurants(state:string, city: string) {
-    let options = { params: new HttpParams().set('filter[address.state]', state).set('filter[address.city]', city) };
-    return this.httpClient.get&lt;ResponseData&lt;Restaurant&gt;&gt;('/api/restaurants', options);
-  }
-
-  getStates() {
-    return this.httpClient.get&lt;ResponseData&lt;State&gt;&gt;('/api/states');
-  }
-
-  getCities(state:string) {
-    const options = { params: new HttpParams().set('state', state)};
-    return this.httpClient.get&lt;ResponseData&lt;City&gt;&gt;('/api/cities', options);
-  }
-
-  getRestaurant(slug: string) {
-    return this.httpClient.get&lt;Restaurant&gt;('/api/restaurants/' + slug + '?');
-  }
-}
-</code></pre>
-<div line-highlight='40-42'></div>
-<h2>Make call to get restaurant in component</h2>
-<p>Now we can make a call in our restaurant detail component to get the restaurant data.</p>
 <p><strong>src/app/restaurant/detail/detail.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -691,14 +889,11 @@ import { Restaurant } from '../restaurant';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.less']
 })
-export class RestaurantDetailComponent implements OnInit {
+export class DetailComponent implements OnInit {
   restaurant: Restaurant;
   isLoading: boolean = true;
 
-  constructor(
-    private route: ActivatedRoute,
-    private restaurantService: RestaurantService
-  ) { }
+  constructor(private route: ActivatedRoute, private restaurantService: RestaurantService) { }
 
   ngOnInit() {
     const slug = this.route.snapshot.paramMap.get('slug');
@@ -717,8 +912,7 @@ export class RestaurantDetailComponent implements OnInit {
 }
 
 </code></pre>
-<div line-highlight='4, 5, 13-14, 18, 23-27'></div>
-<p>Now when we click the detail button on a restaurant from the restaurants view we'll see the detail view of that restaurant.</p>
+<div line-highlight='2,4,5,13,14,16,19-24'></div>
 
 </section>
 

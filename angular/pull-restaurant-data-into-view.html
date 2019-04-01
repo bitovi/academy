@@ -594,330 +594,8 @@ platformBrowserDynamic()
 <div line-highlight='90, only'></div>
 <h2>Exercise: Inject Restaurants Service in Restaurants component and call the <code>getRestaurants</code> function</h2>
 <h2>The Problem</h2>
-<p>We want to be able to use the <code>getRestaurants</code> method in our component to display a list of restaurants.</p>
-<h2>What you need to know</h2>
-<ul>
-<li>How to inject a service into a component (you learned this in section above! ✔️)</li>
-<li>How to call a method from a class</li>
-</ul>
-<blockquote>
-<p>Hint: Call the <code>getRestaurants</code> method in the <code>ngOnInit</code> method.</p>
-</blockquote>
-<h3>To Verify Your Solution is Correct</h3>
-<p>Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { of } from 'rxjs'; 
-import { ImageUrlPipe } from '../image-url.pipe';
-
-import { RestaurantComponent } from './restaurant.component';
-import { RestaurantService } from './restaurant.service';
-
-class MockRestaurantService {
-  getRestaurants() {
-    return of({
-      data: [{
-        &quot;name&quot;: &quot;Poutine Palace&quot;,
-        &quot;slug&quot;: &quot;poutine-palace&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
-        },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-              &quot;price&quot;: 35.99
-            },
-            {
-              &quot;name&quot;: &quot;Steamed Mussels&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-              &quot;price&quot;: 35.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-              &quot;price&quot;: 45.99
-            }
-          ]
-        },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53205&quot;
-        },
-        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-      },
-      {
-        &quot;name&quot;: &quot;Cheese Curd City&quot;,
-        &quot;slug&quot;: &quot;cheese-curd-city&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
-        },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Ricotta Gnocchi&quot;,
-              &quot;price&quot;: 15.99
-            },
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Garlic Fries&quot;,
-              &quot;price&quot;: 15.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Truffle Noodles&quot;,
-              &quot;price&quot;: 14.99
-            },
-            {
-              &quot;name&quot;: &quot;Charred Octopus&quot;,
-              &quot;price&quot;: 25.99
-            }
-          ]
-        },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;2451 W Washburne Ave&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53295&quot;
-        },
-        &quot;_id&quot;: &quot;Ar0qBJHxM3ecOhcr&quot;
-      }]}
-            )
-  }
-}
-describe('RestaurantComponent', () =&gt; {
-  let component: RestaurantComponent;
-  let fixture: ComponentFixture&lt;RestaurantComponent&gt;;
-
-  beforeEach(async(() =&gt; {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      providers: [{
-        provide: RestaurantService,
-        useClass: MockRestaurantService
-      }],
-      declarations: [ RestaurantComponent, ImageUrlPipe ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() =&gt; {
-    fixture = TestBed.createComponent(RestaurantComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () =&gt; {
-    expect(component).toBeTruthy();
-  });
-
-  it('should render title in a h2 tag', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h2').textContent).toContain('Restaurants');
-  });
-
-  it('should not show any restaurants markup if no restaurants', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.restaurant')).toBe(null);
-  });
-
-  // it('should have two .restaurant divs',  &lt;any&gt;fakeAsync((): void =&gt; {
-  //   const fixture = TestBed.createComponent(RestaurantComponent);
-  //   fixture.detectChanges();
-  //   tick(501);
-  //   fixture.detectChanges();
-  //   const compiled = fixture.debugElement.nativeElement;
-  //   let restaurantDivs = compiled.getElementsByClassName('restaurant');
-  //   let hoursDivs = compiled.getElementsByClassName('hours-price');
-  //   expect(restaurantDivs.length).toEqual(2);
-  //   expect(hoursDivs.length).toEqual(2);
-  // }));
-
-  // it('should display restaurant information',  &lt;any&gt;fakeAsync((): void =&gt; {
-  //   const fixture = TestBed.createComponent(RestaurantComponent);
-  //   fixture.detectChanges();
-  //   tick(501);
-  //   fixture.detectChanges();
-  //   const compiled = fixture.debugElement.nativeElement;
-  //   expect(compiled.querySelector('.restaurant h3').textContent).toContain('Poutine Palace');
-  // }));
-
-  it('should set restaurants value to restaurants response data and set isPending to false', &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    fixture.detectChanges();
-    tick();
-    fixture.detectChanges();
-    let expectedRestaurants = {
-      value: [{
-        &quot;name&quot;: &quot;Poutine Palace&quot;,
-        &quot;slug&quot;: &quot;poutine-palace&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
-        },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-              &quot;price&quot;: 35.99
-            },
-            {
-              &quot;name&quot;: &quot;Steamed Mussels&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-              &quot;price&quot;: 35.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-              &quot;price&quot;: 45.99
-            }
-          ]
-        },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53205&quot;
-        },
-        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-      },
-      {
-        &quot;name&quot;: &quot;Cheese Curd City&quot;,
-        &quot;slug&quot;: &quot;cheese-curd-city&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
-        },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Ricotta Gnocchi&quot;,
-              &quot;price&quot;: 15.99
-            },
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Garlic Fries&quot;,
-              &quot;price&quot;: 15.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Truffle Noodles&quot;,
-              &quot;price&quot;: 14.99
-            },
-            {
-              &quot;name&quot;: &quot;Charred Octopus&quot;,
-              &quot;price&quot;: 25.99
-            }
-          ]
-        },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;2451 W Washburne Ave&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53295&quot;
-        },
-        &quot;_id&quot;: &quot;Ar0qBJHxM3ecOhcr&quot;
-      }],
-      isPending: false
-    }
-    expect(fixture.componentInstance.restaurants).toEqual(expectedRestaurants);
-  }));
-
-});
-
-</code></pre>
-<div line-highlight='168-268'></div>
-We've temporarily commented out a few tests until the next section.
-<h2>Solution</h2>
-<p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
-<pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
-import { RestaurantService, ResponseData } from './restaurant.service';
-import { Restaurant } from './restaurant';
-
-export interface Data&lt;T&gt; {
-  value: Array&lt;T&gt;;
-  isPending: boolean;
-}
-
-@Component({
-  selector: 'pmo-restaurant',
-  templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less']
-})
-export class RestaurantComponent implements OnInit {
-  public restaurants: Data&lt;Restaurant&gt; = {
-    value: [],
-    isPending: false
-  };
-  constructor(private restaurantService: RestaurantService) { }
-
-  ngOnInit() {
-    this.restaurants.isPending = true;
-    this.restaurantService.getRestaurants().subscribe((res: ResponseData) =&gt; {
-      this.restaurants.value = res.data;
-      this.restaurants.isPending = false;
-    });
-  }
-}
-
-</code></pre>
-<div line-highlight='2, 3, 5-8, 16-19, 20, 23-27'></div>
-<h2>Update Restaurant Component</h2>
-<p>We'll have to the restaurant component html to match our new restaurant object:</p>
-<p><strong>src/app/restaurant/restaurant.component.html</strong></p>
+<p>We want to be able to use the <code>getRestaurants</code> method in our component to display a list of restaurants. Update your
+<strong>src/app/restaurant/restaurant.component.html</strong> to be:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
   &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
   &lt;div class=&quot;restaurant loading&quot; *ngIf=&quot;restaurants.isPending&quot;&gt;&lt;/div&gt;
@@ -947,8 +625,23 @@ export class RestaurantComponent implements OnInit {
 
 </code></pre>
 <div line-highlight='3, 4, 5'></div>
-<h3>To Verify Everything is Running Correctly</h3>
-<p>Uncomment the tests in  <strong>src/app/restaurant/restaurant.component.spec.ts</strong>:</p>
+<p>Use this as a guide to figure out how to structure getting the call to get restaurants from the service - it's important to note that our new markup shows <code>restaurants</code> is now an object that has an <code>isPending</code> property and a <code>value</code> prop for the array of restaurants. Here's the generic interface for you to use that should represent what the new restaurant type is.</p>
+<pre><code class="language-typescript">export interface Data&lt;T&gt; {
+  value: Array&lt;T&gt;;
+  isPending: boolean;
+}
+</code></pre>
+<h2>What you need to know</h2>
+<ul>
+<li>How to inject a service into a component (you learned this in section above! ✔️)</li>
+<li>How to call a method from a class</li>
+</ul>
+<blockquote>
+<p>Hint: Call the <code>getRestaurants</code> method in the <code>ngOnInit</code> method.</p>
+</blockquote>
+<h3>To Verify Your Solution is Correct</h3>
+<p>You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>!</p>
+<p>Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs'; 
@@ -1223,8 +916,45 @@ describe('RestaurantComponent', () =&gt; {
 });
 
 </code></pre>
-<div line-highlight='147-166, only'></div>
-<p>You should now see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>! You may have noticed in our markup there's another use of routerLink:</p>
+<blockquote>
+<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+</blockquote>
+<h3>Solution</h3>
+<p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
+<pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
+import { RestaurantService, ResponseData } from './restaurant.service';
+import { Restaurant } from './restaurant';
+
+export interface Data&lt;T&gt; {
+  value: Array&lt;T&gt;;
+  isPending: boolean;
+}
+
+@Component({
+  selector: 'pmo-restaurant',
+  templateUrl: './restaurant.component.html',
+  styleUrls: ['./restaurant.component.less']
+})
+export class RestaurantComponent implements OnInit {
+  public restaurants: Data&lt;Restaurant&gt; = {
+    value: [],
+    isPending: false
+  };
+  constructor(private restaurantService: RestaurantService) { }
+
+  ngOnInit() {
+    this.restaurants.isPending = true;
+    this.restaurantService.getRestaurants().subscribe((res: ResponseData) =&gt; {
+      this.restaurants.value = res.data;
+      this.restaurants.isPending = false;
+    });
+  }
+}
+
+</code></pre>
+<div line-highlight='2, 3, 5-8, 16-19, 20, 23-27'></div>
+<h3>Did You Know?</h3>
+<p>You may have noticed in our markup there's another use of routerLink:</p>
 <pre><code class="language-html">&lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
   Details
 &lt;/a&gt;

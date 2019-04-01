@@ -452,149 +452,22 @@
     <h2>Overview</h2>
 <p>In this part, we will:</p>
 <ul>
-<li>Get our existing tests to pass</li>
-<li>Run our tests</li>
-<li>Write a test to get cities and states</li>
+<li>Update a current unit test to match for our refactored service method</li>
+<li>Write a new getRestaurant method on our RestaurantsService</li>
+<li>Write a unit test for the getRestaurant method</li>
 </ul>
-<h2>Get our unit tests to work again</h2>
-<p>Update the following three files:</p>
-<p>1. <strong>src/app/app.component.spec.ts</strong></p>
-<pre><code class="language-ts">import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
-
-describe('AppComponent', () =&gt; {
-  beforeEach(async(() =&gt; {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [
-        AppComponent
-      ],
-    }).compileComponents();
-  }));
-
-  it('should create the app', () =&gt; {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'place-my-order'`, () =&gt; {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('place-my-order');
-  });
-
-  it('should render title in a h1 tag', () =&gt; {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('place-my-order.com');
-  });
-});
-
-</code></pre>
-<div line-highlight='18-19,31-33'></div>
-<ol start="2">
-<li><strong>src/app/image-url.pipe.spec.ts</strong></li>
-</ol>
-<pre><code class="language-ts">import { ImageUrlPipe } from './image-url.pipe';
-
-describe('ImageUrlPipe', () =&gt; {
-  it('create an instance', () =&gt; {
-    const pipe = new ImageUrlPipe();
-    expect(pipe).toBeTruthy();
-  });
-
-  it('returns a string with proper assets path', () =&gt; {
-    const pipe = new ImageUrlPipe();
-    expect(pipe.transform('node_modules/place-my-order-assets/tacos.png')).toBe('./assets/tacos.png');
-  })
-});
-</code></pre>
-<ol start="3">
-<li><strong>src/app/restaurant.component.spec.ts</strong></li>
-</ol>
-<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { RestaurantComponent } from './restaurant.component';
-import { RestaurantService } from './restaurant.service';
-import { ReactiveFormsModule } from '@angular/forms';
-import { ImageUrlPipe } from '../image-url.pipe';
-import { RouterTestingModule } from '@angular/router/testing';
-import { of } from 'rxjs';
-
-describe('RestaurantComponent', () =&gt; {
-  let component: RestaurantComponent;
-  let fixture: ComponentFixture&lt;RestaurantComponent&gt;;
-
-  let fakeRestaurants = [{
-    name: 'Burger Shack',
-    slug: 'burger-shack',
-    images: {},
-    menu: [{
-      name: 'fries',
-      price: 3.99
-    }],
-    address: {},
-    _id: '12233asdas11'
-  }];
-
-  class restaurantServiceStub {
-    getRestaurants() {
-      return fakeRestaurants
-    }
-    getStates() {
-      return of({
-        data: [
-          {name: 'Missouri', short: 'MO'}
-        ]
-      })
-    }
-    getCities() {
-      return of({
-        data: [
-          {name: 'Kansas City', state: 'MO', }
-        ]
-      })
-    }
-  }
-
-  beforeEach(async(() =&gt; {
-    TestBed.configureTestingModule({
-      declarations: [ RestaurantComponent, ImageUrlPipe ],
-      imports: [ReactiveFormsModule, RouterTestingModule],
-      providers: [
-        {provide: RestaurantService, useClass: restaurantServiceStub } 
-      ]
-    })
-    .compileComponents();
-  }));
-
-  beforeEach(() =&gt; {
-    fixture = TestBed.createComponent(RestaurantComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
-
-  it('should create', () =&gt; {
-    expect(component).toBeTruthy();
-  });
-});
-
-</code></pre>
-<div line-highlight='26,31,47-53'></div>
-<h2>Run our tests</h2>
-<p>Run the following in your terminal:</p>
-<pre><code class="language-shell">ng test
-</code></pre>
-<h2>Exercise: Write restaurant service test</h2>
-<p><strong>src/app/restaurant.service.spec.ts</strong></p>
+<h3>Exercise: Refactor RestaurantService getRestaurants test</h3>
+<h3>The Problem</h3>
+<p>In the last section we updated the existing <code>getRestaurants</code> method on our RestaurantService. Update the unit test to test that the method works as desired by creating the correct url from parameters given.</p>
+<blockquote>
+<p>Hint - you can look at the getCities method test for an example.</p>
+</blockquote>
+<h3>The Solution</h3>
+<p><strong>src/app/restaurant/restaurant.service.spec.ts</strong></p>
 <pre><code class="language-ts">import { TestBed } from '@angular/core/testing';
 
-import { RestaurantService } from './restaurant.service';
+import { ResponseData, RestaurantService, State, City } from './restaurant.service';
+import { Restaurant } from './restaurant';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 describe('RestaurantService', () =&gt; {
@@ -616,6 +489,104 @@ describe('RestaurantService', () =&gt; {
   it('should be created', () =&gt; {
     expect(restaurantService).toBeTruthy();
   });
+ 
+  it('should make a get request to restaurants', () =&gt; {
+    const mockRestaurants = {
+      data: [{
+      &quot;name&quot;:&quot;Brunch Place&quot;,
+      &quot;slug&quot;:&quot;brunch-place&quot;,
+      &quot;images&quot;:{
+        &quot;thumbnail&quot;:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+        &quot;owner&quot;:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
+        &quot;banner&quot;:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;},
+        &quot;menu&quot;:{
+          &quot;lunch&quot;:[
+            {&quot;name&quot;:&quot;Ricotta Gnocchi&quot;,&quot;price&quot;:15.99},
+            {&quot;name&quot;:&quot;Garlic Fries&quot;,&quot;price&quot;:15.99},
+            {&quot;name&quot;:&quot;Charred Octopus&quot;,&quot;price&quot;:25.99}
+          ],
+          &quot;dinner&quot;:[
+            {&quot;name&quot;:&quot;Steamed Mussels&quot;,&quot;price&quot;:21.99},
+            {&quot;name&quot;:&quot;Roasted Salmon&quot;,&quot;price&quot;:23.99},
+            {&quot;name&quot;:&quot;Crab Pancakes with Sorrel Syrup&quot;,&quot;price&quot;:35.99}
+          ]
+        },
+        &quot;address&quot;:{
+          &quot;street&quot;:&quot;2451 W Washburne Ave&quot;,
+          &quot;city&quot;:&quot;Ann Arbor&quot;,&quot;state&quot;:&quot;MI&quot;,&quot;zip&quot;:&quot;53295&quot;},
+          &quot;_id&quot;:&quot;xugqxQIX5rPJTLBv&quot;
+        },
+        {
+          &quot;name&quot;:&quot;Taco Joint&quot;,
+          &quot;slug&quot;:&quot;taco-joint&quot;,
+          &quot;images&quot;:{
+            &quot;thumbnail&quot;:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+            &quot;owner&quot;:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
+            &quot;banner&quot;:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;},
+            &quot;menu&quot;:{
+              &quot;lunch&quot;:[
+                {&quot;name&quot;:&quot;Beef Tacos&quot;,&quot;price&quot;:15.99},
+                {&quot;name&quot;:&quot;Chicken Tacos&quot;,&quot;price&quot;:15.99},
+                {&quot;name&quot;:&quot;Guacamole&quot;,&quot;price&quot;:25.99}
+              ],
+              &quot;dinner&quot;:[
+                {&quot;name&quot;:&quot;Shrimp Tacos&quot;,&quot;price&quot;:21.99},
+                {&quot;name&quot;:&quot;Chicken Enchilada&quot;,&quot;price&quot;:23.99},
+                {&quot;name&quot;:&quot;Elotes&quot;,&quot;price&quot;:35.99}
+              ]
+            },
+            &quot;address&quot;:{
+              &quot;street&quot;:&quot;13 N 21st St&quot;,
+              &quot;city&quot;:&quot;Chicago&quot;,&quot;state&quot;:&quot;IL&quot;,&quot;zip&quot;:&quot;53295&quot;},
+              &quot;_id&quot;:&quot;xugqxQIX5dfgdgTLBv&quot;
+            }]
+          };
+
+    restaurantService.getRestaurants(&quot;IL&quot;,&quot;Chicago&quot;).subscribe((restaurants:ResponseData&lt;Restaurant&gt;) =&gt; {
+      expect(restaurants).toEqual(mockRestaurants);
+    });
+
+    let url = '/api/restaurants?filter%5Baddress.state%5D=IL&amp;filter%5Baddress.city%5D=Chicago';
+    //url parses to '/api/restaurants?filter[address.state]=IL&amp;filter[address.city]=Chicago'
+    const req = httpMock.expectOne(url);
+
+
+    expect(req.request.method).toEqual('GET');
+    req.flush(mockRestaurants);
+
+    httpMock.verify();
+  });
+
+  it('can set proper properties on restaurant type', () =&gt; {
+    let restaurant: Restaurant = {
+      name:&quot;Taco Joint&quot;,
+      slug:&quot;taco-joint&quot;,
+      images:{
+        thumbnail:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+        owner:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
+        banner:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+      },
+      menu:{
+        lunch:[
+          {name:&quot;Beef Tacos&quot;,&quot;price&quot;:15.99},
+          {name:&quot;Chicken Tacos&quot;,&quot;price&quot;:15.99},
+          {name:&quot;Guacamole&quot;,&quot;price&quot;:25.99}
+        ],
+        dinner:[
+          {name:&quot;Shrimp Tacos&quot;,&quot;price&quot;:21.99},
+          {name:&quot;Chicken Enchilada&quot;,&quot;price&quot;:23.99},
+          {name:&quot;Elotes&quot;,&quot;price&quot;:35.99}
+        ]
+      },
+      address:{
+        street:&quot;13 N 21st St&quot;,
+        city:&quot;Chicago&quot;,&quot;state&quot;:&quot;IL&quot;,&quot;zip&quot;:&quot;53295&quot;
+      },
+      _id:&quot;xugqxQIX5dfgdgTLBv&quot;
+    }
+    //will error if interface isn't implemented correctly
+    expect(true).toBe(true);
+  });
 
   it('should make a get request to states', () =&gt; {
     const mockStates = {
@@ -624,7 +595,7 @@ describe('RestaurantService', () =&gt; {
       ]
     };
 
-    restaurantService.getStates().subscribe((states) =&gt; {
+    restaurantService.getStates().subscribe((states: ResponseData&lt;State&gt;) =&gt; {
       expect(states).toEqual(mockStates);
     });
 
@@ -644,7 +615,7 @@ describe('RestaurantService', () =&gt; {
       ]
     };
 
-    restaurantService.getCities('MO').subscribe((cities) =&gt; {
+    restaurantService.getCities('MO').subscribe((cities: ResponseData&lt;City&gt;) =&gt; {
       expect(cities).toEqual(mockCities);
     });
 
@@ -654,13 +625,276 @@ describe('RestaurantService', () =&gt; {
     req.flush(mockCities);
 
     httpMock.verify();
-  })
-
+  });
 
 });
-
 </code></pre>
-<div line-highlight='7,10-15,18-19,38-41,43'></div>
+<div line-highlight='79,83,84'></div>
+<h3>Exercise: Write a test for new RestaurantService method &amp; Write the new method</h3>
+<h3>The Problem</h3>
+<p>In the next section we're going to be creating a restaurant detail view. We'll need to have a method on our service that returns one restaurant from the list. Write this method and call it <code>getRestaurant</code>. It should take a string param &quot;slug&quot; and make a get request to the path <code>'/api/restaurants/slug-here'</code>. Then write a unit test for this method ensuring it makes the correct request and returns an object type of <code>Restaurant</code>.</p>
+<h3>What You Need to Know</h3>
+<ul>
+<li><p>How to write a method on a service that takes a param. You've learned this in previous sections.</p></li>
+<li><p>How to write a unit test. Here's a codeblock to get you started:</p>
+<pre><code class="language-typescript">  it('should make a get request to get a restaurant based on its slug', () =&gt; {
+  });
+</code></pre></li>
+</ul>
+<h3>The Solution</h3>
+<p><strong>src/app/restaurant/restaurant.service.ts</strong></p>
+<pre><code class="language-ts">import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Restaurant } from './restaurant';
+
+export interface ResponseData&lt;dataType&gt; {
+  data: Array&lt;dataType&gt;;
+}
+
+export interface State {
+  name: string;
+  short: string;
+}
+
+export interface City {
+  name: string;
+  state: string;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class RestaurantService {
+
+  constructor(private httpClient: HttpClient) { }
+
+  getRestaurants(state:string, city: string) {
+    const params = new HttpParams().set('filter[address.state]', state).set('filter[address.city]', city);
+    return this.httpClient.get&lt;ResponseData&lt;Restaurant&gt;&gt;('/api/restaurants', {params});
+  }
+
+  getStates() {
+    return this.httpClient.get&lt;ResponseData&lt;State&gt;&gt;('/api/states');
+  }
+
+  getCities(state:string) {
+    const params = new HttpParams().set('state', state);
+    return this.httpClient.get&lt;ResponseData&lt;City&gt;&gt;('/api/cities', {params});
+  }
+
+  getRestaurant(slug: string) {
+    return this.httpClient.get&lt;Restaurant&gt;('/api/restaurants/' + slug);
+  }
+}
+</code></pre>
+<div line-highlight='40-42, only'></div>
+<p><strong>src/app/restaurant/restaurant.service.spec.ts</strong></p>
+<pre><code class="language-ts">import { TestBed } from '@angular/core/testing';
+
+import { ResponseData, RestaurantService, State, City } from './restaurant.service';
+import { Restaurant } from './restaurant';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+
+describe('RestaurantService', () =&gt; {
+  let httpMock : HttpTestingController;
+  let restaurantService: RestaurantService;
+
+  beforeEach(() =&gt; TestBed.configureTestingModule({
+    imports: [HttpClientTestingModule],
+    providers: [
+      RestaurantService
+    ]
+  }));
+
+  beforeEach(() =&gt; {
+    httpMock = TestBed.get(HttpTestingController);
+    restaurantService = TestBed.get(RestaurantService);
+  })
+
+  it('should be created', () =&gt; {
+    expect(restaurantService).toBeTruthy();
+  });
+ 
+  it('should make a get request to restaurants', () =&gt; {
+    const mockRestaurants = {
+      data: [{
+      &quot;name&quot;:&quot;Brunch Place&quot;,
+      &quot;slug&quot;:&quot;brunch-place&quot;,
+      &quot;images&quot;:{
+        &quot;thumbnail&quot;:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+        &quot;owner&quot;:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
+        &quot;banner&quot;:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;},
+        &quot;menu&quot;:{
+          &quot;lunch&quot;:[
+            {&quot;name&quot;:&quot;Ricotta Gnocchi&quot;,&quot;price&quot;:15.99},
+            {&quot;name&quot;:&quot;Garlic Fries&quot;,&quot;price&quot;:15.99},
+            {&quot;name&quot;:&quot;Charred Octopus&quot;,&quot;price&quot;:25.99}
+          ],
+          &quot;dinner&quot;:[
+            {&quot;name&quot;:&quot;Steamed Mussels&quot;,&quot;price&quot;:21.99},
+            {&quot;name&quot;:&quot;Roasted Salmon&quot;,&quot;price&quot;:23.99},
+            {&quot;name&quot;:&quot;Crab Pancakes with Sorrel Syrup&quot;,&quot;price&quot;:35.99}
+          ]
+        },
+        &quot;address&quot;:{
+          &quot;street&quot;:&quot;2451 W Washburne Ave&quot;,
+          &quot;city&quot;:&quot;Ann Arbor&quot;,&quot;state&quot;:&quot;MI&quot;,&quot;zip&quot;:&quot;53295&quot;},
+          &quot;_id&quot;:&quot;xugqxQIX5rPJTLBv&quot;
+        },
+        {
+          &quot;name&quot;:&quot;Taco Joint&quot;,
+          &quot;slug&quot;:&quot;taco-joint&quot;,
+          &quot;images&quot;:{
+            &quot;thumbnail&quot;:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+            &quot;owner&quot;:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
+            &quot;banner&quot;:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;},
+            &quot;menu&quot;:{
+              &quot;lunch&quot;:[
+                {&quot;name&quot;:&quot;Beef Tacos&quot;,&quot;price&quot;:15.99},
+                {&quot;name&quot;:&quot;Chicken Tacos&quot;,&quot;price&quot;:15.99},
+                {&quot;name&quot;:&quot;Guacamole&quot;,&quot;price&quot;:25.99}
+              ],
+              &quot;dinner&quot;:[
+                {&quot;name&quot;:&quot;Shrimp Tacos&quot;,&quot;price&quot;:21.99},
+                {&quot;name&quot;:&quot;Chicken Enchilada&quot;,&quot;price&quot;:23.99},
+                {&quot;name&quot;:&quot;Elotes&quot;,&quot;price&quot;:35.99}
+              ]
+            },
+            &quot;address&quot;:{
+              &quot;street&quot;:&quot;13 N 21st St&quot;,
+              &quot;city&quot;:&quot;Chicago&quot;,&quot;state&quot;:&quot;IL&quot;,&quot;zip&quot;:&quot;53295&quot;},
+              &quot;_id&quot;:&quot;xugqxQIX5dfgdgTLBv&quot;
+            }]
+          };
+
+    restaurantService.getRestaurants(&quot;IL&quot;,&quot;Chicago&quot;).subscribe((restaurants:ResponseData&lt;Restaurant&gt;) =&gt; {
+      expect(restaurants).toEqual(mockRestaurants);
+    });
+
+    let url = '/api/restaurants?filter%5Baddress.state%5D=IL&amp;filter%5Baddress.city%5D=Chicago';
+    //url parses to '/api/restaurants?filter[address.state]=IL&amp;filter[address.city]=Chicago'
+    const req = httpMock.expectOne(url);
+
+
+    expect(req.request.method).toEqual('GET');
+    req.flush(mockRestaurants);
+
+    httpMock.verify();
+  });
+
+  it('can set proper properties on restaurant type', () =&gt; {
+    let restaurant: Restaurant = {
+      name:&quot;Taco Joint&quot;,
+      slug:&quot;taco-joint&quot;,
+      images:{
+        thumbnail:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+        owner:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
+        banner:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+      },
+      menu:{
+        lunch:[
+          {name:&quot;Beef Tacos&quot;,&quot;price&quot;:15.99},
+          {name:&quot;Chicken Tacos&quot;,&quot;price&quot;:15.99},
+          {name:&quot;Guacamole&quot;,&quot;price&quot;:25.99}
+        ],
+        dinner:[
+          {name:&quot;Shrimp Tacos&quot;,&quot;price&quot;:21.99},
+          {name:&quot;Chicken Enchilada&quot;,&quot;price&quot;:23.99},
+          {name:&quot;Elotes&quot;,&quot;price&quot;:35.99}
+        ]
+      },
+      address:{
+        street:&quot;13 N 21st St&quot;,
+        city:&quot;Chicago&quot;,&quot;state&quot;:&quot;IL&quot;,&quot;zip&quot;:&quot;53295&quot;
+      },
+      _id:&quot;xugqxQIX5dfgdgTLBv&quot;
+    }
+    //will error if interface isn't implemented correctly
+    expect(true).toBe(true);
+  });
+
+  it('should make a get request to states', () =&gt; {
+    const mockStates = {
+      data: [
+        {name: 'Missouri', short: 'MO'}
+      ]
+    };
+
+    restaurantService.getStates().subscribe((states: ResponseData&lt;State&gt;) =&gt; {
+      expect(states).toEqual(mockStates);
+    });
+
+    let url = '/api/states';
+    const req = httpMock.expectOne(url);
+
+    expect(req.request.method).toEqual('GET');
+    req.flush(mockStates);
+
+    httpMock.verify();
+  });
+
+  it('should make a get request to cities', () =&gt; {
+    const mockCities = {
+      data: [
+        {name: 'Kansas City', state: 'MO'}
+      ]
+    };
+
+    restaurantService.getCities('MO').subscribe((cities: ResponseData&lt;City&gt;) =&gt; {
+      expect(cities).toEqual(mockCities);
+    });
+
+    let url = '/api/cities?state=MO';
+    const req = httpMock.expectOne(url);
+    expect(req.request.method).toEqual('GET');
+    req.flush(mockCities);
+
+    httpMock.verify();
+  });
+
+  it('should make a get request to get a restaurant based on its slug', () =&gt; {
+    const mockRestaurant = {
+      &quot;name&quot;:&quot;Brunch Place&quot;,
+      &quot;slug&quot;:&quot;brunch-place&quot;,
+      &quot;images&quot;:{
+        &quot;thumbnail&quot;:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+        &quot;owner&quot;:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
+        &quot;banner&quot;:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;},
+        &quot;menu&quot;:{
+          &quot;lunch&quot;:[
+            {&quot;name&quot;:&quot;Ricotta Gnocchi&quot;,&quot;price&quot;:15.99},
+            {&quot;name&quot;:&quot;Garlic Fries&quot;,&quot;price&quot;:15.99},
+            {&quot;name&quot;:&quot;Charred Octopus&quot;,&quot;price&quot;:25.99}
+          ],
+          &quot;dinner&quot;:[
+            {&quot;name&quot;:&quot;Steamed Mussels&quot;,&quot;price&quot;:21.99},
+            {&quot;name&quot;:&quot;Roasted Salmon&quot;,&quot;price&quot;:23.99},
+            {&quot;name&quot;:&quot;Crab Pancakes with Sorrel Syrup&quot;,&quot;price&quot;:35.99}
+          ]
+        },
+        &quot;address&quot;:{
+          &quot;street&quot;:&quot;2451 W Washburne Ave&quot;,
+          &quot;city&quot;:&quot;Ann Arbor&quot;,&quot;state&quot;:&quot;MI&quot;,&quot;zip&quot;:&quot;53295&quot;},
+          &quot;_id&quot;:&quot;xugqxQIX5rPJTLBv&quot;
+    };
+
+    restaurantService.getRestaurant(&quot;brunch-place&quot;).subscribe((restaurant:Restaurant) =&gt; {
+      expect(restaurant).toEqual(mockRestaurant);
+    });
+
+    let url = '/api/restaurants/brunch-place';
+    const req = httpMock.expectOne(url);
+
+
+    expect(req.request.method).toEqual('GET');
+    req.flush(mockRestaurant);
+
+    httpMock.verify();
+  });
+
+});
+</code></pre>
+<div line-highlight='164-202, only'></div>
 
 </section>
 

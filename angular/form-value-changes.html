@@ -1057,7 +1057,9 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   createForm() {
@@ -1083,7 +1085,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
-<div line-highlight='1,3,18,36,53-55,63,65-76'></div>
+<div line-highlight='1,3,18,36,53-57,65,67-78'></div>
 <p>Now that we know how to get values from our dropdowns, let's populate them with real data. We can get our list of states immediately, but to get our cities, we'll want to make an get request based on the state the user selected.</p>
 <h2>Exercise: Write service methods to get states and cities</h2>
 <h3>The Problem</h3>
@@ -1892,7 +1894,9 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   createForm() {
@@ -1970,7 +1974,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   }
 }
 </code></pre>
-<div line-highlight='5,28,33,44-48,63-99, 101-107, 109-119,121-126'></div>
+<div line-highlight='5,28,33,44-48,65-101, 103-109, 111-121,123-128'></div>
 
 </section>
 

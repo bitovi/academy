@@ -836,7 +836,8 @@ describe('RestaurantService', () =&gt; {
   });
  
   it('should make a get request to restaurants', () =&gt; {
-    const mockRestaurants = [{
+    const mockRestaurants = {
+      data: [{
       &quot;name&quot;:&quot;Brunch Place&quot;,
       &quot;slug&quot;:&quot;brunch-place&quot;,
       &quot;images&quot;:{
@@ -883,7 +884,8 @@ describe('RestaurantService', () =&gt; {
               &quot;street&quot;:&quot;13 N 21st St&quot;,
               &quot;city&quot;:&quot;Chicago&quot;,&quot;state&quot;:&quot;IL&quot;,&quot;zip&quot;:&quot;53295&quot;},
               &quot;_id&quot;:&quot;xugqxQIX5dfgdgTLBv&quot;
-            }];
+            }]
+     };
 
     restaurantService.getRestaurants().subscribe((restaurants:any) =&gt; {
       expect(restaurants).toEqual(mockRestaurants);
@@ -1310,7 +1312,7 @@ describe('RestaurantService', () =&gt; {
 
 });
 </code></pre>
-<div line-highlight='3,4,28-29,77,79,93-122'></div>
+<div line-highlight='3,4,79,93-122'></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass! If you haven't written the interfaces correctly, you'll see a compile error before the tests runs</p>
 </blockquote>
