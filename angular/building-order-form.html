@@ -466,8 +466,9 @@
 <h3>The Problem</h3>
 <p>Now, create a route for our new component! The path should be <code>/restaurants/{{slug}}/order</code>.</p>
 <h3>What you need to know</h3>
-<p>You've created routes before! You got this!</p>
-<hr />
+<ul>
+<li>You've created routes before! You got this!</li>
+</ul>
 <h3>Solution</h3>
 <p><strong>src/app/app-routing.module.ts</strong></p>
 <pre><code class="language-ts">import { NgModule } from '@angular/core';
@@ -658,7 +659,6 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
-<hr />
 <h3>The solution</h3>
 <p><strong>src/app/order/order.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -713,7 +713,9 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   createOrderForm() {
@@ -747,7 +749,6 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
 }
-
 </code></pre>
 <h2>Importing 3rd Party Plugins</h2>
 <p>In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let's import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started" target="\_blank">ngx-bootstrap</a>:</p>
