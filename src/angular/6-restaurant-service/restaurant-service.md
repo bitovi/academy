@@ -198,7 +198,7 @@ let restaurant = {
 
 This interface can be written in the __src/app/restaurant/restaurant.service.ts__ file. *
 
-## What You Need to Know
+### What You Need to Know
 
 - How to generate an interface via the CLI
 
@@ -228,7 +228,7 @@ Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass! If you haven't written the interfaces correctly, you'll see a compile error before the tests runs
 
-## Solution
+### Solution
 
 __src/app/restaurant/restaurant.ts__
 

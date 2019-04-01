@@ -23,11 +23,11 @@ To use a service in a component, we use dependency injection to pass the service
 
 ## Exercise: Inject Restaurants Service in Restaurants component and call the `getRestaurants` function
 
-## The Problem
+### The Problem
 
 We want to be able to use the `getRestaurants` method in our component to display a list of restaurants.
 
-## What you need to know
+### What you need to know
 
 - How to inject a service into a component (you learned this in section above! ✔️)
 - How to call a method from a class
@@ -42,7 +42,7 @@ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
 @highlight 168-268
 We've temporarily commented out a few tests until the next section.
 
-## Solution
+### Solution
 
 __src/app/restaurant/restaurant.component.ts__
 
