@@ -287,3 +287,9 @@ __src/app/order/order.component.html__
 @highlight 10, 15
 
 We now have a form that updates the `items` formControl when items are selected and shows the user an updated total!
+
+### Update Order Component Tests
+
+Update the order spec file  __src/app/order/order.component.spec.ts__ to be:
+
+@sourceref ./order.component.spec-final.ts
