@@ -103,6 +103,8 @@ Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
 
 ### The Solution
 
+Update  __src/app/restaurant/restaurant.service.ts__ to be:
+
 @sourceref ./restaurant.service-citystate.ts
 @highlight 2,20-22,24-27
 
