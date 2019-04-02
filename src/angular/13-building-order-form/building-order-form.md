@@ -54,11 +54,11 @@ In your new order component, edit the __src/order/order.component.html__ file to
 
 __src/app/order/order.component.html__
 
-@sourceref ./order-0.component.html
+@sourceref ./order.component-starter.html
 
 Update your __src/app/order/order.component.ts__ file to be:
 
-@sourceref ./order.component.ts
+@sourceref ./order.component-starter.ts
 
 ### The problem
 
@@ -110,9 +110,9 @@ In our markup we would like to display our lunch and dinner menus in tabs. Inste
 ng add ngx-bootstrap  --component tabs
 ```
 
-Ng add is a convenient way to import 3rd party libs that will update `angular.json` and `package.json` with any changes we need. Don't forget to restart the client server!
+Ng add is a convenient way to import 3rd party libs that will update `angular.json` and `package.json` with any changes we need, as well as automatically import the 3rd party module into our root app module. Don't forget to restart the client server!
 
-Next we need to import the plugin into our root app module.
+Your root app module should now look like this:
 
 __src/app/order/app.module.ts__
 
@@ -123,18 +123,28 @@ Now let's add the markup to our order component implementing the tabs widget.
 
 __src/app/order/order.component.html__
 
-@sourceref ./order-1.component.html
-@highlight 7-18
+@sourceref ./order.component-withtabs.html
+@highlight 7-26
 
 Now when we view the order form of our route, we'll see a nice form and tabs for lunch and dinner menu options.
 
+## Component Interaction
+
+Components in Angular can pass data back and forth to eachother through the use of <a href="https://angular.io/api/core/Input" target="_blank">@Input</a> and <a href="https://angular.io/api/core/Output" target="_blank">@Output</a> decorations.
+
+@sourceref ./component-interaction.html
+@codepen
+@highlight 17,21,29,31,35,only
+
 ## Create Custom Checkbox Component
 
-We're going to build another component to use in our form to handle selecting order items. We use data-binding to pass data between components. We'll use the `@Input()` to get our list of items from the restaurant to display in our child component, and hook it into our Reactive Form using the `formControlName` attribute as shown below.
+We're going to build another component to use in our form to handle selecting order items. We use data-binding to pass data between components. We'll use the `@Input()` to get our list of items from the restaurant to display in our child component, and eventually hook it into our Reactive Form using the `formControlName` attribute as shown below.
 
 ```html
 <pmo-menu-items [data]="restaurant.menu.lunch" formControlName="items"></pmo-menu-items>
 ```
+
+### Create the new menu-items component inside the order component folder.
 
 ```bash
 ng g component order/menu-items
@@ -164,11 +174,16 @@ Each menu item should have this markup:
 
 ### What you need to know
 
-- How to use \*ngFor
-- How to use <a href="https://angular.io/api/core/Input" target="\_blank">Input</a> to pass properties:
+- How to use \*ngFor (you learned this in previous sections! ✔️)
+- How to use @Input to pass properties (you learned this in the section above! ✔️)
+
+### To Verify Your Solution is Correct
+
+Update the order spec file  __src/app/order/order.component.spec.ts__ to be:
+
+@sourceref ./order.component.spec-childcomponent.ts
 
 
-    @sourceref ./input-example.ts
 
 ### The solution
 
@@ -212,7 +227,6 @@ __src/app/order/menu-items.component.ts__
 
 ## Exercise: Emitting data to parent components
 
-
 ### The Problem
 
 Now we want to let the form know what the selected items are.
@@ -238,6 +252,8 @@ __src/app/order/order.component.ts__
 
 @sourceref ./child-component/order-2.component.ts
 @highlight 67-79
+
+## Control Value Accessor
 
 Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the  <a href="https://angular.io/api/forms/ControlValueAccessor" target="_blank">Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.
 
@@ -267,4 +283,4 @@ __src/app/order/order.component.html__
 @sourceref ./order-2.component.html
 @highlight 10, 15
 
-We now have a form that updates the items formcontrol when items are selected and shows the user an updated total!
+We now have a form that updates the `items` formControl when items are selected and shows the user an updated total!

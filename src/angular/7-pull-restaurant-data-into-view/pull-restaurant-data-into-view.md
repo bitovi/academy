@@ -19,7 +19,7 @@ To use a service in a component, we use dependency injection to pass the service
 
 @sourceref ./di.html
 @codepen
-@highlight 90, only
+@highlight 90,only
 
 ## Exercise: Inject Restaurants Service in Restaurants component and call the `getRestaurants` function
 

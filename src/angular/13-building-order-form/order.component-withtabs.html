@@ -5,17 +5,25 @@
       <h2>Order here</h2>
       <form *ngIf="orderForm" [formGroup]="orderForm" (ngSubmit)="onSubmit()">
         <tabset>
-            <tab heading="Lunch Menu">
-              <ul class="list-group" >
-                <li>lunch item</li>
-              </ul>
-            </tab>
-            <tab heading="Dinner menu">
-              <ul class="list-group" >
-                <li>dinner item</li>
-              </ul>
-            </tab>
-          </tabset>
+          <tab heading="Lunch Menu" *ngIf="restaurant?.menu?.lunch">
+            <h4>Lunch Menu</h4>
+            <div *ngFor="let item of restaurant.menu.lunch;">
+              <label>
+                <input type="checkbox" formControlName="items">
+                {{item.name}} <span class="badge">${{item.price}}</span>
+              </label>
+            </div>
+          </tab>
+          <tab heading="Dinner menu" *ngIf="restaurant?.menu?.dinner">
+              <h4>Dinner Menu</h4>
+              <div *ngFor="let item of restaurant.menu.dinner;">
+                <label>
+                  <input type="checkbox" formControlName="items">
+                  {{item.name}} <span class="badge">${{item.price}}</span>
+                </label>
+              </div>
+          </tab>
+        </tabset>
         <div class="form-group">
           <label class="control-label">Name:</label>
           <input name="name" type="text" class="form-control" formControlName="name">
