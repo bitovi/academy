@@ -476,7 +476,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeComponent } from './home/home.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
-import { RestaurantDetailComponent } from './restaurant/detail/detail.component';
+import { DetailComponent } from './restaurant/detail/detail.component';
 import { OrderComponent } from './order/order.component';
 
 const routes: Routes = [
@@ -490,7 +490,7 @@ const routes: Routes = [
   },
   {
     path: 'restaurants/:slug',
-    component: RestaurantDetailComponent,
+    component: DetailComponent,
   },
   {
     path: 'restaurants/:slug/order',
@@ -557,7 +557,8 @@ export class AppRoutingModule { }
         &lt;/div&gt;
       &lt;/form&gt;
   &lt;/ng-template&gt;
-  &lt;/div&gt;
+&lt;/div&gt;
+
 </code></pre>
 <p>We've covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes. Let's practice those concepts.</p>
 <h3>The problem</h3>
@@ -768,7 +769,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { ImageUrlPipe } from './image-url.pipe';
-import { RestaurantDetailComponent } from './restaurant/detail/detail.component';
+import { DetailComponent } from './restaurant/detail/detail.component';
 import { OrderComponent } from './order/order.component';
 
 @NgModule({
@@ -777,7 +778,7 @@ import { OrderComponent } from './order/order.component';
     HomeComponent,
     RestaurantComponent,
     ImageUrlPipe,
-    RestaurantDetailComponent,
+    DetailComponent,
     OrderComponent
   ],
   imports: [
@@ -907,7 +908,7 @@ export class AppModule { }
 <h3>What you need to know</h3>
 <ul>
 <li>How to use *ngFor</li>
-<li>How to use <a href="https://angular.io/api/core/Input" target="_blank">Input</a> to pass properties:</li>
+<li>How to use <a href="https://angular.io/api/core/Input" target="\_blank">Input</a> to pass properties:</li>
 </ul>
 <pre><code class="language-ts">@Component({
   selector: 'bank-account',
@@ -980,10 +981,10 @@ export class MenuItemsComponent implements OnInit {
       &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
         &lt;tabset&gt;
             &lt;tab heading=&quot;Lunch Menu&quot;&gt;
-              &lt;pmo-menu-items&gt;&lt;/pmo-menu-items&gt;
+              &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot;&gt;&lt;/pmo-menu-items&gt;
             &lt;/tab&gt;
             &lt;tab heading=&quot;Dinner menu&quot;&gt;
-              &lt;pmo-menu-items&gt;&lt;/pmo-menu-items&gt;
+              &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot;&gt;&lt;/pmo-menu-items&gt;
             &lt;/tab&gt;
           &lt;/tabset&gt;
         &lt;div class=&quot;form-group&quot;&gt;
@@ -1438,30 +1439,27 @@ export class MenuItemsComponent implements ControlValueAccessor {
   		
     </div>
 
-    <!-- 
+    
       <div class="sidebar-right">
-        <div class="content-nav">
+        <div class="content-nav on-this-page-container">
           <h6>On this page...</h6>
-          <ul class="list-group vertical-steps">
-            <li class="list-group-item completed"><a href="#"><span>Before You Begin</span></a></li>
-            <li class="list-group-item active"><a href="#"><span>Overview</span></a></li>
-            <li class="list-group-item"><a href="#"><span>Examples</span></a></li>
-            <li class="list-group-item"><a href="#"><span>Exercise</span></a></li>
-          </ul>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
         </div>
         <div class="pullout slack">
           <h6>Get help</h6>
           <p>If you need help with an exercise, please reach out to us on
-             <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">Slack</a>.</p>
-             <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y"><img src="https://i.ibb.co/XS6n24B/slack.png"/></a>
+             <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">Slack</a></p>
+             <!--<a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y"><img src="https://i.ibb.co/XS6n24B/slack.png"/></a>-->
         </div>
         <div class="pullout bug">
-          <p>If you find bugs in this training or have suggestions, please
+          <p>If you find a bug, please
              <a href="https://github.com/bitovi/university/issues/new">create an issue</a> or email
-             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/>.</p>
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
         </div>
       </div>
-     -->
+    
 
 	</article>
 </div>

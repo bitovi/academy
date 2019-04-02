@@ -1132,7 +1132,7 @@ platformBrowserDynamic()
 }
 </code></pre>
 <p>This interface can be written in the <strong>src/app/restaurant/restaurant.service.ts</strong> file. *</p>
-<h2>What You Need to Know</h2>
+<h3>What You Need to Know</h3>
 <ul>
 <li><p>How to generate an interface via the CLI</p>
 <pre><code class="language-bash">  ng g interface restaurant/restaurant
@@ -1316,7 +1316,7 @@ describe('RestaurantService', () =&gt; {
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass! If you haven't written the interfaces correctly, you'll see a compile error before the tests runs</p>
 </blockquote>
-<h2>Solution</h2>
+<h3>Solution</h3>
 <p><strong>src/app/restaurant/restaurant.ts</strong></p>
 <pre><code class="language-ts">interface Item {
     name: string;
@@ -1359,30 +1359,27 @@ export interface Restaurant {
   		
     </div>
 
-    <!-- 
+    
       <div class="sidebar-right">
-        <div class="content-nav">
+        <div class="content-nav on-this-page-container">
           <h6>On this page...</h6>
-          <ul class="list-group vertical-steps">
-            <li class="list-group-item completed"><a href="#"><span>Before You Begin</span></a></li>
-            <li class="list-group-item active"><a href="#"><span>Overview</span></a></li>
-            <li class="list-group-item"><a href="#"><span>Examples</span></a></li>
-            <li class="list-group-item"><a href="#"><span>Exercise</span></a></li>
-          </ul>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
         </div>
         <div class="pullout slack">
           <h6>Get help</h6>
           <p>If you need help with an exercise, please reach out to us on
-             <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">Slack</a>.</p>
-             <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y"><img src="https://i.ibb.co/XS6n24B/slack.png"/></a>
+             <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">Slack</a></p>
+             <!--<a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y"><img src="https://i.ibb.co/XS6n24B/slack.png"/></a>-->
         </div>
         <div class="pullout bug">
-          <p>If you find bugs in this training or have suggestions, please
+          <p>If you find a bug, please
              <a href="https://github.com/bitovi/university/issues/new">create an issue</a> or email
-             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/>.</p>
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
         </div>
       </div>
-     -->
+    
 
 	</article>
 </div>

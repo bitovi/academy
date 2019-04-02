@@ -593,7 +593,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='90, only'></div>
 <h2>Exercise: Inject Restaurants Service in Restaurants component and call the <code>getRestaurants</code> function</h2>
-<h2>The Problem</h2>
+<h3>The Problem</h3>
 <p>We want to be able to use the <code>getRestaurants</code> method in our component to display a list of restaurants. Update your
 <strong>src/app/restaurant/restaurant.component.html</strong> to be:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
@@ -631,7 +631,7 @@ platformBrowserDynamic()
   isPending: boolean;
 }
 </code></pre>
-<h2>What you need to know</h2>
+<h3>What you need to know</h3>
 <ul>
 <li>How to inject a service into a component (you learned this in section above! ✔️)</li>
 <li>How to call a method from a class</li>
@@ -967,30 +967,27 @@ export class RestaurantComponent implements OnInit {
   		
     </div>
 
-    <!-- 
+    
       <div class="sidebar-right">
-        <div class="content-nav">
+        <div class="content-nav on-this-page-container">
           <h6>On this page...</h6>
-          <ul class="list-group vertical-steps">
-            <li class="list-group-item completed"><a href="#"><span>Before You Begin</span></a></li>
-            <li class="list-group-item active"><a href="#"><span>Overview</span></a></li>
-            <li class="list-group-item"><a href="#"><span>Examples</span></a></li>
-            <li class="list-group-item"><a href="#"><span>Exercise</span></a></li>
-          </ul>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
         </div>
         <div class="pullout slack">
           <h6>Get help</h6>
           <p>If you need help with an exercise, please reach out to us on
-             <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">Slack</a>.</p>
-             <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y"><img src="https://i.ibb.co/XS6n24B/slack.png"/></a>
+             <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">Slack</a></p>
+             <!--<a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y"><img src="https://i.ibb.co/XS6n24B/slack.png"/></a>-->
         </div>
         <div class="pullout bug">
-          <p>If you find bugs in this training or have suggestions, please
+          <p>If you find a bug, please
              <a href="https://github.com/bitovi/university/issues/new">create an issue</a> or email
-             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/>.</p>
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
         </div>
       </div>
-     -->
+    
 
 	</article>
 </div>
