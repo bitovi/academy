@@ -460,15 +460,18 @@
 </ul>
 <h2>Creating a New Order Form Component</h2>
 <p>Our order form is how we can create new orders. We'll use a reactive form to get data from the users, use a custom validation function to make sure at least once item has been selected, and calculate the order total every time a new item is selected or unselected.</p>
-<pre><code class="language-bash">ng g component order
-</code></pre>
-<h2>Create New Route for Ordering</h2>
+<h2>Exercise: Create New Route for Ordering</h2>
 <h3>The Problem</h3>
-<p>Now, create a route for our new component! The path should be <code>/restaurants/{{slug}}/order</code>.</p>
+<p>Create a new <code>order</code> component, and create a route for our new component! The path should be <code>/restaurants/{{slug}}/order</code>.</p>
 <h3>What you need to know</h3>
 <ul>
+<li>How to create new components
+<pre><code class="language-bash">ng g component order
+</code></pre></li>
 <li>You've created routes before! You got this!</li>
 </ul>
+<h3>To Verify Your Solution is Correct</h3>
+<p>When you navigate to the <code>/order</code> path from a restaurant detail page you should see your new order component.</p>
 <h3>Solution</h3>
 <p><strong>src/app/app-routing.module.ts</strong></p>
 <pre><code class="language-ts">import { NgModule } from '@angular/core';
@@ -506,86 +509,67 @@ export class AppRoutingModule { }
 
 </code></pre>
 <div line-highlight='7, 22-25'></div>
-<p>Now when we navigate to the <code>/order</code> path from a restaurant detail page you should see where the order form will go.</p>
+<h2>Exercise: Build out the Order Component</h2>
+<p>We've covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes. Let's practice those concepts.</p>
+<p>We've provided some starting code to get through this section to help you get the restaurant based on the route slug, create a new reactive form to collect order information, and update the order total whenever the <code>items</code> FormControl value changes.</p>
 <p>In your new order component, edit the <strong>src/order/order.component.html</strong> file to be:</p>
 <p><strong>src/app/order/order.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
-    &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
-    &lt;/ng-container&gt;
-    &lt;ng-template #showOrderForm&gt;
-      &lt;h2&gt;Order here&lt;/h2&gt;
-      &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
-        &lt;ng-container *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
-          &lt;h4&gt;Lunch Menu&lt;/h4&gt;
-          &lt;div *ngFor=&quot;let item of restaurant.menu.lunch;&quot;&gt;
+  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
+  &lt;/ng-container&gt;
+  &lt;ng-template #showOrderForm&gt;
+    &lt;h2&gt;Order here&lt;/h2&gt;
+    &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+      &lt;ng-container *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
+        &lt;h4&gt;Lunch Menu&lt;/h4&gt;
+        &lt;ul class=&quot;list-group&quot;&gt;
+          &lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of restaurant.menu.lunch;&quot;&gt;
             &lt;label&gt;
               &lt;input type=&quot;checkbox&quot; formControlName=&quot;items&quot;&gt;
               {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
             &lt;/label&gt;
-          &lt;/div&gt;
-        &lt;/ng-container&gt;
-        &lt;ng-container *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
-            &lt;h4&gt;Dinner Menu&lt;/h4&gt;
-            &lt;div *ngFor=&quot;let item of restaurant.menu.dinner;&quot;&gt;
-              &lt;label&gt;
-                &lt;input type=&quot;checkbox&quot; formControlName=&quot;items&quot;&gt;
-                {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
-              &lt;/label&gt;
-            &lt;/div&gt;
-          &lt;/ng-container&gt;
-        &lt;div class=&quot;form-group&quot;&gt;
-          &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-          &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
-          &lt;p&gt;Please enter your name.&lt;/p&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;form-group&quot;&gt;
-          &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-          &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
-          &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;form-group&quot;&gt;
-          &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
-          &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
-          &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;submit&quot;&gt;
-          &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
-            &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
-            &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
-              Place My Order!
-            &lt;/button&gt;
-        &lt;/div&gt;
-      &lt;/form&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/ng-container&gt;
+      &lt;ng-container *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
+        &lt;h4&gt;Dinner Menu&lt;/h4&gt;
+        &lt;ul class=&quot;list-group&quot;&gt;
+          &lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of restaurant.menu.dinner;&quot;&gt;
+            &lt;label&gt;
+              &lt;input type=&quot;checkbox&quot; formControlName=&quot;items&quot;&gt;
+              {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
+            &lt;/label&gt;
+          &lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/ng-container&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
+        &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
+        &lt;p&gt;Please enter your name.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
+        &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
+        &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
+        &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+        &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;submit&quot;&gt;
+        &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
+          &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
+          &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
+            Place My Order!
+          &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
   &lt;/ng-template&gt;
 &lt;/div&gt;
 
 </code></pre>
-<p>We've covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes. Let's practice those concepts.</p>
-<h3>The problem</h3>
-<p>The order form component needs to get the restaurant from the route slug, and needs a reactive form to collect <code>restaurant</code>, <code>name</code>, <code>address</code>, <code>phone</code>, and <code>items</code>, and a way to update the order total when the items form control changes.</p>
-<h3>What you need to know</h3>
-<ul>
-<li><p>How to get the restaurant from the route slug</p></li>
-<li><p>Create a reactive form</p></li>
-<li><p>Listen to form value changes</p></li>
-<li><p>Add validation:</p>
-<p>This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation" target="\_blank">validation</a>. Here's an example of a form with form controls with different validation, and one thats value is set to an array.</p>
-<pre><code class="language-typescript">function coolKidsChecker(isACoolKid: string) {
-  return (c: AbstractControl): {[key: string]: any} =&gt; {
-      if (c.value === isACoolKid)
-          return null;
-      return { 'coolKidsChecker': {valid: false }};
-  }
-}
-
-this.myValidatingForm = this.formBuilder.group({
-  aRequiredField: [null, Validators.required]
-  aCustomRequiredField: [null, coolKidsChecker('yes')],
-  anArrayField: [[]]
-});
-</code></pre></li>
-</ul>
-<p><strong>src/app/order/order.component.ts</strong></p>
+<p>Update your <strong>src/app/order/order.component.ts</strong> file to be:</p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, FormArray, AbstractControl } from '@angular/forms';
@@ -644,20 +628,212 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   onChanges() {
     // SUBSCRIBE TO THE ITEMS FORMCONTROL CHANGE TO CALCULATE A NEW TOTAL
-      // let total = 0.0;
-      // val.forEach((item: any) =&gt; {
-      //   total += item.price;
-      // });
-      // this.orderTotal = Math.round(total * 100) / 100;
   }
 
   startNewOrder() {
     this.orderComplete = false;
     this.completedOrder = this.orderForm.value;
+    //CLEAR THE ORDER FORM
     this.createOrderForm();
   }
 
 }
+
+</code></pre>
+<h3>The problem</h3>
+<p>The order form component needs to get the restaurant from the route slug, and needs a reactive form to collect <code>restaurant</code>, <code>name</code>, <code>address</code>, <code>phone</code>, and <code>items</code>, and a way to update the order total when the items form control changes.</p>
+<h3>What you need to know</h3>
+<ul>
+<li><p>How to get the restaurant from the route slug (you learned this in previous sections! ✔️)</p></li>
+<li><p>Create a reactive form (you learned this in previous sections! ✔️)</p></li>
+<li><p>Listen to form value changes (you learned this in previous sections! ✔️)</p></li>
+<li><p>Add validation:</p>
+<p>This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation" target="\_blank">validation</a>. Here's an example of a form with form controls with different validation, and one thats value is set to an array.</p>
+<pre><code class="language-typescript">function coolKidsChecker(isACoolKid: string) {
+  return (c: AbstractControl): {[key: string]: any} =&gt; {
+      if (c.value === isACoolKid)
+          return null;
+      return { 'coolKidsChecker': {valid: false }};
+  }
+}
+
+this.myValidatingForm = this.formBuilder.group({
+  aRequiredField: [null, Validators.required]
+  aCustomRequiredField: [null, coolKidsChecker('yes')],
+  anArrayField: [[]]
+});
+</code></pre></li>
+</ul>
+<h3>To Verify Your Solution is Correct</h3>
+<p>Update the order spec file  <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs'; 
+
+import { OrderComponent } from './order.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RestaurantService } from '../restaurant/restaurant.service';
+
+class MockRestaurantService {
+  getRestaurant(slug:string) {
+    return of({
+        &quot;name&quot;: &quot;Poutine Palace&quot;,
+        &quot;slug&quot;: &quot;poutine-palace&quot;,
+        &quot;images&quot;: {
+          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+        },
+        &quot;menu&quot;: {
+          &quot;lunch&quot;: [
+            {
+              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+              &quot;price&quot;: 35.99
+            },
+            {
+              &quot;name&quot;: &quot;Steamed Mussels&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+              &quot;price&quot;: 35.99
+            }
+          ],
+          &quot;dinner&quot;: [
+            {
+              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+              &quot;price&quot;: 45.99
+            },
+            {
+              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+              &quot;price&quot;: 45.99
+            }
+          ]
+        },
+        &quot;address&quot;: {
+          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+          &quot;city&quot;: &quot;Green Bay&quot;,
+          &quot;state&quot;: &quot;WI&quot;,
+          &quot;zip&quot;: &quot;53205&quot;
+        },
+        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+      })
+  }
+}
+
+const MockActivatedRoute = {
+  snapshot: {
+    paramMap: {
+      get() {
+        return 'poutine-palace'
+      }
+    }
+  }
+}
+
+describe('OrderComponent', () =&gt; {
+  let component: OrderComponent;
+  let fixture: ComponentFixture&lt;OrderComponent&gt;;
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      declarations: [ OrderComponent ], 
+      imports: [  ReactiveFormsModule, RouterTestingModule ],
+      providers: [{
+        provide: RestaurantService,
+        useClass: MockRestaurantService
+      }, {
+        provide: ActivatedRoute,
+        useValue: MockActivatedRoute
+      }]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(OrderComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  it('should get a restaurant based on route slug', () =&gt; {
+    let mockRestaurant = {
+      &quot;name&quot;: &quot;Poutine Palace&quot;,
+      &quot;slug&quot;: &quot;poutine-palace&quot;,
+      &quot;images&quot;: {
+        &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+        &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+        &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+      },
+      &quot;menu&quot;: {
+        &quot;lunch&quot;: [
+          {
+            &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+            &quot;price&quot;: 35.99
+          },
+          {
+            &quot;name&quot;: &quot;Steamed Mussels&quot;,
+            &quot;price&quot;: 21.99
+          },
+          {
+            &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+            &quot;price&quot;: 35.99
+          }
+        ],
+        &quot;dinner&quot;: [
+          {
+            &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+            &quot;price&quot;: 21.99
+          },
+          {
+            &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+            &quot;price&quot;: 45.99
+          },
+          {
+            &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+            &quot;price&quot;: 45.99
+          }
+        ]
+      },
+      &quot;address&quot;: {
+        &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+        &quot;city&quot;: &quot;Green Bay&quot;,
+        &quot;state&quot;: &quot;WI&quot;,
+        &quot;zip&quot;: &quot;53205&quot;
+      },
+      &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+    }
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    expect(fixture.componentInstance.restaurant).toEqual(mockRestaurant)
+  });
+
+  it('should have an orderForm formGroup', () =&gt; {
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    expect(fixture.componentInstance.orderForm.controls.restaurant).toBeTruthy();
+    expect(fixture.componentInstance.orderForm.controls.address).toBeTruthy();
+    expect(fixture.componentInstance.orderForm.controls.phone).toBeTruthy();
+    expect(fixture.componentInstance.orderForm.controls.items).toBeTruthy();
+  });
+
+  it('should have a validator on items formControl', () =&gt; {
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    let itemFormControl = fixture.componentInstance.orderForm.controls.items;
+    expect(itemFormControl.valid).toEqual(false);
+  });
+
+});
 
 </code></pre>
 <h3>The solution</h3>
@@ -735,10 +911,15 @@ export class OrderComponent implements OnInit, OnDestroy {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
     this.subscription = this.orderForm.get('items').valueChanges.subscribe(val =&gt; {
       let total = 0.0;
-      val.forEach((item: any) =&gt; {
-        total += item.price;
-      });
-      this.orderTotal = Math.round(total * 100) / 100;
+      if(val.length) {
+        val.forEach((item: any) =&gt; {
+          total += item.price;
+        });
+        this.orderTotal = Math.round(total * 100) / 100;
+      }
+      else {
+        this.orderTotal = total;
+      }
     });
   }
 
@@ -751,12 +932,13 @@ export class OrderComponent implements OnInit, OnDestroy {
 
 }
 </code></pre>
+<div line-highlight='43,45-49,59-66,72-83'></div>
 <h2>Importing 3rd Party Plugins</h2>
 <p>In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let's import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started" target="\_blank">ngx-bootstrap</a>:</p>
 <pre><code class="language-bash">ng add ngx-bootstrap  --component tabs
 </code></pre>
-<p>Ng add is a convenient way to import 3rd party libs that will update <code>angular.json</code> and <code>package.json</code> with any changes we need. Don't forget to restart the client server!</p>
-<p>Next we need to import the plugin into our root app module.</p>
+<p>Ng add is a convenient way to import 3rd party libs that will update <code>angular.json</code> and <code>package.json</code> with any changes we need, as well as automatically import the 3rd party module into our root app module. Don't forget to restart the client server!</p>
+<p>Your root app module should now look like this:</p>
 <p><strong>src/app/order/app.module.ts</strong></p>
 <pre><code class="language-ts">import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -804,17 +986,27 @@ export class AppModule { }
       &lt;h2&gt;Order here&lt;/h2&gt;
       &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
         &lt;tabset&gt;
-            &lt;tab heading=&quot;Lunch Menu&quot;&gt;
-              &lt;ul class=&quot;list-group&quot; &gt;
-                &lt;li&gt;lunch item&lt;/li&gt;
-              &lt;/ul&gt;
-            &lt;/tab&gt;
-            &lt;tab heading=&quot;Dinner menu&quot;&gt;
-              &lt;ul class=&quot;list-group&quot; &gt;
-                &lt;li&gt;dinner item&lt;/li&gt;
-              &lt;/ul&gt;
-            &lt;/tab&gt;
-          &lt;/tabset&gt;
+          &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
+            &lt;ul class=&quot;list-group&quot;&gt;
+              &lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of restaurant.menu.lunch;&quot;&gt;
+                &lt;label&gt;
+                  &lt;input type=&quot;checkbox&quot; formControlName=&quot;items&quot;&gt;
+                  {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
+                &lt;/label&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/tab&gt;
+          &lt;tab heading=&quot;Dinner menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
+            &lt;ul class=&quot;list-group&quot;&gt;
+              &lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of restaurant.menu.dinner;&quot;&gt;
+                &lt;label&gt;
+                  &lt;input type=&quot;checkbox&quot; formControlName=&quot;items&quot;&gt;
+                  {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
+                &lt;/label&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/tab&gt;
+        &lt;/tabset&gt;
         &lt;div class=&quot;form-group&quot;&gt;
           &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
           &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
@@ -844,12 +1036,82 @@ export class AppModule { }
   
   
 </code></pre>
-<div line-highlight='7-18'></div>
+<div line-highlight='7-26'></div>
 <p>Now when we view the order form of our route, we'll see a nice form and tabs for lunch and dinner menu options.</p>
+<h2>Component Interaction</h2>
+<p>Components in Angular can pass data back and forth to eachother through the use of <a href="https://angular.io/api/core/Input" target="_blank">@Input</a> and <a href="https://angular.io/api/core/Output" target="_blank">@Output</a> decorations.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+// app.js
+const { Component, VERSION, Input } = ng.core;
+
+@Component({
+  selector: 'my-child',
+  template: `
+    My parent's name is {{parentName}}
+  `
+})
+class ChildComponent {
+  @Input() myParent: string;
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'my-app',
+  template: `
+  &lt;my-child parentName=&quot;Bob&quot;&gt;&lt;/my-child&gt;
+
+  &lt;my-child [parentName]=&quot;momName&quot;&gt;&lt;/my-child&gt;
+  `
+})
+class AppComponent {
+  public momName: string = 'Sandy'
+
+  constructor() {
+  }
+}
+
+// main.js
+const { BrowserModule } = ng.platformBrowser;
+const { NgModule } = ng.core;
+const { CommonModule } = ng.common;
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    CommonModule,
+  ],
+  declarations: [AppComponent, ChildComponent],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='17,21,29,31,35,only'></div>
 <h2>Create Custom Checkbox Component</h2>
-<p>We're going to build another component to use in our form to handle selecting order items. We use data-binding to pass data between components. We'll use the <code>@Input()</code> to get our list of items from the restaurant to display in our child component, and hook it into our Reactive Form using the <code>formControlName</code> attribute as shown below.</p>
+<p>We're going to build another component to use in our form to handle selecting order items. We use data-binding to pass data between components. We'll use the <code>@Input()</code> to get our list of items from the restaurant to display in our child component, and eventually hook it into our Reactive Form using the <code>formControlName</code> attribute as shown below.</p>
 <pre><code class="language-html">&lt;pmo-menu-items [data]=&quot;restaurant.menu.lunch&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
 </code></pre>
+<h3>Create the new menu-items component inside the order component folder</h3>
 <pre><code class="language-bash">ng g component order/menu-items
 </code></pre>
 <p>Go ahead and put your new component in the order history component.</p>
@@ -861,11 +1123,15 @@ export class AppModule { }
       &lt;h2&gt;Order here&lt;/h2&gt;
       &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
         &lt;tabset&gt;
-            &lt;tab heading=&quot;Lunch Menu&quot;&gt;
-              &lt;pmo-menu-items&gt;&lt;/pmo-menu-items&gt;
+            &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
+              &lt;ul  class=&quot;list-group&quot;&gt;
+                &lt;pmo-menu-items&gt;&lt;/pmo-menu-items&gt;
+              &lt;/ul&gt;
             &lt;/tab&gt;
-            &lt;tab heading=&quot;Dinner menu&quot;&gt;
-              &lt;pmo-menu-items&gt;&lt;/pmo-menu-items&gt;
+            &lt;tab heading=&quot;Dinner menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
+              &lt;ul  class=&quot;list-group&quot;&gt;
+                &lt;pmo-menu-items&gt;&lt;/pmo-menu-items&gt;
+              &lt;/ul&gt;
             &lt;/tab&gt;
           &lt;/tabset&gt;
         &lt;div class=&quot;form-group&quot;&gt;
@@ -900,61 +1166,249 @@ export class AppModule { }
 <h3>The Problem</h3>
 <p>We want the menu-items component take an array of menu items and iterate through them in the template.</p>
 <p>Each menu item should have this markup:</p>
-<pre><code class="language-html"> &lt;label&gt;
-    &lt;input type=&quot;checkbox&quot;&gt;
-    ITEM_NAME &lt;span class=&quot;badge&quot;&gt;$ ITEM_PRICE&lt;/span&gt;
-&lt;/label&gt;
+<pre><code class="language-html">&lt;li class=&quot;list-group-item&quot; &gt;
+    &lt;label&gt;
+        &lt;input type=&quot;checkbox&quot;&gt;
+        ITEM_NAME &lt;span class=&quot;badge&quot;&gt;$ ITEM_PRICE&lt;/span&gt;
+    &lt;/label&gt;
+&lt;/li&gt;
 </code></pre>
 <h3>What you need to know</h3>
 <ul>
-<li>How to use *ngFor</li>
-<li>How to use <a href="https://angular.io/api/core/Input" target="\_blank">Input</a> to pass properties:</li>
+<li>How to use *ngFor (you learned this in previous sections! ✔️)</li>
+<li>How to use @Input to pass properties (you learned this in the section above! ✔️)</li>
 </ul>
-<pre><code class="language-ts">@Component({
-  selector: 'bank-account',
-  template: `
-    Bank: {{bank.name}}
-    Account Id: {{id}}
-  `
-})
-class BankAccount {
-  // This property is bound using its original name.
-  @Input() bank: {
-    name: string,
-    code: string
-  };
-  // this property value is bound to a different property name
-  // when this component is instantiated in a template.
-  @Input('account-id') id: string;
-  // this property is not bound, and is not automatically updated by Angular
-  normalizedBankName: string;
-}
- 
-@Component({
-  selector: 'app',
-  template: `
-    &lt;bank-account [bank]=&quot;bankInfo&quot; account-id=&quot;4747&quot;&gt;&lt;/bank-account&gt;
-  `
-})
- 
-class App {
-  bankInfo = {
-    name: 'Really Cool Bank',
-    code: 'RCB'
+<h3>To Verify Your Solution is Correct</h3>
+<p>Update the order spec file  <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs'; 
+
+import { OrderComponent } from './order.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RestaurantService } from '../restaurant/restaurant.service';
+import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
+
+class MockRestaurantService {
+  getRestaurant(slug:string) {
+    return of({
+        &quot;name&quot;: &quot;Poutine Palace&quot;,
+        &quot;slug&quot;: &quot;poutine-palace&quot;,
+        &quot;images&quot;: {
+          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+        },
+        &quot;menu&quot;: {
+          &quot;lunch&quot;: [
+            {
+              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+              &quot;price&quot;: 35.99
+            },
+            {
+              &quot;name&quot;: &quot;Steamed Mussels&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+              &quot;price&quot;: 35.99
+            }
+          ],
+          &quot;dinner&quot;: [
+            {
+              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+              &quot;price&quot;: 45.99
+            },
+            {
+              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+              &quot;price&quot;: 45.99
+            }
+          ]
+        },
+        &quot;address&quot;: {
+          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+          &quot;city&quot;: &quot;Green Bay&quot;,
+          &quot;state&quot;: &quot;WI&quot;,
+          &quot;zip&quot;: &quot;53205&quot;
+        },
+        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+      })
   }
 }
+
+const MockActivatedRoute = {
+  snapshot: {
+    paramMap: {
+      get() {
+        return 'poutine-palace'
+      }
+    }
+  }
+}
+
+describe('OrderComponent', () =&gt; {
+  let component: OrderComponent;
+  let fixture: ComponentFixture&lt;OrderComponent&gt;;
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      declarations: [ OrderComponent ], 
+      imports: [  ReactiveFormsModule, RouterTestingModule ],
+      providers: [{
+        provide: RestaurantService,
+        useClass: MockRestaurantService
+      }, {
+        provide: ActivatedRoute,
+        useValue: MockActivatedRoute
+      }],
+      schemas: [ NO_ERRORS_SCHEMA ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(OrderComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  it('should get a restaurant based on route slug', () =&gt; {
+    let mockRestaurant = {
+      &quot;name&quot;: &quot;Poutine Palace&quot;,
+      &quot;slug&quot;: &quot;poutine-palace&quot;,
+      &quot;images&quot;: {
+        &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+        &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+        &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+      },
+      &quot;menu&quot;: {
+        &quot;lunch&quot;: [
+          {
+            &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+            &quot;price&quot;: 35.99
+          },
+          {
+            &quot;name&quot;: &quot;Steamed Mussels&quot;,
+            &quot;price&quot;: 21.99
+          },
+          {
+            &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+            &quot;price&quot;: 35.99
+          }
+        ],
+        &quot;dinner&quot;: [
+          {
+            &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+            &quot;price&quot;: 21.99
+          },
+          {
+            &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+            &quot;price&quot;: 45.99
+          },
+          {
+            &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+            &quot;price&quot;: 45.99
+          }
+        ]
+      },
+      &quot;address&quot;: {
+        &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+        &quot;city&quot;: &quot;Green Bay&quot;,
+        &quot;state&quot;: &quot;WI&quot;,
+        &quot;zip&quot;: &quot;53205&quot;
+      },
+      &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+    }
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    expect(fixture.componentInstance.restaurant).toEqual(mockRestaurant)
+  });
+
+  it('should have an orderForm formGroup', () =&gt; {
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    expect(fixture.componentInstance.orderForm.controls.restaurant).toBeTruthy();
+    expect(fixture.componentInstance.orderForm.controls.address).toBeTruthy();
+    expect(fixture.componentInstance.orderForm.controls.phone).toBeTruthy();
+    expect(fixture.componentInstance.orderForm.controls.items).toBeTruthy();
+  });
+
+  it('should have a validator on items formControl', () =&gt; {
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    let itemFormControl = fixture.componentInstance.orderForm.controls.items;
+    expect(itemFormControl.valid).toEqual(false);
+  });
+
+});
+
+</code></pre>
+<p>Update the menu-items spec file  <strong>src/app/order/menu-items/menu-items.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { MenuItemsComponent } from './menu-items.component';
+
+describe('MenuItemsComponent', () =&gt; {
+  let component: MenuItemsComponent;
+  let fixture: ComponentFixture&lt;MenuItemsComponent&gt;;
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      declarations: [ MenuItemsComponent ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(MenuItemsComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  it('should display a list of inputs', () =&gt; {
+    const fixture = TestBed.createComponent(MenuItemsComponent);
+    fixture.componentInstance.items = [
+      {&quot;name&quot;:&quot;Charred Octopus&quot;,&quot;price&quot;:25.99},
+      {&quot;name&quot;:&quot;Steamed Mussels&quot;,&quot;price&quot;:21.99},
+      {&quot;name&quot;:&quot;Ricotta Gnocchi&quot;,&quot;price&quot;:15.99}
+    ];
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let itemLabels = compiled.getElementsByTagName('label');
+    expect(itemLabels.length).toEqual(3)
+  });
+});
+
 </code></pre>
 <h3>The solution</h3>
 <p><strong>src/app/order/menu-items.component.html</strong></p>
-<pre><code class="language-html">&lt;div *ngFor=&quot;let item of items&quot;&gt;
-    &lt;label&gt;
-      &lt;input type=&quot;checkbox&quot;&gt;
-      {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
-    &lt;/label&gt;
-  &lt;/div&gt;
+<pre><code class="language-html">&lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of items&quot;&gt;
+  &lt;label&gt;
+    &lt;input type=&quot;checkbox&quot;&gt;
+    {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
+  &lt;/label&gt;
+&lt;/li&gt;
 </code></pre>
 <p><strong>src/app/order/menu-items.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, Input } from '@angular/core';
+
+interface Item {
+  name: string;
+  price: number;
+}
 
 @Component({
   selector: 'pmo-menu-items',
@@ -962,8 +1416,8 @@ class App {
   styleUrls: ['./menu-items.component.less']
 })
 export class MenuItemsComponent implements OnInit {
-  @Input() items: [];
-  
+  @Input() items: Item[];
+
   constructor() { }
 
   ngOnInit() {
@@ -980,13 +1434,17 @@ export class MenuItemsComponent implements OnInit {
       &lt;h2&gt;Order here&lt;/h2&gt;
       &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
         &lt;tabset&gt;
-            &lt;tab heading=&quot;Lunch Menu&quot;&gt;
+          &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
+            &lt;ul  class=&quot;list-group&quot;&gt;
               &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot;&gt;&lt;/pmo-menu-items&gt;
-            &lt;/tab&gt;
-            &lt;tab heading=&quot;Dinner menu&quot;&gt;
+            &lt;/ul&gt;
+          &lt;/tab&gt;
+          &lt;tab heading=&quot;Dinner menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
+            &lt;ul  class=&quot;list-group&quot;&gt;
               &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot;&gt;&lt;/pmo-menu-items&gt;
-            &lt;/tab&gt;
-          &lt;/tabset&gt;
+            &lt;/ul&gt;
+          &lt;/tab&gt;
+        &lt;/tabset&gt;
         &lt;div class=&quot;form-group&quot;&gt;
           &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
           &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
@@ -1042,13 +1500,14 @@ export class ClickMeComponent {
 </ul>
 <h3>The Solution</h3>
 <p><strong>src/app/order/menu-items.component.html</strong></p>
-<pre><code class="language-html">&lt;div *ngFor=&quot;let item of items&quot;&gt;
+<pre><code class="language-html">&lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of items&quot;&gt;
   &lt;label&gt;
     &lt;input type=&quot;checkbox&quot; (change)=&quot;changeFunc(item)&quot; &gt;
     {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
   &lt;/label&gt;
-&lt;/div&gt;
+&lt;/li&gt;
 </code></pre>
+<div line-highlight='3'></div>
 <p><strong>src/app/order/menu-items.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, Input } from '@angular/core';
 
@@ -1084,6 +1543,7 @@ export class MenuItemsComponent implements OnInit {
 }
 
 </code></pre>
+<div line-highlight='15, 22-30'></div>
 <h2>Exercise: Emitting data to parent components</h2>
 <h3>The Problem</h3>
 <p>Now we want to let the form know what the selected items are.</p>
@@ -1168,6 +1628,7 @@ export class MenuItemsComponent implements OnInit {
 }
 
 </code></pre>
+<div line-highlight='1,16,31'></div>
 <p><strong>src/app/order/order.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
     &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
@@ -1177,10 +1638,14 @@ export class MenuItemsComponent implements OnInit {
       &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
         &lt;tabset&gt;
           &lt;tab heading=&quot;Lunch Menu&quot;&gt;
-            &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot; (itemsChanged)=&quot;getChange($event)&quot; &gt;&lt;/pmo-menu-items&gt;
+            &lt;ul class=&quot;list-group&quot;&gt;
+              &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot; (itemsChanged)=&quot;getChange($event)&quot; &gt;&lt;/pmo-menu-items&gt;
+            &lt;/ul&gt;
           &lt;/tab&gt;
           &lt;tab heading=&quot;Dinner menu&quot;&gt;
-            &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot; (itemsChanged)=&quot;getChange($event)&quot; &gt;&lt;/pmo-menu-items&gt;
+            &lt;ul class=&quot;list-group&quot;&gt;
+              &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot; (itemsChanged)=&quot;getChange($event)&quot; &gt;&lt;/pmo-menu-items&gt;
+            &lt;/ul&gt;
           &lt;/tab&gt;
         &lt;/tabset&gt;
         &lt;div class=&quot;form-group&quot;&gt;
@@ -1292,11 +1757,19 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   onChanges() {
-      //  let total = 0.0;
-      //   val.forEach((item: any) =&gt; {
-      //     total += item.price;
-      //   });
-      //   this.orderTotal = Math.round(total * 100) / 100;
+    // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
+    this.subscription = this.orderForm.get('items').valueChanges.subscribe(val =&gt; {
+      let total = 0.0;
+      if(val.length) {
+        val.forEach((item: any) =&gt; {
+          total += item.price;
+        });
+        this.orderTotal = Math.round(total * 100) / 100;
+      }
+      else {
+        this.orderTotal = total;
+      }
+    });
   }
 
   startNewOrder() {
@@ -1308,14 +1781,21 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 </code></pre>
 <div line-highlight='67-79'></div>
+<h2>Control Value Accessor</h2>
 <p>Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the  <a href="https://angular.io/api/forms/ControlValueAccessor" target="_blank">Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.</p>
 <p><strong>src/app/order/menu-items.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
+interface Item {
+  name: string;
+  price: number;
+}
+
 @Component({
   selector: 'pmo-menu-items',
   templateUrl: './menu-items.component.html',
+  styleUrls: ['./menu-items.component.less'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -1325,9 +1805,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ]
 })
 export class MenuItemsComponent implements ControlValueAccessor {
-  @Input() data: [];
+  @Input() items: Item[];
 
-  @Input('value') _value: any[];
+  constructor() { }
+
+  @Input('value') _value: Item[];
 
   onChange: any = () =&gt; { };
   onTouched: any = () =&gt; { };
@@ -1350,11 +1832,11 @@ export class MenuItemsComponent implements ControlValueAccessor {
     this.onTouched = fn;
   }
 
-  writeValue(value:any) {
+  writeValue(value:Item[]) {
     this.value = value;
   }
 
-  toggleItem(item: any) {
+  changeFunc(item: Item) {
     let index = this._value.indexOf(item);
     if(index !== -1) {
       this._value.splice(index, 1)
@@ -1366,16 +1848,9 @@ export class MenuItemsComponent implements ControlValueAccessor {
   }
 
 }
+
 </code></pre>
 <div line-highlight='1, 2, 8-14, 16'></div>
-<p><strong>src/app/order/menu-items.component.html</strong></p>
-<pre><code class="language-html">&lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of data&quot;&gt;
-  &lt;label&gt;
-    &lt;input type=&quot;checkbox&quot; (change)=&quot;toggleItem(item)&quot;&gt;
-    {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
-  &lt;/label&gt;
-&lt;/li&gt;
-</code></pre>
 <p>Other concepts used here:</p>
 <h3>forwardRef</h3>
 <p><a href="https://angular.io/api/core/forwardRef" target="\_blank">https://angular.io/api/core/forwardRef</a> Used to reference a token that may not be defined when we need it.</p>
@@ -1392,12 +1867,12 @@ export class MenuItemsComponent implements ControlValueAccessor {
       &lt;tabset&gt;
         &lt;tab heading=&quot;Lunch Menu&quot;&gt;
           &lt;ul class=&quot;list-group&quot; &gt;
-            &lt;pmo-menu-items [data]=&quot;restaurant.menu.lunch&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
+            &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
         &lt;tab heading=&quot;Dinner menu&quot;&gt;
           &lt;ul class=&quot;list-group&quot; &gt;
-            &lt;pmo-menu-items [data]=&quot;restaurant.menu.dinner&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
+            &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
       &lt;/tabset&gt;
@@ -1431,7 +1906,182 @@ export class MenuItemsComponent implements ControlValueAccessor {
 
 </code></pre>
 <div line-highlight='10, 15'></div>
-<p>We now have a form that updates the items formcontrol when items are selected and shows the user an updated total!</p>
+<p>We now have a form that updates the <code>items</code> formControl when items are selected and shows the user an updated total!</p>
+<h3>Update Order Component Tests</h3>
+<p>Update the order spec file  <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs'; 
+
+import { OrderComponent } from './order.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RestaurantService } from '../restaurant/restaurant.service';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { MenuItemsComponent } from './menu-items/menu-items.component';
+
+class MockRestaurantService {
+  getRestaurant(slug:string) {
+    return of({
+        &quot;name&quot;: &quot;Poutine Palace&quot;,
+        &quot;slug&quot;: &quot;poutine-palace&quot;,
+        &quot;images&quot;: {
+          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+        },
+        &quot;menu&quot;: {
+          &quot;lunch&quot;: [
+            {
+              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+              &quot;price&quot;: 35.99
+            },
+            {
+              &quot;name&quot;: &quot;Steamed Mussels&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+              &quot;price&quot;: 35.99
+            }
+          ],
+          &quot;dinner&quot;: [
+            {
+              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+              &quot;price&quot;: 45.99
+            },
+            {
+              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+              &quot;price&quot;: 45.99
+            }
+          ]
+        },
+        &quot;address&quot;: {
+          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+          &quot;city&quot;: &quot;Green Bay&quot;,
+          &quot;state&quot;: &quot;WI&quot;,
+          &quot;zip&quot;: &quot;53205&quot;
+        },
+        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+      })
+  }
+}
+
+const MockActivatedRoute = {
+  snapshot: {
+    paramMap: {
+      get() {
+        return 'poutine-palace'
+      }
+    }
+  }
+}
+
+describe('OrderComponent', () =&gt; {
+  let component: OrderComponent;
+  let fixture: ComponentFixture&lt;OrderComponent&gt;;
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      declarations: [ OrderComponent, MenuItemsComponent ], 
+      imports: [  ReactiveFormsModule, RouterTestingModule ],
+      providers: [{
+        provide: RestaurantService,
+        useClass: MockRestaurantService
+      }, {
+        provide: ActivatedRoute,
+        useValue: MockActivatedRoute
+      }],
+      schemas: [ NO_ERRORS_SCHEMA ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(OrderComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  it('should get a restaurant based on route slug', () =&gt; {
+    let mockRestaurant = {
+      &quot;name&quot;: &quot;Poutine Palace&quot;,
+      &quot;slug&quot;: &quot;poutine-palace&quot;,
+      &quot;images&quot;: {
+        &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+        &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+        &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+      },
+      &quot;menu&quot;: {
+        &quot;lunch&quot;: [
+          {
+            &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+            &quot;price&quot;: 35.99
+          },
+          {
+            &quot;name&quot;: &quot;Steamed Mussels&quot;,
+            &quot;price&quot;: 21.99
+          },
+          {
+            &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+            &quot;price&quot;: 35.99
+          }
+        ],
+        &quot;dinner&quot;: [
+          {
+            &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+            &quot;price&quot;: 21.99
+          },
+          {
+            &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+            &quot;price&quot;: 45.99
+          },
+          {
+            &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+            &quot;price&quot;: 45.99
+          }
+        ]
+      },
+      &quot;address&quot;: {
+        &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+        &quot;city&quot;: &quot;Green Bay&quot;,
+        &quot;state&quot;: &quot;WI&quot;,
+        &quot;zip&quot;: &quot;53205&quot;
+      },
+      &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+    }
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    expect(fixture.componentInstance.restaurant).toEqual(mockRestaurant)
+  });
+
+  it('should have an orderForm formGroup', () =&gt; {
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    expect(fixture.componentInstance.orderForm.controls.restaurant).toBeTruthy();
+    expect(fixture.componentInstance.orderForm.controls.address).toBeTruthy();
+    expect(fixture.componentInstance.orderForm.controls.phone).toBeTruthy();
+    expect(fixture.componentInstance.orderForm.controls.items).toBeTruthy();
+  });
+
+  it('should have a validator on items formControl', () =&gt; {
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    let itemFormControl = fixture.componentInstance.orderForm.controls.items;
+    expect(itemFormControl.valid).toEqual(false);
+  });
+
+});
+
+</code></pre>
 
 </section>
 
