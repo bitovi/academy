@@ -14,18 +14,11 @@ In this part, we will:
 - Import our new order service to our component & create an order
 - Show completed order in UI
 
-
-## Creating the Order Service
-
-```bash
-ng g service order/order
-```
-
-## Exercise: Export Items and Order interfaces
+## Exercise: Create Order Service and Export Items and Order interfaces
 
 ### The Problem
 
-We'll need two interfaces - one to describe the order, one to describe items in the order. Write and export `Order` and `Item` interfaces representing these objects in the new service.
+We need to create a new service to handle creating and updating orders. We'll need two interfaces - one to describe the order, one to describe items in the order. Create a new service `order` in the order directory, and write and export `Order` and `Item` interfaces representing these objects in the new service:
 
 ```typescript
 let myorder = {
@@ -45,15 +38,19 @@ let myorder = {
 
 ### What you need to know
 
-- How to write interfaces!
+- How to create services (you learned this in previous sections! ✔️)
+- How to write interfaces (you learned this in previous sections! ✔️)
 
----
+  ```bash
+    ng g service order/order
+  ```
 
 ### The solution
 
 __src/app/order/order.service.ts__
 
-@sourceref ./order-1.service.ts
+@sourceref ./order.service-interfaces.ts
+@highlight 3-6, 8-15
 
 ## Exercise: Finish the order service
 
