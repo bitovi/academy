@@ -8,31 +8,12 @@
 
 In this part, we will:
 
-- Get your tests to pass again.
 - Create a new order service
 - Write interfaces to describe orders and items in orders
 - Add data methods to our service
 - Import our new order service to our component & create an order
 - Show completed order in UI
 
-
-## Get tests working again
-
-Update the following two files to get all tests passing again:
-
-__src/app/order/order.component.spec.ts__
-
-@sourceref ./1-order.component.spec.ts
-
-__src/app/restaurant/detail/detail.component.spec.ts__
-
-@sourceref ./1-detail.component.spec.ts
-
-Run the following to confirm:
-
-```shell
-ng test
-```
 
 ## Creating the Order Service
 

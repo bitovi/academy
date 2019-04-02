@@ -77,6 +77,9 @@ export class OrderComponent implements OnInit, OnDestroy {
         });
         this.orderTotal = Math.round(total * 100) / 100;
       }
+      else {
+        this.orderTotal = total;
+      }
     });
   }
 

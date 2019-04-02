@@ -5,11 +5,15 @@
       <h2>Order here</h2>
       <form *ngIf="orderForm" [formGroup]="orderForm" (ngSubmit)="onSubmit()">
         <tabset>
-            <tab heading="Lunch Menu">
-              <pmo-menu-items [items]="restaurant.menu.lunch"></pmo-menu-items>
+            <tab heading="Lunch Menu" *ngIf="restaurant?.menu?.dinner">
+              <ul  class="list-group">
+                <pmo-menu-items></pmo-menu-items>
+              </ul>
             </tab>
-            <tab heading="Dinner menu">
-              <pmo-menu-items [items]="restaurant.menu.dinner"></pmo-menu-items>
+            <tab heading="Dinner menu" *ngIf="restaurant?.menu?.dinner">
+              <ul  class="list-group">
+                <pmo-menu-items></pmo-menu-items>
+              </ul>
             </tab>
           </tabset>
         <div class="form-group">
