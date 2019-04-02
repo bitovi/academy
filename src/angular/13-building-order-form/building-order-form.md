@@ -85,7 +85,6 @@ __src/app/order/order.component.ts__
 
 @sourceref ./order.component.ts
 
-
 ### The solution
 
 __src/app/order/order.component.ts__
