@@ -155,8 +155,8 @@ Each menu item should have this markup:
 
 ### What you need to know
 
-- How to use *ngFor
-- How to use <a href="https://angular.io/api/core/Input" target="_blank">Input</a> to pass properties:
+- How to use \*ngFor
+- How to use <a href="https://angular.io/api/core/Input" target="\_blank">Input</a> to pass properties:
 
 
     @sourceref ./input-example.ts
@@ -173,7 +173,7 @@ __src/app/order/menu-items.component.ts__
 
 __src/app/order/order.component.html__
 
-@sourceref ./child-component/order-0.component.html
+@sourceref ./child-component/order-1.component.html
 @highlight 9, 12
 
 ## Exercise: Attaching event handlers

@@ -9,7 +9,7 @@ import { Restaurant } from '../restaurant';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.less']
 })
-export class RestaurantDetailComponent implements OnInit {
+export class DetailComponent implements OnInit {
   restaurant: Restaurant;
   isLoading: boolean = true;
 

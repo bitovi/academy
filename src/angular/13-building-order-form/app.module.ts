@@ -9,7 +9,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { ImageUrlPipe } from './image-url.pipe';
-import { RestaurantDetailComponent } from './restaurant/detail/detail.component';
+import { DetailComponent } from './restaurant/detail/detail.component';
 import { OrderComponent } from './order/order.component';
 
 @NgModule({
@@ -18,7 +18,7 @@ import { OrderComponent } from './order/order.component';
     HomeComponent,
     RestaurantComponent,
     ImageUrlPipe,
-    RestaurantDetailComponent,
+    DetailComponent,
     OrderComponent
   ],
   imports: [

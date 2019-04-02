@@ -1,15 +1,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RestaurantDetailComponent } from './detail.component';
+import { DetailComponent } from './detail.component';
 import { ImageUrlPipe } from 'src/app/image-url.pipe';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { RestaurantService } from '../restaurant.service';
 import { RouterTestingModule } from '@angular/router/testing';
 
-describe('RestaurantDetailComponent', () => {
-  let component: RestaurantDetailComponent;
-  let fixture: ComponentFixture<RestaurantDetailComponent>;
+describe('DetailComponent', () => {
+  let component: DetailComponent;
+  let fixture: ComponentFixture<DetailComponent>;
 
   let fakeRestaurants = [
     {"name":"Brunch Place",
@@ -45,7 +45,7 @@ describe('RestaurantDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RestaurantDetailComponent, ImageUrlPipe ],
+      declarations: [ DetailComponent, ImageUrlPipe ],
       imports: [ RouterTestingModule ],
       providers: [
         { provide: RestaurantService, useClass: restaurantServiceStub },
@@ -67,7 +67,7 @@ describe('RestaurantDetailComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RestaurantDetailComponent);
+    fixture = TestBed.createComponent(DetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
