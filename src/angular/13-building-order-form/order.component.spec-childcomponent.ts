@@ -6,7 +6,7 @@ import { of } from 'rxjs';
 import { OrderComponent } from './order.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RestaurantService } from '../restaurant/restaurant.service';
-import { NO_ERRORS_SCHEMA } from '@angular/compiler/src/core';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 class MockRestaurantService {
   getRestaurant(slug:string) {
