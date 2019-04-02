@@ -135,3 +135,9 @@ __src/app/order/order.component.ts__
 @highlight 7, 30, 38, 71, 78-85,only
 
 If you've implemented everything correctly, you should now be able to create an order from the UI and see a record of your completed order once it's created.
+
+### Update Order Component Tests
+
+Update the order spec file  __src/app/order/order.component.spec.ts__ to be:
+
+@sourceref ./order.component.spec.ts
