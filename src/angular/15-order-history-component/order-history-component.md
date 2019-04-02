@@ -23,8 +23,6 @@ In this problem, we will:
 - Generate a `HistoryComponent` in `src/app/order/history/history.component.ts`
 - Show `HistoryComponent` when we navigate to `/order-history`
 
-When complete, you should be able to navigate to [http://localhost:4200/order-history](http://localhost:4200/order-history) and see _'history works!'_.
-
 ### What you need to know
 
 
@@ -36,7 +34,9 @@ You got this already, but just in case, here's some hints:
   ```
 - Update `app-routing.module.ts` to import the component you want and create a path to it.
 
----
+### To Verify Your Solution is Correct
+
+If you've implemented the solution correctly you should be able to navigate to [http://localhost:4200/order-history](http://localhost:4200/order-history) and see _'history works!'_.
 
 ### The solution
 
@@ -53,7 +53,6 @@ __src/app/app-routing.module.ts__
 @sourceref ./app-routing.module.ts
 @highlight 8, 27-30,only
 
-
 ## Exercise: Add `HistoryComponent` to navigation
 
 ### The Problem
@@ -68,7 +67,9 @@ In this problem, we will:
 You've seen this before. Checkout how the __Home__ link works in
 `app.component.html`.
 
----
+### To Verify Your Solution is Correct
+
+If you've implemented the solution correctly you should now be able to navigate to <a href="http://localhost:4200/order-history" target="\_blank">http://localhost:4200/order-history</a> and see a list of all orders.
 
 ### The solution
 
@@ -76,9 +77,6 @@ __src/app/app.component.html__
 
 @sourceref ./app.component.html
 @highlight 11-13,only
-
-You should now be able to navigate to <a href="http://localhost:4200/order-history" target="\_blank">http://localhost:4200/order-history</a> and see a list of all orders.
-
 
 ## Exercise: List all orders
 
@@ -107,8 +105,6 @@ make it loop through orders and add the right class names to the outer `<div>` f
 
 ### What you need to know
 
-You've already seen:
-
 - How to import a service and get data out of it.  Hint: Import it and create a
   property in the constructor.
 - How to loop through values in HTML.  Hint: `*ngFor`.
@@ -120,7 +116,6 @@ For this step, you'll need to know how to add multiple class names.  You can do 
 <div [ngClass]="['first','second']">
 ```
 
----
 
 ### The solution
 
@@ -202,8 +197,6 @@ You'll need to remember how to:
 
 - Add `@Input()`s to a component so it can be passed values.
 - Call methods on a service that you get from the `constructor`.
-
----
 
 ### The solution
 
