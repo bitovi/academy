@@ -1,6 +1,6 @@
 
 import QUnit from "steal-qunit";
-import {compareToSnapshot, getCanvasForImage, dataEqual, getCanvasForUrl, downloadLink} from "./canvas-test";
+import {compareToSnapshot} from "@bitovi/snapshot-test";
 
 
 function makeBoxForCanvas(canvas, title) {
@@ -17,26 +17,24 @@ function makeBoxForCanvas(canvas, title) {
 
 QUnit.asyncTest("style-guide looks right", function(){
 
-	next();
 
-	function next(){
-		compareToSnapshot({
-			url: "../doc/training/style-guide.html",
-			width: 1000,
-			snapshotDir: "./",
-			snapshotPrefix: "style-guide",
-		}).then(function(){
-			QUnit.ok(true, "equal");
-			QUnit.start();
-		}, function(err) {
-			var details = document.createElement("details");
-			details.innerHTML = "<summary>style-guide looks right</summary>";
-			details.appendChild(err.html);
-			document.body.appendChild(details);
-			QUnit.ok(false, "images do not match");
-			QUnit.start();
-		});
-	}
+	compareToSnapshot({
+		url: "../doc/training/style-guide.html",
+		width: 1000,
+		snapshotDir: "./",
+		snapshotPrefix: "style-guide",
+	}).then(function(){
+		QUnit.ok(true, "equal");
+		QUnit.start();
+	}, function(err) {
+		var details = document.createElement("details");
+		details.innerHTML = "<summary>style-guide looks right</summary>";
+		details.appendChild(err.html);
+		document.body.appendChild(details);
+		QUnit.ok(false, "images do not match");
+		QUnit.start();
+	});
+
 
 	/*
 
