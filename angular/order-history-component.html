@@ -465,7 +465,6 @@
 <li>Generate a <code>HistoryComponent</code> in <code>src/app/order/history/history.component.ts</code></li>
 <li>Show <code>HistoryComponent</code> when we navigate to <code>/order-history</code></li>
 </ul>
-<p>When complete, you should be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see <em>'history works!'</em>.</p>
 <h3>What you need to know</h3>
 <p>You got this already, but just in case, here's some hints:</p>
 <ul>
@@ -474,7 +473,8 @@
 </code></pre></li>
 <li>Update <code>app-routing.module.ts</code> to import the component you want and create a path to it.</li>
 </ul>
-<hr />
+<h3>To Verify Your Solution is Correct</h3>
+<p>If you've implemented the solution correctly you should be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see <em>'history works!'</em>.</p>
 <h3>The solution</h3>
 <p>First, run:</p>
 <pre><code class="language-bash">ng g component order/history
@@ -531,7 +531,8 @@ export class AppRoutingModule { }
 <h3>What you need to know</h3>
 <p>You've seen this before. Checkout how the <strong>Home</strong> link works in
 <code>app.component.html</code>.</p>
-<hr />
+<h3>To Verify Your Solution is Correct</h3>
+<p>If you've implemented the solution correctly you should now be able to navigate to <a href="http://localhost:4200/order-history" target="\_blank">http://localhost:4200/order-history</a> and see a list of all orders.</p>
 <h3>The solution</h3>
 <p><strong>src/app/app.component.html</strong></p>
 <pre><code class="language-html">&lt;header&gt;
@@ -554,7 +555,6 @@ export class AppRoutingModule { }
 
 </code></pre>
 <div line-highlight='11-13,only'></div>
-<p>You should now be able to navigate to <a href="http://localhost:4200/order-history" target="\_blank">http://localhost:4200/order-history</a> and see a list of all orders.</p>
 <h2>Exercise: List all orders</h2>
 <h3>The problem</h3>
 <p>In this exercise, we will:</p>
@@ -669,7 +669,6 @@ make it loop through orders and add the right class names to the outer <code>&lt
 </code></pre>
 <div line-highlight='9,10'></div>
 <h3>What you need to know</h3>
-<p>You've already seen:</p>
 <ul>
 <li>How to import a service and get data out of it.  Hint: Import it and create a
 property in the constructor.</li>
@@ -679,7 +678,6 @@ property in the constructor.</li>
 <code>[ngClass]</code> and setting it to an array like:</p>
 <pre><code class="language-html">&lt;div [ngClass]=&quot;['first','second']&quot;&gt;
 </code></pre>
-<hr />
 <h3>The solution</h3>
 <p><strong>src/app/order/history.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
@@ -928,7 +926,6 @@ of orders and other values like:
 <li>Add <code>@Input()</code>s to a component so it can be passed values.</li>
 <li>Call methods on a service that you get from the <code>constructor</code>.</li>
 </ul>
-<hr />
 <h3>The solution</h3>
 <p><strong>src/app/order/list.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, Input } from '@angular/core';
