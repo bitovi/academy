@@ -269,10 +269,6 @@ __src/app/order/menu-items.component.ts__
 @sourceref ./menu-items.component.ts
 @highlight 1, 2, 8-14, 16
 
-__src/app/order/menu-items.component.html__
-
-@sourceref ./menu-items.component.html
-
 Other concepts used here:
 
 ### forwardRef
