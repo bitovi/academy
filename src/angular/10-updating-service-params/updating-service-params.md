@@ -26,23 +26,16 @@ In the __src/app/restaurant/restaurant.component.ts__ file, update the call to t
 
 ### To Verify Your Solution is Correct
 
-If you've implemented the solution correctly, when you use the select boxes to choose state and city, you should see a list of just restaurants from the selected city returned. 
-
-Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
-
-@sourceref ./restaurant.service-httpparams.spec.ts
-@highlight 79,83,84
-
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+If you've implemented the solution correctly, when you use the select boxes to choose state and city, you should see a list of just restaurants from the selected city returned.
 
 ### Solution
 
 __src/app/restaurant/restaurant.service.ts__
 
 @sourceref ./restaurant.service-httpparams.ts
-@highlight 26-29
+@highlight 27,28
 
 __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./restaurant.component-httpparams.ts
-@highlight 95,121,122
+@highlight 97,123,124

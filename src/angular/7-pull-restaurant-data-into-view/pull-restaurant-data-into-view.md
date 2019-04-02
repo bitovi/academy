@@ -25,7 +25,20 @@ To use a service in a component, we use dependency injection to pass the service
 
 ### The Problem
 
-We want to be able to use the `getRestaurants` method in our component to display a list of restaurants.
+We want to be able to use the `getRestaurants` method in our component to display a list of restaurants. Update your 
+__src/app/restaurant/restaurant.component.html__ to be:
+
+@sourceref ./restaurant.component.html
+@highlight 3, 4, 5
+
+Use this as a guide to figure out how to structure getting the call to get restaurants from the service - it's important to note that our new markup shows `restaurants` is now an object that has an `isPending` property and a `value` prop for the array of restaurants. Here's the generic interface for you to use that should represent what the new restaurant type is.
+
+```typescript
+export interface Data<T> {
+  value: Array<T>;
+  isPending: boolean;
+}
+```
 
 ### What you need to know
 
@@ -36,11 +49,13 @@ We want to be able to use the `getRestaurants` method in our component to displa
 
 ### To Verify Your Solution is Correct
 
+You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>! 
+
 Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
 
-@sourceref ./restaurant.component.spec-no-html.ts
-@highlight 168-268
-We've temporarily commented out a few tests until the next section.
+@sourceref ./restaurant.component.spec.ts
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ### Solution
 
@@ -49,23 +64,10 @@ __src/app/restaurant/restaurant.component.ts__
 @sourceref ./restaurant.component.ts
 @highlight 2, 3, 5-8, 16-19, 20, 23-27
 
-## Update Restaurant Component
 
-We'll have to the restaurant component html to match our new restaurant object:
+### Did You Know?
 
-__src/app/restaurant/restaurant.component.html__
-
-@sourceref ./restaurant.component.html
-@highlight 3, 4, 5
-
-### To Verify Everything is Running Correctly
-
-Uncomment the tests in  __src/app/restaurant/restaurant.component.spec.ts__:
-
-@sourceref ./restaurant.component.spec.ts
-@highlight 147-166, only
-
-You should now see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>! You may have noticed in our markup there's another use of routerLink:
+You may have noticed in our markup there's another use of routerLink:
 
 ```html
 <a class="btn" [routerLink]="['/restaurants', restaurant.slug]">

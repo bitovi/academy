@@ -24,7 +24,8 @@ describe('RestaurantService', () => {
   });
  
   it('should make a get request to restaurants', () => {
-    const mockRestaurants = [{
+    const mockRestaurants = {
+      data: [{
       "name":"Brunch Place",
       "slug":"brunch-place",
       "images":{
@@ -71,7 +72,8 @@ describe('RestaurantService', () => {
               "street":"13 N 21st St",
               "city":"Chicago","state":"IL","zip":"53295"},
               "_id":"xugqxQIX5dfgdgTLBv"
-            }];
+            }]
+     };
 
     restaurantService.getRestaurants().subscribe((restaurants:any) => {
       expect(restaurants).toEqual(mockRestaurants);

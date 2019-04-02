@@ -79,7 +79,7 @@ Here's some code to get you started:
 __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./restaurant.component-starter.ts
-@highlight 18,25-28,30-33, only
+@highlight 2,18,25-28,30-33,41,51-53 only
 
 Don't forget to import reactiveForms in the root app module.
 

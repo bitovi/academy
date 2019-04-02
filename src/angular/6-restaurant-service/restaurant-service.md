@@ -224,7 +224,7 @@ __src/app/restaurant/restaurant.ts__
 Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
 
 @sourceref ./restaurant.service-with-interface.spec.ts
-@highlight 3,4,28-29,77,79,93-122
+@highlight 3,4,79,93-122
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass! If you haven't written the interfaces correctly, you'll see a compile error before the tests runs
 
