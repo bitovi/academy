@@ -4,7 +4,7 @@
     <div><label class="control-label">
       Confirmation Number: {{completedOrder._id}}</label>
     </div>
-    
+
     <h4>Items ordered:</h4>
     <ul class="list-group panel">
       <li class="list-group-item" *ngFor="let item of completedOrder.items">
@@ -12,14 +12,14 @@
           {{item.name}} <span class="badge">${{item.price}}</span>
         </label>
       </li>
-    
+
       <li class="list-group-item">
         <label>
           Total <span class="badge">${{orderTotal}}</span>
         </label>
       </li>
     </ul>
-    
+
     <div><label class="control-label">
       Phone: {{completedOrder.phone}}
     </label></div>
@@ -38,12 +38,12 @@
       <tabset>
         <tab heading="Lunch Menu">
           <ul class="list-group" >
-            <pmo-menu-items [data]="restaurant.menu.lunch" formControlName="items"></pmo-menu-items>
+            <pmo-menu-items [items]="restaurant.menu.dinner" formControlName="items"></pmo-menu-items>
           </ul>
         </tab>
         <tab heading="Dinner menu">
           <ul class="list-group" >
-            <pmo-menu-items [data]="restaurant.menu.dinner" formControlName="items"></pmo-menu-items>
+            <pmo-menu-items [items]="restaurant.menu.dinner" formControlName="items"></pmo-menu-items>
           </ul>
         </tab>
       </tabset>
@@ -72,5 +72,3 @@
     </form>
 </ng-template>
 </div>
-
-
