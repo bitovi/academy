@@ -11,9 +11,9 @@ In this part, we will:
 
 - Update a current unit test to match for our refactored service method
 - Write a new getRestaurant method on our RestaurantsService
-- Write a unit test for the getRestaurant method 
+- Write a unit test for the getRestaurant method
 
-### Exercise: Refactor RestaurantService getRestaurants test
+## Exercise: Refactor RestaurantService getRestaurants test
 
 ### The Problem
 
@@ -43,7 +43,7 @@ In the next section we're going to be creating a restaurant detail view. We'll n
     it('should make a get request to get a restaurant based on its slug', () => {
     });
   ```
-  
+
 ### The Solution
 
 __src/app/restaurant/restaurant.service.ts__
