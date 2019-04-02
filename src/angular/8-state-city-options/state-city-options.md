@@ -97,7 +97,7 @@ When you visit <a href="http://localhost:4200/restaurants" target="\_blank">loca
 Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
 
 @sourceref ./restaurant.component.spec.ts
-@highlight 274-295, only
+@highlight 8, 116, 274-295, only
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
