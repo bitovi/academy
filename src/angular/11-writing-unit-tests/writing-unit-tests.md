@@ -28,7 +28,7 @@ __src/app/restaurant/restaurant.service.spec.ts__
 @sourceref ./restaurant.service.spec.ts
 @highlight 79,83,84
 
-### Exercise: Write a test for new RestaurantService method & Write the new method
+## Exercise: Write a test for new RestaurantService method & Write the new method
 
 ### The Problem
 

@@ -19,20 +19,23 @@ In this part, we will:
 
 Our order form is how we can create new orders. We'll use a reactive form to get data from the users, use a custom validation function to make sure at least once item has been selected, and calculate the order total every time a new item is selected or unselected.
 
-```bash
-ng g component order
-```
-
-## Create New Route for Ordering
+## Exercise: Create New Route for Ordering
 
 ### The Problem
 
-Now, create a route for our new component! The path should be `/restaurants/{{slug}}/order`.
-
+Create a new `order` component, and create a route for our new component! The path should be `/restaurants/{{slug}}/order`.
 
 ### What you need to know
 
+- How to create new components
+    ```bash
+    ng g component order
+    ```
 - You've created routes before! You got this!
+
+### To Verify Your Solution is Correct
+
+When you navigate to the `/order` path from a restaurant detail page you should see your new order component.
 
 ### Solution
 
@@ -41,8 +44,11 @@ __src/app/app-routing.module.ts__
 @sourceref ./app-routing.module.ts
 @highlight 7, 22-25
 
+## Exercise: Build out the Order Component
 
-Now when we navigate to the `/order` path from a restaurant detail page you should see where the order form will go.
+We've covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes. Let's practice those concepts.
+
+We've provided some starting code to get through this section to help you get the restaurant based on the route slug, create a new reactive form to collect order information, and update the order total whenever the `items` FormControl value changes.
 
 In your new order component, edit the __src/order/order.component.html__ file to be:
 
@@ -50,7 +56,9 @@ __src/app/order/order.component.html__
 
 @sourceref ./order-0.component.html
 
-We've covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes. Let's practice those concepts.
+Update your __src/app/order/order.component.ts__ file to be:
+
+@sourceref ./order.component.ts
 
 ### The problem
 
@@ -58,9 +66,9 @@ The order form component needs to get the restaurant from the route slug, and ne
 
 ### What you need to know
 
-- How to get the restaurant from the route slug
-- Create a reactive form
-- Listen to form value changes
+- How to get the restaurant from the route slug (you learned this in previous sections! ✔️)
+- Create a reactive form (you learned this in previous sections! ✔️)
+- Listen to form value changes (you learned this in previous sections! ✔️)
 - Add validation:
 
   This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation" target="\_blank">validation</a>. Here's an example of a form with form controls with different validation, and one thats value is set to an array.
@@ -81,16 +89,18 @@ The order form component needs to get the restaurant from the route slug, and ne
   });
   ```
 
-__src/app/order/order.component.ts__
+### To Verify Your Solution is Correct
 
-@sourceref ./order.component.ts
+Update the order spec file  __src/app/order/order.component.spec.ts__ to be:
+
+@sourceref ./order.component.spec.ts
 
 ### The solution
 
 __src/app/order/order.component.ts__
 
 @sourceref ./order.component-solution.ts
-
+@highlight 43,45-49,59-66,72-78
 
 ## Importing 3rd Party Plugins
 
@@ -176,7 +186,6 @@ __src/app/order/order.component.html__
 @highlight 9, 12
 
 ## Exercise: Attaching event handlers
-
 
 ### The Problem
 

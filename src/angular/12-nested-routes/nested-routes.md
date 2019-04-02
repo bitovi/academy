@@ -22,6 +22,8 @@ A common pattern in SPA architecture is to serve a view of an individual piece o
 @codepen
 @highlight 93-94,101,105,107,115,only
 
+## Exercise: Create a new Component and a Nested Route for it
+
 ### The Problem
 
 Create a new component called `details` in the restaurant component folder that is a detail view for an individual restaurant that is served from the path `'/restaurants/restaurant-slug'`. Create the route as well, and use the `getRestaurant` method on the RestaurantService to fetch the restaurant based on the route snapshot. The detail component should have a member 'restaurant' that is a type of Restaurant and an 'isLoading' member set to true or false based on when the restaurant data has been fetched.

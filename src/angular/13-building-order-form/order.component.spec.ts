@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs'; 
-import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs'; 
 
-import { DetailComponent } from './detail.component';
-import { RestaurantService } from '../restaurant.service';
-import { ImageUrlPipe } from 'src/app/image-url.pipe';
+import { OrderComponent } from './order.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RestaurantService } from '../restaurant/restaurant.service';
 
 class MockRestaurantService {
   getRestaurant(slug:string) {
@@ -68,14 +68,14 @@ const MockActivatedRoute = {
   }
 }
 
-describe('DetailComponent', () => {
-  let component: DetailComponent;
-  let fixture: ComponentFixture<DetailComponent>;
+describe('OrderComponent', () => {
+  let component: OrderComponent;
+  let fixture: ComponentFixture<OrderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DetailComponent, ImageUrlPipe ],
-      imports: [RouterTestingModule],
+      declarations: [ OrderComponent ], 
+      imports: [  ReactiveFormsModule, RouterTestingModule ],
       providers: [{
         provide: RestaurantService,
         useClass: MockRestaurantService
@@ -88,18 +88,13 @@ describe('DetailComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DetailComponent);
+    fixture = TestBed.createComponent(OrderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should have an isLoading member set to true by default', () => {
-    const fixture = TestBed.createComponent(DetailComponent);
-    expect(fixture.componentInstance.isLoading).toEqual(true);
   });
 
   it('should get a restaurant based on route slug', () => {
@@ -149,8 +144,25 @@ describe('DetailComponent', () => {
       },
       "_id": "3ZOZyTY1LH26LnVw"
     }
-    const fixture = TestBed.createComponent(DetailComponent);
+    const fixture = TestBed.createComponent(OrderComponent);
     fixture.detectChanges();
     expect(fixture.componentInstance.restaurant).toEqual(mockRestaurant)
   });
+
+  it('should have an orderForm formGroup', () => {
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    expect(fixture.componentInstance.orderForm.controls.restaurant).toBeTruthy();
+    expect(fixture.componentInstance.orderForm.controls.address).toBeTruthy();
+    expect(fixture.componentInstance.orderForm.controls.phone).toBeTruthy();
+    expect(fixture.componentInstance.orderForm.controls.items).toBeTruthy();
+  });
+
+  it('should have a validator on items formControl', () => {
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    let itemFormControl = fixture.componentInstance.orderForm.controls.items;
+    expect(itemFormControl.valid).toEqual(false);
+  });
+
 });

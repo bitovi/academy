@@ -66,6 +66,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   startNewOrder() {
     this.orderComplete = false;
     this.completedOrder = this.orderForm.value;
+    //CLEAR THE ORDER FORM
     this.createOrderForm();
   }
 
