@@ -13,7 +13,7 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
   ]
 })
 export class MenuItemsComponent implements ControlValueAccessor {
-  @Input() data: [];
+  @Input() items: [];
 
   @Input('value') _value: any[];
 

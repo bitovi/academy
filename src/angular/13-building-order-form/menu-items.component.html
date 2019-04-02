@@ -1,4 +1,4 @@
-<li class="list-group-item" *ngFor="let item of data">
+<li class="list-group-item" *ngFor="let item of items">
   <label>
     <input type="checkbox" (change)="toggleItem(item)">
     {{item.name}} <span class="badge">${{item.price}}</span>

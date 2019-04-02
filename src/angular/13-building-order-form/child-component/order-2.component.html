@@ -6,10 +6,14 @@
       <form *ngIf="orderForm" [formGroup]="orderForm" (ngSubmit)="onSubmit()">
         <tabset>
           <tab heading="Lunch Menu">
-            <pmo-menu-items [items]="restaurant.menu.lunch" (itemsChanged)="getChange($event)" ></pmo-menu-items>
+            <ul class="list-group">
+              <pmo-menu-items [items]="restaurant.menu.lunch" (itemsChanged)="getChange($event)" ></pmo-menu-items>
+            </ul>
           </tab>
           <tab heading="Dinner menu">
-            <pmo-menu-items [items]="restaurant.menu.dinner" (itemsChanged)="getChange($event)" ></pmo-menu-items>
+            <ul class="list-group">
+              <pmo-menu-items [items]="restaurant.menu.dinner" (itemsChanged)="getChange($event)" ></pmo-menu-items>
+            </ul>
           </tab>
         </tabset>
         <div class="form-group">

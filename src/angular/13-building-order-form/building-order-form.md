@@ -93,14 +93,14 @@ The order form component needs to get the restaurant from the route slug, and ne
 
 Update the order spec file  __src/app/order/order.component.spec.ts__ to be:
 
-@sourceref ./order.component.spec.ts
+@sourceref ./order.component.spec-starter.ts
 
 ### The solution
 
 __src/app/order/order.component.ts__
 
 @sourceref ./order.component-solution.ts
-@highlight 43,45-49,59-66,72-78
+@highlight 43,45-49,59-66,72-83
 
 ## Importing 3rd Party Plugins
 
@@ -144,7 +144,7 @@ We're going to build another component to use in our form to handle selecting or
 <pmo-menu-items [data]="restaurant.menu.lunch" formControlName="items"></pmo-menu-items>
 ```
 
-### Create the new menu-items component inside the order component folder.
+### Create the new menu-items component inside the order component folder
 
 ```bash
 ng g component order/menu-items
@@ -154,7 +154,7 @@ Go ahead and put your new component in the order history component.
 
 __src/app/order/order.component.html__
 
-@sourceref ./child-component/order-0.component.html
+@sourceref ./child-component/order.component-childcomponent.html
 @highlight 9, 12
 
 ## Exercise: Passing properties to child components
@@ -166,10 +166,12 @@ We want the menu-items component take an array of menu items and iterate through
 Each menu item should have this markup:
 
 ```html
- <label>
-    <input type="checkbox">
-    ITEM_NAME <span class="badge">$ ITEM_PRICE</span>
-</label>
+<li class="list-group-item" >
+    <label>
+        <input type="checkbox">
+        ITEM_NAME <span class="badge">$ ITEM_PRICE</span>
+    </label>
+</li>
 ```
 
 ### What you need to know
@@ -183,21 +185,23 @@ Update the order spec file  __src/app/order/order.component.spec.ts__ to be:
 
 @sourceref ./order.component.spec-childcomponent.ts
 
+Update the menu-items spec file  __src/app/order/menu-items/menu-items.component.spec.ts__ to be:
 
+@sourceref ./child-component/menu-items.component.spec-props.ts
 
 ### The solution
 
 __src/app/order/menu-items.component.html__
 
-@sourceref ./child-component/menu-items-0.component.html
+@sourceref ./child-component/menu-items.component-props.html
 
 __src/app/order/menu-items.component.ts__
 
-@sourceref ./child-component/menu-items-0.component.ts
+@sourceref ./child-component/menu-items.component-props.ts
 
 __src/app/order/order.component.html__
 
-@sourceref ./child-component/order-1.component.html
+@sourceref ./child-component/order.component-props.html
 @highlight 9, 12
 
 ## Exercise: Attaching event handlers
@@ -220,10 +224,12 @@ Next, we want to know when a checkbox has been checked or unchecked, and update 
 __src/app/order/menu-items.component.html__
 
 @sourceref ./child-component/menu-items-1.component.html
+@highlight 3
 
 __src/app/order/menu-items.component.ts__
 
 @sourceref ./child-component/menu-items-1.component.ts
+@highlight 15, 22-30
 
 ## Exercise: Emitting data to parent components
 
@@ -242,6 +248,7 @@ Now we want to let the form know what the selected items are.
 __src/app/order/menu-items.component.ts__
 
 @sourceref ./child-component/menu-items-2.component.ts
+@highlight 1,16,31
 
 __src/app/order/order.component.html__
 
@@ -280,7 +287,7 @@ Other concepts used here:
 
 __src/app/order/order.component.html__
 
-@sourceref ./order-2.component.html
+@sourceref ./order.component-final.html
 @highlight 10, 15
 
 We now have a form that updates the `items` formControl when items are selected and shows the user an updated total!
