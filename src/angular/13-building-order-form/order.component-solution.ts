@@ -71,10 +71,12 @@ export class OrderComponent implements OnInit, OnDestroy {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
     this.subscription = this.orderForm.get('items').valueChanges.subscribe(val => {
       let total = 0.0;
-      val.forEach((item: any) => {
-        total += item.price;
-      });
-      this.orderTotal = Math.round(total * 100) / 100;
+      if(val.length) {
+        val.forEach((item: any) => {
+          total += item.price;
+        });
+        this.orderTotal = Math.round(total * 100) / 100;
+      }
     });
   }
 

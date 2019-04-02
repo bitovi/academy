@@ -22,7 +22,7 @@ In the __src/app/restaurant/restaurant.component.ts__ file, update the call to t
 
 ### What You Need to Know
 
-- How to use HttpParams (you learned this in the previous section! ✔️)
+- How to use [angular/form-value-changes#exercise-write-service-methods-to-get-states-and-cities HttpParams] (you learned this in the previous section! ✔️)
 
 ### To Verify Your Solution is Correct
 

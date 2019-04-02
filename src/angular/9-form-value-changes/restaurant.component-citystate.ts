@@ -31,7 +31,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   public cities = {
     isPending: false,
     value: []
-  }
+  };
 
   private subscription: Subscription;
 

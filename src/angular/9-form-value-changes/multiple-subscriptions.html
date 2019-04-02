@@ -95,10 +95,12 @@ class HomeComponent implements OnInit{
       }, 3500);
     });
 
+    //creating the first subscription
     this.$mySubscription = this.$myObservable.subscribe((val) => {
       this.myDisplayValue = val;
     });
 
+    //taking the first subscription and adding another to it
     this.$mySubscription.add(this.$myOtherObservable.subscribe((val) => {
       this.myOtherDisplayValue = val;
     }));

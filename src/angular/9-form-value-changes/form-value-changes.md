@@ -37,7 +37,7 @@ This example creates a subscription, then adds to it.
 
 @sourceref ./multiple-subscriptions.html
 @codepen
-@highlight 102-104,108-110,only
+@highlight 98-101,103-106,only
 
 ## Listening to Form Changes
 
@@ -103,7 +103,7 @@ Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
 
 ### The Solution
 
-Update  __src/app/restaurant/restaurant.service.ts__ to be:
+__src/app/restaurant/restaurant.service.ts__
 
 @sourceref ./restaurant.service-citystate.ts
 @highlight 2,20-22,24-27
@@ -129,6 +129,13 @@ Update your __src/app/restaurant/restaurant.service.ts__ file to be:
   @codepen
   @highlight 47-52,54-58,68-71,73-81, only
 
+### To Verify Your Solution is Correct
+
+Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
+
+@sourceref ./restaurant.service-generics.spec.ts
+@highlight 3,79,131,151
+
 ### The Solution
 
 __src/app/restaurant/restaurant.service.ts__
@@ -136,7 +143,7 @@ __src/app/restaurant/restaurant.service.ts__
 @sourceref ./restaurant.service-generics.ts
 @highlight 5-7,27,31,36
 
-## Exercise: Get cities and states based on dropdown values.
+## Exercise: Get cities and states based on dropdown values
 
 ### The Problem
 
@@ -158,7 +165,7 @@ Requirements
 
 ### To Verify Your Solution is Correct
 
-We need to remove a few tests that are no longer relevant to our app's current state. Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
+ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
 
 @sourceref ./restaurant.component.spec.ts
 
