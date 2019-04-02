@@ -458,12 +458,9 @@
 <li>Import our new order service to our component &amp; create an order</li>
 <li>Show completed order in UI</li>
 </ul>
-<h2>Creating the Order Service</h2>
-<pre><code class="language-bash">ng g service order/order
-</code></pre>
-<h2>Exercise: Export Items and Order interfaces</h2>
+<h2>Exercise: Create Order Service and Export Items and Order interfaces</h2>
 <h3>The Problem</h3>
-<p>We'll need two interfaces - one to describe the order, one to describe items in the order. Write and export <code>Order</code> and <code>Item</code> interfaces representing these objects in the new service.</p>
+<p>We need to create a new service to handle creating and updating orders. We'll need two interfaces - one to describe the order, one to describe items in the order. Create a new service <code>order</code> in the order directory, and write and export <code>Order</code> and <code>Item</code> interfaces representing these objects in the new service:</p>
 <pre><code class="language-typescript">let myorder = {
   _id: 'a123123bdd',
   name: 'Jennifer',
@@ -480,9 +477,11 @@
 </code></pre>
 <h3>What you need to know</h3>
 <ul>
-<li>How to write interfaces!</li>
+<li><p>How to create services (you learned this in previous sections! ✔️)</p></li>
+<li><p>How to write interfaces (you learned this in previous sections! ✔️)</p>
+<pre><code class="language-bash">  ng g service order/order
+</code></pre></li>
 </ul>
-<hr />
 <h3>The solution</h3>
 <p><strong>src/app/order/order.service.ts</strong></p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
@@ -510,6 +509,7 @@ export class OrderService {
 
 }
 </code></pre>
+<div line-highlight='3-6, 8-15'></div>
 <h2>Exercise: Finish the order service</h2>
 <h3>The Problem</h3>
 <p>With our order service we'll want to be able to create new orders, updating existing orders, delete orders, and view all orders.</p>
@@ -776,7 +776,7 @@ and set back to <code>false</code> when <code>.startNewOrder()</code> is called.
     &lt;div&gt;&lt;label class=&quot;control-label&quot;&gt;
       Confirmation Number: {{completedOrder._id}}&lt;/label&gt;
     &lt;/div&gt;
-    
+
     &lt;h4&gt;Items ordered:&lt;/h4&gt;
     &lt;ul class=&quot;list-group panel&quot;&gt;
       &lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of completedOrder.items&quot;&gt;
@@ -784,14 +784,14 @@ and set back to <code>false</code> when <code>.startNewOrder()</code> is called.
           {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
         &lt;/label&gt;
       &lt;/li&gt;
-    
+
       &lt;li class=&quot;list-group-item&quot;&gt;
         &lt;label&gt;
           Total &lt;span class=&quot;badge&quot;&gt;${{orderTotal}}&lt;/span&gt;
         &lt;/label&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
-    
+
     &lt;div&gt;&lt;label class=&quot;control-label&quot;&gt;
       Phone: {{completedOrder.phone}}
     &lt;/label&gt;&lt;/div&gt;
@@ -810,12 +810,12 @@ and set back to <code>false</code> when <code>.startNewOrder()</code> is called.
       &lt;tabset&gt;
         &lt;tab heading=&quot;Lunch Menu&quot;&gt;
           &lt;ul class=&quot;list-group&quot; &gt;
-            &lt;pmo-menu-items [data]=&quot;restaurant.menu.lunch&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
+            &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
         &lt;tab heading=&quot;Dinner menu&quot;&gt;
           &lt;ul class=&quot;list-group&quot; &gt;
-            &lt;pmo-menu-items [data]=&quot;restaurant.menu.dinner&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
+            &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
       &lt;/tabset&gt;
@@ -844,8 +844,6 @@ and set back to <code>false</code> when <code>.startNewOrder()</code> is called.
     &lt;/form&gt;
 &lt;/ng-template&gt;
 &lt;/div&gt;
-
-
 
 </code></pre>
 <div line-highlight='2-34,only'></div>
@@ -1047,6 +1045,192 @@ export class OrderComponent implements OnInit, OnDestroy {
 </code></pre>
 <div line-highlight='7, 30, 38, 71, 78-85,only'></div>
 <p>If you've implemented everything correctly, you should now be able to create an order from the UI and see a record of your completed order once it's created.</p>
+<h3>Update Order Component Tests</h3>
+<p>Update the order spec file  <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs'; 
+
+import { OrderComponent } from './order.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RestaurantService } from '../restaurant/restaurant.service';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { MenuItemsComponent } from './menu-items/menu-items.component';
+import { OrderService } from './order.service';
+
+class MockRestaurantService {
+  getRestaurant(slug:string) {
+    return of({
+        &quot;name&quot;: &quot;Poutine Palace&quot;,
+        &quot;slug&quot;: &quot;poutine-palace&quot;,
+        &quot;images&quot;: {
+          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+        },
+        &quot;menu&quot;: {
+          &quot;lunch&quot;: [
+            {
+              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+              &quot;price&quot;: 35.99
+            },
+            {
+              &quot;name&quot;: &quot;Steamed Mussels&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+              &quot;price&quot;: 35.99
+            }
+          ],
+          &quot;dinner&quot;: [
+            {
+              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+              &quot;price&quot;: 45.99
+            },
+            {
+              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+              &quot;price&quot;: 45.99
+            }
+          ]
+        },
+        &quot;address&quot;: {
+          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+          &quot;city&quot;: &quot;Green Bay&quot;,
+          &quot;state&quot;: &quot;WI&quot;,
+          &quot;zip&quot;: &quot;53205&quot;
+        },
+        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+      })
+  }
+}
+
+class MockOrderService {
+  createOrder() {
+    return of({})
+  }
+}
+
+const MockActivatedRoute = {
+  snapshot: {
+    paramMap: {
+      get() {
+        return 'poutine-palace'
+      }
+    }
+  }
+}
+
+describe('OrderComponent', () =&gt; {
+  let component: OrderComponent;
+  let fixture: ComponentFixture&lt;OrderComponent&gt;;
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      declarations: [ OrderComponent, MenuItemsComponent ], 
+      imports: [  ReactiveFormsModule, RouterTestingModule ],
+      providers: [{
+        provide: RestaurantService,
+        useClass: MockRestaurantService
+      }, {
+        provide: ActivatedRoute,
+        useValue: MockActivatedRoute
+      },
+    {
+      provide: OrderService,
+      useClass: MockOrderService
+    }],
+      schemas: [ NO_ERRORS_SCHEMA ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(OrderComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  it('should get a restaurant based on route slug', () =&gt; {
+    let mockRestaurant = {
+      &quot;name&quot;: &quot;Poutine Palace&quot;,
+      &quot;slug&quot;: &quot;poutine-palace&quot;,
+      &quot;images&quot;: {
+        &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+        &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+        &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+      },
+      &quot;menu&quot;: {
+        &quot;lunch&quot;: [
+          {
+            &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+            &quot;price&quot;: 35.99
+          },
+          {
+            &quot;name&quot;: &quot;Steamed Mussels&quot;,
+            &quot;price&quot;: 21.99
+          },
+          {
+            &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+            &quot;price&quot;: 35.99
+          }
+        ],
+        &quot;dinner&quot;: [
+          {
+            &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+            &quot;price&quot;: 21.99
+          },
+          {
+            &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+            &quot;price&quot;: 45.99
+          },
+          {
+            &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+            &quot;price&quot;: 45.99
+          }
+        ]
+      },
+      &quot;address&quot;: {
+        &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+        &quot;city&quot;: &quot;Green Bay&quot;,
+        &quot;state&quot;: &quot;WI&quot;,
+        &quot;zip&quot;: &quot;53205&quot;
+      },
+      &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+    }
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    expect(fixture.componentInstance.restaurant).toEqual(mockRestaurant)
+  });
+
+  it('should have an orderForm formGroup', () =&gt; {
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    expect(fixture.componentInstance.orderForm.controls.restaurant).toBeTruthy();
+    expect(fixture.componentInstance.orderForm.controls.address).toBeTruthy();
+    expect(fixture.componentInstance.orderForm.controls.phone).toBeTruthy();
+    expect(fixture.componentInstance.orderForm.controls.items).toBeTruthy();
+  });
+
+  it('should have a validator on items formControl', () =&gt; {
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    let itemFormControl = fixture.componentInstance.orderForm.controls.items;
+    expect(itemFormControl.valid).toEqual(false);
+  });
+
+});
+
+</code></pre>
 
 </section>
 
