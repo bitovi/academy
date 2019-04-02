@@ -1,7 +1,7 @@
 @page angular/deploy-app Deploy App
 @parent angular 17
 
-@description Deploying App 
+@description Deploying App
 @body
 
 ## Overview
@@ -17,7 +17,7 @@ In this part, we will:
 
 ## Create Firebase account
 
-Go to <a href="https://console.firebase.google.com" target="_blank">https://console.firebase.google.com</a> and sign in or create new account.
+Go to <a href="https://console.firebase.google.com" target="\_blank">https://console.firebase.google.com</a> and sign in or create new account.
 
 ## Create new project
 
@@ -29,7 +29,7 @@ Create a new project called `place my order` in the Firebase console.
 npm install -g firebase-tools
 ```
 
-Now, log into firebase. 
+Now, log into firebase.
 
 ```shell
 firebase login
@@ -86,3 +86,11 @@ Now when we view our project url from the page Firebase launches we'll see our a
   },
   ```
 
+## Survey
+
+Thanks for taking this Bitovi training! We are constantly looking to improve this
+course.  Please fill out the following survey and we will send you a t-shirt!
+
+
+
+<iframe src="https://docs.google.com/forms/d/e/1FAIpQLScIukb7B5Q3d0I9xRge8_VDmQS9gNJqhJmjcJb_5aAKFMqFmA/viewform?embedded=true" width="640" height="1900" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
