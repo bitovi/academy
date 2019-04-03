@@ -5,7 +5,7 @@
       <h2>Order here</h2>
       <form *ngIf="orderForm" [formGroup]="orderForm" (ngSubmit)="onSubmit()">
         <tabset>
-            <tab heading="Lunch Menu" *ngIf="restaurant?.menu?.dinner">
+            <tab heading="Lunch Menu" *ngIf="restaurant?.menu?.lunch">
               <ul  class="list-group">
                 <pmo-menu-items></pmo-menu-items>
               </ul>
