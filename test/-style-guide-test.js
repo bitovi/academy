@@ -24,7 +24,7 @@ QUnit.asyncTest("style-guide looks right", function(){
 		snapshotDir: "./",
 		snapshotPrefix: "style-guide",
 		prepareDocument: function(iframe) {
-			iframe.contentWindow.document.body.styledisplay = "block";
+			iframe.contentWindow.document.body.style.display = "block";
 			return new Promise(function(resolve){
 				setTimeout(resolve, 1);
 			})
