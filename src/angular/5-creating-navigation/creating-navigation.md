@@ -97,6 +97,7 @@ You will know you've completed the exercise correctly when you can click the nav
 Update the spec file  __src/app/app.component.spec.ts__ to be:
 
 @sourceref ./app.component.spec.ts
+@highlight 33
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
