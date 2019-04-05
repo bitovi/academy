@@ -1,4 +1,3 @@
-
 import QUnit from "steal-qunit";
 import {compareToSnapshot} from "@bitovi/snapshot-test";
 
