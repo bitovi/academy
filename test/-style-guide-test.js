@@ -21,8 +21,15 @@ QUnit.asyncTest("style-guide looks right", function(){
 	compareToSnapshot({
 		url: "../doc/training/style-guide.html",
 		width: 1000,
+		height: 400,
 		snapshotDir: "./",
 		snapshotPrefix: "style-guide",
+		prepareDocument: function(iframe) {
+			iframe.contentWindow.document.body.styledisplay = "block";
+			return new Promise(function(resolve){
+				setTimeout(resolve, 1);
+			})
+		}
 	}).then(function(){
 		QUnit.ok(true, "equal");
 		QUnit.start();

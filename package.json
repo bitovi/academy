@@ -23,9 +23,7 @@
   "homepage": "https://github.com/bitovi/university#readme",
   "devDependencies": {
     "bit-docs": "0.1.0",
-    "detect-browser": "^4.2.0",
     "gh-pages": "^2.0.1",
-    "html2canvas": "^1.0.0-alpha.12",
     "steal-qunit": "^1.0.2"
   },
   "bit-docs": {
@@ -51,8 +49,8 @@
     }
   },
   "dependencies": {
+    "@bitovi/snapshot-test": "<2.0.0",
     "can-define-lazy-value": "^1.1.0",
-    "pixelmatch": "^4.0.2",
     "steal": "^2.2.0"
   }
 }
