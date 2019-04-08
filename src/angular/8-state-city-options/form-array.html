@@ -14,66 +14,43 @@
 const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
-const { Routes, RouterModule } = ng.router;
 const { ReactiveFormsModule, FormControl, FormGroup, FormArray } = ng.forms;
 
 @Component({
   selector: 'my-app',
   template: `
-    <ul class="nav">
-      <li routerLinkActive="active">
-        <a routerLink="/about" >About</a>
-      </li>
-    </ul>
-    <router-outlet></router-outlet>
+  <p>A home component!</p>
+  <form [formGroup]="usersForm" (ngSubmit)="onSubmit()">
+    <p>This form can handle creating many users at once!</p>
+    <ng-container 
+    *ngFor="let userFormGroup of usersForm.controls.users.controls; 
+    let i = index">
+      <div [formGroup]="userFormGroup">
+        <label>
+          First name:
+          <input type="text" formControlName="firstName">
+        </label>
+        <label>
+          Last name:
+          <input type="text" formControlName="lastName">
+        </label>
+        <label>
+          Email:
+          <input type="text" formControlName="email">
+        </label>
+      </div>
+    </ng-container>
+    <button type="submit">see form value</button>
+  </form>
+  <button (click)="addGroup()">add group</button>
+
+  {{ formValue | json }}
   `
 })
 class AppComponent {
-  constructor() {}
-}
+  public formValue;
 
-@Component({
-  selector: 'about-component',
-  template: `
-    <p>An about component!</p>
-  `
-})
-class AboutComponent {
-  constructor() {
-  }
-}
-
-@Component({
-  selector: 'home-component',
-  template: `
-    <p>A home component!</p>
-    <form [formGroup]="usersForm">
-      <p>This form can handle creating many users at once!</p>
-      <ng-container 
-      *ngFor="let userFormGroup of usersForm.controls.users.controls; 
-      let i = index">
-        <div [formGroup]="userFormGroup">
-          <label>
-            First name:
-            <input type="text" formControlName="firstName">
-          </label>
-          <label>
-            Last name:
-            <input type="text" formControlName="lastName">
-          </label>
-          <label>
-            Email:
-            <input type="text" formControlName="email">
-          </label>
-        </div>
-      </ng-container>
-    </form>
-
-    <button (click)="showFormValues()">console log form value</button>
-  `
-})
-class HomeComponent implements OnInit{
-  usersForm = new FormGroup({
+  public usersForm = new FormGroup({
     users: new FormArray([
       new FormGroup({
         firstName: new FormControl(''),
@@ -88,35 +65,31 @@ class HomeComponent implements OnInit{
     ])
   });
 
-  constructor() {
-  
+  constructor() {}
+
+  addGroup() {
+    let usersArray = this.usersForm.get('users') as FormArray;
+    let usersLen = usersArray.length;
+
+    let newUserGroup =  new FormGroup({
+      firstName: new FormControl(''),
+      lastName: new FormControl(''),
+      email: new FormControl('')
+    });
+
+    usersArray.insert(usersLen, newUserGroup)
   }
 
-  ngOnInit() {
-  }
-
-  showFormValues() {
-    console.log(this.usersForm.value);
+  onSubmit() {
+    this.formValue = this.usersForm.value;
   }
 }
-
-const routes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: '**', component: HomeComponent }
-]
+            
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-class AppRoutingModule { }
-
-                 
-@NgModule({
-  declarations: [AppComponent, AboutComponent, HomeComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     CommonModule,
-    AppRoutingModule, 
     ReactiveFormsModule
   ],
   bootstrap: [AppComponent],

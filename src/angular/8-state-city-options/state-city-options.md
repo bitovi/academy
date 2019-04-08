@@ -35,23 +35,25 @@ class. It's worth getting familiar with the methods available in this class (lik
 
 @sourceref ./form-control.html
 @codepen
-@highlight 53-56,61,only
+@highlight 17,23-29,33,only
 
 ### FormGroup
 
-A FormGroup is a way of grouping FormControls and tracking the state of the entire form. Notice the way we connect our input in the markup is slightly different - we use `formControlName` to bind to the name value in our FormGroup. Groups can be nested within other groups or arrays.  
+A FormGroup is a way of grouping FormControls and tracking the state of the entire group. For instance, if you want to get the values of all of your FormControls to submit as an object of those values, you'd use `formGroupname.value`. Notice the way we connect our input in the markup is slightly different - we use `formControlName` to bind to the name value in our FormGroup. Groups can be nested within other groups or arrays.  
 
 @sourceref ./form-group.html
 @codepen
-@highlight 50-63,67-71,only
+@highlight 17,23-37,39,43,45-49,53-55,only
 
 ### FormArray
 
 FormArray aggregates FormControls into an array. It's different than FormGroup in that the controls inside are serialized as an array. FormArrays are very useful when dealing with repeated FormControls or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.
 
+This example shows the use of FormArray and using an `insert` method to dynamically add more FormGroups to the `users` FormArray.
+
 @sourceref ./form-array.html
 @codepen
-@highlight 50-63,67-71,only
+@highlight 17,23-45,47,53-66,70-81,only
 
 ### FormBuilder
 
@@ -59,7 +61,7 @@ FormArray aggregates FormControls into an array. It's different than FormGroup i
 
 @sourceref ./form-builder.html
 @codepen
-@highlight 53, 57, 61, 67,74-78,only
+@highlight 17,40,42,45-49,only
 
 ## Exercise: Creating a Reactive Form in the Restaurant component with city and state dropdown inputs
 

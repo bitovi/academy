@@ -52,7 +52,7 @@ __src/app/restaurant/restaurant.component.ts__
 @sourceref ./restaurant.component-service.ts
 @highlight 2,3,11,13,16-18
 
-## Exercise: Show a loading state while restaurants are being requested.
+## Exercise: Show a loading state while restaurants are being requested
 
 ### The Problem
 
