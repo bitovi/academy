@@ -151,11 +151,12 @@ Now that our service is in working order, let's populate our dropdowns with stat
 
 Requirements
 
-1. Mark state and city dropdowns as disabled until they are populated with data
-2. Fetch the states list when the component first loads (`ngOnInit`) and populate the dropdown options with the values
-3. When the State FormControl value changes, fetch the list of cities with the selected state as the parameter
-4. If the state value changes, fetch the new list of cities, and reset the list of restaurants to an empty array
-5. When a City is selected, fetch the list of restaurants
+1. Rewrite the `Data` interface to be a generic to work with State and City types as well
+2. Mark state and city dropdowns as disabled until they are populated with data
+3. Fetch the states list when the component first loads (`ngOnInit`) and populate the dropdown options with the values
+4. When the State FormControl value changes, fetch the list of cities with the selected state as the parameter
+5. If the state value changes, fetch the new list of cities, and reset the list of restaurants to an empty array
+6. When a City is selected, fetch the list of restaurants
 
 > Hint: You'll want to clear the fake data from the state and city value props, and move the call to get restaurants out of the ngOnInit function.
 
