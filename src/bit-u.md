@@ -26,8 +26,7 @@ and management in these free courses!
   margin-right: -30px;
 }
 .course .detail {
-  padding: 0 0 0 20px;
-  text-indent: -20px;
+  padding: 0;
   margin: 0;
 }
 .academy-intro ol {
@@ -67,9 +66,9 @@ and management in these free courses!
 </div>
 <h5>Advanced JavaScript</h5>
 <p>Learn all the hard but important stuff you should know when programming JavaScript.</p>
-<p class='detail'>Audience: Intermediate JS developers</p>
-<p class='detail'>Goal: Understand what's going on "under the hood".</p>
-<p class='detail'>Time: 6 hours</p>
+<p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
+<p class='detail'><strong>Goal:</strong> Understand what's going on "under the hood".</p>
+<p class='detail'><strong>Time:</strong> 6 hours</p>
 </a>
 </div>
 
@@ -82,9 +81,9 @@ and management in these free courses!
 <p>Build your own version of
 jQuery and use it to make a basic tabs widget. Enjoy the
 meta programming too!</p>
-<p class='detail'>Audience: Intermediate JS developers</p>
-<p class='detail'>Goal: Understand the DOM enough to build widgets frameworks can't.</p>
-<p class='detail'>Time: 10 hours</p>
+<p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
+<p class='detail'><strong>Goal:</strong> Understand the DOM enough to build widgets frameworks can't.</p>
+<p class='detail'><strong>Time:</strong> 10 hours</p>
 </a>
 </div>
 
@@ -96,9 +95,9 @@ meta programming too!</p>
 <h5>Debug JavaScript</h5>
 <p>Learn breakpoints and how to debug the scope, stack, prototypes, and
 property changes.</p>
-<p class='detail'>Audience: Beginner JS developers</p>
-<p class='detail'>Goal: Debug most problems with chrome developer tools.</p>
-<p class='detail'>Time: 1 hour</p>
+<p class='detail'><strong>Audience:</strong> Beginner JS developers</p>
+<p class='detail'><strong>Goal:</strong> Debug most problems with chrome developer tools.</p>
+<p class='detail'><strong>Time:</strong> 1 hour</p>
 
 </a>
 </div>
@@ -113,9 +112,9 @@ property changes.</p>
 </div>
 <h5>TypeScript</h5>
 <p>Learn the essentials of TypeScript: types, functions, classes, interfaces and generics.</p>
-<p class='detail'>Audience: Beginner JS developer</p>
-<p class='detail'>Goal: Be ready to develop a TypeScript project.</p>
-<p class='detail'>Time: 3 hours</p>
+<p class='detail'><strong>Audience:</strong> Beginner JS developer</p>
+<p class='detail'><strong>Goal:</strong> Be ready to develop a TypeScript project.</p>
+<p class='detail'><strong>Time:</strong> 3 hours</p>
 </a>
 </div>
 
@@ -127,9 +126,9 @@ property changes.</p>
 <h5>RxJS</h5>
 <p>Build a validating credit card form with RxJS and a bit of Angular. Learn
 the hard but fundamental operators.</p>
-<p class='detail'>Audience: Intermediate JS developers</p>
-<p class='detail'>Goal: Build complex state mechanics with observables.</p>
-<p class='detail'>Time: 6 hours</p>
+<p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
+<p class='detail'><strong>Goal:</strong> Build complex state mechanics with observables.</p>
+<p class='detail'><strong>Time:</strong> 6 hours</p>
 </a>
 </div>
 
@@ -142,9 +141,9 @@ the hard but fundamental operators.</p>
 <p>Build a multipage, realtime ordering app with Angular. Learn
 FormBuilder and FormGroup. Write tests
 too!</p>
-<p class='detail'>Audience: Intermediate JS developers</p>
-<p class='detail'>Goal: Build data driven applications with Angular.</p>
-<p class='detail'>Time: 10 hours</p>
+<p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
+<p class='detail'><strong>Goal:</strong> Build data driven applications with Angular.</p>
+<p class='detail'><strong>Time:</strong> 10 hours</p>
 </a>
 </div>
 

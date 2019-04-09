@@ -361,7 +361,7 @@ a {
     font-size: 18px !important;
     font-weight: normal;
     line-height: 1.6;
-    width: 800px;
+    max-width: 800px;
     text-align: center;
     margin: 15px auto !important;
   }
@@ -394,10 +394,16 @@ a {
 
 .courses-container {
   margin: 30px;
+  @media (max-width: 1000px) {
+    margin: 10px;
+  }
   .courses {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    @media (max-width: 900px) {
+      flex-direction: column;
+    }
     .course {
       > a {
         text-decoration: none;
@@ -408,6 +414,9 @@ a {
       margin: 0 auto 30px auto;
       padding: 15px;
       border: 1px solid #eee;
+      @media (max-width: 900px) {
+        width: 80%;
+      }
       &:hover {
         border: 1px solid #CCC;
       }
