@@ -1,15 +1,11 @@
 @page canjs-training/render-todos Render Todos
 @parent canjs-training 4
 
-@description
+@description Learn how to render a view.
 
 @body
 
-
-
-## Render a list of todos (can-stache)
-
-### The problem
+## The problem
 
 - Add a `todosList` property to the `AppViewModel` whose default
   value will be a `Todo.List` with the following data:
@@ -29,23 +25,25 @@
 
 - Write out the number of items left and completed count in the “Clear completed” button.
 
-### What you need to know
+## What you need to know
 
-- [Stache Basics Presentation](https://drive.google.com/open?id=0Bx-kNqf-wxZeSjVJMTRJdXRXcWs)
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSwcbjjwOyiYxruHZdLXg9k2mqzM2dkBtyJWfvVftUEwb3NHDHXU2VCtJVNVpmgBr4vaz85FENpCvag/embed?start=false&loop=false&delayms=3000" frameborder="0" width="640" height="509" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+- [Stache Basics Presentation](https://docs.google.com/presentation/d/13IX7PRiS2B4RdYXor8tMgb75FNjc9mq-mlzNX0dnlt0/edit?usp=sharing)
 - CanJS uses [stache](https://canjs.com/doc/can-stache.html) to render data in a template
   and keep it live. Templates can be loaded with [https://canjs.com/doc/steal-stache.html steal-stache].
 
   A [stache](https://canjs.com/doc/can-stache.html) template uses
-  [can-stache.tags.escaped {{key}}] magic tags to insert data into
+  [https://canjs.com/doc/can-stache.tags.escaped.html {{key}}] magic tags to insert data into
   the HTML output like:
 
   ```html
     {{something.name}}
   ```
-- Use [can-stache.helpers.if {{#if(value)}}] to do `if/else` branching in `can-stache`.
-- Use [can-stache.helpers.for-of {{#for(of)}}] to do looping in `can-stache`.
+- Use [https://canjs.com/doc/can-stache.helpers.if.html {{#if(value)}}] to do `if/else` branching in `can-stache`.
+- Use [https://canjs.com/doc/can-stache.helpers.for-of.html {{#for(of)}}] to do looping in `can-stache`.
 
-### The solution
+## The solution
 
 Update _index.js_ to the following:
 

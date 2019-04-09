@@ -30,7 +30,7 @@ QUnit.equal(todo.complete, true, "toggleComplete works");
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSK5CTN9M9UGDSbkXFXG34lx2Pyf7N4sxUiV0so9Gwa6FRwB2SZ2MQZurZURE64INnMw-vqJGZB3EC8/embed?start=false&loop=false&delayms=3000" frameborder="0" width="640" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
-- [DefineMap Basics Presentation](https://drive.google.com/open?id=0Bx-kNqf-wxZeUmlrN2p0Yi1qUzg)
+- [DefineMap Basics Presentation](https://docs.google.com/presentation/d/1Y9G9aJMJgCzKMHROe4HuzRD_LY7UyGPbLOtl2TJAEqM/edit?usp=sharing)
 - [https://canjs.com/doc/can-define/map/map.extend.html DefineMap.extend] defines a new `Type`.
 - The [https://canjs.com/doc/can-define.types.type.html type] behavior defines a property’s type like:
 

@@ -36,7 +36,9 @@ QUnit.equal(todos.allComplete, true, "allComplete");
 
 ### What you need to know
 
-- [DefineList Basics Presentation](https://drive.google.com/open?id=0Bx-kNqf-wxZeRFUzclNhTlRjMDg)
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQTyb-tSlYyyzo8LF0fGOkxgtLHWnDhdIIXUiSScpDxJllG8QDdqS29gKnVBDYdDNPsPX2kYDA8pXth/embed?start=false&loop=false&delayms=3000" frameborder="0" width="640" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+- [DefineList Basics Presentation](https://docs.google.com/presentation/d/1l7QzPJRSvTJf014pSVlJCw_xyKTG7vitSB7OXtPZgfw/edit?usp=sharing)
 - [https://canjs.com/doc/can-define/list/list.extend.html DefineList.extend] defines a new `ListType`.
 - The [https://canjs.com/doc/can-define/list/list.prototype.wildcardItems.html #] property defines the behavior of items in a list like:
 
