@@ -53,7 +53,7 @@ We can listen to changes to values on FormControls and FormGroup using the value
 
 ## Call methods on FormControls
 
-The ReactiveForms API makes it easy for us to change our FormControls as needed. FormControl extends the <a href="https://angular.io/api/forms/AbstractControl">AbstractControl</a> class that has a lot of helpful properties and methods on it. The following example shows enabling and disabling controls via the `enable` and `disable` methods, and displaying the `enabled` FormControl property.
+The ReactiveForms API makes it easy for us to change our FormControls as needed. As a reminder, the FormControl class extends the <a href="https://angular.io/api/forms/AbstractControl">AbstractControl</a> class which has a lot of helpful properties and methods on it. The following example shows enabling and disabling controls via the `enable` and `disable` methods, and displaying the `enabled` FormControl property.
 
 @sourceref ./form-control.html
 @codepen
@@ -148,7 +148,7 @@ Update your __src/app/restaurant/restaurant.service.ts__ file to be:
 Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
 
 @sourceref ./restaurant.service-generics.spec.ts
-@highlight 3,79,131,151
+@highlight 3,79,131,151, only
 
 ### The Solution
 
@@ -183,11 +183,12 @@ Requirements
 
  Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
 
-@sourceref ./restaurant.component.spec.ts
+@sourceref ./restaurant.component-citystate.spec.ts
+@highlight 169,170,183,184,190,194,195,337-351,353-362,364-378,380-390,392-404,406-415,417-427,only
 
 ### The Solution
 
 __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./restaurant.component-citystate.ts
-@highlight 5,8-11,28,33,44-48,65-101, 103-109, 111-121,123-128
+@highlight 5,8-11,21,26,31,28,33,44-48,65-101, 103-109, 111-121,123-128
