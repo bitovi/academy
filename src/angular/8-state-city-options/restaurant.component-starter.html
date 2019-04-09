@@ -1,0 +1,48 @@
+<div class="restaurants">
+    <h2 class="page-header">Restaurants</h2>
+    <form class="form" [formGroup]="form">
+      <div class="form-group">
+        <label>State</label>
+        <select class="formControl">
+          <option value="" *ngIf="states.isPending">Loading...</option>
+          <ng-container *ngIf="!states.isPending">
+            <option value="">Choose a state</option>
+            <!-- iterate through all states to create options with the short property as the value and the name displayed-->
+          </ng-container>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>City</label>
+        <select class="formControl">
+          <option value="" *ngIf="cities.isPending">Loading...</option>
+          <ng-container *ngIf="!cities.isPending">
+            <option value="">Choose a city</option>
+            <!-- iterate through all cities to create options with the short property as the value and the name displayed-->
+          </ng-container>
+        </select>
+      </div>
+    </form>
+    <div class="restaurant loading"  *ngIf="restaurants.isPending"></div>
+    <ng-container *ngIf="restaurants.value.length">
+      <div class="restaurant" *ngFor="let restaurant of restaurants.value">
+  
+        <img src="{{restaurant.images.thumbnail | imageUrl}}" width="100" height="100">
+        <h3>{{restaurant.name}}</h3>
+  
+        <div class="address" *ngIf="restaurant.address">
+          {{restaurant.address.street}}<br />{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
+        </div>
+  
+        <div class="hours-price">
+          $$$<br />
+          Hours: M-F 10am-11pm
+          <span class="open-now">Open Now</span>
+        </div>
+  
+        <a class="btn" [routerLink]="['/restaurants', restaurant.slug]">
+          Details
+        </a>
+        <br />
+      </div>
+    </ng-container>
+  </div>

@@ -11,38 +11,9 @@
 <base href="/">
 <my-app></my-app>
 <script type="typescript">
-const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
+const { Component, NgModule, VERSION, OnInit } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
-const { HttpClient, HttpParams } = ng.common.http
-const { Routes, RouterModule } = ng.router;
-
-@Component({
-  selector: 'my-app',
-  template: `
-    <ul class="nav">
-      <li routerLinkActive="active">
-        <a routerLink="/about" >About</a>
-      </li>
-    </ul>
-    <router-outlet></router-outlet>
-  `
-})
-class AppComponent {
-  constructor() {}
-
-}
-
-@Component({
-  selector: 'about-component',
-  template: `
-    <p>An about component!</p>
-  `
-})
-class AboutComponent {
-  constructor() {
-  }
-}
 
 class GenericCollection<T> {
   private list: T[] = [];
@@ -58,51 +29,55 @@ interface Dinosaur {
 }
 
 @Component({
-  selector: 'home-component',
+  selector: 'my-app',
   template: `
-    <p>A home component!</p>
-   
+    <p>My strings</p>
+    <ul>
+      <li *ngFor="let string of myListOfStrings; let i=index">{{string}}</li>
+    </ul>
+
+    <p>My dinosaurs</p>
+    <ul>
+      <li *ngFor="let dino of myListOfDinosaurs; let i=index">{{dino.name}} is a {{dino.breed}} and has {{dino.teeth}} teeth.</li>
+    </ul>
   `
 })
-class HomeComponent implements OnInit{
-  let myListOfStrings = new GenericCollection<string>();
-  myListOfStrings.pushItem('booop');
-  myListOfStrings.pushItem(5);
-  //error Argument type of '5' is not assignable to parameter of type 'string'
-
-  let myListOfDinosaurs = new GenericCollection<Dinosaur>();
-  let otherDino = {
-    name: 'Blue',
-    breed: 'Velociraptor',
-    teeth: 100
-  }
-  myListOfDinosaurs.pushItem(otherDino);
-  myListOfDinosaurs.pushItem({name: 'Charlie'});
-  //error Argument type '{ name: string; }' is not assignable to parameter of type 'Dinosaur'.
+class AppComponent implements OnInit {
+  public myListOfStrings = new GenericCollection<string>();
+  public myListOfDinosaurs = new GenericCollection<Dinosaur>();
 
   constructor() {}
 
   ngOnInit() {
+    this.myListOfStrings.pushItem('booop');
+    this.myListOfStrings.pushItem('TA DA');
+    this.myListOfStrings.pushItem(5);
+    //error Argument type of '5' is not assignable to parameter of type 'string'
+
+    let dinoA = {
+      name: 'Blue',
+      breed: 'Velociraptor',
+      teeth: 100
+    }
+
+    let dinoB = {
+      name: 'Killorex',
+      breed: 'Tyranasuarus Rex',
+      teeth: 95
+    }
+    this.myListOfDinosaurs.pushItem(dinoA);
+    this.myListOfDinosaurs.pushItem(dinoB);
+    this.myListOfDinosaurs.pushItem({name: 'Charlie'});
+    //error Argument type '{ name: string; }' is not assignable to parameter of type 'Dinosaur'.
   }
+
 }
 
-const routes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: '**', component: HomeComponent }
-]
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-class AppRoutingModule { }
-
-                 
-@NgModule({
-  declarations: [AppComponent, AboutComponent, HomeComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    CommonModule,
-    AppRoutingModule
+    CommonModule
   ],
   bootstrap: [AppComponent],
   providers: []

@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
-export interface Data<T> {
-  value: Array<T>;
+export interface Data {
+  value: Array<Restaurant>;
   isPending: boolean;
 }
 
@@ -17,7 +17,7 @@ export interface Data<T> {
 export class RestaurantComponent implements OnInit {
   form: FormGroup;
 
-  public restaurants: Data<Restaurant> = {
+  public restaurants: Data = {
     value: [],
     isPending: false
   }

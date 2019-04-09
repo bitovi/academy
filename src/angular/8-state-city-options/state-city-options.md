@@ -72,6 +72,7 @@ We would like our user to be able to filter restaurants based on city and state.
 ### What you need to know
 
 - How to create a FormControl (you learned this in the section above! ✔️)
+- How to use `formControl` directive in the dom
 - How to create a FormGroup (you learned this in the section above! ✔️)
 - How to use FormBuilder (you learned this in the section above! ✔️)
 - How to use ngFor (you learned this in the Creating Components section! ✔️)
@@ -81,7 +82,14 @@ Here's some code to get you started:
 __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./restaurant.component-starter.ts
-@highlight 2,18,25-28,30-33,41,51-53 only
+@highlight 2,18,25-28,30-33,42,51-53,only
+
+Make sure to use the `formControl` directive to tie the selects to their FormControls in the component.
+
+__src/app/restaurant/restaurant.component.html__
+
+@sourceref ./restaurant.component-starter.html
+@highlight 3-24,only
 
 Don't forget to import reactiveForms in the root app module.
 
@@ -89,6 +97,7 @@ __src/app/app.module.ts__
 
 @sourceref ./app.module.ts
 @highlight 5,24
+
 
 ### To Verify Your Solution is Correct
 
@@ -99,7 +108,7 @@ When you visit <a href="http://localhost:4200/restaurants" target="\_blank">loca
 Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
 
 @sourceref ./restaurant.component.spec.ts
-@highlight 8, 116, 274-295, only
+@highlight 8,116,294-299,301-307,309-315, only
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
@@ -113,4 +122,4 @@ __src/app/restaurant/restaurant.component.ts__
 __src/app/restaurant/restaurant.component.html__
 
 @sourceref ./restaurant.component.html
-@highlight 3-24
+@highlight 6,10,16,20,only

@@ -24,24 +24,29 @@ const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
       <label>
           First name:
           <input type="text" formControlName="firstName">
+          <p>this control is enabled: {{myQuickForm.controls.firstName.enabled}}</p>
+          <button (click)="toggleControl(myQuickForm.controls.firstName)">toggle firstName control</button><br />
         </label>
         <label>
           Last name:
           <input type="text" formControlName="lastName">
+          <p>this control is enabled: {{myQuickForm.controls.lastName.enabled}}</p>
+          <button (click)="toggleControl(myQuickForm.controls.lastName)">toggle lastName control</button><br />
         </label>
         <label>
           Email:
           <input type="text" formControlName="email">
+          <p>this control is enabled: {{myQuickForm.controls.email.enabled}}</p>
+          <button (click)="toggleControl(myQuickForm.controls.email)">toggle email control</button><br />
         </label>
     </form>
+
   `
 })
 class AppComponent {
   myQuickForm: FormGroup;
 
-  constructor(private fb:FormBuilder) {
-  
-  }
+  constructor(private fb:FormBuilder) {}
 
   ngOnInit() {
     this.myQuickForm = this.fb.group({
@@ -53,6 +58,16 @@ class AppComponent {
     this.myQuickForm.valueChanges.subscribe((val) => {
       console.log(val);
     });
+  }
+
+  toggleControl(control) {
+    let ctrl = control as FormControl;
+    if(ctrl.enabled) {
+      ctrl.disable();
+    }
+    else {
+      ctrl.enable();
+    }
   }
 }
 //THIS IS A HACK JUST FOR CODEPEN TO WORK

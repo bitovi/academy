@@ -10,6 +10,8 @@
 In this part, we will:
 
 - Learn about Observables and Subscriptions
+- Learn about listening to form value changes
+- Learn about AbstractControl properties and methods
 - Create subscription to form changes
 - Use onDestroy to unsubscribe from form changes
 - Learn about HttpParams
@@ -21,11 +23,13 @@ In this part, we will:
 
 For a more robust understanding of Observables, Subscriptions, and other RxJS core tenants check out our [RxJS RxJS guide]. For the following exercises, Observables are lazy collections of multiple values over time. We can subscribe to observables to get any new data, or create and add to Subscriptions of observables.
 
-This example shows creating a subscription to an observable, saving it's value to a member on the component and displaying it in the template. This is useful for when we want to capture and observables values and make changes based on them, but subscriptions do need to be cleaned up to avoid memory leaks. Whenever a component is destroyed an <a href="https://angular.io/api/core/OnDestroy" target="\_blank">ngOnDestroy</a> method is called. This is a good place to put our cleanup code, like unsubscribing from observables.
+This example shows creating a subscription to an observable, saving it's value to a member on the component and displaying it in the template. This is useful for when we want to capture and observables values and make changes based on them, but subscriptions do need to be cleaned up to avoid memory leaks. Whenever a component is destroyed an <a href="https://angular.io/api/core/OnDestroy" target="\_blank">ngOnDestroy</a> method is called. This is a good place to put our cleanup code, like unsubscribing from observables. 
+
+In this example click the button to start subscribing to the observables - you'll see two variables logged: the new observable value and the subscription value. Then click the "remove component" button to see what happens when a component is destroyed. Next delete line 95, follow the same process and see what happens!
 
 @sourceref ./observables-subscriptions.html
 @codepen
-@highlight 53,56,57,58,59,66-78,80-82,85-88,only
+@highlight 14,17,49,50,62-64,71,73,77-78,80,84-90,92-97,only
 
 This example shows creating a subscription to an observable, and using an <a href="https://angular.io/api/common/AsyncPipe" target="\_blank">async pipe</a> to display the value. This is useful for displaying observable values in templates without the need to unsubscribe as that's handled by the pipe.
 
@@ -45,7 +49,15 @@ We can listen to changes to values on FormControls and FormGroup using the value
 
 @sourceref ./form-listeners.html
 @codepen
-@highlight 82-84,only
+@highlight 53-55,only
+
+## Call methods on FormControls
+
+The ReactiveForms API makes it easy for us to change our FormControls as needed. FormControl extends the <a href="https://angular.io/api/forms/AbstractControl">AbstractControl</a> class that has a lot of helpful properties and methods on it. The following example shows enabling and disabling controls via the `enable` and `disable` methods, and displaying the `enabled` FormControl property.
+
+@sourceref ./form-control.html
+@codepen
+@highlight 27-28,33-34,39-40,63-71,only
 
 ## Exercise: Listen to Changes on the State and City formControls and log their value to the console
 
@@ -123,11 +135,13 @@ Update your __src/app/restaurant/restaurant.service.ts__ file to be:
 
 - How to write a generic
 
-  For an in-depth understanding of generics in TypeScript, check out our [RxJS RxJS guide]. For now, generics are a way to abstract functions, interfaces, etc to use different types in different situations.
+  For an in-depth understanding of generics in TypeScript, check out our [typescript/generics TypeScript guide]. For now, generics are a way to abstract functions, interfaces, etc to use different types in different situations.
+
+  This example shows creating a generic for a list that can be used to create arrays of various types, including Dinosaurs. Codepen doesn't have a typescript compiler that will throw errors, but if you paste the code into your IDE you'll be able to see the TypeScript errors thrown.
 
   @sourceref ./generics.html
   @codepen
-  @highlight 47-52,54-58,68-71,73-81, only
+  @highlight 18-23,25-29,36,41,46,47,51-55,57-61,63-67,68-71,only
 
 ### To Verify Your Solution is Correct
 
@@ -163,6 +177,7 @@ Requirements
 ### What You Need to Know
 
 - How to call service methods in a component
+- How to write generics
 
 ### To Verify Your Solution is Correct
 
@@ -175,4 +190,4 @@ Requirements
 __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./restaurant.component-citystate.ts
-@highlight 5,28,33,44-48,65-101, 103-109, 111-121,123-128
+@highlight 5,8-11,28,33,44-48,65-101, 103-109, 111-121,123-128
