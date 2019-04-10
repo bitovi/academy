@@ -1,5 +1,5 @@
 {
-  "name": "bit-u",
+  "name": "bit-academy",
   "version": "1.0.0",
   "description": "Everything worth knowing from bitovi",
   "main": "index.js",
@@ -49,7 +49,7 @@
     "glob": {
       "pattern": "src/**/*.{js,md}"
     },
-    "parent": "bit-u",
+    "parent": "bit-academy",
     "static": "static",
     "html": {
       "templates": "templates"

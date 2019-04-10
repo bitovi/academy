@@ -1,5 +1,5 @@
 @page dom-jquery-training DOM and jQuery
-@parent bit-u 2
+@parent bit-academy 2
 
 @description Learn jQuery and the DOM APIs by building your own version of jQuery and
 using it to make a basic tabs widget.

@@ -1,3 +1,3 @@
 @page marketing Marketing
-@parent bit-u 6
+@parent bit-academy 6
 @hide

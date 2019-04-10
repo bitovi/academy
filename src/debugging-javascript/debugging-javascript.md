@@ -1,5 +1,5 @@
 @page debugging-javascript-training Debug JavaScript
-@parent bit-u 3
+@parent bit-academy 3
 @description This course covers the basics of JavaScript debugging.
 
 @body

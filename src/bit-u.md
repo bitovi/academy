@@ -1,4 +1,4 @@
-@page bit-u Bitovi University
+@page bit-academy Bitovi Academy
 @hidesidebar
 @hidetitle
 @hidedescription
