@@ -21,9 +21,11 @@ class AcademyPage {
   };
 
   getPageContents(){
-    const pageContent = this.$('#content-wrapper').html();
-    const pageScripts = this.$('#scripts').html();
-    return updateStaticAssetLinks(pageContent + pageScripts);
+    // const pageContent = this.$('#content-wrapper').html();
+    // const pageScripts = this.$('#scripts').html();
+    // return updateStaticAssetLinks(pageContent + pageScripts);
+    const pageContent = this.$('body').html();
+    return updateStaticAssetLinks(pageContent);
   }
 
   getCSSLinks(){
