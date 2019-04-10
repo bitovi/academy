@@ -579,37 +579,10 @@ class. It's worth getting familiar with the methods available in this class (lik
 const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
-const { Routes, RouterModule } = ng.router;
 const { ReactiveFormsModule, FormControl } = ng.forms;
 
 @Component({
   selector: 'my-app',
-  template: `
-    &lt;ul class=&quot;nav&quot;&gt;
-      &lt;li routerLinkActive=&quot;active&quot;&gt;
-        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;router-outlet&gt;&lt;/router-outlet&gt;
-  `
-})
-class AppComponent {
-  constructor() {}
-}
-
-@Component({
-  selector: 'about-component',
-  template: `
-    &lt;p&gt;An about component!&lt;/p&gt;
-  `
-})
-class AboutComponent {
-  constructor() {
-  }
-}
-
-@Component({
-  selector: 'home-component',
   template: `
     &lt;p&gt;A home component!&lt;/p&gt;
     &lt;p&gt;
@@ -619,36 +592,19 @@ class AboutComponent {
       Name:
       &lt;input type=&quot;text&quot; [formControl]=&quot;name&quot;&gt;
     &lt;/label&gt;
-    
   `
 })
-class HomeComponent implements OnInit{
-  name = new FormControl('');
-  constructor() {
-  
-  }
+class AppComponent {
+  public  name = new FormControl('');
 
-  ngOnInit() {
-  }
+  constructor() {}
 }
-
-const routes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: '**', component: HomeComponent }
-]
+           
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-class AppRoutingModule { }
-
-                 
-@NgModule({
-  declarations: [AppComponent, AboutComponent, HomeComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     CommonModule,
-    AppRoutingModule, 
     ReactiveFormsModule
   ],
   bootstrap: [AppComponent],
@@ -666,9 +622,92 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='53-56,61,only'></div>
+<div line-highlight='17,23-29,33,only'></div>
 <h3>FormGroup</h3>
-<p>A FormGroup is a way of grouping FormControls and tracking the state of the entire form. Notice the way we connect our input in the markup is slightly different - we use <code>formControlName</code> to bind to the name value in our FormGroup. Groups can be nested within other groups or arrays.</p>
+<p>A FormGroup is a way of grouping FormControls and tracking the state of the entire group. For instance, if you want to get the values of all of your FormControls to submit as an object of those values, you'd use <code>formGroupname.value</code>. Notice the way we connect our input in the markup is slightly different - we use <code>formControlName</code> to bind to the name value in our FormGroup. Groups can be nested within other groups or arrays.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION, OnInit } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { ReactiveFormsModule, FormControl, FormGroup } = ng.forms;
+
+@Component({
+  selector: 'my-app',
+  template: `
+  &lt;p&gt;A home component!&lt;/p&gt;
+  &lt;form [formGroup]=&quot;userForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+    &lt;label&gt;
+        First name:
+        &lt;input type=&quot;text&quot; formControlName=&quot;firstName&quot;&gt;
+      &lt;/label&gt;
+      &lt;label&gt;
+        Last name:
+        &lt;input type=&quot;text&quot; formControlName=&quot;lastName&quot;&gt;
+      &lt;/label&gt;
+      &lt;label&gt;
+        Email:
+        &lt;input type=&quot;text&quot; formControlName=&quot;email&quot;&gt;
+      &lt;/label&gt;
+      &lt;button type=&quot;submit&quot;&gt;see form value&lt;/button&gt;
+  &lt;/form&gt;
+
+  {{ formValue | json }}
+  `
+})
+class AppComponent {
+  public formValue;
+
+  public userForm = new FormGroup({
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    email: new FormControl('')
+  });
+
+  constructor() {}
+
+  onSubmit() {
+    this.formValue = this.userForm.value;
+  }
+}
+                 
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    ReactiveFormsModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='17,23-37,39,43,45-49,53-55,only'></div>
+<h3>FormArray</h3>
+<p>FormArray aggregates FormControls into an array. It's different than FormGroup in that the controls inside are serialized as an array. FormArrays are very useful when dealing with repeated FormControls or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.</p>
+<p>This example shows the use of FormArray and using an <code>insert</code> method to dynamically add more FormGroups to the <code>users</code> FormArray.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -685,41 +724,19 @@ platformBrowserDynamic()
 const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
-const { Routes, RouterModule } = ng.router;
-const { ReactiveFormsModule, FormControl, FormGroup } = ng.forms;
+const { ReactiveFormsModule, FormControl, FormGroup, FormArray } = ng.forms;
 
 @Component({
   selector: 'my-app',
   template: `
-    &lt;ul class=&quot;nav&quot;&gt;
-      &lt;li routerLinkActive=&quot;active&quot;&gt;
-        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;router-outlet&gt;&lt;/router-outlet&gt;
-  `
-})
-class AppComponent {
-  constructor() {}
-}
-
-@Component({
-  selector: 'about-component',
-  template: `
-    &lt;p&gt;An about component!&lt;/p&gt;
-  `
-})
-class AboutComponent {
-  constructor() {
-  }
-}
-
-@Component({
-  selector: 'home-component',
-  template: `
-    &lt;p&gt;A home component!&lt;/p&gt;
-    &lt;form [formGroup]=&quot;userForm&quot;&gt;
-      &lt;label&gt;
+  &lt;p&gt;A home component!&lt;/p&gt;
+  &lt;form [formGroup]=&quot;usersForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+    &lt;p&gt;This form can handle creating many users at once!&lt;/p&gt;
+    &lt;ng-container 
+    *ngFor=&quot;let userFormGroup of usersForm.controls.users.controls; 
+    let i = index&quot;&gt;
+      &lt;div [formGroup]=&quot;userFormGroup&quot;&gt;
+        &lt;label&gt;
           First name:
           &lt;input type=&quot;text&quot; formControlName=&quot;firstName&quot;&gt;
         &lt;/label&gt;
@@ -731,137 +748,19 @@ class AboutComponent {
           Email:
           &lt;input type=&quot;text&quot; formControlName=&quot;email&quot;&gt;
         &lt;/label&gt;
-    &lt;/form&gt;
-  `
-})
-class HomeComponent implements OnInit{
-  userForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl('')
-  });
+      &lt;/div&gt;
+    &lt;/ng-container&gt;
+    &lt;button type=&quot;submit&quot;&gt;see form value&lt;/button&gt;
+  &lt;/form&gt;
+  &lt;button (click)=&quot;addGroup()&quot;&gt;add group&lt;/button&gt;
 
-  constructor() {
-  
-  }
-
-  ngOnInit() {
-  }
-}
-
-const routes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: '**', component: HomeComponent }
-]
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-class AppRoutingModule { }
-
-                 
-@NgModule({
-  declarations: [AppComponent, AboutComponent, HomeComponent],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    AppRoutingModule, 
-    ReactiveFormsModule
-  ],
-  bootstrap: [AppComponent],
-  providers: []
-})
-class AppModule {}
-
-const { platformBrowserDynamic } = ng.platformBrowserDynamic;
-
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch(err =&gt; console.error(err));
-&lt;/script&gt;
-
-
-</code></pre>
-<div class='codepen'></div>
-<div line-highlight='50-63,67-71,only'></div>
-<h3>FormArray</h3>
-<p>FormArray aggregates FormControls into an array. It's different than FormGroup in that the controls inside are serialized as an array. FormArrays are very useful when dealing with repeated FormControls or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
-&lt;base href=&quot;/&quot;&gt;
-&lt;my-app&gt;&lt;/my-app&gt;
-&lt;script type=&quot;typescript&quot;&gt;
-const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
-const { BrowserModule } = ng.platformBrowser;
-const { CommonModule } = ng.common;
-const { Routes, RouterModule } = ng.router;
-const { ReactiveFormsModule, FormControl, FormGroup, FormArray } = ng.forms;
-
-@Component({
-  selector: 'my-app',
-  template: `
-    &lt;ul class=&quot;nav&quot;&gt;
-      &lt;li routerLinkActive=&quot;active&quot;&gt;
-        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  {{ formValue | json }}
   `
 })
 class AppComponent {
-  constructor() {}
-}
+  public formValue;
 
-@Component({
-  selector: 'about-component',
-  template: `
-    &lt;p&gt;An about component!&lt;/p&gt;
-  `
-})
-class AboutComponent {
-  constructor() {
-  }
-}
-
-@Component({
-  selector: 'home-component',
-  template: `
-    &lt;p&gt;A home component!&lt;/p&gt;
-    &lt;form [formGroup]=&quot;usersForm&quot;&gt;
-      &lt;p&gt;This form can handle creating many users at once!&lt;/p&gt;
-      &lt;ng-container 
-      *ngFor=&quot;let userFormGroup of usersForm.controls.users.controls; 
-      let i = index&quot;&gt;
-        &lt;div [formGroup]=&quot;userFormGroup&quot;&gt;
-          &lt;label&gt;
-            First name:
-            &lt;input type=&quot;text&quot; formControlName=&quot;firstName&quot;&gt;
-          &lt;/label&gt;
-          &lt;label&gt;
-            Last name:
-            &lt;input type=&quot;text&quot; formControlName=&quot;lastName&quot;&gt;
-          &lt;/label&gt;
-          &lt;label&gt;
-            Email:
-            &lt;input type=&quot;text&quot; formControlName=&quot;email&quot;&gt;
-          &lt;/label&gt;
-        &lt;/div&gt;
-      &lt;/ng-container&gt;
-    &lt;/form&gt;
-
-    &lt;button (click)=&quot;showFormValues()&quot;&gt;console log form value&lt;/button&gt;
-  `
-})
-class HomeComponent implements OnInit{
-  usersForm = new FormGroup({
+  public usersForm = new FormGroup({
     users: new FormArray([
       new FormGroup({
         firstName: new FormControl(''),
@@ -876,35 +775,31 @@ class HomeComponent implements OnInit{
     ])
   });
 
-  constructor() {
-  
+  constructor() {}
+
+  addGroup() {
+    let usersArray = this.usersForm.get('users') as FormArray;
+    let usersLen = usersArray.length;
+
+    let newUserGroup =  new FormGroup({
+      firstName: new FormControl(''),
+      lastName: new FormControl(''),
+      email: new FormControl('')
+    });
+
+    usersArray.insert(usersLen, newUserGroup)
   }
 
-  ngOnInit() {
-  }
-
-  showFormValues() {
-    console.log(this.usersForm.value);
+  onSubmit() {
+    this.formValue = this.usersForm.value;
   }
 }
-
-const routes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: '**', component: HomeComponent }
-]
+            
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-class AppRoutingModule { }
-
-                 
-@NgModule({
-  declarations: [AppComponent, AboutComponent, HomeComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     CommonModule,
-    AppRoutingModule, 
     ReactiveFormsModule
   ],
   bootstrap: [AppComponent],
@@ -922,7 +817,7 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='50-63,67-71,only'></div>
+<div line-highlight='17,23-45,47,53-66,70-81,only'></div>
 <h3>FormBuilder</h3>
 <p><a href="https://angular.io/api/forms/FormBuilder" target="\_blank">FormBuilder</a> is a shorthand way to quickly write forms by reducing boilerplate code of manually having to write <code>new FormControl</code>, <code>new FormGroup</code>, <code>new FormArray</code> repeatedly.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -938,40 +833,13 @@ platformBrowserDynamic()
 &lt;base href=&quot;/&quot;&gt;
 &lt;my-app&gt;&lt;/my-app&gt;
 &lt;script type=&quot;typescript&quot;&gt;
-const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
+const { Component, NgModule, VERSION, OnInit } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
-const { Routes, RouterModule } = ng.router;
-const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
+const { ReactiveFormsModule, FormGroup, FormBuilder } = ng.forms;
 
 @Component({
   selector: 'my-app',
-  template: `
-    &lt;ul class=&quot;nav&quot;&gt;
-      &lt;li routerLinkActive=&quot;active&quot;&gt;
-        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;router-outlet&gt;&lt;/router-outlet&gt;
-  `
-})
-class AppComponent {
-  constructor() {}
-}
-
-@Component({
-  selector: 'about-component',
-  template: `
-    &lt;p&gt;An about component!&lt;/p&gt;
-  `
-})
-class AboutComponent {
-  constructor() {
-  }
-}
-
-@Component({
-  selector: 'home-component',
   template: `
     &lt;p&gt;A home component!&lt;/p&gt;
     &lt;form [formGroup]=&quot;myQuickForm&quot;&gt;
@@ -990,12 +858,10 @@ class AboutComponent {
     &lt;/form&gt;
   `
 })
-class HomeComponent implements OnInit{
+class AppComponent implements OnInit {
   myQuickForm: FormGroup;
 
-  constructor(private fb:FormBuilder) {
-  
-  }
+  constructor(private fb:FormBuilder) {}
 
   ngOnInit() {
     this.myQuickForm = this.fb.group({
@@ -1006,26 +872,13 @@ class HomeComponent implements OnInit{
   }
 }
 //THIS IS A HACK JUST FOR CODEPEN TO WORK
-HomeComponent.parameters = [FormBuilder];
+AppComponent.parameters = [FormBuilder];
 
-
-const routes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: '**', component: HomeComponent }
-]
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-class AppRoutingModule { }
-
-                 
-@NgModule({
-  declarations: [AppComponent, AboutComponent, HomeComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     CommonModule,
-    AppRoutingModule, 
     ReactiveFormsModule
   ],
   bootstrap: [AppComponent],
@@ -1043,13 +896,14 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='53, 57, 61, 67,74-78,only'></div>
+<div line-highlight='17,40,42,45-49,only'></div>
 <h2>Exercise: Creating a Reactive Form in the Restaurant component with city and state dropdown inputs</h2>
 <h3>The problem</h3>
 <p>We would like our user to be able to filter restaurants based on city and state. Implement a reactive form with two controls, <code>state</code> and <code>city</code>, that are dropdowns displaying a list of cities and states.</p>
 <h3>What you need to know</h3>
 <ul>
 <li>How to create a FormControl (you learned this in the section above! ✔️)</li>
+<li>How to use <code>formControl</code> directive in the dom</li>
 <li>How to create a FormGroup (you learned this in the section above! ✔️)</li>
 <li>How to use FormBuilder (you learned this in the section above! ✔️)</li>
 <li>How to use ngFor (you learned this in the Creating Components section! ✔️)</li>
@@ -1062,8 +916,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
-export interface Data&lt;T&gt; {
-  value: Array&lt;T&gt;;
+export interface Data {
+  value: Array&lt;Restaurant&gt;;
   isPending: boolean;
 }
 
@@ -1075,7 +929,7 @@ export interface Data&lt;T&gt; {
 export class RestaurantComponent implements OnInit {
   form: FormGroup;
 
-  public restaurants: Data&lt;Restaurant&gt; = {
+  public restaurants: Data = {
     value: [],
     isPending: false
   }
@@ -1113,7 +967,59 @@ export class RestaurantComponent implements OnInit {
 }
 
 </code></pre>
-<div line-highlight='2,18,25-28,30-33,41,51-53 only'></div>
+<div line-highlight='2,18,25-28,30-33,42,51-53,only'></div>
+<p>Make sure to use the <code>formControl</code> directive to tie the selects to their FormControls in the component.</p>
+<p><strong>src/app/restaurant/restaurant.component.html</strong></p>
+<pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
+    &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
+    &lt;form class=&quot;form&quot; [formGroup]=&quot;form&quot;&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label&gt;State&lt;/label&gt;
+        &lt;select class=&quot;formControl&quot;&gt;
+          &lt;option value=&quot;&quot; *ngIf=&quot;states.isPending&quot;&gt;Loading...&lt;/option&gt;
+          &lt;ng-container *ngIf=&quot;!states.isPending&quot;&gt;
+            &lt;option value=&quot;&quot;&gt;Choose a state&lt;/option&gt;
+            &lt;!-- iterate through all states to create options with the short property as the value and the name displayed--&gt;
+          &lt;/ng-container&gt;
+        &lt;/select&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label&gt;City&lt;/label&gt;
+        &lt;select class=&quot;formControl&quot;&gt;
+          &lt;option value=&quot;&quot; *ngIf=&quot;cities.isPending&quot;&gt;Loading...&lt;/option&gt;
+          &lt;ng-container *ngIf=&quot;!cities.isPending&quot;&gt;
+            &lt;option value=&quot;&quot;&gt;Choose a city&lt;/option&gt;
+            &lt;!-- iterate through all cities to create options with the short property as the value and the name displayed--&gt;
+          &lt;/ng-container&gt;
+        &lt;/select&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+    &lt;div class=&quot;restaurant loading&quot;  *ngIf=&quot;restaurants.isPending&quot;&gt;&lt;/div&gt;
+    &lt;ng-container *ngIf=&quot;restaurants.value.length&quot;&gt;
+      &lt;div class=&quot;restaurant&quot; *ngFor=&quot;let restaurant of restaurants.value&quot;&gt;
+  
+        &lt;img src=&quot;{{restaurant.images.thumbnail | imageUrl}}&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
+        &lt;h3&gt;{{restaurant.name}}&lt;/h3&gt;
+  
+        &lt;div class=&quot;address&quot; *ngIf=&quot;restaurant.address&quot;&gt;
+          {{restaurant.address.street}}&lt;br /&gt;{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
+        &lt;/div&gt;
+  
+        &lt;div class=&quot;hours-price&quot;&gt;
+          $$$&lt;br /&gt;
+          Hours: M-F 10am-11pm
+          &lt;span class=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
+        &lt;/div&gt;
+  
+        &lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
+          Details
+        &lt;/a&gt;
+        &lt;br /&gt;
+      &lt;/div&gt;
+    &lt;/ng-container&gt;
+  &lt;/div&gt;
+</code></pre>
+<div line-highlight='3-24,only'></div>
 <p>Don't forget to import reactiveForms in the root app module.</p>
 <p><strong>src/app/app.module.ts</strong></p>
 <pre><code class="language-ts">import { BrowserModule } from '@angular/platform-browser';
@@ -1425,6 +1331,26 @@ describe('RestaurantComponent', () =&gt; {
     expect(fixture.componentInstance.restaurants).toEqual(expectedRestaurants);
   }));
 
+  it('should show a loading div while isPending is true', () =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    fixture.componentInstance.restaurants.isPending = true;
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let loadingDiv = compiled.querySelector('.loading');
+    expect(loadingDiv).toBeTruthy();
+  });
+
+  it('should not show a loading div if isPending is false', () =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.componentInstance.restaurants.isPending = false;
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let loadingDiv = compiled.querySelector('.loading');
+    expect(loadingDiv).toBe(null);
+  });
+
+
   it('should have a form property with city and state keys', () =&gt; {
     const fixture = TestBed.createComponent(RestaurantComponent);
     fixture.detectChanges();
@@ -1449,7 +1375,7 @@ describe('RestaurantComponent', () =&gt; {
   });
 });
 </code></pre>
-<div line-highlight='8, 116, 274-295, only'></div>
+<div line-highlight='8,116,294-299,301-307,309-315, only'></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
@@ -1461,8 +1387,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
-export interface Data&lt;T&gt; {
-  value: Array&lt;T&gt;;
+export interface Data {
+  value: Array&lt;Restaurant&gt;;
   isPending: boolean;
 }
 
@@ -1474,7 +1400,7 @@ export interface Data&lt;T&gt; {
 export class RestaurantComponent implements OnInit {
   form: FormGroup;
 
-  public restaurants: Data&lt;Restaurant&gt; = {
+  public restaurants: Data = {
     value: [],
     isPending: false
   }
@@ -1568,7 +1494,7 @@ export class RestaurantComponent implements OnInit {
 &lt;/div&gt;
 
 </code></pre>
-<div line-highlight='3-24'></div>
+<div line-highlight='6,10,16,20,only'></div>
 
 </section>
 

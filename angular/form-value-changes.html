@@ -453,6 +453,8 @@
 <p>In this part, we will:</p>
 <ul>
 <li>Learn about Observables and Subscriptions</li>
+<li>Learn about listening to form value changes</li>
+<li>Learn about AbstractControl properties and methods</li>
 <li>Create subscription to form changes</li>
 <li>Use onDestroy to unsubscribe from form changes</li>
 <li>Learn about HttpParams</li>
@@ -463,6 +465,7 @@
 <h2>Observables and Subscriptions</h2>
 <p>For a more robust understanding of Observables, Subscriptions, and other RxJS core tenants check out our <a href="../RxJS.html" title="Learn RxJS by creating a validating credit card form.">RxJS guide</a>. For the following exercises, Observables are lazy collections of multiple values over time. We can subscribe to observables to get any new data, or create and add to Subscriptions of observables.</p>
 <p>This example shows creating a subscription to an observable, saving it's value to a member on the component and displaying it in the template. This is useful for when we want to capture and observables values and make changes based on them, but subscriptions do need to be cleaned up to avoid memory leaks. Whenever a component is destroyed an <a href="https://angular.io/api/core/OnDestroy" target="\_blank">ngOnDestroy</a> method is called. This is a good place to put our cleanup code, like unsubscribing from observables.</p>
+<p>In this example click the button to start subscribing to the observables - you'll see two variables logged: the new observable value and the subscription value. Then click the &quot;remove component&quot; button to see what happens when a component is destroyed. Next delete line 95, follow the same process and see what happens!</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -479,101 +482,95 @@
 const { Component, NgModule, VERSION, OnInit, OnDestroy, Injectable } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
-const { Routes, RouterModule } = ng.router;
-const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
 const { Observable, Subscription } = rxjs;
 
+@Injectable({
+  providedIn: 'root'
+})
+class ObsService {
+
+  constructor() { }
+
+  getObs() {
+
+    return new Observable&lt;number&gt;(observer =&gt; {
+      console.log('New subscription created');
+      let count = 0;
+      
+      const interval = setInterval(() =&gt; {
+        count++;
+        console.log(&quot;incrementing&quot;, count); 
+        observer.next(count);
+      }, 1000);
+    
+      return () =&gt; {
+        clearInterval(interval);
+        console.log('unsubscribed');
+      }
+    })
+  }
+}
 
 @Component({
   selector: 'my-app',
   template: `
-    &lt;ul class=&quot;nav&quot;&gt;
-      &lt;li routerLinkActive=&quot;active&quot;&gt;
-        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+    &lt;destroy-component *ngIf=&quot;yayComponent&quot;&gt;&lt;/destroy-component&gt;
+    &lt;button (click)=&quot;removeComponent()&quot; *ngIf=&quot;yayComponent&quot;&gt;remove component&lt;/button&gt;
+    &lt;p *ngIf=&quot;!yayComponent&quot;&gt;I am a very sad empty component now&lt;/p&gt;
   `
 })
-class AppComponent {
-  constructor() {}
-}
-
-@Component({
-  selector: 'about-component',
-  template: `
-    &lt;p&gt;An about component!&lt;/p&gt;
-  `
-})
-class AboutComponent {
+class AppComponent implements OnInit{
+  public yayComponent: boolean = true;
   constructor() {
+  }
+  
+  ngOnInit() {
+  }
+
+  removeComponent() {
+    this.yayComponent = false;
   }
 }
 
 @Component({
-  selector: 'home-component',
+  selector: 'destroy-component',
   template: `
-    &lt;p&gt;A home component!&lt;/p&gt;
+    &lt;p&gt;This component will be destroyed. Rawr.&lt;/p&gt;
+    &lt;button (click)=&quot;startObservable()&quot;&gt;start observable&lt;/button&gt;
 
     &lt;p&gt;{{myDisplayValue}}&lt;/p&gt;
     `
 })
-class HomeComponent implements OnInit, OnDestroy {
-  $myObservable: Observable&lt;string&gt;;
+class DestroyComponent implements OnInit, OnDestroy {
   $mySubscription: Subscription;
   myDisplayValue: string;
   
-  constructor(private fb:FormBuilder) {
-  
-  }
+  constructor(private obsService: ObsService) {}
 
-  ngOnInit() {
-    this.$myObservable = new Observable(observer =&gt; {
-      setTimeout(() =&gt; {
-          observer.next('hello observable');
-      }, 1000);
+  ngOnInit() {}
 
-      setTimeout(() =&gt; {
-          observer.next('how are you');
-      }, 2000);
-
-      setTimeout(() =&gt; {
-          observer.complete();
-      }, 3000);
-  });
-
-   this.$mySubscription = this.$myObservable.subscribe((val) =&gt; {
-     this.myDisplayValue = val;
-   });
-
+  startObservable() {
+    //subscribing to a service that emits observable values every second.
+    this.$mySubscription = this.obsService.getObs().subscribe((val) =&gt; {
+      console.log('new value', val);
+      this.myDisplayValue = val;
+    });
   }
 
   ngOnDestroy() {
-    this.$mySubscription.unsubscribe();
+    console.log('destroying component');
+    if(this.$mySubscription) {
+      this.$mySubscription.unsubscribe();
+    }
   }
-}
-//THIS IS A HACK JUST FOR CODEPEN TO WORK
-HomeComponent.parameters = [FormBuilder];
-
-
-const routes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: '**', component: HomeComponent }
-]
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-class AppRoutingModule { }
-
+}   
+DestroyComponent.parameters = [ObsService]; 
                  
 @NgModule({
-  declarations: [AppComponent, AboutComponent, HomeComponent],
+  declarations: [AppComponent, DestroyComponent],
   imports: [
     BrowserModule,
-    CommonModule,
-    AppRoutingModule, 
-    ReactiveFormsModule
+    CommonModule
   ],
   bootstrap: [AppComponent],
   providers: []
@@ -590,7 +587,7 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='53,56,57,58,59,66-78,80-82,85-88,only'></div>
+<div line-highlight='14,17,49,50,62-64,71,73,77-78,80,84-90,92-97,only'></div>
 <p>This example shows creating a subscription to an observable, and using an <a href="https://angular.io/api/common/AsyncPipe" target="\_blank">async pipe</a> to display the value. This is useful for displaying observable values in templates without the need to unsubscribe as that's handled by the pipe.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -884,39 +881,10 @@ platformBrowserDynamic()
 const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
-const { Routes, RouterModule } = ng.router;
 const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
-const { Observable } = rxjs;
-
 
 @Component({
   selector: 'my-app',
-  template: `
-    &lt;ul class=&quot;nav&quot;&gt;
-      &lt;li routerLinkActive=&quot;active&quot;&gt;
-        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;router-outlet&gt;&lt;/router-outlet&gt;
-  `
-})
-class AppComponent {
-  constructor() {}
-}
-
-@Component({
-  selector: 'about-component',
-  template: `
-    &lt;p&gt;An about component!&lt;/p&gt;
-  `
-})
-class AboutComponent {
-  constructor() {
-  }
-}
-
-@Component({
-  selector: 'home-component',
   template: `
     &lt;p&gt;A home component!&lt;/p&gt;
     &lt;form [formGroup]=&quot;myQuickForm&quot;&gt;
@@ -935,7 +903,7 @@ class AboutComponent {
     &lt;/form&gt;
   `
 })
-class HomeComponent implements OnInit{
+class AppComponent {
   myQuickForm: FormGroup;
 
   constructor(private fb:FormBuilder) {
@@ -955,26 +923,13 @@ class HomeComponent implements OnInit{
   }
 }
 //THIS IS A HACK JUST FOR CODEPEN TO WORK
-HomeComponent.parameters = [FormBuilder];
-
-
-const routes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: '**', component: HomeComponent }
-]
+AppComponent.parameters = [FormBuilder];
+            
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-class AppRoutingModule { }
-
-                 
-@NgModule({
-  declarations: [AppComponent, AboutComponent, HomeComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     CommonModule,
-    AppRoutingModule, 
     ReactiveFormsModule
   ],
   bootstrap: [AppComponent],
@@ -992,7 +947,107 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='82-84,only'></div>
+<div line-highlight='53-55,only'></div>
+<h2>Call methods on FormControls</h2>
+<p>The ReactiveForms API makes it easy for us to change our FormControls as needed. As a reminder, the FormControl class extends the <a href="https://angular.io/api/forms/AbstractControl">AbstractControl</a> class which has a lot of helpful properties and methods on it. The following example shows enabling and disabling controls via the <code>enable</code> and <code>disable</code> methods, and displaying the <code>enabled</code> FormControl property.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
+
+@Component({
+  selector: 'my-app',
+  template: `
+    &lt;p&gt;A home component!&lt;/p&gt;
+    &lt;form [formGroup]=&quot;myQuickForm&quot;&gt;
+      &lt;label&gt;
+          First name:
+          &lt;input type=&quot;text&quot; formControlName=&quot;firstName&quot;&gt;
+          &lt;p&gt;this control is enabled: {{myQuickForm.controls.firstName.enabled}}&lt;/p&gt;
+          &lt;button (click)=&quot;toggleControl(myQuickForm.controls.firstName)&quot;&gt;toggle firstName control&lt;/button&gt;&lt;br /&gt;
+        &lt;/label&gt;
+        &lt;label&gt;
+          Last name:
+          &lt;input type=&quot;text&quot; formControlName=&quot;lastName&quot;&gt;
+          &lt;p&gt;this control is enabled: {{myQuickForm.controls.lastName.enabled}}&lt;/p&gt;
+          &lt;button (click)=&quot;toggleControl(myQuickForm.controls.lastName)&quot;&gt;toggle lastName control&lt;/button&gt;&lt;br /&gt;
+        &lt;/label&gt;
+        &lt;label&gt;
+          Email:
+          &lt;input type=&quot;text&quot; formControlName=&quot;email&quot;&gt;
+          &lt;p&gt;this control is enabled: {{myQuickForm.controls.email.enabled}}&lt;/p&gt;
+          &lt;button (click)=&quot;toggleControl(myQuickForm.controls.email)&quot;&gt;toggle email control&lt;/button&gt;&lt;br /&gt;
+        &lt;/label&gt;
+    &lt;/form&gt;
+
+  `
+})
+class AppComponent {
+  myQuickForm: FormGroup;
+
+  constructor(private fb:FormBuilder) {}
+
+  ngOnInit() {
+    this.myQuickForm = this.fb.group({
+      firstName: {value: '', disabled: false},
+      lastName: {value: '', disabled: false},
+      email: {value: '', disabled: false}
+    });
+
+    this.myQuickForm.valueChanges.subscribe((val) =&gt; {
+      console.log(val);
+    });
+  }
+
+  toggleControl(control) {
+    let ctrl = control as FormControl;
+    if(ctrl.enabled) {
+      ctrl.disable();
+    }
+    else {
+      ctrl.enable();
+    }
+  }
+}
+//THIS IS A HACK JUST FOR CODEPEN TO WORK
+AppComponent.parameters = [FormBuilder];
+            
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    ReactiveFormsModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='27-28,33-34,39-40,63-71,only'></div>
 <h2>Exercise: Listen to Changes on the State and City formControls and log their value to the console</h2>
 <h3>The problem</h3>
 <p>Our end goal is to be able to show restaurants based on state, then city. As we move through getting each piece of information from the user we want to be able to update the next step - like getting a list of cities based on the state selected. To start doing this, subscribe to the value changes of the two controls <code>state</code> and <code>city</code> and log their values to the console.</p>
@@ -1013,8 +1068,8 @@ import { Subscription } from 'rxjs';
 import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
-export interface Data&lt;T&gt; {
-  value: Array&lt;T&gt;;
+export interface Data {
+  value: Array&lt;Restaurant&gt;;
   isPending: boolean;
 }
 
@@ -1026,7 +1081,7 @@ export interface Data&lt;T&gt; {
 export class RestaurantComponent implements OnInit, OnDestroy {
   form: FormGroup;
 
-  public restaurants: Data&lt;Restaurant&gt; = {
+  public restaurants: Data = {
     value: [],
     isPending: false
   }
@@ -1115,8 +1170,13 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
-const { HttpClient, HttpParams } = ng.common.http
-const { Routes, RouterModule } = ng.router;
+const { HttpClient, HttpParams, HttpClientModule } = ng.common.http
+
+interface User {
+  name: string;
+  id: number;
+  role: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -1140,34 +1200,6 @@ class UsersService {
 @Component({
   selector: 'my-app',
   template: `
-    &lt;ul class=&quot;nav&quot;&gt;
-      &lt;li routerLinkActive=&quot;active&quot;&gt;
-        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;router-outlet&gt;&lt;/router-outlet&gt;
-  `
-})
-class AppComponent {
-  constructor() {}
-
-}
-
-@Component({
-  selector: 'about-component',
-  template: `
-    &lt;p&gt;An about component!&lt;/p&gt;
-  `
-})
-class AboutComponent {
-  constructor() {
-  }
-}
-
-
-@Component({
-  selector: 'home-component',
-  template: `
     &lt;p&gt;A home component!&lt;/p&gt;
     &lt;ul&gt;
       &lt;li *ngFor=&quot;let user of users&quot;&gt;
@@ -1176,35 +1208,24 @@ class AboutComponent {
     &lt;/ul&gt;
   `
 })
-class HomeComponent implements OnInit{
-  private users: any[] = [];
+class AppComponent implements OnInit{
+  public user: User;
 
   constructor(private usersService: UsersService) {}
 
   ngOnInit() {
-    this.users = usersService.getUsers();
+    this.user = this.usersService.getUser(1);
   }
 }
 //THIS IS A HACK JUST FOR CODEPEN TO WORK
-HomeComponent.parameters = [UsersService];
-
-const routes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: '**', component: HomeComponent }
-]
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-class AppRoutingModule { }
-
+AppComponent.parameters = [UsersService];
                  
 @NgModule({
-  declarations: [AppComponent, AboutComponent, HomeComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     CommonModule,
-    AppRoutingModule
+    HttpClientModule
   ],
   bootstrap: [AppComponent],
   providers: []
@@ -1471,7 +1492,8 @@ export class RestaurantService {
 <h3>What You Need to Know</h3>
 <ul>
 <li><p>How to write a generic</p>
-<p>For an in-depth understanding of generics in TypeScript, check out our <a href="../RxJS.html" title="Learn RxJS by creating a validating credit card form.">RxJS guide</a>. For now, generics are a way to abstract functions, interfaces, etc to use different types in different situations.</p></li>
+<p>For an in-depth understanding of generics in TypeScript, check out our <a href="../typescript/generics.html" title="Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript.">TypeScript guide</a>. For now, generics are a way to abstract functions, interfaces, etc to use different types in different situations.</p>
+<p>This example shows creating a generic for a list that can be used to create arrays of various types, including Dinosaurs. Codepen doesn't have a typescript compiler that will throw errors, but if you paste the code into your IDE you'll be able to see the TypeScript errors thrown.</p></li>
 </ul>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1486,38 +1508,9 @@ export class RestaurantService {
 &lt;base href=&quot;/&quot;&gt;
 &lt;my-app&gt;&lt;/my-app&gt;
 &lt;script type=&quot;typescript&quot;&gt;
-const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
+const { Component, NgModule, VERSION, OnInit } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
-const { HttpClient, HttpParams } = ng.common.http
-const { Routes, RouterModule } = ng.router;
-
-@Component({
-  selector: 'my-app',
-  template: `
-    &lt;ul class=&quot;nav&quot;&gt;
-      &lt;li routerLinkActive=&quot;active&quot;&gt;
-        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;router-outlet&gt;&lt;/router-outlet&gt;
-  `
-})
-class AppComponent {
-  constructor() {}
-
-}
-
-@Component({
-  selector: 'about-component',
-  template: `
-    &lt;p&gt;An about component!&lt;/p&gt;
-  `
-})
-class AboutComponent {
-  constructor() {
-  }
-}
 
 class GenericCollection&lt;T&gt; {
   private list: T[] = [];
@@ -1533,51 +1526,55 @@ interface Dinosaur {
 }
 
 @Component({
-  selector: 'home-component',
+  selector: 'my-app',
   template: `
-    &lt;p&gt;A home component!&lt;/p&gt;
-   
+    &lt;p&gt;My strings&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li *ngFor=&quot;let string of myListOfStrings; let i=index&quot;&gt;{{string}}&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;p&gt;My dinosaurs&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li *ngFor=&quot;let dino of myListOfDinosaurs; let i=index&quot;&gt;{{dino.name}} is a {{dino.breed}} and has {{dino.teeth}} teeth.&lt;/li&gt;
+    &lt;/ul&gt;
   `
 })
-class HomeComponent implements OnInit{
-  let myListOfStrings = new GenericCollection&lt;string&gt;();
-  myListOfStrings.pushItem('booop');
-  myListOfStrings.pushItem(5);
-  //error Argument type of '5' is not assignable to parameter of type 'string'
-
-  let myListOfDinosaurs = new GenericCollection&lt;Dinosaur&gt;();
-  let otherDino = {
-    name: 'Blue',
-    breed: 'Velociraptor',
-    teeth: 100
-  }
-  myListOfDinosaurs.pushItem(otherDino);
-  myListOfDinosaurs.pushItem({name: 'Charlie'});
-  //error Argument type '{ name: string; }' is not assignable to parameter of type 'Dinosaur'.
+class AppComponent implements OnInit {
+  public myListOfStrings = new GenericCollection&lt;string&gt;();
+  public myListOfDinosaurs = new GenericCollection&lt;Dinosaur&gt;();
 
   constructor() {}
 
   ngOnInit() {
+    this.myListOfStrings.pushItem('booop');
+    this.myListOfStrings.pushItem('TA DA');
+    this.myListOfStrings.pushItem(5);
+    //error Argument type of '5' is not assignable to parameter of type 'string'
+
+    let dinoA = {
+      name: 'Blue',
+      breed: 'Velociraptor',
+      teeth: 100
+    }
+
+    let dinoB = {
+      name: 'Killorex',
+      breed: 'Tyranasuarus Rex',
+      teeth: 95
+    }
+    this.myListOfDinosaurs.pushItem(dinoA);
+    this.myListOfDinosaurs.pushItem(dinoB);
+    this.myListOfDinosaurs.pushItem({name: 'Charlie'});
+    //error Argument type '{ name: string; }' is not assignable to parameter of type 'Dinosaur'.
   }
+
 }
 
-const routes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: '**', component: HomeComponent }
-]
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-class AppRoutingModule { }
-
-                 
-@NgModule({
-  declarations: [AppComponent, AboutComponent, HomeComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
-    CommonModule,
-    AppRoutingModule
+    CommonModule
   ],
   bootstrap: [AppComponent],
   providers: []
@@ -1594,7 +1591,7 @@ platformBrowserDynamic()
 
 </code></pre>
   <div class='codepen'></div>
-  <div line-highlight='47-52,54-58,68-71,73-81, only'></div>
+  <div line-highlight='18-23,25-29,36,41,46,47,51-55,57-61,63-67,68-71,only'></div>
 <h3>To Verify Your Solution is Correct</h3>
 <p>Update the spec file  <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { TestBed } from '@angular/core/testing';
@@ -1761,7 +1758,7 @@ describe('RestaurantService', () =&gt; {
 
 });
 </code></pre>
-<div line-highlight='3,79,131,151'></div>
+<div line-highlight='3,79,131,151, only'></div>
 <h3>The Solution</h3>
 <p><strong>src/app/restaurant/restaurant.service.ts</strong></p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
@@ -1809,6 +1806,7 @@ export class RestaurantService {
 <p>Now that our service is in working order, let's populate our dropdowns with state and city data. We will want our list of states to be available right away, but we will want to fetch our list of cities only after we have the state value selected by the user.</p>
 <p>Requirements</p>
 <ol>
+<li>Rewrite the <code>Data</code> interface to be a generic to work with State and City types as well</li>
 <li>Mark state and city dropdowns as disabled until they are populated with data</li>
 <li>Fetch the states list when the component first loads (<code>ngOnInit</code>) and populate the dropdown options with the values</li>
 <li>When the State FormControl value changes, fetch the list of cities with the selected state as the parameter</li>
@@ -1821,6 +1819,7 @@ export class RestaurantService {
 <h3>What You Need to Know</h3>
 <ul>
 <li>How to call service methods in a component</li>
+<li>How to write generics</li>
 </ul>
 <h3>To Verify Your Solution is Correct</h3>
 <p>Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
@@ -1934,15 +1933,15 @@ class MockRestaurantService {
   getStates() {
     return of({
       data: [
-        {&quot;short&quot;:&quot;MI&quot;,&quot;name&quot;:&quot;Michigan&quot;},
-        {&quot;short&quot;:&quot;IL&quot;,&quot;name&quot;:&quot;Illinois&quot;},
-        {&quot;short&quot;:&quot;WI&quot;,&quot;name&quot;:&quot;Wisconsin&quot;}]
+        {&quot;short&quot;:&quot;MO&quot;,&quot;name&quot;:&quot;Missouri&quot;},
+        {&quot;short&quot;:&quot;CA  &quot;,&quot;name&quot;:&quot;California&quot;},
+        {&quot;short&quot;:&quot;MI&quot;,&quot;name&quot;:&quot;Michigan&quot;}]
     });
   }
 
   getCities(state:string) {
     return of({
-      data: [{&quot;name&quot;:&quot;Chicago&quot;,&quot;state&quot;:&quot;IL&quot;},{&quot;name&quot;:&quot;Peoria&quot;,&quot;state&quot;:&quot;IL&quot;}]
+      data: [{&quot;name&quot;:&quot;Sacramento&quot;,&quot;state&quot;:&quot;CA&quot;},{&quot;name&quot;:&quot;Oakland&quot;,&quot;state&quot;:&quot;CA&quot;}]
     });
   }
 }
@@ -1988,6 +1987,155 @@ describe('RestaurantComponent', () =&gt; {
     expect(compiled.querySelector('.restaurant')).toBe(null);
   });
 
+  it('should have two .restaurant divs',  &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick(501);
+    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.componentInstance.form.get('city').patchValue('Sacramento');
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let restaurantDivs = compiled.getElementsByClassName('restaurant');
+    let hoursDivs = compiled.getElementsByClassName('hours-price');
+    expect(restaurantDivs.length).toEqual(2);
+    expect(hoursDivs.length).toEqual(2);
+  }));
+
+  it('should display restaurant information',  &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick(501);
+    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.componentInstance.form.get('city').patchValue('Sacramento');
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.restaurant h3').textContent).toContain('Poutine Palace');
+  }));
+
+  it('should set restaurants value to restaurants response data and set isPending to false when state and city form values are selected', &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick();
+    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.componentInstance.form.get('city').patchValue('Sacramento');
+    fixture.detectChanges();
+    let expectedRestaurants = {
+      value: [{
+        &quot;name&quot;: &quot;Poutine Palace&quot;,
+        &quot;slug&quot;: &quot;poutine-palace&quot;,
+        &quot;images&quot;: {
+          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+        },
+        &quot;menu&quot;: {
+          &quot;lunch&quot;: [
+            {
+              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+              &quot;price&quot;: 35.99
+            },
+            {
+              &quot;name&quot;: &quot;Steamed Mussels&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+              &quot;price&quot;: 35.99
+            }
+          ],
+          &quot;dinner&quot;: [
+            {
+              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+              &quot;price&quot;: 45.99
+            },
+            {
+              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+              &quot;price&quot;: 45.99
+            }
+          ]
+        },
+        &quot;address&quot;: {
+          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+          &quot;city&quot;: &quot;Green Bay&quot;,
+          &quot;state&quot;: &quot;WI&quot;,
+          &quot;zip&quot;: &quot;53205&quot;
+        },
+        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Cheese Curd City&quot;,
+        &quot;slug&quot;: &quot;cheese-curd-city&quot;,
+        &quot;images&quot;: {
+          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
+          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+        },
+        &quot;menu&quot;: {
+          &quot;lunch&quot;: [
+            {
+              &quot;name&quot;: &quot;Ricotta Gnocchi&quot;,
+              &quot;price&quot;: 15.99
+            },
+            {
+              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Garlic Fries&quot;,
+              &quot;price&quot;: 15.99
+            }
+          ],
+          &quot;dinner&quot;: [
+            {
+              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+              &quot;price&quot;: 45.99
+            },
+            {
+              &quot;name&quot;: &quot;Truffle Noodles&quot;,
+              &quot;price&quot;: 14.99
+            },
+            {
+              &quot;name&quot;: &quot;Charred Octopus&quot;,
+              &quot;price&quot;: 25.99
+            }
+          ]
+        },
+        &quot;address&quot;: {
+          &quot;street&quot;: &quot;2451 W Washburne Ave&quot;,
+          &quot;city&quot;: &quot;Green Bay&quot;,
+          &quot;state&quot;: &quot;WI&quot;,
+          &quot;zip&quot;: &quot;53295&quot;
+        },
+        &quot;_id&quot;: &quot;Ar0qBJHxM3ecOhcr&quot;
+      }],
+      isPending: false
+    }
+    expect(fixture.componentInstance.restaurants).toEqual(expectedRestaurants);
+  }));
+
+  it('should show a loading div while isPending is true', () =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    fixture.componentInstance.restaurants.isPending = true;
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let loadingDiv = compiled.querySelector('.loading');
+    expect(loadingDiv).toBeTruthy();
+  });
+
+  it('should not show a loading div if isPending is false', () =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.componentInstance.restaurants.isPending = false;
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let loadingDiv = compiled.querySelector('.loading');
+    expect(loadingDiv).toBe(null);
+  });
+
   it('should have a form property with city and state keys', () =&gt; {
     const fixture = TestBed.createComponent(RestaurantComponent);
     fixture.detectChanges();
@@ -2010,8 +2158,101 @@ describe('RestaurantComponent', () =&gt; {
     let citySelect = compiled.querySelector('select[formcontrolname=&quot;city&quot;]');
     expect(citySelect).toBeTruthy();
   });
+
+  it('should set states value to states response data and set isPending to false', &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+    let expectedStates = {
+      value: [
+        {&quot;short&quot;:&quot;MO&quot;,&quot;name&quot;:&quot;Missouri&quot;},
+        {&quot;short&quot;:&quot;CA  &quot;,&quot;name&quot;:&quot;California&quot;},
+        {&quot;short&quot;:&quot;MI&quot;,&quot;name&quot;:&quot;Michigan&quot;}
+      ],
+      isPending: false
+    }
+    expect(fixture.componentInstance.states).toEqual(expectedStates);
+  }));
+
+  it('should set state dropdown options to be values of states member', &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let stateOption = compiled.querySelector('select[formcontrolname=&quot;state&quot;] option:nth-child(2)');
+    expect(stateOption.textContent).toEqual(' Missouri');
+    expect(stateOption.value).toEqual('MO');
+  }));
+
+  it('should set cities value to cities response data and set isPending to false', &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick();
+    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.detectChanges();
+    let expectedCities = {
+      value: [
+        {&quot;name&quot;:&quot;Sacramento&quot;,&quot;state&quot;:&quot;CA&quot;},
+        {&quot;name&quot;:&quot;Oakland&quot;,&quot;state&quot;:&quot;CA&quot;}
+      ],
+      isPending: false
+    }
+    expect(fixture.componentInstance.cities).toEqual(expectedCities);
+  }));
+
+  it('should set city dropdown options to be values of cities member when state value is selected', &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick();
+    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let cityOption = compiled.querySelector('select[formcontrolname=&quot;city&quot;] option:nth-child(2)');
+    expect(cityOption.textContent).toEqual(' Sacramento');
+    expect(cityOption.value).toEqual('Sacramento');
+  }));
+
+  it('state dropdown should be disabled until states are populated', &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    let storeGetStatesFunc = fixture.componentInstance.getStates;
+    fixture.componentInstance.getStates = () =&gt; {}; //preventing getStates func from being called 
+    fixture.detectChanges(); //detecting changes for createForm func to be called
+    let stateFormControl1 = fixture.componentInstance.form.get('state');
+    expect(stateFormControl1.enabled).toBe(false);
+    fixture.componentInstance.getStates = storeGetStatesFunc;
+    fixture.componentInstance.getStates();  //calling getStates func when we want it
+    fixture.detectChanges();
+    let stateFormControl2 = fixture.componentInstance.form.get('state');
+    expect(stateFormControl2.enabled).toBe(true);
+  }));
+
+  it('city dropdown should be disabled until cities are populated', &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges(); //detecting changes for createForm func to be called
+    let cityFormControl1 = fixture.componentInstance.form.get('city');
+    expect(cityFormControl1.enabled).toBe(false);
+    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.detectChanges();
+    let cityFormControl2 = fixture.componentInstance.form.get('city');
+    expect(cityFormControl2.enabled).toBe(true);
+  }));
+
+  it('should reset list of cities when new state is selected', &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges(); //detecting changes for createForm func to be called
+    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.componentInstance.form.get('city').patchValue('Sacramento');
+    fixture.detectChanges();
+    expect(fixture.componentInstance.restaurants.value.length).toEqual(2);
+    fixture.componentInstance.form.get('state').patchValue('MO');
+    fixture.detectChanges();
+    expect(fixture.componentInstance.restaurants.value.length).toEqual(0);
+  }));
 });
 </code></pre>
+<div line-highlight='169,170,183,184,190,194,195,337-351,353-362,364-378,380-390,392-404,406-415,417-427,only'></div>
 <h3>The Solution</h3>
 <p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -2039,12 +2280,12 @@ export class RestaurantComponent implements OnInit, OnDestroy {
     isPending: false
   }
 
-  public states = {
+  public states: Data&lt;State&gt; = {
     isPending: false,
     value: []
   };
 
-  public cities = {
+  public cities: Data&lt;City&gt; = {
     isPending: false,
     value: []
   };
@@ -2071,8 +2312,8 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
   createForm() {
     this.form = this.fb.group({
-      state: {value: '', disabled: false},
-      city: {value: '', disabled: false},
+      state: {value: '', disabled: true},
+      city: {value: '', disabled: true},
     });
 
     this.onChanges();
@@ -2144,7 +2385,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   }
 }
 </code></pre>
-<div line-highlight='5,28,33,44-48,65-101, 103-109, 111-121,123-128'></div>
+<div line-highlight='5,8-11,21,26,31,28,33,44-48,65-101, 103-109, 111-121,123-128'></div>
 
 </section>
 

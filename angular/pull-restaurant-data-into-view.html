@@ -592,53 +592,344 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='90,only'></div>
-<h2>Exercise: Inject Restaurants Service in Restaurants component and call the <code>getRestaurants</code> function</h2>
+<h2>Exercise: Inject RestaurantService in RestaurantComponent and call the <code>getRestaurants</code> function</h2>
 <h3>The Problem</h3>
-<p>We want to be able to use the <code>getRestaurants</code> method in our component to display a list of restaurants. Update your
-<strong>src/app/restaurant/restaurant.component.html</strong> to be:</p>
-<pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
-  &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
-  &lt;div class=&quot;restaurant loading&quot; *ngIf=&quot;restaurants.isPending&quot;&gt;&lt;/div&gt;
-  &lt;ng-container *ngIf=&quot;restaurants.value.length&quot;&gt;
-    &lt;div class=&quot;restaurant&quot; *ngFor=&quot;let restaurant of restaurants.value&quot;&gt;
-
-      &lt;img src=&quot;{{restaurant.images.thumbnail | imageUrl}}&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
-      &lt;h3&gt;{{restaurant.name}}&lt;/h3&gt;
-
-      &lt;div class=&quot;address&quot; *ngIf=&quot;restaurant.address&quot;&gt;
-        {{restaurant.address.street}}&lt;br /&gt;{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
-      &lt;/div&gt;
-
-      &lt;div class=&quot;hours-price&quot;&gt;
-        $$$&lt;br /&gt;
-        Hours: M-F 10am-11pm
-        &lt;span class=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
-      &lt;/div&gt;
-
-      &lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
-        Details
-      &lt;/a&gt;
-      &lt;br /&gt;
-    &lt;/div&gt;
-  &lt;/ng-container&gt;
-&lt;/div&gt;
-
-</code></pre>
-<div line-highlight='3, 4, 5'></div>
-<p>Use this as a guide to figure out how to structure getting the call to get restaurants from the service - it's important to note that our new markup shows <code>restaurants</code> is now an object that has an <code>isPending</code> property and a <code>value</code> prop for the array of restaurants. Here's the generic interface for you to use that should represent what the new restaurant type is.</p>
-<pre><code class="language-typescript">export interface Data&lt;T&gt; {
-  value: Array&lt;T&gt;;
-  isPending: boolean;
-}
-</code></pre>
+<p>We want to be able to use the <code>getRestaurants</code> method in our component to display a list of restaurants. We also want specify the type of our <code>restaurant</code> member on our <code>RestaurantComponent</code> class to be an array of restaurants.</p>
 <h3>What you need to know</h3>
 <ul>
 <li>How to inject a service into a component (you learned this in section above! ✔️)</li>
-<li>How to call a method from a class</li>
+<li>How to call a method on a class</li>
+<li>How to specify an array type (you learned this the previous section! ✔️)</li>
 </ul>
 <blockquote>
 <p>Hint: Call the <code>getRestaurants</code> method in the <code>ngOnInit</code> method.</p>
 </blockquote>
+<h3>To Verify Your Solution is Correct</h3>
+<p>You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>!</p>
+<p>Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs'; 
+import { ImageUrlPipe } from '../image-url.pipe';
+
+import { RestaurantComponent } from './restaurant.component';
+import { RestaurantService } from './restaurant.service';
+
+class MockRestaurantService {
+  getRestaurants() {
+    return of({
+      data: [{
+        &quot;name&quot;: &quot;Poutine Palace&quot;,
+        &quot;slug&quot;: &quot;poutine-palace&quot;,
+        &quot;images&quot;: {
+          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+        },
+        &quot;menu&quot;: {
+          &quot;lunch&quot;: [
+            {
+              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+              &quot;price&quot;: 35.99
+            },
+            {
+              &quot;name&quot;: &quot;Steamed Mussels&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+              &quot;price&quot;: 35.99
+            }
+          ],
+          &quot;dinner&quot;: [
+            {
+              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+              &quot;price&quot;: 45.99
+            },
+            {
+              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+              &quot;price&quot;: 45.99
+            }
+          ]
+        },
+        &quot;address&quot;: {
+          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+          &quot;city&quot;: &quot;Green Bay&quot;,
+          &quot;state&quot;: &quot;WI&quot;,
+          &quot;zip&quot;: &quot;53205&quot;
+        },
+        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Cheese Curd City&quot;,
+        &quot;slug&quot;: &quot;cheese-curd-city&quot;,
+        &quot;images&quot;: {
+          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
+          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+        },
+        &quot;menu&quot;: {
+          &quot;lunch&quot;: [
+            {
+              &quot;name&quot;: &quot;Ricotta Gnocchi&quot;,
+              &quot;price&quot;: 15.99
+            },
+            {
+              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Garlic Fries&quot;,
+              &quot;price&quot;: 15.99
+            }
+          ],
+          &quot;dinner&quot;: [
+            {
+              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+              &quot;price&quot;: 45.99
+            },
+            {
+              &quot;name&quot;: &quot;Truffle Noodles&quot;,
+              &quot;price&quot;: 14.99
+            },
+            {
+              &quot;name&quot;: &quot;Charred Octopus&quot;,
+              &quot;price&quot;: 25.99
+            }
+          ]
+        },
+        &quot;address&quot;: {
+          &quot;street&quot;: &quot;2451 W Washburne Ave&quot;,
+          &quot;city&quot;: &quot;Green Bay&quot;,
+          &quot;state&quot;: &quot;WI&quot;,
+          &quot;zip&quot;: &quot;53295&quot;
+        },
+        &quot;_id&quot;: &quot;Ar0qBJHxM3ecOhcr&quot;
+      }]}
+            )
+  }
+}
+describe('RestaurantComponent', () =&gt; {
+  let component: RestaurantComponent;
+  let fixture: ComponentFixture&lt;RestaurantComponent&gt;;
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule
+      ],
+      providers: [{
+        provide: RestaurantService,
+        useClass: MockRestaurantService
+      }],
+      declarations: [ RestaurantComponent, ImageUrlPipe ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(RestaurantComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  it('should render title in a h2 tag', () =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h2').textContent).toContain('Restaurants');
+  });
+
+  it('should not show any restaurants markup if no restaurants', () =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.restaurant')).toBe(null);
+  });
+
+  it('should have two .restaurant divs',  &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick(501);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let restaurantDivs = compiled.getElementsByClassName('restaurant');
+    let hoursDivs = compiled.getElementsByClassName('hours-price');
+    expect(restaurantDivs.length).toEqual(2);
+    expect(hoursDivs.length).toEqual(2);
+  }));
+
+  it('should display restaurant information',  &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick(501);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.restaurant h3').textContent).toContain('Poutine Palace');
+  }));
+
+  it('should set restaurants member to response of getRestaurants method', &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+    let expectedRestaurants = [{
+        &quot;name&quot;: &quot;Poutine Palace&quot;,
+        &quot;slug&quot;: &quot;poutine-palace&quot;,
+        &quot;images&quot;: {
+          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+        },
+        &quot;menu&quot;: {
+          &quot;lunch&quot;: [
+            {
+              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+              &quot;price&quot;: 35.99
+            },
+            {
+              &quot;name&quot;: &quot;Steamed Mussels&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+              &quot;price&quot;: 35.99
+            }
+          ],
+          &quot;dinner&quot;: [
+            {
+              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+              &quot;price&quot;: 45.99
+            },
+            {
+              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+              &quot;price&quot;: 45.99
+            }
+          ]
+        },
+        &quot;address&quot;: {
+          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+          &quot;city&quot;: &quot;Green Bay&quot;,
+          &quot;state&quot;: &quot;WI&quot;,
+          &quot;zip&quot;: &quot;53205&quot;
+        },
+        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Cheese Curd City&quot;,
+        &quot;slug&quot;: &quot;cheese-curd-city&quot;,
+        &quot;images&quot;: {
+          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
+          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+        },
+        &quot;menu&quot;: {
+          &quot;lunch&quot;: [
+            {
+              &quot;name&quot;: &quot;Ricotta Gnocchi&quot;,
+              &quot;price&quot;: 15.99
+            },
+            {
+              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Garlic Fries&quot;,
+              &quot;price&quot;: 15.99
+            }
+          ],
+          &quot;dinner&quot;: [
+            {
+              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+              &quot;price&quot;: 45.99
+            },
+            {
+              &quot;name&quot;: &quot;Truffle Noodles&quot;,
+              &quot;price&quot;: 14.99
+            },
+            {
+              &quot;name&quot;: &quot;Charred Octopus&quot;,
+              &quot;price&quot;: 25.99
+            }
+          ]
+        },
+        &quot;address&quot;: {
+          &quot;street&quot;: &quot;2451 W Washburne Ave&quot;,
+          &quot;city&quot;: &quot;Green Bay&quot;,
+          &quot;state&quot;: &quot;WI&quot;,
+          &quot;zip&quot;: &quot;53295&quot;
+        },
+        &quot;_id&quot;: &quot;Ar0qBJHxM3ecOhcr&quot;
+      }];
+    expect(fixture.componentInstance.restaurants).toEqual(expectedRestaurants);
+  }));
+
+});
+
+</code></pre>
+<blockquote>
+<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+</blockquote>
+<h3>Solution</h3>
+<p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
+<pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
+import { RestaurantService, ResponseData } from './restaurant.service';
+import { Restaurant } from './restaurant';
+
+@Component({
+  selector: 'pmo-restaurant',
+  templateUrl: './restaurant.component.html',
+  styleUrls: ['./restaurant.component.less']
+})
+export class RestaurantComponent implements OnInit {
+  public restaurants: Restaurant[] = [];
+
+  constructor(private restaurantService: RestaurantService) { }
+
+  ngOnInit() {
+    this.restaurantService.getRestaurants().subscribe((res: ResponseData) =&gt; {
+      this.restaurants = res.data;
+    });
+  }
+}
+
+</code></pre>
+<div line-highlight='2,3,11,13,16-18'></div>
+<h2>Exercise: Show a loading state while restaurants are being requested</h2>
+<h3>The Problem</h3>
+<p>We want to show a loading div while the request to get the list of restaurants is made. You'll need to do a few things:</p>
+<ol>
+<li>Create a new interface <code>Data</code> that represents the following object:</li>
+</ol>
+<pre><code class="language-json">let data = {
+  value: [], //aray of restaurants
+  isPending: false //boolean 
+}
+</code></pre>
+<ol start="2">
+<li>Change the <code>restaurants</code> member to use the new <code>Data</code> type</li>
+<li>Right before you call the <code>getRestaurants</code> method, set the restaurants <code>isPending</code> value to true</li>
+<li>Once the <code>getRestaurants</code> response is received, set the restaurants <code>value</code> to the response data and <code>isPending</code> value to false</li>
+<li>Update the html to match the new restaurant object values and to show this div while <code>isPending</code> is true:</li>
+</ol>
+<pre><code class="language-html">  &lt;div class=&quot;restaurant loading&quot;&gt;&lt;/div&gt;
+</code></pre>
+<h3>What you need to know</h3>
+<ul>
+<li>How to write an interface (you learned this in the previous section! ✔️)</li>
+<li>How to conditionally show html blocks (you learned this in a previous section! ✔️)</li>
+</ul>
 <h3>To Verify Your Solution is Correct</h3>
 <p>You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>!</p>
 <p>Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
@@ -913,6 +1204,25 @@ describe('RestaurantComponent', () =&gt; {
     expect(fixture.componentInstance.restaurants).toEqual(expectedRestaurants);
   }));
 
+  it('should show a loading div while isPending is true', () =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    fixture.componentInstance.restaurants.isPending = true;
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let loadingDiv = compiled.querySelector('.loading');
+    expect(loadingDiv).toBeTruthy();
+  });
+
+  it('should not show a loading div if isPending is false', () =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.componentInstance.restaurants.isPending = false;
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let loadingDiv = compiled.querySelector('.loading');
+    expect(loadingDiv).toBe(null);
+  });
+
 });
 
 </code></pre>
@@ -925,8 +1235,8 @@ describe('RestaurantComponent', () =&gt; {
 import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
-export interface Data&lt;T&gt; {
-  value: Array&lt;T&gt;;
+export interface Data {
+  value: Array&lt;Restaurant&gt;;
   isPending: boolean;
 }
 
@@ -936,7 +1246,7 @@ export interface Data&lt;T&gt; {
   styleUrls: ['./restaurant.component.less']
 })
 export class RestaurantComponent implements OnInit {
-  public restaurants: Data&lt;Restaurant&gt; = {
+  public restaurants: Data = {
     value: [],
     isPending: false
   };
@@ -952,7 +1262,37 @@ export class RestaurantComponent implements OnInit {
 }
 
 </code></pre>
-<div line-highlight='2, 3, 5-8, 16-19, 20, 23-27'></div>
+<div line-highlight='5-8,16-19,23-27'></div>
+<p><strong>src/app/restaurant/restaurant.component.html</strong></p>
+<pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
+  &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
+  &lt;div class=&quot;restaurant loading&quot; *ngIf=&quot;restaurants.isPending&quot;&gt;&lt;/div&gt;
+  &lt;ng-container *ngIf=&quot;restaurants.value.length&quot;&gt;
+    &lt;div class=&quot;restaurant&quot; *ngFor=&quot;let restaurant of restaurants.value&quot;&gt;
+
+      &lt;img src=&quot;{{restaurant.images.thumbnail | imageUrl}}&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
+      &lt;h3&gt;{{restaurant.name}}&lt;/h3&gt;
+
+      &lt;div class=&quot;address&quot; *ngIf=&quot;restaurant.address&quot;&gt;
+        {{restaurant.address.street}}&lt;br /&gt;{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
+      &lt;/div&gt;
+
+      &lt;div class=&quot;hours-price&quot;&gt;
+        $$$&lt;br /&gt;
+        Hours: M-F 10am-11pm
+        &lt;span class=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
+      &lt;/div&gt;
+
+      &lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
+        Details
+      &lt;/a&gt;
+      &lt;br /&gt;
+    &lt;/div&gt;
+  &lt;/ng-container&gt;
+&lt;/div&gt;
+
+</code></pre>
+<div line-highlight='3, 4, 5'></div>
 <h3>Did You Know?</h3>
 <p>You may have noticed in our markup there's another use of routerLink:</p>
 <pre><code class="language-html">&lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
