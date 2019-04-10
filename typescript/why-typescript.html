@@ -32,8 +32,8 @@
      </ul>
      <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
   </div>
-
-  <div class="content">
+  <div id="content-wrapper">
+    <div class="content">
 	
 		<div class="sidebar-left">
   
@@ -400,34 +400,36 @@ document.body.innerHTML = greeter(user);
 	</article>
 </div>
 
+  </div>
 
   <footer></footer>
 
-  <script type="text/javascript">
-    var docObject = {"src":{"path":"src/typescript/1-why-typescript.md"},"description":"Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript. \n","name":"typescript/why-typescript","title":"Why TypeScript","type":"page","parent":"typescript","order":1,"comment":" ","pathToRoot":"../.."};
-  </script>
-
-  
-    <script>
-      steal = {
-        instantiated: {
-          "bundles/bit-docs-site/static.css!$css" : null
-        }
-      }
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/typescript/1-why-typescript.md"},"description":"Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript. \n","name":"typescript/why-typescript","title":"Why TypeScript","type":"page","parent":"typescript","order":1,"comment":" ","pathToRoot":"../.."};
     </script>
-    <script type='text/javascript'
-        data-main="bit-docs-site/static"
-        src="../static/steal.production.js"></script>
-  
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-29"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-2302003-29');
-</script>
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-29"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-2302003-29');
+    </script>
+  </div>
 </body>
 </html>
