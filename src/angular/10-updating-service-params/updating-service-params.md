@@ -28,14 +28,21 @@ In the __src/app/restaurant/restaurant.component.ts__ file, update the call to t
 
 If you've implemented the solution correctly, when you use the select boxes to choose state and city, you should see a list of just restaurants from the selected city returned.
 
+Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
+
+@sourceref ./restaurant.component-httpparams.spec.ts
+@highlight 11,106,127,142,432-441,only
+
+> If you've implemented the solution correctly, when you run `npm run test` the restaurant component tests will pass! We'll fix the service tests in the next step.
+
 ### Solution
 
 __src/app/restaurant/restaurant.service.ts__
 
 @sourceref ./restaurant.service-httpparams.ts
-@highlight 27,28
+@highlight 26-28,only
 
 __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./restaurant.component-httpparams.ts
-@highlight 97,123,124
+@highlight 97,123,124,only
