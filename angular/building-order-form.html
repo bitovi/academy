@@ -32,8 +32,8 @@
      </ul>
      <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
   </div>
-
-  <div class="content">
+  <div id="content-wrapper">
+    <div class="content">
 	
 		<div class="sidebar-left">
   
@@ -1123,7 +1123,7 @@ platformBrowserDynamic()
       &lt;h2&gt;Order here&lt;/h2&gt;
       &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
         &lt;tabset&gt;
-            &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
+            &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
               &lt;ul  class=&quot;list-group&quot;&gt;
                 &lt;pmo-menu-items&gt;&lt;/pmo-menu-items&gt;
               &lt;/ul&gt;
@@ -2114,34 +2114,36 @@ describe('OrderComponent', () =&gt; {
 	</article>
 </div>
 
+  </div>
 
   <footer></footer>
 
-  <script type="text/javascript">
-    var docObject = {"src":{"path":"src/angular/13-building-order-form/building-order-form.md"},"description":"Building the Order Form \n","name":"angular/building-order-form","title":"Building the Order Form","type":"page","parent":"angular","order":13,"comment":" ","pathToRoot":"../.."};
-  </script>
-
-  
-    <script>
-      steal = {
-        instantiated: {
-          "bundles/bit-docs-site/static.css!$css" : null
-        }
-      }
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/angular/13-building-order-form/building-order-form.md"},"description":"Building the Order Form \n","name":"angular/building-order-form","title":"Building the Order Form","type":"page","parent":"angular","order":13,"comment":" ","pathToRoot":"../.."};
     </script>
-    <script type='text/javascript'
-        data-main="bit-docs-site/static"
-        src="../static/steal.production.js"></script>
-  
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-29"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'UA-2302003-29');
-</script>
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
 
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-29"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-2302003-29');
+    </script>
+  </div>
 </body>
 </html>
