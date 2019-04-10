@@ -1,11 +1,10 @@
 import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs'; 
+import { ImageUrlPipe } from '../image-url.pipe';
 
 import { RestaurantComponent } from './restaurant.component';
 import { RestaurantService } from './restaurant.service';
-import { ImageUrlPipe } from '../image-url.pipe';
-import { ReactiveFormsModule } from '@angular/forms';
 
 class MockRestaurantService {
   getRestaurants() {
@@ -104,21 +103,6 @@ class MockRestaurantService {
       }]}
             )
   }
-
-  getStates() {
-    return of({
-      data: [
-        {"short":"MI","name":"Michigan"},
-        {"short":"IL","name":"Illinois"},
-        {"short":"WI","name":"Wisconsin"}]
-    });
-  }
-
-  getCities(state:string) {
-    return of({
-      data: [{"name":"Chicago","state":"IL"},{"name":"Peoria","state":"IL"}]
-    });
-  }
 }
 describe('RestaurantComponent', () => {
   let component: RestaurantComponent;
@@ -127,8 +111,7 @@ describe('RestaurantComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
-        ReactiveFormsModule
+        RouterTestingModule
       ],
       providers: [{
         provide: RestaurantService,
@@ -183,13 +166,12 @@ describe('RestaurantComponent', () => {
     expect(compiled.querySelector('.restaurant h3').textContent).toContain('Poutine Palace');
   }));
 
-  it('should set restaurants value to restaurants response data and set isPending to false', <any>fakeAsync((): void => {
+  it('should set restaurants member to response of getRestaurants method', <any>fakeAsync((): void => {
     const fixture = TestBed.createComponent(RestaurantComponent);
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    let expectedRestaurants = {
-      value: [{
+    let expectedRestaurants = [{
         "name": "Poutine Palace",
         "slug": "poutine-palace",
         "images": {
@@ -280,51 +262,8 @@ describe('RestaurantComponent', () => {
           "zip": "53295"
         },
         "_id": "Ar0qBJHxM3ecOhcr"
-      }],
-      isPending: false
-    }
+      }];
     expect(fixture.componentInstance.restaurants).toEqual(expectedRestaurants);
   }));
 
-  it('should show a loading div while isPending is true', () => {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    fixture.detectChanges();
-    fixture.componentInstance.restaurants.isPending = true;
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let loadingDiv = compiled.querySelector('.loading');
-    expect(loadingDiv).toBeTruthy();
-  });
-
-  it('should not show a loading div if isPending is false', () => {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    fixture.componentInstance.restaurants.isPending = false;
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let loadingDiv = compiled.querySelector('.loading');
-    expect(loadingDiv).toBe(null);
-  });
-
-  it('should have a form property with city and state keys', () => {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    fixture.detectChanges();
-    expect(fixture.componentInstance.form.controls.state).toBeTruthy();
-    expect(fixture.componentInstance.form.controls.city).toBeTruthy();
-  });
-
-  it('should show a state dropdown', () => {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let stateSelect = compiled.querySelector('select[formcontrolname="state"]');
-    expect(stateSelect).toBeTruthy();
-  });
-
-  it('should show a city dropdown', () => {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let citySelect = compiled.querySelector('select[formcontrolname="city"]');
-    expect(citySelect).toBeTruthy();
-  });
 });

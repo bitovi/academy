@@ -14,8 +14,13 @@
 const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
-const { HttpClient, HttpParams } = ng.common.http
-const { Routes, RouterModule } = ng.router;
+const { HttpClient, HttpParams, HttpClientModule } = ng.common.http
+
+interface User {
+  name: string;
+  id: number;
+  role: string;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -39,34 +44,6 @@ class UsersService {
 @Component({
   selector: 'my-app',
   template: `
-    <ul class="nav">
-      <li routerLinkActive="active">
-        <a routerLink="/about" >About</a>
-      </li>
-    </ul>
-    <router-outlet></router-outlet>
-  `
-})
-class AppComponent {
-  constructor() {}
-
-}
-
-@Component({
-  selector: 'about-component',
-  template: `
-    <p>An about component!</p>
-  `
-})
-class AboutComponent {
-  constructor() {
-  }
-}
-
-
-@Component({
-  selector: 'home-component',
-  template: `
     <p>A home component!</p>
     <ul>
       <li *ngFor="let user of users">
@@ -75,35 +52,24 @@ class AboutComponent {
     </ul>
   `
 })
-class HomeComponent implements OnInit{
-  private users: any[] = [];
+class AppComponent implements OnInit{
+  public user: User;
 
   constructor(private usersService: UsersService) {}
 
   ngOnInit() {
-    this.users = usersService.getUsers();
+    this.user = this.usersService.getUser(1);
   }
 }
 //THIS IS A HACK JUST FOR CODEPEN TO WORK
-HomeComponent.parameters = [UsersService];
-
-const routes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: '**', component: HomeComponent }
-]
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-class AppRoutingModule { }
-
+AppComponent.parameters = [UsersService];
                  
 @NgModule({
-  declarations: [AppComponent, AboutComponent, HomeComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     CommonModule,
-    AppRoutingModule
+    HttpClientModule
   ],
   bootstrap: [AppComponent],
   providers: []

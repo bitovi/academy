@@ -108,15 +108,15 @@ class MockRestaurantService {
   getStates() {
     return of({
       data: [
-        {"short":"MI","name":"Michigan"},
-        {"short":"IL","name":"Illinois"},
-        {"short":"WI","name":"Wisconsin"}]
+        {"short":"MO","name":"Missouri"},
+        {"short":"CA  ","name":"California"},
+        {"short":"MI","name":"Michigan"}]
     });
   }
 
   getCities(state:string) {
     return of({
-      data: [{"name":"Chicago","state":"IL"},{"name":"Peoria","state":"IL"}]
+      data: [{"name":"Sacramento","state":"CA"},{"name":"Oakland","state":"CA"}]
     });
   }
 }
@@ -166,6 +166,8 @@ describe('RestaurantComponent', () => {
     const fixture = TestBed.createComponent(RestaurantComponent);
     fixture.detectChanges();
     tick(501);
+    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.componentInstance.form.get('city').patchValue('Sacramento');
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     let restaurantDivs = compiled.getElementsByClassName('restaurant');
@@ -178,15 +180,19 @@ describe('RestaurantComponent', () => {
     const fixture = TestBed.createComponent(RestaurantComponent);
     fixture.detectChanges();
     tick(501);
+    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.componentInstance.form.get('city').patchValue('Sacramento');
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
     expect(compiled.querySelector('.restaurant h3').textContent).toContain('Poutine Palace');
   }));
 
-  it('should set restaurants value to restaurants response data and set isPending to false', <any>fakeAsync((): void => {
+  it('should set restaurants value to restaurants response data and set isPending to false when state and city form values are selected', <any>fakeAsync((): void => {
     const fixture = TestBed.createComponent(RestaurantComponent);
     fixture.detectChanges();
     tick();
+    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.componentInstance.form.get('city').patchValue('Sacramento');
     fixture.detectChanges();
     let expectedRestaurants = {
       value: [{
@@ -327,4 +333,96 @@ describe('RestaurantComponent', () => {
     let citySelect = compiled.querySelector('select[formcontrolname="city"]');
     expect(citySelect).toBeTruthy();
   });
+
+  it('should set states value to states response data and set isPending to false', <any>fakeAsync((): void => {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+    let expectedStates = {
+      value: [
+        {"short":"MO","name":"Missouri"},
+        {"short":"CA  ","name":"California"},
+        {"short":"MI","name":"Michigan"}
+      ],
+      isPending: false
+    }
+    expect(fixture.componentInstance.states).toEqual(expectedStates);
+  }));
+
+  it('should set state dropdown options to be values of states member', <any>fakeAsync((): void => {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let stateOption = compiled.querySelector('select[formcontrolname="state"] option:nth-child(2)');
+    expect(stateOption.textContent).toEqual(' Missouri');
+    expect(stateOption.value).toEqual('MO');
+  }));
+
+  it('should set cities value to cities response data and set isPending to false', <any>fakeAsync((): void => {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick();
+    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.detectChanges();
+    let expectedCities = {
+      value: [
+        {"name":"Sacramento","state":"CA"},
+        {"name":"Oakland","state":"CA"}
+      ],
+      isPending: false
+    }
+    expect(fixture.componentInstance.cities).toEqual(expectedCities);
+  }));
+
+  it('should set city dropdown options to be values of cities member when state value is selected', <any>fakeAsync((): void => {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick();
+    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let cityOption = compiled.querySelector('select[formcontrolname="city"] option:nth-child(2)');
+    expect(cityOption.textContent).toEqual(' Sacramento');
+    expect(cityOption.value).toEqual('Sacramento');
+  }));
+
+  it('state dropdown should be disabled until states are populated', <any>fakeAsync((): void => {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    let storeGetStatesFunc = fixture.componentInstance.getStates;
+    fixture.componentInstance.getStates = () => {}; //preventing getStates func from being called 
+    fixture.detectChanges(); //detecting changes for createForm func to be called
+    let stateFormControl1 = fixture.componentInstance.form.get('state');
+    expect(stateFormControl1.enabled).toBe(false);
+    fixture.componentInstance.getStates = storeGetStatesFunc;
+    fixture.componentInstance.getStates();  //calling getStates func when we want it
+    fixture.detectChanges();
+    let stateFormControl2 = fixture.componentInstance.form.get('state');
+    expect(stateFormControl2.enabled).toBe(true);
+  }));
+
+  it('city dropdown should be disabled until cities are populated', <any>fakeAsync((): void => {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges(); //detecting changes for createForm func to be called
+    let cityFormControl1 = fixture.componentInstance.form.get('city');
+    expect(cityFormControl1.enabled).toBe(false);
+    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.detectChanges();
+    let cityFormControl2 = fixture.componentInstance.form.get('city');
+    expect(cityFormControl2.enabled).toBe(true);
+  }));
+
+  it('should reset list of cities when new state is selected', <any>fakeAsync((): void => {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges(); //detecting changes for createForm func to be called
+    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.componentInstance.form.get('city').patchValue('Sacramento');
+    fixture.detectChanges();
+    expect(fixture.componentInstance.restaurants.value.length).toEqual(2);
+    fixture.componentInstance.form.get('state').patchValue('MO');
+    fixture.detectChanges();
+    expect(fixture.componentInstance.restaurants.value.length).toEqual(0);
+  }));
 });

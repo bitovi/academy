@@ -269,4 +269,23 @@ describe('RestaurantComponent', () => {
     expect(fixture.componentInstance.restaurants).toEqual(expectedRestaurants);
   }));
 
+  it('should show a loading div while isPending is true', () => {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    fixture.componentInstance.restaurants.isPending = true;
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let loadingDiv = compiled.querySelector('.loading');
+    expect(loadingDiv).toBeTruthy();
+  });
+
+  it('should not show a loading div if isPending is false', () => {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.componentInstance.restaurants.isPending = false;
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let loadingDiv = compiled.querySelector('.loading');
+    expect(loadingDiv).toBe(null);
+  });
+
 });

@@ -35,23 +35,25 @@ class. It's worth getting familiar with the methods available in this class (lik
 
 @sourceref ./form-control.html
 @codepen
-@highlight 53-56,61,only
+@highlight 17,23-29,33,only
 
 ### FormGroup
 
-A FormGroup is a way of grouping FormControls and tracking the state of the entire form. Notice the way we connect our input in the markup is slightly different - we use `formControlName` to bind to the name value in our FormGroup. Groups can be nested within other groups or arrays.  
+A FormGroup is a way of grouping FormControls and tracking the state of the entire group. For instance, if you want to get the values of all of your FormControls to submit as an object of those values, you'd use `formGroupname.value`. Notice the way we connect our input in the markup is slightly different - we use `formControlName` to bind to the name value in our FormGroup. Groups can be nested within other groups or arrays.  
 
 @sourceref ./form-group.html
 @codepen
-@highlight 50-63,67-71,only
+@highlight 17,23-37,39,43,45-49,53-55,only
 
 ### FormArray
 
 FormArray aggregates FormControls into an array. It's different than FormGroup in that the controls inside are serialized as an array. FormArrays are very useful when dealing with repeated FormControls or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.
 
+This example shows the use of FormArray and using an `insert` method to dynamically add more FormGroups to the `users` FormArray.
+
 @sourceref ./form-array.html
 @codepen
-@highlight 50-63,67-71,only
+@highlight 17,23-45,47,53-66,70-81,only
 
 ### FormBuilder
 
@@ -59,7 +61,7 @@ FormArray aggregates FormControls into an array. It's different than FormGroup i
 
 @sourceref ./form-builder.html
 @codepen
-@highlight 53, 57, 61, 67,74-78,only
+@highlight 17,40,42,45-49,only
 
 ## Exercise: Creating a Reactive Form in the Restaurant component with city and state dropdown inputs
 
@@ -70,6 +72,7 @@ We would like our user to be able to filter restaurants based on city and state.
 ### What you need to know
 
 - How to create a FormControl (you learned this in the section above! ✔️)
+- How to use `formControl` directive in the dom
 - How to create a FormGroup (you learned this in the section above! ✔️)
 - How to use FormBuilder (you learned this in the section above! ✔️)
 - How to use ngFor (you learned this in the Creating Components section! ✔️)
@@ -79,7 +82,14 @@ Here's some code to get you started:
 __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./restaurant.component-starter.ts
-@highlight 2,18,25-28,30-33,41,51-53 only
+@highlight 2,18,25-28,30-33,42,51-53,only
+
+Make sure to use the `formControl` directive to tie the selects to their FormControls in the component.
+
+__src/app/restaurant/restaurant.component.html__
+
+@sourceref ./restaurant.component-starter.html
+@highlight 3-24,only
 
 Don't forget to import reactiveForms in the root app module.
 
@@ -87,6 +97,7 @@ __src/app/app.module.ts__
 
 @sourceref ./app.module.ts
 @highlight 5,24
+
 
 ### To Verify Your Solution is Correct
 
@@ -97,7 +108,7 @@ When you visit <a href="http://localhost:4200/restaurants" target="\_blank">loca
 Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
 
 @sourceref ./restaurant.component.spec.ts
-@highlight 8, 116, 274-295, only
+@highlight 8,116,294-299,301-307,309-315, only
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
@@ -111,4 +122,4 @@ __src/app/restaurant/restaurant.component.ts__
 __src/app/restaurant/restaurant.component.html__
 
 @sourceref ./restaurant.component.html
-@highlight 3-24
+@highlight 6,10,16,20,only

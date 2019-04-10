@@ -11,40 +11,13 @@
 <base href="/">
 <my-app></my-app>
 <script type="typescript">
-const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
+const { Component, NgModule, VERSION, OnInit } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
-const { Routes, RouterModule } = ng.router;
-const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
+const { ReactiveFormsModule, FormGroup, FormBuilder } = ng.forms;
 
 @Component({
   selector: 'my-app',
-  template: `
-    <ul class="nav">
-      <li routerLinkActive="active">
-        <a routerLink="/about" >About</a>
-      </li>
-    </ul>
-    <router-outlet></router-outlet>
-  `
-})
-class AppComponent {
-  constructor() {}
-}
-
-@Component({
-  selector: 'about-component',
-  template: `
-    <p>An about component!</p>
-  `
-})
-class AboutComponent {
-  constructor() {
-  }
-}
-
-@Component({
-  selector: 'home-component',
   template: `
     <p>A home component!</p>
     <form [formGroup]="myQuickForm">
@@ -63,12 +36,10 @@ class AboutComponent {
     </form>
   `
 })
-class HomeComponent implements OnInit{
+class AppComponent implements OnInit {
   myQuickForm: FormGroup;
 
-  constructor(private fb:FormBuilder) {
-  
-  }
+  constructor(private fb:FormBuilder) {}
 
   ngOnInit() {
     this.myQuickForm = this.fb.group({
@@ -79,26 +50,13 @@ class HomeComponent implements OnInit{
   }
 }
 //THIS IS A HACK JUST FOR CODEPEN TO WORK
-HomeComponent.parameters = [FormBuilder];
+AppComponent.parameters = [FormBuilder];
 
-
-const routes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: '**', component: HomeComponent }
-]
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-class AppRoutingModule { }
-
-                 
-@NgModule({
-  declarations: [AppComponent, AboutComponent, HomeComponent],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     CommonModule,
-    AppRoutingModule, 
     ReactiveFormsModule
   ],
   bootstrap: [AppComponent],

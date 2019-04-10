@@ -5,8 +5,8 @@ import { Subscription } from 'rxjs';
 import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
-export interface Data<T> {
-  value: Array<T>;
+export interface Data {
+  value: Array<Restaurant>;
   isPending: boolean;
 }
 
@@ -18,7 +18,7 @@ export interface Data<T> {
 export class RestaurantComponent implements OnInit, OnDestroy {
   form: FormGroup;
 
-  public restaurants: Data<Restaurant> = {
+  public restaurants: Data = {
     value: [],
     isPending: false
   }
