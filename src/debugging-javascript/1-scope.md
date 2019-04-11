@@ -10,7 +10,7 @@
 What is the value of `VARIABLE_IN_SCOPE` in the following code?
 
 ```html
-<script src="//bitovi.github.io/university/static/scripts/debugging/variables.js"></script>
+<script src="//bitovi.github.io/academy/static/scripts/debugging/variables.js"></script>
 <script type="module">
 // What is the value of b?
 function a(){

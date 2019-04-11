@@ -3,7 +3,7 @@
 @hidetitle
 @hidedescription
 @hidecontentnav
-@description Welcome to Bitovi University. Learn front-end development, design,
+@description Welcome to Bitovi Academy. Learn front-end development, design,
 and management in these free courses!
 
 @body
@@ -47,7 +47,7 @@ and management in these free courses!
 <ol>
 <li>Hands on courses are the best way of learning and retaining difficult concepts.</li>
 <li>If you get stuck, help is <b>always</b> just a <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">slack</a> message away. </li>
-<li>It's free and <a href="https://github.com/bitovi/university">open source</a>.</li>
+<li>It's free and <a href="https://github.com/bitovi/academy">open source</a>.</li>
 </ol>
 <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y"><img src="./static/img/slack.png" width="100"></a>
 </div>
@@ -170,7 +170,7 @@ too!</p>
 <img src="./static/img/javascript.png" width="100">
 </div>
 <h5>Your Course Here</h5>
-<p>Got an idea for a course? Let us know by <a href="https://github.com/bitovi/university/issues/new">submitting an issue</a>.</p>
+<p>Got an idea for a course? Let us know by <a href="https://github.com/bitovi/academy/issues/new">submitting an issue</a>.</p>
 
 </div>
 

@@ -8,7 +8,7 @@
 ## The problem
 
 ```html
-<script src="//bitovi.github.io/university/static/scripts/debugging/variables.js"></script>
+<script src="//bitovi.github.io/academy/static/scripts/debugging/variables.js"></script>
 <script type="module">
 function conditional(){
 	let sum = 0;

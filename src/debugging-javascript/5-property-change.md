@@ -11,7 +11,7 @@ by something called within `somethingWillMutate`.  What is the name of the
 function that changed `obj.subject`?
 
 ```html
-<script src="//bitovi.github.io/university/static/scripts/debugging/variables.js"></script>
+<script src="//bitovi.github.io/academy/static/scripts/debugging/variables.js"></script>
 <script type="module">
 function propertyChange(){
 
@@ -81,7 +81,7 @@ console.log(person);
 ## The solution
 
 ```html
-<script src="//bitovi.github.io/university/static/scripts/debugging/variables.js"></script>
+<script src="//bitovi.github.io/academy/static/scripts/debugging/variables.js"></script>
 <script type="module">
 function propertyChange(){
 

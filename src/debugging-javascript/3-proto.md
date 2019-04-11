@@ -12,7 +12,7 @@ What is the value of `frozen`'s `rated` property that it inherited from the `Ent
 prototype?
 
 ```html
-<script src="//bitovi.github.io/university/static/scripts/debugging/variables.js"></script>
+<script src="//bitovi.github.io/academy/static/scripts/debugging/variables.js"></script>
 <script type="module">
 var Movie = function(){};
 Movie.prototype = new Entertainment();

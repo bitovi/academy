@@ -37,7 +37,7 @@ class AcademyPage {
 }
 
 const updateStaticAssetLinks = (html) => {
-  const assetBaseUrl = 'https://bitovi.github.io/university/static';
+  const assetBaseUrl = 'https://bitovi.github.io/academy/static';
   return html
     .replace(/src="\.*\/static/g, `src="${assetBaseUrl}`)
     .replace(/src='\.*\/static/g, `src='${assetBaseUrl}`)

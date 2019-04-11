@@ -10,7 +10,7 @@
 What is the name of the function that calls the `end` function below?
 
 ```html
-<script src="//bitovi.github.io/university/static/scripts/debugging/variables.js"></script>
+<script src="//bitovi.github.io/academy/static/scripts/debugging/variables.js"></script>
 <script type="module">
 function end() {
     console.log("What is the name of the function that calls end?");
