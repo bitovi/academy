@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <title>Bitovi University - Writing Unit Tests</title>
+  <title>Bitovi Academy - Writing Unit Tests</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -32,8 +32,8 @@
      </ul>
      <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
   </div>
-  <div id="content-wrapper">
-    <div class="content">
+
+  <div class="content">
 	
 		<div class="sidebar-left">
   
@@ -630,7 +630,7 @@ describe('RestaurantService', () =&gt; {
 });
 </code></pre>
 <div line-highlight='79,83,84'></div>
-<h2>Exercise: Write a test for new RestaurantService method &amp; Write the new method</h2>
+<h2>Exercise: Write a new RestaurantService <code>getRestaurant</code> method &amp; write a test for it</h2>
 <h3>The Problem</h3>
 <p>In the next section we're going to be creating a restaurant detail view. We'll need to have a method on our service that returns one restaurant from the list. Write this method and call it <code>getRestaurant</code>. It should take a string param &quot;slug&quot; and make a get request to the path <code>'/api/restaurants/slug-here'</code>. Then write a unit test for this method ensuring it makes the correct request and returns an object type of <code>Restaurant</code>.</p>
 <h3>What You Need to Know</h3>
@@ -912,13 +912,12 @@ describe('RestaurantService', () =&gt; {
         </div>
         <div class="pullout slack">
           <h6>Get help</h6>
-          <p>If you need help with an exercise, please reach out to us on
+          <p>If you need <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">help</a> with an exercise, please reach out to us on
              <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">Slack</a></p>
-             <!--<a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y"><img src="https://i.ibb.co/XS6n24B/slack.png"/></a>-->
         </div>
         <div class="pullout bug">
           <p>If you find a bug, please
-             <a href="https://github.com/bitovi/university/issues/new">create an issue</a> or email
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
              <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
         </div>
       </div>
@@ -927,7 +926,7 @@ describe('RestaurantService', () =&gt; {
 	</article>
 </div>
 
-  </div>
+
 
   <footer></footer>
 

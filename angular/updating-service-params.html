@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <title>Bitovi University - Filtering Cities &amp; Restaurants</title>
+  <title>Bitovi Academy - Filtering Cities &amp; Restaurants</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -32,8 +32,8 @@
      </ul>
      <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
   </div>
-  <div id="content-wrapper">
-    <div class="content">
+
+  <div class="content">
 	
 		<div class="sidebar-left">
   
@@ -465,6 +465,454 @@
 </ul>
 <h3>To Verify Your Solution is Correct</h3>
 <p>If you've implemented the solution correctly, when you use the select boxes to choose state and city, you should see a list of just restaurants from the selected city returned.</p>
+<p>Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs'; 
+
+import { RestaurantComponent } from './restaurant.component';
+import { RestaurantService } from './restaurant.service';
+import { ImageUrlPipe } from '../image-url.pipe';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Mock } from 'protractor/built/driverProviders';
+
+const restaurantAPIResponse = {
+  data: [{
+    &quot;name&quot;: &quot;Poutine Palace&quot;,
+    &quot;slug&quot;: &quot;poutine-palace&quot;,
+    &quot;images&quot;: {
+      &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+      &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+      &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+    },
+    &quot;menu&quot;: {
+      &quot;lunch&quot;: [
+        {
+          &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+          &quot;price&quot;: 35.99
+        },
+        {
+          &quot;name&quot;: &quot;Steamed Mussels&quot;,
+          &quot;price&quot;: 21.99
+        },
+        {
+          &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+          &quot;price&quot;: 35.99
+        }
+      ],
+      &quot;dinner&quot;: [
+        {
+          &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+          &quot;price&quot;: 21.99
+        },
+        {
+          &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+          &quot;price&quot;: 45.99
+        },
+        {
+          &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+          &quot;price&quot;: 45.99
+        }
+      ]
+    },
+    &quot;address&quot;: {
+      &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+      &quot;city&quot;: &quot;Green Bay&quot;,
+      &quot;state&quot;: &quot;WI&quot;,
+      &quot;zip&quot;: &quot;53205&quot;
+    },
+    &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+  },
+  {
+    &quot;name&quot;: &quot;Cheese Curd City&quot;,
+    &quot;slug&quot;: &quot;cheese-curd-city&quot;,
+    &quot;images&quot;: {
+      &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
+      &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+      &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+    },
+    &quot;menu&quot;: {
+      &quot;lunch&quot;: [
+        {
+          &quot;name&quot;: &quot;Ricotta Gnocchi&quot;,
+          &quot;price&quot;: 15.99
+        },
+        {
+          &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+          &quot;price&quot;: 21.99
+        },
+        {
+          &quot;name&quot;: &quot;Garlic Fries&quot;,
+          &quot;price&quot;: 15.99
+        }
+      ],
+      &quot;dinner&quot;: [
+        {
+          &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+          &quot;price&quot;: 45.99
+        },
+        {
+          &quot;name&quot;: &quot;Truffle Noodles&quot;,
+          &quot;price&quot;: 14.99
+        },
+        {
+          &quot;name&quot;: &quot;Charred Octopus&quot;,
+          &quot;price&quot;: 25.99
+        }
+      ]
+    },
+    &quot;address&quot;: {
+      &quot;street&quot;: &quot;2451 W Washburne Ave&quot;,
+      &quot;city&quot;: &quot;Green Bay&quot;,
+      &quot;state&quot;: &quot;WI&quot;,
+      &quot;zip&quot;: &quot;53295&quot;
+    },
+    &quot;_id&quot;: &quot;Ar0qBJHxM3ecOhcr&quot;
+  }]};
+class MockRestaurantService {
+  getRestaurants(state, city) {
+    return of(restaurantAPIResponse)
+  }
+
+  getStates() {
+    return of({
+      data: [
+        {&quot;short&quot;:&quot;MO&quot;,&quot;name&quot;:&quot;Missouri&quot;},
+        {&quot;short&quot;:&quot;CA  &quot;,&quot;name&quot;:&quot;California&quot;},
+        {&quot;short&quot;:&quot;MI&quot;,&quot;name&quot;:&quot;Michigan&quot;}]
+    });
+  }
+
+  getCities(state:string) {
+    return of({
+      data: [{&quot;name&quot;:&quot;Sacramento&quot;,&quot;state&quot;:&quot;CA&quot;},{&quot;name&quot;:&quot;Oakland&quot;,&quot;state&quot;:&quot;CA&quot;}]
+    });
+  }
+}
+describe('RestaurantComponent', () =&gt; {
+  let component: RestaurantComponent;
+  let fixture: ComponentFixture&lt;RestaurantComponent&gt;;
+  let injectedService;
+  
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule,
+        ReactiveFormsModule
+      ],
+      providers: [{
+        provide: RestaurantService,
+        useClass: MockRestaurantService
+      }],
+      declarations: [ RestaurantComponent, ImageUrlPipe ]
+    })
+    .compileComponents();
+    injectedService = TestBed.get(RestaurantService);
+  }));
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(RestaurantComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  it('should render title in a h2 tag', () =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h2').textContent).toContain('Restaurants');
+  });
+
+  it('should not show any restaurants markup if no restaurants', () =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.restaurant')).toBe(null);
+  });
+
+  it('should have two .restaurant divs',  &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick(501);
+    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.componentInstance.form.get('city').patchValue('Sacramento');
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let restaurantDivs = compiled.getElementsByClassName('restaurant');
+    let hoursDivs = compiled.getElementsByClassName('hours-price');
+    expect(restaurantDivs.length).toEqual(2);
+    expect(hoursDivs.length).toEqual(2);
+  }));
+
+  it('should display restaurant information',  &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick(501);
+    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.componentInstance.form.get('city').patchValue('Sacramento');
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.restaurant h3').textContent).toContain('Poutine Palace');
+  }));
+
+  it('should set restaurants value to restaurants response data and set isPending to false when state and city form values are selected', &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick();
+    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.componentInstance.form.get('city').patchValue('Sacramento');
+    fixture.detectChanges();
+    let expectedRestaurants = {
+      value: [{
+        &quot;name&quot;: &quot;Poutine Palace&quot;,
+        &quot;slug&quot;: &quot;poutine-palace&quot;,
+        &quot;images&quot;: {
+          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+        },
+        &quot;menu&quot;: {
+          &quot;lunch&quot;: [
+            {
+              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+              &quot;price&quot;: 35.99
+            },
+            {
+              &quot;name&quot;: &quot;Steamed Mussels&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+              &quot;price&quot;: 35.99
+            }
+          ],
+          &quot;dinner&quot;: [
+            {
+              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+              &quot;price&quot;: 45.99
+            },
+            {
+              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+              &quot;price&quot;: 45.99
+            }
+          ]
+        },
+        &quot;address&quot;: {
+          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+          &quot;city&quot;: &quot;Green Bay&quot;,
+          &quot;state&quot;: &quot;WI&quot;,
+          &quot;zip&quot;: &quot;53205&quot;
+        },
+        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Cheese Curd City&quot;,
+        &quot;slug&quot;: &quot;cheese-curd-city&quot;,
+        &quot;images&quot;: {
+          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
+          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+        },
+        &quot;menu&quot;: {
+          &quot;lunch&quot;: [
+            {
+              &quot;name&quot;: &quot;Ricotta Gnocchi&quot;,
+              &quot;price&quot;: 15.99
+            },
+            {
+              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Garlic Fries&quot;,
+              &quot;price&quot;: 15.99
+            }
+          ],
+          &quot;dinner&quot;: [
+            {
+              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+              &quot;price&quot;: 45.99
+            },
+            {
+              &quot;name&quot;: &quot;Truffle Noodles&quot;,
+              &quot;price&quot;: 14.99
+            },
+            {
+              &quot;name&quot;: &quot;Charred Octopus&quot;,
+              &quot;price&quot;: 25.99
+            }
+          ]
+        },
+        &quot;address&quot;: {
+          &quot;street&quot;: &quot;2451 W Washburne Ave&quot;,
+          &quot;city&quot;: &quot;Green Bay&quot;,
+          &quot;state&quot;: &quot;WI&quot;,
+          &quot;zip&quot;: &quot;53295&quot;
+        },
+        &quot;_id&quot;: &quot;Ar0qBJHxM3ecOhcr&quot;
+      }],
+      isPending: false
+    }
+    expect(fixture.componentInstance.restaurants).toEqual(expectedRestaurants);
+  }));
+
+  it('should show a loading div while isPending is true', () =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    fixture.componentInstance.restaurants.isPending = true;
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let loadingDiv = compiled.querySelector('.loading');
+    expect(loadingDiv).toBeTruthy();
+  });
+
+  it('should not show a loading div if isPending is false', () =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.componentInstance.restaurants.isPending = false;
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let loadingDiv = compiled.querySelector('.loading');
+    expect(loadingDiv).toBe(null);
+  });
+
+  it('should have a form property with city and state keys', () =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    expect(fixture.componentInstance.form.controls.state).toBeTruthy();
+    expect(fixture.componentInstance.form.controls.city).toBeTruthy();
+  });
+
+  it('should show a state dropdown', () =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let stateSelect = compiled.querySelector('select[formcontrolname=&quot;state&quot;]');
+    expect(stateSelect).toBeTruthy();
+  });
+
+  it('should show a city dropdown', () =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let citySelect = compiled.querySelector('select[formcontrolname=&quot;city&quot;]');
+    expect(citySelect).toBeTruthy();
+  });
+
+  it('should set states value to states response data and set isPending to false', &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+    let expectedStates = {
+      value: [
+        {&quot;short&quot;:&quot;MO&quot;,&quot;name&quot;:&quot;Missouri&quot;},
+        {&quot;short&quot;:&quot;CA  &quot;,&quot;name&quot;:&quot;California&quot;},
+        {&quot;short&quot;:&quot;MI&quot;,&quot;name&quot;:&quot;Michigan&quot;}
+      ],
+      isPending: false
+    }
+    expect(fixture.componentInstance.states).toEqual(expectedStates);
+  }));
+
+  it('should set state dropdown options to be values of states member', &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let stateOption = compiled.querySelector('select[formcontrolname=&quot;state&quot;] option:nth-child(2)');
+    expect(stateOption.textContent).toEqual(' Missouri');
+    expect(stateOption.value).toEqual('MO');
+  }));
+
+  it('should set cities value to cities response data and set isPending to false', &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick();
+    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.detectChanges();
+    let expectedCities = {
+      value: [
+        {&quot;name&quot;:&quot;Sacramento&quot;,&quot;state&quot;:&quot;CA&quot;},
+        {&quot;name&quot;:&quot;Oakland&quot;,&quot;state&quot;:&quot;CA&quot;}
+      ],
+      isPending: false
+    }
+    expect(fixture.componentInstance.cities).toEqual(expectedCities);
+  }));
+
+  it('should set city dropdown options to be values of cities member when state value is selected', &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick();
+    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let cityOption = compiled.querySelector('select[formcontrolname=&quot;city&quot;] option:nth-child(2)');
+    expect(cityOption.textContent).toEqual(' Sacramento');
+    expect(cityOption.value).toEqual('Sacramento');
+  }));
+
+  it('state dropdown should be disabled until states are populated', &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    let storeGetStatesFunc = fixture.componentInstance.getStates;
+    fixture.componentInstance.getStates = () =&gt; {}; //preventing getStates func from being called 
+    fixture.detectChanges(); //detecting changes for createForm func to be called
+    let stateFormControl1 = fixture.componentInstance.form.get('state');
+    expect(stateFormControl1.enabled).toBe(false);
+    fixture.componentInstance.getStates = storeGetStatesFunc;
+    fixture.componentInstance.getStates();  //calling getStates func when we want it
+    fixture.detectChanges();
+    let stateFormControl2 = fixture.componentInstance.form.get('state');
+    expect(stateFormControl2.enabled).toBe(true);
+  }));
+
+  it('city dropdown should be disabled until cities are populated', &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges(); //detecting changes for createForm func to be called
+    let cityFormControl1 = fixture.componentInstance.form.get('city');
+    expect(cityFormControl1.enabled).toBe(false);
+    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.detectChanges();
+    let cityFormControl2 = fixture.componentInstance.form.get('city');
+    expect(cityFormControl2.enabled).toBe(true);
+  }));
+
+  it('should reset list of cities when new state is selected', &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges(); //detecting changes for createForm func to be called
+    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.componentInstance.form.get('city').patchValue('Sacramento');
+    fixture.detectChanges();
+    expect(fixture.componentInstance.restaurants.value.length).toEqual(2);
+    fixture.componentInstance.form.get('state').patchValue('MO');
+    fixture.detectChanges();
+    expect(fixture.componentInstance.restaurants.value.length).toEqual(0);
+  }));
+
+  it('should call getRestaurants method with two string params', &lt;any&gt;fakeAsync((): void =&gt; {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    let getRestaurantsSpy = spyOn(injectedService, 'getRestaurants').and.returnValue(of(restaurantAPIResponse));
+    fixture.detectChanges();
+    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.componentInstance.form.get('city').patchValue('Sacramento');
+    fixture.detectChanges();
+    tick();
+    expect(getRestaurantsSpy).toHaveBeenCalledWith('CA','Sacramento');
+  }));
+});
+</code></pre>
+<div line-highlight='11,106,127,142,432-441,only'></div>
+<blockquote>
+<p>If you've implemented the solution correctly, when you run <code>npm run test</code> the restaurant component tests will pass! We'll fix the service tests in the next step.</p>
+</blockquote>
 <h3>Solution</h3>
 <p><strong>src/app/restaurant/restaurant.service.ts</strong></p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
@@ -507,7 +955,7 @@ export class RestaurantService {
   }
 }
 </code></pre>
-<div line-highlight='27,28'></div>
+<div line-highlight='26-28,only'></div>
 <p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -639,7 +1087,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   }
 }
 </code></pre>
-<div line-highlight='97,123,124'></div>
+<div line-highlight='97,123,124,only'></div>
 
 </section>
 
@@ -657,13 +1105,12 @@ export class RestaurantComponent implements OnInit, OnDestroy {
         </div>
         <div class="pullout slack">
           <h6>Get help</h6>
-          <p>If you need help with an exercise, please reach out to us on
+          <p>If you need <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">help</a> with an exercise, please reach out to us on
              <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">Slack</a></p>
-             <!--<a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y"><img src="https://i.ibb.co/XS6n24B/slack.png"/></a>-->
         </div>
         <div class="pullout bug">
           <p>If you find a bug, please
-             <a href="https://github.com/bitovi/university/issues/new">create an issue</a> or email
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
              <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
         </div>
       </div>
@@ -672,7 +1119,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 	</article>
 </div>
 
-  </div>
+
 
   <footer></footer>
 
