@@ -243,6 +243,14 @@ article summary {
   cursor: pointer;
 }
 
+div.code-toolbar>.toolbar {
+  top: -35px !important;
+}
+.code-toolbar .toolbar-item a {
+  color: #356fd1 !important;
+  text-decoration: none !important;
+}
+
 // Theme Styles
 
 @import url('https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i');
@@ -443,8 +451,7 @@ a {
 // Sidebar Left
 
 .sidebar-left {
-  // padding: 30px;
-  padding: 30px 15px 15px 15px;
+  padding: 15px;
   white-space: nowrap;
   overflow-y: auto;
   flex-shrink: 0;
@@ -453,12 +460,10 @@ a {
   }
   ul {
     list-style: none;
-    // margin-right: 15px;
     margin-bottom: 0;
     margin-left: 0;
     padding-bottom: 0;
     padding-left: 0;
-    // width: 100%;
     li {
       margin: 0;
       padding: 0;
@@ -508,7 +513,7 @@ a {
 // Course Content
 
 .main {
-  padding: 30px 30px;
+  padding: 15px 30px;
   @media (max-width: 768px) {
     padding-top: 0;
   }
@@ -523,7 +528,7 @@ a {
   font-size: 28px;
   margin-bottom: 30px;
   code {
-    font-size: .6em;
+    display: none;
   }
 }
 .main-content .description p {
@@ -538,11 +543,14 @@ a {
   margin-top: 2em;
 }
 .main-content .body ul {
-  margin-left: 45px;
+  margin-left: 15px;
 }
-.main-content .body ul li {
+.main-content .body ul li, .main-content .body ol li {
   margin-bottom: 15px;
-  list-style-type: disc;
+}
+.main-content .body ul li ul {
+  margin-top: 15px;
+  margin-left: 0;
 }
 
 // Utility

@@ -49,7 +49,7 @@ and management in these free courses!
 <li>If you get stuck, help is <b>always</b> just a <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">slack</a> message away. </li>
 <li>It's free and <a href="https://github.com/bitovi/university">open source</a>.</li>
 </ol>
-<a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y"><img src="./static/img/slack.png" width="150"></a>
+<a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y"><img src="./static/img/slack.png" width="100"></a>
 </div>
 <div class="courses-intro" id="courses">
 <h4>The following courses are currently available</h4>
@@ -181,7 +181,7 @@ too!</p>
 <img src="./static/img/slack.png" width="200">
 </div>
 <h5>Need Help?</h5>
-<p>Reach out to our team via Slack. We can help answer any questions you have about our courses.</p>
+<p>Reach out to our team via <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">Slack</a>. We can help answer any questions you have about our courses.</p>
 </div>
 
 </div><!-- close courses -->
