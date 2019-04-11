@@ -1,5 +1,5 @@
 @page advanced-javascript-training Advanced JavaScript
-@parent bit-u 1
+@parent bit-academy 1
 
 @description This course covers all the hard but important stuff you should know when learning JavaScript.
 

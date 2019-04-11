@@ -1,5 +1,5 @@
 @page typescript TypeScript
-@parent bit-u 4
+@parent bit-academy 4
 @description This course covers the basic essentials of TypeScript. At the end, you should be
 ready to develop projects in TypeScript.
 

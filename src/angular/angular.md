@@ -1,5 +1,5 @@
 @page angular Angular
-@parent bit-u 4
+@parent bit-academy 4
 @description Learn the basics of Angular.
 
 @body

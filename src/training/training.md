@@ -1,5 +1,5 @@
 @page training Giving a Training
-@parent bit-u 10
+@parent bit-academy 10
 @description Learn how to prepare and give a training.
 
 @body
