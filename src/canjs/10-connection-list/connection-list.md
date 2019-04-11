@@ -12,7 +12,9 @@ Get all `todos` from the service layer using the "connected" `Todo` type.
 
 ## What you need to know
 
-- [The can-connect Presentation](https://drive.google.com/open?id=0Bx-kNqf-wxZebHFWMElNOVEwSlE) up to and including _Important Interfaces_.
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRrAKhe4VezwxYfJ1FJYPNPLNcrE8iu6xQPlxv3tzQbjIHaBmsUUmz-N3f2PFEmSjI4Z0lHPQWa5p3J/embed?start=false&loop=false&delayms=3000" frameborder="0" width="640" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+- [The can-connect Presentation](https://docs.google.com/presentation/d/1ZuxUR9HXKyGqqG9HUQBqwqSJRFG5PJsRMdzZ1-TGAos/edit?usp=sharing) up to and including _Important Interfaces_.
 - [https://canjs.com/doc/can-connect/can/map/map.getList.html Type.getList] gets data using the
   [https://canjs.com/doc/can-connect/connection.getList.html connection’s getList] and returns a
   promise that resolves to the `Type.List` of instances:

@@ -1,14 +1,12 @@
 @page canjs-training/define-todo-list Define Todo List
 @parent canjs-training 3
 
-@description
+@description Define Todo.List type (DefineList basics)
 
 @body
 
 
-## Define Todo.List type (DefineList basics)
-
-### The problem
+## The problem
 
 - Define a `Todo.List` type on the export of  _models/todo.js_, where:
   - It is a [https://canjs.com/doc/can-define/list/list.html DefineList] type.
@@ -34,7 +32,7 @@ todos[1].complete = true;
 QUnit.equal(todos.allComplete, true, "allComplete");
 ```
 
-### What you need to know
+## What you need to know
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQTyb-tSlYyyzo8LF0fGOkxgtLHWnDhdIIXUiSScpDxJllG8QDdqS29gKnVBDYdDNPsPX2kYDA8pXth/embed?start=false&loop=false&delayms=3000" frameborder="0" width="640" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
@@ -71,7 +69,7 @@ QUnit.equal(todos.allComplete, true, "allComplete");
   })
   ```
 
-### The solution
+## The solution
 
 Update _models/todo.js_ to the following:
 

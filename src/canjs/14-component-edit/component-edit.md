@@ -22,7 +22,9 @@ is the list of todos that will be managed by the custom element.
 
 ## What you need to know
 
-- [The can-stache-bindings presentation](https://drive.google.com/open?id=0Bx-kNqf-wxZeYUJ3ZVRxUlU2MjQ) on _data bindings_.
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTF0-60TwgAwVzRGMKxYnjWtb2dIr1t-x2w2nDmvbc82PU_TxuGD3D2b7FA2cbZ0hmMUZEol3oG7-89/embed?start=false&loop=false&delayms=3000#slide=10" frameborder="0" width="640" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+- [The can-stache-bindings presentation](https://docs.google.com/presentation/d/1xiu2fe_mIi37lNcAfTUnNXs-nSvLUDm8BADl_KJIC0g/edit?usp=sharing#slide=10) on _data bindings_.
 
 - The [https://canjs.com/doc/can-util/dom/attr/attr.special.focused.html focused] custom attribute can be used to specify when an element should be focused:
 
