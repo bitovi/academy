@@ -1,13 +1,11 @@
 @page canjs-training/routing Routing
 @parent canjs-training 17
 
-@description
+@description Set up routing (can-route)
 
 @body
 
 
-
-## Set up routing (can-route)
 
 Make it so that the following URLs display the corresponding
 todos:
@@ -21,7 +19,7 @@ link to those pages and a `class="selected"` property should
 be added if they represent the current page.
 
 
-### What you need to know
+## What you need to know
 
 - [route](https://canjs.com/doc/can-route.html) is used to connect a `DefineMap`’s properties
   to the URL.  This is done with [https://canjs.com/doc/can-route.data.html route.data] like:
@@ -65,7 +63,7 @@ be added if they represent the current page.
   <a href="{{ routeUrl(page='login') }}">Login</a>
   ```
 
-### The solution
+## The solution
 
 Update _index.js_ to the following:
 

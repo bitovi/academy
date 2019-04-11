@@ -1,13 +1,12 @@
 @page canjs-training/component-create Component Create
 @parent canjs-training 13
 
-@description
+@description Create todos (can-component)
 
 @body
 
-## Create todos (can-component)
 
-### The problem
+## The problem
 
 Make it possible to create a todo, update the service layer
 and show the todo in the list of todos.
@@ -15,7 +14,7 @@ and show the todo in the list of todos.
 This functionality should be encapsulated by a `<todo-create/>`
 custom element.
 
-### What you need to know
+## What you need to know
 
 - [The can-component presentation](https://drive.google.com/open?id=0Bx-kNqf-wxZeMnlHZzB6ZERUSEk) up to and including how to _define a component_.
 - A [Component](https://canjs.com/doc/can-component.html) combines a custom tag name, [stache](https://canjs.com/doc/can-stache.html) view and a [DefineMap](https://canjs.com/doc/can-define/map/map.html) ViewModel like:
@@ -58,7 +57,7 @@ a `DefineMap` property is read for the first time.
 
 
 
-### The solution
+## The solution
 
 Create _components/todo-create/todo-create.js_ as follows:
 

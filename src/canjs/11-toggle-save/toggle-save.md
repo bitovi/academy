@@ -1,21 +1,17 @@
 @page canjs-training/toggle-save Toggle Save
 @parent canjs-training 11
 
-@description
+@description Toggling a todo’s checkbox updates service layer (can-connect use)
 
 @body
 
 
-
-## Toggling a todo’s checkbox updates service layer (can-connect use)
-
-
-### The problem
+## The problem
 
 Update the service layer when a todo’s completed status
 changes. Also, disable the checkbox while the update is happening.
 
-### What you need to know
+## What you need to know
 
 - Call [https://canjs.com/doc/can-connect/can/map/map.prototype.save.html .save()] to update a "connected"
   `Map` instance:
@@ -34,7 +30,7 @@ changes. Also, disable the checkbox while the update is happening.
   ```
 
 
-### The solution
+## The solution
 
 Update _index.stache_ to the following:
 

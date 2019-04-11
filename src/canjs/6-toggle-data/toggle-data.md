@@ -1,19 +1,16 @@
 @page canjs-training/toggle-data Toggle checkbox
 @parent canjs-training 6
 
-@description
+@description Toggle a todo’s completed state (data bindings)
 
 @body
 
 
-
-## Toggle a todo’s completed state (data bindings)
-
-### The problem
+## The problem
 
 - Update a todo’s `complete` property when the checkbox’s `checked` property changes with [https://canjs.com/doc/can-stache-bindings.twoWay.html two-way bindings].
 
-### What you need to know
+## What you need to know
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTF0-60TwgAwVzRGMKxYnjWtb2dIr1t-x2w2nDmvbc82PU_TxuGD3D2b7FA2cbZ0hmMUZEol3oG7-89/embed?start=false&loop=false&delayms=3000#slide=10" frameborder="0" width="640" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
@@ -25,7 +22,7 @@
    <input  value:bind="todo.name" />
    ```
 
-### The solution
+## The solution
 
 Update _index.stache_ to the following:
 

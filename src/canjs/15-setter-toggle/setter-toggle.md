@@ -1,14 +1,13 @@
 @page canjs-training/setter-toggle Setter Toggle
 @parent canjs-training 15
 
-@description
+@description Toggle all todos complete state (DefineMap setter)
 
 @body
 
 
-## Toggle all todos complete state (DefineMap setter)
 
-### The problem
+## The problem
 
 Make the “toggle all” checkbox work.  It should be
 unchecked if a single todo is unchecked and checked
@@ -21,7 +20,7 @@ the status of the “toggle all” checkbox.
 The “toggle all” checkbox should be disabled if a
 single todo is saving.
 
-### What you need to know
+## What you need to know
 
 - Using [https://canjs.com/doc/can-define.types.set.html setters] and [https://canjs.com/doc/can-define.types.get.html getters] a virtual property
 can be simulated like:
@@ -41,7 +40,7 @@ can be simulated like:
   })
   ```
 
-### The solution
+## The solution
 
 Update _models/todo.js_ to the following:
 

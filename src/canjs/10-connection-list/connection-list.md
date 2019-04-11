@@ -1,19 +1,16 @@
 @page canjs-training/connection-list Connection List
 @parent canjs-training 10
 
-@description
+@description List todos from the service layer (can-connect use)
 
 @body
 
 
-## List todos from the service layer (can-connect use)
-
-
-### The problem
+## The problem
 
 Get all `todos` from the service layer using the "connected" `Todo` type.
 
-### What you need to know
+## What you need to know
 
 - [The can-connect Presentation](https://drive.google.com/open?id=0Bx-kNqf-wxZebHFWMElNOVEwSlE) up to and including _Important Interfaces_.
 - [https://canjs.com/doc/can-connect/can/map/map.getList.html Type.getList] gets data using the
@@ -38,7 +35,7 @@ Get all `todos` from the service layer using the "connected" `Todo` type.
   }
   ```
 
-### The solution
+## The solution
 
 Update _index.js_ to the following:
 

@@ -1,15 +1,12 @@
 @page canjs-training/component-edit Component Edit
 @parent canjs-training 14
 
-@description
+@description Edit todo names (can-stache-bindings)
 
 @body
 
 
-
-## Edit todo names (can-stache-bindings)
-
-### The problem
+## The problem
 
 Make it possible to edit a `todos` name by
 double-clicking its label which should reveal
@@ -23,7 +20,7 @@ custom element.  It should accept a `todos` property that
 is the list of todos that will be managed by the custom element.
 
 
-### What you need to know
+## What you need to know
 
 - [The can-stache-bindings presentation](https://drive.google.com/open?id=0Bx-kNqf-wxZeYUJ3ZVRxUlU2MjQ) on _data bindings_.
 
@@ -45,7 +42,7 @@ is the list of todos that will be managed by the custom element.
   <div on:click="doSomethingWith(this)" />
   ```
 
-### The solution
+## The solution
 
 Create _components/todo-list/todo-list.stache_ as follows:
 
