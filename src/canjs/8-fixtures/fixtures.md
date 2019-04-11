@@ -1,15 +1,13 @@
 @page canjs-training/simulate-service-layer Simulate the service layer
 @parent canjs-training 8
 
-@description
+@description Simulate the service layer (can-fixture)
 
 @body
 
 
 
-## Simulate the service layer (can-fixture)
-
-### The problem
+## The problem
 
 Simulate a service layer that handles the following requests and responses:
 
@@ -68,7 +66,7 @@ __DELETE /api/todos/{id}__
 <- {}
 ```
 
-### What you need to know
+## What you need to know
 
 - [The can-fixture Presentation](https://drive.google.com/open?id=0Bx-kNqf-wxZeekROYmxvTnUtWmM)
 - [https://canjs.com/doc/can-fixture.html fixture] - is used to trap AJAX requests like:
@@ -89,7 +87,7 @@ __DELETE /api/todos/{id}__
   fixture("/api/entities/{id}", entitiesStore);
   ```
 
-### The solution
+## The solution
 
 
 Create _models/todos-fixture.js_ as follows:
