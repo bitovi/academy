@@ -1,5 +1,5 @@
-@page angular/pull-restaurant-data-into-view Use Restaurant API data
-@parent angular 7
+@page angular-training/pull-restaurant-data-into-view Use Restaurant API data
+@parent angular-training 7
 
 @description Pulling Restaurant Data into Our View
 

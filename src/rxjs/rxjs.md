@@ -1,4 +1,4 @@
-@page RxJS RxJS
+@page rxjs-training RxJS Training
 @parent bit-academy 6
 
 @description Learn RxJS by creating a validating credit card form.

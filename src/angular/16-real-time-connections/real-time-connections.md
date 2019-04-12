@@ -1,5 +1,5 @@
-@page angular/real-time-connection Real Time Connections
-@parent angular 16
+@page angular-training/real-time-connection Real Time Connections
+@parent angular-training 16
 
 @description Updating Order History View with Real Time Connection
 @body

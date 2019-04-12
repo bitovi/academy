@@ -1,5 +1,5 @@
-@page angular/adding-routing Adding Routing
-@parent angular 4
+@page angular-training/adding-routing Adding Routing
+@parent angular-training 4
 
 @description Adding Routing
 

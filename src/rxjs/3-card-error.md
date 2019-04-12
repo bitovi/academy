@@ -1,5 +1,5 @@
-@page rxjs/card-error Card error
-@parent RxJS 3
+@page rxjs-training/card-error Card error
+@parent rxjs-training 3
 
 @description Map one observable to another observable again!
 

@@ -106,7 +106,7 @@ property changes.</p>
 <div class="courses">
 
 <div class="course">
-<a href="./typescript.html">
+<a href="./typescript-training.html">
 <div class="course-logo">
 <img src="./static/img/typescript.png" width="200">
 </div>
@@ -119,7 +119,7 @@ property changes.</p>
 </div>
 
 <div class="course">
-<a href="./RxJS.html">
+<a href="./rxjs-training.html">
 <div class="course-logo">
 <img src="./static/img/rxjs.png" width="150">
 </div>
@@ -133,7 +133,7 @@ the hard but fundamental operators.</p>
 </div>
 
 <div class="course">
-<a href="./angular.html">
+<a href="./angular-training.html">
 <div class="course-logo">
 <img src="./static/img/angular.png" width="100">
 </div>

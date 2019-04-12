@@ -1,5 +1,5 @@
-@page angular/building-our-first-app Building Our First App
-@parent angular 2
+@page angular-training/building-our-first-app Building Our First App
+@parent angular-training 2
 
 @description Building Our First App
 
