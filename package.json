@@ -1,5 +1,5 @@
 {
-  "name": "bit-u",
+  "name": "bit-academy",
   "version": "1.0.0",
   "description": "Everything worth knowing from bitovi",
   "main": "index.js",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bitovi/university.git"
+    "url": "git+https://github.com/bitovi/academy.git"
   },
   "keywords": [
     "JavaScript"
@@ -18,9 +18,9 @@
   "author": "Bitovi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bitovi/university/issues"
+    "url": "https://github.com/bitovi/academy/issues"
   },
-  "homepage": "https://github.com/bitovi/university#readme",
+  "homepage": "https://github.com/bitovi/academy#readme",
   "devDependencies": {
     "axios": "^0.18.0",
     "bit-docs": "0.1.0",
@@ -49,7 +49,7 @@
     "glob": {
       "pattern": "src/**/*.{js,md}"
     },
-    "parent": "bit-u",
+    "parent": "bit-academy",
     "static": "static",
     "html": {
       "templates": "templates"

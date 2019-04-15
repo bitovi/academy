@@ -1,5 +1,5 @@
 @page advanced-javascript-training Advanced JavaScript
-@parent bit-u 1
+@parent bit-academy 1
 
 @description This course covers all the hard but important stuff you should know when learning JavaScript.
 
@@ -11,12 +11,12 @@
 <img src="https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.png?width=200"
   style="float:left"/> <span style="margin-top: 10px;display: inline-block;">Click here to join<br/>Bitovi's Slack Community</span></a>
 
-Join Bitovi's Slack Community to get help on Bitovi University courses or other
+Join Bitovi's Slack Community to get help on Bitovi Academy courses or other
 Angular, React, CanJS and JavaScript problems.
 
 Please ask questions related to JavaScript in the [JS and DOM chat room](https://bitovi-community.slack.com/messages/CFMMNSV5X).
 
-If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/university/issues) or email `contact@bitovi.com`.
+If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/academy/issues) or email `contact@bitovi.com`.
 
 ## Overview
 

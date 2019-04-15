@@ -1,5 +1,5 @@
-@page rxjs/disable-pay-button Disable pay button
-@parent RxJS 8
+@page rxjs-training/disable-pay-button Disable pay button
+@parent rxjs-training 8
 
 @description
 

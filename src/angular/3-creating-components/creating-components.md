@@ -1,5 +1,5 @@
-@page angular/creating-components Creating Components
-@parent angular 3
+@page angular-training/creating-components Creating Components
+@parent angular-training 3
 
 @description Creating Our First Components
 

@@ -29,7 +29,7 @@ Run the following example in CodePen:
 <div id="qunit-fixture"></div>
 <link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.12.0.css">
 <script src="//code.jquery.com/qunit/qunit-1.12.0.js"></script>
-<script src="//bitovi.github.io/university/static/scripts/jquery-test.js"></script>
+<script src="//bitovi.github.io/academy/static/scripts/jquery-test.js"></script>
 <script type="module">
 (function() {
   $ = function(selector) {

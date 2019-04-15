@@ -1,5 +1,5 @@
 @page front-end Front-end
-@parent bit-u
+@parent bit-academy
 @hide
 
 

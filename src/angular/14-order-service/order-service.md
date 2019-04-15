@@ -1,5 +1,5 @@
-@page angular/order-service Order Service
-@parent angular 14
+@page angular-training/order-service Order Service
+@parent angular-training 14
 
 @description Writing the Order Service
 @body

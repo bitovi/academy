@@ -1,5 +1,5 @@
-@page angular/creating-navigation Creating Navigation
-@parent angular 5
+@page angular-training/creating-navigation Creating Navigation
+@parent angular-training 5
 
 @description Creating Navigation
 

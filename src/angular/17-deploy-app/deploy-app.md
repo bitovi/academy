@@ -1,5 +1,5 @@
-@page angular/deploy-app Deploy App
-@parent angular 17
+@page angular-training/deploy-app Deploy App
+@parent angular-training 17
 
 @description Deploying App
 @body

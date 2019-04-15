@@ -1,5 +1,5 @@
-@page angular/state-city-options City & State Options
-@parent angular 8
+@page angular-training/state-city-options City & State Options
+@parent angular-training 8
 
 @description Creating city & state options for filtering restaurants
 
