@@ -204,7 +204,15 @@ __src/app/order/order.component.html__
 @sourceref ./child-component/order.component-props.html
 @highlight 9, 12
 
-## Exercise: Attaching event handlers
+## Event Handlers in Angular
+
+Event binding in Angular follows a simple pattern - the event name in parenthesis and a function to call in quotes on the other side of an equal sign. `(event)="functionToCall()"`. Any parameter(s) can be passed to the event function, but to capture the event itself use the parameter `$event`
+
+@sourceref ./form-change.html
+@codepen
+@highlight 24,26,32,41-31,45-47,49-51,only
+
+## Exercise: Attaching event handlers to item checkboxes
 
 ### The Problem
 
@@ -212,10 +220,7 @@ Next, we want to know when a checkbox has been checked or unchecked, and update 
 
 ### What you need to know
 
-- How to attach a click event and call a method:
-
-    @sourceref ./click-example.ts
-
+- How to attach a change event and call a method
 - Use `array.splice(index,1)` to remove an item from an array.
 - Listen to `change` to know when an checkbox has changed its value.
 
