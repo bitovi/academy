@@ -91,7 +91,7 @@ The markup structure should look like this:
 
 You will know you've completed the exercise correctly when you can click the nav items to see the UI change and see the active class on the current nav item.
 
-![Place My Order App working nav](../static/img/pmo-working-nav.gif "Place My Order App working nav")
+![Place My Order App working nav](../static/img/angular/pmo-working-nav.gif "Place My Order App working nav")
 
 
 Update the spec file  __src/app/app.component.spec.ts__ to be:

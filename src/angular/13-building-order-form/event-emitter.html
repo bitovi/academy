@@ -1,0 +1,100 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js"/></script>
+<script src="https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js"/></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js"></script>
+<script src="https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js"></script>
+<script src="https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js"></script>
+<script src="https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js"></script>
+<script src="https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js"></script>
+<script src="https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js"></script>
+<script src="https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js"></script>
+<base href="/">
+<app-parent></app-parent>
+<script type="typescript">
+const { Component, NgModule, VERSION, OnInit, Input, Output, EventEmitter } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { ReactiveFormsModule, FormControl } = ng.forms;
+
+@Component({
+  selector: 'app-parent',
+  styles: [ `
+    :host {
+      border: solid 2px deeppink;
+      display: block;
+      overflow: hidden;
+      padding: 2em;
+    }`
+  ],
+  template: `
+    <p>Parent component!</p>
+    <p>Message from child: {{message}}</p>
+    <child-component (sendMessage)="getMessage($event)"></child-component>
+  `
+})
+class ParentComponent implements OnInit {
+  public message: string;
+  constructor() {}
+
+  ngOnInit() {
+
+  }
+
+  getMessage(ev) {
+    this.message = ev;
+  }
+}
+
+@Component({
+  selector: 'child-component',
+  styles: [ `
+    :host {
+      border: solid 2px blue;
+      display: block;
+      overflow: hidden;
+      padding: 2em;
+    }`
+  ],
+  template: `
+  <p>Child component</p>
+  <label>
+    Name:
+    <input type="text" [formControl]="childMessage">
+  </label>
+  <button (click)="callToEmit()">send child message</button>
+  `
+})
+class ChildComponent implements OnInit {
+  public childMessage = new FormControl('');
+  @Output() sendMessage: EventEmitter<any> = new EventEmitter();
+ 
+  constructor() {}
+
+  ngOnInit() {
+
+  }
+
+  callToEmit() {
+    this.sendMessage.emit(this.childMessage.value);
+  }
+}
+
+@NgModule({
+  declarations: [ParentComponent, ChildComponent],
+  imports: [
+    BrowserModule,
+    CommonModule, 
+    ReactiveFormsModule
+  ],
+  bootstrap: [ParentComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err => console.error(err));
+</script>
+

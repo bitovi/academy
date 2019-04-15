@@ -124,13 +124,15 @@ Now let's add the markup to our order component implementing the tabs widget.
 __src/app/order/order.component.html__
 
 @sourceref ./order.component-withtabs.html
-@highlight 7-26
+@highlight 7-28
 
 Now when we view the order form of our route, we'll see a nice form and tabs for lunch and dinner menu options.
 
+![Place My Order App tabs](../static/img/angular/pmo-tabs-working.gif "Place My Order App tabs")
+
 ## Component Interaction
 
-Components in Angular can pass data back and forth to eachother through the use of <a href="https://angular.io/api/core/Input" target="_blank">@Input</a> and <a href="https://angular.io/api/core/Output" target="_blank">@Output</a> decorations.
+Components in Angular can pass data back and forth to each other through the use of <a href="https://angular.io/api/core/Input" target="_blank">@Input</a> and <a href="https://angular.io/api/core/Output" target="_blank">@Output</a> decorations.
 
 @sourceref ./component-interaction.html
 @codepen
@@ -155,7 +157,7 @@ Go ahead and put your new component in the order history component.
 __src/app/order/order.component.html__
 
 @sourceref ./child-component/order.component-childcomponent.html
-@highlight 9, 12
+@highlight 10, 15
 
 ## Exercise: Passing properties to child components
 
@@ -202,7 +204,7 @@ __src/app/order/menu-items.component.ts__
 __src/app/order/order.component.html__
 
 @sourceref ./child-component/order.component-props.html
-@highlight 9, 12
+@highlight 10,15,only
 
 ## Event Handlers in Angular
 
@@ -216,13 +218,28 @@ Event binding in Angular follows a simple pattern - the event name in parenthesi
 
 ### The Problem
 
-Next, we want to know when a checkbox has been checked or unchecked, and update an array called `selectedItems` containing all checked items.
+Next, we want to know when a checkbox has been checked or unchecked, and update an array called `selectedItems` containing all checked items. To do this, create a function in the MenuItemsComponent called `updateItems` that fires whenever a checkbox is checked and takes a parameter of the item that has been checked. In the `updateItems` function use the following code to update the `selectedItems` array:
+
+```typescript
+ let index = this.selectedItems.indexOf(item);
+  if(index > -1) {
+    this.selectedItems.splice(index, 1);
+  }
+  else {
+    this.selectedItems.push(item);
+  }
+```
 
 ### What you need to know
 
-- How to attach a change event and call a method
-- Use `array.splice(index,1)` to remove an item from an array.
-- Listen to `change` to know when an checkbox has changed its value.
+- How to attach a change event to a checkbox and call a method
+
+### To Verify Your Solution is Correct
+
+Update the menu-items spec file  __src/app/order/menu-items/menu-items.component.spec.ts__ to be:
+
+@sourceref ./child-component/menu-items-1.component.spec.ts
+@highlight 39-53
 
 ### The Solution
 
@@ -234,19 +251,43 @@ __src/app/order/menu-items.component.html__
 __src/app/order/menu-items.component.ts__
 
 @sourceref ./child-component/menu-items-1.component.ts
-@highlight 15, 22-30
+@highlight 14,15,22-30
 
-## Exercise: Emitting data to parent components
+## Emitting Data to Parent Components
+
+To pass data to parent components in Angular, the <a href="https://angular.io/api/core/EventEmitter" target="_blank">EventEmitter</a> class is used in combination with the <a href="https://angular.io/api/core/Output" target="_blank">Output decorator</a>. The Output decorator marks a property to be listened to during change detection, and we call the `emit` method to broadcast the property's new value.
+
+The parent component is listening for a change on the child component's property and calls a function on that change that takes a parameter of the updated value.
+
+@sourceref ./event-emitter.html
+@codepen
+@highlight 31,32,43-45,69,77-79,only
+
+## Programmatically Updating FormControl Values
+
+When we have a formControl we need to update programmatically with a value we can use the <a href="https://angular.io/api/forms/FormControl#patchvalue" target="_blank">`patchValue`</a> method on the `FormControl` class. This method must be called on a FormControl instance and with a parameter of the new value.
+
+@sourceref ./form-patch-value.html
+@codepen
+@highlight 25,57-61,only
+
+## Exercise: Update OrderFormComponent with selectedItems array from MenuItemsComponent
 
 ### The Problem
 
-Now we want to let the form know what the selected items are.
+Now we want to let the form know what the selected items are as they change so we can update the order total accordingly. To do this, we'll need to create an `itemsChanged` EventEmitter property that emits the `selectedItems` value every time it changes, and in the parent OrderForm component update the `items` FormControl with the value.
 
 ### What you need to know
 
-- How to emit a value to a parent component (presumably to update our form value)
+- How to emit a value to a parent component (you learned this in the section above! ✔️)
+- How to programmatically update a FormControl's value (you learned this in the section above! ✔️)
 
-    @sourceref ./event-emitter-example.ts
+### To Verify Your Solution is Correct
+
+Update the menu-items spec file  __src/app/order/order.component.spec.ts__ to be:
+
+@sourceref ./child-component/order.component.spec-menuitems.ts
+@highlight 10,79,171-179,181-190,192-203,only
 
 ### The Solution
 
@@ -258,7 +299,7 @@ __src/app/order/menu-items.component.ts__
 __src/app/order/order.component.html__
 
 @sourceref ./child-component/order-2.component.html
-@highlight 9, 12
+@highlight 10,15,only
 
 __src/app/order/order.component.ts__
 

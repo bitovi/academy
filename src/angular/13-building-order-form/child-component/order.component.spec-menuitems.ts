@@ -168,7 +168,17 @@ describe('OrderComponent', () => {
     expect(itemFormControl.valid).toEqual(false);
   });
 
-  it('should update items FormControl when setUpdatesItems is called', () => {
+  it('should get updated selected Items when child component changes', () => {
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    let changeSpy = spyOn(fixture.componentInstance, 'setUpdatedItems');
+    const compiled = fixture.debugElement.nativeElement;
+    let childInput = compiled.getElementsByTagName('pmo-menu-items')[0].getElementsByTagName('input')[0];
+    childInput.click();
+    expect(changeSpy).toHaveBeenCalled();
+  });
+
+  it('should update items FormControl when updateItems is called', () => {
     const fixture = TestBed.createComponent(OrderComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
