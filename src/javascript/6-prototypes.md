@@ -25,7 +25,7 @@
 ### The problem
 
 Write the `new` operator as if it was implemented in JS as a function. For example,
-instead of calling `new Person('name')`, we will call `NEW(Person,'name')` as follows:
+instead of calling `new Person('name')`, we will call `NEW(Person,['name'])` as follows:
 
 ```js
 function Person(name) {
