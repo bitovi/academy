@@ -32,7 +32,7 @@ function Person(name) {
 	this.name = name;
 }
 
-Person.prototype.speak = function(){ console.log(‘Hello!’) }
+Person.prototype.speak = function(){ console.log('Hello!') }
 
 // var person = new Person('name')
 const person = NEW( Person, ['name'] );
