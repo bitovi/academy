@@ -2,7 +2,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs'; 
 
 import { HistoryComponent } from './history.component';
-import { ListComponent } from '../list/list.component';
 import { OrderService } from '../order.service';
 
 class MockOrderService {
@@ -54,7 +53,7 @@ describe('HistoryComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HistoryComponent, ListComponent ],
+      declarations: [ HistoryComponent ],
       providers: [{
         provide: OrderService,
         useClass: MockOrderService
@@ -121,9 +120,8 @@ describe('HistoryComponent', () => {
     const fixture = TestBed.createComponent(HistoryComponent);
     fixture.detectChanges();
     let compiled = fixture.debugElement.nativeElement;
-    let orderDivs = compiled.getElementsByClassName('order');
-    //there is an extra 'order' div for the header
-    expect(orderDivs.length).toEqual(5);
+    let orderDivs = compiled.querySelectorAll('.order:not(.header):not(.empty)');
+    expect(orderDivs.length).toEqual(4);
   })
 
   it('should display orders with appropriate classes', () => {

@@ -194,8 +194,6 @@ ng g component order/list
 
 @sourceref ./list.component.html
 
-
-
 ### What you need to know
 
 You'll need to remember how to:
@@ -203,6 +201,14 @@ You'll need to remember how to:
 - Add `@Input()`s to a component so it can be passed values.
 - Call methods on a service that you get from the `constructor`.
 
+### To Verify Your Solution is Correct
+
+Update the menu-items spec file  __src/app/order/list/list.component.spec.ts__ to be:
+
+@sourceref ./list.component.spec.ts
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+> 
 ### The solution
 
 __src/app/order/list.component.ts__
