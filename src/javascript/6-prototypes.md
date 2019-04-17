@@ -87,7 +87,7 @@ The `new` operator does three things:
 
 1. Creates a new object.
 2. Assigns the object's `__proto__` to the constructor function's `prototype`.
-3. Calls the constructor function with the object as `this`.  
+3. Calls the `constructorFn` constructor function with the object as `this`.  
 
 
 Other things to know:
