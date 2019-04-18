@@ -392,6 +392,8 @@ QUnit.test('$.makeArray', function(){
 
 You already know everything you need to know. You can do it!
 
+> In modern apps, use [Array.from](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from) instead of `jQuery.makeArray`.
+
 ### The solution
 
 <details>
