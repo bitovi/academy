@@ -172,7 +172,7 @@
            						">
 						<a class="page"
 							href="creating-components.html"
-							title="Creating Our First Components">
+							title="Learn how to create basic components in angular.">
 							Creating Components
 						</a>
 						
@@ -186,8 +186,23 @@
            						
            						">
 						<a class="page"
+							href="creating-pipes.html"
+							title="Learn how to create a custom pipe in Angular.">
+							Creating Pipes
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="adding-routing.html"
-							title="Adding Routing">
+							title="Learn how to add basic routing to an Angular application.">
 							Adding Routing
 						</a>
 						
@@ -1036,10 +1051,11 @@ export class AppModule { }
   
   
 </code></pre>
-<div line-highlight='7-26'></div>
+<div line-highlight='7-28'></div>
 <p>Now when we view the order form of our route, we'll see a nice form and tabs for lunch and dinner menu options.</p>
+<p><img src="../static/img/angular/pmo-tabs-working.gif" alt="Place My Order App tabs" title="Place My Order App tabs" /></p>
 <h2>Component Interaction</h2>
-<p>Components in Angular can pass data back and forth to eachother through the use of <a href="https://angular.io/api/core/Input" target="_blank">@Input</a> and <a href="https://angular.io/api/core/Output" target="_blank">@Output</a> decorations.</p>
+<p>Components in Angular can pass data back and forth to each other through the use of <a href="https://angular.io/api/core/Input" target="_blank">@Input</a> and <a href="https://angular.io/api/core/Output" target="_blank">@Output</a> decorations.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1161,7 +1177,7 @@ platformBrowserDynamic()
   &lt;/div&gt;
 
 </code></pre>
-<div line-highlight='9, 12'></div>
+<div line-highlight='10, 15'></div>
 <h2>Exercise: Passing properties to child components</h2>
 <h3>The Problem</h3>
 <p>We want the menu-items component take an array of menu items and iterate through them in the template.</p>
@@ -1472,37 +1488,164 @@ export class MenuItemsComponent implements OnInit {
   &lt;/div&gt;
 
 </code></pre>
-<div line-highlight='9, 12'></div>
-<h2>Exercise: Attaching event handlers</h2>
-<h3>The Problem</h3>
-<p>Next, we want to know when a checkbox has been checked or unchecked, and update an array called <code>selectedItems</code> containing all checked items.</p>
-<h3>What you need to know</h3>
-<ul>
-<li>How to attach a click event and call a method:</li>
-</ul>
-<pre><code class="language-ts">@Component({
-  selector: 'app-click-me',
-  template: `
-    &lt;button (click)=&quot;onClickMe()&quot;&gt;Click me!&lt;/button&gt;
-    {{clickMessage}}`
-})
-export class ClickMeComponent {
-  clickMessage = '';
+<div line-highlight='10,15,only'></div>
+<h2>Event Handlers in Angular</h2>
+<p>Event binding in Angular follows a simple pattern - the event name in parenthesis and a function to call in quotes on the other side of an equal sign. <code>(event)=&quot;functionToCall()&quot;</code>. Any parameter(s) can be passed to the event function, but to capture the event itself use the parameter <code>$event</code></p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { ReactiveFormsModule, FormControl } = ng.forms;
 
-  onClickMe() {
+@Component({
+  selector: 'my-app',
+  template: `
+    &lt;p&gt;A home component!&lt;/p&gt;
+
+    &lt;button (click)=&quot;willCallOnClick()&quot;&gt;Click me!&lt;/button&gt;
+    {{clickMessage}}
+    &lt;button (click)=&quot;willCallWithParam(clickMessage)&quot;&gt;log click message&lt;/button&gt;
+    &lt;p&gt;
+      Value: {{ name.value }}
+    &lt;/p&gt;
+    &lt;label&gt;
+      Name:
+      &lt;input type=&quot;text&quot; [formControl]=&quot;name&quot; (change)=&quot;willCallOnBlur($event)&quot;&gt;
+    &lt;/label&gt;
+  `
+})
+class AppComponent {
+  public  name = new FormControl('');
+
+  constructor() {}
+
+  willCallOnClick() {
     this.clickMessage = 'You are my hero!';
   }
+
+  willCallWithParam(message: string) {
+    console.log(message + ' from my 1st click')
+  }
+
+  willCallOnBlur(event) {
+    console.log('value', event.target.value);
+  }
 }
+           
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    ReactiveFormsModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
 </code></pre>
+<div class='codepen'></div>
+<div line-highlight='24,26,32,41-31,45-47,49-51,only'></div>
+<h2>Exercise: Attaching event handlers to item checkboxes</h2>
+<h3>The Problem</h3>
+<p>Next, we want to know when a checkbox has been checked or unchecked, and update an array called <code>selectedItems</code> containing all checked items. To do this, create a function in the MenuItemsComponent called <code>updateItems</code> that fires whenever a checkbox is checked and takes a parameter of the item that has been checked. In the <code>updateItems</code> function use the following code to update the <code>selectedItems</code> array:</p>
+<pre><code class="language-typescript"> let index = this.selectedItems.indexOf(item);
+  if(index &gt; -1) {
+    this.selectedItems.splice(index, 1);
+  }
+  else {
+    this.selectedItems.push(item);
+  }
+</code></pre>
+<h3>What you need to know</h3>
 <ul>
-<li>Use <code>array.splice(index,1)</code> to remove an item from an array.</li>
-<li>Listen to <code>change</code> to know when an checkbox has changed its value.</li>
+<li>How to attach a change event to a checkbox and call a method</li>
 </ul>
+<h3>To Verify Your Solution is Correct</h3>
+<p>Update the menu-items spec file  <strong>src/app/order/menu-items/menu-items.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { MenuItemsComponent } from './menu-items.component';
+
+describe('MenuItemsComponent', () =&gt; {
+  let component: MenuItemsComponent;
+  let fixture: ComponentFixture&lt;MenuItemsComponent&gt;;
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      declarations: [ MenuItemsComponent ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(MenuItemsComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  it('should display a list of inputs', () =&gt; {
+    const fixture = TestBed.createComponent(MenuItemsComponent);
+    fixture.componentInstance.items = [
+      {&quot;name&quot;:&quot;Charred Octopus&quot;,&quot;price&quot;:25.99},
+      {&quot;name&quot;:&quot;Steamed Mussels&quot;,&quot;price&quot;:21.99},
+      {&quot;name&quot;:&quot;Ricotta Gnocchi&quot;,&quot;price&quot;:15.99}
+    ];
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let itemLabels = compiled.getElementsByTagName('label');
+    expect(itemLabels.length).toEqual(3)
+  });
+
+  it('should call an updateItems function when a checkbox is selected or unselected', () =&gt; {
+    const fixture = TestBed.createComponent(MenuItemsComponent);
+    fixture.componentInstance.items = [
+      {&quot;name&quot;:&quot;Charred Octopus&quot;,&quot;price&quot;:25.99},
+      {&quot;name&quot;:&quot;Steamed Mussels&quot;,&quot;price&quot;:21.99},
+      {&quot;name&quot;:&quot;Ricotta Gnocchi&quot;,&quot;price&quot;:15.99}
+    ];
+    fixture.detectChanges();
+    let changeSpy = spyOn(fixture.componentInstance, 'updateItems');
+    const compiled = fixture.debugElement.nativeElement;
+    const input = compiled.getElementsByTagName('input')[0];
+    input.click();
+    fixture.detectChanges();
+    expect(changeSpy).toHaveBeenCalled();
+  })
+});
+
+</code></pre>
+<div line-highlight='39-53'></div>
 <h3>The Solution</h3>
 <p><strong>src/app/order/menu-items.component.html</strong></p>
 <pre><code class="language-html">&lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of items&quot;&gt;
   &lt;label&gt;
-    &lt;input type=&quot;checkbox&quot; (change)=&quot;changeFunc(item)&quot; &gt;
+    &lt;input type=&quot;checkbox&quot; (change)=&quot;updateItems(item)&quot; &gt;
     {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
   &lt;/label&gt;
 &lt;/li&gt;
@@ -1522,7 +1665,7 @@ interface Item {
   styleUrls: ['./menu-items.component.less']
 })
 export class MenuItemsComponent implements OnInit {
-  @Input() items: [];
+  @Input() items: Item[] = [];
   selectedItems: Item[] = [];
 
   constructor() { }
@@ -1530,7 +1673,7 @@ export class MenuItemsComponent implements OnInit {
   ngOnInit() {
   }
 
-  changeFunc(item: Item) {
+  updateItems(item: Item) {
     let index = this.selectedItems.indexOf(item);
     if(index &gt; -1) {
       this.selectedItems.splice(index, 1);
@@ -1543,53 +1686,422 @@ export class MenuItemsComponent implements OnInit {
 }
 
 </code></pre>
-<div line-highlight='15, 22-30'></div>
-<h2>Exercise: Emitting data to parent components</h2>
-<h3>The Problem</h3>
-<p>Now we want to let the form know what the selected items are.</p>
-<h3>What you need to know</h3>
-<ul>
-<li>How to emit a value to a parent component (presumably to update our form value)</li>
-</ul>
-<pre><code class="language-ts">@Component({
-  selector: 'zippy',
+<div line-highlight='14,15,22-30'></div>
+<h2>Emitting Data to Parent Components</h2>
+<p>To pass data to parent components in Angular, the <a href="https://angular.io/api/core/EventEmitter" target="_blank">EventEmitter</a> class is used in combination with the <a href="https://angular.io/api/core/Output" target="_blank">Output decorator</a>. The Output decorator marks a property to be listened to during change detection, and we call the <code>emit</code> method to broadcast the property's new value.</p>
+<p>The parent component is listening for a change on the child component's property and calls a function on that change that takes a parameter of the updated value.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;app-parent&gt;&lt;/app-parent&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION, OnInit, Input, Output, EventEmitter } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { ReactiveFormsModule, FormControl } = ng.forms;
+
+@Component({
+  selector: 'app-parent',
+  styles: [ `
+    :host {
+      border: solid 2px deeppink;
+      display: block;
+      overflow: hidden;
+      padding: 2em;
+    }`
+  ],
   template: `
-  &lt;div class=&quot;zippy&quot;&gt;
-    &lt;div (click)=&quot;toggle()&quot;&gt;Toggle&lt;/div&gt;
-    &lt;div [hidden]=&quot;!visible&quot;&gt;
-      &lt;ng-content&gt;&lt;/ng-content&gt;
-    &lt;/div&gt;
- &lt;/div&gt;`})
-export class Zippy {
-  visible: boolean = true;
-  @Output() open: EventEmitter&lt;any&gt; = new EventEmitter();
-  @Output() close: EventEmitter&lt;any&gt; = new EventEmitter();
- 
-  toggle() {
-    this.visible = !this.visible;
-    if (this.visible) {
-      this.open.emit(&quot;OPEN&quot;);
-    } else {
-      this.close.emit(&quot;CLOSE&quot;);
-    }
+    &lt;p&gt;Parent component!&lt;/p&gt;
+    &lt;p&gt;Message from child: {{message}}&lt;/p&gt;
+    &lt;child-component (sendMessage)=&quot;getMessage($event)&quot;&gt;&lt;/child-component&gt;
+  `
+})
+class ParentComponent implements OnInit {
+  public message: string;
+  constructor() {}
+
+  ngOnInit() {
+
+  }
+
+  getMessage(ev) {
+    this.message = ev;
   }
 }
 
 @Component({
-  selector: 'app',
+  selector: 'child-component',
+  styles: [ `
+    :host {
+      border: solid 2px blue;
+      display: block;
+      overflow: hidden;
+      padding: 2em;
+    }`
+  ],
   template: `
-    &lt;zippy (open)=&quot;opened($event)&quot; (close)=&quot;closed($event)&quot;&gt;&lt;/zippy&gt;
+  &lt;p&gt;Child component&lt;/p&gt;
+  &lt;label&gt;
+    Name:
+    &lt;input type=&quot;text&quot; [formControl]=&quot;childMessage&quot;&gt;
+  &lt;/label&gt;
+  &lt;button (click)=&quot;callToEmit()&quot;&gt;send child message&lt;/button&gt;
   `
 })
-class App {
-  opened(message) {
-    console.log(message) //-&gt; OPEN
-  };
-  closed(message) {
-    console.log(message) //-&gt; CLOSE
+class ChildComponent implements OnInit {
+  public childMessage = new FormControl('');
+  @Output() sendMessage: EventEmitter&lt;any&gt; = new EventEmitter();
+ 
+  constructor() {}
+
+  ngOnInit() {
+
+  }
+
+  callToEmit() {
+    this.sendMessage.emit(this.childMessage.value);
   }
 }
+
+@NgModule({
+  declarations: [ParentComponent, ChildComponent],
+  imports: [
+    BrowserModule,
+    CommonModule, 
+    ReactiveFormsModule
+  ],
+  bootstrap: [ParentComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
 </code></pre>
+<div class='codepen'></div>
+<div line-highlight='31,32,43-45,69,77-79,only'></div>
+<h2>Programmatically Updating FormControl Values</h2>
+<p>When we have a formControl we need to update programmatically with a value we can use the <a href="https://angular.io/api/forms/FormControl#patchvalue" target="_blank"><code>patchValue</code></a> method on the <code>FormControl</code> class. This method must be called on a FormControl instance and with a parameter of the new value.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION, OnInit } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { ReactiveFormsModule, FormGroup, FormBuilder } = ng.forms;
+
+@Component({
+  selector: 'my-app',
+  template: `
+    &lt;p&gt;A home component!&lt;/p&gt;
+    &lt;label&gt;
+      Custom input:
+      &lt;input type=&quot;text&quot; (change)=&quot;customChange($event)&quot;&gt;
+    &lt;/label&gt;
+    
+    &lt;form [formGroup]=&quot;myQuickForm&quot;&gt;
+      &lt;label&gt;
+        First name:
+        &lt;input type=&quot;text&quot; formControlName=&quot;firstName&quot;&gt;
+      &lt;/label&gt;
+      &lt;label&gt;
+        Last name:
+        &lt;input type=&quot;text&quot; formControlName=&quot;lastName&quot;&gt;
+      &lt;/label&gt;
+      &lt;label&gt;
+        Email:
+        &lt;input type=&quot;text&quot; formControlName=&quot;email&quot;&gt;
+      &lt;/label&gt;
+    &lt;/form&gt;
+  `
+})
+class AppComponent implements OnInit {
+  myQuickForm: FormGroup;
+
+  constructor(private fb:FormBuilder) {}
+
+  ngOnInit() {
+    this.myQuickForm = this.fb.group({
+      firstName: {value: '', disabled: false},
+      lastName: {value: '', disabled: false},
+      email: {value: '', disabled: false}
+    });
+  }
+
+  customChange(ev) {
+    let newVal = ev.currentTarget.value;
+    let formControl = this.myQuickForm.get('firstName');
+    formControl.patchValue(newVal);
+  }
+}
+//THIS IS A HACK JUST FOR CODEPEN TO WORK
+AppComponent.parameters = [FormBuilder];
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    ReactiveFormsModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='25,57-61,only'></div>
+<h2>Exercise: Update OrderFormComponent with selectedItems array from MenuItemsComponent</h2>
+<h3>The Problem</h3>
+<p>Now we want to let the form know what the selected items are as they change so we can update the order total accordingly. To do this, we'll need to create an <code>itemsChanged</code> EventEmitter property that emits the <code>selectedItems</code> value every time it changes, and in the parent OrderForm component update the <code>items</code> FormControl with the value.</p>
+<h3>What you need to know</h3>
+<ul>
+<li>How to emit a value to a parent component (you learned this in the section above! ✔️)</li>
+<li>How to programmatically update a FormControl's value (you learned this in the section above! ✔️)</li>
+</ul>
+<h3>To Verify Your Solution is Correct</h3>
+<p>Update the menu-items spec file  <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs'; 
+
+import { OrderComponent } from './order.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RestaurantService } from '../restaurant/restaurant.service';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { MenuItemsComponent } from './menu-items/menu-items.component';
+
+class MockRestaurantService {
+  getRestaurant(slug:string) {
+    return of({
+        &quot;name&quot;: &quot;Poutine Palace&quot;,
+        &quot;slug&quot;: &quot;poutine-palace&quot;,
+        &quot;images&quot;: {
+          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+        },
+        &quot;menu&quot;: {
+          &quot;lunch&quot;: [
+            {
+              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+              &quot;price&quot;: 35.99
+            },
+            {
+              &quot;name&quot;: &quot;Steamed Mussels&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+              &quot;price&quot;: 35.99
+            }
+          ],
+          &quot;dinner&quot;: [
+            {
+              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+              &quot;price&quot;: 45.99
+            },
+            {
+              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+              &quot;price&quot;: 45.99
+            }
+          ]
+        },
+        &quot;address&quot;: {
+          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+          &quot;city&quot;: &quot;Green Bay&quot;,
+          &quot;state&quot;: &quot;WI&quot;,
+          &quot;zip&quot;: &quot;53205&quot;
+        },
+        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+      })
+  }
+}
+
+const MockActivatedRoute = {
+  snapshot: {
+    paramMap: {
+      get() {
+        return 'poutine-palace'
+      }
+    }
+  }
+}
+
+describe('OrderComponent', () =&gt; {
+  let component: OrderComponent;
+  let fixture: ComponentFixture&lt;OrderComponent&gt;;
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      declarations: [ OrderComponent, MenuItemsComponent ], 
+      imports: [  ReactiveFormsModule, RouterTestingModule ],
+      providers: [{
+        provide: RestaurantService,
+        useClass: MockRestaurantService
+      }, {
+        provide: ActivatedRoute,
+        useValue: MockActivatedRoute
+      }],
+      schemas: [ NO_ERRORS_SCHEMA ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(OrderComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  it('should get a restaurant based on route slug', () =&gt; {
+    let mockRestaurant = {
+      &quot;name&quot;: &quot;Poutine Palace&quot;,
+      &quot;slug&quot;: &quot;poutine-palace&quot;,
+      &quot;images&quot;: {
+        &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+        &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+        &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+      },
+      &quot;menu&quot;: {
+        &quot;lunch&quot;: [
+          {
+            &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+            &quot;price&quot;: 35.99
+          },
+          {
+            &quot;name&quot;: &quot;Steamed Mussels&quot;,
+            &quot;price&quot;: 21.99
+          },
+          {
+            &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+            &quot;price&quot;: 35.99
+          }
+        ],
+        &quot;dinner&quot;: [
+          {
+            &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+            &quot;price&quot;: 21.99
+          },
+          {
+            &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+            &quot;price&quot;: 45.99
+          },
+          {
+            &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+            &quot;price&quot;: 45.99
+          }
+        ]
+      },
+      &quot;address&quot;: {
+        &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+        &quot;city&quot;: &quot;Green Bay&quot;,
+        &quot;state&quot;: &quot;WI&quot;,
+        &quot;zip&quot;: &quot;53205&quot;
+      },
+      &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+    }
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    expect(fixture.componentInstance.restaurant).toEqual(mockRestaurant)
+  });
+
+  it('should have an orderForm formGroup', () =&gt; {
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    expect(fixture.componentInstance.orderForm.controls.restaurant).toBeTruthy();
+    expect(fixture.componentInstance.orderForm.controls.address).toBeTruthy();
+    expect(fixture.componentInstance.orderForm.controls.phone).toBeTruthy();
+    expect(fixture.componentInstance.orderForm.controls.items).toBeTruthy();
+  });
+
+  it('should have a validator on items formControl', () =&gt; {
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    let itemFormControl = fixture.componentInstance.orderForm.controls.items;
+    expect(itemFormControl.valid).toEqual(false);
+  });
+
+  it('should get updated selected Items when child component changes', () =&gt; {
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    let changeSpy = spyOn(fixture.componentInstance, 'setUpdatedItems');
+    const compiled = fixture.debugElement.nativeElement;
+    let childInput = compiled.getElementsByTagName('pmo-menu-items')[0].getElementsByTagName('input')[0];
+    childInput.click();
+    expect(changeSpy).toHaveBeenCalled();
+  });
+
+  it('should update items FormControl when updateItems is called', () =&gt; {
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let childInput = compiled.getElementsByTagName('pmo-menu-items')[0].getElementsByTagName('input')[0];
+    let formItems = fixture.componentInstance.orderForm.get('items');
+    childInput.click();
+    fixture.detectChanges();
+    expect(formItems.value).toEqual([{&quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,&quot;price&quot;: 35.99}])
+  });
+
+  it('should update the order total when the items FormControl value changes', () =&gt; {
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    let compiled = fixture.debugElement.nativeElement;
+    let childInput1 = compiled.getElementsByTagName('pmo-menu-items')[0].getElementsByTagName('input')[0];
+    let childInput2 = compiled.getElementsByTagName('pmo-menu-items')[0].getElementsByTagName('input')[1];
+    childInput1.click();
+    childInput2.click();
+    fixture.detectChanges();
+    let orderText = compiled.querySelector('.submit h4');
+    expect(orderText.textContent).toEqual('Total: $57.98')
+  })
+
+});
+
+</code></pre>
+<div line-highlight='10,79,171-179,181-190,192-203,only'></div>
 <h3>The Solution</h3>
 <p><strong>src/app/order/menu-items.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
@@ -1605,7 +2117,7 @@ interface Item {
   styleUrls: ['./menu-items.component.less']
 })
 export class MenuItemsComponent implements OnInit {
-  @Input() items: [];
+  @Input() items: Item[] = [];
   selectedItems: Item[] = [];
   @Output() itemsChanged: EventEmitter&lt;any&gt; = new EventEmitter();
 
@@ -1614,7 +2126,7 @@ export class MenuItemsComponent implements OnInit {
   ngOnInit() {
   }
 
-  changeFunc(item: Item) {
+  updateItems(item: Item) {
     let index = this.selectedItems.indexOf(item);
     if(index &gt; -1) {
       this.selectedItems.splice(index, 1);
@@ -1674,7 +2186,7 @@ export class MenuItemsComponent implements OnInit {
   &lt;/ng-template&gt;
   &lt;/div&gt;
 </code></pre>
-<div line-highlight='9, 12'></div>
+<div line-highlight='10,15,only'></div>
 <p><strong>src/app/order/order.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -1836,7 +2348,7 @@ export class MenuItemsComponent implements ControlValueAccessor {
     this.value = value;
   }
 
-  changeFunc(item: Item) {
+  updateItems(item: Item) {
     let index = this._value.indexOf(item);
     if(index !== -1) {
       this._value.splice(index, 1)
@@ -2078,6 +2590,30 @@ describe('OrderComponent', () =&gt; {
     let itemFormControl = fixture.componentInstance.orderForm.controls.items;
     expect(itemFormControl.valid).toEqual(false);
   });
+
+  it('should update items FormControl when setUpdatesItems is called', () =&gt; {
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let childInput = compiled.getElementsByTagName('pmo-menu-items')[0].getElementsByTagName('input')[0];
+    let formItems = fixture.componentInstance.orderForm.get('items');
+    childInput.click();
+    fixture.detectChanges();
+    expect(formItems.value).toEqual([{&quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,&quot;price&quot;: 35.99}])
+  });
+
+  it('should update the order total when the items FormControl value changes', () =&gt; {
+    const fixture = TestBed.createComponent(OrderComponent);
+    fixture.detectChanges();
+    let compiled = fixture.debugElement.nativeElement;
+    let childInput1 = compiled.getElementsByTagName('pmo-menu-items')[0].getElementsByTagName('input')[0];
+    let childInput2 = compiled.getElementsByTagName('pmo-menu-items')[0].getElementsByTagName('input')[1];
+    childInput1.click();
+    childInput2.click();
+    fixture.detectChanges();
+    let orderText = compiled.querySelector('.submit h4');
+    expect(orderText.textContent).toEqual('Total: $57.98')
+  })
 
 });
 

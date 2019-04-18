@@ -352,16 +352,7 @@
 &lt;script type=&quot;module&quot;&gt;
 (function() {
   $ = function(selector) {
-    if ( !(this instanceof $) ) {
-      return new $(selector);
-    }
-    var elements;
-    if (typeof selector === &quot;string&quot;) {
-      elements = document.querySelectorAll(selector);
-    } else if ($.isArrayLike(selector)) {
-      elements = selector;
-    }
-    [].push.apply(this, elements);
+
   };
 
   $.extend = function(target, object) {
@@ -434,7 +425,7 @@
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='80-83,only'></div>
+<div line-highlight='9,71-74,only'></div>
 <p>Each exercise builds on the previous exercise.  There is a completed solution
 at the end of this page.</p>
 <h2>Exercise: <code>new $(selector) -&gt; collection</code></h2>

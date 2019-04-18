@@ -682,6 +682,20 @@ var dog = {
 setTimeout($.proxy(dog.speak, dog), 500);
 </code></pre>
 <div class='codepen'></div>
+<p><code>$.proxy</code> can pass arguments too:</p>
+<pre><code class="language-js">import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+
+var dog = {
+    nickname: 'fido',
+    speak: function(word){
+        console.log(this.nickname + ' says '+word);
+    }
+};
+
+var dogSpeak = $.proxy(dog.speak, dog);
+dogSpeak(&quot;ruff&quot;) //logs 'fido says ruff'
+</code></pre>
+<div class='codepen'></div>
 <p><details>
 <summary>Click to see the test code</summary></p>
 <pre><code class="language-js">QUnit.test('$.proxy', function(){

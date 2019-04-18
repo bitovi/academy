@@ -310,12 +310,12 @@ Bonus: Hash maps and order of complexity">
 <h2>Exercise 1: new Operator</h2>
 <h3>The problem</h3>
 <p>Write the <code>new</code> operator as if it was implemented in JS as a function. For example,
-instead of calling <code>new Person('name')</code>, we will call <code>NEW(Person,'name')</code> as follows:</p>
+instead of calling <code>new Person('name')</code>, we will call <code>NEW(Person,['name'])</code> as follows:</p>
 <pre><code class="language-js">function Person(name) {
     this.name = name;
 }
 
-Person.prototype.speak = function(){ console.log(‘Hello!’) }
+Person.prototype.speak = function(){ console.log('Hello!') }
 
 // var person = new Person('name')
 const person = NEW( Person, ['name'] );
@@ -362,7 +362,7 @@ QUnit.test('NEW works', function(){
 <ol>
 <li>Creates a new object.</li>
 <li>Assigns the object's <code>__proto__</code> to the constructor function's <code>prototype</code>.</li>
-<li>Calls the constructor function with the object as <code>this</code>.</li>
+<li>Calls the <code>constructorFn</code> constructor function with the object as <code>this</code>.</li>
 </ol>
 <p>Other things to know:</p>
 <ul>

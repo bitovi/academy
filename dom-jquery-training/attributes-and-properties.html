@@ -620,7 +620,7 @@ console.log( computedStyles.getPropertyValue('color') )
         });
       } else {
         return this[0] &amp;&amp;
-          document.getComputedStyle(this[0])
+          window.getComputedStyle(this[0])
             .getPropertyValue(cssPropName);
       }
     },

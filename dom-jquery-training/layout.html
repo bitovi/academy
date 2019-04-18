@@ -687,6 +687,13 @@ console.log( $(&quot;.inner&quot;).width() ) //logs 70
 <li>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/clientWidth">clientWidth</a>
 property returns the width of the element including the padding.</li>
 <li>You can read the computed <code>padding-left</code> and <code>padding-right</code> style properties.</li>
+<li>Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt">parseInt</a> to convert a string to a number. Make sure to include
+a radix argument!
+<pre><code class="language-js">console.log( parseInt(&quot;011&quot;) ) //-&gt; 11 or 9 depending on the browser!
+console.log( parseInt(&quot;011&quot;, 10) )   //-&gt; 11
+console.log( parseInt(&quot;011px&quot;, 10) ) //-&gt; 11
+</code></pre>
+<div class='codepen'></div></li>
 </ul>
 <h3>The solution</h3>
 <p><details>

@@ -172,7 +172,7 @@
            						">
 						<a class="page"
 							href="creating-components.html"
-							title="Creating Our First Components">
+							title="Learn how to create basic components in angular.">
 							Creating Components
 						</a>
 						
@@ -186,8 +186,23 @@
            						
            						">
 						<a class="page"
+							href="creating-pipes.html"
+							title="Learn how to create a custom pipe in Angular.">
+							Creating Pipes
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="adding-routing.html"
-							title="Adding Routing">
+							title="Learn how to add basic routing to an Angular application.">
 							Adding Routing
 						</a>
 						
@@ -458,7 +473,7 @@
 <li>Create ways to update and delete orders in the view</li>
 <li>Add order history link to our main navigation</li>
 </ul>
-<h2>Exercise: Generate a <code>HistoryComponent</code> and route to it</h2>
+<h2>Exercise: Generate a <code>HistoryComponent</code> and create a route for it</h2>
 <h3>The problem</h3>
 <p>In this problem, we will:</p>
 <ul>
@@ -565,7 +580,7 @@ export class AppRoutingModule { }
 </ul>
 <p>Start this exercise by:</p>
 <p>1. Copying the following into <strong>src/app/order/history.component.ts</strong>. You will fill out its
-<code>getOrders</code> method.  The getters like <code>newOrders</code> will be used later.</p>
+<code>getOrders</code> method.  The getters <code>newOrders</code>, <code>preparingOrders</code>, <code>deliveryOrders</code>, and <code>deliveredOrders</code> will be used later.</p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 
 interface Data&lt;T&gt; {
@@ -580,13 +595,10 @@ interface Data&lt;T&gt; {
 })
 export class HistoryComponent implements OnInit {
 
-  constructor(
-    ) {
-    }
+  constructor() {}
 
   ngOnInit() {
     this.getOrders();
-
   }
 
   getOrders() {
@@ -624,9 +636,9 @@ export class HistoryComponent implements OnInit {
 }
 
 </code></pre>
-<div line-highlight='15-17,25'></div>
+<div line-highlight='18,22'></div>
 <p>2. Copy the following into <strong>src/app/order/history.component.html</strong>.  You will need to
-make it loop through orders and add the right class names to the outer <code>&lt;div&gt;</code> for each order.</p>
+iterate through orders and add the right class names to the outer <code>&lt;div&gt;</code> for each order.</p>
 <pre><code class="language-html">&lt;div class=&quot;order-history&quot;&gt;
   &lt;div class=&quot;order header&quot;&gt;
     &lt;address&gt;Name / Address / Phone&lt;/address&gt;
@@ -678,6 +690,153 @@ property in the constructor.</li>
 <code>[ngClass]</code> and setting it to an array like:</p>
 <pre><code class="language-html">&lt;div [ngClass]=&quot;['first','second']&quot;&gt;
 </code></pre>
+<h3>To Verify Your Solution is Correct</h3>
+<p>Update the menu-items spec file  <strong>src/app/order/history/history.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs'; 
+
+import { HistoryComponent } from './history.component';
+import { OrderService } from '../order.service';
+
+class MockOrderService {
+  getOrders() {
+    return of({
+      data: [{
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Onion fries&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Roasted Salmon&quot;, &quot;price&quot;: 23.99}],
+      &quot;name&quot;: &quot;Client 1&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;new&quot;,
+      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
+      },
+      {
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Steak Tacos&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Guacamole&quot;, &quot;price&quot;: 3.99}],
+      &quot;name&quot;: &quot;Client 2&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;preparing&quot;,
+      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
+      },
+      {
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Mac &amp; Cheese&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Grilled chicken&quot;, &quot;price&quot;: 23.99}],
+      &quot;name&quot;: &quot;Client 3&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;delivery&quot;,
+      &quot;_id&quot;: &quot;0awcHyo8iD7XjahX&quot;,
+      },
+      {
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Eggrolls&quot;, &quot;price&quot;: 5.99}, {&quot;name&quot;: &quot;Fried Rice&quot;, &quot;price&quot;: 18.99}],
+      &quot;name&quot;: &quot;Client 4&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;delivered&quot;,
+      &quot;_id&quot;: &quot;1awcJyo3iD6CpvhZ&quot;,
+      }
+    ]
+    })
+  }
+}
+describe('HistoryComponent', () =&gt; {
+  let component: HistoryComponent;
+  let fixture: ComponentFixture&lt;HistoryComponent&gt;;
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      declarations: [ HistoryComponent ],
+      providers: [{
+        provide: OrderService,
+        useClass: MockOrderService
+      }]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(HistoryComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  it('should set response from getOrders service to orders member', () =&gt; {
+    const fixture = TestBed.createComponent(HistoryComponent);
+    fixture.detectChanges();
+    let expectedOrders = [{
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Onion fries&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Roasted Salmon&quot;, &quot;price&quot;: 23.99}],
+      &quot;name&quot;: &quot;Client 1&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;new&quot;,
+      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
+      },
+      {
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Steak Tacos&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Guacamole&quot;, &quot;price&quot;: 3.99}],
+      &quot;name&quot;: &quot;Client 2&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;preparing&quot;,
+      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
+      },
+      {
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Mac &amp; Cheese&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Grilled chicken&quot;, &quot;price&quot;: 23.99}],
+      &quot;name&quot;: &quot;Client 3&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;delivery&quot;,
+      &quot;_id&quot;: &quot;0awcHyo8iD7XjahX&quot;,
+      },
+      {
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Eggrolls&quot;, &quot;price&quot;: 5.99}, {&quot;name&quot;: &quot;Fried Rice&quot;, &quot;price&quot;: 18.99}],
+      &quot;name&quot;: &quot;Client 4&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;delivered&quot;,
+      &quot;_id&quot;: &quot;1awcJyo3iD6CpvhZ&quot;,
+      }
+    ];
+    let orders = fixture.componentInstance.orders;
+    expect(orders.value).toEqual(expectedOrders);
+  });
+
+  it('should display orders in UI', () =&gt; {
+    const fixture = TestBed.createComponent(HistoryComponent);
+    fixture.detectChanges();
+    let compiled = fixture.debugElement.nativeElement;
+    let orderDivs = compiled.querySelectorAll('.order:not(.header):not(.empty)');
+    expect(orderDivs.length).toEqual(4);
+  })
+
+  it('should display orders with appropriate classes', () =&gt; {
+    const fixture = TestBed.createComponent(HistoryComponent);
+    fixture.detectChanges();
+    let compiled = fixture.debugElement.nativeElement;
+    let newOrder = compiled.getElementsByClassName('new');
+    let preparingOrder = compiled.getElementsByClassName('preparing');
+    let deliveryOrder = compiled.getElementsByClassName('delivery');
+    let deliveredOrder = compiled.getElementsByClassName('delivered');
+    expect(newOrder.length).toEqual(1);
+    expect(preparingOrder.length).toEqual(1);
+    expect(deliveryOrder.length).toEqual(1);
+    expect(deliveredOrder.length).toEqual(1);
+  });
+});
+
+</code></pre>
+<blockquote>
+<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+</blockquote>
 <h3>The solution</h3>
 <p><strong>src/app/order/history.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
@@ -926,6 +1085,118 @@ of orders and other values like:
 <li>Add <code>@Input()</code>s to a component so it can be passed values.</li>
 <li>Call methods on a service that you get from the <code>constructor</code>.</li>
 </ul>
+<h3>To Verify Your Solution is Correct</h3>
+<p>Update the menu-items spec file  <strong>src/app/order/list/list.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs'; 
+
+import { ListComponent } from './list.component';
+import { OrderService } from '../order.service';
+
+class MockOrderService {
+  updateOrder(order, status) {
+    return of({})
+  }
+
+  deleteOrder(orderId) {
+    return of({})
+  }
+}
+
+describe('ListComponent', () =&gt; {
+  let component: ListComponent;
+  let fixture: ComponentFixture&lt;ListComponent&gt;;
+  let injectedOrderService;
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      declarations: [ ListComponent ],
+      providers: [{
+        provide: OrderService,
+        useClass: MockOrderService
+      }]
+    })
+    .compileComponents();
+    injectedOrderService = TestBed.get(OrderService);
+  }));
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(ListComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  it('should display the order total', () =&gt; {
+    const fixture = TestBed.createComponent(ListComponent);
+    fixture.componentInstance.orders = [
+      {
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Onion fries&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Roasted Salmon&quot;, &quot;price&quot;: 23.99}],
+      &quot;name&quot;: &quot;Client 1&quot;,
+      &quot;phone&quot;: null,
+      &quot;status&quot;: &quot;new&quot;,
+      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
+      }
+    ]
+    fixture.detectChanges();
+    let compiled = fixture.debugElement.nativeElement;
+
+    expect(compiled.querySelector('.total').textContent).toEqual('$39.98')
+  });
+
+  it('should call orderService updateOrder with order and action when &quot;mark as&quot; is clicked', () =&gt; {
+    const fixture = TestBed.createComponent(ListComponent);
+    let updateOrderSpy = spyOn(injectedOrderService, 'updateOrder').and.callThrough();
+    let order1 =  {
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Onion fries&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Roasted Salmon&quot;, &quot;price&quot;: 23.99}],
+      &quot;name&quot;: &quot;Client 1&quot;,
+      &quot;phone&quot;: null,
+      &quot;status&quot;: &quot;new&quot;,
+      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
+      }
+    fixture.componentInstance.orders = [
+      order1
+    ];
+    fixture.componentInstance.action = 'preparing';
+    fixture.componentInstance.actionTitle = 'Preparing';
+    fixture.detectChanges();
+    let compiled = fixture.debugElement.nativeElement;
+    let markAsLink = compiled.querySelector('.actions .action a');
+    markAsLink.click();
+    expect(updateOrderSpy).toHaveBeenCalledWith(order1, 'preparing');
+  });
+
+  it('should call orderService deleteOrder with id when delete item is clicked', () =&gt; {
+    const fixture = TestBed.createComponent(ListComponent);
+    let deleteOrderSpy = spyOn(injectedOrderService, 'deleteOrder').and.callThrough();
+    let order1 =  {
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Onion fries&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Roasted Salmon&quot;, &quot;price&quot;: 23.99}],
+      &quot;name&quot;: &quot;Client 1&quot;,
+      &quot;phone&quot;: null,
+      &quot;status&quot;: &quot;new&quot;,
+      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
+      }
+    fixture.componentInstance.orders = [
+      order1
+    ]
+    fixture.detectChanges();
+    let compiled = fixture.debugElement.nativeElement;
+    let deleteLink = compiled.querySelector('.actions .action a');
+    deleteLink.click();
+    expect(deleteOrderSpy).toHaveBeenCalledWith('0awcHyo3iD6CpvhX');
+  });
+});
+
+</code></pre>
+<blockquote>
+<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+</blockquote>
 <h3>The solution</h3>
 <p><strong>src/app/order/list.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, Input } from '@angular/core';
@@ -938,7 +1209,7 @@ import { Order, Item, OrderService } from '../order.service';
   styleUrls: ['./list.component.less']
 })
 export class ListComponent implements OnInit {
-  @Input() orders: [];
+  @Input() orders: Order[];
   @Input() listTitle: string;
   @Input() status: string;
   @Input() statusTitle: string;
