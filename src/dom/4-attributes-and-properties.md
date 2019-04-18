@@ -178,7 +178,7 @@ QUnit.test('$.fn.css', function(){
         });
       } else {
         return this[0] &&
-          document.getComputedStyle(this[0])
+          window.getComputedStyle(this[0])
             .getPropertyValue(cssPropName);
       }
     },

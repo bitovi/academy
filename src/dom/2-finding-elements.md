@@ -37,16 +37,7 @@ Run the following example in CodePen:
 <script type="module">
 (function() {
   $ = function(selector) {
-    if ( !(this instanceof $) ) {
-      return new $(selector);
-    }
-    var elements;
-    if (typeof selector === "string") {
-      elements = document.querySelectorAll(selector);
-    } else if ($.isArrayLike(selector)) {
-      elements = selector;
-    }
-    [].push.apply(this, elements);
+
   };
 
   $.extend = function(target, object) {
@@ -119,7 +110,7 @@ Run the following example in CodePen:
 
 ```
 @codepen
-@highlight 80-83,only
+@highlight 9,71-74,only
 
 Each exercise builds on the previous exercise.  There is a completed solution
 at the end of this page.

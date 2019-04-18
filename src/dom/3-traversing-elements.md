@@ -438,7 +438,7 @@ Make a `makeTraverser(traverse)` function that takes a `traverse` function and
 produces a function.  
 
 The `traverse` function should be called for each element in
-the source collection. When calling `traverse`, it's `this` should be each element.
+the source collection. When calling `traverse`, its `this` should be each element.
 
 The `traverse` functions should be able to return `null` and `element` or an array-like
 object of `elements`.

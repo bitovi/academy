@@ -71,7 +71,14 @@ QUnit.test('$.fn.width', function(){
 - The [clientWidth](https://developer.mozilla.org/en-US/docs/Web/API/Element/clientWidth)
   property returns the width of the element including the padding.
 - You can read the computed `padding-left` and `padding-right` style properties.
-
+- Use [parseInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt) to convert a string to a number. Make sure to include
+  a radix argument!
+  ```js
+  console.log( parseInt("011") ) //-> 11 or 9 depending on the browser!
+  console.log( parseInt("011", 10) )   //-> 11
+  console.log( parseInt("011px", 10) ) //-> 11
+  ```
+  @codepen
 
 ### The solution
 

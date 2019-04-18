@@ -448,6 +448,22 @@ setTimeout($.proxy(dog.speak, dog), 500);
 ```
 @codepen
 
+`$.proxy` can pass arguments too:
+
+```js
+import "https://unpkg.com/jquery@3/dist/jquery.js";
+
+var dog = {
+	nickname: 'fido',
+	speak: function(word){
+		console.log(this.nickname + ' says '+word);
+	}
+};
+
+var dogSpeak = $.proxy(dog.speak, dog);
+dogSpeak("ruff") //logs 'fido says ruff'
+```
+@codepen
 
 <details>
 <summary>Click to see the test code</summary>
