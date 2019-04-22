@@ -3,15 +3,15 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/front-end/theory.md
-	@page front-end/theory
+	source: src/debugging-javascript/4-conditional.md
+	@page learn-to-debug-javascript/conditional
 ######################################################################## -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <title>Bitovi Academy - Theory</title>
+  <title>Bitovi Academy - Conditional</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -75,13 +75,98 @@
 			
 				
 					<li class="
-           						
-           						">
+           						parent
+           						expanded">
 						<a class="page"
 							href="../learn-to-debug-javascript.html"
 							title="This course covers the basics of JavaScript debugging.">
 							Debug JavaScript
 						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="scope.html"
+							title="Learn how to see the variables available in the scope.">
+							Scope
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="call-stack.html"
+							title="Learn how to trace how functions are called.">
+							Call Stack
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="prototypes.html"
+							title="Learn how to explore an object&#x27;s proto chain.">
+							Prototypes
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="conditional.html"
+							title="Learn how to set a conditional breakpoint.">
+							Conditional
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="property-changes.html"
+							title="Learn how to debug property changes.">
+							Property Changes
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
 						
 					</li>
 				
@@ -163,7 +248,7 @@
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Theory <code>page</code></h1>
+	<h1>Conditional <code>page</code></h1>
 </section>
 
   		
@@ -171,7 +256,7 @@
   		
   			
   				<section class="description">
-    <p>Ideas on what matters with respect to technology.</p>
+    <p>Learn how to set a conditional breakpoint.</p>
 
 </section>
 
@@ -184,17 +269,44 @@
   			
   			
   				<section class="body">
-    <p>Before learning technology, it's important to place it in the right
-context. Technology on its own is rather meaningless.  Its when it provides
-values to people does it become important. As you learn about technology,
-it's useful to draw a line from what users and businesses value (quality) to the techniques and tools used to web applications.</p>
-<p>The following is a bit crazy, but it connects what users, businesses, and developers want <span style="color:red; font-weight: bold">(red)</span> and the problems and constraints we face
-<span style="color:orange; font-weight: bold">(orange)</span> with solutions
-<span style="color:green; font-weight: bold">(green)</span> and tools
-<span style="color:purple; font-weight: bold">(violet)</span>.</p>
-<p><img src="../../docs/front-end/madness.png" alt="Theory" title="Theory" /></p>
-<h2>The Goal</h2>
-<p>The goal is to create quality applications. The user, not the developer ultimately determines quality.</p>
+    <h2>The problem</h2>
+<pre><code class="language-html">&lt;script src=&quot;//bitovi.github.io/academy/static/scripts/debugging/variables.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;module&quot;&gt;
+function conditional(){
+    let sum = 0;
+    for(let i = 0; i &lt; 2000; i++) {
+        var conditionalValue = getConditionalValue(i);
+        sum += conditionalValue;
+    }
+    console.log(&quot;What does getConditionalValue() return when `i` is 1000?&quot;);
+    debugger;
+    return sum;
+}
+conditional();
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<h2>What you need to know</h2>
+<p>Often you only want to break when your app is at a certain state. The following code
+creates 2000 random numbers:</p>
+<pre><code class="language-js">function getValue(i){
+    return Math.random() * i;
+}
+var arr = [];
+for(var i = 0; i &lt; 2000; i++) {
+    var value = getValue(i);
+    arr.push(value)
+}
+</code></pre>
+<p>Chrome lets you add conditional breakpoints that break when an expression evaluates to
+<em>truthy</em>.  Right click the line number you'd like to break on and enter the
+expression.</p>
+<p><img src="../static/img/debugging/conditional.png"/></p>
+<h2>The solution</h2>
+<p><details>
+<summary>Click to see the answer</summary></p>
+<p>The answer is <code>u</code>.</p>
+<p></details></p>
 
 </section>
 
@@ -232,7 +344,7 @@ it's useful to draw a line from what users and businesses value (quality) to the
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/front-end/theory.md"},"description":"Ideas on what matters with respect to technology. \n","name":"front-end/theory","title":"Theory","type":"page","parent":"front-end","order":0,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/debugging-javascript/4-conditional.md"},"description":"Learn how to set a conditional breakpoint. \n","name":"learn-to-debug-javascript/conditional","title":"Conditional","type":"page","parent":"learn-to-debug-javascript","order":4,"comment":" ","pathToRoot":"../.."};
     </script>
 
     

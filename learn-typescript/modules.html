@@ -3,15 +3,15 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/front-end/theory.md
-	@page front-end/theory
+	source: src/typescript/modules.md
+	@page learn-typescript/modules
 ######################################################################## -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <title>Bitovi Academy - Theory</title>
+  <title>Bitovi Academy - Modules</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -90,13 +90,127 @@
 			
 				
 					<li class="
-           						
-           						">
+           						parent
+           						expanded">
 						<a class="page"
 							href="../learn-typescript.html"
 							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
 							Learn TypeScript
 						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="why-typescript.html"
+							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript.">
+							Why TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="ide-support.html"
+							title="Learn about TypeScript configurations and IDES good for TypeScript Development.">
+							IDE Support
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="types.html"
+							title="Learn how to declare types in TypeScript.">
+							Types
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="functions.html"
+							title="Learn how to annotate functions parameters and return values, use different parameter types available.">
+							Functions
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="classes.html"
+							title="Learn to use classes and inheritance in TypeScript, about the constructor method, and how to use public, private, protected, and readonly modifiers.">
+							Classes
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="interfaces.html"
+							title="Learn how to write Interfaces, set optional properties, and about the power of using interfaces in classes and functions">
+							Interfaces
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="generics.html"
+							title="Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript.">
+							Generics
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+	</ul>
+
+
 						
 					</li>
 				
@@ -163,7 +277,7 @@
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Theory <code>page</code></h1>
+	<h1>Modules <code>page</code></h1>
 </section>
 
   		
@@ -171,7 +285,46 @@
   		
   			
   				<section class="description">
-    <p>Ideas on what matters with respect to technology.</p>
+    <p>Modules</p>
+<h2>Modules</h2>
+<p>Modules are a way of grouping code to be executed within their own scope, opposed to a global scope. Modules give us a way to write DRY code, scope our variables, re-use parts of our code, are more easily tested, and mostly help us avoid writing applications full of that dreadful spaghetti code. In Typescript, modules are categorized into two types - internal(called namespaces) and external(just called modules).</p>
+<h3>Exporting</h3>
+<p>To be able to use our declarations in other areas of our codebase, we can export them using the export keyword.</p>
+<pre><code class="language-javascript">export interface Dinosaur {
+  name: string;
+  location: string;
+  teeth: number;
+}
+</code></pre>
+<h4>Export statements</h4>
+<p>We can also rename our declarations when exporting if need be</p>
+<pre><code class="language-javascript">interface Dinosaur {
+  name: string;
+  location: string;
+  teeth: number;
+}
+
+export { Dinosaur as InGenDinosaur }
+</code></pre>
+<h4>Default exports</h4>
+<p>Modules can export ONE default export using the keyword default.</p>
+<p>Security.ts</p>
+<pre><code class="language-javascript">declare let s: Security;
+
+export default s;
+</code></pre>
+<p>App.ts</p>
+<pre><code class="language-javascript">import s from &quot;Security&quot;;
+
+s.alert('the grid is down')
+</code></pre>
+<h4>Re-exports</h4>
+<h3>Importing</h3>
+<pre><code class="language-javascript">import { Dinosaur } from &quot;./Dinosaur&quot;;
+
+// or
+import { Dinosaur as InGenDinosaur } from &quot;./Dinosaur&quot;;
+</code></pre>
 
 </section>
 
@@ -182,22 +335,6 @@
   			
   				
   			
-  			
-  				<section class="body">
-    <p>Before learning technology, it's important to place it in the right
-context. Technology on its own is rather meaningless.  Its when it provides
-values to people does it become important. As you learn about technology,
-it's useful to draw a line from what users and businesses value (quality) to the techniques and tools used to web applications.</p>
-<p>The following is a bit crazy, but it connects what users, businesses, and developers want <span style="color:red; font-weight: bold">(red)</span> and the problems and constraints we face
-<span style="color:orange; font-weight: bold">(orange)</span> with solutions
-<span style="color:green; font-weight: bold">(green)</span> and tools
-<span style="color:purple; font-weight: bold">(violet)</span>.</p>
-<p><img src="../../docs/front-end/madness.png" alt="Theory" title="Theory" /></p>
-<h2>The Goal</h2>
-<p>The goal is to create quality applications. The user, not the developer ultimately determines quality.</p>
-
-</section>
-
   			
   		
     </div>
@@ -232,7 +369,7 @@ it's useful to draw a line from what users and businesses value (quality) to the
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/front-end/theory.md"},"description":"Ideas on what matters with respect to technology. \n","name":"front-end/theory","title":"Theory","type":"page","parent":"front-end","order":0,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/typescript/modules.md"},"description":"Modules \n\n## Modules\n\nModules are a way of grouping code to be executed within their own scope, opposed to a global scope. Modules give us a way to write DRY code, scope our variables, re-use parts of our code, are more easily tested, and mostly help us avoid writing applications full of that dreadful spaghetti code. In Typescript, modules are categorized into two types - internal(called namespaces) and external(just called modules).\n\n### Exporting\n\nTo be able to use our declarations in other areas of our codebase, we can export them using the export keyword.\n\n```javascript\nexport interface Dinosaur {\n  name: string;\n  location: string;\n  teeth: number;\n}\n```\n\n#### Export statements\n\nWe can also rename our declarations when exporting if need be\n\n```javascript\ninterface Dinosaur {\n  name: string;\n  location: string;\n  teeth: number;\n}\n\nexport { Dinosaur as InGenDinosaur }\n```\n\n#### Default exports\n\nModules can export ONE default export using the keyword default.\n\nSecurity.ts\n```javascript\ndeclare let s: Security;\n\nexport default s;\n```\n\nApp.ts\n```javascript\nimport s from \"Security\";\n\ns.alert('the grid is down')\n```\n\n#### Re-exports\n\n\n### Importing\n\n```javascript\nimport { Dinosaur } from \"./Dinosaur\";\n\n// or\nimport { Dinosaur as InGenDinosaur } from \"./Dinosaur\";\n```\n\n","name":"learn-typescript/modules","title":"Modules","type":"page","parent":"learn-typescript","order":7,"hide":true,"pathToRoot":"../.."};
     </script>
 
     

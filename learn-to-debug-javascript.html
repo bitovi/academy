@@ -3,15 +3,15 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/marketing/marketing.md
-	@page marketing
+	source: src/debugging-javascript/debugging-javascript.md
+	@page learn-to-debug-javascript
 ######################################################################## -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <title>Bitovi Academy - Marketing</title>
+  <title>Bitovi Academy - Debug JavaScript</title>
   
   <link rel="stylesheet" type="text/css" href="./static/bundles/bit-docs-site/static.css">
   
@@ -74,14 +74,96 @@
 		
 			
 				
-					<li class="
-           						
-           						">
+					<li class="current
+           						parent
+           						expanded">
 						<a class="page"
 							href="learn-to-debug-javascript.html"
 							title="This course covers the basics of JavaScript debugging.">
 							Debug JavaScript
 						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="learn-to-debug-javascript/scope.html"
+							title="Learn how to see the variables available in the scope.">
+							Scope
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="learn-to-debug-javascript/call-stack.html"
+							title="Learn how to trace how functions are called.">
+							Call Stack
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="learn-to-debug-javascript/prototypes.html"
+							title="Learn how to explore an object&#x27;s proto chain.">
+							Prototypes
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="learn-to-debug-javascript/conditional.html"
+							title="Learn how to set a conditional breakpoint.">
+							Conditional
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="learn-to-debug-javascript/property-changes.html"
+							title="Learn how to debug property changes.">
+							Property Changes
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
 						
 					</li>
 				
@@ -163,7 +245,7 @@
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Marketing <code>page</code></h1>
+	<h1>Debug JavaScript <code>page</code></h1>
 </section>
 
   		
@@ -171,7 +253,8 @@
   		
   			
   				<section class="description">
-    
+    <p>This course covers the basics of JavaScript debugging.</p>
+
 </section>
 
   			
@@ -181,6 +264,54 @@
   			
   				
   			
+  			
+  				<section class="body">
+    <h2>Before You Begin</h2>
+<p><a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">
+<img src="https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.png?width=200"
+style="float:left"/> <span style="margin-top: 10px;display: inline-block;">Click here to join<br/>Bitovi's Slack Community</span></a></p>
+<p>Join Bitovi's Slack Community to get help on Bitovi Academy courses or other
+Angular, React, CanJS and JavaScript problems.</p>
+<p>Please ask questions related to JavaScript Debugging in the <a href="https://bitovi-community.slack.com/messages/CFMMNSV5X">JS and DOM chat room</a>.</p>
+<p>If you find bugs in this training or have suggestions, create an <a href="https://github.com/bitovi/academy/issues">issue</a> or email <code>contact@bitovi.com</code>.</p>
+<h2>Overview</h2>
+<ul>
+<li>Audience: Beginner and Intermediate JS developers.</li>
+<li>Goal: Teach basic debugging skills with Chrome developer tools.</li>
+<li>Time: About 45 minutes.</li>
+</ul>
+<h2>Outline</h2>
+<ul>
+<li><p><a href="learn-to-debug-javascript/scope.html" title="Learn how to see the variables available in the scope.">Scope</a> - Learn how to see the variables available in the scope.</p>
+<p><img src="./static/img/debugging/closure.png" width="300px" style="border: solid 1px black"/></p></li>
+<li><p><a href="learn-to-debug-javascript/call-stack.html" title="Learn how to trace how functions are called.">Call Stack</a> - Learn how to trace how functions are called.</p>
+<p><img src="./static/img/debugging/stack.png" width="300px" style="border: solid 1px black"/></p></li>
+<li><p><a href="learn-to-debug-javascript/prototypes.html" title="Learn how to explore an object's proto chain.">Prototypes</a> - Learn how to explore an object's proto chain.</p>
+<div style="border: solid 1px black; width: 300px;
+background-image: url('./static/img/debugging/prototype.png');
+height: 300px; background-position: -165px -14px;
+background-repeat: no-repeat;"></div></li>
+<li><p><a href="learn-to-debug-javascript/conditional.html" title="Learn how to set a conditional breakpoint.">Conditional</a> - Learn how to set a conditional breakpoint.</p>
+<div style="border: solid 1px black; width: 300px;
+background-image: url('./static/img/debugging/conditional.png');
+height: 300px; background-position: -2px -54px;
+background-repeat: no-repeat;"></div></li>
+<li><p><a href="learn-to-debug-javascript/property-changes.html" title="Learn how to debug property changes.">Property Changes</a> - Learn how to debug property changes.</p>
+<pre><code class="language-js">var propertyValue = object.property;
+Object.defineProperty(person,&quot;property&quot;,{
+    get: function(){
+        return propertyValue;
+    },
+    set: function(newValue){
+        debugger;  
+        propertyValue = newValue;
+    }
+});
+</code></pre></li>
+</ul>
+
+</section>
+
   			
   		
     </div>
@@ -215,7 +346,7 @@
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/marketing/marketing.md"},"description":"\n","name":"marketing","title":"Marketing","type":"page","parent":"bit-academy","order":6,"hide":true,"pathToRoot":".."};
+      var docObject = {"src":{"path":"src/debugging-javascript/debugging-javascript.md"},"description":"This course covers the basics of JavaScript debugging. \n","name":"learn-to-debug-javascript","title":"Debug JavaScript","type":"page","parent":"bit-academy","order":3,"comment":" ","pathToRoot":".."};
     </script>
 
     

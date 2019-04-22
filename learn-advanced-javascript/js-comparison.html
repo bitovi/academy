@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/javascript/3-comparison-operators.md
+	@page learn-advanced-javascript/js-comparison
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <title>Bitovi Academy - Comparison Operators</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="js-vs-dom.html"
+							title="Understand the browser ecosystem and how JavaScript fits in.
+Video
+
+Slides">
+							JavaScript and the DOM
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="js-types.html"
+							title="Learn about types, operators and primitives in JavaScript as well as a bonus session regarding how hash maps are created in memory!
+This week&#x27;s agenda:
+
+Data types
+Operators
+A memory stack representation of primitives
+A memory stack representation of objects
+delete &amp; typeof
+Bonus: Hash maps and order of complexity">
+							Types, Operators and Primitives
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="js-comparison.html"
+							title="This week we covered comparisons in JavaScript! The showdown between == and === is on!">
+							Comparison Operators
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="closures.html"
+							title="Join us as we cover closure scope in JavaScript!">
+							Closures
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="context.html"
+							title="What is &quot;this&quot;? Learn about context and build your very own . operator!">
+							Context
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="prototypes.html"
+							title="Demystify .prototype and ._proto_! We&#x27;ll cover what the &quot;new&quot; and &quot;instanceof&quot; operators are actually doing behind the scenes, and what prototype-based inheritance looks like in memory.">
+							Prototypes
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn the basics of Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border"><a href="..#courses">View More Courses</a></p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Comparison Operators <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>This week we covered comparisons in JavaScript! The showdown between == and === is on!</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <h2>Overview</h2>
+<ul>
+<li>Byte comparisons</li>
+<li>Memory address comparisons</li>
+<li><code>==</code> state machine</li>
+<li><code>===</code> state machine</li>
+<li>Live examples!</li>
+</ul>
+<h2>Video</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/qJupPEXzVT8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2>Slides</h2>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSmb0SuI1bKUiQUxGJoDcIzxhlJSKyet-aIhFXWjoV14uqddSXIaAtZcV6vTh8UgKD4b4JHSJXEmWT9/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<h2>Exercise</h2>
+<p>Implement the <code>eqeq</code> function. Click <code>Run in your browser</code> after the following example:</p>
+<pre><code class="language-html">&lt;p&gt;Welcome to the &lt;code&gt;==&lt;/code&gt; exercise! Open the JavaScript panel
+    to implement the &lt;code&gt;eqeq()&lt;/code&gt; function. &lt;/p&gt;
+
+&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
+&lt;script src=&quot;//code.jquery.com/qunit/qunit-1.12.0.js&quot;&gt;&lt;/script&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+// Start by filling this function out!
+// eqeq(null, undefined) //-&gt; true
+var eqeq = function(value1, value2){
+
+};
+
+
+// The following functions might be useful to
+// eqeq().  You'll have to implement them yourself.
+
+// Returns true if the value is `null` or `undefined`
+var isNullOrUndefined = function(value) {
+
+};
+
+// Given a value, returns the primitive version of it,
+// either a number or string.
+var toPrimitive = function(value) {
+
+};
+
+// Given an object and a property on the object, this
+// will return the property value as long as the property
+// is not on `Object.prototype`. If you don't know what
+// this means, copy it from the answer key :-).
+var getDefinedPropertyNotOnObjectPrototype = function(obj, prop) {
+
+}
+
+
+// Test code.  There's no need to edit the following:
+QUnit.module(&quot;Double Equal&quot;, {});
+
+QUnit.test(&quot;Types the same&quot;, function(){
+  QUnit.equal( eqeq(1,1), 1 == 1 , &quot;1==1&quot;);
+  QUnit.equal( eqeq('1','1'), '1' == '1' , &quot;'1'=='1'&quot;)
+  QUnit.equal( eqeq({},{}), {} == {} , &quot;{}=={}&quot;)
+  QUnit.equal( eqeq(NaN,NaN), NaN == NaN , &quot;NaN==NaN&quot;)
+});
+
+QUnit.test(&quot;Both null or undefined&quot;, function(){
+  QUnit.equal( eqeq(null,undefined), null == undefined , &quot;null==undefined&quot;);
+  QUnit.equal( eqeq(undefined,null), undefined ==  null, &quot;undefined==null&quot;);
+});
+
+QUnit.test(&quot;String == Number&quot;, function(){
+  QUnit.equal( eqeq(1,'1'), 1=='1' , &quot;1=='1'&quot;);
+  QUnit.equal( eqeq(1,'2'), 1=='2', &quot;1=='2'&quot;);
+  QUnit.equal( eqeq(1,'a'), 1=='a', &quot;1=='a'&quot;);
+
+  QUnit.equal( eqeq('1',1), '1'==1 , &quot;'1'==1&quot;);
+  QUnit.equal( eqeq('a',1), 'a'==1, &quot;'a'==1&quot;);
+});
+
+QUnit.test(&quot;Boolean == Anything&quot;, function(){
+  QUnit.equal( eqeq(true,1), true==1 , &quot;true==1&quot;);
+  QUnit.equal( eqeq(true,2), true==2 , &quot;true==2&quot;);
+  QUnit.equal( eqeq(true,'true'), true=='true' , &quot;true=='true'&quot;);
+  QUnit.equal( eqeq(true,'1'), true=='1' , &quot;true=='1'&quot;);
+
+  QUnit.equal( eqeq(false,0), false==0 , &quot;false==0&quot;);
+  QUnit.equal( eqeq(false,'false'), false=='false' , &quot;false=='false'&quot;);
+  QUnit.equal( eqeq(false,'0'), false=='0' , &quot;false=='0'&quot;);
+
+
+  QUnit.equal( eqeq(1,true), 1==true , &quot;1==true&quot;);
+  QUnit.equal( eqeq(2,true), 2==true , &quot;2==true&quot;);
+  QUnit.equal( eqeq('true',true), 'true'==true , &quot;'true'==true&quot;);
+  QUnit.equal( eqeq('1',true), '1'==true , &quot;'1'==true&quot;);
+
+});
+
+QUnit.test(&quot;Object == (String || Number)&quot;, function(){
+  QUnit.equal( eqeq(({toString: function(){return 1}}),1),   ({toString: function(){return 1}})==1 , &quot;({toString: function(){return 1}})==1&quot;);
+  QUnit.equal( eqeq(({toString: function(){return '1'}}),1), ({toString: function(){return '1'}})==1 , &quot;({toString: function(){return '1'}})==1&quot;);
+  QUnit.equal( eqeq(({toString: function(){return true}}),1), ({toString: function(){return true}})==1 , &quot;({toString: function(){return true}})==1&quot;);
+
+  QUnit.equal( eqeq(({valueOf: function(){return 1}}),1), ({valueOf: function(){return 1}})==1 , &quot;({valueOf: function(){return 1}})==1&quot;);
+  QUnit.equal( eqeq(({valueOf: function(){return '1'}}),1), ({valueOf: function(){return '1'}})==1 , &quot;({valueOf: function(){return '1'}})==1&quot;);
+  QUnit.equal( eqeq(({valueOf: function(){return true}}),1), ({valueOf: function(){return true}})==1 , &quot;({valueOf: function(){return true}})==1&quot;);
+
+  QUnit.equal( eqeq(({toString: function(){return 1}}),true), ({toString: function(){return 1}})==true , &quot;({toString: function(){return 1}})==true&quot;);
+  QUnit.equal( eqeq(({toString: function(){return '1'}}),true), ({toString: function(){return '1'}})==true , &quot;({toString: function(){return '1'}})==true&quot;);
+  QUnit.equal( eqeq(({toString: function(){return true}}),true), ({toString: function(){return true}})==true , &quot;({toString: function(){return true}})==true&quot;);
+
+  QUnit.equal( eqeq(({valueOf: function(){return 0}}),false), ({valueOf: function(){return 0}})==false , &quot;({valueOf: function(){return 0}})==false&quot;);
+  QUnit.equal( eqeq(({valueOf: function(){return null}}),false), ({valueOf: function(){return null}})==false , &quot;({valueOf: function(){return null}})==false&quot;);
+  QUnit.equal( eqeq(({valueOf: function(){return undefined}}),false), ({valueOf: function(){return undefined}})==false , &quot;({valueOf: function(){return undefined}})==false&quot;);
+
+  // odd one
+  QUnit.equal( eqeq('a', ({valueOf: function(){return true}, toString: function(){ return 'a' }})), 'a' == ({valueOf: function(){return true}, toString: function(){ return 'a' }}) , &quot;'a' == ({valueOf: function(){return true}, toString: function(){ return 'a' }})&quot;);
+  QUnit.equal( eqeq(1, [1]), 1 == [1] , &quot;1 == [1]&quot;);
+
+  // Hard one
+  QUnit.equal( eqeq( &quot;abc&quot; , Object.create({valueOf: function(){return &quot;abc&quot;}}, {toString: {value: function(){ return &quot;ABC&quot; }}}) ), &quot;abc&quot; == Object.create({valueOf: function(){return &quot;abc&quot;}}, {toString: {value: function(){ return &quot;ABC&quot; }}}) , '&quot;abc&quot; == Object.create({valueOf: function(){return &quot;abc&quot;}}, {toString: {value: function(){ return &quot;ABC&quot; }}})');
+});
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<h2>Solution</h2>
+<pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
+&lt;script src=&quot;//code.jquery.com/qunit/qunit-1.12.0.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;module&quot;&gt;
+var eqeq = function(value1, value2){
+  var type1 = typeof value1,
+      type2 = typeof value2;
+
+  if(type1 === type2) {
+    return value1 === value2
+  }
+  if(isNullOrUndefined(value1) &amp;&amp; isNullOrUndefined(value2)) {
+    return true;
+  }
+
+  if(type1 === &quot;string&quot; &amp;&amp; type2 === &quot;number&quot;) {
+    return eqeq( toPrimitive(value1), value2 );
+  }
+  if(type2 === &quot;string&quot; &amp;&amp; type1 === &quot;number&quot;) {
+    return eqeq( value1, toPrimitive(value2) );
+  }
+  if(type1 === &quot;boolean&quot;) {
+    return eqeq(toPrimitive(value1), value2);
+  }
+  if(type2 === &quot;boolean&quot;) {
+    return eqeq(value1, toPrimitive(value2));
+  }
+  if(value1 &amp;&amp; type1 === &quot;object&quot;) {
+    return eqeq(toPrimitive(value1), value2);
+  }
+  if(value2 &amp;&amp; type2 === &quot;object&quot;) {
+    return eqeq(value1, toPrimitive(value2));
+  }
+  return false;
+};
+
+var isNullOrUndefined = function(value) {
+  return value === null || value === undefined;
+};
+
+var toPrimitive = function(value) {
+  if(typeof value === &quot;string&quot;) {
+    return +value;
+  }
+  if(typeof value === &quot;boolean&quot;) {
+    return value ? 1 : 0;
+  }
+  if(typeof value === &quot;object&quot;) {
+    if(getDefinedPropertyNotOnObjectPrototype(value, &quot;valueOf&quot;)) {
+      return value.valueOf();
+    }
+    if(getDefinedPropertyNotOnObjectPrototype(value, &quot;toString&quot;)) {
+      return value.toString();
+    }
+    return value.valueOf();
+  }
+};
+
+var getDefinedPropertyNotOnObjectPrototype = function(obj, prop) {
+  if( obj.hasOwnProperty(prop) ) {
+    return obj[prop]
+  }
+  if(Object.getPrototypeOf(obj) !== Object.prototype) {
+    return getDefinedPropertyNotOnObjectPrototype(Object.getPrototypeOf(obj), prop);
+  }
+}
+
+QUnit.module(&quot;Double Equal&quot;, {});
+
+QUnit.test(&quot;Types the same&quot;, function(){
+  QUnit.equal( eqeq(1,1), 1 == 1 , &quot;1==1&quot;);
+  QUnit.equal( eqeq('1','1'), '1' == '1' , &quot;'1'=='1'&quot;)
+  QUnit.equal( eqeq({},{}), {} == {} , &quot;{}=={}&quot;)
+  QUnit.equal( eqeq(NaN,NaN), NaN == NaN , &quot;NaN==NaN&quot;)
+});
+
+QUnit.test(&quot;Both null or undefined&quot;, function(){
+  QUnit.equal( eqeq(null,undefined), null == undefined , &quot;null==undefined&quot;);
+  QUnit.equal( eqeq(undefined,null), undefined ==  null, &quot;undefined==null&quot;);
+});
+
+QUnit.test(&quot;String == Number&quot;, function(){
+  QUnit.equal( eqeq(1,'1'), 1=='1' , &quot;1=='1'&quot;);
+  QUnit.equal( eqeq(1,'2'), 1=='2', &quot;1=='2'&quot;);
+  QUnit.equal( eqeq(1,'a'), 1=='a', &quot;1=='a'&quot;);
+
+  QUnit.equal( eqeq('1',1), '1'==1 , &quot;'1'==1&quot;);
+  QUnit.equal( eqeq('a',1), 'a'==1, &quot;'a'==1&quot;);
+});
+
+QUnit.test(&quot;Boolean == Anything&quot;, function(){
+  QUnit.equal( eqeq(true,1), true==1 , &quot;true==1&quot;);
+  QUnit.equal( eqeq(true,2), true==2 , &quot;true==2&quot;);
+  QUnit.equal( eqeq(true,'true'), true=='true' , &quot;true=='true'&quot;);
+  QUnit.equal( eqeq(true,'1'), true=='1' , &quot;true=='1'&quot;);
+
+  QUnit.equal( eqeq(false,0), false==0 , &quot;false==0&quot;);
+  QUnit.equal( eqeq(false,'false'), false=='false' , &quot;false=='false'&quot;);
+  QUnit.equal( eqeq(false,'0'), false=='0' , &quot;false=='0'&quot;);
+
+
+  QUnit.equal( eqeq(1,true), 1==true , &quot;1==true&quot;);
+  QUnit.equal( eqeq(2,true), 2==true , &quot;2==true&quot;);
+  QUnit.equal( eqeq('true',true), 'true'==true , &quot;'true'==true&quot;);
+  QUnit.equal( eqeq('1',true), '1'==true , &quot;'1'==true&quot;);
+
+});
+
+QUnit.test(&quot;Object == (String || Number)&quot;, function(){
+  QUnit.equal( eqeq(({toString: function(){return 1}}),1),   ({toString: function(){return 1}})==1 , &quot;({toString: function(){return 1}})==1&quot;);
+  QUnit.equal( eqeq(({toString: function(){return '1'}}),1), ({toString: function(){return '1'}})==1 , &quot;({toString: function(){return '1'}})==1&quot;);
+  QUnit.equal( eqeq(({toString: function(){return true}}),1), ({toString: function(){return true}})==1 , &quot;({toString: function(){return true}})==1&quot;);
+
+  QUnit.equal( eqeq(({valueOf: function(){return 1}}),1), ({valueOf: function(){return 1}})==1 , &quot;({valueOf: function(){return 1}})==1&quot;);
+  QUnit.equal( eqeq(({valueOf: function(){return '1'}}),1), ({valueOf: function(){return '1'}})==1 , &quot;({valueOf: function(){return '1'}})==1&quot;);
+  QUnit.equal( eqeq(({valueOf: function(){return true}}),1), ({valueOf: function(){return true}})==1 , &quot;({valueOf: function(){return true}})==1&quot;);
+
+  QUnit.equal( eqeq(({toString: function(){return 1}}),true), ({toString: function(){return 1}})==true , &quot;({toString: function(){return 1}})==true&quot;);
+  QUnit.equal( eqeq(({toString: function(){return '1'}}),true), ({toString: function(){return '1'}})==true , &quot;({toString: function(){return '1'}})==true&quot;);
+  QUnit.equal( eqeq(({toString: function(){return true}}),true), ({toString: function(){return true}})==true , &quot;({toString: function(){return true}})==true&quot;);
+
+  QUnit.equal( eqeq(({valueOf: function(){return 0}}),false), ({valueOf: function(){return 0}})==false , &quot;({valueOf: function(){return 0}})==false&quot;);
+  QUnit.equal( eqeq(({valueOf: function(){return null}}),false), ({valueOf: function(){return null}})==false , &quot;({valueOf: function(){return null}})==false&quot;);
+  QUnit.equal( eqeq(({valueOf: function(){return undefined}}),false), ({valueOf: function(){return undefined}})==false , &quot;({valueOf: function(){return undefined}})==false&quot;);
+
+  // odd one
+  QUnit.equal( eqeq('a', ({valueOf: function(){return true}, toString: function(){ return 'a' }})), 'a' == ({valueOf: function(){return true}, toString: function(){ return 'a' }}) , &quot;'a' == ({valueOf: function(){return true}, toString: function(){ return 'a' }})&quot;);
+  QUnit.equal( eqeq(1, [1]), 1 == [1] , &quot;1 == [1]&quot;);
+
+  // Hard one
+  QUnit.equal( eqeq( &quot;abc&quot; , Object.create({valueOf: function(){return &quot;abc&quot;}}, {toString: {value: function(){ return &quot;ABC&quot; }}}) ), &quot;abc&quot; == Object.create({valueOf: function(){return &quot;abc&quot;}}, {toString: {value: function(){ return &quot;ABC&quot; }}}) , '&quot;abc&quot; == Object.create({valueOf: function(){return &quot;abc&quot;}}, {toString: {value: function(){ return &quot;ABC&quot; }}})');
+});
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+
+</section>
+
+  			
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout slack">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">help</a> with an exercise, please reach out to us on
+             <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">Slack</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/javascript/3-comparison-operators.md"},"description":"This week we covered comparisons in JavaScript! The showdown between == and === is on! \n","name":"learn-advanced-javascript/js-comparison","title":"Comparison Operators","type":"page","parent":"learn-advanced-javascript","order":3,"comment":" ","pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+</body>
+</html>

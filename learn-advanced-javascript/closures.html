@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/javascript/4-closures.md
+	@page learn-advanced-javascript/closures
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <title>Bitovi Academy - Closures</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="js-vs-dom.html"
+							title="Understand the browser ecosystem and how JavaScript fits in.
+Video
+
+Slides">
+							JavaScript and the DOM
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="js-types.html"
+							title="Learn about types, operators and primitives in JavaScript as well as a bonus session regarding how hash maps are created in memory!
+This week&#x27;s agenda:
+
+Data types
+Operators
+A memory stack representation of primitives
+A memory stack representation of objects
+delete &amp; typeof
+Bonus: Hash maps and order of complexity">
+							Types, Operators and Primitives
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="js-comparison.html"
+							title="This week we covered comparisons in JavaScript! The showdown between == and === is on!">
+							Comparison Operators
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="closures.html"
+							title="Join us as we cover closure scope in JavaScript!">
+							Closures
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="context.html"
+							title="What is &quot;this&quot;? Learn about context and build your very own . operator!">
+							Context
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="prototypes.html"
+							title="Demystify .prototype and ._proto_! We&#x27;ll cover what the &quot;new&quot; and &quot;instanceof&quot; operators are actually doing behind the scenes, and what prototype-based inheritance looks like in memory.">
+							Prototypes
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn the basics of Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border"><a href="..#courses">View More Courses</a></p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Closures <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>Join us as we cover closure scope in JavaScript!</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <h2>Overview</h2>
+<ul>
+<li>Pass by reference vs pass by value</li>
+<li>Basic closures</li>
+<li>Closure gotchas</li>
+<li>Self invoking, anonymous functions</li>
+<li>Exercise!</li>
+</ul>
+<h2>Video</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Y28w0TEV8g8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2>Slides</h2>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vS3Rvip0mm-RctR1rq2W8DlGh2dFiqr9FTbL70Q5dmkwjfMdWCd6p8tztldRm5ZRXoiJCbscDNUnb0P/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<h2>Exercise</h2>
+<h3>The problem</h3>
+<p>Build a tag library that creates elements of the following types in the least lines of code:<br />
+<code>a</code>, <code>div</code>, <code>span</code>, <code>form</code>, <code>h1</code>, <code>h2</code>, <code>h3</code>, <code>h4</code>.</p>
+<p>For example, you could use it like:</p>
+<pre><code class="language-js">var h1 = make.h1();
+h1.innerHTML = 'Hello World';
+document.body.appendChild(h1);
+
+var a = make.a();
+a.href= 'http://canjs.us';
+a.innerHTML = 'CanJS';
+document.body.appendChild(a);
+</code></pre>
+<p>Click the button at the bottom of the following to begin the exercise:</p>
+<pre><code class="language-html">&lt;p&gt;Welcome to the closures exercise! Open the JavaScript panel
+    to implement the make functions. &lt;/p&gt;
+&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
+&lt;script src=&quot;//code.jquery.com/qunit/qunit-1.12.0.js&quot;&gt;&lt;/script&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+/* make util code here! */
+
+const make = {};
+
+make.h1 = function() {
+    return document.createElement('h1');
+};
+make.a = function() {
+    return document.createElement('a');
+};
+
+/* end make util code */
+
+// Test code. There's no need to edit the following:
+QUnit.test(&quot;make works&quot;, function(){
+    var h1 = make.h1();
+    h1.innerHTML = 'Hello World';
+    document.body.appendChild(h1);
+    var a = make.a();
+    a.href= 'http://bitovi.com';
+    a.innerHTML = 'Bitovi';
+    document.body.appendChild(a);
+    QUnit.equal(h1.nodeName, &quot;H1&quot;, &quot;h1 nodeName&quot;);
+    QUnit.equal(a.nodeName,&quot;A&quot;, &quot;a nodeName&quot;);
+    QUnit.ok(!/[&quot;']h1[&quot;']/.test(make.h1.toString()),
+        &quot;an 'h1' string is not hard coded in the function&quot;);
+
+    [`a`, `div`, `span`, `form`, `h1`, `h2`, `h3`, `h4`].forEach(function(name){
+        QUnit.equal(typeof make[name], &quot;function&quot;, &quot;make.&quot;+name+&quot; exists&quot;);
+    })
+})
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<h3>What you need to know</h3>
+<ul>
+<li>Functions can return functions. For example, the following maps an array to an array
+of functions:
+<pre><code class="language-js">const numbers = [1,2,3,4];
+
+const squareFunctions = numbers.map( function(number){
+  return function(){
+    return number * number;
+  }
+});
+
+console.log( squareFunctions[1]() ) //-&gt; Logs 4
+</code></pre>
+<div class='codepen'></div></li>
+<li><code>document.createElement('h1')</code> creates and returns an <code>&lt;h1&gt;</code> element.</li>
+</ul>
+<h3>The solution</h3>
+<pre><code class="language-html">&lt;p&gt;Welcome to the closures exercise! Open the JavaScript panel
+    to implement the make functions. &lt;/p&gt;
+&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
+&lt;script src=&quot;//code.jquery.com/qunit/qunit-1.12.0.js&quot;&gt;&lt;/script&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+/* make util code here! */
+
+const make = {};
+
+[`a`, `div`, `span`, `form`, `h1`, `h2`, `h3`, `h4`].forEach(function(name){
+    make[name] = function(){
+        return document.createElement(name);
+    }
+});
+
+/* end make util code */
+
+// Test code. There's no need to edit the following:
+QUnit.test(&quot;make works&quot;, function(){
+    var h1 = make.h1();
+    h1.innerHTML = 'Hello World';
+    document.body.appendChild(h1);
+    var a = make.a();
+    a.href= 'http://bitovi.com';
+    a.innerHTML = 'Bitovi';
+    document.body.appendChild(a);
+    QUnit.equal(h1.nodeName, &quot;H1&quot;, &quot;h1 nodeName&quot;);
+    QUnit.equal(a.nodeName,&quot;A&quot;, &quot;a nodeName&quot;);
+    QUnit.ok(!/[&quot;']h1[&quot;']/.test(make.h1.toString()),
+        &quot;an 'h1' string is not hard coded in the function&quot;);
+
+    [`a`, `div`, `span`, `form`, `h1`, `h2`, `h3`, `h4`].forEach(function(name){
+        QUnit.equal(typeof make[name], &quot;function&quot;, &quot;make.&quot;+name+&quot; exists&quot;);
+    })
+})
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='12-16'></div>
+
+</section>
+
+  			
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout slack">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">help</a> with an exercise, please reach out to us on
+             <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">Slack</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/javascript/4-closures.md"},"description":"Join us as we cover closure scope in JavaScript! \n","name":"learn-advanced-javascript/closures","title":"Closures","type":"page","parent":"learn-advanced-javascript","order":4,"comment":" ","pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+</body>
+</html>
