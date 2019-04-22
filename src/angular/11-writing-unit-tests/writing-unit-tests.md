@@ -1,5 +1,5 @@
-@page angular-training/writing-unit-tests Writing Unit Tests
-@parent angular-training 11
+@page learn-angular/writing-unit-tests Writing Unit Tests
+@parent learn-angular 11
 
 @description Write a service unit test
 

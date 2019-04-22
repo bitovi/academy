@@ -1,5 +1,5 @@
-@page debugging-javascript-training/property-changes Property Changes
-@parent debugging-javascript-training 5
+@page learn-to-debug-javascript/property-changes Property Changes
+@parent learn-to-debug-javascript 5
 @description Learn how to debug property changes.
 
 @body

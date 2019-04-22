@@ -1,5 +1,5 @@
-@page angular-training/form-value-changes Listening to Form Value Changes
-@parent angular-training 9
+@page learn-angular/form-value-changes Listening to Form Value Changes
+@parent learn-angular 9
 
 @description Listening to Form Value Changes
 

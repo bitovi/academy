@@ -1,5 +1,5 @@
-@page rxjs-training/disable-while-pending Disable while pending
-@parent rxjs-training 11
+@page learn-rxjs/disable-while-pending Disable while pending
+@parent learn-rxjs 11
 @description Learn how to convert an observable to a multicast subject.
 
 @body

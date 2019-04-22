@@ -1,5 +1,5 @@
-@page angular-training/building-order-form Building the Order Form
-@parent angular-training 13
+@page learn-angular/building-order-form Building the Order Form
+@parent learn-angular 13
 
 @description Building the Order Form
 

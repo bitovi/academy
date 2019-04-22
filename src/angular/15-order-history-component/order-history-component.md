@@ -1,5 +1,5 @@
-@page angular-training/order-history-component Order History Component
-@parent angular-training 15
+@page learn-angular/order-history-component Order History Component
+@parent learn-angular 15
 
 @description Writing the Order History Component
 @body

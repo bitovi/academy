@@ -1,5 +1,5 @@
-@page typescript-training/why-typescript Why TypeScript
-@parent typescript-training 1
+@page learn-typescript/why-typescript Why TypeScript
+@parent learn-typescript 1
 
 @description Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript.
 
@@ -26,24 +26,24 @@ TypeScript uses static typing, which allows us to specify what type a variable s
 ### Setup
 
 For this and following TypeScript exercises, we will be working in the
-[https://github.com/bitovi/typescript-training](https://github.com/bitovi/typescript-training)
+[https://github.com/bitovi/learn-typescript](https://github.com/bitovi/learn-typescript)
 repository. To use it:
 
 1. Clone this repo:
    ```shell
-   git clone https://github.com/bitovi/typescript-training.git
+   git clone https://github.com/bitovi/learn-typescript.git
    ```
 
 2. Open your terminal to that folder:
    ```shell
-   cd typescript-training
+   cd learn-typescript
    ```
 
 3. Install node packages:
    ```shell
    npm i
    ```
-4. Open the `typescript-training` folder in your editor:
+4. Open the `learn-typescript` folder in your editor:
    ```shell
    atom .
    ```

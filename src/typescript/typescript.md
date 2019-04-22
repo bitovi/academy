@@ -1,4 +1,4 @@
-@page typescript-training TypeScript Training
+@page learn-typescript Learn TypeScript
 @parent bit-academy 4
 @description This course covers the basic essentials of TypeScript. At the end, you should be
 ready to develop projects in TypeScript.

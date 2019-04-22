@@ -1,5 +1,5 @@
-@page rxjs-training/request-payment Request payment
-@parent rxjs-training 9
+@page learn-rxjs/request-payment Request payment
+@parent learn-rxjs 9
 
 @description
 

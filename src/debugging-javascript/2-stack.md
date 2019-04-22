@@ -1,5 +1,5 @@
-@page debugging-javascript-training/call-stack Call Stack
-@parent debugging-javascript-training 2
+@page learn-to-debug-javascript/call-stack Call Stack
+@parent learn-to-debug-javascript 2
 @description Learn how to trace how functions are called.
 
 @body

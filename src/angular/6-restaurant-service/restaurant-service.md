@@ -1,5 +1,5 @@
-@page angular-training/restaurant-service Writing a Restaurant Service
-@parent angular-training 6
+@page learn-angular/restaurant-service Writing a Restaurant Service
+@parent learn-angular 6
 
 @description Writing a Restaurant Service
 

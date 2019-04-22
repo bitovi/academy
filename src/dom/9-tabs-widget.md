@@ -1,5 +1,5 @@
-@page dom-jquery-training/tabs-widget Tabs Widget
-@parent dom-jquery-training 9
+@page learn-dom-jquery/tabs-widget Tabs Widget
+@parent learn-dom-jquery 9
 @description Create a tabs widget using your own version of jQuery.
 
 @body

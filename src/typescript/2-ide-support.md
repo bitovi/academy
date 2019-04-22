@@ -1,5 +1,5 @@
-@page typescript-training/ide-support IDE Support
-@parent typescript-training 2
+@page learn-typescript/ide-support IDE Support
+@parent learn-typescript 2
 
 @description Learn about TypeScript configurations and IDES good for TypeScript Development.
 

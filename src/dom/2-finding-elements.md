@@ -1,5 +1,5 @@
-@page dom-jquery-training/finding-elements Finding Elements
-@parent dom-jquery-training 2
+@page learn-dom-jquery/finding-elements Finding Elements
+@parent learn-dom-jquery 2
 @description Learn how to create a basic jQuery constructor function that can find elements in the page
 and manipulate them.
 

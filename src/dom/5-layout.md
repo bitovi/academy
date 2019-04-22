@@ -1,5 +1,5 @@
-@page dom-jquery-training/layout Layout
-@parent dom-jquery-training 5
+@page learn-dom-jquery/layout Layout
+@parent learn-dom-jquery 5
 @description Learn how the browser lays out elements in the page and how to
 get an elements dimensions and location.
 

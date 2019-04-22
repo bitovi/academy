@@ -60,7 +60,7 @@ and management in these free courses!
 <div class="courses">
 
 <div class="course">
-<a href="./advanced-javascript-training.html">
+<a href="./learn-advanced-javascript.html">
 <div class="course-logo">
 <img src="./static/img/javascript.png" width="100">
 </div>
@@ -73,7 +73,7 @@ and management in these free courses!
 </div>
 
 <div class="course">
-<a href="./dom-jquery-training.html">
+<a href="./learn-dom-jquery.html">
 <div class="course-logo">
 <img src="./static/img/jquery.png" width="240">
 </div>
@@ -88,7 +88,7 @@ meta programming too!</p>
 </div>
 
 <div class="course">
-<a href="./debugging-javascript-training.html">
+<a href="./learn-to-debug-javascript.html">
 <div class="course-logo">
 <img src="./static/img/javascript.png" width="100">
 </div>
@@ -106,7 +106,7 @@ property changes.</p>
 <div class="courses">
 
 <div class="course">
-<a href="./typescript-training.html">
+<a href="./learn-typescript.html">
 <div class="course-logo">
 <img src="./static/img/typescript.png" width="200">
 </div>
@@ -119,7 +119,7 @@ property changes.</p>
 </div>
 
 <div class="course">
-<a href="./rxjs-training.html">
+<a href="./learn-rxjs.html">
 <div class="course-logo">
 <img src="./static/img/rxjs.png" width="150">
 </div>
@@ -133,7 +133,7 @@ the hard but fundamental operators.</p>
 </div>
 
 <div class="course">
-<a href="./angular-training.html">
+<a href="./learn-angular.html">
 <div class="course-logo">
 <img src="./static/img/angular.png" width="100">
 </div>

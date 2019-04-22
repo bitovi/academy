@@ -1,5 +1,5 @@
-@page angular-training/creating-pipes Creating Pipes
-@parent angular-training 3
+@page learn-angular/creating-pipes Creating Pipes
+@parent learn-angular 3
 
 @description Learn how to create a custom pipe in Angular.
 

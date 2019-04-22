@@ -1,5 +1,5 @@
-@page rxjs-training/clean-card-number Clean card number
-@parent rxjs-training 2
+@page learn-rxjs/clean-card-number Clean card number
+@parent learn-rxjs 2
 
 @description Learn how to map an observable value to
 another observable value.

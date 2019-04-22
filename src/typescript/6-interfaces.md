@@ -1,5 +1,5 @@
-@page typescript-training/interfaces Interfaces
-@parent typescript-training 6
+@page learn-typescript/interfaces Interfaces
+@parent learn-typescript 6
 
 @description Learn how to write Interfaces, set optional properties, and about the power of using interfaces in classes and functions
 

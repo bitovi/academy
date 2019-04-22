@@ -1,4 +1,4 @@
-@page dom-jquery-training DOM and jQuery
+@page learn-dom-jquery DOM and jQuery
 @parent bit-academy 2
 
 @description Learn jQuery and the DOM APIs by building your own version of jQuery and
@@ -60,4 +60,4 @@ $.fn.tabs = function(){ /*...*/ }
 
 Creating jQuery requires meta programming
 (functions that take functions that return functions).  We encourage participants to
-finish the [advanced-javascript-training] course before beginning this training.
+finish the [learn-advanced-javascript] course before beginning this training.

@@ -1,5 +1,5 @@
-@page rxjs-training/cvc CVC
-@parent rxjs-training 7
+@page learn-rxjs/cvc CVC
+@parent learn-rxjs 7
 
 @description Apply what you've learned from previous sections to the `cvc` field.
 

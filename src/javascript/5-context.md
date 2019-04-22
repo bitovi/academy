@@ -1,5 +1,5 @@
-@page advanced-javascript-training/context Context
-@parent advanced-javascript-training 5
+@page learn-advanced-javascript/context Context
+@parent learn-advanced-javascript 5
 @description What is "this"? Learn about context and build your very own `.` operator!
 
 @body

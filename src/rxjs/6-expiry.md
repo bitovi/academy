@@ -1,5 +1,5 @@
-@page rxjs-training/expiry Expiry
-@parent rxjs-training 6
+@page learn-rxjs/expiry Expiry
+@parent learn-rxjs 6
 
 @description Apply what you've learned from previous sections to the `expiry` field.
 

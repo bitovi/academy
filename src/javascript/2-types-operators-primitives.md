@@ -1,5 +1,5 @@
-@page advanced-javascript-training/js-types Types, Operators and Primitives
-@parent advanced-javascript-training 2
+@page learn-advanced-javascript/js-types Types, Operators and Primitives
+@parent learn-advanced-javascript 2
 
 @description Learn about types, operators and primitives in JavaScript as well as a bonus session regarding how hash maps are created in memory!
 

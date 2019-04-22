@@ -1,5 +1,5 @@
-@page dom-jquery-training/fn-plugins Fn Plugins
-@parent dom-jquery-training 8
+@page learn-dom-jquery/fn-plugins Fn Plugins
+@parent learn-dom-jquery 8
 @description Learn how `$.fn` supports creating plugins.
 
 @body

@@ -1,5 +1,5 @@
-@page angular-training/nested-routes Nested Restaurant Routes
-@parent angular-training 12
+@page learn-angular/nested-routes Nested Restaurant Routes
+@parent learn-angular 12
 
 @description Creating nested restaurant routes
 

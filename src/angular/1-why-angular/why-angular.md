@@ -1,5 +1,5 @@
-@page angular-training/why-angular Why Angular
-@parent angular-training 1
+@page learn-angular/why-angular Why Angular
+@parent learn-angular 1
 
 @description Why Angular is a great choice for modern web application development.
 

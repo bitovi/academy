@@ -1,5 +1,5 @@
-@page rxjs-training/angular RxJS in Angular
-@parent rxjs-training 1
+@page learn-rxjs/angular RxJS in Angular
+@parent learn-rxjs 1
 
 @description Learn how to read and write observables in Angular.
 

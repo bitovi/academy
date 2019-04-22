@@ -1,5 +1,5 @@
-@page rxjs-training/basics Basics
-@parent rxjs-training 0
+@page learn-rxjs/basics Basics
+@parent learn-rxjs 0
 
 @description Learn the basics of RxJS.
 

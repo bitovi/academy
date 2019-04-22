@@ -1,4 +1,4 @@
-@page angular-training Angular Training
+@page learn-angular Learn Angular
 @parent bit-academy 4
 @description Learn the basics of Angular.
 

@@ -1,5 +1,5 @@
-@page dom-jquery-training/traversing-elements Traversing Elements
-@parent dom-jquery-training 3
+@page learn-dom-jquery/traversing-elements Traversing Elements
+@parent learn-dom-jquery 3
 @description Learn how to move from one element to the next and a bit of meta programming.
 
 

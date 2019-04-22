@@ -1,5 +1,5 @@
-@page angular-training/updating-service-params Filtering Cities & Restaurants
-@parent angular-training 10
+@page learn-angular/updating-service-params Filtering Cities & Restaurants
+@parent learn-angular 10
 
 @description Updating Restaurant Service to use params
 

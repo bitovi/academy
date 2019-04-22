@@ -1,5 +1,5 @@
-@page angular-training/creating-components Creating Components
-@parent angular-training 3
+@page learn-angular/creating-components Creating Components
+@parent learn-angular 3
 
 @description Learn how to create basic components in angular.
 

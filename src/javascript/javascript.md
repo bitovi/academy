@@ -1,4 +1,4 @@
-@page advanced-javascript-training Advanced JavaScript
+@page learn-advanced-javascript Advanced JavaScript
 @parent bit-academy 1
 
 @description This course covers all the hard but important stuff you should know when learning JavaScript.
@@ -26,12 +26,12 @@ If you find bugs in this training or have suggestions, create an [issue](https:/
 
 <strong>We are going to be figuring out how JavaScript works in memory. We will cover:</strong>
 
-- [advanced-javascript-training/js-vs-dom] - The browser ecosystem and how JavaScript fits in.
-- [advanced-javascript-training/js-types] - The types, operators and primitives in JavaScript.
-- [advanced-javascript-training/js-comparison] - How `==` and `===` work.
-- [advanced-javascript-training/closures] - How closures and functions work.
-- [advanced-javascript-training/context] - How `this` works.
-- [advanced-javascript-training/prototypes] - How prototypal inheritance works.
+- [learn-advanced-javascript/js-vs-dom] - The browser ecosystem and how JavaScript fits in.
+- [learn-advanced-javascript/js-types] - The types, operators and primitives in JavaScript.
+- [learn-advanced-javascript/js-comparison] - How `==` and `===` work.
+- [learn-advanced-javascript/closures] - How closures and functions work.
+- [learn-advanced-javascript/context] - How `this` works.
+- [learn-advanced-javascript/prototypes] - How prototypal inheritance works.
 
 At the end, you should have a firm understanding the core features of JavaScript.  We will
 be building the following mental model:

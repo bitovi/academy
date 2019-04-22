@@ -1,5 +1,5 @@
-@page advanced-javascript-training/prototypes Prototypes
-@parent advanced-javascript-training 6
+@page learn-advanced-javascript/prototypes Prototypes
+@parent learn-advanced-javascript 6
 @description Demystify .prototype and .\_proto\_! We'll cover what the "new" and "instanceof" operators are actually doing behind the scenes, and what prototype-based inheritance looks like in memory.
 
 @body
