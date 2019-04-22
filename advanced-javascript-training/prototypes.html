@@ -11,10 +11,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <meta name="description" content="Demystify .prototype and .\_proto\_! We&#x27;ll cover what the &quot;new&quot; and &quot;instanceof&quot; operators are actually doing behind the scenes, and what prototype-based inheritance looks like in memory. 
+">
   <title>Bitovi Academy - Prototypes</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
+  --Demystify .prototype and .\_proto\_! We&#x27;ll cover what the &quot;new&quot; and &quot;instanceof&quot; operators are actually doing behind the scenes, and what prototype-based inheritance looks like in memory. 
+--
 </head>
 
 <body>
@@ -204,13 +208,15 @@ Bonus: Hash maps and order of complexity">
            						
            						">
 						<a class="page"
-							href="../typescript-training.html"
+							href="../typescript.html"
 							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
-							TypeScript Training
+							TypeScript
 						</a>
 						
 					</li>
 				
+			
+		
 			
 		
 			
@@ -221,15 +227,13 @@ Bonus: Hash maps and order of complexity">
            						
            						">
 						<a class="page"
-							href="../rxjs-training.html"
+							href="../RxJS.html"
 							title="Learn RxJS by creating a validating credit card form.">
-							RxJS Training
+							RxJS
 						</a>
 						
 					</li>
 				
-			
-		
 			
 		
 			
@@ -238,9 +242,9 @@ Bonus: Hash maps and order of complexity">
            						
            						">
 						<a class="page"
-							href="../angular-training.html"
+							href="../angular.html"
 							title="Learn the basics of Angular.">
-							Angular Training
+							Angular
 						</a>
 						
 					</li>
@@ -310,12 +314,12 @@ Bonus: Hash maps and order of complexity">
 <h2>Exercise 1: new Operator</h2>
 <h3>The problem</h3>
 <p>Write the <code>new</code> operator as if it was implemented in JS as a function. For example,
-instead of calling <code>new Person('name')</code>, we will call <code>NEW(Person,['name'])</code> as follows:</p>
+instead of calling <code>new Person('name')</code>, we will call <code>NEW(Person,'name')</code> as follows:</p>
 <pre><code class="language-js">function Person(name) {
     this.name = name;
 }
 
-Person.prototype.speak = function(){ console.log('Hello!') }
+Person.prototype.speak = function(){ console.log(‘Hello!’) }
 
 // var person = new Person('name')
 const person = NEW( Person, ['name'] );
@@ -362,7 +366,7 @@ QUnit.test('NEW works', function(){
 <ol>
 <li>Creates a new object.</li>
 <li>Assigns the object's <code>__proto__</code> to the constructor function's <code>prototype</code>.</li>
-<li>Calls the <code>constructorFn</code> constructor function with the object as <code>this</code>.</li>
+<li>Calls the constructor function with the object as <code>this</code>.</li>
 </ol>
 <p>Other things to know:</p>
 <ul>
@@ -566,15 +570,13 @@ QUnit.test('INSTANCEOF works', function() {
     
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-29"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
-      gtag('config', 'UA-2302003-12');
+      gtag('config', 'UA-2302003-29');
     </script>
-
   </div>
 </body>
 </html>
