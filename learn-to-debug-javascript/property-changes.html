@@ -291,7 +291,7 @@ propertyChange();
 <h2>What you need to know</h2>
 <p>You can capture when a property is set using a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set">setter</a>.  A <em>setter</em> can be created with <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Object.defineProperty</a> like:</p>
 <pre><code class="language-js">var propertyValue = object.property;
-Object.defineProperty(person,&quot;property&quot;,{
+Object.defineProperty(object,&quot;property&quot;,{
     get: function(){
         return propertyValue;
     },

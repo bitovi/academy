@@ -351,9 +351,13 @@ QUnit.test(&quot;DOT works&quot;, function(){
 
     var person = new Person('Alexis');
     var species = DOT(person, 'species');
+    var toString = DOT(person, 'toString');
 
     QUnit.equal(species, 'Homo Sapien', 'property accessed');
+    QUnit.equal(toString, Object.prototype.toString,
+        'Object.prototype.toString accessed');
     QUnit.equal(DOT(person, 'foobar'), undefined, 'property not found');
+
 });
 &lt;/script&gt;
 
@@ -449,11 +453,56 @@ DOTCALL(person,&quot;speak&quot;,[&quot;Hi&quot;])  //person.speak(&quot;Hi&quot
 <li><strong>args</strong> - an array of arguments to pass to the function.</li>
 </ul>
 <p>To get started, click the <strong>Run in your browser</strong> button at the bottom of the following code sample:</p>
+<pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.14.0.css&quot;&gt;
+&lt;script src=&quot;//code.jquery.com/qunit/qunit-1.14.0.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;module&quot;&gt;
+// The DOT operator will be useful
+function DOT(object, property) {
+    if( Object.prototype.hasOwnProperty.call(object, property) ) {
+        return object[property];
+    }
+    var proto = Object.getPrototypeOf(object);
+    if( proto ) {
+        return DOT(proto, property);
+    }
+}
+
+function DOTCALL(obj, prop, args){
+
+}
+&lt;/script&gt;
+&lt;script&gt;
+QUnit.test('DOTCALL works', function() {
+
+    var Person = function(name){
+        this.name = name;
+    };
+    Person.prototype.species = 'Homo Sapien';
+    Person.prototype.speak = function(toWhom) {
+        return 'Hello ' + toWhom + '. My name is ' + this.name + '.';
+    };
+
+    var person = new Person('Alexis');
+    var speak = DOTCALL(person, 'speak', ['Justin']);
+
+    var greet = 'Hello Justin. My name is Alexis.';
+    equal(speak, greet, 'method called with argument');
+});
+&lt;/script&gt;
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='16-18,only'></div>
 <h3>What you need to know</h3>
 <ul>
 <li>Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply">apply</a> to
 call a function (also constructor functions) with a <code>this</code> value and an array of arguments.</li>
-<li>If the call operator (<code>()</code>) is used on a value that is not a function, an error is thrown.</li>
+<li>If the call operator (<code>()</code>) is used on a value that is not a function,
+an error is thrown. For this example, throw:
+<pre><code class="language-js">throw new Error(&quot;${prop} is not a function&quot;);
+</code></pre>
+where <code>prop</code> is the name of the property that is being called.</li>
 </ul>
 <h3>The solution</h3>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
@@ -476,7 +525,7 @@ function DOTCALL(obj, prop, args){
     if(typeof fn === &quot;function&quot;) {
         return fn.apply(obj, args);
     } else {
-        throw prop+&quot; is not a function&quot;;
+        throw new Error(prop+&quot; is not a function&quot;);
     }
 }
 &lt;/script&gt;
@@ -501,7 +550,7 @@ QUnit.test('DOTCALL works', function() {
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='5-14,only'></div>
+<div line-highlight='16-23,only'></div>
 
 </section>
 
