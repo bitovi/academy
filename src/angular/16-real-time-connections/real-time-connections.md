@@ -28,11 +28,15 @@ We can import JavaScript libraries that haven't been written into Angular module
 import * as io from 'socket.io-client';
 ```
 
+## Using Environment Variables
+
 We need to tell Socket.io where to listen for changes. Locally this is localhost:7070 - where our API is running, but that's not what it will be in production. Angular makes handling this situation easy, we can simply add an environment variable. 
 
 Open `src/environments/environment.ts` and change it to:
 
 @sourceref ./environment.ts
+
+## Listening to Socket Events
  
  We'll use `apiUrl` for our Socket.io connection, and listen for `orders created`, `order updated`, and `orders deleted` events to change our list on:
 
