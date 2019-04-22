@@ -1,4 +1,4 @@
-@page RxJS RxJS
+@page learn-rxjs Learn RxJS
 @parent bit-academy 6
 
 @description Learn RxJS by creating a validating credit card form.
@@ -11,12 +11,12 @@
 <img src="https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.png?width=200"
   style="float:left"/> <span style="margin-top: 10px;display: inline-block;">Click here to join<br/>Bitovi's Slack Community</span></a>
 
-Join Bitovi's Slack Community to get help on Bitovi University courses or other
+Join Bitovi's Slack Community to get help on Bitovi Academy courses or other
 Angular, React, CanJS and JavaScript problems.
 
 Please ask questions related to RxJS and Angular in the [Angular Chat Room](https://bitovi-community.slack.com/messages/CFD2J3HT3).
 
-If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/university/issues) or email `contact@bitovi.com`.
+If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/academy/issues) or email `contact@bitovi.com`.
 
 
 ## Overview

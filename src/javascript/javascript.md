@@ -1,4 +1,4 @@
-@page advanced-javascript-training Advanced JavaScript
+@page learn-advanced-javascript Advanced JavaScript
 @parent bit-academy 1
 
 @description This course covers all the hard but important stuff you should know when learning JavaScript.
@@ -11,12 +11,12 @@
 <img src="https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.png?width=200"
   style="float:left"/> <span style="margin-top: 10px;display: inline-block;">Click here to join<br/>Bitovi's Slack Community</span></a>
 
-Join Bitovi's Slack Community to get help on Bitovi University courses or other
+Join Bitovi's Slack Community to get help on Bitovi Academy courses or other
 Angular, React, CanJS and JavaScript problems.
 
 Please ask questions related to JavaScript in the [JS and DOM chat room](https://bitovi-community.slack.com/messages/CFMMNSV5X).
 
-If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/university/issues) or email `contact@bitovi.com`.
+If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/academy/issues) or email `contact@bitovi.com`.
 
 ## Overview
 
@@ -26,12 +26,12 @@ If you find bugs in this training or have suggestions, create an [issue](https:/
 
 <strong>We are going to be figuring out how JavaScript works in memory. We will cover:</strong>
 
-- [advanced-javascript-training/js-vs-dom] - The browser ecosystem and how JavaScript fits in.
-- [advanced-javascript-training/js-types] - The types, operators and primitives in JavaScript.
-- [advanced-javascript-training/js-comparison] - How `==` and `===` work.
-- [advanced-javascript-training/closures] - How closures and functions work.
-- [advanced-javascript-training/context] - How `this` works.
-- [advanced-javascript-training/prototypes] - How prototypal inheritance works.
+- [learn-advanced-javascript/js-vs-dom] - The browser ecosystem and how JavaScript fits in.
+- [learn-advanced-javascript/js-types] - The types, operators and primitives in JavaScript.
+- [learn-advanced-javascript/js-comparison] - How `==` and `===` work.
+- [learn-advanced-javascript/closures] - How closures and functions work.
+- [learn-advanced-javascript/context] - How `this` works.
+- [learn-advanced-javascript/prototypes] - How prototypal inheritance works.
 
 At the end, you should have a firm understanding the core features of JavaScript.  We will
 be building the following mental model:

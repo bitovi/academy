@@ -1,5 +1,5 @@
-@page dom-jquery-training/attributes-and-properties Attributes and Properties
-@parent dom-jquery-training 4
+@page learn-dom-jquery/attributes-and-properties Attributes and Properties
+@parent learn-dom-jquery 4
 @description Learn about the attributes and properties on an element.
 @body
 
@@ -178,7 +178,7 @@ QUnit.test('$.fn.css', function(){
         });
       } else {
         return this[0] &&
-          document.getComputedStyle(this[0])
+          window.getComputedStyle(this[0])
             .getPropertyValue(cssPropName);
       }
     },

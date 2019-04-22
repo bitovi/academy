@@ -1,7 +1,7 @@
-@page angular/adding-routing Adding Routing
-@parent angular 4
+@page learn-angular/adding-routing Adding Routing
+@parent learn-angular 4
 
-@description Adding Routing
+@description Learn how to add basic routing to an Angular application.
 
 @body
 

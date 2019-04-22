@@ -1,5 +1,5 @@
-@page angular/state-city-options City & State Options
-@parent angular 8
+@page learn-angular/state-city-options City & State Options
+@parent learn-angular 8
 
 @description Creating city & state options for filtering restaurants
 
@@ -103,7 +103,7 @@ __src/app/app.module.ts__
 
 When you visit <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>, there will now be state and city dropdown options populated with fake data.
 
-![Place My Order App city and state dropdowns](../static/img/pmo-dropdowns.gif "Place My Order App city and state dropdowns")
+![Place My Order App city and state dropdowns](../static/img/angular/pmo-dropdowns.gif "Place My Order App city and state dropdowns")
 
 Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
 

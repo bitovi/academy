@@ -1,5 +1,5 @@
-@page angular/order-service Order Service
-@parent angular 14
+@page learn-angular/order-service Order Service
+@parent learn-angular 14
 
 @description Writing the Order Service
 @body
@@ -85,7 +85,7 @@ __src/app/order/order.service.ts__
 @sourceref ./order-2.service.ts
 @highlight 2, 23, 25-27, 29-33, 35-39, 40-43, only
 
-## Exercise: Using the order service in the order component
+## Exercise: Use the OrderService in the OrderComponent to create an order
 
 ### The Problem
 
@@ -119,25 +119,26 @@ Before starting:
 @sourceref ./order.component.ts
 @highlight 76-85,only
 
-
 ### What you need to know
 
 - how to import a service
 - how to call a method on a service and get the result
 - how to show/hide content using \*ngIf
 
-----
+### To Verify Your Solution is Correct
+
+If you've implemented everything correctly, you should now be able to create an order from the UI and see a record of your completed order once it's created.
+
+Update the menu-items spec file  __src/app/order/order.component.spec.ts__ to be:
+
+@sourceref ./order.component.spec.ts
+@highlight 11,64-76,91,104-107,111,217-233,235-252,254-278,only
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+
 
 ### The Solution
 
 __src/app/order/order.component.ts__
 @sourceref ./order.component-solution.ts
 @highlight 7, 30, 38, 71, 78-85,only
-
-If you've implemented everything correctly, you should now be able to create an order from the UI and see a record of your completed order once it's created.
-
-### Update Order Component Tests
-
-Update the order spec file  __src/app/order/order.component.spec.ts__ to be:
-
-@sourceref ./order.component.spec.ts

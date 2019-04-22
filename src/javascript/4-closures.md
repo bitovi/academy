@@ -1,5 +1,5 @@
-@page advanced-javascript-training/closures Closures
-@parent advanced-javascript-training 4
+@page learn-advanced-javascript/closures Closures
+@parent learn-advanced-javascript 4
 @description Join us as we cover closure scope in JavaScript!
 
 @body

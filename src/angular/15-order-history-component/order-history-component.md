@@ -1,5 +1,5 @@
-@page angular/order-history-component Order History Component
-@parent angular 15
+@page learn-angular/order-history-component Order History Component
+@parent learn-angular 15
 
 @description Writing the Order History Component
 @body
@@ -14,7 +14,7 @@ In this part, we will:
 - Create ways to update and delete orders in the view
 - Add order history link to our main navigation
 
-## Exercise: Generate a `HistoryComponent` and route to it
+## Exercise: Generate a `HistoryComponent` and create a route for it
 
 ### The problem
 
@@ -88,17 +88,16 @@ In this exercise, we will:
 - Make sure the `<div>` for each order has a class name of _'order'_ and the
   `order.status` value. Make sure you've created a new order.
 
-
 Start this exercise by:
 
 1\. Copying the following into __src/app/order/history.component.ts__. You will fill out its
-`getOrders` method.  The getters like `newOrders` will be used later.
+`getOrders` method.  The getters `newOrders`, `preparingOrders`, `deliveryOrders`, and `deliveredOrders` will be used later.
 
 @sourceref ./history.component.ts
-@highlight 15-17,25
+@highlight 18,22
 
 2\. Copy the following into __src/app/order/history.component.html__.  You will need to
-make it loop through orders and add the right class names to the outer `<div>` for each order.
+iterate through orders and add the right class names to the outer `<div>` for each order.
 
 @sourceref ./0-history.component.html
 @highlight 9,10
@@ -116,6 +115,13 @@ For this step, you'll need to know how to add multiple class names.  You can do 
 <div [ngClass]="['first','second']">
 ```
 
+### To Verify Your Solution is Correct
+
+Update the menu-items spec file  __src/app/order/history/history.component.spec.ts__ to be:
+
+@sourceref ./history.component-1.spec.ts
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ### The solution
 
@@ -123,7 +129,6 @@ __src/app/order/history.component.ts__
 
 @sourceref ./history.component-solution.ts
 @highlight 2, 22, 31-35, only
-
 
 __src/app/order/history.component.html__
 
@@ -189,8 +194,6 @@ ng g component order/list
 
 @sourceref ./list.component.html
 
-
-
 ### What you need to know
 
 You'll need to remember how to:
@@ -198,6 +201,14 @@ You'll need to remember how to:
 - Add `@Input()`s to a component so it can be passed values.
 - Call methods on a service that you get from the `constructor`.
 
+### To Verify Your Solution is Correct
+
+Update the menu-items spec file  __src/app/order/list/list.component.spec.ts__ to be:
+
+@sourceref ./list.component.spec.ts
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+> 
 ### The solution
 
 __src/app/order/list.component.ts__

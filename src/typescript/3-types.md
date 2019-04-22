@@ -1,5 +1,5 @@
-@page typescript/types Types
-@parent typescript 3
+@page learn-typescript/types Types
+@parent learn-typescript 3
 
 @description Learn how to declare types in TypeScript.
 

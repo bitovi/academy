@@ -21,9 +21,11 @@ class AcademyPage {
   };
 
   getPageContents(){
-    const pageContent = this.$('#content-wrapper').html();
-    const pageScripts = this.$('#scripts').html();
-    return updateStaticAssetLinks(pageContent + pageScripts);
+    // const pageContent = this.$('#content-wrapper').html();
+    // const pageScripts = this.$('#scripts').html();
+    // return updateStaticAssetLinks(pageContent + pageScripts);
+    const pageContent = this.$('body').html();
+    return updateStaticAssetLinks(pageContent);
   }
 
   getCSSLinks(){
@@ -37,7 +39,7 @@ class AcademyPage {
 }
 
 const updateStaticAssetLinks = (html) => {
-  const assetBaseUrl = 'https://bitovi.github.io/university/static';
+  const assetBaseUrl = 'https://bitovi.github.io/academy/static';
   return html
     .replace(/src="\.*\/static/g, `src="${assetBaseUrl}`)
     .replace(/src='\.*\/static/g, `src='${assetBaseUrl}`)

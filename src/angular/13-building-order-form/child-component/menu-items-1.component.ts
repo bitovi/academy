@@ -11,7 +11,7 @@ interface Item {
   styleUrls: ['./menu-items.component.less']
 })
 export class MenuItemsComponent implements OnInit {
-  @Input() items: [];
+  @Input() items: Item[] = [];
   selectedItems: Item[] = [];
 
   constructor() { }
@@ -19,7 +19,7 @@ export class MenuItemsComponent implements OnInit {
   ngOnInit() {
   }
 
-  changeFunc(item: Item) {
+  updateItems(item: Item) {
     let index = this.selectedItems.indexOf(item);
     if(index > -1) {
       this.selectedItems.splice(index, 1);

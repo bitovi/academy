@@ -1,5 +1,5 @@
-@page rxjs/show-paying Show paying
-@parent RxJS 10
+@page learn-rxjs/show-paying Show paying
+@parent learn-rxjs 10
 
 @description Learn how to flatten an observable
 that emits observables.  Learn how to order observables.

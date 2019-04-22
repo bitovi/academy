@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bitovi/university.git"
+    "url": "git+https://github.com/bitovi/academy.git"
   },
   "keywords": [
     "JavaScript"
@@ -18,9 +18,9 @@
   "author": "Bitovi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bitovi/university/issues"
+    "url": "https://github.com/bitovi/academy/issues"
   },
-  "homepage": "https://github.com/bitovi/university#readme",
+  "homepage": "https://github.com/bitovi/academy#readme",
   "devDependencies": {
     "axios": "^0.18.0",
     "bit-docs": "0.1.0",

@@ -1,5 +1,5 @@
-@page rxjs/error-on-blur Error on blur
-@parent RxJS 5
+@page learn-rxjs/error-on-blur Error on blur
+@parent learn-rxjs 5
 
 @description Learn how to perform the reducer pattern.
 

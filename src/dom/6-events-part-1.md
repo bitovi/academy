@@ -1,5 +1,5 @@
-@page dom-jquery-training/events-part-1 Events Part 1
-@parent dom-jquery-training 6
+@page learn-dom-jquery/events-part-1 Events Part 1
+@parent learn-dom-jquery 6
 
 @description Learn the basics of DOM events.
 

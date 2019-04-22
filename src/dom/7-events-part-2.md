@@ -1,5 +1,5 @@
-@page dom-jquery-training/events-part-2 Events Part 2
-@parent dom-jquery-training 7
+@page learn-dom-jquery/events-part-2 Events Part 2
+@parent learn-dom-jquery 7
 @description Learn about event propagation and event delegation.
 @body
 

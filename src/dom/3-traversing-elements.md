@@ -1,5 +1,5 @@
-@page dom-jquery-training/traversing-elements Traversing Elements
-@parent dom-jquery-training 3
+@page learn-dom-jquery/traversing-elements Traversing Elements
+@parent learn-dom-jquery 3
 @description Learn how to move from one element to the next and a bit of meta programming.
 
 
@@ -29,7 +29,7 @@ Run the following example in CodePen:
 <div id="qunit-fixture"></div>
 <link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.12.0.css">
 <script src="//code.jquery.com/qunit/qunit-1.12.0.js"></script>
-<script src="//bitovi.github.io/university/static/scripts/jquery-test.js"></script>
+<script src="//bitovi.github.io/academy/static/scripts/jquery-test.js"></script>
 <script type="module">
 (function() {
   $ = function(selector) {
@@ -438,7 +438,7 @@ Make a `makeTraverser(traverse)` function that takes a `traverse` function and
 produces a function.  
 
 The `traverse` function should be called for each element in
-the source collection. When calling `traverse`, it's `this` should be each element.
+the source collection. When calling `traverse`, its `this` should be each element.
 
 The `traverse` functions should be able to return `null` and `element` or an array-like
 object of `elements`.

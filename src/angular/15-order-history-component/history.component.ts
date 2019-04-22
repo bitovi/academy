@@ -12,13 +12,10 @@ interface Data<T> {
 })
 export class HistoryComponent implements OnInit {
 
-  constructor(
-    ) {
-    }
+  constructor() {}
 
   ngOnInit() {
     this.getOrders();
-
   }
 
   getOrders() {

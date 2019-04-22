@@ -1,5 +1,5 @@
-@page typescript/modules Modules
-@parent typescript 7
+@page learn-typescript/modules Modules
+@parent learn-typescript 7
 
 @description Modules
 
