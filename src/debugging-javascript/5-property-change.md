@@ -33,7 +33,7 @@ You can capture when a property is set using a [setter](https://developer.mozill
 
 ```js
 var propertyValue = object.property;
-Object.defineProperty(person,"property",{
+Object.defineProperty(object,"property",{
     get: function(){
         return propertyValue;
     },

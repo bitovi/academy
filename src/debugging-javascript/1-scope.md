@@ -12,7 +12,7 @@ What is the value of `VARIABLE_IN_SCOPE` in the following code?
 ```html
 <script src="//bitovi.github.io/academy/static/scripts/debugging/variables.js"></script>
 <script type="module">
-// What is the value of b?
+// What is the value of VARIABLE_IN_SCOPE?
 function a(){
     var a = makeAVariables;
     return function b(){
