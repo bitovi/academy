@@ -1,5 +1,5 @@
-@page canjs-training/component-edit Component Edit
-@parent canjs-training 14
+@page learn-canjs/component-edit Component Edit
+@parent learn-canjs 14
 
 @description Edit todo names (can-stache-bindings)
 

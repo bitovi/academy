@@ -1,5 +1,5 @@
-@page canjs-training/component-create Component Create
-@parent canjs-training 13
+@page learn-canjs/component-create Component Create
+@parent learn-canjs 13
 
 @description Create todos (can-component)
 

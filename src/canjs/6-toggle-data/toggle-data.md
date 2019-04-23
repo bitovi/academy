@@ -1,5 +1,5 @@
-@page canjs-training/toggle-data Toggle checkbox
-@parent canjs-training 6
+@page learn-canjs/toggle-data Toggle checkbox
+@parent learn-canjs 6
 
 @description Toggle a todo’s completed state (data bindings)
 

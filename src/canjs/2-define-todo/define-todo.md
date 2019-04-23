@@ -1,5 +1,5 @@
-@page canjs-training/define-todo Define Todo Model
-@parent canjs-training 2
+@page learn-canjs/define-todo Define Todo Model
+@parent learn-canjs 2
 
 @description Learn how to create an observable type in CanJS.
 

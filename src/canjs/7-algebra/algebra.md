@@ -1,5 +1,5 @@
-@page canjs-training/algebra Algebra
-@parent canjs-training 7
+@page learn-canjs/algebra Algebra
+@parent learn-canjs 7
 
 @description Define Todo's identity
 

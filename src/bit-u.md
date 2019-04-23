@@ -186,3 +186,14 @@ too!</p>
 
 </div><!-- close courses -->
 </div><!-- close courses-container -->
+
+
+<div class="courses-intro">
+<h4>Checkout the following live events</h4>
+</div>
+
+<!-- div is needed for markdown -->
+<div><calendar-events
+api-key="AIzaSyBsNpdGbkTsqn1BCSPQrjO9OaMySjK5Sns"
+calendar-id="jupiterjs.com_g27vck36nifbnqrgkctkoanqb4@group.calendar.google.com"
+event-count="3"></calendar-events></div>

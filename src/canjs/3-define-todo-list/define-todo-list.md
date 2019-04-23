@@ -1,5 +1,5 @@
-@page canjs-training/define-todo-list Define Todo List
-@parent canjs-training 3
+@page learn-canjs/define-todo-list Define Todo List
+@parent learn-canjs 3
 
 @description Define Todo.List type (DefineList basics)
 

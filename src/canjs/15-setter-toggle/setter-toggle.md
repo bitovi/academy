@@ -1,5 +1,5 @@
-@page canjs-training/setter-toggle Setter Toggle
-@parent canjs-training 15
+@page learn-canjs/setter-toggle Setter Toggle
+@parent learn-canjs 15
 
 @description Toggle all todos complete state (DefineMap setter)
 

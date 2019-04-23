@@ -1,5 +1,5 @@
-@page canjs-training/connection-destroy Connection Destroy
-@parent canjs-training 12
+@page learn-canjs/connection-destroy Connection Destroy
+@parent learn-canjs 12
 
 @description Delete todos in the page (can-connect use)
 

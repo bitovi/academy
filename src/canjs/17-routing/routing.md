@@ -1,5 +1,5 @@
-@page canjs-training/routing Routing
-@parent canjs-training 17
+@page learn-canjs/routing Routing
+@parent learn-canjs 17
 
 @description Set up routing (can-route)
 

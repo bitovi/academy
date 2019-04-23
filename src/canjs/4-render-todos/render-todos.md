@@ -1,5 +1,5 @@
-@page canjs-training/render-todos Render Todos
-@parent canjs-training 4
+@page learn-canjs/render-todos Render Todos
+@parent learn-canjs 4
 
 @description Learn how to render a view.
 

@@ -1,5 +1,5 @@
-@page canjs-training/clear-all-completed Clear All Completed
-@parent canjs-training 16
+@page learn-canjs/clear-all-completed Clear All Completed
+@parent learn-canjs 16
 
 @description Clear completed todo’s (event bindings)
 

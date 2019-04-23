@@ -1,5 +1,5 @@
-@page canjs-training/setup-canjs Setup CanJS
-@parent canjs-training 1
+@page learn-canjs/setup-canjs Setup CanJS
+@parent learn-canjs 1
 
 @description Learn to setup a basic CanJS application using StealJS as the module loader.
 

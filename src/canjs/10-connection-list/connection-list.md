@@ -1,5 +1,5 @@
-@page canjs-training/connection-list Connection List
-@parent canjs-training 10
+@page learn-canjs/connection-list Connection List
+@parent learn-canjs 10
 
 @description List todos from the service layer (can-connect use)
 

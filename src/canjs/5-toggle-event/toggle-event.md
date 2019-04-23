@@ -1,5 +1,5 @@
-@page canjs-training/toggle-event Toggle checkbox
-@parent canjs-training 5
+@page learn-canjs/toggle-event Toggle checkbox
+@parent learn-canjs 5
 
 @description Toggle a todo’s completed state (event bindings)
 

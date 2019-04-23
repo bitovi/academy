@@ -1,5 +1,5 @@
-@page canjs-training/simulate-service-layer Simulate the service layer
-@parent canjs-training 8
+@page learn-canjs/simulate-service-layer Simulate the service layer
+@parent learn-canjs 8
 
 @description Simulate the service layer (can-fixture)
 

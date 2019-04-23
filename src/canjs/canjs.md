@@ -1,4 +1,4 @@
-@page canjs-training CanJS with StealJS Training
+@page learn-canjs Learn CanJS
 @parent bit-academy 4
 
 @description This tutorial walks through building TodoMVC with

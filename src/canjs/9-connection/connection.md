@@ -1,5 +1,5 @@
-@page canjs-training/connection Connection
-@parent canjs-training 9
+@page learn-canjs/connection Connection
+@parent learn-canjs 9
 
 @description Connect the Todo model to the service layer (can-connect)
 

@@ -1,5 +1,5 @@
-@page canjs-training/toggle-save Toggle Save
-@parent canjs-training 11
+@page learn-canjs/toggle-save Toggle Save
+@parent learn-canjs 11
 
 @description Toggling a todo’s checkbox updates service layer (can-connect use)
 
