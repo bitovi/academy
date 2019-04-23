@@ -193,7 +193,25 @@ too!</p>
 </div>
 
 <!-- div is needed for markdown -->
-<div><calendar-events
+<div class='courses-container'><calendar-events
 api-key="AIzaSyBsNpdGbkTsqn1BCSPQrjO9OaMySjK5Sns"
 calendar-id="jupiterjs.com_g27vck36nifbnqrgkctkoanqb4@group.calendar.google.com"
-event-count="3"></calendar-events></div>
+event-count="3" class="courses">
+<template>
+<div class="course">
+<a class='event-url'>
+ <h5 class='event-title'></h5>
+ <p class='event-body'></p>
+ <p class='detail'><strong>Date:</strong>
+ <span class='event-date'></span>
+ </p>
+ <p class='detail'><strong>Location:</strong>
+ <span class='event-location'></span>
+ </p>
+ <p class='detail'><strong>Group:</strong>
+ <span class='event-group'></span>
+ </p>
+</a>
+</div>
+</template>
+</calendar-events></div>
