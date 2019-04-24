@@ -39,7 +39,7 @@ unintended consequences.
 
 An additional benefit specific to Angular + RxJS is that imperative side effects that we previously accomplished in a
 subscription to an event (_e.g_ form control enabled toggling) can now be done via an action taken during the generation 
-of a value via state definition. This removes the need to manually manage subscriptions in `onDestroy`.
+of a value by a stream. This removes the need to manually manage subscriptions in `onDestroy`.
 
 ## Exercise: Update states, cities & restaurants to be observables
 
