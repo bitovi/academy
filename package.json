@@ -55,7 +55,17 @@
     "html": {
       "templates": "templates"
     },
-    "dest": "./academy"
+    "dest": "./academy",
+	"codepen": [
+      [
+        "\"can\"",
+        "\"//unpkg.com/can@5/core.mjs\""
+      ],
+      [
+        "\"can/everything\"",
+        "\"//unpkg.com/can@5/everything.mjs\""
+      ]
+    ]
   },
   "dependencies": {
     "@bitovi/snapshot-test": "<2.0.0",

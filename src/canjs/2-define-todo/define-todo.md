@@ -32,29 +32,57 @@ QUnit.equal(todo.complete, true, "toggleComplete works");
 
 - [DefineMap Basics Presentation](https://docs.google.com/presentation/d/1Y9G9aJMJgCzKMHROe4HuzRD_LY7UyGPbLOtl2TJAEqM/edit?usp=sharing)
 - [https://canjs.com/doc/can-define/map/map.extend.html DefineMap.extend] defines a new `Type`.
+
+  ```js
+  import {DefineMap} from "can";
+
+  const MyType = DefineMap.extend("MyType",{});
+
+  var instance = new MyType();
+
+  console.log( instance instanceof MyType ) //logs true
+  ```
+  @codepen
 - The [https://canjs.com/doc/can-define.types.type.html type] behavior defines a property’s type like:
 
   ```js
-  DefineMap.extend({
-      propertyName: {type: "number"}
-  })
+  import {DefineMap} from "can";
+
+  const Person = DefineMap.extend("Person",{
+      age: {type: "number"}
+  });
+
+  console.log( new Person({age: "3"}).age ) //logs 3
   ```
+  @codepen
 
 - The [https://canjs.com/doc/can-define.types.default.html default] behavior defines a property’s initial value like:
 
   ```js
-  DefineMap.extend({
-      propertyName: {default: 3}
-  })
+  import {DefineMap} from "can";
+
+  const Person = DefineMap.extend("Person",{
+      age: {default: 3}
+  });
+
+  console.log( new Person().age ) //logs 3
   ```
 
 - Methods can be defined directly on the prototype like:
 
   ```js
-  DefineMap.extend({
-      methodName: function() {}
-  })
+  import {DefineMap} from "can";
+
+  const Type = DefineMap.extend("Type",{
+      methodName() {
+          console.log("run method");
+      }
+  });
+
+  var instance = new Type();
+  instance.methodName() //logs "run method"
   ```
+  @codepen
 
 ## The solution
 
