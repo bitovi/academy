@@ -302,6 +302,25 @@ describe('RestaurantComponent', () => {
         expect(restaurantOutput).toEqual(expectedRestaurants);
     }));
 
+    it('should show a loading div while isPending is true', () => {
+        const fixture = TestBed.createComponent(RestaurantComponent);
+        fixture.detectChanges();
+        fixture.componentInstance.restaurants.isPending = true;
+        fixture.detectChanges();
+        const compiled = fixture.debugElement.nativeElement;
+        let loadingDiv = compiled.querySelector('.loading');
+        expect(loadingDiv).toBeTruthy();
+    });
+
+    it('should not show a loading div if isPending is false', () => {
+        const fixture = TestBed.createComponent(RestaurantComponent);
+        fixture.componentInstance.restaurants.isPending = false;
+        fixture.detectChanges();
+        const compiled = fixture.debugElement.nativeElement;
+        let loadingDiv = compiled.querySelector('.loading');
+        expect(loadingDiv).toBe(null);
+    });
+
     it('should have a form property with city and state keys', () => {
         const fixture = TestBed.createComponent(RestaurantComponent);
         fixture.detectChanges();
@@ -395,8 +414,28 @@ describe('RestaurantComponent', () => {
     it('state dropdown should be disabled until states are populated', <any>fakeAsync((): void => {
         let stateOutput = null;
         const fixture = TestBed.createComponent(RestaurantComponent);
-        fixture.detectChanges();
 
+        // TODO: implement following
+        // store original implementation of mocked service getState
+        // replace with code similar to following;
+        // getStates() {
+        //   const obs = of({
+        //     data: []
+        //   });
+        //
+        //   setTimeout(() => {
+        //     obs.emit({
+        //       data: [
+        //         {"short":"MO","name":"Missouri"},
+        //         {"short":"CA","name":"California"},
+        //         {"short":"MI","name":"Michigan"}]
+        //     });
+        //   }, 100);
+        //
+        //   return obs;
+        // }
+
+        fixture.detectChanges();
         fixture.componentInstance.states.subscribe((output) => {
             stateOutput = output;
         });
@@ -404,7 +443,7 @@ describe('RestaurantComponent', () => {
         let stateFormControl1 = fixture.componentInstance.form.get('state');
         expect(stateFormControl1.enabled).toBe(false);
 
-        tick();
+        tick(100);
         fixture.detectChanges();
 
         let stateFormControl2 = fixture.componentInstance.form.get('state');

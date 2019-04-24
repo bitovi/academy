@@ -64,7 +64,14 @@ control which in turn may make a request.
  
  You'll learn all of the above as part of [Bitovi Academy's RxJS training](/learn-rxjs.html). 
  
- [//]: <> (TODO: update with modifications to tests) 
+### How To Verify Your Solution Is Correct
+
+Update the spec file __src/app/restaurant/restaurant.component.spec.ts__ to be:
+
+@sourceref ./restaurant.component.spec.ts
+@highlight 194, 199-201, 301, 347, 352-354, 365, 380, 385-387, 398, 414, 417-440, 445, 468-470, 475,478
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ### The Solution
 
