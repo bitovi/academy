@@ -25,15 +25,69 @@ and management in these free courses!
   margin-left: -30px;
   margin-right: -30px;
 }
+.courses-container .courses .fade {
+ text-overflow: -o-ellipsis-lastline;
+ overflow: hidden;
+ position: relative;
+ box-sizing: border-box;
+ word-break: break-word;
+ height: 465px;
+}
+.fade:after {
+ content: "";
+ text-align: right;
+ position: absolute;
+ bottom: 0;
+ right: 0;
+ width: 100%;
+ height: 100px;
+ background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 25%);
+ z-index: 70;
+}
+.event-title{
+  margin-top: 0;
+}
 .course .detail {
-  padding: 0;
-  margin: 0;
+ padding: 0;
+ margin: 0;
 }
 .academy-intro ol {
   margin-top: 0;
 }
 .academy-intro ol li {
   list-style: none;
+}
+.courses-container .courses .fade .detail{
+  margin: 0px;
+  font-size: 14px;
+  color: #666666;
+}
+.courses-container .courses .fade .details-container{
+  border: 1px solid #eee;
+  background-color: #f5f6f6;
+  padding: 10px;
+  margin: 0px;
+}
+.button{
+ padding: 4px 10px;
+ background-color: #356FD1;
+ border: 1px solid #356FD1;
+ color: white;
+ border-radius: 3px;
+}
+.courses-container .courses .fade .button{
+ position: absolute;
+ bottom: 0;
+ left: 0px;
+ right: 0px;
+ z-index: 100 !important;
+ margin: 15px;
+ box-sizing: border-box;
+ color: white;
+}
+.courses-container .courses .fade .button:hover{
+ background-color: #3e7de2;
+ border-color: #3e7de2;
 }
 </style>
 
@@ -171,7 +225,6 @@ too!</p>
 </div>
 <h5>Your Course Here</h5>
 <p>Got an idea for a course? Let us know by <a href="https://github.com/bitovi/academy/issues/new">submitting an issue</a>.</p>
-
 </div>
 
 
@@ -189,7 +242,8 @@ too!</p>
 
 
 <div class="courses-intro">
-<h4>Checkout the following live events</h4>
+<h4>Check out the following live events</h4>
+<p>Join us in talking about design, development, DevOps, JavaScript, performance, CanJS, React, and more. For a full list of upcoming events, see  <a href="https://calendar.google.com/calendar/embed?src=jupiterjs.com_g27vck36nifbnqrgkctkoanqb4%40group.calendar.google.com"> our calendar</a>.</p>
 </div>
 
 <!-- div is needed for markdown -->
@@ -198,10 +252,9 @@ api-key="AIzaSyBsNpdGbkTsqn1BCSPQrjO9OaMySjK5Sns"
 calendar-id="jupiterjs.com_g27vck36nifbnqrgkctkoanqb4@group.calendar.google.com"
 event-count="3" class="courses">
 <template>
-<div class="course">
-<a class='event-url'>
+<div class="course fade">
  <h5 class='event-title'></h5>
- <p class='event-body'></p>
+ <div class='details-container'>
  <p class='detail'><strong>Date:</strong>
  <span class='event-date'></span>
  </p>
@@ -211,7 +264,9 @@ event-count="3" class="courses">
  <p class='detail'><strong>Group:</strong>
  <span class='event-group'></span>
  </p>
-</a>
+ </div>
+ <p class='event-body'></p>
+ <a class='event-url button'>View event details</a>
 </div>
 </template>
 </calendar-events></div>
