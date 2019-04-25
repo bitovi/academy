@@ -7,6 +7,7 @@ import { RestaurantComponent } from './restaurant.component';
 import { RestaurantService } from './restaurant.service';
 import { ImageUrlPipe } from '../image-url.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Mock } from 'protractor/built/driverProviders';
 
 const restaurantAPIResponse = {
     data: [{
@@ -61,7 +62,7 @@ const restaurantAPIResponse = {
             "images": {
                 "thumbnail": "node_modules/place-my-order-assets/images/2-thumbnail.jpg",
                 "owner": "node_modules/place-my-order-assets/images/3-owner.jpg",
-                "banner": "node_modules/place-my-order-assets/images/2-banner.jpg"
+                "banner": "node_modules/place-my-order-asets/images/2-banner.jpg"
             },
             "menu": {
                 "lunch": [

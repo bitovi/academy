@@ -19,13 +19,24 @@ the following exercise, but it's not required. Read on if you're interested in w
 
 ## Imperative vs Declarative state
 
-The code we've written thus far has been in an imperative style, i.e when an event occurs, we run code that changes
-the state of the component accordingly. This model of programming is very familiar, although it can become quite difficult 
-to trace the modifications to the state as an application grows in complexity.
+To understand the difference between imperative and declarative styles of programming we first need to review the 
+concept of state. State is essentially the "remembered information" of a program, _i.e_ the variables used as part of 
+the program. Imperative & declarative state differ in how the program specifies the state.
 
-A declarative style of programming expresses the state in terms of how it's generated from an event. Rather than reacting 
-to an event and modifying the state, an event occurs and the state produces an updated value based on the actions that 
-define it. This subtle distinction has some very useful implications.
+The code we've written thus far has been in an imperative style, _i.e_ when events occur, code runs that changes
+the state of the program accordingly. The program state is defined by actions that directly modify it. This model of 
+programming is very familiar, although it can become quite difficult to trace the modifications to the state as an 
+application grows in complexity.
+
+@sourceref ./imperative.sample.html
+@codepen
+
+A declarative style of programming expresses the state in terms of how values should be generated. The state is defined
+by which events it should react to and what actions will occur to produce values. This subtle distinction has 
+some very useful implications.
+
+@sourceref ./declarative.sample.html
+@codepen
 
 Declarative state, once you're familiar with it, is typically easier to follow. Understanding how a piece of the program's
 state is generated only requires reading the state's definition. The actions that are part of the definition explain 
@@ -69,7 +80,7 @@ control (which in turn may make a request).
 Update the spec file __src/app/restaurant/restaurant.component.spec.ts__ to be:
 
 @sourceref ./restaurant.component.spec.ts
-@highlight 3-4, 195, 200-202, 303, 329, 334-336, 347, 357, 362, 367-369, 380, 391, 396, 398, 400-410, 412-415, 420, 426, 441, 445-447, 452, 455
+@highlight 3-4, 197, 202-204, 304, 350, 355-357, 368, 383, 388-390, 401, 417, 419, 421-431, 433-426, 441, 447, 462, 466-468, 473, 476, only
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
@@ -78,9 +89,9 @@ Update the spec file __src/app/restaurant/restaurant.component.spec.ts__ to be:
 __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./restaurant.component.ts
-@highlight 14-30, 37-42, 49-99
+@highlight 14-30, 37-42, 49-99, only
 
 __src/app/restaurant/restaurant.component.html__
 
 @sourceref ./restaurant.component.html
-@highlight 7-10, 17-20, 26-28
+@highlight 7-10, 17-20, 26-28, only
