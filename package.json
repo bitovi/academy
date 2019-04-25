@@ -56,7 +56,7 @@
       "templates": "templates"
     },
     "dest": "./academy",
-	"codepen": [
+    "codepen": [
       [
         "\"can\"",
         "\"//unpkg.com/can@5/core.mjs\""

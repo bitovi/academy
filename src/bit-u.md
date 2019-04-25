@@ -101,7 +101,7 @@ and management in these free courses!
 <ol>
 <li>Hands on courses are the best way to learn and retain difficult concepts.</li>
 <li>If you get stuck, help is <b>always</b> just a <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">slack</a> message away. </li>
-<li>Bitovi Academy is <em>free</em> and <a href="https://github.com/bitovi/academy"><em>open source</em></a>.</li>
+<li>It's free and <a href="https://github.com/bitovi/academy">open source</a>.</li>
 </ol>
 <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y"><img src="./static/img/slack.png" width="100"></a>
 </div>
@@ -215,7 +215,7 @@ Subscribe to <a href="https://calendar.google.com/calendar/embed?src=jupiterjs.c
 </div>
 
 <!-- div is needed for markdown -->
-<div class='courses-container'><calendar-events
+<div class='courses-container' style='min-height: 495px'><calendar-events
 api-key="AIzaSyBsNpdGbkTsqn1BCSPQrjO9OaMySjK5Sns"
 calendar-id="jupiterjs.com_g27vck36nifbnqrgkctkoanqb4@group.calendar.google.com"
 event-count="3" class="courses">
@@ -241,7 +241,7 @@ event-count="3" class="courses">
 
 
 <div class="courses-intro">
-<h4>New courses are coming soon.</h4>
+<h4>New courses are coming soon ...</h4>
 </div>
 
 <div class="courses-container">
