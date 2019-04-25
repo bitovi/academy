@@ -23,7 +23,7 @@ the following exercise, but it's not required. Read on if you're interested in w
 
 To understand the difference between imperative and declarative styles of programming we first need to review the 
 concept of state. State is essentially the "remembered information" of a program, _i.e_ the variables used as part of 
-the program. Imperative & declarative state differ in how the program specifies the state.
+the program. Imperative & declarative styles differ in how the program specifies the state.
 
 The code we've written thus far has been in an imperative style, _i.e_ when events occur, code runs that changes
 the state of the program accordingly. The program state is defined by actions that directly modify it. This model of 
