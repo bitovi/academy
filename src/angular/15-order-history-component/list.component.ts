@@ -8,7 +8,7 @@ import { Order, Item, OrderService } from '../order.service';
   styleUrls: ['./list.component.less']
 })
 export class ListComponent implements OnInit {
-  @Input() orders: [];
+  @Input() orders: Order[];
   @Input() listTitle: string;
   @Input() status: string;
   @Input() statusTitle: string;

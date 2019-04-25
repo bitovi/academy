@@ -1,5 +1,5 @@
-@page rxjs/debugging Debugging
-@parent RxJS 4
+@page learn-rxjs/debugging Debugging
+@parent learn-rxjs 4
 
 @description Learn how to debug RxJS.
 

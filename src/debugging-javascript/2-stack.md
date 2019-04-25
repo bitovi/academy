@@ -1,5 +1,5 @@
-@page debugging-javascript-training/call-stack Call Stack
-@parent debugging-javascript-training 2
+@page learn-to-debug-javascript/call-stack Call Stack
+@parent learn-to-debug-javascript 2
 @description Learn how to trace how functions are called.
 
 @body
@@ -10,7 +10,7 @@
 What is the name of the function that calls the `end` function below?
 
 ```html
-<script src="//bitovi.github.io/university/static/scripts/debugging/variables.js"></script>
+<script src="//bitovi.github.io/academy/static/scripts/debugging/variables.js"></script>
 <script type="module">
 function end() {
     console.log("What is the name of the function that calls end?");

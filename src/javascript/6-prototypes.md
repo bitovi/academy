@@ -1,5 +1,5 @@
-@page advanced-javascript-training/prototypes Prototypes
-@parent advanced-javascript-training 6
+@page learn-advanced-javascript/prototypes Prototypes
+@parent learn-advanced-javascript 6
 @description Demystify .prototype and .\_proto\_! We'll cover what the "new" and "instanceof" operators are actually doing behind the scenes, and what prototype-based inheritance looks like in memory.
 
 @body
@@ -25,14 +25,14 @@
 ### The problem
 
 Write the `new` operator as if it was implemented in JS as a function. For example,
-instead of calling `new Person('name')`, we will call `NEW(Person,'name')` as follows:
+instead of calling `new Person('name')`, we will call `NEW(Person,['name'])` as follows:
 
 ```js
 function Person(name) {
 	this.name = name;
 }
 
-Person.prototype.speak = function(){ console.log(‘Hello!’) }
+Person.prototype.speak = function(){ console.log('Hello!') }
 
 // var person = new Person('name')
 const person = NEW( Person, ['name'] );
@@ -87,7 +87,7 @@ The `new` operator does three things:
 
 1. Creates a new object.
 2. Assigns the object's `__proto__` to the constructor function's `prototype`.
-3. Calls the constructor function with the object as `this`.  
+3. Calls the `constructorFn` constructor function with the object as `this`.  
 
 
 Other things to know:

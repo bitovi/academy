@@ -1,5 +1,5 @@
-@page advanced-javascript-training/js-comparison Comparison Operators
-@parent advanced-javascript-training 3
+@page learn-advanced-javascript/js-comparison Comparison Operators
+@parent learn-advanced-javascript 3
 @description This week we covered comparisons in JavaScript! The showdown between == and === is on!
 
 @body

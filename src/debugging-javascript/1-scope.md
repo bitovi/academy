@@ -1,5 +1,5 @@
-@page debugging-javascript-training/scope Scope
-@parent debugging-javascript-training 1
+@page learn-to-debug-javascript/scope Scope
+@parent learn-to-debug-javascript 1
 @description Learn how to see the variables available in the scope.
 
 @body
@@ -10,9 +10,9 @@
 What is the value of `VARIABLE_IN_SCOPE` in the following code?
 
 ```html
-<script src="//bitovi.github.io/university/static/scripts/debugging/variables.js"></script>
+<script src="//bitovi.github.io/academy/static/scripts/debugging/variables.js"></script>
 <script type="module">
-// What is the value of b?
+// What is the value of VARIABLE_IN_SCOPE?
 function a(){
     var a = makeAVariables;
     return function b(){
@@ -36,7 +36,7 @@ a()()()();
 ## What you need to know
 
 Chrome's developer tools allow you to inspect variables in the scope. For example,
-consider the following code from the [advanced-javascript-training/closures] training:
+consider the following code from the [learn-advanced-javascript/closures] training:
 
 
 

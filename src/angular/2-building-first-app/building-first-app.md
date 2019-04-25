@@ -1,5 +1,5 @@
-@page angular/building-our-first-app Building Our First App
-@parent angular 2
+@page learn-angular/building-our-first-app Building Our First App
+@parent learn-angular 2
 
 @description Building Our First App
 
@@ -234,6 +234,8 @@ When we use the CLI to create modules, components, services, etc, it will create
 The change we needed to make for our tests to pass is on the highlighted line 37.
 
 We also included `schemas` metadata for our module. <a href="https://angular.io/api/core/NO_ERRORS_SCHEMA">NO_ERRORS_SCHEMA</a> will keep the compiler from throwing errors when unknown components are included in the tested components. In unit tests we often only want to test the very small piece of code we're work on and don't care about deeply nested components <a href="https://medium.com/@fivedicephoto/why-you-shouldnt-use-no-errors-schema-in-angular-unit-tests-cdd478c30782" target="\_blank">unless we're testing the props in a parent/child component relationship</a>. For our purposes in this training, it's safe to use here.  
+
+__src/app.component.spec.ts__:
 
 @sourceref ./app.component.spec.ts
 @highlight 37

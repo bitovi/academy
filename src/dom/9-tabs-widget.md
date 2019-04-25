@@ -1,5 +1,5 @@
-@page dom-jquery-training/tabs-widget Tabs Widget
-@parent dom-jquery-training 9
+@page learn-dom-jquery/tabs-widget Tabs Widget
+@parent learn-dom-jquery 9
 @description Create a tabs widget using your own version of jQuery.
 
 @body
@@ -98,7 +98,18 @@ The following CodePen can be used to complete the exercise.
   // can NOT use activate
   activate() //-> throws an error
   ```
-
+- The following jQuery functions will be useful:
+  - `$("#selector")` - Get a collection of elements using a CSS selector.
+  - `$([element])` - Create a jQuery collection from an array of elements.
+  - `collection.children()` - Return a collection of all direct descendants of elements in the source collection.
+  - `collection.find(selector)` - Using a CSS selector, find elements descended from elements in the source collection.
+  - `collection.addClass(className)` - Add a class name to elements in the collection.
+  - `collection.removeClass(className)` - Remove elements in the collection.
+  - `collection.show()` - Show elements in the collection.
+  - `collection.hide()` - Hide elements in the collection.
+  - `collection.bind(event, handler)` - Listen to an event.
+  - `$.each(collection, cb(i, value) )` - Loop through an array-like collection
+    of elements.
 
 ### The solution
 

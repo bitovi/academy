@@ -1,5 +1,5 @@
-@page debugging-javascript-training/property-changes Property Changes
-@parent debugging-javascript-training 5
+@page learn-to-debug-javascript/property-changes Property Changes
+@parent learn-to-debug-javascript 5
 @description Learn how to debug property changes.
 
 @body
@@ -11,7 +11,7 @@ by something called within `somethingWillMutate`.  What is the name of the
 function that changed `obj.subject`?
 
 ```html
-<script src="//bitovi.github.io/university/static/scripts/debugging/variables.js"></script>
+<script src="//bitovi.github.io/academy/static/scripts/debugging/variables.js"></script>
 <script type="module">
 function propertyChange(){
 
@@ -33,7 +33,7 @@ You can capture when a property is set using a [setter](https://developer.mozill
 
 ```js
 var propertyValue = object.property;
-Object.defineProperty(person,"property",{
+Object.defineProperty(object,"property",{
     get: function(){
         return propertyValue;
     },
@@ -81,7 +81,7 @@ console.log(person);
 ## The solution
 
 ```html
-<script src="//bitovi.github.io/university/static/scripts/debugging/variables.js"></script>
+<script src="//bitovi.github.io/academy/static/scripts/debugging/variables.js"></script>
 <script type="module">
 function propertyChange(){
 

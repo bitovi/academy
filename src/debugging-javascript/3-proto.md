@@ -1,5 +1,5 @@
-@page debugging-javascript-training/prototypes Prototypes
-@parent debugging-javascript-training 3
+@page learn-to-debug-javascript/prototypes Prototypes
+@parent learn-to-debug-javascript 3
 @description Learn how to explore an object's proto chain.
 
 @body
@@ -12,7 +12,7 @@ What is the value of `frozen`'s `rated` property that it inherited from the `Ent
 prototype?
 
 ```html
-<script src="//bitovi.github.io/university/static/scripts/debugging/variables.js"></script>
+<script src="//bitovi.github.io/academy/static/scripts/debugging/variables.js"></script>
 <script type="module">
 var Movie = function(){};
 Movie.prototype = new Entertainment();
@@ -33,7 +33,7 @@ console.log(frozen);
 
 
 The following sets up the same `Animal`, `Chordate`, and `Mammal`
-inheritance chain from the [advanced-javascript-training/prototypes] JavaScript course.
+inheritance chain from the [learn-advanced-javascript/prototypes] JavaScript course.
 
 ```js
 Animal = function(name) { this.name = name; };

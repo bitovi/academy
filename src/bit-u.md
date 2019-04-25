@@ -3,7 +3,7 @@
 @hidetitle
 @hidedescription
 @hidecontentnav
-@description Welcome to Bitovi University. Learn front-end development, design,
+@description Welcome to Bitovi Academy. Learn front-end development, design,
 and management in these free courses!
 
 @body
@@ -25,15 +25,69 @@ and management in these free courses!
   margin-left: -30px;
   margin-right: -30px;
 }
+.courses-container .courses .fade {
+ text-overflow: -o-ellipsis-lastline;
+ overflow: hidden;
+ position: relative;
+ box-sizing: border-box;
+ word-break: break-word;
+ height: 465px;
+}
+.fade:after {
+ content: "";
+ text-align: right;
+ position: absolute;
+ bottom: 0;
+ right: 0;
+ width: 100%;
+ height: 100px;
+ background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 25%);
+ z-index: 70;
+}
+.event-title{
+  margin-top: 0;
+}
 .course .detail {
-  padding: 0;
-  margin: 0;
+ padding: 0;
+ margin: 0;
 }
 .academy-intro ol {
   margin-top: 0;
 }
 .academy-intro ol li {
   list-style: none;
+}
+.courses-container .courses .fade .detail{
+  margin: 0px;
+  font-size: 14px;
+  color: #666666;
+}
+.courses-container .courses .fade .details-container{
+  border: 1px solid #eee;
+  background-color: #f5f6f6;
+  padding: 10px;
+  margin: 0px;
+}
+.button{
+ padding: 4px 10px;
+ background-color: #356FD1;
+ border: 1px solid #356FD1;
+ color: white;
+ border-radius: 3px;
+}
+.courses-container .courses .fade .button{
+ position: absolute;
+ bottom: 0;
+ left: 0px;
+ right: 0px;
+ z-index: 100 !important;
+ margin: 15px;
+ box-sizing: border-box;
+ color: white;
+}
+.courses-container .courses .fade .button:hover{
+ background-color: #3e7de2;
+ border-color: #3e7de2;
 }
 </style>
 
@@ -47,12 +101,12 @@ and management in these free courses!
 <ol>
 <li>Hands on courses are the best way to learn and retain difficult concepts.</li>
 <li>If you get stuck, help is <b>always</b> just a <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">slack</a> message away. </li>
-<li>Bitovi Academy is <em>free</em> and <a href="https://github.com/bitovi/university"><em>open source</em></a>.</li>
+<li>Bitovi Academy is <em>free</em> and <a href="https://github.com/bitovi/academy"><em>open source</em></a>.</li>
 </ol>
 <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y"><img src="./static/img/slack.png" width="100"></a>
 </div>
 <div class="courses-intro" id="courses">
-<h4>The following courses are currently available</h4>
+<h4>The following courses are available:</h4>
 </div>
 </div><!-- close container -->
 
@@ -60,7 +114,7 @@ and management in these free courses!
 <div class="courses">
 
 <div class="course">
-<a href="./advanced-javascript-training.html">
+<a href="./learn-advanced-javascript.html">
 <div class="course-logo">
 <img src="./static/img/javascript.png" width="100">
 </div>
@@ -73,7 +127,7 @@ and management in these free courses!
 </div>
 
 <div class="course">
-<a href="./dom-jquery-training.html">
+<a href="./learn-dom-jquery.html">
 <div class="course-logo">
 <img src="./static/img/jquery.png" width="240">
 </div>
@@ -88,7 +142,7 @@ meta programming too!</p>
 </div>
 
 <div class="course">
-<a href="./debugging-javascript-training.html">
+<a href="./learn-to-debug-javascript.html">
 <div class="course-logo">
 <img src="./static/img/javascript.png" width="100">
 </div>
@@ -106,7 +160,7 @@ property changes.</p>
 <div class="courses">
 
 <div class="course">
-<a href="./typescript.html">
+<a href="./learn-typescript.html">
 <div class="course-logo">
 <img src="./static/img/typescript.png" width="200">
 </div>
@@ -119,7 +173,7 @@ property changes.</p>
 </div>
 
 <div class="course">
-<a href="./RxJS.html">
+<a href="./learn-rxjs.html">
 <div class="course-logo">
 <img src="./static/img/rxjs.png" width="150">
 </div>
@@ -133,7 +187,7 @@ the hard but fundamental operators.</p>
 </div>
 
 <div class="course">
-<a href="./angular.html">
+<a href="./learn-angular.html">
 <div class="course-logo">
 <img src="./static/img/angular.png" width="100">
 </div>
@@ -150,8 +204,44 @@ too!</p>
 </div><!-- close courses -->
 </div><!-- close courses-container -->
 
+
+
+
 <div class="courses-intro">
-<h4>The following courses are coming soon</h4>
+<h4>Join us for live training events!</h4>
+<p>Every two weeks, Bitovi hosts a live training.
+Subscribe to <a href="https://calendar.google.com/calendar/embed?src=jupiterjs.com_g27vck36nifbnqrgkctkoanqb4%40group.calendar.google.com">Bitovi's community calendar</a> to be part of the next one.
+</p>
+</div>
+
+<!-- div is needed for markdown -->
+<div class='courses-container'><calendar-events
+api-key="AIzaSyBsNpdGbkTsqn1BCSPQrjO9OaMySjK5Sns"
+calendar-id="jupiterjs.com_g27vck36nifbnqrgkctkoanqb4@group.calendar.google.com"
+event-count="3" class="courses">
+<template>
+<div class="course fade">
+ <h5 class='event-title'></h5>
+ <div class='details-container'>
+ <p class='detail'><strong>Date:</strong>
+ <span class='event-date'></span>
+ </p>
+ <p class='detail'><strong>Location:</strong>
+ <span class='event-location'></span>
+ </p>
+ <p class='detail'><strong>Group:</strong>
+ <span class='event-group'></span>
+ </p>
+ </div>
+ <p class='event-body'></p>
+ <a class='event-url button'>View event details</a>
+</div>
+</template>
+</calendar-events></div>
+
+
+<div class="courses-intro">
+<h4>New courses are coming soon.</h4>
 </div>
 
 <div class="courses-container">
@@ -170,8 +260,7 @@ too!</p>
 <img src="./static/img/javascript.png" width="100">
 </div>
 <h5>Your Course Here</h5>
-<p>Got an idea for a course? Let us know by <a href="https://github.com/bitovi/university/issues/new">submitting an issue</a>.</p>
-
+<p>Got an idea for a course? Let us know by <a href="https://github.com/bitovi/academy/issues/new">submitting an issue</a>.</p>
 </div>
 
 

@@ -1,5 +1,5 @@
-@page dom-jquery-training/finding-elements Finding Elements
-@parent dom-jquery-training 2
+@page learn-dom-jquery/finding-elements Finding Elements
+@parent learn-dom-jquery 2
 @description Learn how to create a basic jQuery constructor function that can find elements in the page
 and manipulate them.
 
@@ -33,20 +33,11 @@ Run the following example in CodePen:
 <div id="qunit-fixture"></div>
 <link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.12.0.css">
 <script src="//code.jquery.com/qunit/qunit-1.12.0.js"></script>
-<script src="//bitovi.github.io/university/static/scripts/jquery-test.js"></script>
+<script src="//bitovi.github.io/academy/static/scripts/jquery-test.js"></script>
 <script type="module">
 (function() {
   $ = function(selector) {
-    if ( !(this instanceof $) ) {
-      return new $(selector);
-    }
-    var elements;
-    if (typeof selector === "string") {
-      elements = document.querySelectorAll(selector);
-    } else if ($.isArrayLike(selector)) {
-      elements = selector;
-    }
-    [].push.apply(this, elements);
+
   };
 
   $.extend = function(target, object) {
@@ -119,7 +110,7 @@ Run the following example in CodePen:
 
 ```
 @codepen
-@highlight 80-83,only
+@highlight 9,71-74,only
 
 Each exercise builds on the previous exercise.  There is a completed solution
 at the end of this page.
@@ -775,7 +766,7 @@ function makeSimpleGetterSetter(prop) {
 <div id="qunit-fixture"></div>
 <link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.12.0.css">
 <script src="//code.jquery.com/qunit/qunit-1.12.0.js"></script>
-<script src="//bitovi.github.io/university/static/scripts/jquery-test.js"></script>
+<script src="//bitovi.github.io/academy/static/scripts/jquery-test.js"></script>
 <script type="module">
 (function() {
   $ = function(selector) {

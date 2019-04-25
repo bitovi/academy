@@ -1,5 +1,5 @@
-@page rxjs/angular RxJS in Angular
-@parent RxJS 1
+@page learn-rxjs/angular RxJS in Angular
+@parent learn-rxjs 1
 
 @description Learn how to read and write observables in Angular.
 
@@ -111,7 +111,7 @@ Use `| async` to write out an observable's value in a template as follows:
 UserCardNumber: {{ (userCardNumber | async) }} <br/>
 ```
 
-Read more about this technique [here](https://blog.angular-university.io/angular-reactive-templates/).
+Read more about this technique [here](https://blog.angular-academy.io/angular-reactive-templates/).
 
 
 ## The solution

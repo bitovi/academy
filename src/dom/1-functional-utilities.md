@@ -1,5 +1,5 @@
-@page dom-jquery-training/functional-utilities Functional Utilities
-@parent dom-jquery-training 1
+@page learn-dom-jquery/functional-utilities Functional Utilities
+@parent learn-dom-jquery 1
 @description Create some of jQuery's functional utility methods.
 
 @body
@@ -32,7 +32,7 @@ Run the following example in CodePen:
 <div id="qunit-fixture"></div>
 <link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.12.0.css">
 <script src="//code.jquery.com/qunit/qunit-1.12.0.js"></script>
-<script src="//bitovi.github.io/university/static/scripts/jquery-test.js"></script>
+<script src="//bitovi.github.io/academy/static/scripts/jquery-test.js"></script>
 <script type="module">
 (function() {
   $ = function(selector) { };
@@ -392,6 +392,8 @@ QUnit.test('$.makeArray', function(){
 
 You already know everything you need to know. You can do it!
 
+> In modern apps, use [Array.from](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from) instead of `jQuery.makeArray`.
+
 ### The solution
 
 <details>
@@ -448,6 +450,22 @@ setTimeout($.proxy(dog.speak, dog), 500);
 ```
 @codepen
 
+`$.proxy` can pass arguments too:
+
+```js
+import "https://unpkg.com/jquery@3/dist/jquery.js";
+
+var dog = {
+	nickname: 'fido',
+	speak: function(word){
+		console.log(this.nickname + ' says '+word);
+	}
+};
+
+var dogSpeak = $.proxy(dog.speak, dog);
+dogSpeak("ruff") //logs 'fido says ruff'
+```
+@codepen
 
 <details>
 <summary>Click to see the test code</summary>
@@ -513,7 +531,7 @@ QUnit.test('$.proxy', function(){
 <div id="qunit-fixture"></div>
 <link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.12.0.css">
 <script src="//code.jquery.com/qunit/qunit-1.12.0.js"></script>
-<script src="//bitovi.github.io/university/static/scripts/jquery-test.js"></script>
+<script src="//bitovi.github.io/academy/static/scripts/jquery-test.js"></script>
 <script type="module">
 (function() {
   $ = function(selector) {};
