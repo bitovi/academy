@@ -106,7 +106,7 @@ and management in these free courses!
 <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y"><img src="./static/img/slack.png" width="100"></a>
 </div>
 <div class="courses-intro" id="courses">
-<h4>The following courses are currently available</h4>
+<h4>The following courses are available:</h4>
 </div>
 </div><!-- close container -->
 
@@ -204,8 +204,44 @@ too!</p>
 </div><!-- close courses -->
 </div><!-- close courses-container -->
 
+
+
+
 <div class="courses-intro">
-<h4>The following courses are coming soon</h4>
+<h4>Join us for live training events!</h4>
+<p>Every two weeks, Bitovi hosts a live training.
+Subscribe to <a href="https://calendar.google.com/calendar/embed?src=jupiterjs.com_g27vck36nifbnqrgkctkoanqb4%40group.calendar.google.com">Bitovi's community calendar</a> to be part of the next one.
+</p>
+</div>
+
+<!-- div is needed for markdown -->
+<div class='courses-container'><calendar-events
+api-key="AIzaSyBsNpdGbkTsqn1BCSPQrjO9OaMySjK5Sns"
+calendar-id="jupiterjs.com_g27vck36nifbnqrgkctkoanqb4@group.calendar.google.com"
+event-count="3" class="courses">
+<template>
+<div class="course fade">
+ <h5 class='event-title'></h5>
+ <div class='details-container'>
+ <p class='detail'><strong>Date:</strong>
+ <span class='event-date'></span>
+ </p>
+ <p class='detail'><strong>Location:</strong>
+ <span class='event-location'></span>
+ </p>
+ <p class='detail'><strong>Group:</strong>
+ <span class='event-group'></span>
+ </p>
+ </div>
+ <p class='event-body'></p>
+ <a class='event-url button'>View event details</a>
+</div>
+</template>
+</calendar-events></div>
+
+
+<div class="courses-intro">
+<h4>New courses are coming soon.</h4>
 </div>
 
 <div class="courses-container">
@@ -239,34 +275,3 @@ too!</p>
 
 </div><!-- close courses -->
 </div><!-- close courses-container -->
-
-
-<div class="courses-intro">
-<h4>Check out the following live events</h4>
-<p>Join us in talking about design, development, DevOps, JavaScript, performance, CanJS, React, and more. For a full list of upcoming events, see  <a href="https://calendar.google.com/calendar/embed?src=jupiterjs.com_g27vck36nifbnqrgkctkoanqb4%40group.calendar.google.com"> our calendar</a>.</p>
-</div>
-
-<!-- div is needed for markdown -->
-<div class='courses-container'><calendar-events
-api-key="AIzaSyBsNpdGbkTsqn1BCSPQrjO9OaMySjK5Sns"
-calendar-id="jupiterjs.com_g27vck36nifbnqrgkctkoanqb4@group.calendar.google.com"
-event-count="3" class="courses">
-<template>
-<div class="course fade">
- <h5 class='event-title'></h5>
- <div class='details-container'>
- <p class='detail'><strong>Date:</strong>
- <span class='event-date'></span>
- </p>
- <p class='detail'><strong>Location:</strong>
- <span class='event-location'></span>
- </p>
- <p class='detail'><strong>Group:</strong>
- <span class='event-group'></span>
- </p>
- </div>
- <p class='event-body'></p>
- <a class='event-url button'>View event details</a>
-</div>
-</template>
-</calendar-events></div>
