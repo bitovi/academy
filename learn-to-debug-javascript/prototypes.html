@@ -3,15 +3,15 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/front-end/theory.md
-	@page front-end/theory
+	source: src/debugging-javascript/3-proto.md
+	@page learn-to-debug-javascript/prototypes
 ######################################################################## -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <title>Bitovi Academy - Theory</title>
+  <title>Bitovi Academy - Prototypes</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -75,13 +75,98 @@
 			
 				
 					<li class="
-           						
-           						">
+           						parent
+           						expanded">
 						<a class="page"
 							href="../learn-to-debug-javascript.html"
 							title="This course covers the basics of JavaScript debugging.">
 							Debug JavaScript
 						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="scope.html"
+							title="Learn how to see the variables available in the scope.">
+							Scope
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="call-stack.html"
+							title="Learn how to trace how functions are called.">
+							Call Stack
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="prototypes.html"
+							title="Learn how to explore an object&#x27;s proto chain.">
+							Prototypes
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="conditional.html"
+							title="Learn how to set a conditional breakpoint.">
+							Conditional
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="property-changes.html"
+							title="Learn how to debug property changes.">
+							Property Changes
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
 						
 					</li>
 				
@@ -179,7 +264,7 @@ covering CanJS core libraries.">
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Theory <code>page</code></h1>
+	<h1>Prototypes <code>page</code></h1>
 </section>
 
   		
@@ -187,7 +272,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Ideas on what matters with respect to technology.</p>
+    <p>Learn how to explore an object's proto chain.</p>
 
 </section>
 
@@ -200,17 +285,49 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <p>Before learning technology, it's important to place it in the right
-context. Technology on its own is rather meaningless.  Its when it provides
-values to people does it become important. As you learn about technology,
-it's useful to draw a line from what users and businesses value (quality) to the techniques and tools used to web applications.</p>
-<p>The following is a bit crazy, but it connects what users, businesses, and developers want <span style="color:red; font-weight: bold">(red)</span> and the problems and constraints we face
-<span style="color:orange; font-weight: bold">(orange)</span> with solutions
-<span style="color:green; font-weight: bold">(green)</span> and tools
-<span style="color:purple; font-weight: bold">(violet)</span>.</p>
-<p><img src="../../docs/front-end/madness.png" alt="Theory" title="Theory" /></p>
-<h2>The Goal</h2>
-<p>The goal is to create quality applications. The user, not the developer ultimately determines quality.</p>
+    <h2>The problem</h2>
+<p>What is the value of <code>frozen</code>'s <code>rated</code> property that it inherited from the <code>Entertainment</code>
+prototype?</p>
+<pre><code class="language-html">&lt;script src=&quot;//bitovi.github.io/academy/static/scripts/debugging/variables.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;module&quot;&gt;
+var Movie = function(){};
+Movie.prototype = new Entertainment();
+Movie.prototype.play = function(){};
+
+var AnimatedMovie = function(){};
+AnimatedMovie.prototype = new Movie();
+AnimatedMovie.prototype.isAnime = function(){};
+
+var frozen = new AnimatedMovie();
+console.log(&quot;frozen has a `rated` property, inherited from Entertainment. What is its value?&quot;)
+console.log(frozen);
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<h2>What you need to know</h2>
+<p>The following sets up the same <code>Animal</code>, <code>Chordate</code>, and <code>Mammal</code>
+inheritance chain from the <a href="../learn-advanced-javascript/prototypes.html" title="Demystify .prototype and ._proto_! We'll cover what the &quot;new&quot; and &quot;instanceof&quot; operators are actually doing behind the scenes, and what prototype-based inheritance looks like in memory.">Prototypes</a> JavaScript course.</p>
+<pre><code class="language-js">Animal = function(name) { this.name = name; };
+Animal.prototype.eats = function(){ return this.name+&quot; eats.&quot;; };
+
+function Chordate(name){ this.name = name; };
+Chordate.prototype = new Animal();
+Chordate.prototype.hasSpine = true;
+
+function Mammal(name){  this.name = name; };
+Mammal.prototype = new Chordate();
+Mammal.prototype.hasHair = true;
+
+var m = new Mammal('dog');
+console.log(m);
+</code></pre>
+<p>You can inspect the Mammal instance <code>m</code> and see its <code>__proto__</code> property:</p>
+<p><img src="../static/img/debugging/prototype.png"/></p>
+<h2>The solution</h2>
+<p><details>
+<summary>Click to see the answer</summary></p>
+<p>The answer is <code>b</code>.</p>
+<p></details></p>
 
 </section>
 
@@ -248,7 +365,7 @@ it's useful to draw a line from what users and businesses value (quality) to the
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/front-end/theory.md"},"description":"Ideas on what matters with respect to technology. \n","name":"front-end/theory","title":"Theory","type":"page","parent":"front-end","order":0,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/debugging-javascript/3-proto.md"},"description":"Learn how to explore an object's proto chain. \n","name":"learn-to-debug-javascript/prototypes","title":"Prototypes","type":"page","parent":"learn-to-debug-javascript","order":3,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

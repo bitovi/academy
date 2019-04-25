@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/javascript/5-context.md
+	@page learn-advanced-javascript/context
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <title>Bitovi Academy - Context</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="js-vs-dom.html"
+							title="Understand the browser ecosystem and how JavaScript fits in.
+Video
+
+Slides">
+							JavaScript and the DOM
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="js-types.html"
+							title="Learn about types, operators and primitives in JavaScript as well as a bonus session regarding how hash maps are created in memory!
+This week&#x27;s agenda:
+
+Data types
+Operators
+A memory stack representation of primitives
+A memory stack representation of objects
+delete &amp; typeof
+Bonus: Hash maps and order of complexity">
+							Types, Operators and Primitives
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="js-comparison.html"
+							title="This week we covered comparisons in JavaScript! The showdown between == and === is on!">
+							Comparison Operators
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="closures.html"
+							title="Join us as we cover closure scope in JavaScript!">
+							Closures
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="context.html"
+							title="What is &quot;this&quot;? Learn about context and build your very own . operator!">
+							Context
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="prototypes.html"
+							title="Demystify .prototype and ._proto_! We&#x27;ll cover what the &quot;new&quot; and &quot;instanceof&quot; operators are actually doing behind the scenes, and what prototype-based inheritance looks like in memory.">
+							Prototypes
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn the basics of Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border"><a href="..#courses">View More Courses</a></p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Context <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>What is &quot;this&quot;? Learn about context and build your very own <code>.</code> operator!</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <h2>Overview</h2>
+<ul>
+<li>Rules for setting context</li>
+<li>proto &amp; prototype: A visual representation</li>
+<li>Exercise!</li>
+</ul>
+<h2>Video</h2>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xIk-xrutg1A" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2>Slides</h2>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRDWpyoIigNDi3gzxIA4iSGtla5SCvbTVNk9b3sBmbWW1fWrPaWNq5K5PTPPwGdNX9ZicPmWtU-tCJM/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<h2>Exercise: DOT operator</h2>
+<h3>The problem</h3>
+<p>Write the <strong>DOT</strong> (<code>.</code>) operator as if it was implemented in JS as a function.</p>
+<p>For example, the following uses the <code>DOT</code> operator to read properties from <code>person</code>:</p>
+<pre><code class="language-js">var Person = function(name) {
+    this.name = name;
+}
+Person.prototype.isPerson = true;
+
+var person = new Person('Smith');
+DOT(person, 'name');        //person.name
+DOT(person, 'isPerson');    //person.isPerson
+</code></pre>
+<p>To solve this problem, <strong>DOT</strong> should read from the proto chain. While it can be implemented
+as simple as the following:</p>
+<pre><code class="language-js">const DOT = function(obj, property){
+    return obj[property];
+}
+</code></pre>
+<p>You should instead only use the <code>[]</code> property accessor when you know the object has
+that direct property.</p>
+<p>To get started, click the button at the bottom of the following:</p>
+<pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
+&lt;script src=&quot;//code.jquery.com/qunit/qunit-1.12.0.js&quot;&gt;&lt;/script&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+/* start DOT code here */
+function DOT(object, property) {
+
+}
+/* end DOT code */
+
+// Test code. There's no need to edit the following:
+QUnit.test(&quot;DOT works&quot;, function(){
+    var Person = function(name){
+        this.name = name;
+    }
+
+    Person.prototype.species = 'Homo Sapien';
+    Person.prototype.speak =function(toWhom) {
+        return 'Hello ' + toWhom + '. My name is ' + this.name + '.';
+    }
+
+    var person = new Person('Alexis');
+    var species = DOT(person, 'species');
+    var toString = DOT(person, 'toString');
+
+    QUnit.equal(species, 'Homo Sapien', 'property accessed');
+    QUnit.equal(toString, Object.prototype.toString,
+        'Object.prototype.toString accessed');
+    QUnit.equal(DOT(person, 'foobar'), undefined, 'property not found');
+
+});
+&lt;/script&gt;
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='7-9,only'></div>
+<h3>What you need to know</h3>
+<ul>
+<li>The <code>DOT</code> function will take an object and a property name as a string.</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty">hasOwnProperty</a> returns if an object has a direct property:
+<pre><code class="language-js">var obj = {foo: &quot;bar&quot;};
+console.log( obj.hasOwnProperty(&quot;foo&quot;) ) //logs: true
+</code></pre>
+<div class='codepen'></div></li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf">Object.getPrototypeOf(obj)</a> returns the <code>__proto__</code> value of the passed obj.  This is the
+recommended way of reading the <code>__proto__</code> property.
+<pre><code class="language-js">var date = new Date()
+console.log( Object.getPrototypeOf(date) === Date.prototype ) //logs: true
+</code></pre>
+<div class='codepen'></div></li>
+<li>Recursive functions call themselves to answer a sub-problem:
+<pre><code class="language-js">function factorial(number){
+  if (number === 0) {
+    return 1;
+  } else {
+    return number * factorial(number-1);
+  }
+}
+console.log( factorial(4) ) //logs: 24
+</code></pre>
+<div class='codepen'></div></li>
+</ul>
+<h3>The solution</h3>
+<pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
+&lt;script src=&quot;//code.jquery.com/qunit/qunit-1.12.0.js&quot;&gt;&lt;/script&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+/* start DOT code here */
+function DOT(object, property) {
+    if( Object.prototype.hasOwnProperty.call(object, property) ) {
+        return object[property];
+    }
+    var proto = Object.getPrototypeOf(object);
+    if( proto ) {
+        return DOT(proto, property);
+    }
+}
+/* end DOT code */
+
+// Test code. There's no need to edit the following:
+QUnit.test(&quot;DOT works&quot;, function(){
+    var Person = function(name){
+        this.name = name;
+    }
+
+    Person.prototype.species = 'Homo Sapien';
+    Person.prototype.speak =function(toWhom) {
+        return 'Hello ' + toWhom + '. My name is ' + this.name + '.';
+    }
+
+    var person = new Person('Alexis');
+    var species = DOT(person, 'species');
+
+    QUnit.equal(species, 'Homo Sapien', 'property accessed');
+    QUnit.equal(DOT(person, 'foobar'), undefined, 'property not found');
+});
+&lt;/script&gt;
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='7-15,only'></div>
+<h2>Exercise: DOTCALL operator</h2>
+<h3>The problem</h3>
+<p>Write the dot (<code>.</code>) <code>[[call]]</code> operator as if it was implemented in JS.</p>
+<p>For example, instead of calling <code>person.speak(&quot;Hi&quot;)</code>, we will call it as
+<code>DOTCALL(person,&quot;speak&quot;,[&quot;Hi&quot;])</code> as follows:</p>
+<pre><code class="language-js">const Person = function(name) {
+    this.name = name;
+}
+
+Person.prototype.speak = function(message){
+  console.log(message + ' ' + this.name);
+}
+var person = new Person('Smith');
+
+DOTCALL(person,&quot;speak&quot;,[&quot;Hi&quot;])  //person.speak(&quot;Hi&quot;)
+</code></pre>
+<p><code>DOTCALL( obj, prop, args )</code> will take:</p>
+<ul>
+<li><strong>obj</strong> - the context of the function to call.</li>
+<li><strong>prop</strong> - the property name to lookup.</li>
+<li><strong>args</strong> - an array of arguments to pass to the function.</li>
+</ul>
+<p>To get started, click the <strong>Run in your browser</strong> button at the bottom of the following code sample:</p>
+<pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.14.0.css&quot;&gt;
+&lt;script src=&quot;//code.jquery.com/qunit/qunit-1.14.0.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;module&quot;&gt;
+// The DOT operator will be useful
+function DOT(object, property) {
+    if( Object.prototype.hasOwnProperty.call(object, property) ) {
+        return object[property];
+    }
+    var proto = Object.getPrototypeOf(object);
+    if( proto ) {
+        return DOT(proto, property);
+    }
+}
+
+function DOTCALL(obj, prop, args){
+
+}
+&lt;/script&gt;
+&lt;script&gt;
+QUnit.test('DOTCALL works', function() {
+
+    var Person = function(name){
+        this.name = name;
+    };
+    Person.prototype.species = 'Homo Sapien';
+    Person.prototype.speak = function(toWhom) {
+        return 'Hello ' + toWhom + '. My name is ' + this.name + '.';
+    };
+
+    var person = new Person('Alexis');
+    var speak = DOTCALL(person, 'speak', ['Justin']);
+
+    var greet = 'Hello Justin. My name is Alexis.';
+    equal(speak, greet, 'method called with argument');
+});
+&lt;/script&gt;
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='16-18,only'></div>
+<h3>What you need to know</h3>
+<ul>
+<li>Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply">apply</a> to
+call a function (also constructor functions) with a <code>this</code> value and an array of arguments.</li>
+<li>If the call operator (<code>()</code>) is used on a value that is not a function,
+an error is thrown. For this example, throw:
+<pre><code class="language-js">throw new Error(&quot;${prop} is not a function&quot;);
+</code></pre>
+where <code>prop</code> is the name of the property that is being called.</li>
+</ul>
+<h3>The solution</h3>
+<pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.14.0.css&quot;&gt;
+&lt;script src=&quot;//code.jquery.com/qunit/qunit-1.14.0.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;module&quot;&gt;
+// The DOT operator will be useful
+function DOT(object, property) {
+    if( Object.prototype.hasOwnProperty.call(object, property) ) {
+        return object[property];
+    }
+    var proto = Object.getPrototypeOf(object);
+    if( proto ) {
+        return DOT(proto, property);
+    }
+}
+
+function DOTCALL(obj, prop, args){
+    var fn = DOT(obj, prop);
+    if(typeof fn === &quot;function&quot;) {
+        return fn.apply(obj, args);
+    } else {
+        throw new Error(prop+&quot; is not a function&quot;);
+    }
+}
+&lt;/script&gt;
+&lt;script&gt;
+QUnit.test('DOTCALL works', function() {
+
+    var Person = function(name){
+        this.name = name;
+    };
+    Person.prototype.species = 'Homo Sapien';
+    Person.prototype.speak = function(toWhom) {
+        return 'Hello ' + toWhom + '. My name is ' + this.name + '.';
+    };
+
+    var person = new Person('Alexis');
+    var speak = DOTCALL(person, 'speak', ['Justin']);
+
+    var greet = 'Hello Justin. My name is Alexis.';
+    equal(speak, greet, 'method called with argument');
+});
+&lt;/script&gt;
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='16-23,only'></div>
+
+</section>
+
+  			
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout slack">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">help</a> with an exercise, please reach out to us on
+             <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">Slack</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/javascript/5-context.md"},"description":"What is \"this\"? Learn about context and build your very own `.` operator! \n","name":"learn-advanced-javascript/context","title":"Context","type":"page","parent":"learn-advanced-javascript","order":5,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+</body>
+</html>
