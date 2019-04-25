@@ -1,0 +1,25 @@
+{
+  "name": "todomvc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "steal": "^2.0.2",
+    "steal-css": "^1.3.2",
+    "steal-tools": "^2.0.2"
+  },
+  "steal": {
+    "plugins": [
+      "steal-css","can"
+    ]
+  },
+  "dependencies": {
+    "can": "^5.2.2"
+  }
+}
