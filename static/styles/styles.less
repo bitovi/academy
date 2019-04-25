@@ -270,6 +270,7 @@ a {
   align-items: center;
   width: 100%;
   border-bottom: 1px solid #eee;
+  flex-shrink: 0;
   .logo {
     a {
       display: block;
@@ -553,6 +554,7 @@ a {
 .main-content .body ul li ul {
   margin-top: 15px;
   margin-left: 0;
+  padding-left: 25px;
 }
 
 // Utility
@@ -600,6 +602,9 @@ hr:first-of-type {
   margin: 5px 0;
   padding: 15px 0 20px 0;
 }
+.sidebar-right .pullout:last-of-type {
+  border-bottom: 0;
+}
 .sidebar-right .pullout p {
   font-size: 14px;
   margin: 0;
@@ -619,6 +624,7 @@ hr:first-of-type {
   border-bottom: 1px solid #eee;
   margin-top: 22px;
   padding-bottom: 15px;
+  min-height: 45px;
 }
 .content-nav h6 {
   font-size: 15px;
