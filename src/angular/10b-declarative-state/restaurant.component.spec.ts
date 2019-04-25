@@ -1,11 +1,12 @@
 import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { of } from 'rxjs';
-import { ImageUrlPipe } from '../image-url.pipe';
-import { ReactiveFormsModule } from '@angular/forms';
+import { of, timer } from 'rxjs';
+import { mapTo } from "rxjs/operators";
 
 import { RestaurantComponent } from './restaurant.component';
 import { RestaurantService } from './restaurant.service';
+import { ImageUrlPipe } from '../image-url.pipe';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const restaurantAPIResponse = {
     data: [{
@@ -414,26 +415,19 @@ describe('RestaurantComponent', () => {
     it('state dropdown should be disabled until states are populated', <any>fakeAsync((): void => {
         let stateOutput = null;
         const fixture = TestBed.createComponent(RestaurantComponent);
+        const originalGetStates = injectedService.getStates;
 
-        // TODO: implement following
-        // store original implementation of mocked service getState
-        // replace with code similar to following;
-        // getStates() {
-        //   const obs = of({
-        //     data: []
-        //   });
-        //
-        //   setTimeout(() => {
-        //     obs.emit({
-        //       data: [
-        //         {"short":"MO","name":"Missouri"},
-        //         {"short":"CA","name":"California"},
-        //         {"short":"MI","name":"Michigan"}]
-        //     });
-        //   }, 100);
-        //
-        //   return obs;
-        // }
+        // returns populated data 100ms after subscription
+        injectedService.getStates = () => {
+            return timer(100).pipe(
+                mapTo({
+                    data: [
+                        {"short": "MO", "name": "Missouri"},
+                        {"short": "CA", "name": "California"},
+                        {"short": "MI", "name": "Michigan"}]
+                }),
+            );
+        };
 
         fixture.detectChanges();
         fixture.componentInstance.states.subscribe((output) => {
@@ -448,6 +442,8 @@ describe('RestaurantComponent', () => {
 
         let stateFormControl2 = fixture.componentInstance.form.get('state');
         expect(stateFormControl2.enabled).toBe(true);
+
+        injectedService.getStates = originalGetStates;
     }));
 
     it('city dropdown should be disabled until cities are populated', <any>fakeAsync((): void => {

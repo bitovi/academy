@@ -10,12 +10,12 @@
 In this part, we will:
 
 - Update the restaurant component so states, cities & restaurants are RxJS streams
-- Execute side effects of values produced by the streams through actions that occur during the emission of the value
-    - _e.g_ toggling the enabled state of a form control. It's not done by producing a value from the stream, it's a
-     side effect of the value being produced.
+- Trigger side effects of values produced by the streams through actions that occur as part of the stream
+    - A side effect is something not directly controlled by the value that is emitted by the stream.
+    - _e.g_ toggling a form control to be enabled / disabled 
 
-**Note:** You'll have to have completed [Bitovi Academy's RxJS training](/learn-rxjs.html) to complete the following 
-exercise, but read on if you're interested in why you might want to use declarative state. 
+**Note:** It'll help to have completed [Bitovi Academy's RxJS training](/learn-rxjs.html) before attempting
+the following exercise, but it's not required. Read on if you're interested in why you might want to use declarative state. 
 
 ## Imperative vs Declarative state
 
@@ -28,30 +28,29 @@ to an event and modifying the state, an event occurs and the state produces an u
 define it. This subtle distinction has some very useful implications.
 
 Declarative state, once you're familiar with it, is typically easier to follow. Understanding how a piece of the program's
-state is generated only requires reading the state's definition, the actions that are part of the definition explain 
+state is generated only requires reading the state's definition. The actions that are part of the definition explain 
 everything about how the state is created. In imperative code you'd need to read the code anywhere the state is modified.
 
-Code using declarative state is often shorter than imperative code since you're not needing to write as much flow control code.
+Code using declarative state is often shorter than imperative code since you're not needing to write as much flow control logic.
 
 Declarative state can be less error / side effect prone since it's typically more specific about how state is generated 
 compared to imperative code which may modify state under conditions which may at first seem correct, but end up having 
 unintended consequences. 
 
-An additional benefit specific to Angular + RxJS is that imperative side effects that we previously accomplished in a
-subscription to an event (_e.g_ form control enabled toggling) can now be done via an action taken during the generation 
-of a value by a stream. This removes the need to manually manage subscriptions in `onDestroy`.
+An additional benefit of Angular + RxJS is that imperative side effects (that we previously accomplished in a
+subscription to an event, _e.g_ toggling a form control to be enabled / disabled) can now be done in an action taken during the generation 
+of a value by a stream. Avoiding subscriptions removes the need to manage them in `onDestroy`.
 
 ## Exercise: Update states, cities & restaurants to be observables
 
 ### The Problem 
 
-Declarative state in Angular is expressed with the RxJS (Reactive Extensions) library. Using the skills taught in 
-[Bitovi Academy's RxJS training](/learn-rxjs.html) convert the imperative code in the restaurant component. 
+Convert the imperatively managed state in the restaurant component to declarative state. 
 
 When you're finished the component members `state`, `cities` & `restaurants` will be of the types `Observable<Data<State>>`, 
 `Observable<Data<City>>` and `Observable<Data<Restaurant>>` respectively. Each will be defined as a set of RxJS 
 operators that produce the type from a response emitted by a service layer request or an event emitted by a form 
-control which in turn may make a request.
+control (which in turn may make a request).
 
 ### What You Need To Know
 
@@ -62,14 +61,15 @@ control which in turn may make a request.
     - take action based on a value as it emitted by a stream
     - multicasting emissions of a "cold" observable and handling late subscribers
  
- You'll learn all of the above as part of [Bitovi Academy's RxJS training](/learn-rxjs.html). 
+ You've learnt all of the above as part of the earlier sections on this page! Completing the 
+ [Bitovi Academy's RxJS training](/learn-rxjs.html) may help however. 
  
 ### How To Verify Your Solution Is Correct
 
 Update the spec file __src/app/restaurant/restaurant.component.spec.ts__ to be:
 
 @sourceref ./restaurant.component.spec.ts
-@highlight 194, 199-201, 301, 347, 352-354, 365, 380, 385-387, 398, 414, 417-440, 445, 468-470, 475,478
+@highlight 3-4, 195, 200-202, 303, 329, 334-336, 347, 357, 362, 367-369, 380, 391, 396, 398, 400-410, 412-415, 420, 426, 441, 445-447, 452, 455
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
