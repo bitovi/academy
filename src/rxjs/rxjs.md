@@ -44,18 +44,18 @@ Each section of the guide is broken down into the following sections:
 
 ## Outline
 
-- [rxjs/basics] - Learn how to create observables
-- [rxjs/angular] - Read and write to observables in Angular
-- [rxjs/clean-card-number] - How to use `map`
-- [rxjs/debugging] - How to debug observables without messing up state
-- [rxjs/card-error] - Use `map` again
-- [rxjs/error-on-blur] - Only show the card error when blurred - `merge`, `scan`
-- [rxjs/expiry] - Read, validate, and show the error of the expiry
-- [rxjs/cvc] - Read, validate, and show the error of the CVC
-- [rxjs/disable-pay-button] - Disable the pay button if any part of the card has an error - `combineLatest`
-- [rxjs/request-payment] - Make a request when the pay button is clicked
-- [rxjs/show-paying] - Update the pay button's text while payments are pending
-- [rxjs/disable-while-pending] - Disable the payment button while payments are pending
+- [learn-rxjs/basics] - Learn how to create observables
+- [learn-rxjs/angular] - Read and write to observables in Angular
+- [learn-rxjs/clean-card-number] - How to use `map`
+- [learn-rxjs/debugging] - How to debug observables without messing up state
+- [learn-rxjs/card-error] - Use `map` again
+- [learn-rxjs/error-on-blur] - Only show the card error when blurred - `merge`, `scan`
+- [learn-rxjs/expiry] - Read, validate, and show the error of the expiry
+- [learn-rxjs/cvc] - Read, validate, and show the error of the CVC
+- [learn-rxjs/disable-pay-button] - Disable the pay button if any part of the card has an error - `combineLatest`
+- [learn-rxjs/request-payment] - Make a request when the pay button is clicked
+- [learn-rxjs/show-paying] - Update the pay button's text while payments are pending
+- [learn-rxjs/disable-while-pending] - Disable the payment button while payments are pending
 
 ## Logic Flow
 
@@ -84,7 +84,7 @@ be a useful reference for understanding how the tutorial works:
 
 - This guide makes a minor use of [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise).  A basic understanding of promises is required.
 - This guide makes a minor use of TypeScript. TypeScript knowledge is _not_ required, but it
-  might help to make sense of the solutions.  The [typescript] guide is more than sufficient
+  might help to make sense of the solutions.  The [learn-typescript] guide is more than sufficient
   background.
 - This guide uses Angular. However, most of the Angular parts are explained. Angular experience is
   not required; however, experience in some other modern web framework __is__ required.

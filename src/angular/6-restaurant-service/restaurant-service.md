@@ -159,7 +159,7 @@ Arrays can also be written as:
 users: Array<User>
 ```
 
-To learn more about interfaces in TypeScript, check out our [typescript/interfaces TypeScript guide].
+To learn more about interfaces in TypeScript, check out our [learn-typescript/interfaces TypeScript guide].
 
 ## Exercise: Write an Interface to Describe the Restaurant Object and Data Response
 

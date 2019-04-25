@@ -135,7 +135,7 @@ Update your __src/app/restaurant/restaurant.service.ts__ file to be:
 
 - How to write a generic
 
-  For an in-depth understanding of generics in TypeScript, check out our [typescript/generics TypeScript guide]. For now, generics are a way to abstract functions, interfaces, etc to use different types in different situations.
+  For an in-depth understanding of generics in TypeScript, check out our [learn-typescript/generics TypeScript guide]. For now, generics are a way to abstract functions, interfaces, etc to use different types in different situations.
 
   This example shows creating a generic for a list that can be used to create arrays of various types, including Dinosaurs. Codepen doesn't have a typescript compiler that will throw errors, but if you paste the code into your IDE you'll be able to see the TypeScript errors thrown.
 
