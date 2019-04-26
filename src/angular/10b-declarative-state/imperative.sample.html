@@ -1,0 +1,16 @@
+<script type="module">
+    let x = '';
+    console.log('x: ' + x);
+    setInterval(() => {
+        x = x + 'A';
+        console.log('x: ' + x);
+    }, 1000);
+
+    // logs:
+    // x:
+    // (... 1 second passes)
+    // x: A
+    // (... 1 second passes)
+    // x: AA
+    // (... and so on)
+</script>
