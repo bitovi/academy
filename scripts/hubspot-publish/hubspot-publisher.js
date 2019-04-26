@@ -2,6 +2,7 @@ const fs = require('fs').promises;
 const recursive = require("recursive-readdir");
 const HubSpotApi = require("./hubspot-api");
 const AcademyPage = require("./academy-page");
+const { confirmDeleteFile, promptDeleteFiles } = require("./user-prompts");
 require('dotenv').config()
 
 class HubSpotPublisher {
@@ -55,7 +56,7 @@ class HubSpotPublisher {
     const pagesToBeDeleted = pagesCurrentlyOnHubSpot.filter(pageCurrentlyOnHubSpot => 
       !pagesForHubSpotUpload.find(pageForHubSpotUpload => pageCurrentlyOnHubSpot.slug === pageForHubSpotUpload.slug)
     );
-    pagesToBeDeleted.forEach(pageToBeDeleted => this.hubSpotApi.deletePage(pageToBeDeleted.id))
+
     pagesForHubSpotUpload.forEach(page => {
       const localPageOnHubSpot = pagesCurrentlyOnHubSpot.find(pageCurrentlyOnHubSpot => 
         pageCurrentlyOnHubSpot.slug === page.slug
@@ -65,6 +66,18 @@ class HubSpotPublisher {
       }
       this.uploadPage(page)
     });
+    promptDeleteFiles(pagesToBeDeleted, 
+      () => {
+        // delete all
+        pagesToBeDeleted.forEach(pageToBeDeleted => this.hubSpotApi.deletePage(pageToBeDeleted.id))
+      }, 
+      async () => {
+        // choose which to delete
+        for(let pageToBeDeleted of pagesToBeDeleted){
+          await confirmDeleteFile(pageToBeDeleted.slug, () => console.log("Deleting",pageToBeDeleted.slug ))
+        }
+      }
+    )
   }
 }
 
