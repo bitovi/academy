@@ -1,5 +1,5 @@
 @page learn-angular/real-time-connection Real Time Connections
-@parent learn-angular 16
+@parent learn-angular 17
 
 @description Updating Order History View with Real Time Connection
 @body
@@ -30,14 +30,14 @@ import * as io from 'socket.io-client';
 
 ## Using Environment Variables
 
-We need to tell Socket.io where to listen for changes. Locally this is localhost:7070 - where our API is running, but that's not what it will be in production. Angular makes handling this situation easy, we can simply add an environment variable. 
+We need to tell Socket.io where to listen for changes. Locally this is localhost:7070 - where our API is running, but that's not what it will be in production. Angular makes handling this situation easy, we can simply add an environment variable.
 
 Open `src/environments/environment.ts` and change it to:
 
 @sourceref ./environment.ts
 
 ## Listening to Socket Events
- 
+
  We'll use `apiUrl` for our Socket.io connection, and listen for `orders created`, `order updated`, and `orders deleted` events to change our list on:
 
 __src/app/order/history.component.ts__

@@ -1,7 +1,7 @@
 @page learn-angular/restaurant-service Writing a Restaurant Service
 @parent learn-angular 6
 
-@description Writing a Restaurant Service
+@description Learn how to write an Angular service that gets data from the server.
 
 @body
 

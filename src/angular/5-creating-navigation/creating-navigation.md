@@ -1,7 +1,7 @@
 @page learn-angular/creating-navigation Creating Navigation
 @parent learn-angular 5
 
-@description Creating Navigation
+@description Learn how to create dynamic links that navigate to different parts of an application.
 
 @body
 
@@ -26,7 +26,7 @@ The following is an example of a hard coded path:
 
 ### Dynamic Segment
 
-The following is an example of a path being built from different pieces of data. In reusable components we'll often want to dynamically create paths based on a piece of datas unique property values. 
+The following is an example of a path being built from different pieces of data. In reusable components we'll often want to dynamically create paths based on a piece of datas unique property values.
 
 @sourceref ./dynamic-path.html
 @codepen

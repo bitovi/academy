@@ -1,5 +1,5 @@
 @page learn-angular/order-history-component Order History Component
-@parent learn-angular 15
+@parent learn-angular 16
 
 @description Writing the Order History Component
 @body
@@ -208,7 +208,7 @@ Update the menu-items spec file  __src/app/order/list/list.component.spec.ts__ t
 @sourceref ./list.component.spec.ts
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
-> 
+>
 ### The solution
 
 __src/app/order/list.component.ts__

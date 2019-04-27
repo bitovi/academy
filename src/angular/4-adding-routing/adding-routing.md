@@ -43,7 +43,7 @@ This example shows one route redirecting to another:
 
 ### Setting Paths to Modules
 
-As our applications grow, it doesn't make sense to load all the code at once. Thanks to <a href="https://angular.io/guide/lazy-loading-ngmodules" target="_blank">lazyloading</a>, we can wait to render modules until a specific route requiring them is hit. (This demo does not work in Codepen unfortunately)
+As our applications grow, it doesn't make sense to load all the code at once. Thanks to <a href="https://angular.io/guide/lazy-loading-ngmodules" target="\_blank">lazyloading</a>, we can wait to render modules until a specific route requiring them is hit. (This demo does not work in Codepen unfortunately)
 
 @sourceref ./lazyload-route.html
 @codepen
@@ -51,7 +51,7 @@ As our applications grow, it doesn't make sense to load all the code at once. Th
 
 ### <base-href>
 
-In our index.html file, the angular cli included `<base href="/>`. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base" target="_blank">here</a>, but it's important to know this is how the Angular router will how to compose URLs - the value in the "href" attribute specifies the base URL for all relative URLs contained in the app.
+In our index.html file, the angular cli included `<base href="/>`. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base" target="\_blank">here</a>, but it's important to know this is how the Angular router will how to compose URLs - the value in the "href" attribute specifies the base URL for all relative URLs contained in the app.
 
 ```html
 <!doctype html>
@@ -73,12 +73,12 @@ In our index.html file, the angular cli included `<base href="/>`. This isn't an
 
 ## Exercise: Edit the Routing Module to Have Routes for Home and Component
 
-Our router outlet was already added to our __src/app/app.component.html__ file during our initial app creation. However, we're going to remove everything in this file and replace the whole file contents with the following:
+Our router outlet was already added to our __src/app/app.component.html__ file during our initial app creation. However, we're going to remove almost all of it.
 
-__src/app/app.component.html__
+Update __src/app/app.component.html__ to:
 
 @sourceref ./app.component.html
-@highlight 1,only
+@highlight 1-2,only
 
 ### The problem
 
