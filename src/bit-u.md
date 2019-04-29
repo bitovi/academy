@@ -256,11 +256,7 @@ p.quote-author{
 .academy-card h4.event-title{
   margin-bottom: 17.6px;
 }
-/*@media screen and (min-device-width: 481px) and (max-device-width: 768px) { 
-.academy-cards-container { border: 3px solid green; }
-}*/
 </style>
-  <meta name="viewport" content="width=device-width">
 
 <div class="container">
   <div class="hero-banner">

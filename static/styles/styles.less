@@ -159,8 +159,7 @@ Desktop:
     .flex-auto; // fill remaining height
     .flex-row;
 
-    // Note: Don't add border, padding or margin to a flex-row or flex-column,
-    // because IE 10-11 incorrectly assumes content-box sizing for flex-basis.
+    // Note: Don't add border, padding or margin to a flex-row or flex-column,    // because IE 10-11 incorrectly assumes content-box sizing for flex-basis.
 
     .sidebar {
       .flex-none; // fit to content width
@@ -200,10 +199,28 @@ html {
 h2 {
   margin-top: 4em;
 }
-
-@media (min-width: 700px) {
+@media (max-width: 900px) {
   body {
     font-size: 1.1rem;
+    .courses{
+      flex-direction: column;
+    }
+    .academy-cards-container{
+      flex-direction: column;
+    }
+    .academy-section .courses .course{
+      width: 100%;
+    }
+    .academy-card{
+      margin-right: 0;
+      margin-bottom: 30px;
+    }
+    .academy-section .courses .academy-card:last-of-type{
+      margin-bottom: 0;
+    }
+    .academy-section .academy-cards-container .academy-card:last-of-type{
+      margin-bottom: 0;
+    }
   }
 }
 
