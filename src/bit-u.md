@@ -403,7 +403,7 @@ p.quote-author{
   <calendar-events api-key="AIzaSyBsNpdGbkTsqn1BCSPQrjO9OaMySjK5Sns" calendar-id="jupiterjs.com_g27vck36nifbnqrgkctkoanqb4@group.calendar.google.com" event-count="3" class="courses">
     <template>
           <div class="academy-card course">
-            <a href="">
+            <a class='event-url'>
               <h4 class='event-title'></h4>
               <div class="details-container">
                 <p class='detail'><strong>Date:</strong>
