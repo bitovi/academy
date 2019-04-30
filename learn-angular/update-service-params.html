@@ -4,14 +4,14 @@
 
 	INSTEAD CHANGE:
 	source: src/angular/10-updating-service-params/updating-service-params.md
-	@page learn-angular/updating-service-params
+	@page learn-angular/update-service-params
 ######################################################################## -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn  how to make a service take multiple parameters. 
+  <meta name="description" content="Updating Restaurant Service to use params 
 ">
   <title>Bitovi Academy - Filter Restaurants by City</title>
   
@@ -309,8 +309,8 @@ covering CanJS core libraries.">
            						parent
            						expanded">
 						<a class="page"
-							href="updating-service-params.html"
-							title="Learn  how to make a service take multiple parameters.">
+							href="update-service-params.html"
+							title="Updating Restaurant Service to use params">
 							Filter Restaurants by City
 						</a>
 						
@@ -484,7 +484,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn  how to make a service take multiple parameters.</p>
+    <p>Updating Restaurant Service to use params</p>
 
 </section>
 
@@ -503,18 +503,15 @@ covering CanJS core libraries.">
 <li>Update getRestaurants service method to take params</li>
 <li>Update component to pass state and city params to service method</li>
 </ul>
-<h2>The problem</h2>
-<p><img src="../static/img/angular/10-updating-service-params/before.png"
-style="border: solid 1px black; max-width: 400px;"/></p>
+<h2>Exercise: Update getRestaurants method to take state and city params</h2>
+<h3>The Problem</h3>
 <p>Now that we are able to capture a user's state and city preferences, we want to only return restaurants in the selected city. Modify the <code>getRestaurants</code> method in the <strong>src/app/restaurant/restaurant.service.ts</strong> file to take two string parameters, one for city, and one for state. The requested url with params should look like this: <code>'/api/restaurants?filter[address.state]=IL&amp;filter[address.city]=Chicago'</code></p>
-<p><img src="../static/img/angular/10-updating-service-params/after.png"
-style="border: solid 1px black; max-width: 400px;"/></p>
 <p>In the <strong>src/app/restaurant/restaurant.component.ts</strong> file, update the call to the <code>getRestaurants</code> service method to use the city and state values capture from the user's form input.</p>
-<h2>What you need to know</h2>
+<h3>What You Need to Know</h3>
 <ul>
 <li>How to use [angular/form-value-changes#exercise-write-service-methods-to-get-states-and-cities HttpParams] (you learned this in the previous section! ✔️)</li>
 </ul>
-<h2>Verify the solution</h2>
+<h3>To Verify Your Solution is Correct</h3>
 <p>If you've implemented the solution correctly, when you use the select boxes to choose state and city, you should see a list of just restaurants from the selected city returned.</p>
 <p>Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
@@ -964,7 +961,7 @@ describe('RestaurantComponent', () =&gt; {
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> the restaurant component tests will pass! We'll fix the service tests in the next step.</p>
 </blockquote>
-<h2>The solution</h2>
+<h3>Solution</h3>
 <p><strong>src/app/restaurant/restaurant.service.ts</strong></p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -1176,7 +1173,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/10-updating-service-params/updating-service-params.md"},"description":"Learn  how to make a service take multiple parameters. \n","name":"learn-angular/updating-service-params","title":"Filter Restaurants by City","type":"page","parent":"learn-angular","order":10,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/10-updating-service-params/updating-service-params.md"},"description":"Updating Restaurant Service to use params \n","name":"learn-angular/update-service-params","title":"Filter Restaurants by City","type":"page","parent":"learn-angular","order":10,"comment":" ","pathToRoot":"../.."};
     </script>
 
     

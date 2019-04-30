@@ -238,7 +238,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-navigation.html"
-							title="Creating Navigation">
+							title="Learn how to create dynamic links that navigate to different parts of an application.">
 							Creating Navigation
 						</a>
 						
@@ -253,7 +253,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="restaurant-service.html"
-							title="Writing a Restaurant Service">
+							title="Learn how to write an Angular service that gets data from the server.">
 							Writing a Restaurant Service
 						</a>
 						
@@ -283,7 +283,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="state-city-options.html"
-							title="Creating city &amp; state options for filtering restaurants">
+							title="Learn how to create a Reactive Form with Angular. We will create a Reactive Form in the Restaurant component with city and state dropdown inputs.">
 							City &amp; State Options
 						</a>
 						
@@ -298,8 +298,8 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="form-value-changes.html"
-							title="Listening to Form Value Changes">
-							Listening to Form Value Changes
+							title="Learn how to listen to form value changes with Angular.">
+							Filter Cities by State
 						</a>
 						
 					</li>
@@ -313,8 +313,23 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="updating-service-params.html"
-							title="Updating Restaurant Service to use params">
-							Filtering Cities &amp; Restaurants
+							title="Learn  how to make a service take multiple parameters.">
+							Filter Restaurants by City
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="declarative-state.html"
+							title="Modify Restaurants component to derive state via RxJS streams">
+							Optional: Declarative State
 						</a>
 						
 					</li>
@@ -795,7 +810,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='71, only'></div>
 <h3>Setting Paths to Modules</h3>
-<p>As our applications grow, it doesn't make sense to load all the code at once. Thanks to <a href="https://angular.io/guide/lazy-loading-ngmodules" target="_blank">lazyloading</a>, we can wait to render modules until a specific route requiring them is hit. (This demo does not work in Codepen unfortunately)</p>
+<p>As our applications grow, it doesn't make sense to load all the code at once. Thanks to <a href="https://angular.io/guide/lazy-loading-ngmodules" target="\_blank">lazyloading</a>, we can wait to render modules until a specific route requiring them is hit. (This demo does not work in Codepen unfortunately)</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -941,7 +956,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='114, only'></div>
 <h3>&lt;base-href&gt;</h3>
-<p>In our index.html file, the angular cli included <code>&lt;base href=&quot;/&gt;</code>. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base" target="_blank">here</a>, but it's important to know this is how the Angular router will how to compose URLs - the value in the &quot;href&quot; attribute specifies the base URL for all relative URLs contained in the app.</p>
+<p>In our index.html file, the angular cli included <code>&lt;base href=&quot;/&gt;</code>. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base" target="\_blank">here</a>, but it's important to know this is how the Angular router will how to compose URLs - the value in the &quot;href&quot; attribute specifies the base URL for all relative URLs contained in the app.</p>
 <pre><code class="language-html">&lt;!doctype html&gt;
 &lt;html lang=&quot;en&quot;&gt;
     &lt;head&gt;
@@ -959,12 +974,12 @@ platformBrowserDynamic()
 </code></pre>
 <div line-highlight='6'></div>
 <h2>Exercise: Edit the Routing Module to Have Routes for Home and Component</h2>
-<p>Our router outlet was already added to our <strong>src/app/app.component.html</strong> file during our initial app creation. However, we're going to remove everything in this file and replace the whole file contents with the following:</p>
-<p><strong>src/app/app.component.html</strong></p>
+<p>Our router outlet was already added to our <strong>src/app/app.component.html</strong> file during our initial app creation. However, we're going to remove almost all of it.</p>
+<p>Update <strong>src/app/app.component.html</strong> to:</p>
 <pre><code class="language-html">&lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;
 &lt;router-outlet&gt;&lt;/router-outlet&gt;
 </code></pre>
-<div line-highlight='1,only'></div>
+<div line-highlight='1-2,only'></div>
 <h3>The problem</h3>
 <p>We need to set up routes for the home view and restaurant view. When the route is <code>''</code>, the <code>HomeComponent</code> should display, and when the route is <code>/restaurants</code> the <code>RestaurantComponent</code> should display. Make these changes in <strong>src/app/app-routing.module.ts</strong>.</p>
 <h3>What You Need to know</h3>

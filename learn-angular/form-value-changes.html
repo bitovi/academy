@@ -11,9 +11,9 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Listening to Form Value Changes 
+  <meta name="description" content="Learn how to listen to form value changes with Angular. 
 ">
-  <title>Bitovi Academy - Listening to Form Value Changes</title>
+  <title>Bitovi Academy - Filter Cities by State</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -235,7 +235,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-navigation.html"
-							title="Creating Navigation">
+							title="Learn how to create dynamic links that navigate to different parts of an application.">
 							Creating Navigation
 						</a>
 						
@@ -250,7 +250,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="restaurant-service.html"
-							title="Writing a Restaurant Service">
+							title="Learn how to write an Angular service that gets data from the server.">
 							Writing a Restaurant Service
 						</a>
 						
@@ -280,7 +280,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="state-city-options.html"
-							title="Creating city &amp; state options for filtering restaurants">
+							title="Learn how to create a Reactive Form with Angular. We will create a Reactive Form in the Restaurant component with city and state dropdown inputs.">
 							City &amp; State Options
 						</a>
 						
@@ -295,8 +295,8 @@ covering CanJS core libraries.">
            						expanded">
 						<a class="page"
 							href="form-value-changes.html"
-							title="Listening to Form Value Changes">
-							Listening to Form Value Changes
+							title="Learn how to listen to form value changes with Angular.">
+							Filter Cities by State
 						</a>
 						
 							
@@ -313,8 +313,23 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="updating-service-params.html"
-							title="Updating Restaurant Service to use params">
-							Filtering Cities &amp; Restaurants
+							title="Learn  how to make a service take multiple parameters.">
+							Filter Restaurants by City
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="declarative-state.html"
+							title="Modify Restaurants component to derive state via RxJS streams">
+							Optional: Declarative State
 						</a>
 						
 					</li>
@@ -461,7 +476,7 @@ covering CanJS core libraries.">
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Listening to Form Value Changes <code>page</code></h1>
+	<h1>Filter Cities by State <code>page</code></h1>
 </section>
 
   		
@@ -469,7 +484,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Listening to Form Value Changes</p>
+    <p>Learn how to listen to form value changes with Angular.</p>
 
 </section>
 
@@ -498,7 +513,7 @@ covering CanJS core libraries.">
 <h2>Observables and Subscriptions</h2>
 <p>For a more robust understanding of Observables, Subscriptions, and other RxJS core tenants check out our [RxJS RxJS guide]. For the following exercises, Observables are lazy collections of multiple values over time. We can subscribe to observables to get any new data, or create and add to Subscriptions of observables.</p>
 <p>This example shows creating a subscription to an observable, saving it's value to a member on the component and displaying it in the template. This is useful for when we want to capture and observables values and make changes based on them, but subscriptions do need to be cleaned up to avoid memory leaks. Whenever a component is destroyed an <a href="https://angular.io/api/core/OnDestroy" target="\_blank">ngOnDestroy</a> method is called. This is a good place to put our cleanup code, like unsubscribing from observables.</p>
-<p>In this example click the button to start subscribing to the observables - you'll see two variables logged: the new observable value and the subscription value. Then click the &quot;remove component&quot; button to see what happens when a component is destroyed. Next delete line 95, follow the same process and see what happens!</p>
+<p>In this example, click the button to start subscribing to the observables - you'll see two variables logged: the new observable value and the subscription value. Then click the &quot;remove component&quot; button to see what happens when a component is destroyed. Next delete line 95, follow the same process and see what happens!</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1184,7 +1199,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 <p>Method 2 - <code>getCities</code>, takes a string param called 'state' a makes a request to <code>'/api/cities?state=&quot;{state abbreviation here}&quot;'</code></p>
 <h3>What You Need to Know</h3>
 <ul>
-<li><p>how to use HttpParams:</p>
+<li><p><strong>How to use HttpParams</strong></p>
 <p><a href="https://angular.io/api/common/http/HttpParams" target="\_blank">HttpParams</a> are part of Angulars HTTPClient API and help us create parameters for our requests.</p></li>
 </ul>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -1219,7 +1234,8 @@ class UsersService {
   constructor(private httpClient: HttpClient) { }
 
   getUsers() {
-    const params = new HttpParams().set('_page', &quot;1&quot;).set('_limit', &quot;1&quot;);
+    const params = new HttpParams()
+    params.set('_page', &quot;1&quot;).set('_limit', &quot;1&quot;);
     return this.httpClient.get&lt;any&gt;('/api/users', {params});
   }
 
@@ -1252,7 +1268,7 @@ class AppComponent implements OnInit{
 }
 //THIS IS A HACK JUST FOR CODEPEN TO WORK
 AppComponent.parameters = [UsersService];
-                 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -1272,10 +1288,9 @@ platformBrowserDynamic()
   .catch(err =&gt; console.error(err));
 &lt;/script&gt;
 
-
 </code></pre>
   <div class='codepen'></div>
-  <div line-highlight='28,only'></div>
+  <div line-highlight='33-34,only'></div>
 <h3>To Verify Your Solution is Correct</h3>
 <p>Update the spec file  <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { TestBed } from '@angular/core/testing';
@@ -2456,7 +2471,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/9-form-value-changes/form-value-changes.md"},"description":"Listening to Form Value Changes \n","name":"learn-angular/form-value-changes","title":"Listening to Form Value Changes","type":"page","parent":"learn-angular","order":9,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/9-form-value-changes/form-value-changes.md"},"description":"Learn how to listen to form value changes with Angular. \n","name":"learn-angular/form-value-changes","title":"Filter Cities by State","type":"page","parent":"learn-angular","order":9,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

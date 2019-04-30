@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Creating city &amp; state options for filtering restaurants 
+  <meta name="description" content="Learn how to create a Reactive Form with Angular. We will create a Reactive Form in the Restaurant component with city and state dropdown inputs. 
 ">
   <title>Bitovi Academy - City &amp; State Options</title>
   
@@ -235,7 +235,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-navigation.html"
-							title="Creating Navigation">
+							title="Learn how to create dynamic links that navigate to different parts of an application.">
 							Creating Navigation
 						</a>
 						
@@ -250,7 +250,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="restaurant-service.html"
-							title="Writing a Restaurant Service">
+							title="Learn how to write an Angular service that gets data from the server.">
 							Writing a Restaurant Service
 						</a>
 						
@@ -280,7 +280,7 @@ covering CanJS core libraries.">
            						expanded">
 						<a class="page"
 							href="state-city-options.html"
-							title="Creating city &amp; state options for filtering restaurants">
+							title="Learn how to create a Reactive Form with Angular. We will create a Reactive Form in the Restaurant component with city and state dropdown inputs.">
 							City &amp; State Options
 						</a>
 						
@@ -298,8 +298,8 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="form-value-changes.html"
-							title="Listening to Form Value Changes">
-							Listening to Form Value Changes
+							title="Learn how to listen to form value changes with Angular.">
+							Filter Cities by State
 						</a>
 						
 					</li>
@@ -313,8 +313,23 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="updating-service-params.html"
-							title="Updating Restaurant Service to use params">
-							Filtering Cities &amp; Restaurants
+							title="Learn  how to make a service take multiple parameters.">
+							Filter Restaurants by City
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="declarative-state.html"
+							title="Modify Restaurants component to derive state via RxJS streams">
+							Optional: Declarative State
 						</a>
 						
 					</li>
@@ -469,7 +484,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Creating city &amp; state options for filtering restaurants</p>
+    <p>Learn how to create a Reactive Form with Angular. We will create a Reactive Form in the Restaurant component with city and state dropdown inputs.</p>
 
 </section>
 
@@ -490,458 +505,16 @@ covering CanJS core libraries.">
 <li>Create a reactive form in our Restaurant Component</li>
 <li>Create a form in our markup and connect inputs to reactive form</li>
 </ul>
-<h2>Reactive Forms</h2>
-<p>We're going to use select boxes to handle our user's input. Angular's <a href="https://angular.io/guide/reactive-forms" target="\_blank">Reactive Forms</a> API provides a clean way to get data from user input and do work based on it.</p>
-<blockquote>
-<p>From the docs: Reactive forms use an explicit and immutable approach to managing the state of a form at a given point in time. Each change to the form state returns a new state, which maintains the integrity of the model between changes. Reactive forms are built around observable streams, where form inputs and values are provided as streams of input values, which can be accessed synchronously.</p>
-</blockquote>
-<h3>ReactiveFormsModule</h3>
-<p>To use reactive forms we must import our ReactiveFormsModule into the root app.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
-&lt;base href=&quot;/&quot;&gt;
-&lt;my-app&gt;&lt;/my-app&gt;
-&lt;script type=&quot;typescript&quot;&gt;
-const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
-const { BrowserModule } = ng.platformBrowser;
-const { CommonModule } = ng.common;
-const { Routes, RouterModule } = ng.router;
-const { ReactiveFormsModule } = ng.forms;
-
-@Component({
-  selector: 'my-app',
-  template: `
-    &lt;ul class=&quot;nav&quot;&gt;
-      &lt;li routerLinkActive=&quot;active&quot;&gt;
-        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;router-outlet&gt;&lt;/router-outlet&gt;
-  `
-})
-class AppComponent {
-  constructor() {}
-}
-
-@Component({
-  selector: 'about-component',
-  template: `
-    &lt;p&gt;An about component!&lt;/p&gt;
-  `
-})
-class AboutComponent {
-  constructor() {
-  }
-}
-
-@Component({
-  selector: 'home-component',
-  template: `
-    &lt;p&gt;A home component!&lt;/p&gt;
-  `
-})
-class HomeComponent implements OnInit{
-
-  constructor() {
-  
-  }
-
-  ngOnInit() {
-  }
-}
-
-const routes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: '**', component: HomeComponent }
-]
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-class AppRoutingModule { }
-
-                 
-@NgModule({
-  declarations: [AppComponent, AboutComponent, HomeComponent],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    AppRoutingModule, 
-    ReactiveFormsModule
-  ],
-  bootstrap: [AppComponent],
-  providers: []
-})
-class AppModule {}
-
-const { platformBrowserDynamic } = ng.platformBrowserDynamic;
-
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch(err =&gt; console.error(err));
-&lt;/script&gt;
-
-
-</code></pre>
-<div class='codepen'></div>
-<div line-highlight='79,only'></div>
-<h3>FormControl</h3>
-<p>The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl" target="\_blank">FormControl</a>. This class manages the form input model and connection to it's input element in the dom and inherits from the <a href="https://angular.io/api/forms/AbstractControl" target="\_blank">AbstractControl</a>
-class. It's worth getting familiar with the methods available in this class (like setValidators and patchValue), as they're used quite often in reactive form development.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
-&lt;base href=&quot;/&quot;&gt;
-&lt;my-app&gt;&lt;/my-app&gt;
-&lt;script type=&quot;typescript&quot;&gt;
-const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
-const { BrowserModule } = ng.platformBrowser;
-const { CommonModule } = ng.common;
-const { ReactiveFormsModule, FormControl } = ng.forms;
-
-@Component({
-  selector: 'my-app',
-  template: `
-    &lt;p&gt;A home component!&lt;/p&gt;
-    &lt;p&gt;
-      Value: {{ name.value }}
-    &lt;/p&gt;
-    &lt;label&gt;
-      Name:
-      &lt;input type=&quot;text&quot; [formControl]=&quot;name&quot;&gt;
-    &lt;/label&gt;
-  `
-})
-class AppComponent {
-  public  name = new FormControl('');
-
-  constructor() {}
-}
-           
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    ReactiveFormsModule
-  ],
-  bootstrap: [AppComponent],
-  providers: []
-})
-class AppModule {}
-
-const { platformBrowserDynamic } = ng.platformBrowserDynamic;
-
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch(err =&gt; console.error(err));
-&lt;/script&gt;
-
-
-</code></pre>
-<div class='codepen'></div>
-<div line-highlight='17,23-29,33,only'></div>
-<h3>FormGroup</h3>
-<p>A FormGroup is a way of grouping FormControls and tracking the state of the entire group. For instance, if you want to get the values of all of your FormControls to submit as an object of those values, you'd use <code>formGroupname.value</code>. Notice the way we connect our input in the markup is slightly different - we use <code>formControlName</code> to bind to the name value in our FormGroup. Groups can be nested within other groups or arrays.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
-&lt;base href=&quot;/&quot;&gt;
-&lt;my-app&gt;&lt;/my-app&gt;
-&lt;script type=&quot;typescript&quot;&gt;
-const { Component, NgModule, VERSION, OnInit } = ng.core;
-const { BrowserModule } = ng.platformBrowser;
-const { CommonModule } = ng.common;
-const { ReactiveFormsModule, FormControl, FormGroup } = ng.forms;
-
-@Component({
-  selector: 'my-app',
-  template: `
-  &lt;p&gt;A home component!&lt;/p&gt;
-  &lt;form [formGroup]=&quot;userForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
-    &lt;label&gt;
-        First name:
-        &lt;input type=&quot;text&quot; formControlName=&quot;firstName&quot;&gt;
-      &lt;/label&gt;
-      &lt;label&gt;
-        Last name:
-        &lt;input type=&quot;text&quot; formControlName=&quot;lastName&quot;&gt;
-      &lt;/label&gt;
-      &lt;label&gt;
-        Email:
-        &lt;input type=&quot;text&quot; formControlName=&quot;email&quot;&gt;
-      &lt;/label&gt;
-      &lt;button type=&quot;submit&quot;&gt;see form value&lt;/button&gt;
-  &lt;/form&gt;
-
-  {{ formValue | json }}
-  `
-})
-class AppComponent {
-  public formValue;
-
-  public userForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    email: new FormControl('')
-  });
-
-  constructor() {}
-
-  onSubmit() {
-    this.formValue = this.userForm.value;
-  }
-}
-                 
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    ReactiveFormsModule
-  ],
-  bootstrap: [AppComponent],
-  providers: []
-})
-class AppModule {}
-
-const { platformBrowserDynamic } = ng.platformBrowserDynamic;
-
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch(err =&gt; console.error(err));
-&lt;/script&gt;
-
-
-</code></pre>
-<div class='codepen'></div>
-<div line-highlight='17,23-37,39,43,45-49,53-55,only'></div>
-<h3>FormArray</h3>
-<p>FormArray aggregates FormControls into an array. It's different than FormGroup in that the controls inside are serialized as an array. FormArrays are very useful when dealing with repeated FormControls or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.</p>
-<p>This example shows the use of FormArray and using an <code>insert</code> method to dynamically add more FormGroups to the <code>users</code> FormArray.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
-&lt;base href=&quot;/&quot;&gt;
-&lt;my-app&gt;&lt;/my-app&gt;
-&lt;script type=&quot;typescript&quot;&gt;
-const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
-const { BrowserModule } = ng.platformBrowser;
-const { CommonModule } = ng.common;
-const { ReactiveFormsModule, FormControl, FormGroup, FormArray } = ng.forms;
-
-@Component({
-  selector: 'my-app',
-  template: `
-  &lt;p&gt;A home component!&lt;/p&gt;
-  &lt;form [formGroup]=&quot;usersForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
-    &lt;p&gt;This form can handle creating many users at once!&lt;/p&gt;
-    &lt;ng-container 
-    *ngFor=&quot;let userFormGroup of usersForm.controls.users.controls; 
-    let i = index&quot;&gt;
-      &lt;div [formGroup]=&quot;userFormGroup&quot;&gt;
-        &lt;label&gt;
-          First name:
-          &lt;input type=&quot;text&quot; formControlName=&quot;firstName&quot;&gt;
-        &lt;/label&gt;
-        &lt;label&gt;
-          Last name:
-          &lt;input type=&quot;text&quot; formControlName=&quot;lastName&quot;&gt;
-        &lt;/label&gt;
-        &lt;label&gt;
-          Email:
-          &lt;input type=&quot;text&quot; formControlName=&quot;email&quot;&gt;
-        &lt;/label&gt;
-      &lt;/div&gt;
-    &lt;/ng-container&gt;
-    &lt;button type=&quot;submit&quot;&gt;see form value&lt;/button&gt;
-  &lt;/form&gt;
-  &lt;button (click)=&quot;addGroup()&quot;&gt;add group&lt;/button&gt;
-
-  {{ formValue | json }}
-  `
-})
-class AppComponent {
-  public formValue;
-
-  public usersForm = new FormGroup({
-    users: new FormArray([
-      new FormGroup({
-        firstName: new FormControl(''),
-        lastName: new FormControl(''),
-        email: new FormControl('')
-      }),
-      new FormGroup({
-        firstName: new FormControl(''),
-        lastName: new FormControl(''),
-        email: new FormControl('')
-      })
-    ])
-  });
-
-  constructor() {}
-
-  addGroup() {
-    let usersArray = this.usersForm.get('users') as FormArray;
-    let usersLen = usersArray.length;
-
-    let newUserGroup =  new FormGroup({
-      firstName: new FormControl(''),
-      lastName: new FormControl(''),
-      email: new FormControl('')
-    });
-
-    usersArray.insert(usersLen, newUserGroup)
-  }
-
-  onSubmit() {
-    this.formValue = this.usersForm.value;
-  }
-}
-            
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    ReactiveFormsModule
-  ],
-  bootstrap: [AppComponent],
-  providers: []
-})
-class AppModule {}
-
-const { platformBrowserDynamic } = ng.platformBrowserDynamic;
-
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch(err =&gt; console.error(err));
-&lt;/script&gt;
-
-
-</code></pre>
-<div class='codepen'></div>
-<div line-highlight='17,23-45,47,53-66,70-81,only'></div>
-<h3>FormBuilder</h3>
-<p><a href="https://angular.io/api/forms/FormBuilder" target="\_blank">FormBuilder</a> is a shorthand way to quickly write forms by reducing boilerplate code of manually having to write <code>new FormControl</code>, <code>new FormGroup</code>, <code>new FormArray</code> repeatedly.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
-&lt;base href=&quot;/&quot;&gt;
-&lt;my-app&gt;&lt;/my-app&gt;
-&lt;script type=&quot;typescript&quot;&gt;
-const { Component, NgModule, VERSION, OnInit } = ng.core;
-const { BrowserModule } = ng.platformBrowser;
-const { CommonModule } = ng.common;
-const { ReactiveFormsModule, FormGroup, FormBuilder } = ng.forms;
-
-@Component({
-  selector: 'my-app',
-  template: `
-    &lt;p&gt;A home component!&lt;/p&gt;
-    &lt;form [formGroup]=&quot;myQuickForm&quot;&gt;
-      &lt;label&gt;
-          First name:
-          &lt;input type=&quot;text&quot; formControlName=&quot;firstName&quot;&gt;
-        &lt;/label&gt;
-        &lt;label&gt;
-          Last name:
-          &lt;input type=&quot;text&quot; formControlName=&quot;lastName&quot;&gt;
-        &lt;/label&gt;
-        &lt;label&gt;
-          Email:
-          &lt;input type=&quot;text&quot; formControlName=&quot;email&quot;&gt;
-        &lt;/label&gt;
-    &lt;/form&gt;
-  `
-})
-class AppComponent implements OnInit {
-  myQuickForm: FormGroup;
-
-  constructor(private fb:FormBuilder) {}
-
-  ngOnInit() {
-    this.myQuickForm = this.fb.group({
-      firstName: {value: '', disabled: false},
-      lastName: {value: '', disabled: false},
-      email: {value: '', disabled: false}
-    });
-  }
-}
-//THIS IS A HACK JUST FOR CODEPEN TO WORK
-AppComponent.parameters = [FormBuilder];
-
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    ReactiveFormsModule
-  ],
-  bootstrap: [AppComponent],
-  providers: []
-})
-class AppModule {}
-
-const { platformBrowserDynamic } = ng.platformBrowserDynamic;
-
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch(err =&gt; console.error(err));
-&lt;/script&gt;
-
-
-</code></pre>
-<div class='codepen'></div>
-<div line-highlight='17,40,42,45-49,only'></div>
-<h2>Exercise: Creating a Reactive Form in the Restaurant component with city and state dropdown inputs</h2>
-<h3>The problem</h3>
-<p>We would like our user to be able to filter restaurants based on city and state. Implement a reactive form with two controls, <code>state</code> and <code>city</code>, that are dropdowns displaying a list of cities and states.</p>
-<h3>What you need to know</h3>
-<ul>
-<li>How to create a FormControl (you learned this in the section above! ✔️)</li>
-<li>How to use <code>formControl</code> directive in the dom</li>
-<li>How to create a FormGroup (you learned this in the section above! ✔️)</li>
-<li>How to use FormBuilder (you learned this in the section above! ✔️)</li>
-<li>How to use ngFor (you learned this in the Creating Components section! ✔️)</li>
-</ul>
-<p>Here's some code to get you started:</p>
+<h2>The problem</h2>
+<p>Currently, we are showing a list of all restaurants:</p>
+<p><img src="../static/img/angular/8-state-city-options/before.png"
+style="border: solid 1px black; max-width: 320px;"/></p>
+<p>We would like our user to be able to filter restaurants based on city and state. To accomplish this,
+we will need to implement a reactive form with two controls, <code>state</code> and <code>city</code>, that are dropdowns displaying a list of cities and states.  It will look like the following:</p>
+<p><img src="../static/img/angular/8-state-city-options/after.png"
+style="border: solid 1px black; max-width: 320px;"/></p>
+<h2>Setup</h2>
+<p>Here's some code to get you started.  Notice that <code>cities</code> and <code>states</code> are hard coded (for now).</p>
 <p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -1087,7 +660,7 @@ export class AppModule { }
 
 </code></pre>
 <div line-highlight='5,24'></div>
-<h3>To Verify Your Solution is Correct</h3>
+<h2>Verify the solution</h2>
 <p>When you visit <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>, there will now be state and city dropdown options populated with fake data.</p>
 <p><img src="../static/img/angular/pmo-dropdowns.gif" alt="Place My Order App city and state dropdowns" title="Place My Order App city and state dropdowns" /></p>
 <p>Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
@@ -1412,7 +985,455 @@ describe('RestaurantComponent', () =&gt; {
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h3>The Solution</h3>
+<h2>What you need to know</h2>
+<ul>
+<li>How to create a FormControl</li>
+<li>How to use <code>formControl</code> directive in the dom</li>
+<li>How to create a FormGroup</li>
+<li>How to use FormBuilder</li>
+<li>How to use ngFor (you learned this in the Creating Components section! ✔️)</li>
+</ul>
+<h2>Reactive Forms</h2>
+<p>We're eventually going to use select boxes to handle our user's input. Angular's <a href="https://angular.io/guide/reactive-forms" target="\_blank">Reactive Forms</a> API provides a clean way to get data from user input and do work based on it.</p>
+<blockquote>
+<p>From the docs: Reactive forms use an explicit and immutable approach to managing the state of a form at a given point in time. Each change to the form state returns a new state, which maintains the integrity of the model between changes. Reactive forms are built around observable streams, where form inputs and values are provided as streams of input values, which can be accessed synchronously.</p>
+</blockquote>
+<h2>ReactiveFormsModule</h2>
+<p>To use reactive forms we must import our ReactiveFormsModule into the root app.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { Routes, RouterModule } = ng.router;
+const { ReactiveFormsModule } = ng.forms;
+
+@Component({
+  selector: 'my-app',
+  template: `
+    &lt;ul class=&quot;nav&quot;&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  `
+})
+class AppComponent {
+  constructor() {}
+}
+
+@Component({
+  selector: 'about-component',
+  template: `
+    &lt;p&gt;An about component!&lt;/p&gt;
+  `
+})
+class AboutComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'home-component',
+  template: `
+    &lt;p&gt;A home component!&lt;/p&gt;
+  `
+})
+class HomeComponent implements OnInit{
+
+  constructor() {
+  
+  }
+
+  ngOnInit() {
+  }
+}
+
+const routes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: '**', component: HomeComponent }
+]
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+class AppRoutingModule { }
+
+                 
+@NgModule({
+  declarations: [AppComponent, AboutComponent, HomeComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    AppRoutingModule, 
+    ReactiveFormsModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='79,only'></div>
+<h2>FormControl</h2>
+<p>The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl" target="\_blank">FormControl</a>. This class manages the form input model and connection to it's input element in the dom and inherits from the <a href="https://angular.io/api/forms/AbstractControl" target="\_blank">AbstractControl</a>
+class. It's worth getting familiar with the methods available in this class (like setValidators and patchValue), as they're used quite often in reactive form development.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { ReactiveFormsModule, FormControl } = ng.forms;
+
+@Component({
+  selector: 'my-app',
+  template: `
+    &lt;p&gt;A home component!&lt;/p&gt;
+    &lt;p&gt;
+      Value: {{ name.value }}
+    &lt;/p&gt;
+    &lt;label&gt;
+      Name:
+      &lt;input type=&quot;text&quot; [formControl]=&quot;name&quot;&gt;
+    &lt;/label&gt;
+  `
+})
+class AppComponent {
+  public  name = new FormControl('');
+
+  constructor() {}
+}
+           
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    ReactiveFormsModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='17,23-29,33,only'></div>
+<h2>FormGroup</h2>
+<p>A FormGroup is a way of grouping FormControls and tracking the state of the entire group. For instance, if you want to get the values of all of your FormControls to submit as an object of those values, you'd use <code>formGroupname.value</code>. Notice the way we connect our input in the markup is slightly different - we use <code>formControlName</code> to bind to the name value in our FormGroup. Groups can be nested within other groups or arrays.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION, OnInit } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { ReactiveFormsModule, FormControl, FormGroup } = ng.forms;
+
+@Component({
+  selector: 'my-app',
+  template: `
+  &lt;p&gt;A home component!&lt;/p&gt;
+  &lt;form [formGroup]=&quot;userForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+    &lt;label&gt;
+        First name:
+        &lt;input type=&quot;text&quot; formControlName=&quot;firstName&quot;&gt;
+      &lt;/label&gt;
+      &lt;label&gt;
+        Last name:
+        &lt;input type=&quot;text&quot; formControlName=&quot;lastName&quot;&gt;
+      &lt;/label&gt;
+      &lt;label&gt;
+        Email:
+        &lt;input type=&quot;text&quot; formControlName=&quot;email&quot;&gt;
+      &lt;/label&gt;
+      &lt;button type=&quot;submit&quot;&gt;see form value&lt;/button&gt;
+  &lt;/form&gt;
+
+  {{ formValue | json }}
+  `
+})
+class AppComponent {
+  public formValue;
+
+  public userForm = new FormGroup({
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+    email: new FormControl('')
+  });
+
+  constructor() {}
+
+  onSubmit() {
+    this.formValue = this.userForm.value;
+  }
+}
+                 
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    ReactiveFormsModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='17,23-37,39,43,45-49,53-55,only'></div>
+<h2>FormArray</h2>
+<p>FormArray aggregates FormControls into an array. It's different than FormGroup in that the controls inside are serialized as an array. FormArrays are very useful when dealing with repeated FormControls or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.</p>
+<p>This example shows the use of FormArray and using an <code>insert</code> method to dynamically add more FormGroups to the <code>users</code> FormArray.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { ReactiveFormsModule, FormControl, FormGroup, FormArray } = ng.forms;
+
+@Component({
+  selector: 'my-app',
+  template: `
+  &lt;p&gt;A home component!&lt;/p&gt;
+  &lt;form [formGroup]=&quot;usersForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+    &lt;p&gt;This form can handle creating many users at once!&lt;/p&gt;
+    &lt;ng-container 
+    *ngFor=&quot;let userFormGroup of usersForm.controls.users.controls; 
+    let i = index&quot;&gt;
+      &lt;div [formGroup]=&quot;userFormGroup&quot;&gt;
+        &lt;label&gt;
+          First name:
+          &lt;input type=&quot;text&quot; formControlName=&quot;firstName&quot;&gt;
+        &lt;/label&gt;
+        &lt;label&gt;
+          Last name:
+          &lt;input type=&quot;text&quot; formControlName=&quot;lastName&quot;&gt;
+        &lt;/label&gt;
+        &lt;label&gt;
+          Email:
+          &lt;input type=&quot;text&quot; formControlName=&quot;email&quot;&gt;
+        &lt;/label&gt;
+      &lt;/div&gt;
+    &lt;/ng-container&gt;
+    &lt;button type=&quot;submit&quot;&gt;see form value&lt;/button&gt;
+  &lt;/form&gt;
+  &lt;button (click)=&quot;addGroup()&quot;&gt;add group&lt;/button&gt;
+
+  {{ formValue | json }}
+  `
+})
+class AppComponent {
+  public formValue;
+
+  public usersForm = new FormGroup({
+    users: new FormArray([
+      new FormGroup({
+        firstName: new FormControl(''),
+        lastName: new FormControl(''),
+        email: new FormControl('')
+      }),
+      new FormGroup({
+        firstName: new FormControl(''),
+        lastName: new FormControl(''),
+        email: new FormControl('')
+      })
+    ])
+  });
+
+  constructor() {}
+
+  addGroup() {
+    let usersArray = this.usersForm.get('users') as FormArray;
+    let usersLen = usersArray.length;
+
+    let newUserGroup =  new FormGroup({
+      firstName: new FormControl(''),
+      lastName: new FormControl(''),
+      email: new FormControl('')
+    });
+
+    usersArray.insert(usersLen, newUserGroup)
+  }
+
+  onSubmit() {
+    this.formValue = this.usersForm.value;
+  }
+}
+            
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    ReactiveFormsModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='17,23-45,47,53-66,70-81,only'></div>
+<h2>FormBuilder</h2>
+<p><a href="https://angular.io/api/forms/FormBuilder" target="\_blank">FormBuilder</a> is a shorthand way to quickly write forms by reducing boilerplate code of manually having to write <code>new FormControl</code>, <code>new FormGroup</code>, <code>new FormArray</code> repeatedly.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION, OnInit } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { ReactiveFormsModule, FormGroup, FormBuilder } = ng.forms;
+
+@Component({
+  selector: 'my-app',
+  template: `
+    &lt;p&gt;A home component!&lt;/p&gt;
+    &lt;form [formGroup]=&quot;myQuickForm&quot;&gt;
+      &lt;label&gt;
+          First name:
+          &lt;input type=&quot;text&quot; formControlName=&quot;firstName&quot;&gt;
+        &lt;/label&gt;
+        &lt;label&gt;
+          Last name:
+          &lt;input type=&quot;text&quot; formControlName=&quot;lastName&quot;&gt;
+        &lt;/label&gt;
+        &lt;label&gt;
+          Email:
+          &lt;input type=&quot;text&quot; formControlName=&quot;email&quot;&gt;
+        &lt;/label&gt;
+    &lt;/form&gt;
+  `
+})
+class AppComponent implements OnInit {
+  myQuickForm: FormGroup;
+
+  constructor(private fb:FormBuilder) {}
+
+  ngOnInit() {
+    this.myQuickForm = this.fb.group({
+      firstName: {value: '', disabled: false},
+      lastName: {value: '', disabled: false},
+      email: {value: '', disabled: false}
+    });
+  }
+}
+//THIS IS A HACK JUST FOR CODEPEN TO WORK
+AppComponent.parameters = [FormBuilder];
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    ReactiveFormsModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='17,40,42,45-49,only'></div>
+<h2>The Solution</h2>
 <p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -1565,7 +1586,7 @@ export class RestaurantComponent implements OnInit {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/8-state-city-options/state-city-options.md"},"description":"Creating city & state options for filtering restaurants \n","name":"learn-angular/state-city-options","title":"City & State Options","type":"page","parent":"learn-angular","order":8,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/8-state-city-options/state-city-options.md"},"description":"Learn how to create a Reactive Form with Angular. We will create a Reactive Form in the Restaurant component with city and state dropdown inputs. \n","name":"learn-angular/state-city-options","title":"City & State Options","type":"page","parent":"learn-angular","order":8,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     
