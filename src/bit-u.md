@@ -240,6 +240,7 @@ p.quote-author{
   display: flex;
   width: 100%;
   margin-top: 30px;
+  min-height: 500px;
 }
 .live-events .courses .academy-card{
   padding: 0;
