@@ -30,7 +30,8 @@ class UsersService {
   constructor(private httpClient: HttpClient) { }
 
   getUsers() {
-    const params = new HttpParams().set('_page', "1").set('_limit', "1");
+    const params = new HttpParams()
+    params.set('_page', "1").set('_limit', "1");
     return this.httpClient.get<any>('/api/users', {params});
   }
 
@@ -63,7 +64,7 @@ class AppComponent implements OnInit{
 }
 //THIS IS A HACK JUST FOR CODEPEN TO WORK
 AppComponent.parameters = [UsersService];
-                 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -82,4 +83,3 @@ platformBrowserDynamic()
   .bootstrapModule(AppModule)
   .catch(err => console.error(err));
 </script>
-
