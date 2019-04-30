@@ -46,6 +46,7 @@ const updateStaticAssetLinks = (html) => {
     .replace(/href="\.*\/static/g, `href="${assetBaseUrl}`)
     .replace(/href='\.*\/static/g, `href='${assetBaseUrl}`)
     .replace(/url\(&apos;\.*\/static/g, `url(&apos;${assetBaseUrl}`)
+    .replace(/url\('\.*\/static/g, `url('${assetBaseUrl}`)
 }
 
 module.exports = AcademyPage;
