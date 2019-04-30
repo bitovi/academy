@@ -1,7 +1,7 @@
-@page learn-angular/form-value-changes Listening to Form Value Changes
+@page learn-angular/form-value-changes Filter Cities by State
 @parent learn-angular 9
 
-@description Listening to Form Value Changes
+@description Learn how to listen to form value changes with Angular.
 
 @body
 
@@ -23,9 +23,9 @@ In this part, we will:
 
 For a more robust understanding of Observables, Subscriptions, and other RxJS core tenants check out our [RxJS RxJS guide]. For the following exercises, Observables are lazy collections of multiple values over time. We can subscribe to observables to get any new data, or create and add to Subscriptions of observables.
 
-This example shows creating a subscription to an observable, saving it's value to a member on the component and displaying it in the template. This is useful for when we want to capture and observables values and make changes based on them, but subscriptions do need to be cleaned up to avoid memory leaks. Whenever a component is destroyed an <a href="https://angular.io/api/core/OnDestroy" target="\_blank">ngOnDestroy</a> method is called. This is a good place to put our cleanup code, like unsubscribing from observables. 
+This example shows creating a subscription to an observable, saving it's value to a member on the component and displaying it in the template. This is useful for when we want to capture and observables values and make changes based on them, but subscriptions do need to be cleaned up to avoid memory leaks. Whenever a component is destroyed an <a href="https://angular.io/api/core/OnDestroy" target="\_blank">ngOnDestroy</a> method is called. This is a good place to put our cleanup code, like unsubscribing from observables.
 
-In this example click the button to start subscribing to the observables - you'll see two variables logged: the new observable value and the subscription value. Then click the "remove component" button to see what happens when a component is destroyed. Next delete line 95, follow the same process and see what happens!
+In this example, click the button to start subscribing to the observables - you'll see two variables logged: the new observable value and the subscription value. Then click the "remove component" button to see what happens when a component is destroyed. Next delete line 95, follow the same process and see what happens!
 
 @sourceref ./observables-subscriptions.html
 @codepen
@@ -96,13 +96,14 @@ Method 2 - `getCities`, takes a string param called 'state' a makes a request to
 
 ### What You Need to Know
 
-- how to use HttpParams:
+
+- __How to use HttpParams__
 
   <a href="https://angular.io/api/common/http/HttpParams" target="\_blank">HttpParams</a> are part of Angulars HTTPClient API and help us create parameters for our requests.
 
   @sourceref ./http-params.html
   @codepen
-  @highlight 28,only
+  @highlight 33-34,only
 
 ### To Verify Your Solution is Correct
 
