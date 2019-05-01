@@ -64,7 +64,7 @@ class HubSpotApi {
       action: 'schedule-publish'
     }
     const response = await this.makeRequest('POST', url, data);
-    console.log("Success! Created and published page:", response.data.name);
+    console.log("Success! Created and published page:", response.data.name || (" no name - "+pageId));
     return response;
   }
 
