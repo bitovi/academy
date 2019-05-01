@@ -12,6 +12,9 @@ and management in these free courses!
   width: 100%;
   padding-right: 0;
 }
+.width100 {
+  width: 100%;
+}
 .container {
   padding: 0;
 }
@@ -356,7 +359,7 @@ a.quote-link:hover{
           </div>
           <h4>TypeScript</h4>
           <p>Learn the essentials of TypeScript: types, functions, classes, interfaces and generics.</p>
-          <div class="">
+          <div class="width100">
             <p class='detail'><strong>Audience:</strong> Beginner JS developer</p>
             <p class='detail'><strong>Goal:</strong> Be ready to develop a TypeScript project.</p>
             <p class='detail'><strong>Time:</strong> 3 hours</p>
@@ -370,7 +373,7 @@ a.quote-link:hover{
           <h4>RxJS</h4>
           <p>Build a validating credit card form with RxJS and a bit of Angular. Learn
           the hard but fundamental operators.</p>
-          <div class="">
+          <div class="width100">
             <p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
             <p class='detail'><strong>Goal:</strong> Build complex state mechanics with observables.</p>
             <p class='detail'><strong>Time:</strong> 6 hours</p>
@@ -385,7 +388,7 @@ a.quote-link:hover{
           <p>Build a multipage, realtime ordering app with Angular. Learn
           FormBuilder and FormGroup. Write tests
           too!</p>
-          <div class="">
+          <div class="width100">
             <p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
             <p class='detail'><strong>Goal:</strong> Build data driven applications with Angular.</p>
             <p class='detail'><strong>Time:</strong> 10 hours</p>
@@ -400,7 +403,7 @@ a.quote-link:hover{
           </div>
           <h4>Advanced JavaScript</h4>
           <p>Learn all the hard but important stuff you should know when programming JavaScript.</p>
-          <div class="">
+          <div class="width100">
             <p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
             <p class='detail'><strong>Goal:</strong> Understand what's going on "under the hood".</p>
             <p class='detail'><strong>Time:</strong> 6 hours</p>
@@ -414,7 +417,7 @@ a.quote-link:hover{
           <h4>DOM and jQuery</h4>
           <p>Build your own version of jQuery and use it to make a basic tabs widget. Enjoy the
   meta programming too!</p>
-          <div class="">
+          <div class="width100">
             <p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
             <p class='detail'><strong>Goal:</strong> Understand the DOM enough to build widgets frameworks can't.</p>
             <p class='detail'><strong>Time:</strong> 10 hours</p>
@@ -428,7 +431,7 @@ a.quote-link:hover{
           <h4>Debug JavaScript</h4>
           <p>Learn breakpoints and how to debug the scope, stack, prototypes, and
   property changes.</p>
-          <div class="">
+          <div class="width100">
             <p class='detail'><strong>Audience:</strong> Beginner JS developers</p>
             <p class='detail'><strong>Goal:</strong> Debug most problems with chrome developer tools.</p>
             <p class='detail'><strong>Time:</strong> 1 hour</p>
