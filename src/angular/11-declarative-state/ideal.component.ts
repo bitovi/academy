@@ -34,7 +34,8 @@ const responseToRequestStatus = map(function<T>(response: ResponseData<T>): Requ
 });
 
 // an operator that takes input for a request, makes a request via a provided function, and provides an appropriate RequestStatus
-function makeRequest<T>(requestFunction: (args:any) => Observable<ResponseData<T>>): UnaryFunction<Observable<any>, Observable<RequestStatus<T>>> {
+function makeRequest<T>(requestFunction: (args:any) => Observable<ResponseData<T>>)
+    :UnaryFunction<Observable<any>, Observable<RequestStatus<T>>> {
   return pipe(
       flatMap(requestArguments => {
         const responseStream = requestFunction(requestArguments);
