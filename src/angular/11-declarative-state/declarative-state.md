@@ -244,3 +244,14 @@ __src/app/restaurant/restaurant.component.html__
 
 @sourceref ./restaurant.component.html
 @highlight 3, 6-9, 11, 17-21, 23, 29-31, only
+
+## Advanced Implementation
+
+Below is a more comprehensive approach to implementing the sort of features seen in the solution above. It takes things 
+further by handling additional cases and abstracting the streams to aid in reuse of these patterns throughout an 
+application. Since we won't be going over the details of this implementation, a very solid understanding of the above 
+solution and RxJS in general is recommended in order to infer the reasoning behind the design of solution below:
+
+@sourceref ./ideal.component.ts
+
+@sourceref ./ideal.component.html
