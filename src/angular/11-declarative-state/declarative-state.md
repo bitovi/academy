@@ -52,42 +52,88 @@ consequences.
 An additional benefit of Angular + RxJS is that declarative state can be used directly in the template, removing the need
 for most subscriptions in our component. Avoiding subscriptions eliminates the need to manage them in `onDestroy`.
 
-## Using BehaviorSubject To Observe Form Control Values
-<!-- TODO: behavior subject --> 
+## Removing Reactive Forms
+Though very convenient, Angular Reactive Forms use an imperative API for tasks like toggling if a form element is 
+disabled. Since the goal of this exercise is to use declarative state as much as possible we'll be removing the use of 
+Reactive Forms and replacing its functionality with streams we create. Some of those streams will control disabled 
+state, one will control the selected value of a control, and others will be emitting the current value of form controls.  
+
+## Creating Streams Of Form Control Values
+The [`Subject`](https://rxjs-dev.firebaseapp.com/api/index/class/Subject) class in RxJS is both an 
+[`Observer`](https://rxjs-dev.firebaseapp.com/api/index/interface/Observer) and 
+[`Observable`](https://rxjs-dev.firebaseapp.com/api/index/interface/Observable). This has several implications but the 
+relevant one for this exercise is that it both consumes and produces values. That means we can pass values into a 
+[`Subject`](https://rxjs-dev.firebaseapp.com/api/index/class/Subject) (via it's `next` method) and have them emitted 
+as part of a stream. Perfect for turning values from a form control into a stream.
+
+There are several implementations of [`Subject`](https://rxjs-dev.firebaseapp.com/api/index/class/Subject) in RxJS, but 
+a convenient one for form control observation is the 
+[`BehaviorSubject`](https://rxjs-dev.firebaseapp.com/api/index/class/BehaviorSubject). This implementation takes an 
+initial value and emits the current value whenever it's subscribed to. We'll initialize the 
+[`BehaviorSubject`](https://rxjs-dev.firebaseapp.com/api/index/class/BehaviorSubject) with the same value as the form 
+control, and update it via the `next` method whenever the control changes. Due to that an accurate form value will be 
+emitted whenever a subscription is made. 
+
+@sourceref ./behaviorSubject.html
+@codepen 
 
 ## Essential RxJS Operators & Functions
-RxJS operators are the actions that occur to generate values in a stream. There are dozens of operators that do things 
-like transform values, filter values, combine streams, and much more. We'll just be touching on a small selection
-of operators.
+RxJS operators are the actions that run to modify values in a stream. There are dozens of operators that do things 
+like transform individual values, filter values, combine streams, and much more. We'll just be touching on a small
+selection of operators.
 
-We'll also demonstrate several important static functions that RxJS provides to create and combine streams. 
+We'll also demonstrate several important RxJS static functions used to create and combine streams. 
 
 ### Creating A Stream
-<!-- TODO: of --> 
+The [`of`](https://rxjs-dev.firebaseapp.com/api/index/function/of) functions simply creates an observable that emits 
+the values passed to [`of`](https://rxjs-dev.firebaseapp.com/api/index/function/of). This is often used when creating 
+demo streams or composing streams.
+
+@sourceref ./of.html
+@codepen  
+
+In the solution of this exercise we'll use [`of`](https://rxjs-dev.firebaseapp.com/api/index/function/of) to return a 
+stream during [`flatMap`](https://rxjs-dev.firebaseapp.com/api/operators/flatMap). Look at the 
+[`flatMap`](https://rxjs-dev.firebaseapp.com/api/operators/flatMap) example below to see that in action.
 
 ### Combining Streams
-<!-- TODO: merge / combineLatest -->
+In the solution to this exercise we'll have to use two RxJS functions to combine streams. The first is 
+[`merge`](https://rxjs-dev.firebaseapp.com/api/index/function/merge) and it works by emitting the values coming from 
+multiple streams as a single stream.
+
+@sourceref ./merge.html
+@codepen  
+
+The second is [`combineLatest`](https://rxjs-dev.firebaseapp.com/api/index/function/combineLatest) which returns a 
+stream that emits arrays containing the most recent values of each stream. One caveat is that 
+[`combineLatest`](https://rxjs-dev.firebaseapp.com/api/index/function/combineLatest) will only start emitting arrays
+when all input streams have emitted a value.
+
+@sourceref ./combine.html
+@codepen  
 
 ### Initializing A Stream
 A common situation is working with streams that only produce a value after an event, for example when an HTTP request
 completes or when a value changes in a form control. When using a stream like this in your components, you'll likely
 want to have an initial "base state" that your view can use during the initial render. In RxJS this is handled by the 
-`startWith` operator, which emits a value when the stream is first subscribed to.
+[`startWith`](https://rxjs-dev.firebaseapp.com/api/index/operators/startWith) operator, which emits a value when the 
+stream is first subscribed to.
 
 @sourceref ./startWith.html
 @codepen
 
 ### Transforming The Values Of A Stream
 When values are emitted from a stream it's common to transform them in some way before they're used by your application. 
-One operator used for this is the `map` operator, which takes an emitted value and returns a modified value that will
-be passed to the subsequent operators in the stream.
+One operator used for this is the [`map`](https://rxjs-dev.firebaseapp.com/api/index/operators/map) operator, which 
+takes an emitted value and returns a modified value that will be passed to the subsequent operators in the stream.
 
 @sourceref ./map.html
 @codepen
  
 ### Emitting Values From Another Stream
 When using a stream you may want to emit values from another stream as part of the original stream. RxJS offers a 
-variety of ways to do this, but the one we'll demonstrate is the `flatMap` operator. Like the map operator it takes an
+variety of ways to do this, but the one we'll demonstrate is the 
+[`flatMap`](https://rxjs-dev.firebaseapp.com/api/index/operators/flatMap) operator. Like the map operator it takes an 
 emitted value from a stream, but instead of returning a modified value it returns another stream whose emitted values
 will be passed to the subsequent operators.
 
@@ -99,8 +145,8 @@ An advanced topic when working with streams is how streams behave when they have
 this you first need an understanding of "cold" vs "hot" observables.
  
 A "cold" observable is one that creates a new producer of events whenever they receive a new subscriber. An example is 
-observables returned from the Angular `HttpClient`. Whenever there's a new subscriber to that observable a new request 
-is made.
+observables returned from the Angular [`HttpClient`](https://angular.io/api/common/http/HttpClient). Whenever there's 
+a new subscriber to that observable a new request is made.
 
 A "hot" observable is one that doesn't create a new producer for every subscriber. Instead it shares a single producer 
 among all the subscribers. An example of this could be an observable that listens for messages on an existing 
@@ -110,11 +156,15 @@ isn't opened, the connection is being shared between the subscribers.
 This distinction is clearly important, you wouldn't want to make separate requests for states in every place that 
 you reference the states observable in the view. You need someway to make cold observables hot, to satisfy that 
 requirement RxJS contains a variety of ways to share the stream between subscribers. This is a particularly complex 
-topic so we'll only be reviewing a single way, the `shareReplay` operator.
+topic so we'll only be reviewing a single way, the 
+[`shareReplay`](https://rxjs-dev.firebaseapp.com/api/index/operators/shareReplay) operator.
 
-The `shareReplay` operator essentially works by making the preceding portion of the stream hot. Once the stream is 
-subscribed to, `shareReplay` will share the results produced, preventing multiple instances of the stream from running. 
-That's the "sharing" functionality of `shareReplay`, but it also performs the other important function of "replaying".
+The [`shareReplay`](https://rxjs-dev.firebaseapp.com/api/index/operators/shareReplay) operator essentially works by
+making the preceding portion of the stream hot. Once the stream is subscribed to,
+[`shareReplay`](https://rxjs-dev.firebaseapp.com/api/index/operators/shareReplay) will share the results produced, 
+preventing multiple instances of the stream from running. That's the "sharing" functionality of
+[`shareReplay`](https://rxjs-dev.firebaseapp.com/api/index/operators/shareReplay), but it also performs the other 
+important function of "replaying".
 
 In our template we have code that looks like:
 ```html
@@ -150,12 +200,13 @@ When you're finished the component members `state`, `cities` & `restaurants` wil
 operators that either produce values from a response emitted by a service layer request, or produce values from changes 
 in a form control (which in turn may make a request).
 
-Since we're no longer using Reactive Forms, to get value streams from a form control you'll use `BehaviorSubjects` 
-which have `.next($event.target.value)` called on them during control `change` events.
+To access form values as streams you'll use `BehaviorSubject` instances which have `.next($event.target.value)` called 
+on them during control `change` events.
 
 You'll also add new streams to handle several functions that were previously handled by the imperative Reactive 
 Forms API:
-- `displayedCity` which sets the city select control value to user input if there's been any, or clears it if the state select control has been changed
+- `displayedCity` which sets the city select control value to user input if there's been any, or clears it if the 
+   state select control has been changed
 - `stateSelectDisabled` which disables the state select control if loading is ongoing
 - `citySelectDisabled` which disables the city select control if loading is ongoing or no values are available
 
@@ -166,7 +217,7 @@ Forms API:
     - transforming a value emitted
     - conditionally emit values into a stream from another stream
     - merge streams into a single stream of values 
-    - merge streams into a stream of tuples
+    - merge streams into a stream of arrays with values from each input stream
     - use a BehaviorSubject to capture the state of a form element
     - multicasting emissions of a "cold" observable and handle late subscribers
  
@@ -193,12 +244,3 @@ __src/app/restaurant/restaurant.component.html__
 
 @sourceref ./restaurant.component.html
 @highlight 3, 6-9, 11, 17-21, 23, 29-31, only
-
-## Advanced Implementation
-
-Below is a more comprehensive approach to implementing the sort of features seen in the solution above. It takes things 
-further by handling additional cases and abstracting the streams to aid in reuse of these patterns throughout an 
-application. Since we won't be going over the details of this implementation, a very solid understanding of the above 
-solution and RxJS in general is recommended in order to infer the reasoning behind the design of solution below:
-
-** insert Justin's fully ideal solution **
