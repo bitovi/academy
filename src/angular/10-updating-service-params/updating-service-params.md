@@ -39,6 +39,11 @@ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
 @sourceref ./restaurant.component-httpparams.spec.ts
 @highlight 11,106,127,142,432-441,only
 
+Update the spec file __src/app/restaurant/restaurant.service.spec.ts__
+
+@sourceref ./restaurant.service-httpparams.spec.ts
+@highlight 1,only
+
 > If you've implemented the solution correctly, when you run `npm run test` the restaurant component tests will pass! We'll fix the service tests in the next step.
 
 ## The solution

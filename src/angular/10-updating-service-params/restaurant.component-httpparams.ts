@@ -55,8 +55,8 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
   createForm() {
     this.form = this.fb.group({
-      state: {value: '', disabled: false},
-      city: {value: '', disabled: false},
+      state: {value: '', disabled: true},
+      city: {value: '', disabled: true},
     });
 
     this.onChanges();
