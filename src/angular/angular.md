@@ -1,15 +1,18 @@
 @page learn-angular Learn Angular
 @parent bit-academy 4
 
-@description Learn how to use Angular to build an application.
+@description Learn how to build a moderately complex application with Angular.
+
 
 @body
 
 ## Before You Begin
 
-<a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">
+<p><a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">
 <img src="https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.png?width=200"
-  style="float:left"/> <span style="margin-top: 10px;display: inline-block;">Click here to join<br/>Bitovi's Slack Community</span></a>
+  style="float:left"/> <span style="margin-top: 10px;display: inline-block;">Click here to join<br/>Bitovi's Slack Community</span></a></p>
+
+<br/>
 
 Join Bitovi's Slack Community to get help on Bitovi Academy courses or other
 Angular, React, CanJS and JavaScript problems.
@@ -25,9 +28,18 @@ In this guide, we will build this restaurant ordering app with Angular:
 <img src="./static/img/place-my-order.png" title="Place My Order App screenshot"
   style="max-width: 100%"/>
 
-You can see a DoneJS implementation of this application at [www.place-my-order.com](http://www.place-my-order.com).
+You can see a DoneJS implementation of this application at
+[www.place-my-order.com](http://www.place-my-order.com).
 
-This application:
+This application (and course) is moderately complex. Its purpose is to teach
+intermediate developers how to write a real-world application in practice. Thus, it covers
+the features that are present across almost all single page apps:
+
+- Navigation between pages
+- Handling complex state mechanics
+- Creating, Reading, Updating, and Deleting (CRUD) data from a server.
+
+As for the application itself, it:
 
 - Is written in Angular 7
 - Is a single page application (SPA) that uses pushstate to simulate routing between several pages.
@@ -37,22 +49,35 @@ This application:
   - An `order` page that allows us to place an order for a restaurant
   - A realtime `order history` page that tracks orders as they are created, being prepared, out for delivery,
     delivered, and deleted
+- Will make requests to a local API server that provides the following APIs:
+  - `/api/states` - Returns a list of US states.
+  - `api/cities` - Returns a list of US cities for a state.
+  - `api/restaurants` - Returns a list of Restaurants in a city.
+  - `api/order` - Creates, Returns, Updates, or Deletes orders for a restaurant.
 
 ## Outline
 
-1. Why angular
-2. Building our first app
-3. Generating our first component
-4. Adding routing
-5. Creating navigation
-6. Writing a restaurant data service
-7. Pulling restaurant data into our view
-8. Creating city & state options for filtering restaurants
-9. Listening to form value changes
-10. Updating restaurant service to use params
-11. Writing unit tests
-12. Creating nested restaurant routes
-13. Building an order form
-14. Writing an order data service
-15. Creating an order history component
-16. Updating order history view with real time connection
+The guide begins ([learn-angular/why-angular]) with a discussion of Angular's
+strengths. We will install Angular ([learn-angular/building-our-first-app]) and use it to generate a new project. Then we will set out creating some _components_ ([learn-angular/creating-components]) that will be shown when
+the right url is present ([learn-angular/adding-routing]) and adding navigation links ([learn-angular/creating-navigation]) to route to those _components_.
+
+With that complete, we will explore how to get data from the server ([learn-angular/restaurant-service]) and write that data out to the page ([learn-angular/pull-restaurant-data-into-view]).
+
+After that, we will begin exploring how to handle complex state mechanics by creating a
+form that displays cities and states ([learn-angular/state-city-options]). We will
+make selecting a state filter cities ([learn-angular/form-value-changes]) and
+selecting a city filter the restaurants ([learn-angular/updating-service-params]). As
+an optional and advanced exercise, you can convert handle the state declartively
+with RxJS ([learn-angular/declarative-state]).
+
+After writing all that code, it's good to learn a bit about testing. While this tutorial
+has tests to verify your solutions, we will turn the tables and have you write a test for
+retrieving a single restaurant from the service layer ([learn-angular/writing-unit-tests]). This will prepare us to create a nested route for the restaurant details page ([learn-angular/nested-routes]).
+
+Now we are ready to turn our attention to learning about creating, updating, and deleting
+data. We will start by building an Order Form ([learn-angular/building-order-form]) that
+allows us to create orders on the server ([learn-angular/order-service]). We'll then
+create a page that lets us update an order's status or delete an order ([learn-angular/order-history-component]). We will even make the order page update when someone else updates an order ([learn-angular/real-time-connection]).
+
+At this point, we will have completed the app. The final step will be building it to
+production and deploying it for others to see ([learn-angular/deploy-app]).
