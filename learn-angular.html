@@ -11,7 +11,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn how to use Angular to build an application. 
+  <meta name="description" content="Learn how to build a moderately complex application with Angular. 
+
 ">
   <title>Bitovi Academy - Learn Angular</title>
   
@@ -146,7 +147,7 @@ covering CanJS core libraries.">
            						expanded">
 						<a class="page"
 							href="learn-angular.html"
-							title="Learn how to use Angular to build an application.">
+							title="Learn how to build a moderately complex application with Angular.">
 							Learn Angular
 						</a>
 						
@@ -481,7 +482,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn how to use Angular to build an application.</p>
+    <p>Learn how to build a moderately complex application with Angular.</p>
 
 </section>
 
@@ -497,7 +498,8 @@ covering CanJS core libraries.">
     <h2>Before You Begin</h2>
 <p><a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">
 <img src="https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.png?width=200"
-style="float:left"/> <span style="margin-top: 10px;display: inline-block;">Click here to join<br/>Bitovi's Slack Community</span></a></p>
+  style="float:left"/> <span style="margin-top: 10px;display: inline-block;">Click here to join<br/>Bitovi's Slack Community</span></a></p>
+<p><br/></p>
 <p>Join Bitovi's Slack Community to get help on Bitovi Academy courses or other
 Angular, React, CanJS and JavaScript problems.</p>
 <p>Please ask questions related to Angular in the <a href="https://bitovi-community.slack.com/messages/CFD2J3HT3">Angular chat room</a>.</p>
@@ -506,8 +508,17 @@ Angular, React, CanJS and JavaScript problems.</p>
 <p>In this guide, we will build this restaurant ordering app with Angular:</p>
 <p><img src="./static/img/place-my-order.png" title="Place My Order App screenshot"
 style="max-width: 100%"/></p>
-<p>You can see a DoneJS implementation of this application at <a href="http://www.place-my-order.com">www.place-my-order.com</a>.</p>
-<p>This application:</p>
+<p>You can see a DoneJS implementation of this application at
+<a href="http://www.place-my-order.com">www.place-my-order.com</a>.</p>
+<p>This application (and course) is moderately complex. Its purpose is to teach
+intermediate developers how to write a real-world application in practice. Thus, it covers
+the features that are present across almost all single page apps:</p>
+<ul>
+<li>Navigation between pages</li>
+<li>Handling complex state mechanics</li>
+<li>Creating, Reading, Updating, and Deleting (CRUD) data from a server.</li>
+</ul>
+<p>As for the application itself, it:</p>
 <ul>
 <li>Is written in Angular 7</li>
 <li>Is a single page application (SPA) that uses pushstate to simulate routing between several pages.
@@ -519,26 +530,34 @@ style="max-width: 100%"/></p>
 <li>A realtime <code>order history</code> page that tracks orders as they are created, being prepared, out for delivery,
 delivered, and deleted</li>
 </ul></li>
+<li>Will make requests to a local API server that provides the following APIs:
+<ul>
+<li><code>/api/states</code> - Returns a list of US states.</li>
+<li><code>api/cities</code> - Returns a list of US cities for a state.</li>
+<li><code>api/restaurants</code> - Returns a list of Restaurants in a city.</li>
+<li><code>api/order</code> - Creates, Returns, Updates, or Deletes orders for a restaurant.</li>
+</ul></li>
 </ul>
 <h2>Outline</h2>
-<ol>
-<li>Why angular</li>
-<li>Building our first app</li>
-<li>Generating our first component</li>
-<li>Adding routing</li>
-<li>Creating navigation</li>
-<li>Writing a restaurant data service</li>
-<li>Pulling restaurant data into our view</li>
-<li>Creating city &amp; state options for filtering restaurants</li>
-<li>Listening to form value changes</li>
-<li>Updating restaurant service to use params</li>
-<li>Writing unit tests</li>
-<li>Creating nested restaurant routes</li>
-<li>Building an order form</li>
-<li>Writing an order data service</li>
-<li>Creating an order history component</li>
-<li>Updating order history view with real time connection</li>
-</ol>
+<p>The guide begins (<a href="learn-angular/why-angular.html" title="Why Angular is a great choice for modern web application development.">Why Angular</a>) with a discussion of Angular's
+strengths. We will install Angular (<a href="learn-angular/building-our-first-app.html" title="Building Our First App">Building Our First App</a>) and use it to generate a new project. Then we will set out creating some <em>components</em> (<a href="learn-angular/creating-components.html" title="Learn how to create basic components in angular.">Creating Components</a>) that will be shown when
+the right url is present (<a href="learn-angular/adding-routing.html" title="Learn how to add basic routing to an Angular application.">Adding Routing</a>) and adding navigation links (<a href="learn-angular/creating-navigation.html" title="Learn how to create dynamic links that navigate to different parts of an application.">Creating Navigation</a>) to route to those <em>components</em>.</p>
+<p>With that complete, we will explore how to get data from the server (<a href="learn-angular/restaurant-service.html" title="Learn how to write an Angular service that gets data from the server.">Writing a Restaurant Service</a>) and write that data out to the page (<a href="learn-angular/pull-restaurant-data-into-view.html" title="Pulling Restaurant Data into Our View">Use Restaurant API data</a>).</p>
+<p>After that, we will begin exploring how to handle complex state mechanics by creating a
+form that displays cities and states (<a href="learn-angular/state-city-options.html" title="Learn how to create a Reactive Form with Angular. We will create a Reactive Form in the Restaurant component with city and state dropdown inputs.">City & State Options</a>). We will
+make selecting a state filter cities (<a href="learn-angular/form-value-changes.html" title="Learn how to listen to form value changes with Angular.">Filter Cities by State</a>) and
+selecting a city filter the restaurants (<a href="learn-angular/updating-service-params.html" title="Learn  how to make a service take multiple parameters.">Filter Restaurants by City</a>). As
+an optional and advanced exercise, you can convert handle the state declartively
+with RxJS (<a href="learn-angular/declarative-state.html" title="Modify Restaurants component to derive state via RxJS streams">Optional: Declarative State</a>).</p>
+<p>After writing all that code, it's good to learn a bit about testing. While this tutorial
+has tests to verify your solutions, we will turn the tables and have you write a test for
+retrieving a single restaurant from the service layer (<a href="learn-angular/writing-unit-tests.html" title="Write a service unit test">Writing Unit Tests</a>). This will prepare us to create a nested route for the restaurant details page (<a href="learn-angular/nested-routes.html" title="Creating nested restaurant routes">Nested Restaurant Routes</a>).</p>
+<p>Now we are ready to turn our attention to learning about creating, updating, and deleting
+data. We will start by building an Order Form (<a href="learn-angular/building-order-form.html" title="Building the Order Form">Building the Order Form</a>) that
+allows us to create orders on the server (<a href="learn-angular/order-service.html" title="Writing the Order Service">Order Service</a>). We'll then
+create a page that lets us update an order's status or delete an order (<a href="learn-angular/order-history-component.html" title="Writing the Order History Component">Order History Component</a>). We will even make the order page update when someone else updates an order (<a href="learn-angular/real-time-connection.html" title="Updating Order History View with Real Time Connection">Real Time Connections</a>).</p>
+<p>At this point, we will have completed the app. The final step will be building it to
+production and deploying it for others to see (<a href="learn-angular/deploy-app.html" title="Deploying App">Deploy App</a>).</p>
 
 </section>
 
@@ -576,7 +595,7 @@ delivered, and deleted</li>
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/angular.md"},"description":"Learn how to use Angular to build an application. \n","name":"learn-angular","title":"Learn Angular","type":"page","parent":"bit-academy","order":4,"comment":" ","pathToRoot":".."};
+      var docObject = {"src":{"path":"src/angular/angular.md"},"description":"Learn how to build a moderately complex application with Angular. \n\n","name":"learn-angular","title":"Learn Angular","type":"page","parent":"bit-academy","order":4,"comment":" ","pathToRoot":".."};
     </script>
 
     
