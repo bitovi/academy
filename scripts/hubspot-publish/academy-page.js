@@ -18,7 +18,12 @@ class AcademyPage {
 
   getTitle(){
     return this.$('title').html();
-  };
+  }
+
+  getMetaDescription(){
+
+      return this.$('meta[name=description]').attr("content");
+  }
 
   getPageContents(){
     // const pageContent = this.$('#content-wrapper').html();

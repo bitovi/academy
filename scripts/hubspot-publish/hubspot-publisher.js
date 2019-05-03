@@ -34,18 +34,22 @@ class HubSpotPublisher {
       if(academyPage.hubSpotId) {
         return this.hubSpotApi.updatePage(
           academyPage.hubSpotId,
-          academyPage.getTitle(),
-          academyPage.getCSSLinks(),
-          academyPage.getPageContents(),
+          {
+              title: academyPage.getTitle(),
+              headHtml: academyPage.getCSSLinks(),
+              bodyHtml: academyPage.getPageContents(),
+              metaDescription: academyPage.getMetaDescription()
+          }
         );
-      } 
+      }
       else {
-        return this.hubSpotApi.createPage(
-          academyPage.getTitle(),
-          academyPage.getCSSLinks(),
-          academyPage.getPageContents(),
-          academyPage.slug
-        );
+        return this.hubSpotApi.createPage({
+            title: academyPage.getTitle(),
+            headHtml: academyPage.getCSSLinks(),
+            bodyHtml: academyPage.getPageContents(),
+            slug: academyPage.slug,
+            metaDescription: academyPage.getMetaDescription()
+        });
       }
     });
   }
@@ -53,12 +57,12 @@ class HubSpotPublisher {
   async publish(){
     const pagesCurrentlyOnHubSpot = await this.hubSpotApi.getPages();
     const pagesForHubSpotUpload = (await this.getPagesToUpload());
-    const pagesToBeDeleted = pagesCurrentlyOnHubSpot.filter(pageCurrentlyOnHubSpot => 
+    const pagesToBeDeleted = pagesCurrentlyOnHubSpot.filter(pageCurrentlyOnHubSpot =>
       !pagesForHubSpotUpload.find(pageForHubSpotUpload => pageCurrentlyOnHubSpot.slug === pageForHubSpotUpload.slug)
     );
 
     pagesForHubSpotUpload.forEach(page => {
-      const localPageOnHubSpot = pagesCurrentlyOnHubSpot.find(pageCurrentlyOnHubSpot => 
+      const localPageOnHubSpot = pagesCurrentlyOnHubSpot.find(pageCurrentlyOnHubSpot =>
         pageCurrentlyOnHubSpot.slug === page.slug
       );
       if(localPageOnHubSpot){
@@ -66,11 +70,11 @@ class HubSpotPublisher {
       }
       this.uploadPage(page)
     });
-    promptDeleteFiles(pagesToBeDeleted, 
+    promptDeleteFiles(pagesToBeDeleted,
       () => {
         // delete all
         pagesToBeDeleted.forEach(pageToBeDeleted => this.hubSpotApi.deletePage(pageToBeDeleted.id))
-      }, 
+      },
       async () => {
         // choose which to delete
         for(let pageToBeDeleted of pagesToBeDeleted){

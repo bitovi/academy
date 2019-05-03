@@ -1,6 +1,7 @@
 @page learn-angular Learn Angular
 @parent bit-academy 4
-@description Learn the basics of Angular.
+
+@description Learn how to use Angular to build an application.
 
 @body
 

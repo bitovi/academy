@@ -27,7 +27,7 @@ class HubSpotApi {
     })).filter(page => page.campaign === ACADEMY_CAMPAIGN_ID && page.slug.includes('academy'));
   }
 
-  async createPage(title, headHtml, bodyHtml, slug){
+  async createPage( {title, headHtml, bodyHtml, slug, metaDescription } ){
     const url = `${this.baseUrl}?hapikey=${this.apiKey}`;
     const data = {
       name: title,
@@ -39,23 +39,30 @@ class HubSpotApi {
       footer_html: bodyHtml,
       head_html: headHtml,
       campaign: ACADEMY_CAMPAIGN_ID,
-      subcategory: 'site_page'
-    }
+      subcategory: 'site_page',
+      meta_description: metaDescription || ""
+    };
     const response = await this.makeRequest('POST', url, data)
     return this.publishPage(response.data.id);
   }
 
-  async updatePage(pageId, title, headHtml, bodyHtml){
+  async updatePage(pageId, {title, headHtml, bodyHtml, metaDescription }){
     const url = `${this.baseUrl}/${pageId}?hapikey=${this.apiKey}`;
     const data = {
       name: title,
       html_title: title,
       footer_html: bodyHtml,
       head_html: headHtml,
+      meta_description: metaDescription || ""
     }
-    const response =  await this.makeRequest('PUT', url, data)
-    console.log("Success! Updated page:", response.data.name);
-    return response;
+    try {
+      const response =  await this.makeRequest('PUT', url, data);
+      console.log("Success! Updated page:", response.data.name);
+      return response;
+    } catch(error) {
+      console.error(error);
+      throw error;
+    }
   }
 
   async publishPage(pageId){
