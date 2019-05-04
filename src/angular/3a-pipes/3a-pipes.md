@@ -40,7 +40,7 @@ To solve this problem, we will:
 
 ## Setup
 
-Update __src/app/restaurant/restaurant.component.html__ file to use the pipe we will create:
+✏️ Update __src/app/restaurant/restaurant.component.html__ file to use the pipe we will create:
 
 ```html
 <div class="restaurants">
@@ -71,20 +71,20 @@ Update __src/app/restaurant/restaurant.component.html__ file to use the pipe we 
 ```
 @highlight 6
 
-Run the following to generate the __pipe__ and the pipe's tests:
+✏️ Run the following to generate the __pipe__ and the pipe's tests:
 
 ```bash
 ng g pipe imageUrl
 ```
 
-## Verifying the solution
+## Verify solution
 
-Update the restaurant spec file __src/app/restaurant/restaurant.component.spec.ts__ to include the new pipe:
+✏️ Update the restaurant spec file __src/app/restaurant/restaurant.component.spec.ts__ to include the new pipe:
 
 @sourceref ./restaurant.component.spec-with-pipe.ts
 @highlight 3,16, only
 
-Update the spec file  __src/app/image-url.pipe.spec.ts__ to be:
+✏️ Update the spec file  __src/app/image-url.pipe.spec.ts__ to be:
 
 @sourceref ./image-url.pipe.spec.ts
 
@@ -121,6 +121,6 @@ This example takes the value to be transformed and a parameter to use as an expo
 
 ## The solution
 
-Update __src/app/image-url.pipe.ts__ to:
+✏️ Update __src/app/image-url.pipe.ts__ to:
 
 @sourceref ./image-url.pipe.ts
