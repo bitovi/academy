@@ -1,7 +1,7 @@
 @page learn-angular/adding-routing Adding Routing
 @parent learn-angular 4
 
-@description Learn how to add basic routing to an Angular application.
+@description Learn how to add basic routing to components in an Angular application.
 
 @body
 
@@ -13,9 +13,50 @@ In this part, we will:
 - Hook the router outlet into our markup
 - Test that new routes are working
 
-### Routing
 
-To be able to navigate between different views in our app, we'll need routing. We already told Angular we'd like to set up routing, so it generated `src/app/app-routing.module.ts` for us and included it in our root module. The router module takes an array of routes we can generate in a few different ways that will render content in the `router-outlet` directive.
+## The problem
+
+We need to set up routes for the home view and restaurant view. When the route is `''`, the `HomeComponent` should display, and when the route is `/restaurants` the `RestaurantComponent` should display. We will make these changes in __src/app/app-routing.module.ts__.
+
+Notice that you will be able to click the __Choose a Restaurant__ button
+at the end of this tutorial:
+
+<video controls style="border: solid 1px black; max-width: 640px;">
+  <source src="../static/img/angular/4-adding-routing/after.webm" type="video/webm">
+  <source src="../static/img/angular/4-adding-routing/after.mp4" type="video/mp4">
+</video>
+
+
+## Setup
+
+`<router-outlet>`, which handles routing to a component based on a url, was added to our __src/app/app.component.html__ file during our initial app creation. But since that time, we added components to that view.  Lets remove those components because `<router-outlet>` will handle showing
+those components going forward.
+
+✏️ Update __src/app/app.component.html__ to:
+
+@sourceref ./app.component.html
+@highlight 1-2,only
+
+## What you need to know
+
+To be able to navigate between different views in our app, we'll need routing. We already told Angular we'd like to set up routing, so it generated `src/app/app-routing.module.ts` for us and included it in our root module. `src/app/app-routing.module.ts` currently looks like:
+
+```typescript
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
+```
+
+
+
+The router module takes an array of routes we can generate in a few different ways that will render content in the `router-outlet` directive.
 
 ## Setting Paths to Components
 
@@ -25,7 +66,7 @@ The following example will render the AboutComponent in the router-outlet when t
 @codepen
 @highlight 62, only
 
-### Using Wildcards
+## Using Wildcards
 
 The next example uses the wildcard path, which will render the PageNotFoundComponent when any unregistered route is hit:
 
@@ -33,7 +74,7 @@ The next example uses the wildcard path, which will render the PageNotFoundCompo
 @codepen
 @highlight 69, only
 
-### Redirecting Routes
+## Redirecting Routes
 
 This example shows one route redirecting to another:
 
@@ -41,7 +82,7 @@ This example shows one route redirecting to another:
 @codepen
 @highlight 71, only
 
-### Setting Paths to Modules
+## Setting Paths to Modules
 
 As our applications grow, it doesn't make sense to load all the code at once. Thanks to <a href="https://angular.io/guide/lazy-loading-ngmodules" target="\_blank">lazyloading</a>, we can wait to render modules until a specific route requiring them is hit. (This demo does not work in Codepen unfortunately)
 
@@ -49,7 +90,7 @@ As our applications grow, it doesn't make sense to load all the code at once. Th
 @codepen
 @highlight 114, only
 
-### <base-href>
+## <base-href>
 
 In our index.html file, the angular cli included `<base href="/>`. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base" target="\_blank">here</a>, but it's important to know this is how the Angular router will how to compose URLs - the value in the "href" attribute specifies the base URL for all relative URLs contained in the app.
 
@@ -71,36 +112,20 @@ In our index.html file, the angular cli included `<base href="/>`. This isn't an
 ```
 @highlight 6
 
-## Exercise: Edit the Routing Module to Have Routes for Home and Component
 
-Our router outlet was already added to our __src/app/app.component.html__ file during our initial app creation. However, we're going to remove almost all of it.
+## Verify Solution
 
-Update __src/app/app.component.html__ to:
-
-@sourceref ./app.component.html
-@highlight 1-2,only
-
-### The problem
-
-We need to set up routes for the home view and restaurant view. When the route is `''`, the `HomeComponent` should display, and when the route is `/restaurants` the `RestaurantComponent` should display. Make these changes in __src/app/app-routing.module.ts__.
-
-### What You Need to know
-
-- How to create routes that serve components (you learned this in section above! ✔️)
-
-### To Verify Your Solution is Correct
-
-If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>. (You may have noticed the ```routerLink``` attribute on the a tag in our home component markup. This one of the ways we link to specific routes in our app.)
+If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>. You may have noticed the ```routerLink``` attribute on the `<a>` tag in our home component markup. This one of the ways we link to specific routes in our app. When you click that link, you should see the restaurants component.
 
 ```html
-<a class="btn" [routerLink]="['/restaurants', restaurant.slug]">
-  Details
+<a class="btn" routerLink="/restaurants" role="button">
+  Choose a Restaurant
 </a>
 ```
 
-### The Solution
+## The Solution
 
-__src/app/app-routing.module.ts__
+✏️ __src/app/app-routing.module.ts__
 
 @sourceref ./app-routing.module.ts
 @highlight 3-15
