@@ -190,7 +190,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-components.html"
-							title="Learn how to create basic components in angular.">
+							title="Learn how to create basic components in Angular.">
 							Creating Components
 						</a>
 						
@@ -223,7 +223,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="adding-routing.html"
-							title="Learn how to add basic routing to an Angular application.">
+							title="Learn how to add basic routing to components in an Angular application.">
 							Adding Routing
 						</a>
 						
@@ -519,7 +519,7 @@ the path rewriting is fixed, images will show up correctly.</p>
 <p>The pipe will take an image url and transform it to the path we actually want to serve the image from. For eaxmple, from <code>node_modules/place-my-order-assets</code> to <code>./assets</code>.  This pipe will be used on our restaurant image thumbnail.</p></li>
 </ul>
 <h2>Setup</h2>
-<p>Update <strong>src/app/restaurant/restaurant.component.html</strong> file to use the pipe we will create:</p>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong> file to use the pipe we will create:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
   &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
   &lt;ng-container *ngIf=&quot;restaurants.length&quot;&gt;
@@ -547,11 +547,11 @@ the path rewriting is fixed, images will show up correctly.</p>
 &lt;/div&gt;
 </code></pre>
 <div line-highlight='6'></div>
-<p>Run the following to generate the <strong>pipe</strong> and the pipe's tests:</p>
+<p>✏️ Run the following to generate the <strong>pipe</strong> and the pipe's tests:</p>
 <pre><code class="language-bash">ng g pipe imageUrl
 </code></pre>
-<h2>Verifying the solution</h2>
-<p>Update the restaurant spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to include the new pipe:</p>
+<h2>Verify solution</h2>
+<p>✏️ Update the restaurant spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to include the new pipe:</p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ImageUrlPipe } from '../image-url.pipe';
@@ -621,7 +621,7 @@ describe('RestaurantComponent', () =&gt; {
 
 </code></pre>
 <div line-highlight='3,16, only'></div>
-<p>Update the spec file  <strong>src/app/image-url.pipe.spec.ts</strong> to be:</p>
+<p>✏️ Update the spec file  <strong>src/app/image-url.pipe.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { ImageUrlPipe } from './image-url.pipe';
 
 describe('ImageUrlPipe', () =&gt; {
@@ -711,7 +711,7 @@ platformBrowserDynamic()
 <p>Hint: Use String.prototype.replace to create the new path with image name.</p>
 </blockquote>
 <h2>The solution</h2>
-<p>Update <strong>src/app/image-url.pipe.ts</strong> to:</p>
+<p>✏️ Update <strong>src/app/image-url.pipe.ts</strong> to:</p>
 <pre><code class="language-ts">import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
