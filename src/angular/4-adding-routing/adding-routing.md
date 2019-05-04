@@ -125,7 +125,7 @@ If you have completed the exercise successfully you should be able to see the ho
 
 ## The Solution
 
-✏️ __src/app/app-routing.module.ts__
+✏️ Update __src/app/app-routing.module.ts__ to:
 
 @sourceref ./app-routing.module.ts
 @highlight 3-15
