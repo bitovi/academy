@@ -48,6 +48,11 @@ Let's begin to build out the main views of our app. We'll create a home view now
 and restaurant list view in the next exercise.
 
 We want to create a component that displays a title read from a component's `title` property.
+
+<img src="../static/img/angular/3-creating-components/home-component.png"
+  style="border: solid 1px black; max-width: 640px;"/>
+
+
 The component should provide the following HTML:
 
 ```html
