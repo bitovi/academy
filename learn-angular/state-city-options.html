@@ -511,11 +511,15 @@ covering CanJS core libraries.">
 style="border: solid 1px black; max-width: 320px;"/></p>
 <p>We would like our user to be able to filter restaurants based on city and state. To accomplish this,
 we will need to implement a reactive form with two controls, <code>state</code> and <code>city</code>, that are dropdowns displaying a list of cities and states.  It will look like the following:</p>
-<p><img src="../static/img/angular/8-state-city-options/after.png"
-style="border: solid 1px black; max-width: 320px;"/></p>
+<p><img src="../static/img/angular/pmo-dropdowns.gif" alt="Place My Order App city and state dropdowns" title="Place My Order App city and state dropdowns" /></p>
 <h2>Setup</h2>
-<p>Here's some code to get you started.  Notice that <code>cities</code> and <code>states</code> are hard coded (for now).</p>
-<p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
+<p>Here's some code to get you started.  Notice that:</p>
+<ul>
+<li><code>cities</code> and <code>states</code> are hard coded (for this exercise).</li>
+<li>A <code>FormBuilder</code> instance is injected as the <code>fb</code> property.</li>
+<li><code>createForm</code> is empty. Use it to initialize the form control.</li>
+</ul>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong> to:</p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -573,9 +577,11 @@ export class RestaurantComponent implements OnInit {
 }
 
 </code></pre>
-<div line-highlight='2,18,25-28,30-33,42,51-53,only'></div>
-<p>Make sure to use the <code>formControl</code> directive to tie the selects to their FormControls in the component.</p>
-<p><strong>src/app/restaurant/restaurant.component.html</strong></p>
+<div line-highlight='2,18,25-28,30-33,37,42,51-53,only'></div>
+<p>Make sure to use the <code>formControl</code> directive to tie the selects to
+their FormControls in the component.</p>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong> to include
+some boilerplate for the state and city <code>&lt;select&gt;</code> controls:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
     &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
     &lt;form class=&quot;form&quot; [formGroup]=&quot;form&quot;&gt;
@@ -585,7 +591,8 @@ export class RestaurantComponent implements OnInit {
           &lt;option value=&quot;&quot; *ngIf=&quot;states.isPending&quot;&gt;Loading...&lt;/option&gt;
           &lt;ng-container *ngIf=&quot;!states.isPending&quot;&gt;
             &lt;option value=&quot;&quot;&gt;Choose a state&lt;/option&gt;
-            &lt;!-- iterate through all states to create options with the short property as the value and the name displayed--&gt;
+            &lt;!-- iterate through all states to create options with
+              the short property as the value and the name displayed--&gt;
           &lt;/ng-container&gt;
         &lt;/select&gt;
       &lt;/div&gt;
@@ -595,7 +602,8 @@ export class RestaurantComponent implements OnInit {
           &lt;option value=&quot;&quot; *ngIf=&quot;cities.isPending&quot;&gt;Loading...&lt;/option&gt;
           &lt;ng-container *ngIf=&quot;!cities.isPending&quot;&gt;
             &lt;option value=&quot;&quot;&gt;Choose a city&lt;/option&gt;
-            &lt;!-- iterate through all cities to create options with the short property as the value and the name displayed--&gt;
+            &lt;!-- iterate through all cities to create options with
+              the short property as the value and the name displayed--&gt;
           &lt;/ng-container&gt;
         &lt;/select&gt;
       &lt;/div&gt;
@@ -603,20 +611,20 @@ export class RestaurantComponent implements OnInit {
     &lt;div class=&quot;restaurant loading&quot;  *ngIf=&quot;restaurants.isPending&quot;&gt;&lt;/div&gt;
     &lt;ng-container *ngIf=&quot;restaurants.value.length&quot;&gt;
       &lt;div class=&quot;restaurant&quot; *ngFor=&quot;let restaurant of restaurants.value&quot;&gt;
-  
+
         &lt;img src=&quot;{{restaurant.images.thumbnail | imageUrl}}&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
         &lt;h3&gt;{{restaurant.name}}&lt;/h3&gt;
-  
+
         &lt;div class=&quot;address&quot; *ngIf=&quot;restaurant.address&quot;&gt;
           {{restaurant.address.street}}&lt;br /&gt;{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
         &lt;/div&gt;
-  
+
         &lt;div class=&quot;hours-price&quot;&gt;
           $$$&lt;br /&gt;
           Hours: M-F 10am-11pm
           &lt;span class=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
         &lt;/div&gt;
-  
+
         &lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
           Details
         &lt;/a&gt;
@@ -624,10 +632,10 @@ export class RestaurantComponent implements OnInit {
       &lt;/div&gt;
     &lt;/ng-container&gt;
   &lt;/div&gt;
+
 </code></pre>
-<div line-highlight='3-24,only'></div>
-<p>Don't forget to import reactiveForms in the root app module.</p>
-<p><strong>src/app/app.module.ts</strong></p>
+<div line-highlight='3-26,only'></div>
+<p>✏️ Update <strong>src/app/app.module.ts</strong> to import reactiveForms in the root app module:</p>
 <pre><code class="language-ts">import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -663,7 +671,7 @@ export class AppModule { }
 <h2>Verify the solution</h2>
 <p>When you visit <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>, there will now be state and city dropdown options populated with fake data.</p>
 <p><img src="../static/img/angular/pmo-dropdowns.gif" alt="Place My Order App city and state dropdowns" title="Place My Order App city and state dropdowns" /></p>
-<p>Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
+<p>✏️ Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs'; 
@@ -1434,7 +1442,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='17,40,42,45-49,only'></div>
 <h2>The Solution</h2>
-<p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong> to:</p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 
@@ -1496,7 +1504,7 @@ export class RestaurantComponent implements OnInit {
 
 </code></pre>
 <div line-highlight='2,18,25-39,42,50-55'></div>
-<p><strong>src/app/restaurant/restaurant.component.html</strong></p>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong> to:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
   &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
   &lt;form class=&quot;form&quot; [formGroup]=&quot;form&quot;&gt;
