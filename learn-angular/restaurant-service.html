@@ -235,7 +235,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-navigation.html"
-							title="Learn how to create dynamic links that navigate to different parts of an application.">
+							title="Learn how to create dynamic links with Angular that navigate to different parts of an application.">
 							Creating Navigation
 						</a>
 						
@@ -268,7 +268,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="pull-restaurant-data-into-view.html"
-							title="Pulling Restaurant Data into Our View">
+							title="Learn how to render API data into HTML with a view.">
 							Use Restaurant API data
 						</a>
 						
@@ -507,11 +507,18 @@ covering CanJS core libraries.">
 <li>Write a method to make an http request</li>
 <li>Write interfaces to describe response object and restaurant object</li>
 </ul>
-<h2>Installing the Place My Order API</h2>
+<h2>Setup</h2>
+<p>Before we begin making services, we must:</p>
+<ul>
+<li>Install the place-my-order API</li>
+<li>Create a proxy to serve the API</li>
+</ul>
+<h3>Installing the Place My Order API</h3>
 <p>We've done some work to create a Place My Order API for use in this app.</p>
+<p>✏️ Run:</p>
 <pre><code class="language-bash">npm install place-my-order-api@1 --save
 </code></pre>
-<p>Next make add an api script to your <code>package.json</code></p>
+<p>✏️ Next make add an api script to your <code>package.json</code></p>
 <pre><code class="language-js">  &quot;scripts&quot;: {
     &quot;ng&quot;: &quot;ng&quot;,
     &quot;start&quot;: &quot;ng serve&quot;,
@@ -523,15 +530,16 @@ covering CanJS core libraries.">
   }
 </code></pre>
 <div line-highlight='8'></div>
-<p>Double check the api is working by running <code>npm run api</code> and navigating to <a href="http://localhost:7070/restaurants" target="\_blank">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the api command from.</p>
-<blockquote>
-<p>You must have the API running for your app to work. If you don't see data, make sure that you've run <code>npm run api</code> in another terminal window or in your editor.</p>
-</blockquote>
-<h2>Create a Proxy to Serve API</h2>
+<p>✏️ In <strong>new</strong> terminal window, start the API server by running:</p>
+<pre><code class="language-bash">npm run api
+</code></pre>
+<p>Double check the api by navigating to <a href="http://localhost:7070/restaurants" target="\_blank">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the api command from.</p>
+<h3>Create a proxy to serve the API</h3>
 <p>Next, we'll create a <a href="https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md" target="\_blank">proxy</a> file at the root of our Angular project to access our API for local development purposes.</p>
+<p>✏️ To create the proxy file:</p>
 <pre><code class="language-shell">touch proxy.conf.json
 </code></pre>
-<p>Update the newly created <strong>proxy.conf.json</strong> file with the following json:</p>
+<p>✏️ Update the newly created <strong>proxy.conf.json</strong> file with the following json:</p>
 <pre><code class="language-js">{
   &quot;/api&quot;: {
     &quot;target&quot;: &quot;http://localhost:7070&quot;,
@@ -544,7 +552,7 @@ covering CanJS core libraries.">
   }
 }
 </code></pre>
-<p>Update the package.json <code>npm start</code> script to be <code>ng serve --proxy-config proxy.conf.json</code></p>
+<p>✏️ Update the package.json <code>npm start</code> script to be <code>ng serve --proxy-config proxy.conf.json</code></p>
 <pre><code class="language-js">&quot;scripts&quot;: {
   &quot;ng&quot;: &quot;ng&quot;,
   &quot;start&quot;: &quot;ng serve --proxy-config proxy.conf.json&quot;,
@@ -556,8 +564,35 @@ covering CanJS core libraries.">
 },
 </code></pre>
 <div line-highlight='3'></div>
-<p>Now, <strong>restart</strong> our app using <code>npm start</code> and it will run it with the proxy config we created. To test that it's working, navigate to <a href="http://localhost:4200/api/restaurants" target="\_blank">http://localhost:4200/api/restaurants</a> and you should be able to see a list of restaurants.</p>
-<h2>Angular Services</h2>
+<p>✏️ Now, <strong>restart</strong> the app using:</p>
+<pre><code class="language-shell">npm start
+</code></pre>
+<p>The app will use the proxy config we created. To test that it's working, navigate to <a href="http://localhost:4200/api/restaurants" target="\_blank">http://localhost:4200/api/restaurants</a> and you should be able to see a list of restaurants.</p>
+<h2>Exercise 1: Write a Restaurant Service to fetch a list of restaurants</h2>
+<p>We want to write a <code>RestaurantService</code> with a method <code>getRestaurants</code> that uses <code>httpClient</code> to get a list of restaurants from our <code>/api/restaurants</code> url. For example, we could get restaurants like:</p>
+<pre><code class="language-typescript">const httpClient = new HttpClient();
+const restaurantService = new RestaurantService( httpClient );
+
+restaurantService.getRestaurants() //-&gt; Observable&lt;Array&lt;Object&gt;&gt;
+</code></pre>
+<div line-highlight='4'></div>
+<p>Note:</p>
+<ul>
+<li><code>getRestaurants</code> will return an RxJS observable that emits an array of
+restaurants.</li>
+<li>Typically, services and <code>HttpClient</code> are injected into components and not created
+as shown above.</li>
+<li>We want to create <code>RestaurantService</code> in <code>src/app/restaurant/restaurant.service.ts</code>.</li>
+</ul>
+<h2>E1: What You Need to Know</h2>
+<p>To complete this section, you'll need to know:</p>
+<ul>
+<li>The basics of Angular Services.</li>
+<li>How to generate a service.</li>
+<li>How to inject <code>HttpClientModule</code> into your app.</li>
+<li>How to use <code>HTTPClient</code> to make a request in a service.</li>
+</ul>
+<h2>Angular Service Basics</h2>
 <p>Angular <a href="https://angular.io/guide/architecture-services" target="\_blank">Services</a> are pieces of functionality that may not need to be tied to a view like components. A common example of a service is making an HTTP request to get data. Many components may require functionality to fetch data, and a Service can help abstract that logic into one place to be used across components.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -693,8 +728,17 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='18-48,81-83,90,95, only'></div>
+<h2>Generating a service</h2>
+<p>To generate a <code>UsersService</code>, you run:</p>
+<pre><code class="language-shell">ng g service users
+</code></pre>
+<p>This will create a <code>src/app/users.service.ts</code> file and associated <code>spec</code>
+test file.</p>
+<blockquote>
+<p>HINT: You can generate a service in a folder <code>ng g service folder/users</code></p>
+</blockquote>
 <h2>Importing <code>HttpClientModule</code> into <em>app.module.ts</em></h2>
-<p>For making HTTP requests to interact with an API, Angular provides <a href="https://angular.io/api/common/http/HttpClientModule" target="_blank">HttpClient Module</a>. To use it we'll need to import it in the root module of our app and include it the imports array.</p>
+<p>For making HTTP requests to interact with an API, Angular provides <a href="https://angular.io/api/common/http/HttpClientModule" target="\_blank">HttpClient Module</a>. To use it we'll need to import it in the root module of our app and include it the imports array.</p>
 <p><strong>src/app/app.module.ts</strong></p>
 <pre><code class="language-ts">import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -726,7 +770,7 @@ export class AppModule { }
 </code></pre>
 <div line-highlight='3,21'></div>
 <h2>Using HTTPClient to make a request</h2>
-<p><a href="https://angular.io/api/common/http/HttpClient" target="_blank">HTTPClient</a> is a class with methods for making HTTP requests. Methods will return <a href="https://angular.io/guide/observables" target="_blank">Observables</a>. This tutorial won't cover RxJS in depth, but it's worth being aware of Angulars heavy use of it.</p>
+<p><a href="https://angular.io/api/common/http/HttpClient" target="\_blank">HTTPClient</a> is a class with methods for making HTTP requests. Methods will return <a href="https://angular.io/guide/observables" target="\_blank">RxJS Observables</a>.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -846,18 +890,13 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='23,25-27,29-31, only'></div>
-<h2>Exercise: Write a Restaurant Service to fetch a list of restaurants</h2>
-<h3>The problem</h3>
-<p>We want to write a service with a method <code>getRestaurants</code> that uses httpClient to get a list of restaurants from our <code>/api/restaurants</code> url.</p>
-<h3>What You Need to Know</h3>
-<ul>
-<li><p>How to create a service via the CLI</p>
-<pre><code class="language-bash">  ng g service restaurant/restaurant
-</code></pre></li>
-<li><p>How to use httpClient to make a get request (you learned this in section above! ✔️)</p></li>
-</ul>
-<h3>To Verify Your Solution is Correct</h3>
-<p>Update the spec file  <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
+<p>This tutorial won't cover RxJS in depth, but it's worth being aware of Angulars
+heavy use of it. Checkout our <a href="../learn-rxjs.html" title="Learn RxJS by creating a validating credit card form.">Learn RxJS</a> tutorial for more information.</p>
+<h2>E1: Verify Solution</h2>
+<p>✏️ Generate the restaurant service:</p>
+<pre><code class="language-shell">ng g service restaurant/restaurant
+</code></pre>
+<p>✏️ Update the spec file  <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { TestBed } from '@angular/core/testing';
 
 import { RestaurantService } from './restaurant.service';
@@ -955,8 +994,8 @@ describe('RestaurantService', () =&gt; {
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h3>Solution</h3>
-<p><strong>src/app/app.module.ts</strong></p>
+<h2>E1: Solution</h2>
+<p>✏️ Update <strong>src/app/app.module.ts</strong> to inject the <code>HttpClientModule</code>:</p>
 <pre><code class="language-ts">import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -986,7 +1025,7 @@ export class AppModule { }
 
 </code></pre>
 <div line-highlight='3,21'></div>
-<p><strong>src/app/restaurant/restaurant.service.ts</strong></p>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.service.ts</strong> to make a request to <code>/api/restaurants</code>:</p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -1003,8 +1042,47 @@ export class RestaurantService {
 }
 
 </code></pre>
-<h2>Take Advantage of TypeScript</h2>
-<p>Thanks to TypeScript we can write interfaces to describe what we expect objects to look like. Consider the user service above returning an array of users. This interface describes what a user (and array of users) should look like:</p>
+<h2>Exercise 2: Write an Interface to Describe the Restaurant Object and Data Response</h2>
+<p>Currently, from TypeScript's perspective, <code>getRestaurants()</code> can return anything. This
+means if we use the data from <code>getRestaurants()</code>, TypeScript will not be able to notice
+any mistakes.  This undermines the whole point of TypeScript!</p>
+<p>Let's write interfaces to tell TypeScript what we expect restaurant and other related objects to look like and use them in our restaurant service. A <code>Restaurant</code> interface should represent an object like this:</p>
+<pre><code class="language-javascript">let restaurant = {
+  name: '', //string
+  slug: '', //string
+  images: [{
+    thumbnail: '', //string
+    owner: '', //string
+    banner: '' //string
+  }],
+  menu: {
+    lunch: [{
+      name: '', //string
+      price: '' //number
+    }],
+    dinner: [{
+      name: '', //string
+      price: '' //number
+    }]
+  },
+  address: {
+    street: '', //string
+    city: '', //string
+    state: '', //string
+    zip: '' //string
+  },
+  _id: '' //string
+}
+</code></pre>
+<p>This interface will written in the <strong>src/app/restaurant/restaurant.service.ts</strong> file.</p>
+<h2>E2: What You Need to Know</h2>
+<p>To complete this exercise, you'll need to:</p>
+<ul>
+<li>Understand interfaces in TypeScript</li>
+<li>How to generate an interface with Angular's CLI.</li>
+</ul>
+<h2>Interfaces in TypeScript</h2>
+<p>Thanks to TypeScript we can write interfaces to describe what we expect objects to look like. Consider the user service below returning an array of users. This interface describes what a user (and array of users) should look like:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1149,46 +1227,18 @@ platformBrowserDynamic()
 <pre><code class="language-javascript">users: Array&lt;User&gt;
 </code></pre>
 <p>To learn more about interfaces in TypeScript, check out our <a href="../learn-typescript/interfaces.html" title="Learn how to write Interfaces, set optional properties, and about the power of using interfaces in classes and functions">TypeScript guide</a>.</p>
-<h2>Exercise: Write an Interface to Describe the Restaurant Object and Data Response</h2>
-<h3>The problem</h3>
-<p>We're going to write interfaces to tell Typescript what we expect a restaurant and other related objects to look like and use them in our restaurant service. A <code>Restaurant</code> interface should represent an object like this:</p>
-<pre><code class="language-javascript">let restaurant = {
-  name: '', //string
-  slug: '', //string
-  images: [{
-    thumbnail: '', //string
-    owner: '', //string
-    banner: '' //string
-  }],
-  menu: {
-    lunch: [{
-      name: '', //string
-      price: '' //number
-    }],
-    dinner: [{
-      name: '', //string
-      price: '' //number
-    }]
-  },
-  address: {
-    street: '', //string
-    city: '', //string
-    state: '', //string
-    zip: '' //string
-  },
-  _id: '' //string
+<h2>Generate an interface</h2>
+<p>Use the following to generate an interface with the CLI:</p>
+<pre><code class="language-bash">ng g interface user
+</code></pre>
+<p>This will generate:</p>
+<pre><code class="language-typescript">export interface User {
 }
 </code></pre>
-<p>This interface can be written in the <strong>src/app/restaurant/restaurant.service.ts</strong> file. *</p>
-<h3>What You Need to Know</h3>
-<ul>
-<li><p>How to generate an interface via the CLI</p>
-<pre><code class="language-bash">  ng g interface restaurant/restaurant
-</code></pre></li>
-<li><p>How to write an interface in TypeScript (you learned this in section above! ✔️)</p></li>
-</ul>
-<p>We've already written a <code>responseData</code> interface that will take an array of restaurants for you. Here's the code to get you started:</p>
-<p><strong>src/app/restaurant/restaurant.service.ts</strong></p>
+<h2>E2: Setup</h2>
+<p>We've already written a <code>ResponseData</code> interface that will take an array of restaurants for you. Here's the code to get you started:</p>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.service.ts</strong> to import the <code>Restaurant</code> interface, use
+it within the <code>ResponseData</code> interface which is used by <code>httpClient.get</code>:</p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -1212,7 +1262,11 @@ export class RestaurantService {
 
 </code></pre>
 <div line-highlight='4,6-8, 18'></div>
-<p><strong>src/app/restaurant/restaurant.ts</strong></p>
+<p>✏️ Generate the restaurant interface:</p>
+<pre><code class="language-bash">ng g interface restaurant/restaurant
+</code></pre>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.ts</strong> with some starter code that includes
+some scaffolding for some of the sub-interfaces within the <code>Restaurant</code> interfaces:</p>
 <pre><code class="language-ts">interface Item {
     name: string;
 }
@@ -1233,8 +1287,8 @@ export interface Restaurant {
     name: string;
 }
 </code></pre>
-<h3>To Verify Your Solution is Correct</h3>
-<p>Update the spec file  <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
+<h2>E2: Verify Solution</h2>
+<p>✏️ Update the spec file  <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { TestBed } from '@angular/core/testing';
 
 import { RestaurantService, ResponseData } from './restaurant.service';
@@ -1362,10 +1416,10 @@ describe('RestaurantService', () =&gt; {
 </code></pre>
 <div line-highlight='3,4,79,93-122'></div>
 <blockquote>
-<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass! If you haven't written the interfaces correctly, you'll see a compile error before the tests runs</p>
+<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass! If you haven't written the interfaces correctly, you'll see a compile error before the tests runs. You might need to restart the test script to see the compile error.</p>
 </blockquote>
-<h3>Solution</h3>
-<p><strong>src/app/restaurant/restaurant.ts</strong></p>
+<h2>E2: Solution</h2>
+<p>✏️  Update <strong>src/app/restaurant/restaurant.ts</strong> to:</p>
 <pre><code class="language-ts">interface Item {
     name: string;
     price: number;

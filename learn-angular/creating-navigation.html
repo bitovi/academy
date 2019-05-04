@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn how to create dynamic links that navigate to different parts of an application. 
+  <meta name="description" content="Learn how to create dynamic links with Angular that navigate to different parts of an application. 
 ">
   <title>Bitovi Academy - Creating Navigation</title>
   
@@ -235,7 +235,7 @@ covering CanJS core libraries.">
            						expanded">
 						<a class="page"
 							href="creating-navigation.html"
-							title="Learn how to create dynamic links that navigate to different parts of an application.">
+							title="Learn how to create dynamic links with Angular that navigate to different parts of an application.">
 							Creating Navigation
 						</a>
 						
@@ -268,7 +268,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="pull-restaurant-data-into-view.html"
-							title="Pulling Restaurant Data into Our View">
+							title="Learn how to render API data into HTML with a view.">
 							Use Restaurant API data
 						</a>
 						
@@ -484,7 +484,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn how to create dynamic links that navigate to different parts of an application.</p>
+    <p>Learn how to create dynamic links with Angular that navigate to different parts of an application.</p>
 
 </section>
 
@@ -503,9 +503,38 @@ covering CanJS core libraries.">
 <li>Use routerLink to create navigation links</li>
 <li>Use routerLinkActive to highlight current navigation</li>
 </ul>
+<h2>The problem</h2>
+<p>In this exercise, we want to create a <em>Home</em> and <em>Restaurant</em> link that can
+be used to navigate between pages.  We also want those links to change color
+if they are for the current page or not.</p>
+<p><img src="../static/img/angular/pmo-working-nav.gif"
+style="border: solid 1px black; "
+title="Place My Order App working nav"/></p>
+<h2>How to solve the problem</h2>
+<p>We want navigation in our <strong>src/app/app.component.html</strong> file that will route to our home and restaurant components when clicked, as well as show an <code>active</code> class on the <code>li</code> element when the route is active.</p>
+<p>The markup structure should look like this:</p>
+<pre><code class="language-html">&lt;header&gt;
+    &lt;nav&gt;
+     &lt;h1&gt;place-my-order.com&lt;/h1&gt;
+     &lt;ul&gt;
+       &lt;li&gt;
+         &lt;a&gt;Home&lt;/a&gt;
+       &lt;/li&gt;
+       &lt;li&gt;
+         &lt;a&gt;Restaurants&lt;/a&gt;
+       &lt;/li&gt;
+     &lt;/ul&gt;
+    &lt;/nav&gt;
+  &lt;/header&gt;
+</code></pre>
+<h2>What You Need to Know</h2>
+<ul>
+<li>How to use the routerLink directive</li>
+<li>How to use the routerLinkActive directive</li>
+</ul>
 <h2>RouterLink</h2>
 <p>You may have noticed the links in the routing examples to switch between views. They use the <a href="https://angular.io/api/router/RouterLink" target="\_blank">routerLink</a> directive. The routerLink takes a property of a path that can be static or built dynamically based on properties on the component.</p>
-<h3>Static Segment</h3>
+<h3>Static routerLink segments</h3>
 <p>The following is an example of a hard coded path:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -599,7 +628,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='25, only'></div>
-<h3>Dynamic Segment</h3>
+<h3>Dynamic routerLink segments</h3>
 <p>The following is an example of a path being built from different pieces of data. In reusable components we'll often want to dynamically create paths based on a piece of datas unique property values.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1063,33 +1092,11 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='27-31, only'></div>
-<h2>Exercise: Building Navigation for Our App</h2>
-<h3>The problem</h3>
-<p>We want navigation in our <strong>src/app/app.component.html</strong> file that will route to our home and restaurant components when clicked, as well as show an <code>active</code> class on the <code>li</code> element when the route is active.</p>
-<p>The markup structure should look like this:</p>
-<pre><code class="language-html">&lt;header&gt;
-    &lt;nav&gt;
-     &lt;h1&gt;place-my-order.com&lt;/h1&gt;
-     &lt;ul&gt;
-       &lt;li&gt;
-         &lt;a&gt;Home&lt;/a&gt;
-       &lt;/li&gt;
-       &lt;li&gt;
-         &lt;a&gt;Restaurants&lt;/a&gt;
-       &lt;/li&gt;
-     &lt;/ul&gt;
-    &lt;/nav&gt;
-  &lt;/header&gt;
-</code></pre>
-<h3>What You Need to Know</h3>
-<ul>
-<li>How to use the routerLink directive</li>
-<li>How to use the routerLinkActive directive</li>
-</ul>
-<h3>To Verify Your Solution is Correct</h3>
-<p>You will know you've completed the exercise correctly when you can click the nav items to see the UI change and see the active class on the current nav item.</p>
+<h2>Verify Solution</h2>
+<p>You will know you've completed the exercise correctly when you can click the nav items to
+see the UI change and see the active class on the current nav item.</p>
 <p><img src="../static/img/angular/pmo-working-nav.gif" alt="Place My Order App working nav" title="Place My Order App working nav" /></p>
-<p>Update the spec file  <strong>src/app/app.component.spec.ts</strong> to be:</p>
+<p>✏️ Update the spec file  <strong>src/app/app.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
@@ -1130,8 +1137,8 @@ describe('AppComponent', () =&gt; {
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h3>Solution</h3>
-<p><strong>src/app/app.component.html</strong></p>
+<h2>Solution</h2>
+<p>✏️ Update <strong>src/app/app.component.html</strong> to:</p>
 <pre><code class="language-html">&lt;header&gt;
   &lt;nav&gt;
     &lt;h1&gt;place-my-order.com&lt;/h1&gt;
@@ -1187,7 +1194,7 @@ describe('AppComponent', () =&gt; {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/5-creating-navigation/creating-navigation.md"},"description":"Learn how to create dynamic links that navigate to different parts of an application. \n","name":"learn-angular/creating-navigation","title":"Creating Navigation","type":"page","parent":"learn-angular","order":5,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/5-creating-navigation/creating-navigation.md"},"description":"Learn how to create dynamic links with Angular that navigate to different parts of an application. \n","name":"learn-angular/creating-navigation","title":"Creating Navigation","type":"page","parent":"learn-angular","order":5,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

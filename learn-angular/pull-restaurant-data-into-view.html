@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Pulling Restaurant Data into Our View 
+  <meta name="description" content="Learn how to render API data into HTML with a view. 
 ">
   <title>Bitovi Academy - Use Restaurant API data</title>
   
@@ -235,7 +235,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-navigation.html"
-							title="Learn how to create dynamic links that navigate to different parts of an application.">
+							title="Learn how to create dynamic links with Angular that navigate to different parts of an application.">
 							Creating Navigation
 						</a>
 						
@@ -265,7 +265,7 @@ covering CanJS core libraries.">
            						expanded">
 						<a class="page"
 							href="pull-restaurant-data-into-view.html"
-							title="Pulling Restaurant Data into Our View">
+							title="Learn how to render API data into HTML with a view.">
 							Use Restaurant API data
 						</a>
 						
@@ -484,7 +484,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Pulling Restaurant Data into Our View</p>
+    <p>Learn how to render API data into HTML with a view.</p>
 
 </section>
 
@@ -504,8 +504,31 @@ covering CanJS core libraries.">
 <li>Call <code>getRestaurants()</code> method in component</li>
 <li>Change restaurant markup to use new restaurant object</li>
 </ul>
-<h2>Importing Service into Component</h2>
-<p>To use a service in a component, we use dependency injection to pass the service in the component constructor function. We're then able to access methods on it for use in our component</p>
+<h2>Exercise 1: Make RestaurantComponent use the <code>getRestaurants</code> function</h2>
+<p>In this section, we will change <code>RestaurantComponent</code> to actually get
+data from the service API.  Instead of two hard coded restaurants, we will
+see a longer list:</p>
+<p><img src="../static/img/angular/7-data-into-view/1-after.png"
+style="border: solid 1px black; max-width: 640px;"/></p>
+<p>We will do this by:</p>
+<ul>
+<li>Changing <code>RestaurantComponent</code>'s <em>restaurant</em> property definition:
+<pre><code class="language-typescript">public restaurants: any[] = [];
+</code></pre></li>
+<li>Using <code>RestaurantService</code>'s <code>getRestaurants</code> to get an array of restaurants and
+set it on <code>RestaurantComponent</code>'s <em>restaurant</em> property.</li>
+</ul>
+<h2>E1: What you need to know</h2>
+<p>To solve this exercise, you will need to know how to:</p>
+<ul>
+<li>Inject a service into a component</li>
+<li>Subscribe to an observable</li>
+</ul>
+<blockquote>
+<p>Hint: Call the <code>getRestaurants</code> method in the <code>ngOnInit</code> method.</p>
+</blockquote>
+<h2>Inject a Service into Component</h2>
+<p>To use a service in a component, we use dependency injection to pass the service in the component constructor function. We're then able to access methods on it for use in our component.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -640,21 +663,30 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='90,only'></div>
-<h2>Exercise: Inject RestaurantService in RestaurantComponent and call the <code>getRestaurants</code> function</h2>
-<h3>The Problem</h3>
-<p>We want to be able to use the <code>getRestaurants</code> method in our component to display a list of restaurants. We also want specify the type of our <code>restaurant</code> member on our <code>RestaurantComponent</code> class to be an array of restaurants.</p>
-<h3>What you need to know</h3>
-<ul>
-<li>How to inject a service into a component (you learned this in section above! ✔️)</li>
-<li>How to call a method on a class</li>
-<li>How to specify an array type (you learned this the previous section! ✔️)</li>
-</ul>
-<blockquote>
-<p>Hint: Call the <code>getRestaurants</code> method in the <code>ngOnInit</code> method.</p>
-</blockquote>
-<h3>To Verify Your Solution is Correct</h3>
+<h2>Subscribe to an observable</h2>
+<p>The result of <code>getRestaurants()</code> is an observable. Use <a href="https://rxjs-dev.firebaseapp.com/guide/subscription">subscribe</a> to listen to when
+an RxJS observable changes:</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const {Observable} = rxjs;
+
+const observable = Observable.create(function (observer) {
+  observer.next(1);
+  observer.next(2);
+  observer.next(3);
+});
+
+observable.subscribe( function subscriber( value ){
+    console.log('got value ' + value);
+    // Logs 1, 2, 3
+} );
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='11'></div>
+<h2>E1: To verify solution</h2>
 <p>You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>!</p>
-<p>Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
+<p>✏️ Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs'; 
@@ -926,11 +958,12 @@ describe('RestaurantComponent', () =&gt; {
 });
 
 </code></pre>
+<div line-highlight='3,7,9-106,116-119,169-267,only'></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h3>Solution</h3>
-<p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
+<h2>E1: Solution</h2>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong> as follows:</p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
@@ -954,33 +987,36 @@ export class RestaurantComponent implements OnInit {
 
 </code></pre>
 <div line-highlight='2,3,11,13,16-18'></div>
-<h2>Exercise: Show a loading state while restaurants are being requested</h2>
-<h3>The Problem</h3>
-<p>We want to show a loading div while the request to get the list of restaurants is made. You'll need to do a few things:</p>
+<h2>Exercise 2: Show a loading state while restaurants are being requested</h2>
+<p>Sometimes the server can take a long time to respond. Lets update <code>RestaurantComponent</code>
+to show a loading icon to the user while data is loading:</p>
+<p>TODO:</p>
+<p>This icon will be shown with the following HTML:</p>
+<pre><code class="language-html">&lt;div class=&quot;restaurant loading&quot;&gt;&lt;/div&gt;
+</code></pre>
+<p>To complete this exercise, we will:</p>
 <ol>
-<li>Create a new interface <code>Data</code> that represents the following object:</li>
-</ol>
-<pre><code class="language-json">let data = {
+<li><p>Create a new interface <code>Data</code> that represents the following object:</p>
+<pre><code class="language-js">let data = {
   value: [], //aray of restaurants
-  isPending: false //boolean 
+  isPending: false //boolean
 }
-</code></pre>
-<ol start="2">
-<li>Change the <code>restaurants</code> member to use the new <code>Data</code> type</li>
-<li>Right before you call the <code>getRestaurants</code> method, set the restaurants <code>isPending</code> value to true</li>
-<li>Once the <code>getRestaurants</code> response is received, set the restaurants <code>value</code> to the response data and <code>isPending</code> value to false</li>
-<li>Update the html to match the new restaurant object values and to show this div while <code>isPending</code> is true:</li>
+</code></pre></li>
+<li><p>Change the <code>restaurants</code> member to use the new <code>Data</code> type.</p></li>
+<li><p>Right before you call the <code>getRestaurants</code> method, set the restaurants <code>isPending</code> value to true.</p></li>
+<li><p>Once the <code>getRestaurants</code> response is received, set the restaurants <code>value</code> to the response data and <code>isPending</code> value to false.</p></li>
+<li><p>Update the html to match the new restaurant object values and to show the following HTML while <code>isPending</code> is true:</p>
+<pre><code class="language-html">&lt;div class=&quot;restaurant loading&quot;&gt;&lt;/div&gt;
+</code></pre></li>
 </ol>
-<pre><code class="language-html">  &lt;div class=&quot;restaurant loading&quot;&gt;&lt;/div&gt;
-</code></pre>
-<h3>What you need to know</h3>
+<h2>E2: What you need to know</h2>
 <ul>
 <li>How to write an interface (you learned this in the previous section! ✔️)</li>
 <li>How to conditionally show html blocks (you learned this in a previous section! ✔️)</li>
 </ul>
-<h3>To Verify Your Solution is Correct</h3>
+<h2>E2: To Verify Solution</h2>
 <p>You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>!</p>
-<p>Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
+<p>✏️ Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs'; 
@@ -1274,11 +1310,12 @@ describe('RestaurantComponent', () =&gt; {
 });
 
 </code></pre>
+<div line-highlight='266-268,272-289,only'></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h3>Solution</h3>
-<p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
+<h2>E2: Solution</h2>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong> to:</p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
@@ -1311,7 +1348,7 @@ export class RestaurantComponent implements OnInit {
 
 </code></pre>
 <div line-highlight='5-8,16-19,23-27'></div>
-<p><strong>src/app/restaurant/restaurant.component.html</strong></p>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong> to:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
   &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
   &lt;div class=&quot;restaurant loading&quot; *ngIf=&quot;restaurants.isPending&quot;&gt;&lt;/div&gt;
@@ -1341,7 +1378,7 @@ export class RestaurantComponent implements OnInit {
 
 </code></pre>
 <div line-highlight='3, 4, 5'></div>
-<h3>Did You Know?</h3>
+<h2>Did You Know?</h2>
 <p>You may have noticed in our markup there's another use of routerLink:</p>
 <pre><code class="language-html">&lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
   Details
@@ -1385,7 +1422,7 @@ export class RestaurantComponent implements OnInit {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/7-pull-restaurant-data-into-view/pull-restaurant-data-into-view.md"},"description":"Pulling Restaurant Data into Our View \n","name":"learn-angular/pull-restaurant-data-into-view","title":"Use Restaurant API data","type":"page","parent":"learn-angular","order":7,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/7-pull-restaurant-data-into-view/pull-restaurant-data-into-view.md"},"description":"Learn how to render API data into HTML with a view. \n","name":"learn-angular/pull-restaurant-data-into-view","title":"Use Restaurant API data","type":"page","parent":"learn-angular","order":7,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     
