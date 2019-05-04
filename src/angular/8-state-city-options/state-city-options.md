@@ -25,28 +25,31 @@ Currently, we are showing a list of all restaurants:
 We would like our user to be able to filter restaurants based on city and state. To accomplish this,
 we will need to implement a reactive form with two controls, `state` and `city`, that are dropdowns displaying a list of cities and states.  It will look like the following:
 
-<img src="../static/img/angular/8-state-city-options/after.png"
-  style="border: solid 1px black; max-width: 320px;"/>
+![Place My Order App city and state dropdowns](../static/img/angular/pmo-dropdowns.gif "Place My Order App city and state dropdowns")
 
 ## Setup
 
-Here's some code to get you started.  Notice that `cities` and `states` are hard coded (for now).
+Here's some code to get you started.  Notice that:
 
-__src/app/restaurant/restaurant.component.ts__
+- `cities` and `states` are hard coded (for this exercise).
+- A `FormBuilder` instance is injected as the `fb` property.
+- `createForm` is empty. Use it to initialize the form control.
+
+✏️ Update __src/app/restaurant/restaurant.component.ts__ to:
 
 @sourceref ./restaurant.component-starter.ts
-@highlight 2,18,25-28,30-33,42,51-53,only
+@highlight 2,18,25-28,30-33,37,42,51-53,only
 
-Make sure to use the `formControl` directive to tie the selects to their FormControls in the component.
+Make sure to use the `formControl` directive to tie the selects to
+their FormControls in the component.
 
-__src/app/restaurant/restaurant.component.html__
+✏️ Update __src/app/restaurant/restaurant.component.html__ to include
+some boilerplate for the state and city `<select>` controls:
 
 @sourceref ./restaurant.component-starter.html
-@highlight 3-24,only
+@highlight 3-26,only
 
-Don't forget to import reactiveForms in the root app module.
-
-__src/app/app.module.ts__
+✏️ Update __src/app/app.module.ts__ to import reactiveForms in the root app module:
 
 @sourceref ./app.module.ts
 @highlight 5,24
@@ -57,7 +60,7 @@ When you visit <a href="http://localhost:4200/restaurants" target="\_blank">loca
 
 ![Place My Order App city and state dropdowns](../static/img/angular/pmo-dropdowns.gif "Place My Order App city and state dropdowns")
 
-Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
+✏️ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
 
 @sourceref ./restaurant.component.spec.ts
 @highlight 8,116,294-299,301-307,309-315, only
@@ -124,21 +127,14 @@ This example shows the use of FormArray and using an `insert` method to dynamica
 
 
 
-
-
-
-
-
-
-
 ## The Solution
 
-__src/app/restaurant/restaurant.component.ts__
+✏️ Update __src/app/restaurant/restaurant.component.ts__ to:
 
 @sourceref ./restaurant.component.ts
 @highlight 2,18,25-39,42,50-55
 
-__src/app/restaurant/restaurant.component.html__
+✏️ Update __src/app/restaurant/restaurant.component.html__ to:
 
 @sourceref ./restaurant.component.html
 @highlight 6,10,16,20,only
