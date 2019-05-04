@@ -1,7 +1,7 @@
 @page learn-angular/pull-restaurant-data-into-view Use Restaurant API data
 @parent learn-angular 7
 
-@description Pulling Restaurant Data into Our View
+@description Learn how to render API data into HTML with a view.
 
 @body
 
@@ -13,97 +13,152 @@ In this part, we will:
 - Call `getRestaurants()` method in component
 - Change restaurant markup to use new restaurant object
 
-## Importing Service into Component
 
-To use a service in a component, we use dependency injection to pass the service in the component constructor function. We're then able to access methods on it for use in our component
+
+## Exercise 1: Make RestaurantComponent use the `getRestaurants` function
+
+In this section, we will change `RestaurantComponent` to actually get
+data from the service API.  Instead of two hard coded restaurants, we will
+see a longer list:
+
+<img src="../static/img/angular/7-data-into-view/1-after.png"
+  style="border: solid 1px black; max-width: 640px;"/>
+
+We will do this by:
+
+- Changing `RestaurantComponent`'s _restaurant_ property definition:
+  ```typescript
+  public restaurants: any[] = [];
+  ```
+- Using `RestaurantService`'s `getRestaurants` to get an array of restaurants and
+  set it on `RestaurantComponent`'s _restaurant_ property.
+
+
+
+## E1: What you need to know
+
+To solve this exercise, you will need to know how to:
+
+- Inject a service into a component
+- Subscribe to an observable
+
+> Hint: Call the `getRestaurants` method in the `ngOnInit` method.
+
+## Inject a Service into Component
+
+To use a service in a component, we use dependency injection to pass the service in the component constructor function. We're then able to access methods on it for use in our component.
 
 @sourceref ./di.html
 @codepen
 @highlight 90,only
 
-## Exercise: Inject RestaurantService in RestaurantComponent and call the `getRestaurants` function
+## Subscribe to an observable
 
-### The Problem
+The result of `getRestaurants()` is an observable. Use [subscribe](https://rxjs-dev.firebaseapp.com/guide/subscription) to listen to when
+an RxJS observable changes:
 
-We want to be able to use the `getRestaurants` method in our component to display a list of restaurants. We also want specify the type of our `restaurant` member on our `RestaurantComponent` class to be an array of restaurants.
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+<script type="typescript">
+const {Observable} = rxjs;
 
-### What you need to know
+const observable = Observable.create(function (observer) {
+  observer.next(1);
+  observer.next(2);
+  observer.next(3);
+});
 
-- How to inject a service into a component (you learned this in section above! ✔️)
-- How to call a method on a class
-- How to specify an array type (you learned this the previous section! ✔️)
+observable.subscribe( function subscriber( value ){
+    console.log('got value ' + value);
+    // Logs 1, 2, 3
+} );
+</script>
+```
+@codepen
+@highlight 11
 
-> Hint: Call the `getRestaurants` method in the `ngOnInit` method.
 
-### To Verify Your Solution is Correct
+
+## E1: To verify solution
 
 You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>!
 
-Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
+✏️ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
 
 @sourceref ./restaurant.component.spec-service.ts
+@highlight 3,7,9-106,116-119,169-267,only
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
-### Solution
+## E1: Solution
 
-__src/app/restaurant/restaurant.component.ts__
+✏️ Update __src/app/restaurant/restaurant.component.ts__ as follows:
 
 @sourceref ./restaurant.component-service.ts
 @highlight 2,3,11,13,16-18
 
-## Exercise: Show a loading state while restaurants are being requested
+## Exercise 2: Show a loading state while restaurants are being requested
 
-### The Problem
+Sometimes the server can take a long time to respond. Lets update `RestaurantComponent`
+to show a loading icon to the user while data is loading:
 
-We want to show a loading div while the request to get the list of restaurants is made. You'll need to do a few things:
+TODO:
+
+This icon will be shown with the following HTML:
+
+```html
+<div class="restaurant loading"></div>
+```
+
+
+To complete this exercise, we will:
 
 1. Create a new interface `Data` that represents the following object:
 
-  ```json
-  let data = {
-    value: [], //aray of restaurants
-    isPending: false //boolean 
-  }
-  ```
+   ```js
+   let data = {
+     value: [], //aray of restaurants
+     isPending: false //boolean
+   }
+   ```
+2. Change the `restaurants` member to use the new `Data` type.
+3. Right before you call the `getRestaurants` method, set the restaurants `isPending` value to true.
+4. Once the `getRestaurants` response is received, set the restaurants `value` to the response data and `isPending` value to false.
+5. Update the html to match the new restaurant object values and to show the following HTML while `isPending` is true:
 
-2. Change the `restaurants` member to use the new `Data` type
-3. Right before you call the `getRestaurants` method, set the restaurants `isPending` value to true
-4. Once the `getRestaurants` response is received, set the restaurants `value` to the response data and `isPending` value to false
-5. Update the html to match the new restaurant object values and to show this div while `isPending` is true:
+   ```html
+   <div class="restaurant loading"></div>
+   ```
 
-  ```html
-    <div class="restaurant loading"></div>
-  ```
-
-### What you need to know
+## E2: What you need to know
 
 - How to write an interface (you learned this in the previous section! ✔️)
 - How to conditionally show html blocks (you learned this in a previous section! ✔️)
 
-### To Verify Your Solution is Correct
+## E2: To Verify Solution
 
 You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>!
 
-Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
+✏️ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
 
 @sourceref ./restaurant.component.spec.ts
+@highlight 266-268,272-289,only
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
-### Solution
+## E2: Solution
 
-__src/app/restaurant/restaurant.component.ts__
+✏️ Update __src/app/restaurant/restaurant.component.ts__ to:
 
 @sourceref ./restaurant.component.ts
 @highlight 5-8,16-19,23-27
 
-__src/app/restaurant/restaurant.component.html__
+✏️ Update __src/app/restaurant/restaurant.component.html__ to:
 
 @sourceref ./restaurant.component.html
 @highlight 3, 4, 5
 
-### Did You Know?
+## Did You Know?
 
 You may have noticed in our markup there's another use of routerLink:
 
