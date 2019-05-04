@@ -16,15 +16,24 @@ In this part, we will:
 - Write a method to make an http request
 - Write interfaces to describe response object and restaurant object
 
-## Installing the Place My Order API
+## Setup
+
+Before we begin making services, we must:
+
+- Install the place-my-order API
+- Create a proxy to serve the API
+
+### Installing the Place My Order API
 
 We've done some work to create a Place My Order API for use in this app.
+
+✏️ Run:
 
 ```bash
 npm install place-my-order-api@1 --save
 ```
 
-Next make add an api script to your ``package.json``
+✏️ Next make add an api script to your `package.json`
 
 ```js
   "scripts": {
@@ -39,19 +48,26 @@ Next make add an api script to your ``package.json``
 ```
 @highlight 8
 
-Double check the api is working by running ``npm run api`` and navigating to <a href="http://localhost:7070/restaurants" target="\_blank">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the api command from.
+✏️ In __new__ terminal window, start the API server by running:
 
-> You must have the API running for your app to work. If you don't see data, make sure that you've run `npm run api` in another terminal window or in your editor.
+```bash
+npm run api
+```
 
-## Create a Proxy to Serve API
+Double check the api by navigating to <a href="http://localhost:7070/restaurants" target="\_blank">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the api command from.
+
+
+### Create a Proxy to Serve API
 
 Next, we'll create a <a href="https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md" target="\_blank">proxy</a> file at the root of our Angular project to access our API for local development purposes.
+
+✏️ To create the proxy file:
 
 ```shell
 touch proxy.conf.json
 ```
 
-Update the newly created __proxy.conf.json__ file with the following json:
+✏️ Update the newly created __proxy.conf.json__ file with the following json:
 
 ```js
 {
@@ -67,7 +83,7 @@ Update the newly created __proxy.conf.json__ file with the following json:
 }
 ```
 
-Update the package.json `npm start` script to be `ng serve --proxy-config proxy.conf.json`
+✏️ Update the package.json `npm start` script to be `ng serve --proxy-config proxy.conf.json`
 
 ```js
 "scripts": {
@@ -82,9 +98,45 @@ Update the package.json `npm start` script to be `ng serve --proxy-config proxy.
 ```
 @highlight 3
 
-Now, __restart__ our app using `npm start` and it will run it with the proxy config we created. To test that it's working, navigate to <a href="http://localhost:4200/api/restaurants" target="\_blank">http://localhost:4200/api/restaurants</a> and you should be able to see a list of restaurants.
+✏️ Now, __restart__ the app using:
 
-## Angular Services
+```shell
+npm start
+```
+
+The app will use the proxy config we created. To test that it's working, navigate to <a href="http://localhost:4200/api/restaurants" target="\_blank">http://localhost:4200/api/restaurants</a> and you should be able to see a list of restaurants.
+
+## Exercise 1: Write a Restaurant Service to fetch a list of restaurants
+
+
+We want to write a `RestaurantService` with a method `getRestaurants` that uses `httpClient` to get a list of restaurants from our `/api/restaurants` url. For example, we could get restaurants like:
+
+```typescript
+const httpClient = new HttpClient();
+const restaurantService = new RestaurantService( httpClient );
+
+restaurantService.getRestaurants() //-> Observable<Array<Object>>
+```
+@highlight 4
+
+Note:
+
+- `getRestaurants` will return an RxJS observable that emits an array of
+  restaurants.  
+- Typically, services and `HttpClient` are injected into components and not created
+  as shown above.
+- We want to create `RestaurantService` in `src/app/restaurant/restaurant.service.ts`.
+
+## E1: What You Need to Know
+
+To complete this section, you'll need to know:
+
+- The basics of Angular Services.
+- How to generate a service.
+- How to inject `HttpClientModule` into your app.
+- How to use `HTTPClient` to make a request in a service.
+
+## Angular Service Basics
 
 Angular <a href="https://angular.io/guide/architecture-services" target="\_blank">Services</a> are pieces of functionality that may not need to be tied to a view like components. A common example of a service is making an HTTP request to get data. Many components may require functionality to fetch data, and a Service can help abstract that logic into one place to be used across components.
 
@@ -92,9 +144,22 @@ Angular <a href="https://angular.io/guide/architecture-services" target="\_blank
 @codepen
 @highlight 18-48,81-83,90,95, only
 
+## Generating a service
+
+To generate a `UsersService`, you run:
+
+```shell
+ng g service users
+```
+
+This will create a `src/app/users.service.ts` file and associated `spec`
+test file.
+
+> HINT: You can generate a service in a folder `ng g service folder/users`
+
 ## Importing `HttpClientModule` into _app.module.ts_
 
-For making HTTP requests to interact with an API, Angular provides <a href="https://angular.io/api/common/http/HttpClientModule" target="_blank">HttpClient Module</a>. To use it we'll need to import it in the root module of our app and include it the imports array.
+For making HTTP requests to interact with an API, Angular provides <a href="https://angular.io/api/common/http/HttpClientModule" target="\_blank">HttpClient Module</a>. To use it we'll need to import it in the root module of our app and include it the imports array.
 
 __src/app/app.module.ts__
 
@@ -103,69 +168,49 @@ __src/app/app.module.ts__
 
 ## Using HTTPClient to make a request
 
-<a href="https://angular.io/api/common/http/HttpClient" target="_blank">HTTPClient</a> is a class with methods for making HTTP requests. Methods will return <a href="https://angular.io/guide/observables" target="_blank">Observables</a>. This tutorial won't cover RxJS in depth, but it's worth being aware of Angulars heavy use of it.  
+<a href="https://angular.io/api/common/http/HttpClient" target="\_blank">HTTPClient</a> is a class with methods for making HTTP requests. Methods will return <a href="https://angular.io/guide/observables" target="\_blank">RxJS Observables</a>.
 
 @sourceref ./http.html
 @codepen
 @highlight 23,25-27,29-31, only
 
-## Exercise: Write a Restaurant Service to fetch a list of restaurants
+This tutorial won't cover RxJS in depth, but it's worth being aware of Angulars
+heavy use of it. Checkout our [learn-rxjs] tutorial for more information.
 
-### The problem
+## E1: Verify Solution
 
-We want to write a service with a method `getRestaurants` that uses httpClient to get a list of restaurants from our `/api/restaurants` url.
+✏️ Generate the restaurant service:
+
+```shell
+ng g service restaurant/restaurant
+```
 
 
-### What You Need to Know
-
-- How to create a service via the CLI
-
-  ```bash
-    ng g service restaurant/restaurant
-  ```
-
-- How to use httpClient to make a get request (you learned this in section above! ✔️)
-
-### To Verify Your Solution is Correct
-
-Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
+✏️ Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
 
 @sourceref ./restaurant.service.spec.ts
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
-### Solution
+## E1: Solution
 
-__src/app/app.module.ts__
+✏️ Update __src/app/app.module.ts__ to inject the `HttpClientModule`:
 
 @sourceref ./app.module.ts
 @highlight 3,21
 
-__src/app/restaurant/restaurant.service.ts__
+✏️ Update __src/app/restaurant/restaurant.service.ts__ to make a request to `/api/restaurants`:
 
 @sourceref ./restaurant.service-1.ts
 
-## Take Advantage of TypeScript
 
-Thanks to TypeScript we can write interfaces to describe what we expect objects to look like. Consider the user service above returning an array of users. This interface describes what a user (and array of users) should look like:
+## Exercise 2: Write an Interface to Describe the Restaurant Object and Data Response
 
-@sourceref ./service-interface.html
-@codepen
-@highlight 18-22,28, only
+Currently, from TypeScript's perspective, `getRestaurants()` can return anything. This
+means if we use the data from `getRestaurants()`, TypeScript will not be able to notice
+any mistakes.  This undermines the whole point of TypeScript!
 
-Arrays can also be written as:
-
-```javascript
-users: Array<User>
-```
-
-To learn more about interfaces in TypeScript, check out our [learn-typescript/interfaces TypeScript guide].
-
-## Exercise: Write an Interface to Describe the Restaurant Object and Data Response
-
-### The problem
-
-We're going to write interfaces to tell Typescript what we expect a restaurant and other related objects to look like and use them in our restaurant service. A `Restaurant` interface should represent an object like this:
+Let's write interfaces to tell TypeScript what we expect restaurant and other related objects to look like and use them in our restaurant service. A `Restaurant` interface should represent an object like this:
 
 ```javascript
 let restaurant = {
@@ -196,41 +241,79 @@ let restaurant = {
 }
 ```
 
-This interface can be written in the __src/app/restaurant/restaurant.service.ts__ file. *
+This interface will written in the __src/app/restaurant/restaurant.service.ts__ file.
 
-### What You Need to Know
+## E2: What You Need to Know
 
-- How to generate an interface via the CLI
+To complete this exercise, you'll need to:
 
-  ```bash
-    ng g interface restaurant/restaurant
-  ```
+- Understand interfaces in TypeScript
+- How to generate an interface with Angular's CLI.
 
-- How to write an interface in TypeScript (you learned this in section above! ✔️)
+## Interfaces in TypeScript
 
-We've already written a `responseData` interface that will take an array of restaurants for you. Here's the code to get you started:
+Thanks to TypeScript we can write interfaces to describe what we expect objects to look like. Consider the user service below returning an array of users. This interface describes what a user (and array of users) should look like:
 
-__src/app/restaurant/restaurant.service.ts__
+@sourceref ./service-interface.html
+@codepen
+@highlight 18-22,28, only
+
+Arrays can also be written as:
+
+```javascript
+users: Array<User>
+```
+
+To learn more about interfaces in TypeScript, check out our [learn-typescript/interfaces TypeScript guide].
+
+## Generate an interface
+
+Use the following to generate an interface with the CLI:
+
+```bash
+ng g interface user
+```
+
+This will generate:
+
+```typescript
+export interface User {
+}
+```
+
+## E2: Setup
+
+We've already written a `ResponseData` interface that will take an array of restaurants for you. Here's the code to get you started:
+
+✏️ Update __src/app/restaurant/restaurant.service.ts__ to import the `Restaurant` interface, use
+it within the `ResponseData` interface which is used by `httpClient.get`:
 
 @sourceref ./restaurant.service.ts
 @highlight 4,6-8, 18
 
-__src/app/restaurant/restaurant.ts__
+✏️ Generate the restaurant interface:
+
+```bash
+ng g interface restaurant/restaurant
+```
+
+✏️ Update __src/app/restaurant/restaurant.ts__ with some starter code that includes
+some scaffolding for some of the sub-interfaces within the `Restaurant` interfaces:
 
 @sourceref ./restaurant-starter.ts
 
-### To Verify Your Solution is Correct
+## E2: Verify Solution
 
-Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
+✏️ Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
 
 @sourceref ./restaurant.service-with-interface.spec.ts
 @highlight 3,4,79,93-122
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass! If you haven't written the interfaces correctly, you'll see a compile error before the tests runs
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass! If you haven't written the interfaces correctly, you'll see a compile error before the tests runs. You might need to restart the test script to see the compile error.
 
-### Solution
+## E2: Solution
 
-__src/app/restaurant/restaurant.ts__
+✏️  Update __src/app/restaurant/restaurant.ts__ to:
 
 @sourceref ./restaurant.ts
 
