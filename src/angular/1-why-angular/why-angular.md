@@ -15,7 +15,7 @@ Angular was first released in 2010 as a new framework in the MV* space alongside
 
 Developers have to make a lot of decisions on a daily basis, which can often create decision fatigue. The great part about using an opinionated framework is being able to shift your focus from build configs, high level architecture decisions,   to writing the actual client-specific functioning pieces of the application.
 
-The use of Typescript to force type checking improves workflow by catching errors at compile time allowing teams to catch potential errors much faster.
+The use of TypeScript to force type checking improves workflow by catching errors at compile time allowing teams to catch potential errors much faster.
 
 ### 2. Testing Built In
 

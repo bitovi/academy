@@ -81,3 +81,8 @@ create a page that lets us update an order's status or delete an order ([learn-a
 
 At this point, we will have completed the app. The final step will be building it to
 production and deploying it for others to see ([learn-angular/deploy-app]).
+
+## Requirements
+
+In order to complete this guide, you need to have [NodeJS](https://nodejs.org/en/) version
+8  or later installed.
