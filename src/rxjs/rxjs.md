@@ -18,6 +18,12 @@ Please ask questions related to RxJS and Angular in the [Angular Chat Room](http
 
 If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/academy/issues) or email `contact@bitovi.com`.
 
+## Video
+
+Who has time to read?  This video covers the content on this page. Watch fullscreen. 
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3uPT-gcxs0E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 ## Overview
 
