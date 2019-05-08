@@ -2,6 +2,15 @@ var packages = require("./packages");
 require("./styles/styles.less!");
 window.PACKAGES = packages;
 
+(function(){
+	document.body.addEventListener("click", function(event){
+		if(event.target.matches(".bit-academy-fullscreen")) {
+			document.body.classList.toggle("bit-academy-show-fullscreen")
+		}
+	});
+
+})();
+
 
 (function(){
 

@@ -3,6 +3,9 @@ const Bottleneck = require("bottleneck");
 
 const ACADEMY_CAMPAIGN_ID = '5f0d7917-50ea-4ed4-84c8-85e6965c18db';
 
+var rawStart = "{% raw %}",
+    rawEnd = "{% endraw %}";
+
 class HubSpotApi {
   constructor(apiKey){
     this.apiKey = apiKey;
@@ -36,7 +39,7 @@ class HubSpotApi {
       html_title: title,
       is_draft: false,
       publish_immediately: true,
-      footer_html: bodyHtml,
+      footer_html: rawStart+ bodyHtml + rawEnd,
       head_html: headHtml,
       campaign: ACADEMY_CAMPAIGN_ID,
       subcategory: 'site_page',
@@ -51,7 +54,7 @@ class HubSpotApi {
     const data = {
       name: title,
       html_title: title,
-      footer_html: bodyHtml,
+      footer_html: rawStart+ bodyHtml + rawEnd,
       head_html: headHtml,
       meta_description: metaDescription || ""
     }
