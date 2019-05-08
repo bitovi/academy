@@ -55,7 +55,9 @@ test file.
 
 ## Injectable
 
-EXPLAIN INJECATABLE HERE
+<a href="https://angular.io/api/core/Injectable" target="_blank">`Injectable`</a> is an Angular decorator that makes the class it's decorating available to Angular's <a href="https://angular.io/api/core/Injector" target="_blank">Injector</a> for creation. In the case of creating service to get data to use in our application, we want those services to be able to be injected into the app components we need the services in.
+
+Angular uses the injector to create dependencies using providers - which know how to create said dependencies. We can then inject our service into our components constructor to take advantage of Angular's dependency injection pattern.
 
 ## Importing `HttpClientModule` into _app.module.ts_
 
