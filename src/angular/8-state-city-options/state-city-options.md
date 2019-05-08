@@ -14,18 +14,21 @@ In this part, we will:
 - Create a reactive form in our Restaurant Component
 - Create a form in our markup and connect inputs to reactive form
 
-## The problem
+## Problem
 
 Currently, we are showing a list of all restaurants:
 
 <img src="../static/img/angular/8-state-city-options/before.png"
   style="border: solid 1px black; max-width: 320px;"/>
 
-
 We would like our user to be able to filter restaurants based on city and state. To accomplish this,
 we will need to implement a reactive form with two controls, `state` and `city`, that are dropdowns displaying a list of cities and states.  It will look like the following:
 
 ![Place My Order App city and state dropdowns](../static/img/angular/pmo-dropdowns.gif "Place My Order App city and state dropdowns")
+
+## Technical Requirements
+
+Create a reactive form with two formControls, `state` and `city`, and use the `formControlName` directive to bind the formControls to their select elements in the template.
 
 ## Setup
 
@@ -54,7 +57,7 @@ some boilerplate for the state and city `<select>` controls:
 @sourceref ./app.module.ts
 @highlight 5,24
 
-## Verify the solution
+## How to Verify Your Solution is Correct
 
 When you visit <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>, there will now be state and city dropdown options populated with fake data.
 
@@ -67,8 +70,9 @@ When you visit <a href="http://localhost:4200/restaurants" target="\_blank">loca
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
+## What You Need to Know
 
-## What you need to know
+To solve this, you will need to know:
 
 - How to create a FormControl
 - How to use `formControl` directive in the dom
@@ -93,7 +97,7 @@ To use reactive forms we must import our ReactiveFormsModule into the root app.
 ## FormControl
 
 The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl" target="\_blank">FormControl</a>. This class manages the form input model and connection to it's input element in the dom and inherits from the <a href="https://angular.io/api/forms/AbstractControl" target="\_blank">AbstractControl</a>
-class. It's worth getting familiar with the methods available in this class (like setValidators and patchValue), as they're used quite often in reactive form development.
+class. It's worth getting familiar with the methods available in this class (like setValidators and patchValue), as they're used quite often in reactive form development. The formControl is bound to it's element in the dom using the `[formControl]` directive.
 
 @sourceref ./form-control.html
 @codepen
@@ -101,7 +105,7 @@ class. It's worth getting familiar with the methods available in this class (lik
 
 ## FormGroup
 
-A FormGroup is a way of grouping FormControls and tracking the state of the entire group. For instance, if you want to get the values of all of your FormControls to submit as an object of those values, you'd use `formGroupname.value`. Notice the way we connect our input in the markup is slightly different - we use `formControlName` to bind to the name value in our FormGroup. Groups can be nested within other groups or arrays.  
+A FormGroup is a way of grouping FormControls and tracking the state of the entire group. For instance, if you want to get the values of all of your FormControls to submit as an object of those values, you'd use `formGroupname.value`. Notice the way we connect our input in the markup is slightly different - we use can use the `formControlName` directive to bind to the name value of a FormControl in our FormGroup. Groups can be nested within other groups or arrays.  
 
 @sourceref ./form-group.html
 @codepen
@@ -124,8 +128,6 @@ This example shows the use of FormArray and using an `insert` method to dynamica
 @sourceref ./form-builder.html
 @codepen
 @highlight 17,40,42,45-49,only
-
-
 
 ## The Solution
 

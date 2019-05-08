@@ -15,17 +15,21 @@ In this part, we will:
 - Import a 3rd party lib
 - Create a custom component to handle item selection
 
-## Creating a New Order Form Component
+## Creating an Order Form Component
 
 Our order form is how we can create new orders. We'll use a reactive form to get data from the users, use a custom validation function to make sure at least once item has been selected, and calculate the order total every time a new item is selected or unselected.
 
-## Exercise: Create New Route for Ordering
+## Problem 1: Create New Route for Ordering From a Restaurant
 
-### The Problem
+## P1: Technical Requirements
 
 Create a new `order` component, and create a route for our new component! The path should be `/restaurants/{{slug}}/order`.
 
-### What you need to know
+## P1: How to Verify Your Solution is Correct
+
+When you navigate to the `/order` path from a restaurant detail page you should see your new order component.
+
+## P1: What You Need to Know
 
 - How to create new components
     ```bash
@@ -33,38 +37,36 @@ Create a new `order` component, and create a route for our new component! The pa
     ```
 - You've created routes before! You got this!
 
-### To Verify Your Solution is Correct
-
-When you navigate to the `/order` path from a restaurant detail page you should see your new order component.
-
-### Solution
+## P1: Solution
 
 __src/app/app-routing.module.ts__
 
 @sourceref ./app-routing.module.ts
 @highlight 7, 22-25
 
-## Exercise: Build out the Order Component
+## Problem 2: Build Out the Order Component
 
 We've covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes. Let's practice those concepts.
 
 We've provided some starting code to get through this section to help you get the restaurant based on the route slug, create a new reactive form to collect order information, and update the order total whenever the `items` FormControl value changes.
 
-In your new order component, edit the __src/order/order.component.html__ file to be:
+## P2: Technical Requirements
+
+The order form component needs to get the restaurant from the route slug, and needs a reactive form to collect `restaurant`, `name`, `address`, `phone`, and `items`, and a way to update the order total when the items form control changes.
+
+## P2: Setup
+
+✏️ Update the __src/order/order.component.html__ file to be:
 
 __src/app/order/order.component.html__
 
 @sourceref ./order.component-starter.html
 
-Update your __src/app/order/order.component.ts__ file to be:
+✏️ Update the __src/app/order/order.component.ts__ file to be:
 
 @sourceref ./order.component-starter.ts
 
-### The problem
-
-The order form component needs to get the restaurant from the route slug, and needs a reactive form to collect `restaurant`, `name`, `address`, `phone`, and `items`, and a way to update the order total when the items form control changes.
-
-### What you need to know
+## P2: What You Need to Know
 
 - How to get the restaurant from the route slug (you learned this in previous sections! ✔️)
 - Create a reactive form (you learned this in previous sections! ✔️)
@@ -89,15 +91,15 @@ The order form component needs to get the restaurant from the route slug, and ne
   });
   ```
 
-### To Verify Your Solution is Correct
+## P2: How to Verify Your Solution is Correct
 
-Update the order spec file  __src/app/order/order.component.spec.ts__ to be:
+✏️ Update the order spec file  __src/app/order/order.component.spec.ts__ to be:
 
 @sourceref ./order.component.spec-starter.ts
 
-### The solution
+## P2: Solution
 
-__src/app/order/order.component.ts__
+✏️ Update __src/app/order/order.component.ts__
 
 @sourceref ./order.component-solution.ts
 @highlight 43,45-49,59-66,72-83
@@ -121,7 +123,7 @@ __src/app/order/app.module.ts__
 
 Now let's add the markup to our order component implementing the tabs widget.
 
-__src/app/order/order.component.html__
+✏️ Update __src/app/order/order.component.html__
 
 @sourceref ./order.component-withtabs.html
 @highlight 7-28
@@ -130,15 +132,7 @@ Now when we view the order form of our route, we'll see a nice form and tabs for
 
 ![Place My Order App tabs](../static/img/angular/pmo-tabs-working.gif "Place My Order App tabs")
 
-## Component Interaction
-
-Components in Angular can pass data back and forth to each other through the use of <a href="https://angular.io/api/core/Input" target="_blank">@Input</a> and <a href="https://angular.io/api/core/Output" target="_blank">@Output</a> decorations.
-
-@sourceref ./component-interaction.html
-@codepen
-@highlight 17,21,29,31,35,only
-
-## Create Custom Checkbox Component
+## Problem 3: Create Custom Menu-Items Component
 
 We're going to build another component to use in our form to handle selecting order items. We use data-binding to pass data between components. We'll use the `@Input()` to get our list of items from the restaurant to display in our child component, and eventually hook it into our Reactive Form using the `formControlName` attribute as shown below.
 
@@ -146,22 +140,7 @@ We're going to build another component to use in our form to handle selecting or
 <pmo-menu-items [data]="restaurant.menu.lunch" formControlName="items"></pmo-menu-items>
 ```
 
-### Create the new menu-items component inside the order component folder
-
-```bash
-ng g component order/menu-items
-```
-
-Go ahead and put your new component in the order history component.
-
-__src/app/order/order.component.html__
-
-@sourceref ./child-component/order.component-childcomponent.html
-@highlight 10, 15
-
-## Exercise: Passing properties to child components
-
-### The Problem
+## P3: Technical Requirements
 
 We want the menu-items component take an array of menu items and iterate through them in the template.
 
@@ -176,49 +155,68 @@ Each menu item should have this markup:
 </li>
 ```
 
-### What you need to know
+## P3: Setup
+
+Create the new menu-items component inside the order component folder
+
+✏️ Run:
+
+```bash
+ng g component order/menu-items
+```
+
+Go ahead and put your new component in the order history component.
+
+✏️ Update __src/app/order/order.component.html__
+
+@sourceref ./child-component/order.component-childcomponent.html
+@highlight 10, 15
+
+## P3: How to Verify Your Solution is Correct
+
+✏️ Update the order spec file  __src/app/order/order.component.spec.ts__ to be:
+
+@sourceref ./order.component.spec-childcomponent.ts
+
+✏️ Update the menu-items spec file  __src/app/order/menu-items/menu-items.component.spec.ts__ to be:
+
+@sourceref ./child-component/menu-items.component.spec-props.ts
+
+## P3: What You Need to Know
+
+## Component Interaction
+
+Components in Angular can pass data back and forth to each other through the use of <a href="https://angular.io/api/core/Input" target="_blank">@Input</a> and <a href="https://angular.io/api/core/Output" target="_blank">@Output</a> decorations.
+
+@sourceref ./component-interaction.html
+@codepen
+@highlight 17,21,29,31,35,only
 
 - How to use \*ngFor (you learned this in previous sections! ✔️)
 - How to use @Input to pass properties (you learned this in the section above! ✔️)
 
-### To Verify Your Solution is Correct
+## P3: Solution
 
-Update the order spec file  __src/app/order/order.component.spec.ts__ to be:
-
-@sourceref ./order.component.spec-childcomponent.ts
-
-Update the menu-items spec file  __src/app/order/menu-items/menu-items.component.spec.ts__ to be:
-
-@sourceref ./child-component/menu-items.component.spec-props.ts
-
-### The solution
-
-__src/app/order/menu-items.component.html__
+✏️ Update __src/app/order/menu-items.component.html__
 
 @sourceref ./child-component/menu-items.component-props.html
 
-__src/app/order/menu-items.component.ts__
+✏️ Update __src/app/order/menu-items.component.ts__
 
 @sourceref ./child-component/menu-items.component-props.ts
 
-__src/app/order/order.component.html__
+✏️ Update __src/app/order/order.component.html__
 
 @sourceref ./child-component/order.component-props.html
 @highlight 10,15,only
 
-## Event Handlers in Angular
+## Problem 4: Attaching Event Handlers to Item Checkboxes
 
-Event binding in Angular follows a simple pattern - the event name in parenthesis and a function to call in quotes on the other side of an equal sign. `(event)="functionToCall()"`. Any parameter(s) can be passed to the event function, but to capture the event itself use the parameter `$event`
+Next, we want to know when a checkbox has been checked or unchecked, and update an array called `selectedItems` containing all checked items.
 
-@sourceref ./form-change.html
-@codepen
-@highlight 24,26,32,41-31,45-47,49-51,only
+## P4: Technical Requirements
 
-## Exercise: Attaching event handlers to item checkboxes
-
-### The Problem
-
-Next, we want to know when a checkbox has been checked or unchecked, and update an array called `selectedItems` containing all checked items. To do this, create a function in the MenuItemsComponent called `updateItems` that fires whenever a checkbox is checked and takes a parameter of the item that has been checked. In the `updateItems` function use the following code to update the `selectedItems` array:
+Create a function in the MenuItemsComponent called `updateItems` that fires whenever a checkbox is checked and takes a parameter of the item that has been checked. In the `updateItems` function use the following code to update the `selectedItems` array:
 
 ```typescript
  let index = this.selectedItems.indexOf(item);
@@ -230,28 +228,51 @@ Next, we want to know when a checkbox has been checked or unchecked, and update 
   }
 ```
 
-### What you need to know
+## P4: What You Need to Know
 
-- How to attach a change event to a checkbox and call a method
+## Event Handlers in Angular
 
-### To Verify Your Solution is Correct
+Event binding in Angular follows a simple pattern - the event name in parenthesis and a function to call in quotes on the other side of an equal sign. `(event)="functionToCall()"`. Any parameter(s) can be passed to the event function, but to capture the event itself use the parameter `$event`
 
-Update the menu-items spec file  __src/app/order/menu-items/menu-items.component.spec.ts__ to be:
+@sourceref ./form-change.html
+@codepen
+@highlight 24,26,32,41-31,45-47,49-51,only
+
+## P4: How to Verify Your Solution is Correct
+
+✏️ Update the menu-items spec file  __src/app/order/menu-items/menu-items.component.spec.ts__ to be:
 
 @sourceref ./child-component/menu-items-1.component.spec.ts
 @highlight 39-53
 
-### The Solution
+## P4: Solution
 
-__src/app/order/menu-items.component.html__
+✏️ Update __src/app/order/menu-items.component.html__
 
 @sourceref ./child-component/menu-items-1.component.html
 @highlight 3
 
-__src/app/order/menu-items.component.ts__
+✏️ Update __src/app/order/menu-items.component.ts__
 
 @sourceref ./child-component/menu-items-1.component.ts
 @highlight 14,15,22-30
+
+## Problem 5: Update OrderFormComponent with selectedItems Array from MenuItemsComponent
+
+Now we want to let the form know what the selected items are as they change so we can update the order total accordingly. 
+
+## P5: Technical Requirements
+
+Create an `itemsChanged` EventEmitter property that emits the `selectedItems` value every time it changes, and in the parent OrderForm component update the `items` FormControl with the value.
+
+## P5: How to Verify Your Solution is Correct
+
+✏️ Update the menu-items spec file  __src/app/order/order.component.spec.ts__ to be:
+
+@sourceref ./child-component/order.component.spec-menuitems.ts
+@highlight 10,79,171-179,181-190,192-203,only
+
+## P5: What you need to know
 
 ## Emitting Data to Parent Components
 
@@ -271,37 +292,22 @@ When we have a formControl we need to update programmatically with a value we ca
 @codepen
 @highlight 25,57-61,only
 
-## Exercise: Update OrderFormComponent with selectedItems array from MenuItemsComponent
-
-### The Problem
-
-Now we want to let the form know what the selected items are as they change so we can update the order total accordingly. To do this, we'll need to create an `itemsChanged` EventEmitter property that emits the `selectedItems` value every time it changes, and in the parent OrderForm component update the `items` FormControl with the value.
-
-### What you need to know
-
 - How to emit a value to a parent component (you learned this in the section above! ✔️)
 - How to programmatically update a FormControl's value (you learned this in the section above! ✔️)
 
-### To Verify Your Solution is Correct
+## P5: Solution
 
-Update the menu-items spec file  __src/app/order/order.component.spec.ts__ to be:
-
-@sourceref ./child-component/order.component.spec-menuitems.ts
-@highlight 10,79,171-179,181-190,192-203,only
-
-### The Solution
-
-__src/app/order/menu-items.component.ts__
+✏️ Update __src/app/order/menu-items.component.ts__
 
 @sourceref ./child-component/menu-items-2.component.ts
 @highlight 1,16,31
 
-__src/app/order/order.component.html__
+✏️ Update __src/app/order/order.component.html__
 
 @sourceref ./child-component/order-2.component.html
 @highlight 10,15,only
 
-__src/app/order/order.component.ts__
+✏️ Update __src/app/order/order.component.ts__
 
 @sourceref ./child-component/order-2.component.ts
 @highlight 67-79
@@ -325,9 +331,9 @@ Other concepts used here:
 
 <a href="https://angular.io/api/forms/NG_VALUE_ACCESSOR" target="\_blank">https://angular.io/api/forms/NG_VALUE_ACCESSOR</a> Used to provide the control value accessor for a form control.
 
-### Use new menu items component in order form
+### Use New Menu Items Component in Order Form
 
-__src/app/order/order.component.html__
+✏️ Update __src/app/order/order.component.html__
 
 @sourceref ./order.component-final.html
 @highlight 10, 15
@@ -336,6 +342,6 @@ We now have a form that updates the `items` formControl when items are selected 
 
 ### Update Order Component Tests
 
-Update the order spec file  __src/app/order/order.component.spec.ts__ to be:
+✏️ Update the order spec file  __src/app/order/order.component.spec.ts__ to be:
 
 @sourceref ./order.component.spec-final.ts

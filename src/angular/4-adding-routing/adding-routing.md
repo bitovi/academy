@@ -13,10 +13,13 @@ In this part, we will:
 - Hook the router outlet into our markup
 - Test that new routes are working
 
+## Problem
 
-## The problem
+We need to set up routes for the home view and restaurant view.
 
-We need to set up routes for the home view and restaurant view. When the route is `''`, the `HomeComponent` should display, and when the route is `/restaurants` the `RestaurantComponent` should display. We will make these changes in __src/app/app-routing.module.ts__.
+## Technical Requirements
+
+Create routes for the `HomeComponent` and `RestaurantComponent`. When the route is `''`, the `HomeComponent` should display, and when the route is `/restaurants` the `RestaurantComponent` should display. These changes should be made in __src/app/app-routing.module.ts__.
 
 Notice that you will be able to click the __Choose a Restaurant__ button
 at the end of this tutorial:
@@ -26,10 +29,9 @@ at the end of this tutorial:
   <source src="../static/img/angular/4-adding-routing/after.mp4" type="video/mp4">
 </video>
 
-
 ## Setup
 
-`<router-outlet>`, which handles routing to a component based on a url, was added to our __src/app/app.component.html__ file during our initial app creation. But since that time, we added components to that view.  Lets remove those components because `<router-outlet>` will handle showing
+`<router-outlet>`, which handles routing to a component based on a url, was added to our __src/app/app.component.html__ file when we first generated our app and answered `yes` to the routing question. But since that time, we added components to that view.  Lets remove those components because `<router-outlet>` will handle showing
 those components going forward.
 
 ✏️ Update __src/app/app.component.html__ to:
@@ -37,9 +39,19 @@ those components going forward.
 @sourceref ./app.component.html
 @highlight 1-2,only
 
-## What you need to know
+## How to Verify Your Solution is Correct
 
-To be able to navigate between different views in our app, we'll need routing. We already told Angular we'd like to set up routing, so it generated `src/app/app-routing.module.ts` for us and included it in our root module. `src/app/app-routing.module.ts` currently looks like:
+If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>. You may have noticed the ```routerLink``` attribute on the `<a>` tag in our home component markup. This one of the ways we link to specific routes in our app. When you click that link, you should see the restaurants component.
+
+```html
+<a class="btn" routerLink="/restaurants" role="button">
+  Choose a Restaurant
+</a>
+```
+
+## What You Need to Know
+
+To be able to navigate between different views in our app, we can take advantage of Angular's built-in routing module. We already told Angular we'd like to set up routing, so it generated `src/app/app-routing.module.ts` for us and included it in our root module. `src/app/app-routing.module.ts` currently looks like:
 
 ```typescript
 import { NgModule } from '@angular/core';
@@ -53,8 +65,6 @@ const routes: Routes = [];
 })
 export class AppRoutingModule { }
 ```
-
-
 
 The router module takes an array of routes we can generate in a few different ways that will render content in the `router-outlet` directive.
 
@@ -112,18 +122,7 @@ In our index.html file, the angular cli included `<base href="/>`. This isn't an
 ```
 @highlight 6
 
-
-## Verify Solution
-
-If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>. You may have noticed the ```routerLink``` attribute on the `<a>` tag in our home component markup. This one of the ways we link to specific routes in our app. When you click that link, you should see the restaurants component.
-
-```html
-<a class="btn" routerLink="/restaurants" role="button">
-  Choose a Restaurant
-</a>
-```
-
-## The Solution
+## Solution
 
 ✏️ Update __src/app/app-routing.module.ts__ to:
 

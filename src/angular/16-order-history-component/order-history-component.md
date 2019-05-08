@@ -14,17 +14,20 @@ In this part, we will:
 - Create ways to update and delete orders in the view
 - Add order history link to our main navigation
 
-## Exercise: Generate a `HistoryComponent` and create a route for it
+## Problem 1: Generate a `HistoryComponent` and create a route for it
 
-### The problem
+We want to create a component that will show the app's order history.
 
-In this problem, we will:
+## P1: Technical Requirements
 
-- Generate a `HistoryComponent` in `src/app/order/history/history.component.ts`
-- Show `HistoryComponent` when we navigate to `/order-history`
+1. Generate a `HistoryComponent` in `src/app/order/history/history.component.ts`
+2. Show `HistoryComponent` when we navigate to `/order-history`
 
-### What you need to know
+## P1: How to Verify Your Solution is Correct
 
+If you've implemented the solution correctly you should be able to navigate to [http://localhost:4200/order-history](http://localhost:4200/order-history) and see _'history works!'_.
+
+## P1: What you need to know
 
 You got this already, but just in case, here's some hints:
 
@@ -34,13 +37,9 @@ You got this already, but just in case, here's some hints:
   ```
 - Update `app-routing.module.ts` to import the component you want and create a path to it.
 
-### To Verify Your Solution is Correct
+## P1: solution
 
-If you've implemented the solution correctly you should be able to navigate to [http://localhost:4200/order-history](http://localhost:4200/order-history) and see _'history works!'_.
-
-### The solution
-
-First, run:
+✏️ First, run:
 
 ```bash
 ng g component order/history
@@ -48,61 +47,69 @@ ng g component order/history
 
 Then route to the component:
 
-__src/app/app-routing.module.ts__
+✏️ Update __src/app/app-routing.module.ts__
 
 @sourceref ./app-routing.module.ts
 @highlight 8, 27-30,only
 
-## Exercise: Add `HistoryComponent` to navigation
+## Problem 2: Add `HistoryComponent` to navigation
 
-### The Problem
+We want a user to be able to navigate to the HistoryComponent via a link in the main navigation.
 
-In this problem, we will:
+## P2: Technical Requirements
 
-- Add a __Order History__ link to the navigation bar at the top of the page.
-- Add the class name `active` to the link if we are on the `OrderHistory` page.
+1. Add a __Order History__ link to the navigation bar at the top of the page.
+2. Add the class name `active` to the link if we are on the `OrderHistory` page.
 
-### What you need to know
+## P2: What You Need to Know
 
 You've seen this before. Checkout how the __Home__ link works in
 `app.component.html`.
 
-### To Verify Your Solution is Correct
+## P2: How to Verify Your Solution is Correct
 
 If you've implemented the solution correctly you should now be able to navigate to <a href="http://localhost:4200/order-history" target="\_blank">http://localhost:4200/order-history</a> and see a list of all orders.
 
-### The solution
+## P2: Solution
 
-__src/app/app.component.html__
+✏️ Update __src/app/app.component.html__
 
 @sourceref ./app.component.html
 @highlight 11-13,only
 
-## Exercise: List all orders
+## Problem 3: List All Orders
 
-### The problem
+We want to be able to see a list of all created orders and their varying statuses of "new", "preparing", "delivery", and "delivered".
 
-In this exercise, we will:
+## P3: Technical Requirements
 
-- List all orders in the `HistoryComponent`.
-- Make sure the `<div>` for each order has a class name of _'order'_ and the
+1. List all orders in the `HistoryComponent`.
+2. Make sure the `<div>` for each order has a class name of _'order'_ and a class name that is the
   `order.status` value. Make sure you've created a new order.
 
-Start this exercise by:
+## P3: Setup
 
-1\. Copying the following into __src/app/order/history.component.ts__. You will fill out its
+1\. ✏️ Copy the following into __src/app/order/history.component.ts__. You will fill out its
 `getOrders` method.  The getters `newOrders`, `preparingOrders`, `deliveryOrders`, and `deliveredOrders` will be used later.
 
 @sourceref ./history.component.ts
 @highlight 18,22
 
-2\. Copy the following into __src/app/order/history.component.html__.  You will need to
+2\. ✏️ Copy the following into __src/app/order/history.component.html__.  You will need to
 iterate through orders and add the right class names to the outer `<div>` for each order.
 
 @sourceref ./0-history.component.html
 @highlight 9,10
 
-### What you need to know
+## P3: How to Verify Your Solution is Correct
+
+✏️ Update the menu-items spec file  __src/app/order/history/history.component.spec.ts__ to be:
+
+@sourceref ./history.component-1.spec.ts
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+
+## P3: What You Need to Know
 
 - How to import a service and get data out of it.  Hint: Import it and create a
   property in the constructor.
@@ -115,39 +122,31 @@ For this step, you'll need to know how to add multiple class names.  You can do 
 <div [ngClass]="['first','second']">
 ```
 
-### To Verify Your Solution is Correct
+## P3: Solution
 
-Update the menu-items spec file  __src/app/order/history/history.component.spec.ts__ to be:
-
-@sourceref ./history.component-1.spec.ts
-
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
-
-### The solution
-
-__src/app/order/history.component.ts__
+✏️ Update __src/app/order/history.component.ts__
 
 @sourceref ./history.component-solution.ts
 @highlight 2, 22, 31-35, only
 
-__src/app/order/history.component.html__
+✏️ Update __src/app/order/history.component.html__
 
 @sourceref ./history.component-1.html
 @highlight 9-10,only
 
-## Exercise: Creating a Child Component to Handle Order States
+## Problem 4: Creating a Child Component to Handle Order States
 
-### The problem
+We want to create a child component that will take a list of orders by status and display them, as well as actions a user can perform on an order.
 
-In this exercise, we will:
+## P4: Technical Requirements
 
-- Group the orders by status.
-- Allow the user to change the status of an order.
-- Allow the user to delete an order.
+1. Group the orders by status.
+2. Allow the user to change the status of an order.
+3. Allow the user to delete an order.
 
 __NOTE!!__ To see that an order has changed, you will have to refresh the page!
 
-To complete this we will:
+To solve this problem:
 
 - Create a `ListComponent` in __src/app/order/list/list.component.ts__ that will take a list
   of orders and other values like:
@@ -175,43 +174,39 @@ To complete this we will:
   - `delete(order._id)` that will delete an order
   - `total(items)` that will return the order total
 
+## P4: Setup
 
-Before staring, follow these steps:
-
-1\. Create the `ListComponent`:
+1\. ✏️ Create the `ListComponent`:
 
 ```shell
 ng g component order/list
 ```
 
-2\. Update __src/app/order/history.component.html__ to use `<pmo-list>`:
+2\. ✏️ Update __src/app/order/history.component.html__ to use `<pmo-list>`:
 
 @sourceref ./history.component.html
 @highlight 9-45,only
 
-
-3\. Update __src/app/order/list/list.component.html__ to its final html:
+3\. ✏️ Update __src/app/order/list/list.component.html__ to its final html:
 
 @sourceref ./list.component.html
 
-### What you need to know
+## P4: How to Verify Your Solution is Correct
 
-You'll need to remember how to:
-
-- Add `@Input()`s to a component so it can be passed values.
-- Call methods on a service that you get from the `constructor`.
-
-### To Verify Your Solution is Correct
-
-Update the menu-items spec file  __src/app/order/list/list.component.spec.ts__ to be:
+✏️ Update the menu-items spec file  __src/app/order/list/list.component.spec.ts__ to be:
 
 @sourceref ./list.component.spec.ts
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
->
-### The solution
 
-__src/app/order/list.component.ts__
+## P4: What You Need to Know
+
+- How to add `@Input()`s to a component so it can be passed values.
+- How to call methods on a service that you get from the `constructor`.
+
+## P4: Solution
+
+✏️ Update __src/app/order/list.component.ts__
 
 @sourceref ./list.component.ts
 @highlight 2,11-17,19,23-39
