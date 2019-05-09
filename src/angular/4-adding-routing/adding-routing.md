@@ -51,6 +51,16 @@ If you have completed the exercise successfully you should be able to see the ho
 
 ## What You Need to Know
 
+## Router Outlet
+
+<a href="https://angular.io/api/router/RouterOutlet" target="_blank">`RouterOutlet`</a> is an Angular directive that is a placeholder for content that is filled when the route changes. In this example the `HomeComponent` template or the `AboutComponent` template are shown below the `<router-outlet>` element as the route changes.
+
+@sourceref ./path-route.html
+@codepen
+@highlight 31, only
+
+## Router
+
 To be able to navigate between different views in our app, we can take advantage of Angular's built-in routing module. We already told Angular we'd like to set up routing, so it generated `src/app/app-routing.module.ts` for us and included it in our root module. `src/app/app-routing.module.ts` currently looks like:
 
 ```typescript
@@ -102,7 +112,7 @@ As our applications grow, it doesn't make sense to load all the code at once. Th
 
 ## <base-href>
 
-In our index.html file, the angular cli included `<base href="/>`. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base" target="\_blank">here</a>, but it's important to know this is how the Angular router will how to compose URLs - the value in the "href" attribute specifies the base URL for all relative URLs contained in the app.
+In our index.html file, the angular cli included `<base href="/>`. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base" target="\_blank">here</a>, but it's important to know this is how the Angular router will how to compose URLs - the value in the "href" attribute specifies the base URL for all relative URLs contained in the app. If you'd like to serve your app from a different directory(where ever the index.html will be served from) or have a specific hosting url that your app will be deployed at you will need to change the `base href` to match.
 
 ```html
 <!doctype html>
