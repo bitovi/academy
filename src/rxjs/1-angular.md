@@ -5,6 +5,12 @@
 
 @body
 
+## Video
+
+Who has time to read?  This video covers the content on this page. Watch fullscreen.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/OAc-n1HK8ng" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## The problem
 
 In this section, we will:
