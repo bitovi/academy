@@ -63,6 +63,12 @@ Like most modern JS frameworks, Angular provides us a way of displaying data dyn
 @codepen
 @highlight 17,21,only
 
+Data can also be passed to child components. Data can be passed with expression context to determine if passed data is just a string for example, or a property on the component class. This example shows passing data as a string as well as a component member using the `[ ]` syntax.
+
+@sourceref ./child-data.html
+@codepen
+@highlight 30-32,only
+
 ## P1: Technical Requirements
 
 Create a component that displays a title read from a component's `title` member.

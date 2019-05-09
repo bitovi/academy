@@ -88,7 +88,7 @@ The following is an example of a path being built from different pieces of data.
 
 ## RouterLinkActive
 
-The <a href="https://angular.io/api/router/RouterLinkActive" target="\_blank">routerLinkActive</a> directive lets you add a CSS class to an element when the link's route becomes active.
+The <a href="https://angular.io/api/router/RouterLinkActive" target="\_blank">routerLinkActive</a> directive lets you add a CSS class to an element when the link's route becomes active. Angular looks at the path to determine if the route is active and will return true if any of the path matches, meaning when a path contains a "child" segment the route active status will still return true. If exact specificity is needed, `[routerLinkActiveOptions]="{exact: true}"` can be used.
 
 ### Adding a Basic Active Class
 
