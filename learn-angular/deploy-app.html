@@ -189,7 +189,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-components.html"
-							title="Learn how to create basic components in Angular.">
+							title="Learn how to create basic components in Angular and iterate through data using an Angular for loop.">
 							Creating Components
 						</a>
 						
@@ -204,7 +204,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-pipes.html"
-							title="Learn how to create a custom pipe in Angular.">
+							title="Learn how to create a custom pipe in Angular that returns a modified version of a string.">
 							Creating Pipes
 						</a>
 						
@@ -339,7 +339,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="writing-unit-tests.html"
-							title="Write a service unit test">
+							title="Write a unit test for a service in Angular">
 							Writing Unit Tests
 						</a>
 						
@@ -537,13 +537,13 @@ covering CanJS core libraries.">
 </ol>
 <h2>Deploy App</h2>
 <p>We need to get our app ready to deploy, so we'll create a build with the production flag.</p>
-<pre><code class="language-shell">ng build --production
+<pre><code class="language-shell">ng build --prod
 </code></pre>
 <pre><code class="language-shell">firebase deploy
 firebase open hosting:site
 </code></pre>
 <p>Now when we view our project url from the page Firebase launches we'll see our app!</p>
-<h2>Update npm scrips</h2>
+<h2>Update npm scripts</h2>
 <pre><code class="language-json"> &quot;scripts&quot;: {
     &quot;ng&quot;: &quot;ng&quot;,
     &quot;start&quot;: &quot;ng serve --proxy-config proxy.conf.json&quot;,

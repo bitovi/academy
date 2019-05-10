@@ -190,7 +190,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-components.html"
-							title="Learn how to create basic components in Angular.">
+							title="Learn how to create basic components in Angular and iterate through data using an Angular for loop.">
 							Creating Components
 						</a>
 						
@@ -205,7 +205,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-pipes.html"
-							title="Learn how to create a custom pipe in Angular.">
+							title="Learn how to create a custom pipe in Angular that returns a modified version of a string.">
 							Creating Pipes
 						</a>
 						
@@ -343,7 +343,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="writing-unit-tests.html"
-							title="Write a service unit test">
+							title="Write a unit test for a service in Angular">
 							Writing Unit Tests
 						</a>
 						
@@ -507,188 +507,24 @@ covering CanJS core libraries.">
 <li>Call <code>getRestaurants()</code> method in component</li>
 <li>Change restaurant markup to use new restaurant object</li>
 </ul>
-<h2>Exercise 1: Make RestaurantComponent use the <code>getRestaurants</code> function</h2>
+<h2>Problem 1: Make RestaurantComponent Use the <code>getRestaurants</code> Function</h2>
 <p>In this section, we will change <code>RestaurantComponent</code> to actually get
 data from the service API.  Instead of two hard coded restaurants, we will
 see a longer list:</p>
 <p><img src="../static/img/angular/7-data-into-view/1-after.png"
 style="border: solid 1px black; max-width: 640px;"/></p>
-<p>We will do this by:</p>
-<ul>
-<li>Changing <code>RestaurantComponent</code>'s <em>restaurant</em> property definition:
+<h2>P1: Technical Requirements</h2>
+<ol>
+<li>Change <code>RestaurantComponent</code>'s <em>restaurant</em> property definition:</li>
+</ol>
 <pre><code class="language-typescript">public restaurants: any[] = [];
-</code></pre></li>
-<li>Using <code>RestaurantService</code>'s <code>getRestaurants</code> to get an array of restaurants and
+</code></pre>
+<ol start="2">
+<li>Use <code>RestaurantService</code>'s <code>getRestaurants</code> to get an array of restaurants and
 set it on <code>RestaurantComponent</code>'s <em>restaurant</em> property.</li>
-</ul>
-<h2>E1: What you need to know</h2>
-<p>To solve this exercise, you will need to know how to:</p>
-<ul>
-<li>Inject a service into a component</li>
-<li>Subscribe to an observable</li>
-</ul>
-<blockquote>
-<p>Hint: Call the <code>getRestaurants</code> method in the <code>ngOnInit</code> method.</p>
-</blockquote>
-<h2>Inject a Service into Component</h2>
-<p>To use a service in a component, we use dependency injection to pass the service in the component constructor function. We're then able to access methods on it for use in our component.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
-&lt;base href=&quot;/&quot;&gt;
-&lt;my-app&gt;&lt;/my-app&gt;
-&lt;script type=&quot;typescript&quot;&gt;
-const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
-const { BrowserModule } = ng.platformBrowser;
-const { CommonModule } = ng.common;
-const { Routes, RouterModule } = ng.router;
-
-@Injectable({
-  providedIn: 'root'
-})
-class UsersService {
-  private users = [
-  {
-    name: 'Jennifer',
-    id: 1,
-    role: 'admin'
-  },
-  {
-    name: 'Steve',
-    id: 2,
-    role: 'user'
-  },
-  {
-    name: 'Alice',
-    id: 3,
-    role: 'developer'
-  }]
-
-  constructor() { }
-
-  getUsers() {
-    return this.users;
-  }
-
-  getUser(id: number) {
-    return this.users.find(x =&gt; x.id === id)
-  }
-}
-
-@Component({
-  selector: 'my-app',
-  template: `
-    &lt;ul class=&quot;nav&quot;&gt;
-      &lt;li routerLinkActive=&quot;active&quot;&gt;
-        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;router-outlet&gt;&lt;/router-outlet&gt;
-  `
-})
-class AppComponent {
-  constructor() {}
-}
-
-@Component({
-  selector: 'about-component',
-  template: `
-    &lt;p&gt;An about component!&lt;/p&gt;
-  `
-})
-class AboutComponent {
-  constructor() {
-  }
-}
-
-@Component({
-  selector: 'home-component',
-  template: `
-    &lt;p&gt;A home component!&lt;/p&gt;
-    &lt;ul&gt;
-      &lt;li *ngFor=&quot;let user of users&quot;&gt;
-        {{user.name}}
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  `
-})
-class HomeComponent implements OnInit{
-  private users: any[] = [];
-
-  constructor(private usersService: UsersService) {
-  
-  }
-
-  ngOnInit() {
-    this.users = this.usersService.getUsers();
-  }
-}
-//THIS IS A HACK JUST FOR CODEPEN TO WORK
-HomeComponent.parameters = [UsersService];
-
-const routes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: '**', component: HomeComponent }
-]
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-class AppRoutingModule { }
-
-                 
-@NgModule({
-  declarations: [AppComponent, AboutComponent, HomeComponent],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    AppRoutingModule
-  ],
-  bootstrap: [AppComponent],
-  providers: []
-})
-class AppModule {}
-
-const { platformBrowserDynamic } = ng.platformBrowserDynamic;
-
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch(err =&gt; console.error(err));
-&lt;/script&gt;
-
-
-</code></pre>
-<div class='codepen'></div>
-<div line-highlight='90,only'></div>
-<h2>Subscribe to an observable</h2>
-<p>The result of <code>getRestaurants()</code> is an observable. Use <a href="https://rxjs-dev.firebaseapp.com/guide/subscription">subscribe</a> to listen to when
-an RxJS observable changes:</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;typescript&quot;&gt;
-const {Observable} = rxjs;
-
-const observable = Observable.create(function (observer) {
-  observer.next(1);
-  observer.next(2);
-  observer.next(3);
-});
-
-observable.subscribe( function subscriber( value ){
-    console.log('got value ' + value);
-    // Logs 1, 2, 3
-} );
-&lt;/script&gt;
-</code></pre>
-<div class='codepen'></div>
-<div line-highlight='11'></div>
-<h2>E1: To verify solution</h2>
-<p>You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>!</p>
+</ol>
+<h2>P1: How to Verify Your Solution is Correct</h2>
+<p>You should be able see a list of all restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>, instead of the two that were previously hard-coded.</p>
 <p>✏️ Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -965,7 +801,172 @@ describe('RestaurantComponent', () =&gt; {
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h2>E1: Solution</h2>
+<h2>P1: What You Need to Know</h2>
+<ul>
+<li>How to inject a service into a component</li>
+<li>How to subscribe to an observable</li>
+</ul>
+<blockquote>
+<p>Hint: Call the <code>getRestaurants</code> method in the <code>ngOnInit</code> method.</p>
+</blockquote>
+<h2>Inject a Service into a Component</h2>
+<p>To use a service in a component, we use dependency injection to pass the service in the component constructor function. We're then able to access methods on it for use in our component.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { Routes, RouterModule } = ng.router;
+
+@Injectable({
+  providedIn: 'root'
+})
+class UsersService {
+  private users = [
+  {
+    name: 'Jennifer',
+    id: 1,
+    role: 'admin'
+  },
+  {
+    name: 'Steve',
+    id: 2,
+    role: 'user'
+  },
+  {
+    name: 'Alice',
+    id: 3,
+    role: 'developer'
+  }]
+
+  constructor() { }
+
+  getUsers() {
+    return this.users;
+  }
+
+  getUser(id: number) {
+    return this.users.find(x =&gt; x.id === id)
+  }
+}
+
+@Component({
+  selector: 'my-app',
+  template: `
+    &lt;ul class=&quot;nav&quot;&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  `
+})
+class AppComponent {
+  constructor() {}
+}
+
+@Component({
+  selector: 'about-component',
+  template: `
+    &lt;p&gt;An about component!&lt;/p&gt;
+  `
+})
+class AboutComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'home-component',
+  template: `
+    &lt;p&gt;A home component!&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li *ngFor=&quot;let user of users&quot;&gt;
+        {{user.name}}
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  `
+})
+class HomeComponent implements OnInit{
+  private users: any[] = [];
+
+  constructor(private usersService: UsersService) {
+  
+  }
+
+  ngOnInit() {
+    this.users = this.usersService.getUsers();
+  }
+}
+//THIS IS A HACK JUST FOR CODEPEN TO WORK
+HomeComponent.parameters = [UsersService];
+
+const routes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: '**', component: HomeComponent }
+]
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+class AppRoutingModule { }
+
+                 
+@NgModule({
+  declarations: [AppComponent, AboutComponent, HomeComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    AppRoutingModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='90,only'></div>
+<h2>Subscribe to an Observable</h2>
+<p>The result of <code>getRestaurants()</code> is an observable. Use <a href="https://rxjs-dev.firebaseapp.com/guide/subscription">subscribe</a> to listen to when
+an RxJS observable changes:</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const {Observable} = rxjs;
+
+const observable = Observable.create(function (observer) {
+  observer.next(1);
+  observer.next(2);
+  observer.next(3);
+});
+
+observable.subscribe( function subscriber( value ){
+    console.log('got value ' + value);
+    // Logs 1, 2, 3
+} );
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='11'></div>
+<h2>P1: Solution</h2>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong> as follows:</p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 import { RestaurantService, ResponseData } from './restaurant.service';
@@ -990,14 +991,14 @@ export class RestaurantComponent implements OnInit {
 
 </code></pre>
 <div line-highlight='2,3,11,13,16-18'></div>
-<h2>Exercise 2: Show a loading state while restaurants are being requested</h2>
-<p>Sometimes the server can take a long time to respond. Lets update <code>RestaurantComponent</code>
+<h2>Problem 2: Show a Loading State while Restaurants are Being Requested</h2>
+<p>Sometimes the server can take a long time to respond. It's a better experience for the user
 to show a loading icon to the user while data is loading:</p>
 <p>TODO:</p>
 <p>This icon will be shown with the following HTML:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurant loading&quot;&gt;&lt;/div&gt;
 </code></pre>
-<p>To complete this exercise, we will:</p>
+<h2>P2: Technical Requirements</h2>
 <ol>
 <li><p>Create a new interface <code>Data</code> that represents the following object:</p>
 <pre><code class="language-js">let data = {
@@ -1005,19 +1006,14 @@ to show a loading icon to the user while data is loading:</p>
   isPending: false //boolean
 }
 </code></pre></li>
-<li><p>Change the <code>restaurants</code> member to use the new <code>Data</code> type.</p></li>
+<li><p>Change the <code>restaurants</code> member to use the new <code>Data</code> type in the <code>RestaurantsComponent</code>.</p></li>
 <li><p>Right before you call the <code>getRestaurants</code> method, set the restaurants <code>isPending</code> value to true.</p></li>
 <li><p>Once the <code>getRestaurants</code> response is received, set the restaurants <code>value</code> to the response data and <code>isPending</code> value to false.</p></li>
 <li><p>Update the html to match the new restaurant object values and to show the following HTML while <code>isPending</code> is true:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurant loading&quot;&gt;&lt;/div&gt;
 </code></pre></li>
 </ol>
-<h2>E2: What you need to know</h2>
-<ul>
-<li>How to write an interface (you learned this in the previous section! ✔️)</li>
-<li>How to conditionally show html blocks (you learned this in a previous section! ✔️)</li>
-</ul>
-<h2>E2: To Verify Solution</h2>
+<h2>P2: To Verify Solution</h2>
 <p>You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>!</p>
 <p>✏️ Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
@@ -1317,7 +1313,12 @@ describe('RestaurantComponent', () =&gt; {
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h2>E2: Solution</h2>
+<h2>P2: What You Need to Know</h2>
+<ul>
+<li>How to write an interface (you learned this in the previous section! ✔️)</li>
+<li>How to conditionally show html blocks (you learned this in a previous section! ✔️)</li>
+</ul>
+<h2>P2: Solution</h2>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong> to:</p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 import { RestaurantService, ResponseData } from './restaurant.service';

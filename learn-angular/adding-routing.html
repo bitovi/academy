@@ -190,7 +190,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-components.html"
-							title="Learn how to create basic components in Angular.">
+							title="Learn how to create basic components in Angular and iterate through data using an Angular for loop.">
 							Creating Components
 						</a>
 						
@@ -205,7 +205,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-pipes.html"
-							title="Learn how to create a custom pipe in Angular.">
+							title="Learn how to create a custom pipe in Angular that returns a modified version of a string.">
 							Creating Pipes
 						</a>
 						
@@ -343,7 +343,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="writing-unit-tests.html"
-							title="Write a service unit test">
+							title="Write a unit test for a service in Angular">
 							Writing Unit Tests
 						</a>
 						
@@ -507,8 +507,10 @@ covering CanJS core libraries.">
 <li>Hook the router outlet into our markup</li>
 <li>Test that new routes are working</li>
 </ul>
-<h2>The problem</h2>
-<p>We need to set up routes for the home view and restaurant view. When the route is <code>''</code>, the <code>HomeComponent</code> should display, and when the route is <code>/restaurants</code> the <code>RestaurantComponent</code> should display. We will make these changes in <strong>src/app/app-routing.module.ts</strong>.</p>
+<h2>Problem</h2>
+<p>We need to set up routes for the home view and restaurant view.</p>
+<h2>Technical Requirements</h2>
+<p>Create routes for the <code>HomeComponent</code> and <code>RestaurantComponent</code>. When the route is <code>''</code>, the <code>HomeComponent</code> should display, and when the route is <code>/restaurants</code> the <code>RestaurantComponent</code> should display. These changes should be made in <strong>src/app/app-routing.module.ts</strong>.</p>
 <p>Notice that you will be able to click the <strong>Choose a Restaurant</strong> button
 at the end of this tutorial:</p>
 <video controls style="border: solid 1px black; max-width: 640px;">
@@ -516,15 +518,118 @@ at the end of this tutorial:</p>
   <source src="../static/img/angular/4-adding-routing/after.mp4" type="video/mp4">
 </video>
 <h2>Setup</h2>
-<p><code>&lt;router-outlet&gt;</code>, which handles routing to a component based on a url, was added to our <strong>src/app/app.component.html</strong> file during our initial app creation. But since that time, we added components to that view.  Lets remove those components because <code>&lt;router-outlet&gt;</code> will handle showing
+<p><code>&lt;router-outlet&gt;</code>, which handles routing to a component based on a url, was added to our <strong>src/app/app.component.html</strong> file when we first generated our app and answered <code>yes</code> to the routing question. But since that time, we added components to that view.  Lets remove those components because <code>&lt;router-outlet&gt;</code> will handle showing
 those components going forward.</p>
 <p>✏️ Update <strong>src/app/app.component.html</strong> to:</p>
 <pre><code class="language-html">&lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;
 &lt;router-outlet&gt;&lt;/router-outlet&gt;
 </code></pre>
 <div line-highlight='1-2,only'></div>
-<h2>What you need to know</h2>
-<p>To be able to navigate between different views in our app, we'll need routing. We already told Angular we'd like to set up routing, so it generated <code>src/app/app-routing.module.ts</code> for us and included it in our root module. <code>src/app/app-routing.module.ts</code> currently looks like:</p>
+<h2>How to Verify Your Solution is Correct</h2>
+<p>If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>. You may have noticed the <code>routerLink</code> attribute on the <code>&lt;a&gt;</code> tag in our home component markup. This one of the ways we link to specific routes in our app. When you click that link, you should see the restaurants component.</p>
+<pre><code class="language-html">&lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;&gt;
+  Choose a Restaurant
+&lt;/a&gt;
+</code></pre>
+<h2>What You Need to Know</h2>
+<h2>Router Outlet</h2>
+<p><a href="https://angular.io/api/router/RouterOutlet" target="_blank"><code>RouterOutlet</code></a> is an Angular directive that is a placeholder for content that is filled when the route changes. In this example the <code>HomeComponent</code> template or the <code>AboutComponent</code> template are shown below the <code>&lt;router-outlet&gt;</code> element as the route changes.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//unpkg.com/mock-url@^5.0.0&quot; type=&quot;module&quot;&gt;&lt;/script&gt;
+&lt;mock-url pushstate:from=&quot;true&quot;&gt;&lt;/mock-url&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { Routes, RouterModule } = ng.router;
+
+@Component({
+  selector: 'my-app',
+  template: `
+    &lt;ul class=&quot;nav&quot;&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+          &lt;a routerLink=&quot;&quot; &gt;Home&lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  `
+})
+class AppComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'about-component',
+  template: `
+    &lt;p&gt;An about component!&lt;/p&gt;
+  `
+})
+class AboutComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'home-component',
+  template: `
+    &lt;p&gt;A home component!&lt;/p&gt;
+  `
+})
+class HomeComponent {
+  constructor() {
+  }
+}
+
+const routes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: '**', component: HomeComponent }
+]
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+class AppRoutingModule { }
+
+                 
+@NgModule({
+  declarations: [AppComponent, AboutComponent, HomeComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    AppRoutingModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='31, only'></div>
+<h2>Router</h2>
+<p>To be able to navigate between different views in our app, we can take advantage of Angular's built-in routing module. We already told Angular we'd like to set up routing, so it generated <code>src/app/app-routing.module.ts</code> for us and included it in our root module. <code>src/app/app-routing.module.ts</code> currently looks like:</p>
 <pre><code class="language-typescript">import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -560,14 +665,14 @@ const { Routes, RouterModule } = ng.router;
 @Component({
   selector: 'my-app',
   template: `
-  &lt;ul class=&quot;nav&quot;&gt;
-    &lt;li routerLinkActive=&quot;active&quot;&gt;
-      &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li routerLinkActive=&quot;active&quot;&gt;
-        &lt;a routerLink=&quot;&quot; &gt;Home&lt;/a&gt;
+    &lt;ul class=&quot;nav&quot;&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
       &lt;/li&gt;
-  &lt;/ul&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+          &lt;a routerLink=&quot;&quot; &gt;Home&lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
     &lt;router-outlet&gt;&lt;/router-outlet&gt;
   `
 })
@@ -986,7 +1091,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='114, only'></div>
 <h2>&lt;base-href&gt;</h2>
-<p>In our index.html file, the angular cli included <code>&lt;base href=&quot;/&gt;</code>. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base" target="\_blank">here</a>, but it's important to know this is how the Angular router will how to compose URLs - the value in the &quot;href&quot; attribute specifies the base URL for all relative URLs contained in the app.</p>
+<p>In our index.html file, the angular cli included <code>&lt;base href=&quot;/&gt;</code>. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base" target="\_blank">here</a>, but it's important to know this is how the Angular router will how to compose URLs - the value in the &quot;href&quot; attribute specifies the base URL for all relative URLs contained in the app. If you'd like to serve your app from a different directory(where ever the index.html will be served from) or have a specific hosting url that your app will be deployed at you will need to change the <code>base href</code> to match.</p>
 <pre><code class="language-html">&lt;!doctype html&gt;
 &lt;html lang=&quot;en&quot;&gt;
     &lt;head&gt;
@@ -1003,13 +1108,7 @@ platformBrowserDynamic()
 &lt;/html&gt;
 </code></pre>
 <div line-highlight='6'></div>
-<h2>Verify Solution</h2>
-<p>If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>. You may have noticed the <code>routerLink</code> attribute on the <code>&lt;a&gt;</code> tag in our home component markup. This one of the ways we link to specific routes in our app. When you click that link, you should see the restaurants component.</p>
-<pre><code class="language-html">&lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;&gt;
-  Choose a Restaurant
-&lt;/a&gt;
-</code></pre>
-<h2>The Solution</h2>
+<h2>Solution</h2>
 <p>✏️ Update <strong>src/app/app-routing.module.ts</strong> to:</p>
 <pre><code class="language-ts">import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -1072,7 +1171,7 @@ export class AppRoutingModule { }
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/4-adding-routing/adding-routing.md"},"description":"Learn how to add basic routing to components in an Angular application. \n","name":"learn-angular/adding-routing","title":"Adding Routing","type":"page","parent":"learn-angular","order":4,"comment":" ","ngmodule":"({","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/4-adding-routing/adding-routing.md"},"description":"Learn how to add basic routing to components in an Angular application. \n","name":"learn-angular/adding-routing","title":"Adding Routing","type":"page","parent":"learn-angular","order":4,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"ngmodule":"({","pathToRoot":"../.."};
     </script>
 
     

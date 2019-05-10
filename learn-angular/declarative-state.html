@@ -190,7 +190,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-components.html"
-							title="Learn how to create basic components in Angular.">
+							title="Learn how to create basic components in Angular and iterate through data using an Angular for loop.">
 							Creating Components
 						</a>
 						
@@ -205,7 +205,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-pipes.html"
-							title="Learn how to create a custom pipe in Angular.">
+							title="Learn how to create a custom pipe in Angular that returns a modified version of a string.">
 							Creating Pipes
 						</a>
 						
@@ -343,7 +343,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="writing-unit-tests.html"
-							title="Write a service unit test">
+							title="Write a unit test for a service in Angular">
 							Writing Unit Tests
 						</a>
 						
@@ -880,9 +880,9 @@ rendered and subscribes, it will receive the successful HTTP request and render 
 <li><a href="https://medium.com/@benlesh/hot-vs-cold-observables-f8094ed53339">Hot vs Cold Observables</a></li>
 <li><a href="https://itnext.io/the-magic-of-rxjs-sharing-operators-and-their-differences-3a03d699d255">The Magic Of RxJS Sharing Operators</a></li>
 </ul>
-<h2>Exercise: Update states, cities &amp; restaurants to be observables</h2>
-<h3>The Problem</h3>
+<h2>Problem</h2>
 <p>Convert the imperatively managed state in the restaurant component to declarative state.</p>
+<h2>Technical Requirements</h2>
 <p>When you're finished the component members <code>state</code>, <code>cities</code> &amp; <code>restaurants</code> will be of the types <code>Observable&lt;Data&lt;State&gt;&gt;</code>,
 <code>Observable&lt;Data&lt;City&gt;&gt;</code> and <code>Observable&lt;Data&lt;Restaurant&gt;&gt;</code> respectively. Each will be defined as a set of RxJS
 operators that either produce values from a response emitted by a service layer request, or produce values from changes
@@ -897,23 +897,8 @@ state select control has been changed</li>
 <li><code>stateSelectDisabled</code> which disables the state select control if loading is ongoing</li>
 <li><code>citySelectDisabled</code> which disables the city select control if loading is ongoing or no values are available</li>
 </ul>
-<h3>What You Need To Know</h3>
-<ul>
-<li>How to perform common RxJS operations like:
-<ul>
-<li>setting the initial value to be emitted</li>
-<li>transforming a value emitted</li>
-<li>conditionally emit values into a stream from another stream</li>
-<li>merge streams into a single stream of values</li>
-<li>merge streams into a stream of arrays with values from each input stream</li>
-<li>use a BehaviorSubject to capture the state of a form element</li>
-<li>multicasting emissions of a &quot;cold&quot; observable and handle late subscribers</li>
-</ul></li>
-</ul>
-<p>You've learnt all of the above as part of the earlier sections on this page! Completing the
-<a href="/learn-rxjs.html">Bitovi Academy's RxJS training</a> will help however.</p>
-<h3>How To Verify Your Solution Is Correct</h3>
-<p>Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
+<h2>How to Verify Your Solution is Correct</h2>
+<p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, timer } from 'rxjs';
@@ -1411,8 +1396,23 @@ describe('RestaurantComponent', () =&gt; {
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h3>The Solution</h3>
-<p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
+<h2>What You Need to Know</h2>
+<ul>
+<li>How to perform common RxJS operations like:
+<ul>
+<li>setting the initial value to be emitted</li>
+<li>transforming a value emitted</li>
+<li>conditionally emit values into a stream from another stream</li>
+<li>merge streams into a single stream of values</li>
+<li>merge streams into a stream of arrays with values from each input stream</li>
+<li>use a BehaviorSubject to capture the state of a form element</li>
+<li>multicasting emissions of a &quot;cold&quot; observable and handle late subscribers</li>
+</ul></li>
+</ul>
+<p>You've learnt all of the above as part of the earlier sections on this page! Completing the
+<a href="/learn-rxjs.html">Bitovi Academy's RxJS training</a> will help however.</p>
+<h2>Solution</h2>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, of, combineLatest, merge } from 'rxjs';
 import { startWith, map, flatMap, shareReplay } from 'rxjs/operators';
@@ -1501,7 +1501,7 @@ export class RestaurantComponent implements OnInit {
 
 </code></pre>
 <div line-highlight='1-3, 13-18, 25-34, 37, 41-83, only'></div>
-<p><strong>src/app/restaurant/restaurant.component.html</strong></p>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
   &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
   &lt;form class=&quot;form&quot;&gt;

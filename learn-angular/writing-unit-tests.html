@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Write a service unit test 
+  <meta name="description" content="Write a unit test for a service in Angular 
 ">
   <title>Bitovi Academy - Writing Unit Tests</title>
   
@@ -190,7 +190,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-components.html"
-							title="Learn how to create basic components in Angular.">
+							title="Learn how to create basic components in Angular and iterate through data using an Angular for loop.">
 							Creating Components
 						</a>
 						
@@ -205,7 +205,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-pipes.html"
-							title="Learn how to create a custom pipe in Angular.">
+							title="Learn how to create a custom pipe in Angular that returns a modified version of a string.">
 							Creating Pipes
 						</a>
 						
@@ -340,7 +340,7 @@ covering CanJS core libraries.">
            						expanded">
 						<a class="page"
 							href="writing-unit-tests.html"
-							title="Write a service unit test">
+							title="Write a unit test for a service in Angular">
 							Writing Unit Tests
 						</a>
 						
@@ -487,7 +487,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Write a service unit test</p>
+    <p>Write a unit test for a service in Angular</p>
 
 </section>
 
@@ -503,188 +503,12 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this part, we will:</p>
 <ul>
-<li>Update a current unit test to match for our refactored service method</li>
 <li>Write a new getRestaurant method on our RestaurantsService</li>
 <li>Write a unit test for the getRestaurant method</li>
 </ul>
-<h2>Exercise: Refactor RestaurantService getRestaurants test</h2>
-<h3>The Problem</h3>
-<p>In the last section we updated the existing <code>getRestaurants</code> method on our RestaurantService. Update the unit test to test that the method works as desired by creating the correct url from parameters given.</p>
-<blockquote>
-<p>Hint - you can look at the getCities method test for an example.</p>
-</blockquote>
-<h3>The Solution</h3>
-<p><strong>src/app/restaurant/restaurant.service.spec.ts</strong></p>
-<pre><code class="language-ts">import { TestBed } from '@angular/core/testing';
-
-import { ResponseData, RestaurantService, State, City } from './restaurant.service';
-import { Restaurant } from './restaurant';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-
-describe('RestaurantService', () =&gt; {
-  let httpMock : HttpTestingController;
-  let restaurantService: RestaurantService;
-
-  beforeEach(() =&gt; TestBed.configureTestingModule({
-    imports: [HttpClientTestingModule],
-    providers: [
-      RestaurantService
-    ]
-  }));
-
-  beforeEach(() =&gt; {
-    httpMock = TestBed.get(HttpTestingController);
-    restaurantService = TestBed.get(RestaurantService);
-  })
-
-  it('should be created', () =&gt; {
-    expect(restaurantService).toBeTruthy();
-  });
- 
-  it('should make a get request to restaurants', () =&gt; {
-    const mockRestaurants = {
-      data: [{
-      &quot;name&quot;:&quot;Brunch Place&quot;,
-      &quot;slug&quot;:&quot;brunch-place&quot;,
-      &quot;images&quot;:{
-        &quot;thumbnail&quot;:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-        &quot;owner&quot;:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
-        &quot;banner&quot;:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;},
-        &quot;menu&quot;:{
-          &quot;lunch&quot;:[
-            {&quot;name&quot;:&quot;Ricotta Gnocchi&quot;,&quot;price&quot;:15.99},
-            {&quot;name&quot;:&quot;Garlic Fries&quot;,&quot;price&quot;:15.99},
-            {&quot;name&quot;:&quot;Charred Octopus&quot;,&quot;price&quot;:25.99}
-          ],
-          &quot;dinner&quot;:[
-            {&quot;name&quot;:&quot;Steamed Mussels&quot;,&quot;price&quot;:21.99},
-            {&quot;name&quot;:&quot;Roasted Salmon&quot;,&quot;price&quot;:23.99},
-            {&quot;name&quot;:&quot;Crab Pancakes with Sorrel Syrup&quot;,&quot;price&quot;:35.99}
-          ]
-        },
-        &quot;address&quot;:{
-          &quot;street&quot;:&quot;2451 W Washburne Ave&quot;,
-          &quot;city&quot;:&quot;Ann Arbor&quot;,&quot;state&quot;:&quot;MI&quot;,&quot;zip&quot;:&quot;53295&quot;},
-          &quot;_id&quot;:&quot;xugqxQIX5rPJTLBv&quot;
-        },
-        {
-          &quot;name&quot;:&quot;Taco Joint&quot;,
-          &quot;slug&quot;:&quot;taco-joint&quot;,
-          &quot;images&quot;:{
-            &quot;thumbnail&quot;:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-            &quot;owner&quot;:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
-            &quot;banner&quot;:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;},
-            &quot;menu&quot;:{
-              &quot;lunch&quot;:[
-                {&quot;name&quot;:&quot;Beef Tacos&quot;,&quot;price&quot;:15.99},
-                {&quot;name&quot;:&quot;Chicken Tacos&quot;,&quot;price&quot;:15.99},
-                {&quot;name&quot;:&quot;Guacamole&quot;,&quot;price&quot;:25.99}
-              ],
-              &quot;dinner&quot;:[
-                {&quot;name&quot;:&quot;Shrimp Tacos&quot;,&quot;price&quot;:21.99},
-                {&quot;name&quot;:&quot;Chicken Enchilada&quot;,&quot;price&quot;:23.99},
-                {&quot;name&quot;:&quot;Elotes&quot;,&quot;price&quot;:35.99}
-              ]
-            },
-            &quot;address&quot;:{
-              &quot;street&quot;:&quot;13 N 21st St&quot;,
-              &quot;city&quot;:&quot;Chicago&quot;,&quot;state&quot;:&quot;IL&quot;,&quot;zip&quot;:&quot;53295&quot;},
-              &quot;_id&quot;:&quot;xugqxQIX5dfgdgTLBv&quot;
-            }]
-          };
-
-    restaurantService.getRestaurants(&quot;IL&quot;,&quot;Chicago&quot;).subscribe((restaurants:ResponseData&lt;Restaurant&gt;) =&gt; {
-      expect(restaurants).toEqual(mockRestaurants);
-    });
-
-    let url = '/api/restaurants?filter%5Baddress.state%5D=IL&amp;filter%5Baddress.city%5D=Chicago';
-    //url parses to '/api/restaurants?filter[address.state]=IL&amp;filter[address.city]=Chicago'
-    const req = httpMock.expectOne(url);
-
-
-    expect(req.request.method).toEqual('GET');
-    req.flush(mockRestaurants);
-
-    httpMock.verify();
-  });
-
-  it('can set proper properties on restaurant type', () =&gt; {
-    let restaurant: Restaurant = {
-      name:&quot;Taco Joint&quot;,
-      slug:&quot;taco-joint&quot;,
-      images:{
-        thumbnail:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-        owner:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
-        banner:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
-      },
-      menu:{
-        lunch:[
-          {name:&quot;Beef Tacos&quot;,&quot;price&quot;:15.99},
-          {name:&quot;Chicken Tacos&quot;,&quot;price&quot;:15.99},
-          {name:&quot;Guacamole&quot;,&quot;price&quot;:25.99}
-        ],
-        dinner:[
-          {name:&quot;Shrimp Tacos&quot;,&quot;price&quot;:21.99},
-          {name:&quot;Chicken Enchilada&quot;,&quot;price&quot;:23.99},
-          {name:&quot;Elotes&quot;,&quot;price&quot;:35.99}
-        ]
-      },
-      address:{
-        street:&quot;13 N 21st St&quot;,
-        city:&quot;Chicago&quot;,&quot;state&quot;:&quot;IL&quot;,&quot;zip&quot;:&quot;53295&quot;
-      },
-      _id:&quot;xugqxQIX5dfgdgTLBv&quot;
-    }
-    //will error if interface isn't implemented correctly
-    expect(true).toBe(true);
-  });
-
-  it('should make a get request to states', () =&gt; {
-    const mockStates = {
-      data: [
-        {name: 'Missouri', short: 'MO'}
-      ]
-    };
-
-    restaurantService.getStates().subscribe((states: ResponseData&lt;State&gt;) =&gt; {
-      expect(states).toEqual(mockStates);
-    });
-
-    let url = '/api/states';
-    const req = httpMock.expectOne(url);
-
-    expect(req.request.method).toEqual('GET');
-    req.flush(mockStates);
-
-    httpMock.verify();
-  });
-
-  it('should make a get request to cities', () =&gt; {
-    const mockCities = {
-      data: [
-        {name: 'Kansas City', state: 'MO'}
-      ]
-    };
-
-    restaurantService.getCities('MO').subscribe((cities: ResponseData&lt;City&gt;) =&gt; {
-      expect(cities).toEqual(mockCities);
-    });
-
-    let url = '/api/cities?state=MO';
-    const req = httpMock.expectOne(url);
-    expect(req.request.method).toEqual('GET');
-    req.flush(mockCities);
-
-    httpMock.verify();
-  });
-
-});
-</code></pre>
-<div line-highlight='79,83,84'></div>
-<h2>Exercise: Write a new RestaurantService <code>getRestaurant</code> method &amp; write a test for it</h2>
-<h3>The Problem</h3>
+<h2>Problem</h2>
 <p>In the next section we're going to be creating a restaurant detail view. We'll need to have a method on our service that returns one restaurant from the list. Write this method and call it <code>getRestaurant</code>. It should take a string param &quot;slug&quot; and make a get request to the path <code>'/api/restaurants/slug-here'</code>. Then write a unit test for this method ensuring it makes the correct request and returns an object type of <code>Restaurant</code>.</p>
-<h3>What You Need to Know</h3>
+<h2>What You Need to Know</h2>
 <ul>
 <li><p>How to write a method on a service that takes a param. You've learned this in previous sections.</p></li>
 <li><p>How to write a unit test. Here's a codeblock to get you started:</p>
@@ -692,8 +516,8 @@ describe('RestaurantService', () =&gt; {
   });
 </code></pre></li>
 </ul>
-<h3>The Solution</h3>
-<p><strong>src/app/restaurant/restaurant.service.ts</strong></p>
+<h2>Solution</h2>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.service.ts</strong></p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Restaurant } from './restaurant';
@@ -739,7 +563,7 @@ export class RestaurantService {
 }
 </code></pre>
 <div line-highlight='40-42, only'></div>
-<p><strong>src/app/restaurant/restaurant.service.spec.ts</strong></p>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.service.spec.ts</strong></p>
 <pre><code class="language-ts">import { TestBed } from '@angular/core/testing';
 
 import { ResponseData, RestaurantService, State, City } from './restaurant.service';
@@ -983,7 +807,7 @@ describe('RestaurantService', () =&gt; {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/12-writing-unit-tests/writing-unit-tests.md"},"description":"Write a service unit test \n","name":"learn-angular/writing-unit-tests","title":"Writing Unit Tests","type":"page","parent":"learn-angular","order":12,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/12-writing-unit-tests/writing-unit-tests.md"},"description":"Write a unit test for a service in Angular \n","name":"learn-angular/writing-unit-tests","title":"Writing Unit Tests","type":"page","parent":"learn-angular","order":12,"comment":" ","pathToRoot":"../.."};
     </script>
 
     

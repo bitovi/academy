@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn how to create basic components in Angular. 
+  <meta name="description" content="Learn how to create basic components in Angular and iterate through data using an Angular for loop. 
 ">
   <title>Bitovi Academy - Creating Components</title>
   
@@ -190,7 +190,7 @@ covering CanJS core libraries.">
            						expanded">
 						<a class="page"
 							href="creating-components.html"
-							title="Learn how to create basic components in Angular.">
+							title="Learn how to create basic components in Angular and iterate through data using an Angular for loop.">
 							Creating Components
 						</a>
 						
@@ -208,7 +208,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-pipes.html"
-							title="Learn how to create a custom pipe in Angular.">
+							title="Learn how to create a custom pipe in Angular that returns a modified version of a string.">
 							Creating Pipes
 						</a>
 						
@@ -343,7 +343,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="writing-unit-tests.html"
-							title="Write a service unit test">
+							title="Write a unit test for a service in Angular">
 							Writing Unit Tests
 						</a>
 						
@@ -487,7 +487,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn how to create basic components in Angular.</p>
+    <p>Learn how to create basic components in Angular and iterate through data using an Angular for loop.</p>
 
 </section>
 
@@ -513,8 +513,181 @@ covering CanJS core libraries.">
 <li>Learn about pipes</li>
 <li>Create a pipe to create an image path</li>
 </ul>
-<h2>Setup: Adding Assets</h2>
-<p>To get our app up and running quicker so we can focus on the architecture, we'll import some pre-created styles and assets to save us time.</p>
+<h2>Problem 1: Creating a Home Component With a Dynamic Title Member</h2>
+<p>Let's begin to build out the main views of our app. We'll create a home view now,
+and restaurant list view in the next exercise.</p>
+<h2>P1: What You Need to Know</h2>
+<ul>
+<li>How to generate a new Angular component</li>
+<li>How to bind data in a component to it's template</li>
+</ul>
+<h2>Generate Components</h2>
+<p>In Angular, Components are the basic building blocks that help us craft the UI. They are classes that handle views, allow management of user interaction, and displaying information via data binding. Data binding is the term for connecting data or information to the UI. An example would be an input field that a user enters a value into.</p>
+<p>Recommended reading: <a href="https://angular.io/guide/lifecycle-hooks" target="\_blank" >Angular Lifecyle Hooks</a></p>
+<p>To generate a component class, you run:</p>
+<pre><code class="language-shell">ng g component home
+</code></pre>
+<p>This will create a new component for us and import it in our root module.</p>
+<pre><code class="language-code">├── src/
+|   ├── app/
+|   |   ├── home/
+|   |       |── home.component.ts
+|   |       |── home.component.spec.ts
+|   |       |── home.component.less
+|   |       |── home.component.html
+</code></pre>
+<p>Generated components have the same structure - a name.component.ts file that will contain the boilerplate code for the Angular component class. This class will also have a component decorator pointing to the name.component.less file for styles, and the name.component.html file for it's template. Styles and templates can also be written inline in the decorator with backticks to escape the code using the keys <code>style</code> and <code>template</code>.</p>
+<h2>Bind Data to Components</h2>
+<p>Like most modern JS frameworks, Angular provides us a way of displaying data dynamically in the DOM. Properties declared in a component can be used in the component template with double curly brace syntax: <code>{{myTitle}}</code></p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+// app.js
+const { Component, VERSION } = ng.core;
+
+@Component({
+  selector: 'my-app',
+  template: `
+   &lt;p&gt;{{myTitle}}&lt;/p&gt;
+  `
+})
+class AppComponent {
+  public myTitle: string = 'Hello world.';
+  constructor() {
+  }
+}
+
+// main.js
+const { BrowserModule } = ng.platformBrowser;
+const { NgModule } = ng.core;
+const { CommonModule } = ng.common;
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    CommonModule,
+  ],
+  declarations: [AppComponent],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='17,21,only'></div>
+<p>Data can also be passed to child components. Data can be passed with expression context to determine if passed data is just a string for example, or a property on the component class. This example shows passing data as a string as well as a component member using the <code>[ ]</code> syntax.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+// app.js
+const { Component, VERSION, Input } = ng.core;
+
+@Component({
+  selector: 'child-component',
+  template: `
+    &lt;p&gt;{{myData}}&lt;/p&gt;
+    &lt;p&gt;{{myObject | json}}&lt;/p&gt;
+  `
+})
+class ChildComponent {
+  @Input() myData: string;
+  @Input() myObject: any;
+  constructor() {}
+}
+
+@Component({
+  selector: 'my-app',
+  template: `
+   &lt;child-component myData=&quot;Hello string.&quot;&gt;&lt;/child-component&gt;
+   &lt;child-component [myData]=&quot;myTitle&quot;&gt;&lt;/child-component&gt;
+   &lt;child-component [myObject]=&quot;sillyObject&quot;&gt;&lt;/child-component&gt;
+  `
+})
+class AppComponent {
+  public myTitle: string = 'Hello world.';
+  public sillyObject = {
+    name: 'hello there',
+    id: 5
+  }
+  constructor() {
+  }
+}
+
+// main.js
+const { BrowserModule } = ng.platformBrowser;
+const { NgModule } = ng.core;
+const { CommonModule } = ng.common;
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    CommonModule,
+  ],
+  declarations: [AppComponent, ChildComponent],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='30-32,only'></div>
+<h2>P1: Technical Requirements</h2>
+<p>Create a component that displays a title read from a component's <code>title</code> member.</p>
+<p><img src="../static/img/angular/3-creating-components/home-component.png"
+style="border: solid 1px black; max-width: 640px;"/></p>
+<p>The component should provide the following HTML:</p>
+<pre><code class="language-html">&lt;div class=&quot;homepage&quot;&gt;
+  &lt;img src=&quot;./assets/images/homepage-hero.jpg&quot; alt=&quot;Restaurant table with glasses.&quot; width=&quot;250&quot; height=&quot;380&quot; /&gt;
+  &lt;h1&gt;&lt;!-- TITLE GOES HERE --&gt;&lt;/h1&gt;
+  &lt;p&gt;
+    We make it easier than ever to order gourmet food
+    from your favorite local restaurants.
+  &lt;/p&gt;
+  &lt;p&gt;
+     &lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;&gt;Choose a Restaurant&lt;/a&gt;
+  &lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<blockquote>
+<p>Notice the <code>TITLE GOES HERE</code> part of the HTML. <code>TITLE GOES HERE</code> should be replaced by
+something that reads the component's <code>title</code> property.</p>
+</blockquote>
+<p>The component's <code>title</code> member should have a string value of
+<code>&quot;Ordering food has never been easier&quot;</code>.</p>
+<h2>P1: Setup</h2>
+<p>To get this application up and running quicker so we can focus on the architecture, we'll import some pre-created styles and assets to save us time.</p>
 <p>✏️ Run:</p>
 <pre><code class="language-shell">npm install place-my-order-assets@0.1 --save
 </code></pre>
@@ -675,109 +848,8 @@ covering CanJS core libraries.">
 <div line-highlight='25-39,only'></div>
 <p><strong>Any time changes are made to the <code>angular.json</code> file, we need to restart our server to catch the new changes.</strong></p>
 <p>✏️ <strong>Restart your server.</strong></p>
-<h2>Exercise 1: Creating a Home Component With a Dynamic Title Member</h2>
-<p>Let's begin to build out the main views of our app. We'll create a home view now,
-and restaurant list view in the next exercise.</p>
-<p>We want to create a component that displays a title read from a component's <code>title</code> property.</p>
-<p><img src="../static/img/angular/3-creating-components/home-component.png"
-style="border: solid 1px black; max-width: 640px;"/></p>
-<p>The component should provide the following HTML:</p>
-<pre><code class="language-html">&lt;div class=&quot;homepage&quot;&gt;
-  &lt;img src=&quot;./assets/images/homepage-hero.jpg&quot; alt=&quot;Restaurant table with glasses.&quot; width=&quot;250&quot; height=&quot;380&quot; /&gt;
-  &lt;h1&gt;&lt;!-- TITLE GOES HERE --&gt;&lt;/h1&gt;
-  &lt;p&gt;
-    We make it easier than ever to order gourmet food
-    from your favorite local restaurants.
-  &lt;/p&gt;
-  &lt;p&gt;
-     &lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;&gt;Choose a Restaurant&lt;/a&gt;
-  &lt;/p&gt;
-&lt;/div&gt;
-</code></pre>
-<blockquote>
-<p>Notice the <code>TITLE GOES HERE</code> part of the HTML. <code>TITLE GOES HERE</code> should be replaced by
-something that reads the component's <code>title</code> property.</p>
-</blockquote>
-<p>The component's <code>title</code> property should have a string value of
-<code>&quot;Ordering food has never been easier&quot;</code>.</p>
-<h2>E1: What you need to know</h2>
-<p>To solve this, you will need to know how to:</p>
-<ul>
-<li>Generate a component.</li>
-<li>Bind data to the DOM.</li>
-</ul>
-<h2>Generate Components</h2>
-<p>In Angular, Components are the basic building blocks that help us craft the UI. They are classes that handle views, allow management of user interaction, and displaying information via data binding. Data binding is the term for connecting data or information to the UI. An example would be an input field that a user enters a value into.</p>
-<p>Recommended reading: <a href="https://angular.io/guide/lifecycle-hooks" target="\_blank" >Angular Lifecyle Hooks</a></p>
-<p>To generate a component class, you run:</p>
-<pre><code class="language-shell">ng g component home
-</code></pre>
-<p>This will create a new component for us and import it in our root module.</p>
-<pre><code class="language-code">├── src/
-|   ├── app/
-|   |   ├── home/
-|   |       |── home.component.ts
-|   |       |── home.component.spec.ts
-|   |       |── home.component.less
-|   |       |── home.component.html
-</code></pre>
-<h2>Binding Data to Components</h2>
-<p>Like all modern JS frameworks, Angular provides us a way of displaying data dynamically in the DOM. Properties declared in a component can be used in the component template with double curly brace syntax: <code>{{myTitle}}</code></p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
-&lt;my-app&gt;&lt;/my-app&gt;
-&lt;script type=&quot;typescript&quot;&gt;
-// app.js
-const { Component, VERSION } = ng.core;
-
-@Component({
-  selector: 'my-app',
-  template: `
-   &lt;p&gt;{{myTitle}}&lt;/p&gt;
-  `
-})
-class AppComponent {
-  public myTitle: string = 'Hello world.';
-  constructor() {
-  }
-}
-
-// main.js
-const { BrowserModule } = ng.platformBrowser;
-const { NgModule } = ng.core;
-const { CommonModule } = ng.common;
-
-@NgModule({
-  imports: [
-    BrowserModule,
-    CommonModule,
-  ],
-  declarations: [AppComponent],
-  bootstrap: [AppComponent],
-  providers: []
-})
-class AppModule {}
-
-const { platformBrowserDynamic } = ng.platformBrowserDynamic;
-
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch(err =&gt; console.error(err));
-&lt;/script&gt;
-
-
-</code></pre>
-<div class='codepen'></div>
-<div line-highlight='17,21,only'></div>
-<h2>E1: Setup</h2>
 <p>While we are building the component, it will be nice to see it in the
-application.  One of the ways components can be rendered is by putting them in markup. We'll do this by putting our <code>&lt;pmo-home&gt;&lt;/pmo-home&gt;</code> tag in our base app component markup.  To see the
+application. One of the ways components can be rendered is by putting them in markup. We'll do this by putting our <code>&lt;pmo-home&gt;&lt;/pmo-home&gt;</code> tag in our base app component markup.  To see the
 <code>&lt;pmo-home&gt;</code> component, do the following.</p>
 <p>✏️ Run:</p>
 <pre><code class="language-shell">ng g component home
@@ -803,8 +875,8 @@ application.  One of the ways components can be rendered is by putting them in m
 &lt;/div&gt;
 </code></pre>
 <p>Run <code>npm run start</code>, and your app should compile with no errors, and you'll be able to see the home component. Later we'll move the home component to it's own page with a unique route.</p>
-<h2>E1: Verify Solution</h2>
-<p>✏️  Update the spec file  <strong>src/app/home/home.component.spec.ts</strong> to be:</p>
+<h2>P1: How to Verify Your Solution is Correct</h2>
+<p>✏️ Update the spec file  <strong>src/app/home/home.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
@@ -849,8 +921,8 @@ describe('HomeComponent', () =&gt; {
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h2>E1: Solution</h2>
-<p><strong>src/app/home/home.component.html</strong></p>
+<h2>P1: Solution</h2>
+<p>✏️ Update <strong>src/app/home/home.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;homepage&quot;&gt;
   &lt;img src=&quot;./assets/images/homepage-hero.jpg&quot; alt=&quot;Restaurant table with glasses.&quot; width=&quot;250&quot; height=&quot;380&quot; /&gt;
   &lt;h1&gt;{{title}}&lt;/h1&gt;
@@ -882,34 +954,15 @@ export class HomeComponent implements OnInit {
 }
 </code></pre>
 <div line-highlight='9'></div>
-<h2>Exercise 2: Write Restaurant Component Markup that Displays a List of Restaurants</h2>
+<h2>Problem 2: Write Restaurant Component Markup that Displays a List of Restaurants</h2>
 <p>We want to display a list of restaurants in our UI once the data has been set on the restaurants member.  It will look like:</p>
 <p><img src="../static/img/angular/3-creating-components/restaurant-component.png"
 style="border: solid 1px black; max-width: 640px;"/></p>
 <blockquote>
 <p>Note: We will fix the missing images in the next step.</p>
 </blockquote>
-<p>Here is the markup to show for each restaurant:</p>
-<pre><code class="language-html">&lt;img src=&quot;{{restaurant.images.thumbnail}}&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
-&lt;h3&gt;{{restaurant.name}}&lt;/h3&gt;
-
-&lt;div class=&quot;address&quot; *ngIf=&quot;restaurant.address&quot;&gt;
-  {{restaurant.address.street}}&lt;br /&gt;{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
-&lt;/div&gt;
-
-&lt;div class=&quot;hours-price&quot;&gt;
-  $$$&lt;br /&gt;
-  Hours: M-F 10am-11pm
-  &lt;span class=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
-&lt;/div&gt;
-
-&lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
-  Details
-&lt;/a&gt;
-&lt;br /&gt;
-</code></pre>
-<h2>E2: What you need to know</h2>
-<p>To solve this exercise, you'll need to learn some of Angular's most common
+<h2>P2: What You Need to Know</h2>
+<p>To solve this exercise, you'll need to learn some of Angular's more common
 template directives. Template directives in Angular help us iterate through and manipulate data we've bound to the DOM. You'll need some of the following:</p>
 <ul>
 <li>*ngIf - conditionally show content.</li>
@@ -919,6 +972,7 @@ template directives. Template directives in Angular help us iterate through and 
 </ul>
 <h2>*ngIf</h2>
 <p><a href="https://angular.io/api/common/NgIf" target="\_blank">ngIf</a> is a structural directive that allows us to conditionally render content. It can be paired with <a href="https://angular.io/guide/structural-directives#the-ng-template" target="\_blank">ng-template</a> to render an <code>else</code> block.</p>
+<p>This example shows content blocks based on the value of boolean <code>showMyContent</code>.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -978,6 +1032,7 @@ platformBrowserDynamic()
 <div line-highlight='17-22, 26,only'></div>
 <h2>*ngFor</h2>
 <p><a href="https://angular.io/api/common/NgForOf" target="\_blank">ngFor</a> is a structural directive that allows to iteratively create content in our templates.</p>
+<p>This example displays each name in the <code>myList</code> array in an <code>li</code> tag.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1034,6 +1089,7 @@ platformBrowserDynamic()
 <div line-highlight='14-26,only'></div>
 <h2>ng-container</h2>
 <p><a href="https://angular.io/guide/structural-directives#ngcontainer" target="\_blank">ng-container</a> is an element that allows us to create template bindings without creating a DOM element. Only one structural directive is allowed per host element (to avoid confusion around which directive would take precedence) making this directive handy for when we have several logic directives to apply to content.</p>
+<p>This example shows using logic directives to display data without creating additional DOM elements.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1099,6 +1155,7 @@ platformBrowserDynamic()
 <div line-highlight='17-22,only'></div>
 <h2>ng-class</h2>
 <p>The <a href="https://angular.io/api/common/NgClass" target="\_blank">ng-class</a> directive is a way to set classes on elements based on boolean logic. ng-class can take a single class, an array of classes, key value pairs with boolean values, or regexes.</p>
+<p>This example shows various ways classes can be added to elements.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1229,7 +1286,28 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='17,19,23,only'></div>
-<h2>E2: Setup</h2>
+<h2>P2: Technical Requirements</h2>
+<p>Here is the markup to show for each restaurant:</p>
+<pre><code class="language-html">&lt;img src=&quot;{{restaurant.images.thumbnail}}&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
+&lt;h3&gt;{{restaurant.name}}&lt;/h3&gt;
+
+&lt;div class=&quot;address&quot; *ngIf=&quot;restaurant.address&quot;&gt;
+  {{restaurant.address.street}}&lt;br /&gt;{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
+&lt;/div&gt;
+
+&lt;div class=&quot;hours-price&quot;&gt;
+  $$$&lt;br /&gt;
+  Hours: M-F 10am-11pm
+  &lt;span class=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
+  Details
+&lt;/a&gt;
+&lt;br /&gt;
+</code></pre>
+<p>To solve this problem, use Angular directives to iterate through data and display properties of restaurants.</p>
+<h2>P2: Setup</h2>
 <p>Let's create our restaurant component as well. This will be a component that displays a list of restaurants.</p>
 <p>✏️ Run:</p>
 <pre><code class="language-shell">ng g component restaurant
@@ -1375,7 +1453,7 @@ found in the <a href="#exercise-2-write-restaurant-component-markup-that-display
 &lt;pmo-restaurant&gt;&lt;/pmo-restaurant&gt;
 </code></pre>
 <div line-highlight='4'></div>
-<h2>E2: Verify Solution</h2>
+<h2>P2: How to Verify Your Solution is Correct</h2>
 <p>✏️ Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -1447,7 +1525,7 @@ describe('RestaurantComponent', () =&gt; {
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h2>E2: Solution</h2>
+<h2>P2: Solution</h2>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong> to the following:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
   &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
@@ -1513,7 +1591,7 @@ describe('RestaurantComponent', () =&gt; {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/3-creating-components/creating-components.md"},"description":"Learn how to create basic components in Angular. \n","name":"learn-angular/creating-components","title":"Creating Components","type":"page","parent":"learn-angular","order":3,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/3-creating-components/creating-components.md"},"description":"Learn how to create basic components in Angular and iterate through data using an Angular for loop. \n","name":"learn-angular/creating-components","title":"Creating Components","type":"page","parent":"learn-angular","order":3,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

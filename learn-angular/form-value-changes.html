@@ -190,7 +190,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-components.html"
-							title="Learn how to create basic components in Angular.">
+							title="Learn how to create basic components in Angular and iterate through data using an Angular for loop.">
 							Creating Components
 						</a>
 						
@@ -205,7 +205,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-pipes.html"
-							title="Learn how to create a custom pipe in Angular.">
+							title="Learn how to create a custom pipe in Angular that returns a modified version of a string.">
 							Creating Pipes
 						</a>
 						
@@ -343,7 +343,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="writing-unit-tests.html"
-							title="Write a service unit test">
+							title="Write a unit test for a service in Angular">
 							Writing Unit Tests
 						</a>
 						
@@ -512,6 +512,14 @@ covering CanJS core libraries.">
 <li>Create new methods on our RestaurantService</li>
 <li>Learn about Generics</li>
 <li>Get state and city data in the Restaurant Component</li>
+</ul>
+<h2>Problem 1: Listen to Changes on the State and City formControls and log their value to the console</h2>
+<p>Our end goal is to be able to show restaurants based on state, then city. As we move through getting each piece of information from the user we want to be able to update the next step - like getting a list of cities based on the state selected. We'll implement this form functionality in a few small steps.</p>
+<h2>P1: What You Need to Know</h2>
+<ul>
+<li>How observables and subscriptions work</li>
+<li>How to subscribe to the valueChanges method on a FormGroup (or FormControl)</li>
+<li>How to unsubscribe from subscriptions</li>
 </ul>
 <h2>Observables and Subscriptions</h2>
 <p>For a more robust understanding of Observables, Subscriptions, and other RxJS core tenants check out our [RxJS RxJS guide]. For the following exercises, Observables are lazy collections of multiple values over time. We can subscribe to observables to get any new data, or create and add to Subscriptions of observables.</p>
@@ -999,7 +1007,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='53-55,only'></div>
-<h2>Call methods on FormControls</h2>
+<h2>Call Methods on FormControls</h2>
 <p>The ReactiveForms API makes it easy for us to change our FormControls as needed. As a reminder, the FormControl class extends the <a href="https://angular.io/api/forms/AbstractControl">AbstractControl</a> class which has a lot of helpful properties and methods on it. The following example shows enabling and disabling controls via the <code>enable</code> and <code>disable</code> methods, and displaying the <code>enabled</code> FormControl property.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1099,19 +1107,15 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='27-28,33-34,39-40,63-71,only'></div>
-<h2>Exercise: Listen to Changes on the State and City formControls and log their value to the console</h2>
-<h3>The problem</h3>
-<p>Our end goal is to be able to show restaurants based on state, then city. As we move through getting each piece of information from the user we want to be able to update the next step - like getting a list of cities based on the state selected. To start doing this, subscribe to the value changes of the two controls <code>state</code> and <code>city</code> and log their values to the console.</p>
-<h3>What you need to know</h3>
-<ul>
-<li>how observables and subscriptions work (you learned this in the section above! ✔️)</li>
-<li>how to subscribe to the valueChanges method on a FormGroup (or FormControl) (you learned this in the section above! ✔️)</li>
-<li>how to unsubscribe (you learned this in the section above! ✔️)</li>
-</ul>
-<h3>To Verify Your Solution is Correct</h3>
+<h2>P1: Technical Requirements</h2>
+<ol>
+<li>Subscribe to the <code>state</code> and <code>city</code> formControl value changes and log the resulting value to the console.</li>
+<li>Unsubscribe from subscription created in step 1 in the <code>ngOnDestroy</code> function</li>
+</ol>
+<h2>P1: To Verify Your Solution is Correct</h2>
 <p>When you interact with the dropdown menus, you should see their values logged to the console as you change them.</p>
-<h3>The Solution</h3>
-<p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
+<h2>P1: Solution</h2>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';
@@ -1195,16 +1199,11 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 </code></pre>
 <div line-highlight='1,3,18,36,53-57,65,67-78'></div>
 <p>Now that we know how to get values from our dropdowns, let's populate them with real data. We can get our list of states immediately, but to get our cities, we'll want to make an get request based on the state the user selected.</p>
-<h2>Exercise: Write service methods to get states and cities</h2>
-<h3>The Problem</h3>
-<p>Write two new methods in the <code>RestaurantsService</code> to get state and city lists.</p>
-<p>Method 1 - <code>getStates</code> takes no params and makes a request to <code>'/api/states'</code></p>
-<p>Method 2 - <code>getCities</code>, takes a string param called 'state' a makes a request to <code>'/api/cities?state=&quot;{state abbreviation here}&quot;'</code></p>
-<h3>What You Need to Know</h3>
-<ul>
-<li><p><strong>How to use HttpParams</strong></p>
-<p><a href="https://angular.io/api/common/http/HttpParams" target="\_blank">HttpParams</a> are part of Angulars HTTPClient API and help us create parameters for our requests.</p></li>
-</ul>
+<h2>Problem 2: Write Service Methods to Get States and Cities from API</h2>
+<p>We want to be able to get lists of cities and states from our API to populate the dropdown options.</p>
+<h2>P2: What You Need to Know</h2>
+<h2>How to use HttpParams</h2>
+<p><a href="https://angular.io/api/common/http/HttpParams" target="\_blank">HttpParams</a> are part of Angulars HTTPClient API and help us create parameters for our requests.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1292,10 +1291,14 @@ platformBrowserDynamic()
 &lt;/script&gt;
 
 </code></pre>
-  <div class='codepen'></div>
-  <div line-highlight='33-34,only'></div>
-<h3>To Verify Your Solution is Correct</h3>
-<p>Update the spec file  <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
+<div class='codepen'></div>
+<div line-highlight='33-34,only'></div>
+<h2>P2: Technical Requirements</h2>
+<p>Write two new methods in the <code>RestaurantsService</code> to get state and city lists.</p>
+<p>Method 1 - <code>getStates</code> takes no params and makes a request to <code>'/api/states'</code></p>
+<p>Method 2 - <code>getCities</code>, takes a string param called 'state' a makes a request to <code>'/api/cities?state=&quot;{state abbreviation here}&quot;'</code></p>
+<h2>P2: How to Verify Your Solution is Correct</h2>
+<p>✏️ Update the spec file  <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { TestBed } from '@angular/core/testing';
 
 import { ResponseData, RestaurantService } from './restaurant.service';
@@ -1464,8 +1467,8 @@ describe('RestaurantService', () =&gt; {
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h3>The Solution</h3>
-<p><strong>src/app/restaurant/restaurant.service.ts</strong></p>
+<h2>P2: Solution</h2>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.service.ts</strong></p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Restaurant } from './restaurant';
@@ -1496,56 +1499,12 @@ export class RestaurantService {
 }
 </code></pre>
 <div line-highlight='2,20-22,24-27'></div>
-<h2>Exercise: Use Generics to modify ResponseData interface to work with states and cities</h2>
-<h3>The Problem</h3>
-<p>We would like to use the <code>ResponseData</code> interface we wrote to describe the response for the state and city requests, but it only works with and array of type <code>Restaurant</code>. Convert the <code>ResponseData</code> interface use generics so it can take a type of <code>Restaurant</code>, <code>State</code>, or <code>City</code>. We've written the state &amp; city interfaces for you.</p>
-<p>Update your <strong>src/app/restaurant/restaurant.service.ts</strong> file to be:</p>
-<pre><code class="language-ts">import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Restaurant } from './restaurant';
-
-export interface ResponseData {
-  data: Restaurant[];
-}
-
-export interface State {
-  name: string;
-  short: string;
-}
-
-export interface City {
-  name: string;
-  state: string;
-}
-
-@Injectable({
-  providedIn: 'root'
-})
-export class RestaurantService {
-
-  constructor(private httpClient: HttpClient) { }
-
-  getRestaurants() {
-    return this.httpClient.get&lt;ResponseData&gt;('/api/restaurants');
-  }
-
-  getStates() {
-    return this.httpClient.get&lt;any&gt;('/api/states');
-  }
-
-  getCities(state:string) {
-    const params = new HttpParams().set('state', state);
-    return this.httpClient.get&lt;any&gt;('/api/cities', {params});
-  }
-}
-</code></pre>
-<div line-highlight='9-12, 14-17'></div>
-<h3>What You Need to Know</h3>
-<ul>
-<li><p>How to write a generic</p>
+<h2>Problem 3: Use Generics to Modify ResponseData interface to Work with States and Cities Data</h2>
+<p>We would like to use the <code>ResponseData</code> interface we wrote to describe the response for the state and city requests, but it only works with and array of type <code>Restaurant</code>.</p>
+<h2>P3: What You Need to Know</h2>
+<h2>How to write a generic</h2>
 <p>For an in-depth understanding of generics in TypeScript, check out our <a href="../learn-typescript/generics.html" title="Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript.">TypeScript guide</a>. For now, generics are a way to abstract functions, interfaces, etc to use different types in different situations.</p>
-<p>This example shows creating a generic for a list that can be used to create arrays of various types, including Dinosaurs. Codepen doesn't have a typescript compiler that will throw errors, but if you paste the code into your IDE you'll be able to see the TypeScript errors thrown.</p></li>
-</ul>
+<p>This example shows creating a generic for a list that can be used to create arrays of various types, including Dinosaurs. Codepen doesn't have a typescript compiler that will throw errors, but if you paste the code into your IDE you'll be able to see the TypeScript errors thrown.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1641,10 +1600,54 @@ platformBrowserDynamic()
 
 
 </code></pre>
-  <div class='codepen'></div>
-  <div line-highlight='18-23,25-29,36,41,46,47,51-55,57-61,63-67,68-71,only'></div>
-<h3>To Verify Your Solution is Correct</h3>
-<p>Update the spec file  <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
+<div class='codepen'></div>
+<div line-highlight='18-23,25-29,36,41,46,47,51-55,57-61,63-67,68-71,only'></div>
+<h2>P3: Technical Requirements</h2>
+<p>Convert the <code>ResponseData</code> interface use generics so it can take a type of <code>Restaurant</code>, <code>State</code>, or <code>City</code>. We've written the state &amp; city interfaces for you.</p>
+<h2>P3: Setup</h2>
+<p>✏️ Update your <strong>src/app/restaurant/restaurant.service.ts</strong> file to be:</p>
+<pre><code class="language-ts">import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Restaurant } from './restaurant';
+
+export interface ResponseData {
+  data: Restaurant[];
+}
+
+export interface State {
+  name: string;
+  short: string;
+}
+
+export interface City {
+  name: string;
+  state: string;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class RestaurantService {
+
+  constructor(private httpClient: HttpClient) { }
+
+  getRestaurants() {
+    return this.httpClient.get&lt;ResponseData&gt;('/api/restaurants');
+  }
+
+  getStates() {
+    return this.httpClient.get&lt;any&gt;('/api/states');
+  }
+
+  getCities(state:string) {
+    const params = new HttpParams().set('state', state);
+    return this.httpClient.get&lt;any&gt;('/api/cities', {params});
+  }
+}
+</code></pre>
+<div line-highlight='9-12, 14-17'></div>
+<h2>P3: How to Verify Your Solution is Correct</h2>
+<p>✏️ Update the spec file  <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { TestBed } from '@angular/core/testing';
 
 import { ResponseData, RestaurantService, State, City } from './restaurant.service';
@@ -1810,8 +1813,8 @@ describe('RestaurantService', () =&gt; {
 });
 </code></pre>
 <div line-highlight='3,79,131,151, only'></div>
-<h3>The Solution</h3>
-<p><strong>src/app/restaurant/restaurant.service.ts</strong></p>
+<h2>P3: Solution</h2>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.service.ts</strong></p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Restaurant } from './restaurant';
@@ -1852,10 +1855,9 @@ export class RestaurantService {
 }
 </code></pre>
 <div line-highlight='5-7,27,31,36'></div>
-<h2>Exercise: Get cities and states based on dropdown values</h2>
-<h3>The Problem</h3>
+<h2>Problem 4: Get Cities and States Based on Dropdown Values</h2>
 <p>Now that our service is in working order, let's populate our dropdowns with state and city data. We will want our list of states to be available right away, but we will want to fetch our list of cities only after we have the state value selected by the user.</p>
-<p>Requirements</p>
+<h2>P4: Technical Requirements</h2>
 <ol>
 <li>Rewrite the <code>Data</code> interface to be a generic to work with State and City types as well</li>
 <li>Mark state and city dropdowns as disabled until they are populated with data</li>
@@ -1867,13 +1869,8 @@ export class RestaurantService {
 <blockquote>
 <p>Hint: You'll want to clear the fake data from the state and city value props, and move the call to get restaurants out of the ngOnInit function.</p>
 </blockquote>
-<h3>What You Need to Know</h3>
-<ul>
-<li>How to call service methods in a component</li>
-<li>How to write generics</li>
-</ul>
-<h3>To Verify Your Solution is Correct</h3>
-<p>Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
+<h2>P4: How to Verify Your Solution is Correct</h2>
+<p>✏️ Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs'; 
@@ -2304,8 +2301,13 @@ describe('RestaurantComponent', () =&gt; {
 });
 </code></pre>
 <div line-highlight='169,170,183,184,190,194,195,337-351,353-362,364-378,380-390,392-404,406-415,417-427,only'></div>
-<h3>The Solution</h3>
-<p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
+<h2>P4: What You Need to Know</h2>
+<ul>
+<li>How to call service methods in a component</li>
+<li>How to write generics</li>
+</ul>
+<h2>P4: Solution</h2>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';

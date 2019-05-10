@@ -190,7 +190,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-components.html"
-							title="Learn how to create basic components in Angular.">
+							title="Learn how to create basic components in Angular and iterate through data using an Angular for loop.">
 							Creating Components
 						</a>
 						
@@ -205,7 +205,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-pipes.html"
-							title="Learn how to create a custom pipe in Angular.">
+							title="Learn how to create a custom pipe in Angular that returns a modified version of a string.">
 							Creating Pipes
 						</a>
 						
@@ -343,7 +343,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="writing-unit-tests.html"
-							title="Write a service unit test">
+							title="Write a unit test for a service in Angular">
 							Writing Unit Tests
 						</a>
 						
@@ -506,20 +506,17 @@ covering CanJS core libraries.">
 <li>Update getRestaurants service method to take params</li>
 <li>Update component to pass state and city params to service method</li>
 </ul>
-<h2>The problem</h2>
+<h2>Problem</h2>
 <p><img src="../static/img/angular/10-updating-service-params/before.png"
 style="border: solid 1px black; max-width: 400px;"/></p>
 <p>Now that we are able to capture a user's state and city preferences, we want to only return restaurants in the selected city. Modify the <code>getRestaurants</code> method in the <strong>src/app/restaurant/restaurant.service.ts</strong> file to take two string parameters, one for city, and one for state. The requested url with params should look like this: <code>'/api/restaurants?filter[address.state]=IL&amp;filter[address.city]=Chicago'</code></p>
 <p><img src="../static/img/angular/10-updating-service-params/after.png"
 style="border: solid 1px black; max-width: 400px;"/></p>
+<h2>Technical Requirements</h2>
 <p>In the <strong>src/app/restaurant/restaurant.component.ts</strong> file, update the call to the <code>getRestaurants</code> service method to use the city and state values capture from the user's form input.</p>
-<h2>What you need to know</h2>
-<ul>
-<li>How to use [angular/form-value-changes#exercise-write-service-methods-to-get-states-and-cities HttpParams] (you learned this in the previous section! ✔️)</li>
-</ul>
-<h2>Verify the solution</h2>
+<h2>How to Verify Your Solution is Correct</h2>
 <p>If you've implemented the solution correctly, when you use the select boxes to choose state and city, you should see a list of just restaurants from the selected city returned.</p>
-<p>Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
+<p>✏️ Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs'; 
@@ -964,7 +961,7 @@ describe('RestaurantComponent', () =&gt; {
 });
 </code></pre>
 <div line-highlight='11,106,127,142,432-441,only'></div>
-<p>Update the spec file <strong>src/app/restaurant/restaurant.service.spec.ts</strong></p>
+<p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.service.spec.ts</strong></p>
 <pre><code class="language-ts">import { TestBed } from '@angular/core/testing';
 
 import { ResponseData, RestaurantService, State, City } from './restaurant.service';
@@ -1132,10 +1129,14 @@ describe('RestaurantService', () =&gt; {
 </code></pre>
 <div line-highlight='79-83,only'></div>
 <blockquote>
-<p>If you've implemented the solution correctly, when you run <code>npm run test</code> the restaurant component tests will pass! We'll fix the service tests in the next step.</p>
+<p>If you've implemented the solution correctly, when you run <code>npm run test</code> the tests will pass!</p>
 </blockquote>
-<h2>The solution</h2>
-<p><strong>src/app/restaurant/restaurant.service.ts</strong></p>
+<h2>What You Need to Know</h2>
+<ul>
+<li>How to use <a href="form-value-changes.html#how-to-use-httpparams" title="Learn how to listen to form value changes with Angular.">HttpParams</a> (you learned this in the previous section! ✔️)</li>
+</ul>
+<h2>Solution</h2>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.service.ts</strong></p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Restaurant } from './restaurant';
@@ -1177,7 +1178,7 @@ export class RestaurantService {
 }
 </code></pre>
 <div line-highlight='26-28,only'></div>
-<p><strong>src/app/restaurant/restaurant.component.ts</strong></p>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Subscription } from 'rxjs';

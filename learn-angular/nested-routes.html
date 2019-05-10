@@ -190,7 +190,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-components.html"
-							title="Learn how to create basic components in Angular.">
+							title="Learn how to create basic components in Angular and iterate through data using an Angular for loop.">
 							Creating Components
 						</a>
 						
@@ -205,7 +205,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-pipes.html"
-							title="Learn how to create a custom pipe in Angular.">
+							title="Learn how to create a custom pipe in Angular that returns a modified version of a string.">
 							Creating Pipes
 						</a>
 						
@@ -340,7 +340,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="writing-unit-tests.html"
-							title="Write a service unit test">
+							title="Write a unit test for a service in Angular">
 							Writing Unit Tests
 						</a>
 						
@@ -508,6 +508,15 @@ covering CanJS core libraries.">
 <li>Get restaurant slug from route param in component</li>
 <li>Get restaurant data from service based on slug</li>
 </ul>
+<h2>Problem</h2>
+<p>We want to have a component to display individual restaurants details, and want the path to be nested under the restaurants path.</p>
+<h2>What You Need to Know</h2>
+<p>To solve this exercise you will need to know:</p>
+<ul>
+<li>How to create a nested component</li>
+<li>How to create a route with a param</li>
+<li>How to get a route param using ActivatedRoute</li>
+</ul>
 <h2>Route Parameters &amp; Child Views</h2>
 <p>A common pattern in SPA architecture is to serve a view of an individual piece of data from a path with an identifying parameter. Previously we've defined static paths with Angulars <a href="https://angular.io/guide/router" target="_blank">router</a>. To create a nested route, we'll need the slug after the slash to be dynamic. We can set a token for the router parameter with <code>:</code>. To get the slug from the route in a component, we use the <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a> interface.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -657,17 +666,13 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='93-94,101,105,107,115,only'></div>
-<h2>Exercise: Create a new Component and a Nested Route for it</h2>
-<h3>The Problem</h3>
+<h2>Technical Requirements</h2>
 <p>Create a new component called <code>details</code> in the restaurant component folder that is a detail view for an individual restaurant that is served from the path <code>'/restaurants/restaurant-slug'</code>. Create the route as well, and use the <code>getRestaurant</code> method on the RestaurantService to fetch the restaurant based on the route snapshot. The detail component should have a member 'restaurant' that is a type of Restaurant and an 'isLoading' member set to true or false based on when the restaurant data has been fetched.</p>
-<h3>What You Need to Know</h3>
-<ul>
-<li><p>How to create a nested component</p>
+<h2>Setup</h2>
+<p>✏️ Run:</p>
 <pre><code class="language-bash">ng g component restaurant/detail
 </code></pre>
-<p>Add markup:</p>
-<p><strong>src/app/restaurant/detail/detail.component.html</strong></p></li>
-</ul>
+<p>✏️  Update <strong>src/app/restaurant/detail/detail.component.html</strong>:</p>
 <pre><code class="language-html">&lt;ng-container *ngIf=&quot;isLoading&quot;&gt;
   &lt;div class=&quot;loading&quot;&gt;&lt;/div&gt;
 &lt;/ng-container&gt;
@@ -707,7 +712,7 @@ platformBrowserDynamic()
 
 </code></pre>
 <p>We've also added a method called by the html that will return a proper url path for our restaurant image.</p>
-<p><strong>src/app/restaurant/detail/detail.component.ts</strong></p>
+<p>✏️  Update <strong>src/app/restaurant/detail/detail.component.ts</strong>:</p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -730,14 +735,10 @@ export class DetailComponent implements OnInit {
 }
 
 </code></pre>
-  <div line-highlight='15-18'></div>
-<ul>
-<li>How to create a route with a param</li>
-<li>How to get a route param using ActivatedRoute</li>
-</ul>
-<h3>To Verify Your Solution is Correct</h3>
+<div line-highlight='15-18'></div>
+<h2>How to Verify Your Solution is Correct</h2>
 <p>When you click the detail button on a restaurant from the restaurant list view you'll see the detail view of that restaurant.</p>
-<p>Update the spec file  <strong>src/app/restaurant/detail.component.spec.ts</strong> to be:</p>
+<p>✏️ Update the spec file  <strong>src/app/restaurant/detail.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs'; 
 import { ActivatedRoute } from '@angular/router';
@@ -898,8 +899,8 @@ describe('DetailComponent', () =&gt; {
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h3>The Solution</h3>
-<p><strong>src/app/app-routing.module.ts</strong></p>
+<h2>Solution</h2>
+<p>✏️ Update <strong>src/app/app-routing.module.ts</strong></p>
 <pre><code class="language-ts">import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -928,7 +929,7 @@ const routes: Routes = [
 export class AppRoutingModule { }
 </code></pre>
 <div line-highlight='5,16-19'></div>
-<p><strong>src/app/restaurant/detail/detail.component.ts</strong></p>
+<p>✏️ Update <strong>src/app/restaurant/detail/detail.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 

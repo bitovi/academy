@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn how to create a custom pipe in Angular. 
+  <meta name="description" content="Learn how to create a custom pipe in Angular that returns a modified version of a string. 
 ">
   <title>Bitovi Academy - Creating Pipes</title>
   
@@ -190,7 +190,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-components.html"
-							title="Learn how to create basic components in Angular.">
+							title="Learn how to create basic components in Angular and iterate through data using an Angular for loop.">
 							Creating Components
 						</a>
 						
@@ -205,7 +205,7 @@ covering CanJS core libraries.">
            						expanded">
 						<a class="page"
 							href="creating-pipes.html"
-							title="Learn how to create a custom pipe in Angular.">
+							title="Learn how to create a custom pipe in Angular that returns a modified version of a string.">
 							Creating Pipes
 						</a>
 						
@@ -343,7 +343,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="writing-unit-tests.html"
-							title="Write a service unit test">
+							title="Write a unit test for a service in Angular">
 							Writing Unit Tests
 						</a>
 						
@@ -487,7 +487,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn how to create a custom pipe in Angular.</p>
+    <p>Learn how to create a custom pipe in Angular that returns a modified version of a string.</p>
 
 </section>
 
@@ -500,7 +500,7 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>The problem</h2>
+    <h2>Problem</h2>
 <p>You may have noticed an image error in our rendered html page. We're using an API in this demo that wasn't built for our exact purposes, and we need a different image path for our app to serve.</p>
 <p><img src="../static/img/angular/3-creating-components/restaurant-component.png"
 style="border: solid 1px black; max-width: 320px;"/></p>
@@ -512,15 +512,91 @@ style="border: solid 1px black; max-width: 320px;"/></p>
 </code></pre>
 <p><code>restaurant.images.thumbnail</code> will be a path like <code>node_modules/place-my-order-assets/image.png</code>.  We need to change that path to be more like <code>./assets/image.png</code>. Once
 the path rewriting is fixed, images will show up correctly.</p>
-<h2>How to solve the problem</h2>
-<p>To solve this problem, we will:</p>
+<h2>What You Need to Know</h2>
 <ul>
-<li><p>Use an <code>imageUrl</code> <strong>pipe</strong> in <strong>src/app/restaurant/restaurant.component.html</strong> to rewrite the path.  Using a pipe looks like the following:</p>
-<pre><code class="language-html">&lt;img src=&quot;{{restaurant.images.thumbnail | imageUrl}}&quot;/&gt;
-</code></pre></li>
-<li><p>Generate and implement the <code>imageUrl</code> <strong>pipe</strong>.</p>
-<p>The pipe will take an image url and transform it to the path we actually want to serve the image from. For eaxmple, from <code>node_modules/place-my-order-assets</code> to <code>./assets</code>.  This pipe will be used on our restaurant image thumbnail.</p></li>
+<li>How to generate a pipe</li>
+<li>How to use a pipe to transform data</li>
 </ul>
+<h2>How to Generate a Pipe via the CLI</h2>
+<p>Generate a pipe with the following command:</p>
+<pre><code class="language-bash">ng g pipe imageUrl
+</code></pre>
+<p>This will generate a pipe file: <code>image-url.pipe.ts</code></p>
+<h2>How to Build a Pipe</h2>
+<p><a href="https://angular.io/guide/pipes" target="\_blank">Angular Pipes</a> come in handy to transform content in our templates. Pipes allow us to transform data to display to the user in our HTML without modifying the original source.</p>
+<p>Angular comes with several built-it pipes like DatePipe, UpperCasePipe, LowerCasePipe, CurrencyPipe, and PercentPipe. These pipes can be used in templates to modify the way data displays. We can build custom pipes as well. Pipes require one parameter - the value we can to change, but can take an additional parameters as well.</p>
+<p>This example takes the value to be transformed and a parameter to use as an exponential multiplier.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+// app.js
+const { Component, VERSION, Pipe, PipeTransform } = ng.core;
+
+
+@Pipe({name: 'exponentialStrength'})
+class ExponentialStrengthPipe implements PipeTransform {
+  transform(value: number, exponent: number): number {
+    return Math.pow(value, isNaN(exponent) ? 1 : exponent);
+  }
+}
+
+@Component({
+  selector: 'my-app',
+  template: `
+  &lt;h2&gt;Power Booster&lt;/h2&gt;
+  &lt;p&gt;Super power boost: {{2 | exponentialStrength: 10}}&lt;/p&gt;
+  `
+})
+class AppComponent {
+  constructor() {
+  }
+}
+
+// main.js
+const { BrowserModule } = ng.platformBrowser;
+const { NgModule } = ng.core;
+const { CommonModule } = ng.common;
+
+@NgModule({
+  imports: [ BrowserModule,
+  CommonModule],
+  declarations: [AppComponent, ExponentialStrengthPipe],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='15-20, 26,only'></div>
+<h2>Technical Requirements</h2>
+<ol>
+<li>Use an <code>imageUrl</code> <strong>pipe</strong> in <strong>src/app/restaurant/restaurant.component.html</strong> to rewrite the path.  Using a pipe looks like the following:</li>
+</ol>
+<pre><code class="language-html">&lt;img src=&quot;{{restaurant.images.thumbnail | imageUrl}}&quot;/&gt;
+</code></pre>
+<ol start="2">
+<li>Generate and implement the <code>imageUrl</code> <strong>pipe</strong>.</li>
+</ol>
+<p>The pipe will take an image url and transform it to the path we actually want to serve the image from. For example, from <code>node_modules/place-my-order-assets</code> to <code>./assets</code>.  This pipe will be used on our restaurant image thumbnail.</p>
+<blockquote>
+<p>Hint: Use String.prototype.replace to create the new path with image name.</p>
+</blockquote>
 <h2>Setup</h2>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong> file to use the pipe we will create:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
@@ -553,7 +629,7 @@ the path rewriting is fixed, images will show up correctly.</p>
 <p>✏️ Run the following to generate the <strong>pipe</strong> and the pipe's tests:</p>
 <pre><code class="language-bash">ng g pipe imageUrl
 </code></pre>
-<h2>Verify solution</h2>
+<h2>How to Verify Your Solution is Correct</h2>
 <p>✏️ Update the restaurant spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to include the new pipe:</p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -642,78 +718,7 @@ describe('ImageUrlPipe', () =&gt; {
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h2>What you need to know</h2>
-<h4>How to create a pipe</h4>
-<p>Generate a pipe with the following command:</p>
-<pre><code class="language-bash">ng g pipe imageUrl
-</code></pre>
-<p>This will generate a pipe file: <code>image-url.pipe.ts</code></p>
-<h4>How to build a pipe.</h4>
-<p><a href="https://angular.io/guide/pipes" target="\_blank">Angular Pipes</a> come in handy to transform content in our templates. Pipes allow us to transform data to display to the user in our HTML without modifying the original source.</p>
-<p>Angular comes with several built-it pipes like DatePipe, UpperCasePipe, LowerCasePipe, CurrencyPipe, and PercentPipe. These pipes can be used in templates to modify the way data displays. We can build custom pipes as well. Pipes require one parameter - the value we can to change, but can take an additional parameters as well.</p>
-<p>This example takes the value to be transformed and a parameter to use as an exponential multiplier.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
-&lt;my-app&gt;&lt;/my-app&gt;
-&lt;script type=&quot;typescript&quot;&gt;
-// app.js
-const { Component, VERSION, Pipe, PipeTransform } = ng.core;
-
-
-@Pipe({name: 'exponentialStrength'})
-class ExponentialStrengthPipe implements PipeTransform {
-  transform(value: number, exponent: number): number {
-    return Math.pow(value, isNaN(exponent) ? 1 : exponent);
-  }
-}
-
-@Component({
-  selector: 'my-app',
-  template: `
-  &lt;h2&gt;Power Booster&lt;/h2&gt;
-  &lt;p&gt;Super power boost: {{2 | exponentialStrength: 10}}&lt;/p&gt;
-  `
-})
-class AppComponent {
-  constructor() {
-  }
-}
-
-// main.js
-const { BrowserModule } = ng.platformBrowser;
-const { NgModule } = ng.core;
-const { CommonModule } = ng.common;
-
-@NgModule({
-  imports: [ BrowserModule,
-  CommonModule],
-  declarations: [AppComponent, ExponentialStrengthPipe],
-  bootstrap: [AppComponent],
-  providers: []
-})
-class AppModule {}
-
-const { platformBrowserDynamic } = ng.platformBrowserDynamic;
-
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch(err =&gt; console.error(err));
-&lt;/script&gt;
-
-
-</code></pre>
-<div class='codepen'></div>
-<div line-highlight='15-20, 26,only'></div>
-<blockquote>
-<p>Hint: Use String.prototype.replace to create the new path with image name.</p>
-</blockquote>
-<h2>The solution</h2>
+<h2>Solution</h2>
 <p>✏️ Update <strong>src/app/image-url.pipe.ts</strong> to:</p>
 <pre><code class="language-ts">import { Pipe, PipeTransform } from '@angular/core';
 
@@ -765,7 +770,7 @@ export class ImageUrlPipe implements PipeTransform {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/3a-pipes/3a-pipes.md"},"description":"Learn how to create a custom pipe in Angular. \n","name":"learn-angular/creating-pipes","title":"Creating Pipes","type":"page","parent":"learn-angular","order":3,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/3a-pipes/3a-pipes.md"},"description":"Learn how to create a custom pipe in Angular that returns a modified version of a string. \n","name":"learn-angular/creating-pipes","title":"Creating Pipes","type":"page","parent":"learn-angular","order":3,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

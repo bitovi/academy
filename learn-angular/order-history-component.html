@@ -189,7 +189,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-components.html"
-							title="Learn how to create basic components in Angular.">
+							title="Learn how to create basic components in Angular and iterate through data using an Angular for loop.">
 							Creating Components
 						</a>
 						
@@ -204,7 +204,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="creating-pipes.html"
-							title="Learn how to create a custom pipe in Angular.">
+							title="Learn how to create a custom pipe in Angular that returns a modified version of a string.">
 							Creating Pipes
 						</a>
 						
@@ -339,7 +339,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="writing-unit-tests.html"
-							title="Write a service unit test">
+							title="Write a unit test for a service in Angular">
 							Writing Unit Tests
 						</a>
 						
@@ -508,14 +508,16 @@ covering CanJS core libraries.">
 <li>Create ways to update and delete orders in the view</li>
 <li>Add order history link to our main navigation</li>
 </ul>
-<h2>Exercise: Generate a <code>HistoryComponent</code> and create a route for it</h2>
-<h3>The problem</h3>
-<p>In this problem, we will:</p>
-<ul>
+<h2>Problem 1: Generate a <code>HistoryComponent</code> and create a route for it</h2>
+<p>We want to create a component that will show the app's order history.</p>
+<h2>P1: Technical Requirements</h2>
+<ol>
 <li>Generate a <code>HistoryComponent</code> in <code>src/app/order/history/history.component.ts</code></li>
 <li>Show <code>HistoryComponent</code> when we navigate to <code>/order-history</code></li>
-</ul>
-<h3>What you need to know</h3>
+</ol>
+<h2>P1: How to Verify Your Solution is Correct</h2>
+<p>If you've implemented the solution correctly you should be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see <em>'history works!'</em>.</p>
+<h2>P1: What you need to know</h2>
 <p>You got this already, but just in case, here's some hints:</p>
 <ul>
 <li>How to generate a component
@@ -523,14 +525,12 @@ covering CanJS core libraries.">
 </code></pre></li>
 <li>Update <code>app-routing.module.ts</code> to import the component you want and create a path to it.</li>
 </ul>
-<h3>To Verify Your Solution is Correct</h3>
-<p>If you've implemented the solution correctly you should be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see <em>'history works!'</em>.</p>
-<h3>The solution</h3>
-<p>First, run:</p>
+<h2>P1: solution</h2>
+<p>✏️ First, run:</p>
 <pre><code class="language-bash">ng g component order/history
 </code></pre>
 <p>Then route to the component:</p>
-<p><strong>src/app/app-routing.module.ts</strong></p>
+<p>✏️ Update <strong>src/app/app-routing.module.ts</strong></p>
 <pre><code class="language-ts">import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -571,20 +571,20 @@ export class AppRoutingModule { }
 
 </code></pre>
 <div line-highlight='8, 27-30,only'></div>
-<h2>Exercise: Add <code>HistoryComponent</code> to navigation</h2>
-<h3>The Problem</h3>
-<p>In this problem, we will:</p>
-<ul>
+<h2>Problem 2: Add <code>HistoryComponent</code> to navigation</h2>
+<p>We want a user to be able to navigate to the HistoryComponent via a link in the main navigation.</p>
+<h2>P2: Technical Requirements</h2>
+<ol>
 <li>Add a <strong>Order History</strong> link to the navigation bar at the top of the page.</li>
 <li>Add the class name <code>active</code> to the link if we are on the <code>OrderHistory</code> page.</li>
-</ul>
-<h3>What you need to know</h3>
+</ol>
+<h2>P2: What You Need to Know</h2>
 <p>You've seen this before. Checkout how the <strong>Home</strong> link works in
 <code>app.component.html</code>.</p>
-<h3>To Verify Your Solution is Correct</h3>
+<h2>P2: How to Verify Your Solution is Correct</h2>
 <p>If you've implemented the solution correctly you should now be able to navigate to <a href="http://localhost:4200/order-history" target="\_blank">http://localhost:4200/order-history</a> and see a list of all orders.</p>
-<h3>The solution</h3>
-<p><strong>src/app/app.component.html</strong></p>
+<h2>P2: Solution</h2>
+<p>✏️ Update <strong>src/app/app.component.html</strong></p>
 <pre><code class="language-html">&lt;header&gt;
   &lt;nav&gt;
    &lt;h1&gt;place-my-order.com&lt;/h1&gt;
@@ -605,16 +605,16 @@ export class AppRoutingModule { }
 
 </code></pre>
 <div line-highlight='11-13,only'></div>
-<h2>Exercise: List all orders</h2>
-<h3>The problem</h3>
-<p>In this exercise, we will:</p>
-<ul>
+<h2>Problem 3: List All Orders</h2>
+<p>We want to be able to see a list of all created orders and their varying statuses of &quot;new&quot;, &quot;preparing&quot;, &quot;delivery&quot;, and &quot;delivered&quot;.</p>
+<h2>P3: Technical Requirements</h2>
+<ol>
 <li>List all orders in the <code>HistoryComponent</code>.</li>
-<li>Make sure the <code>&lt;div&gt;</code> for each order has a class name of <em>'order'</em> and the
+<li>Make sure the <code>&lt;div&gt;</code> for each order has a class name of <em>'order'</em> and a class name that is the
 <code>order.status</code> value. Make sure you've created a new order.</li>
-</ul>
-<p>Start this exercise by:</p>
-<p>1. Copying the following into <strong>src/app/order/history.component.ts</strong>. You will fill out its
+</ol>
+<h2>P3: Setup</h2>
+<p>1. ✏️ Copy the following into <strong>src/app/order/history.component.ts</strong>. You will fill out its
 <code>getOrders</code> method.  The getters <code>newOrders</code>, <code>preparingOrders</code>, <code>deliveryOrders</code>, and <code>deliveredOrders</code> will be used later.</p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 
@@ -672,7 +672,7 @@ export class HistoryComponent implements OnInit {
 
 </code></pre>
 <div line-highlight='18,22'></div>
-<p>2. Copy the following into <strong>src/app/order/history.component.html</strong>.  You will need to
+<p>2. ✏️ Copy the following into <strong>src/app/order/history.component.html</strong>.  You will need to
 iterate through orders and add the right class names to the outer <code>&lt;div&gt;</code> for each order.</p>
 <pre><code class="language-html">&lt;div class=&quot;order-history&quot;&gt;
   &lt;div class=&quot;order header&quot;&gt;
@@ -715,18 +715,8 @@ iterate through orders and add the right class names to the outer <code>&lt;div&
 
 </code></pre>
 <div line-highlight='9,10'></div>
-<h3>What you need to know</h3>
-<ul>
-<li>How to import a service and get data out of it.  Hint: Import it and create a
-property in the constructor.</li>
-<li>How to loop through values in HTML.  Hint: <code>*ngFor</code>.</li>
-</ul>
-<p>For this step, you'll need to know how to add multiple class names.  You can do this with
-<code>[ngClass]</code> and setting it to an array like:</p>
-<pre><code class="language-html">&lt;div [ngClass]=&quot;['first','second']&quot;&gt;
-</code></pre>
-<h3>To Verify Your Solution is Correct</h3>
-<p>Update the menu-items spec file  <strong>src/app/order/history/history.component.spec.ts</strong> to be:</p>
+<h2>P3: How to Verify Your Solution is Correct</h2>
+<p>✏️ Update the menu-items spec file  <strong>src/app/order/history/history.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs'; 
 
@@ -872,8 +862,18 @@ describe('HistoryComponent', () =&gt; {
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h3>The solution</h3>
-<p><strong>src/app/order/history.component.ts</strong></p>
+<h2>P3: What You Need to Know</h2>
+<ul>
+<li>How to import a service and get data out of it.  Hint: Import it and create a
+property in the constructor.</li>
+<li>How to loop through values in HTML.  Hint: <code>*ngFor</code>.</li>
+</ul>
+<p>For this step, you'll need to know how to add multiple class names.  You can do this with
+<code>[ngClass]</code> and setting it to an array like:</p>
+<pre><code class="language-html">&lt;div [ngClass]=&quot;['first','second']&quot;&gt;
+</code></pre>
+<h2>P3: Solution</h2>
+<p>✏️ Update <strong>src/app/order/history.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 import { OrderService, Order } from '../order.service';
 import { ResponseData } from '../../restaurant/restaurant.service';
@@ -942,7 +942,7 @@ export class HistoryComponent implements OnInit {
 
 </code></pre>
 <div line-highlight='2, 22, 31-35, only'></div>
-<p><strong>src/app/order/history.component.html</strong></p>
+<p>✏️ Update <strong>src/app/order/history.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-history&quot;&gt;
   &lt;div class=&quot;order header&quot;&gt;
     &lt;address&gt;Name / Address / Phone&lt;/address&gt;
@@ -984,16 +984,16 @@ export class HistoryComponent implements OnInit {
 
 </code></pre>
 <div line-highlight='9-10,only'></div>
-<h2>Exercise: Creating a Child Component to Handle Order States</h2>
-<h3>The problem</h3>
-<p>In this exercise, we will:</p>
-<ul>
+<h2>Problem 4: Creating a Child Component to Handle Order States</h2>
+<p>We want to create a child component that will take a list of orders by status and display them, as well as actions a user can perform on an order.</p>
+<h2>P4: Technical Requirements</h2>
+<ol>
 <li>Group the orders by status.</li>
 <li>Allow the user to change the status of an order.</li>
 <li>Allow the user to delete an order.</li>
-</ul>
+</ol>
 <p><strong>NOTE!!</strong> To see that an order has changed, you will have to refresh the page!</p>
-<p>To complete this we will:</p>
+<p>To solve this problem:</p>
 <ul>
 <li>Create a <code>ListComponent</code> in <strong>src/app/order/list/list.component.ts</strong> that will take a list
 of orders and other values like:
@@ -1024,11 +1024,11 @@ of orders and other values like:
 <li><code>total(items)</code> that will return the order total</li>
 </ul></li>
 </ul>
-<p>Before staring, follow these steps:</p>
-<p>1. Create the <code>ListComponent</code>:</p>
+<h2>P4: Setup</h2>
+<p>1. ✏️ Create the <code>ListComponent</code>:</p>
 <pre><code class="language-shell">ng g component order/list
 </code></pre>
-<p>2. Update <strong>src/app/order/history.component.html</strong> to use <code>&lt;pmo-list&gt;</code>:</p>
+<p>2. ✏️ Update <strong>src/app/order/history.component.html</strong> to use <code>&lt;pmo-list&gt;</code>:</p>
 <pre><code class="language-html">&lt;div class=&quot;order-history&quot;&gt;
   &lt;div class=&quot;order header&quot;&gt;
     &lt;address&gt;Name / Address / Phone&lt;/address&gt;
@@ -1078,7 +1078,7 @@ of orders and other values like:
 
 </code></pre>
 <div line-highlight='9-45,only'></div>
-<p>3. Update <strong>src/app/order/list/list.component.html</strong> to its final html:</p>
+<p>3. ✏️ Update <strong>src/app/order/list/list.component.html</strong> to its final html:</p>
 <pre><code class="language-html">&lt;h4&gt;{{listTitle}}&lt;/h4&gt;
 &lt;div class=&quot;loading&quot; *ngIf=&quot;isPending&quot;&gt;&lt;/div&gt;
 &lt;ng-container *ngFor=&quot;let order of orders&quot;&gt;
@@ -1114,14 +1114,8 @@ of orders and other values like:
 &lt;div class=&quot;order empty&quot;&gt;{{emptyMessage}}&lt;/div&gt;
 
 </code></pre>
-<h3>What you need to know</h3>
-<p>You'll need to remember how to:</p>
-<ul>
-<li>Add <code>@Input()</code>s to a component so it can be passed values.</li>
-<li>Call methods on a service that you get from the <code>constructor</code>.</li>
-</ul>
-<h3>To Verify Your Solution is Correct</h3>
-<p>Update the menu-items spec file  <strong>src/app/order/list/list.component.spec.ts</strong> to be:</p>
+<h2>P4: How to Verify Your Solution is Correct</h2>
+<p>✏️ Update the menu-items spec file  <strong>src/app/order/list/list.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs'; 
 
@@ -1232,8 +1226,13 @@ describe('ListComponent', () =&gt; {
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h3>The solution</h3>
-<p><strong>src/app/order/list.component.ts</strong></p>
+<h2>P4: What You Need to Know</h2>
+<ul>
+<li>How to add <code>@Input()</code>s to a component so it can be passed values.</li>
+<li>How to call methods on a service that you get from the <code>constructor</code>.</li>
+</ul>
+<h2>P4: Solution</h2>
+<p>✏️ Update <strong>src/app/order/list.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, Input } from '@angular/core';
 import { Order, Item, OrderService } from '../order.service';
 
