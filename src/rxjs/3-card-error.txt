@@ -1,0 +1,11 @@
+Hello and welcome to Bitovi Academy's Learn RxJS training.
+
+This course covers showing an error message if the card number is 
+not correct. This exercise is a lot like the previous one.
+We will be using the map operator again
+to solve this problem. Practice makes perfect.
+
+When complete, you should see an error message right away saying
+there is no card.  As you type in numbers, the warning
+will say a card needs 16 characters, until you type in 16 numbers,
+then the error will go away.
