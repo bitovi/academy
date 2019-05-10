@@ -531,6 +531,80 @@ those components going forward.</p>
   Choose a Restaurant
 &lt;/a&gt;
 </code></pre>
+<p>✏️ Update the spec file  <strong>src/app/app.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { TestBed, async } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
+describe('AppComponent', () =&gt; {
+  let router: Router;
+  let location: Location;
+  let fixture;
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      imports: [
+        AppRoutingModule
+      ],
+      declarations: [
+        AppComponent, HomeComponent, RestaurantComponent
+      ],
+      schemas: [
+        NO_ERRORS_SCHEMA
+      ]
+    }).compileComponents();
+
+    router = TestBed.get(Router);
+    location = TestBed.get(Location);
+
+    fixture = TestBed.createComponent(AppComponent);
+  }));
+
+  it('should create the app', () =&gt; {
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
+  });
+
+  it(`should have as title 'place-my-order'`, () =&gt; {
+    const app = fixture.debugElement.componentInstance;
+    expect(app.title).toEqual('place-my-order');
+  });
+
+  it('should render title in a h1 tag', () =&gt; {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain('Place My Order App: Coming Soon!');
+  });
+
+  it('should render the HomeComponent with router navigates to &quot;/&quot; path', () =&gt; {
+    const compiled = fixture.debugElement.nativeElement;
+    router.navigate(['']).then(() =&gt; {
+      expect(location.path()).toBe('');
+      expect(compiled.querySelector('pmo-home')).not.toBe(null);
+    });
+  });
+
+  it('should render the RestaurantsComponent with router navigates to &quot;/restaurants&quot; path', () =&gt; {
+    const compiled = fixture.debugElement.nativeElement;
+    router.navigate(['restaurants']).then(() =&gt; {
+      expect(location.path()).toBe('/restaurants');
+      expect(compiled.querySelector('pmo-restaurant')).not.toBe(null);
+    });
+  });
+
+});
+</code></pre>
+<div line-highlight='2-3,5-9,12-14,19,22,24-26,29-30,32,52-58,60-66,only'></div>
+<blockquote>
+<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+</blockquote>
 <h2>What You Need to Know</h2>
 <h2>Router Outlet</h2>
 <p><a href="https://angular.io/api/router/RouterOutlet" target="_blank"><code>RouterOutlet</code></a> is an Angular directive that is a placeholder for content that is filled when the route changes. In this example the <code>HomeComponent</code> template or the <code>AboutComponent</code> template are shown below the <code>&lt;router-outlet&gt;</code> element as the route changes.</p>
