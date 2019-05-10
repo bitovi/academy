@@ -1,0 +1,28 @@
+Welcome to Bitovi academy.
+
+This course covers cleaning the card number to remove
+spaces and dashes.  Specifically, we will learn how to
+map one observable's value to another observable's value.
+
+
+Our goal is to allow the user to type a card number
+with spaces and dashes, but print out a cleaned
+up card number without those spaces and dashes.
+
+Notice how CardNumber doesn't have the spaces?
+
+Lets do this!
+
+
+======
+
+
+We will do this by creating a `cardNumber` observable on
+`AppComponent`  That observable will emit the values of
+userCardNumber, but without spaces or dashes.
+
+To do this, we will have to create a `cleanCardNumber`
+RxJS operator that maps `userCardNumber` to `cardNumber`.
+
+Finally, we will write out the value of the cleaned up
+card number after the form as shown here.
