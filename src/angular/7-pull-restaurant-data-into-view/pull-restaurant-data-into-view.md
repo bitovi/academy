@@ -13,9 +13,7 @@ In this part, we will:
 - Call `getRestaurants()` method in component
 - Change restaurant markup to use new restaurant object
 
-
-
-## Exercise 1: Make RestaurantComponent use the `getRestaurants` function
+## Problem 1: Make RestaurantComponent Use the `getRestaurants` Function
 
 In this section, we will change `RestaurantComponent` to actually get
 data from the service API.  Instead of two hard coded restaurants, we will
@@ -24,27 +22,34 @@ see a longer list:
 <img src="../static/img/angular/7-data-into-view/1-after.png"
   style="border: solid 1px black; max-width: 640px;"/>
 
-We will do this by:
+## P1: Technical Requirements
 
-- Changing `RestaurantComponent`'s _restaurant_ property definition:
+1. Change `RestaurantComponent`'s _restaurant_ property definition:
   ```typescript
   public restaurants: any[] = [];
   ```
-- Using `RestaurantService`'s `getRestaurants` to get an array of restaurants and
+2. Use `RestaurantService`'s `getRestaurants` to get an array of restaurants and
   set it on `RestaurantComponent`'s _restaurant_ property.
 
+## P1: How to Verify Your Solution is Correct
 
+You should be able see a list of all restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>, instead of the two that were previously hard-coded.
 
-## E1: What you need to know
+✏️ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
 
-To solve this exercise, you will need to know how to:
+@sourceref ./restaurant.component.spec-service.ts
+@highlight 3,7,9-106,116-119,169-267,only
 
-- Inject a service into a component
-- Subscribe to an observable
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+
+## P1: What You Need to Know
+
+- How to inject a service into a component
+- How to subscribe to an observable
 
 > Hint: Call the `getRestaurants` method in the `ngOnInit` method.
 
-## Inject a Service into Component
+## Inject a Service into a Component
 
 To use a service in a component, we use dependency injection to pass the service in the component constructor function. We're then able to access methods on it for use in our component.
 
@@ -52,7 +57,7 @@ To use a service in a component, we use dependency injection to pass the service
 @codepen
 @highlight 90,only
 
-## Subscribe to an observable
+## Subscribe to an Observable
 
 The result of `getRestaurants()` is an observable. Use [subscribe](https://rxjs-dev.firebaseapp.com/guide/subscription) to listen to when
 an RxJS observable changes:
@@ -77,29 +82,16 @@ observable.subscribe( function subscriber( value ){
 @codepen
 @highlight 11
 
-
-
-## E1: To verify solution
-
-You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>!
-
-✏️ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
-
-@sourceref ./restaurant.component.spec-service.ts
-@highlight 3,7,9-106,116-119,169-267,only
-
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
-
-## E1: Solution
+## P1: Solution
 
 ✏️ Update __src/app/restaurant/restaurant.component.ts__ as follows:
 
 @sourceref ./restaurant.component-service.ts
 @highlight 2,3,11,13,16-18
 
-## Exercise 2: Show a loading state while restaurants are being requested
+## Problem 2: Show a Loading State while Restaurants are Being Requested
 
-Sometimes the server can take a long time to respond. Lets update `RestaurantComponent`
+Sometimes the server can take a long time to respond. It's a better experience for the user
 to show a loading icon to the user while data is loading:
 
 TODO:
@@ -110,8 +102,7 @@ This icon will be shown with the following HTML:
 <div class="restaurant loading"></div>
 ```
 
-
-To complete this exercise, we will:
+## P2: Technical Requirements
 
 1. Create a new interface `Data` that represents the following object:
 
@@ -121,7 +112,7 @@ To complete this exercise, we will:
      isPending: false //boolean
    }
    ```
-2. Change the `restaurants` member to use the new `Data` type.
+2. Change the `restaurants` member to use the new `Data` type in the `RestaurantsComponent`.
 3. Right before you call the `getRestaurants` method, set the restaurants `isPending` value to true.
 4. Once the `getRestaurants` response is received, set the restaurants `value` to the response data and `isPending` value to false.
 5. Update the html to match the new restaurant object values and to show the following HTML while `isPending` is true:
@@ -130,12 +121,7 @@ To complete this exercise, we will:
    <div class="restaurant loading"></div>
    ```
 
-## E2: What you need to know
-
-- How to write an interface (you learned this in the previous section! ✔️)
-- How to conditionally show html blocks (you learned this in a previous section! ✔️)
-
-## E2: To Verify Solution
+## P2: To Verify Solution
 
 You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>!
 
@@ -146,7 +132,12 @@ You should be able see a list of restaurants when you navigate to <a href="http:
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
-## E2: Solution
+## P2: What You Need to Know
+
+- How to write an interface (you learned this in the previous section! ✔️)
+- How to conditionally show html blocks (you learned this in a previous section! ✔️)
+
+## P2: Solution
 
 ✏️ Update __src/app/restaurant/restaurant.component.ts__ to:
 

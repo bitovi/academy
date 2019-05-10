@@ -61,7 +61,7 @@ firebase use --add
 We need to get our app ready to deploy, so we'll create a build with the production flag.  
 
 ```shell
-ng build --production
+ng build --prod
 ```
 
 ```shell
@@ -71,7 +71,7 @@ firebase open hosting:site
 
 Now when we view our project url from the page Firebase launches we'll see our app!
 
-## Update npm scrips
+## Update npm scripts
 
 ```json
  "scripts": {

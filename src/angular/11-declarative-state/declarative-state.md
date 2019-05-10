@@ -189,11 +189,11 @@ To go more in depth about this topic check out these articles:
 - [Hot vs Cold Observables](https://medium.com/@benlesh/hot-vs-cold-observables-f8094ed53339)
 - [The Magic Of RxJS Sharing Operators](https://itnext.io/the-magic-of-rxjs-sharing-operators-and-their-differences-3a03d699d255)
 
-## Exercise: Update states, cities & restaurants to be observables
-
-### The Problem 
+## Problem
 
 Convert the imperatively managed state in the restaurant component to declarative state. 
+
+## Technical Requirements
 
 When you're finished the component members `state`, `cities` & `restaurants` will be of the types `Observable<Data<State>>`, 
 `Observable<Data<City>>` and `Observable<Data<Restaurant>>` respectively. Each will be defined as a set of RxJS 
@@ -210,7 +210,16 @@ Forms API:
 - `stateSelectDisabled` which disables the state select control if loading is ongoing
 - `citySelectDisabled` which disables the city select control if loading is ongoing or no values are available
 
-### What You Need To Know
+## How to Verify Your Solution is Correct
+
+✏️ Update the spec file __src/app/restaurant/restaurant.component.spec.ts__ to be:
+
+@sourceref ./restaurant.component.spec.ts
+@highlight 3-4, 9, 136, 175-176, 189-190, 197, 202-207, 304, 307, 309, 311-313, 318, 321, 323-324, 329, 332, 335-336, 343, 351, 356, 361-363, 374, 383, 389, 394-396, 398, 407, 414, 417-418, 423-424, 426, 428, 429-438, 441-446, 448, 450-451, 453, 455, 460, 463-468, 471, 479-481, 483-484, 486-487, 489, only
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+
+## What You Need to Know
 
 - How to perform common RxJS operations like:
     - setting the initial value to be emitted
@@ -223,24 +232,15 @@ Forms API:
  
  You've learnt all of the above as part of the earlier sections on this page! Completing the 
  [Bitovi Academy's RxJS training](/learn-rxjs.html) will help however. 
- 
-### How To Verify Your Solution Is Correct
 
-Update the spec file __src/app/restaurant/restaurant.component.spec.ts__ to be:
+## Solution
 
-@sourceref ./restaurant.component.spec.ts
-@highlight 3-4, 9, 136, 175-176, 189-190, 197, 202-207, 304, 307, 309, 311-313, 318, 321, 323-324, 329, 332, 335-336, 343, 351, 356, 361-363, 374, 383, 389, 394-396, 398, 407, 414, 417-418, 423-424, 426, 428, 429-438, 441-446, 448, 450-451, 453, 455, 460, 463-468, 471, 479-481, 483-484, 486-487, 489, only
-
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
-
-### The Solution
-
-__src/app/restaurant/restaurant.component.ts__
+✏️ Update __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./restaurant.component.ts
 @highlight 1-3, 13-18, 25-34, 37, 41-83, only
 
-__src/app/restaurant/restaurant.component.html__
+✏️ Update __src/app/restaurant/restaurant.component.html__
 
 @sourceref ./restaurant.component.html
 @highlight 3, 6-9, 11, 17-21, 23, 29-31, only

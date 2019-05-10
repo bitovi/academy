@@ -1,11 +1,11 @@
 @page learn-angular/creating-pipes Creating Pipes
 @parent learn-angular 3
 
-@description Learn how to create a custom pipe in Angular.
+@description Learn how to create a custom pipe in Angular that returns a modified version of a string.
 
 @body
 
-## The problem
+## Problem
 
 You may have noticed an image error in our rendered html page. We're using an API in this demo that wasn't built for our exact purposes, and we need a different image path for our app to serve.
 
@@ -26,17 +26,44 @@ Currently the path is written out like:
 `restaurant.images.thumbnail` will be a path like `node_modules/place-my-order-assets/image.png`.  We need to change that path to be more like `./assets/image.png`. Once
 the path rewriting is fixed, images will show up correctly.
 
-## How to solve the problem
+## What You Need to Know
 
-To solve this problem, we will:
+- How to generate a pipe
+- How to use a pipe to transform data
 
-- Use an `imageUrl` __pipe__ in __src/app/restaurant/restaurant.component.html__ to rewrite the path.  Using a pipe looks like the following:
+## How to Generate a Pipe via the CLI
+
+Generate a pipe with the following command:
+
+```bash
+ng g pipe imageUrl
+```
+
+This will generate a pipe file: `image-url.pipe.ts`
+
+## How to Build a Pipe
+
+<a href="https://angular.io/guide/pipes" target="\_blank">Angular Pipes</a> come in handy to transform content in our templates. Pipes allow us to transform data to display to the user in our HTML without modifying the original source.  
+
+Angular comes with several built-it pipes like DatePipe, UpperCasePipe, LowerCasePipe, CurrencyPipe, and PercentPipe. These pipes can be used in templates to modify the way data displays. We can build custom pipes as well. Pipes require one parameter - the value we can to change, but can take an additional parameters as well.
+
+This example takes the value to be transformed and a parameter to use as an exponential multiplier.
+
+@sourceref ./pipe.html
+@codepen
+@highlight 15-20, 26,only
+
+## Technical Requirements
+
+1. Use an `imageUrl` __pipe__ in __src/app/restaurant/restaurant.component.html__ to rewrite the path.  Using a pipe looks like the following:
   ```html
   <img src="{{restaurant.images.thumbnail | imageUrl}}"/>
   ```
-- Generate and implement the `imageUrl` __pipe__.
+2. Generate and implement the `imageUrl` __pipe__.
 
-  The pipe will take an image url and transform it to the path we actually want to serve the image from. For eaxmple, from `node_modules/place-my-order-assets` to `./assets`.  This pipe will be used on our restaurant image thumbnail.
+  The pipe will take an image url and transform it to the path we actually want to serve the image from. For example, from `node_modules/place-my-order-assets` to `./assets`.  This pipe will be used on our restaurant image thumbnail.
+
+  > Hint: Use String.prototype.replace to create the new path with image name.
 
 ## Setup
 
@@ -77,7 +104,7 @@ To solve this problem, we will:
 ng g pipe imageUrl
 ```
 
-## Verify solution
+## How to Verify Your Solution is Correct
 
 ✏️ Update the restaurant spec file __src/app/restaurant/restaurant.component.spec.ts__ to include the new pipe:
 
@@ -88,38 +115,9 @@ ng g pipe imageUrl
 
 @sourceref ./image-url.pipe.spec.ts
 
-
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
-
-## What you need to know
-
-#### How to create a pipe
-
-Generate a pipe with the following command:
-
-```bash
-ng g pipe imageUrl
-```
-
-This will generate a pipe file: `image-url.pipe.ts`
-
-#### How to build a pipe.
-
-<a href="https://angular.io/guide/pipes" target="\_blank">Angular Pipes</a> come in handy to transform content in our templates. Pipes allow us to transform data to display to the user in our HTML without modifying the original source.  
-
-Angular comes with several built-it pipes like DatePipe, UpperCasePipe, LowerCasePipe, CurrencyPipe, and PercentPipe. These pipes can be used in templates to modify the way data displays. We can build custom pipes as well. Pipes require one parameter - the value we can to change, but can take an additional parameters as well.
-
-This example takes the value to be transformed and a parameter to use as an exponential multiplier.
-
-@sourceref ./pipe.html
-@codepen
-@highlight 15-20, 26,only
-
-> Hint: Use String.prototype.replace to create the new path with image name.
-
-
-## The solution
+## Solution
 
 ✏️ Update __src/app/image-url.pipe.ts__ to:
 

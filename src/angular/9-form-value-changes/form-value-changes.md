@@ -19,6 +19,16 @@ In this part, we will:
 - Learn about Generics
 - Get state and city data in the Restaurant Component
 
+## Problem 1: Listen to Changes on the State and City formControls and log their value to the console
+
+Our end goal is to be able to show restaurants based on state, then city. As we move through getting each piece of information from the user we want to be able to update the next step - like getting a list of cities based on the state selected. We'll implement this form functionality in a few small steps.
+
+## P1: What You Need to Know
+
+- How observables and subscriptions work
+- How to subscribe to the valueChanges method on a FormGroup (or FormControl)
+- How to unsubscribe from subscriptions
+
 ## Observables and Subscriptions
 
 For a more robust understanding of Observables, Subscriptions, and other RxJS core tenants check out our [RxJS RxJS guide]. For the following exercises, Observables are lazy collections of multiple values over time. We can subscribe to observables to get any new data, or create and add to Subscriptions of observables.
@@ -51,7 +61,7 @@ We can listen to changes to values on FormControls and FormGroup using the value
 @codepen
 @highlight 53-55,only
 
-## Call methods on FormControls
+## Call Methods on FormControls
 
 The ReactiveForms API makes it easy for us to change our FormControls as needed. As a reminder, the FormControl class extends the <a href="https://angular.io/api/forms/AbstractControl">AbstractControl</a> class which has a lot of helpful properties and methods on it. The following example shows enabling and disabling controls via the `enable` and `disable` methods, and displaying the `enabled` FormControl property.
 
@@ -59,34 +69,39 @@ The ReactiveForms API makes it easy for us to change our FormControls as needed.
 @codepen
 @highlight 27-28,33-34,39-40,63-71,only
 
-## Exercise: Listen to Changes on the State and City formControls and log their value to the console
+## P1: Technical Requirements
 
-### The problem
+1. Subscribe to the `state` and `city` formControl value changes and log the resulting value to the console.
+2. Unsubscribe from subscription created in step 1 in the `ngOnDestroy` function
 
-Our end goal is to be able to show restaurants based on state, then city. As we move through getting each piece of information from the user we want to be able to update the next step - like getting a list of cities based on the state selected. To start doing this, subscribe to the value changes of the two controls `state` and `city` and log their values to the console.
-
-### What you need to know
-
-- how observables and subscriptions work (you learned this in the section above! ✔️)
-- how to subscribe to the valueChanges method on a FormGroup (or FormControl) (you learned this in the section above! ✔️)
-- how to unsubscribe (you learned this in the section above! ✔️)
-
-### To Verify Your Solution is Correct
+## P1: To Verify Your Solution is Correct
 
 When you interact with the dropdown menus, you should see their values logged to the console as you change them.
 
-### The Solution
+## P1: Solution
 
-__src/app/restaurant/restaurant.component.ts__
+✏️ Update __src/app/restaurant/restaurant.component.ts__
 
 @sourceref restaurant.component.ts
 @highlight 1,3,18,36,53-57,65,67-78
 
 Now that we know how to get values from our dropdowns, let's populate them with real data. We can get our list of states immediately, but to get our cities, we'll want to make an get request based on the state the user selected.
 
-## Exercise: Write service methods to get states and cities
+## Problem 2: Write Service Methods to Get States and Cities from API
 
-### The Problem
+We want to be able to get lists of cities and states from our API to populate the dropdown options.
+
+## P2: What You Need to Know
+
+## How to use HttpParams
+
+<a href="https://angular.io/api/common/http/HttpParams" target="\_blank">HttpParams</a> are part of Angulars HTTPClient API and help us create parameters for our requests.
+
+@sourceref ./http-params.html
+@codepen
+@highlight 33-34,only
+
+## P2: Technical Requirements
 
 Write two new methods in the `RestaurantsService` to get state and city lists.
 
@@ -94,77 +109,68 @@ Method 1 - `getStates` takes no params and makes a request to `'/api/states'`
 
 Method 2 - `getCities`, takes a string param called 'state' a makes a request to `'/api/cities?state="{state abbreviation here}"'`
 
-### What You Need to Know
+## P2: How to Verify Your Solution is Correct
 
-
-- __How to use HttpParams__
-
-  <a href="https://angular.io/api/common/http/HttpParams" target="\_blank">HttpParams</a> are part of Angulars HTTPClient API and help us create parameters for our requests.
-
-  @sourceref ./http-params.html
-  @codepen
-  @highlight 33-34,only
-
-### To Verify Your Solution is Correct
-
-Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
+✏️ Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
 
 @sourceref ./restaurant.service-citystate.spec.ts
 @highlight 124-161
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
-### The Solution
+## P2: Solution
 
-__src/app/restaurant/restaurant.service.ts__
+✏️ Update __src/app/restaurant/restaurant.service.ts__
 
 @sourceref ./restaurant.service-citystate.ts
 @highlight 2,20-22,24-27
 
-## Exercise: Use Generics to modify ResponseData interface to work with states and cities
+## Problem 3: Use Generics to Modify ResponseData interface to Work with States and Cities Data
 
-### The Problem
+We would like to use the `ResponseData` interface we wrote to describe the response for the state and city requests, but it only works with and array of type `Restaurant`.
 
-We would like to use the `ResponseData` interface we wrote to describe the response for the state and city requests, but it only works with and array of type `Restaurant`. Convert the `ResponseData` interface use generics so it can take a type of `Restaurant`, `State`, or `City`. We've written the state & city interfaces for you.
+## P3: What You Need to Know
 
-Update your __src/app/restaurant/restaurant.service.ts__ file to be:
+## How to write a generic
+
+For an in-depth understanding of generics in TypeScript, check out our [learn-typescript/generics TypeScript guide]. For now, generics are a way to abstract functions, interfaces, etc to use different types in different situations.
+
+This example shows creating a generic for a list that can be used to create arrays of various types, including Dinosaurs. Codepen doesn't have a typescript compiler that will throw errors, but if you paste the code into your IDE you'll be able to see the TypeScript errors thrown.
+
+@sourceref ./generics.html
+@codepen
+@highlight 18-23,25-29,36,41,46,47,51-55,57-61,63-67,68-71,only
+
+## P3: Technical Requirements
+
+Convert the `ResponseData` interface use generics so it can take a type of `Restaurant`, `State`, or `City`. We've written the state & city interfaces for you.
+
+## P3: Setup
+
+✏️ Update your __src/app/restaurant/restaurant.service.ts__ file to be:
 
 @sourceref ./restaurant.service-setup-generics.ts
 @highlight 9-12, 14-17
 
-### What You Need to Know
+## P3: How to Verify Your Solution is Correct
 
-- How to write a generic
-
-  For an in-depth understanding of generics in TypeScript, check out our [learn-typescript/generics TypeScript guide]. For now, generics are a way to abstract functions, interfaces, etc to use different types in different situations.
-
-  This example shows creating a generic for a list that can be used to create arrays of various types, including Dinosaurs. Codepen doesn't have a typescript compiler that will throw errors, but if you paste the code into your IDE you'll be able to see the TypeScript errors thrown.
-
-  @sourceref ./generics.html
-  @codepen
-  @highlight 18-23,25-29,36,41,46,47,51-55,57-61,63-67,68-71,only
-
-### To Verify Your Solution is Correct
-
-Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
+✏️ Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
 
 @sourceref ./restaurant.service-generics.spec.ts
 @highlight 3,79,131,151, only
 
-### The Solution
+## P3: Solution
 
-__src/app/restaurant/restaurant.service.ts__
+✏️ Update __src/app/restaurant/restaurant.service.ts__
 
 @sourceref ./restaurant.service-generics.ts
 @highlight 5-7,27,31,36
 
-## Exercise: Get cities and states based on dropdown values
-
-### The Problem
+## Problem 4: Get Cities and States Based on Dropdown Values
 
 Now that our service is in working order, let's populate our dropdowns with state and city data. We will want our list of states to be available right away, but we will want to fetch our list of cities only after we have the state value selected by the user.
 
-Requirements
+## P4: Technical Requirements
 
 1. Rewrite the `Data` interface to be a generic to work with State and City types as well
 2. Mark state and city dropdowns as disabled until they are populated with data
@@ -175,21 +181,21 @@ Requirements
 
 > Hint: You'll want to clear the fake data from the state and city value props, and move the call to get restaurants out of the ngOnInit function.
 
-### What You Need to Know
+## P4: How to Verify Your Solution is Correct
 
-- How to call service methods in a component
-- How to write generics
-
-### To Verify Your Solution is Correct
-
- Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
+✏️ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
 
 @sourceref ./restaurant.component-citystate.spec.ts
 @highlight 169,170,183,184,190,194,195,337-351,353-362,364-378,380-390,392-404,406-415,417-427,only
 
-### The Solution
+## P4: What You Need to Know
 
-__src/app/restaurant/restaurant.component.ts__
+- How to call service methods in a component
+- How to write generics
+
+## P4: Solution
+
+✏️ Update __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./restaurant.component-citystate.ts
 @highlight 5,8-11,21,26,31,28,33,44-48,65-101, 103-109, 111-121,123-128
