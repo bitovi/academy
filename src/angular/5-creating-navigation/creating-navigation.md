@@ -55,7 +55,7 @@ see the UI change and see the active class on the current nav item.
 ✏️ Update the spec file  __src/app/app.component.spec.ts__ to be:
 
 @sourceref ./app.component.spec.ts
-@highlight 33
+@highlight 1,4,69-74,76-81,83-95,97-110,only
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
