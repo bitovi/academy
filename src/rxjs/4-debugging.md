@@ -1,7 +1,7 @@
 @page learn-rxjs/debugging Debugging
 @parent learn-rxjs 4
 
-@description Learn how to debug RxJS.
+@description Learn how to debug RxJS with the tap operator.
 
 @body
 
@@ -10,12 +10,13 @@
 In this section, we will:
 
 - Learn how to debug RxJS observables.
+- Log the value of the `this.cardNumber` observable everytime it changes.
 
 
 ## How to solve this problem
 
 - Create a `log` helper that `console.log`s emitted values without causing side-effects.
-- Use the `log` helper to log values emitted by `cardNumber`.
+- Use the `log` helper to log values emitted by `this.cardNumber`.
 
 
 
@@ -96,8 +97,10 @@ let randomNumbers = Observable.create( (observer) => {
 const toTimes100 = map( (value) => value * 100 );
 const toRound = map( Math.round );
 
+const logFloats = tap( (value) => console.log("float", value) )
+
 let floats0to100 = randomNumbers.pipe( toTimes100 )
-    .pipe( tap( (value) => console.log("float", value) ) );
+    .pipe( logFloats );
 
 let ints0to100 = floats0to100.pipe( toRound );
 
@@ -107,7 +110,7 @@ ints0to100.subscribe((value) => {
 </script>
 ```
 @codepen
-@highlight 17
+@highlight 16,19
 
 We can generalize this pattern with a `log` operator like:
 
@@ -122,11 +125,17 @@ const log = function(name) {
 ```typescript
 const number = source
     .pipe( mapToNumber )
-    .pipe( log("number", value) );
+    .pipe( log("number") );
 ```
 
-> __NOTE:__ Notice that to log `number`, we call `.pipe( log(...) )`
+> __NOTE 1:__ Notice that to log `number`, we call `.pipe( log(...) )`
 > on the on what would be the `number` observable.
+
+> __NOTE 2:__ The solution will log `cardNumber` twice.  That's expected because
+> there are two subscriptions on `cardNumber`:
+> - one directly from `cardNumber` in the template - `{{ (cardNumber | async) }}`
+> - the other from `cardError` in the template - `{{ (cardError | async) }}` - `cardError`
+    derives from `cardNumber`.
 
 ## The solution
 
