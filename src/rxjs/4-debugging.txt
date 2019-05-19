@@ -1,0 +1,11 @@
+Hello and welcome to Bitovi Academy's Learn RxJS training.
+
+This course covers how to debug RxJS with the tap
+operators. Specifically, we want to log the emitted values of the cleaned up cardNumber
+observable.
+
+We'll do this by creating a `log`
+helper that creates an operator that logs emitted values WITHOUT
+creating side effects.
+
+The "not creating side effects" things is important here. Lets see why.

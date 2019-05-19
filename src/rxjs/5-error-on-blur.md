@@ -1,9 +1,15 @@
 @page learn-rxjs/error-on-blur Error on blur
 @parent learn-rxjs 5
 
-@description Learn how to perform the reducer pattern.
+@description Learn how to perform the event reducer pattern with RxJS's scan operator.
 
 @body
+
+## Video
+
+Who has time to read? This video covers the content on this page. Watch fullscreen.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3cM-IaOO048" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## The problem
 
@@ -52,8 +58,8 @@ In this section, we will:
 
   first.subscribe( v => console.log("first", v));
   last.subscribe( v => console.log("last", v))
-  // first: ---Justin---RamiyaX
-  // last:  ------Shah__---Meyer_X
+  // first: -Justin---RamiyaX
+  // last:  ----Shah__---Meyer_X
   </script>
   ```
   @codepen
@@ -68,32 +74,23 @@ In this section, we will:
   const lastEvents = last.pipe( map( (last) => {
       return {type: "last", value: last}
   } ) );
-  // firstEvents: ---{t:"f"}---{t:"f"}X
-  // lastEvents:  ------{t:"l"}---{t:"l"}X
+  // firstEvents: -{t:fst,v:Jus}---{t:fst,v:Ram}X
+  // lastEvents:  ----{t:lst,v:Sha}---{t:lst,v:Myr}X
   ```
 
   Next, we can merge these into a single stream:
 
   ```js
   const merged = merge(firstEvents,lastEvents)
-  // merged: ---{t:"f"}-{t:"l"}-{t:"f"}-{t:"l"}X
+  // merged: -{type: "first",  value: "Justin"}
+  //          -{type: "last",  value: "Shah"}
+  //          -{type: "first", value: "Ramiya"}
+  //          -{type: "last",  value: "Meyer"}X
   ```
 
   We can "reduce" (or `scan`) these events based on a previous
   state. The following copies the old state and updates it using the event
   data:
-
-  ```js
-  const state = merged.pipe( scan( (previous, event) => {
-    return {...previous, [event.type]: event.value};
-  }, {first: "", last: ""} ) );
-  // state: ---{first:"Justin", last:""}
-  //          -{first:"Justin", last:"Shah"}
-  //          -{first:"Ramiya", last:"Shah"}
-  //          -{first:"Ramiya", last:"Meyer"}X
-  ```
-
-  The following is a more common structure for the reducer pattern:
 
   ```js
   const state = merged.pipe( scan( (previous, event) => {
@@ -106,17 +103,78 @@ In this section, we will:
           return previous;
       }
   }, {first: "", last: ""}) );
+    // state: -{first:"Justin", last:""}
+    //         -{first:"Justin", last:"Shah"}
+    //         -{first:"Ramiya", last:"Shah"}
+    //         -{first:"Ramiya", last:"Meyer"}X
+  ```
+
+  The following is an even more terse way of doing the same thing:
+
+  ```js
+  const state = merged.pipe( scan( (previous, event) => {
+    return {...previous, [event.type]: event.value};
+  }, {first: "", last: ""} ) );
+
   ```
 
   Finally, we can map this state to another value:
 
   ```js
-  const fullName = state.map( (state) => state.first +" "+ state.last );
-  // fullName: ---Justin
-  //             -Justin Shah
-  //             -Ramiya Shah
-  //             -Ramiya MeyerX
+  const fullName = state.pipe( map( state => state.first +" "+ state.last ) );
+  // fullName: -Justin
+  //            -Justin Shah
+  //            -Ramiya Shah
+  //            -Ramiya MeyerX
   ```
+
+  See it all together here:
+
+  ```html
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+  <script type="typescript">
+  const {of, zip, timer, from, merge} = rxjs;
+  const {delay, map, scan} = rxjs.operators;
+
+  function sequentially(value, dueTime, period){
+      return zip(
+          from(value),
+          timer(dueTime, period),
+          value => value
+      )
+  }
+
+  const first = sequentially(["Justin", "Ramiya"], 0, 1000);
+  const last = sequentially(["Shah", "Meyer"], 500, 1000);
+
+  const firstEvents = first.pipe( map( (first) => {
+      return {type: "first", value: first};
+  } ) );
+
+  const lastEvents = last.pipe( map( (last) => {
+      return {type: "last", value: last}
+  } ) );
+
+  const merged = merge(firstEvents,lastEvents);
+
+  const state = merged.pipe( scan( (previous, event) => {
+      switch( event.type ) {
+        case "first":
+          return { ...previous, first: event.value };
+        case "last":
+          return { ...previous, last: event.value };
+        default:
+          return previous;
+      }
+  }, {first: "", last: ""}) );
+
+  const fullName = state.pipe( map( state => state.first +" "+ state.last ) );
+
+  fullName.subscribe((fullName) => console.log(fullName));
+  </script>
+  ```
+  @codepen
+  @highlight 25-38,only
 
   > NOTE: `fullName` can be derived more simply from `combine`. The reducer
   > pattern is used here for illustrative purposes. It is able to support a larger
