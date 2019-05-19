@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn how to perform the reducer pattern. 
+  <meta name="description" content="Learn how to perform the event reducer pattern with RxJS&#x27;s scan operator. 
 ">
   <title>Bitovi Academy - Error on blur</title>
   
@@ -204,7 +204,7 @@
            						expanded">
 						<a class="page"
 							href="error-on-blur.html"
-							title="Learn how to perform the reducer pattern.">
+							title="Learn how to perform the event reducer pattern with RxJS&#x27;s scan operator.">
 							Error on blur
 						</a>
 						
@@ -382,7 +382,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn how to perform the reducer pattern.</p>
+    <p>Learn how to perform the event reducer pattern with RxJS's scan operator.</p>
 
 </section>
 
@@ -395,7 +395,10 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>The problem</h2>
+    <h2>Video</h2>
+<p>Who has time to read? This video covers the content on this page. Watch fullscreen.</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/3cM-IaOO048" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2>The problem</h2>
 <p>In this section, we will:</p>
 <ul>
 <li>Only show the cardNumber error if the user blurs the card number input. Once the user blurs,
@@ -436,8 +439,8 @@ const last = sequentially([&quot;Shah&quot;, &quot;Meyer&quot;], 500, 1000);
 
 first.subscribe( v =&gt; console.log(&quot;first&quot;, v));
 last.subscribe( v =&gt; console.log(&quot;last&quot;, v))
-// first: ---Justin---RamiyaX
-// last:  ------Shah__---Meyer_X
+// first: -Justin---RamiyaX
+// last:  ----Shah__---Meyer_X
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
@@ -449,25 +452,19 @@ last.subscribe( v =&gt; console.log(&quot;last&quot;, v))
 const lastEvents = last.pipe( map( (last) =&gt; {
     return {type: &quot;last&quot;, value: last}
 } ) );
-// firstEvents: ---{t:&quot;f&quot;}---{t:&quot;f&quot;}X
-// lastEvents:  ------{t:&quot;l&quot;}---{t:&quot;l&quot;}X
+// firstEvents: -{t:fst,v:Jus}---{t:fst,v:Ram}X
+// lastEvents:  ----{t:lst,v:Sha}---{t:lst,v:Myr}X
 </code></pre>
 <p>Next, we can merge these into a single stream:</p>
 <pre><code class="language-js">const merged = merge(firstEvents,lastEvents)
-// merged: ---{t:&quot;f&quot;}-{t:&quot;l&quot;}-{t:&quot;f&quot;}-{t:&quot;l&quot;}X
+// merged: -{type: &quot;first&quot;,  value: &quot;Justin&quot;}
+//          -{type: &quot;last&quot;,  value: &quot;Shah&quot;}
+//          -{type: &quot;first&quot;, value: &quot;Ramiya&quot;}
+//          -{type: &quot;last&quot;,  value: &quot;Meyer&quot;}X
 </code></pre>
 <p>We can &quot;reduce&quot; (or <code>scan</code>) these events based on a previous
 state. The following copies the old state and updates it using the event
 data:</p>
-<pre><code class="language-js">const state = merged.pipe( scan( (previous, event) =&gt; {
-  return {...previous, [event.type]: event.value};
-}, {first: &quot;&quot;, last: &quot;&quot;} ) );
-// state: ---{first:&quot;Justin&quot;, last:&quot;&quot;}
-//          -{first:&quot;Justin&quot;, last:&quot;Shah&quot;}
-//          -{first:&quot;Ramiya&quot;, last:&quot;Shah&quot;}
-//          -{first:&quot;Ramiya&quot;, last:&quot;Meyer&quot;}X
-</code></pre>
-<p>The following is a more common structure for the reducer pattern:</p>
 <pre><code class="language-js">const state = merged.pipe( scan( (previous, event) =&gt; {
     switch( event.type ) {
       case &quot;first&quot;:
@@ -478,14 +475,69 @@ data:</p>
         return previous;
     }
 }, {first: &quot;&quot;, last: &quot;&quot;}) );
+  // state: -{first:&quot;Justin&quot;, last:&quot;&quot;}
+  //         -{first:&quot;Justin&quot;, last:&quot;Shah&quot;}
+  //         -{first:&quot;Ramiya&quot;, last:&quot;Shah&quot;}
+  //         -{first:&quot;Ramiya&quot;, last:&quot;Meyer&quot;}X
+</code></pre>
+<p>The following is an even more terse way of doing the same thing:</p>
+<pre><code class="language-js">const state = merged.pipe( scan( (previous, event) =&gt; {
+  return {...previous, [event.type]: event.value};
+}, {first: &quot;&quot;, last: &quot;&quot;} ) );
+
 </code></pre>
 <p>Finally, we can map this state to another value:</p>
-<pre><code class="language-js">const fullName = state.map( (state) =&gt; state.first +&quot; &quot;+ state.last );
-// fullName: ---Justin
-//             -Justin Shah
-//             -Ramiya Shah
-//             -Ramiya MeyerX
+<pre><code class="language-js">const fullName = state.pipe( map( state =&gt; state.first +&quot; &quot;+ state.last ) );
+// fullName: -Justin
+//            -Justin Shah
+//            -Ramiya Shah
+//            -Ramiya MeyerX
 </code></pre>
+<p>See it all together here:</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const {of, zip, timer, from, merge} = rxjs;
+const {delay, map, scan} = rxjs.operators;
+
+function sequentially(value, dueTime, period){
+    return zip(
+        from(value),
+        timer(dueTime, period),
+        value =&gt; value
+    )
+}
+
+const first = sequentially([&quot;Justin&quot;, &quot;Ramiya&quot;], 0, 1000);
+const last = sequentially([&quot;Shah&quot;, &quot;Meyer&quot;], 500, 1000);
+
+const firstEvents = first.pipe( map( (first) =&gt; {
+    return {type: &quot;first&quot;, value: first};
+} ) );
+
+const lastEvents = last.pipe( map( (last) =&gt; {
+    return {type: &quot;last&quot;, value: last}
+} ) );
+
+const merged = merge(firstEvents,lastEvents);
+
+const state = merged.pipe( scan( (previous, event) =&gt; {
+    switch( event.type ) {
+      case &quot;first&quot;:
+        return { ...previous, first: event.value };
+      case &quot;last&quot;:
+        return { ...previous, last: event.value };
+      default:
+        return previous;
+    }
+}, {first: &quot;&quot;, last: &quot;&quot;}) );
+
+const fullName = state.pipe( map( state =&gt; state.first +&quot; &quot;+ state.last ) );
+
+fullName.subscribe((fullName) =&gt; console.log(fullName));
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='25-38,only'></div>
 <blockquote>
 <p>NOTE: <code>fullName</code> can be derived more simply from <code>combine</code>. The reducer
 pattern is used here for illustrative purposes. It is able to support a larger
@@ -763,7 +815,7 @@ form {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/rxjs/5-error-on-blur.md"},"description":"Learn how to perform the reducer pattern. \n","name":"learn-rxjs/error-on-blur","title":"Error on blur","type":"page","parent":"learn-rxjs","order":5,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/rxjs/5-error-on-blur.md"},"description":"Learn how to perform the event reducer pattern with RxJS's scan operator. \n","name":"learn-rxjs/error-on-blur","title":"Error on blur","type":"page","parent":"learn-rxjs","order":5,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     
