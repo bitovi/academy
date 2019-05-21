@@ -52,6 +52,16 @@ let list: number[] = [1, 2, 3];
 let raptors: Array<string> = ['Blue','Charlie','Delta']
 ```
 
+### Object
+
+```typescript
+let user: {name: string, age: number} = {name: "Justin", age: 36};
+```
+
+> __Note:__ Later we will learn about [learn-typescript/interfaces], which are
+> a better way of describing objects because the description
+> can be reused.
+
 ### Tuple
 
 ```typescript
