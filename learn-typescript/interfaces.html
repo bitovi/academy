@@ -343,11 +343,14 @@ function trackDino(dino: Dinosaur) {
   console.log(dino.location);
 }
 
-let blue = {name: 'blue', breed: 'Velociraptor', 
-height: 7, location: 'Section B'};
+let blue = {
+  name: 'blue', breed: 'Velociraptor',
+  height: 7, location: 'Section B'
+};
 trackDino(blue);
 //Logs &quot;Section B&quot;
 &lt;/script&gt;
+
 </code></pre>
 <div class='codepen'></div>
 <h3>Optional Properties</h3>
@@ -449,7 +452,7 @@ myObj.height = 6;
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<p>When we create object literals in TypeScript, they are inferred to be objects with zero properties. To fix this, we can use type assertions to let the compiler explicitly know what we want from our object.</p>
+<p>When we create empty object literals in TypeScript, they are inferred to be objects with zero properties. To fix this, we can use type assertions to let the compiler explicitly know what we want from our object.</p>
 <pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
 interface Dinosaur {
   name: string;
