@@ -113,8 +113,9 @@ const address = {street: "2 State St"};
 dog.bark.call(dog);     
 dog.bark.call(address);  
 ```
+@highlight 3
 
-This will error with: `Property 'name' is missing in type '{ street: string; }' but required in type '{ name: string; }'.`
+Line 10 will error with: `Property 'name' is missing in type '{ street: string; }' but required in type '{ name: string; }'.`
 
 ## Exercise: bonusMaker
 
