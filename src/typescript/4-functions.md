@@ -81,7 +81,40 @@ let uberDino = buildDinosaur('Indominous Rex', "Velociraptor",
 //      Tyrannosaurus rex, Therizinosaurus, cuttlefish"
 ```
 
+## `this` Parameters
 
+JavaScript functions can be called or created with a dynamic `this`. For example:
+
+```js
+const dog = {
+    name: "fido",
+    bark: function(){
+        console.log(this.name + "says woof");
+    }
+};
+const address = {street: "2 State St"};
+
+dog.bark.call(dog);     //logs "fido says woof";
+dog.bark.call(address); //logs "undefined says woof"
+```
+
+Compiling with the `--strictBindCallApply` flag allows you to
+specify the `this` type:
+
+```typescript
+const dog = {
+    name: "fido",
+    bark: function(this: {name: string} ){
+        console.log(this.name, "says woof");
+    }
+};
+const address = {street: "2 State St"};
+
+dog.bark.call(dog);     
+dog.bark.call(address);  
+```
+
+This will error with: `Property 'name' is missing in type '{ street: string; }' but required in type '{ name: string; }'.`
 
 ## Exercise: bonusMaker
 
