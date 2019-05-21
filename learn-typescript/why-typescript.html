@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript. 
+  <meta name="description" content="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript. 
 ">
   <title>Bitovi Academy - Why TypeScript</title>
   
@@ -110,7 +110,7 @@
            						expanded">
 						<a class="page"
 							href="why-typescript.html"
-							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript.">
+							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript.">
 							Why TypeScript
 						</a>
 						
@@ -309,7 +309,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript.</p>
+    <p>Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript.</p>
 
 </section>
 
@@ -323,12 +323,30 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>What is TypeScript?</h2>
-<p>TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. Typing helps enhance code quality and readability, assists in self-documenting, and the compiler uses <em>typechecking</em> to catch errors before runtime. TypeScript offers more modern (think ES6) features of JavaScript and the use of classes and interfaces to write code in an object oriented sense.</p>
+<p>TypeScript is a typed superset of JavaScript that compiles to plain
+JavaScript. Typing helps enhance code quality and readability, assists in self-documenting, and allows a compiler to perform <em>typechecking</em> to catch errors before runtime. TypeScript also offers modern (think ES6) features of JavaScript and the use of classes and interfaces to write code in an object oriented way.</p>
+<p>The following shows an IDE catching that <code>greeter</code> was expecting a <code>string</code>,
+but was passed a <code>number</code>:</p>
 <p><a href="../static/img/typescript-error-compiling.png" target="\_blank"><img src="../static/img/typescript-error-compiling.png" width="100%"/></a></p>
 <h3>Typechecking</h3>
 <p>Typechecking is the process of verifying and enforcing the constraints of types.</p>
 <h3>Static vs. Dynamic Typing</h3>
-<p>Plain JavaScript is a dynamically typed language, meaning it doesn't know the type of a value assigned to a variable until run-time when it's instantiated. If there's a bug in the code related to falsely assuming a type, it won't throw an error until we're already running our code.</p>
+<p>JavaScript an &quot;untyped&quot; or &quot;dynamically typed&quot; language. Type is associated with a value instead of a variable.
+JavaScript can assign variables to values of different types:</p>
+<pre><code class="language-js">let myVariable;
+
+myVariable = 1;
+myVariable = &quot;2&quot;;
+</code></pre>
+<p>JavaScript can call a function with a type it doesn't expect:</p>
+<pre><code class="language-js">function greeter(person) {
+    return &quot;Hello, &quot; + person;
+}
+
+let user = {name: &quot;Justin&quot;};
+document.body.innerHTML = greeter(user);
+</code></pre>
+<p>If there's a bug in the code related to falsely assuming a type, it won't throw an error until we're already running our code.</p>
 <p>TypeScript uses static typing, which allows us to specify what type a variable should hold, and types are checked when the code compiles alerting us of any incorrect usages of a variable assignment. The concept of &quot;static&quot; comes from the idea of variables being static, meaning once you set a variable to a type it can't (shouldn't) be changed.</p>
 <h2>Exercise: <code>1-helloworld.ts</code></h2>
 <h3>Setup</h3>
@@ -426,7 +444,7 @@ document.body.innerHTML = greeter(user);
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/typescript/1-why-typescript.md"},"description":"Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript. \n","name":"learn-typescript/why-typescript","title":"Why TypeScript","type":"page","parent":"learn-typescript","order":1,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/typescript/1-why-typescript.md"},"description":"Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript. \n","name":"learn-typescript/why-typescript","title":"Why TypeScript","type":"page","parent":"learn-typescript","order":1,"comment":" ","pathToRoot":"../.."};
     </script>
 
     
