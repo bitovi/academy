@@ -9,13 +9,13 @@
 In this section we will:
 
 - Create a component named `google-map-view`.
-- Use Shadow DOM to encapsulate styles.
-- Initialize the Google maps API.
+- Use [Shadow DOM](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM) to encapsulate styles.
+- Initialize the [Google maps API](https://developers.google.com/maps/documentation/).
 
 ## How to solve this problem
 
 - Create a custom element class called `GoogleMapView`.
-- Attach a Shadow DOM and clone our template into it.
+- Attach a ShadowRoot and clone our template into it.
 - Initialize the Google Maps API in `connectedCallback` and attach it to the root element within the Shadow DOM.
 
 ## What you need to know

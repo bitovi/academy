@@ -103,7 +103,7 @@ class MyGreeting extends HTMLElement {
 
 To define which attributes should be added you add a static getter `observedAttributes` on the class.
 
-The following will observe changes the `name` attribute and update the innerHTML when it changes.
+The following will observe changes to the `name` attribute and update the innerHTML when it changes.
 
 ```html
 <my-greeting name="world"></my-greeting>
