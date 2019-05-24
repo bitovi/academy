@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/web-components/map-view.md
+	@page learn-web-components/map-view
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <meta name="description" content="Create a component to hold our Google map view. 
+">
+  <title>Bitovi Academy - Map View</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-web-components.html"
+							title="">
+							Learn Web Components
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="why-wc.html"
+							title="Learn why web components might be a good choice for building your next widget.">
+							Why Web Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="first-component.html"
+							title="Build a &lt;my-greeting&gt; component to learn the APIs. It will be able to display a greeting, and receive a name parameter either from an attribute or a JavaScript property.">
+							Our first component
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="templates.html"
+							title="Learn how &lt;template&gt; can be used to create reusable DOM that can be cloned and used within your components.">
+							Writing a template
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="map-view.html"
+							title="Create a component to hold our Google map view.">
+							Map View
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="listing-routes.html"
+							title="Learn lit-html by creating a component that lists bus routes from the CTA bus tracker API.">
+							Listing routes
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="select-a-route.html"
+							title="Learn more about lit-html, with its special syntax for setting up event listeners and for passing properties to child components.">
+							Selecting a route
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="display-markers.html"
+							title="Learn how to listen to changes in properties on your custom elements and how to properly reflect back the property values to the outside world.">
+							Display markers for vehicles
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="customize-header.html"
+							title="Learn how to use CSS properties to customize the appearance within Shadow DOM.">
+							Customize header styles
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="slotted-content.html"
+							title="Use slot elements to allow more control over non-critical parts of your component.">
+							Slotted content
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="dispatching-events.html"
+							title="Learn how to use custom events to provide information on the state of your component to parent elements.">
+							Dispatching events
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn how to build a moderately complex application with Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border">
+      <a href="..#courses">View More Courses</a>
+      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
+  </p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Map View <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>Create a component to hold our Google map view.</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <h2>The problem</h2>
+<p>In this section we will:</p>
+<ul>
+<li>Create a component named <code>google-map-view</code>.</li>
+<li>Use <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM">Shadow DOM</a> to encapsulate styles.</li>
+<li>Initialize the <a href="https://developers.google.com/maps/documentation/">Google maps API</a>.</li>
+</ul>
+<h2>How to solve this problem</h2>
+<ul>
+<li>Create a custom element class called <code>GoogleMapView</code>.</li>
+<li>Attach a ShadowRoot and clone our template into it.</li>
+<li>Initialize the Google Maps API in <code>connectedCallback</code> and attach it to the root element within the Shadow DOM.</li>
+</ul>
+<h2>What you need to know</h2>
+<ul>
+<li>(Most) elements can have a <code>shadowRoot</code> property. This is a special version of a <a href="https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment">DocumentFragment</a> that is completely encapsulated. You cannot query the nodes within it from the outside (like <code>document.querySelector('.gmap')</code>). Styles within will not affect DOM outside.</li>
+<li>Create a shadowRoot for your element by calling <code>this.attachShadow({ mode: 'open' })</code>.
+<pre><code class="language-js">let el = document.createElement('div');
+el.attachShadow({ mode: 'open' });
+el.shadowRoot.innerHTML = 'Hello there';
+document.body.append(el);
+</code></pre>
+  <div class='codepen'></div></li>
+<li>You can create <strong>closed</strong> shadowRoots by using <code>{ mode: 'closed' }</code>. When you do this, the <code>shadowRoot</code> property will not be added to the element. To be able to append items to the shadowRoot, keep a reference to it from the return value of <code>attachShadow()</code>.
+<pre><code class="language-js">let el = document.createElement('div');
+let shadow = el.attachShadow({ mode: 'closed' });
+
+el.shadowRoot; // null
+shadow.innerHTML = 'Hello from a closed shadow';
+document.body.append(el);
+</code></pre>
+  <div class='codepen'></div></li>
+<li><code>connectedCallback</code> is a lifecycle method for custom elements. It is called when the element is <strong>connected</strong>, which can occur in one of these scenarios:
+<ul>
+<li>The HTML parser sees the element within the page.</li>
+<li>An element node is inserted into the page like <code>document.body.append(node)</code>.</li>
+</ul></li>
+<li>The <code>connectedCallback</code> method will be called <em>each time</em> the element is inserted. If an element is inserted, removed, and reinserted, the <code>connectedCallback</code> will be called twice.</li>
+</ul>
+<h2>The solution</h2>
+<p>Building off of the template we created in the previous section, now extend <code>HTMLElement</code> to create a custom element.</p>
+<pre><code class="language-html">&lt;google-map-view&gt;&lt;/google-map-view&gt;
+
+&lt;template id=&quot;gmap-template&quot;&gt;
+  &lt;style&gt;
+    .gmap {
+      width: 100%;
+      height: 250px;
+      background-color: grey;
+    }
+  &lt;/style&gt;
+  &lt;div class=&quot;gmap&quot;&gt;&lt;/div&gt;
+&lt;/template&gt;
+&lt;script type=&quot;module&quot;&gt;
+const template = document.querySelector('#gmap-template');
+
+const googleAPI = new Promise(resolve =&gt; {
+  const script = document.createElement(&quot;script&quot;);
+  script.src =
+    &quot;https://maps.googleapis.com/maps/api/js?key=AIzaSyD7POAQA-i16Vws48h4yRFVGBZzIExOAJI&quot;;
+  document.body.appendChild(script);
+  script.onload = resolve;
+});
+
+class GoogleMapView extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+
+    let nodes = document.importNode(template.content, true);
+    this.shadowRoot.append(nodes);
+  }
+
+  async connectedCallback() {
+    await googleAPI;
+
+    let gmap = this.shadowRoot.querySelector('.gmap');
+    this.map = new google.maps.Map(gmap, {
+      zoom: 10,
+      center: {
+        lat: 41.881,
+        lng: -87.623
+      }
+    });
+  }
+}
+
+customElements.define('google-map-view', GoogleMapView);
+&lt;/script&gt;
+</code></pre>
+<div line-highlight='1,14-47,only'></div>
+<div class='codepen'></div>
+
+</section>
+
+  			
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout slack">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">help</a> with an exercise, please reach out to us on
+             <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">Slack</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/web-components/map-view.md"},"description":"Create a component to hold our Google map view. \n","name":"learn-web-components/map-view","title":"Map View","type":"page","parent":"learn-web-components","order":4,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+</body>
+</html>

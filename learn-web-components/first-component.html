@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/web-components/our-first-component.md
+	@page learn-web-components/first-component
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <meta name="description" content="Build a &#x60;&lt;my-greeting&gt;&#x60; component to learn the APIs. It will be able to display a greeting, and receive a &#x60;name&#x60; parameter either from an attribute or a JavaScript property. 
+">
+  <title>Bitovi Academy - Our first component</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-web-components.html"
+							title="">
+							Learn Web Components
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="why-wc.html"
+							title="Learn why web components might be a good choice for building your next widget.">
+							Why Web Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="first-component.html"
+							title="Build a &lt;my-greeting&gt; component to learn the APIs. It will be able to display a greeting, and receive a name parameter either from an attribute or a JavaScript property.">
+							Our first component
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="templates.html"
+							title="Learn how &lt;template&gt; can be used to create reusable DOM that can be cloned and used within your components.">
+							Writing a template
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="map-view.html"
+							title="Create a component to hold our Google map view.">
+							Map View
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="listing-routes.html"
+							title="Learn lit-html by creating a component that lists bus routes from the CTA bus tracker API.">
+							Listing routes
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="select-a-route.html"
+							title="Learn more about lit-html, with its special syntax for setting up event listeners and for passing properties to child components.">
+							Selecting a route
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="display-markers.html"
+							title="Learn how to listen to changes in properties on your custom elements and how to properly reflect back the property values to the outside world.">
+							Display markers for vehicles
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="customize-header.html"
+							title="Learn how to use CSS properties to customize the appearance within Shadow DOM.">
+							Customize header styles
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="slotted-content.html"
+							title="Use slot elements to allow more control over non-critical parts of your component.">
+							Slotted content
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="dispatching-events.html"
+							title="Learn how to use custom events to provide information on the state of your component to parent elements.">
+							Dispatching events
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn how to build a moderately complex application with Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border">
+      <a href="..#courses">View More Courses</a>
+      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
+  </p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Our first component <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>Build a <code>&lt;my-greeting&gt;</code> component to learn the APIs. It will be able to display a greeting, and receive a <code>name</code> parameter either from an attribute or a JavaScript property.</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <h2>Overview</h2>
+<p>In this part, we will:</p>
+<ul>
+<li>Learn how to use a web component in HTML.</li>
+<li>Write the JavaScript necessary for registering a custom element.</li>
+<li>Accept arguments, in the form of HTML attributes and JavaScript properties, to our component and respond when they change.</li>
+</ul>
+<h2>Using custom elements</h2>
+<p>Custom elements can be used the same way that regular elements can; with one bonus included. You can:</p>
+<ul>
+<li><p>Include them directly in HTML like so:</p>
+<pre><code class="language-html">&lt;my-greeting&gt;&lt;/my-greeting&gt;
+</code></pre></li>
+<li><p>Build them using the JavaScript DOM APIs such as:</p>
+<pre><code class="language-js">let element = document.createElement('my-greeting');
+
+// OR provide HTML like this
+otherElement.innerHTML = `&lt;my-greeting&gt;&lt;/my-greeting&gt;`;
+</code></pre></li>
+<li><p>And the <strong>bonus</strong>, call their constructors (you can't do this with normal elements):</p>
+<pre><code class="language-js">let element = new MyGreeting();
+
+// This is a DOM node now, do the usual things with it:
+document.body.appendChild(element);
+</code></pre></li>
+</ul>
+<p>Let's create our first element by adding it to the HTML.</p>
+<pre><code class="language-html">&lt;my-greeting&gt;&lt;/my-greeting&gt;
+</code></pre>
+<div class='codepen'></div>
+<p>Click the &quot;Run in your browser&quot; button above and notice that... nothing happens. In order to do anything useful, we have to register our element.</p>
+<h2>Registering our tag</h2>
+<p>The <a href="https://html.spec.whatwg.org/multipage/custom-elements.html">custom elements API</a> provides a way to hook into the browser's HTML parser and receive callbacks whenever a certain tag is encountered. Think about that; your code can run before the page has even finished loading (provided your script has run). That's a lot of power.</p>
+<p>Custom elements are classes that extend <a href="https://html.spec.whatwg.org/multipage/dom.html">HTMLElement</a>. This is the base class from which all elements, both built-in and custom, derive. For example the <code>&lt;progress&gt;</code> element is an instance of <code>HTMLProgressElement</code>.</p>
+<p>To register our own tag we first extend HTMLElement like so:</p>
+<pre><code class="language-js">class MyGreeting extends HTMLElement {
+
+}
+</code></pre>
+<p>Once you've extended HTMLElement you then need to give it a tag name and pass that, along with the class into <code>customElements.define()</code>. Since we want to print <strong>Hello world</strong> we can do that in the constructor:</p>
+<pre><code class="language-html">&lt;my-greeting&gt;&lt;/my-greeting&gt;
+&lt;script type=&quot;module&quot;&gt;
+class MyGreeting extends HTMLElement {
+  constructor() {
+    super();
+    this.innerHTML = `Hello world`;
+  }
+}
+
+customElements.define('my-greeting', MyGreeting);
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<h2>Responding to attribute changes</h2>
+<p>A component is only useful if it can receive parameters just like functions do through function arguments. There are two primary ways for a web component to receive arguments:</p>
+<ul>
+<li>Through attributes like <code>foo=&quot;bar&quot;</code>.</li>
+<li>Through properties in JavaScript like <code>element.foo = 'bar';</code></li>
+</ul>
+<p>In this example we'll do both.</p>
+<h3>attributeChangeCallback</h3>
+<p>In order to understand attributes in custom elements we'll learn about our first lifecycle callback. <code>attributeChangedCallback</code> is a method you define on your element class. It will be called back with the name of the attribute, as well as the new and old value.</p>
+<pre><code class="language-js">class MyGreeting extends HTMLElement {
+  attributeChangedCallback(attributeName, oldValue, newValue) {
+    // Do whatever you want here
+  }
+}
+</code></pre>
+<p><em>However</em>, in order to get attribute change notification you <strong>must</strong> define which attributes should be observed. This means that you aren't notified when any arbitrary attribute is added; only those you predefine. This is a performance optimization tradeoff that was made when designing the API.</p>
+<p>To define which attributes should be added you add a static getter <code>observedAttributes</code> on the class.</p>
+<p>The following will observe changes to the <code>name</code> attribute and update the innerHTML when it changes.</p>
+<pre><code class="language-html">&lt;my-greeting name=&quot;world&quot;&gt;&lt;/my-greeting&gt;
+&lt;script type=&quot;module&quot;&gt;
+class MyGreeting extends HTMLElement {
+  static get observedAttributes() {
+    return ['name'];
+  }
+
+  constructor() {
+    super();
+    this.render();
+  }
+
+  attributeChangedCallback(name, oldValue, newValue) {
+    this.render();
+  }
+
+  render() {
+    let name = this.getAttribute('name');
+    this.innerHTML = `Hello ${name}`;
+  }
+}
+
+customElements.define('my-greeting', MyGreeting);
+
+// Let's modify the element
+let element = document.querySelector('my-greeting');
+
+setTimeout(() =&gt; {
+  element.setAttribute('name', 'Matthew');
+}, 3000);
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='1,4-6,10,13-15,17-20,25-30'></div>
+<p>Running the above you should see <code>Hello world</code> for a few seconds and then change to <code>Hello Matthew</code>.</p>
+<p>Here we are:</p>
+<ul>
+<li>Defining <code>name</code> as an observed attribute with <code>static get observedAttributes()</code>.</li>
+<li>Calling <code>this.render()</code> when the element is constructed.</li>
+<li>Calling <code>this.render()</code> again whenever the attribute changes.</li>
+<li>Using the <code>name</code> attribute to set the element's text.</li>
+</ul>
+<h2>Responding to property changes</h2>
+<p>This one is a bit easier if you are already familiar with JavaScript classes. Since an element is a JavaScript object it can receive properties the same way any JavaScript class can.</p>
+<p>We can add a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set">setter</a> to be notified when the <code>name</code> property is changed.</p>
+<p>Below we refactor the code so that it treats attributes and properties the same way.</p>
+<pre><code class="language-html">&lt;my-greeting name=&quot;world&quot;&gt;&lt;/my-greeting&gt;
+&lt;script type=&quot;module&quot;&gt;
+class MyGreeting extends HTMLElement {
+  static get observedAttributes() {
+    return ['name'];
+  }
+
+  constructor() {
+    super();
+    this._name = this.getAttribute('name');
+    this.render();
+  }
+
+  attributeChangedCallback(attributeName, oldValue, newValue) {
+    this[attributeName] = newValue;
+  }
+
+  render() {
+    let name = this.name;
+    this.innerHTML = `Hello ${name}`;
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  set name(value) {
+    this._name = value;
+    this.render();
+  }
+}
+
+customElements.define('my-greeting', MyGreeting);
+
+// Let's modify the element
+let element = document.querySelector('my-greeting');
+
+setTimeout(() =&gt; {
+  element.setAttribute('name', 'Matthew');
+}, 3000);
+
+setTimeout(() =&gt; {
+  element.name = 'Wilbur';
+}, 6000);
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='10,15,19,23-25,27-30,42-44,only'></div>
+<p>In the above we change it so that if an attribute change it just calls the property setter. The property then saves its value in a &quot;private&quot; variable <code>this._name</code>.</p>
+<p>This works the way most built-in elements work; changing a property does <strong>not</strong> reflect in the attribute; but changing an attribute does change the value of the property.</p>
+<p>In either case, the text changes when we change the value.</p>
+
+</section>
+
+  			
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout slack">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">help</a> with an exercise, please reach out to us on
+             <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">Slack</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/web-components/our-first-component.md"},"description":"Build a `<my-greeting>` component to learn the APIs. It will be able to display a greeting, and receive a `name` parameter either from an attribute or a JavaScript property. \n","name":"learn-web-components/first-component","title":"Our first component","type":"page","parent":"learn-web-components","order":2,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+</body>
+</html>

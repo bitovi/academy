@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/web-components/listing-routes.md
+	@page learn-web-components/listing-routes
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <meta name="description" content="Learn lit-html by creating a component that lists bus routes from the CTA bus tracker API. 
+">
+  <title>Bitovi Academy - Listing routes</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-web-components.html"
+							title="">
+							Learn Web Components
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="why-wc.html"
+							title="Learn why web components might be a good choice for building your next widget.">
+							Why Web Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="first-component.html"
+							title="Build a &lt;my-greeting&gt; component to learn the APIs. It will be able to display a greeting, and receive a name parameter either from an attribute or a JavaScript property.">
+							Our first component
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="templates.html"
+							title="Learn how &lt;template&gt; can be used to create reusable DOM that can be cloned and used within your components.">
+							Writing a template
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="map-view.html"
+							title="Create a component to hold our Google map view.">
+							Map View
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="listing-routes.html"
+							title="Learn lit-html by creating a component that lists bus routes from the CTA bus tracker API.">
+							Listing routes
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="select-a-route.html"
+							title="Learn more about lit-html, with its special syntax for setting up event listeners and for passing properties to child components.">
+							Selecting a route
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="display-markers.html"
+							title="Learn how to listen to changes in properties on your custom elements and how to properly reflect back the property values to the outside world.">
+							Display markers for vehicles
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="customize-header.html"
+							title="Learn how to use CSS properties to customize the appearance within Shadow DOM.">
+							Customize header styles
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="slotted-content.html"
+							title="Use slot elements to allow more control over non-critical parts of your component.">
+							Slotted content
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="dispatching-events.html"
+							title="Learn how to use custom events to provide information on the state of your component to parent elements.">
+							Dispatching events
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn how to build a moderately complex application with Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border">
+      <a href="..#courses">View More Courses</a>
+      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
+  </p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Listing routes <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>Learn lit-html by creating a component that lists bus routes from the CTA bus tracker API.</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <h2>The problem</h2>
+<p>In this section we will:</p>
+<ul>
+<li>Create another component named <code>bus-tracker</code>.</li>
+<li>Display a list of bus routes.</li>
+</ul>
+<h2>How to solve this problem</h2>
+<ul>
+<li>Use <a href="https://lit-html.polymer-project.org/">lit-html</a> to define a template that can be updated.</li>
+<li>Render the lit-html template into the <code>shadowRoot</code> in the <code>connectedCallback</code>.</li>
+<li>Fetch a list of routes from the CTA bus tracker API.</li>
+</ul>
+<h2>What you need to know</h2>
+<ul>
+<li><a href="https://lit-html.polymer-project.org/">lit-html</a> is a library to make writing templates easier. Using the <code>&lt;template&gt;</code> element you can only define <strong>static</strong> DOM. It doesn't provide a way to insert dynamic text or attributes. It also doesn't provide a way to declaratively update when data changes. lit-html gives us that with its <code>html</code> function.
+<pre><code class="language-js">import { html, render } from &quot;https://unpkg.com/lit-html@1.0.0/lit-html.js&quot;;
+
+function app({ title }) {
+  return html`&lt;h1&gt;${title} app&lt;/h1&gt;`
+}
+
+render(app({ title: 'Matthew\'s' }), document.body)
+</code></pre>
+  <div class='codepen'></div></li>
+<li>Defining an <code>update()</code> method gives us a way to update any time data changes. In this section the data changes when the routes <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a> resolves.</li>
+<li>lit-html has a <code>render()</code> export. This takes a <code>TemplateResult</code>, which is returned by <code>html</code>, and a host element; in our case the element's <code>shadowRoot</code>.</li>
+<li>lit-html uses the JavaScript feature <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates">tagged templates</a> to facilitate templating. You can nest calls to <code>html</code> inside of a template and stuff like <code>Array#map</code> works. These are all features of lit-html, not of the web component APIs.
+<ul>
+<li>Tagged templates are functions that can be called like <code>fn`my name is ${name}`;</code>.</li>
+<li>These functions have an unusual signature. The first argument is an Array of strings that is split on each usage of <code>${}</code>. The rest of the arguments are the values filled by <code>${}</code>. To implement a tagged template function it looks like:
+<pre><code class="language-js">function reverse(strings, ...args) {
+  args.reverse();
+  let out = '';
+  for(let i = 0; i &lt; strings.length; i++) {
+    out += strings[i] + (args[i] || '');
+  }
+  return out;
+}
+
+let name = 'Jill';
+let age = 24;
+
+let result = reverse`Hello I am ${name} and I am ${age} years old`;
+console.log(result);
+</code></pre>
+<div class='codepen'></div></li>
+</ul></li>
+</ul>
+<h2>The solution</h2>
+<p>Remove the <code>&lt;google-map-view&gt;</code> from the HTML and replace it with <code>&lt;bus-tracker&gt;</code>. Then add a template to hold the bus-tracker's styles. Then using lit-html loop over the routes (after the promise resolves) and display some information about then in a <code>&lt;ul&gt;</code>.</p>
+<pre><code class="language-html">&lt;bus-tracker&gt;&lt;/bus-tracker&gt;
+
+&lt;template id=&quot;bt-template&quot;&gt;
+  &lt;style&gt;
+    :host {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top {
+      flex-grow: 1;
+      overflow-y: auto;
+      height: 10%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    footer {
+      height: 250px;
+      position: relative;
+    }
+    .gmap {
+      width: 100%;
+      height: 250px;
+      background-color: grey;
+    }
+
+    header {
+      box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+      background-color: #313131;
+      color: white;
+      min-height: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      line-height: 1.2;
+    }
+
+    header h1 {
+      text-align: center;
+      font-size: 18px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin: 0;
+    }
+    .route-selected {
+      line-height: 1;
+      position: absolute;
+      z-index: 1;
+      text-align: right;
+      background: rgba(6, 6, 6, 0.6);
+      top: 10px;
+      right: 10px;
+      padding: 6px 10px;
+      color: white;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+    .route-selected small {
+      display: block;
+      font-size: 14px;
+      color: #ddd;
+    }
+    .route-selected .error-message {
+      font-size: 14px;
+      background-color: #ff5722;
+      border-radius: 10px;
+      padding: 4px 8px 1px;
+      margin-top: 5px;
+    }
+    .routes-list {
+      padding: 20px 0;
+      margin: 0;
+      overflow-y: auto;
+    }
+    .routes-list li {
+      list-style: none;
+      cursor: pointer;
+      background: white;
+      border: 1px solid #dedede;
+      margin: 1% 2%;
+      border-radius: 25px;
+      color: #2196f3;
+      width: 41%;
+      display: inline-flex;
+      font-size: 14px;
+      line-height: 1.2;
+    }
+    .routes-list li:hover {
+      border-color: transparent;
+      background-color: #008eff;
+      color: white;
+      box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.2);
+    }
+    .routes-list li .check {
+      display: none;
+    }
+    .routes-list li.active {
+      color: #666;
+      background-color: #e8e8e8;
+    }
+    .routes-list li.active .check {
+      display: inline-block;
+      margin-left: 5px;
+      color: #2cc532;
+    }
+    .routes-list li.active:hover {
+      border-color: #dedede;
+      box-shadow: none;
+    }
+    .routes-list button {
+      width: 100%;
+      padding: 8px 8px 6px;
+      border: none;
+      border-radius: 25px;
+      background: transparent;
+      text-align: left;
+      font: inherit;
+      color: inherit;
+    }
+    .route-number {
+      display: inline-block;
+      border-right: 1px solid #dedede;
+      padding-right: 5px;
+      margin-right: 5px;
+      min-width: 18px;
+      text-align: right;
+    }
+    p {
+      text-align: center;
+      margin: 0;
+      color: #ccc;
+      font-size: 14px;
+    }
+  &lt;/style&gt;
+&lt;/template&gt;
+&lt;template id=&quot;gmap-template&quot;&gt;
+  &lt;style&gt;
+    .gmap {
+      width: 100%;
+      height: 250px;
+      background-color: grey;
+    }
+  &lt;/style&gt;
+  &lt;div class=&quot;gmap&quot;&gt;&lt;/div&gt;
+&lt;/template&gt;
+&lt;script type=&quot;module&quot;&gt;
+import { html, render } from &quot;https://unpkg.com/lit-html@1.0.0/lit-html.js&quot;;
+
+const template = document.querySelector('#gmap-template');
+
+const googleAPI = new Promise(resolve =&gt; {
+  const script = document.createElement(&quot;script&quot;);
+  script.src =
+    &quot;https://maps.googleapis.com/maps/api/js?key=AIzaSyD7POAQA-i16Vws48h4yRFVGBZzIExOAJI&quot;;
+  document.body.appendChild(script);
+  script.onload = resolve;
+});
+
+class GoogleMapView extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+
+    let nodes = document.importNode(template.content, true);
+    this.shadowRoot.append(nodes);
+  }
+
+  async connectedCallback() {
+    await googleAPI;
+
+    let gmap = this.shadowRoot.querySelector('.gmap');
+    this.map = new google.maps.Map(gmap, {
+      zoom: 10,
+      center: {
+        lat: 41.881,
+        lng: -87.623
+      }
+    });
+  }
+}
+
+customElements.define('google-map-view', GoogleMapView);
+
+const proxyUrl = &quot;https://can-cors.herokuapp.com/&quot;;
+const token = &quot;?key=piRYHjJ5D2Am39C9MxduHgRZc&amp;format=json&quot;;
+const apiRoot = &quot;http://www.ctabustracker.com/bustime/api/v2/&quot;;
+const getRoutesEndpoint = apiRoot + &quot;getroutes&quot; + token;
+const getVehiclesEndpoint = apiRoot + &quot;getvehicles&quot; + token;
+const styles = document.querySelector('#bt-template').content.cloneNode(true).firstElementChild;
+
+class StatefulPromise {
+  constructor(promise, component) {
+    this.promise = promise;
+    this.component = component;
+
+    this.state = &quot;pending&quot;;
+    this.value = null;
+    this.listen();
+  }
+
+  listen() {
+    let onSuccess = value =&gt; {
+      this.value = value;
+      this.state = &quot;resolved&quot;;
+      this.component.update();
+    };
+
+    let onFailure = error =&gt; {
+      this.error = error;
+      this.state = &quot;rejected&quot;;
+      this.component.update();
+    };
+
+    this.promise.then(onSuccess, onFailure);
+  }
+
+  isPending() {
+    return this.state === &quot;pending&quot;;
+  }
+
+  isResolved() {
+    return this.state === &quot;resolved&quot;;
+  }
+
+  isRejected() {
+    return this.state === &quot;rejected&quot;;
+  }
+}
+
+class BusTracker extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: &quot;open&quot; });
+
+    this.title = &quot;Chicago CTA Bus Tracker&quot;;
+  }
+
+  connectedCallback() {
+    this._getRoutes();
+    this.update();
+  }
+
+  update() {
+    render(this.render(), this.shadowRoot);
+  }
+
+  _getRoutes() {
+    let promise = fetch(proxyUrl + getRoutesEndpoint)
+      .then(response =&gt; response.json())
+      .then(data =&gt; data[&quot;bustime-response&quot;].routes);
+
+    this.routes = new StatefulPromise(promise, this);
+  }
+
+  render() {
+    return html`
+      ${styles}
+      &lt;div class=&quot;top&quot;&gt;
+        &lt;header&gt;
+          &lt;h1&gt;${this.title}&lt;/h1&gt;
+          ${this.routes.isPending()
+            ? html`
+                &lt;p&gt;Loading routes…&lt;/p&gt;
+              `
+            : &quot;&quot;}
+        &lt;/header&gt;
+
+        &lt;ul class=&quot;routes-list&quot;&gt;
+          ${this.routes.isResolved()
+            ? this.routes.value.map(
+                route =&gt; html`
+                  &lt;li
+                    class=${this.route === route ? &quot;active&quot; : &quot;&quot;}
+                  &gt;
+                    &lt;button type=&quot;button&quot;&gt;
+                      &lt;span class=&quot;route-number&quot;&gt;${route.rt}&lt;/span&gt;
+                      &lt;span class=&quot;route-name&quot;&gt;${route.rtnm}&lt;/span&gt;
+                      &lt;span class=&quot;check&quot;&gt;✔&lt;/span&gt;
+                    &lt;/button&gt;
+                  &lt;/li&gt;
+                `
+              )
+            : &quot;&quot;}
+        &lt;/ul&gt;
+      &lt;/div&gt;
+      &lt;footer&gt;&lt;/footer&gt;
+    `;
+  }
+}
+
+customElements.define(&quot;bus-tracker&quot;, BusTracker);
+&lt;/script&gt;
+</code></pre>
+<div line-highlight='1,3-136,148,185-290,only'></div>
+<div class='codepen'></div>
+
+</section>
+
+  			
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout slack">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">help</a> with an exercise, please reach out to us on
+             <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">Slack</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/web-components/listing-routes.md"},"description":"Learn lit-html by creating a component that lists bus routes from the CTA bus tracker API. \n","name":"learn-web-components/listing-routes","title":"Listing routes","type":"page","parent":"learn-web-components","order":5,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+</body>
+</html>
