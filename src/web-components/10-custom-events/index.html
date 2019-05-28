@@ -1,0 +1,392 @@
+<style>
+  html,
+  body {
+    height: 100%;
+  }
+  body {
+    font-family: "Catamaran", sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+  bus-tracker {
+    --header-background: salmon;
+    --header-text-transform: capitalize;
+  }
+  header[slot=header] {
+    background: crimson;
+    color: wheat;
+    text-align: center;
+  }
+</style>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7POAQA-i16Vws48h4yRFVGBZzIExOAJI"></script>
+
+<bus-tracker>
+  <header slot="header">
+    <h1>My Bus Tracker!</h1>
+  </header>
+</bus-tracker>
+
+<template id="bt-template">
+  <style>
+    :host {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .top {
+      flex-grow: 1;
+      overflow-y: auto;
+      height: 10%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    footer {
+      height: 250px;
+      position: relative;
+    }
+    .gmap {
+      width: 100%;
+      height: 250px;
+      background-color: grey;
+    }
+
+    header {
+      box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+      background-color: var(--header-background, #313131);
+      color: white;
+      min-height: 60px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      line-height: 1.2;
+    }
+
+    header h1 {
+      text-align: center;
+      font-size: 18px;
+      text-transform: var(--header-text-transform, uppercase);
+      letter-spacing: 1px;
+      margin: 0;
+    }
+    #selected-route:not(.route-selected) {
+      display: none;
+    }
+    .route-selected {
+      line-height: 1;
+      position: absolute;
+      z-index: 1;
+      text-align: right;
+      background: rgba(6, 6, 6, 0.6);
+      top: 10px;
+      right: 10px;
+      padding: 6px 10px;
+      color: white;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+    .route-selected small {
+      display: block;
+      font-size: 14px;
+      color: #ddd;
+    }
+    .route-selected .error-message {
+      font-size: 14px;
+      background-color: #ff5722;
+      border-radius: 10px;
+      padding: 4px 8px 1px;
+      margin-top: 5px;
+    }
+    #selected-vehicle:not(.vehicle-selected) {
+      display: none;
+    }
+    .vehicle-selected {
+      line-height: 1;
+      position: absolute;
+      z-index: 1;
+      text-align: right;
+      background: rgba(6, 6, 6, 0.6);
+      top: 55px;
+      font-size: 11px;
+      right: 10px;
+      padding: 6px 10px;
+      color: white;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+    .vehicle-selected small {
+      display: block;
+      font-size: 14px;
+      color: #ddd;
+    }
+    .routes-list {
+      padding: 20px 0;
+      margin: 0;
+      overflow-y: auto;
+    }
+    .routes-list li {
+      list-style: none;
+      cursor: pointer;
+      background: white;
+      border: 1px solid #dedede;
+      margin: 1% 2%;
+      border-radius: 25px;
+      color: #2196f3;
+      width: 41%;
+      display: inline-flex;
+      font-size: 14px;
+      line-height: 1.2;
+    }
+    .routes-list li:hover {
+      border-color: transparent;
+      background-color: #008eff;
+      color: white;
+      box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.2);
+    }
+    .routes-list li .check {
+      display: none;
+    }
+    .routes-list li.active {
+      color: #666;
+      background-color: #e8e8e8;
+    }
+    .routes-list li.active .check {
+      display: inline-block;
+      margin-left: 5px;
+      color: #2cc532;
+    }
+    .routes-list li.active:hover {
+      border-color: #dedede;
+      box-shadow: none;
+    }
+    .routes-list button {
+      width: 100%;
+      padding: 8px 8px 6px;
+      border: none;
+      border-radius: 25px;
+      background: transparent;
+      text-align: left;
+      font: inherit;
+      color: inherit;
+    }
+    .route-number {
+      display: inline-block;
+      border-right: 1px solid #dedede;
+      padding-right: 5px;
+      margin-right: 5px;
+      min-width: 18px;
+      text-align: right;
+    }
+    p {
+      text-align: center;
+      margin: 0;
+      color: #ccc;
+      font-size: 14px;
+    }
+  </style>
+  <div class="top">
+    <slot name="header">
+      <header>
+        <h1>Chicago CTA Bus Tracker</h1>
+        <p id="loading-routes">Loading routes…</p>
+      </header>
+    </slot>
+
+    <ul class="routes-list"></ul>
+  </div>
+  <footer>
+    <button id="selected-route" type="button">
+    </button>
+    <span id="selected-vehicle"></span>
+
+    <google-map-view></google-map-view>
+  </footer>
+</template>
+<template id="error-template">
+  <div class="error-message">
+    No vehicles available for this route
+  </div>
+</template>
+<template id="gmap-template">
+  <style>
+    .gmap {
+      width: 100%;
+      height: 250px;
+      background-color: grey;
+    }
+  </style>
+  <div class="gmap"></div>
+</template>
+<template id="route-template">
+  <li>
+    <button type="button">
+      <span class="route-number"></span>
+      <span class="route-name"></span>
+      <span class="check">✔</span>
+    </button>
+  </li>
+</template>
+<script type="module">
+const template = document.querySelector('#gmap-template');
+
+class GoogleMapView extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+
+    let nodes = document.importNode(template.content, true);
+    this.shadowRoot.append(nodes);
+
+    this.markers = null;
+    this._vehicles = null;
+  }
+
+  connectedCallback() {
+    let gmap = this.shadowRoot.querySelector('.gmap');
+    this.map = new google.maps.Map(gmap, {
+      zoom: 10,
+      center: {
+        lat: 41.881,
+        lng: -87.623
+      }
+    });
+  }
+
+  get vehicles() {
+    return this._vehicles;
+  }
+
+  set vehicles(newVehicles) {
+    this._vehicles = newVehicles;
+    if (Array.isArray(this.markers)) {
+      this.markers.forEach(marker => {
+        marker.setMap(null);
+      });
+      this.markers = null;
+    }
+    if (newVehicles) {
+      this.markers = newVehicles.map(vehicle => {
+        let marker = new google.maps.Marker({
+          position: {
+            lat: parseFloat(vehicle.lat),
+            lng: parseFloat(vehicle.lon)
+          },
+          map: this.map
+        });
+
+        marker.addListener('click', () => {
+          this.dispatchVehicle(vehicle);
+        });
+
+        return marker;
+      });
+    }
+  }
+
+  dispatchVehicle(vehicle) {
+    let event = new CustomEvent('vehicle-selected', {
+      detail: vehicle
+    });
+    this.dispatchEvent(event);
+  }
+}
+
+customElements.define('google-map-view', GoogleMapView);
+
+const proxyUrl = "https://can-cors.herokuapp.com/";
+const token = "?key=piRYHjJ5D2Am39C9MxduHgRZc&format=json";
+const apiRoot = "http://www.ctabustracker.com/bustime/api/v2/";
+const getRoutesEndpoint = apiRoot + "getroutes" + token;
+const getVehiclesEndpoint = apiRoot + "getvehicles" + token;
+
+const btTemplate = document.querySelector('#bt-template');
+const routeTemplate = document.querySelector('#route-template');
+const errorTemplate = document.querySelector('#error-template');
+
+class BusTracker extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+
+    let frag = document.importNode(btTemplate.content, true);
+    this.shadowRoot.append(frag);
+
+    this.routesList = this.shadowRoot.querySelector('.routes-list');
+    this.selectedRouteBtn = this.shadowRoot.querySelector('#selected-route');
+    this.googleMapView = this.shadowRoot.querySelector('google-map-view');
+    this.selectedVehicle = this.shadowRoot.querySelector('#selected-vehicle');
+  }
+
+  connectedCallback() {
+    this.getRoutes();
+
+    this.googleMapView.addEventListener('vehicle-selected', this);
+  }
+
+  disconnectedCallback() {
+    this.googleMapView.removeEventListener('vehicle-selected', this);
+  }
+
+  handleEvent(ev) {
+    let vehicle = ev.detail;
+    this.selectedVehicle.innerHTML = `<small>Vehicle:</small> ${vehicle.des}`;
+    this.selectedVehicle.classList.add('vehicle-selected');
+  }
+
+  async getRoutes() {
+    let response = await fetch(proxyUrl + getRoutesEndpoint);
+    let data = await response.json();
+    let routes = data["bustime-response"].routes;
+
+    for(let route of routes) {
+      let frag = document.importNode(routeTemplate.content, true);
+
+      frag.querySelector('.route-number').textContent = route.rt;
+      frag.querySelector('.route-name').textContent = route.rtnm;
+
+      frag.querySelector('button').addEventListener('click', ev => {
+        this.pickRoute(route, ev.currentTarget.parentNode);
+      });
+
+      this.routesList.append(frag);
+    }
+
+    this.shadowRoot.querySelector('#loading-routes').remove();
+  }
+
+  async getVehicles(route) {
+    let response = await fetch(proxyUrl + getVehiclesEndpoint + '&rt=' + route.rt);
+    let data = await response.json();
+
+    this.selectedRouteBtn.innerHTML = `
+      <small>Route ${this.route.rt}:</small> ${this.route.rtnm}
+    `;
+
+    if (data['bustime-response'].error) {
+      let frag = document.importNode(errorTemplate.content, true);
+      this.selectedRouteBtn.append(frag);
+      this.googleMapView.vehicles = [];
+    } else {
+      let vehicles = data['bustime-response'].vehicle;
+      this.googleMapView.vehicles = vehicles;
+    }
+
+    this.selectedRouteBtn.classList.add('route-selected');
+  }
+
+  pickRoute(route, li) {
+    this.route = route;
+    this.getVehicles(route);
+
+    if(this.activeRoute) {
+      this.activeRoute.classList.remove('active');
+    }
+    this.activeRoute = li;
+    this.activeRoute.classList.add('active');
+  }
+}
+
+customElements.define("bus-tracker", BusTracker);
+</script>
