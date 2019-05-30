@@ -65,16 +65,19 @@ When you click the detail button on a restaurant from the restaurant list view y
 
 @sourceref ./detail.component.spec.ts
 
+✏️ Update the spec file  __src/app/app.component.spec.ts__ to be:
+
+@diff ../8-state-city-options/app.component.spec.ts ./app.component.spec.ts only
+
+
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## Solution
 
 ✏️ Update __src/app/app-routing.module.ts__
 
-@sourceref ./app-routing.module.ts
-@highlight 5,16-19
+@diff ../4-adding-routing/app-routing.module.ts ./app-routing.module.ts
 
 ✏️ Update __src/app/restaurant/detail/detail.component.ts__
 
-@sourceref ./detail.component.ts
-@highlight 2,4,5,13,14,16,19-24
+@diff ./detail.component-starter.ts ./detail.component.ts

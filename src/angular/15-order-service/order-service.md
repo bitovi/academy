@@ -84,8 +84,8 @@ ng test
 ## P2: Solution
 
 ✏️ Update __src/app/order/order.service.ts__
-@sourceref ./order-2.service.ts
-@highlight 2, 23, 25-27, 29-33, 35-39, 40-43, only
+@diff ./order.service-interfaces.ts ./order-2.service.ts only
+
 
 ## Problem 3: Use the OrderService in the OrderComponent to Create an Order
 
@@ -114,14 +114,14 @@ Before starting:
 
 1\. ✏️ Update __src/app/order/order.component.html__ to show the completed order:
 
-@sourceref ./order.component.html
-@highlight 2-34,only
+@diff ../14-building-order-form/order.component-final.html ./order.component.html only
+
 
 2\. ✏️ Update __src/app/order/order.component.ts__ to have a `onSubmit` method and
     a `startNewOrder` that will start a new order.
 
-@sourceref ./order.component.ts
-@highlight 76-85,only
+@diff ../14-building-order-form/child-component/order-2.component.ts ./order.component.ts only
+
 
 ## P3: How to Verify Your Solution is Correct
 
@@ -129,8 +129,8 @@ If you've implemented everything correctly, you should now be able to create an 
 
 ✏️ Update the menu-items spec file  __src/app/order/order.component.spec.ts__ to be:
 
-@sourceref ./order.component.spec.ts
-@highlight 11,64-76,91,104-107,111,217-233,235-252,254-278,only
+@diff ../14-building-order-form/order.component.spec-final.ts ./order.component.spec.ts only
+
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
@@ -143,5 +143,4 @@ If you've implemented everything correctly, you should now be able to create an 
 ## P3: Solution
 
 ✏️ Update __src/app/order/order.component.ts__
-@sourceref ./order.component-solution.ts
-@highlight 7, 30, 38, 71, 78-85,only
+@diff ./order.component.ts ./order.component-solution.ts only

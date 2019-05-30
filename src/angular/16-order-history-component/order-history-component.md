@@ -27,6 +27,13 @@ We want to create a component that will show the app's order history.
 
 If you've implemented the solution correctly you should be able to navigate to [http://localhost:4200/order-history](http://localhost:4200/order-history) and see _'history works!'_.
 
+✏️ Update the spec file  __src/app/app.component.spec.ts__ to be:
+
+@diff ../14-building-order-form/app.component.spec.ts ./app.component.spec.ts only
+
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+
 ## P1: What you need to know
 
 You got this already, but just in case, here's some hints:
@@ -74,8 +81,8 @@ If you've implemented the solution correctly you should now be able to navigate 
 
 ✏️ Update __src/app/app.component.html__
 
-@sourceref ./app.component.html
-@highlight 11-13,only
+@diff ../5-creating-navigation/app.component.html ./app.component.html
+
 
 ## Problem 3: List All Orders
 
@@ -126,13 +133,13 @@ For this step, you'll need to know how to add multiple class names.  You can do 
 
 ✏️ Update __src/app/order/history.component.ts__
 
-@sourceref ./history.component-solution.ts
-@highlight 2, 22, 31-35, only
+@diff ./history.component.ts ./history.component-solution.ts only
+
 
 ✏️ Update __src/app/order/history.component.html__
 
-@sourceref ./history.component-1.html
-@highlight 9-10,only
+@diff ./0-history.component.html ./history.component-1.html
+
 
 ## Problem 4: Creating a Child Component to Handle Order States
 
@@ -184,8 +191,8 @@ ng g component order/list
 
 2\. ✏️ Update __src/app/order/history.component.html__ to use `<pmo-list>`:
 
-@sourceref ./history.component.html
-@highlight 9-45,only
+@diff ./history.component-1.html ./history.component.html only
+
 
 3\. ✏️ Update __src/app/order/list/list.component.html__ to its final html:
 
@@ -193,7 +200,12 @@ ng g component order/list
 
 ## P4: How to Verify Your Solution is Correct
 
-✏️ Update the menu-items spec file  __src/app/order/list/list.component.spec.ts__ to be:
+✏️ Update  __src/app/order/history/history.component.spec.ts__ to be:
+
+@diff ./history.component-1.spec.ts ./history.component-2.spec.ts only
+
+
+✏️ Update  __src/app/order/list/list.component.spec.ts__ to be:
 
 @sourceref ./list.component.spec.ts
 

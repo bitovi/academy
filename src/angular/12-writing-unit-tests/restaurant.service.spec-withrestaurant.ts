@@ -80,8 +80,8 @@ describe('RestaurantService', () => {
       expect(restaurants).toEqual(mockRestaurants);
     });
 
-    let url = '/api/restaurants?filter%5Baddress.state%5D=IL&filter%5Baddress.city%5D=Chicago';
-    //url parses to '/api/restaurants?filter[address.state]=IL&filter[address.city]=Chicago'
+    let url = 'http://localhost:7070/restaurants?filter%5Baddress.state%5D=IL&filter%5Baddress.city%5D=Chicago';
+    //url parses to 'http://localhost:7070/restaurants?filter[address.state]=IL&filter[address.city]=Chicago'
     const req = httpMock.expectOne(url);
 
 
@@ -133,7 +133,7 @@ describe('RestaurantService', () => {
       expect(states).toEqual(mockStates);
     });
 
-    let url = '/api/states';
+    let url = 'http://localhost:7070/states';
     const req = httpMock.expectOne(url);
 
     expect(req.request.method).toEqual('GET');
@@ -153,7 +153,7 @@ describe('RestaurantService', () => {
       expect(cities).toEqual(mockCities);
     });
 
-    let url = '/api/cities?state=MO';
+    let url = 'http://localhost:7070/cities?state=MO';
     const req = httpMock.expectOne(url);
     expect(req.request.method).toEqual('GET');
     req.flush(mockCities);
@@ -191,7 +191,7 @@ describe('RestaurantService', () => {
       expect(restaurant).toEqual(mockRestaurant);
     });
 
-    let url = '/api/restaurants/brunch-place';
+    let url = 'http://localhost:7070/restaurants/brunch-place';
     const req = httpMock.expectOne(url);
 
 

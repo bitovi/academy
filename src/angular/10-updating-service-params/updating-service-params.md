@@ -32,13 +32,13 @@ If you've implemented the solution correctly, when you use the select boxes to c
 
 ✏️ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
 
-@sourceref ./restaurant.component-httpparams.spec.ts
-@highlight 11,106,127,142,432-441,only
+@diff ../9-form-value-changes/restaurant.component-citystate.spec.ts ./restaurant.component-httpparams.spec.ts only
+
 
 ✏️ Update the spec file __src/app/restaurant/restaurant.service.spec.ts__
 
-@sourceref ./restaurant.service-httpparams.spec.ts
-@highlight 79-83,only
+@diff ../9-form-value-changes/restaurant.service-generics.spec.ts ./restaurant.service-httpparams.spec.ts only
+
 
 > If you've implemented the solution correctly, when you run `npm run test` the tests will pass!
 
@@ -50,10 +50,9 @@ If you've implemented the solution correctly, when you use the select boxes to c
 
 ✏️ Update __src/app/restaurant/restaurant.service.ts__
 
-@sourceref ./restaurant.service-httpparams.ts
-@highlight 26-28,only
+@diff ../9-form-value-changes/restaurant.service-generics.ts ./restaurant.service-httpparams.ts only
+
 
 ✏️ Update __src/app/restaurant/restaurant.component.ts__
 
-@sourceref ./restaurant.component-httpparams.ts
-@highlight 97,123,124,only
+@diff ../9-form-value-changes/restaurant.component-citystate.ts ./restaurant.component-httpparams.ts

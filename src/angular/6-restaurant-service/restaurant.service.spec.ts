@@ -79,7 +79,7 @@ describe('RestaurantService', () => {
       expect(restaurants).toEqual(mockRestaurants);
     });
 
-    let url = '/api/restaurants';
+    let url = 'http://localhost:7070/restaurants';
     const req = httpMock.expectOne(url);
 
 

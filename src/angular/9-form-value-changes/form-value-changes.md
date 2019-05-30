@@ -113,8 +113,8 @@ Method 2 - `getCities`, takes a string param called 'state' a makes a request to
 
 ✏️ Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
 
-@sourceref ./restaurant.service-citystate.spec.ts
-@highlight 124-161
+@diff ../6-restaurant-service/restaurant.service-with-interface.spec.ts ./restaurant.service-citystate.spec.ts
+
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
@@ -122,8 +122,8 @@ Method 2 - `getCities`, takes a string param called 'state' a makes a request to
 
 ✏️ Update __src/app/restaurant/restaurant.service.ts__
 
-@sourceref ./restaurant.service-citystate.ts
-@highlight 2,20-22,24-27
+@diff ../6-restaurant-service/restaurant.service.ts ./restaurant.service-citystate.ts
+
 
 ## Problem 3: Use Generics to Modify ResponseData interface to Work with States and Cities Data
 
@@ -143,28 +143,32 @@ This example shows creating a generic for a list that can be used to create arra
 
 ## P3: Technical Requirements
 
-Convert the `ResponseData` interface use generics so it can take a type of `Restaurant`, `State`, or `City`. We've written the state & city interfaces for you.
+Convert the `ResponseData` interface use generics so it can take a type of `Restaurant`, `State`, or `City`. We've written the state & city interfaces for you. Make sure to update the getRestaurants method in the RestaurantComponent as well.
 
 ## P3: Setup
 
 ✏️ Update your __src/app/restaurant/restaurant.service.ts__ file to be:
 
-@sourceref ./restaurant.service-setup-generics.ts
-@highlight 9-12, 14-17
+@diff ./restaurant.service-citystate.ts ./restaurant.service-setup-generics.ts
 
 ## P3: How to Verify Your Solution is Correct
 
 ✏️ Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
 
-@sourceref ./restaurant.service-generics.spec.ts
-@highlight 3,79,131,151, only
+@diff ./restaurant.service-citystate.spec.ts ./restaurant.service-generics.spec.ts
+
 
 ## P3: Solution
 
 ✏️ Update __src/app/restaurant/restaurant.service.ts__
 
-@sourceref ./restaurant.service-generics.ts
-@highlight 5-7,27,31,36
+@diff ./restaurant.service-setup-generics.ts ./restaurant.service-generics.ts
+
+
+✏️ Update __src/app/restaurant/restaurant.component.ts__
+
+@diff restaurant.component.ts ./restaurant-generics.component.ts only
+
 
 ## Problem 4: Get Cities and States Based on Dropdown Values
 
@@ -185,8 +189,8 @@ Now that our service is in working order, let's populate our dropdowns with stat
 
 ✏️ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
 
-@sourceref ./restaurant.component-citystate.spec.ts
-@highlight 169,170,183,184,190,194,195,337-351,353-362,364-378,380-390,392-404,406-415,417-427,only
+@diff ../8-state-city-options/restaurant.component.spec.ts ./restaurant.component-citystate.spec.ts
+
 
 ## P4: What You Need to Know
 
@@ -197,5 +201,4 @@ Now that our service is in working order, let's populate our dropdowns with stat
 
 ✏️ Update __src/app/restaurant/restaurant.component.ts__
 
-@sourceref ./restaurant.component-citystate.ts
-@highlight 5,8-11,21,26,31,28,33,44-48,65-101, 103-109, 111-121,123-128
+@diff ./restaurant-generics.component.ts ./restaurant.component-citystate.ts only

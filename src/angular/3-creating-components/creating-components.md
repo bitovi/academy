@@ -16,8 +16,6 @@ In this part, we will:
 - Use interpolation binding in our home component view
 - Learn about directives
 - Create a restaurant component that shows a list of restaurants
-- Learn about pipes
-- Create a pipe to create an image path
 
 ## Problem 1: Creating a Home Component With a Dynamic Title Member
 
@@ -105,7 +103,7 @@ To get this application up and running quicker so we can focus on the architectu
 ✏️ Run:
 
 ```shell
-npm install place-my-order-assets@0.1 --save
+npm install place-my-order-assets --save
 ```
 
 Open the ``angular.json`` file, and make the following changes to include these files in our build process. This will copy the images into our assets directory for when we serve our application.

@@ -1,5 +1,4 @@
 <h4>{{listTitle}}</h4>
-<div class="loading" *ngIf="isPending"></div>
 <ng-container *ngFor="let order of orders">
   <div [ngClass]="['order', order.status? order.status: '']">
     <address>

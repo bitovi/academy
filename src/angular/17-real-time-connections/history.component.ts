@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { OrderService, Order } from '../order.service';
 import { ResponseData } from '../../restaurant/restaurant.service';
-import * as io from 'socket.io-client';
-import { environment } from '../../../environments/environment';
+import { Socket } from 'ngx-socket-io';
 
 interface Data<T> {
   value: Array<T>;
@@ -14,17 +13,16 @@ interface Data<T> {
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.less']
 })
-export class HistoryComponent implements OnInit {
+export class HistoryComponent implements OnInit, OnDestroy {
   public orders: Data<Order> = {
     value: [],
     isPending: true
   }
-  socket: SocketIOClient.Socket;
 
   constructor(
-    private orderService: OrderService
-    ) { 
-      this.socket = io(environment.apiUrl);
+    private orderService: OrderService,
+    private socket: Socket
+    ) {
     }
 
   ngOnInit() {
@@ -44,6 +42,10 @@ export class HistoryComponent implements OnInit {
       let orderIndex =  this.orders.value.findIndex(item => item._id === order._id);
       this.orders.value.splice(orderIndex, 1);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.socket.removeAllListeners();
   }
 
   getOrders() {

@@ -6,7 +6,6 @@ import { RestaurantComponent } from './restaurant.component';
 import { RestaurantService } from './restaurant.service';
 import { ImageUrlPipe } from '../image-url.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Mock } from 'protractor/built/driverProviders';
 
 const restaurantAPIResponse = {
   data: [{

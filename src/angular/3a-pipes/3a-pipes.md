@@ -69,34 +69,8 @@ This example takes the value to be transformed and a parameter to use as an expo
 
 ✏️ Update __src/app/restaurant/restaurant.component.html__ file to use the pipe we will create:
 
-```html
-<div class="restaurants">
-  <h2 class="page-header">Restaurants</h2>
-  <ng-container *ngIf="restaurants.length">
-    <div class="restaurant" *ngFor="let restaurant of restaurants">
+@diff ../3-creating-components/restaurant.component.html ./restaurant.component.html
 
-      <img src="{{restaurant.images.thumbnail | imageUrl}}" width="100" height="100">
-      <h3>{{restaurant.name}}</h3>
-
-      <div class="address" *ngIf="restaurant.address">
-        {{restaurant.address.street}}<br />{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
-      </div>
-
-      <div class="hours-price">
-        $$$<br />
-        Hours: M-F 10am-11pm
-        <span class="open-now">Open Now</span>
-      </div>
-
-      <a class="btn" [routerLink]="['/restaurants', restaurant.slug]">
-        Details
-      </a>
-      <br />
-    </div>
-  </ng-container>
-</div>
-```
-@highlight 6
 
 ✏️ Run the following to generate the __pipe__ and the pipe's tests:
 
