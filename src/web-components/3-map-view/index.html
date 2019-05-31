@@ -1,0 +1,53 @@
+<style>
+  html,
+  body {
+    height: 100%;
+  }
+  body {
+    font-family: "Catamaran", sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+</style>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7POAQA-i16Vws48h4yRFVGBZzIExOAJI"></script>
+
+<google-map-view></google-map-view>
+
+<template id="gmap-template">
+  <style>
+    .gmap {
+      width: 100%;
+      height: 250px;
+      background-color: grey;
+    }
+  </style>
+  <div class="gmap"></div>
+</template>
+<script type="module">
+const template = document.querySelector('#gmap-template');
+
+class GoogleMapView extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+
+    let frag = document.importNode(template.content, true);
+    this.shadowRoot.append(frag);
+  }
+
+  connectedCallback() {
+    let gmap = this.shadowRoot.querySelector('.gmap');
+    this.map = new google.maps.Map(gmap, {
+      zoom: 10,
+      center: {
+        lat: 41.881,
+        lng: -87.623
+      }
+    });
+  }
+}
+
+customElements.define('google-map-view', GoogleMapView);
+</script>
