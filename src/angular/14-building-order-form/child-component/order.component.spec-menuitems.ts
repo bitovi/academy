@@ -171,7 +171,7 @@ describe('OrderComponent', () => {
   it('should get updated selected Items when child component changes', () => {
     const fixture = TestBed.createComponent(OrderComponent);
     fixture.detectChanges();
-    let changeSpy = spyOn(fixture.componentInstance, 'setUpdatedItems');
+    let changeSpy = spyOn(fixture.componentInstance, 'getChange');
     const compiled = fixture.debugElement.nativeElement;
     let childInput = compiled.getElementsByTagName('pmo-menu-items')[0].getElementsByTagName('input')[0];
     childInput.click();

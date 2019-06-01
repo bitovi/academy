@@ -40,7 +40,7 @@ describe('OrderService', () => {
       expect(orders).toEqual(mockOrder);
     });
 
-    let url = '/api/orders';
+    let url = 'http://localhost:7070/orders';
     const req = httpMock.expectOne(url);
 
     expect(req.request.method).toEqual('GET');
@@ -83,7 +83,7 @@ describe('OrderService', () => {
       expect(orders).toEqual(mockOrder);
     });
 
-    let url = '/api/orders';
+    let url = 'http://localhost:7070/orders';
     httpMock.expectOne((request: HttpRequest<any>) => {
       console.log(request.body);
       return request.method == 'POST'
@@ -128,7 +128,7 @@ describe('OrderService', () => {
       expect(orders).toEqual(mockOrder);
     });
 
-    let url = '/api/orders/adsfsdf';
+    let url = 'http://localhost:7070/orders/adsfsdf';
     httpMock.expectOne((request: HttpRequest<any>) => {
       console.log(request.body);
       return request.method == 'PUT'
@@ -160,7 +160,7 @@ describe('OrderService', () => {
       expect(orders).toEqual(mockOrder);
     });
 
-    let url = '/api/orders/adsfsdf';
+    let url = 'http://localhost:7070/orders/adsfsdf';
     const req = httpMock.expectOne(url);
 
     expect(req.request.method).toEqual('DELETE');

@@ -30,10 +30,9 @@ In the next section we're going to be creating a restaurant detail view. We'll n
 
 ✏️ Update __src/app/restaurant/restaurant.service.ts__
 
-@sourceref ./restaurant.service.ts
-@highlight 40-42, only
+@diff ../10-updating-service-params/restaurant.service-httpparams.ts ./restaurant.service.ts only
+
 
 ✏️ Update __src/app/restaurant/restaurant.service.spec.ts__
 
-@sourceref ./restaurant.service.spec-withrestaurant.ts
-@highlight 164-202, only
+@diff ../10-updating-service-params/restaurant.service-httpparams.spec.ts ./restaurant.service.spec-withrestaurant.ts only

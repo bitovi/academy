@@ -80,7 +80,7 @@ describe('RestaurantService', () => {
       expect(restaurants).toEqual(mockRestaurants);
     });
 
-    let url = '/api/restaurants';
+    let url = 'http://localhost:7070/restaurants';
     const req = httpMock.expectOne(url);
 
 
@@ -132,7 +132,7 @@ describe('RestaurantService', () => {
       expect(states).toEqual(mockStates);
     });
 
-    let url = '/api/states';
+    let url = 'http://localhost:7070/states';
     const req = httpMock.expectOne(url);
 
     expect(req.request.method).toEqual('GET');
@@ -152,7 +152,7 @@ describe('RestaurantService', () => {
       expect(cities).toEqual(mockCities);
     });
 
-    let url = '/api/cities?state=MO';
+    let url = 'http://localhost:7070/cities?state=MO';
     const req = httpMock.expectOne(url);
     expect(req.request.method).toEqual('GET');
     req.flush(mockCities);

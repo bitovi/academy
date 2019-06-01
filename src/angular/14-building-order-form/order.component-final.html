@@ -6,12 +6,12 @@
     <form *ngIf="orderForm" [formGroup]="orderForm" (ngSubmit)="onSubmit()">
       <tabset>
         <tab heading="Lunch Menu">
-          <ul class="list-group" >
+          <ul class="list-group">
             <pmo-menu-items [items]="restaurant.menu.lunch" formControlName="items"></pmo-menu-items>
           </ul>
         </tab>
         <tab heading="Dinner menu">
-          <ul class="list-group" >
+          <ul class="list-group">
             <pmo-menu-items [items]="restaurant.menu.dinner" formControlName="items"></pmo-menu-items>
           </ul>
         </tab>
@@ -39,7 +39,5 @@
           </button>
       </div>
     </form>
-</ng-template>
+  </ng-template>
 </div>
-
-

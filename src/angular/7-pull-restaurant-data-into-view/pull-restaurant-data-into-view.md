@@ -37,8 +37,13 @@ You should be able see a list of all restaurants when you navigate to <a href="h
 
 ✏️ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
 
-@sourceref ./restaurant.component.spec-service.ts
-@highlight 3,7,9-106,116-119,169-267,only
+@diff ../3a-pipes/restaurant.component.spec-with-pipe.ts ./restaurant.component.spec-service.ts
+
+
+✏️ Update the spec file  __src/app/app.component.spec.ts__ to be:
+
+@diff ../5-creating-navigation/app.component.spec.ts ./app.component.spec.ts only
+
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
@@ -86,8 +91,8 @@ observable.subscribe( function subscriber( value ){
 
 ✏️ Update __src/app/restaurant/restaurant.component.ts__ as follows:
 
-@sourceref ./restaurant.component-service.ts
-@highlight 2,3,11,13,16-18
+@diff ../3-creating-components/restaurant.component.ts ./restaurant.component-service.ts
+
 
 ## Problem 2: Show a Loading State while Restaurants are Being Requested
 
@@ -127,8 +132,8 @@ You should be able see a list of restaurants when you navigate to <a href="http:
 
 ✏️ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
 
-@sourceref ./restaurant.component.spec.ts
-@highlight 266-268,272-289,only
+@diff ./restaurant.component.spec-service.ts ./restaurant.component.spec.ts only
+
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
@@ -141,13 +146,13 @@ You should be able see a list of restaurants when you navigate to <a href="http:
 
 ✏️ Update __src/app/restaurant/restaurant.component.ts__ to:
 
-@sourceref ./restaurant.component.ts
-@highlight 5-8,16-19,23-27
+@diff ./restaurant.component-service.ts ./restaurant.component.ts
+
 
 ✏️ Update __src/app/restaurant/restaurant.component.html__ to:
 
-@sourceref ./restaurant.component.html
-@highlight 3, 4, 5
+@diff ../3a-pipes/restaurant.component.html ./restaurant.component.html
+
 
 ## Did You Know?
 

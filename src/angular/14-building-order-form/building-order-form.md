@@ -29,6 +29,13 @@ Create a new `order` component, and create a route for our new component! The pa
 
 When you navigate to the `/order` path from a restaurant detail page you should see your new order component.
 
+✏️ Update the spec file  __src/app/app.component.spec.ts__ to be:
+
+@diff ../13-nested-routes/app.component.spec.ts ./app.component.spec.ts only
+
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+
 ## P1: What You Need to Know
 
 - How to create new components
@@ -41,8 +48,8 @@ When you navigate to the `/order` path from a restaurant detail page you should 
 
 __src/app/app-routing.module.ts__
 
-@sourceref ./app-routing.module.ts
-@highlight 7, 22-25
+@diff ../13-nested-routes/app-routing.module.ts ./app-routing.module.ts
+
 
 ## Problem 2: Build Out the Order Component
 
@@ -57,8 +64,6 @@ The order form component needs to get the restaurant from the route slug, and ne
 ## P2: Setup
 
 ✏️ Update the __src/order/order.component.html__ file to be:
-
-__src/app/order/order.component.html__
 
 @sourceref ./order.component-starter.html
 
@@ -101,8 +106,8 @@ __src/app/order/order.component.html__
 
 ✏️ Update __src/app/order/order.component.ts__
 
-@sourceref ./order.component-solution.ts
-@highlight 43,45-49,59-66,72-83
+@diff ./order.component-starter.ts ./order.component-solution.ts
+
 
 ## Importing 3rd Party Plugins
 
@@ -116,17 +121,17 @@ Ng add is a convenient way to import 3rd party libs that will update `angular.js
 
 Your root app module should now look like this:
 
-__src/app/order/app.module.ts__
+__src/app/app.module.ts__
 
-@sourceref ./app.module.ts
+@diff ../8-state-city-options/app.module.ts ./app.module.ts
 @highlight 5, 29
 
 Now let's add the markup to our order component implementing the tabs widget.
 
 ✏️ Update __src/app/order/order.component.html__
 
-@sourceref ./order.component-withtabs.html
-@highlight 7-28
+@diff ./order.component-starter.html ./order.component-withtabs.html only
+
 
 Now when we view the order form of our route, we'll see a nice form and tabs for lunch and dinner menu options.
 
@@ -169,14 +174,15 @@ Go ahead and put your new component in the order history component.
 
 ✏️ Update __src/app/order/order.component.html__
 
-@sourceref ./child-component/order.component-childcomponent.html
-@highlight 10, 15
+@diff ./order.component-withtabs.html ./child-component/order.component-childcomponent.html only
+
 
 ## P3: How to Verify Your Solution is Correct
 
 ✏️ Update the order spec file  __src/app/order/order.component.spec.ts__ to be:
 
-@sourceref ./order.component.spec-childcomponent.ts
+@diff ./order.component.spec-starter.ts ./order.component.spec-childcomponent.ts
+
 
 ✏️ Update the menu-items spec file  __src/app/order/menu-items/menu-items.component.spec.ts__ to be:
 
@@ -207,8 +213,8 @@ Components in Angular can pass data back and forth to each other through the use
 
 ✏️ Update __src/app/order/order.component.html__
 
-@sourceref ./child-component/order.component-props.html
-@highlight 10,15,only
+@diff ./child-component/order.component-childcomponent.html ./child-component/order.component-props.html only
+
 
 ## Problem 4: Attaching Event Handlers to Item Checkboxes
 
@@ -242,24 +248,24 @@ Event binding in Angular follows a simple pattern - the event name in parenthesi
 
 ✏️ Update the menu-items spec file  __src/app/order/menu-items/menu-items.component.spec.ts__ to be:
 
-@sourceref ./child-component/menu-items-1.component.spec.ts
-@highlight 39-53
+@diff ./child-component/menu-items.component.spec-props.ts ./child-component/menu-items-1.component.spec.ts only
+
 
 ## P4: Solution
 
 ✏️ Update __src/app/order/menu-items.component.html__
 
-@sourceref ./child-component/menu-items-1.component.html
-@highlight 3
+@diff ./child-component/menu-items.component-props.html ./child-component/menu-items-1.component.html only
+
 
 ✏️ Update __src/app/order/menu-items.component.ts__
 
-@sourceref ./child-component/menu-items-1.component.ts
-@highlight 14,15,22-30
+@diff ./child-component/menu-items.component-props.ts ./child-component/menu-items-1.component.ts only
+
 
 ## Problem 5: Update OrderFormComponent with selectedItems Array from MenuItemsComponent
 
-Now we want to let the form know what the selected items are as they change so we can update the order total accordingly. 
+Now we want to let the form know what the selected items are as they change so we can update the order total accordingly.
 
 ## P5: Technical Requirements
 
@@ -269,8 +275,8 @@ Create an `itemsChanged` EventEmitter property that emits the `selectedItems` va
 
 ✏️ Update the menu-items spec file  __src/app/order/order.component.spec.ts__ to be:
 
-@sourceref ./child-component/order.component.spec-menuitems.ts
-@highlight 10,79,171-179,181-190,192-203,only
+@diff ./order.component.spec-childcomponent.ts ./child-component/order.component.spec-menuitems.ts only
+
 
 ## P5: What you need to know
 
@@ -299,18 +305,18 @@ When we have a formControl we need to update programmatically with a value we ca
 
 ✏️ Update __src/app/order/menu-items.component.ts__
 
-@sourceref ./child-component/menu-items-2.component.ts
-@highlight 1,16,31
+@diff ./child-component/menu-items-1.component.ts ./child-component/menu-items-2.component.ts only
+
 
 ✏️ Update __src/app/order/order.component.html__
 
-@sourceref ./child-component/order-2.component.html
-@highlight 10,15,only
+@diff ./child-component/order.component-props.html ./child-component/order-2.component.html only
+
 
 ✏️ Update __src/app/order/order.component.ts__
 
-@sourceref ./child-component/order-2.component.ts
-@highlight 67-79
+@diff ./order.component-solution.ts ./child-component/order-2.component.ts only
+
 
 ## Control Value Accessor
 
@@ -335,8 +341,8 @@ Other concepts used here:
 
 ✏️ Update __src/app/order/order.component.html__
 
-@sourceref ./order.component-final.html
-@highlight 10, 15
+@diff ./child-component/order-2.component.html ./order.component-final.html
+
 
 We now have a form that updates the `items` formControl when items are selected and shows the user an updated total!
 
@@ -344,4 +350,4 @@ We now have a form that updates the `items` formControl when items are selected 
 
 ✏️ Update the order spec file  __src/app/order/order.component.spec.ts__ to be:
 
-@sourceref ./order.component.spec-final.ts
+@diff ./child-component/order.component.spec-menuitems.ts ./order.component.spec-final.ts only

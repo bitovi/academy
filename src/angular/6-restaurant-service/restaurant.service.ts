@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 import { Restaurant } from './restaurant';
 
@@ -15,6 +16,6 @@ export class RestaurantService {
   constructor(private httpClient: HttpClient) { }
 
   getRestaurants() {
-    return this.httpClient.get<ResponseData>('/api/restaurants');
+    return this.httpClient.get<ResponseData>(environment.apiUrl + '/restaurants');
   }
 }

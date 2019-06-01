@@ -8,6 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ImageUrlPipe } from './image-url.pipe';
 
 describe('AppComponent', () => {
   let router: Router;
@@ -20,7 +21,7 @@ describe('AppComponent', () => {
         AppRoutingModule
       ],
       declarations: [
-        AppComponent, HomeComponent, RestaurantComponent
+        AppComponent, HomeComponent, RestaurantComponent, ImageUrlPipe
       ],
       schemas: [
         NO_ERRORS_SCHEMA

@@ -15,6 +15,14 @@ In this part, we will:
 - Deploy app to Firebase
 - Update npm script to include deploy
 
+## Add Production API URL
+
+For our production app, we won't be running a local server, instead we'll point to `https://place-my-order-api.herokuapp.com`. All we need to do is add the apiUrl variable to our production environment file. When we do a production build by running `ng build --prod`, our production file will be used.
+
+✏️ Update __src/environments/environment.production.ts__:
+
+@sourceref ./environment.prod.ts
+
 ## Create Firebase account
 
 Go to <a href="https://console.firebase.google.com" target="\_blank">https://console.firebase.google.com</a> and sign in or create new account.

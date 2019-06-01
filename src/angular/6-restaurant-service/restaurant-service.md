@@ -10,8 +10,8 @@
 In this part, we will:
 
 - Install the place-my-order API
-- Create a proxy to serve the API
 - Update `npm start` script
+- Create an environment variable for API URL
 - Generate a new service via the CLI
 - Write a method to make an http request
 - Write interfaces to describe response object and restaurant object
@@ -81,7 +81,7 @@ heavy use of it. Checkout our [learn-rxjs] tutorial for more information.
 
 ## P1: Technical Requirements
 
-Write a `RestaurantService` with a method `getRestaurants` that uses `httpClient` to get a list of restaurants from our `/api/restaurants` url. For example, we could get restaurants like:
+Write a `RestaurantService` with a method `getRestaurants` that uses `httpClient` to get a list of restaurants from an environment variable\ + `/restaurants`. For example, we could get restaurants like:
 
 ```typescript
 const httpClient = new HttpClient();
@@ -104,7 +104,7 @@ Note:
 Before we begin making services, we must:
 
 - Install the place-my-order API
-- Create a proxy to serve the API
+- Create an environment variable to point to the API
 
 ### Installing the Place My Order API
 
@@ -113,7 +113,7 @@ We've done some work to create a Place My Order API for use in this app by creat
 ✏️ Run:
 
 ```bash
-npm install place-my-order-api@1 --save
+npm install place-my-order-api --save
 ```
 
 ✏️ Next make add an api script to your `package.json`
@@ -139,54 +139,50 @@ npm run api
 
 Double check the api by navigating to <a href="http://localhost:7070/restaurants" target="\_blank">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the api command from.
 
-### Create a Proxy to Serve the API
+### Create an Environment Variable
 
-Next, we'll create a <a href="https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md" target="\_blank">proxy</a> file at the root of our Angular project to access our API for local development purposes.
+The way we're accessing our locally run API during development may be different than how we access it in production. To prepare for this, we'll set an environment variable to do what we need. Angular already generated an `environments` folder for us with two files: 
 
-✏️ To create the proxy file:
+`src/environments/environment.ts`
 
-```shell
-touch proxy.conf.json
+```typescript
+ // This file can be replaced during build by using the `fileReplacements` array.
+// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
+// The list of file replacements can be found in `angular.json`.
+
+export const environment = {
+  production: false
+};
+
+/*
+ * For easier debugging in development mode, you can import the following file
+ * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
+ *
+ * This import should be commented out in production mode because it will have a negative impact
+ * on performance if an error is thrown.
+ */
+// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+
 ```
 
-✏️ Update the newly created __proxy.conf.json__ file with the following json:
+`src/environments/environment.prod.ts`
 
-```js
-{
-  "/api": {
-    "target": "http://localhost:7070",
-    "secure": false,
-    "pathRewrite": {
-      "^/api": ""
-    },
-    "logLevel": "debug",
-    "changeOrigin": true
-  }
-}
+```typescript
+export const environment = {
+  production: true
+};
 ```
 
-✏️ Update the package.json `npm start` script to be `ng serve --proxy-config proxy.conf.json`
+When developing locally Angular will use the `environment.ts` file, but when we create a production build the `environment.prod.ts` file will be used. We'll update the production file when we get ready to deploy, but for now, update the `environment.ts` file to include an `apiUrl` key with the value of where our API is being served from: `http://localhost:7070`.
 
-```js
-"scripts": {
-  "ng": "ng",
-  "start": "ng serve --proxy-config proxy.conf.json",
-  "build": "ng build",
-  "test": "ng test",
-  "lint": "ng lint",
-  "e2e": "ng e2e",
-  "api": "place-my-order-api --port 7070"
-},
+✏️  Update `src/environments/environment.ts`:
+
+```typescript
+export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:7070'
+};
 ```
-@highlight 3
-
-✏️ Now, __restart__ the app using:
-
-```shell
-npm start
-```
-
-The app will use the proxy config we created. To test that it's working, navigate to <a href="http://localhost:4200/api/restaurants" target="\_blank">http://localhost:4200/api/restaurants</a> and you should be able to see a list of restaurants.
 
 ## P1: How to Verify Your Solution is Correct
 
@@ -215,7 +211,7 @@ npm run test
 @sourceref ./app.module.ts
 @highlight 3,21
 
-✏️ Update __src/app/restaurant/restaurant.service.ts__ to make a request to `/api/restaurants`:
+✏️ Update __src/app/restaurant/restaurant.service.ts__ to make a request to the API server `/restaurants`:
 
 @sourceref ./restaurant.service-1.ts
 
@@ -305,8 +301,8 @@ We've already written a `ResponseData` interface that will take an array of rest
 ✏️ Update __src/app/restaurant/restaurant.service.ts__ to import the `Restaurant` interface, use
 it within the `ResponseData` interface which is used by `httpClient.get`:
 
-@sourceref ./restaurant.service.ts
-@highlight 4,6-8, 18
+@diff ./restaurant.service-1.ts ./restaurant.service.ts
+
 
 ✏️ Generate the restaurant interface:
 
@@ -323,8 +319,8 @@ some scaffolding for some of the sub-interfaces within the `Restaurant` interfac
 
 ✏️ Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
 
-@sourceref ./restaurant.service-with-interface.spec.ts
-@highlight 3,4,79,93-122
+@diff ./restaurant.service.spec.ts ./restaurant.service-with-interface.spec.ts
+
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass! If you haven't written the interfaces correctly, you'll see a compile error before the tests runs. You might need to restart the test script to see the compile error.
 
@@ -332,6 +328,7 @@ some scaffolding for some of the sub-interfaces within the `Restaurant` interfac
 
 ✏️  Update __src/app/restaurant/restaurant.ts__ to:
 
-@sourceref ./restaurant.ts
+@diff ./restaurant-starter.ts ./restaurant.ts
+
 
 In the next step we'll call the `getRestaurants` method in our component to get the list of restaurants.

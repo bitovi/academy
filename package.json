@@ -43,7 +43,8 @@
       "bit-docs-generate-html": "^0.14.0",
       "bit-docs-prettify": "^0.4.1",
       "bit-docs-tag-demo": "^0.5.3",
-      "bit-docs-html-codepen-link": "^1.3.2",
+      "bit-docs-tag-diff": "^0.1.0",
+      "bit-docs-html-codepen-link": "^1.3.10",
       "bit-docs-html-highlight-line": "^0.5.4",
       "bit-docs-html-toc": "^1.1.1",
       "@bitovi/calendar-events": "^0.0.8"

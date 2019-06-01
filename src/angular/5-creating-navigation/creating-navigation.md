@@ -54,8 +54,8 @@ see the UI change and see the active class on the current nav item.
 
 ✏️ Update the spec file  __src/app/app.component.spec.ts__ to be:
 
-@sourceref ./app.component.spec.ts
-@highlight 1,4,69-74,76-81,83-95,97-110,only
+@diff ../4-adding-routing/app.component.spec.ts ./app.component.spec.ts only
+
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
@@ -116,5 +116,4 @@ RouterLinkActive can also be used to set <a href="https://angular.io/api/router/
 
 ✏️ Update __src/app/app.component.html__ to:
 
-@sourceref ./app.component.html
-@highlight 1-14
+@diff ../4-adding-routing/app.component.html ./app.component.html

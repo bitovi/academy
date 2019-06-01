@@ -40,8 +40,8 @@ Here's some code to get you started.  Notice that:
 
 ✏️ Update __src/app/restaurant/restaurant.component.ts__ to:
 
-@sourceref ./restaurant.component-starter.ts
-@highlight 2,18,25-28,30-33,37,42,51-53,only
+@diff ../7-pull-restaurant-data-into-view/restaurant.component.ts ./restaurant.component-starter.ts only
+
 
 Make sure to use the `formControl` directive to tie the selects to
 their FormControls in the component.
@@ -49,13 +49,13 @@ their FormControls in the component.
 ✏️ Update __src/app/restaurant/restaurant.component.html__ to include
 some boilerplate for the state and city `<select>` controls:
 
-@sourceref ./restaurant.component-starter.html
-@highlight 3-26,only
+@diff ../7-pull-restaurant-data-into-view/restaurant.component.html ./restaurant.component-starter.html only
+
 
 ✏️ Update __src/app/app.module.ts__ to import reactiveForms in the root app module:
 
-@sourceref ./app.module.ts
-@highlight 5,24
+@diff ../6-restaurant-service/app.module.ts ./app.module.ts
+
 
 ## How to Verify Your Solution is Correct
 
@@ -67,6 +67,11 @@ When you visit <a href="http://localhost:4200/restaurants" target="\_blank">loca
 
 @sourceref ./restaurant.component.spec.ts
 @highlight 8,116,294-299,301-307,309-315, only
+
+✏️ Update the spec file  __src/app/app.component.spec.ts__ to be:
+
+@diff ../7-pull-restaurant-data-into-view/app.component.spec.ts ./app.component.spec.ts
+
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 

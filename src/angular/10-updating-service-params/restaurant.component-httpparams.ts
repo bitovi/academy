@@ -23,12 +23,12 @@ export class RestaurantComponent implements OnInit, OnDestroy {
     isPending: false
   }
 
-  public states = {
+  public states: Data<State> = {
     isPending: false,
     value: []
   };
 
-  public cities = {
+  public cities: Data<City> = {
     isPending: false,
     value: []
   }

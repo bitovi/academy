@@ -13,28 +13,27 @@ In this part, we will:
 - Create an environment variable
 - Update list view on socket events.
 
-## Install Socket.io
+## Install NGX Socket.io Module
 
 ```bash
-npm install --save socket.io-client@2.2.0
-npm install --save @types/socket.io-client
+npm install --save ngx-socket-io
 ```
 
-## Import and Initialize Socket.io
+## Import and Configure Socket.io
 
-We can import JavaScript libraries that haven't been written into Angular modules and reference them using '*'.
+✏️ Update __src/app/app.module.ts__ to:
 
-```typescript
-import * as io from 'socket.io-client';
-```
+@sourceref ./app.module.ts
+@highlight 18-20,40,only
 
-## Use Environment Variables
+## Use Polyfills
 
-We need to tell Socket.io where to listen for changes. Locally this is localhost:7070 - where our API is running, but that's not what it will be in production. Angular makes handling this situation easy, we can simply add an environment variable.
+Currently there's a bug with the latest CLI verion when using socket.io. Until it's fixed, we can use polyfills.
 
-Open `src/environments/environment.ts` and change it to:
+✏️ Update __src/polyfills.ts__ to:
 
-@sourceref ./environment.ts
+@sourceref ./polyfills.ts
+@highlight 20, only
 
 ## Listen to Socket Events
 
@@ -42,7 +41,7 @@ Open `src/environments/environment.ts` and change it to:
 
 ✏️ Update __src/app/order/history.component.ts__
 
- @sourceref ./history.component.ts
- @highlight 4, 5, 22, 27, 33-35, 37-41, 43-46
+ @diff ../16-order-history-component/history.component-solution.ts ./history.component.ts only
+
 
 Now as we create, update, and delete orders we can see them updated in real time across different browser tab instances!
