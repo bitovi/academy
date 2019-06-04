@@ -3,7 +3,7 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/web-components/templates.md
+	source: src/web-components/2-templates/templates.md
 	@page learn-web-components/templates
 ######################################################################## -->
 <html lang="en">
@@ -191,8 +191,23 @@
            						
            						">
 						<a class="page"
+							href="bus-tracker-component.html"
+							title="Build a more complex component that combines the usage of &lt;template&gt; and customElements, and sets up event listeners.">
+							bus-tracker component
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="listing-routes.html"
-							title="Learn lit-html by creating a component that lists bus routes from the CTA bus tracker API.">
+							title="Fetch a list of bus routes from the CTA bus tracker API and add them to the .routes-list element.">
 							Listing routes
 						</a>
 						
@@ -207,7 +222,7 @@
            						">
 						<a class="page"
 							href="select-a-route.html"
-							title="Learn more about lit-html, with its special syntax for setting up event listeners and for passing properties to child components.">
+							title="Learn how to use event listeners with a custom element to handle user interaction and update the DOM.">
 							Selecting a route
 						</a>
 						
@@ -380,20 +395,46 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>The problem</h2>
-<p>In this section, we will:</p>
+    <h2>Overview</h2>
+<p>In this part, we will:</p>
 <ul>
 <li>Create a template that includes the HTML we need for our <a href="https://www.google.com/maps">Google map</a> component.</li>
 </ul>
-<h2>How to solve this problem</h2>
+<h2>Problem</h2>
+<p>The Google map API needs an element to mount the map into. We want our map to be certain dimensions. Create a <code>250px</code> tall container for the map using <code>&lt;template&gt;</code>. In the end it should look like:</p>
+<p><img src="../static/img/web-components/map-view-rect.png"
+style="border: solid 1px black; max-width: 100%;"
+title="A rectangle for where we will display the map."/></p>
+<h2>Technical Requirements</h2>
+<p>The following CSS will give the container the dimensions we want.</p>
+<pre><code class="language-css">.gmap {
+  width: 100%;
+  height: 250px;
+  background-color: grey;
+}
+</code></pre>
+<p>Use the class name <code>.gmap</code> for the container element.</p>
+<p>Add the following as <em>global</em> styles to the page:</p>
+<pre><code class="language-css">html,
+body {
+  height: 100%;
+}
+body {
+  font-family: &quot;Catamaran&quot;, sans-serif;
+  background-color: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+}
+</code></pre>
+<h2>What You Need to Know</h2>
+<p>To solve this, you will need to know:</p>
 <ul>
-<li>Add a <code>&lt;template&gt;</code> element that includes an element where our Google map will be initialized.</li>
-<li>Include styles within the template.</li>
-<li>Append the template to the body to see how template cloning works.</li>
+<li>What the <code>&lt;template&gt;</code> element is.</li>
+<li>How to create a new instance of a template.</li>
 </ul>
-<h2>What you need to know</h2>
-<ul>
-<li><code>&lt;template&gt;</code> is an element whose children are <strong>inert</strong>. This means that the browser doesn't render them, like it will for nodes outside of templates. Images will not load, scripts will not execute, styles are not applied.
+<h3>The template element</h3>
+<p>A <code>&lt;template&gt;</code> is an element whose children are <strong>inert</strong>. This means that the browser doesn't render them, like it will for nodes outside of templates. Images will not load, scripts will not execute, styles are not applied.</p>
 <pre><code class="language-html">&lt;template&gt;
   &lt;h1&gt;Cats&lt;/h1&gt;
 
@@ -401,27 +442,40 @@ covering CanJS core libraries.">
   &lt;img src=&quot;/images/purfect.png&quot; /&gt;
 &lt;/template&gt;
 </code></pre>
-  <div class='codepen'></div></li>
-<li>You can't grab content inside of a template using the normal DOM APIs like <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector">querySelector</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById">getElementById</a>. They only exist within the template's <code>content</code> fragment.
+<div class='codepen'></div>
+<p>You can't grab content inside of a template using the normal DOM APIs like <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector">document.querySelector</a> or <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById">document.getElementById</a>. They only exist within the template's <code>content</code> fragment.</p>
 <pre><code class="language-js">let h1 = document.querySelector('h1');
 console.log(h1); // null
 
 let template = document.querySelector('template');
 h1 = template.content.querySelector('h1');
 console.log(h1); // &lt;h1&gt;Cats&lt;/h1&gt;
-</code></pre></li>
-<li>Templates can be cloned using <code>template.content.cloneNode(true)</code> or <code>document.importNode(template.content, true)</code>. The latter is useful if you ever need to clone a template contained within another document, but otherwise they are equivalent.</li>
-<li>Cloning a template returns a <a href="https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment">DocumentFragment</a>, a collection of DOM nodes that can be quickly inserted into an element.
+</code></pre>
+<h3>Creating instances of a template</h3>
+<p>Templates can be cloned using <code>template.content.cloneNode(true)</code> or <code>document.importNode(template.content, true)</code>. The latter is useful if you ever need to clone a template contained within another document, but otherwise they are equivalent.</p>
+<p>Cloning a template returns a <a href="https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment">DocumentFragment</a>, a collection of DOM nodes that can be quickly inserted into an element.</p>
 <pre><code class="language-js">let template = document.querySelector('template');
 let fragment = document.importNode(template.content, true);
 
 document.body.append(fragment);
 // Our cat picture is now loading!
-</code></pre></li>
-</ul>
-<h2>The solution</h2>
-<p>Start by creating the template. Give it an <code>id</code> so that we can more easily query it to use it in our component.</p>
-<pre><code class="language-html">&lt;template id=&quot;gmap-template&quot;&gt;
+</code></pre>
+<h2>Solution</h2>
+<p>✏️ Start by creating the template. Give it an <code>id</code> so that we can more easily query it to use it in our component.</p>
+<pre><code class="language-html">&lt;style&gt;
+  html,
+  body {
+    height: 100%;
+  }
+  body {
+    font-family: &quot;Catamaran&quot;, sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+&lt;/style&gt;
+&lt;template id=&quot;gmap-template&quot;&gt;
   &lt;style&gt;
     .gmap {
       width: 100%;
@@ -437,6 +491,7 @@ const template = document.querySelector('#gmap-template');
 let nodes = document.importNode(template.content, true);
 document.body.append(nodes);
 &lt;/script&gt;
+
 </code></pre>
 <div class='codepen'></div>
 <p>Running this code should show you a 250px tall grey square.</p>
@@ -477,7 +532,7 @@ document.body.append(nodes);
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/web-components/templates.md"},"description":"Learn how `<template>` can be used to create reusable DOM that can be cloned and used within your components. \n","name":"learn-web-components/templates","title":"Writing a template","type":"page","parent":"learn-web-components","order":3,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/web-components/2-templates/templates.md"},"description":"Learn how `<template>` can be used to create reusable DOM that can be cloned and used within your components. \n","name":"learn-web-components/templates","title":"Writing a template","type":"page","parent":"learn-web-components","order":3,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

@@ -1396,7 +1396,7 @@ describe('RestaurantService', () =&gt; {
       expect(restaurants).toEqual(mockRestaurants);
     });
 
-    let url = '/api/restaurants';
+    let url = 'http://localhost:7070/restaurants';
     const req = httpMock.expectOne(url);
 
 
@@ -1448,7 +1448,7 @@ describe('RestaurantService', () =&gt; {
       expect(states).toEqual(mockStates);
     });
 
-    let url = '/api/states';
+    let url = 'http://localhost:7070/states';
     const req = httpMock.expectOne(url);
 
     expect(req.request.method).toEqual('GET');
@@ -1468,7 +1468,7 @@ describe('RestaurantService', () =&gt; {
       expect(cities).toEqual(mockCities);
     });
 
-    let url = '/api/cities?state=MO';
+    let url = 'http://localhost:7070/cities?state=MO';
     const req = httpMock.expectOne(url);
     expect(req.request.method).toEqual('GET');
     req.flush(mockCities);
@@ -1478,7 +1478,7 @@ describe('RestaurantService', () =&gt; {
 
 });
 </code></pre>
-<div line-highlight='124-161'></div>
+ <div line-highlight="3,77,124-128,131-133,135-136,138-139,141-142,144-149,151-153,155-158,160-161,"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
@@ -1487,6 +1487,7 @@ describe('RestaurantService', () =&gt; {
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Restaurant } from './restaurant';
+import { environment } from '../../environments/environment';
 
 export interface ResponseData {
   data: Restaurant[];
@@ -1500,20 +1501,20 @@ export class RestaurantService {
   constructor(private httpClient: HttpClient) { }
 
   getRestaurants() {
-    return this.httpClient.get&lt;ResponseData&gt;('/api/restaurants');
+    return this.httpClient.get&lt;ResponseData&gt;(environment.apiUrl + '/restaurants');
   }
 
   getStates() {
-    return this.httpClient.get&lt;any&gt;('/api/states');
+    return this.httpClient.get&lt;any&gt;(environment.apiUrl + '/states');
   }
 
   getCities(state:string) {
     const params = new HttpParams().set('state', state);
-    return this.httpClient.get&lt;any&gt;('/api/cities', {params});
+    return this.httpClient.get&lt;any&gt;(environment.apiUrl + '/cities', {params});
   }
 }
 </code></pre>
-<div line-highlight='2,20-22,24-27'></div>
+ <div line-highlight="2,21-23,25-28,"></div>
 <h2>Problem 3: Use Generics to Modify ResponseData interface to Work with States and Cities Data</h2>
 <p>We would like to use the <code>ResponseData</code> interface we wrote to describe the response for the state and city requests, but it only works with and array of type <code>Restaurant</code>.</p>
 <h2>P3: What You Need to Know</h2>
@@ -1618,12 +1619,13 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='18-23,25-29,36,41,46,47,51-55,57-61,63-67,68-71,only'></div>
 <h2>P3: Technical Requirements</h2>
-<p>Convert the <code>ResponseData</code> interface use generics so it can take a type of <code>Restaurant</code>, <code>State</code>, or <code>City</code>. We've written the state &amp; city interfaces for you.</p>
+<p>Convert the <code>ResponseData</code> interface use generics so it can take a type of <code>Restaurant</code>, <code>State</code>, or <code>City</code>. We've written the state &amp; city interfaces for you. Make sure to update the getRestaurants method in the RestaurantComponent as well.</p>
 <h2>P3: Setup</h2>
 <p>✏️ Update your <strong>src/app/restaurant/restaurant.service.ts</strong> file to be:</p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Restaurant } from './restaurant';
+import { environment } from '../../environments/environment';
 
 export interface ResponseData {
   data: Restaurant[];
@@ -1647,20 +1649,20 @@ export class RestaurantService {
   constructor(private httpClient: HttpClient) { }
 
   getRestaurants() {
-    return this.httpClient.get&lt;ResponseData&gt;('/api/restaurants');
+    return this.httpClient.get&lt;ResponseData&gt;(environment.apiUrl + '/restaurants');
   }
 
   getStates() {
-    return this.httpClient.get&lt;any&gt;('/api/states');
+    return this.httpClient.get&lt;any&gt;(environment.apiUrl + '/states');
   }
 
   getCities(state:string) {
     const params = new HttpParams().set('state', state);
-    return this.httpClient.get&lt;any&gt;('/api/cities', {params});
+    return this.httpClient.get&lt;any&gt;(environment.apiUrl + '/cities', {params});
   }
 }
 </code></pre>
-<div line-highlight='9-12, 14-17'></div>
+ <div line-highlight="10-12,15-18,39,"></div>
 <h2>P3: How to Verify Your Solution is Correct</h2>
 <p>✏️ Update the spec file  <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { TestBed } from '@angular/core/testing';
@@ -1745,7 +1747,7 @@ describe('RestaurantService', () =&gt; {
       expect(restaurants).toEqual(mockRestaurants);
     });
 
-    let url = '/api/restaurants';
+    let url = 'http://localhost:7070/restaurants';
     const req = httpMock.expectOne(url);
 
 
@@ -1797,7 +1799,7 @@ describe('RestaurantService', () =&gt; {
       expect(states).toEqual(mockStates);
     });
 
-    let url = '/api/states';
+    let url = 'http://localhost:7070/states';
     const req = httpMock.expectOne(url);
 
     expect(req.request.method).toEqual('GET');
@@ -1817,7 +1819,7 @@ describe('RestaurantService', () =&gt; {
       expect(cities).toEqual(mockCities);
     });
 
-    let url = '/api/cities?state=MO';
+    let url = 'http://localhost:7070/cities?state=MO';
     const req = httpMock.expectOne(url);
     expect(req.request.method).toEqual('GET');
     req.flush(mockCities);
@@ -1827,12 +1829,13 @@ describe('RestaurantService', () =&gt; {
 
 });
 </code></pre>
-<div line-highlight='3,79,131,151, only'></div>
+ <div line-highlight="3,79,131,151,"></div>
 <h2>P3: Solution</h2>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.service.ts</strong></p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Restaurant } from './restaurant';
+import { environment } from '../../environments/environment';
 
 export interface ResponseData&lt;dataType&gt; {
   data: Array&lt;dataType&gt;;
@@ -1856,20 +1859,102 @@ export class RestaurantService {
   constructor(private httpClient: HttpClient) { }
 
   getRestaurants() {
-    return this.httpClient.get&lt;ResponseData&lt;Restaurant&gt;&gt;('/api/restaurants');
+    return this.httpClient.get&lt;ResponseData&lt;Restaurant&gt;&gt;(environment.apiUrl + '/restaurants');
   }
 
   getStates() {
-    return this.httpClient.get&lt;ResponseData&lt;State&gt;&gt;('/api/states');
+    return this.httpClient.get&lt;ResponseData&lt;State&gt;&gt;(environment.apiUrl + '/states');
   }
 
   getCities(state:string) {
     const params = new HttpParams().set('state', state);
-    return this.httpClient.get&lt;ResponseData&lt;City&gt;&gt;('/api/cities', {params});
+    return this.httpClient.get&lt;ResponseData&lt;City&gt;&gt;(environment.apiUrl + '/cities', {params});
   }
 }
 </code></pre>
-<div line-highlight='5-7,27,31,36'></div>
+ <div line-highlight="6-7,28,32,37,"></div>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>
+<pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Subscription } from 'rxjs';
+
+import { RestaurantService, ResponseData } from './restaurant.service';
+import { Restaurant } from './restaurant';
+
+export interface Data {
+  value: Array&lt;Restaurant&gt;;
+  isPending: boolean;
+}
+
+@Component({
+  selector: 'pmo-restaurant',
+  templateUrl: './restaurant.component.html',
+  styleUrls: ['./restaurant.component.less']
+})
+export class RestaurantComponent implements OnInit, OnDestroy {
+  form: FormGroup;
+
+  public restaurants: Data = {
+    value: [],
+    isPending: false
+  }
+
+  public states = {
+    isPending: false,
+    value: [{name: &quot;Illinois&quot;, short: &quot;IL&quot;}, {name: &quot;Wisconsin&quot;, short: &quot;WI&quot;}]
+  };
+
+  public cities = {
+    isPending: false,
+    value: [{name: &quot;Springfield&quot;},{name: &quot;Madison&quot;}]
+  }
+
+  private subscription: Subscription;
+
+  constructor(
+    private restaurantService: RestaurantService,
+    private fb: FormBuilder
+    ) {
+  }
+
+  ngOnInit() {
+    this.createForm();
+
+    this.restaurantService.getRestaurants().subscribe((res: ResponseData&lt;Restaurant&gt;) =&gt; {
+      this.restaurants.value = res.data;
+      this.restaurants.isPending = false;
+    });
+  }
+
+  ngOnDestroy() {
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
+  }
+
+  createForm() {
+    this.form = this.fb.group({
+      state: {value: '', disabled: false},
+      city: {value: '', disabled: false},
+    });
+
+    this.onChanges();
+  }
+  onChanges(): void {
+    const stateChanges = this.form.get('state').valueChanges.subscribe(val =&gt; {
+      console.log('state', val);
+    });
+    this.subscription = stateChanges;
+
+
+    const cityChanges = this.form.get('city').valueChanges.subscribe(val =&gt; {
+      console.log('city', val);
+    });
+    this.subscription.add(cityChanges);
+  }
+}
+</code></pre>
+ <div line-highlight="47,only"></div>
 <h2>Problem 4: Get Cities and States Based on Dropdown Values</h2>
 <p>Now that our service is in working order, let's populate our dropdowns with state and city data. We will want our list of states to be available right away, but we will want to fetch our list of cities only after we have the state value selected by the user.</p>
 <h2>P4: Technical Requirements</h2>
@@ -2315,7 +2400,7 @@ describe('RestaurantComponent', () =&gt; {
   }));
 });
 </code></pre>
-<div line-highlight='169,170,183,184,190,194,195,337-351,353-362,364-378,380-390,392-404,406-415,417-427,only'></div>
+ <div line-highlight="108-113,115,117-121,138,169-170,183-184,190,194-195,337-351,353-362,364-378,380-390,392-404,406-415,417-427,"></div>
 <h2>P4: What You Need to Know</h2>
 <ul>
 <li>How to call service methods in a component</li>
@@ -2453,7 +2538,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   }
 }
 </code></pre>
-<div line-highlight='5,8-11,21,26,31,28,33,44-48,65-101, 103-109, 111-121,123-128'></div>
+ <div line-highlight="5,8-9,21,26,28,31,33,47,58-59,66,68-90,96-98,103-107,109,111-121,123,127-128,only"></div>
 
 </section>
 

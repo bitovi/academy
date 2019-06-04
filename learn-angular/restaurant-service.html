@@ -519,8 +519,8 @@ covering CanJS core libraries.">
 <p>In this part, we will:</p>
 <ul>
 <li>Install the place-my-order API</li>
-<li>Create a proxy to serve the API</li>
 <li>Update <code>npm start</code> script</li>
+<li>Create an environment variable for API URL</li>
 <li>Generate a new service via the CLI</li>
 <li>Write a method to make an http request</li>
 <li>Write interfaces to describe response object and restaurant object</li>
@@ -840,7 +840,7 @@ platformBrowserDynamic()
 <p>This tutorial won't cover RxJS in depth, but it's worth being aware of Angulars
 heavy use of it. Checkout our <a href="../learn-rxjs.html" title="Learn RxJS by creating a validating credit card form.">Learn RxJS</a> tutorial for more information.</p>
 <h2>P1: Technical Requirements</h2>
-<p>Write a <code>RestaurantService</code> with a method <code>getRestaurants</code> that uses <code>httpClient</code> to get a list of restaurants from our <code>/api/restaurants</code> url. For example, we could get restaurants like:</p>
+<p>Write a <code>RestaurantService</code> with a method <code>getRestaurants</code> that uses <code>httpClient</code> to get a list of restaurants from an environment variable\ + <code>/restaurants</code>. For example, we could get restaurants like:</p>
 <pre><code class="language-typescript">const httpClient = new HttpClient();
 const restaurantService = new RestaurantService( httpClient );
 
@@ -859,12 +859,12 @@ as shown above.</li>
 <p>Before we begin making services, we must:</p>
 <ul>
 <li>Install the place-my-order API</li>
-<li>Create a proxy to serve the API</li>
+<li>Create an environment variable to point to the API</li>
 </ul>
 <h3>Installing the Place My Order API</h3>
 <p>We've done some work to create a Place My Order API for use in this app by creating an NPM package that will generate fake restaurant data and serve it from port 7070.</p>
 <p>✏️ Run:</p>
-<pre><code class="language-bash">npm install place-my-order-api@1 --save
+<pre><code class="language-bash">npm install place-my-order-api --save
 </code></pre>
 <p>✏️ Next make add an api script to your <code>package.json</code></p>
 <pre><code class="language-js">  &quot;scripts&quot;: {
@@ -882,40 +882,39 @@ as shown above.</li>
 <pre><code class="language-bash">npm run api
 </code></pre>
 <p>Double check the api by navigating to <a href="http://localhost:7070/restaurants" target="\_blank">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the api command from.</p>
-<h3>Create a Proxy to Serve the API</h3>
-<p>Next, we'll create a <a href="https://github.com/angular/angular-cli/blob/master/docs/documentation/stories/proxy.md" target="\_blank">proxy</a> file at the root of our Angular project to access our API for local development purposes.</p>
-<p>✏️ To create the proxy file:</p>
-<pre><code class="language-shell">touch proxy.conf.json
+<h3>Create an Environment Variable</h3>
+<p>The way we're accessing our locally run API during development may be different than how we access it in production. To prepare for this, we'll set an environment variable to do what we need. Angular already generated an <code>environments</code> folder for us with two files:</p>
+<p><code>src/environments/environment.ts</code></p>
+<pre><code class="language-typescript"> // This file can be replaced during build by using the `fileReplacements` array.
+// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
+// The list of file replacements can be found in `angular.json`.
+
+export const environment = {
+  production: false
+};
+
+/*
+ * For easier debugging in development mode, you can import the following file
+ * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
+ *
+ * This import should be commented out in production mode because it will have a negative impact
+ * on performance if an error is thrown.
+ */
+// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+
 </code></pre>
-<p>✏️ Update the newly created <strong>proxy.conf.json</strong> file with the following json:</p>
-<pre><code class="language-js">{
-  &quot;/api&quot;: {
-    &quot;target&quot;: &quot;http://localhost:7070&quot;,
-    &quot;secure&quot;: false,
-    &quot;pathRewrite&quot;: {
-      &quot;^/api&quot;: &quot;&quot;
-    },
-    &quot;logLevel&quot;: &quot;debug&quot;,
-    &quot;changeOrigin&quot;: true
-  }
-}
+<p><code>src/environments/environment.prod.ts</code></p>
+<pre><code class="language-typescript">export const environment = {
+  production: true
+};
 </code></pre>
-<p>✏️ Update the package.json <code>npm start</code> script to be <code>ng serve --proxy-config proxy.conf.json</code></p>
-<pre><code class="language-js">&quot;scripts&quot;: {
-  &quot;ng&quot;: &quot;ng&quot;,
-  &quot;start&quot;: &quot;ng serve --proxy-config proxy.conf.json&quot;,
-  &quot;build&quot;: &quot;ng build&quot;,
-  &quot;test&quot;: &quot;ng test&quot;,
-  &quot;lint&quot;: &quot;ng lint&quot;,
-  &quot;e2e&quot;: &quot;ng e2e&quot;,
-  &quot;api&quot;: &quot;place-my-order-api --port 7070&quot;
-},
+<p>When developing locally Angular will use the <code>environment.ts</code> file, but when we create a production build the <code>environment.prod.ts</code> file will be used. We'll update the production file when we get ready to deploy, but for now, update the <code>environment.ts</code> file to include an <code>apiUrl</code> key with the value of where our API is being served from: <code>http://localhost:7070</code>.</p>
+<p>✏️  Update <code>src/environments/environment.ts</code>:</p>
+<pre><code class="language-typescript">export const environment = {
+  production: false,
+  apiUrl: 'http://localhost:7070'
+};
 </code></pre>
-<div line-highlight='3'></div>
-<p>✏️ Now, <strong>restart</strong> the app using:</p>
-<pre><code class="language-shell">npm start
-</code></pre>
-<p>The app will use the proxy config we created. To test that it's working, navigate to <a href="http://localhost:4200/api/restaurants" target="\_blank">http://localhost:4200/api/restaurants</a> and you should be able to see a list of restaurants.</p>
 <h2>P1: How to Verify Your Solution is Correct</h2>
 <p>✏️ Generate the restaurant service:</p>
 <pre><code class="language-shell">ng g service restaurant/restaurant
@@ -1002,7 +1001,7 @@ describe('RestaurantService', () =&gt; {
       expect(restaurants).toEqual(mockRestaurants);
     });
 
-    let url = '/api/restaurants';
+    let url = 'http://localhost:7070/restaurants';
     const req = httpMock.expectOne(url);
 
 
@@ -1013,7 +1012,6 @@ describe('RestaurantService', () =&gt; {
   })
 
 });
-
 </code></pre>
 <p>✏️ Quit the previous tests running and restart them:</p>
 <pre><code class="language-shell">npm run test
@@ -1052,9 +1050,10 @@ export class AppModule { }
 
 </code></pre>
 <div line-highlight='3,21'></div>
-<p>✏️ Update <strong>src/app/restaurant/restaurant.service.ts</strong> to make a request to <code>/api/restaurants</code>:</p>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.service.ts</strong> to make a request to the API server <code>/restaurants</code>:</p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -1064,7 +1063,7 @@ export class RestaurantService {
   constructor(private httpClient: HttpClient) { }
 
   getRestaurants() {
-    return this.httpClient.get&lt;any&gt;('/api/restaurants');
+    return this.httpClient.get&lt;any&gt;(environment.apiUrl + '/restaurants');
   }
 }
 
@@ -1269,6 +1268,7 @@ platformBrowserDynamic()
 it within the <code>ResponseData</code> interface which is used by <code>httpClient.get</code>:</p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 import { Restaurant } from './restaurant';
 
@@ -1284,12 +1284,12 @@ export class RestaurantService {
   constructor(private httpClient: HttpClient) { }
 
   getRestaurants() {
-    return this.httpClient.get&lt;ResponseData&gt;('/api/restaurants');
+    return this.httpClient.get&lt;ResponseData&gt;(environment.apiUrl + '/restaurants');
   }
 }
 
 </code></pre>
-<div line-highlight='4,6-8, 18'></div>
+ <div line-highlight="5,7-8,19,21,"></div>
 <p>✏️ Generate the restaurant interface:</p>
 <pre><code class="language-bash">ng g interface restaurant/restaurant
 </code></pre>
@@ -1399,7 +1399,7 @@ describe('RestaurantService', () =&gt; {
       expect(restaurants).toEqual(mockRestaurants);
     });
 
-    let url = '/api/restaurants';
+    let url = 'http://localhost:7070/restaurants';
     const req = httpMock.expectOne(url);
 
 
@@ -1442,7 +1442,7 @@ describe('RestaurantService', () =&gt; {
 
 });
 </code></pre>
-<div line-highlight='3,4,79,93-122'></div>
+ <div line-highlight="3-4,77,79,93-122,"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass! If you haven't written the interfaces correctly, you'll see a compile error before the tests runs. You might need to restart the test script to see the compile error.</p>
 </blockquote>
@@ -1481,6 +1481,7 @@ export interface Restaurant {
 }
 
 </code></pre>
+ <div line-highlight="3,8,13-15,20-21,26-30,"></div>
 <p>In the next step we'll call the <code>getRestaurants</code> method in our component to get the list of restaurants.</p>
 
 </section>

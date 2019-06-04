@@ -522,44 +522,135 @@ covering CanJS core libraries.">
 <li>Create an environment variable</li>
 <li>Update list view on socket events.</li>
 </ul>
-<h2>Install Socket.io</h2>
-<pre><code class="language-bash">npm install --save socket.io-client@2.2.0
-npm install --save @types/socket.io-client
+<h2>Install NGX Socket.io Module</h2>
+<pre><code class="language-bash">npm install --save ngx-socket-io
 </code></pre>
-<h2>Import and Initialize Socket.io</h2>
-<p>We can import JavaScript libraries that haven't been written into Angular modules and reference them using '*'.</p>
-<pre><code class="language-typescript">import * as io from 'socket.io-client';
+<h2>Import and Configure Socket.io</h2>
+<p>✏️ Update <strong>src/app/app.module.ts</strong> to:</p>
+<pre><code class="language-ts">import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { ImageUrlPipe } from './image-url.pipe';
+import { DetailComponent } from './restaurant/detail/detail.component';
+import { OrderComponent } from './order/order.component';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { MenuItemsComponent } from './order/menu-items/menu-items.component';
+import { HistoryComponent } from './order/history/history.component';
+import { ListComponent } from './order/list/list.component';
+
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { environment } from '../environments/environment';
+const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    RestaurantComponent,
+    ImageUrlPipe,
+    DetailComponent,
+    OrderComponent,
+    MenuItemsComponent,
+    HistoryComponent,
+    ListComponent
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    TabsModule.forRoot(),
+    SocketIoModule.forRoot(config)
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
 </code></pre>
-<h2>Use Environment Variables</h2>
-<p>We need to tell Socket.io where to listen for changes. Locally this is localhost:7070 - where our API is running, but that's not what it will be in production. Angular makes handling this situation easy, we can simply add an environment variable.</p>
-<p>Open <code>src/environments/environment.ts</code> and change it to:</p>
-<pre><code class="language-ts">// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
-
-export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:7070'
-};
-
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
+<div line-highlight='18-20,40,only'></div>
+<h2>Use Polyfills</h2>
+<p>Currently there's a bug with the latest CLI verion when using socket.io. Until it's fixed, we can use polyfills.</p>
+<p>✏️ Update <strong>src/polyfills.ts</strong> to:</p>
+<pre><code class="language-ts">/**
+ * This file includes polyfills needed by Angular and is loaded before the app.
+ * You can add your own extra polyfills to this file.
  *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
+ * This file is divided into 2 sections:
+ *   1. Browser polyfills. These are applied before loading ZoneJS and are sorted by browsers.
+ *   2. Application imports. Files imported after ZoneJS that should be loaded before your main
+ *      file.
+ *
+ * The current setup is for so-called &quot;evergreen&quot; browsers; the last versions of browsers that
+ * automatically update themselves. This includes Safari &gt;= 10, Chrome &gt;= 55 (including Opera),
+ * Edge &gt;= 13 on the desktop, and iOS 10 and Chrome on mobile.
+ *
+ * Learn more in https://angular.io/guide/browser-support
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+
+/***************************************************************************************************
+ * BROWSER POLYFILLS
+ */
+(window as any).global = window
+
+/** IE10 and IE11 requires the following for NgClass support on SVG elements */
+// import 'classlist.js';  // Run `npm install --save classlist.js`.
+
+/**
+ * Web Animations `@angular/platform-browser/animations`
+ * Only required if AnimationBuilder is used within the application and using IE/Edge or Safari.
+ * Standard animation support in Angular DOES NOT require any polyfills (as of Angular 6.0).
+ */
+// import 'web-animations-js';  // Run `npm install --save web-animations-js`.
+
+/**
+ * By default, zone.js will patch all possible macroTask and DomEvents
+ * user can disable parts of macroTask/DomEvents patch by setting following flags
+ * because those flags need to be set before `zone.js` being loaded, and webpack
+ * will put import in the top of bundle, so user need to create a separate file
+ * in this directory (for example: zone-flags.ts), and put the following flags
+ * into that file, and then add the following code before importing zone.js.
+ * import './zone-flags.ts';
+ *
+ * The flags allowed in zone-flags.ts are listed here.
+ *
+ * The following flags will work for all browsers.
+ *
+ * (window as any).__Zone_disable_requestAnimationFrame = true; // disable patch requestAnimationFrame
+ * (window as any).__Zone_disable_on_property = true; // disable patch onProperty such as onclick
+ * (window as any).__zone_symbol__BLACK_LISTED_EVENTS = ['scroll', 'mousemove']; // disable patch specified eventNames
+ *
+ *  in IE/Edge developer tools, the addEventListener will also be wrapped by zone.js
+ *  with the following flag, it will bypass `zone.js` patch for IE/Edge
+ *
+ *  (window as any).__Zone_enable_cross_context_check = true;
+ *
+ */
+
+/***************************************************************************************************
+ * Zone JS is required by default for Angular itself.
+ */
+import 'zone.js/dist/zone';  // Included with Angular CLI.
+
+
+/***************************************************************************************************
+ * APPLICATION IMPORTS
+ */
 
 </code></pre>
+<div line-highlight='20, only'></div>
 <h2>Listen to Socket Events</h2>
 <p>We'll use <code>apiUrl</code> for our Socket.io connection, and listen for <code>orders created</code>, <code>order updated</code>, and <code>orders deleted</code> events to change our list on:</p>
 <p>✏️ Update <strong>src/app/order/history.component.ts</strong></p>
-<pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
+<pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import { OrderService, Order } from '../order.service';
 import { ResponseData } from '../../restaurant/restaurant.service';
-import * as io from 'socket.io-client';
-import { environment } from '../../../environments/environment';
+import { Socket } from 'ngx-socket-io';
 
 interface Data&lt;T&gt; {
   value: Array&lt;T&gt;;
@@ -571,17 +662,16 @@ interface Data&lt;T&gt; {
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.less']
 })
-export class HistoryComponent implements OnInit {
+export class HistoryComponent implements OnInit, OnDestroy {
   public orders: Data&lt;Order&gt; = {
     value: [],
     isPending: true
   }
-  socket: SocketIOClient.Socket;
 
   constructor(
-    private orderService: OrderService
-    ) { 
-      this.socket = io(environment.apiUrl);
+    private orderService: OrderService,
+    private socket: Socket
+    ) {
     }
 
   ngOnInit() {
@@ -601,6 +691,10 @@ export class HistoryComponent implements OnInit {
       let orderIndex =  this.orders.value.findIndex(item =&gt; item._id === order._id);
       this.orders.value.splice(orderIndex, 1);
     });
+  }
+
+  ngOnDestroy(): void {
+    this.socket.removeAllListeners();
   }
 
   getOrders() {
@@ -638,9 +732,8 @@ export class HistoryComponent implements OnInit {
    }
 
 }
-
 </code></pre>
- <div line-highlight='4, 5, 22, 27, 33-35, 37-41, 43-46'></div>
+ <div line-highlight="1,4,16,23-24,31-32,35-38,41-43,47-48,62,67,74,81,only"></div>
 <p>Now as we create, update, and delete orders we can see them updated in real time across different browser tab instances!</p>
 
 </section>

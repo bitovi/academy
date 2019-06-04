@@ -560,6 +560,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ImageUrlPipe } from './image-url.pipe';
 
 describe('AppComponent', () =&gt; {
   let router: Router;
@@ -572,7 +573,7 @@ describe('AppComponent', () =&gt; {
         AppRoutingModule
       ],
       declarations: [
-        AppComponent, HomeComponent, RestaurantComponent
+        AppComponent, HomeComponent, RestaurantComponent, ImageUrlPipe
       ],
       schemas: [
         NO_ERRORS_SCHEMA
@@ -663,7 +664,7 @@ describe('AppComponent', () =&gt; {
 
 });
 </code></pre>
-<div line-highlight='1,4,69-74,76-81,83-95,97-110,only'></div>
+ <div line-highlight="1,4,51,70-75,77-82,84-96,98-111,only"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
@@ -1249,10 +1250,8 @@ platformBrowserDynamic()
   &lt;/nav&gt;
 &lt;/header&gt;
 &lt;router-outlet&gt;&lt;/router-outlet&gt;
-  
-
 </code></pre>
-<div line-highlight='1-14'></div>
+ <div line-highlight="1-13,"></div>
 
 </section>
 

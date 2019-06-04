@@ -524,6 +524,15 @@ covering CanJS core libraries.">
 <li>Deploy app to Firebase</li>
 <li>Update npm script to include deploy</li>
 </ul>
+<h2>Add Production API URL</h2>
+<p>For our production app, we won't be running a local server, instead we'll point to <code>https://place-my-order-api.herokuapp.com</code>. All we need to do is add the apiUrl variable to our production environment file. When we do a production build by running <code>ng build --prod</code>, our production file will be used.</p>
+<p>✏️ Update <strong>src/environments/environment.production.ts</strong>:</p>
+<pre><code class="language-ts">export const environment = {
+  production: true,
+  apiUrl: 'https://place-my-order-api.herokuapp.com'
+};
+
+</code></pre>
 <h2>Create Firebase account</h2>
 <p>Go to <a href="https://console.firebase.google.com" target="\_blank">https://console.firebase.google.com</a> and sign in or create new account.</p>
 <h2>Create new project</h2>

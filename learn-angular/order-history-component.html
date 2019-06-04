@@ -532,6 +532,328 @@ covering CanJS core libraries.">
 </ol>
 <h2>P1: How to Verify Your Solution is Correct</h2>
 <p>If you've implemented the solution correctly you should be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see <em>'history works!'</em>.</p>
+<p>✏️ Update the spec file  <strong>src/app/app.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { TestBed, async, fakeAsync, tick, flush } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { By } from '@angular/platform-browser';
+import { of } from 'rxjs'; 
+
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ImageUrlPipe } from './image-url.pipe';
+import { HttpClientModule } from '@angular/common/http';
+import { RestaurantService } from './restaurant/restaurant.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DetailComponent } from './restaurant/detail/detail.component';
+import { OrderComponent } from './order/order.component';
+import { HistoryComponent } from './order/history/history.component';
+
+class MockRestaurantService {
+  getRestaurants() {
+    return of({
+      data: [{
+        &quot;name&quot;: &quot;Poutine Palace&quot;,
+        &quot;slug&quot;: &quot;poutine-palace&quot;,
+        &quot;images&quot;: {
+          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+        },
+        &quot;menu&quot;: {
+          &quot;lunch&quot;: [
+            {
+              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+              &quot;price&quot;: 35.99
+            },
+            {
+              &quot;name&quot;: &quot;Steamed Mussels&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+              &quot;price&quot;: 35.99
+            }
+          ],
+          &quot;dinner&quot;: [
+            {
+              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+              &quot;price&quot;: 45.99
+            },
+            {
+              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+              &quot;price&quot;: 45.99
+            }
+          ]
+        },
+        &quot;address&quot;: {
+          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+          &quot;city&quot;: &quot;Green Bay&quot;,
+          &quot;state&quot;: &quot;WI&quot;,
+          &quot;zip&quot;: &quot;53205&quot;
+        },
+        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Cheese Curd City&quot;,
+        &quot;slug&quot;: &quot;cheese-curd-city&quot;,
+        &quot;images&quot;: {
+          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
+          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+        },
+        &quot;menu&quot;: {
+          &quot;lunch&quot;: [
+            {
+              &quot;name&quot;: &quot;Ricotta Gnocchi&quot;,
+              &quot;price&quot;: 15.99
+            },
+            {
+              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Garlic Fries&quot;,
+              &quot;price&quot;: 15.99
+            }
+          ],
+          &quot;dinner&quot;: [
+            {
+              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+              &quot;price&quot;: 45.99
+            },
+            {
+              &quot;name&quot;: &quot;Truffle Noodles&quot;,
+              &quot;price&quot;: 14.99
+            },
+            {
+              &quot;name&quot;: &quot;Charred Octopus&quot;,
+              &quot;price&quot;: 25.99
+            }
+          ]
+        },
+        &quot;address&quot;: {
+          &quot;street&quot;: &quot;2451 W Washburne Ave&quot;,
+          &quot;city&quot;: &quot;Green Bay&quot;,
+          &quot;state&quot;: &quot;WI&quot;,
+          &quot;zip&quot;: &quot;53295&quot;
+        },
+        &quot;_id&quot;: &quot;Ar0qBJHxM3ecOhcr&quot;
+      }]}
+            )
+  }
+
+  getStates() {
+    return of({
+      data: [
+        {&quot;short&quot;:&quot;MO&quot;,&quot;name&quot;:&quot;Missouri&quot;},
+        {&quot;short&quot;:&quot;CA  &quot;,&quot;name&quot;:&quot;California&quot;},
+        {&quot;short&quot;:&quot;MI&quot;,&quot;name&quot;:&quot;Michigan&quot;}]
+    });
+  }
+
+  getCities(state:string) {
+    return of({
+      data: [{&quot;name&quot;:&quot;Sacramento&quot;,&quot;state&quot;:&quot;CA&quot;},{&quot;name&quot;:&quot;Oakland&quot;,&quot;state&quot;:&quot;CA&quot;}]
+    });
+  }
+
+  getRestaurant(slug:string) {
+    return of({
+      &quot;name&quot;: &quot;Poutine Palace&quot;,
+      &quot;slug&quot;: &quot;poutine-palace&quot;,
+      &quot;images&quot;: {
+        &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+        &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+        &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+      },
+      &quot;menu&quot;: {
+        &quot;lunch&quot;: [
+          {
+            &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+            &quot;price&quot;: 35.99
+          },
+          {
+            &quot;name&quot;: &quot;Steamed Mussels&quot;,
+            &quot;price&quot;: 21.99
+          },
+          {
+            &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+            &quot;price&quot;: 35.99
+          }
+        ],
+        &quot;dinner&quot;: [
+          {
+            &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+            &quot;price&quot;: 21.99
+          },
+          {
+            &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+            &quot;price&quot;: 45.99
+          },
+          {
+            &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+            &quot;price&quot;: 45.99
+          }
+        ]
+      },
+      &quot;address&quot;: {
+        &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+        &quot;city&quot;: &quot;Green Bay&quot;,
+        &quot;state&quot;: &quot;WI&quot;,
+        &quot;zip&quot;: &quot;53205&quot;
+      },
+      &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+    })
+  }
+}
+
+describe('AppComponent', () =&gt; {
+  let router: Router;
+  let location: Location;
+  let fixture;
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      imports: [
+        AppRoutingModule, HttpClientModule, ReactiveFormsModule
+      ],
+      declarations: [
+        AppComponent, HomeComponent, RestaurantComponent, 
+        ImageUrlPipe, DetailComponent, OrderComponent, HistoryComponent
+      ],
+      schemas: [
+        NO_ERRORS_SCHEMA
+      ]
+    }).overrideComponent(RestaurantComponent, {
+      set: {
+        providers: [
+          { provide: RestaurantService, useClass: MockRestaurantService }
+        ],
+        template: '&lt;p&gt; I am a fake restaurant component&lt;/p&gt;'
+      }
+    })
+    .compileComponents();
+
+    router = TestBed.get(Router);
+    location = TestBed.get(Location);
+
+    fixture = TestBed.createComponent(AppComponent);
+  }));
+
+  it('should create the app', () =&gt; {
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
+  });
+
+  it(`should have as title 'place-my-order'`, () =&gt; {
+    const app = fixture.debugElement.componentInstance;
+    expect(app.title).toEqual('place-my-order');
+  });
+
+  it('should render title in a h1 tag', () =&gt; {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain('place-my-order.com');
+  });
+
+  it('should render the HomeComponent with router navigates to &quot;/&quot; path', () =&gt; {
+    const compiled = fixture.debugElement.nativeElement;
+    router.navigate(['']).then(() =&gt; {
+      expect(location.path()).toBe('');
+      expect(compiled.querySelector('pmo-home')).not.toBe(null);
+    });
+  });
+
+  it('should render the RestaurantsComponent with router navigates to &quot;/restaurants&quot; path', () =&gt; {
+    const compiled = fixture.debugElement.nativeElement;
+    router.navigate(['restaurants']).then(() =&gt; {
+      expect(location.path()).toBe('/restaurants');
+      expect(compiled.querySelector('pmo-restaurant')).not.toBe(null);
+    });
+  });
+
+  it('should render the DetailComponent with router navigates to &quot;/restaurants/slug&quot; path', () =&gt; {
+    const compiled = fixture.debugElement.nativeElement;
+    router.navigate(['restaurants/crab-shack']).then(() =&gt; {
+      expect(location.path()).toBe('/restaurants/crab-shack');
+      expect(compiled.querySelector('pmo-detail')).not.toBe(null);
+    });
+  });
+
+  it('should render the OrderComponent with router navigates to &quot;/restaurants/slug/order&quot; path', () =&gt; {
+    const compiled = fixture.debugElement.nativeElement;
+    router.navigate(['restaurants/crab-shack/order']).then(() =&gt; {
+      expect(location.path()).toBe('/restaurants/crab-shack/order');
+      expect(compiled.querySelector('pmo-order')).not.toBe(null);
+    });
+  });
+
+  it('should render the HistoryComponent with router navigates to &quot;/order-history&quot; path', () =&gt; {
+    const compiled = fixture.debugElement.nativeElement;
+    router.navigate(['order-history']).then(() =&gt; {
+      expect(location.path()).toBe('/order-history');
+      expect(compiled.querySelector('pmo-history')).not.toBe(null);
+    });
+  });
+
+  it('should have the home navigation link href set to &quot;&quot;', () =&gt; {
+    fixture.detectChanges();
+    let homeLink = fixture.debugElement.query(By.css('li a'));
+    let href = homeLink.nativeElement.getAttribute('href');
+    expect(href).toEqual('/');
+  });
+
+  it('should have the restaurants navigation link href set to &quot;&quot;', () =&gt; {
+    fixture.detectChanges();
+    let restaurantsLink = fixture.debugElement.query(By.css('li:nth-child(2) a'));
+    let href = restaurantsLink.nativeElement.getAttribute('href');
+    expect(href).toEqual('/restaurants');
+  });
+
+  it('should make the home navigation link class active when the router navigates to &quot;/&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.debugElement.nativeElement;
+    router.navigate(['']).then(() =&gt; {
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+      let homeLinkLi = fixture.debugElement.query(By.css('li'));
+      expect(homeLinkLi.nativeElement.classList).toContain('active');
+      expect(compiled.querySelectorAll('.active').length).toBe(1);
+      fixture.destroy();
+      flush();
+    });
+  }));
+
+  it('should make the restaurants navigation link class active when the router navigates to &quot;/restaurants&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.debugElement.nativeElement;
+    router.navigate(['restaurants']).then(() =&gt; {
+      expect(location.path()).toBe('/restaurants');
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+      let restaurantsLinkLi = fixture.debugElement.query(By.css('li:nth-child(2)'));
+      expect(restaurantsLinkLi.nativeElement.classList).toContain('active');
+      expect(compiled.querySelectorAll('.active').length).toBe(1);
+      fixture.destroy();
+      flush();
+    });
+  }));
+
+});
+</code></pre>
+ <div line-highlight="18,194-195,265,267-269,285,302,313,only"></div>
+<blockquote>
+<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+</blockquote>
 <h2>P1: What you need to know</h2>
 <p>You got this already, but just in case, here's some hints:</p>
 <ul>
@@ -602,24 +924,24 @@ export class AppRoutingModule { }
 <p>✏️ Update <strong>src/app/app.component.html</strong></p>
 <pre><code class="language-html">&lt;header&gt;
   &lt;nav&gt;
-   &lt;h1&gt;place-my-order.com&lt;/h1&gt;
-   &lt;ul&gt;
-     &lt;li routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
-       &lt;a routerLink=&quot;/&quot; &gt;Home&lt;/a&gt;
-     &lt;/li&gt;
-     &lt;li [ngClass]=&quot;{'active' : rla.isActive} &quot;&gt;
-       &lt;a routerLink=&quot;/restaurants&quot; routerLinkActive #rla=&quot;routerLinkActive&quot;&gt;Restaurants&lt;/a&gt;
-     &lt;/li&gt;
-     &lt;li routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
-       &lt;a routerLink=&quot;/order-history&quot;&gt;Order History&lt;/a&gt;
-     &lt;/li&gt;
-   &lt;/ul&gt;
+    &lt;h1&gt;place-my-order.com&lt;/h1&gt;
+    &lt;ul&gt;
+      &lt;li routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
+        &lt;a routerLink=&quot;/&quot; &gt;Home&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li [ngClass]=&quot;{'active' : rla.isActive} &quot;&gt;
+        &lt;a routerLink=&quot;/restaurants&quot; routerLinkActive #rla=&quot;routerLinkActive&quot;&gt;Restaurants&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
+        &lt;a routerLink=&quot;/order-history&quot;&gt;Order History&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
   &lt;/nav&gt;
 &lt;/header&gt;
 &lt;router-outlet&gt;&lt;/router-outlet&gt;
 
 </code></pre>
-<div line-highlight='11-13,only'></div>
+ <div line-highlight="11-13,"></div>
 <h2>Problem 3: List All Orders</h2>
 <p>We want to be able to see a list of all created orders and their varying statuses of &quot;new&quot;, &quot;preparing&quot;, &quot;delivery&quot;, and &quot;delivered&quot;.</p>
 <h2>P3: Technical Requirements</h2>
@@ -956,7 +1278,7 @@ export class HistoryComponent implements OnInit {
 }
 
 </code></pre>
-<div line-highlight='2, 22, 31-35, only'></div>
+ <div line-highlight="2-3,16-18,21-24,32-33,42,61,only"></div>
 <p>✏️ Update <strong>src/app/order/history.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-history&quot;&gt;
   &lt;div class=&quot;order header&quot;&gt;
@@ -998,7 +1320,7 @@ export class HistoryComponent implements OnInit {
 &lt;/div&gt;
 
 </code></pre>
-<div line-highlight='9-10,only'></div>
+ <div line-highlight="9-10,"></div>
 <h2>Problem 4: Creating a Child Component to Handle Order States</h2>
 <p>We want to create a child component that will take a list of orders by status and display them, as well as actions a user can perform on an order.</p>
 <h2>P4: Technical Requirements</h2>
@@ -1092,10 +1414,9 @@ of orders and other values like:
 &lt;/div&gt;
 
 </code></pre>
-<div line-highlight='9-45,only'></div>
+ <div line-highlight="9-17,19-27,29-37,39-45,only"></div>
 <p>3. ✏️ Update <strong>src/app/order/list/list.component.html</strong> to its final html:</p>
 <pre><code class="language-html">&lt;h4&gt;{{listTitle}}&lt;/h4&gt;
-&lt;div class=&quot;loading&quot; *ngIf=&quot;isPending&quot;&gt;&lt;/div&gt;
 &lt;ng-container *ngFor=&quot;let order of orders&quot;&gt;
   &lt;div [ngClass]=&quot;['order', order.status? order.status: '']&quot;&gt;
     &lt;address&gt;
@@ -1130,7 +1451,155 @@ of orders and other values like:
 
 </code></pre>
 <h2>P4: How to Verify Your Solution is Correct</h2>
-<p>✏️ Update the menu-items spec file  <strong>src/app/order/list/list.component.spec.ts</strong> to be:</p>
+<p>✏️ Update  <strong>src/app/order/history/history.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs'; 
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
+import { HistoryComponent } from './history.component';
+import { OrderService } from '../order.service';
+import { ListComponent } from '../list/list.component';
+
+class MockOrderService {
+  getOrders() {
+    return of({
+      data: [{
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Onion fries&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Roasted Salmon&quot;, &quot;price&quot;: 23.99}],
+      &quot;name&quot;: &quot;Client 1&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;new&quot;,
+      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
+      },
+      {
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Steak Tacos&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Guacamole&quot;, &quot;price&quot;: 3.99}],
+      &quot;name&quot;: &quot;Client 2&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;preparing&quot;,
+      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
+      },
+      {
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Mac &amp; Cheese&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Grilled chicken&quot;, &quot;price&quot;: 23.99}],
+      &quot;name&quot;: &quot;Client 3&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;delivery&quot;,
+      &quot;_id&quot;: &quot;0awcHyo8iD7XjahX&quot;,
+      },
+      {
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Eggrolls&quot;, &quot;price&quot;: 5.99}, {&quot;name&quot;: &quot;Fried Rice&quot;, &quot;price&quot;: 18.99}],
+      &quot;name&quot;: &quot;Client 4&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;delivered&quot;,
+      &quot;_id&quot;: &quot;1awcJyo3iD6CpvhZ&quot;,
+      }
+    ]
+    })
+  }
+}
+describe('HistoryComponent', () =&gt; {
+  let component: HistoryComponent;
+  let fixture: ComponentFixture&lt;HistoryComponent&gt;;
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      declarations: [ HistoryComponent, ListComponent ],
+      providers: [{
+        provide: OrderService,
+        useClass: MockOrderService
+      }],
+      schemas: [
+        NO_ERRORS_SCHEMA
+      ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(HistoryComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  it('should set response from getOrders service to orders member', () =&gt; {
+    const fixture = TestBed.createComponent(HistoryComponent);
+    fixture.detectChanges();
+    let expectedOrders = [{
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Onion fries&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Roasted Salmon&quot;, &quot;price&quot;: 23.99}],
+      &quot;name&quot;: &quot;Client 1&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;new&quot;,
+      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
+      },
+      {
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Steak Tacos&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Guacamole&quot;, &quot;price&quot;: 3.99}],
+      &quot;name&quot;: &quot;Client 2&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;preparing&quot;,
+      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
+      },
+      {
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Mac &amp; Cheese&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Grilled chicken&quot;, &quot;price&quot;: 23.99}],
+      &quot;name&quot;: &quot;Client 3&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;delivery&quot;,
+      &quot;_id&quot;: &quot;0awcHyo8iD7XjahX&quot;,
+      },
+      {
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Eggrolls&quot;, &quot;price&quot;: 5.99}, {&quot;name&quot;: &quot;Fried Rice&quot;, &quot;price&quot;: 18.99}],
+      &quot;name&quot;: &quot;Client 4&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;delivered&quot;,
+      &quot;_id&quot;: &quot;1awcJyo3iD6CpvhZ&quot;,
+      }
+    ];
+    let orders = fixture.componentInstance.orders;
+    expect(orders.value).toEqual(expectedOrders);
+  });
+
+  it('should display orders in UI', () =&gt; {
+    const fixture = TestBed.createComponent(HistoryComponent);
+    fixture.detectChanges();
+    let compiled = fixture.debugElement.nativeElement;
+    let orderDivs = compiled.querySelectorAll('.order:not(.header):not(.empty)');
+    expect(orderDivs.length).toEqual(4);
+  })
+
+  it('should display orders with appropriate classes', () =&gt; {
+    const fixture = TestBed.createComponent(HistoryComponent);
+    fixture.detectChanges();
+    let compiled = fixture.debugElement.nativeElement;
+    let newOrder = compiled.getElementsByClassName('new');
+    let preparingOrder = compiled.getElementsByClassName('preparing');
+    let deliveryOrder = compiled.getElementsByClassName('delivery');
+    let deliveredOrder = compiled.getElementsByClassName('delivered');
+    expect(newOrder.length).toEqual(1);
+    expect(preparingOrder.length).toEqual(1);
+    expect(deliveryOrder.length).toEqual(1);
+    expect(deliveredOrder.length).toEqual(1);
+  });
+});
+</code></pre>
+ <div line-highlight="3,7,58,62-65,only"></div>
+<p>✏️ Update  <strong>src/app/order/list/list.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs'; 
 

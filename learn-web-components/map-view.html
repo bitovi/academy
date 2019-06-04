@@ -3,7 +3,7 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/web-components/map-view.md
+	source: src/web-components/3-map-view/map-view.md
 	@page learn-web-components/map-view
 ######################################################################## -->
 <html lang="en">
@@ -191,8 +191,23 @@
            						
            						">
 						<a class="page"
+							href="bus-tracker-component.html"
+							title="Build a more complex component that combines the usage of &lt;template&gt; and customElements, and sets up event listeners.">
+							bus-tracker component
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="listing-routes.html"
-							title="Learn lit-html by creating a component that lists bus routes from the CTA bus tracker API.">
+							title="Fetch a list of bus routes from the CTA bus tracker API and add them to the .routes-list element.">
 							Listing routes
 						</a>
 						
@@ -207,7 +222,7 @@
            						">
 						<a class="page"
 							href="select-a-route.html"
-							title="Learn more about lit-html, with its special syntax for setting up event listeners and for passing properties to child components.">
+							title="Learn how to use event listeners with a custom element to handle user interaction and update the DOM.">
 							Selecting a route
 						</a>
 						
@@ -380,30 +395,46 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>The problem</h2>
-<p>In this section we will:</p>
+    <h2>Overview</h2>
+<p>In this part we will:</p>
 <ul>
 <li>Create a component named <code>google-map-view</code>.</li>
-<li>Use <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM">Shadow DOM</a> to encapsulate styles.</li>
 <li>Initialize the <a href="https://developers.google.com/maps/documentation/">Google maps API</a>.</li>
 </ul>
-<h2>How to solve this problem</h2>
+<h2>Problem</h2>
+<p>Create a component where we can display a Google map. Google maps need to be attached to a DOM element, so use <a href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM">Shadow DOM</a> to encapsulate the HTML and CSS that Google maps builds.</p>
+<p><img src="../static/img/web-components/gmap-slippy.gif"
+style="border: solid 1px black; max-width: 100%;"
+title="google-map-view component with a useable slippy map."/></p>
+<h2>Technical Requirements</h2>
+<p>Use the existing <code>#gmap-template</code> template, and append it to the host component's Shadow DOM. Use this script tag to enable the Google maps API:</p>
+<pre><code class="language-html">&lt;script src=&quot;https://maps.googleapis.com/maps/api/js?key=AIzaSyD7POAQA-i16Vws48h4yRFVGBZzIExOAJI&quot;&gt;&lt;/script&gt;
+</code></pre>
+<p>This snippet will create a Map centered on Chicago:</p>
+<pre><code class="language-js">new google.maps.Map(element, {
+  zoom: 10,
+  center: {
+    lat: 41.881,
+    lng: -87.623
+  }
+});
+</code></pre>
+<p>Where <code>element</code> is an element that the element the Google map will mount to.</p>
+<h2>What You Need to Know</h2>
 <ul>
-<li>Create a custom element class called <code>GoogleMapView</code>.</li>
-<li>Attach a ShadowRoot and clone our template into it.</li>
-<li>Initialize the Google Maps API in <code>connectedCallback</code> and attach it to the root element within the Shadow DOM.</li>
+<li>How to create Shadow DOM for an element.</li>
+<li>Which callback to use to instantiate a new <code>Map</code> for the Google map.</li>
 </ul>
-<h2>What you need to know</h2>
-<ul>
-<li>(Most) elements can have a <code>shadowRoot</code> property. This is a special version of a <a href="https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment">DocumentFragment</a> that is completely encapsulated. You cannot query the nodes within it from the outside (like <code>document.querySelector('.gmap')</code>). Styles within will not affect DOM outside.</li>
-<li>Create a shadowRoot for your element by calling <code>this.attachShadow({ mode: 'open' })</code>.
+<h3>Shadow DOM</h3>
+<p>(Most) elements can have a <code>shadowRoot</code> property. This is a special version of a <a href="https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment">DocumentFragment</a> that is completely encapsulated. You cannot query the nodes within it from the outside (like <code>document.querySelector('.gmap')</code>). Styles within will not affect DOM outside.</p>
+<p>You can create a <code>shadowRoot</code> for your element by calling <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/attachShadow">attachShadow</a>.</p>
 <pre><code class="language-js">let el = document.createElement('div');
 el.attachShadow({ mode: 'open' });
 el.shadowRoot.innerHTML = 'Hello there';
 document.body.append(el);
 </code></pre>
-  <div class='codepen'></div></li>
-<li>You can create <strong>closed</strong> shadowRoots by using <code>{ mode: 'closed' }</code>. When you do this, the <code>shadowRoot</code> property will not be added to the element. To be able to append items to the shadowRoot, keep a reference to it from the return value of <code>attachShadow()</code>.
+<div class='codepen'></div>
+<p>You can create <strong>closed</strong> shadowRoots by using <code>{ mode: 'closed' }</code>. When you do this, the <code>shadowRoot</code> property will not be added to the element. To be able to append items to the shadowRoot, keep a reference to it from the return value of <code>attachShadow()</code>.</p>
 <pre><code class="language-js">let el = document.createElement('div');
 let shadow = el.attachShadow({ mode: 'closed' });
 
@@ -411,17 +442,33 @@ el.shadowRoot; // null
 shadow.innerHTML = 'Hello from a closed shadow';
 document.body.append(el);
 </code></pre>
-  <div class='codepen'></div></li>
-<li><code>connectedCallback</code> is a lifecycle method for custom elements. It is called when the element is <strong>connected</strong>, which can occur in one of these scenarios:
+<div class='codepen'></div>
+<h3>When to append</h3>
+<p>For elements with side-effects (such as those that make network requests), it's best to do those side effects in the <strong>connectedCallback</strong>.</p>
+<p><code>connectedCallback</code> is a lifecycle method for custom elements. It is called when the element is <strong>connected</strong>, which can occur in one of these scenarios:</p>
 <ul>
 <li>The HTML parser sees the element within the page.</li>
 <li>An element node is inserted into the page like <code>document.body.append(node)</code>.</li>
-</ul></li>
-<li>The <code>connectedCallback</code> method will be called <em>each time</em> the element is inserted. If an element is inserted, removed, and reinserted, the <code>connectedCallback</code> will be called twice.</li>
 </ul>
-<h2>The solution</h2>
-<p>Building off of the template we created in the previous section, now extend <code>HTMLElement</code> to create a custom element.</p>
-<pre><code class="language-html">&lt;google-map-view&gt;&lt;/google-map-view&gt;
+<p>The <code>connectedCallback</code> method will be called <em>each time</em> the element is inserted. If an element is inserted, removed, and reinserted, the <code>connectedCallback</code> will be called twice.</p>
+<h2>Solution</h2>
+<p>✏️ Building off of the template we created in the previous section, now extend <code>HTMLElement</code> to create a custom element.</p>
+<pre><code class="language-html">&lt;style&gt;
+  html,
+  body {
+    height: 100%;
+  }
+  body {
+    font-family: &quot;Catamaran&quot;, sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+&lt;/style&gt;
+&lt;script src=&quot;https://maps.googleapis.com/maps/api/js?key=AIzaSyD7POAQA-i16Vws48h4yRFVGBZzIExOAJI&quot;&gt;&lt;/script&gt;
+
+&lt;google-map-view&gt;&lt;/google-map-view&gt;
 
 &lt;template id=&quot;gmap-template&quot;&gt;
   &lt;style&gt;
@@ -436,26 +483,16 @@ document.body.append(el);
 &lt;script type=&quot;module&quot;&gt;
 const template = document.querySelector('#gmap-template');
 
-const googleAPI = new Promise(resolve =&gt; {
-  const script = document.createElement(&quot;script&quot;);
-  script.src =
-    &quot;https://maps.googleapis.com/maps/api/js?key=AIzaSyD7POAQA-i16Vws48h4yRFVGBZzIExOAJI&quot;;
-  document.body.appendChild(script);
-  script.onload = resolve;
-});
-
 class GoogleMapView extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
 
-    let nodes = document.importNode(template.content, true);
-    this.shadowRoot.append(nodes);
+    let frag = document.importNode(template.content, true);
+    this.shadowRoot.append(frag);
   }
 
-  async connectedCallback() {
-    await googleAPI;
-
+  connectedCallback() {
     let gmap = this.shadowRoot.querySelector('.gmap');
     this.map = new google.maps.Map(gmap, {
       zoom: 10,
@@ -469,8 +506,9 @@ class GoogleMapView extends HTMLElement {
 
 customElements.define('google-map-view', GoogleMapView);
 &lt;/script&gt;
+
 </code></pre>
-<div line-highlight='1,14-47,only'></div>
+<div line-highlight='14-16,29-52,only'></div>
 <div class='codepen'></div>
 
 </section>
@@ -509,7 +547,7 @@ customElements.define('google-map-view', GoogleMapView);
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/web-components/map-view.md"},"description":"Create a component to hold our Google map view. \n","name":"learn-web-components/map-view","title":"Map View","type":"page","parent":"learn-web-components","order":4,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/web-components/3-map-view/map-view.md"},"description":"Create a component to hold our Google map view. \n","name":"learn-web-components/map-view","title":"Map View","type":"page","parent":"learn-web-components","order":4,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

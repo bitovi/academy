@@ -531,6 +531,318 @@ covering CanJS core libraries.">
 <p>Create a new <code>order</code> component, and create a route for our new component! The path should be <code>/restaurants/{{slug}}/order</code>.</p>
 <h2>P1: How to Verify Your Solution is Correct</h2>
 <p>When you navigate to the <code>/order</code> path from a restaurant detail page you should see your new order component.</p>
+<p>✏️ Update the spec file  <strong>src/app/app.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { TestBed, async, fakeAsync, tick, flush } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { By } from '@angular/platform-browser';
+import { of } from 'rxjs'; 
+
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ImageUrlPipe } from './image-url.pipe';
+import { HttpClientModule } from '@angular/common/http';
+import { RestaurantService } from './restaurant/restaurant.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DetailComponent } from './restaurant/detail/detail.component';
+import { OrderComponent } from './order/order.component';
+
+class MockRestaurantService {
+  getRestaurants() {
+    return of({
+      data: [{
+        &quot;name&quot;: &quot;Poutine Palace&quot;,
+        &quot;slug&quot;: &quot;poutine-palace&quot;,
+        &quot;images&quot;: {
+          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+        },
+        &quot;menu&quot;: {
+          &quot;lunch&quot;: [
+            {
+              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+              &quot;price&quot;: 35.99
+            },
+            {
+              &quot;name&quot;: &quot;Steamed Mussels&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+              &quot;price&quot;: 35.99
+            }
+          ],
+          &quot;dinner&quot;: [
+            {
+              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+              &quot;price&quot;: 45.99
+            },
+            {
+              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+              &quot;price&quot;: 45.99
+            }
+          ]
+        },
+        &quot;address&quot;: {
+          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+          &quot;city&quot;: &quot;Green Bay&quot;,
+          &quot;state&quot;: &quot;WI&quot;,
+          &quot;zip&quot;: &quot;53205&quot;
+        },
+        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Cheese Curd City&quot;,
+        &quot;slug&quot;: &quot;cheese-curd-city&quot;,
+        &quot;images&quot;: {
+          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
+          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+        },
+        &quot;menu&quot;: {
+          &quot;lunch&quot;: [
+            {
+              &quot;name&quot;: &quot;Ricotta Gnocchi&quot;,
+              &quot;price&quot;: 15.99
+            },
+            {
+              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Garlic Fries&quot;,
+              &quot;price&quot;: 15.99
+            }
+          ],
+          &quot;dinner&quot;: [
+            {
+              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+              &quot;price&quot;: 45.99
+            },
+            {
+              &quot;name&quot;: &quot;Truffle Noodles&quot;,
+              &quot;price&quot;: 14.99
+            },
+            {
+              &quot;name&quot;: &quot;Charred Octopus&quot;,
+              &quot;price&quot;: 25.99
+            }
+          ]
+        },
+        &quot;address&quot;: {
+          &quot;street&quot;: &quot;2451 W Washburne Ave&quot;,
+          &quot;city&quot;: &quot;Green Bay&quot;,
+          &quot;state&quot;: &quot;WI&quot;,
+          &quot;zip&quot;: &quot;53295&quot;
+        },
+        &quot;_id&quot;: &quot;Ar0qBJHxM3ecOhcr&quot;
+      }]}
+            )
+  }
+
+  getStates() {
+    return of({
+      data: [
+        {&quot;short&quot;:&quot;MO&quot;,&quot;name&quot;:&quot;Missouri&quot;},
+        {&quot;short&quot;:&quot;CA  &quot;,&quot;name&quot;:&quot;California&quot;},
+        {&quot;short&quot;:&quot;MI&quot;,&quot;name&quot;:&quot;Michigan&quot;}]
+    });
+  }
+
+  getCities(state:string) {
+    return of({
+      data: [{&quot;name&quot;:&quot;Sacramento&quot;,&quot;state&quot;:&quot;CA&quot;},{&quot;name&quot;:&quot;Oakland&quot;,&quot;state&quot;:&quot;CA&quot;}]
+    });
+  }
+
+  getRestaurant(slug:string) {
+    return of({
+      &quot;name&quot;: &quot;Poutine Palace&quot;,
+      &quot;slug&quot;: &quot;poutine-palace&quot;,
+      &quot;images&quot;: {
+        &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+        &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+        &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+      },
+      &quot;menu&quot;: {
+        &quot;lunch&quot;: [
+          {
+            &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+            &quot;price&quot;: 35.99
+          },
+          {
+            &quot;name&quot;: &quot;Steamed Mussels&quot;,
+            &quot;price&quot;: 21.99
+          },
+          {
+            &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+            &quot;price&quot;: 35.99
+          }
+        ],
+        &quot;dinner&quot;: [
+          {
+            &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+            &quot;price&quot;: 21.99
+          },
+          {
+            &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+            &quot;price&quot;: 45.99
+          },
+          {
+            &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+            &quot;price&quot;: 45.99
+          }
+        ]
+      },
+      &quot;address&quot;: {
+        &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+        &quot;city&quot;: &quot;Green Bay&quot;,
+        &quot;state&quot;: &quot;WI&quot;,
+        &quot;zip&quot;: &quot;53205&quot;
+      },
+      &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+    })
+  }
+}
+
+describe('AppComponent', () =&gt; {
+  let router: Router;
+  let location: Location;
+  let fixture;
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      imports: [
+        AppRoutingModule, HttpClientModule, ReactiveFormsModule
+      ],
+      declarations: [
+        AppComponent, HomeComponent, RestaurantComponent, ImageUrlPipe, DetailComponent, OrderComponent
+      ],
+      schemas: [
+        NO_ERRORS_SCHEMA
+      ]
+    }).overrideComponent(RestaurantComponent, {
+      set: {
+        providers: [
+          { provide: RestaurantService, useClass: MockRestaurantService }
+        ],
+        template: '&lt;p&gt; I am a fake restaurant component&lt;/p&gt;'
+      }
+    })
+    .compileComponents();
+
+    router = TestBed.get(Router);
+    location = TestBed.get(Location);
+
+    fixture = TestBed.createComponent(AppComponent);
+  }));
+
+  it('should create the app', () =&gt; {
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
+  });
+
+  it(`should have as title 'place-my-order'`, () =&gt; {
+    const app = fixture.debugElement.componentInstance;
+    expect(app.title).toEqual('place-my-order');
+  });
+
+  it('should render title in a h1 tag', () =&gt; {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain('place-my-order.com');
+  });
+
+  it('should render the HomeComponent with router navigates to &quot;/&quot; path', () =&gt; {
+    const compiled = fixture.debugElement.nativeElement;
+    router.navigate(['']).then(() =&gt; {
+      expect(location.path()).toBe('');
+      expect(compiled.querySelector('pmo-home')).not.toBe(null);
+    });
+  });
+
+  it('should render the RestaurantsComponent with router navigates to &quot;/restaurants&quot; path', () =&gt; {
+    const compiled = fixture.debugElement.nativeElement;
+    router.navigate(['restaurants']).then(() =&gt; {
+      expect(location.path()).toBe('/restaurants');
+      expect(compiled.querySelector('pmo-restaurant')).not.toBe(null);
+    });
+  });
+
+  it('should render the DetailComponent with router navigates to &quot;/restaurants/slug&quot; path', () =&gt; {
+    const compiled = fixture.debugElement.nativeElement;
+    router.navigate(['restaurants/crab-shack']).then(() =&gt; {
+      expect(location.path()).toBe('/restaurants/crab-shack');
+      expect(compiled.querySelector('pmo-detail')).not.toBe(null);
+    });
+  });
+
+  it('should render the OrderComponent with router navigates to &quot;/restaurants/slug/order&quot; path', () =&gt; {
+    const compiled = fixture.debugElement.nativeElement;
+    router.navigate(['restaurants/crab-shack/order']).then(() =&gt; {
+      expect(location.path()).toBe('/restaurants/crab-shack/order');
+      expect(compiled.querySelector('pmo-order')).not.toBe(null);
+    });
+  });
+
+  it('should have the home navigation link href set to &quot;&quot;', () =&gt; {
+    fixture.detectChanges();
+    let homeLink = fixture.debugElement.query(By.css('li a'));
+    let href = homeLink.nativeElement.getAttribute('href');
+    expect(href).toEqual('/');
+  });
+
+  it('should have the restaurants navigation link href set to &quot;&quot;', () =&gt; {
+    fixture.detectChanges();
+    let restaurantsLink = fixture.debugElement.query(By.css('li:nth-child(2) a'));
+    let href = restaurantsLink.nativeElement.getAttribute('href');
+    expect(href).toEqual('/restaurants');
+  });
+
+  it('should make the home navigation link class active when the router navigates to &quot;/&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.debugElement.nativeElement;
+    router.navigate(['']).then(() =&gt; {
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+      let homeLinkLi = fixture.debugElement.query(By.css('li'));
+      expect(homeLinkLi.nativeElement.classList).toContain('active');
+      expect(compiled.querySelectorAll('.active').length).toBe(1);
+      fixture.destroy();
+      flush();
+    });
+  }));
+
+  it('should make the restaurants navigation link class active when the router navigates to &quot;/restaurants&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.debugElement.nativeElement;
+    router.navigate(['restaurants']).then(() =&gt; {
+      expect(location.path()).toBe('/restaurants');
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+      let restaurantsLinkLi = fixture.debugElement.query(By.css('li:nth-child(2)'));
+      expect(restaurantsLinkLi.nativeElement.classList).toContain('active');
+      expect(compiled.querySelectorAll('.active').length).toBe(1);
+      fixture.destroy();
+      flush();
+    });
+  }));
+
+});
+</code></pre>
+ <div line-highlight="17,193,255,257-259,275,292,303,only"></div>
+<blockquote>
+<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+</blockquote>
 <h2>P1: What You Need to Know</h2>
 <ul>
 <li>How to create new components
@@ -574,7 +886,7 @@ const routes: Routes = [
 export class AppRoutingModule { }
 
 </code></pre>
-<div line-highlight='7, 22-25'></div>
+ <div line-highlight="7,20-24,"></div>
 <h2>Problem 2: Build Out the Order Component</h2>
 <p>We've covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes. Let's practice those concepts.</p>
 <p>We've provided some starting code to get through this section to help you get the restaurant based on the route slug, create a new reactive form to collect order information, and update the order total whenever the <code>items</code> FormControl value changes.</p>
@@ -582,7 +894,6 @@ export class AppRoutingModule { }
 <p>The order form component needs to get the restaurant from the route slug, and needs a reactive form to collect <code>restaurant</code>, <code>name</code>, <code>address</code>, <code>phone</code>, and <code>items</code>, and a way to update the order total when the items form control changes.</p>
 <h2>P2: Setup</h2>
 <p>✏️ Update the <strong>src/order/order.component.html</strong> file to be:</p>
-<p><strong>src/app/order/order.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
   &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
   &lt;/ng-container&gt;
@@ -999,14 +1310,14 @@ export class OrderComponent implements OnInit, OnDestroy {
 
 }
 </code></pre>
-<div line-highlight='43,45-49,59-66,72-83'></div>
+ <div line-highlight="42-43,45-48,53-55,60-66,71-83,"></div>
 <h2>Importing 3rd Party Plugins</h2>
 <p>In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let's import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started" target="\_blank">ngx-bootstrap</a>:</p>
 <pre><code class="language-bash">ng add ngx-bootstrap  --component tabs
 </code></pre>
 <p>Ng add is a convenient way to import 3rd party libs that will update <code>angular.json</code> and <code>package.json</code> with any changes we need, as well as automatically import the 3rd party module into our root app module. Don't forget to restart the client server!</p>
 <p>Your root app module should now look like this:</p>
-<p><strong>src/app/order/app.module.ts</strong></p>
+<p><strong>src/app/app.module.ts</strong></p>
 <pre><code class="language-ts">import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -1043,67 +1354,65 @@ import { OrderComponent } from './order/order.component';
 export class AppModule { }
 
 </code></pre>
+ <div line-highlight="5,12-13,20-22,28-29,"></div>
 <div line-highlight='5, 29'></div>
 <p>Now let's add the markup to our order component implementing the tabs widget.</p>
 <p>✏️ Update <strong>src/app/order/order.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
-    &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
-    &lt;/ng-container&gt;
-    &lt;ng-template #showOrderForm&gt;
-      &lt;h2&gt;Order here&lt;/h2&gt;
-      &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
-        &lt;tabset&gt;
-          &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
-            &lt;ul class=&quot;list-group&quot;&gt;
-              &lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of restaurant.menu.lunch;&quot;&gt;
-                &lt;label&gt;
-                  &lt;input type=&quot;checkbox&quot; formControlName=&quot;items&quot;&gt;
-                  {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
-                &lt;/label&gt;
-              &lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/tab&gt;
-          &lt;tab heading=&quot;Dinner menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
-            &lt;ul class=&quot;list-group&quot;&gt;
-              &lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of restaurant.menu.dinner;&quot;&gt;
-                &lt;label&gt;
-                  &lt;input type=&quot;checkbox&quot; formControlName=&quot;items&quot;&gt;
-                  {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
-                &lt;/label&gt;
-              &lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/tab&gt;
-        &lt;/tabset&gt;
-        &lt;div class=&quot;form-group&quot;&gt;
-          &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-          &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
-          &lt;p&gt;Please enter your name.&lt;/p&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;form-group&quot;&gt;
-          &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-          &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
-          &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;form-group&quot;&gt;
-          &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
-          &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
-          &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;submit&quot;&gt;
-          &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
-            &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
-            &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
-              Place My Order!
-            &lt;/button&gt;
-        &lt;/div&gt;
-      &lt;/form&gt;
+  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
+  &lt;/ng-container&gt;
+  &lt;ng-template #showOrderForm&gt;
+    &lt;h2&gt;Order here&lt;/h2&gt;
+    &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+      &lt;tabset&gt;
+        &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
+          &lt;ul class=&quot;list-group&quot;&gt;
+            &lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of restaurant.menu.lunch;&quot;&gt;
+              &lt;label&gt;
+                &lt;input type=&quot;checkbox&quot; formControlName=&quot;items&quot;&gt;
+                {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
+              &lt;/label&gt;
+            &lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/tab&gt;
+        &lt;tab heading=&quot;Dinner menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
+          &lt;ul class=&quot;list-group&quot;&gt;
+            &lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of restaurant.menu.dinner;&quot;&gt;
+              &lt;label&gt;
+                &lt;input type=&quot;checkbox&quot; formControlName=&quot;items&quot;&gt;
+                {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
+              &lt;/label&gt;
+            &lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/tab&gt;
+      &lt;/tabset&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
+        &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
+        &lt;p&gt;Please enter your name.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
+        &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
+        &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
+        &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+        &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;submit&quot;&gt;
+        &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
+          &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
+          &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
+            Place My Order!
+          &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
   &lt;/ng-template&gt;
-  &lt;/div&gt;
-  
-  
-  
+&lt;/div&gt;
 </code></pre>
-<div line-highlight='7-28'></div>
+ <div line-highlight="7-28,only"></div>
 <p>Now when we view the order form of our route, we'll see a nice form and tabs for lunch and dinner menu options.</p>
 <p><img src="../static/img/angular/pmo-tabs-working.gif" alt="Place My Order App tabs" title="Place My Order App tabs" /></p>
 <h2>Problem 3: Create Custom Menu-Items Component</h2>
@@ -1128,51 +1437,50 @@ export class AppModule { }
 <p>Go ahead and put your new component in the order history component.</p>
 <p>✏️ Update <strong>src/app/order/order.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
-    &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
-    &lt;/ng-container&gt;
-    &lt;ng-template #showOrderForm&gt;
-      &lt;h2&gt;Order here&lt;/h2&gt;
-      &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
-        &lt;tabset&gt;
-            &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
-              &lt;ul  class=&quot;list-group&quot;&gt;
-                &lt;pmo-menu-items&gt;&lt;/pmo-menu-items&gt;
-              &lt;/ul&gt;
-            &lt;/tab&gt;
-            &lt;tab heading=&quot;Dinner menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
-              &lt;ul  class=&quot;list-group&quot;&gt;
-                &lt;pmo-menu-items&gt;&lt;/pmo-menu-items&gt;
-              &lt;/ul&gt;
-            &lt;/tab&gt;
-          &lt;/tabset&gt;
-        &lt;div class=&quot;form-group&quot;&gt;
-          &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-          &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
-          &lt;p&gt;Please enter your name.&lt;/p&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;form-group&quot;&gt;
-          &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-          &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
-          &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;form-group&quot;&gt;
-          &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
-          &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
-          &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;submit&quot;&gt;
-          &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
-            &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
-            &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
-              Place My Order!
-            &lt;/button&gt;
-        &lt;/div&gt;
-      &lt;/form&gt;
+  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
+  &lt;/ng-container&gt;
+  &lt;ng-template #showOrderForm&gt;
+    &lt;h2&gt;Order here&lt;/h2&gt;
+    &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+      &lt;tabset&gt;
+        &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
+          &lt;ul class=&quot;list-group&quot;&gt;
+            &lt;pmo-menu-items&gt;&lt;/pmo-menu-items&gt;
+          &lt;/ul&gt;
+        &lt;/tab&gt;
+        &lt;tab heading=&quot;Dinner menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
+          &lt;ul class=&quot;list-group&quot;&gt;
+            &lt;pmo-menu-items&gt;&lt;/pmo-menu-items&gt;
+          &lt;/ul&gt;
+        &lt;/tab&gt;
+      &lt;/tabset&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
+        &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
+        &lt;p&gt;Please enter your name.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
+        &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
+        &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
+        &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+        &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;submit&quot;&gt;
+        &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
+          &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
+          &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
+            Place My Order!
+          &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
   &lt;/ng-template&gt;
-  &lt;/div&gt;
-
+&lt;/div&gt;
 </code></pre>
-<div line-highlight='10, 15'></div>
+ <div line-highlight="10,15,only"></div>
 <h2>P3: How to Verify Your Solution is Correct</h2>
 <p>✏️ Update the order spec file  <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
@@ -1347,6 +1655,7 @@ describe('OrderComponent', () =&gt; {
 });
 
 </code></pre>
+ <div line-highlight="9,86-87,"></div>
 <p>✏️ Update the menu-items spec file  <strong>src/app/order/menu-items/menu-items.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -1497,51 +1806,51 @@ export class MenuItemsComponent implements OnInit {
 </code></pre>
 <p>✏️ Update <strong>src/app/order/order.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
-    &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
-    &lt;/ng-container&gt;
-    &lt;ng-template #showOrderForm&gt;
-      &lt;h2&gt;Order here&lt;/h2&gt;
-      &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
-        &lt;tabset&gt;
-          &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
-            &lt;ul  class=&quot;list-group&quot;&gt;
-              &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot;&gt;&lt;/pmo-menu-items&gt;
-            &lt;/ul&gt;
-          &lt;/tab&gt;
-          &lt;tab heading=&quot;Dinner menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
-            &lt;ul  class=&quot;list-group&quot;&gt;
-              &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot;&gt;&lt;/pmo-menu-items&gt;
-            &lt;/ul&gt;
-          &lt;/tab&gt;
-        &lt;/tabset&gt;
-        &lt;div class=&quot;form-group&quot;&gt;
-          &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-          &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
-          &lt;p&gt;Please enter your name.&lt;/p&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;form-group&quot;&gt;
-          &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-          &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
-          &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;form-group&quot;&gt;
-          &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
-          &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
-          &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;submit&quot;&gt;
-          &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
-            &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
-            &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
-              Place My Order!
-            &lt;/button&gt;
-        &lt;/div&gt;
-      &lt;/form&gt;
+  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
+  &lt;/ng-container&gt;
+  &lt;ng-template #showOrderForm&gt;
+    &lt;h2&gt;Order here&lt;/h2&gt;
+    &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+      &lt;tabset&gt;
+        &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
+          &lt;ul class=&quot;list-group&quot;&gt;
+            &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot;&gt;&lt;/pmo-menu-items&gt;
+          &lt;/ul&gt;
+        &lt;/tab&gt;
+        &lt;tab heading=&quot;Dinner menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
+          &lt;ul class=&quot;list-group&quot;&gt;
+            &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot;&gt;&lt;/pmo-menu-items&gt;
+          &lt;/ul&gt;
+        &lt;/tab&gt;
+      &lt;/tabset&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
+        &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
+        &lt;p&gt;Please enter your name.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
+        &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
+        &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
+        &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+        &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;submit&quot;&gt;
+        &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
+          &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
+          &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
+            Place My Order!
+          &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
   &lt;/ng-template&gt;
-  &lt;/div&gt;
+&lt;/div&gt;
 
 </code></pre>
-<div line-highlight='10,15,only'></div>
+ <div line-highlight="10,15,only"></div>
 <h2>Problem 4: Attaching Event Handlers to Item Checkboxes</h2>
 <p>Next, we want to know when a checkbox has been checked or unchecked, and update an array called <code>selectedItems</code> containing all checked items.</p>
 <h2>P4: Technical Requirements</h2>
@@ -1691,7 +2000,7 @@ describe('MenuItemsComponent', () =&gt; {
 });
 
 </code></pre>
-<div line-highlight='39-53'></div>
+ <div line-highlight="39-53,only"></div>
 <h2>P4: Solution</h2>
 <p>✏️ Update <strong>src/app/order/menu-items.component.html</strong></p>
 <pre><code class="language-html">&lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of items&quot;&gt;
@@ -1701,7 +2010,7 @@ describe('MenuItemsComponent', () =&gt; {
   &lt;/label&gt;
 &lt;/li&gt;
 </code></pre>
-<div line-highlight='3'></div>
+ <div line-highlight="3,only"></div>
 <p>✏️ Update <strong>src/app/order/menu-items.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, Input } from '@angular/core';
 
@@ -1737,7 +2046,7 @@ export class MenuItemsComponent implements OnInit {
 }
 
 </code></pre>
-<div line-highlight='14,15,22-30'></div>
+ <div line-highlight="14-15,22-30,only"></div>
 <h2>Problem 5: Update OrderFormComponent with selectedItems Array from MenuItemsComponent</h2>
 <p>Now we want to let the form know what the selected items are as they change so we can update the order total accordingly.</p>
 <h2>P5: Technical Requirements</h2>
@@ -1917,7 +2226,7 @@ describe('OrderComponent', () =&gt; {
   it('should get updated selected Items when child component changes', () =&gt; {
     const fixture = TestBed.createComponent(OrderComponent);
     fixture.detectChanges();
-    let changeSpy = spyOn(fixture.componentInstance, 'setUpdatedItems');
+    let changeSpy = spyOn(fixture.componentInstance, 'getChange');
     const compiled = fixture.debugElement.nativeElement;
     let childInput = compiled.getElementsByTagName('pmo-menu-items')[0].getElementsByTagName('input')[0];
     childInput.click();
@@ -1949,9 +2258,8 @@ describe('OrderComponent', () =&gt; {
   })
 
 });
-
 </code></pre>
-<div line-highlight='10,79,171-179,181-190,192-203,only'></div>
+ <div line-highlight="10,79,171-179,181-190,192-203,only"></div>
 <h2>P5: What you need to know</h2>
 <h2>Emitting Data to Parent Components</h2>
 <p>To pass data to parent components in Angular, the <a href="https://angular.io/api/core/EventEmitter" target="_blank">EventEmitter</a> class is used in combination with the <a href="https://angular.io/api/core/Output" target="_blank">Output decorator</a>. The Output decorator marks a property to be listened to during change detection, and we call the <code>emit</code> method to broadcast the property's new value.</p>
@@ -2192,53 +2500,53 @@ export class MenuItemsComponent implements OnInit {
 }
 
 </code></pre>
-<div line-highlight='1,16,31'></div>
+ <div line-highlight="1,16,31,only"></div>
 <p>✏️ Update <strong>src/app/order/order.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
-    &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
-    &lt;/ng-container&gt;
-    &lt;ng-template #showOrderForm&gt;
-      &lt;h2&gt;Order here&lt;/h2&gt;
-      &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
-        &lt;tabset&gt;
-          &lt;tab heading=&quot;Lunch Menu&quot;&gt;
-            &lt;ul class=&quot;list-group&quot;&gt;
-              &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot; (itemsChanged)=&quot;getChange($event)&quot; &gt;&lt;/pmo-menu-items&gt;
-            &lt;/ul&gt;
-          &lt;/tab&gt;
-          &lt;tab heading=&quot;Dinner menu&quot;&gt;
-            &lt;ul class=&quot;list-group&quot;&gt;
-              &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot; (itemsChanged)=&quot;getChange($event)&quot; &gt;&lt;/pmo-menu-items&gt;
-            &lt;/ul&gt;
-          &lt;/tab&gt;
-        &lt;/tabset&gt;
-        &lt;div class=&quot;form-group&quot;&gt;
-          &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-          &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
-          &lt;p&gt;Please enter your name.&lt;/p&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;form-group&quot;&gt;
-          &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-          &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
-          &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;form-group&quot;&gt;
-          &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
-          &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
-          &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;submit&quot;&gt;
-          &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
-            &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
-            &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
-              Place My Order!
-            &lt;/button&gt;
-        &lt;/div&gt;
-      &lt;/form&gt;
+  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
+  &lt;/ng-container&gt;
+  &lt;ng-template #showOrderForm&gt;
+    &lt;h2&gt;Order here&lt;/h2&gt;
+    &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+      &lt;tabset&gt;
+        &lt;tab heading=&quot;Lunch Menu&quot;&gt;
+          &lt;ul class=&quot;list-group&quot;&gt;
+            &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot; (itemsChanged)=&quot;getChange($event)&quot; &gt;&lt;/pmo-menu-items&gt;
+          &lt;/ul&gt;
+        &lt;/tab&gt;
+        &lt;tab heading=&quot;Dinner menu&quot;&gt;
+          &lt;ul class=&quot;list-group&quot;&gt;
+            &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot; (itemsChanged)=&quot;getChange($event)&quot; &gt;&lt;/pmo-menu-items&gt;
+          &lt;/ul&gt;
+        &lt;/tab&gt;
+      &lt;/tabset&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
+        &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
+        &lt;p&gt;Please enter your name.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
+        &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
+        &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
+        &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+        &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;submit&quot;&gt;
+        &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
+          &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
+          &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
+            Place My Order!
+          &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
   &lt;/ng-template&gt;
-  &lt;/div&gt;
+&lt;/div&gt;
 </code></pre>
-<div line-highlight='10,15,only'></div>
+ <div line-highlight="8,10,13,15,only"></div>
 <p>✏️ Update <strong>src/app/order/order.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -2344,7 +2652,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
 }
 </code></pre>
-<div line-highlight='67-79'></div>
+ <div line-highlight="37,42-44,46-48,55-56,58-62,67-68,70-74,76,78,93,101,only"></div>
 <h2>Control Value Accessor</h2>
 <p>Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the  <a href="https://angular.io/api/forms/ControlValueAccessor" target="_blank">Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.</p>
 <p><strong>src/app/order/menu-items.component.ts</strong></p>
@@ -2430,12 +2738,12 @@ export class MenuItemsComponent implements ControlValueAccessor {
     &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
       &lt;tabset&gt;
         &lt;tab heading=&quot;Lunch Menu&quot;&gt;
-          &lt;ul class=&quot;list-group&quot; &gt;
+          &lt;ul class=&quot;list-group&quot;&gt;
             &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
         &lt;tab heading=&quot;Dinner menu&quot;&gt;
-          &lt;ul class=&quot;list-group&quot; &gt;
+          &lt;ul class=&quot;list-group&quot;&gt;
             &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
@@ -2463,13 +2771,10 @@ export class MenuItemsComponent implements ControlValueAccessor {
           &lt;/button&gt;
       &lt;/div&gt;
     &lt;/form&gt;
-&lt;/ng-template&gt;
+  &lt;/ng-template&gt;
 &lt;/div&gt;
-
-
-
 </code></pre>
-<div line-highlight='10, 15'></div>
+ <div line-highlight="10,15,"></div>
 <p>We now have a form that updates the <code>items</code> formControl when items are selected and shows the user an updated total!</p>
 <h3>Update Order Component Tests</h3>
 <p>✏️ Update the order spec file  <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
@@ -2670,6 +2975,7 @@ describe('OrderComponent', () =&gt; {
 });
 
 </code></pre>
+ <div line-highlight="171,only"></div>
 
 </section>
 

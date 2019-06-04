@@ -3,7 +3,7 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/web-components/listing-routes.md
+	source: src/web-components/5-listing-routes/listing-routes.md
 	@page learn-web-components/listing-routes
 ######################################################################## -->
 <html lang="en">
@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn lit-html by creating a component that lists bus routes from the CTA bus tracker API. 
+  <meta name="description" content="Fetch a list of bus routes from the CTA bus tracker API and add them to the &#x60;.routes-list&#x60; element. 
 ">
   <title>Bitovi Academy - Listing routes</title>
   
@@ -184,12 +184,27 @@
 		
 			
 				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="bus-tracker-component.html"
+							title="Build a more complex component that combines the usage of &lt;template&gt; and customElements, and sets up event listeners.">
+							bus-tracker component
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
 					<li class="current
            						parent
            						expanded">
 						<a class="page"
 							href="listing-routes.html"
-							title="Learn lit-html by creating a component that lists bus routes from the CTA bus tracker API.">
+							title="Fetch a list of bus routes from the CTA bus tracker API and add them to the .routes-list element.">
 							Listing routes
 						</a>
 						
@@ -207,7 +222,7 @@
            						">
 						<a class="page"
 							href="select-a-route.html"
-							title="Learn more about lit-html, with its special syntax for setting up event listeners and for passing properties to child components.">
+							title="Learn how to use event listeners with a custom element to handle user interaction and update the DOM.">
 							Selecting a route
 						</a>
 						
@@ -367,7 +382,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn lit-html by creating a component that lists bus routes from the CTA bus tracker API.</p>
+    <p>Fetch a list of bus routes from the CTA bus tracker API and add them to the <code>.routes-list</code> element.</p>
 
 </section>
 
@@ -380,57 +395,78 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>The problem</h2>
-<p>In this section we will:</p>
+    <h2>Overview</h2>
+<p>In this part we will:</p>
 <ul>
-<li>Create another component named <code>bus-tracker</code>.</li>
-<li>Display a list of bus routes.</li>
+<li>Fetch the list of routes from the API.</li>
+<li>Display the route name and number in the list.</li>
 </ul>
-<h2>How to solve this problem</h2>
-<ul>
-<li>Use <a href="https://lit-html.polymer-project.org/">lit-html</a> to define a template that can be updated.</li>
-<li>Render the lit-html template into the <code>shadowRoot</code> in the <code>connectedCallback</code>.</li>
-<li>Fetch a list of routes from the CTA bus tracker API.</li>
-</ul>
-<h2>What you need to know</h2>
-<ul>
-<li><a href="https://lit-html.polymer-project.org/">lit-html</a> is a library to make writing templates easier. Using the <code>&lt;template&gt;</code> element you can only define <strong>static</strong> DOM. It doesn't provide a way to insert dynamic text or attributes. It also doesn't provide a way to declaratively update when data changes. lit-html gives us that with its <code>html</code> function.
-<pre><code class="language-js">import { html, render } from &quot;https://unpkg.com/lit-html@1.0.0/lit-html.js&quot;;
-
-function app({ title }) {
-  return html`&lt;h1&gt;${title} app&lt;/h1&gt;`
-}
-
-render(app({ title: 'Matthew\'s' }), document.body)
+<h2>Problem</h2>
+<p>Our bus-tracker component currently only includes a header and a map. We want to add a routes list so that eventually the user can select a route which will display within the map. At the end of this exercise we want a scrollable list of routes to be displayed.</p>
+<p><img src="../static/img/web-components/bt-list-routes.gif"
+style="border: solid 1px black; max-width: 100%;"
+title="A scrollable list of bus routes on top, a map on the bottom." /></p>
+<p>Additionally we have text within the header that says <strong>Loading routes…</strong> statically. We want to remove this text after the routes have been rendered.</p>
+<h2>Technical Requirements</h2>
+<p>The following snippet of JavaScript will be useful for fetching data from the bus tracker API. Use the <code>getRoutesEndpoint</code> string to fetch the list of routes.</p>
+<pre><code class="language-js">const proxyUrl = &quot;https://can-cors.herokuapp.com/&quot;;
+const token = &quot;?key=piRYHjJ5D2Am39C9MxduHgRZc&amp;format=json&quot;;
+const apiRoot = &quot;http://www.ctabustracker.com/bustime/api/v2/&quot;;
+const getRoutesEndpoint = apiRoot + &quot;getroutes&quot; + token;
+const getVehiclesEndpoint = apiRoot + &quot;getvehicles&quot; + token;
 </code></pre>
-  <div class='codepen'></div></li>
-<li>Defining an <code>update()</code> method gives us a way to update any time data changes. In this section the data changes when the routes <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promise</a> resolves.</li>
-<li>lit-html has a <code>render()</code> export. This takes a <code>TemplateResult</code>, which is returned by <code>html</code>, and a host element; in our case the element's <code>shadowRoot</code>.</li>
-<li>lit-html uses the JavaScript feature <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates">tagged templates</a> to facilitate templating. You can nest calls to <code>html</code> inside of a template and stuff like <code>Array#map</code> works. These are all features of lit-html, not of the web component APIs.
+<p>To display the routes we want to create an <code>&lt;li&gt;</code> for each route and attach it to the <code>.routes-list</code> element. Use this markup to create that li. Inspect the results of the API request to figure out how to display the <code>.route-number</code> and <code>.route-name</code> appropriately.</p>
+<pre><code class="language-html">&lt;li&gt;
+  &lt;button type=&quot;button&quot;&gt;
+    &lt;span class=&quot;route-number&quot;&gt;&lt;/span&gt;
+    &lt;span class=&quot;route-name&quot;&gt;&lt;/span&gt;
+    &lt;span class=&quot;check&quot;&gt;✔&lt;/span&gt;
+  &lt;/button&gt;
+&lt;/li&gt;
+</code></pre>
+<h2>What You Need to Know</h2>
 <ul>
-<li>Tagged templates are functions that can be called like <code>fn`my name is ${name}`;</code>.</li>
-<li>These functions have an unusual signature. The first argument is an Array of strings that is split on each usage of <code>${}</code>. The rest of the arguments are the values filled by <code>${}</code>. To implement a tagged template function it looks like:
-<pre><code class="language-js">function reverse(strings, ...args) {
-  args.reverse();
-  let out = '';
-  for(let i = 0; i &lt; strings.length; i++) {
-    out += strings[i] + (args[i] || '');
+<li>How to use <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">fetch</a> to make API requests.</li>
+</ul>
+<h3>Fetch</h3>
+<p><code>fetch</code> is a function on the <code>window</code> object that is used to make network requests. In its simplest form it only needs a string URL, which will be used to make a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET">GET</a> request.</p>
+<p>fetch differs slightly from the older <a href="XMLHttpRequest">XMLHttpRequest</a> in a variety of ways; for example fetch does not include cookies by default. It's easier to use, however, because it uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promises</a>. If you don't need to support Internet Explorer you'll probably want to use fetch in your applications.</p>
+<pre><code class="language-js">async function listFoods() {
+  let response = await fetch('/api/food');
+  let foods = await response.json();
+
+  let foodList = document.querySelector('.foods');
+
+  for(let food of foods) {
+    let li = document.createElement('li');
+    li.textContent = food;
+    foodList.append(li);
   }
-  return out;
 }
 
-let name = 'Jill';
-let age = 24;
-
-let result = reverse`Hello I am ${name} and I am ${age} years old`;
-console.log(result);
+listFoods();
 </code></pre>
-<div class='codepen'></div></li>
-</ul></li>
-</ul>
-<h2>The solution</h2>
-<p>Remove the <code>&lt;google-map-view&gt;</code> from the HTML and replace it with <code>&lt;bus-tracker&gt;</code>. Then add a template to hold the bus-tracker's styles. Then using lit-html loop over the routes (after the promise resolves) and display some information about then in a <code>&lt;ul&gt;</code>.</p>
-<pre><code class="language-html">&lt;bus-tracker&gt;&lt;/bus-tracker&gt;
+<h2>Solution</h2>
+<p>✏️ Use the markup provided above and create another template with the id of <code>route-template</code>. Keep a reference to that in your JavaScript along with the other template. Copy the URL snippet from above and paste that so that it can be used within the component.</p>
+<p>Create a method on the component, we're calling it <code>getRoutes</code> here that is called in the <code>connectedCallback</code> method. It's an async method that uses <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">fetch</a> to retrieve the list of routes which we can get with <code>data[&quot;bustime-response&quot;].routes</code>.</p>
+<p>Loop over the routes and clone an instance of the template filling in the route number with <code>route.rt</code> and the route name with <code>route.rtnm</code>.</p>
+<p>At the end of the <code>getRoutes</code> method remove the <code>#loading-routes</code> element.</p>
+<pre><code class="language-html">&lt;style&gt;
+  html,
+  body {
+    height: 100%;
+  }
+  body {
+    font-family: &quot;Catamaran&quot;, sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+&lt;/style&gt;
+&lt;script src=&quot;https://maps.googleapis.com/maps/api/js?key=AIzaSyD7POAQA-i16Vws48h4yRFVGBZzIExOAJI&quot;&gt;&lt;/script&gt;
+
+&lt;bus-tracker&gt;&lt;/bus-tracker&gt;
 
 &lt;template id=&quot;bt-template&quot;&gt;
   &lt;style&gt;
@@ -474,6 +510,9 @@ console.log(result);
       text-transform: uppercase;
       letter-spacing: 1px;
       margin: 0;
+    }
+    #selected-route:not(.route-selected) {
+      display: none;
     }
     .route-selected {
       line-height: 1;
@@ -565,6 +604,20 @@ console.log(result);
       font-size: 14px;
     }
   &lt;/style&gt;
+  &lt;div class=&quot;top&quot;&gt;
+    &lt;header&gt;
+      &lt;h1&gt;Chicago CTA Bus Tracker&lt;/h1&gt;
+      &lt;p id=&quot;loading-routes&quot;&gt;Loading routes…&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;ul class=&quot;routes-list&quot;&gt;&lt;/ul&gt;
+  &lt;/div&gt;
+  &lt;footer&gt;
+    &lt;button id=&quot;selected-route&quot; type=&quot;button&quot;&gt;
+    &lt;/button&gt;
+
+    &lt;google-map-view&gt;&lt;/google-map-view&gt;
+  &lt;/footer&gt;
 &lt;/template&gt;
 &lt;template id=&quot;gmap-template&quot;&gt;
   &lt;style&gt;
@@ -576,18 +629,17 @@ console.log(result);
   &lt;/style&gt;
   &lt;div class=&quot;gmap&quot;&gt;&lt;/div&gt;
 &lt;/template&gt;
+&lt;template id=&quot;route-template&quot;&gt;
+  &lt;li&gt;
+    &lt;button type=&quot;button&quot;&gt;
+      &lt;span class=&quot;route-number&quot;&gt;&lt;/span&gt;
+      &lt;span class=&quot;route-name&quot;&gt;&lt;/span&gt;
+      &lt;span class=&quot;check&quot;&gt;✔&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/li&gt;
+&lt;/template&gt;
 &lt;script type=&quot;module&quot;&gt;
-import { html, render } from &quot;https://unpkg.com/lit-html@1.0.0/lit-html.js&quot;;
-
 const template = document.querySelector('#gmap-template');
-
-const googleAPI = new Promise(resolve =&gt; {
-  const script = document.createElement(&quot;script&quot;);
-  script.src =
-    &quot;https://maps.googleapis.com/maps/api/js?key=AIzaSyD7POAQA-i16Vws48h4yRFVGBZzIExOAJI&quot;;
-  document.body.appendChild(script);
-  script.onload = resolve;
-});
 
 class GoogleMapView extends HTMLElement {
   constructor() {
@@ -598,9 +650,7 @@ class GoogleMapView extends HTMLElement {
     this.shadowRoot.append(nodes);
   }
 
-  async connectedCallback() {
-    await googleAPI;
-
+  connectedCallback() {
     let gmap = this.shadowRoot.querySelector('.gmap');
     this.map = new google.maps.Map(gmap, {
       zoom: 10,
@@ -619,112 +669,48 @@ const token = &quot;?key=piRYHjJ5D2Am39C9MxduHgRZc&amp;format=json&quot;;
 const apiRoot = &quot;http://www.ctabustracker.com/bustime/api/v2/&quot;;
 const getRoutesEndpoint = apiRoot + &quot;getroutes&quot; + token;
 const getVehiclesEndpoint = apiRoot + &quot;getvehicles&quot; + token;
-const styles = document.querySelector('#bt-template').content.cloneNode(true).firstElementChild;
 
-class StatefulPromise {
-  constructor(promise, component) {
-    this.promise = promise;
-    this.component = component;
-
-    this.state = &quot;pending&quot;;
-    this.value = null;
-    this.listen();
-  }
-
-  listen() {
-    let onSuccess = value =&gt; {
-      this.value = value;
-      this.state = &quot;resolved&quot;;
-      this.component.update();
-    };
-
-    let onFailure = error =&gt; {
-      this.error = error;
-      this.state = &quot;rejected&quot;;
-      this.component.update();
-    };
-
-    this.promise.then(onSuccess, onFailure);
-  }
-
-  isPending() {
-    return this.state === &quot;pending&quot;;
-  }
-
-  isResolved() {
-    return this.state === &quot;resolved&quot;;
-  }
-
-  isRejected() {
-    return this.state === &quot;rejected&quot;;
-  }
-}
+const btTemplate = document.querySelector('#bt-template');
+const routeTemplate = document.querySelector('#route-template');
 
 class BusTracker extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: &quot;open&quot; });
 
-    this.title = &quot;Chicago CTA Bus Tracker&quot;;
+    let frag = document.importNode(btTemplate.content, true);
+    this.shadowRoot.append(frag);
+
+    this.routesList = this.shadowRoot.querySelector('.routes-list');
   }
 
   connectedCallback() {
-    this._getRoutes();
-    this.update();
+    this.getRoutes();
   }
 
-  update() {
-    render(this.render(), this.shadowRoot);
-  }
+  async getRoutes() {
+    let response = await fetch(proxyUrl + getRoutesEndpoint);
+    let data = await response.json();
+    let routes = data[&quot;bustime-response&quot;].routes;
 
-  _getRoutes() {
-    let promise = fetch(proxyUrl + getRoutesEndpoint)
-      .then(response =&gt; response.json())
-      .then(data =&gt; data[&quot;bustime-response&quot;].routes);
+    for(let route of routes) {
+      let frag = document.importNode(routeTemplate.content, true);
 
-    this.routes = new StatefulPromise(promise, this);
-  }
+      frag.querySelector('.route-number').textContent = route.rt;
+      frag.querySelector('.route-name').textContent = route.rtnm;
 
-  render() {
-    return html`
-      ${styles}
-      &lt;div class=&quot;top&quot;&gt;
-        &lt;header&gt;
-          &lt;h1&gt;${this.title}&lt;/h1&gt;
-          ${this.routes.isPending()
-            ? html`
-                &lt;p&gt;Loading routes…&lt;/p&gt;
-              `
-            : &quot;&quot;}
-        &lt;/header&gt;
+      this.routesList.append(frag);
+    }
 
-        &lt;ul class=&quot;routes-list&quot;&gt;
-          ${this.routes.isResolved()
-            ? this.routes.value.map(
-                route =&gt; html`
-                  &lt;li
-                    class=${this.route === route ? &quot;active&quot; : &quot;&quot;}
-                  &gt;
-                    &lt;button type=&quot;button&quot;&gt;
-                      &lt;span class=&quot;route-number&quot;&gt;${route.rt}&lt;/span&gt;
-                      &lt;span class=&quot;route-name&quot;&gt;${route.rtnm}&lt;/span&gt;
-                      &lt;span class=&quot;check&quot;&gt;✔&lt;/span&gt;
-                    &lt;/button&gt;
-                  &lt;/li&gt;
-                `
-              )
-            : &quot;&quot;}
-        &lt;/ul&gt;
-      &lt;/div&gt;
-      &lt;footer&gt;&lt;/footer&gt;
-    `;
+    this.shadowRoot.querySelector('#loading-routes').remove();
   }
 }
 
 customElements.define(&quot;bus-tracker&quot;, BusTracker);
 &lt;/script&gt;
+
 </code></pre>
-<div line-highlight='1,3-136,148,185-290,only'></div>
+<div line-highlight='179-187,214-218,221,231,234-253,only'></div>
 <div class='codepen'></div>
 
 </section>
@@ -763,7 +749,7 @@ customElements.define(&quot;bus-tracker&quot;, BusTracker);
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/web-components/listing-routes.md"},"description":"Learn lit-html by creating a component that lists bus routes from the CTA bus tracker API. \n","name":"learn-web-components/listing-routes","title":"Listing routes","type":"page","parent":"learn-web-components","order":5,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/web-components/5-listing-routes/listing-routes.md"},"description":"Fetch a list of bus routes from the CTA bus tracker API and add them to the `.routes-list` element. \n","name":"learn-web-components/listing-routes","title":"Listing routes","type":"page","parent":"learn-web-components","order":5,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

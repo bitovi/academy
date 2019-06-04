@@ -3,7 +3,7 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/web-components/selecting-route.md
+	source: src/web-components/6-selecting-route/selecting-route.md
 	@page learn-web-components/select-a-route
 ######################################################################## -->
 <html lang="en">
@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn more about lit-html, with its special syntax for setting up event listeners and for passing properties to child components. 
+  <meta name="description" content="Learn how to use event listeners with a custom element to handle user interaction and update the DOM. 
 ">
   <title>Bitovi Academy - Selecting a route</title>
   
@@ -188,8 +188,23 @@
            						
            						">
 						<a class="page"
+							href="bus-tracker-component.html"
+							title="Build a more complex component that combines the usage of &lt;template&gt; and customElements, and sets up event listeners.">
+							bus-tracker component
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="listing-routes.html"
-							title="Learn lit-html by creating a component that lists bus routes from the CTA bus tracker API.">
+							title="Fetch a list of bus routes from the CTA bus tracker API and add them to the .routes-list element.">
 							Listing routes
 						</a>
 						
@@ -204,7 +219,7 @@
            						expanded">
 						<a class="page"
 							href="select-a-route.html"
-							title="Learn more about lit-html, with its special syntax for setting up event listeners and for passing properties to child components.">
+							title="Learn how to use event listeners with a custom element to handle user interaction and update the DOM.">
 							Selecting a route
 						</a>
 						
@@ -367,7 +382,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn more about lit-html, with its special syntax for setting up event listeners and for passing properties to child components.</p>
+    <p>Learn how to use event listeners with a custom element to handle user interaction and update the DOM.</p>
 
 </section>
 
@@ -380,47 +395,76 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>The problem</h2>
-<p>In this section we will:</p>
+    <h2>Overview</h2>
+<p>In this part we will:</p>
 <ul>
-<li>Listen for when the user selects a bus route from the list.</li>
-<li>Show a checkmark next to the selected route in the list.</li>
-<li>Display the selected route overlaying the map component.</li>
-<li>Get a list of vehicles for this route from the CTA bus tracker API.</li>
-<li>Pass the vehicles to <code>&lt;google-map-view&gt;</code>.</li>
+<li>Handle selecting of routes.</li>
+<li>Fetch a list of vehicles for a selected route.</li>
+<li>Show the selected route name and number overlaying the map.</li>
 </ul>
-<h2>How to solve this problem</h2>
+<h2>Problem</h2>
+<p>We have a list of routes and a map. We want to handle events when the button for a given route is clicked. It should fetch the vehicles for that route and log those to the console. In the next section we will use the vehicle list to display markers.</p>
+<p>Additionally the route name and number should be shown overlaying the map. There is a button where this information can be added.</p>
+<p>When a route is selected it should become active and show a checkmark by the name.</p>
+<p><img src="../static/img/web-components/bt-selecting-route.gif"
+style="border: solid 1px black; max-width: 100%;"
+title="Selecting a route from the list and noticing that the item is highlighted as active and the route number and name is shown in an overlay on top of the map." /></p>
+<h2>Technical Requirements</h2>
+<h3>Selected route button</h3>
+<p>This HTML can be used to display the route name and number. It should be a child of the <code>#selected-route</code> button.</p>
+<pre><code class="language-html">&lt;small&gt;Route NUMBER:&lt;/small&gt; NAME
+</code></pre>
+<p>Inspect the <code>route</code> object to see what the values for <strong>NUMBER</strong> and <strong>NAME</strong> should be.</p>
+<p>Some routes may contain errors. When this happens use this markup <em>in addition to</em> showing the route number and name as described above:</p>
+<pre><code class="language-html">&lt;div class=&quot;error-message&quot;&gt;
+  No vehicles available for this route
+&lt;/div&gt;
+</code></pre>
+<p>To make the <code>#selected-route</code> button visible, add the <code>route-selected</code> class.</p>
+<h3>Calling the API</h3>
+<p>To get the URL for this API request use:</p>
+<pre><code class="language-js">proxyUrl + getVehiclesEndpoint + '&amp;rt=' + NUMBER
+</code></pre>
+<p>Where <code>NUMBER</code> is the route number, which again can be gotten from the route object.</p>
+<h3>Marking the route active</h3>
+<p>Set the <code>active</code> class on the <code>li</code> element associated with the route to mark it as active.</p>
+<h2>What You Need to Know</h2>
+<p>This part doesn't have any new web component APIs to learn, but builds off what we've already done. You will need to know a few basic DOM APIs however:</p>
 <ul>
-<li>Use <a href="https://lit-html.polymer-project.org/">lit-html</a>'s <code>@</code> syntax to listen to a <strong>click</strong> event on each bus route in the list.</li>
-<li>Call a function, <code>_pickRoute()</code> that will be used to set the chosen route, call to the CTA bus tracker API to get a list of vehicles and then call <code>update()</code> on our component which triggers a rerender.</li>
-<li>Add some HTML to the footer to display the selected route as an overlay to the map component.</li>
-<li>Use lit-html's <code>.</code> (dot) syntax to pass properties to child components.</li>
+<li>How to add event listeners to elements.</li>
+<li>How to add classes to elements.</li>
 </ul>
-<h2>What you need to know</h2>
-<ul>
-<li>Like elements in the light DOM (the DOM the page renders with), elements in the shadow DOM can have event listeners. So you can use normal DOM methods like <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelector">querySelector</a> to find elements, and <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener">addEventListener</a> to listen to events.</li>
-<li>Use <code>connectedCallback()</code> to set up event listeners.</li>
-<li>Use <code>disconnectedCallback()</code> to remove event listeners. Using both of these lifecycle callbacks ensures there won't be memory leaks in your component.</li>
-<li>lit-html has a shorthand in its templating syntax for listening to events. <code>@click=${fn}</code> is a way to set up an event listener on an element. It <em>looks</em> like an attribute, but is not added as an attribute. Instead it calls <code>addEventListener()</code> under the hood. This allows you to have declarative templates that include information like the events listening to.</li>
-<li>Likewise, lit-html has a shorthand for setting properties. The <strong>dot</strong> notation, or <code>.vehicles=${vehicles}</code>. The dot is like setting a property in JavaScript, <code>foo.bar = 'baz'</code>. Like with event listeners, this is not part of HTML, but rather something that lit-html is layering over-top, to allow more declarative templating and less need for manual DOM manipulation.</li>
-</ul>
-<h2>The solution</h2>
-<p>Set an <code>@click</code> listener on each bus route item that calls a <code>_pickRoute()</code> function. Set that function to fetch the list of vehicles for the selected route. Call <code>update()</code> immediately and when the vehicles are available. Finally pass the list of vehicles to <code>&lt;google-map-view&gt;</code> view the <code>.vehicles</code> syntax. In the next section we'll take these vehicles and display them as markers on the map.</p>
-<pre><code class="language-html">&lt;bus-tracker&gt;&lt;/bus-tracker&gt;
-
-&lt;style&gt;
-html,
-body {
-  height: 100%;
-}
-body {
-  font-family: &quot;Catamaran&quot;, sans-serif;
-  background-color: #f2f2f2;
-  display: flex;
-  flex-direction: column;
-  margin: 0;
-}
+<h3>Event listeners</h3>
+<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener">addEventListener</a> is a method on elements that takes an <strong>event name</strong>, and a <strong>callback function</strong>. When the event occurs the callback function will be called.</p>
+<p>Each route in our list contains a <code>button</code> element. Set the event listener on this element.</p>
+<pre><code class="language-js">element.addEventListener('click', ev =&gt; {
+  // Do whatever you need.
+});
+</code></pre>
+<h3>Adding classes</h3>
+<p>Each element contains a <code>classList</code> object which is a little like a JavaScript <code>Set</code> (but is subtley different). To add classes to an element use <code>classList.add()</code>.</p>
+<pre><code class="language-js">element.classList.add('some-new-class');
+</code></pre>
+<h2>Solution</h2>
+<p>✏️ In the <code>getRoutes</code> method inside of the loop over the <code>routes</code>, get a reference to the <code>button</code> for the route and add an event listener for <strong>click</strong> events. When that event occurs call a method that will call the API for vehicles and add the <code>active</code> class to the associated <code>li</code>.</p>
+<p>Add a reference to the <code>#selected-route</code> element in the constructor. When the API call completes update this element as needed and add the <code>route-selected</code> class so that it will be highlighted.</p>
+<pre><code class="language-html">&lt;style&gt;
+  html,
+  body {
+    height: 100%;
+  }
+  body {
+    font-family: &quot;Catamaran&quot;, sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
 &lt;/style&gt;
+&lt;script src=&quot;https://maps.googleapis.com/maps/api/js?key=AIzaSyD7POAQA-i16Vws48h4yRFVGBZzIExOAJI&quot;&gt;&lt;/script&gt;
+
+&lt;bus-tracker&gt;&lt;/bus-tracker&gt;
+
 &lt;template id=&quot;bt-template&quot;&gt;
   &lt;style&gt;
     :host {
@@ -464,6 +508,9 @@ body {
       letter-spacing: 1px;
       margin: 0;
     }
+    #selected-route:not(.route-selected) {
+      display: none;
+    }
     .route-selected {
       line-height: 1;
       position: absolute;
@@ -474,7 +521,7 @@ body {
       right: 10px;
       padding: 6px 10px;
       color: white;
-      border-radius: 2px; border: none;
+      border-radius: 2px;
       cursor: pointer;
     }
     .route-selected small {
@@ -554,6 +601,25 @@ body {
       font-size: 14px;
     }
   &lt;/style&gt;
+  &lt;div class=&quot;top&quot;&gt;
+    &lt;header&gt;
+      &lt;h1&gt;Chicago CTA Bus Tracker&lt;/h1&gt;
+      &lt;p id=&quot;loading-routes&quot;&gt;Loading routes…&lt;/p&gt;
+    &lt;/header&gt;
+
+    &lt;ul class=&quot;routes-list&quot;&gt;&lt;/ul&gt;
+  &lt;/div&gt;
+  &lt;footer&gt;
+    &lt;button id=&quot;selected-route&quot; type=&quot;button&quot;&gt;
+    &lt;/button&gt;
+
+    &lt;google-map-view&gt;&lt;/google-map-view&gt;
+  &lt;/footer&gt;
+&lt;/template&gt;
+&lt;template id=&quot;error-template&quot;&gt;
+  &lt;div class=&quot;error-message&quot;&gt;
+    No vehicles available for this route
+  &lt;/div&gt;
 &lt;/template&gt;
 &lt;template id=&quot;gmap-template&quot;&gt;
   &lt;style&gt;
@@ -565,18 +631,17 @@ body {
   &lt;/style&gt;
   &lt;div class=&quot;gmap&quot;&gt;&lt;/div&gt;
 &lt;/template&gt;
+&lt;template id=&quot;route-template&quot;&gt;
+  &lt;li&gt;
+    &lt;button type=&quot;button&quot;&gt;
+      &lt;span class=&quot;route-number&quot;&gt;&lt;/span&gt;
+      &lt;span class=&quot;route-name&quot;&gt;&lt;/span&gt;
+      &lt;span class=&quot;check&quot;&gt;✔&lt;/span&gt;
+    &lt;/button&gt;
+  &lt;/li&gt;
+&lt;/template&gt;
 &lt;script type=&quot;module&quot;&gt;
-import { html, render } from &quot;https://unpkg.com/lit-html@1.0.0/lit-html.js&quot;;
-
 const template = document.querySelector('#gmap-template');
-
-const googleAPI = new Promise(resolve =&gt; {
-  const script = document.createElement(&quot;script&quot;);
-  script.src =
-    &quot;https://maps.googleapis.com/maps/api/js?key=AIzaSyD7POAQA-i16Vws48h4yRFVGBZzIExOAJI&quot;;
-  document.body.appendChild(script);
-  script.onload = resolve;
-});
 
 class GoogleMapView extends HTMLElement {
   constructor() {
@@ -587,9 +652,7 @@ class GoogleMapView extends HTMLElement {
     this.shadowRoot.append(nodes);
   }
 
-  async connectedCallback() {
-    await googleAPI;
-
+  connectedCallback() {
     let gmap = this.shadowRoot.querySelector('.gmap');
     this.map = new google.maps.Map(gmap, {
       zoom: 10,
@@ -608,163 +671,84 @@ const token = &quot;?key=piRYHjJ5D2Am39C9MxduHgRZc&amp;format=json&quot;;
 const apiRoot = &quot;http://www.ctabustracker.com/bustime/api/v2/&quot;;
 const getRoutesEndpoint = apiRoot + &quot;getroutes&quot; + token;
 const getVehiclesEndpoint = apiRoot + &quot;getvehicles&quot; + token;
-const styles = document.querySelector('#bt-template').content.cloneNode(true).firstElementChild;
 
-class StatefulPromise {
-  constructor(promise, component) {
-    this.promise = promise;
-    this.component = component;
-
-    this.state = &quot;pending&quot;;
-    this.value = null;
-    this.listen();
-  }
-
-  listen() {
-    let onSuccess = value =&gt; {
-      this.value = value;
-      this.state = &quot;resolved&quot;;
-      this.component.update();
-    };
-
-    let onFailure = error =&gt; {
-      this.error = error;
-      this.state = &quot;rejected&quot;;
-      this.component.update();
-    };
-
-    this.promise.then(onSuccess, onFailure);
-  }
-
-  isPending() {
-    return this.state === &quot;pending&quot;;
-  }
-
-  isResolved() {
-    return this.state === &quot;resolved&quot;;
-  }
-
-  isRejected() {
-    return this.state === &quot;rejected&quot;;
-  }
-}
+const btTemplate = document.querySelector('#bt-template');
+const routeTemplate = document.querySelector('#route-template');
+const errorTemplate = document.querySelector('#error-template');
 
 class BusTracker extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: &quot;open&quot; });
 
-    this.title = &quot;Chicago CTA Bus Tracker&quot;;
+    let frag = document.importNode(btTemplate.content, true);
+    this.shadowRoot.append(frag);
+
+    this.routesList = this.shadowRoot.querySelector('.routes-list');
+    this.selectedRouteBtn = this.shadowRoot.querySelector('#selected-route');
   }
 
   connectedCallback() {
-    this._getRoutes();
-    this._getVehicles();
-    this.update();
+    this.getRoutes();
   }
 
-  update() {
-    render(this.render(), this.shadowRoot);
-  }
+  async getRoutes() {
+    let response = await fetch(proxyUrl + getRoutesEndpoint);
+    let data = await response.json();
+    let routes = data[&quot;bustime-response&quot;].routes;
 
-  _getRoutes() {
-    let promise = fetch(proxyUrl + getRoutesEndpoint)
-      .then(response =&gt; response.json())
-      .then(data =&gt; data[&quot;bustime-response&quot;].routes);
+    for(let route of routes) {
+      let frag = document.importNode(routeTemplate.content, true);
 
-    this.routes = new StatefulPromise(promise, this);
-  }
+      frag.querySelector('.route-number').textContent = route.rt;
+      frag.querySelector('.route-name').textContent = route.rtnm;
 
-  _getVehicles(route) {
-    let promise;
+      frag.querySelector('button').addEventListener('click', ev =&gt; {
+        this.pickRoute(route, ev.currentTarget.parentNode);
+      });
 
-    if (route) {
-      promise = fetch(proxyUrl + getVehiclesEndpoint + &quot;&amp;rt=&quot; + route.rt)
-        .then(response =&gt; response.json())
-        .then(data =&gt; {
-          if (data[&quot;bustime-response&quot;].error) {
-            return Promise.reject(data[&quot;bustime-response&quot;].error[0]);
-          } else {
-            return data[&quot;bustime-response&quot;].vehicle;
-          }
-        });
-    } else {
-      promise = Promise.resolve();
+      this.routesList.append(frag);
     }
 
-    this.vehicles = new StatefulPromise(promise, this);
+    this.shadowRoot.querySelector('#loading-routes').remove();
   }
 
-  _pickRoute(route) {
-    this.route = route;
-    this._getVehicles(route);
-    this.update();
-  }
+  async getVehicles(route) {
+    let response = await fetch(proxyUrl + getVehiclesEndpoint + '&amp;rt=' + route.rt);
+    let data = await response.json();
 
-  render() {
-    return html`
-      ${styles}
-      &lt;div class=&quot;top&quot;&gt;
-        &lt;header&gt;
-          &lt;h1&gt;${this.title}&lt;/h1&gt;
-          ${this.routes.isPending()
-            ? html`
-                &lt;p&gt;Loading routes…&lt;/p&gt;
-              `
-            : &quot;&quot;}
-        &lt;/header&gt;
-
-        &lt;ul class=&quot;routes-list&quot;&gt;
-          ${this.routes.isResolved()
-            ? this.routes.value.map(
-                route =&gt; html`
-                  &lt;li
-                    class=${this.route === route ? &quot;active&quot; : &quot;&quot;}
-                  &gt;
-                    &lt;button type=&quot;button&quot;
-                      @click=${() =&gt; this._pickRoute(route)}
-                    &gt;
-                      &lt;span class=&quot;route-number&quot;&gt;${route.rt}&lt;/span&gt;
-                      &lt;span class=&quot;route-name&quot;&gt;${route.rtnm}&lt;/span&gt;
-                      &lt;span class=&quot;check&quot;&gt;✔&lt;/span&gt;
-                    &lt;/button&gt;
-                  &lt;/li&gt;
-                `
-              )
-            : &quot;&quot;}
-        &lt;/ul&gt;
-      &lt;/div&gt;
-      &lt;footer&gt;
-      ${this.route
-        ? html`
-            &lt;button
-              class=&quot;route-selected&quot;
-              @click=&quot;${() =&gt; this._pickRoute(this.route)}}&quot;
-            &gt;
-              &lt;small&gt;Route ${this.route.rt}:&lt;/small&gt; ${this.route.rtnm}
-              ${this.vehicles.isRejected()
-                ? html`
-                    &lt;div class=&quot;error-message&quot;&gt;
-                      No vehicles available for this route
-                    &lt;/div&gt;
-                  `
-                : &quot;&quot;}
-            &lt;/button&gt;
-          `
-        : &quot;&quot;}
-
-        &lt;google-map-view
-          .vehicles=${this.vehicles.value}
-        &gt;&lt;/google-map-view&gt;
-      &lt;/footer&gt;
+    this.selectedRouteBtn.innerHTML = `
+      &lt;small&gt;Route ${this.route.rt}:&lt;/small&gt; ${this.route.rtnm}
     `;
+
+    if (data['bustime-response'].error) {
+      let frag = document.importNode(errorTemplate.content, true);
+      this.selectedRouteBtn.append(frag);
+    } else {
+      let vehicles = data['bustime-response'].vehicle;
+      console.log(vehicles);
+    }
+
+    this.selectedRouteBtn.classList.add('route-selected');
+  }
+
+  pickRoute(route, li) {
+    this.route = route;
+    this.getVehicles(route);
+
+    if(this.activeRoute) {
+      this.activeRoute.classList.remove('active');
+    }
+    this.activeRoute = li;
+    this.activeRoute.classList.add('active');
   }
 }
 
 customElements.define(&quot;bus-tracker&quot;, BusTracker);
 &lt;/script&gt;
+
 </code></pre>
-<div line-highlight='3-15,270-294,317,330-350,only'></div>
+<div line-highlight='169-173,227,238,266-294,only'></div>
 <div class='codepen'></div>
 
 </section>
@@ -803,7 +787,7 @@ customElements.define(&quot;bus-tracker&quot;, BusTracker);
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/web-components/selecting-route.md"},"description":"Learn more about lit-html, with its special syntax for setting up event listeners and for passing properties to child components. \n","name":"learn-web-components/select-a-route","title":"Selecting a route","type":"page","parent":"learn-web-components","order":6,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/web-components/6-selecting-route/selecting-route.md"},"description":"Learn how to use event listeners with a custom element to handle user interaction and update the DOM. \n","name":"learn-web-components/select-a-route","title":"Selecting a route","type":"page","parent":"learn-web-components","order":6,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

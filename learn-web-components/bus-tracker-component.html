@@ -3,17 +3,17 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/web-components/7-display-markers/display-markers.md
-	@page learn-web-components/display-markers
+	source: src/web-components/4-bus-tracker-component/bus-tracker.md
+	@page learn-web-components/bus-tracker-component
 ######################################################################## -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn how to listen to changes in __properties__ on your custom elements and how to properly reflect back the property values to the outside world. 
+  <meta name="description" content="Build a more complex component that combines the usage of &#x60;&lt;template&gt;&#x60; and &#x60;customElements&#x60;, and sets up event listeners. 
 ">
-  <title>Bitovi Academy - Display markers for vehicles</title>
+  <title>Bitovi Academy - bus-tracker component</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -184,14 +184,17 @@
 		
 			
 				
-					<li class="
-           						
-           						">
+					<li class="current
+           						parent
+           						expanded">
 						<a class="page"
 							href="bus-tracker-component.html"
 							title="Build a more complex component that combines the usage of &lt;template&gt; and customElements, and sets up event listeners.">
 							bus-tracker component
 						</a>
+						
+							
+
 						
 					</li>
 				
@@ -229,17 +232,14 @@
 		
 			
 				
-					<li class="current
-           						parent
-           						expanded">
+					<li class="
+           						
+           						">
 						<a class="page"
 							href="display-markers.html"
 							title="Learn how to listen to changes in properties on your custom elements and how to properly reflect back the property values to the outside world.">
 							Display markers for vehicles
 						</a>
-						
-							
-
 						
 					</li>
 				
@@ -374,7 +374,7 @@ covering CanJS core libraries.">
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Display markers for vehicles <code>page</code></h1>
+	<h1>bus-tracker component <code>page</code></h1>
 </section>
 
   		
@@ -382,7 +382,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn how to listen to changes in <strong>properties</strong> on your custom elements and how to properly reflect back the property values to the outside world.</p>
+    <p>Build a more complex component that combines the usage of <code>&lt;template&gt;</code> and <code>customElements</code>, and sets up event listeners.</p>
 
 </section>
 
@@ -398,63 +398,193 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this part we will:</p>
 <ul>
-<li>Update the <code>&lt;google-map-view&gt;</code> component to display markers.</li>
-<li>Receive an array of vehicles as a property from the <code>&lt;bus-tracker&gt;</code> parent component.</li>
-<li>Add a marker for each vehicle using the embedded Googles Maps widget.</li>
-<li>Reflect back the array of vehicles and array of markers as properties on the <code>&lt;google-map-view&gt;</code>.</li>
+<li>Create another component named <code>bus-tracker</code>.</li>
+<li>Display the <code>google-map-view</code> component within this new component.</li>
 </ul>
 <h2>Problem</h2>
-<p>In the previous exercise we fetched a list of vehicles when a route is selected and logged them to the console. Now we want to instead pass those to the <code>google-map-view</code> element. The <code>google-map-view</code> element should add a marker for each vehicle.</p>
-<p>When an error occurs in the API it should wipe away in existing markers.</p>
-<p><img src="../static/img/web-components/bt-display-markers.gif"
-style="border: solid 1px black; max-width: 100%;"
-title="Markers being displayed when a route is selected." /></p>
-<h2>Technical Requirements</h2>
-<p>To create a new marker use <code>new google.maps.Marker</code>. This takes an object with some options that look like this:</p>
-<pre><code class="language-js">new google.maps.Marker({
-  position: {
-    lat: latitude,
-    lng: longitude
-  },
-  map: googleMapObject
-});
-</code></pre>
-<p>In this case <code>map</code> is the thing we created in a previous exercise by calling <code>new google.maps.Map</code>.</p>
-<h2>What You Need to Know</h2>
+<p>We want to build a component that displays the CTA bus tracker routes and displays a map. This part builds the <em>shell</em> of the component and includes:</p>
 <ul>
-<li>How to use JavaScript getters and setters to handle dynamic property values.</li>
-<li>How to use default values in custom elements.</li>
+<li>A header with a title</li>
+<li>A <em>placeholder</em> for where the list of routes will go.</li>
+<li>The <code>google-map-view</code> component we created in the previous section.</li>
 </ul>
-<h3>getters/setters</h3>
-<p>JavaScript <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set">setters</a> allow observation of property changes. Adding a setter for <code>vehicles</code> provides a hook for when the <code>&lt;bus-tracker&gt;</code> component passes the array of vehicles for the selected route.</p>
-<p>In order to reflect back the list of vehicles in a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get">getter</a> you can save the vehicle list to another property on the element (like an underscore property). It's common when a setter exists that a getter does as well.</p>
-<pre><code class="language-js">class Person {
-  set age(val) {
-    this._age = val;
-  }
+<p><img src="../static/img/web-components/bus-tracker-shell.png"
+style="border: solid 1px black; max-width: 100%;"
+title="The shell of our bus-tracker component showing a header and a Google map"/></p>
+<h2>Technical Requirements</h2>
+<p>The styles for our <code>bus-tracker</code> component should be contained within Shadow DOM. The CSS needed for the rest of the guide is:</p>
+<pre><code class="language-css">:host {
+  display: flex;
+  flex-direction: column;
+}
 
-  get age() {
-    return this._age;
-  }
+.top {
+  flex-grow: 1;
+  overflow-y: auto;
+  height: 10%;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  height: 250px;
+  position: relative;
+}
+.gmap {
+  width: 100%;
+  height: 250px;
+  background-color: grey;
+}
+
+header {
+  box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.1);
+  background-color: #313131;
+  color: white;
+  min-height: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  line-height: 1.2;
+}
+
+header h1 {
+  text-align: center;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0;
+}
+#selected-route:not(.route-selected) {
+  display: none;
+}
+.route-selected {
+  line-height: 1;
+  position: absolute;
+  z-index: 1;
+  text-align: right;
+  background: rgba(6, 6, 6, 0.6);
+  top: 10px;
+  right: 10px;
+  padding: 6px 10px;
+  color: white;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.route-selected small {
+  display: block;
+  font-size: 14px;
+  color: #ddd;
+}
+.route-selected .error-message {
+  font-size: 14px;
+  background-color: #ff5722;
+  border-radius: 10px;
+  padding: 4px 8px 1px;
+  margin-top: 5px;
+}
+.routes-list {
+  padding: 20px 0;
+  margin: 0;
+  overflow-y: auto;
+}
+.routes-list li {
+  list-style: none;
+  cursor: pointer;
+  background: white;
+  border: 1px solid #dedede;
+  margin: 1% 2%;
+  border-radius: 25px;
+  color: #2196f3;
+  width: 41%;
+  display: inline-flex;
+  font-size: 14px;
+  line-height: 1.2;
+}
+.routes-list li:hover {
+  border-color: transparent;
+  background-color: #008eff;
+  color: white;
+  box-shadow: 0px 5px 20px 0px rgba(0, 0, 0, 0.2);
+}
+.routes-list li .check {
+  display: none;
+}
+.routes-list li.active {
+  color: #666;
+  background-color: #e8e8e8;
+}
+.routes-list li.active .check {
+  display: inline-block;
+  margin-left: 5px;
+  color: #2cc532;
+}
+.routes-list li.active:hover {
+  border-color: #dedede;
+  box-shadow: none;
+}
+.routes-list button {
+  width: 100%;
+  padding: 8px 8px 6px;
+  border: none;
+  border-radius: 25px;
+  background: transparent;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+}
+.route-number {
+  display: inline-block;
+  border-right: 1px solid #dedede;
+  padding-right: 5px;
+  margin-right: 5px;
+  min-width: 18px;
+  text-align: right;
+}
+p {
+  text-align: center;
+  margin: 0;
+  color: #ccc;
+  font-size: 14px;
 }
 </code></pre>
-<h3>Default values</h3>
-<p>Most properties supported by builtin elements have some sort of default value. For example the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress">&lt;progress&gt;</a> element has a <code>max</code> property that defaults to <code>1</code>: <code>document.createElement('progress').max; // 1</code>. <strong>All</strong> elements have an <code>onclick</code> property whose default value is <code>null</code>. It's good practice to provide default values for your supported public properties, and these can be set in the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor">constructor</a>. Combining getters, setters and default values for properties makes your component more robust.</p>
-<pre><code class="language-js">class DogElement extends HTMLElement {
-  constructor() {
-    super();
-    this._breed = null;
-  }
-  get breed() {
-    return this._breed;
-  }
-  set breed(val) {
-    this._breed = val;
-  }
-}
+<p>The minimal markup needed for this component is:</p>
+<pre><code class="language-html">&lt;div class=&quot;top&quot;&gt;
+  &lt;header&gt;
+    &lt;h1&gt;Chicago CTA Bus Tracker&lt;/h1&gt;
+    &lt;p id=&quot;loading-routes&quot;&gt;Loading routes…&lt;/p&gt;
+  &lt;/header&gt;
+
+  &lt;ul class=&quot;routes-list&quot;&gt;&lt;/ul&gt;
+&lt;/div&gt;
+&lt;footer&gt;
+  &lt;button id=&quot;selected-route&quot; type=&quot;button&quot;&gt;&lt;/button&gt;
+&lt;/footer&gt;
 </code></pre>
+<p>The <code>google-map-view</code> component should be displayed in the <code>&lt;footer&gt;</code> section of the component.</p>
+<h2>What You Need to Know</h2>
+<p>To solve this problem you'll need to:</p>
+<ul>
+<li>Know how to use CSS in a component that uses Shadow DOM.</li>
+<li>Use a component within another component.</li>
+</ul>
+<h3>Using styles within a component</h3>
+<p>Styles added to a page via <code>&lt;link rel=stylesheet&gt;</code> cannot be used within a shadowRoot. Services like <a href="https://codepen.io/">CodePen</a> that allow you to add CSS will add them this way. Instead place your styles within a <code>&lt;style&gt;</code> tag inside of the shadowRoot.</p>
+<pre><code class="language-html">&lt;style&gt;
+  .foo { display: block; }
+&lt;/style&gt;
+</code></pre>
+<p>The <code>:host</code> selector is a way to style the host of a <code>shadowRoot</code>. A common use-case is to change the display. By default custom elements have a display of <code>inline</code> which is like a <code>&lt;span&gt;</code>. Often authors prefer to have a <code>block</code> display, they can change this in their shadowRoot with this CSS:</p>
+<pre><code class="language-html">&lt;style&gt;
+  :host {
+    display: block;
+  }
+&lt;/style&gt;
+</code></pre>
+<p>In our component we are using <code>display: flex</code> to give space to the header, route list, and Google map.</p>
+<h3>Nesting components</h3>
+<p>Any component defined using <code>customElements.define()</code> can be used within another element's <code>shadowRoot</code> just as they can inside of the page's HTML. To add the <code>google-map-view</code> to this new component, place the tag within the footer.</p>
 <h2>Solution</h2>
-<p>✏️ Add default values for <code>markers</code> and <code>vehicles</code> in the constructor (use an underscore property for vehicles). Add a getter/setter pair for <code>vehicles</code>, where the setter creates new markers on the map with <code>new google.maps.Marker</code>.</p>
+<p>✏️ Create a new component called <code>bus-tracker</code>. Use the CSS and markup provided and place them in a <code>&lt;template&gt;</code> with the id of <code>#bt-template</code>. Create a shadowRoot for this element and append a clone of the template.</p>
 <pre><code class="language-html">&lt;style&gt;
   html,
   body {
@@ -623,11 +753,6 @@ title="Markers being displayed when a route is selected." /></p>
     &lt;google-map-view&gt;&lt;/google-map-view&gt;
   &lt;/footer&gt;
 &lt;/template&gt;
-&lt;template id=&quot;error-template&quot;&gt;
-  &lt;div class=&quot;error-message&quot;&gt;
-    No vehicles available for this route
-  &lt;/div&gt;
-&lt;/template&gt;
 &lt;template id=&quot;gmap-template&quot;&gt;
   &lt;style&gt;
     .gmap {
@@ -637,15 +762,6 @@ title="Markers being displayed when a route is selected." /></p>
     }
   &lt;/style&gt;
   &lt;div class=&quot;gmap&quot;&gt;&lt;/div&gt;
-&lt;/template&gt;
-&lt;template id=&quot;route-template&quot;&gt;
-  &lt;li&gt;
-    &lt;button type=&quot;button&quot;&gt;
-      &lt;span class=&quot;route-number&quot;&gt;&lt;/span&gt;
-      &lt;span class=&quot;route-name&quot;&gt;&lt;/span&gt;
-      &lt;span class=&quot;check&quot;&gt;✔&lt;/span&gt;
-    &lt;/button&gt;
-  &lt;/li&gt;
 &lt;/template&gt;
 &lt;script type=&quot;module&quot;&gt;
 const template = document.querySelector('#gmap-template');
@@ -657,9 +773,6 @@ class GoogleMapView extends HTMLElement {
 
     let nodes = document.importNode(template.content, true);
     this.shadowRoot.append(nodes);
-
-    this.markers = null;
-    this._vehicles = null;
   }
 
   connectedCallback() {
@@ -672,44 +785,11 @@ class GoogleMapView extends HTMLElement {
       }
     });
   }
-
-  get vehicles() {
-    return this._vehicles;
-  }
-
-  set vehicles(newVehicles) {
-    this._vehicles = newVehicles;
-    if (Array.isArray(this.markers)) {
-      this.markers.forEach(marker =&gt; {
-        marker.setMap(null);
-      });
-      this.markers = null;
-    }
-    if (newVehicles) {
-      this.markers = newVehicles.map(vehicle =&gt; {
-        return new google.maps.Marker({
-          position: {
-            lat: parseFloat(vehicle.lat),
-            lng: parseFloat(vehicle.lon)
-          },
-          map: this.map
-        });
-      });
-    }
-  }
 }
 
 customElements.define('google-map-view', GoogleMapView);
 
-const proxyUrl = &quot;https://can-cors.herokuapp.com/&quot;;
-const token = &quot;?key=piRYHjJ5D2Am39C9MxduHgRZc&amp;format=json&quot;;
-const apiRoot = &quot;http://www.ctabustracker.com/bustime/api/v2/&quot;;
-const getRoutesEndpoint = apiRoot + &quot;getroutes&quot; + token;
-const getVehiclesEndpoint = apiRoot + &quot;getvehicles&quot; + token;
-
 const btTemplate = document.querySelector('#bt-template');
-const routeTemplate = document.querySelector('#route-template');
-const errorTemplate = document.querySelector('#error-template');
 
 class BusTracker extends HTMLElement {
   constructor() {
@@ -718,66 +798,6 @@ class BusTracker extends HTMLElement {
 
     let frag = document.importNode(btTemplate.content, true);
     this.shadowRoot.append(frag);
-
-    this.routesList = this.shadowRoot.querySelector('.routes-list');
-    this.selectedRouteBtn = this.shadowRoot.querySelector('#selected-route');
-    this.googleMapView = this.shadowRoot.querySelector('google-map-view');
-  }
-
-  connectedCallback() {
-    this.getRoutes();
-  }
-
-  async getRoutes() {
-    let response = await fetch(proxyUrl + getRoutesEndpoint);
-    let data = await response.json();
-    let routes = data[&quot;bustime-response&quot;].routes;
-
-    for(let route of routes) {
-      let frag = document.importNode(routeTemplate.content, true);
-
-      frag.querySelector('.route-number').textContent = route.rt;
-      frag.querySelector('.route-name').textContent = route.rtnm;
-
-      frag.querySelector('button').addEventListener('click', ev =&gt; {
-        this.pickRoute(route, ev.currentTarget.parentNode);
-      });
-
-      this.routesList.append(frag);
-    }
-
-    this.shadowRoot.querySelector('#loading-routes').remove();
-  }
-
-  async getVehicles(route) {
-    let response = await fetch(proxyUrl + getVehiclesEndpoint + '&amp;rt=' + route.rt);
-    let data = await response.json();
-
-    this.selectedRouteBtn.innerHTML = `
-      &lt;small&gt;Route ${this.route.rt}:&lt;/small&gt; ${this.route.rtnm}
-    `;
-
-    if (data['bustime-response'].error) {
-      let frag = document.importNode(errorTemplate.content, true);
-      this.selectedRouteBtn.append(frag);
-      this.googleMapView.vehicles = [];
-    } else {
-      let vehicles = data['bustime-response'].vehicle;
-      this.googleMapView.vehicles = vehicles;
-    }
-
-    this.selectedRouteBtn.classList.add('route-selected');
-  }
-
-  pickRoute(route, li) {
-    this.route = route;
-    this.getVehicles(route);
-
-    if(this.activeRoute) {
-      this.activeRoute.classList.remove('active');
-    }
-    this.activeRoute = li;
-    this.activeRoute.classList.add('active');
   }
 }
 
@@ -785,7 +805,7 @@ customElements.define(&quot;bus-tracker&quot;, BusTracker);
 &lt;/script&gt;
 
 </code></pre>
-<div line-highlight='204-205,219-242,267,306,309,only'></div>
+<div line-highlight='16,18-168,205-217,only'></div>
 <div class='codepen'></div>
 
 </section>
@@ -824,7 +844,7 @@ customElements.define(&quot;bus-tracker&quot;, BusTracker);
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/web-components/7-display-markers/display-markers.md"},"description":"Learn how to listen to changes in __properties__ on your custom elements and how to properly reflect back the property values to the outside world. \n","name":"learn-web-components/display-markers","title":"Display markers for vehicles","type":"page","parent":"learn-web-components","order":7,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/web-components/4-bus-tracker-component/bus-tracker.md"},"description":"Build a more complex component that combines the usage of `<template>` and `customElements`, and sets up event listeners. \n","name":"learn-web-components/bus-tracker-component","title":"bus-tracker component","type":"page","parent":"learn-web-components","order":5,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

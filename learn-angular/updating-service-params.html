@@ -540,7 +540,6 @@ import { RestaurantComponent } from './restaurant.component';
 import { RestaurantService } from './restaurant.service';
 import { ImageUrlPipe } from '../image-url.pipe';
 import { ReactiveFormsModule } from '@angular/forms';
-import { Mock } from 'protractor/built/driverProviders';
 
 const restaurantAPIResponse = {
   data: [{
@@ -975,7 +974,7 @@ describe('RestaurantComponent', () =&gt; {
   }));
 });
 </code></pre>
-<div line-highlight='11,106,127,142,432-441,only'></div>
+ <div line-highlight="10-23,25-27,29-32,34-37,39-41,43-69,71-73,75-78,80-83,85-87,89-102,104-105,126-127,141,283,289,349,376,431-440,only"></div>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.service.spec.ts</strong></p>
 <pre><code class="language-ts">import { TestBed } from '@angular/core/testing';
 
@@ -1059,8 +1058,8 @@ describe('RestaurantService', () =&gt; {
       expect(restaurants).toEqual(mockRestaurants);
     });
 
-    let url = '/api/restaurants?filter%5Baddress.state%5D=IL&amp;filter%5Baddress.city%5D=Chicago';
-    //url parses to '/api/restaurants?filter[address.state]=IL&amp;filter[address.city]=Chicago'
+    let url = 'http://localhost:7070/restaurants?filter%5Baddress.state%5D=IL&amp;filter%5Baddress.city%5D=Chicago';
+    //url parses to 'http://localhost:7070/restaurants?filter[address.state]=IL&amp;filter[address.city]=Chicago'
     const req = httpMock.expectOne(url);
 
 
@@ -1112,7 +1111,7 @@ describe('RestaurantService', () =&gt; {
       expect(states).toEqual(mockStates);
     });
 
-    let url = '/api/states';
+    let url = 'http://localhost:7070/states';
     const req = httpMock.expectOne(url);
 
     expect(req.request.method).toEqual('GET');
@@ -1132,7 +1131,7 @@ describe('RestaurantService', () =&gt; {
       expect(cities).toEqual(mockCities);
     });
 
-    let url = '/api/cities?state=MO';
+    let url = 'http://localhost:7070/cities?state=MO';
     const req = httpMock.expectOne(url);
     expect(req.request.method).toEqual('GET');
     req.flush(mockCities);
@@ -1142,7 +1141,7 @@ describe('RestaurantService', () =&gt; {
 
 });
 </code></pre>
-<div line-highlight='79-83,only'></div>
+ <div line-highlight="79,83-84,132,152,only"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> the tests will pass!</p>
 </blockquote>
@@ -1155,6 +1154,7 @@ describe('RestaurantService', () =&gt; {
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Restaurant } from './restaurant';
+import { environment } from '../../environments/environment';
 
 export interface ResponseData&lt;dataType&gt; {
   data: Array&lt;dataType&gt;;
@@ -1179,20 +1179,20 @@ export class RestaurantService {
 
   getRestaurants(state:string, city: string) {
     const params = new HttpParams().set('filter[address.state]', state).set('filter[address.city]', city);
-    return this.httpClient.get&lt;ResponseData&lt;Restaurant&gt;&gt;('/api/restaurants', {params});
+    return this.httpClient.get&lt;ResponseData&lt;Restaurant&gt;&gt;(environment.apiUrl + '/restaurants', {params});
   }
 
   getStates() {
-    return this.httpClient.get&lt;ResponseData&lt;State&gt;&gt;('/api/states');
+    return this.httpClient.get&lt;ResponseData&lt;State&gt;&gt;(environment.apiUrl + '/states');
   }
 
   getCities(state:string) {
     const params = new HttpParams().set('state', state);
-    return this.httpClient.get&lt;ResponseData&lt;City&gt;&gt;('/api/cities', {params});
+    return this.httpClient.get&lt;ResponseData&lt;City&gt;&gt;(environment.apiUrl + '/cities', {params});
   }
 }
 </code></pre>
-<div line-highlight='26-28,only'></div>
+ <div line-highlight="27-29,only"></div>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -1219,12 +1219,12 @@ export class RestaurantComponent implements OnInit, OnDestroy {
     isPending: false
   }
 
-  public states = {
+  public states: Data&lt;State&gt; = {
     isPending: false,
     value: []
   };
 
-  public cities = {
+  public cities: Data&lt;City&gt; = {
     isPending: false,
     value: []
   }
@@ -1325,7 +1325,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
-<div line-highlight='97,123,124,only'></div>
+ <div line-highlight="97,123-124,"></div>
 
 </section>
 

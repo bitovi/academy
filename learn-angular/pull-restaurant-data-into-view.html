@@ -812,7 +812,296 @@ describe('RestaurantComponent', () =&gt; {
 });
 
 </code></pre>
-<div line-highlight='3,7,9-106,116-119,169-267,only'></div>
+ <div line-highlight="3,7,9-106,116-119,169-170,172-267,"></div>
+<p>✏️ Update the spec file  <strong>src/app/app.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { TestBed, async, fakeAsync, tick, flush } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+import { By } from '@angular/platform-browser';
+import { of } from 'rxjs'; 
+
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ImageUrlPipe } from './image-url.pipe';
+import { HttpClientModule } from '@angular/common/http';
+import { RestaurantService } from './restaurant/restaurant.service';
+
+class MockRestaurantService {
+  getRestaurants() {
+    return of({
+      data: [{
+        &quot;name&quot;: &quot;Poutine Palace&quot;,
+        &quot;slug&quot;: &quot;poutine-palace&quot;,
+        &quot;images&quot;: {
+          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+        },
+        &quot;menu&quot;: {
+          &quot;lunch&quot;: [
+            {
+              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+              &quot;price&quot;: 35.99
+            },
+            {
+              &quot;name&quot;: &quot;Steamed Mussels&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+              &quot;price&quot;: 35.99
+            }
+          ],
+          &quot;dinner&quot;: [
+            {
+              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+              &quot;price&quot;: 45.99
+            },
+            {
+              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+              &quot;price&quot;: 45.99
+            }
+          ]
+        },
+        &quot;address&quot;: {
+          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+          &quot;city&quot;: &quot;Green Bay&quot;,
+          &quot;state&quot;: &quot;WI&quot;,
+          &quot;zip&quot;: &quot;53205&quot;
+        },
+        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+      },
+      {
+        &quot;name&quot;: &quot;Cheese Curd City&quot;,
+        &quot;slug&quot;: &quot;cheese-curd-city&quot;,
+        &quot;images&quot;: {
+          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
+          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+        },
+        &quot;menu&quot;: {
+          &quot;lunch&quot;: [
+            {
+              &quot;name&quot;: &quot;Ricotta Gnocchi&quot;,
+              &quot;price&quot;: 15.99
+            },
+            {
+              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+              &quot;price&quot;: 21.99
+            },
+            {
+              &quot;name&quot;: &quot;Garlic Fries&quot;,
+              &quot;price&quot;: 15.99
+            }
+          ],
+          &quot;dinner&quot;: [
+            {
+              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+              &quot;price&quot;: 45.99
+            },
+            {
+              &quot;name&quot;: &quot;Truffle Noodles&quot;,
+              &quot;price&quot;: 14.99
+            },
+            {
+              &quot;name&quot;: &quot;Charred Octopus&quot;,
+              &quot;price&quot;: 25.99
+            }
+          ]
+        },
+        &quot;address&quot;: {
+          &quot;street&quot;: &quot;2451 W Washburne Ave&quot;,
+          &quot;city&quot;: &quot;Green Bay&quot;,
+          &quot;state&quot;: &quot;WI&quot;,
+          &quot;zip&quot;: &quot;53295&quot;
+        },
+        &quot;_id&quot;: &quot;Ar0qBJHxM3ecOhcr&quot;
+      }]}
+            )
+  }
+
+  getStates() {
+    return of({
+      data: [
+        {&quot;short&quot;:&quot;MO&quot;,&quot;name&quot;:&quot;Missouri&quot;},
+        {&quot;short&quot;:&quot;CA  &quot;,&quot;name&quot;:&quot;California&quot;},
+        {&quot;short&quot;:&quot;MI&quot;,&quot;name&quot;:&quot;Michigan&quot;}]
+    });
+  }
+
+  getCities(state:string) {
+    return of({
+      data: [{&quot;name&quot;:&quot;Sacramento&quot;,&quot;state&quot;:&quot;CA&quot;},{&quot;name&quot;:&quot;Oakland&quot;,&quot;state&quot;:&quot;CA&quot;}]
+    });
+  }
+
+  getRestaurant(slug:string) {
+    return of({
+      &quot;name&quot;: &quot;Poutine Palace&quot;,
+      &quot;slug&quot;: &quot;poutine-palace&quot;,
+      &quot;images&quot;: {
+        &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
+        &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
+        &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+      },
+      &quot;menu&quot;: {
+        &quot;lunch&quot;: [
+          {
+            &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
+            &quot;price&quot;: 35.99
+          },
+          {
+            &quot;name&quot;: &quot;Steamed Mussels&quot;,
+            &quot;price&quot;: 21.99
+          },
+          {
+            &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
+            &quot;price&quot;: 35.99
+          }
+        ],
+        &quot;dinner&quot;: [
+          {
+            &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
+            &quot;price&quot;: 21.99
+          },
+          {
+            &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
+            &quot;price&quot;: 45.99
+          },
+          {
+            &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
+            &quot;price&quot;: 45.99
+          }
+        ]
+      },
+      &quot;address&quot;: {
+        &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
+        &quot;city&quot;: &quot;Green Bay&quot;,
+        &quot;state&quot;: &quot;WI&quot;,
+        &quot;zip&quot;: &quot;53205&quot;
+      },
+      &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+    })
+  }
+}
+
+describe('AppComponent', () =&gt; {
+  let router: Router;
+  let location: Location;
+  let fixture;
+
+  beforeEach(async(() =&gt; {
+    TestBed.configureTestingModule({
+      imports: [
+        AppRoutingModule, HttpClientModule
+      ],
+      declarations: [
+        AppComponent, HomeComponent, RestaurantComponent, ImageUrlPipe
+      ],
+      schemas: [
+        NO_ERRORS_SCHEMA
+      ]
+    }).overrideComponent(RestaurantComponent, {
+      set: {
+        providers: [
+          { provide: RestaurantService, useClass: MockRestaurantService }
+        ]
+      }
+    })
+    .compileComponents();
+
+    router = TestBed.get(Router);
+    location = TestBed.get(Location);
+
+    fixture = TestBed.createComponent(AppComponent);
+  }));
+
+  it('should create the app', () =&gt; {
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
+  });
+
+  it(`should have as title 'place-my-order'`, () =&gt; {
+    const app = fixture.debugElement.componentInstance;
+    expect(app.title).toEqual('place-my-order');
+  });
+
+  it('should render title in a h1 tag', () =&gt; {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('h1').textContent).toContain('place-my-order.com');
+  });
+
+  it('should render the HomeComponent with router navigates to &quot;/&quot; path', () =&gt; {
+    const compiled = fixture.debugElement.nativeElement;
+    router.navigate(['']).then(() =&gt; {
+      expect(location.path()).toBe('');
+      expect(compiled.querySelector('pmo-home')).not.toBe(null);
+    });
+  });
+
+  it('should render the RestaurantsComponent with router navigates to &quot;/restaurants&quot; path', () =&gt; {
+    const compiled = fixture.debugElement.nativeElement;
+    router.navigate(['restaurants']).then(() =&gt; {
+      expect(location.path()).toBe('/restaurants');
+      expect(compiled.querySelector('pmo-restaurant')).not.toBe(null);
+    });
+  });
+
+  it('should have the home navigation link href set to &quot;&quot;', () =&gt; {
+    fixture.detectChanges();
+    let homeLink = fixture.debugElement.query(By.css('li a'));
+    let href = homeLink.nativeElement.getAttribute('href');
+    expect(href).toEqual('/');
+  });
+
+  it('should have the restaurants navigation link href set to &quot;&quot;', () =&gt; {
+    fixture.detectChanges();
+    let restaurantsLink = fixture.debugElement.query(By.css('li:nth-child(2) a'));
+    let href = restaurantsLink.nativeElement.getAttribute('href');
+    expect(href).toEqual('/restaurants');
+  });
+
+  it('should make the home navigation link class active when the router navigates to &quot;/&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.debugElement.nativeElement;
+    router.navigate(['']).then(() =&gt; {
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+      let homeLinkLi = fixture.debugElement.query(By.css('li'));
+      expect(homeLinkLi.nativeElement.classList).toContain('active');
+      expect(compiled.querySelectorAll('.active').length).toBe(1);
+      fixture.destroy();
+      flush();
+    });
+  }));
+
+  it('should make the restaurants navigation link class active when the router navigates to &quot;/restaurants&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.debugElement.nativeElement;
+    router.navigate(['restaurants']).then(() =&gt; {
+      expect(location.path()).toBe('/restaurants');
+      fixture.detectChanges();
+      tick();
+      fixture.detectChanges();
+      let restaurantsLinkLi = fixture.debugElement.query(By.css('li:nth-child(2)'));
+      expect(restaurantsLinkLi.nativeElement.classList).toContain('active');
+      expect(compiled.querySelectorAll('.active').length).toBe(1);
+      fixture.destroy();
+      flush();
+    });
+  }));
+
+});
+</code></pre>
+ <div line-highlight="5,13-14,16-112,114-119,121,123-125,127,129-174,176-177,187,195-200,202,232,240,268,283,only"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
@@ -1005,7 +1294,7 @@ export class RestaurantComponent implements OnInit {
 }
 
 </code></pre>
-<div line-highlight='2,3,11,13,16-18'></div>
+ <div line-highlight="2-3,11,13,16-18,"></div>
 <h2>Problem 2: Show a Loading State while Restaurants are Being Requested</h2>
 <p>Sometimes the server can take a long time to respond. It's a better experience for the user
 to show a loading icon to the user while data is loading:</p>
@@ -1324,7 +1613,7 @@ describe('RestaurantComponent', () =&gt; {
 });
 
 </code></pre>
-<div line-highlight='266-268,272-289,only'></div>
+ <div line-highlight="169,174-175,266-268,272-280,282-289,only"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
@@ -1366,7 +1655,7 @@ export class RestaurantComponent implements OnInit {
 }
 
 </code></pre>
-<div line-highlight='5-8,16-19,23-27'></div>
+ <div line-highlight="5-7,16-18,23,25-26,28-29,"></div>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong> to:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
   &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
@@ -1396,7 +1685,7 @@ export class RestaurantComponent implements OnInit {
 &lt;/div&gt;
 
 </code></pre>
-<div line-highlight='3, 4, 5'></div>
+ <div line-highlight="3-5,"></div>
 <h2>Did You Know?</h2>
 <p>You may have noticed in our markup there's another use of routerLink:</p>
 <pre><code class="language-html">&lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;

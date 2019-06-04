@@ -622,7 +622,7 @@ describe('OrderService', () =&gt; {
       expect(orders).toEqual(mockOrder);
     });
 
-    let url = '/api/orders';
+    let url = 'http://localhost:7070/orders';
     const req = httpMock.expectOne(url);
 
     expect(req.request.method).toEqual('GET');
@@ -665,7 +665,7 @@ describe('OrderService', () =&gt; {
       expect(orders).toEqual(mockOrder);
     });
 
-    let url = '/api/orders';
+    let url = 'http://localhost:7070/orders';
     httpMock.expectOne((request: HttpRequest&lt;any&gt;) =&gt; {
       console.log(request.body);
       return request.method == 'POST'
@@ -710,7 +710,7 @@ describe('OrderService', () =&gt; {
       expect(orders).toEqual(mockOrder);
     });
 
-    let url = '/api/orders/adsfsdf';
+    let url = 'http://localhost:7070/orders/adsfsdf';
     httpMock.expectOne((request: HttpRequest&lt;any&gt;) =&gt; {
       console.log(request.body);
       return request.method == 'PUT'
@@ -742,7 +742,7 @@ describe('OrderService', () =&gt; {
       expect(orders).toEqual(mockOrder);
     });
 
-    let url = '/api/orders/adsfsdf';
+    let url = 'http://localhost:7070/orders/adsfsdf';
     const req = httpMock.expectOne(url);
 
     expect(req.request.method).toEqual('DELETE');
@@ -751,7 +751,6 @@ describe('OrderService', () =&gt; {
     httpMock.verify();
   });
 });
-
 </code></pre>
 <p>Now, try to understand what this test is doing and
 implement the remainder of <code>order.service.ts</code> to
@@ -770,6 +769,7 @@ added as a property in the  <code>OrderService</code> constructor.</li>
 <p>✏️ Update <strong>src/app/order/order.service.ts</strong></p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 export interface Item {
   name: string;
@@ -793,28 +793,28 @@ export class OrderService {
   constructor(private httpClient: HttpClient) { }
 
   getOrders() {
-    return this.httpClient.get('/api/orders');
+    return this.httpClient.get(environment.apiUrl + '/orders');
   }
 
   createOrder(order: Order) {
     let orderData = Object.assign({}, order);
     orderData.status = 'new';
-    return this.httpClient.post('/api/orders', orderData)
+    return this.httpClient.post(environment.apiUrl + '/orders', orderData)
   }
 
   updateOrder(order: Order, action: string) {
     let orderData = Object.assign({}, order);
     orderData.status = action;
-    return this.httpClient.put('/api/orders/' + orderData._id, orderData);
+    return this.httpClient.put(environment.apiUrl + '/orders/' + orderData._id, orderData);
   }
 
   deleteOrder(id: string) {
-    return this.httpClient.delete('/api/orders/' + id);
+    return this.httpClient.delete(environment.apiUrl + '/orders/' + id);
   }
 }
 
 </code></pre>
-<div line-highlight='2, 23, 25-27, 29-33, 35-39, 40-43, only'></div>
+ <div line-highlight="2-3,24,26-28,30-34,36-40,42-44,only"></div>
 <h2>Problem 3: Use the OrderService in the OrderComponent to Create an Order</h2>
 <h2>P3: Technical Requirements</h2>
 <p>For this problem, we will:</p>
@@ -876,12 +876,12 @@ and set back to <code>false</code> when <code>.startNewOrder()</code> is called.
     &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
       &lt;tabset&gt;
         &lt;tab heading=&quot;Lunch Menu&quot;&gt;
-          &lt;ul class=&quot;list-group&quot; &gt;
-            &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
+          &lt;ul class=&quot;list-group&quot;&gt;
+            &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
         &lt;tab heading=&quot;Dinner menu&quot;&gt;
-          &lt;ul class=&quot;list-group&quot; &gt;
+          &lt;ul class=&quot;list-group&quot;&gt;
             &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
@@ -909,11 +909,10 @@ and set back to <code>false</code> when <code>.startNewOrder()</code> is called.
           &lt;/button&gt;
       &lt;/div&gt;
     &lt;/form&gt;
-&lt;/ng-template&gt;
+  &lt;/ng-template&gt;
 &lt;/div&gt;
-
 </code></pre>
-<div line-highlight='2-34,only'></div>
+ <div line-highlight="3-6,8-14,16-21,23-33,only"></div>
 <p>2. ✏️ Update <strong>src/app/order/order.component.ts</strong> to have a <code>onSubmit</code> method and
 a <code>startNewOrder</code> that will start a new order.</p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -1005,7 +1004,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
-<div line-highlight='76-85,only'></div>
+ <div line-highlight="37,42,44-46,52,57-60,69-73,76-78,83,only"></div>
 <h2>P3: How to Verify Your Solution is Correct</h2>
 <p>If you've implemented everything correctly, you should now be able to create an order from the UI and see a record of your completed order once it's created.</p>
 <p>✏️ Update the menu-items spec file  <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
@@ -1290,7 +1289,7 @@ describe('OrderComponent', () =&gt; {
 
 });
 </code></pre>
-<div line-highlight='11,64-76,91,104-107,111,217-233,235-252,254-278,only'></div>
+ <div line-highlight="11,64-73,85-86,91,104-106,109,111,113,169,217-233,235-252,254-278,only"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
@@ -1397,7 +1396,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
-<div line-highlight='7, 30, 38, 71, 78-85,only'></div>
+ <div line-highlight="7,30,38,71,80-84,only"></div>
 
 </section>
 
