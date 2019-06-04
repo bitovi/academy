@@ -78,7 +78,7 @@ class HubSpotPublisher {
       async () => {
         // choose which to delete
         for(let pageToBeDeleted of pagesToBeDeleted){
-          await confirmDeleteFile(pageToBeDeleted.slug, () => console.log("Deleting",pageToBeDeleted.slug ))
+          await confirmDeleteFile(pageToBeDeleted.slug, () => this.hubSpotApi.deletePage(pageToBeDeleted.id))
         }
       }
     )

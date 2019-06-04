@@ -31,17 +31,19 @@ const promptUser = async (prompt, yesCallback=()=>{}, noCallback=()=>{}) => {
 }
 
 const promptDeleteFiles = async (filesToBeDeleted, deleteAllCallback, chooseCallback) => {
-  const numFiles = filesToBeDeleted.length.toString().cyan
-  const prompt = `\n${numFiles} pages exist on Bitovi.com that are not in the local project. Select an option below to continue:
-    1. Keep all files not in local project
-    2. Individually choose for each file
-    3. Delete all files not in local project\n\n`;
-  const response = await question(prompt);
-  
-  if(response == 2) {
-    chooseCallback();
-  } else if(response == 3) {
-    promptUser(`Are you sure you want to delete all ${numFiles} remotely`, deleteAllCallback);
+  if(filesToBeDeleted.length > 0){
+    const numFiles = filesToBeDeleted.length.toString().cyan
+    const prompt = `\n${numFiles} pages exist on Bitovi.com that are not in the local project. Select an option below to continue:
+      1. Keep all files not in local project
+      2. Individually choose for each file
+      3. Delete all files not in local project\n\n`;
+    const response = await question(prompt);
+
+    if(response == 2) {
+      chooseCallback();
+    } else if(response == 3) {
+      promptUser(`Are you sure you want to delete all ${numFiles} remotely`, deleteAllCallback);
+    }
   }
 }
 

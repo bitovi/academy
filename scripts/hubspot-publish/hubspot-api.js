@@ -21,7 +21,7 @@ class HubSpotApi {
   }
 
   async getPages(){
-    const url = `${this.baseUrl}?hapikey=${this.apiKey}&campaign=${ACADEMY_CAMPAIGN_ID}`;
+    const url = `${this.baseUrl}?hapikey=${this.apiKey}&campaign=${ACADEMY_CAMPAIGN_ID}&limit=1000000`;
     const response = await this.makeRequest('GET', url, {});
     return response.data.objects.map(page => ({
       campaign: page.campaign,
