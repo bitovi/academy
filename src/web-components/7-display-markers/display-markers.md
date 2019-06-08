@@ -50,17 +50,65 @@ JavaScript [setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Ref
 
 In order to reflect back the list of vehicles in a [getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) you can save the vehicle list to another property on the element (like an underscore property). It's common when a setter exists that a getter does as well.
 
+This is an example of a getter/setter pair in a JavaScript class.
+
 ```js
 class Person {
   set age(val) {
+    console.log('Setting age');
     this._age = val;
   }
 
   get age() {
+    console.log('Getting age');
     return this._age;
   }
 }
+
+let kid = new Person();
+kid.age = 4;
+
+console.log(kid.age);
 ```
+@codepen
+
+We can use getters/setters within custom element classes as well.
+
+```html
+<my-counter></my-counter>
+
+<script type="module">
+class CounterElement extends HTMLElement {
+  constructor() {
+    super();
+    this._count = 0;
+    this.render();
+  }
+
+  render() {
+    this.innerHTML = `Count: ${this.count}`;
+  }
+
+  get count() {
+    return this._count;
+  }
+
+  set count(value) {
+    this._count = value;
+    this.render();
+  }
+}
+
+customElements.define('my-counter', CounterElement);
+
+let counter = document.querySelector('my-counter');
+
+setTimeout(() => counter.count++, 5000);
+setTimeout(() => counter.count = 15, 10000);
+setTimeout(() => counter.count--, 15000);
+</script>
+```
+@codepen
 
 ### Default values
 

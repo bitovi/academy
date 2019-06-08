@@ -24,6 +24,6 @@
 <script type="module">
 const template = document.querySelector('#gmap-template');
 
-let nodes = document.importNode(template.content, true);
-document.body.append(nodes);
+let fragment = document.importNode(template.content, true);
+document.body.append(fragment);
 </script>

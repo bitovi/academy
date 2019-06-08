@@ -21,6 +21,15 @@ Our bus-tracker component currently only includes a header and a map. We want to
 
 Additionally we have text within the header that says __Loading routes…__ statically. We want to remove this text after the routes have been rendered.
 
+## How to Solve This Problem
+
+1. Create a template using an `li` for each route.
+1. Write a function that fetches the list of routes from the CTA bus tracker API.
+1. Loop over the routes and activate a template for each. Add the route number to the `.route-number` element, and the route name to the `.route-name` element.
+1. Append the DOM to the `.routes-list` list.
+1. Remove the `#loading-routes` element since the routes are now loaded.
+
+
 ## Technical Requirements
 
 The following snippet of JavaScript will be useful for fetching data from the bus tracker API. Use the `getRoutesEndpoint` string to fetch the list of routes.
@@ -48,6 +57,7 @@ To display the routes we want to create an `<li>` for each route and attach it t
 ## What You Need to Know
 
 - How to use [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to make API requests.
+- Setting an element's text.
 
 ### Fetch
 
@@ -71,6 +81,35 @@ async function listFoods() {
 
 listFoods();
 ```
+
+### textContent
+
+Every element has a `.textContent` property. Setting this property to a string will render the text as children.
+
+```js
+let el = document.createElement('h1');
+document.body.append(el);
+
+el.textContent = 'Hello from .textContent';
+```
+@codepen
+
+This is equivalent to creating [Text](https://developer.mozilla.org/en-US/docs/Web/API/Document/createTextNode) nodes:
+
+```js
+let el = document.createElement('h1');
+document.body.append(el);
+
+let text = document.createTextNode('Hello from a text node');
+el.append(text);
+
+setTimeout(() => {
+  text.data = 'This text node was modified';
+}, 3000);
+```
+@codepen
+
+Usually you will use `.textContent` unless building a library where performance is critical. textContent is the most convenient way to change an element's text.
 
 ## Solution
 
