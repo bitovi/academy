@@ -23,6 +23,12 @@ When an error occurs in the API it should wipe away in existing markers.
   style="border: solid 1px black; max-width: 100%;"
   title="Markers being displayed when a route is selected." />
 
+## How to Solve This Problem
+
+1. Update the `bus-tracker` component to pass the vehicles list to the `google-map-view` via the `vehicles` property.
+1. Add a getter/setter pair on the `google-map-view` to handle `.vehicles`. When set it should use the Marker snippet (below) to create a new marker for *each* vehicle.
+1. When a route is selected and markers are already displayed for a previous route, remove the previous markers.
+
 ## Technical Requirements
 
 To create a new marker use `new google.maps.Marker`. This takes an object with some options that look like this:
@@ -38,6 +44,12 @@ new google.maps.Marker({
 ```
 
 In this case `map` is the thing we created in a previous exercise by calling `new google.maps.Map`.
+
+Additionally this snippet can be used to remove a marker:
+
+```js
+marker.setMap(null);
+```
 
 ## What You Need to Know
 
