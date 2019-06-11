@@ -28,18 +28,13 @@ add(1, 'three');
 We can also annotate what a function should return.
 
 ```typescript
-interface Result {
-  success: boolean
-  error?: string
+function returnNumber(): number {
+    return '1'
 }
+//Type '"1"' is not assignable to type 'number'.
 
-function logResponse(): Result {
-  return 'path not found'
-}
-//Type '"path not found"' is not assignable to type 'Result'.
-
-function logResponse(): Result {
-  return { success: false, error: 'path not found'}
+function returnNumber(): number {
+    return 1;
 }
 //works!
 ```

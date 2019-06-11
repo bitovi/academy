@@ -7,7 +7,6 @@
 
 ## Overview
 
-
 Interfaces are a powerful way to enforce types and document what our code provides. Interfaces used in classes allow "loose coupling" while providing a shape - multiple classes can use interfaces in many different ways. This section will cover how to write interfaces, setting optional properties, and the power of using interfaces in classes and functions. This section will cover:
 
 - How to write interfaces,
@@ -52,7 +51,7 @@ For instance, consider the following code:
 @sourceref ./6-4-type-assertion.html
 @codepen
 
-When we create object literals in TypeScript, they are inferred to be objects with zero properties. To fix this, we can use type assertions to let the compiler explicitly know what we want from our object.
+When we create empty object literals in TypeScript, they are inferred to be objects with zero properties. To fix this, we can use type assertions to let the compiler explicitly know what we want from our object.
 
 @sourceref ./6-4-2-type-assertion.html
 @codepen
