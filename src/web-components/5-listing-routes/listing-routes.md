@@ -65,6 +65,8 @@ To display the routes we want to create an `<li>` for each route and attach it t
 
 fetch differs slightly from the older [XMLHttpRequest](XMLHttpRequest) in a variety of ways; for example fetch does not include cookies by default. It's easier to use, however, because it uses [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). If you don't need to support Internet Explorer you'll probably want to use fetch in your applications.
 
+`fetch()` returns a [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response) object. To get a JSON object from this use `response.json()` like so:
+
 ```js
 async function listFoods() {
   let response = await fetch('/api/food');
