@@ -4,6 +4,8 @@
 
 @body
 
+Create a [new CodePen](https://codepen.io/pen/) for this exercise. This new CodePen can be used for the rest of the exercises in this training.
+
 ## Overview
 
 In this part, we will:
@@ -17,6 +19,12 @@ The Google map API needs an element to mount the map into. We want our map to be
 <img src="../static/img/web-components/map-view-rect.png"
   style="border: solid 1px black; max-width: 100%;"
   title="A rectangle for where we will display the map."/>
+
+## How to Solve This Problem
+
+1. Create a `template` element that contains a `div` that will act as the container for the Google Map, as well as the styles.
+2. Add the global styles to the CSS tab in CodePen.
+3. In the JS tab write the JavaScript necessary to clone and activate the template, appending it to the `body`.
 
 ## Technical Requirements
 
@@ -32,7 +40,7 @@ The following CSS will give the container the dimensions we want.
 
 Use the class name `.gmap` for the container element.
 
-Add the following as *global* styles to the page:
+Add the following as ***global*** styles to the page:
 
 ```css
 html,

@@ -24,6 +24,12 @@ An easier way to allow consumers of your component to have *complete* control is
     title="Header customized using slots." />
 </picture>
 
+## How to Solve This Problem
+
+1. Provide a slot for the custom header passed to `bus-tracker`.
+1. Use named slots to allow the `header` slot to be provided.
+1. Add custom styles to style the new header.
+
 ## Technical Requirements
 
 Use this markup as the header that is passed into the component:
@@ -32,6 +38,14 @@ Use this markup as the header that is passed into the component:
 <header>
   <h1>My Bus Tracker!</h1>
 </header>
+```
+
+And use this CSS to style the header:
+
+```
+background: crimson;
+color: wheat;
+text-align: center;
 ```
 
 ## What You Need to Know
@@ -45,24 +59,60 @@ The [slot](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) has a
 
 Default content can be specified by nesting DOM inside of the `<slot>` element.
 
-```js
-let el1 = document.createElement('div');
-el1.attachShadow({ mode: 'open' });
-el1.shadowRoot.innerHTML = `<slot>This is using <strong>default</strong> content.</slot>`;
+```html
+<template>
+  <slot>This is using <strong>default</strong> content.</slot>
+</template>
 
-let el2 = document.createElement('div');
-el2.attachShadow({ mode: 'open' });
+<div id="one"></div>
+<div id="two">
+  This is using slotted content.
+</div>
 
-el2.shadowRoot.innerHTML = `<slot>This is using <strong>default</strong> content.</slot>`;
-el2.innerHTML = `This is using slotted content.`;
+<script type="module">
+let template = document.querySelector('template');
 
-document.body.append(el1, el2);
+let one = document.querySelector('#one');
+one.attachShadow({ mode: 'open' });
+one.shadowRoot.append(document.importNode(template.content, true));
+
+let two = document.querySelector('#two');
+two.attachShadow({ mode: 'open' });
+two.shadowRoot.append(document.importNode(template.content, true));
+
+document.body.append(one, two);
+</script>
 ```
 @codepen
 
 ### Named slots
 
 __Named__ slots are used when you want to take *some* of the children content, but not all of it. This is useful when you have multiple things to be customized. It works like `<slot name="header">`, with the children needing to add a `slot` attribute.  `<header slot="header">`.
+
+```html
+<div class="my-thing">
+  <header slot="header">
+    <h1>My Header</h1>
+  </header>
+</div>
+
+<template>
+  <slot name="header">
+    <header>Default Header</header>
+  </slot>
+</template>
+
+<script type="module">
+let el = document.querySelector('.my-thing');
+el.attachShadow({ mode: 'open' });
+
+let template = document.querySelector('template');
+let frag = document.importNode(template.content, true);
+
+el.shadowRoot.append(frag);
+</script>
+```
+@codepen
 
 ## Solution
 

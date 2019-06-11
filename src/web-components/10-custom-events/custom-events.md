@@ -19,44 +19,58 @@ We want to display the bus destination for the selected marker. This should look
   style="border: solid 1px black; max-width: 100%;"
   title="Selecting a marker displays the vehicle associated with that marker." />
 
+## How to Solve This Problem
+
+1. Add the provided CSS to the `bus-tracker` template.
+1. Add the `#selected-vehicle` element to the bus-tracker's `footer`.
+1. Add an event listener for when a marker is selected which dispatches an event called `vehicle-selected`.
+1. Add an event listener in `bus-tracker` for the `vehicle-selected` event on the `google-map-view`.
+1. In the event listener set the `vehicle.des` in the `#selected-vehicle` element.
+
 ## Technical Requirements
 
-For displaying the selected vehicle use a `span` element and give it an `id` of `selected-vehicle`. It will have mostly the same styles as the selected route. You could use the same CSS but just modify it to work for both. For simplicity here's the full CSS needed:
+* For displaying the selected vehicle use a `span` element and give it an `id` of `selected-vehicle`. It will have mostly the same styles as the selected route. You could use the same CSS but just modify it to work for both. For simplicity here's the full CSS needed:
 
-```css
-#selected-vehicle:not(.vehicle-selected) {
-  display: none;
-}
-.vehicle-selected {
-  line-height: 1;
-  position: absolute;
-  z-index: 1;
-  text-align: right;
-  background: rgba(6, 6, 6, 0.6);
-  top: 55px;
-  font-size: 11px;
-  right: 10px;
-  padding: 6px 10px;
-  color: white;
-  border-radius: 2px;
-  cursor: pointer;
-}
-.vehicle-selected small {
-  display: block;
-  font-size: 14px;
-  color: #ddd;
-}
-```
+  ```css
+  #selected-vehicle:not(.vehicle-selected) {
+    display: none;
+  }
+  .vehicle-selected {
+    line-height: 1;
+    position: absolute;
+    z-index: 1;
+    text-align: right;
+    background: rgba(6, 6, 6, 0.6);
+    top: 55px;
+    font-size: 11px;
+    right: 10px;
+    padding: 6px 10px;
+    color: white;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+  .vehicle-selected small {
+    display: block;
+    font-size: 14px;
+    color: #ddd;
+  }
+  ```
 
-Markers are not DOM elements and therefore don't have all of the same methods. To listen to events you use a slightly different mechanism:
+* Markers are not DOM elements and therefore don't have all of the same methods. To listen to events you use a slightly different mechanism:
 
-```js
-marker.addListener('event-name', () => {
-  // Do whatever
-});
-```
+  ```js
+  marker.addListener('event-name', () => {
+    // Do whatever
+  });
+  ```
 
-Where `event-name` is the event you're interested in.
+  Where `event-name` is the event you're interested in.
+
+* Use this snippet for setting the the destination of the bus:
+
+  ```html
+  <small>Vehicle:</small> VEHICLE_DESTINATION
+  ```
 
 ## What You Need to Know
 

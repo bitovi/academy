@@ -24,6 +24,17 @@ When a route is selected it should become active and show a checkmark by the nam
   style="border: solid 1px black; max-width: 100%;"
   title="Selecting a route from the list and noticing that the item is highlighted as active and the route number and name is shown in an overlay on top of the map." />
 
+## How to Solve This Problem
+
+1. Add a `click` event listener on the `button` within each route `li`.
+1. Create a method that will be called within the listener that receives the `route` object and the `li`.
+1. Create another method, this time an async method, that fetches the vehicles for the given `route`.
+    1. Add the route name and number to the `#selected-route` button.
+    1. If there is an error also append the error message snippet to that same button.
+    1. `console.log` the list of vehicles. We will use them in the next section.
+    1. Add the `route-selected` class to the `#selected-route` button once you have the vehicles.
+1. Add the `active` class to the route's `li`. If there is already an active route, remove the `active` class from that `li`.
+
 ## Technical Requirements
 
 ### Selected route button
@@ -94,5 +105,5 @@ element.classList.add('some-new-class');
 Add a reference to the `#selected-route` element in the constructor. When the API call completes update this element as needed and add the `route-selected` class so that it will be highlighted.
 
 @sourceref ./index.html
-@highlight 169-173,227,238,266-294,only
+@highlight 169-173,227,238,256-258,266-294,only
 @codepen
