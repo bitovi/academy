@@ -1,0 +1,44 @@
+<my-greeting name="world"></my-greeting>
+<script type="module">
+class MyGreeting extends HTMLElement {
+  static get observedAttributes() {
+    return ['name'];
+  }
+
+  constructor() {
+    super();
+    this._name = this.getAttribute('name');
+    this.render(this._name);
+  }
+
+  attributeChangedCallback(attributeName, oldValue, newValue) {
+    this[attributeName] = newValue;
+  }
+
+  render(name) {
+    this.innerHTML = `Hello ${name}`;
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  set name(value) {
+    this._name = value;
+    this.render(value);
+  }
+}
+
+customElements.define('my-greeting', MyGreeting);
+
+// Let's modify the element
+let element = document.querySelector('my-greeting');
+
+setTimeout(() => {
+  element.setAttribute('name', 'Matthew');
+}, 3000);
+
+setTimeout(() => {
+  element.name = 'Wilbur';
+}, 6000);
+</script>

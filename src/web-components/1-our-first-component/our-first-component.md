@@ -12,7 +12,34 @@ In this part, we will:
 - Write the JavaScript necessary for registering a custom element.
 - Accept arguments, in the form of HTML attributes and JavaScript properties, to our component and respond when they change.
 
-## Using custom elements
+## Problem
+
+We want to build a hello world component. To do that, create a custom element that displays the greeting `Hello ${name}` in its `innerHTML`. It should accept the `name` argument either as an [attribute](https://developer.mozilla.org/en-US/docs/Glossary/Attribute) or as a [property](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors).
+
+It should:
+
+1. Show an initial greeting of __Hello world__.
+1. After 3 seconds it should set an attribute to change the name to your name.
+1. After 3 more seconds it should set a property to change the name to another name (your pet, a family member, Spiderman, whatever you want).
+
+It looks like this:
+
+<img src="../static/img/web-components/bt-hello-world.gif"
+  style="border: solid 1px black; max-width: 100%;"
+  title="Text displaying 'Hello world' and a few other greetings." />
+
+## How to Solve This Problem
+
+1. Create a class that extends `HTMLElement`.
+1. Create a method on the class that renders `Hello ${name}`.
+1. Set up attributes using `observedAttributes` and `attributeChangedCallback`.
+1. Use a [setter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) to accept the property.
+1. Add the tag to the page.
+1. Use `setTimeout` to change the name as described in the Problem section above.
+
+## What You Need to Know
+
+### Using custom elements
 
 Custom elements can be used the same way that regular elements can; with one bonus included. You can:
 
@@ -47,7 +74,7 @@ Let's create our first element by adding it to the HTML.
 
 Click the "Run in your browser" button above and notice that... nothing happens. In order to do anything useful, we have to register our element.
 
-## Registering our tag
+### Registering our tag
 
 The [custom elements API](https://html.spec.whatwg.org/multipage/custom-elements.html) provides a way to hook into the browser's HTML parser and receive callbacks whenever a certain tag is encountered. Think about that; your code can run before the page has even finished loading (provided your script has run). That's a lot of power.
 
@@ -78,16 +105,16 @@ customElements.define('my-greeting', MyGreeting);
 ```
 @codepen
 
-## Responding to attribute changes
+### Responding to attribute changes
 
 A component is only useful if it can receive parameters just like functions do through function arguments. There are two primary ways for a web component to receive arguments:
 
 * Through attributes like `foo="bar"`.
 * Through properties in JavaScript like `element.foo = 'bar';`
 
-In this example we'll do both.
+In this exercise we are doing both.
 
-### attributeChangeCallback
+#### attributeChangeCallback
 
 In order to understand attributes in custom elements we'll learn about our first lifecycle callback. `attributeChangedCallback` is a method you define on your element class. It will be called back with the name of the attribute, as well as the new and old value.
 
@@ -103,113 +130,47 @@ class MyGreeting extends HTMLElement {
 
 To define which attributes should be added you add a static getter `observedAttributes` on the class.
 
-The following will observe changes to the `name` attribute and update the innerHTML when it changes.
-
-```html
-<my-greeting name="world"></my-greeting>
-<script type="module">
+```js
 class MyGreeting extends HTMLElement {
   static get observedAttributes() {
     return ['name'];
   }
 
-  constructor() {
-    super();
-    this.render();
-  }
-
   attributeChangedCallback(name, oldValue, newValue) {
-    this.render();
-  }
-
-  render() {
-    let name = this.getAttribute('name');
-    this.innerHTML = `Hello ${name}`;
+    // Do something here
   }
 }
 
 customElements.define('my-greeting', MyGreeting);
-
-// Let's modify the element
-let element = document.querySelector('my-greeting');
-
-setTimeout(() => {
-  element.setAttribute('name', 'Matthew');
-}, 3000);
-</script>
 ```
-@codepen
-@highlight 1,4-6,10,13-15,17-20,25-30
 
-Running the above you should see `Hello world` for a few seconds and then change to `Hello Matthew`.
-
-Here we are:
-
-* Defining `name` as an observed attribute with `static get observedAttributes()`.
-* Calling `this.render()` when the element is constructed.
-* Calling `this.render()` again whenever the attribute changes.
-* Using the `name` attribute to set the element's text.
-
-## Responding to property changes
+### Responding to property changes
 
 This one is a bit easier if you are already familiar with JavaScript classes. Since an element is a JavaScript object it can receive properties the same way any JavaScript class can.
 
 We can add a [setter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) to be notified when the `name` property is changed.
 
-Below we refactor the code so that it treats attributes and properties the same way.
+Below is a greeting class that uses setters
 
-```html
-<my-greeting name="world"></my-greeting>
-<script type="module">
+```js
 class MyGreeting extends HTMLElement {
-  static get observedAttributes() {
-    return ['name'];
-  }
-
-  constructor() {
-    super();
-    this._name = this.getAttribute('name');
-    this.render();
-  }
-
-  attributeChangedCallback(attributeName, oldValue, newValue) {
-    this[attributeName] = newValue;
-  }
-
-  render() {
-    let name = this.name;
-    this.innerHTML = `Hello ${name}`;
-  }
-
   get name() {
     return this._name;
   }
 
   set name(value) {
     this._name = value;
-    this.render();
   }
 }
-
-customElements.define('my-greeting', MyGreeting);
-
-// Let's modify the element
-let element = document.querySelector('my-greeting');
-
-setTimeout(() => {
-  element.setAttribute('name', 'Matthew');
-}, 3000);
-
-setTimeout(() => {
-  element.name = 'Wilbur';
-}, 6000);
-</script>
 ```
-@codepen
-@highlight 10,15,19,23-25,27-30,42-44,only
 
 In the above we change it so that if an attribute change it just calls the property setter. The property then saves its value in a "private" variable `this._name`.
 
 This works the way most built-in elements work; changing a property does __not__ reflect in the attribute; but changing an attribute does change the value of the property.
 
-In either case, the text changes when we change the value.
+## Solution
+
+✏️ The following is a full greeting element that accepts `name` attribute and property, rendering when either changed.
+
+@sourceref ./index.html
+@codepen
