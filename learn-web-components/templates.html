@@ -177,7 +177,7 @@
            						">
 						<a class="page"
 							href="map-view.html"
-							title="Create a component to hold our Google map view.">
+							title="Create a component to hold our Google map view. This lesson carries over from the last and will use the same CodePen.">
 							Map View
 						</a>
 						
@@ -395,7 +395,8 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <p>Create a <a href="https://codepen.io/pen/">new CodePen</a> for this exercise. This new CodePen can be used for the rest of the exercises in this training.</p>
+<h2>Overview</h2>
 <p>In this part, we will:</p>
 <ul>
 <li>Create a template that includes the HTML we need for our <a href="https://www.google.com/maps">Google map</a> component.</li>
@@ -405,6 +406,12 @@ covering CanJS core libraries.">
 <p><img src="../static/img/web-components/map-view-rect.png"
 style="border: solid 1px black; max-width: 100%;"
 title="A rectangle for where we will display the map."/></p>
+<h2>How to Solve This Problem</h2>
+<ol>
+<li>Create a <code>template</code> element that contains a <code>div</code> that will act as the container for the Google Map, as well as the styles.</li>
+<li>Add the global styles to the CSS tab in CodePen.</li>
+<li>In the JS tab write the JavaScript necessary to clone and activate the template, appending it to the <code>body</code>.</li>
+</ol>
 <h2>Technical Requirements</h2>
 <p>The following CSS will give the container the dimensions we want.</p>
 <pre><code class="language-css">.gmap {
@@ -414,7 +421,7 @@ title="A rectangle for where we will display the map."/></p>
 }
 </code></pre>
 <p>Use the class name <code>.gmap</code> for the container element.</p>
-<p>Add the following as <em>global</em> styles to the page:</p>
+<p>Add the following as <strong><em>global</em></strong> styles to the page:</p>
 <pre><code class="language-css">html,
 body {
   height: 100%;
@@ -488,8 +495,8 @@ document.body.append(fragment);
 &lt;script type=&quot;module&quot;&gt;
 const template = document.querySelector('#gmap-template');
 
-let nodes = document.importNode(template.content, true);
-document.body.append(nodes);
+let fragment = document.importNode(template.content, true);
+document.body.append(fragment);
 &lt;/script&gt;
 
 </code></pre>

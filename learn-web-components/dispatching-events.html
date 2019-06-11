@@ -174,7 +174,7 @@
            						">
 						<a class="page"
 							href="map-view.html"
-							title="Create a component to hold our Google map view.">
+							title="Create a component to hold our Google map view. This lesson carries over from the last and will use the same CodePen.">
 							Map View
 						</a>
 						
@@ -406,8 +406,17 @@ covering CanJS core libraries.">
 <p><img src="../static/img/web-components/bt-display-vehicle.gif"
 style="border: solid 1px black; max-width: 100%;"
 title="Selecting a marker displays the vehicle associated with that marker." /></p>
+<h2>How to Solve This Problem</h2>
+<ol>
+<li>Add the provided CSS to the <code>bus-tracker</code> template.</li>
+<li>Add the <code>#selected-vehicle</code> element to the bus-tracker's <code>footer</code>.</li>
+<li>Add an event listener for when a marker is selected which dispatches an event called <code>vehicle-selected</code>.</li>
+<li>Add an event listener in <code>bus-tracker</code> for the <code>vehicle-selected</code> event on the <code>google-map-view</code>.</li>
+<li>In the event listener set the <code>vehicle.des</code> in the <code>#selected-vehicle</code> element.</li>
+</ol>
 <h2>Technical Requirements</h2>
-<p>For displaying the selected vehicle use a <code>span</code> element and give it an <code>id</code> of <code>selected-vehicle</code>. It will have mostly the same styles as the selected route. You could use the same CSS but just modify it to work for both. For simplicity here's the full CSS needed:</p>
+<ul>
+<li><p>For displaying the selected vehicle use a <code>span</code> element and give it an <code>id</code> of <code>selected-vehicle</code>. It will have mostly the same styles as the selected route. You could use the same CSS but just modify it to work for both. For simplicity here's the full CSS needed:</p>
 <pre><code class="language-css">#selected-vehicle:not(.vehicle-selected) {
   display: none;
 }
@@ -430,13 +439,17 @@ title="Selecting a marker displays the vehicle associated with that marker." /><
   font-size: 14px;
   color: #ddd;
 }
-</code></pre>
-<p>Markers are not DOM elements and therefore don't have all of the same methods. To listen to events you use a slightly different mechanism:</p>
+</code></pre></li>
+<li><p>Markers are not DOM elements and therefore don't have all of the same methods. To listen to events you use a slightly different mechanism:</p>
 <pre><code class="language-js">marker.addListener('event-name', () =&gt; {
   // Do whatever
 });
 </code></pre>
-<p>Where <code>event-name</code> is the event you're interested in.</p>
+<p>Where <code>event-name</code> is the event you're interested in.</p></li>
+<li><p>Use this snippet for setting the the destination of the bus:</p>
+<pre><code class="language-html">&lt;small&gt;Vehicle:&lt;/small&gt; VEHICLE_DESTINATION
+</code></pre></li>
+</ul>
 <h2>What You Need to Know</h2>
 <ul>
 <li>Using <code>CustomEvent</code> to create new event types.</li>
@@ -824,10 +837,10 @@ class GoogleMapView extends HTMLElement {
 
   set vehicles(newVehicles) {
     this._vehicles = newVehicles;
-    if (Array.isArray(this.markers)) {
-      this.markers.forEach(marker =&gt; {
+    if (this.markers) {
+      for(let marker of this.markers) {
         marker.setMap(null);
-      });
+      }
       this.markers = null;
     }
     if (newVehicles) {

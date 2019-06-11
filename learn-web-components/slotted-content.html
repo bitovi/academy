@@ -174,7 +174,7 @@
            						">
 						<a class="page"
 							href="map-view.html"
-							title="Create a component to hold our Google map view.">
+							title="Create a component to hold our Google map view. This lesson carries over from the last and will use the same CodePen.">
 							Map View
 						</a>
 						
@@ -410,11 +410,22 @@ covering CanJS core libraries.">
 style="border: solid 1px black; max-width: 100%;"
 title="Header customized using slots." />
 </picture></p>
+<h2>How to Solve This Problem</h2>
+<ol>
+<li>Provide a slot for the custom header passed to <code>bus-tracker</code>.</li>
+<li>Use named slots to allow the <code>header</code> slot to be provided.</li>
+<li>Add custom styles to style the new header.</li>
+</ol>
 <h2>Technical Requirements</h2>
 <p>Use this markup as the header that is passed into the component:</p>
 <pre><code class="language-html">&lt;header&gt;
   &lt;h1&gt;My Bus Tracker!&lt;/h1&gt;
 &lt;/header&gt;
+</code></pre>
+<p>And use this CSS to style the header:</p>
+<pre><code>background: crimson;
+color: wheat;
+text-align: center;
 </code></pre>
 <h2>What You Need to Know</h2>
 <ul>
@@ -424,21 +435,55 @@ title="Header customized using slots." />
 <h3>Slots</h3>
 <p>The <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot">slot</a> has a curious effect when used within shadow DOM. It will take DOM within the custom element's children and <em>inject</em> (but not move) those nodes as children of itself.</p>
 <p>Default content can be specified by nesting DOM inside of the <code>&lt;slot&gt;</code> element.</p>
-<pre><code class="language-js">let el1 = document.createElement('div');
-el1.attachShadow({ mode: 'open' });
-el1.shadowRoot.innerHTML = `&lt;slot&gt;This is using &lt;strong&gt;default&lt;/strong&gt; content.&lt;/slot&gt;`;
+<pre><code class="language-html">&lt;template&gt;
+  &lt;slot&gt;This is using &lt;strong&gt;default&lt;/strong&gt; content.&lt;/slot&gt;
+&lt;/template&gt;
 
-let el2 = document.createElement('div');
-el2.attachShadow({ mode: 'open' });
+&lt;div id=&quot;one&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;two&quot;&gt;
+  This is using slotted content.
+&lt;/div&gt;
 
-el2.shadowRoot.innerHTML = `&lt;slot&gt;This is using &lt;strong&gt;default&lt;/strong&gt; content.&lt;/slot&gt;`;
-el2.innerHTML = `This is using slotted content.`;
+&lt;script type=&quot;module&quot;&gt;
+let template = document.querySelector('template');
 
-document.body.append(el1, el2);
+let one = document.querySelector('#one');
+one.attachShadow({ mode: 'open' });
+one.shadowRoot.append(document.importNode(template.content, true));
+
+let two = document.querySelector('#two');
+two.attachShadow({ mode: 'open' });
+two.shadowRoot.append(document.importNode(template.content, true));
+
+document.body.append(one, two);
+&lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
 <h3>Named slots</h3>
 <p><strong>Named</strong> slots are used when you want to take <em>some</em> of the children content, but not all of it. This is useful when you have multiple things to be customized. It works like <code>&lt;slot name=&quot;header&quot;&gt;</code>, with the children needing to add a <code>slot</code> attribute.  <code>&lt;header slot=&quot;header&quot;&gt;</code>.</p>
+<pre><code class="language-html">&lt;div class=&quot;my-thing&quot;&gt;
+  &lt;header slot=&quot;header&quot;&gt;
+    &lt;h1&gt;My Header&lt;/h1&gt;
+  &lt;/header&gt;
+&lt;/div&gt;
+
+&lt;template&gt;
+  &lt;slot name=&quot;header&quot;&gt;
+    &lt;header&gt;Default Header&lt;/header&gt;
+  &lt;/slot&gt;
+&lt;/template&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+let el = document.querySelector('.my-thing');
+el.attachShadow({ mode: 'open' });
+
+let template = document.querySelector('template');
+let frag = document.importNode(template.content, true);
+
+el.shadowRoot.append(frag);
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
 <h2>Solution</h2>
 <p>✏️ Wrap the <code>&lt;header&gt;</code> within the bus-tracker component with a <code>&lt;slot name=&quot;header&quot;&gt;</code>. This will completely replace the header if a child element provides the <code>slot=&quot;header&quot;</code> attribute value.</p>
 <pre><code class="language-html">&lt;style&gt;
@@ -680,10 +725,10 @@ class GoogleMapView extends HTMLElement {
 
   set vehicles(newVehicles) {
     this._vehicles = newVehicles;
-    if (Array.isArray(this.markers)) {
-      this.markers.forEach(marker =&gt; {
+    if (this.markers) {
+      for(let marker of this.markers) {
         marker.setMap(null);
-      });
+      }
       this.markers = null;
     }
     if (newVehicles) {

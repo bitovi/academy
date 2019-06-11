@@ -174,7 +174,7 @@
            						">
 						<a class="page"
 							href="map-view.html"
-							title="Create a component to hold our Google map view.">
+							title="Create a component to hold our Google map view. This lesson carries over from the last and will use the same CodePen.">
 							Map View
 						</a>
 						
@@ -411,6 +411,13 @@ covering CanJS core libraries.">
 <p><img src="../static/img/web-components/bus-tracker-shell.png"
 style="border: solid 1px black; max-width: 100%;"
 title="The shell of our bus-tracker component showing a header and a Google map"/></p>
+<h2>How to Solve This Problem</h2>
+<ol>
+<li>Create a template that contains the styles and markup for this new element.</li>
+<li>Create a custom element called <code>bus-tracker</code>.</li>
+<li>Include the styles/markup in this element's <code>shadowRoot</code>.</li>
+<li>Place the <code>google-map-view</code> component within this new element's <code>footer</code>.</li>
+</ol>
 <h2>Technical Requirements</h2>
 <p>The styles for our <code>bus-tracker</code> component should be contained within Shadow DOM. The CSS needed for the rest of the guide is:</p>
 <pre><code class="language-css">:host {
@@ -583,6 +590,48 @@ p {
 <p>In our component we are using <code>display: flex</code> to give space to the header, route list, and Google map.</p>
 <h3>Nesting components</h3>
 <p>Any component defined using <code>customElements.define()</code> can be used within another element's <code>shadowRoot</code> just as they can inside of the page's HTML. To add the <code>google-map-view</code> to this new component, place the tag within the footer.</p>
+<pre><code class="language-html">&lt;parent-element&gt;&lt;/parent-element&gt;
+
+&lt;template id=&quot;child-template&quot;&gt;
+  &lt;h2&gt;I am the child&lt;/h2&gt;
+&lt;/template&gt;
+
+&lt;template id=&quot;parent-template&quot;&gt;
+  &lt;h1&gt;I am the parent&lt;/h1&gt;
+  &lt;child-element&gt;&lt;/child-element&gt;
+&lt;/template&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+class ChildElement extends HTMLElement {
+  constructor() {
+    super();
+
+    let template = document.querySelector('#child-template');
+    let fragment = document.importNode(template.content, true);
+
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.append(fragment);
+  }
+}
+
+customElements.define('child-element', ChildElement);
+
+class ParentElement extends HTMLElement {
+  constructor() {
+    super();
+
+    let template = document.querySelector('#parent-template');
+    let fragment = document.importNode(template.content, true);
+
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.append(fragment);
+  }
+}
+
+customElements.define('parent-element', ParentElement);
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
 <h2>Solution</h2>
 <p>✏️ Create a new component called <code>bus-tracker</code>. Use the CSS and markup provided and place them in a <code>&lt;template&gt;</code> with the id of <code>#bt-template</code>. Create a shadowRoot for this element and append a clone of the template.</p>
 <pre><code class="language-html">&lt;style&gt;

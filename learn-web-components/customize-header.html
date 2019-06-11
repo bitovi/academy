@@ -174,7 +174,7 @@
            						">
 						<a class="page"
 							href="map-view.html"
-							title="Create a component to hold our Google map view.">
+							title="Create a component to hold our Google map view. This lesson carries over from the last and will use the same CodePen.">
 							Map View
 						</a>
 						
@@ -410,6 +410,11 @@ covering CanJS core libraries.">
 style="border: solid 1px black; max-width: 100%;"
 title="Custom header styles applied to our element." />
 </picture></p>
+<h2>How to Solve This Problem</h2>
+<ol>
+<li>Style the <code>bus-tracker</code> using custom properties in the global CSS.</li>
+<li>Change the <code>bus-tracker</code> component's own CSS to use those properties in the <code>header</code> and <code>header h1</code> elements.</li>
+</ol>
 <h2>Technical Requirements</h2>
 <p>Use the following CSS property names and values:</p>
 <ul>
@@ -675,10 +680,10 @@ class GoogleMapView extends HTMLElement {
 
   set vehicles(newVehicles) {
     this._vehicles = newVehicles;
-    if (Array.isArray(this.markers)) {
-      this.markers.forEach(marker =&gt; {
+    if (this.markers) {
+      for(let marker of this.markers) {
         marker.setMap(null);
-      });
+      }
       this.markers = null;
     }
     if (newVehicles) {

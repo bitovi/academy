@@ -174,7 +174,7 @@
            						">
 						<a class="page"
 							href="map-view.html"
-							title="Create a component to hold our Google map view.">
+							title="Create a component to hold our Google map view. This lesson carries over from the last and will use the same CodePen.">
 							Map View
 						</a>
 						
@@ -409,6 +409,12 @@ covering CanJS core libraries.">
 <p><img src="../static/img/web-components/bt-display-markers.gif"
 style="border: solid 1px black; max-width: 100%;"
 title="Markers being displayed when a route is selected." /></p>
+<h2>How to Solve This Problem</h2>
+<ol>
+<li>Update the <code>bus-tracker</code> component to pass the vehicles list to the <code>google-map-view</code> via the <code>vehicles</code> property.</li>
+<li>Add a getter/setter pair on the <code>google-map-view</code> to handle <code>.vehicles</code>. When set it should use the Marker snippet (below) to create a new marker for <em>each</em> vehicle.</li>
+<li>When a route is selected and markers are already displayed for a previous route, remove the previous markers.</li>
+</ol>
 <h2>Technical Requirements</h2>
 <p>To create a new marker use <code>new google.maps.Marker</code>. This takes an object with some options that look like this:</p>
 <pre><code class="language-js">new google.maps.Marker({
@@ -420,6 +426,9 @@ title="Markers being displayed when a route is selected." /></p>
 });
 </code></pre>
 <p>In this case <code>map</code> is the thing we created in a previous exercise by calling <code>new google.maps.Map</code>.</p>
+<p>Additionally this snippet can be used to remove a marker:</p>
+<pre><code class="language-js">marker.setMap(null);
+</code></pre>
 <h2>What You Need to Know</h2>
 <ul>
 <li>How to use JavaScript getters and setters to handle dynamic property values.</li>
@@ -428,16 +437,60 @@ title="Markers being displayed when a route is selected." /></p>
 <h3>getters/setters</h3>
 <p>JavaScript <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set">setters</a> allow observation of property changes. Adding a setter for <code>vehicles</code> provides a hook for when the <code>&lt;bus-tracker&gt;</code> component passes the array of vehicles for the selected route.</p>
 <p>In order to reflect back the list of vehicles in a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get">getter</a> you can save the vehicle list to another property on the element (like an underscore property). It's common when a setter exists that a getter does as well.</p>
+<p>This is an example of a getter/setter pair in a JavaScript class.</p>
 <pre><code class="language-js">class Person {
   set age(val) {
+    console.log('Setting age');
     this._age = val;
   }
 
   get age() {
+    console.log('Getting age');
     return this._age;
   }
 }
+
+let kid = new Person();
+kid.age = 4;
+
+console.log(kid.age);
 </code></pre>
+<div class='codepen'></div>
+<p>We can use getters/setters within custom element classes as well.</p>
+<pre><code class="language-html">&lt;my-counter&gt;&lt;/my-counter&gt;
+
+&lt;script type=&quot;module&quot;&gt;
+class CounterElement extends HTMLElement {
+  constructor() {
+    super();
+    this._count = 0;
+    this.render();
+  }
+
+  render() {
+    this.innerHTML = `Count: ${this.count}`;
+  }
+
+  get count() {
+    return this._count;
+  }
+
+  set count(value) {
+    this._count = value;
+    this.render();
+  }
+}
+
+customElements.define('my-counter', CounterElement);
+
+let counter = document.querySelector('my-counter');
+
+setTimeout(() =&gt; counter.count++, 5000);
+setTimeout(() =&gt; counter.count = 15, 10000);
+setTimeout(() =&gt; counter.count--, 15000);
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
 <h3>Default values</h3>
 <p>Most properties supported by builtin elements have some sort of default value. For example the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress">&lt;progress&gt;</a> element has a <code>max</code> property that defaults to <code>1</code>: <code>document.createElement('progress').max; // 1</code>. <strong>All</strong> elements have an <code>onclick</code> property whose default value is <code>null</code>. It's good practice to provide default values for your supported public properties, and these can be set in the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor">constructor</a>. Combining getters, setters and default values for properties makes your component more robust.</p>
 <pre><code class="language-js">class DogElement extends HTMLElement {
@@ -679,10 +732,10 @@ class GoogleMapView extends HTMLElement {
 
   set vehicles(newVehicles) {
     this._vehicles = newVehicles;
-    if (Array.isArray(this.markers)) {
-      this.markers.forEach(marker =&gt; {
+    if (this.markers) {
+      for(let marker of this.markers) {
         marker.setMap(null);
-      });
+      }
       this.markers = null;
     }
     if (newVehicles) {

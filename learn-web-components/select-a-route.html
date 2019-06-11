@@ -174,7 +174,7 @@
            						">
 						<a class="page"
 							href="map-view.html"
-							title="Create a component to hold our Google map view.">
+							title="Create a component to hold our Google map view. This lesson carries over from the last and will use the same CodePen.">
 							Map View
 						</a>
 						
@@ -409,6 +409,19 @@ covering CanJS core libraries.">
 <p><img src="../static/img/web-components/bt-selecting-route.gif"
 style="border: solid 1px black; max-width: 100%;"
 title="Selecting a route from the list and noticing that the item is highlighted as active and the route number and name is shown in an overlay on top of the map." /></p>
+<h2>How to Solve This Problem</h2>
+<ol>
+<li>Add a <code>click</code> event listener on the <code>button</code> within each route <code>li</code>.</li>
+<li>Create a method that will be called within the listener that receives the <code>route</code> object and the <code>li</code>.</li>
+<li>Create another method, this time an async method, that fetches the vehicles for the given <code>route</code>.
+<ol>
+<li>Add the route name and number to the <code>#selected-route</code> button.</li>
+<li>If there is an error also append the error message snippet to that same button.</li>
+<li><code>console.log</code> the list of vehicles. We will use them in the next section.</li>
+<li>Add the <code>route-selected</code> class to the <code>#selected-route</code> button once you have the vehicles.</li>
+</ol></li>
+<li>Add the <code>active</code> class to the route's <code>li</code>. If there is already an active route, remove the <code>active</code> class from that <code>li</code>.</li>
+</ol>
 <h2>Technical Requirements</h2>
 <h3>Selected route button</h3>
 <p>This HTML can be used to display the route name and number. It should be a child of the <code>#selected-route</code> button.</p>
@@ -748,7 +761,7 @@ customElements.define(&quot;bus-tracker&quot;, BusTracker);
 &lt;/script&gt;
 
 </code></pre>
-<div line-highlight='169-173,227,238,266-294,only'></div>
+<div line-highlight='169-173,227,238,256-258,266-294,only'></div>
 <div class='codepen'></div>
 
 </section>
