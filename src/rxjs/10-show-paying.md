@@ -92,12 +92,12 @@ observables and then _flatten_ that observable with `mergeAll`.
   const first = sequentially(["A", "B"], 0, 1000);
   const second = sequentially(["x", "y"], 500, 1000);
 
-  // first:   ---A---BX
-  // second:  -----x---y_X
-  const letters = concat(first, last);
+  // first:   -A---BX
+  // second:  ---x---y_X
+  const letters = concat(first, second);
 
   fullName.subscribe(console.log);
-  // letters: ---A---B-x---y
+  // letters: -A---B-x-yX
   </script>
   ```
   @codepen
@@ -208,12 +208,11 @@ observables and then _flatten_ that observable with `mergeAll`.
 
   const observables = of(numbers, letters)
   // observables: [1-2-3]-[a-b-c]X
-  // count: 1--2X
 
   const values = observables.pipe( mergeAll() );
 
   values.subscribe(console.log);
-  // numbers: 1-2-3-a-b-cX
+  // values: 1-2-3-a-b-cX
   </script>
   ```
   @codepen
@@ -222,7 +221,7 @@ observables and then _flatten_ that observable with `mergeAll`.
 - Read a value from an observable's last emitted value with the
   conditional operator (`?.`) like:
   ```html
-  {{ ( (paymentStatus | async)?.status }}
+  {{ (paymentStatus | async)?.status }}
   ```
 - Use the ternary operator (` condition ? truthy : falsy`) in Angular like:
   ```html
