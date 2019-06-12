@@ -490,12 +490,12 @@ function sequentially(value, dueTime, period){
 const first = sequentially([&quot;A&quot;, &quot;B&quot;], 0, 1000);
 const second = sequentially([&quot;x&quot;, &quot;y&quot;], 500, 1000);
 
-// first:   ---A---BX
-// second:  -----x---y_X
-const letters = concat(first, last);
+// first:   -A---BX
+// second:  ---x---y_X
+const letters = concat(first, second);
 
 fullName.subscribe(console.log);
-// letters: ---A---B-x---y
+// letters: -A---B-x-yX
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
@@ -601,19 +601,18 @@ const letters = of(&quot;a&quot;,&quot;b&quot;,&quot;c&quot;);
 
 const observables = of(numbers, letters)
 // observables: [1-2-3]-[a-b-c]X
-// count: 1--2X
 
 const values = observables.pipe( mergeAll() );
 
 values.subscribe(console.log);
-// numbers: 1-2-3-a-b-cX
+// values: 1-2-3-a-b-cX
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='13'></div></li>
 <li><p>Read a value from an observable's last emitted value with the
 conditional operator (<code>?.</code>) like:</p>
-<pre><code class="language-html">{{ ( (paymentStatus | async)?.status }}
+<pre><code class="language-html">{{ (paymentStatus | async)?.status }}
 </code></pre></li>
 <li><p>Use the ternary operator (<code>condition ? truthy : falsy</code>) in Angular like:</p>
 <pre><code class="language-html">{{ status === &quot;pending&quot; ? &quot;Paying&quot; : &quot;Pay&quot; }}
