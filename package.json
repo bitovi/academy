@@ -69,7 +69,8 @@
       ]
     ],
     "showdown": {
-      "tasklists": true
+      "tasklists": true,
+      "disableForced4SpacesIndentedSublists": true
     }
   },
   "dependencies": {
