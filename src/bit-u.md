@@ -439,6 +439,23 @@ a.quote-link:hover{
           <a href="./learn-to-debug-javascript.html" class="button button-grey full-width">Take this course</a>
       </div>
     </div>
+    <div class="courses">
+      <div class="academy-card course">
+          <div class="course-logo">
+            <img src="./static/img/javascript.png" height="70">
+          </div>
+          <h4>Web Components</h4>
+          <p>Build a bus tracker component that can be used anywhere with web components. Learn the core APIs.</p>
+          <div class="width100">
+            <p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
+            <p class='detail'><strong>Goal:</strong> Understand the web component APIs at the lowest level.</p>
+            <p class='detail'><strong>Time:</strong> 8 hours</p>
+          </div>
+          <a href="./learn-web-components.html" class="button button-grey full-width">Take this course</a>
+      </div>
+      <div class="academy-card course" style="background: transparent; border: none;">&nbsp;</div>
+      <div class="academy-card course" style="background: transparent; border: none;">&nbsp;</div>
+    </div>
   </div>
   <a name="live-events-section"></a>
   <div class="academy-section live-events">
