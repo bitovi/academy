@@ -1,5 +1,5 @@
 @page learn-technology-consulting/tools-and-technology Tools and Technology
-@parent learn-technology-consulting 6
+@parent learn-technology-consulting 7
 
 @description Learn the tools and technology commonly used within a project.
 

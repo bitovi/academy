@@ -126,7 +126,7 @@ Once completed, the Director should perform the following:
 
 
 - [ ] Email introduction of the Director (sales team)
-- [ ] Confirm receipt of executed contract (COO)
+- [ ] Confirm receipt of executed contract (Accounts Receivable)
 - [ ] Set up management kickoff meeting with client managers and Team Lead (Director). Agenda should include:
    - [ ] Director and Team Lead introduction/explanation of roles
    - [ ] Bitovi policy review
