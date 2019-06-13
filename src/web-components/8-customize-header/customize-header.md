@@ -16,13 +16,9 @@ We want the users of our component to be able to customize the styling. For exam
 
 Open up the styling for this component by providing supported CSS custom properties. In the end a custom header should look something like this:
 
-<picture>
-  <source srcset="../static/img/web-components/bt-header-styles.webp" type="image/webp">
-  <source srcset="../static/img/web-components/bt-header-styles.png" type="image/png">
-  <img src="../static/img/web-components/bt-header-styles.png"
-    style="border: solid 1px black; max-width: 100%;"
-    title="Custom header styles applied to our element." />
-</picture>
+<img src="../static/img/web-components/bt-header-styles.jpg"
+  style="border: solid 1px black; max-width: 100%;"
+  title="Custom header styles applied to our element." />
 
 ## How to Solve This Problem
 
