@@ -1,4 +1,4 @@
-@page learn-technology-consulting/transition-sales-to-delivery Transition sales to delivery
+@page learn-technology-consulting/transitioning-to-delivery Transitioning to Delivery
 @parent learn-technology-consulting 5
 
 @description Learn how to successfully transition a project from the sales team to

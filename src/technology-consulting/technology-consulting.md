@@ -12,13 +12,23 @@ consulting. This guide is for:
 
 - Bitovi consultants to know how to manage each part of an application's lifecycle.
 - Bitovi clients and customers to understand how we operate.
+- Folks who want to learn how to perform technology consulting.
 
 This training walks through:
+
+- [learn-technology-consulting/transitioning-to-delivery] - How to take on
+  a new project while the Sales team is in the process of closing the project.
+- [learn-technology-consulting/product-management] - How to manage a project
+  towards adding value.
+- [learn-technology-consulting/tools-and-technology] - The recommended tools and
+  technology used by Bitovi.
+- [learn-technology-consulting/communication] - Effective communication techniques.
+
+Other:
 
 - Goals
 - Roles and Responsibilities
 - Sales process
-- Transitioning to delivery
 - Starting a project
 - Managing a project
 - Ending a project
