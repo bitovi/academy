@@ -65,6 +65,18 @@ When bureaucratic red tape stands in the way of progress, don’t take no for an
 
 Using humor in situations where you’re feeling frustrated and incredulous is often an effective way to get what you want while not making people hate you.
 
+### Use Non-verbal Communication
+
+> TODO: Kyle, I'm just stubbing this out.
+
+- Casual smile, firm handshake (hand hugs!)
+- Dress nice, memorable, and variable.
+
+
+A lot is communicated without speaking.
+
+
+
 ## Setting Expectations
 
 ```

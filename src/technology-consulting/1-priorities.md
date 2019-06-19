@@ -11,23 +11,23 @@ There's __a lot__ that goes into building, marketing, and selling a successful
 technology product. Understanding the relative priorities of these activities
 can:
 
-- Help get an entire team focusing on the most productive ways of adding value.
+- Focus your team on the most productive ways of adding value.
 - Help teams in one area appreciate the efforts of other teams.
 
-With that said, the following are the most important activities to get right:
+With that said, the following are the most important activities to get right (listed in order):
 
 1. Goals - Everyone should know what they are trying to accomplish.
 2. Product Management - Processes add value to customers and work towards successful outcomes.
 3. UX / Design - A user experience designed
    to add value for customers.
-4. Tools and Technology - Tools support
+4. Tools and Technology - Tools that support
    efficient delivery of the above goals.
 
-While it might seem counter intuitive
+While it might seem counterintuitive
 that technology is the least important part of
 technology delivery, the truth is, __technology is the least important aspect of technology delivery__.
 
-How can this be? You might build a error free,
+How can this be? You might build a error-free,
 highly performant, extremely maintainable (flexible) application quickly, but consider what happens
 to that application if the app:
 
@@ -37,7 +37,7 @@ to that application if the app:
   be unable to respond to feedback and quickly iterate.
   The product won't improve and eventually fail.
 - has __misunderstood goals__ - Progress will be chaotic,
-  as team members work on their own goals.
+  as team members work toward their own purposes.
 - has the __wrong goals__ - Sometimes the product doesn't
   fit the market. No amount of technology changes that.
 
@@ -56,3 +56,32 @@ In short:
 
 - A short time to delivery most strongly indicated success.
 - It reaffirms the priorities listed above.
+
+
+## Take Action
+
+If your product doesn't have:
+
+- clear goals that create customer value
+- product management organized toward creating customer value
+- design and development tools and technology that
+  rapidly create customer value
+
+Then start working today to change this! Being on successful
+projects is _sublime_.
+
+__"But wait!"__, you say, __"Easier said than done."__
+
+There are likely many obstacles to change:
+
+- You don't have the authority to create change. You aren't the CEO,
+  partner, product owner, etc.
+- You don't have the information to recommend changes.
+- The culture isn't conducive to change and/or questioning authority.
+
+Change is hard. However, this guide includes
+strategies for working through these obstacles. If these challenges
+seem daunting, the first place
+to start is the [learn-technology-consulting/communication]
+guide. Effective communication is the foundation towards working through
+working through these sort of obstacles.

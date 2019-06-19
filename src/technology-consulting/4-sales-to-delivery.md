@@ -1,5 +1,5 @@
 @page learn-technology-consulting/transitioning-to-delivery Transitioning to Delivery
-@parent learn-technology-consulting 5
+@parent learn-technology-consulting 4
 
 @description Learn how to successfully transition a project from the sales team to
 the delivery team.
@@ -8,7 +8,7 @@ the delivery team.
 
 ## Overview
 
-For most projects, the people who will sell the work are not the same people
+For most projects, the people who sell the work are not the same people
 who perform the work. A successful transition from the sales team to the delivery team
 is _critically_ important to ensuring project success. This guide walks through
 how to have an effective and efficient transition process leaves no surprises for the future.

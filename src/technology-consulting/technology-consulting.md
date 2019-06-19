@@ -11,13 +11,16 @@ This guide goes through Bitovi's process for performing technology
 consulting. This guide is for:
 
 - Bitovi consultants to know how to manage each part of an application's lifecycle.
-- Bitovi clients and customers to understand how we operate.
-- Folks who want to learn how to perform technology consulting.
+- Bitovi clients looking to understand how we operate.
+- Bitovi community members wanting to learn technology consulting.
 
 This training walks through:
 
+- [learn-technology-consulting/prioritizing] - What activities are the most influential to success.
 - [learn-technology-consulting/transitioning-to-delivery] - How to take on
-  a new project while the Sales team is in the process of closing the project.
+  a new project while a sales team is in the process of closing the project.
+- [learn-technology-consulting/goals] - How to establish clear goals that
+  are well understood by your team.
 - [learn-technology-consulting/product-management] - How to manage a project
   towards adding value.
 - [learn-technology-consulting/tools-and-technology] - The recommended tools and
@@ -26,9 +29,5 @@ This training walks through:
 
 Other:
 
-- Goals
-- Roles and Responsibilities
 - Sales process
-- Starting a project
-- Managing a project
 - Ending a project
