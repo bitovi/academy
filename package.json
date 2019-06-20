@@ -6,7 +6,8 @@
   "scripts": {
     "document": "bit-docs -d",
     "document-build": "bit-docs -df",
-    "publish": "npm run document-build && node scripts/hubspot-publish/"
+    "publish": "npm run document-build && node scripts/hubspot-publish/",
+    "steps-angular": "guide src/angular/steps.js --local"
   },
   "repository": {
     "type": "git",
@@ -72,6 +73,8 @@
   "dependencies": {
     "@bitovi/snapshot-test": "<2.0.0",
     "can-define-lazy-value": "^1.1.0",
+    "fs-extra": "^8.0.1",
+    "guide-automation": "^0.3.11",
     "steal": "^2.2.0"
   }
 }
