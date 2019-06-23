@@ -25,7 +25,10 @@ This training walks through:
   towards adding value.
 - [learn-technology-consulting/tools-and-technology] - The recommended tools and
   technology used by Bitovi.
-- [learn-technology-consulting/communication] - Effective communication techniques.
+- Influence and Networking
+    - [learn-technology-consulting/building-rapport]
+    - [learn-technology-consulting/setting-expectations]
+    - [learn-technology-consulting/communication]
 
 Other:
 

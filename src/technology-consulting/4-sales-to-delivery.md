@@ -34,8 +34,7 @@ due diligence.
 ## Checklist
 
 - [ ] Create and fill out the [App Summary document](#appsummarydocument)
-- [ ] Share the App Summary document with the client
-- [ ] Share [Consultancy Policies document](#consultancypoliciesdocument) with the client
+- [ ] Share the App Summary and [Consultancy Policies](#consultancypoliciesdocument) documents with the client
 - [ ] Share the App Summary document with the delivery team
 - [ ] Create a SOW
 - [ ] Review the SOW with the delivery team
@@ -43,9 +42,8 @@ due diligence.
 - [ ] Share the SOW with Accounts Receivable
   - [ ] Time tracking is setup
   - [ ] Billing processes are in place
-- [ ] Internal [sales and delivery kickoff meeting](#salesanddeliverykickoffmeeting).  
-- [ ] External [delivery and sales kickoff meeting](#deliveryandclientkickoffmeeting).
-
+- [ ] Hold an [internal kickoff meeting](#internalkickoffmeeting).  
+- [ ] Hold an [external kickoff meeting](#clientkickoffmeeting).
 
 ## App Summary document
 
@@ -63,7 +61,6 @@ Begin the process right away by creating a copy of the [App Summary](https://doc
 Begin filling this out right away with the client. This document also needs to be
 shared with the delivery team.
 
-
 > __PRO TIP__: Fill out this document with the client. Share
 > your screen as you fill it out. Sharing your notes as you take
 > them is a great way to pace a conversation and ensure
@@ -71,15 +68,12 @@ shared with the delivery team.
 
 __TODO: Create a filled out example__
 
-
-
 ## Consultancy Policies document
 
-We have a [Bitovi Policies](https://docs.google.com/document/d/e/2PACX-1vSUcxXideVUG8AgA-Zsmx9sA2knaawPyDENds4orhD98xrFBoexDwHo0yCiYYdTcJ5dOqpM51_qg9gV/pub) document that outlines our policies like PTO and general workplace expectations. This can be shared with the client or the important parts clearly communicated.
+We have a [Consultancy Policies](https://docs.google.com/document/d/e/2PACX-1vSUcxXideVUG8AgA-Zsmx9sA2knaawPyDENds4orhD98xrFBoexDwHo0yCiYYdTcJ5dOqpM51_qg9gV/pub) document that outlines our policies like PTO and general workplace expectations. This can be shared with the client or the important parts clearly communicated.
 
 <iframe src="https://docs.google.com/document/d/e/2PACX-1vSUcxXideVUG8AgA-Zsmx9sA2knaawPyDENds4orhD98xrFBoexDwHo0yCiYYdTcJ5dOqpM51_qg9gV/pub?embedded=true"
  style="width: 640px; height: 300px"></iframe>
-
 
 ## Statement of Work
 
@@ -90,17 +84,16 @@ following is a template of a consulting agreement:
 
 While it would be nice if agreements could be signed with a handshake instead of a legal document,
 legal documents should be designed to both parties in the event of disagreement. Thus it is __critical__
-that these documents be reviewed by delivery before signing. The _detail of service_ section should also be reviewed with the client during the [Delivery and Client kickoff meeting](#deliveryandclientkickoffmeeting)
+that these documents be reviewed by delivery before signing. The _detail of service_ section should also be reviewed with the client during the [Client kickoff meeting](#clientkickoffmeeting)
 
-
-## Sales and Delivery Kickoff Meeting
+## Internal Kickoff Meeting
 
 After the Statement of Work (SOW) or contract has been signed, an internal
-kickoff meeting with the sales and delivery team should be scheduled. The goal of this meeting
-is to:
+kickoff meeting with the sales and delivery team should be scheduled. The goals of this meeting
+are to:
 
 - Ensure the delivery team is fully able to take on the new project
-- Prepare the delivery team for the external [Delivery and Client kickoff meeting](#deliveryandclientkickoffmeeting).
+- Prepare the delivery team for the external [client kickoff meeting](#clientkickoffmeeting).
 
 The sales team should ensure:
 
@@ -115,31 +108,26 @@ Once completed, the Director should perform the following:
 - [ ] Send Accounts Receivable names of new team members to add to Freshbooks project.
 - [ ] Schedule an internal kickoff meeting between the sales team, Director, Team Lead, and the team, which should cover:
    - [ ] Project and people introduction (sales team)
-   - [ ] Review Bitovi policies and client wiki (Director)
+   - [ ] Review Consultancy Colicies and App Summary (Director)
    - [ ] Travel needs/availability (Director)
    - [ ] Plans for external kickoff (Director)
-- [ ] Schedule [inside sales strategy meeting](https://github.com/bitovi/bitovi/issues/266) for 3 months from kickoff, recurring every 6 months
+- [ ] Schedule inside sales strategy meetings for 3 months from kickoff, recurring every 6 months
 
-
-## Delivery and Client Kickoff Meeting
-
-
+## Client Kickoff Meeting
 
 - [ ] Email introduction of the Director (sales team)
 - [ ] Confirm receipt of executed contract (Accounts Receivable)
 - [ ] Set up management kickoff meeting with client managers and Team Lead (Director). Agenda should include:
    - [ ] Director and Team Lead introduction/explanation of roles
-   - [ ] Bitovi policy review
-   - [ ] External wiki review
-   - [ ] Bitovi success checklist review
+   - [ ] Consultancy Policy review
+   - [ ] App Summary review
    - [ ] Set up checkin meetings
    - [ ] Determine if any specific training/orientation is needed by the team
    - [ ] Document how time off should be recorded
 - [ ] Set up team introduction meeting (Director). Agenda should include:
-   - [ ] Bitovi and client team member introduction
-   - [ ] [Development methodology](./managing-projects/development-methodology.md)
-   - [ ] [Versioning and environment workflow](./managing-projects/versioning-and-environment.md)
-   - [ ] [Communication Tools](./managing-projects/communication-tools.md)
-- [ ] Share Bitovi policies, external wiki, success checklist, and shared team/PTO calendar with client (Director)
-- [ ] Hold kickoff meetings and document outcomes in the internal/external wiki (Director)
-- [ ] Notify the Open Source Community Manager of the new project (Director)
+   - [ ] Team member introduction
+   - [ ] Development methodology
+   - [ ] Versioning and environment workflow
+   - [ ] Communication tools
+- [ ] Share Consultancy Policies, App Summary, success checklist, and shared team/PTO calendar with client (Director)
+- [ ] Hold kickoff meetings and document outcomes in the App Summary (Director)
