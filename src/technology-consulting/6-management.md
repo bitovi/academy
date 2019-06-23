@@ -22,8 +22,71 @@ After reading this article, you should be able to :
 This article is __not__ an attempt to provide a detailed training on
 any management philosophy.
 
+This article will introduce:
+
+- Some popular popular software development methodologies.
+- Some popular prioritizing frameworks.
+- Some common roles and responsibilities within organizations
+  and those methodologies.
+
+## Terms
+
+- Continuous delivery
+- Continuous deployment
+- Time Pointing
+
+## Development methodologies
 
 
+
+
+## Scrum
+
+Summary:
+
+- Work organized in sprints (~2-6 weeks)
+
+Guides:
+
+
+- [Atlassian](https://www.atlassian.com/agile/scrum)
+- [Scrum Guide](https://www.scrumguides.org/scrum-guide.html)
+
+## Kanban
+
+Summary:
+
+- Task board where any engineer can take a job
+  and complete it.
+- Continuous delivery
+
+Guides:
+
+- [Atlassian](https://www.atlassian.com/agile/kanban)
+
+## Extreme Programming
+
+- [Extreme Programming](http://www.extremeprogramming.org/)
+
+[Compared to Scrum](https://www.mountaingoatsoftware.com/blog/differences-between-scrum-and-extreme-programming):
+
+- Allows changes in sprints.
+- Work in strict priority order.
+- Prescribes engineering practices (TDD, automation, pair programming)
+
+## Bitovi Framework
+
+- 2 week sprints (Agile).
+- 6 week measuring, reporting, and analysis cycle.
+
+## Other Frameworks
+
+- [Scaled Agile Framework](https://www.scaledagileframework.com/) (aka SAFe)
+  - [WikiPedia](https://en.wikipedia.org/wiki/Scaled_agile_framework)
+
+## DevOps
+
+## Roles and Responsibilities
 
 
 ## Product Management
@@ -55,32 +118,16 @@ Definitions:
 
 - [How it relates to devOps](https://www.atlassian.com/agile/devops)
 
+## Prioritization Techniques
 
-## Extreme Programming
+- [Rice](https://www.intercom.com/blog/rice-simple-prioritization-for-product-managers/) - `SCORE = Reach * Impact * Confidence / Effort`
+- [Kano Model](https://en.wikipedia.org/wiki/Kano_model) - Survey
+  users to find out what they like.
 
-- [Extreme Programming](http://www.extremeprogramming.org/)
+Source:
 
-[Compared to Scrum](https://www.mountaingoatsoftware.com/blog/differences-between-scrum-and-extreme-programming):
-
-- Allows changes in sprints.
-- Work in strict priority order.
-- Prescribes engineering practices (TDD, automation, pair programming)
-
-## Scrum
-
-- [Atlassian](https://www.atlassian.com/agile/scrum)
-- [Scrum Guide](https://www.scrumguides.org/scrum-guide.html)
-
-## Kanban
-
-- [Atlassian](https://www.atlassian.com/agile/kanban)
-
-## Other Frameworks
-
-- [Scaled Agile Framework](https://www.scaledagileframework.com/) (aka SAFe)
-  - [WikiPedia](https://en.wikipedia.org/wiki/Scaled_agile_framework)
-
-
+- [7 product prioritization frameworks for product managers](https://roadmunk.com/guides/product-prioritization-techniques-product-managers/)
+- [7 Strategies to Choose the Best Features for Your Product](https://www.productplan.com/strategies-prioritize-product-features/)
 
 ## Team Building
 
