@@ -17,25 +17,24 @@ const fileMatchRestaurant = /(restaurant)[.](component)/g;
 
 
 /**
- * Create Temporary Directory
+ * Set up the project
  */
+guide.step("Remove existing dependencies", function(){
 
+});
 
-
-guide.step("Create " + angularDir + " directory", function(){
+if(!checkPathExist( angularDir ) ) {
+    guide.step("Create " + angularDir + " directory", function(){
         return fs.mkdirs(angularDir).then(() => {
             console.log(`Congrats you created directory ${angularDir}.`);
             return guide.executeCommand("git", ["init"], {
                 cwd: process.cwd() + '/' + angularDir
             });
-
         }).catch((err) => {
             console.error(err);
         });
     });
-
-
-
+}
 
 
 /**
@@ -48,14 +47,28 @@ guide.step("Create " + angularDir + " directory", function(){
 
 // console.log(example( process.cwd() + '/' + angularDir + '/place-my-order'), 'done');
 
+var wait = function(){
+	var ms = 2000;
+	return guide.wait(ms);
+};
 
-// guide.step("Create a new angular workspace", function(){
-//     var init = guide.answerPrompts("ng", ["new", "place-my-order-2", "--prefix pmo", "yes", "less"], {
-//         cwd: process.cwd() + '/' + angularDir
-//     });
-//
-//     return init.promise;
-// });
+if(!checkPathExist( angularProjectAppDir ) ) {
+    guide.step("Create a new angular workspace", function(){
+
+        var init = guide.answerPrompts("ng", ["new", "place-my-order", "--prefix", "pmo"], {
+            cwd: process.cwd() + '/' + angularDir
+        });
+
+        var answer = init.answer;
+
+        answer(/Which stylesheet format would you like to use?/, "less\n");
+
+        console.log(answer);
+        return answer;
+
+
+    });
+}
 //
 // guide.step("Copy Files to " + angularDir + "/place-my-order", function(){
 //     // if the file name has app.component then dest -> temp/angular/place-my-order/src/app
@@ -129,7 +142,6 @@ guide.step("Create " + angularDir + " directory", function(){
 //          cwd: process.cwd() + '/' + angularDir + '/place-my-order'
 //      });
 //  });
-
 
 
 
