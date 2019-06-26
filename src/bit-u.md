@@ -42,6 +42,7 @@ and management in these free courses!
   justify-content: space-between;
   align-items: stretch;
   margin-bottom: 60px;
+  width: 100%;
 }
 .container .academy-section .courses:last-of-type{
   margin-bottom: 0;
