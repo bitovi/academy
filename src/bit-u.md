@@ -443,7 +443,7 @@ a.quote-link:hover{
     <div class="courses">
       <div class="academy-card course">
           <div class="course-logo">
-            <img src="./static/img/javascript.png" height="70">
+            <img src="./static/img/web-components.png" height="100">
           </div>
           <h4>Web Components</h4>
           <p>Build a bus tracker component that can be used anywhere with web components. Learn the core APIs.</p>
