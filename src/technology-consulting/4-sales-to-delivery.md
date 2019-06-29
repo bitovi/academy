@@ -33,17 +33,17 @@ due diligence.
 
 ## Checklist
 
-- [ ] Create and fill out the [App Summary document](#appsummarydocument)
-- [ ] Share the App Summary and [Consultancy Policies](#consultancypoliciesdocument) documents with the client
-- [ ] Share the App Summary document with the delivery team
-- [ ] Create a SOW
-- [ ] Review the SOW with the delivery team
-- [ ] Get a signed SOW by the client
-- [ ] Share the SOW with Accounts Receivable
-  - [ ] Time tracking is setup
-  - [ ] Billing processes are in place
-- [ ] Hold an [internal kickoff meeting](#internalkickoffmeeting).  
-- [ ] Hold an [external kickoff meeting](#clientkickoffmeeting).
+- <input type="checkbox"/> Create and fill out the [App Summary document](#appsummarydocument)
+- <input type="checkbox"/> Share the App Summary and [Consultancy Policies](#consultancypoliciesdocument) documents with the client
+- <input type="checkbox"/> Share the App Summary document with the delivery team
+- <input type="checkbox"/> Create a SOW
+- <input type="checkbox"/> Review the SOW with the delivery team
+- <input type="checkbox"/> Get a signed SOW by the client
+- <input type="checkbox"/> Share the SOW with Accounts Receivable
+  - <input type="checkbox"/> Time tracking is setup
+  - <input type="checkbox"/> Billing processes are in place
+- <input type="checkbox"/> Hold an [internal kickoff meeting](#internalkickoffmeeting).  
+- <input type="checkbox"/> Hold an [external kickoff meeting](#clientkickoffmeeting).
 
 ## App Summary document
 
@@ -97,37 +97,37 @@ are to:
 
 The sales team should ensure:
 
-- [ ] Ensure the Director of Delivery (herein: Director) is aware of the sale and staffing/technical/time requirements.
-- [ ] There is a signed Statement Of Work (SOW) or contract.
-- [ ] Accounts Receivable has received a copy of the signed SOW and client contact info to setup accounting.
+- <input type="checkbox"/> Ensure the Director of Delivery (herein: Director) is aware of the sale and staffing/technical/time requirements.
+- <input type="checkbox"/> There is a signed Statement Of Work (SOW) or contract.
+- <input type="checkbox"/> Accounts Receivable has received a copy of the signed SOW and client contact info to setup accounting.
 
 Once completed, the Director should perform the following:
 
-- [ ] Identify the Team Lead(s) and other team members assigned to the project.
-- [ ] Inform new team members of the project, role, and start date.
-- [ ] Send Accounts Receivable names of new team members to add to Freshbooks project.
-- [ ] Schedule an internal kickoff meeting between the sales team, Director, Team Lead, and the team, which should cover:
-   - [ ] Project and people introduction (sales team)
-   - [ ] Review Consultancy Colicies and App Summary (Director)
-   - [ ] Travel needs/availability (Director)
-   - [ ] Plans for external kickoff (Director)
-- [ ] Schedule inside sales strategy meetings for 3 months from kickoff, recurring every 6 months
+- <input type="checkbox"/> Identify the Team Lead(s) and other team members assigned to the project.
+- <input type="checkbox"/> Inform new team members of the project, role, and start date.
+- <input type="checkbox"/> Send Accounts Receivable names of new team members to add to Freshbooks project.
+- <input type="checkbox"/> Schedule an internal kickoff meeting between the sales team, Director, Team Lead, and the team, which should cover:
+   - <input type="checkbox"/> Project and people introduction (sales team)
+   - <input type="checkbox"/> Review Consultancy Colicies and App Summary (Director)
+   - <input type="checkbox"/> Travel needs/availability (Director)
+   - <input type="checkbox"/> Plans for external kickoff (Director)
+- <input type="checkbox"/> Schedule inside sales strategy meetings for 3 months from kickoff, recurring every 6 months
 
 ## Client Kickoff Meeting
 
-- [ ] Email introduction of the Director (sales team)
-- [ ] Confirm receipt of executed contract (Accounts Receivable)
-- [ ] Set up management kickoff meeting with client managers and Team Lead (Director). Agenda should include:
-   - [ ] Director and Team Lead introduction/explanation of roles
-   - [ ] Consultancy Policy review
-   - [ ] App Summary review
-   - [ ] Set up checkin meetings
-   - [ ] Determine if any specific training/orientation is needed by the team
-   - [ ] Document how time off should be recorded
-- [ ] Set up team introduction meeting (Director). Agenda should include:
-   - [ ] Team member introduction
-   - [ ] Development methodology
-   - [ ] Versioning and environment workflow
-   - [ ] Communication tools
-- [ ] Share Consultancy Policies, App Summary, success checklist, and shared team/PTO calendar with client (Director)
-- [ ] Hold kickoff meetings and document outcomes in the App Summary (Director)
+- <input type="checkbox"/> Email introduction of the Director (sales team)
+- <input type="checkbox"/> Confirm receipt of executed contract (Accounts Receivable)
+- <input type="checkbox"/> Set up management kickoff meeting with client managers and Team Lead (Director). Agenda should include:
+   - <input type="checkbox"/> Director and Team Lead introduction/explanation of roles
+   - <input type="checkbox"/> Consultancy Policy review
+   - <input type="checkbox"/> App Summary review
+   - <input type="checkbox"/> Set up checkin meetings
+   - <input type="checkbox"/> Determine if any specific training/orientation is needed by the team
+   - <input type="checkbox"/> Document how time off should be recorded
+- <input type="checkbox"/> Set up team introduction meeting (Director). Agenda should include:
+   - <input type="checkbox"/> Team member introduction
+   - <input type="checkbox"/> Development methodology
+   - <input type="checkbox"/> Versioning and environment workflow
+   - <input type="checkbox"/> Communication tools
+- <input type="checkbox"/> Share Consultancy Policies, App Summary, success checklist, and shared team/PTO calendar with client (Director)
+- <input type="checkbox"/> Hold kickoff meetings and document outcomes in the App Summary (Director)

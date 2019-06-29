@@ -76,6 +76,8 @@ Guides:
 
 ## Bitovi Framework
 
+Summary:
+
 - 2 week sprints (Agile).
 - 6 week measuring, reporting, and analysis cycle.
 

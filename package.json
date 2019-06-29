@@ -67,11 +67,7 @@
         "\"can/everything\"",
         "\"//unpkg.com/can@5/everything.mjs\""
       ]
-    ],
-    "showdown": {
-      "tasklists": true,
-      "disableForced4SpacesIndentedSublists": true
-    }
+    ]
   },
   "dependencies": {
     "@bitovi/snapshot-test": "<2.0.0",
