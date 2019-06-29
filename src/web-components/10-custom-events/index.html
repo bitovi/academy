@@ -260,10 +260,10 @@ class GoogleMapView extends HTMLElement {
 
   set vehicles(newVehicles) {
     this._vehicles = newVehicles;
-    if (Array.isArray(this.markers)) {
-      this.markers.forEach(marker => {
+    if (this.markers) {
+      for(let marker of this.markers) {
         marker.setMap(null);
-      });
+      }
       this.markers = null;
     }
     if (newVehicles) {

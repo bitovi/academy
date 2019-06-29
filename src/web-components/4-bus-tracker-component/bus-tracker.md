@@ -23,6 +23,13 @@ We want to build a component that displays the CTA bus tracker routes and displa
   style="border: solid 1px black; max-width: 100%;"
   title="The shell of our bus-tracker component showing a header and a Google map"/>
 
+## How to Solve This Problem
+
+1. Create a template that contains the styles and markup for this new element.
+1. Create a custom element called `bus-tracker`.
+1. Include the styles/markup in this element's `shadowRoot`.
+1. Place the `google-map-view` component within this new element's `footer`.
+
 ## Technical Requirements
 
 The styles for our `bus-tracker` component should be contained within Shadow DOM. The CSS needed for the rest of the guide is:
@@ -213,6 +220,50 @@ In our component we are using `display: flex` to give space to the header, route
 ### Nesting components
 
 Any component defined using `customElements.define()` can be used within another element's `shadowRoot` just as they can inside of the page's HTML. To add the `google-map-view` to this new component, place the tag within the footer.
+
+```html
+<parent-element></parent-element>
+
+<template id="child-template">
+  <h2>I am the child</h2>
+</template>
+
+<template id="parent-template">
+  <h1>I am the parent</h1>
+  <child-element></child-element>
+</template>
+
+<script type="module">
+class ChildElement extends HTMLElement {
+  constructor() {
+    super();
+
+    let template = document.querySelector('#child-template');
+    let fragment = document.importNode(template.content, true);
+
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.append(fragment);
+  }
+}
+
+customElements.define('child-element', ChildElement);
+
+class ParentElement extends HTMLElement {
+  constructor() {
+    super();
+
+    let template = document.querySelector('#parent-template');
+    let fragment = document.importNode(template.content, true);
+
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.append(fragment);
+  }
+}
+
+customElements.define('parent-element', ParentElement);
+</script>
+```
+@codepen
 
 ## Solution
 

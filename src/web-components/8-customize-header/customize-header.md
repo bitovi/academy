@@ -24,6 +24,11 @@ Open up the styling for this component by providing supported CSS custom propert
     title="Custom header styles applied to our element." />
 </picture>
 
+## How to Solve This Problem
+
+1. Style the `bus-tracker` using custom properties in the global CSS.
+1. Change the `bus-tracker` component's own CSS to use those properties in the `header` and `header h1` elements.
+
 ## Technical Requirements
 
 Use the following CSS property names and values:
