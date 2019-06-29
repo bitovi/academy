@@ -298,7 +298,7 @@ a.quote-link:hover{
     <a class="button button-large button-red" href="#courses-section">Browse our courses</a>
   </div>
   <div class="academy-section academy-logos">
-    <a href=""><img class="academy-course-logo" src="./static/img/javascript.png"></a>
+    <a href="./learn-advanced-javascript.html"><img class="academy-course-logo" src="./static/img/javascript.png"></a>
     <a href="./learn-angular.html"><img class="academy-course-logo" src="./static/img/angular.png"></a>
     <a href="./learn-dom-jquery.html"><img class="academy-course-logo" src="./static/img/jquery-logo.png"></a>
     <a href="./learn-rxjs.html"><img class="academy-course-logo" src="./static/img/rxjs.png"></a>
@@ -461,15 +461,59 @@ a.quote-link:hover{
                 </p>
               </div>
               <p class='event-body'></p>
-              <a class='event-url button button-grey full-width' target="_blank">Register for event</a>
+              <a class='event-url button button-grey full-width' target="\_blank">Register for event</a>
           </div>
         </template>
       </calendar-events>
   </div>
   <div class="academy-section academy-section--grey">
     <h3>Coming soon</h3>
+    <p>The following courses are under development.</p>
     <div class="courses">
-      <div class="academy-card">
+      <div class="academy-card course">
+          <div class="course-logo">
+            <img src="./static/img/web-components/web-components.png" height="70">
+          </div>
+          <h4>WebComponents</h4>
+          <p>Build a bus tracker app with WebComponents and Google Maps.</p>
+          <div class="width100">
+            <p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
+            <p class='detail'><strong>Goal:</strong> Learn to build apps with Web Components</p>
+            <p class='detail'><strong>Time:</strong> 6 hours</p>
+          </div>
+          <a href="./learn-web-components.html" class="button button-grey full-width">Take this course</a>
+      </div>
+      <div class="academy-card course">
+          <div class="course-logo">
+            <img src="./static/img/bitovi-logo-x2.png" height="70">
+          </div>
+          <h4>Technology Consulting</h4>
+          <p>Learn to perform aspects of technology consulting:
+          product management, communication, setting goals, etc.</p>
+          <div class="width100">
+            <p class='detail'><strong>Audience:</strong> Technology consultants or clients</p>
+            <p class='detail'><strong>Goal:</strong> Learn the basics of technology consulting</p>
+            <p class='detail'><strong>Time:</strong> 6 hours</p>
+          </div>
+          <a href="./learn-technology-consulting.html" class="button button-grey full-width">Take this course</a>
+      </div>
+      <div class="academy-card course">
+          <div class="course-logo">
+            <img src="./static/img/canjs.png" height="70">
+          </div>
+          <h4>CanJS</h4>
+          <p>Build the TodoMVC application with CanJS 6. Learn how
+             to create, update, and delete records.</p>
+          <div class="width100">
+            <p class='detail'><strong>Audience:</strong> Technology consultants or clients</p>
+            <p class='detail'><strong>Goal:</strong> Learn the basics of CanJS </p>
+            <p class='detail'><strong>Time:</strong> 6 hours</p>
+          </div>
+          <a href="./learn-canjs.html" class="button button-grey full-width">Take this course</a>
+      </div>
+    </div>
+    <div class="courses">
+      <div class="academy-card course">
         <div class="course-logo">
           <img src="./static/img/react.png" width="70">
         </div>
@@ -477,21 +521,21 @@ a.quote-link:hover{
         <p>Build a multipage, realtime ordering app with React.</p>
         <div class="button button-disabled full-width">Coming soon</div>
       </div>
-      <div class="academy-card">
+      <div class="academy-card course">
         <div class="course-logo">
           <img src="./static/img/javascript.png" width="60">
         </div>
         <h4>Your Course Here</h4>
         <p>Got an idea for a course? Let us know by submitting an issue.</p>
-        <a class="button full-width" href="https://github.com/bitovi/academy/issues/new" target="_blank">Submit your idea</a>
+        <a class="button full-width" style="color: white" href="https://github.com/bitovi/academy/issues/new" target="\_blank">Submit your idea</a>
       </div>
-      <div class="academy-card">
+      <div class="academy-card course">
         <div class="course-logo">
           <img src="./static/img/slack.png" width="150">
         </div>
         <h4>Need Help?</h4>
         <p>Reach out to our team via Slack. We can help answer any questions you have about our courses.</p>
-        <a class="button full-width" href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y" target="_blank">Chat with us on Slack</a>
+        <a class="button full-width" style="color: white" href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y" target="\_blank">Chat with us on Slack</a>
       </div>
     </div>
   </div>

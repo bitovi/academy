@@ -1,9 +1,17 @@
 @page learn-rxjs/disable-pay-button Disable pay button
 @parent learn-rxjs 8
 
-@description
+@description Learn how to combine the latest values of two
+RxJS observables with the combineLatest operator.
 
 @body
+
+
+## Video
+
+Who has time to read? This video covers the content on this page. Watch fullscreen.
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/pjJPwtfDykk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## The problem
 
@@ -15,6 +23,9 @@ In this section, we will:
 
 - Create a `this.isCardInvalid` property publishes `true` if
   either `this.cardError` `this.expiryError`, or `this.cvcError` are truthy.
+- Create an `isCardInvalid` that can be passed the
+  `this.cardError` `this.expiryError`, or `this.cvcError` observables
+  and returns the `this.isCardInvalid` observable.
 
 
 ## What you need to know
