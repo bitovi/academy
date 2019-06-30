@@ -292,6 +292,21 @@ covering CanJS core libraries.">
            						
            						">
 						<a class="page"
+							href="../learn-technology-consulting.html"
+							title="Learn how to perform technology consulting.">
+							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="../learn-angular.html"
 							title="Learn how to build a moderately complex application with Angular.">
 							Learn Angular
@@ -353,18 +368,13 @@ add(1, 'three');
 //Argument of type '&quot;foo&quot;' is not assignable to parameter of type 'number'.
 </code></pre>
 <p>We can also annotate what a function should return.</p>
-<pre><code class="language-typescript">interface Result {
-  success: boolean
-  error?: string
+<pre><code class="language-typescript">function returnNumber(): number {
+    return '1'
 }
+//Type '&quot;1&quot;' is not assignable to type 'number'.
 
-function logResponse(): Result {
-  return 'path not found'
-}
-//Type '&quot;path not found&quot;' is not assignable to type 'Result'.
-
-function logResponse(): Result {
-  return { success: false, error: 'path not found'}
+function returnNumber(): number {
+    return 1;
 }
 //works!
 </code></pre>
