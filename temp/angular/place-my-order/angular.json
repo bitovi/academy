@@ -8,7 +8,11 @@
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "pmo",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "less"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -20,10 +24,16 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              {
+                "glob": "**/*",
+                "input": "./node_modules/place-my-order-assets/images/",
+                "output": "./assets/images"
+              }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.less",
+              "./node_modules/place-my-order-assets/less/styles.less"
             ],
             "scripts": [],
             "es5BrowserSupport": true
@@ -80,7 +90,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.css"
+              "src/styles.less"
             ],
             "scripts": [],
             "assets": [
@@ -134,3 +144,4 @@
   },
   "defaultProject": "place-my-order"
 }
+        
