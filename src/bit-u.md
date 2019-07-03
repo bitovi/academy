@@ -490,19 +490,6 @@ a.quote-link:hover{
     <div class="courses">
       <div class="academy-card course">
           <div class="course-logo">
-            <img src="./static/img/web-components/web-components.png" height="70">
-          </div>
-          <h4>WebComponents</h4>
-          <p>Build a bus tracker app with WebComponents and Google Maps.</p>
-          <div class="width100">
-            <p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
-            <p class='detail'><strong>Goal:</strong> Learn to build apps with Web Components</p>
-            <p class='detail'><strong>Time:</strong> 6 hours</p>
-          </div>
-          <a href="./learn-web-components.html" class="button button-grey full-width">Take this course</a>
-      </div>
-      <div class="academy-card course">
-          <div class="course-logo">
             <img src="./static/img/bitovi-logo-x2.png" height="70">
           </div>
           <h4>Technology Consulting</h4>
@@ -529,8 +516,6 @@ a.quote-link:hover{
           </div>
           <a href="./learn-canjs.html" class="button button-grey full-width">Take this course</a>
       </div>
-    </div>
-    <div class="courses">
       <div class="academy-card course">
         <div class="course-logo">
           <img src="./static/img/react.png" width="70">
@@ -539,6 +524,8 @@ a.quote-link:hover{
         <p>Build a multipage, realtime ordering app with React.</p>
         <div class="button button-disabled full-width">Coming soon</div>
       </div>
+    </div>
+    <div class="courses">
       <div class="academy-card course">
         <div class="course-logo">
           <img src="./static/img/javascript.png" width="60">
@@ -555,6 +542,7 @@ a.quote-link:hover{
         <p>Reach out to our team via Slack. We can help answer any questions you have about our courses.</p>
         <a class="button full-width" style="color: white" href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y" target="\_blank">Chat with us on Slack</a>
       </div>
+      <div class="academy-card course" style="background: transparent; border: none;">&nbsp;</div>
     </div>
   </div>
 </div>
