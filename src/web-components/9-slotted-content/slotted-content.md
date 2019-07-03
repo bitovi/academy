@@ -12,7 +12,7 @@ In this part we will:
 
 ## Problem
 
-In the previous section we allowed the header to be styled with a few CSS properties. We could continue to add more custom properties so even more of the header could be customized. We could allow the user of our component to change the heading text by providing an attribute like `title="My Bus Tracker"`.
+In the previous section we allowed the header to be styled with a few CSS properties. We could continue to add more custom properties so even more of the header could be customized. For example, we could allow the user of our component to change the heading text by providing an attribute like `title="My Bus Tracker"`.
 
 An easier way to allow consumers of your component to have *complete* control is to use slots. In this part we want to allow the header to be replaced with a custom header. In the end it should look like:
 
@@ -23,7 +23,7 @@ An easier way to allow consumers of your component to have *complete* control is
 ## How to Solve This Problem
 
 1. Provide a slot for the custom header passed to `bus-tracker`.
-1. Use named slots to allow the `header` slot to be provided.
+1. Use named slots to allow the `header` slot to be provided by the user.
 1. Add custom styles to style the new header.
 
 ## Technical Requirements
@@ -117,3 +117,7 @@ el.shadowRoot.append(frag);
 @sourceref ./index.html
 @highlight 17-21,26-28,168-173,only
 @codepen
+
+<p style="font-weight: bold; text-align: center;">
+[learn-web-components/dispatching-events 👉 Dispatching events]
+</p>

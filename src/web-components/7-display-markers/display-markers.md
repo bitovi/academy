@@ -17,7 +17,7 @@ In this part we will:
 
 In the previous exercise we fetched a list of vehicles when a route is selected and logged them to the console. Now we want to instead pass those to the `google-map-view` element. The `google-map-view` element should add a marker for each vehicle.
 
-When an error occurs in the API it should wipe away in existing markers.
+When an error occurs in the API it should wipe away any existing markers.
 
 <img src="../static/img/web-components/bt-display-markers.gif"
   style="border: solid 1px black; max-width: 100%;"
@@ -148,3 +148,7 @@ class DogElement extends HTMLElement {
 @sourceref ./index.html
 @highlight 204-205,219-242,267,306,309,only
 @codepen
+
+<p style="font-weight: bold; text-align: center;">
+[learn-web-components/customize-header 👉 Customize header styles]
+</p>

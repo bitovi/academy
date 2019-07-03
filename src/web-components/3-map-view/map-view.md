@@ -46,7 +46,7 @@ new google.maps.Map(element, {
 });
 ```
 
-Where `element` is an element that the element the Google map will mount to.
+Where `element` is the element the Google map will mount to.
 
 ## What You Need to Know
 
@@ -143,3 +143,7 @@ document.body.append(el);
 @sourceref ./index.html
 @highlight 14-16,29-52,only
 @codepen
+
+<p style="font-weight: bold; text-align: center;">
+[learn-web-components/bus-tracker-component 👉 bus-tracker component]
+</p>

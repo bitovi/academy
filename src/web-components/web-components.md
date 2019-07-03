@@ -28,4 +28,6 @@ The end result of this training will be a [CTA Bus tracker](http://www.ctabustra
 
 <img width="746" alt="CTA bus tracker web component" src="https://user-images.githubusercontent.com/361671/58019488-a36c9080-7ad3-11e9-84cc-e60cced008af.png">
 
+<p style="font-weight: bold; text-align: center;">
 [learn-web-components/why-wc 👉 Why Web Components]
+</p>

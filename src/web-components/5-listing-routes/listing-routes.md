@@ -115,7 +115,7 @@ Usually you will use `.textContent` unless building a library where performance 
 
 ## Solution
 
-✏️ Use the markup provided above and create another template with the id of `route-template`. Keep a reference to that in your JavaScript along with the other template. Copy the URL snippet from above and paste that so that it can be used within the component.
+✏️ Use the markup provided above and create another template with the id of `route-template`. Keep a reference to this template in your JavaScript along with the other template. Copy the URL snippet from above and paste that so that it can be used within the component.
 
 Create a method on the component, we're calling it `getRoutes` here that is called in the `connectedCallback` method. It's an async method that uses [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to retrieve the list of routes which we can get with `data["bustime-response"].routes`.
 
@@ -126,3 +126,7 @@ At the end of the `getRoutes` method remove the `#loading-routes` element.
 @sourceref ./index.html
 @highlight 179-187,214-218,221,231,234-253,only
 @codepen
+
+<p style="font-weight: bold; text-align: center;">
+[learn-web-components/select-a-route 👉 Selecting a route]
+</p>

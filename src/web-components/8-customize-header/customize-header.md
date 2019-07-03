@@ -8,7 +8,7 @@
 
 In this part we will:
 
-- Use CSS custom properties to allow users of our component to modify some internals styles.
+- Use CSS custom properties to allow users of our component to modify the component's encapsulated styles.
 
 ## Problem
 
@@ -40,7 +40,7 @@ Use the following CSS property names and values:
 
 ### Defining custom properties
 
-Custom properties start with two hyphens `--`. Otherwise they can have any name, but usually use hyphens to separate works. Defining custom properties works the same way as other style properties, use a colon to delimit the name and the value.
+Custom properties start with two hyphens `--`. Otherwise they can have any name, but usually use hyphens to separate each word, ex: `--this-class-name`. Defining custom properties works the same way as other style properties, use a colon to delimit the name and the value.
 
 This example sets a default border style on the root (html) element:
 
@@ -81,3 +81,7 @@ bus-tracker {
 @sourceref ./index.html
 @highlight 13-16,49,61,only
 @codepen
+
+<p style="font-weight: bold; text-align: center;">
+[learn-web-components/slotted-content 👉 Slotted content]
+</p>
