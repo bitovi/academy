@@ -100,10 +100,14 @@ element.classList.add('some-new-class');
 
 ## Solution
 
-✏️ In the `getRoutes` method inside of the loop over the `routes`, get a reference to the `button` for the route and add an event listener for __click__ events. When that event occurs call a method that will call the API for vehicles and add the `active` class to the associated `li`.
+✏️ In the `getRoutes` method inside of the `routes` loop, get a reference to the `button` for the route and add an event listener for __click__ events. When that event occurs call a method that will call the API for vehicles and add the `active` class to the associated `li`.
 
 Add a reference to the `#selected-route` element in the constructor. When the API call completes update this element as needed and add the `route-selected` class so that it will be highlighted.
 
 @sourceref ./index.html
 @highlight 169-173,227,238,256-258,266-294,only
 @codepen
+
+<p style="font-weight: bold; text-align: center;">
+[learn-web-components/display-markers 👉 Display markers for vehicles]
+</p>

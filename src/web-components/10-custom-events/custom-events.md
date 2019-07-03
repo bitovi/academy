@@ -13,7 +13,7 @@ In this part we will:
 
 ## Problem
 
-We want to display the bus destination for the selected marker. This should look similar to how the selected route is displayed as an overlay of the map, but float just below that one. When no routes or markers are selected it should be invisible; when it is clicked it should say `Vehicle: DESTINATION`, where destination can be gotten from the vehicle object that is used to construct the marker.
+We want to display the bus destination for the selected marker. This should look similar to how the selected route is displayed as an overlay of the map, but float just below the route overlay. When no routes or markers are selected it should be invisible; when it is clicked it should say `Vehicle: DESTINATION`, where destination can be gotten from the vehicle object that is used to construct the marker.
 
 <img src="../static/img/web-components/bt-display-vehicle.gif"
   style="border: solid 1px black; max-width: 100%;"
@@ -91,7 +91,7 @@ el.addEventListener('any-event', () => {
 
 To dispatch a __custom event__ that contains data pertaining to the event, use the [CustomEvent](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) constructor. With `CustomEvent` you can include a `detail` property. This can contain any sort of data about the event you want to provide. In our case we'll use the __route__ object as the detail property.
 
-Events are created using `let ev = new CustomEvent({ detail: {...} })`. This create an event object. To dispatch it, the element (in our case a custom element) has a `dispatchEvent(ev)` function that takes the new event.
+Events are created using `let ev = new CustomEvent({ detail: {...} })`. This creates an event object. To dispatch it, the element (in our case a custom element) has a `dispatchEvent(ev)` function that takes the new event.
 
 ```js
 let el = document.createElement('div');
@@ -191,7 +191,7 @@ However this creates a *new function*. To tear this down in `disconnectedCallbac
 A way to avoid this is to use `handleEvent`. [handleEvent](https://developer.mozilla.org/en-US/docs/Web/API/EventListener/handleEvent) is a special method you can add to any object (not just elements) that makes that object an [EventTarget](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget). You use it like this:
 
 ```js
-var eventTarget = {
+let eventTarget = {
   handleEvent(ev) {
     // My `this` is correct!
   }
@@ -200,7 +200,7 @@ var eventTarget = {
 window.addEventListener('scroll', eventTarget);
 ```
 
-Instead of passing a __function__ to addEventListener you pass an object with a `handleEvent` method. This can work for custom elements to. Our previous example becomes:
+Instead of passing a __function__ to addEventListener you pass an object with a `handleEvent` method. This can work for custom elements too. Our previous example becomes:
 
 ```js
 class MyElement extends HTMLElement {

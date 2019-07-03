@@ -25,3 +25,7 @@ Web Components serve many purposes, including:
 * Branded __component libraries__. Especially within an organization, it's nice to be able to distribute a `brand-button` component so that buttons look the same everywhere.
 * __Progressive enhancement__. Components that *enhance* native built-in elements. An example would be a menu that is visible as a list in basic HTML, but is upgraded as a web component to be activated via a dropdown.
 * Building a __single page app__. Web components can be used as a primitive in frameworks.
+
+<p style="font-weight: bold; text-align: center;">
+[learn-web-components/first-component 👉 Our first component]
+</p>

@@ -128,7 +128,7 @@ class MyGreeting extends HTMLElement {
 
 *However*, in order to get attribute change notification you __must__ define which attributes should be observed. This means that you aren't notified when any arbitrary attribute is added; only those you predefine. This is a performance optimization tradeoff that was made when designing the API.
 
-To define which attributes should be added you add a static getter `observedAttributes` on the class.
+To define which attributes should be observed you add a static getter `observedAttributes` on the class.
 
 ```js
 class MyGreeting extends HTMLElement {
@@ -164,9 +164,9 @@ class MyGreeting extends HTMLElement {
 }
 ```
 
-In the above we change it so that if an attribute change it just calls the property setter. The property then saves its value in a "private" variable `this._name`.
+In the above we change it so that if an attribute changes it just calls the property setter. The property then saves its value in a "private" variable `this._name`.
 
-This works the way most built-in elements work; changing a property does __not__ reflect in the attribute; but changing an attribute does change the value of the property.
+This mirrors the way most built-in elements work; changing a property does __not__ reflect in the attribute; but changing an attribute does change the value of the property.
 
 ## Solution
 
@@ -174,3 +174,7 @@ This works the way most built-in elements work; changing a property does __not__
 
 @sourceref ./index.html
 @codepen
+
+<p style="font-weight: bold; text-align: center;">
+[learn-web-components/templates 👉 Writing a template]
+</p>

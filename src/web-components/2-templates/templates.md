@@ -14,7 +14,7 @@ In this part, we will:
 
 ## Problem
 
-The Google map API needs an element to mount the map into. We want our map to be certain dimensions. Create a `250px` tall container for the map using `<template>`. In the end it should look like:
+The Google map API needs an element to mount the map into. We want our map to be certain dimensions. Create a `250px` tall container for the map using `<template>`. In the end it should look like the CodePen with the grey box below::
 
 <img src="../static/img/web-components/map-view-rect.png"
   style="border: solid 1px black; max-width: 100%;"
@@ -110,3 +110,7 @@ document.body.append(fragment);
 @codepen
 
 Running this code should show you a 250px tall grey square.
+
+<p style="font-weight: bold; text-align: center;">
+[learn-web-components/map-view 👉 Map View]
+</p>

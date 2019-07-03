@@ -272,3 +272,7 @@ customElements.define('parent-element', ParentElement);
 @sourceref ./index.html
 @highlight 16,18-168,205-217,only
 @codepen
+
+<p style="font-weight: bold; text-align: center;">
+[learn-web-components/listing-routes 👉 Listing routes]
+</p>
