@@ -522,6 +522,11 @@ a.quote-link:hover{
         </div>
         <h4>React</h4>
         <p>Build a multipage, realtime ordering app with React.</p>
+        <div class="width100">
+          <p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
+          <p class='detail'>&nbsp;</p>
+          <p class='detail'>&nbsp;</p>
+        </div>
         <div class="button button-disabled full-width">Coming soon</div>
       </div>
     </div>
