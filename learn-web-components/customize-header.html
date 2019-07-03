@@ -413,7 +413,7 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this part we will:</p>
 <ul>
-<li>Use CSS custom properties to allow users of our component to modify some internals styles.</li>
+<li>Use CSS custom properties to allow users of our component to modify the component's encapsulated styles.</li>
 </ul>
 <h2>Problem</h2>
 <p>We want the users of our component to be able to customize the styling. For example we think they should be able to change the header's <code>background-color</code> and the heading's <code>text-transform</code>.</p>
@@ -439,7 +439,7 @@ title="Custom header styles applied to our element." /></p>
 <li>How to pass CSS custom properties into custom elements.</li>
 </ul>
 <h3>Defining custom properties</h3>
-<p>Custom properties start with two hyphens <code>--</code>. Otherwise they can have any name, but usually use hyphens to separate works. Defining custom properties works the same way as other style properties, use a colon to delimit the name and the value.</p>
+<p>Custom properties start with two hyphens <code>--</code>. Otherwise they can have any name, but usually use hyphens to separate each word, ex: <code>--this-class-name</code>. Defining custom properties works the same way as other style properties, use a colon to delimit the name and the value.</p>
 <p>This example sets a default border style on the root (html) element:</p>
 <pre><code class="language-css">:root {
   --border: 1px solid DarkBlue;
@@ -799,6 +799,9 @@ customElements.define(&quot;bus-tracker&quot;, BusTracker);
 </code></pre>
 <div line-highlight='13-16,49,61,only'></div>
 <div class='codepen'></div>
+<p style="font-weight: bold; text-align: center;">
+<a href="slotted-content.html" title="Use slot elements to allow more control over non-critical parts of your component.">👉 Slotted content</a>
+</p>
 
 </section>
 
