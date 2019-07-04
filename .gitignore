@@ -2,5 +2,5 @@ doc/
 node_modules/
 academy/
 .env
-
+temp/
 .DS_Store
