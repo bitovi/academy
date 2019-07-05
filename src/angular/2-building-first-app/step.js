@@ -75,7 +75,7 @@ module.exports = function( guide, globalVars ) {
     guide.stepIf("Git Checkout - Step #2", function() {
         return guide.executeCommand("git", ["checkout", "-b", "143-git-commit-plugin-step2"])
     }, function(){
-        return 0
+        return guide.executeCommand("git", ["checkout", "143-git-commit-plugin-step2"])
 
     });
 
