@@ -75,6 +75,8 @@
     "can-define-lazy-value": "^1.1.0",
     "fs-extra": "^8.0.1",
     "guide-automation": "^0.3.11",
-    "steal": "^2.2.0"
+    "is-installed": "^2.0.1",
+    "steal": "^2.2.0",
+    "stream-when": "^1.0.0"
   }
 }

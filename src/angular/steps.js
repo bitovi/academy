@@ -1,41 +1,25 @@
+const automate = require("guide-automation");
+const guide = automate({ spinner: true, log: true });
+const globalVars = require("./env");
 const step2 = require("./2-building-first-app/step");
 const step3 = require("./3-creating-components/step");
 
-const automate = require("guide-automation");
-const guide = automate({ spinner: true, log: true });
-
-// @TODO Figure way to make variables below global so multiple files can use them
-const fs = require('fs-extra');
-const tempDirBasePath = 'temp/';
-
-const checkPathExist = function( path ) {
-    return fs.existsSync(path);
-};
-const angularDir = tempDirBasePath + 'angular';
-
-const angularProjectAppDir = process.cwd() + '/' + angularDir + '/place-my-order';
-const homeComponent = process.cwd() + '/' + angularDir + '/place-my-order/src/app/home';
-const restaurantComponent = process.cwd() + '/' + angularDir + '/place-my-order/src/app/restaurant';
-const creatingComponentsWorkingDir = __dirname + '/3-creating-components';
-
-const fileMatchApp = /(app)[.](component)/g;
-const fileMatchHome = /(home)[.](component)/g;
-const fileMatchRestaurant = /(restaurant)[.](component)/g;
-
-
 /**
- * Set up the project
+ * @Step 1
  */
 guide.step("Remove existing dependencies", function(){
 
 });
 
-if(!checkPathExist( angularDir ) ) {
-    guide.step("Create " + angularDir + " directory", function(){
-        return fs.mkdirs(angularDir).then(() => {
-            console.log(`Congrats you created directory ${angularDir}.`);
+/**
+ * @Step 2
+ */
+if(!globalVars.checkPathExist( globalVars.angularTempDir ) ) {
+    guide.step("Create temp directory", function(){
+        return globalVars.fs.mkdirs(globalVars.angularTempDir).then(() => {
+            console.log(`Congrats you created directory ${globalVars.angularTempDir}.`);
             return guide.executeCommand("git", ["init"], {
-                cwd: process.cwd() + '/' + angularDir
+                cwd: globalVars.localFilePath + globalVars.angularTempDir
             });
         }).catch((err) => {
             console.error(err);
@@ -43,9 +27,8 @@ if(!checkPathExist( angularDir ) ) {
     });
 }
 
-step2(guide);
-step3(guide);
-
+step2(guide, globalVars);
+// step3(guide);
 
 
 /**
