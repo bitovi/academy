@@ -72,8 +72,11 @@ module.exports = function( guide, globalVars ) {
     /**
      * @Step 8
      */
-    guide.step("Git Checkout - Step #2", function(){
-        return guide.executeCommand("git", ["checkout", "-b", "143-git-commit-plugin-step2"]);
+    guide.stepIf("Git Checkout - Step #2", function() {
+        return guide.executeCommand("git", ["checkout", "-b", "143-git-commit-plugin-step2"])
+    }, function(){
+        return 0
+
     });
 
     guide.step("Git Add Changes - Step #2", function(){
@@ -82,5 +85,9 @@ module.exports = function( guide, globalVars ) {
 
     guide.step("Git Commit - Changes Step #2", function(){
          return guide.executeCommand("git", ["commit", "-m", "Changes committed for /2-building-first-app!"]);
+    });
+
+    guide.step("Git Push Changes - Step #2", function(){
+         return guide.executeCommand("git", ["push", "origin", "143-git-commit-plugin-step2"]);
     });
 }
