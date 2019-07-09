@@ -78,7 +78,7 @@ The order form component needs to get the restaurant from the route slug, and ne
 - Listen to form value changes (you learned this in previous sections! ✔️)
 - Add validation:
 
-  This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation" target="\_blank">validation</a>. Here's an example of a form with form controls with different validation, and one thats value is set to an array.
+  This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation" target="\_blank">validation</a>. Here's an example of a form with form controls with different validation, and one that's value is set to an array.
 
   ```typescript
   function coolKidsChecker(isACoolKid: string) {
@@ -322,7 +322,7 @@ When we have a formControl we need to update programmatically with a value we ca
 
 Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the  <a href="https://angular.io/api/forms/ControlValueAccessor" target="_blank">Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.
 
-__src/app/order/menu-items.component.ts__
+✏️ __src/app/order/menu-items.component.ts__
 
 @sourceref ./menu-items.component.ts
 @highlight 1, 2, 8-14, 16

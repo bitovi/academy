@@ -311,7 +311,7 @@ For now, we'll use fake data for a list of restaurants in the component, and put
 ```
 
 > Reminder: The markup that should be written out for each restaurant can be
-  found in the [exercise description](#exercise-2-write-restaurant-component-markup-that-displays-a-list-of-restaurants).
+  found in the [exercise description](#problem-2-write-restaurant-component-markup-that-displays-a-list-of-restaurants).
 
 ✏️ To see our component working, we can paste it into our __src/app/app.component.html__ file just like with the home component:
 
