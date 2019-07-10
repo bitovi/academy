@@ -95,7 +95,7 @@ We're going to build a restaurant menu and ordering application. The final resul
 ✏️ To create a new Angular Workspace, run the 'ng new' command:
 
 ```shell
-ng new place-my-order  --prefix pmo
+ng new place-my-order --prefix pmo
 cd place-my-order
 ```
 
