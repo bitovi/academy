@@ -42,10 +42,15 @@ let user = {name: "Justin"};
 document.body.innerHTML = greeter(user);
 ```
 
-
 If there's a bug in the code related to falsely assuming a type, it won't throw an error until we're already running our code.
 
 TypeScript uses static typing, which allows us to specify what type a variable should hold, and types are checked when the code compiles alerting us of any incorrect usages of a variable assignment. The concept of "static" comes from the idea of variables being static, meaning once you set a variable to a type it can't (shouldn't) be changed.
+
+## Using this Guide
+
+In this guide we will teach you about TypeScript concepts and have an environment for you to practice in. Running the tests will catch any problems if the code was not written correctly or as expected. Pay close attention to how you name and save the files. 
+
+When we give you a command to run to verify your work it will look for a file named respectively. If you run into issues you can look at the package.json file to see which file the command listed is looking for.
 
 ## Exercise: `1-helloworld.ts`
 
