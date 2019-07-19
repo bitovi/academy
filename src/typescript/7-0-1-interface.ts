@@ -1,6 +1,4 @@
-<script type="typescript">
 interface LinkedListItem<T> {
     value: T;
     next?: LinkedListItem<T>;
 }
-</script>

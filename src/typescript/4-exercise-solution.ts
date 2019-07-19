@@ -1,8 +1,7 @@
-<script type="typescript">
 function bonusMaker(multiplier: number, ...names: string[]) {
   let total = 0;
-    for(var i = 0; i < names.length; i++) {
-      total = total + names[i].length;
+  for(var i = 0; i < names.length; i++) {
+    total = total + names[i].length;
   }
   return multiplier*total;
 }
@@ -10,4 +9,3 @@ function bonusMaker(multiplier: number, ...names: string[]) {
 let WuBonus = bonusMaker(2500, 'Indominous Rex', 'Indoraptor', 'Velociraptor');
 console.log(WuBonus);
 //Logs "90000"
-</script>

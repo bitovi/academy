@@ -9,6 +9,8 @@
 
 In this section we'll learn about TypeScript configuration options to help us optimize our workflow, and look at IDEs that have great TypeScript support for building TypeScript projects.
 
+For the exercise, we will learn how to import and export functions between modules.
+
 ## Configuring TypeScript
 
 We're able to configure how our projects use TypeScript from selecting which files to compile to removing comments from those files. This is done through the creation of a ``tsconfig.json`` file.
@@ -21,7 +23,7 @@ Customize the TypeScript compiling and linting options by creating a ``tsconfig.
 - generate source map files
 - remove comments from compiled code
 
-The following is just example config code. Don't add this to your project or the tests for the TypeScript exercises will fail. 
+The following is just example config code. Don't add this to your project or the tests for the TypeScript exercises will fail.
 
 ```javascript
 {
@@ -80,25 +82,34 @@ Atom is another good modern IDE that easily supports and aids in TypeScript deve
 
 In this exercise, we will:
 
-- Update `1-ide-greeter.ts` to export the `greeter` function as the `default`
-  export.
-- Update `1-ide-hello-earth.ts` to import `greeter`, call `greeter` with `"Earth"`
-  and set the result as `document.body.innerHTML`.
-- Compile `1-ide-hello-earth.ts` to JavaScript so we can run it.
+- Update _1-ide-greeter.ts_ to export the `greeter` function as the `default`
+  export. _1-ide-greeter.ts_ currently looks like:
+  ```ts
+  function greeter(person: string) {
+    return "Hello, " + person;
+  }
+  ```
+- Update _1-ide-hello-earth.ts_, to import and use `greeter`. _1-ide-hello-earth.ts_ currently looks like:
+  ```ts
+  document.body.innerHTML = greeter("Earth");
+  ```
+- Compile _1-ide-hello-earth.ts_ to JavaScript so we can run it.
 
 ### What you need to know
 
-- Export a default value like:
+- [Export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) a default value like:
   ```typescript
   const value:string = "My Value";
   export default value;
   ```
-- Import a default value like:
+- [Import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) a default value like:
   ```typescript
   import value from "./value-exporter";
   ```
 
-Run the following to verify your solution works.
+### Verify solution
+
+✏️ Run the following to verify your solution works:
 
 ```shell
 npm run 1-ide
@@ -108,7 +119,7 @@ npm run 1-ide
 
 <details>
 <summary>Click to see the solution</summary>
-Update `1-ide-greeter.ts` to:
+✏️ Update `1-ide-greeter.ts` to:
 
 ```typescript
 function greeter(person: string) {
@@ -119,7 +130,7 @@ export default greeter;
 ```
 @highlight 5
 
-Update `1-ide-hello-earth.ts` to:
+✏️ Update `1-ide-hello-earth.ts` to:
 
 ```typescript
 import greeter from './1-ide-greeter';
@@ -128,7 +139,7 @@ document.body.innerHTML = greeter("Earth");
 ```
 @highlight 1
 
-Compile `1-ide-hello-earth.ts` with:
+✏️ Compile `1-ide-hello-earth.ts` with:
 
 ```shell
 tsc 1-ide-hello-earth.ts

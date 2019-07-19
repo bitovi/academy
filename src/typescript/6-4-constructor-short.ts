@@ -1,6 +1,4 @@
-<script type="typescript">
 class Dinosaur {
   constructor(public name: string) {
   }
 }
-</script>

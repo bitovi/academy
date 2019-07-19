@@ -1,4 +1,3 @@
-<script type="typescript">
 class Dinosaur {
   constructor(public name: string) {}
 
@@ -26,4 +25,3 @@ blue.talk();
 //Logs "Blue screeches."
 blue.run();
 //Logs "Blue runs at 55mph."
-</script>

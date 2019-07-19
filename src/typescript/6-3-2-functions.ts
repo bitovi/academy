@@ -1,4 +1,3 @@
-<script type="typescript">
 interface Dinosaur {
   name: string;
   breed: string;
@@ -6,8 +5,8 @@ interface Dinosaur {
 }
 
 let dinoA = {
-  name: 'Blue', 
-  breed: 'Velociraptor', 
+  name: 'Blue',
+  breed: 'Velociraptor',
   location: 'Section B'
 }
 
@@ -34,5 +33,5 @@ function dinoTransporter(dinosaur: Dinosaur, newLocation: string): Dinosaur {
 let dinoLocationA = dinoTransporter(dinoA, 'Paddock 1');
 //Works!
 let dinoLocationB = dinoTransporter(dinoB, 'Paddock 1');
-//Argument of type '{ name: string; location: string; }' is not assignable to parameter of type 'Dinosaur'.    
-</script>
+//Argument of type '{ name: string; location: string; }'
+// is not assignable to parameter of type 'Dinosaur'.

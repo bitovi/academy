@@ -9,9 +9,16 @@
 
 In this part, we will:
 
-- Explain how to declare the various types used in TypeScript
+- Discover how to declare the various types used in TypeScript
 - Discuss how types can be inferred
-- Show how to assert types.
+- Show how to assert types
+
+The exercises will teach you how to:
+
+- Spot and correct basic type mistakes
+- Create a typed variable
+
+
 
 ## Basic Types
 
@@ -190,7 +197,8 @@ The ``as`` syntax is usually preferred because the `<type>` conflicts with JSX s
 
 ### The problem
 
-`2a-fix-errors.ts` has several errors:
+In this exercise, we will learn to spot and correct basic type errors by
+fixing the type errors in `2a-fix-errors.ts`:
 
 ```typescript
 let isLoading: boolean = true;
@@ -211,7 +219,7 @@ export const tom = greet('Tom', 42, 'software');
 export {isLoading, inventory};
 ```
 
-Can you fix the errors?
+### What you need to know
 
 The exports of `2a-fix-errors.ts` should look like:
 
@@ -235,21 +243,22 @@ it("exports are correct", function(){
 });
 ```
 
-Run the following to verify your solution:
+### Verify solution
+
+✏️ Run the following to verify your solution:
 
 ```shell
 npm run 2a-types
 ```
 
-### What you need to know
-
-You know everything already. You got this. Go you!
 
 ### The solution
 
 
 <details>
 <summary>Click to see the solution</summary>
+
+✏️ Update `2a-fix-errors.ts` to look like:
 
 ```typescript
 let isLoading: boolean = true;
@@ -277,9 +286,9 @@ export {isLoading, inventory};
 
 ### The problem
 
-In this exercise, we will update `2b-date-export.ts` to:
+In this exercise, we will create our own typed variable by updating `2b-date-export.ts` to:
 
-- Create a variable that takes a type of Date.
+- Create a `let` variable that takes a type of Date.
 - Assign that variable to an instance of `Date`
 - Export that variable as the default export.
 

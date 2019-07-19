@@ -1,4 +1,3 @@
-<script type="typescript">
 class Dinosaur {
   //will be public by default
   name: string;
@@ -14,5 +13,4 @@ let myDino = new Dinosaur('Mildred');
 console.log(myDino.name)
 //Logs "Mildred"
 myDino.walk(7)
-//Logs "Mildred walked 7 feet.""
-</script>
+//Logs "Mildred walked 7 feet."

@@ -1,8 +1,7 @@
-<script type="typescript">
 class LinkedListItem<T> {
     value: T;
     next?: LinkedListItem<T>;
-  
+
     constructor(val) {
       this.value = val;
       this.next = null;
@@ -115,4 +114,3 @@ myNumberList.prepend(7);
 
 console.log(myNumberList.showInArray());
 //Logs "[7, 5, 6, 3]"
-</script>

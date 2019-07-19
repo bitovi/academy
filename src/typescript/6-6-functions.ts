@@ -1,4 +1,3 @@
-<script type="typescript">
 interface ResponseConfig {
   error?: string;
   response: string;
@@ -11,7 +10,7 @@ class DinoCage {
     DinoCage.dinos = DinoCage.dinos + dinos;
     DinoCage.cageInstances++;
   }
-  
+
   static countDinos() {
     return `${this.dinos} dinosaurs`;
   }
@@ -23,7 +22,7 @@ class RaptorCage extends DinoCage {
     super(dinos);
     this.raptors = dinos;
   }
-  
+
   public securityCheck() : ResponseConfig {
     if (this.raptors < 7) {
       return { response: 'security check passes'}
@@ -33,4 +32,3 @@ class RaptorCage extends DinoCage {
     }
   }
 }
-</script>

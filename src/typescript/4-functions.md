@@ -116,7 +116,7 @@ Line 10 will error with: `Property 'name' is missing in type '{ street: string; 
 
 The following function takes a bonus multiplier amount parameter and a dinosaur name parameter, then takes the length of the dinosaur name and multiplies it by the multiplier to calculate a dinosaur park employee's bonus salary based on the complexity of the dinosaurs they make.  
 
-@sourceref ./4-exercise-start.html
+@sourceref ./4-exercise-start.ts
 @codepen
 
 Productivity in the park has been up, so open the `3-functions-bonusMaker.ts` file and  modify this function to take an unknown amount of names to get the length of and multiply by the bonus multiplier amount.
@@ -131,7 +131,7 @@ npm run 3-functions
 <details>
 <summary>solution</summary>
 
-@sourceref ./4-exercise-solution.html
+@sourceref ./4-exercise-solution.ts
 @codepen
 
 </details>

@@ -49,70 +49,85 @@ TypeScript uses static typing, which allows us to specify what type a variable s
 
 ## Exercise: `1-helloworld.ts`
 
+### The problem
+
+For this exercise, we will first clone the __learn-typescript__ exercise repo.
+
+
+In that repo, there is a _0-why-hello-world.html_ page that looks like the following:
+
+```html
+<html>
+  <body>
+    <script src="./0-why-hello-world.js"></script>
+  </body>
+</html>
+```
+
+After cloning and installing the repo, we will:
+
+1. Create a simple _0-why-hello-world.ts_ TypeScript file that writes out `"Hello Wold"`.
+2. Compile that code the _0-why-hello-world.ts_ JavaScript file.
+3. Open _0-why-hello-world.html_ and verify that we've written and compiled some TypeScript!
+4. Run the exercise repo's tests for this exercise.
+
+
+
 ### Setup
 
 For this and following TypeScript exercises, we will be working in the
 [https://github.com/bitovi/learn-typescript](https://github.com/bitovi/learn-typescript)
 repository. To use it:
 
-1. Clone this repo:
+1. ✏️ Clone this repo:
    ```shell
    git clone https://github.com/bitovi/learn-typescript.git
    ```
 
-2. Open your terminal to that folder:
+2. ✏️ Open your terminal to that folder:
    ```shell
    cd learn-typescript
    ```
 
-3. Install node packages:
+3. ✏️ Install node packages:
    ```shell
    npm i
    ```
-4. Open the `learn-typescript` folder in your editor:
+   > NOTE: You must have `node 8` or higher installed! You can use
+   > [nvm](https://github.com/nvm-sh/nvm) to easily switch between
+   > node versions.
+
+4. ✏️ Open the `learn-typescript` folder in your editor:
    ```shell
    atom .
    ```
 
 
-### The problem
-
-For this exercise, we will:
-
-- Create a simple _0-why-hello-world.ts_ TypeScript file that writes out `"Hello Wold"`
-  to the page.
-- Compile that code to JavaScript
-
-Run the following to make sure your solution works:
-
-```shell
-npm run 0-why
-```
 
 ### What you need to know
 
 
 In order to use TypeScript in the browser, we must compile the TypeScript code to plain JavaScript first. We will do this using our terminal in this example, but most often TypeScript will be compiled during a build process.
 
-Let's install TypeScript globally:
+✏️ Let's install TypeScript globally:
 
 ```shell
 npm install -g typescript
 ```
 
-Double check it has installed properly with
+✏️ Double check it has installed properly with:
 
 ```shell
 tsc -v
 ```
 
-Let's create a _0-why-hello-world.ts_ file and open it in our favorite editor.
+✏️ Let's create a _0-why-hello-world.ts_ file and open it in our favorite editor.
 
 ```shell
 touch 0-why-hello-world.ts
 ```
 
-We'll write some basic TypeScript next:
+✏️ We'll write some basic TypeScript next:
 
 ```javascript
 function greeter(person: string) {
@@ -124,7 +139,7 @@ let user = "World";
 document.body.innerHTML = greeter(user);
 ```
 
-We'll compile our code by running:
+✏️ We'll compile our code by running:
 
 ```shell
 tsc 0-why-hello-world.ts
@@ -133,12 +148,32 @@ tsc 0-why-hello-world.ts
 Provided there are no errors, this will compile the TypeScript to JavaScript file `0-why-hello-world.js`
 
 
+### Verify solution
+
+Open _0-why-hello-world.html_ in your browser.  You should see `"Hello, World"` in the page.
+
+
+The __learn-typescript__ repository also tests to make sure your solution
+works.  
+
+✏️ Once you've completed all of the previous steps, run the following to make sure your solution works:
+
+```shell
+npm run 0-why
+```
+
 
 ## Bonus Challenge
 
+### The problem
+
 Change your ``user`` variable to a number and compile again. What do you think will happen?
 
+### The solution
+
+You should see an error message.
+
 <details>
-<summary>error message</summary>
+<summary>Click to see the error message.</summary>
 <a href="../static/img/typescript-error-compiling.png" target="\_blank"><img src="../static/img/typescript-error-compiling.png" width="100%"/></a>
 </details>

@@ -1,4 +1,3 @@
-<script type="typescript">
 class LinkedListItem {
   value: string;
   next?: LinkedListItem;
@@ -102,4 +101,3 @@ class LinkedList {
     return arr;
   }
 }
-</script>

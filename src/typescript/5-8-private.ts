@@ -1,4 +1,3 @@
-<script type="typescript">
 class Dinosaur {
   public name: string;
   private dna: string;
@@ -13,4 +12,3 @@ class Dinosaur {
 let scaryDino = new Dinosaur("Indominous", "cuttlefish")
 scaryDino.dna;
 //Property 'dna' is private and only accessible within class 'Dinosaur'.
-</script>
