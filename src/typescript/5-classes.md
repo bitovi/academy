@@ -51,7 +51,7 @@ Using the constructor to set public members is quite a common pattern, which is 
 @codepen
 @highlight 3
 
-> __Note__ We will see how to create private members later.
+> __Note:__ We will see how to create private members later.
 
 ## Inheritance
 
@@ -186,9 +186,14 @@ fierce();
 ```
 @highlight 3
 
-## Exercise 1
+## Exercise: Create a Class
 
-Edit the file `4a-classes-hello-dino.ts` to recreate the prototype using TypeScript classes.
+### The problem
+
+In this exercise, we will take an old-school JavaScript class and convert it to a
+shiny new TypeScript class.
+
+Edit the file `4a-classes-hello-dino.ts` to recreate the `DinoKeeper` using TypeScript classes.
 
 ```typescript
 function DinoKeeper(name) {
@@ -204,13 +209,17 @@ employee1.sayHi();
 //Joe says "hi"
 ```
 
-Hint* When you run:
+### Hint
+
+If you run:
 
 ```bash
 tsc 4a-classes-hello-dino.ts
 ```
 
-Your code should output to look like the above prototype version! Delete the compiled js file before running the tests in the next step.
+Your code should transpile to look like the above prototype version! __Delete__ the compiled js file before running the tests in the next step.
+
+### Solution
 
 
 <details>
@@ -235,7 +244,9 @@ employee1.sayHi();
 
 </details>
 
-## Exercise 2
+## Exercise: Extend a Class
+
+### The problem
 
 Edit the file `4a-specialist.ts` to write a new ``Specialist`` class that inherits from the ``DinoKeeper``. This new class should be able to accept an additional ``experience`` public member that is a number, and have a ``safetyQuote`` method that returns("Never turn your back to the cage. Trust me, I have _${experience}_ years of experience")
 
