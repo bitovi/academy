@@ -4,15 +4,13 @@
 
 	INSTEAD CHANGE:
 	source: src/typescript/3-types.md
-	@page learn-typescript/types
+	@page typescript-training/types
 ######################################################################## -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn how to declare types in TypeScript. 
-">
   <title>Bitovi Academy - Types</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -50,7 +48,7 @@
            						
            						">
 						<a class="page"
-							href="../learn-advanced-javascript.html"
+							href="../advanced-javascript-training.html"
 							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
 							Advanced JavaScript
 						</a>
@@ -65,7 +63,7 @@
            						
            						">
 						<a class="page"
-							href="../learn-dom-jquery.html"
+							href="../dom-jquery-training.html"
 							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
 							DOM and jQuery
 						</a>
@@ -80,7 +78,7 @@
            						
            						">
 						<a class="page"
-							href="../learn-to-debug-javascript.html"
+							href="../debugging-javascript-training.html"
 							title="This course covers the basics of JavaScript debugging.">
 							Debug JavaScript
 						</a>
@@ -95,9 +93,9 @@
            						parent
            						expanded">
 						<a class="page"
-							href="../learn-typescript.html"
+							href="../typescript-training.html"
 							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
-							Learn TypeScript
+							TypeScript Training
 						</a>
 						
 							
@@ -110,7 +108,7 @@
            						">
 						<a class="page"
 							href="why-typescript.html"
-							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript.">
+							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript.">
 							Why TypeScript
 						</a>
 						
@@ -224,35 +222,20 @@
 			
 		
 			
-		
-			
 				
 					<li class="
            						
            						">
 						<a class="page"
-							href="../learn-web-components.html"
-							title="">
-							Learn Web Components
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../learn-rxjs.html"
+							href="../rxjs-training.html"
 							title="Learn RxJS by creating a validating credit card form.">
-							Learn RxJS
+							RxJS Training
 						</a>
 						
 					</li>
 				
+			
+		
 			
 		
 			
@@ -261,10 +244,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-canjs.html"
-							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
-covering CanJS core libraries.">
-							Learn CanJS
+							href="../angular-training.html"
+							title="Learn the basics of Angular.">
+							Angular Training
 						</a>
 						
 					</li>
@@ -286,44 +268,11 @@ covering CanJS core libraries.">
 				
 			
 		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
-							Learn Technology Consulting
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../learn-angular.html"
-							title="Learn how to build a moderately complex application with Angular.">
-							Learn Angular
-						</a>
-						
-					</li>
-				
-			
-		
 	</ul>
 
 
   
-  <p class="border">
-      <a href="..#courses">View More Courses</a>
-      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
-  </p>
+  <p class="border"><a href="..#courses">View More Courses</a></p>
 </div>
 
 	
@@ -355,14 +304,9 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this part, we will:</p>
 <ul>
-<li>Discover how to declare the various types used in TypeScript</li>
+<li>Explain how to declare the various types used in TypeScript</li>
 <li>Discuss how types can be inferred</li>
-<li>Show how to assert types</li>
-</ul>
-<p>The exercises will teach you how to:</p>
-<ul>
-<li>Spot and correct basic type mistakes</li>
-<li>Create a typed variable</li>
+<li>Show how to assert types.</li>
 </ul>
 <h2>Basic Types</h2>
 <p>Types are what determine how much memory is allocated to save a value. Types also determine what operations or methods can be performed on a value. Types like strings can't have mathematical operations performed on them, but methods like <code>.length</code> can be used.</p>
@@ -388,14 +332,6 @@ They have ${ teeth } teeth.`;
 
 let raptors: Array&lt;string&gt; = ['Blue','Charlie','Delta']
 </code></pre>
-<h3>Object</h3>
-<pre><code class="language-typescript">let user: {name: string, age: number} = {name: &quot;Justin&quot;, age: 36};
-</code></pre>
-<blockquote>
-<p><strong>Note:</strong> Later we will learn about <a href="interfaces.html" title="Learn how to write Interfaces, set optional properties, and about the power of using interfaces in classes and functions">Interfaces</a>, which are
-a better way of describing objects because the description
-can be reused.</p>
-</blockquote>
 <h3>Tuple</h3>
 <pre><code class="language-typescript">let sillyList: [number, string];
 
@@ -480,10 +416,9 @@ let otherValue: any = &quot;this is a string&quot;;
 let otherLength: number = (otherValue as string).length;
 </code></pre>
 <p>The <code>as</code> syntax is usually preferred because the <code>&lt;type&gt;</code> conflicts with JSX syntax.</p>
-<h2>Exercise: Fix Type Errors</h2>
-<h3>The Problem</h3>
-<p>In this exercise, we will learn to spot and correct basic type errors by
-fixing the type errors in <code>2a-fix-errors.ts</code>:</p>
+<h2>Exercise: Fix type errors</h2>
+<h3>The problem</h3>
+<p><code>2a-fix-errors.ts</code> has several errors:</p>
 <pre><code class="language-typescript">let isLoading: boolean = true;
 isLoading = 'false';
 
@@ -501,7 +436,7 @@ export const tom = greet('Tom', 42, 'software');
 
 export {isLoading, inventory};
 </code></pre>
-<h3>What You Need to Know</h3>
+<p>Can you fix the errors?</p>
 <p>The exports of <code>2a-fix-errors.ts</code> should look like:</p>
 <pre><code class="language-typescript">it(&quot;exports are correct&quot;, function(){
     assert.equal( isLoading, false,
@@ -521,14 +456,14 @@ export {isLoading, inventory};
         &quot;Tom&quot;);
 });
 </code></pre>
-<h3>Verify Your Solution</h3>
-<p>✏️ Run the following to verify your solution:</p>
+<p>Run the following to verify your solution:</p>
 <pre><code class="language-shell">npm run 2a-types
 </code></pre>
-<h3>The Solution</h3>
+<h3>What you need to know</h3>
+<p>You know everything already. You got this. Go you!</p>
+<h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <code>2a-fix-errors.ts</code> to look like:</p>
 <pre><code class="language-typescript">let isLoading: boolean = true;
 isLoading = false;
 
@@ -548,26 +483,24 @@ export {isLoading, inventory};
 
 </code></pre>
 <p></details></p>
-<h2>Exercise: Date It</h2>
-<h3>The Problem</h3>
-<p>In this exercise, we will create our own typed variable by updating <code>2b-date-export.ts</code> to:</p>
+<h2>Exercise: Date it</h2>
+<h3>The problem</h3>
+<p>In this exercise, we will update <code>2b-date-export.ts</code> to:</p>
 <ul>
-<li>Create a <code>let</code> variable that takes a type of Date.</li>
+<li>Create a variable that takes a type of Date.</li>
 <li>Assign that variable to an instance of <code>Date</code></li>
 <li>Export that variable as the default export.</li>
 </ul>
-<h3>What You Need to Know</h3>
+<p>Run the following to verify your solution:</p>
+<pre><code class="language-shell">npm run 2b-types
+</code></pre>
+<h3>What you need to know</h3>
 <ul>
 <li>Use <code>new Date()</code> to create an instance of Date.</li>
 </ul>
-<h3>Verify Your Solution</h3>
-<p>✏️ Run the following to verify your solution:</p>
-<pre><code class="language-shell">npm run 2b-types
-</code></pre>
-<h3>The Solution</h3>
+<h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <code>2b-date-export.ts</code> to create, assign, and export a date variable.</p>
 <pre><code class="language-typescript">let me: Date;
 me = new Date(&quot;6-11-1993&quot;);
 export default me;
@@ -610,7 +543,7 @@ export default me;
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/typescript/3-types.md"},"description":"Learn how to declare types in TypeScript. \n","name":"learn-typescript/types","title":"Types","type":"page","parent":"learn-typescript","order":3,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/typescript/3-types.md"},"description":"Learn how to declare types in TypeScript. \n","name":"typescript-training/types","title":"Types","type":"page","parent":"typescript-training","order":3,"comment":" ","pathToRoot":"../.."};
     </script>
 
     

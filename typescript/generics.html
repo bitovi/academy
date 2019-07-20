@@ -4,16 +4,14 @@
 
 	INSTEAD CHANGE:
 	source: src/typescript/7-generics.md
-	@page learn-typescript/generics
+	@page typescript/generics
 ######################################################################## -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript. 
-">
-  <title>Bitovi Academy - Generics</title>
+  <title>Bitovi University - Generics</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -50,7 +48,7 @@
            						
            						">
 						<a class="page"
-							href="../learn-advanced-javascript.html"
+							href="../advanced-javascript-training.html"
 							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
 							Advanced JavaScript
 						</a>
@@ -65,7 +63,7 @@
            						
            						">
 						<a class="page"
-							href="../learn-dom-jquery.html"
+							href="../dom-jquery-training.html"
 							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
 							DOM and jQuery
 						</a>
@@ -80,7 +78,7 @@
            						
            						">
 						<a class="page"
-							href="../learn-to-debug-javascript.html"
+							href="../debugging-javascript-training.html"
 							title="This course covers the basics of JavaScript debugging.">
 							Debug JavaScript
 						</a>
@@ -95,9 +93,9 @@
            						parent
            						expanded">
 						<a class="page"
-							href="../learn-typescript.html"
+							href="../typescript.html"
 							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
-							Learn TypeScript
+							TypeScript
 						</a>
 						
 							
@@ -110,7 +108,7 @@
            						">
 						<a class="page"
 							href="why-typescript.html"
-							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript.">
+							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript.">
 							Why TypeScript
 						</a>
 						
@@ -231,24 +229,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-web-components.html"
-							title="">
-							Learn Web Components
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../learn-rxjs.html"
+							href="../RxJS.html"
 							title="Learn RxJS by creating a validating credit card form.">
-							Learn RxJS
+							RxJS
 						</a>
 						
 					</li>
@@ -261,10 +244,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-canjs.html"
-							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
-covering CanJS core libraries.">
-							Learn CanJS
+							href="../angular.html"
+							title="Learn the basics of Angular.">
+							Angular
 						</a>
 						
 					</li>
@@ -286,44 +268,11 @@ covering CanJS core libraries.">
 				
 			
 		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
-							Learn Technology Consulting
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../learn-angular.html"
-							title="Learn how to build a moderately complex application with Angular.">
-							Learn Angular
-						</a>
-						
-					</li>
-				
-			
-		
 	</ul>
 
 
   
-  <p class="border">
-      <a href="..#courses">View More Courses</a>
-      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
-  </p>
+  <p class="border"><a href="..#courses">View More Courses</a></p>
 </div>
 
 	
@@ -453,7 +402,7 @@ are passed like <code>func&lt;Type1, Type2, Type3&gt;</code>.</p></li>
 the compiler just looked at the value <code>&quot;hi&quot;</code> and set <code>MyType</code> to <code>string</code>.</p></li>
 </ul>
 <h2>Generic Classes</h2>
-<p>Generic classes are quite common.  For example, <a href="../learn-rxjs.html" title="Learn RxJS by creating a validating credit card form.">RxJS</a> subjects are a generic class that can publish values of a particular type:</p>
+<p>Generic classes are quite common.  For example, <a href="../RxJS.html" title="Learn RxJS by creating a validating credit card form.">RxJS</a> subjects are a generic class that can publish values of a particular type:</p>
 <pre><code class="language-typescript">const cardNumber = new Subject&lt;string&gt;();
 
 cardNumber.next(&quot;1234&quot;)
@@ -641,14 +590,12 @@ root.add(&quot;Matthew&quot;);
 root.right.value      //-&gt; &quot;Tom&quot;
 root.right.left.value //-&gt; &quot;Matthew&quot;
 </code></pre>
-<h3>Verify Your Solution</h3>
-<p>✏️ Run the following to verify your solution:</p>
+<p>Run the following to verify your solution:</p>
 <pre><code class="language-shell">npm run 6-generics
 </code></pre>
-<h3>The Solution</h3>
+<h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <code>6-tree-node.ts</code> to the following:</p>
 <pre><code class="language-typescript">interface Comparison&lt;T&gt; {
     (v1:T,v2: T): number;
 }
@@ -703,12 +650,13 @@ export default TreeNode;
         </div>
         <div class="pullout slack">
           <h6>Get help</h6>
-          <p>If you need <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">help</a> with an exercise, please reach out to us on
+          <p>If you need help with an exercise, please reach out to us on
              <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">Slack</a></p>
+             <!--<a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y"><img src="https://i.ibb.co/XS6n24B/slack.png"/></a>-->
         </div>
         <div class="pullout bug">
           <p>If you find a bug, please
-             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="https://github.com/bitovi/university/issues/new">create an issue</a> or email
              <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
         </div>
       </div>
@@ -718,37 +666,33 @@ export default TreeNode;
 </div>
 
 
-
   <footer></footer>
 
-  <div id="scripts">
-    <script type="text/javascript">
-      var docObject = {"src":{"path":"src/typescript/7-generics.md"},"description":"Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript. \n","name":"learn-typescript/generics","title":"Generics","type":"page","parent":"learn-typescript","order":7,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
-    </script>
+  <script type="text/javascript">
+    var docObject = {"src":{"path":"src/typescript/7-generics.md"},"description":"Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript. \n","name":"typescript/generics","title":"Generics","type":"page","parent":"typescript","order":7,"comment":" ","pathToRoot":"../.."};
+  </script>
 
-    
-      <script>
-        steal = {
-          instantiated: {
-            "bundles/bit-docs-site/static.css!$css" : null
-          }
-        }
-      </script>
-      <script type='text/javascript'
-          data-main="bit-docs-site/static"
-          src="../static/steal.production.js"></script>
-    
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+  
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-2302003-12');
+      steal = {
+        instantiated: {
+          "bundles/bit-docs-site/static.css!$css" : null
+        }
+      }
     </script>
+    <script type='text/javascript'
+        data-main="bit-docs-site/static"
+        src="../static/steal.production.js"></script>
+  
 
-  </div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-29"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-2302003-29');
+</script>
+
 </body>
 </html>

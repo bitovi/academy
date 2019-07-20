@@ -4,15 +4,13 @@
 
 	INSTEAD CHANGE:
 	source: src/typescript/1-why-typescript.md
-	@page learn-typescript/why-typescript
+	@page typescript-training/why-typescript
 ######################################################################## -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript. 
-">
   <title>Bitovi Academy - Why TypeScript</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -50,7 +48,7 @@
            						
            						">
 						<a class="page"
-							href="../learn-advanced-javascript.html"
+							href="../advanced-javascript-training.html"
 							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
 							Advanced JavaScript
 						</a>
@@ -65,7 +63,7 @@
            						
            						">
 						<a class="page"
-							href="../learn-dom-jquery.html"
+							href="../dom-jquery-training.html"
 							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
 							DOM and jQuery
 						</a>
@@ -80,7 +78,7 @@
            						
            						">
 						<a class="page"
-							href="../learn-to-debug-javascript.html"
+							href="../debugging-javascript-training.html"
 							title="This course covers the basics of JavaScript debugging.">
 							Debug JavaScript
 						</a>
@@ -95,9 +93,9 @@
            						parent
            						expanded">
 						<a class="page"
-							href="../learn-typescript.html"
+							href="../typescript-training.html"
 							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
-							Learn TypeScript
+							TypeScript Training
 						</a>
 						
 							
@@ -110,7 +108,7 @@
            						expanded">
 						<a class="page"
 							href="why-typescript.html"
-							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript.">
+							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript.">
 							Why TypeScript
 						</a>
 						
@@ -224,35 +222,20 @@
 			
 		
 			
-		
-			
 				
 					<li class="
            						
            						">
 						<a class="page"
-							href="../learn-web-components.html"
-							title="">
-							Learn Web Components
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../learn-rxjs.html"
+							href="../rxjs-training.html"
 							title="Learn RxJS by creating a validating credit card form.">
-							Learn RxJS
+							RxJS Training
 						</a>
 						
 					</li>
 				
+			
+		
 			
 		
 			
@@ -261,10 +244,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-canjs.html"
-							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
-covering CanJS core libraries.">
-							Learn CanJS
+							href="../angular-training.html"
+							title="Learn the basics of Angular.">
+							Angular Training
 						</a>
 						
 					</li>
@@ -286,44 +268,11 @@ covering CanJS core libraries.">
 				
 			
 		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
-							Learn Technology Consulting
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../learn-angular.html"
-							title="Learn how to build a moderately complex application with Angular.">
-							Learn Angular
-						</a>
-						
-					</li>
-				
-			
-		
 	</ul>
 
 
   
-  <p class="border">
-      <a href="..#courses">View More Courses</a>
-      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
-  </p>
+  <p class="border"><a href="..#courses">View More Courses</a></p>
 </div>
 
 	
@@ -339,7 +288,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript.</p>
+    <p>Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript.</p>
 
 </section>
 
@@ -353,86 +302,54 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>What is TypeScript?</h2>
-<p>TypeScript is a typed superset of JavaScript that compiles to plain
-JavaScript. Typing helps enhance code quality and readability, assists in self-documenting, and allows a compiler to perform <em>typechecking</em> to catch errors before runtime. TypeScript also offers modern (think ES6) features of JavaScript and the use of classes and interfaces to write code in an object oriented way.</p>
-<p>The following shows an IDE catching that <code>greeter</code> was expecting a <code>string</code>,
-but was passed a <code>number</code>:</p>
+<p>TypeScript is a typed superset of JavaScript that compiles to plain JavaScript. Typing helps enhance code quality and readability, assists in self-documenting, and the compiler uses <em>typechecking</em> to catch errors before runtime. TypeScript offers more modern (think ES6) features of JavaScript and the use of classes and interfaces to write code in an object oriented sense.</p>
 <p><a href="../static/img/typescript-error-compiling.png" target="\_blank"><img src="../static/img/typescript-error-compiling.png" width="100%"/></a></p>
 <h3>Typechecking</h3>
 <p>Typechecking is the process of verifying and enforcing the constraints of types.</p>
 <h3>Static vs. Dynamic Typing</h3>
-<p>JavaScript an &quot;untyped&quot; or &quot;dynamically typed&quot; language. Type is associated with a value instead of a variable.
-JavaScript can assign variables to values of different types:</p>
-<pre><code class="language-js">let myVariable;
-
-myVariable = 1;
-myVariable = &quot;2&quot;;
-</code></pre>
-<p>JavaScript can call a function with a type it doesn't expect:</p>
-<pre><code class="language-js">function greeter(person) {
-    return &quot;Hello, &quot; + person;
-}
-
-let user = {name: &quot;Justin&quot;};
-document.body.innerHTML = greeter(user);
-</code></pre>
-<p>If there's a bug in the code related to falsely assuming a type, it won't throw an error until we're already running our code.</p>
+<p>Plain JavaScript is a dynamically typed language, meaning it doesn't know the type of a value assigned to a variable until run-time when it's instantiated. If there's a bug in the code related to falsely assuming a type, it won't throw an error until we're already running our code.</p>
 <p>TypeScript uses static typing, which allows us to specify what type a variable should hold, and types are checked when the code compiles alerting us of any incorrect usages of a variable assignment. The concept of &quot;static&quot; comes from the idea of variables being static, meaning once you set a variable to a type it can't (shouldn't) be changed.</p>
-<h2>Using this Guide</h2>
-<p>In this guide we will teach you about TypeScript concepts and have an environment for you to practice in. Running the tests will catch any problems if the code was not written correctly or as expected. Pay close attention to how you name and save the files.</p>
-<p>When we give you a command to run to verify your work it will look for a file named respectively. If you run into issues you can look at the package.json file to see which file the command listed is looking for.</p>
 <h2>Exercise: <code>1-helloworld.ts</code></h2>
-<h3>The Problem</h3>
-<p>For this exercise, we will first clone the <strong>learn-typescript</strong> exercise repo.</p>
-<p>In that repo, there is a <em>0-why-hello-world.html</em> page that looks like the following:</p>
-<pre><code class="language-html">&lt;html&gt;
-  &lt;body&gt;
-    &lt;script src=&quot;./0-why-hello-world.js&quot;&gt;&lt;/script&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
-<p>After cloning and installing the repo, we will:</p>
-<ol>
-<li>Create a simple <em>0-why-hello-world.ts</em> TypeScript file that writes out <code>&quot;Hello Wold&quot;</code>.</li>
-<li>Compile that code the <em>0-why-hello-world.ts</em> JavaScript file.</li>
-<li>Open <em>0-why-hello-world.html</em> and verify that we've written and compiled some TypeScript!</li>
-<li>Run the exercise repo's tests for this exercise.</li>
-</ol>
 <h3>Setup</h3>
 <p>For this and following TypeScript exercises, we will be working in the
-<a href="https://github.com/bitovi/learn-typescript">https://github.com/bitovi/learn-typescript</a>
+<a href="https://github.com/bitovi/typescript-training">https://github.com/bitovi/typescript-training</a>
 repository. To use it:</p>
 <ol>
-<li><p>✏️ Clone this repo:</p>
-<pre><code class="language-shell">git clone https://github.com/bitovi/learn-typescript.git
+<li><p>Clone this repo:</p>
+<pre><code class="language-shell">git clone https://github.com/bitovi/typescript-training.git
 </code></pre></li>
-<li><p>✏️ Open your terminal to that folder:</p>
-<pre><code class="language-shell">cd learn-typescript
+<li><p>Open your terminal to that folder:</p>
+<pre><code class="language-shell">cd typescript-training
 </code></pre></li>
-<li><p>✏️ Install node packages:</p>
+<li><p>Install node packages:</p>
 <pre><code class="language-shell">npm i
-</code></pre>
-<blockquote>
-<p>NOTE: You must have <code>node 8</code> or higher installed! You can use
-<a href="https://github.com/nvm-sh/nvm">nvm</a> to easily switch between
-node versions.</p>
-</blockquote></li>
-<li><p>✏️ Open the <code>learn-typescript</code> folder in your editor:</p>
+</code></pre></li>
+<li><p>Open the <code>typescript-training</code> folder in your editor:</p>
 <pre><code class="language-shell">atom .
 </code></pre></li>
 </ol>
-<h3>What You Need to Know</h3>
+<h3>The problem</h3>
+<p>For this exercise, we will:</p>
+<ul>
+<li>Create a simple <em>0-why-hello-world.ts</em> TypeScript file that writes out <code>&quot;Hello Wold&quot;</code>
+to the page.</li>
+<li>Compile that code to JavaScript</li>
+</ul>
+<p>Run the following to make sure your solution works:</p>
+<pre><code class="language-shell">npm run 0-why
+</code></pre>
+<h3>What you need to know</h3>
 <p>In order to use TypeScript in the browser, we must compile the TypeScript code to plain JavaScript first. We will do this using our terminal in this example, but most often TypeScript will be compiled during a build process.</p>
-<p>✏️ Let's install TypeScript globally:</p>
+<p>Let's install TypeScript globally:</p>
 <pre><code class="language-shell">npm install -g typescript
 </code></pre>
-<p>✏️ Double check it has installed properly with:</p>
+<p>Double check it has installed properly with</p>
 <pre><code class="language-shell">tsc -v
 </code></pre>
-<p>✏️ Let's create a <em>0-why-hello-world.ts</em> file and open it in our favorite editor.</p>
+<p>Let's create a <em>0-why-hello-world.ts</em> file and open it in our favorite editor.</p>
 <pre><code class="language-shell">touch 0-why-hello-world.ts
 </code></pre>
-<p>✏️ We'll write some basic TypeScript next:</p>
+<p>We'll write some basic TypeScript next:</p>
 <pre><code class="language-javascript">function greeter(person: string) {
     return &quot;Hello, &quot; + person;
 }
@@ -441,24 +358,14 @@ let user = &quot;World&quot;;
 
 document.body.innerHTML = greeter(user);
 </code></pre>
-<p>✏️ We'll compile our code by running:</p>
+<p>We'll compile our code by running:</p>
 <pre><code class="language-shell">tsc 0-why-hello-world.ts
 </code></pre>
 <p>Provided there are no errors, this will compile the TypeScript to JavaScript file <code>0-why-hello-world.js</code></p>
-<h3>Verify Solution</h3>
-<p>Open <em>0-why-hello-world.html</em> in your browser.  You should see <code>&quot;Hello, World&quot;</code> in the page.</p>
-<p>The <strong>learn-typescript</strong> repository also tests to make sure your solution
-works.</p>
-<p>✏️ Once you've completed all of the previous steps, run the following to make sure your solution works:</p>
-<pre><code class="language-shell">npm run 0-why
-</code></pre>
 <h2>Bonus Challenge</h2>
-<h3>The Problem</h3>
 <p>Change your <code>user</code> variable to a number and compile again. What do you think will happen?</p>
-<h3>The Solution</h3>
-<p>You should see an error message.</p>
 <p><details>
-<summary>Click to see the error message.</summary>
+<summary>error message</summary>
 <a href="../static/img/typescript-error-compiling.png" target="\_blank"><img src="../static/img/typescript-error-compiling.png" width="100%"/></a>
 </details></p>
 
@@ -498,7 +405,7 @@ works.</p>
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/typescript/1-why-typescript.md"},"description":"Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript. \n","name":"learn-typescript/why-typescript","title":"Why TypeScript","type":"page","parent":"learn-typescript","order":1,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/typescript/1-why-typescript.md"},"description":"Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript. \n","name":"typescript-training/why-typescript","title":"Why TypeScript","type":"page","parent":"typescript-training","order":1,"comment":" ","pathToRoot":"../.."};
     </script>
 
     

@@ -4,16 +4,14 @@
 
 	INSTEAD CHANGE:
 	source: src/typescript/6-interfaces.md
-	@page learn-typescript/interfaces
+	@page typescript/interfaces
 ######################################################################## -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn how to write Interfaces, set optional properties, and about the power of using interfaces in classes and functions 
-">
-  <title>Bitovi Academy - Interfaces</title>
+  <title>Bitovi University - Interfaces</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -50,7 +48,7 @@
            						
            						">
 						<a class="page"
-							href="../learn-advanced-javascript.html"
+							href="../advanced-javascript-training.html"
 							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
 							Advanced JavaScript
 						</a>
@@ -65,7 +63,7 @@
            						
            						">
 						<a class="page"
-							href="../learn-dom-jquery.html"
+							href="../dom-jquery-training.html"
 							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
 							DOM and jQuery
 						</a>
@@ -80,7 +78,7 @@
            						
            						">
 						<a class="page"
-							href="../learn-to-debug-javascript.html"
+							href="../debugging-javascript-training.html"
 							title="This course covers the basics of JavaScript debugging.">
 							Debug JavaScript
 						</a>
@@ -95,9 +93,9 @@
            						parent
            						expanded">
 						<a class="page"
-							href="../learn-typescript.html"
+							href="../typescript.html"
 							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
-							Learn TypeScript
+							TypeScript
 						</a>
 						
 							
@@ -110,7 +108,7 @@
            						">
 						<a class="page"
 							href="why-typescript.html"
-							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript.">
+							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write + compile TypeScript.">
 							Why TypeScript
 						</a>
 						
@@ -231,24 +229,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-web-components.html"
-							title="">
-							Learn Web Components
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../learn-rxjs.html"
+							href="../RxJS.html"
 							title="Learn RxJS by creating a validating credit card form.">
-							Learn RxJS
+							RxJS
 						</a>
 						
 					</li>
@@ -261,10 +244,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-canjs.html"
-							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
-covering CanJS core libraries.">
-							Learn CanJS
+							href="../angular.html"
+							title="Learn the basics of Angular.">
+							Angular
 						</a>
 						
 					</li>
@@ -286,44 +268,11 @@ covering CanJS core libraries.">
 				
 			
 		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
-							Learn Technology Consulting
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../learn-angular.html"
-							title="Learn how to build a moderately complex application with Angular.">
-							Learn Angular
-						</a>
-						
-					</li>
-				
-			
-		
 	</ul>
 
 
   
-  <p class="border">
-      <a href="..#courses">View More Courses</a>
-      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
-  </p>
+  <p class="border"><a href="..#courses">View More Courses</a></p>
 </div>
 
 	
@@ -361,7 +310,7 @@ covering CanJS core libraries.">
 </ul>
 <h2>Interfaces in TypeScript</h2>
 <p>An interface in TypeScript is a way to define the shape an entity should adhere to. An interface defines the members - properties, methods, and events. It may be easy to think of it as the signature of an API. It's worth noting that interfaces aren't transpiled into our output JavaScript, they're simply used for typechecking during the development process.</p>
-<pre><code class="language-ts">//interface describing object
+<pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
 interface Dinosaur {
   name: string;
   breed: string;
@@ -369,23 +318,21 @@ interface Dinosaur {
   location: string;
 }
 
-//function with interface describing parameter
 function trackDino(dino: Dinosaur) {
   console.log(dino.location);
 }
 
-let blue = {
-  name: 'blue', breed: 'Velociraptor',
-  height: 7, location: 'Section B'
-};
+let blue = {name: 'blue', breed: 'Velociraptor', 
+height: 7, location: 'Section B'};
 trackDino(blue);
 //Logs &quot;Section B&quot;
-
+&lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
 <h3>Optional Properties</h3>
-<p>Some times all properties on an object don't need to be required, using the <code>?</code> lets us tell the TypeScript compiler which properties aren't required.</p>
-<pre><code class="language-ts">interface Dinosaur {
+<p>Some times all properties on an object don't need to be required, using the <code>?</code> lets us tell the TypeScript compiler which parties aren't required.</p>
+<pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
+interface Dinosaur {
   name: string;
   breed: string;
   height?: number;
@@ -400,13 +347,14 @@ let blue = {name: 'blue', breed: 'Velociraptor', location: 'Section B'};
 //works
 trackDino(blue);
 //Logs &quot;Section B&quot;
-
+&lt;/script&gt;
 </code></pre>
 <div line-highlight='5'></div>
 <div class='codepen'></div>
 <h3>Classes Implementing Interfaces</h3>
 <p>In the case that a class needs to follow an object structure, we can use interfaces to define that 'contract'.</p>
-<pre><code class="language-ts">interface Dinosaur {
+<pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
+interface Dinosaur {
   name: string;
   breed: string;
   height?: number;
@@ -423,20 +371,21 @@ class ClonedDino implements Dinosaur {
     console.log('roar');
   };
 }
-
+&lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
 <h3>Interfaces in Functions</h3>
 <p>Interfaces are incredibly useful in describing the shape of objects we want to use in multiple situations. The following functions both require a <code>Dinosaur</code> object shape we've defined in the <code>Dinosaur</code> interface.</p>
-<pre><code class="language-ts">interface Dinosaur {
+<pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
+interface Dinosaur {
   name: string;
   breed: string;
   location: string;
 }
 
 let dinoA = {
-  name: 'Blue',
-  breed: 'Velociraptor',
+  name: 'Blue', 
+  breed: 'Velociraptor', 
   location: 'Section B'
 }
 
@@ -455,45 +404,33 @@ dinoCatcher(dinoB);
 //Argument of type '{ name: string; location: string; }' is not assignable to parameter of type 'Dinosaur'.
 //Property 'breed' is missing in type '{ name: string; location: string; }'.
 
-</code></pre>
-<div class='codepen'></div>
-<h3>Interfaces Describing Functions</h3>
-<p>We can also use interfaces to describe functions, basically creating reusable types for functions. On the left side in parenthesis we list the parameters, and to the right of the colon we state the return type.</p>
-<pre><code class="language-ts">interface DinoDNAMixer {
-  (dino1: string, dino2: string, spliceIdx: number): string;
+function dinoTransporter(dinosaur: Dinosaur, newLocation: string): Dinosaur {
+  dinosaur.location = newLocation
+  return dinosaur
 }
 
-let dinoMaker : DinoDNAMixer = function (dino1: string, dino2: string, spliceIdx: number): string {
-  return dino1.substring(spliceIdx) + dino2.substring(spliceIdx);
-}
-
-let newDino = dinoMaker('CGGCAD', 'ACGCAA', 3)
-console.log(newDino); //logs 'CADCAA'
-
-</code></pre>
-<div class='codepen'></div>
-<p>It's possible to use the <code>type</code> keyword as an interface to describe a function.</p>
-<pre><code class="language-ts">type DinoDNAMixer = (dino1: string, dino2: string, spliceIdx: number) =&gt; string;
-
-interface DinoFactory {
-  makeDino: DinoDNAMixer;
-  factoryName: string;
-}
+let dinoLocationA = dinoTransporter(dinoA, 'Paddock 1');
+//Works!
+let dinoLocationB = dinoTransporter(dinoB, 'Paddock 1');
+//Argument of type '{ name: string; location: string; }' is not assignable to parameter of type 'Dinosaur'.    
+&lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
 <h3>Type Assertion</h3>
 <p>We briefly mentioned type assertion when talk about types, but when dealing with interfaces it can be a great tool for making sure our code behaves in the way we expect.</p>
 <p>For instance, consider the following code:</p>
-<pre><code class="language-ts">var myObj = {};
+<pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
+var myObj = {};
 myObj.name = 'Blue';
 //property 'name' does not exist on type '{}'
 myObj.height = 6;
 //property 'height' does not exist on type '{}'
-
+&lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<p>When we create empty object literals in TypeScript, they are inferred to be objects with zero properties. To fix this, we can use type assertions to let the compiler explicitly know what we want from our object.</p>
-<pre><code class="language-ts">interface Dinosaur {
+<p>When we create object literals in TypeScript, they are inferred to be objects with zero properties. To fix this, we can use type assertions to let the compiler explicitly know what we want from our object.</p>
+<pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
+interface Dinosaur {
   name: string;
   height: number;
 }
@@ -501,12 +438,71 @@ myObj.height = 6;
 var myObj = {} as Dinosaur;
 myObj.name = 'Blue';
 myObj.height = 6;
-
+&lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<h2>Exercise 1: Write Interfaces to Describe an Object</h2>
-<h3>The Problem</h3>
-<p>We're going to write some interfaces to set up for the next problem. Edit the files <code>5a-dino-park.ts</code> and <code>5a-address.ts</code> to create an interface to define a <code>DinoPark</code> object shown below:</p>
+<h3>Describing Objects</h3>
+<p>If we have a function expecting a specific object, we can define what that object should look like by specifying an interface for it:</p>
+<pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
+interface DinoInfo {
+  name:string;
+  location:string;
+}
+
+function owensCatcher(info: DinoInfo) {
+  console.log(`Owen caught ${info.name} at ${info.location}`);
+}
+
+owensCatcher({name: 'Blue', location: 'Section B'});
+//Logs &quot;Owen caught Blue at Section B&quot;
+owensCatcher({name: 'Charlie'});
+//property 'location' is missing //error
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<h3>Describing Functions</h3>
+<p>We can also use interfaces to describe what a function is expected to return. The following sample shows a <code>ResponseConfig</code> interface that should be returned by the <code>securityCheck</code> method.</p>
+<pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
+interface ResponseConfig {
+  error?: string;
+  response: string;
+}
+
+class DinoCage {
+  static cageInstances: number = 0;
+  static dinos: number = 0;
+  constructor(dinos: number) {
+    DinoCage.dinos = DinoCage.dinos + dinos;
+    DinoCage.cageInstances++;
+  }
+  
+  static countDinos() {
+    return `${this.dinos} dinosaurs`;
+  }
+}
+
+class RaptorCage extends DinoCage {
+  public raptors: number;
+  constructor (dinos: number) {
+    super(dinos);
+    this.raptors = dinos;
+  }
+  
+  public securityCheck() : ResponseConfig {
+    if (this.raptors &lt; 7) {
+      return { response: 'security check passes'}
+    }
+    else {
+      return {error: &quot;FAILURE&quot;, response: 'hold on to your butts'}
+    }
+  }
+}
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='2-5,27'></div>
+<h3>Exercise 1</h3>
+<p>Edit the files <code>5a-dino-park.ts</code> and <code>5a-address.ts</code> to create an interface to define a <code>DinoPark</code> object shown below:</p>
 <pre><code class="language-javascript">let park = {
   name: '',
   image: '',
@@ -530,10 +526,9 @@ myObj.height = 6;
 <li><code>zip</code> (string)</li>
 </ul></li>
 </ul>
-<h3>The Solution</h3>
 <p><details>
 <summary>Solution</summary></p>
-<p>✏️ Update <code>5a-dino-park.ts</code> to the following:</p>
+<p><strong>5a-dino-park.ts</strong></p>
 <pre><code class="language-typescript">import Address from &quot;./5a-address&quot;;
 
 interface DinoPark {
@@ -544,7 +539,7 @@ interface DinoPark {
 
 export default DinoPark;
 </code></pre>
-<p>✏️ Update <code>5a-address.ts</code> to the following:</p>
+<p><strong>5a-address.ts</strong></p>
 <pre><code class="language-typescript">interface Address {
   street: string;
   city: string;
@@ -555,18 +550,13 @@ export default DinoPark;
 export default Address;
 </code></pre>
 <p></details></p>
-<p>Make sure you have this solution implemented correctly before moving on to the next exercise.</p>
-<h2>Exercise 2: Write a Function With a Parameter Described by Interface</h2>
-<h3>The Problem</h3>
+<h3>Exercise 2</h3>
 <p>In the <code>5b-create-park-slug.ts</code> file edit the <code>createParkSlug</code> function to take a parameter that is the interface <code>DinoPark</code> created previously and returns a slug for the park by replacing any spaces with dashes. Ex. the park &quot;Isla Sorna Park&quot; should return the slug <code>Isla-Sorna-Park</code>.</p>
-<h3>Verify Your Solution</h3>
-<p>✏️ Run the following to verify your solution:</p>
+<p>Run the following to verify your solution:</p>
 <pre><code class="language-shell">npm run 5-interfaces
 </code></pre>
-<h3>The Solution</h3>
 <p><details>
 <summary>Solution</summary></p>
-<p>✏️ Update <code>5b-create-park-slug.ts</code> to the following:</p>
 <pre><code class="language-typescript">import DinoPark from &quot;./5a-dino-park&quot;;
 
 export function createParkSlug(dinoPark: DinoPark) {
@@ -591,12 +581,13 @@ export function createParkSlug(dinoPark: DinoPark) {
         </div>
         <div class="pullout slack">
           <h6>Get help</h6>
-          <p>If you need <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">help</a> with an exercise, please reach out to us on
+          <p>If you need help with an exercise, please reach out to us on
              <a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">Slack</a></p>
+             <!--<a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y"><img src="https://i.ibb.co/XS6n24B/slack.png"/></a>-->
         </div>
         <div class="pullout bug">
           <p>If you find a bug, please
-             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="https://github.com/bitovi/university/issues/new">create an issue</a> or email
              <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
         </div>
       </div>
@@ -606,37 +597,33 @@ export function createParkSlug(dinoPark: DinoPark) {
 </div>
 
 
-
   <footer></footer>
 
-  <div id="scripts">
-    <script type="text/javascript">
-      var docObject = {"src":{"path":"src/typescript/6-interfaces.md"},"description":"Learn how to write Interfaces, set optional properties, and about the power of using interfaces in classes and functions \n","name":"learn-typescript/interfaces","title":"Interfaces","type":"page","parent":"learn-typescript","order":6,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
-    </script>
+  <script type="text/javascript">
+    var docObject = {"src":{"path":"src/typescript/6-interfaces.md"},"description":"Learn how to write Interfaces, set optional properties, and about the power of using interfaces in classes and functions \n","name":"typescript/interfaces","title":"Interfaces","type":"page","parent":"typescript","order":6,"comment":" ","pathToRoot":"../.."};
+  </script>
 
-    
-      <script>
-        steal = {
-          instantiated: {
-            "bundles/bit-docs-site/static.css!$css" : null
-          }
-        }
-      </script>
-      <script type='text/javascript'
-          data-main="bit-docs-site/static"
-          src="../static/steal.production.js"></script>
-    
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+  
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-2302003-12');
+      steal = {
+        instantiated: {
+          "bundles/bit-docs-site/static.css!$css" : null
+        }
+      }
     </script>
+    <script type='text/javascript'
+        data-main="bit-docs-site/static"
+        src="../static/steal.production.js"></script>
+  
 
-  </div>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-29"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-2302003-29');
+</script>
+
 </body>
 </html>
