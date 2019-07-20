@@ -1,4 +1,3 @@
-<script type="typescript">
 interface DinoInfo {
   name:string;
   location:string;
@@ -12,4 +11,3 @@ owensCatcher({name: 'Blue', location: 'Section B'});
 //Logs "Owen caught Blue at Section B"
 owensCatcher({name: 'Charlie'});
 //property 'location' is missing //error
-</script>

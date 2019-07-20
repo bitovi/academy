@@ -1,4 +1,3 @@
-<script type="typescript">
 class Dinosaur {
   name: string;
   constructor(name: string) {
@@ -7,6 +6,5 @@ class Dinosaur {
 }
 
 let dino = new Dinosaur("Billy");
-console.log(dino.name) 
+console.log(dino.name)
 //Logs "Billy"
-</script>

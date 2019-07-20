@@ -1,4 +1,3 @@
-<script type="typescript">
 class Dinosaur {
   public name: string;
   private dna: string;
@@ -20,4 +19,3 @@ class GeneticallyModifiedDinosaur extends Dinosaur {
     this.teethCount; // okay
   }
 }
-</script>

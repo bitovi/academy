@@ -1,4 +1,3 @@
-<script type="typescript">
 interface Dinosaur {
   name: string;
   breed: string;
@@ -16,4 +15,3 @@ class ClonedDino implements Dinosaur {
     console.log('roar');
   };
 }
-</script>

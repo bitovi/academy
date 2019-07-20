@@ -17,14 +17,14 @@ Interfaces are a powerful way to enforce types and document what our code provid
 
 An interface in TypeScript is a way to define the shape an entity should adhere to. An interface defines the members - properties, methods, and events. It may be easy to think of it as the signature of an API. It's worth noting that interfaces aren't transpiled into our output JavaScript, they're simply used for typechecking during the development process.
 
-@sourceref ./6-1-interface.html
+@sourceref ./6-1-interface.ts
 @codepen
 
 ### Optional Properties
 
 Some times all properties on an object don't need to be required, using the ``?`` lets us tell the TypeScript compiler which parties aren't required.
 
-@sourceref ./6-2-optional.html
+@sourceref ./6-2-optional.ts
 @highlight 5
 @codepen
 
@@ -32,14 +32,14 @@ Some times all properties on an object don't need to be required, using the ``?`
 
 In the case that a class needs to follow an object structure, we can use interfaces to define that 'contract'.
 
-@sourceref ./6-3-classes.html
+@sourceref ./6-3-classes.ts
 @codepen
 
 ### Interfaces in Functions
 
 Interfaces are incredibly useful in describing the shape of objects we want to use in multiple situations. The following functions both require a ``Dinosaur`` object shape we've defined in the ``Dinosaur`` interface.
 
-@sourceref ./6-3-2-functions.html
+@sourceref ./6-3-2-functions.ts
 @codepen
 
 ### Type Assertion
@@ -48,12 +48,12 @@ We briefly mentioned type assertion when talk about types, but when dealing with
 
 For instance, consider the following code:
 
-@sourceref ./6-4-type-assertion.html
+@sourceref ./6-4-type-assertion.ts
 @codepen
 
 When we create empty object literals in TypeScript, they are inferred to be objects with zero properties. To fix this, we can use type assertions to let the compiler explicitly know what we want from our object.
 
-@sourceref ./6-4-2-type-assertion.html
+@sourceref ./6-4-2-type-assertion.ts
 @codepen
 
 
@@ -61,14 +61,14 @@ When we create empty object literals in TypeScript, they are inferred to be obje
 
 If we have a function expecting a specific object, we can define what that object should look like by specifying an interface for it:
 
-@sourceref ./6-5-objects.html
+@sourceref ./6-5-objects.ts
 @codepen
 
 ### Describing Functions
 
 We can also use interfaces to describe what a function is expected to return. The following sample shows a ``ResponseConfig`` interface that should be returned by the ``securityCheck`` method.
 
-@sourceref ./6-6-functions.html
+@sourceref ./6-6-functions.ts
 @codepen
 @highlight 2-5,27
 

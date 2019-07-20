@@ -1,4 +1,3 @@
-<script type="typescript">
 class DinoCage {
   static cageInstances: number = 0;
   static dinos: number = 0;
@@ -6,7 +5,7 @@ class DinoCage {
     DinoCage.dinos = DinoCage.dinos + dinos;
     DinoCage.cageInstances++;
   }
-  
+
   static countDinos() {
     return `${this.dinos} dinosaurs`;
   }
@@ -18,7 +17,7 @@ class RaptorCage extends DinoCage {
     super(dinos);
     this.raptors = dinos;
   }
-  
+
   public securityCheck() {
     if (this.raptors < 7) {
       return 'security check passes'
@@ -32,11 +31,10 @@ class RaptorCage extends DinoCage {
 var paddock1 = new DinoCage(2);
 var paddock2 = new DinoCage(3);
 var uberPaddock1 = new RaptorCage(6);
-var uberPaddock2 = new RaptorCage(8); 
-console.log(DinoCage.cageInstances); 
-//Logs "3" 
-console.log(DinoCage.countDinos()); 
+var uberPaddock2 = new RaptorCage(8);
+console.log(DinoCage.cageInstances);
+//Logs "3"
+console.log(DinoCage.countDinos());
 //Logs "19 dinosaurs"
-console.log(uberPaddock2.securityCheck()); 
+console.log(uberPaddock2.securityCheck());
 //Logs "hold on to your butts"
-</script>

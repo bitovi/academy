@@ -21,12 +21,12 @@ In JavaScript, a class is a structured way to define what you may have seen befo
 
 The following shows creating a ParkEmployee constructor function with a ``sayHi`` method.
 
-@sourceref ./5-1-javascript-prototype.html
+@sourceref ./5-1-javascript-prototype.js
 @codepen
 
 In the TypeScript class example, the ``name`` member is defined on line 4. We'll look at setting the name via the constructor next.
 
-@sourceref ./5-2-typescript-class.html
+@sourceref ./5-2-typescript-class.ts
 @codepen
 @highlight 4
 
@@ -35,29 +35,29 @@ In the TypeScript class example, the ``name`` member is defined on line 4. We'll
 
 The constructor method is how to initialize a new object with members. The constructor is called when we instantiate a new object from calling a class with the ``new`` keyword - it constructs and returns a new object for us with properties we gave it.
 
-@sourceref ./5-3-class-constructor.html
+@sourceref ./5-3-class-constructor.ts
 @codepen
 @highlight 4
 
 When declaring members, it's also possible to instantiate a value on them.
 
-@sourceref ./5-3-class-constructor-initialized.html
+@sourceref ./5-3-class-constructor-initialized.ts
 @codepen
 @highlight 4
 
 Using the constructor to set public members is quite a common pattern, which is why TypeScript also provides a shorthand.
 
-@sourceref ./5-4-constructor-short.html
+@sourceref ./5-4-constructor-short.ts
 @codepen
 @highlight 3
 
-> __Note__ We will see how to create private members later.
+> __Note:__ We will see how to create private members later.
 
 ## Inheritance
 
 Inheritance is a way to extend functionality of existing classes. If the derived class contains its own constructor function, it MUST call a super method with params matching that of its parent class. Super is a call to the parent constructor method to ensure the properties are set for the parent. The following shows accessing the move method from the parent class and adding run and talk methods to the child class.
 
-@sourceref ./5-5-inheritance.html
+@sourceref ./5-5-inheritance.ts
 @codepen
 @highlight 10,12
 
@@ -67,20 +67,20 @@ When you need a property to be shared across multiple instances, you can use a _
 
 This example shows the use of a static property ``cageInstances`` to count the number of instances of ``DinoCage``:
 
-@sourceref ./5-6-statics.html
+@sourceref ./5-6-statics.ts
 @codepen
 @highlight 3,11
 
 This example shows a shared static property ``dinos`` to count the number of dinosaurs in cages across all instances:
 
-@sourceref ./5-6-statics-advanced.html
+@sourceref ./5-6-statics-advanced.ts
 @codepen
 
 ## Public modifier
 
 In TypeScript all members are public by default, meaning they are publicly accessible.
 
-@sourceref ./5-7-public.html
+@sourceref ./5-7-public.ts
 @codepen
 @highlight 4
 
@@ -88,7 +88,7 @@ In TypeScript all members are public by default, meaning they are publicly acces
 
 Members marked private are unable to be accessed from outside their containing class.
 
-@sourceref ./5-8-private.html
+@sourceref ./5-8-private.ts
 @codepen
 @highlight 4,14
 
@@ -96,16 +96,16 @@ Members marked private are unable to be accessed from outside their containing c
 
 Protected modifiers are similar to private modifiers in that they can't be accessed but they CAN be accessed by deriving classes. The following example shows an inherited class that can access it's parent protected property ``teethCount``:
 
-@sourceref ./5-9-protected.html
+@sourceref ./5-9-protected.ts
 @codepen
 @highlight 5, 20
 
 
 ## Readonly modifier
 
-Readonly modifiers allow properties to be read, but not changed.
+Readonly modifiers allow properties to be read, but not changed after initialization.
 
-@sourceref ./5-10-readonly.html
+@sourceref ./5-10-readonly.ts
 @codepen
 @highlight 3,11
 
@@ -118,10 +118,10 @@ Wrong `this`:
 
 ```typescript
 class DinoBuilder {
-  name = 'Trex';
+  dinoName = 'Trex';
   yawn() {
     setTimeout(function() {
-      console.log(`${this.name} yawned.`)
+      console.log(`${this.dinoName} yawned.`)
     }, 50);
   }
 }
@@ -131,15 +131,16 @@ dino.yawn();
 // Logs "undefined yawned"
 ```
 @highlight 4
+@codepen
 
 Right `this`:
 
 ```typescript
 class DinoBuilder {
-  name = 'Trex';
+  dinoName = 'Trex';
   yawn() {
     setTimeout(() => {
-      console.log(`${this.name} yawned.`)
+      console.log(`${this.dinoName} yawned.`)
     }, 50);
   }
 }
@@ -149,46 +150,52 @@ dino.yawn();
 // Logs "Trex yawned"
 ```
 @highlight 4
+@codepen
 
 Wrong `this`:
 
 ```typescript
 class DinoBuilder {
-  name = 'Trex';
+  dinoName = 'Trex';
   roar() {
-    console.log(`${this.name} roared.`)
+    console.log(`${this.dinoName} roared.`)
   }
 }
 
 var dino = new DinoBuilder();
 
-let fierce = dino.roar;
-fierce();
+setTimeout(dino.roar, 50);
 // Logs "undefined roared"
 ```
 @highlight 3
-
+@codepen
 
 Right `this`:
 
 ```typescript
 class DinoBuilder {
-  name = 'Trex';
+  dinoName = 'Trex';
   roar = () => {
-    console.log(`${this.name} roared.`)
+    console.log(`${this.dinoName} roared.`)
   }
 }
 
 var dino = new DinoBuilder();
-let fierce = dino.roar;
-fierce();
+
+setTimeout(dino.roar, 50);
 // Logs "Trex roared"
 ```
 @highlight 3
+@codepen
 
-## Exercise 1
+## Exercise: Create a Class
 
-Edit the file `4a-classes-hello-dino.ts` to recreate the prototype using TypeScript classes.
+### The problem
+
+In this exercise, we will take an old-school JavaScript class and convert it to a
+shiny new TypeScript class.
+
+Edit the file `4a-classes-hello-dino.ts` to recreate the `DinoKeeper` using TypeScript classes.
 
 ```typescript
 function DinoKeeper(name) {
@@ -204,13 +211,25 @@ employee1.sayHi();
 //Joe says "hi"
 ```
 
-Hint* When you run:
+### Hint
+
+If you run:
 
 ```bash
 tsc 4a-classes-hello-dino.ts
 ```
 
-Your code should output to look like the above prototype version! Delete the compiled js file before running the tests in the next step.
+Your code should transpile to look like the above prototype version! __Delete__ the compiled js file before running the tests in the next step.
+
+### Verify your solution
+
+✏️ Run the following to verify your solution:
+
+```shell
+npm run 2a-class
+```
+
+### The solution
 
 
 <details>
@@ -235,9 +254,29 @@ employee1.sayHi();
 
 </details>
 
-## Exercise 2
+## Exercise: Extend a Class
 
-Edit the file `4a-specialist.ts` to write a new ``Specialist`` class that inherits from the ``DinoKeeper``. This new class should be able to accept an additional ``experience`` public member that is a number, and have a ``safetyQuote`` method that returns("Never turn your back to the cage. Trust me, I have _${experience}_ years of experience")
+### The problem
+
+
+Edit `4b-specialist.ts` to write a new `Specialist` class:
+
+```ts
+import DinoKeeper from "./4a-classes-hello-dino";
+
+class Specialist {
+
+}
+export default Specialist;
+```
+
+`Specialist` should:
+
+- Inherit from `DinoKeeper`. This new class should
+- Accept an additional `experience` public member that is a number
+- Have a `safetyQuote` method that returns `"Never turn your back to the cage. Trust me, I have ${experience} years of experience"`.
+
+For example, you should be able to use `Specialist` as folows:
 
 ```typescript
 let employee2 = new Specialist("Owen", 14);
@@ -245,30 +284,36 @@ employee2.sayHi(); //Owen says 'hi'
 employee2.safetyQuote();
 //Logs "Never turn your back to the cage. Trust me, I have 14 years of experience"
 ```
+
+### Verify your solution
+
+✏️ Run the following to verify the solution:
 
 ```shell
 npm run 4-classes
 ```
 
+### The solution
+
 <details>
-<summary>Solution</summary>
+<summary>Click to see the solution</summary>
+
+✏️ Update `4b-specialist.ts` to the following:
 
 ```typescript
+import DinoKeeper from "./4a-classes-hello-dino";
+
 class Specialist extends DinoKeeper {
   constructor(name: string, public experience: number) {
     super(name);
   }
 
-  safetyQuote():string {
+  safetyQuote() {
     return `Never turn your back to the cage.
     Trust me, I have ${this.experience} years of experience`;
   }
 }
-
-let employee2 = new Specialist("Owen", 14);
-employee2.sayHi(); //Owen says 'hi'
-employee2.safetyQuote();
-//Logs "Never turn your back to the cage. Trust me, I have 14 years of experience"
+export default Specialist;
 ```
 
 </details>

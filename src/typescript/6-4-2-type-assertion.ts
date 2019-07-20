@@ -1,4 +1,3 @@
-<script type="typescript">
 interface Dinosaur {
   name: string;
   height: number;
@@ -7,4 +6,3 @@ interface Dinosaur {
 var myObj = {} as Dinosaur;
 myObj.name = 'Blue';
 myObj.height = 6;
-</script>

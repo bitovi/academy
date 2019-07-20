@@ -1,4 +1,3 @@
-<script type="typescript">
 class LinkedListItem<T> {
   value: T;
   next?: LinkedListItem<T>;
@@ -18,4 +17,3 @@ createNewItem(5);
 //Argument of type '5' is not assignable to parameter of type 'string'.
 createNewItem('five');
 //Logs "five"
-</script>

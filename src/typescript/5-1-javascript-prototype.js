@@ -1,4 +1,3 @@
-<script type="javascript">
 //prototype way
 function ParkEmployee(name) {
   this.name = name;
@@ -11,4 +10,3 @@ ParkEmployee.prototype.sayHi = function() {
 let raptorGuy = new ParkEmployee("Owen");
 raptorGuy.sayHi();
 //Logs "Hi, my name is Owen"
-</script>

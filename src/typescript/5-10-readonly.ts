@@ -1,4 +1,3 @@
-<script type="typescript">
 class Leoplurodon {
   readonly location: string;
   readonly numberOfFlippers: number = 4;
@@ -9,4 +8,3 @@ class Leoplurodon {
 }
 let firstStop = new Leoplurodon("On the way to Candy Mountain");
 firstStop.location = "On a bridge"; // error! location is readonly.
-</script>

@@ -1,4 +1,3 @@
-<script type="typescript">
 class Dinosaur {
   name: string;
   age: number = 0;
@@ -8,6 +7,5 @@ class Dinosaur {
 }
 
 let dino = new Dinosaur('Billy');
-console.log(dino.age); 
+console.log(dino.age);
 //Logs "0"
-</script>
