@@ -612,7 +612,7 @@ class GeneticallyModifiedDinosaur extends Dinosaur {
 <div class='codepen'></div>
 <div line-highlight='5, 20'></div>
 <h2>Readonly modifier</h2>
-<p>Readonly modifiers allow properties to be read, but not changed.</p>
+<p>Readonly modifiers allow properties to be read, but not changed after initialization.</p>
 <pre><code class="language-ts">class Leoplurodon {
   readonly location: string;
   readonly numberOfFlippers: number = 4;
@@ -631,10 +631,10 @@ firstStop.location = &quot;On a bridge&quot;; // error! location is readonly.
 <p>If you're familiar with ES6, you may know that using the fat arrow (=&gt;) captures the context of <code>this</code> where it's used. The functionality is the same in TypeScript.</p>
 <p>Wrong <code>this</code>:</p>
 <pre><code class="language-typescript">class DinoBuilder {
-  name = 'Trex';
+  dinoName = 'Trex';
   yawn() {
     setTimeout(function() {
-      console.log(`${this.name} yawned.`)
+      console.log(`${this.dinoName} yawned.`)
     }, 50);
   }
 }
@@ -644,12 +644,13 @@ dino.yawn();
 // Logs &quot;undefined yawned&quot;
 </code></pre>
 <div line-highlight='4'></div>
+<div class='codepen'></div>
 <p>Right <code>this</code>:</p>
 <pre><code class="language-typescript">class DinoBuilder {
-  name = 'Trex';
+  dinoName = 'Trex';
   yawn() {
     setTimeout(() =&gt; {
-      console.log(`${this.name} yawned.`)
+      console.log(`${this.dinoName} yawned.`)
     }, 50);
   }
 }
@@ -659,35 +660,37 @@ dino.yawn();
 // Logs &quot;Trex yawned&quot;
 </code></pre>
 <div line-highlight='4'></div>
+<div class='codepen'></div>
 <p>Wrong <code>this</code>:</p>
 <pre><code class="language-typescript">class DinoBuilder {
-  name = 'Trex';
+  dinoName = 'Trex';
   roar() {
-    console.log(`${this.name} roared.`)
+    console.log(`${this.dinoName} roared.`)
   }
 }
 
 var dino = new DinoBuilder();
 
-let fierce = dino.roar;
-fierce();
+setTimeout(dino.roar, 50);
 // Logs &quot;undefined roared&quot;
 </code></pre>
 <div line-highlight='3'></div>
+<div class='codepen'></div>
 <p>Right <code>this</code>:</p>
 <pre><code class="language-typescript">class DinoBuilder {
-  name = 'Trex';
+  dinoName = 'Trex';
   roar = () =&gt; {
-    console.log(`${this.name} roared.`)
+    console.log(`${this.dinoName} roared.`)
   }
 }
 
 var dino = new DinoBuilder();
-let fierce = dino.roar;
-fierce();
+
+setTimeout(dino.roar, 50);
 // Logs &quot;Trex roared&quot;
 </code></pre>
 <div line-highlight='3'></div>
+<div class='codepen'></div>
 <h2>Exercise: Create a Class</h2>
 <h3>The problem</h3>
 <p>In this exercise, we will take an old-school JavaScript class and convert it to a
@@ -710,7 +713,11 @@ employee1.sayHi();
 <pre><code class="language-bash">tsc 4a-classes-hello-dino.ts
 </code></pre>
 <p>Your code should transpile to look like the above prototype version! <strong>Delete</strong> the compiled js file before running the tests in the next step.</p>
-<h3>Solution</h3>
+<h3>Verify your solution</h3>
+<p>✏️ Run the following to verify your solution:</p>
+<pre><code class="language-shell">npm run 2a-class
+</code></pre>
+<h3>The solution</h3>
 <p><details>
 <summary>Solution</summary></p>
 <pre><code class="language-typescript">class DinoKeeper {
@@ -731,31 +738,47 @@ employee1.sayHi();
 <p></details></p>
 <h2>Exercise: Extend a Class</h2>
 <h3>The problem</h3>
-<p>Edit the file <code>4a-specialist.ts</code> to write a new <code>Specialist</code> class that inherits from the <code>DinoKeeper</code>. This new class should be able to accept an additional <code>experience</code> public member that is a number, and have a <code>safetyQuote</code> method that returns(&quot;Never turn your back to the cage. Trust me, I have <em>${experience}</em> years of experience&quot;)</p>
+<p>Edit <code>4b-specialist.ts</code> to write a new <code>Specialist</code> class:</p>
+<pre><code class="language-ts">import DinoKeeper from &quot;./4a-classes-hello-dino&quot;;
+
+class Specialist {
+
+}
+export default Specialist;
+</code></pre>
+<p><code>Specialist</code> should:</p>
+<ul>
+<li>Inherit from <code>DinoKeeper</code>. This new class should</li>
+<li>Accept an additional <code>experience</code> public member that is a number</li>
+<li>Have a <code>safetyQuote</code> method that returns <code>&quot;Never turn your back to the cage. Trust me, I have ${experience} years of experience&quot;</code>.</li>
+</ul>
+<p>For example, you should be able to use <code>Specialist</code> as folows:</p>
 <pre><code class="language-typescript">let employee2 = new Specialist(&quot;Owen&quot;, 14);
 employee2.sayHi(); //Owen says 'hi'
 employee2.safetyQuote();
 //Logs &quot;Never turn your back to the cage. Trust me, I have 14 years of experience&quot;
 </code></pre>
+<h3>Verify your solution</h3>
+<p>✏️ Run the following to verify the solution:</p>
 <pre><code class="language-shell">npm run 4-classes
 </code></pre>
+<h3>The solution</h3>
 <p><details>
-<summary>Solution</summary></p>
-<pre><code class="language-typescript">class Specialist extends DinoKeeper {
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <code>4b-specialist.ts</code> to the following:</p>
+<pre><code class="language-typescript">import DinoKeeper from &quot;./4a-classes-hello-dino&quot;;
+
+class Specialist extends DinoKeeper {
   constructor(name: string, public experience: number) {
     super(name);
   }
 
-  safetyQuote():string {
+  safetyQuote() {
     return `Never turn your back to the cage.
     Trust me, I have ${this.experience} years of experience`;
   }
 }
-
-let employee2 = new Specialist(&quot;Owen&quot;, 14);
-employee2.sayHi(); //Owen says 'hi'
-employee2.safetyQuote();
-//Logs &quot;Never turn your back to the cage. Trust me, I have 14 years of experience&quot;
+export default Specialist;
 </code></pre>
 <p></details></p>
 
