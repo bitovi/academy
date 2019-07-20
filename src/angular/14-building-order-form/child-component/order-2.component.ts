@@ -43,12 +43,13 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.restaurantService.getRestaurant(slug).subscribe((res:Restaurant) => {
       this.restaurant = res;
       this.createOrderForm();
-      
     });    
-   
   }
 
   ngOnDestroy(): void {
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   createOrderForm() {

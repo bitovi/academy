@@ -184,13 +184,15 @@ export const environment = {
 };
 ```
 
-## P1: How to Verify Your Solution is Correct
+Now generate the restaurant service:
 
-✏️ Generate the restaurant service:
+✏️ Run
 
 ```shell
 ng g service restaurant/restaurant
 ```
+
+## P1: How to Verify Your Solution is Correct
 
 ✏️ Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
 
