@@ -19,7 +19,7 @@ For those newer to Object-oriented programming, classes are special functions th
 
 In JavaScript, a class is a structured way to define what you may have seen before - prototype based constructor functions. This allows us to take an object-oriented approach to building our JavaScript applications. Since ECMAScript 2015, classes have been available, the difference with classes in TypeScript is the strictness of enforcing types on members.
 
-The following shows creating a ParkEmployee constructor function with a ``sayHi`` method.
+The following shows creating a ParkEmployee constructor function with a ``sayHi`` method in just JavaScript.
 
 @sourceref ./5-1-javascript-prototype.js
 @codepen
@@ -103,7 +103,7 @@ Protected modifiers are similar to private modifiers in that they can't be acces
 
 ## Readonly modifier
 
-Readonly modifiers allow properties to be read, but not changed after initialization.
+Readonly modifiers allow properties to be read, but not changed after initialization. Read-only members can be accessed outside the class, but their value can't be changed.
 
 @sourceref ./5-10-readonly.ts
 @codepen
@@ -190,7 +190,7 @@ setTimeout(dino.roar, 50);
 
 ## Exercise: Create a Class
 
-### The problem
+### The Problem
 
 In this exercise, we will take an old-school JavaScript class and convert it to a
 shiny new TypeScript class.
@@ -235,6 +235,8 @@ npm run 2a-class
 <details>
 <summary>Solution</summary>
 
+✏️ Update `4a-classes-hello-dino.ts` to the following:
+
 ```typescript
 class DinoKeeper {
   name: string;
@@ -256,8 +258,7 @@ employee1.sayHi();
 
 ## Exercise: Extend a Class
 
-### The problem
-
+### The Problem
 
 Edit `4b-specialist.ts` to write a new `Specialist` class:
 
@@ -285,7 +286,7 @@ employee2.safetyQuote();
 //Logs "Never turn your back to the cage. Trust me, I have 14 years of experience"
 ```
 
-### Verify your solution
+### Verify Your Solution
 
 ✏️ Run the following to verify the solution:
 
@@ -293,7 +294,7 @@ employee2.safetyQuote();
 npm run 4-classes
 ```
 
-### The solution
+### The Solution
 
 <details>
 <summary>Click to see the solution</summary>

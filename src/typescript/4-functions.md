@@ -116,7 +116,7 @@ Line 10 will error with: `Property 'name' is missing in type '{ street: string; 
 
 ## Exercise: dnaCost
 
-### The problem
+### The Problem
 
 The following function in `3-functions-dnaCost.ts` calculates the cost of synthesizing
 a DNA sequence to make a dinosaur. It calculates the cost by adding a `baseCost` plus
@@ -140,7 +140,7 @@ console.log(indoraptorCost);
 // Logs 5017
 ```
 
-### Verify your solution
+### Verify Your Solution
 
 ✏️ Run the following to verify your solution:
 
@@ -148,7 +148,7 @@ console.log(indoraptorCost);
 npm run 3-functions
 ```
 
-### Our solution
+### The Solution
 
 <details>
 <summary>Click to see the solution</summary>

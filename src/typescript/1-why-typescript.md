@@ -54,10 +54,9 @@ When we give you a command to run to verify your work it will look for a file na
 
 ## Exercise: `1-helloworld.ts`
 
-### The problem
+### The Problem
 
 For this exercise, we will first clone the __learn-typescript__ exercise repo.
-
 
 In that repo, there is a _0-why-hello-world.html_ page that looks like the following:
 
@@ -109,7 +108,7 @@ repository. To use it:
 
 
 
-### What you need to know
+### What You Need to Know
 
 
 In order to use TypeScript in the browser, we must compile the TypeScript code to plain JavaScript first. We will do this using our terminal in this example, but most often TypeScript will be compiled during a build process.
@@ -153,7 +152,7 @@ tsc 0-why-hello-world.ts
 Provided there are no errors, this will compile the TypeScript to JavaScript file `0-why-hello-world.js`
 
 
-### Verify solution
+### Verify Solution
 
 Open _0-why-hello-world.html_ in your browser.  You should see `"Hello, World"` in the page.
 
@@ -170,11 +169,11 @@ npm run 0-why
 
 ## Bonus Challenge
 
-### The problem
+### The Problem
 
 Change your ``user`` variable to a number and compile again. What do you think will happen?
 
-### The solution
+### The Solution
 
 You should see an error message.
 

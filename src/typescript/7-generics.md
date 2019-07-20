@@ -370,17 +370,22 @@ root.right.value      //-> "Tom"
 root.right.left.value //-> "Matthew"
 ```
 
-Run the following to verify your solution:
+### Verify Your Solution
+
+
+✏️ Run the following to verify your solution:
 
 ```shell
 npm run 6-generics
 ```
 
 
-### The solution
+### The Solution
 
 <details>
 <summary>Click to see the solution</summary>
+
+✏️ Update `6-tree-node.ts` to the following:
 
 ```typescript
 interface Comparison<T> {
