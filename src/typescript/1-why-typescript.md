@@ -42,17 +42,21 @@ let user = {name: "Justin"};
 document.body.innerHTML = greeter(user);
 ```
 
-
 If there's a bug in the code related to falsely assuming a type, it won't throw an error until we're already running our code.
 
 TypeScript uses static typing, which allows us to specify what type a variable should hold, and types are checked when the code compiles alerting us of any incorrect usages of a variable assignment. The concept of "static" comes from the idea of variables being static, meaning once you set a variable to a type it can't (shouldn't) be changed.
 
+## Using this Guide
+
+In this guide we will teach you about TypeScript concepts and have an environment for you to practice in. Running the tests will catch any problems if the code was not written correctly or as expected. Pay close attention to how you name and save the files. 
+
+When we give you a command to run to verify your work it will look for a file named respectively. If you run into issues you can look at the package.json file to see which file the command listed is looking for.
+
 ## Exercise: `1-helloworld.ts`
 
-### The problem
+### The Problem
 
 For this exercise, we will first clone the __learn-typescript__ exercise repo.
-
 
 In that repo, there is a _0-why-hello-world.html_ page that looks like the following:
 
@@ -104,7 +108,7 @@ repository. To use it:
 
 
 
-### What you need to know
+### What You Need to Know
 
 
 In order to use TypeScript in the browser, we must compile the TypeScript code to plain JavaScript first. We will do this using our terminal in this example, but most often TypeScript will be compiled during a build process.
@@ -148,7 +152,7 @@ tsc 0-why-hello-world.ts
 Provided there are no errors, this will compile the TypeScript to JavaScript file `0-why-hello-world.js`
 
 
-### Verify solution
+### Verify Solution
 
 Open _0-why-hello-world.html_ in your browser.  You should see `"Hello, World"` in the page.
 
@@ -165,11 +169,11 @@ npm run 0-why
 
 ## Bonus Challenge
 
-### The problem
+### The Problem
 
 Change your ``user`` variable to a number and compile again. What do you think will happen?
 
-### The solution
+### The Solution
 
 You should see an error message.
 

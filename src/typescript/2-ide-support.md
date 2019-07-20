@@ -78,7 +78,7 @@ Atom is another good modern IDE that easily supports and aids in TypeScript deve
 
 ## Exercise: Exporting and Importing
 
-### The problem
+### The Problem
 
 In this exercise, we will:
 
@@ -95,7 +95,7 @@ In this exercise, we will:
   ```
 - Compile _1-ide-hello-earth.ts_ to JavaScript so we can run it.
 
-### What you need to know
+### What You Need to Know
 
 - [Export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) a default value like:
   ```typescript
@@ -107,7 +107,7 @@ In this exercise, we will:
   import value from "./value-exporter";
   ```
 
-### Verify solution
+### Verify Your Solution
 
 ✏️ Run the following to verify your solution works:
 
@@ -115,7 +115,7 @@ In this exercise, we will:
 npm run 1-ide
 ```
 
-### The solution
+### The Solution
 
 <details>
 <summary>Click to see the solution</summary>
@@ -147,7 +147,7 @@ tsc 1-ide-hello-earth.ts
 
 </details>
 
-### Things to explore
+### Things to Explore
 
 - Hover over `greeter`, what does your IDE show?
 - Pass a number to `greeter`, what does your IDE show?

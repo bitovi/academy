@@ -1,3 +1,4 @@
+//interface describing object
 interface Dinosaur {
   name: string;
   breed: string;
@@ -5,6 +6,7 @@ interface Dinosaur {
   location: string;
 }
 
+//function with interface describing parameter
 function trackDino(dino: Dinosaur) {
   console.log(dino.location);
 }

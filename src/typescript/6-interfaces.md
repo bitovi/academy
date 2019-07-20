@@ -22,7 +22,7 @@ An interface in TypeScript is a way to define the shape an entity should adhere 
 
 ### Optional Properties
 
-Some times all properties on an object don't need to be required, using the ``?`` lets us tell the TypeScript compiler which parties aren't required.
+Some times all properties on an object don't need to be required, using the ``?`` lets us tell the TypeScript compiler which properties aren't required.
 
 @sourceref ./6-2-optional.ts
 @highlight 5
@@ -42,6 +42,18 @@ Interfaces are incredibly useful in describing the shape of objects we want to u
 @sourceref ./6-3-2-functions.ts
 @codepen
 
+### Interfaces Describing Functions
+
+We can also use interfaces to describe functions, basically creating reusable types for functions. On the left side in parenthesis we list the parameters, and to the right of the colon we state the return type.
+
+@sourceref ./6-3-3-describefuncs.ts
+@codepen
+
+It's possible to use the `type` keyword as an interface to describe a function.
+
+@sourceref ./6-3-4-describefuncs-type.ts
+@codepen
+
 ### Type Assertion
 
 We briefly mentioned type assertion when talk about types, but when dealing with interfaces it can be a great tool for making sure our code behaves in the way we expect.
@@ -56,25 +68,11 @@ When we create empty object literals in TypeScript, they are inferred to be obje
 @sourceref ./6-4-2-type-assertion.ts
 @codepen
 
+## Exercise 1: Write Interfaces to Describe an Object
 
-### Describing Objects
+### The Problem
 
-If we have a function expecting a specific object, we can define what that object should look like by specifying an interface for it:
-
-@sourceref ./6-5-objects.ts
-@codepen
-
-### Describing Functions
-
-We can also use interfaces to describe what a function is expected to return. The following sample shows a ``ResponseConfig`` interface that should be returned by the ``securityCheck`` method.
-
-@sourceref ./6-6-functions.ts
-@codepen
-@highlight 2-5,27
-
-### Exercise 1
-
-Edit the files `5a-dino-park.ts` and `5a-address.ts` to create an interface to define a ``DinoPark`` object shown below:
+We're going to write some interfaces to set up for the next problem. Edit the files `5a-dino-park.ts` and `5a-address.ts` to create an interface to define a ``DinoPark`` object shown below:
 
 ```javascript
 let park = {
@@ -99,10 +97,12 @@ Hint: the interface should have properties and types:
   - ``state``(string)
   - ``zip`` (string)
 
+### The Solution
+
 <details>
 <summary>Solution</summary>
 
-__5a-dino-park.ts__
+✏️ Update `5a-dino-park.ts` to the following:
 
 ```typescript
 import Address from "./5a-address";
@@ -116,7 +116,7 @@ interface DinoPark {
 export default DinoPark;
 ```
 
-__5a-address.ts__
+✏️ Update `5a-address.ts` to the following:
 
 ```typescript
 interface Address {
@@ -131,18 +131,29 @@ export default Address;
 
 </details>
 
-### Exercise 2
+Make sure you have this solution implemented correctly before moving on to the next exercise. 
+
+## Exercise 2: Write a Function With a Parameter Described by Interface
+
+### The Problem
 
 In the `5b-create-park-slug.ts` file edit the ``createParkSlug`` function to take a parameter that is the interface ```DinoPark``` created previously and returns a slug for the park by replacing any spaces with dashes. Ex. the park "Isla Sorna Park" should return the slug `Isla-Sorna-Park`.
 
-Run the following to verify your solution:
+### Verify Your Solution
+
+✏️ Run the following to verify your solution:
 
 ```shell
 npm run 5-interfaces
 ```
 
+### The Solution
+
+
 <details>
 <summary>Solution</summary>
+
+✏️ Update `5b-create-park-slug.ts` to the following:
 
 ```typescript
 import DinoPark from "./5a-dino-park";

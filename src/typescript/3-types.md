@@ -193,9 +193,9 @@ let otherLength: number = (otherValue as string).length;
 
 The ``as`` syntax is usually preferred because the `<type>` conflicts with JSX syntax.
 
-## Exercise: Fix type errors
+## Exercise: Fix Type Errors
 
-### The problem
+### The Problem
 
 In this exercise, we will learn to spot and correct basic type errors by
 fixing the type errors in `2a-fix-errors.ts`:
@@ -219,7 +219,7 @@ export const tom = greet('Tom', 42, 'software');
 export {isLoading, inventory};
 ```
 
-### What you need to know
+### What You Need to Know
 
 The exports of `2a-fix-errors.ts` should look like:
 
@@ -243,7 +243,7 @@ it("exports are correct", function(){
 });
 ```
 
-### Verify your solution
+### Verify Your Solution
 
 ✏️ Run the following to verify your solution:
 
@@ -252,7 +252,7 @@ npm run 2a-types
 ```
 
 
-### The solution
+### The Solution
 
 
 <details>
@@ -282,9 +282,9 @@ export {isLoading, inventory};
 
 </details>
 
-## Exercise: Date it
+## Exercise: Date It
 
-### The problem
+### The Problem
 
 In this exercise, we will create our own typed variable by updating `2b-date-export.ts` to:
 
@@ -292,11 +292,11 @@ In this exercise, we will create our own typed variable by updating `2b-date-exp
 - Assign that variable to an instance of `Date`
 - Export that variable as the default export.
 
-### What you need to know
+### What You Need to Know
 
 - Use `new Date()` to create an instance of Date.
 
-### Verify your solution
+### Verify Your Solution
 
 ✏️ Run the following to verify your solution:
 
@@ -304,7 +304,7 @@ In this exercise, we will create our own typed variable by updating `2b-date-exp
 npm run 2b-types
 ```
 
-### The solution
+### The Solution
 
 <details>
 <summary>Click to see the solution</summary>
