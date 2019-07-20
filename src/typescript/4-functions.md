@@ -12,6 +12,8 @@ In this part, we will:
 - Annotate functions parameters and return values.
 - Use optional parameters & rest parameters
 
+The exercise will have you update a function with TypeScript annotations.
+
 ## Functions in TypeScript
 
 In TypeScript, we're able to annotate function parameters to better guard our code. If the following, `add` is called  with two parameters that are not numbers TypeScript's compiler will throw an error when compiled.
@@ -112,26 +114,64 @@ dog.bark.call(address);
 
 Line 10 will error with: `Property 'name' is missing in type '{ street: string; }' but required in type '{ name: string; }'.`
 
-## Exercise: bonusMaker
+## Exercise: dnaCost
 
-The following function takes a bonus multiplier amount parameter and a dinosaur name parameter, then takes the length of the dinosaur name and multiplies it by the multiplier to calculate a dinosaur park employee's bonus salary based on the complexity of the dinosaurs they make.  
+### The problem
+
+The following function in `3-functions-dnaCost.ts` calculates the cost of synthesizing
+a DNA sequence to make a dinosaur. It calculates the cost by adding a `baseCost` plus
+the length of the DNA sequence:
 
 @sourceref ./4-exercise-start.ts
 @codepen
 
-Productivity in the park has been up, so open the `3-functions-bonusMaker.ts` file and  modify this function to take an unknown amount of names to get the length of and multiply by the bonus multiplier amount.
+Now scientists want to mix the DNA of multiple dinosaurs.
+So open the `3-functions-dnaCost.ts` file and  modify this function to take an unknown amount of
+sequences:
 
+```ts
+let raptorDNA = "CGGCA";
+let cuttlefishDNA = "GATTACA";
+let viperDNA = "ATTAC";
 
-Run the following to verify your solution:
+let indoraptorCost = dnaCost(5000,raptorDNA, cuttlefishDNA, viperDNA);
+
+console.log(indoraptorCost);
+// Logs 5017
+```
+
+### Verify your solution
+
+✏️ Run the following to verify your solution:
 
 ```shell
 npm run 3-functions
 ```
 
+### Our solution
+
 <details>
-<summary>solution</summary>
+<summary>Click to see the solution</summary>
+
+✏️ Update `3-functions-dnaCost.ts` to add each sequence to the
+base cost.  This solution uses [Array.prototype.reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce):
 
 @sourceref ./4-exercise-solution.ts
-@codepen
+
+
+
+You'll notice that specifying a return type is not necessary.  This is
+because TypeScript can infer the return value from the arguments.
+
+The following is another
+valid solution:
+
+```ts
+export function dnaCost(baseCost:number, ...sequences: string[]) {
+  let sum = baseCost;
+  sequences.forEach( sequence=> sum += sequence.length )
+  return sum
+}
+```
 
 </details>

@@ -103,7 +103,7 @@ Protected modifiers are similar to private modifiers in that they can't be acces
 
 ## Readonly modifier
 
-Readonly modifiers allow properties to be read, but not changed.
+Readonly modifiers allow properties to be read, but not changed after initialization.
 
 @sourceref ./5-10-readonly.ts
 @codepen
@@ -118,10 +118,10 @@ Wrong `this`:
 
 ```typescript
 class DinoBuilder {
-  name = 'Trex';
+  dinoName = 'Trex';
   yawn() {
     setTimeout(function() {
-      console.log(`${this.name} yawned.`)
+      console.log(`${this.dinoName} yawned.`)
     }, 50);
   }
 }
@@ -131,15 +131,16 @@ dino.yawn();
 // Logs "undefined yawned"
 ```
 @highlight 4
+@codepen
 
 Right `this`:
 
 ```typescript
 class DinoBuilder {
-  name = 'Trex';
+  dinoName = 'Trex';
   yawn() {
     setTimeout(() => {
-      console.log(`${this.name} yawned.`)
+      console.log(`${this.dinoName} yawned.`)
     }, 50);
   }
 }
@@ -149,42 +150,43 @@ dino.yawn();
 // Logs "Trex yawned"
 ```
 @highlight 4
+@codepen
 
 Wrong `this`:
 
 ```typescript
 class DinoBuilder {
-  name = 'Trex';
+  dinoName = 'Trex';
   roar() {
-    console.log(`${this.name} roared.`)
+    console.log(`${this.dinoName} roared.`)
   }
 }
 
 var dino = new DinoBuilder();
 
-let fierce = dino.roar;
-fierce();
+setTimeout(dino.roar, 50);
 // Logs "undefined roared"
 ```
 @highlight 3
-
+@codepen
 
 Right `this`:
 
 ```typescript
 class DinoBuilder {
-  name = 'Trex';
+  dinoName = 'Trex';
   roar = () => {
-    console.log(`${this.name} roared.`)
+    console.log(`${this.dinoName} roared.`)
   }
 }
 
 var dino = new DinoBuilder();
-let fierce = dino.roar;
-fierce();
+
+setTimeout(dino.roar, 50);
 // Logs "Trex roared"
 ```
 @highlight 3
+@codepen
 
 ## Exercise: Create a Class
 
@@ -219,7 +221,15 @@ tsc 4a-classes-hello-dino.ts
 
 Your code should transpile to look like the above prototype version! __Delete__ the compiled js file before running the tests in the next step.
 
-### Solution
+### Verify your solution
+
+✏️ Run the following to verify your solution:
+
+```shell
+npm run 2a-class
+```
+
+### The solution
 
 
 <details>
@@ -248,7 +258,25 @@ employee1.sayHi();
 
 ### The problem
 
-Edit the file `4a-specialist.ts` to write a new ``Specialist`` class that inherits from the ``DinoKeeper``. This new class should be able to accept an additional ``experience`` public member that is a number, and have a ``safetyQuote`` method that returns("Never turn your back to the cage. Trust me, I have _${experience}_ years of experience")
+
+Edit `4b-specialist.ts` to write a new `Specialist` class:
+
+```ts
+import DinoKeeper from "./4a-classes-hello-dino";
+
+class Specialist {
+
+}
+export default Specialist;
+```
+
+`Specialist` should:
+
+- Inherit from `DinoKeeper`. This new class should
+- Accept an additional `experience` public member that is a number
+- Have a `safetyQuote` method that returns `"Never turn your back to the cage. Trust me, I have ${experience} years of experience"`.
+
+For example, you should be able to use `Specialist` as folows:
 
 ```typescript
 let employee2 = new Specialist("Owen", 14);
@@ -256,30 +284,36 @@ employee2.sayHi(); //Owen says 'hi'
 employee2.safetyQuote();
 //Logs "Never turn your back to the cage. Trust me, I have 14 years of experience"
 ```
+
+### Verify your solution
+
+✏️ Run the following to verify the solution:
 
 ```shell
 npm run 4-classes
 ```
 
+### The solution
+
 <details>
-<summary>Solution</summary>
+<summary>Click to see the solution</summary>
+
+✏️ Update `4b-specialist.ts` to the following:
 
 ```typescript
+import DinoKeeper from "./4a-classes-hello-dino";
+
 class Specialist extends DinoKeeper {
   constructor(name: string, public experience: number) {
     super(name);
   }
 
-  safetyQuote():string {
+  safetyQuote() {
     return `Never turn your back to the cage.
     Trust me, I have ${this.experience} years of experience`;
   }
 }
-
-let employee2 = new Specialist("Owen", 14);
-employee2.sayHi(); //Owen says 'hi'
-employee2.safetyQuote();
-//Logs "Never turn your back to the cage. Trust me, I have 14 years of experience"
+export default Specialist;
 ```
 
 </details>

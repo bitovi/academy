@@ -243,7 +243,7 @@ it("exports are correct", function(){
 });
 ```
 
-### Verify solution
+### Verify your solution
 
 ✏️ Run the following to verify your solution:
 
@@ -292,20 +292,24 @@ In this exercise, we will create our own typed variable by updating `2b-date-exp
 - Assign that variable to an instance of `Date`
 - Export that variable as the default export.
 
-Run the following to verify your solution:
+### What you need to know
+
+- Use `new Date()` to create an instance of Date.
+
+### Verify your solution
+
+✏️ Run the following to verify your solution:
 
 ```shell
 npm run 2b-types
 ```
 
-### What you need to know
-
-- Use `new Date()` to create an instance of Date.
-
 ### The solution
 
 <details>
 <summary>Click to see the solution</summary>
+
+✏️ Update `2b-date-export.ts` to create, assign, and export a date variable.
 
 ```typescript
 let me: Date;

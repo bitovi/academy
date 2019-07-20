@@ -1,11 +1,5 @@
-function bonusMaker(multiplier: number, ...names: string[]) {
-  let total = 0;
-  for(var i = 0; i < names.length; i++) {
-    total = total + names[i].length;
-  }
-  return multiplier*total;
+export function dnaCost(baseCost:number, ...sequences: string[]) {
+  return sequences.reduce(
+    (sum, sequence)=> sum + sequence.length,
+    baseCost );
 }
-
-let WuBonus = bonusMaker(2500, 'Indominous Rex', 'Indoraptor', 'Velociraptor');
-console.log(WuBonus);
-//Logs "90000"

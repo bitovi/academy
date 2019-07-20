@@ -1,7 +1,8 @@
-function bonusMaker(multiplier, name) {
-  return multiplier*name.length
+function dnaCost(baseCost, sequence) {
+    return baseCost + sequence.length;
 }
 
-let ClaireBonus = bonusMaker(2500, 'Indominous Rex');
-console.log(ClaireBonus);
-//Logs "35000"
+let raptorCost = dnaCost(5000,"CGGCA");
+
+console.log(raptorCost);
+//Logs 5005
