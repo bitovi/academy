@@ -981,7 +981,9 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   createOrderForm() {
@@ -1019,7 +1021,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="37,42,44-46,52,57-60,69-73,76-78,83,only"></div>
+ <div line-highlight="37,42,44-46,59-62,71-75,78-80,85,only"></div>
 <h2>P3: How to Verify Your Solution is Correct</h2>
 <p>If you've implemented everything correctly, you should now be able to create an order from the UI and see a record of your completed order once it's created.</p>
 <p>✏️ Update the menu-items spec file  <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
@@ -1369,7 +1371,9 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   createOrderForm() {
@@ -1411,7 +1415,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="7,30,38,71,80-84,only"></div>
+ <div line-highlight="7,30,38,73,82-86,only"></div>
 
 </section>
 

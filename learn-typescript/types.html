@@ -355,14 +355,9 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this part, we will:</p>
 <ul>
-<li>Discover how to declare the various types used in TypeScript</li>
+<li>Explain how to declare the various types used in TypeScript</li>
 <li>Discuss how types can be inferred</li>
-<li>Show how to assert types</li>
-</ul>
-<p>The exercises will teach you how to:</p>
-<ul>
-<li>Spot and correct basic type mistakes</li>
-<li>Create a typed variable</li>
+<li>Show how to assert types.</li>
 </ul>
 <h2>Basic Types</h2>
 <p>Types are what determine how much memory is allocated to save a value. Types also determine what operations or methods can be performed on a value. Types like strings can't have mathematical operations performed on them, but methods like <code>.length</code> can be used.</p>
@@ -480,10 +475,9 @@ let otherValue: any = &quot;this is a string&quot;;
 let otherLength: number = (otherValue as string).length;
 </code></pre>
 <p>The <code>as</code> syntax is usually preferred because the <code>&lt;type&gt;</code> conflicts with JSX syntax.</p>
-<h2>Exercise: Fix Type Errors</h2>
-<h3>The Problem</h3>
-<p>In this exercise, we will learn to spot and correct basic type errors by
-fixing the type errors in <code>2a-fix-errors.ts</code>:</p>
+<h2>Exercise: Fix type errors</h2>
+<h3>The problem</h3>
+<p><code>2a-fix-errors.ts</code> has several errors:</p>
 <pre><code class="language-typescript">let isLoading: boolean = true;
 isLoading = 'false';
 
@@ -501,7 +495,7 @@ export const tom = greet('Tom', 42, 'software');
 
 export {isLoading, inventory};
 </code></pre>
-<h3>What You Need to Know</h3>
+<p>Can you fix the errors?</p>
 <p>The exports of <code>2a-fix-errors.ts</code> should look like:</p>
 <pre><code class="language-typescript">it(&quot;exports are correct&quot;, function(){
     assert.equal( isLoading, false,
@@ -521,14 +515,14 @@ export {isLoading, inventory};
         &quot;Tom&quot;);
 });
 </code></pre>
-<h3>Verify Your Solution</h3>
-<p>✏️ Run the following to verify your solution:</p>
+<p>Run the following to verify your solution:</p>
 <pre><code class="language-shell">npm run 2a-types
 </code></pre>
-<h3>The Solution</h3>
+<h3>What you need to know</h3>
+<p>You know everything already. You got this. Go you!</p>
+<h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <code>2a-fix-errors.ts</code> to look like:</p>
 <pre><code class="language-typescript">let isLoading: boolean = true;
 isLoading = false;
 
@@ -548,26 +542,24 @@ export {isLoading, inventory};
 
 </code></pre>
 <p></details></p>
-<h2>Exercise: Date It</h2>
-<h3>The Problem</h3>
-<p>In this exercise, we will create our own typed variable by updating <code>2b-date-export.ts</code> to:</p>
+<h2>Exercise: Date it</h2>
+<h3>The problem</h3>
+<p>In this exercise, we will update <code>2b-date-export.ts</code> to:</p>
 <ul>
-<li>Create a <code>let</code> variable that takes a type of Date.</li>
+<li>Create a variable that takes a type of Date.</li>
 <li>Assign that variable to an instance of <code>Date</code></li>
 <li>Export that variable as the default export.</li>
 </ul>
-<h3>What You Need to Know</h3>
+<p>Run the following to verify your solution:</p>
+<pre><code class="language-shell">npm run 2b-types
+</code></pre>
+<h3>What you need to know</h3>
 <ul>
 <li>Use <code>new Date()</code> to create an instance of Date.</li>
 </ul>
-<h3>Verify Your Solution</h3>
-<p>✏️ Run the following to verify your solution:</p>
-<pre><code class="language-shell">npm run 2b-types
-</code></pre>
-<h3>The Solution</h3>
+<h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <code>2b-date-export.ts</code> to create, assign, and export a date variable.</p>
 <pre><code class="language-typescript">let me: Date;
 me = new Date(&quot;6-11-1993&quot;);
 export default me;

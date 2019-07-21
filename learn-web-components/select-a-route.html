@@ -474,7 +474,7 @@ title="Selecting a route from the list and noticing that the item is highlighted
 <pre><code class="language-js">element.classList.add('some-new-class');
 </code></pre>
 <h2>Solution</h2>
-<p>✏️ In the <code>getRoutes</code> method inside of the <code>routes</code> loop, get a reference to the <code>button</code> for the route and add an event listener for <strong>click</strong> events. When that event occurs call a method that will call the API for vehicles and add the <code>active</code> class to the associated <code>li</code>.</p>
+<p>✏️ In the <code>getRoutes</code> method inside of the loop over the <code>routes</code>, get a reference to the <code>button</code> for the route and add an event listener for <strong>click</strong> events. When that event occurs call a method that will call the API for vehicles and add the <code>active</code> class to the associated <code>li</code>.</p>
 <p>Add a reference to the <code>#selected-route</code> element in the constructor. When the API call completes update this element as needed and add the <code>route-selected</code> class so that it will be highlighted.</p>
 <pre><code class="language-html">&lt;style&gt;
   html,
@@ -778,9 +778,6 @@ customElements.define(&quot;bus-tracker&quot;, BusTracker);
 </code></pre>
 <div line-highlight='169-173,227,238,256-258,266-294,only'></div>
 <div class='codepen'></div>
-<p style="font-weight: bold; text-align: center;">
-<a href="display-markers.html" title="Learn how to listen to changes in properties on your custom elements and how to properly reflect back the property values to the outside world.">👉 Display markers for vehicles</a>
-</p>
 
 </section>
 

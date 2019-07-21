@@ -552,17 +552,17 @@ and restaurant list view in the next exercise.</p>
 <h2>Generate Components</h2>
 <p>In Angular, Components are the basic building blocks that help us craft the UI. They are classes that handle views, allow management of user interaction, and displaying information via data binding. Data binding is the term for connecting data or information to the UI. An example would be an input field that a user enters a value into.</p>
 <p>Recommended reading: <a href="https://angular.io/guide/lifecycle-hooks" target="\_blank" >Angular Lifecyle Hooks</a></p>
-<p>To generate a component class, you run:</p>
-<pre><code class="language-shell">ng g component home
+<p>The best way to create a new component is by using the Angular CLI:</p>
+<pre><code class="language-shell">ng g component new-component-name
 </code></pre>
 <p>This will create a new component for us and import it in our root module.</p>
 <pre><code class="language-code">├── src/
 |   ├── app/
-|   |   ├── home/
-|   |       |── home.component.ts
-|   |       |── home.component.spec.ts
-|   |       |── home.component.less
-|   |       |── home.component.html
+|   |   ├── new-component-name/
+|   |       |── new-component-name.component.ts
+|   |       |── new-component-name.component.spec.ts
+|   |       |── new-component-name.component.less
+|   |       |── new-component-name.component.html
 </code></pre>
 <p>Generated components have the same structure - a name.component.ts file that will contain the boilerplate code for the Angular component class. This class will also have a component decorator pointing to the name.component.less file for styles, and the name.component.html file for it's template. Styles and templates can also be written inline in the decorator with backticks to escape the code using the keys <code>style</code> and <code>template</code>.</p>
 <h2>Bind Data to Components</h2>
@@ -1472,7 +1472,7 @@ export class RestaurantComponent implements OnInit {
 </code></pre>
 <blockquote>
 <p>Reminder: The markup that should be written out for each restaurant can be
-found in the <a href="#exercise-2-write-restaurant-component-markup-that-displays-a-list-of-restaurants">exercise description</a>.</p>
+found in the <a href="#problem-2-write-restaurant-component-markup-that-displays-a-list-of-restaurants">exercise description</a>.</p>
 </blockquote>
 <p>✏️ To see our component working, we can paste it into our <strong>src/app/app.component.html</strong> file just like with the home component:</p>
 <pre><code class="language-html">&lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;

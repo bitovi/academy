@@ -530,7 +530,9 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2>How to Use This Guide</h2>
+<p>This guide will walk you through building an application in Angular. Each page of the guide is based on building a new feature, and may have multiple &quot;problems&quot; to solve. Each problem will be explained and include requirements and any set-up steps needed. Most problems will also include unit tests to update to verify the solution has been implemented correctly. The ✏️ icon will be used to indicate when commands need to be run or when files need to be updated. If you have any issues or suggestions as you move through this training, we'd love you to submit a <a href="https://github.com/bitovi/academy/issues/new" target="_blank">GitHub issue</a> for it! 💖</p>
+<h2>Overview</h2>
 <p>In this part, we will:</p>
 <ul>
 <li>Explore tools that aid Angular Development</li>
@@ -591,7 +593,7 @@ style="border: solid 1px black; max-width: 320px;"/></p>
 <p><img src="../static/img/place-my-order.png" alt="Place My Order App screenshot" title="Place My Order App screenshot" /></p>
 <p>(reminder: You can see a DoneJS implementation of this application at <a href="http://www.place-my-order.com">www.place-my-order.com</a>)</p>
 <p>✏️ To create a new Angular Workspace, run the 'ng new' command:</p>
-<pre><code class="language-shell">ng new place-my-order  --prefix pmo
+<pre><code class="language-shell">ng new place-my-order --prefix pmo
 cd place-my-order
 </code></pre>
 <p>This will create a new Angular Workspace, generate an app module, needed config files, and test suite for your new Angular project. You'll be asked a series of set-up questions:</p>
@@ -678,7 +680,7 @@ cd place-my-order
 &lt;/html&gt;
 </code></pre>
 <h3>src/app/app.module.ts</h3>
-<p>This file is the root module for our app. Every Angular app has at least one module that determines how to compile and launch and app. It uses the @NgModule decorator with four properties:</p>
+<p>This file is the root module for our app. Every Angular app has at least one module that determines how to compile and launch an app. It uses the @NgModule decorator with four properties:</p>
 <ul>
 <li>declarations [array]: where we include components, directives, and pipes that will be used by this module.</li>
 <li>imports [array]: where we include any other modules our app needs to use. This may include 3rd party modules like bootstrap datepickers, or modules we've created.</li>

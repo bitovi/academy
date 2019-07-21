@@ -354,7 +354,6 @@ covering CanJS core libraries.">
   				<section class="body">
     <h2>Overview</h2>
 <p>In this section we'll learn about TypeScript configuration options to help us optimize our workflow, and look at IDEs that have great TypeScript support for building TypeScript projects.</p>
-<p>For the exercise, we will learn how to import and export functions between modules.</p>
 <h2>Configuring TypeScript</h2>
 <p>We're able to configure how our projects use TypeScript from selecting which files to compile to removing comments from those files. This is done through the creation of a <code>tsconfig.json</code> file.</p>
 <h3>tsconfig.json</h3>
@@ -400,38 +399,32 @@ covering CanJS core libraries.">
 <p><a href="https://www.jetbrains.com/webstorm/download/" target="\_blank">Webstorm</a> is a platform by JetBrains that is loved for its great code refactoring assistance and version control integration, but it does require a paid subscription.</p>
 <p><a href="../static/img/webstorm-screenshot.png" target="\_blank"><img src="../static/img/webstorm-screenshot.png" width="100%" alt="Webstorm screenshot" /></a></p>
 <h2>Exercise: Exporting and Importing</h2>
-<h3>The Problem</h3>
+<h3>The problem</h3>
 <p>In this exercise, we will:</p>
 <ul>
-<li>Update <em>1-ide-greeter.ts</em> to export the <code>greeter</code> function as the <code>default</code>
-export. <em>1-ide-greeter.ts</em> currently looks like:
-<pre><code class="language-ts">function greeter(person: string) {
-  return &quot;Hello, &quot; + person;
-}
-</code></pre></li>
-<li>Update <em>1-ide-hello-earth.ts</em>, to import and use <code>greeter</code>. <em>1-ide-hello-earth.ts</em> currently looks like:
-<pre><code class="language-ts">document.body.innerHTML = greeter(&quot;Earth&quot;);
-</code></pre></li>
-<li>Compile <em>1-ide-hello-earth.ts</em> to JavaScript so we can run it.</li>
+<li>Update <code>1-ide-greeter.ts</code> to export the <code>greeter</code> function as the <code>default</code>
+export.</li>
+<li>Update <code>1-ide-hello-earth.ts</code> to import <code>greeter</code>, call <code>greeter</code> with <code>&quot;Earth&quot;</code>
+and set the result as <code>document.body.innerHTML</code>.</li>
+<li>Compile <code>1-ide-hello-earth.ts</code> to JavaScript so we can run it.</li>
 </ul>
-<h3>What You Need to Know</h3>
+<h3>What you need to know</h3>
 <ul>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export">Export</a> a default value like:
+<li>Export a default value like:
 <pre><code class="language-typescript">const value:string = &quot;My Value&quot;;
 export default value;
 </code></pre></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">Import</a> a default value like:
+<li>Import a default value like:
 <pre><code class="language-typescript">import value from &quot;./value-exporter&quot;;
 </code></pre></li>
 </ul>
-<h3>Verify Your Solution</h3>
-<p>✏️ Run the following to verify your solution works:</p>
+<p>Run the following to verify your solution works.</p>
 <pre><code class="language-shell">npm run 1-ide
 </code></pre>
-<h3>The Solution</h3>
+<h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary>
-✏️ Update <code>1-ide-greeter.ts</code> to:</p>
+Update <code>1-ide-greeter.ts</code> to:</p>
 <pre><code class="language-typescript">function greeter(person: string) {
     return &quot;Hello, &quot; + person;
 }
@@ -439,17 +432,17 @@ export default value;
 export default greeter;
 </code></pre>
 <div line-highlight='5'></div>
-<p>✏️ Update <code>1-ide-hello-earth.ts</code> to:</p>
+<p>Update <code>1-ide-hello-earth.ts</code> to:</p>
 <pre><code class="language-typescript">import greeter from './1-ide-greeter';
 
 document.body.innerHTML = greeter(&quot;Earth&quot;);
 </code></pre>
 <div line-highlight='1'></div>
-<p>✏️ Compile <code>1-ide-hello-earth.ts</code> with:</p>
+<p>Compile <code>1-ide-hello-earth.ts</code> with:</p>
 <pre><code class="language-shell">tsc 1-ide-hello-earth.ts
 </code></pre>
 <p></details></p>
-<h3>Things to Explore</h3>
+<h3>Things to explore</h3>
 <ul>
 <li>Hover over <code>greeter</code>, what does your IDE show?</li>
 <li>Pass a number to <code>greeter</code>, what does your IDE show?</li>

@@ -501,7 +501,7 @@ customElements.define('my-greeting', MyGreeting);
 }
 </code></pre>
 <p><em>However</em>, in order to get attribute change notification you <strong>must</strong> define which attributes should be observed. This means that you aren't notified when any arbitrary attribute is added; only those you predefine. This is a performance optimization tradeoff that was made when designing the API.</p>
-<p>To define which attributes should be observed you add a static getter <code>observedAttributes</code> on the class.</p>
+<p>To define which attributes should be added you add a static getter <code>observedAttributes</code> on the class.</p>
 <pre><code class="language-js">class MyGreeting extends HTMLElement {
   static get observedAttributes() {
     return ['name'];
@@ -528,8 +528,8 @@ customElements.define('my-greeting', MyGreeting);
   }
 }
 </code></pre>
-<p>In the above we change it so that if an attribute changes it just calls the property setter. The property then saves its value in a &quot;private&quot; variable <code>this._name</code>.</p>
-<p>This mirrors the way most built-in elements work; changing a property does <strong>not</strong> reflect in the attribute; but changing an attribute does change the value of the property.</p>
+<p>In the above we change it so that if an attribute change it just calls the property setter. The property then saves its value in a &quot;private&quot; variable <code>this._name</code>.</p>
+<p>This works the way most built-in elements work; changing a property does <strong>not</strong> reflect in the attribute; but changing an attribute does change the value of the property.</p>
 <h2>Solution</h2>
 <p>✏️ The following is a full greeting element that accepts <code>name</code> attribute and property, rendering when either changed.</p>
 <pre><code class="language-html">&lt;my-greeting name=&quot;world&quot;&gt;&lt;/my-greeting&gt;
@@ -579,9 +579,6 @@ setTimeout(() =&gt; {
 
 </code></pre>
 <div class='codepen'></div>
-<p style="font-weight: bold; text-align: center;">
-<a href="templates.html" title="Learn how &lt;template&gt; can be used to create reusable DOM that can be cloned and used within your components.">👉 Writing a template</a>
-</p>
 
 </section>
 

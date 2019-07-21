@@ -493,7 +493,7 @@ setTimeout(() =&gt; {
 <div class='codepen'></div>
 <p>Usually you will use <code>.textContent</code> unless building a library where performance is critical. textContent is the most convenient way to change an element's text.</p>
 <h2>Solution</h2>
-<p>✏️ Use the markup provided above and create another template with the id of <code>route-template</code>. Keep a reference to this template in your JavaScript along with the other template. Copy the URL snippet from above and paste that so that it can be used within the component.</p>
+<p>✏️ Use the markup provided above and create another template with the id of <code>route-template</code>. Keep a reference to that in your JavaScript along with the other template. Copy the URL snippet from above and paste that so that it can be used within the component.</p>
 <p>Create a method on the component, we're calling it <code>getRoutes</code> here that is called in the <code>connectedCallback</code> method. It's an async method that uses <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">fetch</a> to retrieve the list of routes which we can get with <code>data[&quot;bustime-response&quot;].routes</code>.</p>
 <p>Loop over the routes and clone an instance of the template filling in the route number with <code>route.rt</code> and the route name with <code>route.rtnm</code>.</p>
 <p>At the end of the <code>getRoutes</code> method remove the <code>#loading-routes</code> element.</p>
@@ -758,9 +758,6 @@ customElements.define(&quot;bus-tracker&quot;, BusTracker);
 </code></pre>
 <div line-highlight='179-187,214-218,221,231,234-253,only'></div>
 <div class='codepen'></div>
-<p style="font-weight: bold; text-align: center;">
-<a href="select-a-route.html" title="Learn how to use event listeners with a custom element to handle user interaction and update the DOM.">👉 Selecting a route</a>
-</p>
 
 </section>
 

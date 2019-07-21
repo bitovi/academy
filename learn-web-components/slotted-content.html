@@ -416,15 +416,19 @@ covering CanJS core libraries.">
 <li>Use <code>slot</code> elements to allow customization.</li>
 </ul>
 <h2>Problem</h2>
-<p>In the previous section we allowed the header to be styled with a few CSS properties. We could continue to add more custom properties so even more of the header could be customized. For example, we could allow the user of our component to change the heading text by providing an attribute like <code>title=&quot;My Bus Tracker&quot;</code>.</p>
+<p>In the previous section we allowed the header to be styled with a few CSS properties. We could continue to add more custom properties so even more of the header could be customized. We could allow the user of our component to change the heading text by providing an attribute like <code>title=&quot;My Bus Tracker&quot;</code>.</p>
 <p>An easier way to allow consumers of your component to have <em>complete</em> control is to use slots. In this part we want to allow the header to be replaced with a custom header. In the end it should look like:</p>
-<p><img src="../static/img/web-components/bt-slotted.jpg"
+<p><picture>
+<source srcset="../static/img/web-components/bt-slotted.webp" type="image/webp">
+<source srcset="../static/img/web-components/bt-slotted.jpg" type="image/jpg">
+<img src="../static/img/web-components/bt-slotted.jpg"
 style="border: solid 1px black; max-width: 100%;"
-title="Header customized using slots." /></p>
+title="Header customized using slots." />
+</picture></p>
 <h2>How to Solve This Problem</h2>
 <ol>
 <li>Provide a slot for the custom header passed to <code>bus-tracker</code>.</li>
-<li>Use named slots to allow the <code>header</code> slot to be provided by the user.</li>
+<li>Use named slots to allow the <code>header</code> slot to be provided.</li>
 <li>Add custom styles to style the new header.</li>
 </ol>
 <h2>Technical Requirements</h2>
@@ -844,9 +848,6 @@ customElements.define(&quot;bus-tracker&quot;, BusTracker);
 </code></pre>
 <div line-highlight='17-21,26-28,168-173,only'></div>
 <div class='codepen'></div>
-<p style="font-weight: bold; text-align: center;">
-<a href="dispatching-events.html" title="Learn how to use custom events to provide information on the state of your component to parent elements.">👉 Dispatching events</a>
-</p>
 
 </section>
 

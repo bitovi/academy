@@ -417,7 +417,7 @@ covering CanJS core libraries.">
 <li>Display the bus destination for selected markers.</li>
 </ul>
 <h2>Problem</h2>
-<p>We want to display the bus destination for the selected marker. This should look similar to how the selected route is displayed as an overlay of the map, but float just below the route overlay. When no routes or markers are selected it should be invisible; when it is clicked it should say <code>Vehicle: DESTINATION</code>, where destination can be gotten from the vehicle object that is used to construct the marker.</p>
+<p>We want to display the bus destination for the selected marker. This should look similar to how the selected route is displayed as an overlay of the map, but float just below that one. When no routes or markers are selected it should be invisible; when it is clicked it should say <code>Vehicle: DESTINATION</code>, where destination can be gotten from the vehicle object that is used to construct the marker.</p>
 <p><img src="../static/img/web-components/bt-display-vehicle.gif"
 style="border: solid 1px black; max-width: 100%;"
 title="Selecting a marker displays the vehicle associated with that marker." /></p>
@@ -479,7 +479,7 @@ title="Selecting a marker displays the vehicle associated with that marker." /><
 });
 </code></pre>
 <p>To dispatch a <strong>custom event</strong> that contains data pertaining to the event, use the <a href="https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent">CustomEvent</a> constructor. With <code>CustomEvent</code> you can include a <code>detail</code> property. This can contain any sort of data about the event you want to provide. In our case we'll use the <strong>route</strong> object as the detail property.</p>
-<p>Events are created using <code>let ev = new CustomEvent({ detail: {...} })</code>. This creates an event object. To dispatch it, the element (in our case a custom element) has a <code>dispatchEvent(ev)</code> function that takes the new event.</p>
+<p>Events are created using <code>let ev = new CustomEvent({ detail: {...} })</code>. This create an event object. To dispatch it, the element (in our case a custom element) has a <code>dispatchEvent(ev)</code> function that takes the new event.</p>
 <pre><code class="language-js">let el = document.createElement('div');
 
 el.addEventListener('favorite-food', ev =&gt; {
@@ -555,7 +555,7 @@ el.dispatchEvent(ev);
 </code></pre>
 <p>However this creates a <em>new function</em>. To tear this down in <code>disconnectedCallback</code> you'll have to keep a reference to it.</p>
 <p>A way to avoid this is to use <code>handleEvent</code>. <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventListener/handleEvent">handleEvent</a> is a special method you can add to any object (not just elements) that makes that object an <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget">EventTarget</a>. You use it like this:</p>
-<pre><code class="language-js">let eventTarget = {
+<pre><code class="language-js">var eventTarget = {
   handleEvent(ev) {
     // My `this` is correct!
   }
@@ -563,7 +563,7 @@ el.dispatchEvent(ev);
 
 window.addEventListener('scroll', eventTarget);
 </code></pre>
-<p>Instead of passing a <strong>function</strong> to addEventListener you pass an object with a <code>handleEvent</code> method. This can work for custom elements too. Our previous example becomes:</p>
+<p>Instead of passing a <strong>function</strong> to addEventListener you pass an object with a <code>handleEvent</code> method. This can work for custom elements to. Our previous example becomes:</p>
 <pre><code class="language-js">class MyElement extends HTMLElement {
   constructor() {
     super();

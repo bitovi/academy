@@ -358,7 +358,6 @@ covering CanJS core libraries.">
 <li>Annotate functions parameters and return values.</li>
 <li>Use optional parameters &amp; rest parameters</li>
 </ul>
-<p>The exercise will have you update a function with TypeScript annotations.</p>
 <h2>Functions in TypeScript</h2>
 <p>In TypeScript, we're able to annotate function parameters to better guard our code. If the following, <code>add</code> is called  with two parameters that are not numbers TypeScript's compiler will throw an error when compiled.</p>
 <pre><code class="language-typescript">function add(x: number, y: number): number {
@@ -436,60 +435,40 @@ dog.bark.call(address);
 </code></pre>
 <div line-highlight='3'></div>
 <p>Line 10 will error with: <code>Property 'name' is missing in type '{ street: string; }' but required in type '{ name: string; }'.</code></p>
-<h2>Exercise: dnaCost</h2>
-<h3>The Problem</h3>
-<p>The following function in <code>3-functions-dnaCost.ts</code> calculates the cost of synthesizing
-a DNA sequence to make a dinosaur. It calculates the cost by adding a <code>baseCost</code> plus
-the length of the DNA sequence:</p>
-<pre><code class="language-ts">function dnaCost(baseCost, sequence) {
-    return baseCost + sequence.length;
+<h2>Exercise: bonusMaker</h2>
+<p>The following function takes a bonus multiplier amount parameter and a dinosaur name parameter, then takes the length of the dinosaur name and multiplies it by the multiplier to calculate a dinosaur park employee's bonus salary based on the complexity of the dinosaurs they make.</p>
+<pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
+function bonusMaker(multiplier, name) {
+  return multiplier*name.length
 }
 
-let raptorCost = dnaCost(5000,&quot;CGGCA&quot;);
-
-console.log(raptorCost);
-//Logs 5005
-
+let ClaireBonus = bonusMaker(2500, 'Indominous Rex'); 
+console.log(ClaireBonus);
+//Logs &quot;35000&quot;
+&lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<p>Now scientists want to mix the DNA of multiple dinosaurs.
-So open the <code>3-functions-dnaCost.ts</code> file and  modify this function to take an unknown amount of
-sequences:</p>
-<pre><code class="language-ts">let raptorDNA = &quot;CGGCA&quot;;
-let cuttlefishDNA = &quot;GATTACA&quot;;
-let viperDNA = &quot;ATTAC&quot;;
-
-let indoraptorCost = dnaCost(5000,raptorDNA, cuttlefishDNA, viperDNA);
-
-console.log(indoraptorCost);
-// Logs 5017
-</code></pre>
-<h3>Verify Your Solution</h3>
-<p>✏️ Run the following to verify your solution:</p>
+<p>Productivity in the park has been up, so open the <code>3-functions-bonusMaker.ts</code> file and  modify this function to take an unknown amount of names to get the length of and multiply by the bonus multiplier amount.</p>
+<p>Run the following to verify your solution:</p>
 <pre><code class="language-shell">npm run 3-functions
 </code></pre>
-<h3>The Solution</h3>
 <p><details>
-<summary>Click to see the solution</summary></p>
-<p>✏️ Update <code>3-functions-dnaCost.ts</code> to add each sequence to the
-base cost.  This solution uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce">Array.prototype.reduce</a>:</p>
-<pre><code class="language-ts">export function dnaCost(baseCost:number, ...sequences: string[]) {
-  return sequences.reduce(
-    (sum, sequence)=&gt; sum + sequence.length,
-    baseCost );
+<summary>solution</summary></p>
+<pre><code class="language-html">&lt;script type=&quot;typescript&quot;&gt;
+function bonusMaker(multiplier: number, ...names: string[]) {
+  let total = 0;
+    for(var i = 0; i &lt; names.length; i++) {
+      total = total + names[i].length;
+  }
+  return multiplier*total;
 }
 
+let WuBonus = bonusMaker(2500, 'Indominous Rex', 'Indoraptor', 'Velociraptor');
+console.log(WuBonus);
+//Logs &quot;90000&quot;
+&lt;/script&gt;
 </code></pre>
-<p>You'll notice that specifying a return type is not necessary.  This is
-because TypeScript can infer the return value from the arguments.</p>
-<p>The following is another
-valid solution:</p>
-<pre><code class="language-ts">export function dnaCost(baseCost:number, ...sequences: string[]) {
-  let sum = baseCost;
-  sequences.forEach( sequence=&gt; sum += sequence.length )
-  return sum
-}
-</code></pre>
+<div class='codepen'></div>
 <p></details></p>
 
 </section>

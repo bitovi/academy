@@ -1041,7 +1041,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 <li><p>Create a reactive form (you learned this in previous sections! ✔️)</p></li>
 <li><p>Listen to form value changes (you learned this in previous sections! ✔️)</p></li>
 <li><p>Add validation:</p>
-<p>This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation" target="\_blank">validation</a>. Here's an example of a form with form controls with different validation, and one thats value is set to an array.</p>
+<p>This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation" target="\_blank">validation</a>. Here's an example of a form with form controls with different validation, and one that's value is set to an array.</p>
 <pre><code class="language-typescript">function coolKidsChecker(isACoolKid: string) {
   return (c: AbstractControl): {[key: string]: any} =&gt; {
       if (c.value === isACoolKid)
@@ -1328,6 +1328,7 @@ export class OrderComponent implements OnInit, OnDestroy {
  <div line-highlight="42-43,45-48,53-55,60-66,71-83,"></div>
 <h2>Importing 3rd Party Plugins</h2>
 <p>In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let's import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started" target="\_blank">ngx-bootstrap</a>:</p>
+<p>✏️  Run:</p>
 <pre><code class="language-bash">ng add ngx-bootstrap  --component tabs
 </code></pre>
 <p>Ng add is a convenient way to import 3rd party libs that will update <code>angular.json</code> and <code>package.json</code> with any changes we need, as well as automatically import the 3rd party module into our root app module. Don't forget to restart the client server!</p>
@@ -1735,7 +1736,7 @@ const { Component, VERSION, Input } = ng.core;
   `
 })
 class ChildComponent {
-  @Input() myParent: string;
+  @Input() parentName: string;
   constructor() {
   }
 }
@@ -2608,12 +2609,13 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.restaurantService.getRestaurant(slug).subscribe((res:Restaurant) =&gt; {
       this.restaurant = res;
       this.createOrderForm();
-      
     });    
-   
   }
 
   ngOnDestroy(): void {
+    if(this.subscription) {
+      this.subscription.unsubscribe();
+    }
   }
 
   createOrderForm() {
@@ -2667,10 +2669,10 @@ export class OrderComponent implements OnInit, OnDestroy {
 
 }
 </code></pre>
- <div line-highlight="37,42-44,46-48,55-56,58-62,67-68,70-74,76,78,93,101,only"></div>
+ <div line-highlight="37,42-44,46,56-57,59-63,68-69,71-75,77-79,94,102,only"></div>
 <h2>Control Value Accessor</h2>
 <p>Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the  <a href="https://angular.io/api/forms/ControlValueAccessor" target="_blank">Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.</p>
-<p><strong>src/app/order/menu-items.component.ts</strong></p>
+<p>✏️ Update <strong>src/app/order/menu-items.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, Input, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
