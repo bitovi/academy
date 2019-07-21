@@ -5,6 +5,10 @@
 
 @body
 
+## How to Use This Guide
+
+This guide will walk you through building an application in Angular. Each page of the guide is based on building a new feature, and may have multiple "problems" to solve. Each problem will be explained and include requirements and any set-up steps needed. Most problems will also include unit tests to update to verify the solution has been implemented correctly. The ✏️ icon will be used to indicate when commands need to be run or when files need to be updated. If you have any issues or suggestions as you move through this training, we'd love you to submit a <a href="https://github.com/bitovi/academy/issues/new" target="_blank">GitHub issue</a> for it! 💖
+
 ## Overview
 
 In this part, we will:
@@ -91,7 +95,7 @@ We're going to build a restaurant menu and ordering application. The final resul
 ✏️ To create a new Angular Workspace, run the 'ng new' command:
 
 ```shell
-ng new place-my-order  --prefix pmo
+ng new place-my-order --prefix pmo
 cd place-my-order
 ```
 
@@ -206,7 +210,7 @@ This should feel familiar - our main index page.
 
 ### src/app/app.module.ts
 
-This file is the root module for our app. Every Angular app has at least one module that determines how to compile and launch and app. It uses the @@NgModule decorator with four properties:
+This file is the root module for our app. Every Angular app has at least one module that determines how to compile and launch an app. It uses the @@NgModule decorator with four properties:
 
 - declarations [array]: where we include components, directives, and pipes that will be used by this module.
 - imports [array]: where we include any other modules our app needs to use. This may include 3rd party modules like bootstrap datepickers, or modules we've created.

@@ -31,7 +31,7 @@ at the end of this tutorial:
 
 ## Setup
 
-`<router-outlet>`, which handles routing to a component based on a url, was added to our __src/app/app.component.html__ file when we first generated our app and answered `yes` to the routing question. But since that time, we added components to that view.  Lets remove those components because `<router-outlet>` will handle showing
+`<router-outlet>`, which handles routing to a component based on a url, was added to our __src/app/app.component.html__ file when we first generated our app and answered `yes` to the routing question. But since that time, we added components to that view.  Let's remove those components because `<router-outlet>` will handle showing
 those components going forward.
 
 ✏️ Update __src/app/app.component.html__ to:

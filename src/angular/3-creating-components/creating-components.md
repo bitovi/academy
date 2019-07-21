@@ -33,10 +33,10 @@ In Angular, Components are the basic building blocks that help us craft the UI. 
 
 Recommended reading: <a href="https://angular.io/guide/lifecycle-hooks" target="\_blank" >Angular Lifecyle Hooks</a>
 
-To generate a component class, you run:
+The best way to create a new component is by using the Angular CLI:
 
 ```shell
-ng g component home
+ng g component new-component-name
 ```
 
 This will create a new component for us and import it in our root module.
@@ -44,11 +44,11 @@ This will create a new component for us and import it in our root module.
 ```code
 ├── src/
 |   ├── app/
-|   |   ├── home/
-|   |       |── home.component.ts
-|   |       |── home.component.spec.ts
-|   |       |── home.component.less
-|   |       |── home.component.html
+|   |   ├── new-component-name/
+|   |       |── new-component-name.component.ts
+|   |       |── new-component-name.component.spec.ts
+|   |       |── new-component-name.component.less
+|   |       |── new-component-name.component.html
 ```
 
 Generated components have the same structure - a name.component.ts file that will contain the boilerplate code for the Angular component class. This class will also have a component decorator pointing to the name.component.less file for styles, and the name.component.html file for it's template. Styles and templates can also be written inline in the decorator with backticks to escape the code using the keys `style` and `template`. 
@@ -311,7 +311,7 @@ For now, we'll use fake data for a list of restaurants in the component, and put
 ```
 
 > Reminder: The markup that should be written out for each restaurant can be
-  found in the [exercise description](#exercise-2-write-restaurant-component-markup-that-displays-a-list-of-restaurants).
+  found in the [exercise description](#problem-2-write-restaurant-component-markup-that-displays-a-list-of-restaurants).
 
 ✏️ To see our component working, we can paste it into our __src/app/app.component.html__ file just like with the home component:
 
