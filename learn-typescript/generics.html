@@ -641,12 +641,14 @@ root.add(&quot;Matthew&quot;);
 root.right.value      //-&gt; &quot;Tom&quot;
 root.right.left.value //-&gt; &quot;Matthew&quot;
 </code></pre>
-<p>Run the following to verify your solution:</p>
+<h3>Verify Your Solution</h3>
+<p>✏️ Run the following to verify your solution:</p>
 <pre><code class="language-shell">npm run 6-generics
 </code></pre>
-<h3>The solution</h3>
+<h3>The Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
+<p>✏️ Update <code>6-tree-node.ts</code> to the following:</p>
 <pre><code class="language-typescript">interface Comparison&lt;T&gt; {
     (v1:T,v2: T): number;
 }

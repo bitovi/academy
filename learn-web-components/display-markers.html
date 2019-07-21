@@ -420,7 +420,7 @@ covering CanJS core libraries.">
 </ul>
 <h2>Problem</h2>
 <p>In the previous exercise we fetched a list of vehicles when a route is selected and logged them to the console. Now we want to instead pass those to the <code>google-map-view</code> element. The <code>google-map-view</code> element should add a marker for each vehicle.</p>
-<p>When an error occurs in the API it should wipe away in existing markers.</p>
+<p>When an error occurs in the API it should wipe away any existing markers.</p>
 <p><img src="../static/img/web-components/bt-display-markers.gif"
 style="border: solid 1px black; max-width: 100%;"
 title="Markers being displayed when a route is selected." /></p>
@@ -855,6 +855,9 @@ customElements.define(&quot;bus-tracker&quot;, BusTracker);
 </code></pre>
 <div line-highlight='204-205,219-242,267,306,309,only'></div>
 <div class='codepen'></div>
+<p style="font-weight: bold; text-align: center;">
+<a href="customize-header.html" title="Learn how to use CSS properties to customize the appearance within Shadow DOM.">👉 Customize header styles</a>
+</p>
 
 </section>
 
