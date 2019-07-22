@@ -383,7 +383,7 @@ trackDino(blue);
 
 </code></pre>
 <div class='codepen'></div>
-<h3>Optional Properties</h3>
+<h2>Optional Properties</h2>
 <p>Some times all properties on an object don't need to be required, using the <code>?</code> lets us tell the TypeScript compiler which properties aren't required.</p>
 <pre><code class="language-ts">interface Dinosaur {
   name: string;
@@ -404,7 +404,7 @@ trackDino(blue);
 </code></pre>
 <div line-highlight='5'></div>
 <div class='codepen'></div>
-<h3>Classes Implementing Interfaces</h3>
+<h2>Classes Implementing Interfaces</h2>
 <p>In the case that a class needs to follow an object structure, we can use interfaces to define that 'contract'.</p>
 <pre><code class="language-ts">interface Dinosaur {
   name: string;
@@ -426,7 +426,7 @@ class ClonedDino implements Dinosaur {
 
 </code></pre>
 <div class='codepen'></div>
-<h3>Interfaces in Functions</h3>
+<h2>Interfaces in Functions</h2>
 <p>Interfaces are incredibly useful in describing the shape of objects we want to use in multiple situations. The following functions both require a <code>Dinosaur</code> object shape we've defined in the <code>Dinosaur</code> interface.</p>
 <pre><code class="language-ts">interface Dinosaur {
   name: string;
@@ -457,7 +457,7 @@ dinoCatcher(dinoB);
 
 </code></pre>
 <div class='codepen'></div>
-<h3>Interfaces Describing Functions</h3>
+<h2>Interfaces Describing Functions</h2>
 <p>We can also use interfaces to describe functions, basically creating reusable types for functions. On the left side in parenthesis we list the parameters, and to the right of the colon we state the return type.</p>
 <pre><code class="language-ts">interface DinoDNAMixer {
   (dino1: string, dino2: string, spliceIdx: number): string;
@@ -481,7 +481,7 @@ interface DinoFactory {
 }
 </code></pre>
 <div class='codepen'></div>
-<h3>Type Assertion</h3>
+<h2>Type Assertion</h2>
 <p>We briefly mentioned type assertion when talk about types, but when dealing with interfaces it can be a great tool for making sure our code behaves in the way we expect.</p>
 <p>For instance, consider the following code:</p>
 <pre><code class="language-ts">var myObj = {};

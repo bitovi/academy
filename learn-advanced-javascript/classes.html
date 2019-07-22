@@ -3,26 +3,17 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/javascript/1-js-vs-dom.md
-	@page learn-advanced-javascript/js-vs-dom
+	source: src/javascript/7-classes.md
+	@page learn-advanced-javascript/classes
 ######################################################################## -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Understand the browser ecosystem and how JavaScript fits in.
-
-## Video
-
-&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;https://www.youtube.com/embed/Kq2K-4ZiVRI&quot; frameborder=&quot;0&quot; allowfullscreen&gt;&lt;/iframe&gt;
-
-## Slides
-
-&lt;iframe src=&quot;https://docs.google.com/presentation/d/e/2PACX-1vRizqN85NRqtdpytt6ch7_Dy00PoxfqdVA6PswSLkb8WYzYFbsiW64jqdnTkDbChnZvA0efH8Y6Jfv4/embed?start=false&amp;loop=false&amp;delayms=3000&quot; frameborder=&quot;0&quot; width=&quot;480&quot; height=&quot;389&quot; allowfullscreen=&quot;true&quot; mozallowfullscreen=&quot;true&quot; webkitallowfullscreen=&quot;true&quot;&gt;&lt;/iframe&gt;
-
+  <meta name="description" content="Learn about JavaScript classes 
 ">
-  <title>Bitovi Academy - JavaScript and the DOM</title>
+  <title>Bitovi Academy - Classes</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -69,9 +60,9 @@
 		
 			
 				
-					<li class="current
-           						parent
-           						expanded">
+					<li class="
+           						
+           						">
 						<a class="page"
 							href="js-vs-dom.html"
 							title="Understand the browser ecosystem and how JavaScript fits in.
@@ -80,9 +71,6 @@ Video
 Slides">
 							JavaScript and the DOM
 						</a>
-						
-							
-
 						
 					</li>
 				
@@ -173,14 +161,17 @@ Bonus: Hash maps and order of complexity">
 		
 			
 				
-					<li class="
-           						
-           						">
+					<li class="current
+           						parent
+           						expanded">
 						<a class="page"
 							href="classes.html"
 							title="Learn about JavaScript classes">
 							Classes
 						</a>
+						
+							
+
 						
 					</li>
 				
@@ -349,7 +340,7 @@ covering CanJS core libraries.">
     <div class="main-content">
   		
   			<section class="title">
-	<h1>JavaScript and the DOM <code>page</code></h1>
+	<h1>Classes <code>page</code></h1>
 </section>
 
   		
@@ -357,11 +348,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Understand the browser ecosystem and how JavaScript fits in.</p>
-<h2>Video</h2>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/Kq2K-4ZiVRI" frameborder="0" allowfullscreen></iframe>
-<h2>Slides</h2>
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRizqN85NRqtdpytt6ch7_Dy00PoxfqdVA6PswSLkb8WYzYFbsiW64jqdnTkDbChnZvA0efH8Y6Jfv4/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+    <p>Learn about JavaScript classes</p>
 
 </section>
 
@@ -372,6 +359,152 @@ covering CanJS core libraries.">
   			
   				
   			
+  			
+  				<section class="body">
+    <blockquote>
+<p><strong>NOTE:</strong> This section is currently under development.  There are no exercises yet.</p>
+</blockquote>
+<h2>Overview</h2>
+<p>In JavaScript, a class is a structured way to define what you saw in the previous section - prototype-based <strong>constructor functions</strong>. Before <a href="https://en.wikipedia.org/wiki/ECMAScript#6th_Edition_-_ECMAScript_2015">ECMAScript 2015</a>, you would create <strong>constructor functions</strong> as follows:</p>
+<pre><code class="language-js">//prototype way
+function ParkEmployee(name) {
+  this.name = name;
+}
+
+ParkEmployee.prototype.sayHi = function() {
+  console.log(&quot;Hi, my name is &quot; + this.name);
+}
+
+let raptorGuy = new ParkEmployee(&quot;Owen&quot;);
+raptorGuy.sayHi();
+//Logs &quot;Hi, my name is Owen&quot;
+</code></pre>
+<div class='codepen'></div>
+<p>In ECMAScript 2015, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">classes</a> are available as syntactic sugar over the existing prototype-based <strong>constructor functions</strong>. You
+can write the previous example with <code>class</code> as follows:</p>
+<pre><code class="language-js">class ParkEmployee {
+  constructor(name){
+    this.name = name;
+  }
+  sayHi(){
+    console.log(&quot;Hi, my name is &quot; + this.name);
+  }
+}
+
+let raptorGuy = new ParkEmployee(&quot;Owen&quot;);
+raptorGuy.sayHi();
+//Logs &quot;Hi, my name is Owen&quot;
+</code></pre>
+<div class='codepen'></div>
+<h2>Static Methods</h2>
+<p>The <code>static</code> keywords defines methods directly on the class. For example:</p>
+<pre><code class="language-js">class ParkEmployee {
+  static mathematician(){
+    return new ParkEmployee(&quot;Ian&quot;);
+  }
+  constructor(name){
+    this.name = name;
+  }
+  sayHi(){
+    console.log(&quot;Hi, my name is &quot; + this.name);
+  }
+}
+
+let goldblum = ParkEmployee.mathematician();
+raptorGuy.sayHi();
+//Logs &quot;Hi, my name is Ian&quot;
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='2-4'></div>
+<h2>Field Decorators</h2>
+<p>A few browsers (and Babel) support <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Field_declarations">field declarations</a>. <em>Field declarations</em> let you specify fields (properties)
+and their initial value up front:</p>
+<pre><code class="language-js">class ParkEmployee {
+  name;
+  age = 36;
+  constructor(name){
+    this.name = name;
+  }
+  sayHi(){
+    console.log(&quot;Hi, my name is &quot; + this.name);
+  }
+}
+
+let raptorGuy = new ParkEmployee(&quot;Owen&quot;);
+console.log( raptorGuy.age );
+//Logs 36
+</code></pre>
+<div line-highlight='2-3'></div>
+<div class='codepen'></div>
+<h2>Sub Classing</h2>
+<p>Classes (and even constructor functions) can be extended with the <code>extends</code> keyword as follows:</p>
+<pre><code class="language-js">class ParkEmployee {
+  constructor( runningSpeed ) {
+    this.runningSpeed = runningSpeed;
+  }
+  run(){
+    return &quot;running at &quot; + this.runningSpeed;
+  }
+}
+
+class MathematicianParkEmployee extends ParkEmployee {
+  mustGoFaster(){
+    this.runningSpeed = this.runningSpeed * 2;
+  }
+}
+
+const goldblum = new MathematicianParkEmployee(3);
+
+console.log( goldblum.run() ) //logs &quot;running at 3&quot;
+
+goldblum.mustGoFaster();
+
+console.log( goldblum.run() ) //logs &quot;running at 6&quot;
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='10'></div>
+<p>The keyword <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/super">super</a> can be used to call functions on a class's (or object's) parent. This is how you call &quot;base&quot; methods.</p>
+<pre><code class="language-js">class ParkEmployee {
+  constructor( runningSpeed ) {
+    this.runningSpeed = runningSpeed;
+  }
+  run(){
+    return &quot;running at &quot; + this.runningSpeed;
+  }
+}
+
+class MathematicianParkEmployee extends ParkEmployee {
+
+  // constructor MUST call `super` before accessing `this`
+  constructor( name, runningSpeed ) {
+    super(runningSpeed);
+    this.name = name;
+  }
+  run(){
+    return this.name + &quot; &quot; + super.run();
+  }
+  mustGoFaster(){
+    this.runningSpeed = this.runningSpeed * 2;
+  }
+}
+
+const goldblum = new MathematicianParkEmployee(&quot;ian&quot;, 3);
+
+console.log( goldblum.run() ) //logs &quot;ian running at 3&quot;
+
+goldblum.mustGoFaster();
+
+console.log( goldblum.run() ) //logs &quot;ian running at 6&quot;
+</code></pre>
+<div line-highlight='14,18'></div>
+<div class='codepen'></div>
+<p>For a deep dive on the mechanics of class inheritance, checkout
+<a href="https://javascript.info/class-inheritance">JavaScript.info's Class Inheritance guide</a>. It
+goes into detail about how the <code>[[HomeObject]]</code> internal property is used to enable the <code>super</code>
+keyword.</p>
+
+</section>
+
   			
   		
     </div>
@@ -406,7 +539,7 @@ covering CanJS core libraries.">
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/javascript/1-js-vs-dom.md"},"description":"Understand the browser ecosystem and how JavaScript fits in.\n\n## Video\n\n<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/Kq2K-4ZiVRI\" frameborder=\"0\" allowfullscreen></iframe>\n\n## Slides\n\n<iframe src=\"https://docs.google.com/presentation/d/e/2PACX-1vRizqN85NRqtdpytt6ch7_Dy00PoxfqdVA6PswSLkb8WYzYFbsiW64jqdnTkDbChnZvA0efH8Y6Jfv4/embed?start=false&loop=false&delayms=3000\" frameborder=\"0\" width=\"480\" height=\"389\" allowfullscreen=\"true\" mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\"></iframe>\n\n","name":"learn-advanced-javascript/js-vs-dom","title":"JavaScript and the DOM","type":"page","parent":"learn-advanced-javascript","order":1,"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/javascript/7-classes.md"},"description":"Learn about JavaScript classes \n","name":"learn-advanced-javascript/classes","title":"Classes","type":"page","parent":"learn-advanced-javascript","order":7,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

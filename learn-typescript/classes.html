@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn to use classes and inheritance in TypeScript, about the &#x60;&#x60;constructor&#x60;&#x60; method, and how to use public, private, protected, and readonly modifiers. 
+  <meta name="description" content="Learn to use classes and inheritance in TypeScript, about the &#x60;constructor&#x60; method, and how to use public, private, protected, and readonly modifiers. 
 ">
   <title>Bitovi Academy - Classes</title>
   
@@ -361,25 +361,29 @@ covering CanJS core libraries.">
 <li>The use of public, private, protected, and readonly modifiers, and</li>
 <li>How to manage <code>this</code> in classes.</li>
 </ul>
-<h2>Classes in TypeScript</h2>
-<p>In JavaScript, a class is a structured way to define what you may have seen before - prototype based constructor functions. This allows us to take an object-oriented approach to building our JavaScript applications. Since ECMAScript 2015, classes have been available, the difference with classes in TypeScript is the strictness of enforcing types on members.</p>
-<p>The following shows creating a ParkEmployee constructor function with a <code>sayHi</code> method in just JavaScript.</p>
-<pre><code class="language-js">//prototype way
-function ParkEmployee(name) {
-  this.name = name;
-}
-
-ParkEmployee.prototype.sayHi = function() {
-  console.log(&quot;Hi, my name is &quot; + this.name);
+<h2>Classes in JavaScript</h2>
+<p>In ECMAScript 2015, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes">classes</a> are available as syntactic sugar over the existing prototype-based <strong>constructor functions</strong>. A
+simple class might look like:</p>
+<pre><code class="language-js">class ParkEmployee {
+  constructor(name){
+    this.name = name;
+  }
+  sayHi(){
+    console.log(&quot;Hi, my name is &quot; + this.name);
+  }
 }
 
 let raptorGuy = new ParkEmployee(&quot;Owen&quot;);
 raptorGuy.sayHi();
 //Logs &quot;Hi, my name is Owen&quot;
-
 </code></pre>
 <div class='codepen'></div>
-<p>In the TypeScript class example, the <code>name</code> member is defined on line 4. We'll look at setting the name via the constructor next.</p>
+<p>For more information on JavaScript classes, checkout the
+<a href="../learn-advanced-javascript/classes.html" title="Learn about JavaScript classes">Advanced JavaScript Classes Training</a>. The next sections will cover features TypeScript adds to JavaScript.</p>
+<h2>Classes in TypeScript</h2>
+<p>Classes in TypeScript look just like classes in JavaScript; however, there are additional features
+that add type safety.</p>
+<p>In the following TypeScript class example, the <code>name</code> member is defined on line 4. We'll look at setting the name via the constructor next.</p>
 <pre><code class="language-ts">//class way
 class ParkEmployee {
   name: string;
@@ -399,7 +403,7 @@ raptorGuy.sayHi();
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='4'></div>
+<div line-highlight='3'></div>
 <h2>Constructor</h2>
 <p>The constructor method is how to initialize a new object with members. The constructor is called when we instantiate a new object from calling a class with the <code>new</code> keyword - it constructs and returns a new object for us with properties we gave it.</p>
 <pre><code class="language-ts">class Dinosaur {
@@ -415,7 +419,7 @@ console.log(dino.name)
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='4'></div>
+<div line-highlight='3'></div>
 <p>When declaring members, it's also possible to instantiate a value on them.</p>
 <pre><code class="language-ts">class Dinosaur {
   name: string;
@@ -431,7 +435,7 @@ console.log(dino.age);
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='4'></div>
+<div line-highlight='3'></div>
 <p>Using the constructor to set public members is quite a common pattern, which is why TypeScript also provides a shorthand.</p>
 <pre><code class="language-ts">class Dinosaur {
   constructor(public name: string) {
@@ -443,7 +447,7 @@ console.log(dino.name);
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='3'></div>
+<div line-highlight='2'></div>
 <blockquote>
 <p><strong>Note:</strong> We will see how to create private members later.</p>
 </blockquote>
@@ -479,7 +483,7 @@ blue.run();
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='10,12'></div>
+<div line-highlight='9,11'></div>
 <h2>Statics</h2>
 <p>When you need a property to be shared across multiple instances, you can use a <strong>static</strong> property. These are shared by all instances of the class as well as inheriting classes. Both members and methods on a class can be static. Each instance accesses the static value through prepending the name of the class.</p>
 <p>This example shows the use of a static property <code>cageInstances</code> to count the number of instances of <code>DinoCage</code>:</p>
@@ -497,51 +501,7 @@ console.log(DinoCage.cageInstances);
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='3,11'></div>
-<p>This example shows a shared static property <code>dinos</code> to count the number of dinosaurs in cages across all instances:</p>
-<pre><code class="language-ts">class DinoCage {
-  static cageInstances: number = 0;
-  static dinos: number = 0;
-  constructor(dinos: number) {
-    DinoCage.dinos = DinoCage.dinos + dinos;
-    DinoCage.cageInstances++;
-  }
-
-  static countDinos() {
-    return `${this.dinos} dinosaurs`;
-  }
-}
-
-class RaptorCage extends DinoCage {
-  public raptors: number;
-  constructor (dinos: number) {
-    super(dinos);
-    this.raptors = dinos;
-  }
-
-  public securityCheck() {
-    if (this.raptors &lt; 7) {
-      return 'security check passes'
-    }
-    else {
-      return 'hold on to your butts'
-    }
-  }
-}
-
-var paddock1 = new DinoCage(2);
-var paddock2 = new DinoCage(3);
-var uberPaddock1 = new RaptorCage(6);
-var uberPaddock2 = new RaptorCage(8);
-console.log(DinoCage.cageInstances);
-//Logs &quot;3&quot;
-console.log(DinoCage.countDinos());
-//Logs &quot;19 dinosaurs&quot;
-console.log(uberPaddock2.securityCheck());
-//Logs &quot;hold on to your butts&quot;
-
-</code></pre>
-<div class='codepen'></div>
+<div line-highlight='2,10'></div>
 <h2>Public modifier</h2>
 <p>In TypeScript all members are public by default, meaning they are publicly accessible.</p>
 <pre><code class="language-ts">class Dinosaur {
@@ -563,7 +523,7 @@ myDino.walk(7)
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='4'></div>
+<div line-highlight='3'></div>
 <h2>Private modifier</h2>
 <p>Members marked private are unable to be accessed from outside their containing class.</p>
 <pre><code class="language-ts">class Dinosaur {
@@ -583,7 +543,7 @@ scaryDino.dna;
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='4,14'></div>
+<div line-highlight='3,13'></div>
 <h2>Protected modifier</h2>
 <p>Protected modifiers are similar to private modifiers in that they can't be accessed but they CAN be accessed by deriving classes. The following example shows an inherited class that can access it's parent protected property <code>teethCount</code>:</p>
 <pre><code class="language-ts">class Dinosaur {
@@ -610,7 +570,7 @@ class GeneticallyModifiedDinosaur extends Dinosaur {
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='5, 20'></div>
+<div line-highlight='4,19'></div>
 <h2>Readonly modifier</h2>
 <p>Readonly modifiers allow properties to be read, but not changed after initialization. Read-only members can be accessed outside the class, but their value can't be changed.</p>
 <pre><code class="language-ts">class Leoplurodon {
@@ -630,7 +590,7 @@ firstStop.location = &quot;On a bridge&quot;; // error! location is readonly.
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='3,11'></div>
+<div line-highlight='2,10'></div>
 <h2>This and <code>=&gt;</code> Functions</h2>
 <p>If you're familiar with ES6, you may know that using the fat arrow (=&gt;) captures the context of <code>this</code> where it's used. The functionality is the same in TypeScript.</p>
 <p>Wrong <code>this</code>:</p>
@@ -823,7 +783,7 @@ export default Specialist;
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/typescript/5-classes.md"},"description":"Learn to use classes and inheritance in TypeScript, about the ``constructor`` method, and how to use public, private, protected, and readonly modifiers. \n","name":"learn-typescript/classes","title":"Classes","type":"page","parent":"learn-typescript","order":5,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/typescript/5-classes.md"},"description":"Learn to use classes and inheritance in TypeScript, about the `constructor` method, and how to use public, private, protected, and readonly modifiers. \n","name":"learn-typescript/classes","title":"Classes","type":"page","parent":"learn-typescript","order":5,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     
