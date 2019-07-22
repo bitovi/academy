@@ -243,7 +243,7 @@ Your code should transpile to look like the above prototype version! __Delete__ 
 ✏️ Run the following to verify your solution:
 
 ```shell
-npm run 2a-class
+npm run 4a-classes
 ```
 
 ### The solution
