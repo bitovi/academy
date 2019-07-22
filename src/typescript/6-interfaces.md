@@ -20,7 +20,7 @@ An interface in TypeScript is a way to define the shape an entity should adhere 
 @sourceref ./6-1-interface.ts
 @codepen
 
-### Optional Properties
+## Optional Properties
 
 Some times all properties on an object don't need to be required, using the ``?`` lets us tell the TypeScript compiler which properties aren't required.
 
@@ -28,21 +28,21 @@ Some times all properties on an object don't need to be required, using the ``?`
 @highlight 5
 @codepen
 
-### Classes Implementing Interfaces
+## Classes Implementing Interfaces
 
 In the case that a class needs to follow an object structure, we can use interfaces to define that 'contract'.
 
 @sourceref ./6-3-classes.ts
 @codepen
 
-### Interfaces in Functions
+## Interfaces in Functions
 
 Interfaces are incredibly useful in describing the shape of objects we want to use in multiple situations. The following functions both require a ``Dinosaur`` object shape we've defined in the ``Dinosaur`` interface.
 
 @sourceref ./6-3-2-functions.ts
 @codepen
 
-### Interfaces Describing Functions
+## Interfaces Describing Functions
 
 We can also use interfaces to describe functions, basically creating reusable types for functions. On the left side in parenthesis we list the parameters, and to the right of the colon we state the return type.
 
@@ -54,7 +54,7 @@ It's possible to use the `type` keyword as an interface to describe a function.
 @sourceref ./6-3-4-describefuncs-type.ts
 @codepen
 
-### Type Assertion
+## Type Assertion
 
 We briefly mentioned type assertion when talk about types, but when dealing with interfaces it can be a great tool for making sure our code behaves in the way we expect.
 
@@ -131,7 +131,7 @@ export default Address;
 
 </details>
 
-Make sure you have this solution implemented correctly before moving on to the next exercise. 
+Make sure you have this solution implemented correctly before moving on to the next exercise.
 
 ## Exercise 2: Write a Function With a Parameter Described by Interface
 
