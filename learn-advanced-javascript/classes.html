@@ -396,8 +396,61 @@ raptorGuy.sayHi();
 //Logs &quot;Hi, my name is Owen&quot;
 </code></pre>
 <div class='codepen'></div>
+<h2>Getters, Setters and Method Definitions</h2>
+<p>Classes initially only allowed
+getters, setters and method definitions
+in the body of the class.</p>
+<p>Getters and setters can be used to simulate another
+value:</p>
+<pre><code class="language-js">class ParkEmployee {
+  constructor(first, last){
+    this.first = first;
+    this.last = last;
+  }
+  sayHi(){
+    console.log(&quot;Hi, my name is &quot; + this.fullName);
+  }
+  get fullName(){
+    return this.first + &quot; &quot; + this.last;
+  }
+  set fullName(newVal){
+    const parts = newVal.split(&quot; &quot;);
+    this.first = parts[0];
+    this.last = parts[1];
+  }
+}
+
+let employee = new ParkEmployee(&quot;Ellie&quot;,&quot;Sattler&quot;);
+
+employee.fullName = &quot;John Hammond&quot;;
+
+employee.sayHi();
+//Logs &quot;Hi, my name is John Hammond&quot;
+</code></pre>
+<div class='codepen'></div>
+<p>Method definitions are functions written without
+the <code>function</code> keyword. They look like the following:</p>
+<pre><code class="language-js">sayHi(){
+  console.log(&quot;Hi, my name is &quot; + this.fullName);
+}
+</code></pre>
+<p>Classes <strong>do not</strong> allow specifying functions and
+values on the class prototype using any other syntax available in
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer">object literal notation</a>. For example,
+the following are <strong>not</strong> allowed:</p>
+<pre><code class="language-js">class ParkEmployee {
+  // key: function
+  sayHi: function(){
+    console.log(&quot;Hi, my name is &quot; + this.name);
+  }
+
+  // key: value
+  name: null
+}
+</code></pre>
 <h2>Static Methods</h2>
-<p>The <code>static</code> keywords defines methods directly on the class. For example:</p>
+<p>The <code>static</code> keywords defines methods directly on the class.
+For example, the following creates a <code>ParkEmployee.mathematician()</code> method:</p>
 <pre><code class="language-js">class ParkEmployee {
   static mathematician(){
     return new ParkEmployee(&quot;Ian&quot;);
@@ -416,7 +469,7 @@ raptorGuy.sayHi();
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='2-4'></div>
-<h2>Field Decorators</h2>
+<h2>Field Declarations</h2>
 <p>A few browsers (and Babel) support <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Field_declarations">field declarations</a>. <em>Field declarations</em> let you specify fields (properties)
 and their initial value up front:</p>
 <pre><code class="language-js">class ParkEmployee {
