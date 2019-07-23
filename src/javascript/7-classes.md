@@ -46,9 +46,74 @@ raptorGuy.sayHi();
 ```
 @codepen
 
+## Getters, Setters and Method Definitions
+
+Classes initially only allowed
+getters, setters and method definitions
+in the body of the class.
+
+Getters and setters can be used to simulate another
+value:
+
+```js
+class ParkEmployee {
+  constructor(first, last){
+    this.first = first;
+    this.last = last;
+  }
+  sayHi(){
+    console.log("Hi, my name is " + this.fullName);
+  }
+  get fullName(){
+    return this.first + " " + this.last;
+  }
+  set fullName(newVal){
+    const parts = newVal.split(" ");
+    this.first = parts[0];
+    this.last = parts[1];
+  }
+}
+
+let employee = new ParkEmployee("Ellie","Sattler");
+
+employee.fullName = "John Hammond";
+
+employee.sayHi();
+//Logs "Hi, my name is John Hammond"
+```
+@codepen
+
+Method definitions are functions written without
+the `function` keyword. They look like the following:
+
+```js
+sayHi(){
+  console.log("Hi, my name is " + this.fullName);
+}
+```
+
+Classes __do not__ allow specifying functions and
+values on the class prototype using any other syntax available in
+[object literal notation](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Object_initializer). For example,
+the following are __not__ allowed:
+
+```js
+class ParkEmployee {
+  // key: function
+  sayHi: function(){
+    console.log("Hi, my name is " + this.name);
+  }
+
+  // key: value
+  name: null
+}
+```
+
+
 ## Static Methods
 
-The `static` keywords defines methods directly on the class. For example:
+The `static` keywords defines methods directly on the class.
+For example, the following creates a `ParkEmployee.mathematician()` method:
 
 ```js
 class ParkEmployee {
@@ -70,7 +135,7 @@ raptorGuy.sayHi();
 @codepen
 @highlight 2-4
 
-## Field Decorators
+## Field Declarations
 
 A few browsers (and Babel) support [field declarations](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Field_declarations). _Field declarations_ let you specify fields (properties)
 and their initial value up front:
