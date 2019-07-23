@@ -137,8 +137,10 @@ raptorGuy.sayHi();
 
 ## Field Declarations
 
-A few browsers (and Babel) support [field declarations](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Field_declarations). _Field declarations_ let you specify fields (properties)
-and their initial value up front:
+A few browsers (and Babel) support [field declarations](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Field_declarations). _Field declarations_ let you specify fields (properties) and their initial value up front.
+
+The following declares that `ParkEmployee` instances will be created with `name` initialized to `undefined`
+and `age` initialized to `36`:
 
 ```js
 class ParkEmployee {
@@ -175,13 +177,13 @@ class ParkEmployee {
   }
 }
 
-class MathematicianParkEmployee extends ParkEmployee {
+class Mathematician extends ParkEmployee {
   mustGoFaster(){
     this.runningSpeed = this.runningSpeed * 2;
   }
 }
 
-const goldblum = new MathematicianParkEmployee(3);
+const goldblum = new Mathematician(3);
 
 console.log( goldblum.run() ) //logs "running at 3"
 
@@ -204,7 +206,7 @@ class ParkEmployee {
   }
 }
 
-class MathematicianParkEmployee extends ParkEmployee {
+class Mathematician extends ParkEmployee {
 
   // constructor MUST call `super` before accessing `this`
   constructor( name, runningSpeed ) {
@@ -219,7 +221,7 @@ class MathematicianParkEmployee extends ParkEmployee {
   }
 }
 
-const goldblum = new MathematicianParkEmployee("ian", 3);
+const goldblum = new Mathematician("ian", 3);
 
 console.log( goldblum.run() ) //logs "ian running at 3"
 
@@ -234,3 +236,5 @@ For a deep dive on the mechanics of class inheritance, checkout
 [JavaScript.info's Class Inheritance guide](https://javascript.info/class-inheritance). It
 goes into detail about how the `[[HomeObject]]` internal property is used to enable the `super`
 keyword.
+
+<img src="https://docs.google.com/drawings/d/e/2PACX-1vRw9Jbz-_KHQsYE_7YmfibHznMvgHlooBRgKrafsyzNzQcDs-xZy4GuYJWDcc09PM6uX30V4riPbKX-/pub?w=872&amp;h=327" style="max-width: 100%;">
