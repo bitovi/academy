@@ -470,8 +470,9 @@ raptorGuy.sayHi();
 <div class='codepen'></div>
 <div line-highlight='2-4'></div>
 <h2>Field Declarations</h2>
-<p>A few browsers (and Babel) support <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Field_declarations">field declarations</a>. <em>Field declarations</em> let you specify fields (properties)
-and their initial value up front:</p>
+<p>A few browsers (and Babel) support <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes#Field_declarations">field declarations</a>. <em>Field declarations</em> let you specify fields (properties) and their initial value up front.</p>
+<p>The following declares that <code>ParkEmployee</code> instances will be created with <code>name</code> initialized to <code>undefined</code>
+and <code>age</code> initialized to <code>36</code>:</p>
 <pre><code class="language-js">class ParkEmployee {
   name;
   age = 36;
@@ -500,13 +501,13 @@ console.log( raptorGuy.age );
   }
 }
 
-class MathematicianParkEmployee extends ParkEmployee {
+class Mathematician extends ParkEmployee {
   mustGoFaster(){
     this.runningSpeed = this.runningSpeed * 2;
   }
 }
 
-const goldblum = new MathematicianParkEmployee(3);
+const goldblum = new Mathematician(3);
 
 console.log( goldblum.run() ) //logs &quot;running at 3&quot;
 
@@ -526,7 +527,7 @@ console.log( goldblum.run() ) //logs &quot;running at 6&quot;
   }
 }
 
-class MathematicianParkEmployee extends ParkEmployee {
+class Mathematician extends ParkEmployee {
 
   // constructor MUST call `super` before accessing `this`
   constructor( name, runningSpeed ) {
@@ -541,7 +542,7 @@ class MathematicianParkEmployee extends ParkEmployee {
   }
 }
 
-const goldblum = new MathematicianParkEmployee(&quot;ian&quot;, 3);
+const goldblum = new Mathematician(&quot;ian&quot;, 3);
 
 console.log( goldblum.run() ) //logs &quot;ian running at 3&quot;
 
@@ -555,6 +556,7 @@ console.log( goldblum.run() ) //logs &quot;ian running at 6&quot;
 <a href="https://javascript.info/class-inheritance">JavaScript.info's Class Inheritance guide</a>. It
 goes into detail about how the <code>[[HomeObject]]</code> internal property is used to enable the <code>super</code>
 keyword.</p>
+<p><img src="https://docs.google.com/drawings/d/e/2PACX-1vRw9Jbz-_KHQsYE_7YmfibHznMvgHlooBRgKrafsyzNzQcDs-xZy4GuYJWDcc09PM6uX30V4riPbKX-/pub?w=872&amp;h=327" style="max-width: 100%;"></p>
 
 </section>
 
