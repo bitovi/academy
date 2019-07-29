@@ -110,10 +110,15 @@ Open the ``angular.json`` file, and make the following changes to include these 
 
 > Pay close attention that you're making these changes under the "build" key and not the "test" key, as the code looks very similar. The build key should be close to line 17.
 
+<details open>
+<summary>section copied - angular.json</summary>
 ✏️ Update __angular.json__:
 
 @sourceref ./angular.json
 @highlight 25-39,only
+
+
+</details>
 
 __Any time changes are made to the `angular.json` file, we need to restart our server to catch the new changes.__
 

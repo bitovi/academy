@@ -48,7 +48,7 @@ TypeScript uses static typing, which allows us to specify what type a variable s
 
 ## Using this Guide
 
-In this guide we will teach you about TypeScript concepts and have an environment for you to practice in. Running the tests will catch any problems if the code was not written correctly or as expected. Pay close attention to how you name and save the files. 
+In this guide we will teach you about TypeScript concepts and have an environment for you to practice in. Running the tests will catch any problems if the code was not written correctly or as expected. Pay close attention to how you name and save the files.
 
 When we give you a command to run to verify your work it will look for a file named respectively. If you run into issues you can look at the package.json file to see which file the command listed is looking for.
 
@@ -83,17 +83,17 @@ For this and following TypeScript exercises, we will be working in the
 [https://github.com/bitovi/learn-typescript](https://github.com/bitovi/learn-typescript)
 repository. To use it:
 
-1. ✏️ Clone this repo:
+1. ✏️ Clone the learn-typescript repository from github:
    ```shell
    git clone https://github.com/bitovi/learn-typescript.git
    ```
 
-2. ✏️ Open your terminal to that folder:
+2. ✏️ Navigate into the learn-typescript folder:
    ```shell
    cd learn-typescript
    ```
 
-3. ✏️ Install node packages:
+3. ✏️ Install the node packages(these are already listed in the package.json file):
    ```shell
    npm i
    ```
@@ -101,15 +101,13 @@ repository. To use it:
    > [nvm](https://github.com/nvm-sh/nvm) to easily switch between
    > node versions.
 
-4. ✏️ Open the `learn-typescript` folder in your editor:
-   ```shell
-   atom .
-   ```
-
-
+4. ✏️ Open the `learn-typescript` folder in your favorite editor:
+  ```shell
+   code .
+  ```
+   > The '.' after the editor is a shorthand to refer to the folder you're currently in
 
 ### What You Need to Know
-
 
 In order to use TypeScript in the browser, we must compile the TypeScript code to plain JavaScript first. We will do this using our terminal in this example, but most often TypeScript will be compiled during a build process.
 
@@ -125,11 +123,19 @@ npm install -g typescript
 tsc -v
 ```
 
-✏️ Let's create a _0-why-hello-world.ts_ file and open it in our favorite editor.
+✏️ Let's create a new file called _0-why-hello-world.ts_ and open it in our favorite editor.
 
+OSX
 ```shell
 touch 0-why-hello-world.ts
 ```
+
+WINDOWS
+```shell
+echo > 0-why-hello-world.ts
+```
+
+   > The `touch` or `echo` command creates a new file
 
 ✏️ We'll write some basic TypeScript next:
 
