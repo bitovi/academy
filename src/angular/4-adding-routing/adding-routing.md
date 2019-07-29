@@ -60,7 +60,7 @@ If you have completed the exercise successfully you should be able to see the ho
 
 ## Router Outlet
 
-<a href="https://angular.io/api/router/RouterOutlet" target="_blank">`RouterOutlet`</a> is an Angular directive that is a placeholder for content that is filled when the route changes. In this example the `HomeComponent` template or the `AboutComponent` template are shown below the `<router-outlet>` element as the route changes.
+<a href="https://angular.io/api/router/RouterOutlet" target="\_blank">`RouterOutlet`</a> is an Angular directive that is a placeholder for content that is filled when the route changes. In this example the `HomeComponent` template or the `AboutComponent` template are shown below the `<router-outlet>` element as the route changes.
 
 @sourceref ./path-route.html
 @codepen
@@ -76,7 +76,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [];
 
-@NgModule({
+@@NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })

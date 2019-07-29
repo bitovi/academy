@@ -1,7 +1,7 @@
 @page learn-typescript/classes Classes
 @parent learn-typescript 5
 
-@description  Learn to use classes and inheritance in TypeScript, about the ``constructor`` method, and how to use public, private, protected, and readonly modifiers.
+@description  Learn to use classes and inheritance in TypeScript, about the `constructor` method, and how to use public, private, protected, and readonly modifiers.
 
 @body
 
@@ -15,41 +15,61 @@ For those newer to Object-oriented programming, classes are special functions th
 - The use of public, private, protected, and readonly modifiers, and
 - How to manage `this` in classes.
 
-## Classes in TypeScript
+## Classes in JavaScript
 
-In JavaScript, a class is a structured way to define what you may have seen before - prototype based constructor functions. This allows us to take an object-oriented approach to building our JavaScript applications. Since ECMAScript 2015, classes have been available, the difference with classes in TypeScript is the strictness of enforcing types on members.
+In ECMAScript 2015, [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) are available as syntactic sugar over the existing prototype-based __constructor functions__. A
+simple class might look like:
 
-The following shows creating a ParkEmployee constructor function with a ``sayHi`` method in just JavaScript.
+```js
+class ParkEmployee {
+  constructor(name){
+    this.name = name;
+  }
+  sayHi(){
+    console.log("Hi, my name is " + this.name);
+  }
+}
 
-@sourceref ./5-1-javascript-prototype.js
+let raptorGuy = new ParkEmployee("Owen");
+raptorGuy.sayHi();
+//Logs "Hi, my name is Owen"
+```
 @codepen
 
-In the TypeScript class example, the ``name`` member is defined on line 4. We'll look at setting the name via the constructor next.
+For more information on JavaScript classes, checkout the
+[learn-advanced-javascript/classes Advanced JavaScript Classes Training]. The next sections will cover features TypeScript adds to JavaScript.
+
+## Classes in TypeScript
+
+Classes in TypeScript look just like classes in JavaScript; however, there are additional features
+that add type safety.
+
+In the following TypeScript class example, the `name` member is defined on line 4. We'll look at setting the name via the constructor next.
 
 @sourceref ./5-2-typescript-class.ts
 @codepen
-@highlight 4
+@highlight 3
 
 
 ## Constructor
 
-The constructor method is how to initialize a new object with members. The constructor is called when we instantiate a new object from calling a class with the ``new`` keyword - it constructs and returns a new object for us with properties we gave it.
+The constructor method is how to initialize a new object with members. The constructor is called when we instantiate a new object from calling a class with the `new` keyword - it constructs and returns a new object for us with properties we gave it.
 
 @sourceref ./5-3-class-constructor.ts
 @codepen
-@highlight 4
+@highlight 3
 
 When declaring members, it's also possible to instantiate a value on them.
 
 @sourceref ./5-3-class-constructor-initialized.ts
 @codepen
-@highlight 4
+@highlight 3
 
 Using the constructor to set public members is quite a common pattern, which is why TypeScript also provides a shorthand.
 
 @sourceref ./5-4-constructor-short.ts
 @codepen
-@highlight 3
+@highlight 2
 
 > __Note:__ We will see how to create private members later.
 
@@ -59,22 +79,19 @@ Inheritance is a way to extend functionality of existing classes. If the derived
 
 @sourceref ./5-5-inheritance.ts
 @codepen
-@highlight 10,12
+@highlight 9,11
 
 ## Statics
 
 When you need a property to be shared across multiple instances, you can use a __static__ property. These are shared by all instances of the class as well as inheriting classes. Both members and methods on a class can be static. Each instance accesses the static value through prepending the name of the class.
 
-This example shows the use of a static property ``cageInstances`` to count the number of instances of ``DinoCage``:
+This example shows the use of a static property `cageInstances` to count the number of instances of `DinoCage`:
 
 @sourceref ./5-6-statics.ts
 @codepen
-@highlight 3,11
+@highlight 2,10
 
-This example shows a shared static property ``dinos`` to count the number of dinosaurs in cages across all instances:
 
-@sourceref ./5-6-statics-advanced.ts
-@codepen
 
 ## Public modifier
 
@@ -82,7 +99,7 @@ In TypeScript all members are public by default, meaning they are publicly acces
 
 @sourceref ./5-7-public.ts
 @codepen
-@highlight 4
+@highlight 3
 
 ## Private modifier
 
@@ -90,15 +107,15 @@ Members marked private are unable to be accessed from outside their containing c
 
 @sourceref ./5-8-private.ts
 @codepen
-@highlight 4,14
+@highlight 3,13
 
 ## Protected modifier
 
-Protected modifiers are similar to private modifiers in that they can't be accessed but they CAN be accessed by deriving classes. The following example shows an inherited class that can access it's parent protected property ``teethCount``:
+Protected modifiers are similar to private modifiers in that they can't be accessed but they CAN be accessed by deriving classes. The following example shows an inherited class that can access it's parent protected property `teethCount`:
 
 @sourceref ./5-9-protected.ts
 @codepen
-@highlight 5, 20
+@highlight 4,19
 
 
 ## Readonly modifier
@@ -107,7 +124,7 @@ Readonly modifiers allow properties to be read, but not changed after initializa
 
 @sourceref ./5-10-readonly.ts
 @codepen
-@highlight 3,11
+@highlight 2,10
 
 ## This and `=>` Functions
 
@@ -226,7 +243,7 @@ Your code should transpile to look like the above prototype version! __Delete__ 
 ✏️ Run the following to verify your solution:
 
 ```shell
-npm run 2a-class
+npm run 4a-classes
 ```
 
 ### The solution
