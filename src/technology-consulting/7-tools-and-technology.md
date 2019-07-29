@@ -25,6 +25,12 @@ This document describes the process of development workflows with respect to ver
   - `RELEASE-pre.X` - A tagged version of master that will be pushed to _Staging_ for testing.  If successful, it will be tagged without `-pre.X` for released.
   - `RELEASE` - A release that will be pushed to _Production_.  
 
+For a quick overview of some different Git branching strategies, see:
+[this
+talk](https://docs.google.com/presentation/d/1XSGZA30_r7i5kacURsJs8tPKapcWjjkhECLyKGmXHSQ/edit?usp=sharing)
+and [this
+article](https://www.atlassian.com/git/tutorials/comparing-workflows).
+
 ## Communication Tools
 
 The following the communication tools that should be present on every project. The specifics on your project should be documented in the [learn-technology-consulting/transition-sales-to-delivery#appsummarydocument App Summary Document]
