@@ -14,23 +14,23 @@ consulting. This guide is for:
 - Bitovi clients looking to understand how we operate.
 - Bitovi community members wanting to learn technology consulting.
 
-This training walks through:
+At it's core, this course walks through the 5 most important steps
+in creating successful products:
 
-- [learn-technology-consulting/prioritizing] - What activities are the most influential to success.
+1. [learn-technology-consulting/values] - Aligning your team
+  to value outcome more than effort.
+1. [learn-technology-consulting/goals] - Establishing clear, measurable goals that
+  are well understood by your team.
+1. [learn-technology-consulting/prioritization] - Using qualitative and
+   quantitative data to prioritize what should be built.
+1. [learn-technology-consulting/development] - Developing quickly and
+   sustainably.
+1. [learn-technology-consulting/communication] - Communicating precisely
+   while being easily consumable.
+
+This course also includes other trainings important for consulting:
+
+- [learn-technology-consulting/building-rapport]
+- [learn-technology-consulting/setting-expectations]
 - [learn-technology-consulting/transitioning-to-delivery] - How to take on
   a new project while a sales team is in the process of closing the project.
-- [learn-technology-consulting/goals] - How to establish clear goals that
-  are well understood by your team.
-- [learn-technology-consulting/product-management] - How to manage a project
-  towards adding value.
-- [learn-technology-consulting/tools-and-technology] - The recommended tools and
-  technology used by Bitovi.
-- Influence and Networking
-    - [learn-technology-consulting/building-rapport]
-    - [learn-technology-consulting/setting-expectations]
-    - [learn-technology-consulting/communication]
-
-Other:
-
-- Sales process
-- Ending a project

@@ -1,5 +1,5 @@
 @page learn-technology-consulting/building-rapport Building Rapport
-@parent learn-technology-consulting 9
+@parent learn-technology-consulting 6
 
 @description Best practices for building rapport with clients.
 
@@ -48,3 +48,7 @@ In the process of speaking honestly, clients tend to develop more and more trust
 When bureaucratic red tape stands in the way of progress, don’t take no for an answer. Humor can often be a way to be persistent without being annoying. For example, Justin loves to talk about the time he jokingly told a manager who claimed it would take 4 weeks to get a dev server that he would send an email to Steve Jobs asking him if he thought 4 weeks was an appropriate amount of time. Soon after, he got his  devserver.
 
 Using humor in situations where you’re feeling frustrated and incredulous is often an effective way to get what you want while not making people hate you.
+
+## Team Building
+
+- [Tuckman's stages of group development](https://en.wikipedia.org/wiki/Tuckman%27s_stages_of_group_development)

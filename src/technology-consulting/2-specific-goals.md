@@ -1,5 +1,5 @@
-@page learn-technology-consulting/goals Goals
-@parent learn-technology-consulting 5
+@page learn-technology-consulting/goals Specific Goals
+@parent learn-technology-consulting 2
 
 @description Learn how to establish clear goals that are well understood by your team.
 
@@ -10,7 +10,7 @@
 The primary goal of a technology consultant is to add value to your client.
 
 The primary goal of your client _should_ be to add value to
-their customers. Therefore, [learn-technology-consulting/product-management] techniques and methodologies must also be designed to add value to customers.
+their customers. Therefore, [learn-technology-consulting/prioritization prioritization] techniques and methodologies must also be designed to add value to customers.
 
 But the first step in managing a project is to establish clear goals
 that are well understood by everyone throughout
@@ -67,3 +67,15 @@ advantage the project is looking to create.
 Example:
 
 - _Combine the desktop and mobile sites for an improved user experience, site parity, and centralized ownership._
+
+## Introducing These Concepts
+
+_Todo_:
+
+- Read this content
+- Ask for the mission and goals at the start of every project.
+
+## Further reading
+
+- [Objectives and key results (OKR)](https://en.wikipedia.org/wiki/OKR)
+- [Objective Roadmaps](https://svpg.com/the-alternative-to-roadmaps/)

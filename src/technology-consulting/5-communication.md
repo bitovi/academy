@@ -1,9 +1,21 @@
-@page learn-technology-consulting/communication Communication
-@parent learn-technology-consulting 8
+@page learn-technology-consulting/communication Effective Communication
+@parent learn-technology-consulting 5
 
 @description Best practices for communicating with clients.
 
 @body
+
+## Communication Tools
+
+The following the communication tools that should be present on every project. The specifics on your project should be documented in the [learn-technology-consulting/transition-sales-to-delivery#appsummarydocument App Summary Document]
+
+- <input type="checkbox"/> Wiki - _GitHub Wiki_
+- <input type="checkbox"/> Screen Sharing - _Google Meet_ or _Slack Calls_
+- <input type="checkbox"/> Video Conference - _Google Meet_ or _Slack Calls_
+- <input type="checkbox"/> Chat - _Slack_
+- <input type="checkbox"/> Calendars - _Shared Google Calendars_ and a project/company calendar.
+- <input type="checkbox"/> Meetings - When meetings are held.
+
 
 ## The fundamentals of proactive communication
 

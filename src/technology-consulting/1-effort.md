@@ -1,7 +1,7 @@
-@page learn-technology-consulting/prioritizing Prioritizing
+@page learn-technology-consulting/values Outcome Focused Effort
 @parent learn-technology-consulting 1
 
-@description Learn what to prioritize in technology consulting. Hint: It's not technology.
+@description Learn what activities to prioritize in technology consulting. Hint: It's not technology.
 
 @body
 
@@ -18,7 +18,7 @@ With that said, the following are the most important activities to get right (li
 
 1. Goals - Everyone should know what they are trying to accomplish.
 2. Product Management - Processes add value to customers and work towards successful outcomes.
-3. UX / Design - A user experience designed
+3. UX & Design - A user experience designed
    to add value for customers.
 4. Tools and Technology - Tools that support
    efficient delivery of the above goals.
@@ -44,6 +44,15 @@ to that application if the app:
 Despite all of this, technology choices are
 __very__ important. Applications are built on code after all.
 A slow application negatively influences user experience. An inflexible application won't be able to change direction.
+
+In this course, there are trainings for all of these activities:
+
+- For __goals__ see [learn-technology-consulting/goals].
+- For __product management__ and __UX & Design__ see [learn-technology-consulting/prioritization]. (_We see UX & Design as part of the product management process_).
+- For __tools and technology__ see [learn-technology-consulting/development].
+
+But before embarking on these trainings, it's _critical_ that everyone
+on the team values outcome over output.
 
 ## Video Evidence
 
@@ -85,3 +94,8 @@ seem daunting, the first place
 to start is the [learn-technology-consulting/communication]
 guide. Effective communication is the foundation towards working through
 working through these sort of obstacles.
+
+
+<p style="font-weight: bold; text-align: center;">
+Next: [learn-technology-consulting/goals Learn how to create specific goals]
+</p>

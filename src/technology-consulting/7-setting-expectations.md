@@ -1,5 +1,5 @@
 @page learn-technology-consulting/setting-expectations Setting Expectations
-@parent learn-technology-consulting 10
+@parent learn-technology-consulting 7
 
 @description Best practices for setting expectations to clients.
 
