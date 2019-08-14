@@ -11,18 +11,12 @@ the delivery team.
 For most projects, the people who sell the work are not the same people
 who perform the work. A successful transition from the sales team to the delivery team
 is _critically_ important to ensuring project success. This guide walks through
-how to have an effective and efficient transition process leaves no surprises for the future.
+how to have an effective and efficient transition process that minimizes risk and
+maximizes the changes for success.
 
-## Goals
+## Common Problems
 
-The goals of a good transition:
-
-- Clearly documenting and communicating expectations with the client and delivery teams.
-- Eliminating as many "unknown unknowns" as possible.
-- The client is not wasting time repeating themselves to the sales team and then to
-  the delivery team.
-
-## Problems
+After transitioning many projects to delivery, these common problems emerge:
 
 - Sales teams are the first group of people to interact with a client. They get
 a lot of knowledge of the project, the client, process, etc. This information
@@ -31,21 +25,106 @@ needs to be provided to the delivery team.
 - Sales teams want to sell and transition to delivery. They must do
 due diligence.
 
-## Checklist
+This training will attempt to address these issues with a process that promotes regular communication and a shared understanding of the goals, people and processes used on the project.
 
-- <input type="checkbox"/> Create and fill out the [App Summary document](#appsummarydocument)
-- <input type="checkbox"/> Share the App Summary and [Consultancy Policies](#consultancypoliciesdocument) documents with the client
-- <input type="checkbox"/> Share the App Summary document with the delivery team
-- <input type="checkbox"/> Create a SOW
-- <input type="checkbox"/> Review the SOW with the delivery team
-- <input type="checkbox"/> Get a signed SOW by the client
-- <input type="checkbox"/> Share the SOW with Accounts Receivable
-  - <input type="checkbox"/> Time tracking is setup
-  - <input type="checkbox"/> Billing processes are in place
-- <input type="checkbox"/> Hold an [internal kickoff meeting](#internalkickoffmeeting).  
-- <input type="checkbox"/> Hold an [external kickoff meeting](#clientkickoffmeeting).
+## Transition Goals
 
-## App Summary document
+Before getting into the "how", it's important to understand the goals of an effective transition:
+
+- Indicators of success for the project are clearly spelled out and known to all parties.
+- Clearly documenting and communicating expectations with the client and delivery teams.
+- Eliminating as many "unknown unknowns" as possible.
+- The client is not wasting time repeating themselves to the sales team and then to
+  the delivery team.
+
+## Four Phases of Transition
+
+There are four key phases of a successful transition:
+
+1. Expectation setting with the client
+1. Expectation setting with the delivery team
+1. Project kickoff
+1. Post-kickoff checkin
+
+This training will first outline the purpose of each of these phases, and make recommendations about what to cover in each one. It will also share examples of documents you may share with the client as part of this process.
+
+## Expectation Setting with the Client
+
+_When:_ after the initial "yes"
+
+_Attendees:_ Delivery Director, Team Lead, client stakeholders
+
+Once you've received a verbal commitment from the client, it's a good time to start setting expectations. For small projects, this may be done over email, but for large projects, a scheduled meeting is recommended.
+
+> Note: Pursuing a signed SOW should occur in parallel to this phase
+
+Before this meeting, a Team Lead should be selected, and the Delivery Director officially brought onto the project. They should both be introduced when setting up this meeting.
+
+The agenda for this meeting should be:
+
+- <input type="checkbox"/> Introduce the Delivery Director and/or Team Lead on the project;
+- <input type="checkbox"/> Share a schedule of what to expect, from now through first month of project;
+- <input type="checkbox"/> Give a presentation on our expectations for an ideal project (project management, dev workflow, etc);
+- <input type="checkbox"/> Share the [Consultancy Policies](#consultancy-policies-document) document;
+- <input type="checkbox"/> Set up a shared calendar;
+- <input type="checkbox"/> Share expectations for collecting feedback;
+- <input type="checkbox"/> Fill out the remaining items in the [App Summary](#app-summary-document) document with client. Ideally, this should be started by the sales team before the "yes";
+
+The last item, the [App Summary](#app-summary-document) document, is arguably the most important item of this phase. It will take some time (allocate one hour at least) to fill out this document, but it will serve as the project's shared understanding. The most critical pieces are defining the project's goals and initial roadmap. It's also important to align on who will fill what roles on the project (you or the client).
+
+## Expectation Setting with the Delivery Team
+
+_When:_ after the SOW is signed, before project kickoff
+
+_Attendees:_ Delivery Director, Team Lead, development team
+
+Once the [SOW](#statement-of-work) is signed, choose your final development team and assemble them for a meeting to introduce the project. The goal of this meeting is to align your team on expectations for the project so they can be prepared for kickoff.
+
+The agenda for this meeting should be:
+
+- <input type="checkbox"/> Review the entire [App Summary](#app-summary-document) document
+- <input type="checkbox"/> Review the [SOW](#statement-of-work) to make sure any contractual obligations are clear
+- <input type="checkbox"/> Determine any gaps before kickoff so the Director or Lead can get clarificiation
+- <input type="checkbox"/> Risks and opportunities with this client, and how to mitigate/strategize for them
+- <input type="checkbox"/> Provide resources to the team about the client's product and industry to prepare
+
+During this meeting, it's recommended to start filling out an internal wiki for the project. This should include strategy and risk management notes discussed in this meeting.
+
+## Project Kickoff
+
+_When_: scheduled date with the client after the SOW is signed
+
+_Attendees:_ Delivery Director, Team Lead, development team, client team
+
+This meeting will mark the beginning of development on the project! The primary goal is figure out first steps the development team should take to start learning about the product and the development tasks. There should be few, if any, surprises by this point in the process.
+
+The agenda for this meeting should be:
+
+- <input type="checkbox"/> Introductions
+- <input type="checkbox"/> Show the [App Summary](#app-summary-document) document; review the goals and roadmap and confirm everyone is in agreement
+- <input type="checkbox"/> Team Lead and the client begin the project
+
+## Post-Kickoff Checkin
+
+_When:_ 1-4 (typically 2) weeks after Project Kickoff
+
+_Attendees:_ Delivery Director, Team Lead, client stakeholders
+
+This is the "dust has settled" meeting that answers the question, "did everything go well after kickoff?"
+
+The agenda for this meeting should be loose and conversational, but should include:
+
+- <input type="checkbox"/> Confirmation that the goals and roadmap have stayed the same
+- <input type="checkbox"/> Understand any questions or concerns the client may have
+- <input type="checkbox"/> Set up a cadence for regular checkins with this group
+
+Regular checkins should be weekly for the first month of the project, but may move to every 2-4 weeks once both sides are comfortable that the project is running smoothly.
+
+## Example Documents
+
+<a name="app-summary-document"></a>
+
+### App Summary document
 
 To facilitate efficient communication in the future, it's important
 to create organized documents _now_ that can be shared with:
@@ -68,66 +147,23 @@ shared with the delivery team.
 
 __TODO: Create a filled out example__
 
-## Consultancy Policies document
+<a name="consultancy-policies-document"></a>
+
+### Consultancy Policies document
 
 We have a [Consultancy Policies](https://docs.google.com/document/d/e/2PACX-1vSUcxXideVUG8AgA-Zsmx9sA2knaawPyDENds4orhD98xrFBoexDwHo0yCiYYdTcJ5dOqpM51_qg9gV/pub) document that outlines our policies like PTO and general workplace expectations. This can be shared with the client or the important parts clearly communicated.
 
 <iframe src="https://docs.google.com/document/d/e/2PACX-1vSUcxXideVUG8AgA-Zsmx9sA2knaawPyDENds4orhD98xrFBoexDwHo0yCiYYdTcJ5dOqpM51_qg9gV/pub?embedded=true"
  style="width: 640px; height: 300px"></iframe>
 
-## Statement of Work
+<a name="statement-of-work"></a>
+
+### Statement of Work
 
 A statement of work is the contractual agreement between the client and consultant. The  
 following is a template of a consulting agreement:
 
 <iframe src="https://docs.google.com/document/d/e/2PACX-1vR6vgDkFd9LjAkVQGTZV7NGU3t8hPk2-vFz5uT2-sISaQn6kouwHOQdTXZ0ba8t1WGPtozxU6sCIM0M/pub?embedded=true" style="width: 640px; height: 300px"></iframe>
 
-While it would be nice if agreements could be signed with a handshake instead of a legal document,
-legal documents should be designed to both parties in the event of disagreement. Thus it is __critical__
-that these documents be reviewed by delivery before signing. The _detail of service_ section should also be reviewed with the client during the [Client kickoff meeting](#clientkickoffmeeting)
-
-## Internal Kickoff Meeting
-
-After the Statement of Work (SOW) or contract has been signed, an internal
-kickoff meeting with the sales and delivery team should be scheduled. The goals of this meeting
-are to:
-
-- Ensure the delivery team is fully able to take on the new project
-- Prepare the delivery team for the external [client kickoff meeting](#clientkickoffmeeting).
-
-The sales team should ensure:
-
-- <input type="checkbox"/> Ensure the Director of Delivery (herein: Director) is aware of the sale and staffing/technical/time requirements.
-- <input type="checkbox"/> There is a signed Statement Of Work (SOW) or contract.
-- <input type="checkbox"/> Accounts Receivable has received a copy of the signed SOW and client contact info to setup accounting.
-
-Once completed, the Director should perform the following:
-
-- <input type="checkbox"/> Identify the Team Lead(s) and other team members assigned to the project.
-- <input type="checkbox"/> Inform new team members of the project, role, and start date.
-- <input type="checkbox"/> Send Accounts Receivable names of new team members to add to Freshbooks project.
-- <input type="checkbox"/> Schedule an internal kickoff meeting between the sales team, Director, Team Lead, and the team, which should cover:
-   - <input type="checkbox"/> Project and people introduction (sales team)
-   - <input type="checkbox"/> Review Consultancy Colicies and App Summary (Director)
-   - <input type="checkbox"/> Travel needs/availability (Director)
-   - <input type="checkbox"/> Plans for external kickoff (Director)
-- <input type="checkbox"/> Schedule inside sales strategy meetings for 3 months from kickoff, recurring every 6 months
-
-## Client Kickoff Meeting
-
-- <input type="checkbox"/> Email introduction of the Director (sales team)
-- <input type="checkbox"/> Confirm receipt of executed contract (Accounts Receivable)
-- <input type="checkbox"/> Set up management kickoff meeting with client managers and Team Lead (Director). Agenda should include:
-   - <input type="checkbox"/> Director and Team Lead introduction/explanation of roles
-   - <input type="checkbox"/> Consultancy Policy review
-   - <input type="checkbox"/> App Summary review
-   - <input type="checkbox"/> Set up checkin meetings
-   - <input type="checkbox"/> Determine if any specific training/orientation is needed by the team
-   - <input type="checkbox"/> Document how time off should be recorded
-- <input type="checkbox"/> Set up team introduction meeting (Director). Agenda should include:
-   - <input type="checkbox"/> Team member introduction
-   - <input type="checkbox"/> Development methodology
-   - <input type="checkbox"/> Versioning and environment workflow
-   - <input type="checkbox"/> Communication tools
-- <input type="checkbox"/> Share Consultancy Policies, App Summary, success checklist, and shared team/PTO calendar with client (Director)
-- <input type="checkbox"/> Hold kickoff meetings and document outcomes in the App Summary (Director)
+This is a legal document that says what each party is responsible for. It is __critical__
+that these documents be reviewed by delivery before signing. The _detail of service_ section should also be reviewed with the client during the [Project Kickoff meeting](#project-kickoff).
