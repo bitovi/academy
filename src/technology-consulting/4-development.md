@@ -126,6 +126,7 @@ There are code reviews
 
 ## Methodologies
 
+The following are some common project management methodologies.
 
 ### Scrum
 
