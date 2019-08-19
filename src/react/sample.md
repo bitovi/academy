@@ -1,5 +1,5 @@
-@page react/sample React
-@parent react 1
+@page learn-react-the-right-way/sample React
+@parent learn-react-the-right-way 1
 @hide
 
 ```html
