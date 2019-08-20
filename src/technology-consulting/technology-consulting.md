@@ -34,3 +34,4 @@ This course also includes other trainings important for consulting:
 - [learn-technology-consulting/setting-expectations]
 - [learn-technology-consulting/transitioning-to-delivery] - How to take on
   a new project while a sales team is in the process of closing the project.
+- [learn-technology-consulting/ending-a-project]

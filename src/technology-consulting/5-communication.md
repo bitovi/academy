@@ -7,7 +7,7 @@
 
 ## Communication Tools
 
-The following the communication tools that should be present on every project. The specifics on your project should be documented in the [learn-technology-consulting/transition-sales-to-delivery#appsummarydocument App Summary Document]
+The following the communication tools that should be present on every project. The specifics on your project should be documented in the [learn-technology-consulting/transitioning-to-delivery#app-summary-document App Summary Document]
 
 - <input type="checkbox"/> Wiki - _GitHub Wiki_
 - <input type="checkbox"/> Screen Sharing - _Google Meet_ or _Slack Calls_
