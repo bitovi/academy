@@ -136,6 +136,7 @@ following are a number of different prioritization techniques:
 - [Kano Model](https://en.wikipedia.org/wiki/Kano_model) - Survey
   users to find out what they like.
 - [MoScoW method](https://en.wikipedia.org/wiki/MoSCoW_method) - Must Haves > Should Haves > Could Haves > Won't Haves
+- [You Aren't Gonna Need it (Yagni)](https://martinfowler.com/bliki/Yagni.html) - Build immediate needs now. Leave "might needs" for later.
 
 Additional Reading:
 
