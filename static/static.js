@@ -37,7 +37,9 @@ window.PACKAGES = packages;
 				//if there's no state before and the URL has a hash eg. #collecting-data
 				//then let's scroll to #collecting-data element
 				var element = document.querySelector(window.location.hash);
-				articleContainer.scrollTop  = element.offsetTop - 60; // ~60px for the navigation height
+				if (element) {
+					articleContainer.scrollTop  = element.offsetTop - 60; // ~60px for the navigation height
+				}
 			}
 		}
 		setArticleScroll();
