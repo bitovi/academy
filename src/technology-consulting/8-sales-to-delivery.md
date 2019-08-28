@@ -133,9 +133,9 @@ to create organized documents _now_ that can be shared with:
   same questions in the future)
 - the client (so they can confirm our interpretation of their information)
 
-Begin the process right away by creating a copy of the [App Summary](https://docs.google.com/document/d/e/2PACX-1vQ0LyoeWCDYaMsYUQARQ-QyqUPpReVDPUIqQ56uy9S3Hw52v2DBl_PRHgwSEtt4UYVjykT3wxWX8Znw/pub) document:
+Begin the process right away by making an [App Summary](https://docs.google.com/document/d/e/2PACX-1vQ0b7KLMISgpX02xr5aC0VMK6EZxSv9w7oc-39C_6Ugjxclpr0WOv2iOExOrmQyyDhskBaPafGdddba/pub) document:
 
-<iframe src="https://docs.google.com/document/d/e/2PACX-1vQ0LyoeWCDYaMsYUQARQ-QyqUPpReVDPUIqQ56uy9S3Hw52v2DBl_PRHgwSEtt4UYVjykT3wxWX8Znw/pub?embedded=true" style="width: 640px; height: 300px"></iframe>
+<iframe src="https://drive.google.com/file/d/1DVPjsCgnD1hsYGaNXQMDJZvBxAP0JUzs/preview" width="640" height="480"></iframe>
 
 Begin filling this out right away with the client. This document also needs to be
 shared with the delivery team.
@@ -151,10 +151,9 @@ __TODO: Create a filled out example__
 
 ### Consultancy Policies document
 
-We have a [Consultancy Policies](https://docs.google.com/document/d/e/2PACX-1vSUcxXideVUG8AgA-Zsmx9sA2knaawPyDENds4orhD98xrFBoexDwHo0yCiYYdTcJ5dOqpM51_qg9gV/pub) document that outlines our policies like PTO and general workplace expectations. This can be shared with the client or the important parts clearly communicated.
+We have a [Consultancy Policies](hhttps://drive.google.com/open?id=1Qc54E1w0qOEw3ZVrZzQXaUXxORopvWC9) document that outlines our policies like PTO and general workplace expectations. This can be shared with the client or the important parts clearly communicated.
 
-<iframe src="https://docs.google.com/document/d/e/2PACX-1vSUcxXideVUG8AgA-Zsmx9sA2knaawPyDENds4orhD98xrFBoexDwHo0yCiYYdTcJ5dOqpM51_qg9gV/pub?embedded=true"
- style="width: 640px; height: 300px"></iframe>
+<iframe src="https://drive.google.com/file/d/1Qc54E1w0qOEw3ZVrZzQXaUXxORopvWC9/preview" width="640" height="480"></iframe>
 
 <a name="statement-of-work"></a>
 
