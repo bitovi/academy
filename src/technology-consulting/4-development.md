@@ -8,42 +8,107 @@
 
 ## Overview
 
+After creating [learn-technology-consulting/goals goals], and [learn-technology-consulting/prioritization prioritizing] the
+features that add the most value to your users, you _might_ be ready to actually build something.
+
+The _goal_ of development is to support a __product's__
+development. Limited to a technical perspective (given
+the right features), a
+good product is __error free__ and __high-performance__.
+
+Time and budget are always constraints on achieving this _goal_. So a good development process __quickly__
+and __sustainably__ adds  features. This is
+what we mean by __efficient development__.
+
+The key/secret to efficient development is __maintainability__. Maintainability is how easily a codebase can respond to change. A highly maintainable app enables the most efficient development, which allows you to quickly improve the application, resulting in something that is error free, fast, has a better user experience,
+and adds more customer value.
+
+This page is a list of characteristics of a maintainable
+application and team.
+
+
+
 ## Checklist
 
-### Tools and environment
+### Tools and environment (ops)
 
+<details>
+<summary>Required</summary>
 
-Source control is
+Source control is:
 
-- <input type="checkbox"/> Used
-- <input type="checkbox"/> Git
-- <input type="checkbox"/> Used with a branch and merge strategy.
+<input type="checkbox"/> Used
 
-An issue tracker is
+<input type="checkbox"/> Git
 
-- <input type="checkbox"/> Used
-- <input type="checkbox"/> Integrated with source control.
-- <input type="checkbox"/> Used by non developers.
+<input type="checkbox"/> Used with a branch and merge strategy.
+
+An issue tracker is:
+
+<input type="checkbox"/> Used
+
+<input type="checkbox"/> Integrated with source control.
+
+<input type="checkbox"/> Used by non developers.
 
 The following environments exist
 
-- <input type="checkbox"/> Development
-- <input type="checkbox"/> Test
-- <input type="checkbox"/> Staging
-- <input type="checkbox"/> Production
+<input type="checkbox"/> Development
 
-Continuous integration
+<input type="checkbox"/> Test
 
-- <input type="checkbox"/> Exists
-- <input type="checkbox"/> Runs on all commits / pushes
-- <input type="checkbox"/> Emails on failure
+<input type="checkbox"/> Staging
+
+<input type="checkbox"/> Production
 
 A 1-3 step process for the following exist:
 
-- <input type="checkbox"/> Setting up a development environment
-- <input type="checkbox"/> Testing the application.
-- <input type="checkbox"/> Building the application into a production distributable.
-- <input type="checkbox"/> Deploy to test and staging.- <input type="checkbox"/>
+<input type="checkbox"/> Setting up a development environment
+
+<input type="checkbox"/> Testing the application.
+
+<input type="checkbox"/> Building the application into a production distributable.
+
+<input type="checkbox"/> Deploy to test and staging.- <input type="checkbox"/>
+
+Continuous Integration:
+
+<input type="checkbox"/> Exists
+
+<input type="checkbox"/> Runs on all commits / pushes
+
+Continuous Integration:
+
+<input type="checkbox"/> Exists
+
+</details>
+
+<details>
+<summary>Recommended</summary>
+
+Portability:
+
+<input type="checkbox"/> __Containerized microservices__ - The application self-documents the environment in which it runs. That documentation is widely known (Example: docker files)
+
+Cloud Deployment:
+
+<input type="checkbox"/> The application is able to be started and stopped on new machines easily.
+
+<input type="checkbox"/> New machines are able to be created easily.
+
+<input type="checkbox"/> New machines are able to be created across multiple platforms.
+
+Monitoring:
+
+<input type="checkbox"/> Vital app performance characteristics are measured (errors, CPU, Memory)
+
+<input type="checkbox"/> Errors (client and server side) are automatically emailed to team
+
+Reporting:
+
+<input type="checkbox"/> Vital app performance characteristics are reported and analyzed every 1-6 weeks
+
+</details>
 
 ### Code quality
 
