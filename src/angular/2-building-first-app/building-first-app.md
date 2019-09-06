@@ -84,7 +84,50 @@ We'll start by globally installing the Angular CLI.
 npm install -g @angular/cli@7
 ```
 
-## Generating a new app
+If you already have the Angular CLI, check your version by running:
+
+```shell
+ ng --version
+ ```
+ 
+If you need to update to Angular 7, run:
+
+```shell
+ng update @angular/cli @angular/core
+```
+
+## Hello, Angular
+
+Let's create a sample "Hello World" Angular application.
+
+✏️ Run
+
+```shell
+ng new hello-world
+```
+
+Select (yes) and (css) for your answers to the prompts.
+
+Open the `hello-world` directory created in your favorite editor. In the root folder of the project run:
+
+✏️ Run
+
+```shell
+ng serve
+```
+
+Navigate to <a href="http://localhost:4200" target="\_blank">localhost:4200</a> to view your application. 
+
+Now open the src/app/app.component.html__ file.
+✏️ Change line 9 to be: 
+
+```typescript
+title = 'hello yournamehere';
+``` 
+
+When you save the file <a href="http://localhost:4200" target="\_blank">localhost:4200</a> will live reload and show your new string. Congrats! You've just created your first Angular application!.
+
+## Generating Our Place My Order Application
 
 We're going to build a restaurant menu and ordering application. The final result will look like this:
 

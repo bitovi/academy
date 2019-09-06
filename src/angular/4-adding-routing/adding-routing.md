@@ -9,17 +9,14 @@
 
 In this part, we will:
 
+- Import components we'd like to show at different routes
 - Add two routes to our generated routing module
 - Hook the router outlet into our markup
 - Test that new routes are working
 
 ## Problem
 
-We need to set up routes for the home view and restaurant view.
-
-## Technical Requirements
-
-Create routes for the `HomeComponent` and `RestaurantComponent`. When the route is `''`, the `HomeComponent` should display, and when the route is `/restaurants` the `RestaurantComponent` should display. These changes should be made in __src/app/app-routing.module.ts__.
+We need to set up routes for the home view and restaurant view. This can be solved by creating routes for the `HomeComponent` and `RestaurantComponent`. When the route is `''`, the `HomeComponent` should display, and when the route is `/restaurants` the `RestaurantComponent` should display. These changes should be made in __src/app/app-routing.module.ts__.
 
 Notice that you will be able to click the __Choose a Restaurant__ button
 at the end of this tutorial:
@@ -58,6 +55,10 @@ If you have completed the exercise successfully you should be able to see the ho
 
 ## What You Need to Know
 
+## Routes in Angular
+
+Routes in Angular are a way to deciding what information to display at certain URL in our application. An Angular application can have many routes which associate components or modules with specific URLs. 
+
 ## Router Outlet
 
 <a href="https://angular.io/api/router/RouterOutlet" target="\_blank">`RouterOutlet`</a> is an Angular directive that is a placeholder for content that is filled when the route changes. In this example the `HomeComponent` template or the `AboutComponent` template are shown below the `<router-outlet>` element as the route changes.
@@ -83,7 +84,7 @@ const routes: Routes = [];
 export class AppRoutingModule { }
 ```
 
-The router module takes an array of routes we can generate in a few different ways that will render content in the `router-outlet` directive.
+The router module takes an array of route objects we can use in a few different ways that will render content using the `router-outlet` directive.
 
 ## Setting Paths to Components
 
@@ -138,6 +139,16 @@ In our index.html file, the angular cli included `<base href="/>`. This isn't an
 </html>
 ```
 @highlight 6
+
+## Technical Requirements
+
+Render the `HomeComponent` when the app is at <a href="http://localhost:4200" target="\_blank">localhost:4200</a> and render the `RestaurantsComponent` when the app is at <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>.
+
+1. Import the `HomeComponent` and `RestaurantComponent` in the routing module file _src/app/app-routing.module.ts_.
+2. Create two new routes for home and restaurant components.
+
+You'll be editing the following files:
+- __src/app/app-routing.module.ts__
 
 ## Solution
 

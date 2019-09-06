@@ -67,35 +67,6 @@ Data can also be passed to child components. Data can be passed with expression 
 @codepen
 @highlight 30-32,only
 
-## P1: Technical Requirements
-
-Create a component that displays a title read from a component's `title` member.
-
-<img src="../static/img/angular/3-creating-components/home-component.png"
-  style="border: solid 1px black; max-width: 640px;"/>
-
-The component should provide the following HTML:
-
-```html
-<div class="homepage">
-  <img src="./assets/images/homepage-hero.jpg" alt="Restaurant table with glasses." width="250" height="380" />
-  <h1><!-- TITLE GOES HERE --></h1>
-  <p>
-    We make it easier than ever to order gourmet food
-    from your favorite local restaurants.
-  </p>
-  <p>
-     <a class="btn" routerLink="/restaurants" role="button">Choose a Restaurant</a>
-  </p>
-</div>
-```
-
-> Notice the `TITLE GOES HERE` part of the HTML. `TITLE GOES HERE` should be replaced by
-> something that reads the component's `title` property.
-
-The component's `title` member should have a string value of
-`"Ordering food has never been easier"`.
-
 ## P1: Setup
 
 To get this application up and running quicker so we can focus on the architecture, we'll import some pre-created styles and assets to save us time.
@@ -110,15 +81,10 @@ Open the ``angular.json`` file, and make the following changes to include these 
 
 > Pay close attention that you're making these changes under the "build" key and not the "test" key, as the code looks very similar. The build key should be close to line 17.
 
-<details open>
-<summary>section copied - angular.json</summary>
 ✏️ Update __angular.json__:
 
 @sourceref ./angular.json
 @highlight 25-39,only
-
-
-</details>
 
 __Any time changes are made to the `angular.json` file, we need to restart our server to catch the new changes.__
 
@@ -169,6 +135,39 @@ Run `npm run start`, and your app should compile with no errors, and you'll be a
 @sourceref ./home.component.spec.ts
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+
+## P1: Technical Requirements
+
+Create a component that displays a title read from a component's `title` member.
+
+<img src="../static/img/angular/3-creating-components/home-component.png"
+  style="border: solid 1px black; max-width: 640px;"/>
+
+The component should provide the following HTML:
+
+```html
+<div class="homepage">
+  <img src="./assets/images/homepage-hero.jpg" alt="Restaurant table with glasses." width="250" height="380" />
+  <h1><!-- TITLE GOES HERE --></h1>
+  <p>
+    We make it easier than ever to order gourmet food
+    from your favorite local restaurants.
+  </p>
+  <p>
+     <a class="btn" routerLink="/restaurants" role="button">Choose a Restaurant</a>
+  </p>
+</div>
+```
+
+> Notice the `TITLE GOES HERE` part of the HTML. `TITLE GOES HERE` should be replaced by
+> something that reads the component's `title` property.
+
+The component's `title` member should have a string value of
+`"Ordering food has never been easier"`.
+
+You'll be editing the following files:
+- __src/app/home/home.component.html__
+- __src/app/home/home.component.ts__
 
 ## P1: Solution
 
@@ -258,32 +257,6 @@ Notice in the above example our `ng-class` is surrounded by `[ ]`. This signals 
 @codepen
 @highlight 17,19,23,only
 
-## P2: Technical Requirements
-
-Here is the markup to show for each restaurant:
-
-```html
-<img src="{{restaurant.images.thumbnail}}" width="100" height="100">
-<h3>{{restaurant.name}}</h3>
-
-<div class="address" *ngIf="restaurant.address">
-  {{restaurant.address.street}}<br />{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
-</div>
-
-<div class="hours-price">
-  $$$<br />
-  Hours: M-F 10am-11pm
-  <span class="open-now">Open Now</span>
-</div>
-
-<a class="btn" [routerLink]="['/restaurants', restaurant.slug]">
-  Details
-</a>
-<br />
-```
-
-To solve this problem, use Angular directives to iterate through data and display properties of restaurants.
-
 ## P2: Setup
 
 Let's create our restaurant component as well. This will be a component that displays a list of restaurants.
@@ -335,6 +308,35 @@ For now, we'll use fake data for a list of restaurants in the component, and put
 @sourceref ./restaurant.component.spec.ts
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+
+## P2: Technical Requirements
+
+Here is the markup to show for each restaurant:
+
+```html
+<img src="{{restaurant.images.thumbnail}}" width="100" height="100">
+<h3>{{restaurant.name}}</h3>
+
+<div class="address" *ngIf="restaurant.address">
+  {{restaurant.address.street}}<br />{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
+</div>
+
+<div class="hours-price">
+  $$$<br />
+  Hours: M-F 10am-11pm
+  <span class="open-now">Open Now</span>
+</div>
+
+<a class="btn" [routerLink]="['/restaurants', restaurant.slug]">
+  Details
+</a>
+<br />
+```
+
+To solve this problem, use the Angular directives you learned about to iterate through data and display properties of restaurants.
+
+You'll be editing the following files:
+- __src/app/restaurant/restaurant.component.html__ 
 
 ## P2: Solution
 

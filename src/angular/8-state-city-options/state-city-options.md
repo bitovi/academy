@@ -26,10 +26,6 @@ we will need to implement a reactive form with two controls, `state` and `city`,
 
 ![Place My Order App city and state dropdowns](../static/img/angular/pmo-dropdowns.gif "Place My Order App city and state dropdowns")
 
-## Technical Requirements
-
-Create a reactive form with two formControls, `state` and `city`, and use the `formControlName` directive to bind the formControls to their select elements in the template.
-
 ## Setup
 
 Here's some code to get you started.  Notice that:
@@ -70,7 +66,7 @@ When you visit <a href="http://localhost:4200/restaurants" target="\_blank">loca
 
 ✏️ Update the spec file  __src/app/app.component.spec.ts__ to be:
 
-@diff ../7-pull-restaurant-data-into-view/app.component.spec.ts ./app.component.spec.ts
+@diff ../7-pull-restaurant-data-into-view/app.component.spec.ts ./app.component.spec.ts only
 
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
@@ -97,7 +93,7 @@ To use reactive forms we must import our ReactiveFormsModule into the root app.
 
 @sourceref ./reactive-module.html
 @codepen
-@highlight 79,only
+@highlight 18, 79,only
 
 ## FormControl
 
@@ -133,6 +129,15 @@ This example shows the use of FormArray and using an `insert` method to dynamica
 @sourceref ./form-builder.html
 @codepen
 @highlight 17,40,42,45-49,only
+
+## Technical Requirements
+
+1. Create a reactive form with two formControls, `state` and `city`. 
+2. Use the `formControlName` directive to bind the formControls to their `select` elements in the template.
+
+You'll be editing the following files:
+- __src/app/restaurant/restaurant.component.ts__
+- __src/app/restaurant/restaurant.component.html__
 
 ## The Solution
 

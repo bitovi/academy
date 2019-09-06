@@ -16,7 +16,6 @@ In this part, we will:
 - Write a method to make an http request
 - Write interfaces to describe response object and restaurant object
 
-
 ## Problem 1: Write a Restaurant Service to Fetch a List of Restaurants
 
 We want to create an Angular service with a method that will get a list of restaurants from our Place My Order API.
@@ -78,26 +77,6 @@ __src/app/app.module.ts__
 
 This tutorial won't cover RxJS in depth, but it's worth being aware of Angulars
 heavy use of it. Checkout our [learn-rxjs] tutorial for more information.
-
-## P1: Technical Requirements
-
-Write a `RestaurantService` with a method `getRestaurants` that uses `httpClient` to get a list of restaurants from an environment variable\ + `/restaurants`. For example, we could get restaurants like:
-
-```typescript
-const httpClient = new HttpClient();
-const restaurantService = new RestaurantService( httpClient );
-
-restaurantService.getRestaurants() //-> Observable<Array<Object>>
-```
-@highlight 4
-
-Note:
-
-- `getRestaurants` will return an RxJS observable that emits an array of
-  restaurants.  
-- Typically, services and `HttpClient` are injected into components and not created
-  as shown above.
-- We want to create `RestaurantService` in `src/app/restaurant/restaurant.service.ts`.
 
 ## P1: Setup
 
@@ -206,6 +185,26 @@ npm run test
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
+## P1: Technical Requirements
+
+Write a `RestaurantService` with a method `getRestaurants` that uses `httpClient` to get a list of restaurants from an environment variable\ + `/restaurants`. For example, we could get restaurants like:
+
+```typescript
+const httpClient = new HttpClient();
+const restaurantService = new RestaurantService( httpClient );
+
+restaurantService.getRestaurants() //-> Observable<Array<Object>>
+```
+@highlight 4
+
+Note:
+
+- `getRestaurants` will return an RxJS observable that emits an array of
+  restaurants.  
+- Typically, services and `HttpClient` are injected into components and not created
+  as shown above.
+- We want to create `RestaurantService` in `src/app/restaurant/restaurant.service.ts`.
+
 ## P1: Solution
 
 ✏️ Update __src/app/app.module.ts__ to inject the `HttpClientModule`:
@@ -261,6 +260,36 @@ export interface User {
 }
 ```
 
+## P2: Setup
+
+We've already written a `ResponseData` interface that will take an array of restaurants for you. Here's the code to get you started:
+
+✏️ Update __src/app/restaurant/restaurant.service.ts__ to import the `Restaurant` interface, use
+it within the `ResponseData` interface which is used by `httpClient.get`:
+
+@diff ./restaurant.service-1.ts ./restaurant.service.ts
+
+
+✏️ Generate the restaurant interface:
+
+```bash
+ng g interface restaurant/restaurant
+```
+
+✏️ Update __src/app/restaurant/restaurant.ts__ with some starter code that includes
+some scaffolding for some of the sub-interfaces within the `Restaurant` interfaces:
+
+@sourceref ./restaurant-starter.ts
+
+## P2: How to Verify Your Solution is Correct
+
+✏️ Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
+
+@diff ./restaurant.service.spec.ts ./restaurant.service-with-interface.spec.ts
+
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass! If you haven't written the interfaces correctly, you'll see a compile error before the tests runs. You might need to restart the test script to see the compile error.
+
 ## P2: Technical Requirements
 
 Write interfaces to tell TypeScript what we expect restaurant and other related objects to look like and use them in our restaurant service. A `Restaurant` interface should represent an object like this:
@@ -295,36 +324,6 @@ let restaurant = {
 ```
 
 This interface should be written in the __src/app/restaurant/restaurant.service.ts__ file.
-
-## P2: Setup
-
-We've already written a `ResponseData` interface that will take an array of restaurants for you. Here's the code to get you started:
-
-✏️ Update __src/app/restaurant/restaurant.service.ts__ to import the `Restaurant` interface, use
-it within the `ResponseData` interface which is used by `httpClient.get`:
-
-@diff ./restaurant.service-1.ts ./restaurant.service.ts
-
-
-✏️ Generate the restaurant interface:
-
-```bash
-ng g interface restaurant/restaurant
-```
-
-✏️ Update __src/app/restaurant/restaurant.ts__ with some starter code that includes
-some scaffolding for some of the sub-interfaces within the `Restaurant` interfaces:
-
-@sourceref ./restaurant-starter.ts
-
-## P2: How to Verify Your Solution is Correct
-
-✏️ Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
-
-@diff ./restaurant.service.spec.ts ./restaurant.service-with-interface.spec.ts
-
-
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass! If you haven't written the interfaces correctly, you'll see a compile error before the tests runs. You might need to restart the test script to see the compile error.
 
 ## P2: Solution
 

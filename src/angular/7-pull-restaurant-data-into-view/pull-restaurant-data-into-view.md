@@ -22,31 +22,6 @@ see a longer list:
 <img src="../static/img/angular/7-data-into-view/1-after.png"
   style="border: solid 1px black; max-width: 640px;"/>
 
-## P1: Technical Requirements
-
-1. Change `RestaurantComponent`'s _restaurant_ property definition:
-  ```typescript
-  public restaurants: any[] = [];
-  ```
-2. Use `RestaurantService`'s `getRestaurants` to get an array of restaurants and
-  set it on `RestaurantComponent`'s _restaurant_ property.
-
-## P1: How to Verify Your Solution is Correct
-
-You should be able see a list of all restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>, instead of the two that were previously hard-coded.
-
-✏️ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
-
-@diff ../3a-pipes/restaurant.component.spec-with-pipe.ts ./restaurant.component.spec-service.ts
-
-
-✏️ Update the spec file  __src/app/app.component.spec.ts__ to be:
-
-@diff ../5-creating-navigation/app.component.spec.ts ./app.component.spec.ts only
-
-
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
-
 ## P1: What You Need to Know
 
 - How to inject a service into a component
@@ -87,12 +62,39 @@ observable.subscribe( function subscriber( value ){
 @codepen
 @highlight 11
 
+## P1: How to Verify Your Solution is Correct
+
+You should be able see a list of all restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>, instead of the two that were previously hard-coded.
+
+✏️ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
+
+@diff ../3a-pipes/restaurant.component.spec-with-pipe.ts ./restaurant.component.spec-service.ts
+
+
+✏️ Update the spec file  __src/app/app.component.spec.ts__ to be:
+
+@diff ../5-creating-navigation/app.component.spec.ts ./app.component.spec.ts only
+
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+
+## P1: Technical Requirements
+
+1. Change `RestaurantComponent`'s _restaurant_ property definition:
+  ```typescript
+  public restaurants: any[] = [];
+  ```
+2. Use `RestaurantService`'s `getRestaurants` to get an array of restaurants and
+  set it on `RestaurantComponent`'s _restaurant_ property.
+
+You'll be editing the following files:
+- __src/app/restaurant/restaurant.component.ts__
+
 ## P1: Solution
 
 ✏️ Update __src/app/restaurant/restaurant.component.ts__ as follows:
 
 @diff ../3-creating-components/restaurant.component.ts ./restaurant.component-service.ts
-
 
 ## Problem 2: Show a Loading State while Restaurants are Being Requested
 
@@ -106,6 +108,21 @@ This icon will be shown with the following HTML:
 ```html
 <div class="restaurant loading"></div>
 ```
+
+## P2: What You Need to Know
+
+- How to write an interface (you learned this in the previous section! ✔️)
+- How to conditionally show html blocks (you learned this in a previous section! ✔️)
+
+## P2: To Verify Solution
+
+You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>!
+
+✏️ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
+
+@diff ./restaurant.component.spec-service.ts ./restaurant.component.spec.ts only
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## P2: Technical Requirements
 
@@ -126,21 +143,9 @@ This icon will be shown with the following HTML:
    <div class="restaurant loading"></div>
    ```
 
-## P2: To Verify Solution
-
-You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>!
-
-✏️ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
-
-@diff ./restaurant.component.spec-service.ts ./restaurant.component.spec.ts only
-
-
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
-
-## P2: What You Need to Know
-
-- How to write an interface (you learned this in the previous section! ✔️)
-- How to conditionally show html blocks (you learned this in a previous section! ✔️)
+You'll be editing the following files:
+- __src/app/restaurant/restaurant.component.ts__
+- __src/app/restaurant/restaurant.component.html__
 
 ## P2: Solution
 

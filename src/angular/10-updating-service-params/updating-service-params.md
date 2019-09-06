@@ -22,10 +22,6 @@ Now that we are able to capture a user's state and city preferences, we want to 
 <img src="../static/img/angular/10-updating-service-params/after.png"
   style="border: solid 1px black; max-width: 400px;"/>
 
-## Technical Requirements
-
-In the __src/app/restaurant/restaurant.component.ts__ file, update the call to the `getRestaurants` service method to use the city and state values capture from the user's form input.
-
 ## How to Verify Your Solution is Correct
 
 If you've implemented the solution correctly, when you use the select boxes to choose state and city, you should see a list of just restaurants from the selected city returned.
@@ -46,6 +42,10 @@ If you've implemented the solution correctly, when you use the select boxes to c
 
 - How to use [learn-angular/form-value-changes#how-to-use-httpparams HttpParams] (you learned this in the previous section! ✔️)
 
+## Technical Requirements
+
+In the __src/app/restaurant/restaurant.component.ts__ file, update the call to the `getRestaurants` service method to use the city and state values capture from the user's form input.
+
 ## Solution
 
 ✏️ Update __src/app/restaurant/restaurant.service.ts__
@@ -55,4 +55,4 @@ If you've implemented the solution correctly, when you use the select boxes to c
 
 ✏️ Update __src/app/restaurant/restaurant.component.ts__
 
-@diff ../9-form-value-changes/restaurant.component-citystate.ts ./restaurant.component-httpparams.ts
+@diff ../9-form-value-changes/restaurant.component-citystate.ts ./restaurant.component-httpparams.ts only

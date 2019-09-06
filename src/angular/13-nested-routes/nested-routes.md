@@ -34,10 +34,6 @@ A common pattern in SPA architecture is to serve a view of an individual piece o
 @codepen
 @highlight 93-94,101,105,107,115,only
 
-## Technical Requirements
-
-Create a new component called `details` in the restaurant component folder that is a detail view for an individual restaurant that is served from the path `'/restaurants/restaurant-slug'`. Create the route as well, and use the `getRestaurant` method on the RestaurantService to fetch the restaurant based on the route snapshot. The detail component should have a member 'restaurant' that is a type of Restaurant and an 'isLoading' member set to true or false based on when the restaurant data has been fetched.
-
 ## Setup
 
 ✏️ Run:
@@ -72,12 +68,17 @@ When you click the detail button on a restaurant from the restaurant list view y
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
+## Technical Requirements
+
+1. Create a new component called `details` in the restaurant component folder that is a detail view for an individual restaurant that is served from the path `'/restaurants/restaurant-slug'`. 
+2. Create the route as well, and use the `getRestaurant` method on the RestaurantService to fetch the restaurant based on the route snapshot. The detail component should have a member 'restaurant' that is a type of Restaurant and an 'isLoading' member set to true or false based on when the restaurant data has been fetched.
+
 ## Solution
 
 ✏️ Update __src/app/app-routing.module.ts__
 
-@diff ../4-adding-routing/app-routing.module.ts ./app-routing.module.ts
+@diff ../4-adding-routing/app-routing.module.ts ./app-routing.module.ts only 
 
 ✏️ Update __src/app/restaurant/detail/detail.component.ts__
 
-@diff ./detail.component-starter.ts ./detail.component.ts
+@diff ./detail.component-starter.ts ./detail.component.ts only

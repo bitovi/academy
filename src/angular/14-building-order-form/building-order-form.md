@@ -59,6 +59,22 @@ We've provided some starting code to get through this section to help you get th
 
 ## P2: Technical Requirements
 
+To create a new order, the API is expecting a POST request method with the following data:
+
+```javascript
+{
+  "name":"Jennifer",
+  "address":"1234 Main st",
+  "phone":"555-555-5555",
+  "restaurant":"2tplM9mGNvPKyqiD",
+  "status":"new",
+  "items":[
+    {"name":"Gunthorp Chicken","price":21.99},
+    {"name":"Crab Pancakes with Sorrel Syrup","price":35.99}
+  ]
+}
+```
+
 The order form component needs to get the restaurant from the route slug, and needs a reactive form to collect `restaurant`, `name`, `address`, `phone`, and `items`, and a way to update the order total when the items form control changes.
 
 ## P2: Setup

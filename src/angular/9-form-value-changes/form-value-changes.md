@@ -69,21 +69,21 @@ The ReactiveForms API makes it easy for us to change our FormControls as needed.
 @codepen
 @highlight 27-28,33-34,39-40,63-71,only
 
+## P1: To Verify Your Solution is Correct
+
+When you interact with the dropdown menus, you should see their values logged to the console as you change them.
+
 ## P1: Technical Requirements
 
 1. Subscribe to the `state` and `city` formControl value changes and log the resulting value to the console.
 2. Unsubscribe from subscription created in step 1 in the `ngOnDestroy` function
-
-## P1: To Verify Your Solution is Correct
-
-When you interact with the dropdown menus, you should see their values logged to the console as you change them.
 
 ## P1: Solution
 
 ✏️ Update __src/app/restaurant/restaurant.component.ts__
 
 @sourceref restaurant.component.ts
-@highlight 1,3,18,36,53-57,65,67-78
+@highlight 1,3,18,36,53-57,65,67-78, only
 
 Now that we know how to get values from our dropdowns, let's populate them with real data. We can get our list of states immediately, but to get our cities, we'll want to make an get request based on the state the user selected.
 
@@ -101,6 +101,15 @@ We want to be able to get lists of cities and states from our API to populate th
 @codepen
 @highlight 33-34,only
 
+## P2: How to Verify Your Solution is Correct
+
+✏️ Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
+
+@diff ../6-restaurant-service/restaurant.service-with-interface.spec.ts ./restaurant.service-citystate.spec.ts only
+
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+
 ## P2: Technical Requirements
 
 Write two new methods in the `RestaurantsService` to get state and city lists.
@@ -109,20 +118,11 @@ Method 1 - `getStates` takes no params and makes a request to `'/api/states'`
 
 Method 2 - `getCities`, takes a string param called 'state' a makes a request to `'/api/cities?state="{state abbreviation here}"'`
 
-## P2: How to Verify Your Solution is Correct
-
-✏️ Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
-
-@diff ../6-restaurant-service/restaurant.service-with-interface.spec.ts ./restaurant.service-citystate.spec.ts
-
-
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
-
 ## P2: Solution
 
 ✏️ Update __src/app/restaurant/restaurant.service.ts__
 
-@diff ../6-restaurant-service/restaurant.service.ts ./restaurant.service-citystate.ts
+@diff ../6-restaurant-service/restaurant.service.ts ./restaurant.service-citystate.ts only
 
 
 ## Problem 3: Use Generics to Modify ResponseData interface to Work with States and Cities Data
@@ -141,10 +141,6 @@ This example shows creating a generic for a list that can be used to create arra
 @codepen
 @highlight 18-23,25-29,36,41,46,47,51-55,57-61,63-67,68-71,only
 
-## P3: Technical Requirements
-
-Convert the `ResponseData` interface use generics so it can take a type of `Restaurant`, `State`, or `City`. We've written the state & city interfaces for you. Make sure to update the getRestaurants method in the RestaurantComponent as well.
-
 ## P3: Setup
 
 ✏️ Update your __src/app/restaurant/restaurant.service.ts__ file to be:
@@ -155,14 +151,17 @@ Convert the `ResponseData` interface use generics so it can take a type of `Rest
 
 ✏️ Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
 
-@diff ./restaurant.service-citystate.spec.ts ./restaurant.service-generics.spec.ts
+@diff ./restaurant.service-citystate.spec.ts ./restaurant.service-generics.spec.ts only
 
+## P3: Technical Requirements
+
+Convert the `ResponseData` interface use generics so it can take a type of `Restaurant`, `State`, or `City`. We've written the state & city interfaces for you. Make sure to update the getRestaurants method in the RestaurantComponent as well.
 
 ## P3: Solution
 
 ✏️ Update __src/app/restaurant/restaurant.service.ts__
 
-@diff ./restaurant.service-setup-generics.ts ./restaurant.service-generics.ts
+@diff ./restaurant.service-setup-generics.ts ./restaurant.service-generics.ts only
 
 
 ✏️ Update __src/app/restaurant/restaurant.component.ts__
@@ -174,6 +173,17 @@ Convert the `ResponseData` interface use generics so it can take a type of `Rest
 
 Now that our service is in working order, let's populate our dropdowns with state and city data. We will want our list of states to be available right away, but we will want to fetch our list of cities only after we have the state value selected by the user.
 
+## P4: What You Need to Know
+
+- How to call service methods in a component
+- How to write generics
+
+## P4: How to Verify Your Solution is Correct
+
+✏️ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
+
+@diff ../8-state-city-options/restaurant.component.spec.ts ./restaurant.component-citystate.spec.ts only
+
 ## P4: Technical Requirements
 
 1. Rewrite the `Data` interface to be a generic to work with State and City types as well
@@ -184,18 +194,6 @@ Now that our service is in working order, let's populate our dropdowns with stat
 6. When a City is selected, fetch the list of restaurants
 
 > Hint: You'll want to clear the fake data from the state and city value props, and move the call to get restaurants out of the ngOnInit function.
-
-## P4: How to Verify Your Solution is Correct
-
-✏️ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
-
-@diff ../8-state-city-options/restaurant.component.spec.ts ./restaurant.component-citystate.spec.ts
-
-
-## P4: What You Need to Know
-
-- How to call service methods in a component
-- How to write generics
 
 ## P4: Solution
 

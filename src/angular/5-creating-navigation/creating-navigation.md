@@ -22,43 +22,6 @@ if they are for the current page or not.
   style="border: solid 1px black; "
   title="Place My Order App working nav"/>
 
-## Technical Requirements
-
-Create a navigation menu that will route to our home and restaurant components when clicked, as well as show an `active` class on the `li` element when the route is active.
-
-Make your changes in the __src/app/app.component.html__ file. The markup structure should look like this:
-
-```html
-<header>
-    <nav>
-     <h1>place-my-order.com</h1>
-     <ul>
-       <li>
-         <a>Home</a>
-       </li>
-       <li>
-         <a>Restaurants</a>
-       </li>
-     </ul>
-    </nav>
-  </header>
-```
-
-## How to Verify Your Solution is Correct
-
-You will know you've completed the exercise correctly when you can click the nav items to
-see the UI change and see the active class on the current nav item.
-
-![Place My Order App working nav](../static/img/angular/pmo-working-nav.gif "Place My Order App working nav")
-
-
-✏️ Update the spec file  __src/app/app.component.spec.ts__ to be:
-
-@diff ../4-adding-routing/app.component.spec.ts ./app.component.spec.ts only
-
-
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
-
 ## What You Need to Know
 
 To solve this, you will need to know how to:
@@ -111,6 +74,46 @@ RouterLinkActive can also be used to set <a href="https://angular.io/api/router/
 @sourceref ./router-link-active-template.html
 @codepen
 @highlight 27-31, only
+
+## How to Verify Your Solution is Correct
+
+You will know you've completed the exercise correctly when you can click the nav items to
+see the UI change and see the active class on the current nav item.
+
+![Place My Order App working nav](../static/img/angular/pmo-working-nav.gif "Place My Order App working nav")
+
+
+✏️ Update the spec file  __src/app/app.component.spec.ts__ to be:
+
+@diff ../4-adding-routing/app.component.spec.ts ./app.component.spec.ts only
+
+
+> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+
+## Technical Requirements
+
+Create a navigation menu that will route to our home and restaurant components when clicked, as well as show an `active` class on the `li` element when the route is active.
+
+Make your changes in the __src/app/app.component.html__ file. The markup structure should look like this:
+
+```html
+<header>
+  <nav>
+   <h1>place-my-order.com</h1>
+   <ul>
+     <li>
+       <a>Home</a>
+     </li>
+     <li>
+       <a>Restaurants</a>
+     </li>
+   </ul>
+  </nav>
+</header>
+<router-outlet></router-outlet>
+```
+You'll be editing the following files:
+- __src/app/app.component.html__
 
 ## Solution
 

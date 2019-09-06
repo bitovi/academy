@@ -53,18 +53,6 @@ This example takes the value to be transformed and a parameter to use as an expo
 @codepen
 @highlight 15-20, 26,only
 
-## Technical Requirements
-
-1. Use an `imageUrl` __pipe__ in __src/app/restaurant/restaurant.component.html__ to rewrite the path.  Using a pipe looks like the following:
-  ```html
-  <img src="{{restaurant.images.thumbnail | imageUrl}}"/>
-  ```
-2. Generate and implement the `imageUrl` __pipe__.
-
-  The pipe will take an image url and transform it to the path we actually want to serve the image from. For example, from `node_modules/place-my-order-assets` to `./assets`.  This pipe will be used on our restaurant image thumbnail.
-
-  > Hint: Use String.prototype.replace to create the new path with image name.
-
 ## Setup
 
 ✏️ Update __src/app/restaurant/restaurant.component.html__ file to use the pipe we will create:
@@ -90,6 +78,17 @@ ng g pipe imageUrl
 @sourceref ./image-url.pipe.spec.ts
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+
+## Technical Requirements
+
+1. Generate and implement the `imageUrl` __pipe__.
+
+  The pipe will take an image url and transform it to the path we actually want to serve the image from. For example, from `node_modules/place-my-order-assets` to `./assets`.  This pipe will be used on our restaurant image thumbnail.
+
+  > Hint: Use String.prototype.replace to create the new path with image name.
+
+You'll be editing the following files:
+- __src/app/image-url.pipe.ts__ 
 
 ## Solution
 
