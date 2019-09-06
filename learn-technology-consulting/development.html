@@ -381,40 +381,61 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
+<p>After creating <a href="goals.html" title="Learn how to establish clear goals that are well understood by your team.">goals</a>, and <a href="prioritization.html" title="Learn how to decide what should be built.">prioritizing</a> the
+features that add the most value to your users, you <em>might</em> be ready to actually build something.</p>
+<p>The <em>goal</em> of development is to support a <strong>product's</strong>
+development. Limited to a technical perspective (given
+the right features), a
+good product is <strong>error free</strong> and <strong>high-performance</strong>.</p>
+<p>Time and budget are always constraints on achieving this <em>goal</em>. So a good development process <strong>quickly</strong>
+and <strong>sustainably</strong> adds  features. This is
+what we mean by <strong>efficient development</strong>.</p>
+<p>The key/secret to efficient development is <strong>maintainability</strong>. Maintainability is how easily a codebase can respond to change. A highly maintainable app enables the most efficient development, which allows you to quickly improve the application, resulting in something that is error free, fast, has a better user experience,
+and adds more customer value.</p>
+<p>This page is a list of characteristics of a maintainable
+application and team.</p>
 <h2>Checklist</h2>
-<h3>Tools and environment</h3>
-<p>Source control is</p>
-<ul>
-<li><input type="checkbox"/> Used</li>
-<li><input type="checkbox"/> Git</li>
-<li><input type="checkbox"/> Used with a branch and merge strategy.</li>
-</ul>
-<p>An issue tracker is</p>
-<ul>
-<li><input type="checkbox"/> Used</li>
-<li><input type="checkbox"/> Integrated with source control.</li>
-<li><input type="checkbox"/> Used by non developers.</li>
-</ul>
+<h3>Tools and environment (ops)</h3>
+<p><details>
+<summary>Required</summary></p>
+<p>Source control is:</p>
+<p><input type="checkbox"/> Used</p>
+<p><input type="checkbox"/> Git</p>
+<p><input type="checkbox"/> Used with a branch and merge strategy.</p>
+<p>An issue tracker is:</p>
+<p><input type="checkbox"/> Used</p>
+<p><input type="checkbox"/> Integrated with source control.</p>
+<p><input type="checkbox"/> Used by non developers.</p>
 <p>The following environments exist</p>
-<ul>
-<li><input type="checkbox"/> Development</li>
-<li><input type="checkbox"/> Test</li>
-<li><input type="checkbox"/> Staging</li>
-<li><input type="checkbox"/> Production</li>
-</ul>
-<p>Continuous integration</p>
-<ul>
-<li><input type="checkbox"/> Exists</li>
-<li><input type="checkbox"/> Runs on all commits / pushes</li>
-<li><input type="checkbox"/> Emails on failure</li>
-</ul>
+<p><input type="checkbox"/> Development</p>
+<p><input type="checkbox"/> Test</p>
+<p><input type="checkbox"/> Staging</p>
+<p><input type="checkbox"/> Production</p>
 <p>A 1-3 step process for the following exist:</p>
-<ul>
-<li><input type="checkbox"/> Setting up a development environment</li>
-<li><input type="checkbox"/> Testing the application.</li>
-<li><input type="checkbox"/> Building the application into a production distributable.</li>
-<li><input type="checkbox"/> Deploy to test and staging.- <input type="checkbox"/></li>
-</ul>
+<p><input type="checkbox"/> Setting up a development environment</p>
+<p><input type="checkbox"/> Testing the application.</p>
+<p><input type="checkbox"/> Building the application into a production distributable.</p>
+<p><input type="checkbox"/> Deploy to test and staging.- <input type="checkbox"/></p>
+<p>Continuous Integration:</p>
+<p><input type="checkbox"/> Exists</p>
+<p><input type="checkbox"/> Runs on all commits / pushes</p>
+<p>Continuous Integration:</p>
+<p><input type="checkbox"/> Exists</p>
+<p></details></p>
+<p><details>
+<summary>Recommended</summary></p>
+<p>Portability:</p>
+<p><input type="checkbox"/> <strong>Containerized microservices</strong> - The application self-documents the environment in which it runs. That documentation is widely known (Example: docker files)</p>
+<p>Cloud Deployment:</p>
+<p><input type="checkbox"/> The application is able to be started and stopped on new machines easily.</p>
+<p><input type="checkbox"/> New machines are able to be created easily.</p>
+<p><input type="checkbox"/> New machines are able to be created across multiple platforms.</p>
+<p>Monitoring:</p>
+<p><input type="checkbox"/> Vital app performance characteristics are measured (errors, CPU, Memory)</p>
+<p><input type="checkbox"/> Errors (client and server side) are automatically emailed to team</p>
+<p>Reporting:</p>
+<p><input type="checkbox"/> Vital app performance characteristics are reported and analyzed every 1-6 weeks</p>
+<p></details></p>
 <h3>Code quality</h3>
 <p>Is the high level architecture documented and followed?</p>
 <ul>
