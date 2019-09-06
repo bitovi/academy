@@ -162,7 +162,7 @@ We have a [Consultancy Policies](hhttps://drive.google.com/open?id=1Qc54E1w0qOEw
 A statement of work is the contractual agreement between the client and consultant. The  
 following is a template of a consulting agreement:
 
-<iframe src="https://docs.google.com/document/d/e/2PACX-1vR6vgDkFd9LjAkVQGTZV7NGU3t8hPk2-vFz5uT2-sISaQn6kouwHOQdTXZ0ba8t1WGPtozxU6sCIM0M/pub?embedded=true" style="width: 640px; height: 300px"></iframe>
+<iframe src="https://drive.google.com/file/d/1wZjAKrpwVy6eqSijigDScT5c-Sjln3Tk/preview" width="640" height="480"></iframe>
 
 This is a legal document that says what each party is responsible for. It is __critical__
 that these documents be reviewed by delivery before signing. The _detail of service_ section should also be reviewed with the client during the [Project Kickoff meeting](#project-kickoff).
