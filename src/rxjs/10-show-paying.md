@@ -216,7 +216,7 @@ observables and then _flatten_ that observable with `mergeAll`.
   </script>
   ```
   @codepen
-  @highlight 13
+  @highlight 12
 
 - Read a value from an observable's last emitted value with the
   conditional operator (`?.`) like:
