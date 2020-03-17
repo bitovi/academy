@@ -9,23 +9,52 @@
 
 The following the communication tools that should be present on every project. The specifics on your project should be documented in the [learn-technology-consulting/transitioning-to-delivery#app-summary-document App Summary Document]
 
-- <input type="checkbox"/> Wiki - _GitHub Wiki_
-- <input type="checkbox"/> Screen Sharing - _Google Meet_ or _Slack Calls_
-- <input type="checkbox"/> Video Conference - _Google Meet_ or _Slack Calls_
-- <input type="checkbox"/> Chat - _Slack_
-- <input type="checkbox"/> Calendars - _Shared Google Calendars_ and a project/company calendar.
-- <input type="checkbox"/> Meetings - When meetings are held.
-
+- Wiki - _GitHub Wiki_
+- Screen Sharing - _Google Meet_ or _Slack Calls_
+- Video Conference - _Google Meet_ or _Slack Calls_
+- Chat - _Slack_
+- Calendars - _Shared Google Calendars_ and a project/company calendar.
+- Meetings - When meetings are held.
 
 ## The fundamentals of proactive communication
 
 The following best practices might seem basic, but surprisingly few people follow through with them. Simply performing “the basics” will make you stand out, ensure clarity and reduce risk of an expectation gap growing over time.
 
+### Remote Work
+
+Remote work adds additional challenges to an already difficult job. As a consultant you want to optimize for value and since your customer can't observe your work you have to communicate it.
+
+#### Always be moving
+
+Not a single day should go by without some sort of observable progress. Let's say you have a feature or bug that takes multiple days to complete. It shouldn't be radio silence until the task is completed. You want to walk the line between being communicative and annoying.
+
+For example, when you start the work you change the status of the ticket and then open a pull request and mark it as Work in Progress (WIP). Be sure to push your work up at the end of each day. You may even reach out to your customer or a team member just to go over your work and make sure they independantly understand the ticket the same way.
+
+#### Tell before being asked
+
+If your customer has to ask you what that status of a ticket is, outside of a standup, you need to communicate more. Your customer is your customer, not your manager. You gain and keep confidence by lining up your progress with their expected progress.
+
+Never feel like you are bothering your client by sending them a gif or short movie every day, showing your progress.
+
+#### State expecations explicitly
+
+Communication is hard, and that is why it is one of the longest sections of this training. It is even harder to coordinate while not in the same room. When communicating with your customer, but really this applies to any coordinated communcation; always state your understanding of expecations explicitly.
+
+If you are off in your understanding or re-iteration the other person may be annoyed, but they will be even more annoyed if a large amount of time is spent working in the wrong direction.
+
+### Standups
+
+#### Prepare in advance
+
+#### Write it out/document
+
+#### Frequency/written vs. in-person
+
+#### Find out what information needs to be conveyed and to whom
+
 ### Successful meetings
 
-![Meetings are fun](../static/img/technology-consulting/meetings.gif "Meetings are fun")
-
-#### Set an Agenda
+#### Set an agenda
 
 Come into a meeting with an agenda. State the agenda at the start so everyone is aware of what you’d like to accomplish. This might include topics of discussion or key questions you’d like to answer.
 
@@ -43,19 +72,13 @@ When appropriate, make it clear that you will complete certain tasks by a certai
 
 ### Ask questions
 
-![Confused Puppies](../static/img/technology-consulting/confused-puppies.gif "Confused Puppies")
-
 Don’t be embarrassed if you don’t understand something. Strive to never leave an interaction without fully understanding what was discussed or how something will work. If you’re unsure, ask to restate a summary of your understanding back and ask for confirmation. Ironically, you never actually sound “dumb” when you ask for clarification or say you don’t understand something, you come off as brave and intelligent.
 
 ### State expectations explicitly
 
-![tan](../static/img/technology-consulting/tan.gif "tan")
-
 Often, a project or discussion will end without clear roles, responsibilities, or tasks. When that happens, it’s up to you to add structure to these fuzzy edges. Create a suggested plan and state which parts you will take ownership of. Or if more discussion or direction is needed, ask for that.
 
 ### Just care
-
-![Do I get bonus points?](../static/img/technology-consulting/bonus.gif "Do I get bonus points?")
 
 As dumb as it sounds, I’ve found that one of the key differences between great consultants and average ones is caring - really caring about making the project successful through any means necessary. Most people just go through the motions. If you care a lot, and you’re not ashamed to show it, people will notice. Other people who also care will be attracted to you and respect you, and doors will tend to open as a result.
 
@@ -67,8 +90,6 @@ More often than not, people do the opposite. They write quickly, lazily, and fro
 
 ### Optimize for a short attention span
 
-![Good dog](../static/img/technology-consulting/good-dog.gif "Good dog")
-
 Everyone has a short attention span, so get to the point.
 
 The number one mistake I see in business writing (usually emails), is attempting to be thorough and complete instead of concise.
@@ -77,15 +98,11 @@ Ironically, your message has its best chance of actually working if you can boil
 
 ### Don’t bury the lede
 
-![Dogs in sand](../static/img/technology-consulting/dogs.gif "Dogs in sand")
-
 Journalists usually write their articles (at least in newspapers) in order of priority. They assumed people would read the first paragraph, or maybe the first two or three paragraphs, far more often than the entire article. Therefore, they put the most important summary in the first paragraph, then the second most important point in the second paragraph, etc. This is called “not burying the lede.”
 
 The lede is the summary or the essence of your argument. If you “bury” it under mountains of text, it’s unlikely many people will be able to dig it out.
 
 ### Use whitespace
-
-![Highlighter](../static/img/technology-consulting/highlight.gif "Highlighter")
 
 Whitespace is pleasing to the eye and encourages further reading. By contrast, long blocks of text are intimidating and leads to abandonment - whether an article, email, marketing copy, or any form of writing. I’m sure there’s a UX study somewhere to prove this, but until we find it, just take my word for it.
 
@@ -102,9 +119,7 @@ And short paragraphs. With short sentences.
 
 Use __bold__ and <span style="background-color: yellow">highlights</span> to emphasize the most important parts of your message.
 
-### Exec summaries and calls to action
-
-![This is not a mundane detail](../static/img/technology-consulting/detail.gif "This is not a mundane detail")
+### Summaries and calls to action
 
 In many cases the details are important and can’t be condensed to the brevity you might strive for. In these cases, consider 3 sections to your email:
 
@@ -139,12 +154,12 @@ Principles used:
 
 Consider the following email:
 
-> Hey everyone,  
+> Hey everyone,
 > I wanted to make sure we are all on the same page for the navigation projects being delivered. It was recently brought to my attention that the delivery dates for navigation are as follows:
 >- Rates & Fees: ~June 27th
 >- Report Overview: ~July 2nd
 >
-> It is my understanding that this is a polished UI experience with service integration, prepared for the next phase of testing. The team working on Report Overview is slated to meet their deadline, from the UI perspective and has already met many times with the business analysts to iron out specific details and behaviors. However, I am concerned that Rates & Fees will miss the June 27th deadline. Dedicated development started on Rates & Fees on June 2nd, with UI development starting June 9th. Dedicated development refers to team resources working full time on this project, not including Srini and I’s proof of concept.  
+> It is my understanding that this is a polished UI experience with service integration, prepared for the next phase of testing. The team working on Report Overview is slated to meet their deadline, from the UI perspective and has already met many times with the business analysts to iron out specific details and behaviors. However, I am concerned that Rates & Fees will miss the June 27th deadline. Dedicated development started on Rates & Fees on June 2nd, with UI development starting June 9th. Dedicated development refers to team resources working full time on this project, not including Srini and I’s proof of concept.
 > Starting development this late, does not give the required time for UI testing and verifying the business requirements in order to deliver a solid application. I had hoped that a missed deadline would not occur while I was assisting in development, but I must stress the importance on starting early. The delay in starting Rates & Fees has led us to this point.
 > Note, I will continue to assist Sanjay in developing the UI for Rates & Fees, but would like to open a discussion on what steps we need to take to get this project back on track.
 
@@ -159,7 +174,7 @@ Once you’ve identified those problems, try to rewrite it to solve those proble
 Answer
 </summary>
 
-> Hey everyone,  
+> Hey everyone,
 >
 > I am concerned that Rates & Fees will __miss__ the June 27th deadline. Let's discuss how we can address this concern at today's standup.
 >
