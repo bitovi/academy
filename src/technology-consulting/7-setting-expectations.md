@@ -20,12 +20,12 @@ The most basic consulting maxim is to exceed expectations. To say this another w
 
 You may have heard the following maxim: cheap, fast, good...pick two. While this may be useful (and true) for sales discussions, a more useful variation for project planning is:
 
-Scope, resources, deadline...pick two
+Scope, schedule, resources...pick two
 
 This means that any project lead or PM can “fix”:
-- the scope and resources, but then the deadline must be variable
-- the resources and deadline, but then the scope must be variable
-- the scope and deadline, but the the amount of resources must be variable
+- the scope and number of resources is fixed, the schedule must be variable
+- the number of resources and schedule is fixed, the scope must be variable
+- the scope and schedule is fixed, the number of resources must be variable
 
 Think of a project as a balloon with three edges. If you squeeze two edges, the third must expand. If you squeeze all three edges, the balloon will pop.
 
@@ -33,37 +33,15 @@ Bad or inexperienced project managers will attempt to tell you that all three fa
 
 ## Pushing back
 
-![Shoving people on a train](../static/img/technology-consulting/shove.gif "Shoving people on a train")
-
 Inexperienced consultants tend to be pushovers and think of project constraints as fixed and unchangeable.
 
 Experienced consultants recognize that nothing in a project is truly unchangeable. The key to their success is identifying the largest problems standing in the way of the project success and pushing back on them, as hard as necessary.
 
 ## Balancing progress and oversight
 
-![Move forward like a shark](../static/img/technology-consulting/shark.gif "Move forward like a shark")
-
 There will always be a tradeoff between moving a project forward and getting signoff from a client or stakeholder. You may often deal with clients who say they want to be involved in many layers of decisions but they are so busy or nonresponsive that progress becomes blocked waiting for their approvals.
 
 We’ve found the best practice for balancing these concerns is to optimize for progress, but give stakeholders plenty of opportunities to weigh in or course correct. In other words, in most cases, move forward with your best judgement, but visibly document your course via emails or tickets, in a way where clients can step in if they desire.
-
-## Exercise: The Unresponsive Client
-
-You’re in charge of adding a search box to a component. You could build it into the existing grid in a completely abstract way, which would take 5 days, or you could make it work in the way needed for this specific use case, which would take two days. You ask your client which they would prefer but they are in two days of meetings and not replying promptly. This is the most important feature right now, so switching to something else isn’t a viable option.
-
-__What do you do?__
-
-<details>
-<summary>
-Answer
-</summary>
-
-How likely is it that the project will reuse the search feature in a future grid? Let’s for example assume, based on your current knowledge, there’s a less than 25% chance of reuse. Therefore, I would recommend choosing the non-abstract approach, and writing an email, or writing a comment on the ticket tagging your client which summarizes your decision, the reasons for it, and states “I will proceed with this approach, but let me know if you disagree”. Forward progress is being made, but with transparency and giving your client the opportunity to course correct if they have different information.
-
-Principals used:
-- Balancing progress and oversight
-
-</details>
 
 ## Exercise: Project Planning
 
@@ -81,6 +59,24 @@ Let them know that plan is likely untenable, and that you'd like to evaluate the
 Principals used:
 - The Consulting Trifecta
 - Pushing Back
+
+</details>
+
+## Exercise: The Unresponsive Client
+
+You’re in charge of adding a search box to a component. You could build it into the existing grid in a completely abstract way, which would take 5 days, or you could make it work in the way needed for this specific use case, which would take two days. You ask your client which they would prefer but they are in two days of meetings and not replying promptly. This is the most important feature right now, so switching to something else isn’t a viable option.
+
+__What do you do?__
+
+<details>
+<summary>
+Answer
+</summary>
+
+How likely is it that the project will reuse the search feature in a future grid? Let’s for example assume, based on your current knowledge, there’s a less than 25% chance of reuse. Therefore, I would recommend choosing the non-abstract approach, and writing an email, or writing a comment on the ticket tagging your client which summarizes your decision, the reasons for it, and states “I will proceed with this approach, but let me know if you disagree”. Forward progress is being made, but with transparency and giving your client the opportunity to course correct if they have different information.
+
+Principals used:
+- Balancing progress and oversight
 
 </details>
 
