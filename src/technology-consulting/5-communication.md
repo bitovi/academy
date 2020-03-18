@@ -5,17 +5,6 @@
 
 @body
 
-## Communication Tools
-
-The following the communication tools that should be present on every project. The specifics on your project should be documented in the [learn-technology-consulting/transitioning-to-delivery#app-summary-document App Summary Document]
-
-- Wiki - _GitHub Wiki_
-- Screen Sharing - _Google Meet_ or _Slack Calls_
-- Video Conference - _Google Meet_ or _Slack Calls_
-- Chat - _Slack_
-- Calendars - _Shared Google Calendars_ and a project/company calendar.
-- Meetings - When meetings are held.
-
 ## The fundamentals of proactive communication
 
 The following best practices might seem basic, but surprisingly few people follow through with them. Simply performing “the basics” will make you stand out, ensure clarity and reduce risk of an expectation gap growing over time.
@@ -38,7 +27,7 @@ Never feel like you are bothering your client by sending them a gif or short mov
 
 #### State expecations explicitly
 
-Communication is hard, and that is why it is one of the longest sections of this training. It is even harder to coordinate while not in the same room. When communicating with your customer, but really this applies to any coordinated communcation; always state your understanding of expecations explicitly.
+Communication is hard, and that is why it is one of the longest sections of this training. It is even harder to coordinate while not in the same room. When communicating with your customer restate goals, actions, and tasks explicity. This should be done with words for immediate confirmation and clarification and in writing for documentation purposes.
 
 If you are off in your understanding or re-iteration the other person may be annoyed, but they will be even more annoyed if a large amount of time is spent working in the wrong direction.
 
@@ -81,6 +70,17 @@ Often, a project or discussion will end without clear roles, responsibilities, o
 ### Just care
 
 As dumb as it sounds, I’ve found that one of the key differences between great consultants and average ones is caring - really caring about making the project successful through any means necessary. Most people just go through the motions. If you care a lot, and you’re not ashamed to show it, people will notice. Other people who also care will be attracted to you and respect you, and doors will tend to open as a result.
+
+## Communication Tools
+
+The following the communication tools that should be present on every project. With so much communication technology it important to pick the correct technology for the type of interaction from the receiver you expect. Immediacy, as in how immediate do you need a response, is the governing attribute for each tool. Below are a list of common tools used in today's workplace in order from least immediate to most immediate.
+
+- Wiki
+- Email
+- Chat
+- Meetings
+
+When deciding what tool to use start at the top as it is the most respectful of your recipient's time. Most communications are informational in nature and should documented (like in a wiki) or emailed. Chat replies can be delayed but most modern tools like Slack give the sender the ability to "demand" a recipients attention with notifications. Meetings should only be scheduled when decisions need to be made at that very moment.
 
 ## Good business writing
 
