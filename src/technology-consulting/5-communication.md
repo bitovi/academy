@@ -5,7 +5,7 @@
 
 @body
 
-## The fundamentals of proactive communication
+## Fundamentals
 
 The following best practices might seem basic, but surprisingly few people follow through with them. Simply performing “the basics” will make you stand out, ensure clarity and reduce risk of an expectation gap growing over time.
 
@@ -33,13 +33,23 @@ If you are off in your understanding or re-iteration the other person may be ann
 
 ### Standups
 
+The idea of a stand-up meeting is to ensure a brief discussion of important issues, current challenges and their solutions. Once the core issues are discussed, the team can quickly disperse to carry out that day’s initiatives. It's important to do your part to make standups effective but efficient.
+
 #### Prepare in advance
+
+Take 10 minutes before the meeting to think about what you're going to say. You will not waste precious minutes of your team's time thinking of your update off the cuff, and doing so will make you sound prepared and keep your update concise.
 
 #### Write it out/document
 
-#### Frequency/written vs. in-person
+Standups can be done in writing! This can be more efficient for a fully remote team, especially with major time zone differences. If you or your client prefers in person meetings, ask the team to submit their updates in advance ([there are tools for this](https://slack.com/slack-tips/run-daily-standups-or-check-ins)), or have someone document the updates in a shared wiki.
+
+#### Frequency
+
+Consider the frequency in which you meet. The frequency should be based on the team size and usefulness of the information. Don't meet daily if you're giving the same updates every day. The best way to figure this out is to find out what information people need, and when, and plan the cadence around that. You can always adjust later!
 
 #### Find out what information needs to be conveyed and to whom
+
+Know your audience! Think about what the audience needs to know vs what you want to share. Save challenges or stories for another venue.
 
 ### Successful meetings
 
@@ -80,9 +90,11 @@ The following the communication tools that should be present on every project. W
 - Chat
 - Meetings
 
-When deciding what tool to use start at the top as it is the most respectful of your recipient's time. Most communications are informational in nature and should documented (like in a wiki) or emailed. Chat replies can be delayed but most modern tools like Slack give the sender the ability to "demand" a recipients attention with notifications. Meetings should only be scheduled when decisions need to be made at that very moment.
+When deciding what tool to use start at the top as it is the most respectful of your recipient's time. Most communications are informational in nature and should documented (like in a wiki) or emailed. If using email to ask a question or to get a response, follow the [business writing](#business-writing) principles outlined below.
 
-## Good business writing
+Chat replies can be delayed but most modern tools like Slack give the sender the ability to "demand" a recipients attention with notifications. Meetings should only be scheduled when decisions need to be made at that very moment.
+
+## Business Writing
 
 The best business writing puts the onus on the writer instead of the reader. Think hard about your audience, what they know, what they need to know, their time constraints, etc, and make it as easy on them as physically possible. If you follow this principal, you’ll be a very effective communicator.
 
@@ -127,7 +139,9 @@ In many cases the details are important and can’t be condensed to the brevity 
 - The details - A longer passage explaining the details
 - The recommendation - We’re consultants, so usually it’s appropriate to offer a suggested course of action, even if the ultimate decision is not ours to make
 
-## Exercise: Meeting
+## Exercises
+
+### Meetings
 
 You recently attended a meeting where you were asked to discuss a new feature on your project. You started on the work, but today at standup you learned another developer is working on the same feature. Furthermore, your project manager is asking you to attend another meeting today to discuss a different new feature.
 
@@ -150,7 +164,7 @@ Principles used:
 
 </details>
 
-## Exercise: Email 1
+### Email 1
 
 Consider the following email:
 
@@ -189,15 +203,13 @@ Principles used:
 
 </details>
 
-## Exercise: Email 2
+### Email 2
 
 Improve the following email:
-
 
 > Hi Ravi,
 >
 > I felt that David wasn't being very articulate as to why he needed access to Google Analytics so I gave him a call. I didn't think he was being clear so I wanted to clarify with him before we made any decisions At first I didn't quite understand his reasoning but after my phone call with him I changed my mind. I think it would be a good idea to give our designer access to Google Analytics. I think David would be more receptive to me and we could better communicate on issues and how to solve them.
-
 
 <details>
 <summary>
@@ -219,7 +231,7 @@ Principles used:
 
 </details>
 
-## Exercise: Organizing
+### Organizing
 
 Consider the following thoughts. Find a way to organize this into relevant categories, and highlight the most important parts.
 
@@ -230,7 +242,6 @@ Consider the following thoughts. Find a way to organize this into relevant categ
 > - We can't test the logged in views of the homepage without a QA server.
 > - Even though the homepage and locator will be done and ready to deploy before the production servers are available, we decided we'll still deploy Club Locator first (maybe by only a few days) to minimize risk on a lower visibility page.
 > - This means we'll be maintaining separate code branches for the locator release and the Locator+Homepage release. This is why we'll have Homepage on one server - http://samsminor.herokuapp.com - and locator on another - http://samsminor.herokuapp.com
-
 
 <details>
 <summary>
