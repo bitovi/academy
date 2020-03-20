@@ -13,7 +13,7 @@ A large part of being successful as a consultant is building trust and rapport w
 
 ### Communicate effectively and set expectations appropriately
 
-Fortunately, clients understand that things aren't always perfect. But as technology consultants, it's up to us to communicate problems, questions, and concerns to clients. When you are up front and honest with clients, it builds trust that you are doing the right thing. Similarly, it's important to set expectations so you can meet them. A client will trust you more if you regularly deliver early vs being consistantly late.
+Fortunately, clients understand that things aren't always perfect. But as technology consultants, it's up to us to communicate problems, questions, and concerns to clients. When you are up front and honest with clients, it builds trust that you are doing the right thing. Similarly, it's important to set expectations so you can meet them. A client will trust you more if you regularly deliver early vs being consistently late.
 
 These are so important they have their own trainings!
 
@@ -38,9 +38,9 @@ All consultants should have **rapport** with their clients - a relationship of t
 
 ### Face time
 
-It’s 10x easier to build rapport in person than it is over the Internet. We’ve found that meeting a person in the first weeks of a project makes the rest of the project go smoother. Find a way to meet in person whenever possible, espcially for critical points in a project's lifecycle (e.g. the start of a project).
+It’s 10x easier to build rapport in person than it is over the Internet. We’ve found that meeting a person in the first weeks of a project makes the rest of the project go smoother. Find a way to meet in person whenever possible, especially for critical points in a project's lifecycle (e.g. the start of a project).
 
-If you find yourself unable to meet in person, make time to have one-on-one's on a consistant interval, like once every one or two weeks. We have also found just reaching out pair for a second opinion leads to an increase in trust in you and your work output.
+If you find yourself unable to meet in person, make time to have one-on-one's on a consistent interval, like once every one or two weeks. We have also found just reaching out for a second opinion leads to an increase in trust in you and your work output.
 
 ### Non-work bonding time
 

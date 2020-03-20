@@ -39,7 +39,7 @@ Experienced consultants recognize that nothing in a project is truly unchangeabl
 
 ## Balancing progress and oversight
 
-There will always be a tradeoff between moving a project forward and getting signoff from a client or stakeholder. You may often deal with clients who say they want to be involved in many layers of decisions but they are so busy or nonresponsive that progress becomes blocked waiting for their approvals.
+There will always be a tradeoff between moving a project forward and getting sign-off from a client or stakeholder. You may often deal with clients who say they want to be involved in many layers of decisions but they are so busy or non-responsive that progress becomes blocked waiting for their approvals.
 
 We’ve found the best practice for balancing these concerns is to optimize for progress, but give stakeholders plenty of opportunities to weigh in or course correct. In other words, in most cases, move forward with your best judgement, but visibly document your course via emails or tickets, in a way where clients can step in if they desire.
 
@@ -73,7 +73,7 @@ __What do you do?__
 Answer
 </summary>
 
-How likely is it that the project will reuse the search feature in a future grid? Let’s for example assume, based on your current knowledge, there’s a less than 25% chance of reuse. Therefore, I would recommend choosing the non-abstract approach, and writing an email, or writing a comment on the ticket tagging your client which summarizes your decision, the reasons for it, and states “I will proceed with this approach, but let me know if you disagree”. Forward progress is being made, but with transparency and giving your client the opportunity to course correct if they have different information.
+How likely is it that the project will reuse the search feature in a future grid? For example, assume, based on your current knowledge, there’s a less than 25% chance of reuse. Therefore, I would recommend choosing the non-abstract approach, and writing an email, or writing a comment on the ticket tagging your client which summarizes your decision, the reasons for it, and states “I will proceed with this approach, but let me know if you disagree”. Forward progress is being made, but with transparency and giving your client the opportunity to course correct if they have different information.
 
 Principals used:
 - Balancing progress and oversight
@@ -91,9 +91,12 @@ __What do you do?__
 Answer
 </summary>
 
-Reach out to the developer and try to get to know them better. Try to understand their concerns and be flexible when necessary. Do your best to communicate your position and find a way to work together. Bring up your concerns during a team retrospective and try to develop consensus on the best approach. If all of that fails, work with the team lead and the client to mediate and identify the best possible outcome.
+Reach out to the developer and try to get to know them better. Try to understand their concerns and be flexible when necessary. Do your best to communicate your position and find a way to work together.  Remind the developer that you share the same goals, and that finding common ground will benefit everyone on the team.
+
+Bring up your concerns during a team retrospective and try to develop consensus on the best approach. If all of that fails, work with the team lead and the client to mediate and identify the best possible outcome.
 
 Principles used:
+- Remember that you share common goals
 - Building rapport
 - Pushing back
 

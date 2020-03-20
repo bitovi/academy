@@ -17,7 +17,9 @@ Remote work adds additional challenges to an already difficult job. As a consult
 
 Not a single day should go by without some sort of observable progress. Let's say you have a feature or bug that takes multiple days to complete. It shouldn't be radio silence until the task is completed. You want to walk the line between being communicative and annoying.
 
-For example, when you start the work you change the status of the ticket and then open a pull request and mark it as Work in Progress (WIP). Be sure to push your work up at the end of each day. You may even reach out to your customer or a team member just to go over your work and make sure they independantly understand the ticket the same way.
+For example, when you start the work you change the status of the ticket and then open a pull request and mark it as Work in Progress (WIP). Be sure to push your work up at the end of each day. You may even reach out to your customer or a team member just to go over your work and make sure they independently understand the ticket the same way.
+
+Have an update prepared for standup for every task you’re working on.
 
 #### Tell before being asked
 
@@ -25,9 +27,9 @@ If your customer has to ask you what that status of a ticket is, outside of a st
 
 Never feel like you are bothering your client by sending them a gif or short movie every day, showing your progress.
 
-#### State expecations explicitly
+#### State expectations explicitly
 
-Communication is hard, and that is why it is one of the longest sections of this training. It is even harder to coordinate while not in the same room. When communicating with your customer restate goals, actions, and tasks explicity. This should be done with words for immediate confirmation and clarification and in writing for documentation purposes.
+Communication is hard, and that is why it is one of the longest sections of this training. It is even harder to coordinate while not in the same room. When communicating with your customer restate goals, actions, and tasks explicitly. This should be done with words for immediate confirmation and clarification and in writing for documentation purposes.
 
 If you are off in your understanding or re-iteration the other person may be annoyed, but they will be even more annoyed if a large amount of time is spent working in the wrong direction.
 
@@ -104,7 +106,7 @@ More often than not, people do the opposite. They write quickly, lazily, and fro
 
 Everyone has a short attention span, so get to the point.
 
-The number one mistake I see in business writing (usually emails), is attempting to be thorough and complete instead of concise.
+The number one mistake we see in business writing (usually emails), is attempting to be thorough and complete instead of concise.
 
 Ironically, your message has its best chance of actually working if you can boil it down to its essence and avoid writing long essays that no one will end up reading.
 
@@ -136,8 +138,8 @@ Use __bold__ and <span style="background-color: yellow">highlights</span> to emp
 In many cases the details are important and can’t be condensed to the brevity you might strive for. In these cases, consider 3 sections to your email:
 
 - The executive summary - one sentence that summarizes the problem
-- The details - A longer passage explaining the details
-- The recommendation - We’re consultants, so usually it’s appropriate to offer a suggested course of action, even if the ultimate decision is not ours to make
+- The details - a longer passage explaining the details
+- The recommendation - we’re consultants, so usually it’s appropriate to offer a suggested course of action, even if the ultimate decision is not ours to make
 
 ## Exercises
 
@@ -168,7 +170,6 @@ Principles used:
 
 Consider the following email:
 
-> Hey everyone,
 > I wanted to make sure we are all on the same page for the navigation projects being delivered. It was recently brought to my attention that the delivery dates for navigation are as follows:
 >- Rates & Fees: ~June 27th
 >- Report Overview: ~July 2nd
@@ -177,20 +178,16 @@ Consider the following email:
 > Starting development this late, does not give the required time for UI testing and verifying the business requirements in order to deliver a solid application. I had hoped that a missed deadline would not occur while I was assisting in development, but I must stress the importance on starting early. The delay in starting Rates & Fees has led us to this point.
 > Note, I will continue to assist Sanjay in developing the UI for Rates & Fees, but would like to open a discussion on what steps we need to take to get this project back on track.
 
-
 __What do you think the biggest problems are with it?__
 
 Once you’ve identified those problems, try to rewrite it to solve those problems.
-
 
 <details>
 <summary>
 Answer
 </summary>
 
-> Hey everyone,
->
-> I am concerned that Rates & Fees will __miss__ the June 27th deadline. Let's discuss how we can address this concern at today's standup.
+> I am concerned that Rates & Fees will __miss__ the June 27th deadline. **Let's discuss how we can address this concern at today's standup.**
 >
 > This is mainly due to the fact that full time dev didn't begin until June 2nd, which doesn't give us enough time for QA and verification. Unfortunately, I only learned about this deadline very recently, or I would have notified you sooner.
 
@@ -207,8 +204,6 @@ Principles used:
 
 Improve the following email:
 
-> Hi Ravi,
->
 > I felt that David wasn't being very articulate as to why he needed access to Google Analytics so I gave him a call. I didn't think he was being clear so I wanted to clarify with him before we made any decisions At first I didn't quite understand his reasoning but after my phone call with him I changed my mind. I think it would be a good idea to give our designer access to Google Analytics. I think David would be more receptive to me and we could better communicate on issues and how to solve them.
 
 <details>
@@ -216,8 +211,6 @@ Improve the following email:
 Answer
 </summary>
 
-> Hi Ravi,
->
 > I think we should give David access to Google Analytics. I think it would be a good idea for 2 reasons:
 > 1. He would be more receptive if he could see how his work was affecting the site (such as testing out the conversion rate of design changes to the contact form, etc).
 > 2. We could work better and at a faster pace when solving issues (For example, for the month of June, 87 people came to the Contact Us page but only about 13 people filled out a form. If David had firsthand access to this information, we could work together to debug that issue quicker).
@@ -248,19 +241,20 @@ Consider the following thoughts. Find a way to organize this into relevant categ
 Answer
 </summary>
 
-> Blockers
+> **Blockers**
 > - We still don't have a full QA server or timeline. If we don't have it by end of week, we'll be a week behind on our timeline. Who will own this?
 > - We can't test the logged in views of the homepage without a QA server.
 >
-> Status
+> **Status**
 > - Major homepage dev is complete and on time. Play with the demo here.
 > - Minor bugs remain, listed here
 > - The QA team will start working on this page today
 >
-> Discussion
+> **Discussion**
 > - Even though the homepage and locator will be done and ready to deploy before the production servers are available, we decided we'll still deploy Club Locator first (maybe by only a few days) to minimize risk on a lower visibility page.
-> - This means we'll be maintaining separate code branches for the locator release and the Locator+Homepage release. This is why we'll have Homepage on one server - http://samsminor.herokuapp.com - and locator on another - http://samsclub.herokuapp.com
->
+> - This means we'll be maintaining separate code branches for the locator release and the Locator+Homepage release:
+>   - Homepage: http://samsminor.herokuapp.com
+>   - Locator: http://samsclub.herokuapp.com
 
 Principles used:
 - Use bullets (thoughts are organized by topic)
