@@ -84,7 +84,7 @@ The agenda for this meeting should be:
 
 - <input type="checkbox"/> Review the entire [Engagement Summary](#engagement-summary-document) document
 - <input type="checkbox"/> Review the [SOW](#statement-of-work) to make sure any contractual obligations are clear
-- <input type="checkbox"/> Determine any gaps before kickoff so the Director or Lead can get clarificiation
+- <input type="checkbox"/> Determine any gaps before kickoff so the Director or Lead can get clarification
 - <input type="checkbox"/> Risks and opportunities with this client, and how to mitigate/strategize for them
 - <input type="checkbox"/> Provide resources to the team about the client's product and industry to prepare
 
