@@ -68,9 +68,9 @@ The agenda for this meeting should be:
 - <input type="checkbox"/> Share the [Consultancy Policies](#consultancy-policies-document) document;
 - <input type="checkbox"/> Set up a shared calendar;
 - <input type="checkbox"/> Share expectations for collecting feedback;
-- <input type="checkbox"/> Fill out the remaining items in the [App Summary](#app-summary-document) document with client. Ideally, this should be started by the sales team before the "yes";
+- <input type="checkbox"/> Fill out the remaining items in the [Engagement Summary](#engagement-summary-document) document with client. Ideally, this should be started by the sales team before the "yes";
 
-The last item, the [App Summary](#app-summary-document) document, is arguably the most important item of this phase. It will take some time (allocate one hour at least) to fill out this document, but it will serve as the project's shared understanding. The most critical pieces are defining the project's goals and initial roadmap. It's also important to align on who will fill what roles on the project (you or the client).
+The last item, the [Engagement Summary](#engagement-summary-document) document, is arguably the most important item of this phase. It will take some time (allocate one hour at least) to fill out this document, but it will serve as the project's shared understanding. The most critical pieces are defining the project's goals and initial roadmap. It's also important to align on who will fill what roles on the project (you or the client).
 
 ## Expectation Setting with the Delivery Team
 
@@ -82,7 +82,7 @@ Once the [SOW](#statement-of-work) is signed, choose your final development team
 
 The agenda for this meeting should be:
 
-- <input type="checkbox"/> Review the entire [App Summary](#app-summary-document) document
+- <input type="checkbox"/> Review the entire [Engagement Summary](#engagement-summary-document) document
 - <input type="checkbox"/> Review the [SOW](#statement-of-work) to make sure any contractual obligations are clear
 - <input type="checkbox"/> Determine any gaps before kickoff so the Director or Lead can get clarificiation
 - <input type="checkbox"/> Risks and opportunities with this client, and how to mitigate/strategize for them
@@ -101,7 +101,7 @@ This meeting will mark the beginning of development on the project! The primary 
 The agenda for this meeting should be:
 
 - <input type="checkbox"/> Introductions
-- <input type="checkbox"/> Show the [App Summary](#app-summary-document) document; review the goals and roadmap and confirm everyone is in agreement
+- <input type="checkbox"/> Show the [Engagement Summary](#engagement-summary-document) document; review the goals and roadmap and confirm everyone is in agreement
 - <input type="checkbox"/> Team Lead and the client begin the project
 
 ## Post-Kickoff Checkin
@@ -122,9 +122,9 @@ Regular checkins should be weekly for the first month of the project, but may mo
 
 ## Example Documents
 
-<a name="app-summary-document"></a>
+<a name="engagement-summary-document"></a>
 
-### App Summary document
+### Engagement Summary document
 
 To facilitate efficient communication in the future, it's important
 to create organized documents _now_ that can be shared with:
@@ -133,7 +133,7 @@ to create organized documents _now_ that can be shared with:
   same questions in the future)
 - the client (so they can confirm our interpretation of their information)
 
-Begin the process right away by making an [App Summary](https://docs.google.com/document/d/e/2PACX-1vQ0b7KLMISgpX02xr5aC0VMK6EZxSv9w7oc-39C_6Ugjxclpr0WOv2iOExOrmQyyDhskBaPafGdddba/pub) document:
+Begin the process right away by making an [Engagement Summary](https://docs.google.com/document/d/e/2PACX-1vQ0b7KLMISgpX02xr5aC0VMK6EZxSv9w7oc-39C_6Ugjxclpr0WOv2iOExOrmQyyDhskBaPafGdddba/pub) document:
 
 <iframe src="https://drive.google.com/file/d/1DVPjsCgnD1hsYGaNXQMDJZvBxAP0JUzs/preview" width="640" height="480"></iframe>
 

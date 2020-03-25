@@ -230,7 +230,7 @@ Guides:
 ## Versioning and Environment Workflows
 
 This document describes the process of development workflows with respect to versioning software and application environments (dev, test, staging, prod). The specifics on your project should be documented in the
-[learn-technology-consulting/transitioning-to-delivery#app-summary-document App Summary Document]
+[learn-technology-consulting/transitioning-to-delivery#engagement-summary-document Engagement Summary Document]
 
 - Versioning Software: GitHub
 - Continuous Integration: TravisCI

@@ -22,7 +22,7 @@ These are so important they have their own trainings!
 
 ### Remember that you share common goals
 
-When consultants are added to a project, it's common for an "us vs them" mentality to develop. This can lead to conflict and reduced trust, especially amongst client peers that may not understand why you're there. It's important to communicate early and often to the team that you share common goals. Refer back to the [learn-technology-consulting/transitioning-to-delivery#app-summary-document App Summary Document] to refresh on the product's goals.
+When consultants are added to a project, it's common for an "us vs them" mentality to develop. This can lead to conflict and reduced trust, especially amongst client peers that may not understand why you're there. It's important to communicate early and often to the team that you share common goals. Refer back to the [learn-technology-consulting/transitioning-to-delivery#engagement-summary-document Engagement Summary Document] to refresh on the product's goals.
 
 ### Speak up about things that employees are silent about
 
