@@ -81,7 +81,7 @@ We'll start by globally installing the Angular CLI.
 ✏️ Run the following:
 
 ```shell
-npm install -g @angular/cli@7
+npm install -g @angular/cli@9
 ```
 
 ## Generating a new app
@@ -142,33 +142,33 @@ Let's walk through some of the files that were generated.
 
 ```code
 ├── angular.json
+├── browserlist
+├── karma.conf.js
 ├── package.json
 ├── package-lock.json
 ├── README.md
 ├── tsconfig.json
+├── tsconfig.app.json
+├── tsconfig.spec.json
 ├── tslint.json
 ├── e2e/
 ├── src/
 |   ├── index.html
-|   ├── karma.conf.js
 |   ├── main.ts
 |   ├── polyfills.ts
 |   ├── styles.less
 |   ├── test.ts
-|   ├── tsconfig.app.json
-|   ├── tsconfig.spec.json
-|   ├── tslint.json
+|   ├── app/
+|   |   ├── app-routing.module.ts
+|   |   ├── app.component.html
+|   |   ├── app.component.less
+|   |   ├── app.component.ts
+|   |   ├── app.component.spec.ts
+|   |   ├── app.module.ts
 |   ├── assets/
 |   ├── environments/
 |   |   ├── environment.ts
 |   |   ├── environment.prod.ts
-|   ├── app/
-|   |   ├── app.module.ts
-|   |   ├── app.component.ts
-|   |   ├── app.component.spec.ts
-|   |   ├── app.component.less
-|   |   ├── app.component.html
-|   |   ├── app-routing.module.ts
 ├── node_modules/
 ```
 
@@ -184,7 +184,7 @@ This file contains our typescript compiling options.
 
 ### src/main.ts
 
-This is the entry point of our application, it compiles and bootstraps our app.  
+This is the entry point of our application, it compiles and bootstraps our app.
 
 ### src/index.html
 
@@ -248,7 +248,7 @@ npm run test
 
 The change we needed to make for our tests to pass is on the highlighted line 37.
 
-We also included `schemas` metadata for our module. <a href="https://angular.io/api/core/NO_ERRORS_SCHEMA">NO_ERRORS_SCHEMA</a> will keep the compiler from throwing errors when unknown components are included in the tested components. In unit tests we often only want to test the very small piece of code we're work on and don't care about deeply nested components <a href="https://medium.com/@fivedicephoto/why-you-shouldnt-use-no-errors-schema-in-angular-unit-tests-cdd478c30782" target="\_blank">unless we're testing the props in a parent/child component relationship</a>. For our purposes in this training, it's safe to use here.  
+We also included `schemas` metadata for our module. <a href="https://angular.io/api/core/NO_ERRORS_SCHEMA">NO_ERRORS_SCHEMA</a> will keep the compiler from throwing errors when unknown components are included in the tested components. In unit tests we often only want to test the very small piece of code we're work on and don't care about deeply nested components <a href="https://medium.com/@fivedicephoto/why-you-shouldnt-use-no-errors-schema-in-angular-unit-tests-cdd478c30782" target="\_blank">unless we're testing the props in a parent/child component relationship</a>. For our purposes in this training, it's safe to use here.
 
 ✏️ Update __src/app.component.spec.ts__:
 
