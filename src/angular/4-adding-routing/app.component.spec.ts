@@ -50,19 +50,21 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('h1').textContent).toContain('Place My Order App: Coming Soon!');
   });
 
-  it('should render the HomeComponent with router navigates to "/" path', () => {
+  it('should render the HomeComponent with router navigates to "/" path', (done) => {
     const compiled = fixture.debugElement.nativeElement;
     router.navigate(['']).then(() => {
       expect(location.path()).toBe('');
       expect(compiled.querySelector('pmo-home')).not.toBe(null);
+      done();
     });
   });
 
-  it('should render the RestaurantsComponent with router navigates to "/restaurants" path', () => {
+  it('should render the RestaurantsComponent with router navigates to "/restaurants" path', (done) => {
     const compiled = fixture.debugElement.nativeElement;
     router.navigate(['restaurants']).then(() => {
       expect(location.path()).toBe('/restaurants');
       expect(compiled.querySelector('pmo-restaurant')).not.toBe(null);
+      done();
     });
   });
 

@@ -52,7 +52,7 @@ If you have completed the exercise successfully you should be able to see the ho
 ✏️ Update the spec file  __src/app/app.component.spec.ts__ to be:
 
 @sourceref ./app.component.spec.ts
-@highlight 2-3,5-9,12-14,19,22,24-26,29-30,32,52-58,60-66,only
+@highlight 2-3,5-9,12-14,19,22,24-26,29-30,32,53-69,only
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
