@@ -3,11 +3,12 @@
   <ng-container *ngIf="restaurants.length">
     <div class="restaurant" *ngFor="let restaurant of restaurants">
 
-      <img src="{{restaurant.images.thumbnail}}" width="100" height="100">
+      <img src="{{restaurant.images.thumbnail}}" width="100" height="100" />
       <h3>{{restaurant.name}}</h3>
 
       <div class="address" *ngIf="restaurant.address">
-        {{restaurant.address.street}}<br />{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
+        {{restaurant.address.street}}<br />
+        {{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
       </div>
 
       <div class="hours-price">
