@@ -201,6 +201,23 @@ numberPromise.catch( function( error ){
 ```
 @codepen
 
+### Shorthands
+
+You can also create resolved and rejected promises with shorthands:
+
+```js
+const numberPromise = Promise.resolve(123);
+
+numberPromise.then(console.log) //-> 123
+```
+@codepen
+
+```js
+const numberPromise = Promise.reject( new Error("Borked") );
+
+numberPromise.catch(console.log) //-> Error[Borked]
+```
+@codepen
 
 
 ## Creating promises from other promises
@@ -361,53 +378,314 @@ JavaScript even has __special syntax__ for using promises:
   ```
 
 
-
-## Handing Errors
-
-Promises
-
 ## Timing
 
 
-## Use Cases
+Promises callback handlers are run in the
+`microtask queue` which is called at the end of the JavaScript
+event loop. This means a few things.
+
+First, callbacks of resolved promises are _not_ called
+immediately. Instead they are called at the end of the
+current event loop.
+
+The following:
+
+- sets a timeout callback for `1ms`
+- runs code that should last longer than `20ms`
+- sets a fulfilled promise callback
 
 
 
-## Converting callbacks into promises
+```js
+const promise = Promise.resolve();
 
-- timing
-- multiple callbacks (1 to many)
-- callback pyramid of doom (flattening)
-- nice language utils
-- utilities (Promise.all), queue
+setTimeout( ()=> {
+  console.log("timeout callback");
+},1);
+
+var total = 0
+for(var i = 0; i < 100000; i++) {
+  total +=  Math.sqrt(i) * (i % 2 === 0 ? 1 : -1)
+}
+
+promise.then( ()=> {
+  console.log("promise fulfilled");
+});
+
+// Logs:
+// "promise fulfilled"
+// "timeout callback"
+```
+@codepen
+
+Second, this also means that `resolving` a promise
+does not call all callbacks immediately as shown
+in the following example:
+
+```js
+let resolve;
+const promise = new Promise( (pResolve)=> {
+  resolve = pResolve;
+} )
 
 
+promise.then(()=> {
+  console.log("promise fulfilled")
+});
 
-## Getting Async Data
+console.log("before resolve");
+resolve();
+console.log("after resolve");
 
-## Sequential tasks (chaining)
+// Logs:
+// "before resolve"
+// "after resolve"
+// "promise fulfilled"
+```
+@codepen
 
-## Parallel tasks
+Why was this done? Consistency. As developers, you
+know that your callbacks will always be called sometime in the
+future. If callbacks were called immediately, this would
+have to be handled.
+
+## Chaining vs callbacks
+
+Without Promises, the common way of handling asynchronous behavior was
+to pass a success and failure callback to functions as follows.
+
+```js
+doSomething( (filesData) => {
+  processFiles(filesData.files, function(processedFilesData) => {
+    writeHTML(processedFilesData.writableFiles, function() {
+      console.log("completed!");
+    }, failureCallback);
+  }, failureCallback);
+}, failureCallback);
+```
+
+This is hard to read and results in the classic callback pyramid of doom 🔥🔥🔥!
+
+Fortunately, promises make this better, by making a much more
+linear process:
 
 
+```js
+getFiles()
+  .then( (filesData) => {
+    return processFiles(filesData.files);
+  })
+  .then( (processedFilesData) => {
+    return writeHTML(processedFilesData.writableFiles);
+  }).
+  then( ()=> {
+    console.log("completed!")
+  })
+  .catch( failureCallback );
+```
 
-## Racing
+## Promise queues
 
-https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/race
+Often, you want to run a series of tasks, but those
+tasks might be optional. Making this work with
+promises can be tricky.
 
-## Nesting (side branches)
+```js
+let promise = getFiles();
+
+if(options.debug) {
+  promise = promise.then(printFiles)
+}
+
+promise = processFiles();
+
+if(options.debug) {
+  promise = promise.then(printProcessWarnings)
+}
+
+promise = promise.then(writeHTML);
+```
+
+One way to simplify this is use a promiseQueue
+that wires up functions to be called one after another.
 
 
-## Canceling
+```js
+function promiseQueue(functions){
+  var promise = functions.shift()();
 
-https://github.com/zenparsing/es-cancel-token
+  var func;
+  while( functions.length ) {
+    func = functions.shift();
+    if(func) {
+      promise = promise.then(func);
+    }
+  }
+  return promise;
+};
 
-## Compared to other things
+const promise = promiseQueue([
+  getFiles,
+  options.debug && printFiles,
+  processFiles,
+  options.debug && printProcessWarnings,
+  writeHTML
+]);
+```
 
-- callbacks
+## Waiting for multiple async tasks to complete
 
-- streams
+Often, you might want to do two or more parallel tasks and
+then do something with the result.  [Promise.all](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all) takes
+multiple promises and returns another promise when they all complete.
 
-- events
+For example, you might want to compare the number of `hound` to `dingo` breed images.
 
-## Handling errors
+One way of doing that would be to get hounds and get dings and compare:
+
+```js
+const time = new Date();
+
+fetch("https://dog.ceo/api/breed/hound/images")
+
+  .then( response=> response.json() )
+
+  .then( (hounds) => {
+    return fetch("https://dog.ceo/api/breed/dingo/images")
+      .then( response => response.json() )
+      .then( dingos => { return {hounds, dingos} })
+  } )
+
+  .then( ({hounds, dingos}) => {
+    return {houndsCount: hounds.message.length, dingosCount: dingos.message.length}
+  })
+
+  .then( ({houndsCount, dingosCount}) => {
+    console.log(`${houndsCount} hounds, ${dingosCount} dingos,
+      time ${new Date() - time}`);
+  } );
+```
+@codepen
+
+But this would create one request after another.  Slow.
+
+Instead, use `Promise.all()` to make both requests at the same time:
+
+```js
+const time = new Date();
+
+const houndsPromise = fetch("https://dog.ceo/api/breed/hound/images")
+  .then( response=> response.json() );
+
+const dingosPromise = fetch("https://dog.ceo/api/breed/dingo/images")
+  .then( response => response.json() )
+
+Promise.all([houndsPromise, dingosPromise])
+  .then( ([hounds, dingos])=> {
+    return {houndsCount: hounds.message.length, dingosCount: dingos.message.length}
+  })
+  .then( ({houndsCount, dingosCount}) => {
+    console.log(`${houndsCount} hounds, ${dingosCount} dingos,
+      time ${new Date() - time}`);
+  } );
+```
+@codepen
+
+
+## Promises compared to alternatives
+
+### Promises compared to callbacks
+
+Callback functions can be passed to a function. In the following example,
+`doSomething()` takes a completion callback:
+
+```js
+doSomething(someArg, function onComplete(err, data) {
+  if(err) {
+    // handle error case
+  } else {
+    // handle success
+  }
+});
+```
+
+This form of continuation passing is very common in NodeJS.
+
+__Callback positives:__
+
+- Callbacks are lighter than promises - a function just needs to be created. Dispatching
+  is also faster - a function just needs to be called.
+
+__Callback negatives:__
+
+- Callbacks only allow a single listener.
+- Callbacks might be called immediately, which
+  can create timing issues.
+- Callbacks can create the _pyramid of doom_.
+
+__When to use callbacks instead of promises__
+
+If you are making something that needs to run extremely quickly and doesn't need to
+be user friendly, callbacks might be a good solution. After all, it's not difficult to
+"promisify" callback-based APIs.  Many libraries do exactly this.
+
+### Promises compared to event streams
+
+Event streams are any technology that might produce values
+overtime.  For example, listening to a `click` event on the DOM
+is a form of event stream:
+
+```js
+document.body.addEventListener("click", (event) => {
+  console.log("Got a click event", event);
+})
+```
+
+[learn-rxjs RxJS] is a functional-reactive event stream library. The following
+uses RxJS to create an event stream (`subject`) that emits two random numbers:
+
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+<script type="typescript">
+const {Subject} = rxjs;
+
+const subject = new Subject<number>();
+
+subject.subscribe({
+  next: (v) => console.log(`observerA: ${v}`)
+});
+
+subject.next(Math.random());
+subject.next(Math.random());
+subject.complete();
+</script>
+```
+@codepen
+
+Modern browsers even provide their own stream primitive - `ReadableStream`.
+This lets you create a stream of events.
+
+__Event stream positives:__
+
+- Event streams can emit values over time.  Promise can not do this.
+- Event streams can be cancelled. There's no way to do this through the promise API.
+- Event streams often have utility libraries, making deriving new event streams
+  from other event streams easy.
+
+__Event stream negatives:__
+
+- You must stop listening to an event stream or end the stream to avoid memory leaks.
+- Event streams are often heavier than Promises.
+- With the exception of `ReadableStream` (which isn't in every environment yet),
+  streams are not part of the JavaScript specification and are not present in
+  every environment. Promises come for free for almost every user.
+
+__When to use callbacks instead of promises__
+
+If your system produces a single "event", returning a promise is generally better than
+returning an event stream.  Most event stream libraries have ways of converting a
+promise to an event stream.
+
+However, if your system produces multiple events, you have no choice but to
+use some form of event stream.
