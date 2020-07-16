@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/javascript/8-promises.md
+	@page learn-advanced-javascript/promises
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <meta name="description" content="Learn about JavaScript promises 
+">
+  <title>Bitovi Academy - Promises</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="js-vs-dom.html"
+							title="Understand the browser ecosystem and how JavaScript fits in.
+Video
+
+Slides">
+							JavaScript and the DOM
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="js-types.html"
+							title="Learn about types, operators and primitives in JavaScript as well as a bonus session regarding how hash maps are created in memory!
+This week&#x27;s agenda:
+
+Data types
+Operators
+A memory stack representation of primitives
+A memory stack representation of objects
+delete &amp; typeof
+Bonus: Hash maps and order of complexity">
+							Types, Operators and Primitives
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="js-comparison.html"
+							title="This week we covered comparisons in JavaScript! The showdown between == and === is on!">
+							Comparison Operators
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="closures.html"
+							title="Join us as we cover closure scope in JavaScript!">
+							Closures
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="context.html"
+							title="What is &quot;this&quot;? Learn about context and build your very own . operator!">
+							Context
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="prototypes.html"
+							title="Demystify .prototype and ._proto_! We&#x27;ll cover what the &quot;new&quot; and &quot;instanceof&quot; operators are actually doing behind the scenes, and what prototype-based inheritance looks like in memory.">
+							Prototypes
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="classes.html"
+							title="Learn about JavaScript classes">
+							Classes
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="promises.html"
+							title="Learn about JavaScript promises">
+							Promises
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-web-components.html"
+							title="">
+							Learn Web Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-technology-consulting.html"
+							title="Learn how to perform technology consulting.">
+							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn how to build a moderately complex application with Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border">
+      <a href="..#courses">View More Courses</a>
+      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
+  </p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Promises <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>Learn about JavaScript promises</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <blockquote>
+<p><strong>NOTE:</strong> This section is currently under development.  There are no exercises yet.</p>
+</blockquote>
+<h2>What is a promise</h2>
+<p>A promise represents the completion or failure of some
+operation.  Promises have methods (<code>.then</code>)
+that let you listen for when the operation completes:</p>
+<pre><code class="language-js">const myPromise = operationThatCompletesInTheFuture();
+
+myPromise.then( function success(){
+  console.log( &quot;operation completed 😄&quot; );
+} );
+</code></pre>
+<p>You can also listen to when an operation fails:</p>
+<pre><code class="language-js">const myPromise = operationThatCompletesInTheFuture();
+
+myPromise.catch( function failure(){
+  console.log( &quot;operation failed 😟&quot; );
+} )
+</code></pre>
+<p>For example, you might use <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">fetch</a> to make a request and
+want to know if a connection was established:</p>
+<pre><code class="language-js">const request = fetch(&quot;https://dog.ceo/api/breeds/list/all&quot;);
+
+request.then( function fulfilled(){
+  console.log( &quot;connection established&quot; );
+});
+
+request.catch( function rejected(){
+  console.log( &quot;connection failed&quot; );
+} )
+</code></pre>
+<div class='codepen'></div>
+<h2>Success values</h2>
+<p>If the operation is successful, the operation can return
+a value.  For example, if <code>fetch</code> establishes a value,
+a <code>response</code> object is provided.</p>
+<pre><code class="language-js">const request = fetch(&quot;https://dog.ceo/api/breeds/list/all&quot;);
+
+request.then( function(response){
+  console.log(response.status) //logs 200
+});
+</code></pre>
+<div class='codepen'></div>
+<p>Setting a promise's returning value is actually called <em>resolving</em> the
+promise's value. This is because a promise's value can
+only be set once.</p>
+<h2>Failure reasons</h2>
+<p>If the operation fails, a reason for the failure can be returned.
+For example, if <code>fetch</code> makes a request to a URL that doesn't exist,
+the <code>reason</code> will be an TypeError object.</p>
+<pre><code class="language-js">const request = fetch(&quot;http://foo.bar&quot;);
+
+request.catch( function(reason){
+  console.log(`The request failed with message: ${reason.message}`) /// TypeError: Failed to Fetch
+});
+</code></pre>
+<div class='codepen'></div>
+<p>When a promise fails, it is called <em>rejecting</em> the promise.</p>
+<h2>Creating promises</h2>
+<p>You can create your own promises with <code>new Promise()</code>!
+The following example creates a promise whose value is
+resolved to a random number after one second.  We also listen to when
+the value is resolved with <code>then</code> and log a message.</p>
+<pre><code class="language-js">const numberPromise = new Promise( function( resolve ){
+  setTimeout( function(){
+    resolve( Math.random() );    // Sets the value of the promise
+  },  1000 );
+})
+
+numberPromise.then( function( number ){
+  console.log(&quot;number &quot;+ number); //logs &quot;number 0.###&quot;
+} );
+</code></pre>
+<div class='codepen'></div>
+<p>Notice:</p>
+<ul>
+<li><code>new Promise( executor )</code> takes an <code>executor</code> function that is called with a <code>resolve</code> callback. <code>resolve</code> is used to set the value of the<br />
+promise.</li>
+<li><code>.then( onFulfilled )</code> takes an <code>onFulfilled</code> function that is called
+when the promise is resolved. <code>onFulfilled</code> is called with
+the promise's resolved value.</li>
+</ul>
+<p><details></p>
+<p><summary>Example Implementation</summary></p>
+<p>The following implements a simplified version of
+promises. It does not handle errors, or calling
+handlers at the end of the current run loop.</p>
+<pre><code class="language-js">class MyPromise {
+  constructor( executor ) {
+    this._fulfilledHandlers = [];
+    this._state = &quot;pending&quot;;
+
+    const resolve = (value) =&gt; {
+      this._value = value;
+      this._fulfill();
+    }
+
+    executor( resolve );
+  }
+  then(onFulfilled) {
+    this._fulfilledHandlers.push(onFulfilled);
+
+    if(this._state === &quot;resolved&quot;) {
+      this._fulfill();
+    }
+  }
+  _fulfill(){
+    this._state = &quot;resolved&quot;;
+
+    const handlers = this._fulfilledHandlers;
+    this._fulfilledHandlers = [];
+    handlers.forEach( handler =&gt; handler(this._value) );
+  }
+}
+
+const groupNamePromise = new MyPromise( function( resolve ){
+  setTimeout( function(){
+    resolve(&quot;Bitovi&quot;);    // Sets the value of the promise
+  },  1000 );
+})
+
+groupNamePromise.then( function( groupName ){
+  console.log(&quot;groupName&quot;, groupName); //logs &quot;groupName Bitovi&quot;
+} );
+</code></pre>
+<div class='codepen'></div>
+<p></details></p>
+<p>You can also create promises that can be rejected.</p>
+<p>The following
+creates a random number every 100ms. If a number is greater than <code>0.9</code>, it will
+resolve with that number. If 10 numbers are created that are all less than <code>0.9</code>,
+the promise will be rejected.</p>
+<pre><code class="language-js">const numberPromise = new Promise( function( resolve, reject ){
+  let count = 0;
+
+  const interval = setInterval( ()=&gt; {
+    count++;
+    let number = Math.random();
+    if( number &gt; 0.9 ) {
+      clearInterval( interval );
+      resolve( number );
+    }
+    if( count &gt;= 10) {
+      clearInterval( interval );
+      reject( new Error(&quot;Unable to find a number greater than 0.9&quot;) );
+    }
+  },100);
+})
+
+numberPromise.then( function( number ){
+  console.log(&quot;number&quot;+ number);
+} );
+
+numberPromise.catch( function( error ){
+  console.error(error);
+} );
+</code></pre>
+<div class='codepen'></div>
+<h3>Shorthands</h3>
+<p>You can also create resolved and rejected promises with shorthands:</p>
+<pre><code class="language-js">const numberPromise = Promise.resolve(123);
+
+numberPromise.then(console.log) //-&gt; 123
+</code></pre>
+<div class='codepen'></div>
+<pre><code class="language-js">const numberPromise = Promise.reject( new Error(&quot;Borked&quot;) );
+
+numberPromise.catch(console.log) //-&gt; Error[Borked]
+</code></pre>
+<div class='codepen'></div>
+<h2>Creating promises from other promises</h2>
+<p>One of the most common uses of promises is to take a promise value and convert it to another
+promise value.</p>
+<p>A promise's <code>.then( onFulfilled )</code> method always returns another <em>outer</em> promise.  That <em>outer</em> promise
+will take on the value of what the <code>onFulfilled</code> function returns.</p>
+<p>In the following example, notice how <code>breedsPromise</code> resolves to an object of breeds. However,
+the <code>toCount</code> function is returning the number of breeds. This return value is used to
+make <code>countPromise</code>.  <code>countPromise</code> resolves to the total number of breeds.</p>
+<pre><code class="language-js">const request = fetch(&quot;https://dog.ceo/api/breeds/list/all&quot;);
+
+const breedsPromise = request.then( function( response ){
+  console.log( &quot;response&quot;, response )      //-&gt; Response{status, body}
+  return response.json();
+});
+
+const countPromise = breedsPromise.then( function toCount(breeds) {
+  console.log(&quot;breeds&quot;, breeds);           //-&gt; {message: {beagle,chow}}
+  return Object.keys( breeds.message ).length;
+});
+
+countPromise.then( (count) =&gt; {
+  console.log(&quot;count&quot;, count);             //-&gt; 91
+})
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='9-10,14'></div>
+<h3>Flattening promises</h3>
+<p>If a <code>onFulfilled</code> function returns another promise, the <em>outer</em> promise actually takes on
+the behavior of the returned promise. This was used in the above example.  <code>response.json()</code>
+returns a promise, so <code>breedsPromise</code> took on the behavior of the result of <code>response.json()</code>.</p>
+<blockquote>
+<p>NOTE: The process of reducing nested observables into a single observable is often called flattening.
+This is what it's called in RxJS's <a href="https://rxjs-dev.firebaseapp.com/api/operators/mergeAll">mergeAll</a>.</p>
+</blockquote>
+<p>The following shows using a <code>delay()</code> function to delay when <code>countPromise</code> completes by 3 seconds. <code>delay</code>
+returns a promise that resolves after 3 seconds.</p>
+<pre><code class="language-js">function delay(value){
+  return new Promise( (resolve) =&gt; {
+    setTimeout( function(){
+      resolve(value);
+    }, 3000);
+  });
+}
+
+const request = fetch(&quot;https://dog.ceo/api/breeds/list/all&quot;);
+
+const breedsPromise = request.then( response =&gt; response.json() );
+
+let startTime;
+
+const countPromise = breedsPromise.then( function toCount(breeds) {
+  startTime = new Date();
+  return delay( Object.keys( breeds.message ).length );
+});
+
+countPromise.then( (count) =&gt; {
+  console.log(&quot;delay&quot;, new Date() - startTime ); //logs 3000
+  console.log(&quot;count&quot;, count);             
+})
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='1-7,17,21'></div>
+<h3>Throwing exceptions</h3>
+<p>If an <code>onFulfilled</code> function throws an exception, this will reject the <em>outer</em>
+promise returned by <code>.then</code>.</p>
+<p>For example, if <code>toCount</code> mistakenly read <code>breeds.data</code> instead of <code>breeds.message</code>,
+<code>countPromise</code> would be rejected:</p>
+<pre><code class="language-js">const request = fetch(&quot;https://dog.ceo/api/breeds/list/all&quot;);
+
+const breedsPromise = request.then( function( response ){
+  console.log( &quot;response&quot;, response )      //-&gt; Response{status, body}
+  return response.json();
+});
+
+const countPromise = breedsPromise.then( function toCount(breeds) {
+  console.log(&quot;breeds&quot;, breeds);           //-&gt; {message: {beagle,chow}}
+  return Object.keys( breeds.data ).length;
+});
+
+countPromise.then( (count) =&gt; {
+  console.log(&quot;count&quot;, count);
+})
+countPromise.catch( (reason) =&gt; {
+  console.error(reason) //-&gt; TypeError[Cannot convert undefined or null to object]
+})
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='10,17'></div>
+<h2>Promise providers</h2>
+<p>Promises are returned by many APIs such as:</p>
+<ul>
+<li><p>The <code>fetch()</code> API returns a promise when a connection is
+established.  You can also easily get a promise when the
+JSON response is complete:</p>
+<pre><code class="language-js">const myJSON = fetch(&quot;/my-data.json&quot;)
+  .then( (response) =&gt; response.toJSON() )
+</code></pre></li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/MediaDevices/getUserMedia">getUserMedia</a></p></li>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorkerContainer/register">ServiceWorkerContainer.register(...)</a></p></li>
+</ul>
+<h2>Promise syntax</h2>
+<p>JavaScript even has <strong>special syntax</strong> for using promises:</p>
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function">async</a> / <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await">await</a> let you read the value of promises without
+calling <code>.then</code>.</li>
+</ul>
+<pre><code class="language-js">async function getBreedsCount(){
+  const response = await fetch(&quot;https://dog.ceo/api/breeds/list/all&quot;);
+
+  const breeds = await response.json();
+
+  return Object.keys( breeds.message ).length;
+}
+
+const countPromise = getBreedsCount();
+
+countPromise.then( (count) =&gt; {
+  console.log(&quot;count&quot;, count);             //-&gt; 91
+});
+</code></pre>
+  <div class='codepen'></div>
+<ul>
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for-await...of">for await(of)</a> allows you to
+loop through an iterator that emits promises:</p>
+<pre><code class="language-js">const response = await fetch(url);
+for await (const chunk of response.body.getReader() ) {
+
+  responseSize += chunk.length;
+}
+</code></pre></li>
+</ul>
+<h2>Timing</h2>
+<p>Promises' callback handlers are run in the
+<code>microtask queue</code> which is called at the end of the JavaScript
+event loop. This means a few things.</p>
+<p>First, callbacks of resolved promises are <em>not</em> called
+immediately. Instead they are called at the end of the
+current event loop.</p>
+<p>The following:</p>
+<ul>
+<li>sets a timeout callback for <code>1ms</code></li>
+<li>runs code that should last longer than <code>20ms</code></li>
+<li>sets a fulfilled promise callback</li>
+</ul>
+<pre><code class="language-js">const promise = Promise.resolve();
+
+setTimeout( ()=&gt; {
+  console.log(&quot;timeout callback&quot;);
+},1);
+
+var total = 0
+for(var i = 0; i &lt; 100000; i++) {
+  total +=  Math.sqrt(i) * (i % 2 === 0 ? 1 : -1)
+}
+
+promise.then( ()=&gt; {
+  console.log(&quot;promise fulfilled&quot;);
+});
+
+// Logs:
+// &quot;promise fulfilled&quot;
+// &quot;timeout callback&quot;
+</code></pre>
+<div class='codepen'></div>
+<p>Second, this also means that <code>resolving</code> a promise
+does not call all callbacks immediately as shown
+in the following example:</p>
+<pre><code class="language-js">let resolve;
+const promise = new Promise( (pResolve)=&gt; {
+  resolve = pResolve;
+} )
+
+
+promise.then(()=&gt; {
+  console.log(&quot;promise fulfilled&quot;)
+});
+
+console.log(&quot;before resolve&quot;);
+resolve();
+console.log(&quot;after resolve&quot;);
+
+// Logs:
+// &quot;before resolve&quot;
+// &quot;after resolve&quot;
+// &quot;promise fulfilled&quot;
+</code></pre>
+<div class='codepen'></div>
+<p>Why was this done? Consistency. As developers, you
+know that your callbacks will always be called sometime in the
+future. If callbacks were called immediately, this would
+have to be handled.</p>
+<h2>Chaining vs callbacks</h2>
+<p>Without Promises, the common way of handling asynchronous behavior was
+to pass a success and failure callback to functions as follows.</p>
+<pre><code class="language-js">doSomething( (filesData) =&gt; {
+  processFiles(filesData.files, function(processedFilesData) =&gt; {
+    writeHTML(processedFilesData.writableFiles, function() {
+      console.log(&quot;completed!&quot;);
+    }, failureCallback);
+  }, failureCallback);
+}, failureCallback);
+</code></pre>
+<p>This is hard to read and results in the classic callback pyramid of doom 🔥🔥🔥!</p>
+<p>Fortunately, promises make this better, by making a much more
+linear process:</p>
+<pre><code class="language-js">getFiles()
+  .then( (filesData) =&gt; {
+    return processFiles(filesData.files);
+  })
+  .then( (processedFilesData) =&gt; {
+    return writeHTML(processedFilesData.writableFiles);
+  }).
+  then( ()=&gt; {
+    console.log(&quot;completed!&quot;)
+  })
+  .catch( failureCallback );
+</code></pre>
+<h2>Promise queues</h2>
+<p>Often, you want to run a series of tasks, but those
+tasks might be optional. Making this work with
+promises can be tricky.</p>
+<pre><code class="language-js">let promise = getFiles();
+
+if(options.debug) {
+  promise = promise.then(printFiles)
+}
+
+promise = processFiles();
+
+if(options.debug) {
+  promise = promise.then(printProcessWarnings)
+}
+
+promise = promise.then(writeHTML);
+</code></pre>
+<p>One way to simplify this is to use a promiseQueue
+that wires up functions to be called one after another.</p>
+<pre><code class="language-js">function promiseQueue(functions){
+  var promise = functions.shift()();
+
+  var func;
+  while( functions.length ) {
+    func = functions.shift();
+    if(func) {
+      promise = promise.then(func);
+    }
+  }
+  return promise;
+};
+
+const promise = promiseQueue([
+  getFiles,
+  options.debug &amp;&amp; printFiles,
+  processFiles,
+  options.debug &amp;&amp; printProcessWarnings,
+  writeHTML
+]);
+</code></pre>
+<h2>Waiting for multiple async tasks to complete</h2>
+<p>Often, you might want to do two or more parallel tasks and
+then do something with the result.  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/all">Promise.all</a> takes
+multiple promises and returns another promise when they all complete.</p>
+<p>For example, you might want to compare the number of <code>hound</code> to <code>dingo</code> breed images.</p>
+<p>One way of doing that would be to get hounds and get dings and compare:</p>
+<pre><code class="language-js">const time = new Date();
+
+fetch(&quot;https://dog.ceo/api/breed/hound/images&quot;)
+
+  .then( response=&gt; response.json() )
+
+  .then( (hounds) =&gt; {
+    return fetch(&quot;https://dog.ceo/api/breed/dingo/images&quot;)
+      .then( response =&gt; response.json() )
+      .then( dingos =&gt; { return {hounds, dingos} })
+  } )
+
+  .then( ({hounds, dingos}) =&gt; {
+    return {houndsCount: hounds.message.length, dingosCount: dingos.message.length}
+  })
+
+  .then( ({houndsCount, dingosCount}) =&gt; {
+    console.log(`${houndsCount} hounds, ${dingosCount} dingos,
+      time ${new Date() - time}`);
+  } );
+</code></pre>
+<div class='codepen'></div>
+<p>But this would create one request after another.  Slow.</p>
+<p>Instead, use <code>Promise.all()</code> to make both requests at the same time:</p>
+<pre><code class="language-js">const time = new Date();
+
+const houndsPromise = fetch(&quot;https://dog.ceo/api/breed/hound/images&quot;)
+  .then( response=&gt; response.json() );
+
+const dingosPromise = fetch(&quot;https://dog.ceo/api/breed/dingo/images&quot;)
+  .then( response =&gt; response.json() )
+
+Promise.all([houndsPromise, dingosPromise])
+  .then( ([hounds, dingos])=&gt; {
+    return {houndsCount: hounds.message.length, dingosCount: dingos.message.length}
+  })
+  .then( ({houndsCount, dingosCount}) =&gt; {
+    console.log(`${houndsCount} hounds, ${dingosCount} dingos,
+      time ${new Date() - time}`);
+  } );
+</code></pre>
+<div class='codepen'></div>
+<h2>Promises compared to alternatives</h2>
+<h3>Promises compared to callbacks</h3>
+<p>Callback functions can be passed to a function. In the following example,
+<code>doSomething()</code> takes a completion callback:</p>
+<pre><code class="language-js">doSomething(someArg, function onComplete(err, data) {
+  if(err) {
+    // handle error case
+  } else {
+    // handle success
+  }
+});
+</code></pre>
+<p>This form of continuation passing is very common in NodeJS.</p>
+<p><strong>Callback positives:</strong></p>
+<ul>
+<li>Callbacks are lighter than promises - a function just needs to be created. Dispatching
+is also faster - a function just needs to be called.</li>
+</ul>
+<p><strong>Callback negatives:</strong></p>
+<ul>
+<li>Callbacks only allow a single listener.</li>
+<li>Callbacks might be called immediately, which
+can create timing issues.</li>
+<li>Callbacks can create the <em>pyramid of doom</em>.</li>
+</ul>
+<p><strong>When to use callbacks instead of promises</strong></p>
+<p>If you are making something that needs to run extremely quickly and doesn't need to
+be user friendly, callbacks might be a good solution. After all, it's not difficult to
+&quot;promisify&quot; callback-based APIs.  Many libraries do exactly this.</p>
+<h3>Promises compared to event streams</h3>
+<p>Event streams are any technology that might produce values
+overtime.  For example, listening to a <code>click</code> event on the DOM
+is a form of event stream:</p>
+<pre><code class="language-js">document.body.addEventListener(&quot;click&quot;, (event) =&gt; {
+  console.log(&quot;Got a click event&quot;, event);
+})
+</code></pre>
+<p><a href="../learn-rxjs.html" title="Learn RxJS by creating a validating credit card form.">RxJS</a> is a functional-reactive event stream library. The following
+uses RxJS to create an event stream (<code>subject</code>) that emits two random numbers:</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const {Subject} = rxjs;
+
+const subject = new Subject&lt;number&gt;();
+
+subject.subscribe({
+  next: (v) =&gt; console.log(`observerA: ${v}`)
+});
+
+subject.next(Math.random());
+subject.next(Math.random());
+subject.complete();
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<p>Modern browsers even provide their own stream primitive - <code>ReadableStream</code>.
+This lets you create a stream of events.</p>
+<p><strong>Event stream positives:</strong></p>
+<ul>
+<li>Event streams can emit values over time.  Promise can not do this.</li>
+<li>Event streams can be cancelled. There's no way to do this through the promise API.</li>
+<li>Event streams often have utility libraries, making deriving new event streams
+from other event streams easy.</li>
+</ul>
+<p><strong>Event stream negatives:</strong></p>
+<ul>
+<li>You must stop listening to an event stream or end the stream to avoid memory leaks.</li>
+<li>Event streams are often heavier than Promises.</li>
+<li>With the exception of <code>ReadableStream</code> (which isn't in every environment yet),
+streams are not part of the JavaScript specification and are not present in
+every environment. Promises come for free for almost every user.</li>
+</ul>
+<p><strong>When to use streams instead of promises</strong></p>
+<p>If your system produces a single &quot;event&quot;, returning a promise is generally better than
+returning an event stream.  Most event stream libraries have ways of converting a
+promise to an event stream.</p>
+<p>However, if your system produces multiple events, you have no choice but to
+use some form of event stream.</p>
+
+</section>
+
+  			
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout slack">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://www.bitovi.com/community/slack">help</a> with an exercise, please reach out to us on
+             <a href="https://www.bitovi.com/community/slack">Slack</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/javascript/8-promises.md"},"description":"Learn about JavaScript promises \n","name":"learn-advanced-javascript/promises","title":"Promises","type":"page","parent":"learn-advanced-javascript","order":8,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+</body>
+</html>
