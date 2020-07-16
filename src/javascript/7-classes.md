@@ -1,6 +1,7 @@
 @page learn-advanced-javascript/classes Classes
 @parent learn-advanced-javascript 7
 @description Learn about JavaScript classes
+@outline 3
 
 @body
 
