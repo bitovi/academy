@@ -1,6 +1,5 @@
-@page react React
+@page learn-react React
 @parent bit-academy 5
-@hide
 
 @description This guide introduces React, the things you should learn before approaching React, and some advanced React topics.
 
