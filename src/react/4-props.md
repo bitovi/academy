@@ -152,7 +152,7 @@ Let's use our props knowledge to make the components in our tic-tac-toe app more
 
 Run the app locally with `npm start` and choose the `Props` exercise. Now head over to `src/exercises/4 - Props/components`. These are the files you'll be editing.
 
-## The problem
+### The problem
 
 In this section we will:
    - Modify the `Square` component so that accepts two props
@@ -161,9 +161,9 @@ In this section we will:
    -  Modify the `Board` component so it renders out all 9 squares given to it by it's `baord` props (`board` is an array of strings)
    -  Modify the `Game` component so it passes the correct props into `<Board />`
 
-## The solution
+### The solution
 
-### Square.js
+#### Square.js
 ```jsx
 function Square({ onClick, symbol }) {
   return (
@@ -175,7 +175,7 @@ function Square({ onClick, symbol }) {
 ```
 @highlight 1,3,4,only
 
-### Board.js
+#### Board.js
 ```jsx
 function Board({ onSquareClick, board }) {
   return (
@@ -193,7 +193,7 @@ function Board({ onSquareClick, board }) {
 ```
 @highlight 4-10,only
 
-### Game.js
+#### Game.js
 ```jsx
 const blankBoard = ['', '', '', '', '', '', '', '', ''];
 
