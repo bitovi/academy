@@ -7,11 +7,13 @@
 
 # Optimization Hooks
 
-Optimization through Memoization
+In addition to the core hooks exposed by React, namely `useState` and `useEffect`, there are several hooks aimed at optimizing your code for performance.
 
+Specifically optimization through Memoization. In a nutshell, memoization is the process of caching the values returned from long running functions, and returning the cached values when inputs are identical.
+
+There are two hooks which deal with memoization, `useMemo` and `useCallback`, let's take a look at them below.
 
 ## useMemo
-
 
 * Returns a memoized value.
 * Recalculated synchronously based on declared dependencies.
@@ -32,17 +34,25 @@ function Hello({ firstName, lastName }) {
 }
 ```
 
-* We need to do something expensive
-* so we wrap it in useMemo
-* and specify when it should re-compute
-* Not a particularly real-world use-case though
+In the code above, we're utilizing `useMemo` to memoize a value derived from two props, `firstName` and `lastName`. Imagine that in order to get the full `name`, we need to perform some long-running or expensive operation. Normally, we would do perform this operation every time the component renders, reguardless of the `firstName`/`lastName` prop values.
 
+When we memoize the value however, React keeps track of the inputs and outputs of this function, and caches values for all the possibilities it encounters. This means that if this component gets rendered with the same first and last name 100 times, we'll only need to perform the expensive operation once.
+
+`useMemo` takes two arguments, the first is a function which performs the expensive operation and returns a value, the second is an array of dependencies. The dependency array determines which values, when changed, should cause the memoized value to be re-computed.
+
+To sum it all up:
+
+* When we need to do something expensive
+  1. We wrap it in useMemo
+  2. Specify when it should re-compute
 
 ### useMemo to cache a function call
 
-Generate primes, but show only some of them.
+Let's take a look at a more real world example, here we'll generate primes, but show only some of them...
 
-```jsx title="useMemo to cache a function call"
+Here's a look at it without `useMemo`:
+
+```jsx
 import React, { useMemo } from 'react';
 
 function Hello({ bigJSONBlob }) {
@@ -96,15 +106,18 @@ function flatten(input) {
   }).flat();
 }
 ```
+@highlight 4,7only
 
 
 ## useCallback
-
 
 * A special case of useMemo that returns a function instead of a value.
 * `useCallback(fn, deps)` is equivalent to `useMemo(() => fn, deps)`
 * Used to maintain referential equality between renders.
 
+`useCallback` is particularly useful when defining event handlers. In such cases, we're not nescessarily interested in memoizing a single value, but rather, a callback function. This is very common in react, as we're constantly using callback as props.
+
+Below is a clickable `Hello` component which defines an un-memoized `handleClick` function.
 
 ```jsx title="useCallback" subtitle="a Thing with a click handler"
 import React, { useCallback } from 'react';
@@ -120,6 +133,8 @@ function Hello({ firstName, lastName }) {
 }
 ```
 
+Now below, we'll wrap `handleClick` logic in `useCallback` so we can cache the results.
+
 ```jsx title="useCallback" subtitle="click handler gets memoized"
 import React, { useCallback } from 'react';
 
@@ -133,126 +148,6 @@ function Hello({ firstName, lastName }) {
   );
 }
 ```
-
----
- 
-```jsx title="Pop Quiz"
-import React from 'react';
-
-// a click handler
-function Hello1() {
-  const handleClick = () => { /* do stuff */ };
-
-  return (
-    <div onClick={handleClick}>Hello</div>
-  );
-}
-
-// a memoized click handler
-function Hello2() {
-  const handleClick = useCallback(() => { /* do stuff */ }, []);
-
-  return (
-    <div onClick={handleClick}>Hello</div>
-  );
-}
-```
-
-Which is more performant? Why?
-
-```diff 3:9 title="Pop Quiz" subtitle="a click handler"
-```
-```diff 11:17 title="Pop Quiz" subtitle="a memoized click handler"
-```
-```diff 3:17 title="Pop Quiz" subtitle="Which is more performant? Why"
-```
-
-```jsx title="Pop Quiz Answer" subtitle="the memoized click handler"
-import React, { useCallback } from 'react';
-
-function Hello2() {
-  const handleClick = useCallback(() => { /* do stuff */ }, []);
-
-  return (
-    <div onClick={handleClick}>Hello</div>
-  );
-}
-```
-
-```jsx title="Pop Quiz Answer" subtitle="the memoized click handler, rewritten"
-import React, { useCallback } from 'react';
-
-function Hello2() {
-  const handleClickFn = () => { /* do stuff */ };
-  const handleClick = useCallback(handleClickFn, []);
-
-  return (
-    <div onClick={handleClick}>Hello</div>
-  );
-}
-```
-
-```jsx title="Pop Quiz Answer" subtitle="which is almost the same as the original"
-import React, { useCallback } from 'react';
-
-function Hello1() {
-  const handleClick = () => { /* do stuff */ };
-
-  return (
-    <div onClick={handleClick}>Hello</div>
-  );
-}
-
-function Hello2() {
-  const handleClickFn = () => { /* do stuff */ };
-  const handleClick = useCallback(handleClickFn, []);
-
-  return (
-    <div onClick={handleClick}>Hello</div>
-  );
-}
-```
-
-```diff title="Pop Quiz Answer" subtitle="Now: which is more performant?"
-```
-
-```jsx title="Pop Quiz Answer" subtitle="if the child component depends on referencial identity"
-import React, { useCallback } from 'react';
-
-function Thing({ onClick }) {
-  useEffect(() => {
-    document.addEventListener('click', onClick)
-
-    return () => document.removeEventListener('click', onClick)
-  }, [ onClick ])
-
-  return <div>Hello</div>;
-});
-```
-
-```jsx title="Pop Quiz Answer" subtitle="Only then does this improve performance"
-import React, { useCallback } from 'react';
-
-function Thing({ onClick }) {
-  useEffect(() => {
-    document.addEventListener('click', onClick)
-
-    return () => document.removeEventListener('click', onClick)
-  }, [ onClick ])
-
-  return <div>Hello</div>;
-});
-
-function Hello3() {
-  const handleClick = useCallback(() => { /* do stuff */ }, []);
-
-  return (
-    <Thing onClick={handleClick}>Hello</Thing>
-  );
-}
-```
-
-
 
 ## Exercise
 
