@@ -8,158 +8,103 @@
 
 # React Context via Hooks
 
-* "dependency injection"
+React's context api allows global app state to be shared among all of the components in a component tree. It's commonly used to store data that many components are interested in like the app's theme or the current user.
+
+A context object can be created using `React.createContext()` which returns a `Provider` component that can wrap other components interested in the global state.
+
+```jsx title="Providing and Consuming a Theme with Context" subtitle="Use the Button with the Provider"
+import React, {createContext} from 'react';
+
+const THEMES = {
+  blue: { color: '#0000ff', fontSize: '1.25rem' },
+  red: { color: '#7ea0ff', fontSize: '2rem' },
+};
+
+export const ThemeContext = createContext()
+
+export default function Layout() {
+  return (
+    <ThemeContext.Provider value={THEMES.blue}>
+        <Button label="Click Me!" />
+    </ThemeContext.Provider>
+  );
+}
+```
+
+In the example above we're creating a new `ThemeContext` and then using the `Provider` it exposes to wrap a button component.
+
+Any components we render inside of the provider will be able to access the information in the `value` prop, no matter how deeply nested they are in the component tree. This eliminates the need for prop drilling where a single `theme` prop would need to be passed down through multiple components.
+
+The example above is fairly simple, and it's important to keep in mind that there are ways of organizing these Providers that allow for more functionality/data to be exposed. 
+
+So now that we've set up the Provider, the question is, how do child components like `Button` access this theme for themselves?
 
 ## useContext
 
-* Exposes data at a high level to be used at a lower level
-* Avoids prop-drilling
+* Hook provided by React
+* Takes a context object and exposes the value to a child component
 * Used by custom hooks to simplify knowledge
 
+`useContext` allows for child components nested at any level nested within a provider to access the value the provider provides.
 
-```jsx title="Providing and Consuming a Theme with Context" subtitle="The theme data we're exposing"
-// provider.js
-import React, { useContext } from 'react';
+In the example above, the provider's value is a theme object (`THEMES.blue`). The theme is something that our `Button` component might want to use to style itself, so let's take a look at how that would works:
 
-const THEMES = {
-  blue: {
-    colors: {
-      background: '#0000ff',
-      foreground: '#ffff00',
-    },
-    sizes: {
-      button: '1.25em',
-    },
-  },
-  red: {
-    colors: {
-      background: '#ff0000',
-      foreground: '#00ffff',
-    },
-    sizes: {
-      button: '1.25em',
-    },
-  },
-};
+```jsx
+import React, {useContext} from 'react'
+import ThemeContext from './Layout'
+
+function Button({label}){
+  const theme = useContext(ThemeContext)
+
+  return (
+    <div style={theme}>
+      <button>{label}</button>
+    </div>
+  )
+}
 ```
 
-```jsx title="Providing and Consuming a Theme with Context" subtitle="Use the Button with the Provider"
-// provider.js
-import React, { useContext } from 'react';
+In the button component above we're doing a couple things of interest. First, we import `useContext` from React, and we also import `ThemeContext` from our `Layout` component file (see example in previous section).
+
+Once inside the `Button` component, we'll call on the `useContext` hook to give us the theme value passed down from the `ThemeContext.Provider`. This hooks takes one argument, the `ThemeContext` itself.
+
+Once we've gotten the theme from `useContext`, we can use it to appropriately style the `Button`.
+
+## Complex Providers
+
+The example above demonstrates the simplest use-case for context/useContext, but often times developers will organize their providers to abstract away a lot of the boilerplate.
+
+Let's take a look at how we might refactor the `ThemeContext` so that it's wrapped in it's own custom component:
+
+```jsx
+import React, {createContext} from 'react'
 
 const THEMES = {
-  blue: {
-    colors: {
-      background: '#0000ff',
-      foreground: '#ffff00',
-    },
-    sizes: {
-      button: '1.25em',
-    },
-  },
-  red: {
-    colors: {
-      background: '#ff0000',
-      foreground: '#00ffff',
-    },
-    sizes: {
-      button: '1.25em',
-    },
-  },
+  blue: { color: '#0000ff', fontSize: '1.25rem' },
+  red: { color: '#7ea0ff', fontSize: '2rem' },
 };
 
-// consumer.js
-import React from 'react';
-import { useColor, useSize } from './provider'
+const ThemeContext = React.createContext();
 
-export default function Layout() {
+export default function ThemeProvider({ theme, children }) {
   return (
-    <ThemeProvider theme="red">
-      <div className="left">
-        <Button label="Left Button" />
-      </div>
-    </ThemeProvider>
+    <ThemeContext.Provider value={THEMES[theme]}>
+      {children}
+    </ThemeContext.Provider>
   );
 }
 ```
 
-**Providing and Consuming a Theme with Context**
+In the example above, we've take all of the `ThemeContext` logic and encapsulated it into it's own component `ThemeProvider`. This is a very common technique for organizing contexts in a scalable and re-usable way.
 
-```jsx title="Providing and Consuming a Theme with Context" subtitle="The Button Component, using custom hooks"
-// provider.js
-import React, { useContext } from 'react';
+We can take this a step further by exporting a custom hook `useTheme` from this file, which can then be used by nested components like `Button` to access the theme:
 
-const THEMES = {
-  blue: {
-    colors: {
-      background: '#0000ff',
-      foreground: '#ffff00',
-    },
-    sizes: {
-      button: '1.25em',
-    },
-  },
-  red: {
-    colors: {
-      background: '#ff0000',
-      foreground: '#00ffff',
-    },
-    sizes: {
-      button: '1.25em',
-    },
-  },
-};
-
-// consumer.js
-import React from 'react';
-import { useColor, useSize } from './provider'
-
-export default function Layout() {
-  return (
-    <ThemeProvider theme="red">
-      <div className="left">
-        <Button label="Left Button" />
-      </div>
-    </ThemeProvider>
-  );
-}
-
-function Button({ label }) {
-  const background = useColor('background');
-  const color = useColor('foreground');
-  const fontSize = useSize('button');
-
-  return (
-    <button style={{ background, color, fontSize }}>
-      {label}
-    </button>
-  );
-}
-```
-
-```jsx title="Providing and Consuming a Theme with Context" subtitle="Create a context and use it in our Provider"
-// provider.js
-import React, { useContext } from 'react';
+```jsx
+import React, {createContext} from 'react'
 
 const THEMES = {
-  blue: {
-    colors: {
-      background: '#0000ff',
-      foreground: '#ffff00',
-    },
-    sizes: {
-      button: '1.25em',
-    },
-  },
-  red: {
-    colors: {
-      background: '#ff0000',
-      foreground: '#00ffff',
-    },
-    sizes: {
-      button: '1.25em',
-    },
-  },
+  blue: { color: '#0000ff', fontSize: '1.25rem' },
+  red: { color: '#7ea0ff', fontSize: '2rem' },
 };
 
 const ThemeContext = React.createContext();
@@ -172,183 +117,45 @@ export default function ThemeProvider({ theme, children }) {
   );
 }
 
-// consumer.js
+export function useTheme(color) {
+  const theme = useContext(ThemeContext);
+  return theme
+};
+```
+@highlight 18-21,only
+
+Now, we can refactor our `Layout` component to use this new provider. Notice how much cleaner it looks when we abstract away the context logic into it's own component (`ThemeProvider`)
+
+```jsx
 import React from 'react';
-import { useColor, useSize } from './provider'
+import ThemeProvider from './ThemeProvider
 
 export default function Layout() {
   return (
-    <ThemeProvider theme="red">
-      <div className="left">
-        <Button label="Left Button" />
-      </div>
+    <ThemeProvider theme="blue">
+        <Button label="Click Me!" />
     </ThemeProvider>
-  );
-}
-
-function Button({ label }) {
-  const background = useColor('background');
-  const color = useColor('foreground');
-  const fontSize = useSize('button');
-
-  return (
-    <button style={{ background, color, fontSize }}>
-      {label}
-    </button>
   );
 }
 ```
 
-```jsx title="Providing and Consuming a Theme with Context" subtitle="Custom hooks to provide the needed values"
-// provider.js
-import React, { useContext } from 'react';
+We can also refactor the way the `Button` component consumes the theme, by having it use the newly exposed `useTheme` custom hook.
 
-const THEMES = {
-  blue: {
-    colors: {
-      background: '#0000ff',
-      foreground: '#ffff00',
-    },
-    sizes: {
-      button: '1.25em',
-    },
-  },
-  red: {
-    colors: {
-      background: '#ff0000',
-      foreground: '#00ffff',
-    },
-    sizes: {
-      button: '1.25em',
-    },
-  },
-};
+```jsx
+import React from 'react'
+import {useTheme} from './ThemeProvider'
 
-const ThemeContext = React.createContext();
-
-export default function ThemeProvider({ theme, children }) {
-  return (
-    <ThemeContext.Provider value={THEMES[theme]}>
-      {children}
-    </ThemeContext.Provider>
-  );
-}
-
-export function useColor(color) {
-  const { colors } = useContext(ThemeContext);
-  return colors[color];
-};
-
-export function useSize(size) {
-  const { sizes } = useContext(ThemeContext);
-  return sizes[size];
-};
-
-// consumer.js
-import React from 'react';
-import { useColor, useSize } from './provider'
-
-export default function Layout() {
-  return (
-    <ThemeProvider theme="red">
-      <div className="left">
-        <Button label="Left Button" />
-      </div>
-    </ThemeProvider>
-  );
-}
-
-function Button({ label }) {
-  const background = useColor('background');
-  const color = useColor('foreground');
-  const fontSize = useSize('button');
+function Button({label}){
+  const theme = useTheme()
 
   return (
-    <button style={{ background, color, fontSize }}>
-      {label}
-    </button>
-  );
+    <div style={theme}>
+      <button>{label}</button>
+    </div>
+  )
 }
 ```
-
-```jsx title="Providing and Consuming a Theme with Context" subtitle="This is why it's better than a global module"
-// provider.js
-import React, { useContext } from 'react';
-
-const THEMES = {
-  blue: {
-    colors: {
-      background: '#0000ff',
-      foreground: '#ffff00',
-    },
-    sizes: {
-      button: '1.25em',
-    },
-  },
-  red: {
-    colors: {
-      background: '#ff0000',
-      foreground: '#00ffff',
-    },
-    sizes: {
-      button: '1.25em',
-    },
-  },
-};
-
-const ThemeContext = React.createContext();
-
-export default function ThemeProvider({ theme, children }) {
-  return (
-    <ThemeContext.Provider value={THEMES[theme]}>
-      {children}
-    </ThemeContext.Provider>
-  );
-}
-
-export function useColor(color) {
-  const { colors } = useContext(ThemeContext);
-  return colors[color];
-};
-
-export function useSize(size) {
-  const { sizes } = useContext(ThemeContext);
-  return sizes[size];
-};
-
-// consumer.js
-import React from 'react';
-import { useColor, useSize } from './provider'
-
-export default function Layout() {
-  return (
-    <ThemeProvider theme="red">
-      <div className="left">
-        <Button label="Left Button" />
-      </div>
-
-      <ThemeProvider theme="blue">
-        <div className="content">
-          <Button label="Content Button" />
-        </div>
-      </ThemeProvider>
-    </ThemeProvider>
-  );
-}
-
-function Button({ label }) {
-  const background = useColor('background');
-  const color = useColor('foreground');
-  const fontSize = useSize('button');
-
-  return (
-    <button style={{ background, color, fontSize }}>
-      {label}
-    </button>
-  );
-}
-```
-
+@highlight 2,5,only
 
 ## Exercise
 
