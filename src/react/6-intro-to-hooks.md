@@ -44,7 +44,9 @@ To understand hooks, it will be useful to see what they're replacing in class co
 
 With class components the relevant code to manage everything is spread out over multiple places (lifecycle methods).
 
-```jsx title="Class Component with Lifecycle Callbacks"
+```html title="Class Component with Lifecycle Callbacks"
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">
+
 class Timer extends React.Component {
   state = {
     value: false,
@@ -67,7 +69,10 @@ class Timer extends React.Component {
     )
   }
 }
+
+ReactDOM.render(<Timer />,document.getElementById('root'));</script>
 ```
+@codepen
 
 In the example above we're implementing a `Timer` component which starts a timer when the component mounts. When the timer finishes the state is modified causing the component to re-render. Finally when the component un-mounts the time is cleared.
 
@@ -75,7 +80,9 @@ This implementation needs 3 functions and a state object, roughly 15 lines of co
 
 Multiple state values make this even messier.
 
-```jsx
+```html
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">
+
 class Timer extends React.Component {
   state = {
     value1: false,
@@ -105,7 +112,9 @@ class Timer extends React.Component {
     )
   }
 }
+ReactDOM.render(<Timer />,document.getElementById('root'));</script>
 ```
+@codepen
 
 Above we're adding in a second timer value and doubling our code in the process.
 
@@ -115,11 +124,13 @@ Let's see how this would look with hooks...
 
 Here's that same timer written using the `useState` and `useEffect` hooks:
 
-```jsx 
-function Timer(props) {
-  const [ value, setValue ] = useState(false)
+```html 
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<Timer />,document.getElementById('root'));
 
-  useEffect(() => {
+function Timer(props) {
+  const [ value, setValue ] = React.useState(false)
+
+  React.useEffect(() => {
     const timer = setTimeout(() => setValue(true), 2500)
     return () => clearTimeout(timer)
   }, [])
@@ -128,7 +139,10 @@ function Timer(props) {
     <div>{value ? 'Done!' : 'Waiting...'}</div>
   )
 }
+
+</script>
 ```
+@codepen
 
 `useState` can define a single piece of state with both the state value and a function for updating the value. Instead of the component's state being stored in one monolith object, it's broken out into discrete, well named units. 
 
@@ -142,11 +156,13 @@ As was mentioned before however, hooks are not just a feature but a paradigm shi
 
 We could take that timer component from the previous section and encapsulate it's logic (minus the JSX) into a custom hook.
 
-```jsx 
-function useTimer(delay) {
-  const [ value, setValue ] = useState(false)
+```html 
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<Timer />,document.getElementById('root'));
 
-  useEffect(() => {
+function useTimer(delay) {
+  const [ value, setValue ] = React.useState(false)
+
+  React.useEffect(() => {
     const timer = setTimeout(() => setValue(true), delay)
 
     return () => clearTimeout(timer)
@@ -162,6 +178,9 @@ function Timer(props) {
     <div>{value ? 'Done!' : 'Waiting...'}</div>
   )
 }
+
+</script>
 ```
+@codepen
 
 Now, our `useTimer` hooks returns a value which, when modified will cause the `Timer` component to re-render. We've abstracted away the logic of updating the `value` into the `useValue` hook.

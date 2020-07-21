@@ -22,21 +22,24 @@ Let's start with `useState`.
 
 When `useState` is called, it return an array with two elements in it. The first element is the state value itself, this is the value you would render out inside the JSX. The second element is a setter function, which, when called can be used to update the state and trigger a re-render.
 
-```jsx
-import React, { useState } from 'react';
+```html
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<Hello />,document.getElementById('root'));
 
 function Hello() {
-  const [ inputValue, setInputValue ] = useState('');
+  const [ inputValue, setInputValue ] = React.useState('');
 
   return (
     <input
-      value={value} 
+      value={inputValue} 
       onChange={e => setInputValue(e.target.value)}
     />
   );
 };
+
+</script>
 ```
-@highlight 2,6,7,only
+@highlight 4,8,9,only
+@codepen
 
 Above is a simple example of using state to control an input element. The value of the input is determined entirely by the `inputValue` state (not the browser), and whenever the input changes, the state is updated to match. 
 

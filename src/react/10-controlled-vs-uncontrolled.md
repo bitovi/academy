@@ -13,12 +13,17 @@ There are two types of input components we can create in React, controlled input
 
 An uncontrolled input is one where we're not explicitly setting the value attribute. When a value attribute is not explicitly set, the input is ultimately controlled by the browser, and thus, out of the control of the React developer:
 
-```jsx
+```html
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<SearchBar />,document.getElementById('root'));
+
 // Uncontrolled
 function SearchBar() {
   return <input type="text" />;
 }
+
+</script>
 ```
+@codepen
 
 The `SearchBar` above is considered uncontrolled because we're not explicitly giving it a value. The value of the input is now entirely determined by the browser & the user, we as developers have no say.
 
@@ -26,23 +31,28 @@ While this isn't nescessarily a bad thing, it does make our lives as React devel
 
 We can solve this problem by explicitly controlling the input (giving it a value).
 
-```jsx  title="When we provide a value, we're controlling the input" subtitle="In this case, the user can't type anything"
+```html  title="When we provide a value, we're controlling the input" subtitle="In this case, the user can't type anything"
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<SearchBar />,document.getElementById('root'));
+
 // Controlled (sort of)
 function SearchBar() {
   return <input type="text" value="hello" />;
 }
+
+</script>
 ```
+@codepen
 
 The component above is now considered to be "controlled", at any given point we always know what the value is (`hello`), and we've taken control away from the browser.
 
 Obviously this isn't a great solution though because the value will always be "hello". We can remedy this by involving state:
 
-```jsx 
-// Controlled (with state)
-import React, {useState} from 'react'
+```html
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<SearchBar />,document.getElementById('root'));
 
+// Controlled (with state)
 function SearchBar() {
-  const [inputValue, setInputValue] = useState("")
+  const [inputValue, setInputValue] = React.useState("")
   return (
     <input
       type="text"
@@ -51,7 +61,10 @@ function SearchBar() {
     />
   )
 }
+
+</script>
 ```
+@codepen
 
 We'll create a piece of state called `inputValue`, use that as the value of the input, and update it whenever the input changes.
 
@@ -59,10 +72,10 @@ The process outlined above is how most controlled inputs are structured. Whether
 
 We can take this a step furthur, by controlling the component with props:
 
-```jsx 1:21 title="It's common to let a smart 'parent' component control the values"
-// Controlled (with state)
-import React, {useState} from 'react
+```html 1:21 title="It's common to let a smart 'parent' component control the values"
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<SmartParentComponent />,document.getElementById('root'));
 
+// Controlled (with props)
 function SearchBar({inputValue, onInputValueChange}){
   return (
     <input
@@ -74,14 +87,19 @@ function SearchBar({inputValue, onInputValueChange}){
 }
 
 function SmartParentComponent(){
-  const [inputValue, setInputValue] = useState("")
+  const [inputValue, setInputValue] = React.useState("")
 
-  <SearchBar
-    inputValue={inputValue}
-    onInputValueChange={newValue => setInputValue(newValue)}
-  />
+  return (
+    <SearchBar
+      inputValue={inputValue}
+      onInputValueChange={newValue => setInputValue(newValue)}
+    />
+  )
 }
+
+</script>
 ```
+@codepen
 
 Above we've defined 2 component, `SmartParentComponent` and `SearchBar`. The `SearchBar` component accepts two props, one for the value of the input, and another for updating the value of the input. Notice that there is no state here, this is a dumb, stateless component.
 

@@ -156,18 +156,20 @@ All events supported in vanilla JavaScript are also supported in JSX.
 
 In React we can store our JSX inside of components. Components are like small containers which can be re-used in your application. For example, you might build a `Button` component which renders our all the JSX required for a button. 
 
-```jsx
-  import React from 'react'
+```html
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<MyButton />,document.getElementById('root'));
 
-  function MyButton(){
-    return (
-      <div className="button primary">
-          <button>click me</button>
-      </div>
-    )
-  }
+function MyButton(){
+  return (
+    <div className="button primary">
+        <button>click me</button>
+    </div>
+  )
+}
+
+</script>
 ```
-@highlight 3,5-7,only
+@codepen
 
 In the code above, we're defining a functional components (basically a function which returns JSX) called `MyButon`.
 

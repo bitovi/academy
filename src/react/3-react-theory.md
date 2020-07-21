@@ -13,13 +13,16 @@ At it's core, React helps developers break their views into discrete components.
 
 Functional components are the simplest and easiest to write components in React, in a nutshell, they're basically functions which return JSX.
 
-```jsx
-import React from 'react';
+```html
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<MyFuncComponent />,document.getElementById('root'));
 
 function MyFuncComponent() {
   return <div>hello world</div>;
 }
+
+</script>
 ```
+@codepen
 
 As you can see in the functional component above there's not much magic going on, we simply define a function and return JSX from it.
 
@@ -27,23 +30,24 @@ As you can see in the functional component above there's not much magic going on
 
 Class components are a bit more complex than functional ones. Class components are contained in a class and have a `render` method which returns JSX.
 
-```jsx title="React has two types of components" subtitle="Class components"
-import React from 'react';
+```html title="React has two types of components" subtitle="Class components"
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">
 
 class MyClassComponent extends React.Component {
   render() {
     return <div>hello world</div>;
   }
 }
+
+ReactDOM.render(<MyClassComponent />,document.getElementById('root'));</script>
 ```
+@codepen
 
 ### What's the Difference?
 
 No matter which type of component you're working with, they can be rendered the same way:
 
 ```jsx title="Both types of components are rendered the same way"
-import React from 'react';
-
 function App() {
   return (
     <div>
@@ -75,12 +79,12 @@ In a nutshell, a component is a modular collection of functionality and state wh
 
 Often times the state and the functionality of a component are combined together. Let's take a simple counter component as an example:
 
-```jsx
-import React, {useState} from 'react'
+```html
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<Counter />,document.getElementById('root'));
 
 function Counter(){
     // a piece of state called `clickCount` is initialized to 0
-    const [clickCount, setClickCount] = useState(0)
+    const [clickCount, setClickCount] = React.useState(0)
 
     return (
         <div>
@@ -89,8 +93,11 @@ function Counter(){
         </div>
     )
 }
+
+</script>
 ```
-@highlight 3,7-8,only
+@highlight 5,9-10,only
+@codepen
 
 We'll cover more of the specifics about how this works later on, but for now let's just go over what's happening at a high level.
 
@@ -105,20 +112,3 @@ This pattern is very common in React components. We have a piece of state (`clic
 The kicker here, is that whenever the state gets updated, because that state is being rendered out in the JSX, the component needs to get updated on the browser, the component's HTML needs to get re-rendered.
 
 React will handle the process of re-rendering and updating the component in the background, but it's our job as developers to specify the state and functionality so React knows *when* the component should be updated (whenever the state updates).
-
-
-
-
-
-## The problem
-
-
-
-
-## How to solve this problem
-
-
-## What you need to know
-
-
-## The solution

@@ -19,20 +19,23 @@ There are two hooks which deal with memoization, `useMemo` and `useCallback`, le
 * Recalculated synchronously based on declared dependencies.
 * Used to optimize expensive calculations.
 
-```jsx title="useMemo Example"
-import React, { useMemo } from 'react';
+```html title="useMemo Example"
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<Hello firstName="Justin" lastName="Meyer"/>,document.getElementById('root'));
 
 function Hello({ firstName, lastName }) {
-  const name = useMemo(() => {
+  const name = React.useMemo(() => {
     // some expensive derived value
     return `${firstName} ${lastName}`;
   }, [ firstName, lastName ]);
-​
+
   return (
     <div>{name}</div>
   );
 }
+
+</script>
 ```
+@codepen
 
 In the code above, we're utilizing `useMemo` to memoize a value derived from two props, `firstName` and `lastName`. Imagine that in order to get the full `name`, we need to perform some long-running or expensive operation. Normally, we would do perform this operation every time the component renders, reguardless of the `firstName`/`lastName` prop values.
 
@@ -52,15 +55,15 @@ Let's take a look at a more real world example, here we'll generate primes, but 
 
 Here's a look at it without `useMemo`:
 
-```jsx
-import React, { useMemo } from 'react';
+```html
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<Hello bigJSONBlob={'{"hello": "world"}'}/>,document.getElementById('root'));
 
 function Hello({ bigJSONBlob }) {
   const data = JSON.parse(bigJSONBlob);
   const lines = flatten(data);
 
   return (
-    <div>{lines.map(line => <div>{line}</div>)}</div>
+    <div>{lines.map(line => <div key={line}>{line}</div>)}</div>
   );
 }
 
@@ -76,20 +79,24 @@ function flatten(input) {
     return [ `${key}: ${input[key]}` ];
   }).flat();
 }
+
+</script>
 ```
+@codepen
+
 This could get quite expensive for a large object, even the parsing could make a difference, so we memoize the whole value, only recalculating on bigJSONBlob changes
 
-```jsx title="useMemo to cache a function call" subtitle="So we memoize the whole value, only recalculating on bigJSONBlob changes"
-import React, { useMemo } from 'react';
+```html title="useMemo to cache a function call" subtitle="So we memoize the whole value, only recalculating on bigJSONBlob changes"
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<Hello bigJSONBlob={'{"hello": "world"}'}/>,document.getElementById('root'));
 
 function Hello({ bigJSONBlob }) {
-  const lines = useMemo(() => {
+  const lines = React.useMemo(() => {
     const data = JSON.parse(bigJSONBlob);
     return flatten(data);
   }, [ bigJSONBlob ]);
 
   return (
-    <div>{lines.map(line => <div>{line}</div>)}</div>
+    <div>{lines.map(line => <div key={line}>{line}</div>)}</div>
   );
 }
 
@@ -105,9 +112,11 @@ function flatten(input) {
     return [ `${key}: ${input[key]}` ];
   }).flat();
 }
-```
-@highlight 4,7only
 
+</script>
+```
+@highlight 4,only
+@codepen
 
 ## useCallback
 
@@ -119,8 +128,8 @@ function flatten(input) {
 
 Below is a clickable `Hello` component which defines an un-memoized `handleClick` function.
 
-```jsx title="useCallback" subtitle="a Thing with a click handler"
-import React, { useCallback } from 'react';
+```html title="useCallback" subtitle="a Thing with a click handler"
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<Hello firstName="Justin" lastName="Meyer"/>,document.getElementById('root'));
 
 function Hello({ firstName, lastName }) {
   const handleClick = () => {
@@ -128,26 +137,32 @@ function Hello({ firstName, lastName }) {
   };
 
   return (
-    <Thing onClick={handleClick}>Hello</Thing>
+    <button onClick={handleClick}>Hello</button>
   );
 }
+
+</script>
 ```
+@codepen
 
 Now below, we'll wrap `handleClick` logic in `useCallback` so we can cache the results.
 
-```jsx title="useCallback" subtitle="click handler gets memoized"
-import React, { useCallback } from 'react';
+```html title="useCallback" subtitle="click handler gets memoized"
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<Hello firstName="Justin" lastName="Meyer"/>,document.getElementById('root'));
 
 function Hello({ firstName, lastName }) {
-  const handleClick = useCallback(() => {
+  const handleClick = React.useCallback(() => {
     console.log(`${firstName} ${lastName}`);
   }, [ firstName, lastName ]);
 
   return (
-    <Thing onClick={handleClick}>Hello</Thing>
+    <button onClick={handleClick}>Hello</button>
   );
 }
+
+</script>
 ```
+@codepen
 
 ## Exercise
 
