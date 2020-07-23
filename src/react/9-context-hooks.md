@@ -45,9 +45,9 @@ So now that we've set up the Provider, the question is, how do child components 
 * Takes a context object and exposes the value to a child component
 * Used by custom hooks to simplify knowledge
 
-`useContext` allows for child components nested at any level nested within a provider to access the value the provider provides.
+`useContext` allows for child components nested at any level within a provider to access the value the provider *provides*.
 
-In the example above, the provider's value is a theme object (`THEMES.blue`). The theme is something that our `Button` component might want to use to style itself, so let's take a look at how that would works:
+In the example above, the provider's value is a theme object (`THEMES.blue`). The theme is something that our `Button` component might want to use to style itself, so let's take a look at how that would work:
 
 ```jsx
 import React, {useContext} from 'react'
@@ -70,7 +70,7 @@ Once inside the `Button` component, we'll call on the `useContext` hook to give 
 
 Once we've gotten the theme from `useContext`, we can use it to appropriately style the `Button`.
 
-## Complex Providers
+## Advanced Provider Patterns
 
 The example above demonstrates the simplest use-case for context/useContext, but often times developers will organize their providers to abstract away a lot of the boilerplate.
 
@@ -95,7 +95,7 @@ export default function ThemeProvider({ theme, children }) {
 }
 ```
 
-In the example above, we've take all of the `ThemeContext` logic and encapsulated it into it's own component `ThemeProvider`. This is a very common technique for organizing contexts in a scalable and re-usable way.
+In the example above, we've taken away all of the `ThemeContext` logic and encapsulated it into it's own component `ThemeProvider`. This is a very common technique for organizing contexts in a scalable and re-usable way.
 
 We can take this a step further by exporting a custom hook `useTheme` from this file, which can then be used by nested components like `Button` to access the theme:
 

@@ -62,13 +62,13 @@ For all intents and purposes, aside from the syntax there's not much difference 
 
 Originally however, class components were the most popular because they could keep track of state and respond to specific component lifecycle events. This wasn't possible in functional component until the release of the React Hooks API in v16.
 
-Now-a-days both class and functional components are used commonly in codebases around the world, but there has been more of a shift to using functional components only as the syntax for them is considered more readable and cleaner by many.
+Now-a-days both class and functional components are used commonly in code-bases around the world, but there has been more of a shift to using functional components only as the syntax for them is considered more readable and cleaner by many.
 
 For the remainder of this training, we'll be using functional components exclusively!
 
 ## How does React work?
 
-At it's core, React is all about components. In fact, that's the whole point of the library, to help developers create re-usable components easily.
+React is all about components. In fact, that's the whole point of the library, to help developers create re-usable components easily.
 
 But what actually is a component?
 

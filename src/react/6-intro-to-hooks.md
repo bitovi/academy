@@ -12,7 +12,7 @@
 
 Hooks are not just a new tool, they're a whole new toolbox!
 
-With the release of version 16, hooks were added to the React API. Now, developers could use state and respond to lifecycle events all from functional components.
+With the release of version 16, hooks were added to the React API. Now, developers can use state and respond to lifecycle events, all from functional components.
 
 Many developers find this to be a huge improvement over using class components in equivalent situations because hooks tend to be a lot cleaner, more discrete and ultimately more scalable.
 
@@ -34,7 +34,7 @@ The "Hooks" way of doing things is slowly becoming adopted not just by React but
 
 Hooks allow you to co-locate all logic relating to a specific feature. No more splitting it between multiple lifecycle methods or duplicating logic.
 
-You also et the benefits of higher order components but with simple functions and without clogging up your React tree.
+You also get the benefits of higher order components but with simple functions and without clogging up your component tree.
 
 So let's take a look at some basic hooks and start to get a feel for this new paradigm.
 

@@ -20,7 +20,7 @@ Let's take a look at each hook in turn and see what they can do.
 
 Let's start with `useState`. 
 
-When `useState` is called, it return an array with two elements in it. The first element is the state value itself, this is the value you would render out inside the JSX. The second element is a setter function, which, when called can be used to update the state and trigger a re-render.
+When `useState` is called, it returns an array with two elements in it. The first element is the state value itself, this is the value you would render out inside the JSX. The second element is a setter function, which, when called can be used to update the state and trigger a re-render.
 
 ```html
 <div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<Hello />,document.getElementById('root'));
@@ -51,9 +51,9 @@ This process is similar no matter what component you're building. The basic flow
 
 ## useRef
 
-Just like `useState`, `useRef` is a data store, keeping track of values the component is interested in. In this case however, `useRef` stores DOM references instead of state data.
+Just like `useState`, `useRef` is a data store, keeping track of values the component is interested in. In this case however, `useRef` helps store DOM references instead of state data.
 
-DOM references give your component's code access to the underlying DOM element that your JSX is mapped to through a `.current` field. These references can then be used to make more specific changes to the DOM or maintain access to external libraries. It's important to note that refs don't cause updates like modifying the state does.
+DOM references give your component's code access to the underlying DOM element that your JSX is mapped to through a `.current` field. These references can then be used to make more specific changes to the DOM or maintain access to external libraries. It's important to note that updating refs doesn't cause updates like modifying the state does.
 
 Let's take a look at `useRef` in action:
 
@@ -74,11 +74,11 @@ function Hello() {
 };
 ```
 
-In the code above we do a couple things:
+In the code above we're doing a couple things:
 
 * Get refs for the parent and the map instance
 * Pass the parent ref to the `div` JSX element
-* Working inside a useEffect so we have access to parent.current, set the current map value
+* Working inside a useEffect so we have access to `parent.current`, set the current map value
 
 ## Exercise
 

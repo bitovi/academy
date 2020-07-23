@@ -5,11 +5,11 @@
 
 @body
 
-# Controlled vs Uncontrolled Components!
+## Introduction 
 
 One of the biggest mindset shifts for new developers learning React is the concept of a controlled vs uncontrolled component. This is something that is particularly important when building input components (text, checkbox, radio, etc).
 
-There are two types of input components we can create in React, controlled inputs and unconotrolled inputs.
+There are two types of input components we can create in React, controlled inputs and uncontrolled inputs.
 
 An uncontrolled input is one where we're not explicitly setting the value attribute. When a value attribute is not explicitly set, the input is ultimately controlled by the browser, and thus, out of the control of the React developer:
 
@@ -27,7 +27,7 @@ function SearchBar() {
 
 The `SearchBar` above is considered uncontrolled because we're not explicitly giving it a value. The value of the input is now entirely determined by the browser & the user, we as developers have no say.
 
-While this isn't nescessarily a bad thing, it does make our lives as React developers more difficult. The reason being, at any given point in the lifecycle of this component, we don't know what the value of the input is. Assuming we'll want to use the value at some point, this becomes a problem, how do we access the value?
+While this isn't necessarily a bad thing, it does make our lives as React developers more difficult. The reason being, at any given point in the lifecycle of this component, we don't know what the value of the input is. Assuming we'll want to use the value at some point, this becomes a problem. How do we access the input's value?
 
 We can solve this problem by explicitly controlling the input (giving it a value).
 
@@ -70,7 +70,7 @@ We'll create a piece of state called `inputValue`, use that as the value of the 
 
 The process outlined above is how most controlled inputs are structured. Whether it's a textbox, a color picker or a checkbox, we can use this same stateful strategy to construct it. By storing the value in state, we always have access to it, and we can even control what the value ends up being.
 
-We can take this a step furthur, by controlling the component with props:
+We can take this a step further, by controlling the component with props:
 
 ```html 1:21 title="It's common to let a smart 'parent' component control the values"
 <div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<SmartParentComponent />,document.getElementById('root'));

@@ -13,7 +13,7 @@ While it's most commonly used for building web apps, React can also be used to c
 
 React is concerned with allowing developers to break the view layer of their apps into small, re-usable chunks called Components. These components can be rendered by React onto the browser and will automatically update whenever the data in your app changes (we call this data state).
 
-One of the best things about React is that it can be used in any website, even one that is already build with another framework. This makes it easy to convert an existing app to React, or just use React for one part of a site.
+One of the best things about React is that it can be used in any website, even one that is already built with another framework. This makes it easy to convert an existing app to React, or just use React for one part of a site.
 
 ### The React Stack
 
@@ -21,7 +21,7 @@ In it's simplest form React is just a library, but when developing real world ap
 
 - **Babel** - Babel is a JavaScript transcompiler which allows developers to use the latest ECMAScript features in a backwards compatible way. React relies on Babel specifically to transpile JSX (the syntax used to define component layouts) into executable JavaScript code.
 - **Webpack** - Webpack let's developers bundle their React components/apps into small, easily servable bundles which can be downloaded and run when the user's webpage loads. Webpack configurations also allow for live-reloading sites in development.
-- **Jest** - Jest is one of the most popular testing libraries in all of JavaScrpt, and can be used to test React components very easily. 
+- **Jest** - Jest is one of the most popular testing libraries in all of JavaScript, and can be used to test React components very easily. 
 
 In addition to the three highlighted above, there are many more small libraries/technologies which make developing in React much easier.
 
@@ -66,13 +66,11 @@ Let's walk through some of the files that were generated.
 
 The public folder contains static files which will eventually be served up as part of your website. The most important file here is `index.html`, this is the file React will "hook into" and render all of it's contents to.
 
-You can also include global css files here along with any images and other static HTML files.
-
-Generally however, you shouldn't need to touch this folder too much.
+You can also include global css files here along with any images and other static HTML files. Generally however, you shouldn't need to touch this folder too much.
 
 **/src**
 
-The `src` folder is where you'll store all your React components and generally just all of the code for your app. This should already be seeded with an small sample app (you can safely delete anything), but the most important file is `index.js`.
+The `src` folder is where you'll store all your React components and generally just all of the code for your app. This should already be seeded with an small sample app (you can safely delete anything these files), but the most important file is `index.js`.
 
 It's in `index.js` where our React app is initialized and we attach it to `index.html`.
 
@@ -95,7 +93,7 @@ Create React App provides a set of scripts (`react-scripts`) which know how to s
 
 The final script included, `eject` is very important. Create React App, by default, will hide all of the configuration files and the transitive dependencies (Webpack, Babel, EsLint, etc). If you run the `eject` command all of these will be dumped into your project, giving you full control.
 
-> Note that it's generally recommend **not** to eject unless you absolutely have to.
+> Note that ejecting is generally **not** recommended unless absolutely necessary.
 
 ## Version Control & Deployment
 
@@ -103,4 +101,4 @@ Create React App will automatically initialize the new folder as a git repo, whi
 
 One of the benefits of using `react-scripts` is it's great build process. When you run the `npm run build` command, your site will automatically be bundled, minified, and dumped into a `build` folder. 
 
-This folder can now be uploaded to any web-server and served statically just like a normal HTML website, no fancy webserver or processes needed.
+This folder can then be uploaded to any web-server and served statically just like a normal HTML website, no fancy webserver or processes needed.

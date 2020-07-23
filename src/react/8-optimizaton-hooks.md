@@ -9,7 +9,7 @@
 
 In addition to the core hooks exposed by React, namely `useState` and `useEffect`, there are several hooks aimed at optimizing your code for performance.
 
-Specifically optimization through Memoization. In a nutshell, memoization is the process of caching the values returned from long running functions, and returning the cached values when inputs are identical.
+Specifically optimization through memoization. In a nutshell, memoization is the process of caching the values returned from long running functions, and returning the cached values when inputs are identical.
 
 There are two hooks which deal with memoization, `useMemo` and `useCallback`, let's take a look at them below.
 
@@ -37,7 +37,7 @@ function Hello({ firstName, lastName }) {
 ```
 @codepen
 
-In the code above, we're utilizing `useMemo` to memoize a value derived from two props, `firstName` and `lastName`. Imagine that in order to get the full `name`, we need to perform some long-running or expensive operation. Normally, we would do perform this operation every time the component renders, reguardless of the `firstName`/`lastName` prop values.
+In the code above, we're utilizing `useMemo` to memoize a value derived from two props, `firstName` and `lastName`. Imagine that in order to get the full `name`, we need to perform some long-running or expensive operation. Normally, we would perform this operation every time the component renders, regardless of the `firstName`/`lastName` prop values.
 
 When we memoize the value however, React keeps track of the inputs and outputs of this function, and caches values for all the possibilities it encounters. This means that if this component gets rendered with the same first and last name 100 times, we'll only need to perform the expensive operation once.
 
@@ -84,7 +84,7 @@ function flatten(input) {
 ```
 @codepen
 
-This could get quite expensive for a large object, even the parsing could make a difference, so we memoize the whole value, only recalculating on bigJSONBlob changes
+This could get quite expensive for a large object, even the parsing could make a difference, so we memoize the whole value, only recalculating on `bigJSONBlob` changes
 
 ```html title="useMemo to cache a function call" subtitle="So we memoize the whole value, only recalculating on bigJSONBlob changes"
 <div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<Hello bigJSONBlob={'{"hello": "world"}'}/>,document.getElementById('root'));
@@ -124,7 +124,7 @@ function flatten(input) {
 * `useCallback(fn, deps)` is equivalent to `useMemo(() => fn, deps)`
 * Used to maintain referential equality between renders.
 
-`useCallback` is particularly useful when defining event handlers. In such cases, we're not nescessarily interested in memoizing a single value, but rather, a callback function. This is very common in react, as we're constantly using callback as props.
+`useCallback` is particularly useful when defining event handlers. In such cases, we're not necessarily interested in memoizing a single value, but rather, a callback function. This is very common in react, as we're constantly using callbacks as props.
 
 Below is a clickable `Hello` component which defines an un-memoized `handleClick` function.
 
@@ -145,7 +145,7 @@ function Hello({ firstName, lastName }) {
 ```
 @codepen
 
-Now below, we'll wrap `handleClick` logic in `useCallback` so we can cache the results.
+Now below, we'll wrap `handleClick`'s logic in a `useCallback` so we can cache the results.
 
 ```html title="useCallback" subtitle="click handler gets memoized"
 <div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<Hello firstName="Justin" lastName="Meyer"/>,document.getElementById('root'));
