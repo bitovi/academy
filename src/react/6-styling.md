@@ -1,5 +1,5 @@
 @page learn-react/styling-in-react Styling in React
-@parent learn-react 5
+@parent learn-react 6
 
 @description Learn the different ways to style React components
 
@@ -186,7 +186,7 @@ function Thing() {
 
 The styled components approach is definitely a departure from traditional styling methodologies, however it makes up for it by integrating so nicely with the React paradigm. 
 
-It's important to note that in many production code bases, some combination of the above styling techniques are utilized. Oftentimes some static css files will be nescessary, and used alongside something like styled components. At the end of the day the right solution is the one that works for your team!
+It's important to note that in many production code bases, some combination of the above styling techniques are utilized. Oftentimes some static css files will be necessary, and used alongside something like styled components. At the end of the day the right solution is the one that works for your team!
 
 ## Exercise
 

@@ -1,5 +1,5 @@
 @page learn-react/intro-to-hooks Hooks
-@parent learn-react 6
+@parent learn-react 7
 
 @description Learn how to use React hooks to make functional components more powerful.
 

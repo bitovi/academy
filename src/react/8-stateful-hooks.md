@@ -1,5 +1,5 @@
 @page learn-react/stateful-hooks Stateful Hooks
-@parent learn-react 7
+@parent learn-react 8
 
 @description Learn how to hooks in React to manage the state of a component.
 

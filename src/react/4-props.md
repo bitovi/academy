@@ -34,7 +34,7 @@ This same logic also applies to React components.
 
 ### Basic Props
 
-Recall that React components are essentially just functions (or classes) which return some JSX. And like normal functions, we run into the same re-usabiity problems. 
+Recall that React components are essentially just functions (or classes) which return some JSX. And like normal functions, we run into the same re-usability problems. 
 
 
 ```jsx

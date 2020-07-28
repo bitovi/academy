@@ -9,9 +9,9 @@
 
 Before we talk about JSX, let's first discuss exactly how views are created in React.
 
-At it's core, React is a JavaScrpt library used for creating re-usable front-end components. One of the best features of React is that it allows you to describe the way your components look using only JavaScript, there's no HTML or templating languages to keep track of.
+At it's core, React is a JavaScript library used for creating re-usable front-end components. One of the best features of React is that it allows you to describe the way your components look using only JavaScript, there's no HTML or templating languages to keep track of.
 
-But this "all JS" approach comes with some downsides, namely it becomes very difficult to describe complex page hiearacies using only pure JavaScript.
+But this "all JS" approach comes with some downsides, namely it becomes very difficult to describe complex page hierarchies using only pure JavaScript.
 
 ### React's Element API
 
@@ -45,7 +45,7 @@ The code above replicates the following HTML:
 
 As you can see, the more complex the HTML we're trying to model, the more complex the `React.createElement` code becomes. 
 
-While it is possible to build entire apps using just the `createElement` function, this is rarely used due to it's unintuitive and messy nature.
+While it is possible to build entire apps using just the `createElement` function, this is rarely used due to it's un-intuitive and messy nature.
 
 Instead, React supports an HTML in Javascript syntax called JSX.
 
@@ -55,7 +55,7 @@ JSX is a special syntax transpile-able by babel, which looks almost identical to
 
 Instead of having to use the cumbersome `React.createElement` syntax, views can be defined and maintained in JSX and will automatically be transpiled into the equivalent `React.createElement` syntax at build-time.
 
-JSX can be written alongside your other JavaScript, which makes for a seriously powerful programming enviornment.
+JSX can be written alongside your other JavaScript, which makes for a seriously powerful programming environment.
 
 ## Differences With HTML
 
@@ -124,7 +124,7 @@ Because it is integrated into JavaScript, JSX gives us the ability to interpolat
 
 In the code above, we've used the `{name}` syntax to tell JSX that we want to interpolate the value stored in the `name` variable ("Bitovi") into our view.
 
-You can take this a step furthur by interpolating multiple values, and using JavaScript functions to transform data on the fly. Anything that goes inside `{}` is executed as normal JavaScript.
+You can take this a step further by interpolating multiple values, and using JavaScript functions to transform data on the fly. Anything that goes inside `{}` is executed as normal JavaScript.
 
 ```jsx
   const person = {
@@ -148,7 +148,7 @@ One of the most powerful aspects of JavaScript is that it enables developers to 
 </div>
 ```
 
-In the code above, we've attached an `onClick` listener to the `<button>` element. Whenever this button get's clicked now, the code inside the `onClick={...}` will get executed. This always need to be a function, and that function will get called with an `event` object.
+In the code above, we've attached an `onClick` listener to the `<button>` element. Whenever this button gets clicked now, the code inside the `onClick={...}` will get executed. This always need to be a function, and that function will get called with an `event` object.
 
 All events supported in vanilla JavaScript are also supported in JSX.
 
@@ -171,7 +171,7 @@ function MyButton(){
 ```
 @codepen
 
-In the code above, we're defining a functional components (basically a function which returns JSX) called `MyButon`.
+In the code above, we're defining a functional components (basically a function which returns JSX) called `MyButton`.
 
 This component returns JSX and could then be rendered and re-used by another component like `App` below.
 

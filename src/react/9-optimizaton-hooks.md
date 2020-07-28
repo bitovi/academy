@@ -1,5 +1,5 @@
 @page learn-react/optimization-hooks Optimization Hooks
-@parent learn-react 8
+@parent learn-react 9
 
 @description Learn how to optimize your React apps with some helpful hooks.
 
