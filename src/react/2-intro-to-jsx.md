@@ -77,7 +77,7 @@ The equivalent JSX looks very similar, but the styles are stored in an object:
   Inline styles are different
 </div>
 
-First, notice that instead of using a string to store the styles `style=""` we use an object `style={}`. In JSX, we can interpolate JavaScript code into our attributes, and when doing so we use the curly bracket notation instead of quotes (quotes can be used only for string values).
+First, notice that instead of using a string to store the styles `style=""` we use curly brackets `style={}`. In JSX, we can interpolate JavaScript code into our attributes, and when doing so we use the curly bracket notation instead of quotes (quotes can be used only for string values).
 
 Inside of `style={  }` we have an object of styles whose keys are css attributes and values are the value of the css. This structure closely resembles the `CSSStyleDeclaration` object used by the browser to store element styles (To see this run `document.body.style` in your browser console)
 
@@ -178,11 +178,13 @@ This component returns JSX and could then be rendered and re-used by another com
 ```jsx
 function App(){
     return (
-      <MyButton />
-      <MyButton />
-      <MyButton />
+      <div>
+        <MyButton />
+        <MyButton />
+        <MyButton />
+      </div>
     )
 }
 ```
 
-Here the `App` component is rendering out the `MyButton` component 3 times. Note that when you render out custom components like this they don't need closing tags (unless you explicitly design them like that). 
+Here the `App` component is rendering out the `MyButton` component 3 times. Note that when you render out custom components like this they don't need closing tags, instead they can be self-closing with a `/` tacked onto the end. You can also design them to have closing tags with extra elements rendered inside. 

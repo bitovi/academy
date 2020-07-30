@@ -21,7 +21,7 @@ In it's simplest form React is just a library, but when developing real world ap
 
 - **Babel** - Babel is a JavaScript transcompiler which allows developers to use the latest ECMAScript features in a backwards compatible way. React relies on Babel specifically to transpile JSX (the syntax used to define component layouts) into executable JavaScript code.
 - **Webpack** - Webpack let's developers bundle their React components/apps into small, easily servable bundles which can be downloaded and run when the user's webpage loads. Webpack configurations also allow for live-reloading sites in development.
-- **Jest** - Jest is one of the most popular testing libraries in all of JavaScript, and can be used to test React components very easily. 
+- **Jest** - Jest is one of the most popular testing libraries in all of JavaScript, it's built by the same people who made React and can be used to test React components very easily. 
 
 In addition to the three highlighted above, there are many more small libraries/technologies which make developing in React much easier.
 
@@ -39,14 +39,14 @@ Create React App can be installed via nodejs as a global dependency:
 npm install -g create-react-app
 ```
 
-Once installed, you can create an app using the new command (note you can also run this with `npx`)
+Once installed, you can create an app using the npx command:
 
 ```bash
-create-react-app myapp
+npx create-react-app myapp
 cd myapp
 ```
 
-The above will create a new app called `newapp` in a folder with the same name.
+The above will create a new app called `myapp` in a folder with the same name.
 
 ### Looking at Our Generated Project
 
@@ -59,7 +59,7 @@ Let's walk through some of the files that were generated.
 ├── .gitignore
 ├── package.json
 ├── README.md
-├── yarn.lock
+├── yarn.lock/package-lock.json (depends if you're using yarn or npm)
 ```
 
 **/public**

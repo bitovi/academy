@@ -89,27 +89,27 @@ The button above runs a simple function whenever the user clicks it. But once ag
 
 Suppose we wanted to perform a custom action when the button is clicked instead of the hard-coded `console.log('clicked')`.
 
-Here we would use a callback prop. We'll actually pass the component a callback function as one of it's props, which it will run whenever the button is clicked.
+Here we would use a callback prop. We'll actually pass the component a callback function as one of it's props, which it will run whenever the button is clicked. Note that by convention, these custom callback props should begin with `on` just like native DOM events:
 
 ```jsx
-function MyButton({handleClick}) {  // here we're destructuring the props object
+function MyButton({onButtonClick}) {  // here we're destructuring the props object
     return (
-        <button onClick={handleClick}>
+        <button onClick={onButtonClick}>
             click me
         </button>
     )
 }
 ```
 
-Notice above that the `MyButton` component now accepts a `handleClick` prop (we're also destructuring the props object).
+Notice above that the `MyButton` component now accepts a `onButtonClick` prop (we're also destructuring the props object).
 
 Now whenever the button is clicked it will run that custom action, making the button component a lot more re-usable.
 
 ```jsx
-<MyButton handleClick={() => console.log('custom click action')}>
+<MyButton onButtonClick={() => console.log('custom click action')}>
 ```
 
-When we render the button, we'll pass in the `handleClick` prop just like the text from the `ErrorMessage` component. The only difference here is that because we're not passing a string prop, it needs to be inside `{ }` instead of `" "` (this applies for all non-string props).
+When we render the button, we'll pass in the `onButtonClick` prop just like the text from the `ErrorMessage` component. The only difference here is that because we're not passing a string prop, it needs to be inside `{ }` instead of `" "` (this applies for all non-string props).
 
 A single component can take as many props as you want to give it, however just like arguments into functions it's a good idea to limit this number, as more props makes for a more confusing component.
 
@@ -118,9 +118,9 @@ A single component can take as many props as you want to give it, however just l
 ```html
 <div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 <script type="jsx">
-    function MyButton({handleClick}) {  // here we're destructuring the props object
+    function MyButton({onButtonClick}) {  // here we're destructuring the props object
         return (
-            <button onClick={handleClick}>
+            <button onClick={onButtonClick}>
                 click me
             </button>
         )
@@ -136,7 +136,7 @@ A single component can take as many props as you want to give it, however just l
         return (
             <div>
                 <ErrorMessage text="The username or password is invalid" />
-                <MyButton handleClick={() => console.log('you clicked')} />
+                <MyButton onButtonClick={() => console.log('you clicked')} />
             </div>
         )
     }
