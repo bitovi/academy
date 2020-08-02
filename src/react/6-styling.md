@@ -196,7 +196,7 @@ Run the app locally with `npm start` and choose the `Styling` exercise. Now head
 
 ### The problem
 
-You have been provided a basic set of global styles in App.css. Your task is to convert these initial styles into each of the other styling types.
+✏️ You have been provided a basic set of global styles in App.css. Your task is to convert these initial styles into each of the other styling types.
  * 1. Inline Styles
  * 2. Modular CSS
  * 3. Styled Components

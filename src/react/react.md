@@ -1,7 +1,7 @@
 @page learn-react React
 @parent bit-academy 5
 
-@description This guide introduces React, the things you should learn before approaching React, and some advanced React topics.
+@description Learn react by building a feature rich tic-tac-toe game in this beginner/intermediate react guide
 
 @body
 
@@ -9,13 +9,13 @@ Welcome to our React course! Throughout this course you'll be introduced to a nu
 
 ## Before You Begin
 
-Before approaching React, you will want to have some familiarity with HTML and JavaScript. Specifically, you will need to understand functions, objects, and arrays. Additionally, you should be familiar with some of the more recent ECMAScript features, like arrow functions, let, and const. It is also good to have some familiarity with NPM, though it is not strictly necessary to begin.
+Before beginning this tutorial, you will want to have some familiarity with HTML and [JavaScript](https://www.bitovi.com/academy/learn-advanced-javascript.html). Specifically, you will need to understand [functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions), [objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object), and [arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array). Additionally, you should be familiar with some of the more recent [ECMAScript](https://medium.com/sons-of-javascript/javascript-an-introduction-to-es6-1819d0d89a0f) features, like [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), and [const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const). It is also good to have some familiarity with [NPM](https://docs.npmjs.com/about-npm/), though it is not strictly necessary to begin.
 
-You'll also want to fork/clone down a copy of the exercise repository used in this course, a tic-tac-toe game:
+✏️ You'll also want to fork/clone down a copy of the exercise repository used in this course, a tic-tac-toe game:
 
-[https://github.com/bitovi/react-exercises]()
+- [https://github.com/bitovi/react-exercises]()
 
-This is the codebase you'll be using throughout a number of the lessons to test your React skills.
+This is the codebase you'll be using throughout a number of the lessons to improve your React skills.
 
 ```bash
 git clone https://github.com/bitovi/react-exercises
@@ -23,27 +23,26 @@ cd react-exercises
 npm install
 ```
 
-## Additional Resources
+## What is React?
 
-Below is a selection of useful React resources to help supplement your learning!
+In a nutshell, React is a [frontend](https://www.coursereport.com/blog/front-end-development-vs-back-end-development-where-to-start) JavaScript library which makes it very easy to build scalable apps.
 
-## Beginner Topics/Examples
+While it's most commonly used for building web apps, React can also be used to create mobile & desktop apps (this requires additional libraries).
 
-* [Basic JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)
-* [Introduction to ECMAScript 6](https://medium.com/sons-of-javascript/javascript-an-introduction-to-es6-1819d0d89a0f)
-* [NPM](https://docs.npmjs.com/about-npm/)
+React is concerned with allowing developers to break the view layer of their apps into small, reusable chunks called [components](https://reactjs.org/docs/components-and-props.html). These components can be rendered by React onto the browser and will automatically update whenever the data in your app changes (we call this data state).
 
-* [Tic Tac Toe (Official)](https://reactjs.org/tutorial/tutorial.html)
-* [Create React App](https://github.com/facebook/create-react-app)
-* [Components and Props](https://reactjs.org/docs/components-and-props.html)
-* [Form Elements](https://reactjs.org/docs/forms.html)
+One of the best things about React is that it can be used in any website, even one that is already built with another framework. This makes it easy to convert an existing app to React, or just use React for one part of a site.
 
-### Advanced Topics
+## Course Outline
 
-Before attacking other advanced topics, you should read up on composition and inheritance in React. Then you can see how React handles state and lifecycle callbacks. From there, you might want to read up on catching errors from children components, asynchronous code splitting, or step outside official features and see how most people handle application state.
+This guide begins with by walking you through how to [set up an environment](/learn-react/setting-up-environment.html) and providing an introduction into [JSX](/learn-react/intro-to-jsx.html) (JavaScript XML) and some basic [react theory](/learn-react/react-theory.html).
 
-* [Composition vs Inheritance](https://reactjs.org/docs/composition-vs-inheritance.html)
-* [State and Lifecycle Callbacks](https://reactjs.org/docs/state-and-lifecycle.html)
-* [Error Boundaries](https://reactjs.org/docs/error-boundaries.html)
-* [Code Splitting and Suspense](https://reactjs.org/docs/code-splitting.html)
-* [Redux](https://redux.js.org/basics/basic-tutorial)
+Once you're all setup and orientated into the framework, you'll learn how to build re-usable web components using [props](http://localhost:8080/learn-react/props.html), and discover the difference between [controlled & uncontrolled](/learn-react/controlled-vs-uncontrolled-components.html) components. You'll also learn the various ways of doing [styling](/learn-react/styling-in-react.html), and how CSS can be integrated into JSX.
+
+The second half of the guide will cover more intermediate topics like state management using [hooks](/learn-react/intro-to-hooks.html) and making components as [optimized](/learn-react/optimization-hooks.html) as possible. 
+
+All throughout, we'll be building out a simple tic-tac-toe game, slowly integrating all of these concepts to make it as re-usable, clean and optimized as possible! 
+
+## Next Steps
+
+✏️ Head over to the [first lesson](/learn-react/setting-up-environment.html) and get your environment setup.

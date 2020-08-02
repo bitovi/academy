@@ -88,7 +88,7 @@ Run the app locally with `npm start` and choose the `Stateful Hooks` exercise. N
 
 ### The problem
 
-Modify the `Board` component so that it keeps track of the current state of the game/players using hooks.
+✏️ Modify the `Board` component so that it keeps track of the current state of the game/players using hooks.
 - store the current board in state
   - It should be reprersented as an array of strings (ex. `["", "x", "o" ...]`)
 - store the current player in state

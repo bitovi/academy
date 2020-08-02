@@ -172,7 +172,7 @@ Run the app locally with `npm start` and choose the `Optimization Hooks` exercis
 
 ### The problem
 
-- Modify the `Board` component so that it's `handleSquareClick` function uses the `useCallback` hook.
+✏️ Modify the `Board` component so that it's `handleSquareClick` function uses the `useCallback` hook.
 
 ### The solution
 

@@ -154,7 +154,7 @@ Run the app locally with `npm start` and choose the `Props` exercise. Now head o
 
 ### The problem
 
-In this section we will:
+✏️ In this section we will:
    - Modify the `Square` component so that accepts two props
       -  `onClick` - a callback which is executed when the user click on it
       -  `symbol` - a string indicating what symbol is in the square (X, O or nothing)

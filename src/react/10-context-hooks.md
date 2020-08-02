@@ -164,7 +164,7 @@ Run the app locally with `npm start` and choose the `Context Hooks` exercise. No
 
 ### The problem
 
-We want to add in the ability to use a style theme for our app.
+✏️ Let's add in the ability to use a style theme for our app.
 
 - `Game` Component  
   - Create a new piece of state called `theme`, which will store the current theme used by the app (`themes.light` by default).

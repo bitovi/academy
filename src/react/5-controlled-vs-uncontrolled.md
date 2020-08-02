@@ -116,7 +116,7 @@ Run the app locally with `npm start` and choose the `Controlled vs Uncontrolled`
 
 ### The problem
 
-You'll be modifying the `Search` component so that it is a controlled input. Specifically, try your hand at the following:
+✏️ You'll be modifying the `Search` component so that it is a controlled input. Specifically, try your hand at the following:
 
 - Modify the `Search` component below so that it's value is controlled by state. 
 - Modify the clear button so that, when clicked, it clears out the value of the input. 
