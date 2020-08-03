@@ -1,17 +1,19 @@
 @page learn-react/intro-to-jsx Introduction to JSX
 @parent learn-react 2
 
-@description Learn how to use React's preferred markup syntax JSX, and combine html with javascript
+@description Learn how to use React's preferred markup syntax JSX, and combine HTML with JavaScript
 
 @body
 
 ## Creating Views in React
 
-Before we talk about JSX, let's first discuss exactly how views are created in React.
+Before we talk about JSX, let's discuss how user interfaces are created in React.
 
-At it's core, React is a JavaScript library used for creating re-usable front-end components. One of the best features of React is that it allows you to describe the way your components look using only JavaScript, there's no HTML or templating languages to keep track of.
+At its core, React is a JavaScript library used for creating reusable front-end components. One of the features of React is that it allows you to describe the way your components look using only JavaScript, there's no HTML or templating languages to keep track of.
 
-But this "all JS" approach comes with some downsides, namely it becomes very difficult to describe complex page hierarchies using only pure JavaScript.
+This is all done through the React element API.
+
+But this "all JS" approach comes with some downsides, namely it becomes very difficult to describe complex page hierarchies using only pure JavaScript. When first learning React, it's good to be exposed to the element API, but keep in mind that most React developers will forego this for an alternative syntactic sugar called JSX.
 
 ### React's Element API
 
@@ -47,15 +49,15 @@ As you can see, the more complex the HTML we're trying to model, the more comple
 
 While it is possible to build entire apps using just the `createElement` function, this is rarely used due to it's un-intuitive and messy nature.
 
-Instead, React supports an HTML in Javascript syntax called JSX.
+Instead, React supports an HTML in JavaScript syntax called JSX.
 
 ## JSX
 
-JSX is a special syntax transpile-able by babel, which looks almost identical to HTML. 
+JSX is a special syntax [transpile-able](https://stackoverflow.com/questions/44931479/compiling-vs-transpiling) by [babel](https://babeljs.io/), which looks almost identical to HTML. 
 
 Instead of having to use the cumbersome `React.createElement` syntax, views can be defined and maintained in JSX and will automatically be transpiled into the equivalent `React.createElement` syntax at build-time.
 
-JSX can be written alongside your other JavaScript, which makes for a seriously powerful programming environment.
+JSX can be written alongside your other JavaScript, which makes for a powerful programming environment.
 
 ## Differences With HTML
 
@@ -73,13 +75,15 @@ In a normal HTML document, inline styles can be attached directly to an element 
 
 The equivalent JSX looks very similar, but the styles are stored in an object:
 
+```jsx
 <div style={ { color: 'red', backgroundColor: 'blue' } }>
   Inline styles are different
 </div>
+```
 
 First, notice that instead of using a string to store the styles `style=""` we use curly brackets `style={}`. In JSX, we can interpolate JavaScript code into our attributes, and when doing so we use the curly bracket notation instead of quotes (quotes can be used only for string values).
 
-Inside of `style={  }` we have an object of styles whose keys are css attributes and values are the value of the css. This structure closely resembles the `CSSStyleDeclaration` object used by the browser to store element styles (To see this run `document.body.style` in your browser console)
+Inside of `style={  }` we have an object of styles whose keys are css attributes and values are the value of the css. This structure closely resembles the [`CSSStyleDeclaration`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration) object used by the browser to store element styles (To see this run `document.body.style` in your browser console)
 
 ### Classes
 
@@ -113,7 +117,7 @@ Now they're both wrapped in a parent `div` and the error will go away!
 
 ## JavaScript Interpolation
 
-Because it is integrated into JavaScript, JSX gives us the ability to interpolate JavaScript values into the views we build with it.
+JSX isn't static, in fact, you can easily insert values from variables and objects into your JSX:
 
 ```jsx
   const name = "Bitovi"
@@ -122,7 +126,7 @@ Because it is integrated into JavaScript, JSX gives us the ability to interpolat
   </div>
 ```
 
-In the code above, we've used the `{name}` syntax to tell JSX that we want to interpolate the value stored in the `name` variable ("Bitovi") into our view.
+In the code above, we've used the `{name}` syntax to tell JSX that we want to use the value stored in the `name` variable `"Bitovi"` into our view.
 
 You can take this a step further by interpolating multiple values, and using JavaScript functions to transform data on the fly. Anything that goes inside `{}` is executed as normal JavaScript.
 
@@ -144,13 +148,17 @@ One of the most powerful aspects of JavaScript is that it enables developers to 
 
 ```jsx 1:3 title="JSX handles user event with ease" subtitle=""
 <div className="button primary">
-  <button onClick={(event) => console.log('Clicked')}>click me</button>
+  <button 
+    onClick={(event) => console.log('Clicked')}
+  >
+    click me
+  </button>
 </div>
 ```
 
 In the code above, we've attached an `onClick` listener to the `<button>` element. Whenever this button gets clicked now, the code inside the `onClick={...}` will get executed. This always need to be a function, and that function will get called with an `event` object.
 
-All events supported in vanilla JavaScript are also supported in JSX.
+All [events](https://developer.mozilla.org/en-US/docs/Web/Events) supported in vanilla JavaScript are also supported in JSX.
 
 ## Components
 
@@ -187,4 +195,4 @@ function App(){
 }
 ```
 
-Here the `App` component is rendering out the `MyButton` component 3 times. Note that when you render out custom components like this they don't need closing tags, instead they can be self-closing with a `/` tacked onto the end. You can also design them to have closing tags with extra elements rendered inside. 
+Here the `App` component is rendering out the `MyButton` component 3 times. Note that when you render out custom components like this they don't need closing tags, instead they can be self-closing with a `/` tacked onto the end. You can also design them to have closing tags with extra elements rendered inside (see an explanation on JSX children [here](https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891)). 

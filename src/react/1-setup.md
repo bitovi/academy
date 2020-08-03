@@ -64,9 +64,27 @@ The `src` folder is where you'll store all your React components and generally j
 
 It's in `index.js` where our React app is initialized and we attach it to `index.html`.
 
+```jsx
+import React from 'react';
+import ReactDOM from 'react-dom;
+import App from './App';
+
+// Connects React to the DOM via ReactDOM
+ReactDOM.render(<App />, document.getElementById('root'))
+```
+
 **package.json**
 
-The `package.json` file is intentionally very small, there are only a few dependencies included by default.
+The `package.json` file is intentionally very small, and includes only a few dependencies by default:
+
+```json
+"@testing-library/jest-dom": "^4.2.4",
+"@testing-library/react": "^9.3.2",
+"@testing-library/user-event": "^7.1.2",
+"react": "^16.13.1",
+"react-dom": "^16.13.1",
+"react-scripts": "3.4.1"
+```
 
 The most important thing here are the scripts:
 
@@ -85,10 +103,20 @@ The final script included, `eject` is very important. Create React App, by defau
 
 > Note that ejecting is generally **not** recommended unless absolutely necessary.
 
-## Version Control & Deployment
+## Version Control
 
 Create React App will automatically initialize the new folder as a git repo, which can be checked into source control just like any other project.
 
-One of the benefits of using `react-scripts` is it's great build process. When you run the `npm run build` command, your site will automatically be bundled, minified, and dumped into a `build` folder. 
+### Deployment
+
+One of the benefits of using `react-scripts` is it's great build process. When you run the `npm run build` command, your site will automatically be bundled, minified, and written into a `build` folder. 
 
 This folder can then be uploaded to any web-server and served statically just like a normal HTML website, no fancy webserver or processes needed.
+
+### Try it out
+
+✏️ Fork or clone the tic-tac-toe app we'll be building in this training from [github](https://github.com/bitovi/react-exercises). 
+
+Make sure you're on the master branch, and after running `npm install` run `npm run build`. This will build the site and create a `build` folder. Check out the files that got generated, notice how they're nicely minified and bundled!
+
+More information on the build folder and on deployment in general can be found on the create-react-app [website](https://create-react-app.dev/docs/deployment/).
