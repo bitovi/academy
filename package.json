@@ -47,7 +47,7 @@
       "bit-docs-html-codepen-link": "^1.5.0",
       "bit-docs-html-highlight-line": "^0.5.4",
       "bit-docs-html-toc": "^1.1.1",
-      "@bitovi/calendar-events": "^0.0.8"
+      "@bitovi/calendar-events": "^0.0.9"
     },
     "glob": {
       "pattern": "src/**/*.{js,md}"
