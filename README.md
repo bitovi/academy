@@ -62,8 +62,8 @@ Academy can be published by running the following command:
 npm run publish
 ```
 
-Doing so requires access to the Bitovi Hubspot API key, which can be found in 1Password. Add the API key to the `.env` file:
+Doing so requires access to the Bitovi Hubspot API key, which can be found in Bitovi's 1Password `Academy` vault. Add the API key to the `.env` file:
 
 `HUBSPOT_API_KEY=key`
 
-If you do not have access to `Password, please reach out to one of the maintainers of the project.
+If you do not have access to 1Password, please reach out to one of the maintainers of the project.
