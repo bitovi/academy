@@ -460,9 +460,23 @@ a.quote-link:hover{
           </div>
           <a href="./learn-web-components.html" class="button button-grey full-width">Take this course</a>
       </div>
-      <div class="academy-card course" style="background: transparent; border: none;">&nbsp;</div>
+      <div class="academy-card course">
+          <div class="course-logo">
+            <img src="./static/img/canjs.png" height="70">
+          </div>
+          <h4>CanJS</h4>
+          <p>Build the TodoMVC application with CanJS 6. Learn how
+             to create, update, and delete records.</p>
+          <div class="width100">
+            <p class='detail'><strong>Audience:</strong> Technology consultants or clients</p>
+            <p class='detail'><strong>Goal:</strong> Learn the basics of CanJS </p>
+            <p class='detail'><strong>Time:</strong> 6 hours</p>
+          </div>
+          <a href="./learn-canjs.html" class="button button-grey full-width">Take this course</a>
+      </div>
       <div class="academy-card course" style="background: transparent; border: none;">&nbsp;</div>
     </div>
+    
   </div>
   <a name="live-events-section"></a>
   <div class="academy-section live-events">
@@ -509,20 +523,6 @@ a.quote-link:hover{
           <a href="./learn-technology-consulting.html" class="button button-grey full-width">Take this course</a>
       </div>
       <div class="academy-card course">
-          <div class="course-logo">
-            <img src="./static/img/canjs.png" height="70">
-          </div>
-          <h4>CanJS</h4>
-          <p>Build the TodoMVC application with CanJS 6. Learn how
-             to create, update, and delete records.</p>
-          <div class="width100">
-            <p class='detail'><strong>Audience:</strong> Technology consultants or clients</p>
-            <p class='detail'><strong>Goal:</strong> Learn the basics of CanJS </p>
-            <p class='detail'><strong>Time:</strong> 6 hours</p>
-          </div>
-          <a href="./learn-canjs.html" class="button button-grey full-width">Take this course</a>
-      </div>
-      <div class="academy-card course">
         <div class="course-logo">
           <img src="./static/img/react.png" width="70">
         </div>
@@ -535,8 +535,6 @@ a.quote-link:hover{
         </div>
         <div class="button button-disabled full-width">Coming soon</div>
       </div>
-    </div>
-    <div class="courses">
       <div class="academy-card course">
         <div class="course-logo">
           <img src="./static/img/javascript.png" width="60">
@@ -545,6 +543,9 @@ a.quote-link:hover{
         <p>Got an idea for a course? Let us know by submitting an issue.</p>
         <a class="button full-width" style="color: white" href="https://github.com/bitovi/academy/issues/new" target="\_blank">Submit your idea</a>
       </div>
+    </div>
+    <div class="courses">
+      <div class="academy-card course" style="background: transparent; border: none;">&nbsp;</div>
       <div class="academy-card course">
         <div class="course-logo">
           <img src="./static/img/slack.png" width="150">
