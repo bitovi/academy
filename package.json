@@ -6,6 +6,7 @@
   "scripts": {
     "document": "bit-docs -d",
     "document-build": "bit-docs -df",
+    "document-watch": "bit-docs -dw",
     "publish": "npm run document-build && node scripts/hubspot-publish/"
   },
   "repository": {

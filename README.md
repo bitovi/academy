@@ -17,11 +17,17 @@ npm i
 Run:
 
 ```
-./node_modules/.bin/bit-docs -d
+npm run document
 ```
 
 This will take a while the first time.  The site will be created in
 the `academy/doc` folder.  Use `http-server` or something similar to view.
+
+If you are making regular changes, you can enable watch mode:
+
+```
+npm run document-watch
+```
 
 If you are making changes to styles, adding images, or anything else, you will need to run
 a `force` build while `skipping` installs with:
