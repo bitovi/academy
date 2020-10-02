@@ -1,7 +1,7 @@
 @page learn-react Learn React by Building a Tic-Tac-Toe Game
 @parent bit-academy 5
 
-@description This hands-on course will introduce both fundamental and advanced React concepts, all building out a feature-rich tic-tac-toe game! By the end of this course, you will master Hooks, Unit Testing, Optimization and Routing.
+@description This hands-on course will introduce both fundamental and advanced React concepts, all while building out a feature-rich Tic-Tac-Toe game! By the end of this course, you will master Hooks, Unit Testing, Optimization and Routing.
 
 @body
 
