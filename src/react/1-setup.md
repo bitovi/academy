@@ -29,7 +29,7 @@ It also acts as a defacto standard for how React apps should be structured and o
 npm install -g create-react-app
 ```
 
-✏️ Once installed, create an app using the npx command:
+✏️ Once installed, create an app using the `npx` command:
 
 ```bash
 npx create-react-app myapp
@@ -40,7 +40,7 @@ The above will create a new app named `myapp` in a folder with the same name und
 
 ### Looking at Our Generated Project
 
-Let's walk through some of the files that were generated.
+Let's walk through some of the generated files.
 
 ```code
 ├── node_modules
@@ -54,15 +54,15 @@ Let's walk through some of the files that were generated.
 
 **/public**
 
-The public folder contains static assets which will be served up as part of your website. You can include stylesheets, images and other static files. The most important file here is `index.html`, which is the page React will render all of its contents to by default.
+The public folder contains static assets which will be served up as part of your website. You can include stylesheets, images and other static files. The most important file here is `index.html`, which is the page React will render to by default.
 
-Generally however, you shouldn't need to touch this folder too much. Anything put inside it will be simply copied as is into the `build` directory during compilation. 
+Anything put inside it will be copied as is into the `build` directory during compilation. Generally, you shouldn't need to touch this folder too much. 
 
 **/src**
 
-The `src` folder is where you'll store all your React components and generally just all of the code for your app. This should already be seeded with a small sample app (you can safely delete any of these files), but the most important file is `index.js`.
+The `src` folder is where all your React components should be stored alongside any logic for your app. This should already be seeded with a small sample app. You can safely delete any of these files.
 
-It's in `index.js` where our React app is initialized and we attach it to `index.html`.
+The `index.js` file is known as the entry-point of the React application. It is where our application is initialized and instructed where to render its output.
 
 ```jsx
 import React from 'react';
@@ -75,7 +75,7 @@ ReactDOM.render(<App />, document.getElementById('root'))
 
 **package.json**
 
-The `package.json` file is intentionally very small, and includes only a few dependencies by default:
+The `package.json` file is kept intentionally small, and includes only a few dependencies by default:
 
 ```json
 "@testing-library/jest-dom": "^4.2.4",
@@ -86,7 +86,9 @@ The `package.json` file is intentionally very small, and includes only a few dep
 "react-scripts": "3.4.1"
 ```
 
-The most important thing here are the scripts:
+If you are wondering where the Webpack and Babel dependencies are, they are hidden as transative dependencies of `react-scripts`.
+
+The most important section is the scripts:
 
 ```json
 "scripts": {
