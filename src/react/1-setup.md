@@ -81,27 +81,25 @@ The `package.json` file is kept intentionally small, and includes only a few dep
 "@testing-library/jest-dom": "^4.2.4",
 "@testing-library/react": "^9.3.2",
 "@testing-library/user-event": "^7.1.2",
-"react": "^16.13.1",
-"react-dom": "^16.13.1",
-"react-scripts": "3.4.1"
+"react": "^16.13.1", // The React library
+"react-dom": "^16.13.1", // Helper functions to output a React tree as HTML
+"react-scripts": "3.4.1" // CLI tools the manage the application
 ```
 
 If you are wondering where the Webpack and Babel dependencies are, they are hidden as transative dependencies of `react-scripts`.
 
-The most important section is the scripts:
+Create React App provides a set of scripts (`react-scripts`) which know how to start, build and test your app. It's generally recommended to leave these as-is, a lot of work has been put into these scripts to ensure the best developer experience possible.
 
 ```json
 "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-scripts start", // Launch live server for development
+    "build": "react-scripts build", // Build and optimize the application for production
+    "test": "react-scripts test", // Runs tests
+    "eject": "react-scripts eject" // Expose hidden configuration options (Dangerous)
 },
 ```
 
-Create React App provides a set of scripts (`react-scripts`) which know how to start, build and test your app. It's generally recommended to leave these as-is, a lot of work has been put into these scripts to ensure the best developer experience possible.
-
-The final script included, `eject` is very important. Create React App, by default, will hide all of the configuration files and the transitive dependencies (Webpack, Babel, EsLint, etc). If you run the `eject` command all of these will be dumped into your project, giving you full control.
+The final script included, `eject` is very important. In order to simplify your workflow, Create React App hides the Webpack, Babel and Jest configuration files. By running `npm run eject` you will be given complete control over your project.
 
 > Note that ejecting is generally **not** recommended unless absolutely necessary.
 
@@ -109,13 +107,13 @@ The final script included, `eject` is very important. Create React App, by defau
 
 Create React App will automatically initialize the new folder as a git repository, which can be checked into source control just like any other project.
 
-### Deployment
+## Deployment
 
 One of the benefits of using `react-scripts` is it's great build process. When you run the `npm run build` command, your site will automatically be bundled, minified, and written into a `build` folder. 
 
 This folder can then be uploaded to any web-server and served statically just like a normal HTML website, no fancy webserver or processes needed.
 
-### Try it out
+## Try it out
 
 ✏️ Fork or clone the tic-tac-toe app we'll be building in this training from [github](https://github.com/bitovi/react-exercises). 
 
