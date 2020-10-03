@@ -56,9 +56,9 @@ When we give you a command to run to verify your work it will look for a file na
 
 ### The Problem
 
-For this exercise, we will first clone the __learn-typescript__ exercise repo.
+For this exercise, we will first clone the __learn-typescript__ exercise repository.
 
-In that repo, there is a _0-why-hello-world.html_ page that looks like the following:
+In that repository, there is a _0-why-hello-world.html_ page that looks like the following:
 
 ```html
 <html>
@@ -68,12 +68,12 @@ In that repo, there is a _0-why-hello-world.html_ page that looks like the follo
 </html>
 ```
 
-After cloning and installing the repo, we will:
+After cloning and installing the repository, we will:
 
 1. Create a simple _0-why-hello-world.ts_ TypeScript file that writes out `"Hello Wold"`.
 2. Compile that code the _0-why-hello-world.ts_ JavaScript file.
 3. Open _0-why-hello-world.html_ and verify that we've written and compiled some TypeScript!
-4. Run the exercise repo's tests for this exercise.
+4. Run the exercise repository's tests for this exercise.
 
 
 

@@ -36,7 +36,7 @@ npx create-react-app myapp
 cd myapp
 ```
 
-The above will create a new app called `myapp` in a folder with the same name.
+The above will create a new app named `myapp` in a folder with the same name under the current working directory.
 
 ### Looking at Our Generated Project
 
@@ -105,7 +105,7 @@ The final script included, `eject` is very important. Create React App, by defau
 
 ## Version Control
 
-Create React App will automatically initialize the new folder as a git repo, which can be checked into source control just like any other project.
+Create React App will automatically initialize the new folder as a git repository, which can be checked into source control just like any other project.
 
 ### Deployment
 
