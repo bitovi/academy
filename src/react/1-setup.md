@@ -111,12 +111,12 @@ Create React App will automatically initialize the new folder as a git repositor
 
 One of the benefits of using `react-scripts` is it's great build process. When you run the `npm run build` command, your site will automatically be bundled, minified, and written into a `build` folder. 
 
-This folder can then be uploaded to any web-server and served statically just like a normal HTML website, no fancy webserver or processes needed.
+You can can then upload the folder to any web-server to be served statically (just like a normal HTML website), no special configuration required.
 
 ## Try it out
 
-✏️ Fork or clone the tic-tac-toe app we'll be building in this training from [github](https://github.com/bitovi/react-exercises). 
+✏️ Fork or clone the tic-tac-toe app we'll be building in this training from [GitHub](https://github.com/bitovi/react-exercises). 
 
 Make sure you're on the master branch, and after running `npm install` run `npm run build`. This will build the site and create a `build` folder. Check out the files that got generated, notice how they're nicely minified and bundled!
 
-More information on the build folder and on deployment in general can be found on the create-react-app [website](https://create-react-app.dev/docs/deployment/).
+More information on the build folder and on deployment in general can be found on the Create React App [website](https://create-react-app.dev/docs/deployment/).
