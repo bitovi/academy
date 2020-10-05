@@ -1,7 +1,7 @@
 @page learn-react/intro-to-jsx Introduction to JSX
 @parent learn-react 2
 
-@description Learn how to use React's preferred markup syntax JSX, and combine HTML with JavaScript
+@description Learn how to use React's preferred markup syntax JSX, and combine HTML with JavaScript.
 
 @body
 

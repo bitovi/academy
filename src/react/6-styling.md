@@ -1,7 +1,7 @@
 @page learn-react/styling-in-react Styling in React
 @parent learn-react 6
 
-@description Learn the different ways to style React components
+@description Learn the different ways to style React components.
 
 @body
 
