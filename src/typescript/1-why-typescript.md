@@ -83,7 +83,7 @@ For this and following TypeScript exercises, we will be working in the
 [https://github.com/bitovi/learn-typescript](https://github.com/bitovi/learn-typescript)
 repository. To use it:
 
-1. ✏️ Clone the learn-typescript repository from github:
+1. ✏️ Clone the learn-typescript repository from GitHub:
    ```shell
    git clone https://github.com/bitovi/learn-typescript.git
    ```

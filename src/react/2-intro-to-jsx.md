@@ -120,10 +120,10 @@ Now they're both wrapped in a parent `div` and the error will go away!
 JSX isn't static, in fact, you can easily insert values from variables and objects into your JSX:
 
 ```jsx
-  const name = "Bitovi"
-  <div className="button primary">
-    Welcome to {name}!
-  </div>
+const name = "Bitovi"
+<div className="button primary">
+  Welcome to {name}!
+</div>
 ```
 
 In the code above, we've used the `{name}` syntax to tell JSX that we want to use the value stored in the `name` variable `"Bitovi"` into our view.
@@ -131,14 +131,14 @@ In the code above, we've used the `{name}` syntax to tell JSX that we want to us
 You can take this a step further by interpolating multiple values, and using JavaScript functions to transform data on the fly. Anything that goes inside `{}` is executed as normal JavaScript.
 
 ```jsx
-  const person = {
-    name: "mike",
-    profession: "programmer"
-  }
-  <div className="button primary">
-    <h1>Hi I'm {person.name.toUpperCase()}!</h1>
-    <p>I'm a {person.profession} living in Philadelphia</p>
-  </div>
+const person = {
+  name: "mike",
+  profession: "programmer"
+}
+<div className="button primary">
+  <h1>Hi I'm {person.name.toUpperCase()}!</h1>
+  <p>I'm a {person.profession} living in Philadelphia</p>
+</div>
 ```
 
 ## Event Handling

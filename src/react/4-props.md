@@ -175,7 +175,7 @@ The app itself has already been scaffolded [here](https://github.com/bitovi/reac
 - `Board.js` - This is a component which renders out the game board and all of the squares that make it up.
 - `Square.js` - This component represents a single square on the Tic-Tac-Toe board, it can be blank or populated with a symbol (X/O).
 
-✏️ Clone or fork the app from [github](https://github.com/bitovi/react-exercises) and run it locally with `npm install && npm start` and choose the `Props` exercise. Now head over to `src/exercises/4 - Props/components`. These are the files you'll be editing for this exercise.
+✏️ Clone or fork the app from [GitHub](https://github.com/bitovi/react-exercises) and run it locally with `npm install && npm start` and choose the `Props` exercise. Now head over to `src/exercises/4 - Props/components`. These are the files you'll be editing for this exercise.
 
 ### The problem
 
@@ -194,11 +194,11 @@ The goal of this exercise is to get a `console.log()` to happen whenever the use
 #### Square.js
 ```jsx
 function Square({ onClick, symbol }) {
-  return (
-    <div className="square" onClick={onClick}>
-      {symbol}
-    </div>
-  );
+    return (
+        <div className="square" onClick={onClick}>
+          {symbol}
+        </div>
+    );
 }
 ```
 @highlight 1,3,4,only
