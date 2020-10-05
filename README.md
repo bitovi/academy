@@ -1,7 +1,7 @@
 # Academy
 
 
-Everything we know about frontend, backend, and design consulting and management.  Go to
+Everything we know about front-end, backend, and design consulting and management.  Go to
 https://bitovi.github.io/academy/ to learn what we know.
 
 

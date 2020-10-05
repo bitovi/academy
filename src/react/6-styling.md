@@ -190,7 +190,7 @@ It's important to note that in many production code bases, some combination of t
 
 ## Exercise
 
-Let's use our styling knowledge to make our tic-tac-toe game look amazing!
+Let's use our styling knowledge to make our Tic-Tac-Toe game look amazing!
 
 Run the app locally with `npm start` and choose the `Styling` exercise. Now head over to `src/exercises/5 - Styling/components`. These are the files you'll be editing.
 

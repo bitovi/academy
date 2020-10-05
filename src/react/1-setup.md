@@ -115,7 +115,7 @@ You can can then upload the folder to any web-server to be served statically (ju
 
 ## Try it out
 
-✏️ Fork or clone the tic-tac-toe app we'll be building in this training from [GitHub](https://github.com/bitovi/react-exercises). 
+✏️ Fork or clone the Tic-Tac-Toe app we'll be building in this training from [GitHub](https://github.com/bitovi/react-exercises). 
 
 Make sure you're on the master branch, and after running `npm install` run `npm run build`. This will build the site and create a `build` folder. Check out the files that got generated, notice how they're nicely minified and bundled!
 

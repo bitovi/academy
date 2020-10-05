@@ -158,7 +158,7 @@ function Button({label}){
 
 ## Exercise
 
-Let's use our context hook knowledge to make our tic-tac-toe use a style theme!
+Let's use our context hook knowledge to make our Tic-Tac-Toe use a style theme!
 
 Run the app locally with `npm start` and choose the `Context Hooks` exercise. Now head over to `src/exercises/9 - Context Hooks/components`. These are the files you'll be editing.
 

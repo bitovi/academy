@@ -167,13 +167,13 @@ Below is the `MyButton` component code combined together into a working example:
 
 ## Exercise
 
-Let's use our props knowledge to start building out our tic-tac-toe app.
+Let's use our props knowledge to start building out our Tic-Tac-Toe app.
 
 The app itself has already been scaffolded [here](https://github.com/bitovi/react-exercises). It includes 3 files each of which comes together to make up the game:
 
 - `Game.js` - This is the component which is responsible for running the game. It's the highest level component, and the most complex. It's in this file where we'll do most of our state management.
 - `Board.js` - This is a component which renders out the game board and all of the squares that make it up.
-- `Square.js` - This component represents a single square on the tic-tac-toe board, it can be blank or populated with a symbol (X/O).
+- `Square.js` - This component represents a single square on the Tic-Tac-Toe board, it can be blank or populated with a symbol (X/O).
 
 ✏️ Clone or fork the app from [github](https://github.com/bitovi/react-exercises) and run it locally with `npm install && npm start` and choose the `Props` exercise. Now head over to `src/exercises/4 - Props/components`. These are the files you'll be editing for this exercise.
 
