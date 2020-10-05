@@ -11,7 +11,7 @@ Before we talk about JSX, let's discuss how user interfaces are created in React
 
 At its core, React is a JavaScript library used for creating reusable front-end components. One of the features of React is that it allows you to describe the way your components look using only JavaScript, there's no HTML or templating languages to keep track of.
 
-This is all done through the React element API.
+This is all done through the React [element API](https://reactjs.org/docs/react-api.html).
 
 But this "all JS" approach comes with some downsides, namely it becomes very difficult to describe complex page hierarchies using only pure JavaScript. When first learning React, it's good to be exposed to the element API, but keep in mind that most React developers will forego this for an alternative syntactic sugar called JSX.
 
