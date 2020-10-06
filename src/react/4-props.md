@@ -5,7 +5,7 @@
 
 @body
 
-## What are props?
+## Props Are Like Arguments
 
 Props are React's way to make components more reusable.
 
@@ -17,7 +17,7 @@ function addOneAndSeven(){
 }
 ```
 
-This is a perfectly good function, but notice that it always adds the same two numbers, in other words, it's only usable in one very specific case.
+This is a perfectly good function, but notice that it always adds the same two numbers. In other words, it's only usable in very specific cases.
 
 We can make this function more re-usable by allowing arguments to be passed into it:
 
@@ -28,18 +28,18 @@ function addNumbers(num1, num2){
 }
 ```
 
-The above function is now infinitely more re-usable because the user can specify the numbers, instead of just having them be hardcoded in.
+The function is now infinitely more re-usable because the caller can specify the numbers, instead of just having them be hardcoded in.
 
-This same need also applies to React components. 
+This same principle applies to React components. 
 
-### Basic Props
+## Basic Props Usage
 
-Recall that React components are essentially just functions (or classes) which return some JSX. And like normal functions, we run into the same re-usability problems. 
+Recall that React components are essentially just functions (or classes) which return an element. And like normal functions, we run into the same re-usability problems. 
 
 
 ```jsx
 function AddNumbers() {
-  return <div>{1 + 7}</div>;
+    return <div>{1 + 7}</div>;
 }
 ```
 
@@ -49,13 +49,13 @@ We can solve this by modifying the `AddNumbers` component so that it accepts pro
 
 ```jsx
 function AddNumbers(props){
-  return (
-    <div>{props.num1 + props.num2}</div>
-  )
+    return (
+        <div>{props.num1 + props.num2}</div>
+    )
 }
 ```
 
-In React, all functional components (and classes) receive a `props` object as their first argument (w/ classes this is the first argument in the constructor).
+In React, all components receive a `props` object as their first argument (class components get them in the constructor).
 
 The props object contains any values which are passed into the component when it's rendered.
 
@@ -66,9 +66,9 @@ The props object contains any values which are passed into the component when it
 
 Whenever the `AddNumbers` component is rendered, we can now pass it `num1` & `num2` props which it will use to do the calculation.
 
-Now, instead of having an unchangeable, hard-coded addition, the component is more flexible and can be re-used in any scenario where it's necessary to display the result of adding two numbers.
+Now, instead of having a hard-coded addition, the component is flexible and can be re-used in any scenario where it's necessary to display the result of adding two numbers.
 
-#### Prop Data Types
+## Prop Data Types
 
 Props can be any data type or data structure. Anything you could pass into a JavaScript function can be passed into a component as a prop.
 
@@ -80,13 +80,13 @@ Props can be any data type or data structure. Anything you could pass into a Jav
 >
 ```
 
-Props that are strings can be passed using quotation marks, while non-string props must be passed in a set of curly brackets, this includes interpolated strings.
+Props that are static strings can be passed using quotation marks, while non-string props must be passed in a set of curly brackets, this includes interpolated strings.
 
-### Callback Props
+## Callback Props
 
 Just like normal function arguments, React components can accept props of any data type (even other components).
 
-One of the most useful types of props are callbacks. Callback props allow the programmer to specify what a component will do when an action occurs inside of it.
+One of the most useful types of props are callbacks. Callback props allow us to specify what a component will do when an action occurs inside of it.
 
 ```jsx
 function MyButton() {
@@ -98,11 +98,11 @@ function MyButton() {
 }
 ```
 
-The button above runs a simple function whenever the user clicks it. But once again, we're running into a re-usability issue.
+The button above calls `console.log('clicked')` whenever the user clicks it. But once again, we're running into a re-usability issue.
 
-Suppose we wanted to perform a custom action when the button is clicked instead of the hard-coded `console.log('clicked')`.
+Suppose we wanted to perform an arbitrary action when the button is clicked instead of the hard-coded `console.log('clicked')`.
 
-Here we would use a callback prop. We'll actually pass the component a callback function as one of its props, which it will run whenever the button is clicked. Note that by convention, these custom callback props should begin with `on` just like native DOM events:
+To accomplish that, we would use a callback prop. To do so, simply pass the component a callback function as one of its props to be called whenever the button is clicked. Note that by convention, callback props should begin with `on` just like native DOM events:
 
 ```jsx
 function MyButton({onButtonClick}) {  // here we're destructuring the props object
@@ -115,19 +115,18 @@ function MyButton({onButtonClick}) {  // here we're destructuring the props obje
 ```
 @highlight 1
 
-Notice above that the `MyButton` component now accepts a `onButtonClick` prop (we're also destructuring the props object).
+Notice above that the `MyButton` component now accepts a `onButtonClick` prop (we're also [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) the props object).
 
-Now whenever the button is clicked it will run that custom action, making the button component a lot more re-usable.
+Now whenever the button is clicked it will call the callback function, making the button component more re-usable.
 
 ```jsx
 <MyButton onButtonClick={() => console.log('custom click action')}>
 ```
 
-When we render the button, we'll pass in the `onButtonClick` prop just like the text from the `ErrorMessage` component. The only difference here is that because we're not passing a string prop, it needs to be inside `{ }` instead of `" "` (this applies for all non-string props).
+When we render the button, we'll pass in the `onButtonClick` prop just like the numbers from the `AddNumbers` component. Since we're not passing a string prop, it needs to be interpolating using curly braces `{ }`.
 
-A single component can take as many props as you want to give it, however just like arguments into functions it's a good idea to [limit this number](https://stackoverflow.com/questions/37695557/react-are-there-respectable-limits-to-number-of-props-on-react-components), as more props makes for a more confusing component.
 
-### Try it out
+## Try it out
 
 Below is the `MyButton` component code combined together into a working example:
 
@@ -137,30 +136,30 @@ Below is the `MyButton` component code combined together into a working example:
 
 
 
-    function MyButton({onButtonClick}) {  // here we're destructuring the props object
-        return (
-            <button onClick={onButtonClick}>
-                click me
-            </button>
-        )
-    }
+function MyButton({onButtonClick}) {  // here we're destructuring the props object
+    return (
+        <button onClick={onButtonClick}>
+            click me
+        </button>
+    )
+}
 
-    function AddNumbers(props){
-        return (
-            <div>{props.num1 + props.num2}</div>
-        )
-    }
+function AddNumbers(props){
+    return (
+        <div>{props.num1 + props.num2}</div>
+    )
+}
 
-    function App(){
-        return (
-            <div>
-                <AddNumbers num1={5} num2={10} />
-                <MyButton onButtonClick={() => console.log('you clicked')} />
-            </div>
-        )
-    }
+function App(){
+    return (
+        <div>
+            <AddNumbers num1={5} num2={10} />
+            <MyButton onButtonClick={() => console.log('you clicked')} />
+        </div>
+    )
+}
 
-    ReactDOM.render(<App />,document.getElementById('root'));
+ReactDOM.render(<App />,document.getElementById('root'));
 </script>
 ```
 @codepen

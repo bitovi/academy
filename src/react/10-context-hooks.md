@@ -7,7 +7,7 @@
 
 # React Context via Hooks
 
-React's context api allows global app state to be shared among all of the components in a component tree. It's commonly used to store data that many components are interested in like the app's theme or the current user.
+React's context API allows global app state to be shared among all of the components in a component tree. It's commonly used to store data that many components are interested in like the app's theme or the current user.
 
 A context object can be created using `React.createContext()` which returns a `Provider` component that can wrap other components interested in the global state.
 
@@ -131,9 +131,9 @@ import ThemeProvider from './ThemeProvider
 
 export default function Layout() {
   return (
-    <ThemeProvider theme="blue">
-        <Button label="Click Me!" />
-    </ThemeProvider>
+      <ThemeProvider theme="blue">
+          <Button label="Click Me!" />
+      </ThemeProvider>
   );
 }
 ```
