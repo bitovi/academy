@@ -5,75 +5,224 @@
 
 @body
 
-# React Context via Hooks
+## The Prop Drilling Problem
 
-React's context API allows global app state to be shared among all of the components in a component tree. It's commonly used to store data that many components are interested in like the app's theme or the current user.
+A single component can take as many props as you want to give it, however just like arguments into functions it's a good idea to [limit this number](https://stackoverflow.com/questions/37695557/react-are-there-respectable-limits-to-number-of-props-on-react-components), as more props makes for a more confusing component.
 
-A context object can be created using `React.createContext()` which returns a `Provider` component that can wrap other components interested in the global state.
+This however, can be difficult to do when you have a lot of data to pass through your component tree. Consider the following hierarchy with a few "drilled props". Lets imagine that the `Theme`, `Domain` amd `RootUrl` are decided within the `App` component, but are __only__ needed within the `ButtonText` component. That is to say, `Dashboard` and `Button` have no business related to any of those props.
 
-```jsx title="Providing and Consuming a Theme with Context" subtitle="Use the Button with the Provider"
-import React, {createContext} from 'react';
+```js
+-- App(Theme, Domain, RootUrl)
+   |-- Dashboard(Theme, Domain, RootUrl)
+       |-- Button(Theme, Domain, RootUrl)
+           |-- ButtonText(Theme, Domain, RootUrl)
+       |-- Button(Theme, Domain, RootUrl)
+           |-- ButtonText(Theme, Domain, RootUrl)
+```
 
-const THEMES = {
-  blue: { color: '#0000ff', fontSize: '1.25rem' },
-  red: { color: '#7ea0ff', fontSize: '2rem' },
-};
+Without concerning ourselves with what exactly each of the props does, we can see the problem. Every piece of global state must be propagated through the entire hierarchy. As a result, each component would look something like this:
 
-export const ThemeContext = createContext()
-
-export default function Layout() {
-  return (
-    <ThemeContext.Provider value={THEMES.blue}>
-        <Button label="Click Me!" />
-    </ThemeContext.Provider>
-  );
+```js
+function Component1(props) {
+  return <Component2 Theme={props.Theme} Domain={props.Domain} RootUrl={props.RootUrl}>
 }
 ```
 
-In the example above we're creating a new `ThemeContext` and then using the `Provider` it exposes to wrap a button component.
+It is possible to re-write it using the spread operator, but what you gain in conciseness, you lose in clarity and performance. **Avoid writing components like this!**
 
-Any components we render inside of the provider will be able to access the information in the `value` prop, no matter how deeply nested they are in the component tree. This eliminates the need for prop drilling where a single `theme` prop would need to be passed down through multiple components.
+```js
+function Component1(props) {
+  return <Component2 {...props} >
+}
+```
 
-The example above is fairly simple, and it's important to keep in mind that there are ways of organizing these Providers that allow for more functionality/data to be exposed. 
+In this case, it doesn't matter if `Component1` even needs the `Theme` prop; it will always require it simply because `Component2` might require it. Many years ago, this was solved using libraries such as [Redux](https://redux.js.org/). These libraries would work by wrapping each component in a connector HoC (Higher-order Component) which would automatically pass in any required props.
 
-So now that we've set up the Provider, the question is, how do child components like `Button` access this theme for themselves?
+Today, we solve this problem using React's Context Providers and Consumers.
 
-## useContext
+## What is Context?
 
-* Hook provided by React
-* Takes a context object and exposes the value to a child component
-* Used by custom hooks to simplify knowledge
+One way to think about Contexts is an additional set of props which are passed transparently through React's internals instead of arguments. It involves three parts:
 
-`useContext` allows for child components nested at any level within a provider to access the value the provider *provides*.
+1) **The Context:** Think of the context like a box of things. The box needs to be globally available to all who want to use it (Put it or take out). The usage of a global avoids using props to pass down information.
+2) **The Provider:** The provider puts things into the box. Whatever data it handles is only available to its children.
+3) **The Consumer:** The consumer takes things out of the box. It can only access the providers which are above it in the component hierarchy.
 
-In the example above, the provider's value is a theme object (`THEMES.blue`). The theme is something that our `Button` component might want to use to style itself, so let's take a look at how that would work:
+## The Context API
+
+### Writing a Context
+
+Creating a Context is as easy as calling `createContext()` and supplying it a default value.
 
 ```jsx
-import React, {useContext} from 'react'
-import ThemeContext from './Layout'
+import React, { createContext } from 'react';
 
-function Button({label}){
-  const theme = useContext(ThemeContext)
+const defaultValue = "Unknown";
+const UsernameContext = createContext(defaultValue);
+```
+@highlight 3,only
 
+The default value is what the **Consumers** will use if they have no available **Provider**. You shouldn't see it on display very often.
+
+### Writing a Provider
+
+The provider constructor is exposed by the context. It is always accessible via `ContextName.Provider` and requires a single prop named `value`. This prop will be the value which provided to all of its **Consumers**. 
+
+Any components we render inside of the provider will be able to access the information in the `value` prop, no matter how deeply nested they are in the component tree. This eliminates the need for prop drilling where a single prop would need to be passed down through multiple components.
+
+```jsx
+import React, { createContext } from 'react';
+
+const defaultValue = "Unknown";
+const UsernameContext = createContext(defaultValue);
+
+function App() {
+  let [username, setUsername] = React.useState("No-name");
+  return (<UsernameContext.Provider value={username}>
+            <WhoAmI />
+          </UsernameContext.Provider>)
+}
+```
+@highlight 8,only
+
+### Writing a Consumer
+
+The consumer is similarly exposed by the context under `ContextName.Consumer`. It allows us to extract the value supplied to a producer above it using a callback.
+
+```jsx
+import React, { createContext } from 'react';
+
+const defaultValue = "Unknown";
+const UsernameContext = createContext(defaultValue);
+
+function App() {
+  let [username, setUsername] = React.useState("No-name");
+  return (<UsernameContext.Provider value={username}>
+            <WhoAmI />
+          </UsernameContext.Provider>)
+}
+
+function WhoAmI() {
   return (
-    <div style={theme}>
-      <button>{label}</button>
-    </div>
+    <UsernameContext.Consumer>
+      {
+        value => {
+          return <span>{value}</span>
+        }
+      }
+    </UsernameContext.Consumer>
   )
 }
 ```
+@highlight 15-21,only
 
-In the button component above we're doing a couple things of interest. First, we import `useContext` from React, and we also import `ThemeContext` from our `Layout` component file (see example in previous section).
+### Updating the Context
 
-Once inside the `Button` component, we'll call on the `useContext` hook to give us the theme value passed down from the `ThemeContext.Provider`. This hooks takes one argument, the `ThemeContext` itself.
+As discussed before, Contexts are a lot like props. Their only difference is the method through which they are passed. To update them, we need to update the value that is passed into the **Provider**. Consider the following changes to make it possible:
 
-Once we've gotten the theme from `useContext`, we can use it to appropriately style the `Button`.
+```jsx
+import React, { createContext } from 'react';
+
+const defaultValue = { username: "Unknown", setUsername: () => new Error("Not in provider") }; // We cant update our box, only the values in the box
+const UsernameContext = createContext(defaultValue);
+
+function App() {
+  let [username, setUsername] = React.useState("No-name");
+  return (<UsernameContext.Provider value={{username: username, setUsername: setUsername}}>
+            <WhoAmI />
+          </UsernameContext.Provider>)
+}
+
+function WhoAmI() {
+  return (
+    <UsernameContext.Consumer>
+      {
+        value => {
+          return (
+            <>
+              <span>{value.username}</span>
+              <button onClick={() => value.setUsername("Mike")}>My Name is Mike</button>
+              <button onClick={() => value.setUsername("Kyle")}>My Name is Kyle</button>
+            </>)
+        }
+      }
+    </UsernameContext.Consumer>
+  )
+}
+```
+@highlight 3,8,21,22,only
+
+We have made three changes to our code:
+
+1) We have changed the shape of our context data from a String, to an Object. This was necessary to pass multiple properties within the same Context.
+2) We included the `setUsername` function in the value of our Provider.
+3) We added 2 buttons to call the `setUsername` function in the `WhoAmI` component.
+
+## Context with Hooks
+
+With the introduction of hooks, React also brought us the `useContext` hook. It allows us to consume Contexts without callbacks. In order to use it, the Context to the `useContext` hook.
+
+The above example could be re-written to use the `useContext` hook as follows:
+
+```jsx
+import React, { createContext, useContext } from 'react';
+
+const defaultValue = { username: "Unknown", setUsername: () => new Error("Not in provider") }; // We cant update our box, only the values in the box
+const UsernameContext = createContext(defaultValue);
+
+function App() {
+  let [username, setUsername] = React.useState("No-name");
+  return (<UsernameContext.Provider value={{username: username, setUsername: setUsername}}>
+            <WhoAmI />
+          </UsernameContext.Provider>)
+}
+
+function WhoAmI() {
+  const value = useContext(UsernameContext);
+  return (
+    <>
+      <span>{value.username}</span>
+      <button onClick={() => value.setUsername("Mike")}>My Name is Mike</button>
+      <button onClick={() => value.setUsername("Kyle")}>My Name is Kyle</button>
+    </>
+  )
+}
+```
+@highlight 13-22,only
+
+The method for consuming contexts has now shifted from callbacks from within JSX to simple, procedural function calls. This has the benefit of making the code flatter, and easier to read. Additionally, using multiple consumers becomes significant cleaner.
+
+#### Without Hooks:
+
+```jsx
+return <FooContext.Consumer>
+{ foo =>
+  <BarContext.Consumer>
+  { bar =>
+    <BazContext.Consumer>
+    { baz => <span>{foo} {bar} {baz}</span> }
+    </BazContext.Consumer>
+  }
+  </BarContext.Consumer>
+}
+</FooContext.Consumer>
+```
+
+#### With Hooks
+```js
+const foo = useContext(FooContext);
+const bar = useContext(BarContext);
+const baz = useContext(BazContext);
+return <span>{foo} {bar} {baz} </span>
+```
+
+Much better.
 
 ## Advanced Provider Patterns
 
 The example above demonstrates the simplest use-case for context/useContext, but often times developers will organize their providers to abstract away a lot of the boilerplate.
 
-Let's take a look at how we might refactor the `ThemeContext` so that it's wrapped in it's own custom component:
+Let us consider a more complex situation: Global styles. take a look at how we might refactor the `ThemeContext` so that it's wrapped in it's own custom component:
 
 ```jsx
 import React, {createContext} from 'react'
@@ -116,7 +265,7 @@ export default function ThemeProvider({ theme, children }) {
   );
 }
 
-export function useTheme(color) {
+export function useTheme() {
   const theme = useContext(ThemeContext);
   return theme
 };
