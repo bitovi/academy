@@ -1,5 +1,5 @@
 @page learn-react/styling-in-react Styling in React
-@parent learn-react 6
+@parent learn-react 5
 
 @description Learn the different ways to style React components.
 
@@ -18,7 +18,7 @@ Let's take a look at some of the ways we can go about styling React components a
 The simplest way to style a component is with inline styling. All core JSX tags accept a `style` prop, essentially an object with css styles in it. As you can see below, we're able to construct style objects directly inside the JSX, and even interpolate JavaScript values inside of them.
 
 ```jsx
-import {imageUrl} from './data'
+import { imageUrl } from './data'
 
 function Thing({ isActive }) {
   return (
