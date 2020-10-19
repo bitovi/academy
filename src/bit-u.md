@@ -58,6 +58,12 @@ and management in these free courses!
   display: flex;
   justify-content: space-between;
 }
+.container .academy-section calendar-events.courses .course {
+  justify-content: normal;
+}
+.container .academy-section calendar-events.courses .course .event-url {
+  margin-top: auto;
+}
 .course h4{
   text-align: center;
 }
