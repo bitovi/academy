@@ -116,7 +116,7 @@ In our markup we would like to display our lunch and dinner menus in tabs. Inste
 ✏️  Run:
 
 ```bash
-ng add ngx-bootstrap  --component tabs
+ng add ngx-bootstrap
 ```
 
 Ng add is a convenient way to import 3rd party libs that will update `angular.json` and `package.json` with any changes we need, as well as automatically import the 3rd party module into our root app module. Don't forget to restart the client server!

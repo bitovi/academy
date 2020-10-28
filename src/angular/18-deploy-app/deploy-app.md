@@ -55,6 +55,7 @@ firebase init
 2. Select a default Firebase project for this directory? (don't setup a default project)
 3. What do you want to use as your public directory? (dist/place-my-order)
 4. Configure as a single-page app (rewrite all urls to /index.html)? (yes)
+5. Set up automatic builds and deploys with GitHub? (no)
 
 
 ```shell

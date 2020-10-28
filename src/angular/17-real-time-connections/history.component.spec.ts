@@ -1,9 +1,10 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { of } from 'rxjs'; 
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { HistoryComponent } from './history.component';
 import { OrderService } from '../order.service';
+import { Socket } from 'ngx-socket-io';
 import { ListComponent } from '../list/list.component';
 
 class MockOrderService {
@@ -49,6 +50,21 @@ class MockOrderService {
     })
   }
 }
+
+class MockSocketService {
+    on() {
+        return of({
+            "restaurant":"1bluO7wmYTTIPpeD",
+            "name":"test",
+            "address":null,
+            "phone":null,
+            "items":[{"name":"Crab Pancakes with Sorrel Syrup","price":35.99}],
+            "status":"new",
+            "_id":"YQ1xrhKfkUgZxdNF"
+        });
+    }
+}
+
 describe('HistoryComponent', () => {
   let component: HistoryComponent;
   let fixture: ComponentFixture<HistoryComponent>;
@@ -59,6 +75,9 @@ describe('HistoryComponent', () => {
       providers: [{
         provide: OrderService,
         useClass: MockOrderService
+      }, {
+        provide: Socket, 
+        useClass: MockSocketService
       }],
       schemas: [
         NO_ERRORS_SCHEMA

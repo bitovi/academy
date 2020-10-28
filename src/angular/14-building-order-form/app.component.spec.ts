@@ -1,4 +1,4 @@
-import { TestBed, async, fakeAsync, tick, flush } from '@angular/core/testing';
+import { TestBed, waitForAsync, fakeAsync, tick, flush } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { By } from '@angular/platform-browser';
@@ -184,7 +184,7 @@ describe('AppComponent', () => {
   let location: Location;
   let fixture;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         AppRoutingModule, HttpClientModule, ReactiveFormsModule
@@ -205,8 +205,8 @@ describe('AppComponent', () => {
     })
     .compileComponents();
 
-    router = TestBed.get(Router);
-    location = TestBed.get(Location);
+    router = TestBed.inject(Router);
+    location = TestBed.inject(Location);
 
     fixture = TestBed.createComponent(AppComponent);
   }));

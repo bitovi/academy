@@ -72,6 +72,7 @@
   },
   "dependencies": {
     "@bitovi/snapshot-test": "<2.0.0",
+    "@types/jasmine": "^3.6.0",
     "can-define-lazy-value": "^1.1.0",
     "steal": "^2.2.0"
   }
