@@ -81,7 +81,7 @@ We'll start by globally installing the Angular CLI.
 ✏️ Run the following:
 
 ```shell
-npm install -g @angular/cli
+npm install -g @angular/cli@10
 ```
 
 ## Generating a new app

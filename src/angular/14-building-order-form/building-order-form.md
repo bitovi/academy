@@ -119,11 +119,9 @@ In our markup we would like to display our lunch and dinner menus in tabs. Inste
 ng add ngx-bootstrap
 ```
 
-Ng add is a convenient way to import 3rd party libs that will update `angular.json` and `package.json` with any changes we need, as well as automatically import the 3rd party module into our root app module. Don't forget to restart the client server!
+Ng add is a convenient way to import 3rd party libs that will update `angular.json` and `package.json` with any changes we need.
 
-Your root app module should now look like this:
-
-__src/app/app.module.ts__
+✏️ Update __src/app/app.module.ts__. Once you're done, don't forget to restart the server!
 
 @diff ../8-state-city-options/app.module.ts ./app.module.ts
 @highlight 5, 29
