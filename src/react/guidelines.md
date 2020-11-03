@@ -19,6 +19,9 @@ In general, if your task can be done with just React, it should be. Every librar
 
 While many system include _separation of concerns_, many projects fall victim to _sepration of file types_. As much as possible, you should separate your code by its function not by its type: data, logic, and UI.
 
+## Type Checking with PropTypes
+use PropTypes for normal js.
+
 ## Fractal Architecture
 
 Much can be said about fractal architecture, but the short form is this: Every layer of your code should resemble every other layer. One consequence of this is that no one unit of code is more special than another.

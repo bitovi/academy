@@ -79,7 +79,7 @@ export function useCount() {
 
 ### Taking Advantage of the Benefits
 
-Since you have already isolated your state management logic to an independent file, you can afford to add some extras to it without worrying about over-complicating your component. The primary gain there is via the use of `useMemo` and `useCallback`. These allow you to create methods and data with stable identities, preventing extra renders. The specific details of their usage is also covered in our [learn-react/overview/hooks] guide.
+Since you have already isolated your state management logic to an independent file, you can afford to add some extras to it without worrying about over-complicating your component. We can now add memoization (through the use of `useMemo` and `useCallback`) to create methods and data with stable identities, preventing extra renders. The specific details of their usage is also covered in our [learn-react/overview/hooks] guide.
 
 Since You have a custom provider component, it also allows you to add custom logic to your data initialization, such as specifying an initial value or fetching it from a server.
 
@@ -136,6 +136,8 @@ export function useCount() {
   };
 }
 ```
+
+## Advanced: see architecture
 
 ## Redux and Other Libraries
 

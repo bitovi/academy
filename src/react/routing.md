@@ -59,17 +59,19 @@ function App() {
 
         <div id="sidebar">
           {/* only shows on a route beginning with `/about` */}
-          <Route path="/about" component={Alice} />
+          <Route path="/about" component={About} />
 
           {/* only shows on a route beginning with `/user` */}
-          <Route path="/user" component={Alice} />
+          <Route path="/user" component={User} />
         </div>
 
         <article>
-          <Route path="/" exact component={Home} />
-          <Route path="/about" component={About} />
-          <Route path="/user/alice" component={Alice} />
-          <Route path="/user/bob" component={Bob} />
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/about" component={About} />
+            <Route path="/user/alice" component={Alice} />
+            <Route path="/user/bob" component={Bob} />
+          </Switch>
         </article>
       </div>
     </BrowserRouter>
