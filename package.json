@@ -6,6 +6,7 @@
   "scripts": {
     "document": "bit-docs -d",
     "document-build": "bit-docs -df",
+    "document-watch": "bit-docs -dw",
     "publish": "npm run document-build && node scripts/hubspot-publish/"
   },
   "repository": {
@@ -44,10 +45,10 @@
       "bit-docs-prettify": "^0.4.1",
       "bit-docs-tag-demo": "^0.5.3",
       "bit-docs-tag-diff": "^0.1.0",
-      "bit-docs-html-codepen-link": "^1.5.0",
+      "bit-docs-html-codepen-link": "^2.0.0",
       "bit-docs-html-highlight-line": "^0.5.4",
       "bit-docs-html-toc": "^1.1.1",
-      "@bitovi/calendar-events": "^0.0.8"
+      "@bitovi/calendar-events-component": "^0.0.11"
     },
     "glob": {
       "pattern": "src/**/*.{js,md}"
