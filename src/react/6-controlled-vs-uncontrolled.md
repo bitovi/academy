@@ -1,5 +1,5 @@
 @page learn-react/controlled-vs-uncontrolled-components Controlled vs Uncontrolled Components
-@parent learn-react 5
+@parent learn-react 6
 
 @description Learn how to handle inputs in React and the difference between controlled and uncontrolled components.
 
@@ -110,7 +110,7 @@ This is another very common pattern. The idea is that we have a very simple, lig
 
 ## Exercise
 
-Let's use our knowledge of controlled vs uncontrolled components to build an input component! (note this will not be apart of the tic-tac-toe game)
+Let's use our knowledge of controlled vs uncontrolled components to build an input component! (note this will not be apart of the Tic-Tac-Toe game)
 
 Run the app locally with `npm start` and choose the `Controlled vs Uncontrolled` exercise. Now head over to `src/exercises/a - Controlled vs Uncontrolled/components`. These are the files you'll be editing.
 

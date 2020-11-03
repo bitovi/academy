@@ -58,6 +58,12 @@ and management in these free courses!
   display: flex;
   justify-content: space-between;
 }
+.container .academy-section calendar-events.courses .course {
+  justify-content: normal;
+}
+.container .academy-section calendar-events.courses .course .event-url {
+  margin-top: auto;
+}
 .course h4{
   text-align: center;
 }
@@ -327,7 +333,7 @@ a.quote-link:hover{
         <div class="academy-card--top">
           <img class="card-image" src="./static/img/academy-3.png" width="75">
           <h4>Leverage battle-tested trainings</h4>
-          <p>The same trainings materials have been sharpened over the past decade and delivered to enterprise frontend teams at Sony, Lowes, Walmart, and more. Free and <a class="link" href="https://github.com/bitovi/academy" target="\_blank">open source</a>.</p>
+          <p>The same trainings materials have been sharpened over the past decade and delivered to enterprise front-end teams at Sony, Lowes, Walmart, and more. Free and <a class="link" href="https://github.com/bitovi/academy" target="\_blank">open source</a>.</p>
         </div>
         <a class="button full-width" href="#live-events-section">See our live events</a>
       </div>

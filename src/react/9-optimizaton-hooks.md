@@ -166,7 +166,7 @@ function Hello({ firstName, lastName }) {
 
 ## Exercise
 
-Let's use our optimization hooks knowledge to make our tic-tac-toe game a bit more performant!
+Let's use our optimization hooks knowledge to make our Tic-Tac-Toe game a bit more performant!
 
 Run the app locally with `npm start` and choose the `Optimization Hooks` exercise. Now head over to `src/exercises/8 - Optimization Hooks/components`. These are the files you'll be editing.
 
