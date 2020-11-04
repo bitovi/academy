@@ -19,23 +19,23 @@ But this "all JS" approach comes with some downsides, namely it becomes arduous 
 
 React exposes an API for creating HTML elements using JavaScript. For example to create an `h1` we could write the following:
 
-```jsx
-React.createElement("h1", null, "Hello World")
+```js
+React.createElement('h1', null, 'Hello World');
 ```
 
 The code above will create an `h1` with the text "Hello World" inside of it (`<h1>Hello World</h1>`). This is pure, vanilla JavaScript using a function `createElement` exposed by React.
 
 `createElement` can be used to model just about any HTML structure:
 
-```jsx
+```js
 React.createElement(
-  "div", // Tag name
-  { id: "greeting" }, // Props, referred to as "attributes" in HTML
+  'div', // Tag name
+  { id: 'greeting' }, // Props, referred to as "attributes" in HTML
   [
-    React.createElement("h1", null, "Hello World"),
-    React.createElement("p", null, "This is HTML"),
-  ] // Children
-)
+    React.createElement('h1', null, 'Hello World'),
+    React.createElement('p', null, 'This is HTML'),
+  ], // Children
+);
 ```
 
 The code above replicates the following HTML:
@@ -70,7 +70,7 @@ For the most part, JSX can be written exactly like the HTML you're most likely u
 In a normal HTML document, inline styles can be attached directly to an element using the `style` attribute. CSS styles are placed inside a string and separated by semi-colons.
 
 ```html
-<div style="color: red; background-color: blue">
+<div style="color: red; background-color: blue;">
   Inline styles are different
 </div>
 ```
@@ -78,7 +78,7 @@ In a normal HTML document, inline styles can be attached directly to an element 
 The equivalent JSX looks very similar, but the styles are stored in an object:
 
 ```jsx
-<div style={{ color: "red", backgroundColor: "blue" }}>
+<div style={{ color: 'red', backgroundColor: 'blue' }}>
   Inline styles are different
 </div>
 ```
@@ -176,15 +176,15 @@ Conditions can be re-written using the ternary operator.
 Remember, JSX is simply an alternative syntax for normal JavaScript - it is not magic. This means that you can use JSX as a normal value.
 
 ```jsx
-const header = <h1>Hello World</h1>
-const body = <p>My name is {"Mike"}</p>
+const header = <h1>Hello World</h1>;
+const body = <p>My name is {'Mike'}</p>;
 
 const page = (
   <div>
     {header}
     {body}
   </div>
-)
+);
 ```
 
 If rendered, `page` will output:
@@ -198,11 +198,11 @@ If rendered, `page` will output:
 
 If this surprises you, remember that underneath the syntactic sugar, JSX is nothing more than `React.createElement` calls:
 
-```jsx
-const header = React.createElement("h1", null, "Hello World")
-const body = React.createElement("p", null, `Hello ${"Mike"}`)
+```js
+const header = React.createElement('h1', null, 'Hello World');
+const body = React.createElement('p', null, `Hello ${'Mike'}`);
 
-const page = React.createElement("div", null, [header, body])
+const page = React.createElement('div', null, [header, body]);
 ```
 
 ### Common Pitfalls
@@ -226,7 +226,7 @@ const page = React.createElement("div", null, [header, body])
 // Can be accomplished with ternaries
 <div>
   {
-    a === b ? "a and b are equal" : "a and b are different" // Ternaries are expressions. They return a value.
+    a === b ? 'a and b are equal' : 'a and b are different' // Ternaries are expressions. They return a value.
   }
 </div>
 ```
@@ -274,9 +274,9 @@ If you want to iterate within JSX, use methods such as `Array.map`, `Array.filte
 
 One of the most powerful aspects of JavaScript is that it enables developers to respond to events on the browser. With JSX it's easy to listen for and respond to these events.
 
-```jsx 1:3 title="JSX handles user event with ease" subtitle=""
+```jsx
 <div className="button primary">
-  <button onClick={(event) => console.log("Clicked")}>click me</button>
+  <button onClick={(event) => console.log('Clicked')}>click me</button>
 </div>
 ```
 
@@ -298,17 +298,16 @@ In React we can store our JSX inside of components. Components are like small co
   crossorigin
   src="//unpkg.com/react-dom@16/umd/react-dom.development.js"
 ></script>
-
 <script type="jsx">
-  ReactDOM.render(<MyButton />,document.getElementById('root'));
-
-  function MyButton(){
+  function MyButton() {
     return (
       <div className="button primary">
-          <button>click me</button>
+        <button>click me</button>
       </div>
-    )
+    );
   }
+
+  ReactDOM.render(<MyButton />, document.getElementById("root"));
 </script>
 ```
 
@@ -326,7 +325,7 @@ function App() {
       <MyButton />
       <MyButton />
     </div>
-  )
+  );
 }
 ```
 

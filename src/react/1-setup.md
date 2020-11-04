@@ -66,7 +66,7 @@ import ReactDOM from "react-dom"
 import App from "./App"
 
 // Connects React to the DOM via ReactDOM
-ReactDOM.render(<App />, document.getElementById("root"))
+ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
 **package.json**
@@ -74,13 +74,17 @@ ReactDOM.render(<App />, document.getElementById("root"))
 The `package.json` file is kept intentionally small, and includes only a few dependencies by default:
 
 ```json
-"@testing-library/jest-dom": "^5.11.4",
-"@testing-library/react": "^11.1.0",
-"@testing-library/user-event": "^12.1.10",
-"react": "^17.0.1", // The React library
-"react-dom": "^17.0.1", // Helper functions to output a React tree as HTML
-"react-scripts": "4.0.0", // CLI tools the manage the application
-"web-vitals": "^0.2.4"
+{
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "react": "^17.0.1", // The React library
+    "react-dom": "^17.0.1", // Helper functions to output a React tree as HTML
+    "react-scripts": "4.0.0", // CLI tools the manage the application
+    "web-vitals": "^0.2.4"
+  }
+}
 ```
 
 If you are wondering where the Webpack and Babel dependencies are, they are hidden as transative dependencies of `react-scripts`.
@@ -88,12 +92,14 @@ If you are wondering where the Webpack and Babel dependencies are, they are hidd
 Create React App provides a set of scripts (`react-scripts`) which know how to start, build and test your app. It's generally recommended to leave these as-is, a lot of work has been put into these scripts to ensure the best developer experience possible.
 
 ```json
-"scripts": {
+{
+  "scripts": {
     "start": "react-scripts start", // Launch live server for development
     "build": "react-scripts build", // Build and optimize the application for production
     "test": "react-scripts test", // Runs tests
     "eject": "react-scripts eject" // Expose hidden configuration options (Dangerous)
-},
+  }
+}
 ```
 
 The final script included, `eject` is very important. In order to simplify your workflow, Create React App hides the Webpack, Babel and Jest configuration files. By running `npm run eject` you will be given complete control over your project.

@@ -5,7 +5,7 @@
 
 @body
 
-## Introduction 
+## Introduction
 
 One of the biggest mindset shifts for new developers learning React is the concept of a controlled vs uncontrolled component. This is something that is particularly important when building input components (text, checkbox, radio, etc).
 
@@ -14,13 +14,13 @@ There are two types of input components we can create in React, controlled input
 An uncontrolled input is one where we're not explicitly setting the value attribute. When a value attribute is not explicitly set, the input is ultimately controlled by the browser, and thus, out of the control of the React developer:
 
 ```html
-<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<SearchBar />,document.getElementById('root'));
-
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">
 // Uncontrolled
 function SearchBar() {
   return <input type="text" />;
 }
 
+ReactDOM.render(<SearchBar />, document.getElementById("root"));
 </script>
 ```
 @codepen
@@ -31,14 +31,14 @@ While this isn't necessarily a bad thing, it does make our lives as React develo
 
 We can solve this problem by explicitly controlling the input (giving it a value).
 
-```html  title="When we provide a value, we're controlling the input" subtitle="In this case, the user can't type anything"
-<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<SearchBar />,document.getElementById('root'));
-
+```html
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">
 // Controlled (sort of)
 function SearchBar() {
   return <input type="text" value="hello" />;
 }
 
+ReactDOM.render(<SearchBar />,document.getElementById('root'));
 </script>
 ```
 @codepen
@@ -48,20 +48,20 @@ The component above is now considered to be "controlled", at any given point we 
 Obviously this isn't a great solution though because the value will always be "hello". We can remedy this by involving state:
 
 ```html
-<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<SearchBar />,document.getElementById('root'));
-
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">
 // Controlled (with state)
 function SearchBar() {
-  const [inputValue, setInputValue] = React.useState("")
+  const [inputValue, setInputValue] = React.useState("");
   return (
     <input
       type="text"
       value={inputValue}
-      onChange={e => setInputValue(e.target.value)}
+      onChange={(e) => setInputValue(e.target.value)}
     />
-  )
+  );
 }
 
+ReactDOM.render(<SearchBar />, document.getElementById("root"));
 </script>
 ```
 @codepen
@@ -72,41 +72,40 @@ The process outlined above is how most controlled inputs are structured. Whether
 
 We can take this a step further, by controlling the component with props:
 
-```html 1:21 title="It's common to let a smart 'parent' component control the values"
-<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">ReactDOM.render(<SmartParentComponent />,document.getElementById('root'));
-
+```html
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">
 // Controlled (with props)
-function SearchBar({inputValue, onInputValueChange}){
+function SearchBar({ inputValue, onInputValueChange }) {
   return (
     <input
       type="text"
       value={inputValue}
-      onChange={e => onInputValueChange(e.target.value)}
+      onChange={(e) => onInputValueChange(e.target.value)}
     />
-  )
+  );
 }
 
-function SmartParentComponent(){
-  const [inputValue, setInputValue] = React.useState("")
+function SmartParentComponent() {
+  const [inputValue, setInputValue] = React.useState("");
 
   return (
     <SearchBar
       inputValue={inputValue}
-      onInputValueChange={newValue => setInputValue(newValue)}
+      onInputValueChange={(newValue) => setInputValue(newValue)}
     />
-  )
+  );
 }
 
+ReactDOM.render(<SmartParentComponent />, document.getElementById("root"));
 </script>
 ```
 @codepen
 
 Above we've defined 2 component, `SmartParentComponent` and `SearchBar`. The `SearchBar` component accepts two props, one for the value of the input, and another for updating the value of the input. Notice that there is no state here, this is a dumb, stateless component.
 
-The `SmartParentComponent` does have state however, it is keeping track of the input value and how to set the input value. These are then passed down into the dumb `SearchBar` component, and used to control it. 
+The `SmartParentComponent` does have state however, it is keeping track of the input value and how to set the input value. These are then passed down into the dumb `SearchBar` component, and used to control it.
 
 This is another very common pattern. The idea is that we have a very simple, lightweight `SearchBar` component, which has no concept of state, instead it is entirely controlled by props passed down from a smart, stateful parent.
-
 
 ## Exercise
 
@@ -118,8 +117,8 @@ Run the app locally with `npm start` and choose the `Controlled vs Uncontrolled`
 
 ✏️ You'll be modifying the `Search` component so that it is a controlled input. Specifically, try your hand at the following:
 
-- Modify the `Search` component below so that it's value is controlled by state. 
-- Modify the clear button so that, when clicked, it clears out the value of the input. 
+- Modify the `Search` component below so that it's value is controlled by state.
+- Modify the clear button so that, when clicked, it clears out the value of the input.
 - Make it so that the clear button is only visible when there is text in the input.
 
 ### The solution

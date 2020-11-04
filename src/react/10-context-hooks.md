@@ -9,20 +9,20 @@
 
 A single component can take as many props as you want to give it, however just like arguments into functions it's a good idea to [limit this number](https://stackoverflow.com/questions/37695557/react-are-there-respectable-limits-to-number-of-props-on-react-components), as more props makes for a more confusing component.
 
-This however, can be difficult to do when you have a lot of data to pass through your component tree. Consider the following hierarchy with a few "drilled props". Lets imagine that the `Theme`, `Domain` amd `RootUrl` are decided within the `App` component, but are __only__ needed within the `ButtonText` component. That is to say, `Dashboard` and `Button` have no business related to any of those props.
+This however, can be difficult to do when you have a lot of data to pass through your component tree. Consider the following hierarchy with a few "drilled props". Lets imagine that the `Theme`, `Domain` amd `RootUrl` are decided within the `App` component, but are **only** needed within the `ButtonText` component. That is to say, `Dashboard` and `Button` have no business related to any of those props.
 
-```js
--- App(Theme, Domain, RootUrl)
-   |-- Dashboard(Theme, Domain, RootUrl)
-       |-- Button(Theme, Domain, RootUrl)
-           |-- ButtonText(Theme, Domain, RootUrl)
-       |-- Button(Theme, Domain, RootUrl)
-           |-- ButtonText(Theme, Domain, RootUrl)
+```code
+──┬ App(Theme, Domain, RootUrl)
+  └─┬ Dashboard(Theme, Domain, RootUrl)
+    |─┬ Button(Theme, Domain, RootUrl)
+    │ └── ButtonText(Theme, Domain, RootUrl)
+    └─┬ Button(Theme, Domain, RootUrl)
+      └── ButtonText(Theme, Domain, RootUrl)
 ```
 
 Without concerning ourselves with what exactly each of the props does, we can see the problem. Every piece of global state must be propagated through the entire hierarchy. As a result, each component would look something like this:
 
-```js
+```jsx
 function Component1(props) {
   return <Component2 Theme={props.Theme} Domain={props.Domain} RootUrl={props.RootUrl}>
 }
@@ -30,7 +30,7 @@ function Component1(props) {
 
 It is possible to re-write it using the spread operator, but what you gain in conciseness, you lose in clarity and performance. **Avoid writing components like this!**
 
-```js
+```jsx
 function Component1(props) {
   return <Component2 {...props} >
 }
@@ -44,9 +44,9 @@ Today, we solve this problem using React's Context Providers and Consumers.
 
 One way to think about Contexts is an additional set of props which are passed transparently through React's internals instead of arguments. It involves three parts:
 
-1) **The Context:** Think of the context like a box of things. The box needs to be globally available to all who want to use it (Put it or take out). The usage of a global avoids using props to pass down information.
-2) **The Provider:** The provider puts things into the box. Whatever data it handles is only available to its children.
-3) **The Consumer:** The consumer takes things out of the box. It can only access the providers which are above it in the component hierarchy.
+1. **The Context:** Think of the context like a box of things. The box needs to be globally available to all who want to use it (Put it or take out). The usage of a global avoids using props to pass down information.
+2. **The Provider:** The provider puts things into the box. Whatever data it handles is only available to its children.
+3. **The Consumer:** The consumer takes things out of the box. It can only access the providers which are above it in the component hierarchy.
 
 ## The Context API
 
@@ -57,7 +57,7 @@ Creating a Context is as easy as calling `createContext()` and supplying it a de
 ```jsx
 import React, { createContext } from 'react';
 
-const defaultValue = "Unknown";
+const defaultValue = 'Unknown';
 const UsernameContext = createContext(defaultValue);
 ```
 @highlight 3,only
@@ -66,21 +66,23 @@ The default value is what the **Consumers** will use if they have no available *
 
 ### Writing a Provider
 
-The provider constructor is exposed by the context. It is always accessible via `ContextName.Provider` and requires a single prop named `value`. This prop will be the value which provided to all of its **Consumers**. 
+The provider constructor is exposed by the context. It is always accessible via `ContextName.Provider` and requires a single prop named `value`. This prop will be the value which provided to all of its **Consumers**.
 
 Any components we render inside of the provider will be able to access the information in the `value` prop, no matter how deeply nested they are in the component tree. This eliminates the need for prop drilling where a single prop would need to be passed down through multiple components.
 
 ```jsx
 import React, { createContext } from 'react';
 
-const defaultValue = "Unknown";
+const defaultValue = 'Unknown';
 const UsernameContext = createContext(defaultValue);
 
 function App() {
-  let [username, setUsername] = React.useState("No-name");
-  return (<UsernameContext.Provider value={username}>
-            <WhoAmI />
-          </UsernameContext.Provider>)
+  let [username, setUsername] = React.useState('No-name');
+  return (
+    <UsernameContext.Provider value={username}>
+      <WhoAmI />
+    </UsernameContext.Provider>
+  );
 }
 ```
 @highlight 8,only
@@ -92,26 +94,26 @@ The consumer is similarly exposed by the context under `ContextName.Consumer`. I
 ```jsx
 import React, { createContext } from 'react';
 
-const defaultValue = "Unknown";
+const defaultValue = 'Unknown';
 const UsernameContext = createContext(defaultValue);
 
 function App() {
-  let [username, setUsername] = React.useState("No-name");
-  return (<UsernameContext.Provider value={username}>
-            <WhoAmI />
-          </UsernameContext.Provider>)
+  let [username, setUsername] = React.useState('No-name');
+  return (
+    <UsernameContext.Provider value={username}>
+      <WhoAmI />
+    </UsernameContext.Provider>
+  );
 }
 
 function WhoAmI() {
   return (
     <UsernameContext.Consumer>
-      {
-        value => {
-          return <span>{value}</span>
-        }
-      }
+      {(value) => {
+        return <span>{value}</span>;
+      }}
     </UsernameContext.Consumer>
-  )
+  );
 }
 ```
 @highlight 15-21,only
@@ -123,40 +125,50 @@ As discussed before, Contexts are a lot like props. Their only difference is the
 ```jsx
 import React, { createContext } from 'react';
 
-const defaultValue = { username: "Unknown", setUsername: () => new Error("Not in provider") }; // We cant update our box, only the values in the box
+const defaultValue = {
+  username: 'Unknown',
+  setUsername: () => new Error('Not in provider'),
+}; // We cant update our box, only the values in the box
 const UsernameContext = createContext(defaultValue);
 
 function App() {
-  let [username, setUsername] = React.useState("No-name");
-  return (<UsernameContext.Provider value={{username: username, setUsername: setUsername}}>
-            <WhoAmI />
-          </UsernameContext.Provider>)
+  let [username, setUsername] = React.useState('No-name');
+  return (
+    <UsernameContext.Provider
+      value={{ username: username, setUsername: setUsername }}
+    >
+      <WhoAmI />
+    </UsernameContext.Provider>
+  );
 }
 
 function WhoAmI() {
   return (
     <UsernameContext.Consumer>
-      {
-        value => {
-          return (
-            <>
-              <span>{value.username}</span>
-              <button onClick={() => value.setUsername("Mike")}>My Name is Mike</button>
-              <button onClick={() => value.setUsername("Kyle")}>My Name is Kyle</button>
-            </>)
-        }
-      }
+      {(value) => {
+        return (
+          <>
+            <span>{value.username}</span>
+            <button onClick={() => value.setUsername('Mike')}>
+              My Name is Mike
+            </button>
+            <button onClick={() => value.setUsername('Kyle')}>
+              My Name is Kyle
+            </button>
+          </>
+        );
+      }}
     </UsernameContext.Consumer>
-  )
+  );
 }
 ```
 @highlight 3,8,21,22,only
 
 We have made three changes to our code:
 
-1) We have changed the shape of our context data from a String, to an Object. This was necessary to pass multiple properties within the same Context.
-2) We included the `setUsername` function in the value of our Provider.
-3) We added 2 buttons to call the `setUsername` function in the `WhoAmI` component.
+1. We have changed the shape of our context data from a String, to an Object. This was necessary to pass multiple properties within the same Context.
+2. We included the `setUsername` function in the value of our Provider.
+3. We added 2 buttons to call the `setUsername` function in the `WhoAmI` component.
 
 ## Context with Hooks
 
@@ -167,14 +179,21 @@ The above example could be re-written to use the `useContext` hook as follows:
 ```jsx
 import React, { createContext, useContext } from 'react';
 
-const defaultValue = { username: "Unknown", setUsername: () => new Error("Not in provider") }; // We cant update our box, only the values in the box
+const defaultValue = {
+  username: 'Unknown',
+  setUsername: () => new Error('Not in provider'),
+}; // We cant update our box, only the values in the box
 const UsernameContext = createContext(defaultValue);
 
 function App() {
-  let [username, setUsername] = React.useState("No-name");
-  return (<UsernameContext.Provider value={{username: username, setUsername: setUsername}}>
-            <WhoAmI />
-          </UsernameContext.Provider>)
+  let [username, setUsername] = React.useState('No-name');
+  return (
+    <UsernameContext.Provider
+      value={{ username: username, setUsername: setUsername }}
+    >
+      <WhoAmI />
+    </UsernameContext.Provider>
+  );
 }
 
 function WhoAmI() {
@@ -182,10 +201,10 @@ function WhoAmI() {
   return (
     <>
       <span>{value.username}</span>
-      <button onClick={() => value.setUsername("Mike")}>My Name is Mike</button>
-      <button onClick={() => value.setUsername("Kyle")}>My Name is Kyle</button>
+      <button onClick={() => value.setUsername('Mike')}>My Name is Mike</button>
+      <button onClick={() => value.setUsername('Kyle')}>My Name is Kyle</button>
     </>
-  )
+  );
 }
 ```
 @highlight 13-22,only
@@ -195,25 +214,36 @@ The method for consuming contexts has now shifted from callbacks from within JSX
 #### Without Hooks:
 
 ```jsx
-return <FooContext.Consumer>
-{ foo =>
-  <BarContext.Consumer>
-  { bar =>
-    <BazContext.Consumer>
-    { baz => <span>{foo} {bar} {baz}</span> }
-    </BazContext.Consumer>
-  }
-  </BarContext.Consumer>
-}
-</FooContext.Consumer>
+return (
+  <FooContext.Consumer>
+    {(foo) => (
+      <BarContext.Consumer>
+        {(bar) => (
+          <BazContext.Consumer>
+            {(baz) => (
+              <span>
+                {foo} {bar} {baz}
+              </span>
+            )}
+          </BazContext.Consumer>
+        )}
+      </BarContext.Consumer>
+    )}
+  </FooContext.Consumer>
+);
 ```
 
 #### With Hooks
-```js
+
+```jsx
 const foo = useContext(FooContext);
 const bar = useContext(BarContext);
 const baz = useContext(BazContext);
-return <span>{foo} {bar} {baz} </span>
+return (
+  <span>
+    {foo} {bar} {baz}
+  </span>
+);
 ```
 
 Much better.
@@ -225,7 +255,7 @@ The example above demonstrates the simplest use-case for context/useContext, but
 Let us consider a more complex situation: Global styles. take a look at how we might refactor the `ThemeContext` so that it's wrapped in it's own custom component:
 
 ```jsx
-import React, {createContext} from 'react'
+import React, { createContext } from 'react';
 
 const THEMES = {
   blue: { color: '#0000ff', fontSize: '1.25rem' },
@@ -248,7 +278,7 @@ In the example above, we've taken away all of the `ThemeContext` logic and encap
 We can take this a step further by exporting a custom hook `useTheme` from this file, which can then be used by nested components like `Button` to access the theme:
 
 ```jsx
-import React, {createContext} from 'react'
+import React, { createContext } from 'react';
 
 const THEMES = {
   blue: { color: '#0000ff', fontSize: '1.25rem' },
@@ -267,8 +297,8 @@ export default function ThemeProvider({ theme, children }) {
 
 export function useTheme() {
   const theme = useContext(ThemeContext);
-  return theme
-};
+  return theme;
+}
 ```
 @highlight 18-21,only
 
@@ -290,17 +320,17 @@ export default function Layout() {
 We can also refactor the way the `Button` component consumes the theme, by having it use the newly exposed `useTheme` custom hook.
 
 ```jsx
-import React from 'react'
-import {useTheme} from './ThemeProvider'
+import React from 'react';
+import { useTheme } from './ThemeProvider';
 
-function Button({label}){
-  const theme = useTheme()
+function Button({ label }) {
+  const theme = useTheme();
 
   return (
     <div style={theme}>
       <button>{label}</button>
     </div>
-  )
+  );
 }
 ```
 @highlight 2,5,only
@@ -315,10 +345,10 @@ Run the app locally with `npm start` and choose the `Context Hooks` exercise. No
 
 ✏️ Let's add in the ability to use a style theme for our app.
 
-- `Game` Component  
+- `Game` Component
   - Create a new piece of state called `theme`, which will store the current theme used by the app (`themes.light` by default).
   - Create a `ThemeContext` object using `React.createContext()`
-  - Wrap the component tree in `<ThemeContext.Provider>` and  give it a value of the `theme` state.
+  - Wrap the component tree in `<ThemeContext.Provider>` and give it a value of the `theme` state.
   - Create and export a custom hook called `useTheme` (this should just return `useContext(ThemeContext)`).
   - (Optional )Add in a button which allows the user to switch between `themes.light` and `themes.dark`
 - `Square` Component
@@ -327,15 +357,21 @@ Run the app locally with `npm start` and choose the `Context Hooks` exercise. No
 ### The solution
 
 #### Game
+
 ```jsx
 import React, { useContext, useState } from 'react';
 import Board from '../../../app/components/Board';
-import { getHintForBoard, boardHasWinner, blankBoard, themes } from '../../../app/utils';
+import {
+  getHintForBoard,
+  boardHasWinner,
+  blankBoard,
+  themes,
+} from '../../../app/utils';
 
 const ThemeContext = React.createContext();
 
 export function useTheme() {
-  return useContext(ThemeContext)
+  return useContext(ThemeContext);
 }
 
 function Game() {
@@ -382,7 +418,6 @@ function Game() {
         onSquareClick={handleSquareClick}
         hintSquare={hintSquare}
       />
-
       <button onClick={handleGetHint}>Get Hint</button>
       <button onClick={handleToggleTheme}>Toggle Theme</button>
       current player: {currentPlayer}
@@ -394,8 +429,8 @@ export default Game;
 ```
 @highlight 5,7-9,15,39-41,49,59,only
 
-
 #### Square
+
 ```jsx
 import React from 'react';
 import { useTheme } from './Game';
@@ -421,4 +456,3 @@ function Square({ onClick, symbol, displayAsHint, id }) {
 export default Square;
 ```
 @highlight 5,only
-

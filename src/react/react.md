@@ -27,7 +27,7 @@ In a nutshell, React is a [front-end](https://www.coursereport.com/blog/front-en
 
 While it's most commonly used for building web apps, React can also be used to create mobile & desktop apps through [React Native](https://reactnative.dev/) and [Electron](https://www.electronjs.org/). Although this course will not explicitly cover them, the theory contained herein will still fully apply to other environments.
 
-React's goal is to enable developers to break down the view layer of their apps into small, reusable chunks called [components](https://reactjs.org/docs/components-and-props.html). In turn, the components are rendered as plain HTML and will automatically update whenever the data in your app changes. We refer to the data driving the application as *state*.
+React's goal is to enable developers to break down the view layer of their apps into small, reusable chunks called [components](https://reactjs.org/docs/components-and-props.html). In turn, the components are rendered as plain HTML and will automatically update whenever the data in your app changes. We refer to the data driving the application as _state_.
 
 One of the best things about React is that it can be used in any website, even one that is already built with another framework. This makes it easy to convert an existing project to React, or just use it for one part of a site.
 
@@ -37,9 +37,9 @@ This guide begins with by walking you through how to [set up an environment](/le
 
 Once you're all setup and orientated into the framework, you'll learn how to build re-usable web components using [props](/learn-react/props.html), and discover the difference between [controlled & uncontrolled](/learn-react/controlled-vs-uncontrolled-components.html) components. You'll also learn the various ways of doing [styling](/learn-react/styling-in-react.html), and how CSS can be integrated into JSX.
 
-The second half of the guide will cover more intermediate topics like state management using [hooks](/learn-react/intro-to-hooks.html) and making components as [optimized](/learn-react/optimization-hooks.html) as possible. 
+The second half of the guide will cover more intermediate topics like state management using [hooks](/learn-react/intro-to-hooks.html) and making components as [optimized](/learn-react/optimization-hooks.html) as possible.
 
-All throughout, we'll be building out a simple Tic-Tac-Toe game, gradually applying all of these concepts to produce a clean and optimized solution! 
+All throughout, we'll be building out a simple Tic-Tac-Toe game, gradually applying all of these concepts to produce a clean and optimized solution!
 
 ## Next Steps
 
