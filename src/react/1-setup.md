@@ -11,7 +11,7 @@ In its simplest form, React is just a library, but when developing real world ap
 
 - **[Babel](https://babeljs.io/)** - Babel is a JavaScript transpiler which allows developers to use the latest ECMAScript features in a backwards compatible way. React relies on Babel specifically to transpile JSX (the syntax used to define component layouts) into executable JavaScript code.
 - **[Webpack](https://webpack.js.org/)** - Webpack let's developers bundle their React components and apps into small, easily servable bundles which can be downloaded and run when the user's webpage loads. Additionally, Webpack can be configured for live-reloading during development.
-- **[Jest](https://jestjs.io/)** - Jest is [the most popular](https://www.npmtrends.com/ava-vs-jasmine-vs-jest-vs-mocha-vs-qunit) JavaScript testing library. It is built by the people behind React and can be used to test React components very easily. 
+- **[Jest](https://jestjs.io/)** - Jest is [the most popular](https://www.npmtrends.com/ava-vs-jasmine-vs-jest-vs-mocha-vs-qunit) JavaScript testing library. It is built by the people behind React and can be used to test React components very easily.
 
 Besides the three highlighted above, there are many other technologies which can make developing in React a better experience.
 
@@ -56,7 +56,7 @@ Let's walk through some of the generated files.
 
 The public folder contains static assets which will be served up as part of your website. You can include stylesheets, images and other static files. The most important file here is `index.html`, which is the page React will render to by default.
 
-Anything put inside it will be copied as is into the `build` directory during compilation. Generally, you shouldn't need to touch this folder too much. 
+Anything put inside it will be copied as is into the `build` directory during compilation. Generally, you shouldn't need to touch this folder too much.
 
 **/src**
 
@@ -70,7 +70,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 
 // Connects React to the DOM via ReactDOM
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
 **package.json**
@@ -78,12 +78,16 @@ ReactDOM.render(<App />, document.getElementById('root'))
 The `package.json` file is kept intentionally small, and includes only a few dependencies by default:
 
 ```json
-"@testing-library/jest-dom": "^4.2.4",
-"@testing-library/react": "^9.3.2",
-"@testing-library/user-event": "^7.1.2",
-"react": "^16.13.1", // The React library
-"react-dom": "^16.13.1", // Helper functions to output a React tree as HTML
-"react-scripts": "3.4.1" // CLI tools the manage the application
+{
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "react": "^16.13.1", // The React library
+    "react-dom": "^16.13.1", // Helper functions to output a React tree as HTML
+    "react-scripts": "3.4.1" // CLI tools the manage the application
+  }
+}
 ```
 
 If you are wondering where the Webpack and Babel dependencies are, they are hidden as transative dependencies of `react-scripts`.
@@ -91,12 +95,14 @@ If you are wondering where the Webpack and Babel dependencies are, they are hidd
 Create React App provides a set of scripts (`react-scripts`) which know how to start, build and test your app. It's generally recommended to leave these as-is, a lot of work has been put into these scripts to ensure the best developer experience possible.
 
 ```json
-"scripts": {
+{
+  "scripts": {
     "start": "react-scripts start", // Launch live server for development
     "build": "react-scripts build", // Build and optimize the application for production
     "test": "react-scripts test", // Runs tests
     "eject": "react-scripts eject" // Expose hidden configuration options (Dangerous)
-},
+  }
+}
 ```
 
 The final script included, `eject` is very important. In order to simplify your workflow, Create React App hides the Webpack, Babel and Jest configuration files. By running `npm run eject` you will be given complete control over your project.
@@ -109,13 +115,13 @@ Create React App will automatically initialize the new folder as a git repositor
 
 ## Deployment
 
-One of the benefits of using `react-scripts` is it's great build process. When you run the `npm run build` command, your site will automatically be bundled, minified, and written into a `build` folder. 
+One of the benefits of using `react-scripts` is it's great build process. When you run the `npm run build` command, your site will automatically be bundled, minified, and written into a `build` folder.
 
 You can can then upload the folder to any web-server to be served statically (just like a normal HTML website), no special configuration required.
 
 ## Try it out
 
-✏️ Fork or clone the Tic-Tac-Toe app we'll be building in this training from [GitHub](https://github.com/bitovi/react-exercises). 
+✏️ Fork or clone the Tic-Tac-Toe app we'll be building in this training from [GitHub](https://github.com/bitovi/react-exercises).
 
 Make sure you're on the master branch, and after running `npm install` run `npm run build`. This will build the site and create a `build` folder. Check out the files that got generated, notice how they're nicely minified and bundled!
 

@@ -12,8 +12,8 @@ Props are React's way to make components more reusable.
 Think of props as similar to arguments you would pass into a function. For example, suppose we had an add method which added two numbers together, it might look something like this:
 
 ```js
-function addOneAndSeven(){
-    return 1 + 7
+function addOneAndSeven() {
+  return 1 + 7;
 }
 ```
 
@@ -21,37 +21,33 @@ This is a perfectly good function, but notice that it always adds the same two n
 
 We can make this function more re-usable by allowing arguments to be passed into it:
 
-
 ```js
-function addNumbers(num1, num2){
-    return num1 + num2
+function addNumbers(num1, num2) {
+  return num1 + num2;
 }
 ```
 
 The function is now infinitely more re-usable because the caller can specify the numbers, instead of just having them be hardcoded in.
 
-This same principle applies to React components. 
+This same principle applies to React components.
 
 ## Basic Props Usage
 
-Recall that React components are essentially just functions (or classes) which return an element. And like normal functions, we run into the same re-usability problems. 
-
+Recall that React components are essentially just functions (or classes) which return an element. And like normal functions, we run into the same re-usability problems.
 
 ```jsx
 function AddNumbers() {
-    return <div>{1 + 7}</div>;
+  return <div>{1 + 7}</div>;
 }
 ```
 
 Take a look at the `AddNumbers` component above. It returns a div with the result of adding `1 + 7`. This is fine, but suppose once again we wanted to specify which numbers it adds.
 
-We can solve this by modifying the `AddNumbers` component so that it accepts props. 
+We can solve this by modifying the `AddNumbers` component so that it accepts props.
 
 ```jsx
-function AddNumbers(props){
-    return (
-        <div>{props.num1 + props.num2}</div>
-    )
+function AddNumbers(props) {
+  return <div>{props.num1 + props.num2}</div>;
 }
 ```
 
@@ -72,8 +68,8 @@ Now, instead of having a hard-coded addition, the component is flexible and can 
 
 Props can be any data type or data structure. Anything you could pass into a JavaScript function can be passed into a component as a prop.
 
-```js
-<Component 
+```jsx
+<Component
   stringProp="string props can be passed using quotation marks"
   interpolatedStringProp={`The value is: ${value}`}
   nonStringProp={[1, 2, 3]}
@@ -90,11 +86,7 @@ One of the most useful types of props are callbacks. Callback props allow us to 
 
 ```jsx
 function MyButton() {
-  return (
-    <button onClick={() => console.log('clicked')}>
-        click me
-    </button>
-  )
+  return <button onClick={() => console.log('clicked')}>click me</button>;
 }
 ```
 
@@ -105,12 +97,9 @@ Suppose we wanted to perform an arbitrary action when the button is clicked inst
 To accomplish that, we would use a callback prop. To do so, simply pass the component a callback function as one of its props to be called whenever the button is clicked. Note that by convention, callback props should begin with `on` just like native DOM events:
 
 ```jsx
-function MyButton({onButtonClick}) {  // here we're destructuring the props object
-    return (
-        <button onClick={onButtonClick}>
-            click me
-        </button>
-    )
+function MyButton({ onButtonClick }) {
+  // here we're destructuring the props object
+  return <button onClick={onButtonClick}>click me</button>;
 }
 ```
 @highlight 1
@@ -125,41 +114,31 @@ Now whenever the button is clicked it will call the callback function, making th
 
 When we render the button, we'll pass in the `onButtonClick` prop just like the numbers from the `AddNumbers` component. Since we're not passing a string prop, it needs to be interpolating using curly braces `{ }`.
 
-
 ## Try it out
 
 Below is the `MyButton` component code combined together into a working example:
 
 ```html
-<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-<script type="jsx">
-
-
-
-function MyButton({onButtonClick}) {  // here we're destructuring the props object
-    return (
-        <button onClick={onButtonClick}>
-            click me
-        </button>
-    )
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">
+function MyButton({ onButtonClick }) {
+  // here we're destructuring the props object
+  return <button onClick={onButtonClick}>click me</button>;
 }
 
-function AddNumbers(props){
-    return (
-        <div>{props.num1 + props.num2}</div>
-    )
+function AddNumbers(props) {
+  return <div>{props.num1 + props.num2}</div>;
 }
 
-function App(){
-    return (
-        <div>
-            <AddNumbers num1={5} num2={10} />
-            <MyButton onButtonClick={() => console.log('you clicked')} />
-        </div>
-    )
+function App() {
+  return (
+    <div>
+      <AddNumbers num1={5} num2={10} />
+      <MyButton onButtonClick={() => console.log("you clicked")} />
+    </div>
+  );
 }
 
-ReactDOM.render(<App />,document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById("root"));
 </script>
 ```
 @codepen
@@ -182,27 +161,29 @@ The goal of this exercise is to get a `console.log()` to happen whenever the use
 
 #### Hints
 
- - Modify the `Square` component so that accepts two props
-    -  `onClick` - a callback which is executed when the user click on it
-    -  `symbol` - a string indicating what symbol is in the square (X, O or nothing)
- -  Modify the `Board` component so it renders out all 9 squares given to it by its `board` props (`board` is an array of strings)
- -  Modify the `Game` component so it passes the correct props into `<Board />`
+- Modify the `Square` component so that accepts two props
+  - `onClick` - a callback which is executed when the user click on it
+  - `symbol` - a string indicating what symbol is in the square (X, O or nothing)
+- Modify the `Board` component so it renders out all 9 squares given to it by its `board` props (`board` is an array of strings)
+- Modify the `Game` component so it passes the correct props into `<Board />`
 
 ### The solution
 
 #### Square.js
+
 ```jsx
 function Square({ onClick, symbol }) {
-    return (
-        <div className="square" onClick={onClick}>
-          {symbol}
-        </div>
-    );
+  return (
+    <div className="square" onClick={onClick}>
+      {symbol}
+    </div>
+  );
 }
 ```
 @highlight 1,3,4,only
 
 #### Board.js
+
 ```jsx
 function Board({ onSquareClick, board }) {
   return (
@@ -221,6 +202,7 @@ function Board({ onSquareClick, board }) {
 @highlight 4-10,only
 
 #### Game.js
+
 ```jsx
 const blankBoard = ['', '', '', '', '', '', '', '', ''];
 

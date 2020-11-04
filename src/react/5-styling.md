@@ -18,14 +18,16 @@ Let's take a look at some of the ways we can go about styling React components a
 The simplest way to style a component is with inline styling. All core JSX tags accept a `style` prop, essentially an object with css styles in it. As you can see below, we're able to construct style objects directly inside the JSX, and even interpolate JavaScript values inside of them.
 
 ```jsx
-import { imageUrl } from './data'
+import { imageUrl } from './data';
 
 function Thing({ isActive }) {
   return (
-    <div style={{
-      color: isActive ? 'black' : 'white',
-      backgroundImage: `url(${imgUrl})`,
-    }}>
+    <div
+      style={{
+        color: isActive ? 'black' : 'white',
+        backgroundImage: `url(${imgUrl})`,
+      }}
+    >
       Hello World!
     </div>
   );
@@ -44,11 +46,7 @@ Like normal HTML, JSX elements can accept a class attribute (called `className`)
 import './thing.css';
 
 function Thing({ isActive }) {
-  return (
-    <div className="thing">
-      Hello World!
-    </div>
-  );
+  return <div className="thing">Hello World!</div>;
 }
 ```
 
@@ -63,11 +61,7 @@ function Thing({ isActive }) {
     className += ' thing-active';
   }
 
-  return (
-    <div className={className}>
-      Hello World!
-    </div>
-  );
+  return <div className={className}>Hello World!</div>;
 }
 ```
 
@@ -75,18 +69,13 @@ function Thing({ isActive }) {
 
 Classnames is a small library that is widely used in the industry. It makes the process of creating dynamic classnames easier by providing a simple interface for constructing them. Note that this process is similar to the one described above, just made easier with the classnames library.
 
-```jsx title="External CSS" subtitle="use classnames"
+```jsx
 import cx from 'classnames';
-import './thing.css'
+import './thing.css';
 
 function Thing({ isActive }) {
   return (
-    <div className={cx(
-      'thing',
-      isActive && 'thing-active',
-    )}>
-      Hello World!
-    </div>
+    <div className={cx('thing', isActive && 'thing-active')}>Hello World!</div>
   );
 }
 ```
@@ -101,7 +90,7 @@ This is also compatible with Sass/Less making it a good option if you want to us
 
 Below is the CSS you would write inside of a .css file. You can see looks normal, and we don't need to worry about naming.
 
-```css 
+```css
 .thing {
   border: 1em solid black;
 }
@@ -113,7 +102,7 @@ Below is the CSS you would write inside of a .css file. You can see looks normal
 
 This css will then get transformed into the following. Notice the names change, while still maintaining the selector structure.
 
-```css 
+```css
 .Thing_thing_1FUOu {
   border: 1em solid black;
 }
@@ -129,20 +118,16 @@ This would then be imported into your React component as a JavaScript module con
 module.exports = {
   thing: 'Thing_thing_1FUOu',
   active: 'Thing_active_wBa2p',
-}
+};
 ```
 
 And the component could be styled like so:
 
-```jsx 
+```jsx
 import styles from './thing.module.css';
 
 function Thing({ isActive }) {
-  return (
-    <div className={styles.thing}>
-      Hello World!
-    </div>
-  );
+  return <div className={styles.thing}>Hello World!</div>;
 }
 ```
 
@@ -154,24 +139,26 @@ In a styled components implementation, a `Button` component for example, might t
 
 In the code below, we're using the emotion library to create a styled `Button` component. The syntax is a bit foreign, but this is essentially creating a `<button>` component which maps it's props to styles. For example, below, the button accepts a `color` and an `outline` prop, which are used to inform the styling that it receives.
 
-```jsx 
+```js
 import styled from '@emotion/styled';
 
 export const Button = styled.button`
   border: 1px solid darkblue;
-  background: ${props => props.color || 'blue'};
+  background: ${(props) => props.color || 'blue'};
 
-  ${props => props.outline && css`
-    border-color: ${props => props.color || 'blue'};
-    background-color: darkblue;
-  `}
+  ${(props) =>
+    props.outline &&
+    css`
+      border-color: ${(props) => props.color || 'blue'};
+      background-color: darkblue;
+    `}
 `;
 ```
 
-This `Button` could then be imported into another component file and rendered with specific styles. 
+This `Button` could then be imported into another component file and rendered with specific styles.
 
 ```jsx
-import Button from './Button'
+import Button from './Button';
 
 function Thing() {
   return (
@@ -184,7 +171,7 @@ function Thing() {
 }
 ```
 
-The styled components approach is definitely a departure from traditional styling methodologies, however it makes up for it by integrating so nicely with the React paradigm. 
+The styled components approach is definitely a departure from traditional styling methodologies, however it makes up for it by integrating so nicely with the React paradigm.
 
 It's important to note that in many production code bases, some combination of the above styling techniques are utilized. Oftentimes some static css files will be necessary, and used alongside something like styled components. At the end of the day the right solution is the one that works for your team!
 
@@ -197,15 +184,17 @@ Run the app locally with `npm start` and choose the `Styling` exercise. Now head
 ### The problem
 
 ✏️ You have been provided a basic set of global styles in App.css. Your task is to convert these initial styles into each of the other styling types.
- * 1. Inline Styles
- * 2. Modular CSS
- * 3. Styled Components
+
+- 1.  Inline Styles
+- 2.  Modular CSS
+- 3.  Styled Components
 
 ### The solution
 
 #### Inline Styles
 
 `App.js`
+
 ```jsx
 import React from 'react';
 
@@ -218,7 +207,7 @@ const boardStyles = {
   height: '600px',
   boxShadow: '0px 3px 8px 0 rgba(0, 0, 0, 0.1)',
   boxSizing: 'border-box',
-}
+};
 
 const squareStyles = {
   width: '200px',
@@ -229,11 +218,11 @@ const squareStyles = {
   justifyContent: 'center',
   alignItems: 'center',
   fontSize: '6em',
-}
+};
 
 const hintStyles = {
   background: '#9AE6B4',
-}
+};
 
 function App() {
   return (
@@ -257,6 +246,7 @@ export default App;
 #### Modular CSS
 
 `App.js`
+
 ```jsx
 import React from 'react';
 import cx from 'classnames';
@@ -281,7 +271,9 @@ function App() {
 
 export default App;
 ```
+
 `App.module.css`
+
 ```css
 .board {
   display: flex;
@@ -311,13 +303,14 @@ export default App;
 }
 
 .square.hint {
-  background: #9AE6B4;
+  background: #9ae6b4;
 }
 ```
 
 #### Styled Components
 
 `App.js`
+
 ```jsx
 import React from 'react';
 import styled from '@emotion/styled';
@@ -331,7 +324,7 @@ export const Board = styled.div`
   height: 600px;
   box-shadow: 0px 3px 8px 0 rgba(0, 0, 0, 0.1);
   box-sizing: border-box;
-`
+`;
 
 export const Square = styled.div`
   width: 200px;
@@ -348,10 +341,12 @@ export const Square = styled.div`
     background: #bbdefb !important;
   }
 
-  ${props => props.hint && `
+  ${(props) =>
+    props.hint &&
+    `
     background: #9AE6B4;
   `}
-`
+`;
 
 function App() {
   return (
