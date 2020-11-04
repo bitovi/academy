@@ -20,7 +20,7 @@ But this "all JS" approach comes with some downsides, namely it becomes arduous 
 React exposes an API for creating HTML elements using JavaScript. For example to create an `h1` we could write the following:
 
 ```jsx
-React.createElement('h1', null, 'Hello World');
+React.createElement("h1", null, "Hello World")
 ```
 
 The code above will create an `h1` with the text "Hello World" inside of it (`<h1>Hello World</h1>`). This is pure, vanilla JavaScript using a function `createElement` exposed by React.
@@ -29,13 +29,13 @@ The code above will create an `h1` with the text "Hello World" inside of it (`<h
 
 ```jsx
 React.createElement(
-  'div', // Tag name
+  "div", // Tag name
   { id: "greeting" }, // Props, referred to as "attributes" in HTML
   [
-    React.createElement('h1', null, 'Hello World'),
-    React.createElement('p', null, 'This is HTML')
+    React.createElement("h1", null, "Hello World"),
+    React.createElement("p", null, "This is HTML"),
   ] // Children
-);
+)
 ```
 
 The code above replicates the following HTML:
@@ -47,7 +47,7 @@ The code above replicates the following HTML:
 </div>
 ```
 
-As you can see, the XML-like nature of HTML allows us to model anything using a combination of a tag name, a set of attributes and children. Note how the more complex the HTML we're trying to model, the more complex the `React.createElement` code becomes. 
+As you can see, the XML-like nature of HTML allows us to model anything using a combination of a tag name, a set of attributes and children. Note how the more complex the HTML we're trying to model, the more complex the `React.createElement` code becomes.
 
 While it is possible to build entire apps using the `createElement` function, this is rarely done due to how messy it quickly becomes.
 
@@ -55,7 +55,7 @@ Instead, React supports a JavaScript syntax extension called JSX which allows us
 
 ## JSX
 
-JSX is a special syntax [transpile-able](https://stackoverflow.com/questions/44931479/compiling-vs-transpiling) by [babel](https://babeljs.io/), which looks almost identical to HTML. 
+JSX is a special syntax [transpile-able](https://stackoverflow.com/questions/44931479/compiling-vs-transpiling) by [babel](https://babeljs.io/), which looks almost identical to HTML.
 
 Instead of having to use the procedural `React.createElement` syntax, views can be defined and maintained in JSX and will automatically be transpiled into the equivalent `React.createElement` calls at build-time.
 
@@ -78,14 +78,14 @@ In a normal HTML document, inline styles can be attached directly to an element 
 The equivalent JSX looks very similar, but the styles are stored in an object:
 
 ```jsx
-<div style={ { color: 'red', backgroundColor: 'blue' } }>
+<div style={{ color: "red", backgroundColor: "blue" }}>
   Inline styles are different
 </div>
 ```
 
 First, notice how instead of using a string to store the styles `style=""` we use curly brackets `style={}`. In JSX, we can interpolate JavaScript code into our attributes, and when doing so we use the curly bracket notation instead of quotes (quotes can be used only for string values).
 
-Inside of `style={  }` we have an object of styles whose keys are css attributes and values are the value of the css. This structure closely resembles the [`CSSStyleDeclaration`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration) object used by the browser to store element styles (To see this run `document.body.style` in your browser console).
+Inside of `style={ }` we have an object of styles whose keys are css attributes and values are the value of the css. This structure closely resembles the [`CSSStyleDeclaration`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration) object used by the browser to store element styles (To see this run `document.body.style` in your browser console).
 
 Another thing you may note is the difference between `background-color` and `backgroundColor`. The reason for this, is that JavaScript does not support dashes as identifiers outside of strings. While it would be possible to write `"background-color": "blue"`, the convention is to let React handle the conversion from camel-case to dashes.
 
@@ -114,8 +114,8 @@ To fix it, we'd need to wrap them both in a parent:
 
 ```jsx
 <div>
-    <div>Sibling 1</div>
-    <div>Sibling 2</div>
+  <div>Sibling 1</div>
+  <div>Sibling 2</div>
 </div>
 ```
 
@@ -125,15 +125,17 @@ Now they're both wrapped in a parent `div` and the error will go away!
 
 Sometimes, you may encounter situations where wrapping your elements in an extra element is undesirable (`tr`, `td` for example). Fragments can either be written using the longform `<React.Fragment></React.Fragment>` syntax or the shorthand `<></>`.
 
-This JSX: 
+This JSX:
+
 ```jsx
 <>
-    <div>Sibling 1</div>
-    <div>Sibling 2</div>
+  <div>Sibling 1</div>
+  <div>Sibling 2</div>
 </>
 ```
 
 Will output the following HTML:
+
 ```html
 <div>Sibling 1</div>
 <div>Sibling 2</div>
@@ -167,7 +169,6 @@ const person = {
 
 **Important:** Only expressions which return a value may be interpolated. This includes static values, variables and calls to functions. It does not include control-flow statements such as `if`, `case`, `for`, `while`. These can either be abstracted behind a function, which is then called within the JSX or be re-written in a JSX-friendly way.
 
-
 Conditions can be re-written using the ternary operator.
 
 ### JSX Is JavaScript
@@ -178,7 +179,12 @@ Remember, JSX is simply an alternative syntax for normal JavaScript - it is not 
 const header = <h1>Hello World</h1>
 const body = <p>My name is {"Mike"}</p>
 
-const page = <div>{header}{body}</div>
+const page = (
+  <div>
+    {header}
+    {body}
+  </div>
+)
 ```
 
 If rendered, `page` will output:
@@ -193,10 +199,10 @@ If rendered, `page` will output:
 If this surprises you, remember that underneath the syntactic sugar, JSX is nothing more than `React.createElement` calls:
 
 ```jsx
-const header = React.createElement('h1', null, 'Hello World');
-const body = React.createElement('p', null, `Hello ${"Mike"}`);
+const header = React.createElement("h1", null, "Hello World")
+const body = React.createElement("p", null, `Hello ${"Mike"}`)
 
-const page = React.createElement('div', null, [header, body]);
+const page = React.createElement("div", null, [header, body])
 ```
 
 ### Common Pitfalls
@@ -207,7 +213,7 @@ const page = React.createElement('div', null, [header, body]);
 // This does not work
 <div>
   {
-    if (a == b) { // Control flow does not belong in JSX
+    if (a === b) { // Control flow does not belong in JSX
       "a and b are equal"
     } else {
       "a and b are different"
@@ -220,7 +226,7 @@ const page = React.createElement('div', null, [header, body]);
 // Can be accomplished with ternaries
 <div>
   {
-    a == b ? "a and b are equal" : "a and b are different" // Ternaries are expressions. They return a value.
+    a === b ? "a and b are equal" : "a and b are different" // Ternaries are expressions. They return a value.
   }
 </div>
 ```
@@ -228,11 +234,7 @@ const page = React.createElement('div', null, [header, body]);
 If ternaries seem excessive for any particular case, you can write all your logic in a seperate function and invoke it from within JSX.
 
 ```jsx
-<div>
-  {
-    outputResult()
-  }
-</div>
+<div>{outputResult()}</div>
 ```
 
 #### Using Loops
@@ -253,9 +255,9 @@ If you want to iterate within JSX, use methods such as `Array.map`, `Array.filte
 ```jsx
 // Mapping values to JSX elements
 <div>
-  {
-    [1, 2, 3, 4].map(n => <span>n</span>)
-  }
+  {[1, 2, 3, 4].map((n) => (
+    <span>n</span>
+  ))}
 </div>
 ```
 
@@ -268,21 +270,13 @@ If you want to iterate within JSX, use methods such as `Array.map`, `Array.filte
 </div>
 ```
 
-
-
-
 ## Event Handling
 
 One of the most powerful aspects of JavaScript is that it enables developers to respond to events on the browser. With JSX it's easy to listen for and respond to these events.
 
-
 ```jsx 1:3 title="JSX handles user event with ease" subtitle=""
 <div className="button primary">
-  <button 
-    onClick={(event) => console.log('Clicked')}
-  >
-    click me
-  </button>
+  <button onClick={(event) => console.log("Clicked")}>click me</button>
 </div>
 ```
 
@@ -292,12 +286,18 @@ All [events](https://developer.mozilla.org/en-US/docs/Web/Events) supported in v
 
 ## Components
 
-In React we can store our JSX inside of components. Components are like small containers which can be re-used throughout your application. For example, you might build a `Button` component which renders all the JSX required for a button. 
+In React we can store our JSX inside of components. Components are like small containers which can be re-used throughout your application. For example, you might build a `Button` component which renders all the JSX required for a button.
 
 ```html
 <div id="root"></div>
-<script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script>
-<script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script
+  crossorigin
+  src="//unpkg.com/react@16/umd/react.development.js"
+></script>
+<script
+  crossorigin
+  src="//unpkg.com/react-dom@16/umd/react-dom.development.js"
+></script>
 
 <script type="jsx">
   ReactDOM.render(<MyButton />,document.getElementById('root'));
@@ -311,6 +311,7 @@ In React we can store our JSX inside of components. Components are like small co
   }
 </script>
 ```
+
 @codepen
 
 In the code above, we're defining a functional components (a function which returns JSX) called `MyButton`.
@@ -318,15 +319,15 @@ In the code above, we're defining a functional components (a function which retu
 This component returns JSX and could then be rendered and re-used by another component like `App` below.
 
 ```jsx
-function App(){
-    return (
-      <div>
-        <MyButton />
-        <MyButton />
-        <MyButton />
-      </div>
-    )
+function App() {
+  return (
+    <div>
+      <MyButton />
+      <MyButton />
+      <MyButton />
+    </div>
+  )
 }
 ```
 
-Here the `App` component is rendering out the `MyButton` component 3 times. Note that when you render out custom components like this they don't need closing tags, instead they can be self-closing with a `/` tacked onto the end. You can also design them to have closing tags with extra elements rendered inside (see an explanation on JSX children [here](https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891)). 
+Here the `App` component is rendering out the `MyButton` component 3 times. Note that when you render out custom components like this they don't need closing tags, instead they can be self-closing with a `/` tacked onto the end. You can also design them to have closing tags with extra elements rendered inside (see an explanation on JSX children [here](https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891)).
