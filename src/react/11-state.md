@@ -75,7 +75,7 @@ function WrapperContainer() {
   );
 }
 
-function DisplayComponent(props) {
+function DisplayComponent() {
   return (
     <div>
       <h1>You entered:</h1>
@@ -84,7 +84,7 @@ function DisplayComponent(props) {
   );
 }
 
-function ButtonComponent(props) {
+function ButtonComponent() {
   return <button type="button">Set Message</button>;
 }
 ```
@@ -123,9 +123,7 @@ function WrapperContainer() {
 Using this data in the `DisplayComponent` is simple. Deconstruct the state variables from `props` and update the component to call `setUnsavedText` on changes.
 
 ```jsx
-function DisplayComponent(props) {
-  const { unsavedText, setUnsavedText, savedText } = props;
-
+function DisplayComponent({ unsavedText, setUnsavedText, savedText }) {
   function onSetText(event) {
     //notice we use the passed in setter defined in the WrapperContainer
     setUnsavedText(event.target.value);
@@ -175,8 +173,7 @@ function WrapperContainer() {
 Lastly, update the `ButtonComponent` to use our new callback.
 
 ```jsx
-function ButtonComponent(props) {
-  const { onButtonClick } = props;
+function ButtonComponent({ onButtonClick }) {
   return (
     <button type="button" onClick={onButtonClick}>
       Set Message
@@ -219,9 +216,7 @@ function WrapperContainer() {
   );
 }
 
-function DisplayComponent(props) {
-  const { unsavedText, setUnsavedText, savedText } = props;
-
+function DisplayComponent({ unsavedText, setUnsavedText, savedText }) {
   function onSetText(event) {
     //notice we use the passed in setter defined in the WrapperContainer
     setUnsavedText(event.target.value);
@@ -236,8 +231,7 @@ function DisplayComponent(props) {
   );
 }
 
-function ButtonComponent(props) {
-  const { onButtonClick } = props;
+function ButtonComponent({ onButtonClick }) {
   return (
     <button type="button" onClick={onButtonClick}>
       Set Message

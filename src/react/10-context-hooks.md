@@ -20,11 +20,11 @@ This however, can be difficult to do when you have a lot of data to pass through
       └── ButtonText(Theme, Domain, RootUrl)
 ```
 
-Without concerning ourselves with what exactly each of the props does, we can see the problem. Every piece of global state must be propagated through the entire hierarchy. As a result, each component would look something like this:
+Without concerning ourselves with what exactly each of the props does, we can see the problem. Every piece of global state must be propagated through the entire hierarchy. As a result, every component would look something like this:
 
 ```jsx
-function Component1(props) {
-  return <Component2 Theme={props.Theme} Domain={props.Domain} RootUrl={props.RootUrl}>
+function Component1({ Theme, Domain, RootUrl }) {
+  return <Component2 Theme={Theme} Domain={Domain} RootUrl={RootUrl}>
 }
 ```
 

@@ -43,11 +43,11 @@ function AddNumbers() {
 
 Take a look at the `AddNumbers` component above. It returns a div with the result of adding `1 + 7`. This is fine, but suppose once again we wanted to specify which numbers it adds.
 
-We can solve this by modifying the `AddNumbers` component so that it accepts props.
+We can solve this by modifying the `AddNumbers` component so that it accepts props for `num1` and `num2`. We're also [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) the props object, a convention used by much of the community and in the rest of this guide.
 
 ```jsx
-function AddNumbers(props) {
-  return <div>{props.num1 + props.num2}</div>;
+function AddNumbers({ num1, num2 }) {
+  return <div>{num1 + num2}</div>;
 }
 ```
 
@@ -104,9 +104,7 @@ function MyButton({ onButtonClick }) {
 ```
 @highlight 1
 
-Notice above that the `MyButton` component now accepts a `onButtonClick` prop (we're also [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) the props object, another convention).
-
-Now whenever the button is clicked it will call the callback function, making the button component more reusable.
+Notice above that the `MyButton` component now accepts a `onButtonClick` prop. Now whenever the button is clicked it will call the callback function, making the button component more reusable.
 
 ```jsx
 <MyButton onButtonClick={() => console.log('custom click action')}>
@@ -125,8 +123,8 @@ function MyButton({ onButtonClick }) {
   return <button onClick={onButtonClick}>click me</button>;
 }
 
-function AddNumbers(props) {
-  return <div>{props.num1 + props.num2}</div>;
+function AddNumbers({ num1, num2 }) {
+  return <div>{num1 + num2}</div>;
 }
 
 function App() {
