@@ -23,18 +23,28 @@ Let's start with `useState`.
 When `useState` is called, it returns an array with two elements in it. The first element is the state value itself, this is the value you would render out inside the JSX. The second element is a setter function, which, when called can be used to update the state and trigger a re-render.
 
 ```html
-<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">
-function Hello() {
-  const [inputValue, setInputValue] = React.useState("");
+<div id="root"></div>
+<script
+  crossorigin
+  src="//unpkg.com/react@16/umd/react.development.js"
+></script>
+<script
+  crossorigin
+  src="//unpkg.com/react-dom@16/umd/react-dom.development.js"
+></script>
+<script type="jsx">
+  function Hello() {
+    const [inputValue, setInputValue] = React.useState("");
 
-  return (
-    <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
-  );
-}
+    return (
+      <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+    );
+  }
 
-ReactDOM.render(<Hello />, document.getElementById("root"));
+  ReactDOM.render(<Hello />, document.getElementById("root"));
 </script>
 ```
+
 @highlight 4,8,9,only
 @codepen
 
@@ -86,7 +96,7 @@ Run the app locally with `npm start` and choose the `Stateful Hooks` exercise. N
 ✏️ Modify the `Board` component so that it keeps track of the current state of the game/players using hooks.
 
 - store the current board in state
-  - It should be reprersented as an array of strings (ex. `["", "x", "o" ...]`)
+  - It should be represented as an array of strings (ex. `["", "x", "o" ...]`)
 - store the current player in state
   - This can be a boolean called `isXTurn`
 - Fill out the `handleSquareClick` function so that it updated the board and changes the current player when the user clicks a `Square`.
@@ -128,4 +138,5 @@ function Board() {
 
 export default Board;
 ```
+
 @highlight 5,6,9-17,only

@@ -61,9 +61,9 @@ The `src` folder is where all your React components should be stored alongside a
 The `index.js` file is known as the entry-point of the React application. It is where our application is initialized and instructed where to render its output.
 
 ```jsx
-import React from "react"
-import ReactDOM from "react-dom"
-import App from "./App"
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
 // Connects React to the DOM via ReactDOM
 ReactDOM.render(<App />, document.getElementById('root'));
@@ -87,7 +87,7 @@ The `package.json` file is kept intentionally small, and includes only a few dep
 }
 ```
 
-If you are wondering where the Webpack and Babel dependencies are, they are hidden as transative dependencies of `react-scripts`.
+If you are wondering where the Webpack and Babel dependencies are, they are hidden as transitive dependencies of `react-scripts`.
 
 Create React App provides a set of scripts (`react-scripts`) which know how to start, build and test your app. It's generally recommended to leave these as-is, a lot of work has been put into these scripts to ensure the best developer experience possible.
 

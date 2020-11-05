@@ -12,22 +12,32 @@ In a nutshell, a component is function which takes in props and returns an eleme
 Often times the values and the side effects of a component are used together. Let's take a simple counter component to explain:
 
 ```html
-<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">
-function Counter() {
-  // a piece of state called `clickCount` is initialized to 0
-  const [clickCount, setClickCount] = React.useState(0);
+<div id="root"></div>
+<script
+  crossorigin
+  src="//unpkg.com/react@16/umd/react.development.js"
+></script>
+<script
+  crossorigin
+  src="//unpkg.com/react-dom@16/umd/react-dom.development.js"
+></script>
+<script type="jsx">
+  function Counter() {
+    // a piece of state called `clickCount` is initialized to 0
+    const [clickCount, setClickCount] = React.useState(0);
 
-  return (
-    <div>
-      <button onClick={() => setClickCount(clickCount + 1)}>+1</button>
-      Clicked {clickCount} times
-    </div>
-  );
-}
+    return (
+      <div>
+        <button onClick={() => setClickCount(clickCount + 1)}>+1</button>
+        Clicked {clickCount} times
+      </div>
+    );
+  }
 
-ReactDOM.render(<Counter />, document.getElementById("root"));
+  ReactDOM.render(<Counter />, document.getElementById("root"));
 </script>
 ```
+
 @highlight 5,9-10,only
 @codepen
 
@@ -35,7 +45,7 @@ We'll cover more of the specifics about how this works later on, but for now let
 
 The `Counter` component has a button which, when clicked, will increment a count value and display it to the user. This means that the user will always know how many times they've clicked the button.
 
-The number of times the button has been clicked is a piece of component state. In other words, it is one of the **values** the component keeps track of. The `clickCount` value is independant of any other instance of the Counter.
+The number of times the button has been clicked is a piece of component state. In other words, it is one of the **values** the component keeps track of. The `clickCount` value is independent of any other instance of the Counter.
 
 What happens when the button gets clicked is part of the **side effects** of our component. In this case, when the **+1** button gets clicked we update the `clickCount` state, adding 1 to it (`setClickCount(clickCount + 1)`).
 

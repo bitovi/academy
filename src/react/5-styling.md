@@ -40,7 +40,7 @@ Although this is the simplest way to add styles, it shouldn't be counted out. Us
 
 ### Classes
 
-Like normal HTML, JSX elements can accept a class attribute (called `className`). Classes can either be located in a global style sheet included in the index.html file, or be directly included into a component (see below)
+Like normal HTML, JSX elements can accept a class attribute (called `className`). Classes can either be located in a global style sheet included in the index.html file, or be directly included into a component (see below).
 
 ```jsx
 import './thing.css';

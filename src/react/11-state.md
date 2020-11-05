@@ -7,7 +7,7 @@
 
 ## What is state?
 
-In React, `state` is any data determining the presention of your components. The value of a text box, whether or not a modal is open, and what page the app is currently showing are all potential examples of state.
+In React, `state` is any data determining the presentation of your components. The value of a text box, whether or not a modal is open, and what page the app is currently showing are all potential examples of state.
 
 Using functional components, the `useState()` hook provides a value and setter capable of holding any data type. This allows us to hold simple variables such as:
 
@@ -35,7 +35,7 @@ _For class based components see [this.setState()](https://reactjs.org/docs/state
 
 ## Scope of State
 
-`useState` is scoped to the component it is declared in. For example, this simple component stores a simple string `savedText` and diplays its value as the user makes changes to a text input.
+`useState` is scoped to the component it is declared in. For example, this simple component stores a simple string `savedText` and displays its value as the user makes changes to a text input.
 
 ```jsx
 import React, { useState } from 'react';
@@ -248,7 +248,7 @@ function ButtonComponent(props) {
 
 ## What data should be kept in React state?
 
-There is no "right" answer for what data should be stored in state. Applications with simple API requirements may keep everything in state objects. Other apps may opt to store nearly everything in a seperate global state managment library.
+There is no "right" answer for what data should be stored in state. Applications with simple API requirements may keep everything in state objects. Other apps may opt to store nearly everything in a separate global state management library.
 
 Talk about managing network requests
 

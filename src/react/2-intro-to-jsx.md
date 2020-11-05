@@ -97,7 +97,7 @@ In JSX, classes are defined using the `className=""` property:
 <div className="button primary">So are classes</div>
 ```
 
-The reason for the discrepency is that the React API is mirrored after the JavaScript DOM API and not after HTML itself. A lengthier description of the reasons is available on [GitHub](https://github.com/facebook/react/issues/13525#issuecomment-417818906).
+The reason for the discrepancy is that the React API is mirrored after the JavaScript DOM API and not after HTML itself. A lengthier description of the reasons is available on [GitHub](https://github.com/facebook/react/issues/13525#issuecomment-417818906).
 
 ### Siblings
 
@@ -231,7 +231,7 @@ const page = React.createElement('div', null, [header, body]);
 </div>
 ```
 
-If ternaries seem excessive for any particular case, you can write all your logic in a seperate function and invoke it from within JSX.
+If ternaries seem excessive for any particular case, you can write all your logic in a separate function and invoke it from within JSX.
 
 ```jsx
 <div>{outputResult()}</div>
