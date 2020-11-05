@@ -58,7 +58,7 @@ function DisplayComponent() {
 
 Now imagine our layout requires a button to confirm the `savedText` change, but the button appears in a different part of the page! How will we modify the state in a different component?
 
-Lucky for us, values and setters from `useState` are standard javascript variables and can be passed as `props`. We can create a 'Container' component to hold the state where both Display and Button components have access. _Consider the following structure:_
+Lucky for us, values and setters from `useState` are standard JavaScript variables and can be passed as `props`. We can create a 'Container' component to hold the state where both Display and Button components have access. _Consider the following structure:_
 
 ```jsx
 function WrapperContainer() {

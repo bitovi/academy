@@ -1,7 +1,7 @@
 @page learn-react/setting-up-environment Setting up your environment
 @parent learn-react 1
 
-@description Learn how to setup a React environment using create-react-app.
+@description Learn how to setup a React environment using Create React App.
 
 @body
 
@@ -112,7 +112,7 @@ Create React App will automatically initialize the new folder as a git repositor
 
 ## Deployment
 
-One of the benefits of using `react-scripts` is it's great build process. When you run the `npm run build` command, your site will automatically be bundled, minified, and written into a `build` folder.
+One of the benefits of using `react-scripts` is its great build process. When you run the `npm run build` command, your site will automatically be bundled, minified, and written into a `build` folder.
 
 You can can then upload the folder to any web-server to be served statically (just like a normal HTML website), no special configuration required.
 

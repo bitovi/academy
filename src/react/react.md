@@ -1,7 +1,7 @@
-@page learn-react Learn React by Building a Tic-Tac-Toe Game
+@page learn-react Learn React
 @parent bit-academy 5
 
-@description This hands-on course will introduce both fundamental and advanced React concepts, all while building out a feature-rich Tic-Tac-Toe game! By the end of this course, you will master Hooks, Unit Testing, Optimization and Routing.
+@description Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.
 
 @body
 
@@ -35,7 +35,7 @@ One of the best things about React is that it can be used in any website, even o
 
 This guide begins with by walking you through how to [set up an environment](/learn-react/setting-up-environment.html), providing an introduction into [JSX](/learn-react/intro-to-jsx.html) (JavaScript flavour of XML) and some basic [react theory](/learn-react/react-theory.html).
 
-Once you're all setup and orientated into the framework, you'll learn how to build re-usable web components using [props](/learn-react/props.html), and discover the difference between [controlled & uncontrolled](/learn-react/controlled-vs-uncontrolled-components.html) components. You'll also learn the various ways of doing [styling](/learn-react/styling-in-react.html), and how CSS can be integrated into JSX.
+Once you're all setup and orientated into the framework, you'll learn how to build reusable web components using [props](/learn-react/props.html), and discover the difference between [controlled & uncontrolled](/learn-react/controlled-vs-uncontrolled-components.html) components. You'll also learn the various ways of doing [styling](/learn-react/styling-in-react.html), and how CSS can be integrated into JSX.
 
 The second half of the guide will cover more intermediate topics like state management using [hooks](/learn-react/intro-to-hooks.html) and making components as [optimized](/learn-react/optimization-hooks.html) as possible.
 

@@ -19,7 +19,7 @@ function addOneAndSeven() {
 
 This is a perfectly good function, but notice that it always adds the same two numbers. In other words, it's only usable in very specific cases.
 
-We can make this function more re-usable by allowing arguments to be passed into it:
+We can make this function more reusable by allowing arguments to be passed into it:
 
 ```js
 function addNumbers(num1, num2) {
@@ -27,7 +27,7 @@ function addNumbers(num1, num2) {
 }
 ```
 
-The function is now infinitely more re-usable because the caller can specify the numbers, instead of just having them be hardcoded in.
+The function is now infinitely more reusable because the caller can specify the numbers, instead of just having them be hardcoded in.
 
 This same principle applies to React components.
 
@@ -51,7 +51,7 @@ function AddNumbers(props) {
 }
 ```
 
-In React, all components receive a `props` object as their first argument (class components get them in the constructor).
+In React, all components receive a `props` object as their first argument (class components get them in the constructor and at `this.props` in the methods).
 
 The props object contains any values which are passed into the component when it's rendered.
 
@@ -104,9 +104,9 @@ function MyButton({ onButtonClick }) {
 ```
 @highlight 1
 
-Notice above that the `MyButton` component now accepts a `onButtonClick` prop (we're also [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) the props object).
+Notice above that the `MyButton` component now accepts a `onButtonClick` prop (we're also [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) the props object, another convention).
 
-Now whenever the button is clicked it will call the callback function, making the button component more re-usable.
+Now whenever the button is clicked it will call the callback function, making the button component more reusable.
 
 ```jsx
 <MyButton onButtonClick={() => console.log('custom click action')}>
@@ -145,7 +145,7 @@ ReactDOM.render(<App />, document.getElementById("root"));
 
 ## Exercise
 
-Let's use our props knowledge to start building out our Tic-Tac-Toe app.
+Let's use our props knowledge to start building out the Tic-Tac-Toe app that we started in [learn-react/setting-up-environment].
 
 The app itself has already been scaffolded [here](https://github.com/bitovi/react-exercises). It includes 3 files each of which comes together to make up the game:
 
@@ -161,7 +161,7 @@ The goal of this exercise is to get a `console.log()` to happen whenever the use
 
 #### Hints
 
-- Modify the `Square` component so that accepts two props
+- Modify the `Square` component so that accepts two props:
   - `onClick` - a callback which is executed when the user click on it
   - `symbol` - a string indicating what symbol is in the square (X, O or nothing)
 - Modify the `Board` component so it renders out all 9 squares given to it by its `board` props (`board` is an array of strings)
