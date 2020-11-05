@@ -1,40 +1,31 @@
 ## How does React work?
 
-React is all about components. In fact the whole point of the library is to help developers easily create re-usable components.
+React is all about components. In fact the whole point of the library is to help developers easily create reusable components.
 
 But what is a component?
 
 In a nutshell, a component is function which takes in props and returns an element.
 
-- **Values** - The values of a component are all of the values the component is keeping track of. They include _component state_, which are the values the component controls itself and _props_ which are supplied to the component.
+- **Values** - The values of a component are all of the values the component is keeping track of. They include _component state_, which are the values the component controls itself, and _props_, which are supplied to the component.
 - **Side Effects** - The side effects of a component are the results of the operations which touch things outside of the component. This includes async operations, registering DOM event-handling and interaction with the browser. An easy way of knowing if something is a side-effect, try to think if it would work without accessing anything except the **values**.
 
 Often times the values and the side effects of a component are used together. Let's take a simple counter component to explain:
 
 ```html
-<div id="root"></div>
-<script
-  crossorigin
-  src="//unpkg.com/react@16/umd/react.development.js"
-></script>
-<script
-  crossorigin
-  src="//unpkg.com/react-dom@16/umd/react-dom.development.js"
-></script>
-<script type="jsx">
-  function Counter() {
-    // a piece of state called `clickCount` is initialized to 0
-    const [clickCount, setClickCount] = React.useState(0);
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">
+function Counter() {
+  // a piece of state called `clickCount` is initialized to 0
+  const [clickCount, setClickCount] = React.useState(0);
 
-    return (
-      <div>
-        <button onClick={() => setClickCount(clickCount + 1)}>+1</button>
-        Clicked {clickCount} times
-      </div>
-    );
-  }
+  return (
+    <div>
+      <button onClick={() => setClickCount(clickCount + 1)}>+1</button>
+      Clicked {clickCount} times
+    </div>
+  );
+}
 
-  ReactDOM.render(<Counter />, document.getElementById("root"));
+ReactDOM.render(<Counter />, document.getElementById('root'));
 </script>
 ```
 

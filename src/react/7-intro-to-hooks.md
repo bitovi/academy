@@ -63,11 +63,11 @@ class Timer extends React.Component {
   render() {
     const { value } = this.state;
 
-    return <div>{value ? "Done!" : "Waiting..."}</div>;
+    return <div>{value ? 'Done!' : 'Waiting...'}</div>;
   }
 }
 
-ReactDOM.render(<Timer />, document.getElementById("root"));
+ReactDOM.render(<Timer />, document.getElementById('root'));
 </script>
 ```
 @codepen
@@ -101,14 +101,14 @@ class Timer extends React.Component {
 
     return (
       <>
-        <div>{value1 ? "Done!" : "Waiting..."}</div>
-        <div>{value2 ? "Done!" : "Waiting..."}</div>
+        <div>{value1 ? 'Done!' : 'Waiting...'}</div>
+        <div>{value2 ? 'Done!' : 'Waiting...'}</div>
       </>
     );
   }
 }
 
-ReactDOM.render(<Timer />, document.getElementById("root"));
+ReactDOM.render(<Timer />, document.getElementById('root'));
 </script>
 ```
 @codepen
@@ -123,7 +123,7 @@ Here's that same timer written using the `useState` and `useEffect` hooks:
 
 ```html
 <div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">
-function Timer(props) {
+function Timer() {
   const [value, setValue] = React.useState(false);
 
   React.useEffect(() => {
@@ -131,10 +131,10 @@ function Timer(props) {
     return () => clearTimeout(timer);
   }, []);
 
-  return <div>{value ? "Done!" : "Waiting..."}</div>;
+  return <div>{value ? 'Done!' : 'Waiting...'}</div>;
 }
 
-ReactDOM.render(<Timer />, document.getElementById("root"));
+ReactDOM.render(<Timer />, document.getElementById('root'));
 </script>
 ```
 @codepen
@@ -165,13 +165,13 @@ function useTimer(delay) {
   return value;
 }
 
-function Timer(props) {
+function Timer() {
   const value = useTimer(2500);
 
-  return <div>{value ? "Done!" : "Waiting..."}</div>;
+  return <div>{value ? 'Done!' : 'Waiting...'}</div>;
 }
 
-ReactDOM.render(<Timer />, document.getElementById("root"));
+ReactDOM.render(<Timer />, document.getElementById('root'));
 </script>
 ```
 @codepen

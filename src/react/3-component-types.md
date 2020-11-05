@@ -7,7 +7,7 @@
 
 ## Functional Components
 
-Functional components are the simplest and easiest to write components in React, in a nutshell, they're just functions which return a React element (usually written in the form of JSX).
+Functional components are the simplest and easiest to write components in React. In a nutshell, they're just functions which return a React element (usually written in the form of JSX).
 
 ```html
 <div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">
@@ -15,12 +15,12 @@ function MyFuncComponent() {
   return <div>hello world</div>;
 }
 
-ReactDOM.render(<MyFuncComponent />, document.getElementById("root"));
+ReactDOM.render(<MyFuncComponent />, document.getElementById('root'));
 </script>
 ```
 @codepen
 
-As you can see in the functional component above, there's not much magic happening. We simply define a function and return JSX from it.
+As you can see in the functional component above, there's not much magic happening; we simply define a function and return JSX from it.
 
 ## Class Components
 
@@ -34,7 +34,7 @@ class MyClassComponent extends React.Component {
   }
 }
 
-ReactDOM.render(<MyClassComponent />, document.getElementById("root"));
+ReactDOM.render(<MyClassComponent />, document.getElementById('root'));
 </script>
 ```
 @codepen
@@ -58,6 +58,6 @@ Aside from the syntax there, they are functionally equivalent.
 
 Originally, class components were the most popular because they could keep track of state and respond to specific component lifecycle events. This wasn't possible in functional component until the release of the [React Hooks API](https://reactjs.org/docs/hooks-reference.html) in v16. Up until then, functional components were commonly referred to as _stateless components_.
 
-Now-a-days both class and functional components are used commonly in code-bases around the world, but there has been a shift to using functional components only, as the syntax for them is considered more readable and cleaner by many.
+Now both class and functional components are used commonly in code-bases around the world, but there has been a shift to using only functional components, as the syntax for them is more readable and cleaner.
 
 For the remainder of this training, we will be using functional components exclusively.

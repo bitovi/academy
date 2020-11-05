@@ -23,25 +23,16 @@ Let's start with `useState`.
 When `useState` is called, it returns an array with two elements in it. The first element is the state value itself, this is the value you would render out inside the JSX. The second element is a setter function, which, when called can be used to update the state and trigger a re-render.
 
 ```html
-<div id="root"></div>
-<script
-  crossorigin
-  src="//unpkg.com/react@16/umd/react.development.js"
-></script>
-<script
-  crossorigin
-  src="//unpkg.com/react-dom@16/umd/react-dom.development.js"
-></script>
-<script type="jsx">
-  function Hello() {
-    const [inputValue, setInputValue] = React.useState("");
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">
+function Hello() {
+  const [inputValue, setInputValue] = React.useState('');
 
-    return (
-      <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
-    );
-  }
+  return (
+    <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+  );
+}
 
-  ReactDOM.render(<Hello />, document.getElementById("root"));
+ReactDOM.render(<Hello />, document.getElementById('root'));
 </script>
 ```
 

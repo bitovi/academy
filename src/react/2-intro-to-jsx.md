@@ -9,7 +9,7 @@
 
 Before we talk about JSX, let's discuss how user interfaces are created in React.
 
-At its core, React is a JavaScript library used for creating reusable front-end components. One of the features of React is that it allows you to describe the way your components look using only JavaScript, there's no HTML or templating languages to keep track of.
+At its core, React is a JavaScript library used for creating reusable front-end components. One of the unique features of React is that it allows you to describe the way your components look using only JavaScript, there's no HTML or templating languages strictly required.
 
 This is all done through the React [element API](https://reactjs.org/docs/react-api.html).
 
@@ -23,9 +23,7 @@ React exposes an API for creating HTML elements using JavaScript. For example to
 React.createElement('h1', null, 'Hello World');
 ```
 
-The code above will create an `h1` with the text "Hello World" inside of it (`<h1>Hello World</h1>`). This is pure, vanilla JavaScript using a function `createElement` exposed by React.
-
-`createElement` can be used to model just about any HTML structure:
+The code above will create an `h1` with the text "Hello World" inside of it (`<h1>Hello World</h1>`). This is pure, vanilla JavaScript using a function `createElement` exposed by React. `createElement` can be used to model just about any HTML structure:
 
 ```js
 React.createElement(
@@ -83,9 +81,11 @@ The equivalent JSX looks very similar, but the styles are stored in an object:
 </div>
 ```
 
-First, notice how instead of using a string to store the styles `style=""` we use curly brackets `style={}`. In JSX, we can interpolate JavaScript code into our attributes, and when doing so we use the curly bracket notation instead of quotes (quotes can be used only for string values).
+First, notice how instead of using a string to store the styles (like `style=""`) we use curly brackets (like `style={}`). In JSX, we can interpolate JavaScript code into our attributes, and when doing so we use the curly bracket notation instead of quotes (quotes can be used only for string values).
 
-Inside of `style={ }` we have an object of styles whose keys are css attributes and values are the value of the css. This structure closely resembles the [`CSSStyleDeclaration`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration) object used by the browser to store element styles (To see this run `document.body.style` in your browser console).
+> This is how JSX always works. Quotes always denote a string (JSX uses double quotes by convention, to mimic HTML, but single quotes also work). Using brackets allows other kinds on values, like: objects (like we'll be using for `style`), arrays, numbers, or even more JSX. Any JavaScript expression is valid inside the curly brackets.
+
+Inside of `style={}` we have an object of styles whose keys are css attributes and values are the value of the css. This structure closely resembles the [`CSSStyleDeclaration`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration) object used by the browser to store element styles (To see this run `document.body.style` in your browser console).
 
 Another thing you may note is the difference between `background-color` and `backgroundColor`. The reason for this, is that JavaScript does not support dashes as identifiers outside of strings. While it would be possible to write `"background-color": "blue"`, the convention is to let React handle the conversion from camel-case to dashes.
 
@@ -141,12 +141,15 @@ Will output the following HTML:
 <div>Sibling 2</div>
 ```
 
+Note how the the fragment components don't have any corresponding DOM output. This would also be true if we had used `<React.Fragment>` instead; they are the same.
+
 ## JavaScript Interpolation
 
 JSX is dynamic. You can easily insert values from variables and objects into your JSX:
 
 ```jsx
 const name = "Bitovi"
+
 <div className="button primary">
   Welcome to {name}!
 </div>
@@ -154,13 +157,14 @@ const name = "Bitovi"
 
 In the code above, we've used the `{name}` syntax to tell JSX that we want to use the value stored in the `name` variable `"Bitovi"` into our view.
 
-You can take this a step further by interpolating multiple values, and using JavaScript functions to transform data on the fly. Anything that goes inside `{}` is executed as normal JavaScript.
+You can take this a step further by interpolating multiple values, and using JavaScript functions to transform data on the fly. Anything that goes inside `{}` is executed as normal JavaScript. These are the same rules as the brackets on a prop: any JavaScript expression is valid inside the curly brackets.
 
 ```jsx
 const person = {
-  name: "mike",
-  profession: "programmer"
-}
+  name: 'mike',
+  profession: 'programmer',
+};
+
 <div className="button primary">
   <h1>Hi I'm {person.name.toUpperCase()}!</h1>
   <p>I'm a {person.profession} living in Philadelphia</p>
@@ -280,37 +284,27 @@ One of the most powerful aspects of JavaScript is that it enables developers to 
 </div>
 ```
 
-In the code above, we've attached an `onClick` listener to the `<button>` element. Whenever this button gets clicked now, the code inside the `onClick={...}` will get executed. This always need to be a function, and that function will get called with an `event` object.
+In the code above, we've attached an `onClick` listener to the `<button>` element. Whenever this button gets clicked now, the code inside the `onClick={...}` will get executed. The value always needs to be a function, and that function will get called with an `event` object.
 
-All [events](https://developer.mozilla.org/en-US/docs/Web/Events) supported in vanilla JavaScript are also supported in JSX.
+All [events](https://reactjs.org/docs/events.html) supported in vanilla JavaScript are also supported in JSX.
 
 ## Components
 
 In React we can store our JSX inside of components. Components are like small containers which can be re-used throughout your application. For example, you might build a `Button` component which renders all the JSX required for a button.
 
 ```html
-<div id="root"></div>
-<script
-  crossorigin
-  src="//unpkg.com/react@16/umd/react.development.js"
-></script>
-<script
-  crossorigin
-  src="//unpkg.com/react-dom@16/umd/react-dom.development.js"
-></script>
-<script type="jsx">
-  function MyButton() {
-    return (
-      <div className="button primary">
-        <button>click me</button>
-      </div>
-    );
-  }
+<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">
+function MyButton() {
+  return (
+    <div className="button primary">
+      <button>click me</button>
+    </div>
+  );
+}
 
-  ReactDOM.render(<MyButton />, document.getElementById("root"));
+ReactDOM.render(<MyButton />, document.getElementById('root'));
 </script>
 ```
-
 @codepen
 
 In the code above, we're defining a functional components (a function which returns JSX) called `MyButton`.
