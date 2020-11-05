@@ -32,7 +32,7 @@ function Hello({ firstName, lastName }) {
 
 ReactDOM.render(
   <Hello firstName="Justin" lastName="Meyer" />,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 </script>
 ```
@@ -74,7 +74,7 @@ function Hello({ bigJSONBlob }) {
 function flatten(input) {
   return Object.keys(input)
     .map((key) => {
-      if (typeof input[key] === "object") {
+      if (typeof input[key] === 'object') {
         return [`${key}:`, ...flatten(input[key]).map((line) => `  - ${line}`)];
       }
 
@@ -85,7 +85,7 @@ function flatten(input) {
 
 ReactDOM.render(
   <Hello bigJSONBlob={'{"hello": "world"}'} />,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 </script>
 ```
@@ -113,7 +113,7 @@ function Hello({ bigJSONBlob }) {
 function flatten(input) {
   return Object.keys(input)
     .map((key) => {
-      if (typeof input[key] === "object") {
+      if (typeof input[key] === 'object') {
         return [`${key}:`, ...flatten(input[key]).map((line) => `  - ${line}`)];
       }
 
@@ -124,7 +124,7 @@ function flatten(input) {
 
 ReactDOM.render(
   <Hello bigJSONBlob={'{"hello": "world"}'} />,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 </script>
 ```
@@ -153,7 +153,7 @@ function Hello({ firstName, lastName }) {
 
 ReactDOM.render(
   <Hello firstName="Justin" lastName="Meyer" />,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 </script>
 ```
@@ -173,7 +173,7 @@ function Hello({ firstName, lastName }) {
 
 ReactDOM.render(
   <Hello firstName="Justin" lastName="Meyer" />,
-  document.getElementById("root")
+  document.getElementById('root')
 );
 </script>
 ```

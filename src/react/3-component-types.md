@@ -15,7 +15,7 @@ function MyFuncComponent() {
   return <div>hello world</div>;
 }
 
-ReactDOM.render(<MyFuncComponent />, document.getElementById("root"));
+ReactDOM.render(<MyFuncComponent />, document.getElementById('root'));
 </script>
 ```
 @codepen
@@ -34,7 +34,7 @@ class MyClassComponent extends React.Component {
   }
 }
 
-ReactDOM.render(<MyClassComponent />, document.getElementById("root"));
+ReactDOM.render(<MyClassComponent />, document.getElementById('root'));
 </script>
 ```
 @codepen

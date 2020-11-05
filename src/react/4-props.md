@@ -133,12 +133,12 @@ function App() {
   return (
     <div>
       <AddNumbers num1={5} num2={10} />
-      <MyButton onButtonClick={() => console.log("you clicked")} />
+      <MyButton onButtonClick={() => console.log('you clicked')} />
     </div>
   );
 }
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(<App />, document.getElementById('root'));
 </script>
 ```
 @codepen

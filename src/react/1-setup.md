@@ -61,9 +61,9 @@ The `src` folder is where all your React components should be stored alongside a
 The `index.js` file is known as the entry-point of the React application. It is where our application is initialized and instructed where to render its output.
 
 ```jsx
-import React from "react"
-import ReactDOM from "react-dom"
-import App from "./App"
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
 
 // Connects React to the DOM via ReactDOM
 ReactDOM.render(<App />, document.getElementById('root'));

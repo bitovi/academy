@@ -25,7 +25,7 @@ function Counter() {
   );
 }
 
-ReactDOM.render(<Counter />, document.getElementById("root"));
+ReactDOM.render(<Counter />, document.getElementById('root'));
 </script>
 ```
 @highlight 5,9-10,only

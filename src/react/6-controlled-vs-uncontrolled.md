@@ -20,7 +20,7 @@ function SearchBar() {
   return <input type="text" />;
 }
 
-ReactDOM.render(<SearchBar />, document.getElementById("root"));
+ReactDOM.render(<SearchBar />, document.getElementById('root'));
 </script>
 ```
 @codepen
@@ -38,7 +38,7 @@ function SearchBar() {
   return <input type="text" value="hello" />;
 }
 
-ReactDOM.render(<SearchBar />,document.getElementById('root'));
+ReactDOM.render(<SearchBar />, document.getElementById('root'));
 </script>
 ```
 @codepen
@@ -51,7 +51,7 @@ Obviously this isn't a great solution though because the value will always be "h
 <div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">
 // Controlled (with state)
 function SearchBar() {
-  const [inputValue, setInputValue] = React.useState("");
+  const [inputValue, setInputValue] = React.useState('');
   return (
     <input
       type="text"
@@ -61,7 +61,7 @@ function SearchBar() {
   );
 }
 
-ReactDOM.render(<SearchBar />, document.getElementById("root"));
+ReactDOM.render(<SearchBar />, document.getElementById('root'));
 </script>
 ```
 @codepen
@@ -86,7 +86,7 @@ function SearchBar({ inputValue, onInputValueChange }) {
 }
 
 function SmartParentComponent() {
-  const [inputValue, setInputValue] = React.useState("");
+  const [inputValue, setInputValue] = React.useState('');
 
   return (
     <SearchBar
@@ -96,7 +96,7 @@ function SmartParentComponent() {
   );
 }
 
-ReactDOM.render(<SmartParentComponent />, document.getElementById("root"));
+ReactDOM.render(<SmartParentComponent />, document.getElementById('root'));
 </script>
 ```
 @codepen

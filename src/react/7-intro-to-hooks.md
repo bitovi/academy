@@ -63,11 +63,11 @@ class Timer extends React.Component {
   render() {
     const { value } = this.state;
 
-    return <div>{value ? "Done!" : "Waiting..."}</div>;
+    return <div>{value ? 'Done!' : 'Waiting...'}</div>;
   }
 }
 
-ReactDOM.render(<Timer />, document.getElementById("root"));
+ReactDOM.render(<Timer />, document.getElementById('root'));
 </script>
 ```
 @codepen
@@ -101,14 +101,14 @@ class Timer extends React.Component {
 
     return (
       <>
-        <div>{value1 ? "Done!" : "Waiting..."}</div>
-        <div>{value2 ? "Done!" : "Waiting..."}</div>
+        <div>{value1 ? 'Done!' : 'Waiting...'}</div>
+        <div>{value2 ? 'Done!' : 'Waiting...'}</div>
       </>
     );
   }
 }
 
-ReactDOM.render(<Timer />, document.getElementById("root"));
+ReactDOM.render(<Timer />, document.getElementById('root'));
 </script>
 ```
 @codepen
@@ -131,10 +131,10 @@ function Timer(props) {
     return () => clearTimeout(timer);
   }, []);
 
-  return <div>{value ? "Done!" : "Waiting..."}</div>;
+  return <div>{value ? 'Done!' : 'Waiting...'}</div>;
 }
 
-ReactDOM.render(<Timer />, document.getElementById("root"));
+ReactDOM.render(<Timer />, document.getElementById('root'));
 </script>
 ```
 @codepen
@@ -168,10 +168,10 @@ function useTimer(delay) {
 function Timer(props) {
   const value = useTimer(2500);
 
-  return <div>{value ? "Done!" : "Waiting..."}</div>;
+  return <div>{value ? 'Done!' : 'Waiting...'}</div>;
 }
 
-ReactDOM.render(<Timer />, document.getElementById("root"));
+ReactDOM.render(<Timer />, document.getElementById('root'));
 </script>
 ```
 @codepen
