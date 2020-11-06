@@ -1,5 +1,5 @@
 @page learn-react/manage-state Managing State
-@parent learn-react 11
+@parent learn-react 6
 
 @description Manage component and application state with hooks
 

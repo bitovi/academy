@@ -1,4 +1,4 @@
-@page learn-react/props Props
+@page learn-react/props Props: Component Arguments
 @parent learn-react 4
 
 @description Learn how to make components reusable with props.

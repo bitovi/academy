@@ -1,4 +1,4 @@
-@page learn-react/components What Are React Components
+@page learn-react/components What are React Components
 @parent learn-react 3
 
 @description Learn about the two fundamental ways of writing React components and their differences.
