@@ -7,7 +7,7 @@
 
 ## Functional Components
 
-Functional components are the simplest and easiest to write components in React. In a nutshell, they're just functions which return a React element (usually written in the form of JSX).
+Functional components are simple. It's exceedingly easy to write them in React. In a nutshell, they're just functions which return a React element (usually written in the form of JSX).
 
 ```jsx
 function MyFuncComponent() {
@@ -18,7 +18,7 @@ ReactDOM.render(<MyFuncComponent />, document.getElementById('root'));
 ```
 @codepen react
 
-As you can see in the functional component above, there's not much magic happening; we simply define a function and return JSX from it.
+As you can see in the functional component above, there's not much magic happening. We simply define a function and return JSX from it.
 
 ## Class Components
 
