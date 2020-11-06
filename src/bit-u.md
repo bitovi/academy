@@ -527,13 +527,13 @@ a.quote-link:hover{
           <img src="./static/img/react.png" width="70">
         </div>
         <h4>React</h4>
-        <p>Build a multipage, realtime ordering app with React.</p>
+        <p>Build a feature-rich Tic-Tac-Toe game in this beginner React guide.</p>
         <div class="width100">
-          <p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
-          <p class='detail'>&nbsp;</p>
-          <p class='detail'>&nbsp;</p>
+          <p class='detail'><strong>Audience:</strong> Intermediate JS developers, new React developers</p>
+            <p class='detail'><strong>Goal:</strong> Learn the basics of React </p>
+            <p class='detail'><strong>Time:</strong> 6 hours</p>
         </div>
-        <div class="button button-disabled full-width">Coming soon</div>
+        <a href="./learn-react.html" class="button button-grey full-width">Take this course</a>
       </div>
     </div>
     <div class="courses">
