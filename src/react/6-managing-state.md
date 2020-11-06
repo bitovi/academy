@@ -9,7 +9,7 @@
 
 In React, `state` is any data determining the presentation of your components. The value of a text box, whether or not a modal is open, and what page the app is currently showing are all potential examples of state.
 
-Using functional components, the `useState()` hook provides a value and setter capable of holding any data type. This allows us to hold simple variables such as:
+Using functional components, the `useState()` hook provides a value and setter capable of holding any data type. (We will explain hooks in more detail in the coming lessons. For now, don't worry about what exactly a hook is.) This allows us to hold simple variables such as:
 
 ```js
 const [count, setCount] = useState(0);

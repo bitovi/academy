@@ -1,9 +1,18 @@
-@page learn-react/component-types Types of React Components
+@page learn-react/components What Are React Components
 @parent learn-react 3
 
 @description Learn about the two fundamental ways of writing React components and their differences.
 
 @body
+
+React is all about components. In fact the whole point of the library is to help developers easily create reusable components.
+
+But what is a component?
+
+In a nutshell, a component is function which takes in props and returns an element.
+
+- **Values** - The values of a component are all of the values the component is keeping track of. They include _component state_, which are the values the component controls itself, and _props_, which are supplied to the component.
+- **Side Effects** - The side effects of a component are the results of the operations which touch things outside of the component. This includes async operations, registering DOM event-handling and interaction with the browser. An easy way of knowing if something is a side-effect, try to think if it would work without accessing anything except the **values**.
 
 ## Functional Components
 
