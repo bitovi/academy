@@ -292,8 +292,7 @@ All [events](https://reactjs.org/docs/events.html) supported in vanilla JavaScri
 
 In React we can store our JSX inside of components. Components are like small containers which can be re-used throughout your application. For example, you might build a `Button` component which renders all the JSX required for a button.
 
-```html
-<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">
+```jsx
 function MyButton() {
   return (
     <div className="button primary">
@@ -303,9 +302,8 @@ function MyButton() {
 }
 
 ReactDOM.render(<MyButton />, document.getElementById('root'));
-</script>
 ```
-@codepen
+@codepen react
 
 In the code above, we're defining a functional components (a function which returns JSX) called `MyButton`.
 

@@ -9,16 +9,14 @@
 
 Functional components are the simplest and easiest to write components in React. In a nutshell, they're just functions which return a React element (usually written in the form of JSX).
 
-```html
-<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">
+```jsx
 function MyFuncComponent() {
   return <div>hello world</div>;
 }
 
 ReactDOM.render(<MyFuncComponent />, document.getElementById('root'));
-</script>
 ```
-@codepen
+@codepen react
 
 As you can see in the functional component above, there's not much magic happening; we simply define a function and return JSX from it.
 
@@ -26,8 +24,7 @@ As you can see in the functional component above, there's not much magic happeni
 
 Class components are a bit more complex than functional ones. Class components are contained in a [`class`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) and have a `render` method which returns JSX.
 
-```html
-<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">
+```jsx
 class MyClassComponent extends React.Component {
   render() {
     return <div>hello world</div>;
@@ -35,9 +32,8 @@ class MyClassComponent extends React.Component {
 }
 
 ReactDOM.render(<MyClassComponent />, document.getElementById('root'));
-</script>
 ```
-@codepen
+@codepen react
 
 ## What's the Difference?
 

@@ -11,8 +11,7 @@ In a nutshell, a component is function which takes in props and returns an eleme
 
 Often times the values and the side effects of a component are used together. Let's take a simple counter component to explain:
 
-```html
-<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">
+```jsx
 function Counter() {
   // a piece of state called `clickCount` is initialized to 0
   const [clickCount, setClickCount] = React.useState(0);
@@ -26,11 +25,9 @@ function Counter() {
 }
 
 ReactDOM.render(<Counter />, document.getElementById('root'));
-</script>
 ```
-
 @highlight 5,9-10,only
-@codepen
+@codepen react
 
 We'll cover more of the specifics about how this works later on, but for now let's just go over what's happening at a high level.
 

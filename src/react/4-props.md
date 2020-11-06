@@ -116,8 +116,7 @@ When we render the button, we'll pass in the `onButtonClick` prop just like the 
 
 Below is the `MyButton` component code combined together into a working example:
 
-```html
-<div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">
+```jsx
 function MyButton({ onButtonClick }) {
   // here we're destructuring the props object
   return <button onClick={onButtonClick}>click me</button>;
@@ -137,9 +136,8 @@ function App() {
 }
 
 ReactDOM.render(<App />, document.getElementById('root'));
-</script>
 ```
-@codepen
+@codepen react
 
 ## Exercise
 
