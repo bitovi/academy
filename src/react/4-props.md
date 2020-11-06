@@ -43,7 +43,12 @@ function AddNumbers() {
 
 Take a look at the `AddNumbers` component above. It returns a div with the result of adding `1 + 7`. This is fine, but suppose once again we wanted to specify which numbers it adds.
 
-We can solve this by modifying the `AddNumbers` component so that it accepts props for `num1` and `num2`. We're also [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) the props object, a convention used by much of the community and in the rest of this guide.
+
+We can solve this by modifying the `AddNumbers` component so that it accepts props for `num1` and `num2`. 
+
+> In React, all components receive a `props` object as their first argument (class components get them in the constructor and at `this.props` in the methods).
+
+So we would change `AddNumbers` so that it would look like this.
 
 ```jsx
 function AddNumbers({ num1, num2 }) {
@@ -51,7 +56,7 @@ function AddNumbers({ num1, num2 }) {
 }
 ```
 
-In React, all components receive a `props` object as their first argument (class components get them in the constructor and at `this.props` in the methods).
+We're also [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) the props object, a convention used by much of the community and in the rest of this guide.
 
 The props object contains any values which are passed into the component when it's rendered.
 
@@ -73,7 +78,7 @@ Props can be any data type or data structure. Anything you could pass into a Jav
   stringProp="string props can be passed using quotation marks"
   interpolatedStringProp={`The value is: ${value}`}
   nonStringProp={[1, 2, 3]}
->
+/>
 ```
 
 Props that are static strings can be passed using quotation marks, while non-string props must be passed in a set of curly brackets, this includes interpolated strings.
@@ -118,6 +123,7 @@ Below is the `MyButton` component code combined together into a working example:
 
 ```html
 <div id="root"></div><script crossorigin src="//unpkg.com/react@16/umd/react.development.js"></script><script crossorigin src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script><script type="jsx">
+
 function MyButton({ onButtonClick }) {
   // here we're destructuring the props object
   return <button onClick={onButtonClick}>click me</button>;
