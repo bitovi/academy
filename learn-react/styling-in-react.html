@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/react/5-styling.md
+	@page learn-react/styling-in-react
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <meta name="description" content="Learn the different ways to style React components. 
+">
+  <title>Bitovi Academy - Styling in React 3 Ways</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-react.html"
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							Learn React
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="setting-up-environment.html"
+							title="Learn how to setup a React environment using Create React App.">
+							Setting up your Environment
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="intro-to-jsx.html"
+							title="Learn how to use React&#x27;s preferred markup syntax JSX, and combine HTML with JavaScript.">
+							Introduction to JSX
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="components.html"
+							title="Learn about the two fundamental ways of writing React components and their differences.">
+							What are React Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="props.html"
+							title="Learn how to make components reusable with props.">
+							Props: Component Arguments
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="styling-in-react.html"
+							title="Learn the different ways to style React components.">
+							Styling in React 3 Ways
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="manage-state.html"
+							title="Manage component and application state with hooks">
+							Managing State
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="intro-to-hooks.html"
+							title="Learn how to use React hooks to make functional components more powerful.">
+							Introduction to Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="stateful-hooks.html"
+							title="Learn how to hooks in React to manage the state of a component.">
+							Stateful Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="controlled-vs-uncontrolled-components.html"
+							title="Learn how to handle inputs in React and the difference between controlled and uncontrolled components.">
+							Controlled vs Uncontrolled
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="optimization-hooks.html"
+							title="Learn how to optimize your React apps with some helpful hooks.">
+							Optimization Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="context-hooks.html"
+							title="Learn how to manage global app state with context hooks.">
+							Context Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-web-components.html"
+							title="">
+							Learn Web Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-technology-consulting.html"
+							title="Learn how to perform technology consulting.">
+							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn how to build a moderately complex application with Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border">
+      <a href="..#courses">View More Courses</a>
+      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
+  </p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Styling in React 3 Ways <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>Learn the different ways to style React components.</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <h2>Different ways of styling components</h2>
+<p>Styling in React is one of the most diverse and opinionated aspects of working with the library. React does a great job of combining HTML &amp; JavaScript together, but is ultimately agnostic when it comes to working with CSS and styling.</p>
+<p>The good news is that all of the same styling techniques you're used to using as a web developer, will still work in React. You can you stylesheets, inline styling, and even extension languages like SASS or LESS. After all, react apps are just normal websites with some complicated JavaScript running in the background.</p>
+<p>Let's take a look at some of the ways we can go about styling React components and walk-through some of the pros and cons of each.</p>
+<h2>Inline styling</h2>
+<p>The simplest way to style a component is with inline styling. All core JSX tags accept a <code>style</code> prop, essentially an object with css styles in it. As you can see below, we're able to construct style objects directly inside the JSX, and even interpolate JavaScript values inside of them.</p>
+<pre><code class="language-jsx">import { imageUrl } from './data';
+
+function Thing({ isActive }) {
+  return (
+    &lt;div
+      style={{
+        color: isActive ? 'black' : 'white',
+        backgroundImage: `url(${imgUrl})`,
+      }}
+    &gt;
+      Hello World!
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<p>In the example above we're specifying that the top level div should have a color of either black or white depending on the <code>isActive</code> prop, and it's background image url is imported from an external file.</p>
+<p>Although this is the simplest way to add styles, it shouldn't be counted out. Using inline styles like this is a great way of combining your HTML, CSS &amp; JavaScript all into one neat package. It's especially useful when your styles will depend on component state or props.</p>
+<h2>External Styles</h2>
+<p>Like normal HTML, JSX elements can accept a class attribute (called <code>className</code>). Classes can either be located in a global style sheet included in the index.html file, or be directly included into a component (see below).</p>
+<pre><code class="language-jsx">import './thing.css';
+
+function Thing({ isActive }) {
+  return &lt;div className=&quot;thing&quot;&gt;Hello World!&lt;/div&gt;;
+}
+</code></pre>
+<p>The component above uses a <code>thing</code> class that it's imported from <code>thing.css</code>. This is a common way of including classes in a component, but keep in mind that due to it's cascading nature, it's possible to encounter clashing names with a large component tree.</p>
+<p>Classnames can also be dynamically generated in response to props or component state. In the component below, the <code>thing-active</code> class is only added to the class name if the <code>isActive</code> prop is truthy.</p>
+<pre><code class="language-jsx">function Thing({ isActive }) {
+  let className = 'thing';
+  if (isActive) {
+    className += ' thing-active';
+  }
+
+  return &lt;div className={className}&gt;Hello World!&lt;/div&gt;;
+}
+</code></pre>
+<h3>Classnames</h3>
+<p>Classnames is a small library that is widely used in the industry. It makes the process of creating dynamic classnames easier by providing a simple interface for constructing them. Note that this process is similar to the one described above, just made easier with the classnames library.</p>
+<pre><code class="language-jsx">import cx from 'classnames';
+import './thing.css';
+
+function Thing({ isActive }) {
+  return (
+    &lt;div className={cx('thing', isActive &amp;&amp; 'thing-active')}&gt;Hello World!&lt;/div&gt;
+  );
+}
+</code></pre>
+<h2>CSS Modules</h2>
+<p>A CSS Module is a CSS file in which all class names and animation names are scoped locally by default. This prevents a common problem with importing css into components, name clashing.</p>
+<p>When you define styles for a specific component, you want to be able to use descriptive names without having to worry about the other class names in the app they might conflict with. When you structure your css as a module, unique names are automatically generated solving the clashing issue.</p>
+<p>This is also compatible with Sass/Less making it a good option if you want to use a class based styling approach.</p>
+<p>Below is the CSS you would write inside of a .css file. You can see looks normal, and we don't need to worry about naming.</p>
+<pre><code class="language-css">.thing {
+  border: 1em solid black;
+}
+
+.thing.active {
+  border-color: red;
+}
+</code></pre>
+<p>This css will then get transformed into the following. Notice the names change, while still maintaining the selector structure.</p>
+<pre><code class="language-css">.Thing_thing_1FUOu {
+  border: 1em solid black;
+}
+
+.Thing_thing_1FUOu.Thing_active_wBa2p {
+  border-color: red;
+}
+</code></pre>
+<p>This would then be imported into your React component as a JavaScript module containing the mapped class names:</p>
+<pre><code class="language-js">module.exports = {
+  thing: 'Thing_thing_1FUOu',
+  active: 'Thing_active_wBa2p',
+};
+</code></pre>
+<p>And the component could be styled like so:</p>
+<pre><code class="language-jsx">import styles from './thing.module.css';
+
+function Thing({ isActive }) {
+  return &lt;div className={styles.thing}&gt;Hello World!&lt;/div&gt;;
+}
+</code></pre>
+<h2>Styled Components</h2>
+<p>The styled components philosophy is that everything is a component. Instead of separating your CSS and your React/JSX, they become integrated into one single entity. So instead of loading styles into a component from some external source, the styles are actually built into the component itself, and can be configured using props/state.</p>
+<p>In a styled components implementation, a <code>Button</code> component for example, might take a <code>color</code> prop, or a <code>fontSize</code> prop, which you be used to determine it's style. This approach is closed integrated with React, and utilizes the built in React features (props/state) more than any other.</p>
+<p>In the code below, we're using the emotion library to create a styled <code>Button</code> component. The syntax is a bit foreign, but this is essentially creating a <code>&lt;button&gt;</code> component which maps it's props to styles. For example, below, the button accepts a <code>color</code> and an <code>outline</code> prop, which are used to inform the styling that it receives.</p>
+<pre><code class="language-js">import styled from '@emotion/styled';
+
+export const Button = styled.button`
+  border: 1px solid darkblue;
+  background: ${(props) =&gt; props.color || 'blue'};
+
+  ${(props) =&gt;
+    props.outline &amp;&amp;
+    css`
+      border-color: ${(props) =&gt; props.color || 'blue'};
+      background-color: darkblue;
+    `}
+`;
+</code></pre>
+<p>This <code>Button</code> could then be imported into another component file and rendered with specific styles.</p>
+<pre><code class="language-jsx">import Button from './Button';
+
+function Thing() {
+  return (
+    &lt;div&gt;
+      &lt;Button&gt;Default Button&lt;/Button&gt;
+      &lt;Button color=&quot;green&quot;&gt;Green Button&lt;/Button&gt;
+      &lt;Button outline&gt;Outlined Button&lt;/Button&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<p>The styled components approach is definitely a departure from traditional styling methodologies, however it makes up for it by integrating so nicely with the React paradigm.</p>
+<p>It's important to note that in many production code bases, some combination of the above styling techniques are utilized. Oftentimes some static css files will be necessary, and used alongside something like styled components. At the end of the day the right solution is the one that works for your team!</p>
+<h2>Exercise</h2>
+<p>Let's use our styling knowledge to make our Tic-Tac-Toe game look amazing!</p>
+<p>Run the app locally with <code>npm start</code> and choose the <code>Styling</code> exercise. Now head over to <code>src/exercises/5 - Styling/components</code>. These are the files you'll be editing.</p>
+<h3>The problem</h3>
+<p>✏️ You have been provided a basic set of global styles in App.css. Your task is to convert these initial styles into each of the other styling types.</p>
+<ul>
+<li><ol>
+<li>Inline Styles</li>
+</ol></li>
+<li><ol start="2">
+<li>Modular CSS</li>
+</ol></li>
+<li><ol start="3">
+<li>Styled Components</li>
+</ol></li>
+</ul>
+<h3>The solution</h3>
+<h4>Inline Styles</h4>
+<p><code>App.js</code></p>
+<pre><code class="language-jsx">import React from 'react';
+
+const boardStyles = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  width: '600px',
+  height: '600px',
+  boxShadow: '0px 3px 8px 0 rgba(0, 0, 0, 0.1)',
+  boxSizing: 'border-box',
+};
+
+const squareStyles = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+};
+
+const hintStyles = {
+  background: '#9AE6B4',
+};
+
+function App() {
+  return (
+    &lt;div style={boardStyles}&gt;
+      &lt;div style={squareStyles}&gt;O&lt;/div&gt;
+      &lt;div style={squareStyles}&gt;X&lt;/div&gt;
+      &lt;div style={squareStyles}&gt;O&lt;/div&gt;
+      &lt;div style={{ ...squareStyles, ...hintStyles }}&gt;&lt;/div&gt;
+      &lt;div style={squareStyles}&gt;X&lt;/div&gt;
+      &lt;div style={squareStyles}&gt;X&lt;/div&gt;
+      &lt;div style={squareStyles}&gt;&lt;/div&gt;
+      &lt;div style={squareStyles}&gt;O&lt;/div&gt;
+      &lt;div style={squareStyles}&gt;X&lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+</code></pre>
+<h4>Modular CSS</h4>
+<p><code>App.js</code></p>
+<pre><code class="language-jsx">import React from 'react';
+import cx from 'classnames';
+
+import styles from './App.module.css';
+
+function App() {
+  return (
+    &lt;div className={styles.board}&gt;
+      &lt;div className={styles.square}&gt;O&lt;/div&gt;
+      &lt;div className={styles.square}&gt;X&lt;/div&gt;
+      &lt;div className={styles.square}&gt;O&lt;/div&gt;
+      &lt;div className={cx(styles.square, styles.hint)}&gt;&lt;/div&gt;
+      &lt;div className={styles.square}&gt;X&lt;/div&gt;
+      &lt;div className={styles.square}&gt;X&lt;/div&gt;
+      &lt;div className={styles.square}&gt;&lt;/div&gt;
+      &lt;div className={styles.square}&gt;O&lt;/div&gt;
+      &lt;div className={styles.square}&gt;X&lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+</code></pre>
+<p><code>App.module.css</code></p>
+<pre><code class="language-css">.board {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 600px;
+  height: 600px;
+  box-shadow: 0px 3px 8px 0 rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.square {
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 6em;
+}
+
+.square:hover {
+  cursor: pointer;
+  background: #bbdefb !important;
+}
+
+.square.hint {
+  background: #9ae6b4;
+}
+</code></pre>
+<h4>Styled Components</h4>
+<p><code>App.js</code></p>
+<pre><code class="language-jsx">import React from 'react';
+import styled from '@emotion/styled';
+
+export const Board = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+  width: 600px;
+  height: 600px;
+  box-shadow: 0px 3px 8px 0 rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+`;
+
+export const Square = styled.div`
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 6em;
+
+  :hover {
+    cursor: pointer;
+    background: #bbdefb !important;
+  }
+
+  ${(props) =&gt;
+    props.hint &amp;&amp;
+    `
+    background: #9AE6B4;
+  `}
+`;
+
+function App() {
+  return (
+    &lt;Board&gt;
+      &lt;Square&gt;O&lt;/Square&gt;
+      &lt;Square&gt;X&lt;/Square&gt;
+      &lt;Square&gt;O&lt;/Square&gt;
+      &lt;Square hint&gt;&lt;/Square&gt;
+      &lt;Square&gt;X&lt;/Square&gt;
+      &lt;Square&gt;X&lt;/Square&gt;
+      &lt;Square&gt;&lt;/Square&gt;
+      &lt;Square&gt;O&lt;/Square&gt;
+      &lt;Square&gt;X&lt;/Square&gt;
+    &lt;/Board&gt;
+  );
+}
+
+export default App;
+</code></pre>
+
+</section>
+
+  			
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout slack">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://www.bitovi.com/community/slack">help</a> with an exercise, please reach out to us on
+             <a href="https://www.bitovi.com/community/slack">Slack</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/react/5-styling.md"},"description":"Learn the different ways to style React components. \n","name":"learn-react/styling-in-react","title":"Styling in React 3 Ways","type":"page","parent":"learn-react","order":5,"comment":" ","pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+</body>
+</html>

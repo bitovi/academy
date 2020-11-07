@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/react/9-controlled-vs-uncontrolled.md
+	@page learn-react/controlled-vs-uncontrolled-components
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <meta name="description" content="Learn how to handle inputs in React and the difference between controlled and uncontrolled components. 
+">
+  <title>Bitovi Academy - Controlled vs Uncontrolled</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-react.html"
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							Learn React
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="setting-up-environment.html"
+							title="Learn how to setup a React environment using Create React App.">
+							Setting up your Environment
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="intro-to-jsx.html"
+							title="Learn how to use React&#x27;s preferred markup syntax JSX, and combine HTML with JavaScript.">
+							Introduction to JSX
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="components.html"
+							title="Learn about the two fundamental ways of writing React components and their differences.">
+							What are React Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="props.html"
+							title="Learn how to make components reusable with props.">
+							Props: Component Arguments
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="styling-in-react.html"
+							title="Learn the different ways to style React components.">
+							Styling in React 3 Ways
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="manage-state.html"
+							title="Manage component and application state with hooks">
+							Managing State
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="intro-to-hooks.html"
+							title="Learn how to use React hooks to make functional components more powerful.">
+							Introduction to Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="stateful-hooks.html"
+							title="Learn how to hooks in React to manage the state of a component.">
+							Stateful Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="controlled-vs-uncontrolled-components.html"
+							title="Learn how to handle inputs in React and the difference between controlled and uncontrolled components.">
+							Controlled vs Uncontrolled
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="optimization-hooks.html"
+							title="Learn how to optimize your React apps with some helpful hooks.">
+							Optimization Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="context-hooks.html"
+							title="Learn how to manage global app state with context hooks.">
+							Context Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-web-components.html"
+							title="">
+							Learn Web Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-technology-consulting.html"
+							title="Learn how to perform technology consulting.">
+							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn how to build a moderately complex application with Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border">
+      <a href="..#courses">View More Courses</a>
+      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
+  </p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Controlled vs Uncontrolled <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>Learn how to handle inputs in React and the difference between controlled and uncontrolled components.</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <h2>Introduction</h2>
+<p>One of the biggest mindset shifts for new developers learning React is the concept of a controlled vs uncontrolled component. This is something that is particularly important when building input components (text, checkbox, radio, etc).</p>
+<p>There are two types of input components we can create in React, controlled inputs and uncontrolled inputs.</p>
+<p>An uncontrolled input is one where we're not explicitly setting the value attribute. When a value attribute is not explicitly set, the input is ultimately controlled by the browser, and thus, out of the control of the React developer:</p>
+<pre><code class="language-jsx">// Uncontrolled
+function SearchBar() {
+  return &lt;input type=&quot;text&quot; /&gt;;
+}
+
+ReactDOM.render(&lt;SearchBar /&gt;, document.getElementById('root'));
+</code></pre>
+<div class='codepen' data-codepen='react'></div>
+<p>The <code>SearchBar</code> above is considered uncontrolled because we're not explicitly giving it a value. The value of the input is now entirely determined by the browser &amp; the user, we as developers have no say.</p>
+<p>While this isn't necessarily a bad thing, it does make our lives as React developers more difficult. The reason being, at any given point in the lifecycle of this component, we don't know what the value of the input is. Assuming we'll want to use the value at some point, this becomes a problem. How do we access the input's value?</p>
+<p>We can solve this problem by explicitly controlling the input (giving it a value).</p>
+<pre><code class="language-jsx">// Controlled (sort of)
+function SearchBar() {
+  return &lt;input type=&quot;text&quot; value=&quot;hello&quot; /&gt;;
+}
+
+ReactDOM.render(&lt;SearchBar /&gt;, document.getElementById('root'));
+</code></pre>
+<div class='codepen' data-codepen='react'></div>
+<p>The component above is now considered to be &quot;controlled&quot;, at any given point we always know what the value is (<code>hello</code>), and we've taken control away from the browser.</p>
+<p>Obviously this isn't a great solution though because the value will always be &quot;hello&quot;. We can remedy this by involving state:</p>
+<pre><code class="language-jsx">// Controlled (with state)
+function SearchBar() {
+  const [inputValue, setInputValue] = React.useState('');
+  return (
+    &lt;input
+      type=&quot;text&quot;
+      value={inputValue}
+      onChange={(e) =&gt; setInputValue(e.target.value)}
+    /&gt;
+  );
+}
+
+ReactDOM.render(&lt;SearchBar /&gt;, document.getElementById('root'));
+</code></pre>
+<div class='codepen' data-codepen='react'></div>
+<p>We'll create a piece of state called <code>inputValue</code>, use that as the value of the input, and update it whenever the input changes.</p>
+<p>The process outlined above is how most controlled inputs are structured. Whether it's a textbox, a color picker or a checkbox, we can use this same stateful strategy to construct it. By storing the value in state, we always have access to it, and we can even control what the value ends up being.</p>
+<p>We can take this a step further, by controlling the component with props:</p>
+<pre><code class="language-jsx">// Controlled (with props)
+function SearchBar({ inputValue, onInputValueChange }) {
+  return (
+    &lt;input
+      type=&quot;text&quot;
+      value={inputValue}
+      onChange={(e) =&gt; onInputValueChange(e.target.value)}
+    /&gt;
+  );
+}
+
+function SmartParentComponent() {
+  const [inputValue, setInputValue] = React.useState('');
+
+  return (
+    &lt;SearchBar
+      inputValue={inputValue}
+      onInputValueChange={(newValue) =&gt; setInputValue(newValue)}
+    /&gt;
+  );
+}
+
+ReactDOM.render(&lt;SmartParentComponent /&gt;, document.getElementById('root'));
+</code></pre>
+<div class='codepen' data-codepen='react'></div>
+<p>Above we've defined 2 component, <code>SmartParentComponent</code> and <code>SearchBar</code>. The <code>SearchBar</code> component accepts two props, one for the value of the input, and another for updating the value of the input. Notice that there is no state here, this is a dumb, stateless component.</p>
+<p>The <code>SmartParentComponent</code> does have state however, it is keeping track of the input value and how to set the input value. These are then passed down into the dumb <code>SearchBar</code> component, and used to control it.</p>
+<p>This is another very common pattern. The idea is that we have a very simple, lightweight <code>SearchBar</code> component, which has no concept of state, instead it is entirely controlled by props passed down from a smart, stateful parent.</p>
+<h2>Exercise</h2>
+<p>Let's use our knowledge of controlled vs uncontrolled components to build an input component! (note this will not be apart of the Tic-Tac-Toe game)</p>
+<p>Run the app locally with <code>npm start</code> and choose the <code>Controlled vs Uncontrolled</code> exercise. Now head over to <code>src/exercises/a - Controlled vs Uncontrolled/components</code>. These are the files you'll be editing.</p>
+<h3>The problem</h3>
+<p>✏️ You'll be modifying the <code>Search</code> component so that it is a controlled input. Specifically, try your hand at the following:</p>
+<ul>
+<li>Modify the <code>Search</code> component below so that it's value is controlled by state.</li>
+<li>Modify the clear button so that, when clicked, it clears out the value of the input.</li>
+<li>Make it so that the clear button is only visible when there is text in the input.</li>
+</ul>
+<h3>The solution</h3>
+<h4>Search</h4>
+<pre><code class="language-jsx">import React, { useState } from 'react';
+
+function Search() {
+  const [value, setValue] = useState('');
+
+  return (
+    &lt;div className=&quot;search-container&quot;&gt;
+      &lt;input
+        className=&quot;search&quot;
+        value={value}
+        onChange={(e) =&gt; setValue(e.target.value)}
+      /&gt;
+      {value &amp;&amp; (
+        &lt;div className=&quot;clear&quot; onClick={() =&gt; setValue('')}&gt;
+          X
+        &lt;/div&gt;
+      )}
+    &lt;/div&gt;
+  );
+}
+
+export default Search;
+</code></pre>
+<div line-highlight='4,10,11,13,14,only'></div>
+
+</section>
+
+  			
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout slack">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://www.bitovi.com/community/slack">help</a> with an exercise, please reach out to us on
+             <a href="https://www.bitovi.com/community/slack">Slack</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/react/9-controlled-vs-uncontrolled.md"},"description":"Learn how to handle inputs in React and the difference between controlled and uncontrolled components. \n","name":"learn-react/controlled-vs-uncontrolled-components","title":"Controlled vs Uncontrolled","type":"page","parent":"learn-react","order":9,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+</body>
+</html>

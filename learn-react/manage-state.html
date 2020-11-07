@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/react/6-managing-state.md
+	@page learn-react/manage-state
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <meta name="description" content="Manage component and application state with hooks 
+">
+  <title>Bitovi Academy - Managing State</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-react.html"
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							Learn React
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="setting-up-environment.html"
+							title="Learn how to setup a React environment using Create React App.">
+							Setting up your Environment
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="intro-to-jsx.html"
+							title="Learn how to use React&#x27;s preferred markup syntax JSX, and combine HTML with JavaScript.">
+							Introduction to JSX
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="components.html"
+							title="Learn about the two fundamental ways of writing React components and their differences.">
+							What are React Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="props.html"
+							title="Learn how to make components reusable with props.">
+							Props: Component Arguments
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="styling-in-react.html"
+							title="Learn the different ways to style React components.">
+							Styling in React 3 Ways
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="manage-state.html"
+							title="Manage component and application state with hooks">
+							Managing State
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="intro-to-hooks.html"
+							title="Learn how to use React hooks to make functional components more powerful.">
+							Introduction to Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="stateful-hooks.html"
+							title="Learn how to hooks in React to manage the state of a component.">
+							Stateful Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="controlled-vs-uncontrolled-components.html"
+							title="Learn how to handle inputs in React and the difference between controlled and uncontrolled components.">
+							Controlled vs Uncontrolled
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="optimization-hooks.html"
+							title="Learn how to optimize your React apps with some helpful hooks.">
+							Optimization Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="context-hooks.html"
+							title="Learn how to manage global app state with context hooks.">
+							Context Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-web-components.html"
+							title="">
+							Learn Web Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-technology-consulting.html"
+							title="Learn how to perform technology consulting.">
+							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn how to build a moderately complex application with Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border">
+      <a href="..#courses">View More Courses</a>
+      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
+  </p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Managing State <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>Manage component and application state with hooks</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <h2>What is state?</h2>
+<p>In React, <code>state</code> is any data determining the presentation of your components. The value of a text box, whether or not a modal is open, and what page the app is currently showing are all potential examples of state.</p>
+<p>Using functional components, the <code>useState()</code> hook provides a value and setter capable of holding any data type. (We will explain hooks in more detail in the coming lessons. For now, don't worry about what exactly a hook is.) This allows us to hold simple variables such as:</p>
+<pre><code class="language-js">const [count, setCount] = useState(0);
+const [flag, setFlag] = useState(true);
+</code></pre>
+<p>And even hold more complex data.</p>
+<pre><code class="language-js">const [ viewModel, setViewModel ] = useState({
+    showModal: false,
+    currentUser: {
+        name: 'Mike Myers'
+        id: 42
+    },
+    highlightItems: [1, 12, 15, 34, 66]
+})
+</code></pre>
+<p><strong>Important:</strong> When using objects or arrays, you must provide a new merged state when using the setter. The data created by <code>useState</code> is immutable and will always replace any internal state.</p>
+<p><em>For class based components see <a href="https://reactjs.org/docs/state-and-lifecycle.html">this.setState()</a></em></p>
+<h2>Scope of State</h2>
+<p><code>useState</code> is scoped to the component it is declared in. For example, this simple component stores a simple string <code>savedText</code> and displays its value as the user makes changes to a text input.</p>
+<pre><code class="language-jsx">import React, { useState } from 'react';
+
+function DisplayComponent() {
+  const [savedText, setSavedText] = useState('');
+
+  function onSetText(event) {
+    setSavedText(event.target.value);
+  }
+
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;You entered: {savedText}&lt;/h1&gt;
+      &lt;input type=&quot;text&quot; value={savedText} onChange={onSetText} /&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<p>Now imagine our layout requires a button to confirm the <code>savedText</code> change, but the button appears in a different part of the page! How will we modify the state in a different component?</p>
+<p>Lucky for us, values and setters from <code>useState</code> are standard JavaScript variables and can be passed as <code>props</code>. We can create a 'Container' component to hold the state where both Display and Button components have access. <em>Consider the following structure:</em></p>
+<pre><code class="language-jsx">function WrapperContainer() {
+  //TODO: setup the state variables
+  return (
+    &lt;div&gt;
+      &lt;div className=&quot;layout-left&quot;&gt;
+        &lt;DisplayComponent /&gt;
+      &lt;/div&gt;
+      &lt;div className=&quot;layout-right&quot;&gt;
+        &lt;ButtonComponent /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+function DisplayComponent() {
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;You entered:&lt;/h1&gt;
+      &lt;input type=&quot;text&quot; /&gt;
+    &lt;/div&gt;
+  );
+}
+
+function ButtonComponent() {
+  return &lt;button type=&quot;button&quot;&gt;Set Message&lt;/button&gt;;
+}
+</code></pre>
+<p>Let's create two state items in the <code>WrapperContaner</code>.</p>
+<ul>
+<li><code>savedText</code> as we defined in the earlier example will hold the set message.</li>
+<li><code>unsavedText</code> will keep the inputs typed by the user until they are saved</li>
+</ul>
+<p>Pass these and the <code>setUnsavedText</code> setter as <code>props</code> to the <code>DisplayComponent</code>.</p>
+<pre><code class="language-jsx">function WrapperContainer() {
+  // define the savedText to be shown
+  const [savedText, setSavedText] = useState('');
+  // create a holder for unsaved text
+  const [unsavedText, setUnsavedText] = useState('');
+
+  return (
+    &lt;div&gt;
+      &lt;div className=&quot;layout-left&quot;&gt;
+        &lt;DisplayComponent
+          unsavedText={unsavedText}
+          setUnsavedText={setUnsavedText}
+          savedText={savedText}
+        /&gt;
+      &lt;/div&gt;
+      &lt;div className=&quot;layout-right&quot;&gt;
+        &lt;ButtonComponent /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<p>Using this data in the <code>DisplayComponent</code> is simple. Deconstruct the state variables from <code>props</code> and update the component to call <code>setUnsavedText</code> on changes.</p>
+<pre><code class="language-jsx">function DisplayComponent({ unsavedText, setUnsavedText, savedText }) {
+  function onSetText(event) {
+    //notice we use the passed in setter defined in the WrapperContainer
+    setUnsavedText(event.target.value);
+  }
+
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;You entered: {savedText}&lt;/h1&gt;
+      {/* Use unsavedText rather than savedText */}
+      &lt;input type=&quot;text&quot; value={unsavedText} onChange={onSetText} /&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<p>Next, let's wire up that button. We'll define a <code>onButtonClick</code> callback to handle changes to the state variables. Pass the callback down to <code>ButtonComponent</code>.</p>
+<pre><code class="language-jsx">function WrapperContainer() {
+  const [savedText, setSavedText] = useState('');
+  const [unsavedText, setUnsavedText] = useState('');
+
+  function onButtonClick() {
+    // save the new savedText
+    setSavedText(unsavedText);
+    // reset the text input
+    setUnsavedText('');
+  }
+
+  return (
+    &lt;div&gt;
+      &lt;div className=&quot;layout-left&quot;&gt;
+        &lt;DisplayComponent
+          unsavedText={unsavedText}
+          setUnsavedText={setUnsavedText}
+          savedText={savedText}
+        /&gt;
+      &lt;/div&gt;
+      &lt;div className=&quot;layout-right&quot;&gt;
+        &lt;ButtonComponent onButtonClick={onButtonClick} /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<p>Lastly, update the <code>ButtonComponent</code> to use our new callback.</p>
+<pre><code class="language-jsx">function ButtonComponent({ onButtonClick }) {
+  return (
+    &lt;button type=&quot;button&quot; onClick={onButtonClick}&gt;
+      Set Message
+    &lt;/button&gt;
+  );
+}
+</code></pre>
+<h3>Completed Example</h3>
+<pre><code class="language-jsx">import React, { useState } from 'react';
+
+function WrapperContainer() {
+  // define the savedText to be shown
+  const [savedText, setSavedText] = useState('');
+  // create a holder for unsaved text
+  const [unsavedText, setUnsavedText] = useState('');
+
+  function onButtonClick() {
+    // save the new savedText
+    setSavedText(unsavedText);
+    // reset the text input
+    setUnsavedText('');
+  }
+
+  return (
+    &lt;div&gt;
+      &lt;div className=&quot;layout-left&quot;&gt;
+        &lt;DisplayComponent
+          unsavedText={unsavedText}
+          setUnsavedText={setUnsavedText}
+          savedText={savedText}
+        /&gt;
+      &lt;/div&gt;
+      &lt;div className=&quot;layout-right&quot;&gt;
+        &lt;ButtonComponent onButtonClick={onButtonClick} /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+function DisplayComponent({ unsavedText, setUnsavedText, savedText }) {
+  function onSetText(event) {
+    //notice we use the passed in setter defined in the WrapperContainer
+    setUnsavedText(event.target.value);
+  }
+
+  return (
+    &lt;div&gt;
+      &lt;h1&gt;You entered: {savedText}&lt;/h1&gt;
+      {/* Use unsavedText rather than savedText */}
+      &lt;input type=&quot;text&quot; value={unsavedText} onChange={onSetText} /&gt;
+    &lt;/div&gt;
+  );
+}
+
+function ButtonComponent({ onButtonClick }) {
+  return (
+    &lt;button type=&quot;button&quot; onClick={onButtonClick}&gt;
+      Set Message
+    &lt;/button&gt;
+  );
+}
+</code></pre>
+<h2>What data should be kept in React state?</h2>
+<p>There is no &quot;right&quot; answer for what data should be stored in state. Applications with simple API requirements may keep everything in state objects. Other apps may opt to store nearly everything in a separate global state management library.</p>
+<p>Talk about managing network requests</p>
+<h2>State or Context?</h2>
+<h2>External State Libraries</h2>
+<p>You don't need Redux.</p>
+<p>Apollo and Relay are cool if you have a graph.</p>
+<p>Talk about how Context can solve much of this problem.</p>
+
+</section>
+
+  			
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout slack">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://www.bitovi.com/community/slack">help</a> with an exercise, please reach out to us on
+             <a href="https://www.bitovi.com/community/slack">Slack</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/react/6-managing-state.md"},"description":"Manage component and application state with hooks \n","name":"learn-react/manage-state","title":"Managing State","type":"page","parent":"learn-react","order":6,"comment":" ","pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+</body>
+</html>

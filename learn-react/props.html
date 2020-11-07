@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/react/4-props.md
+	@page learn-react/props
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <meta name="description" content="Learn how to make components reusable with props. 
+">
+  <title>Bitovi Academy - Props: Component Arguments</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-react.html"
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							Learn React
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="setting-up-environment.html"
+							title="Learn how to setup a React environment using Create React App.">
+							Setting up your Environment
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="intro-to-jsx.html"
+							title="Learn how to use React&#x27;s preferred markup syntax JSX, and combine HTML with JavaScript.">
+							Introduction to JSX
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="components.html"
+							title="Learn about the two fundamental ways of writing React components and their differences.">
+							What are React Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="props.html"
+							title="Learn how to make components reusable with props.">
+							Props: Component Arguments
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="styling-in-react.html"
+							title="Learn the different ways to style React components.">
+							Styling in React 3 Ways
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="manage-state.html"
+							title="Manage component and application state with hooks">
+							Managing State
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="intro-to-hooks.html"
+							title="Learn how to use React hooks to make functional components more powerful.">
+							Introduction to Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="stateful-hooks.html"
+							title="Learn how to hooks in React to manage the state of a component.">
+							Stateful Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="controlled-vs-uncontrolled-components.html"
+							title="Learn how to handle inputs in React and the difference between controlled and uncontrolled components.">
+							Controlled vs Uncontrolled
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="optimization-hooks.html"
+							title="Learn how to optimize your React apps with some helpful hooks.">
+							Optimization Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="context-hooks.html"
+							title="Learn how to manage global app state with context hooks.">
+							Context Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-web-components.html"
+							title="">
+							Learn Web Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-technology-consulting.html"
+							title="Learn how to perform technology consulting.">
+							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn how to build a moderately complex application with Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border">
+      <a href="..#courses">View More Courses</a>
+      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
+  </p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Props: Component Arguments <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>Learn how to make components reusable with props.</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <h2>Props Are Like Arguments</h2>
+<p>Props are React's way to make components more reusable.</p>
+<p>Think of props as similar to arguments you would pass into a function. For example, suppose we had an add method which added two numbers together, it might look something like this:</p>
+<pre><code class="language-js">function addOneAndSeven() {
+  return 1 + 7;
+}
+</code></pre>
+<p>This is a perfectly good function, but notice that it always adds the same two numbers. In other words, it's only usable in very specific cases.</p>
+<p>We can make this function more reusable by allowing arguments to be passed into it:</p>
+<pre><code class="language-js">function addNumbers(num1, num2) {
+  return num1 + num2;
+}
+</code></pre>
+<p>The function is now infinitely more reusable because the caller can specify the numbers, instead of just having them be hardcoded in.</p>
+<p>This same principle applies to React components.</p>
+<h2>Basic Props Usage</h2>
+<p>Recall that React components are essentially just functions (or classes) which return an element. And like normal functions, we run into the same re-usability problems.</p>
+<pre><code class="language-jsx">function AddNumbers() {
+  return &lt;div&gt;{1 + 7}&lt;/div&gt;;
+}
+</code></pre>
+<p>Take a look at the <code>AddNumbers</code> component above. It returns a div with the result of adding <code>1 + 7</code>. This is fine, but suppose once again we wanted to specify which numbers it adds.</p>
+<p>We can solve this by modifying the <code>AddNumbers</code> component so that it accepts props for <code>num1</code> and <code>num2</code>.</p>
+<blockquote>
+<p>In React, all components receive a <code>props</code> object as their first argument (class components get them in the constructor and at <code>this.props</code> in the methods).</p>
+</blockquote>
+<p>So we would change <code>AddNumbers</code> so that it would look like this.</p>
+<pre><code class="language-jsx">function AddNumbers({ num1, num2 }) {
+  return &lt;div&gt;{num1 + num2}&lt;/div&gt;;
+}
+</code></pre>
+<p>We're also <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">destructuring</a> the props object, a convention used by much of the community and in the rest of this guide.</p>
+<p>The props object contains any values which are passed into the component when it's rendered.</p>
+<pre><code class="language-jsx">&lt;AddNumbers num1={1} num2={7} /&gt;
+&lt;AddNumbers num1={5} num2={-90} /&gt;
+</code></pre>
+<p>Whenever the <code>AddNumbers</code> component is rendered, we can now pass it <code>num1</code> &amp; <code>num2</code> props which it will use to do the calculation.</p>
+<p>Now, instead of having a hard-coded addition, the component is flexible and can be re-used in any scenario where it's necessary to display the result of adding two numbers.</p>
+<h2>Prop Data Types</h2>
+<p>Props can be any data type or data structure. Anything you could pass into a JavaScript function can be passed into a component as a prop.</p>
+<pre><code class="language-jsx">&lt;Component
+  stringProp=&quot;string props can be passed using quotation marks&quot;
+  interpolatedStringProp={`The value is: ${value}`}
+  nonStringProp={[1, 2, 3]}
+/&gt;
+</code></pre>
+<p>Props that are static strings can be passed using quotation marks, while non-string props must be passed in a set of curly brackets, this includes interpolated strings.</p>
+<h2>Callback Props</h2>
+<p>Just like normal function arguments, React components can accept props of any data type (even other components).</p>
+<p>One of the most useful types of props are callbacks. Callback props allow us to specify what a component will do when an action occurs inside of it.</p>
+<pre><code class="language-jsx">function MyButton() {
+  return &lt;button onClick={() =&gt; console.log('clicked')}&gt;click me&lt;/button&gt;;
+}
+</code></pre>
+<p>The button above calls <code>console.log('clicked')</code> whenever the user clicks it. But once again, we're running into a re-usability issue.</p>
+<p>Suppose we wanted to perform an arbitrary action when the button is clicked instead of the hard-coded <code>console.log('clicked')</code>.</p>
+<p>To accomplish that, we would use a callback prop. To do so, simply pass the component a callback function as one of its props to be called whenever the button is clicked. Note that by convention, callback props should begin with <code>on</code> just like native DOM events:</p>
+<pre><code class="language-jsx">function MyButton({ onButtonClick }) {
+  // here we're destructuring the props object
+  return &lt;button onClick={onButtonClick}&gt;click me&lt;/button&gt;;
+}
+</code></pre>
+<div line-highlight='1'></div>
+<p>Notice above that the <code>MyButton</code> component now accepts a <code>onButtonClick</code> prop. Now whenever the button is clicked it will call the callback function, making the button component more reusable.</p>
+<pre><code class="language-jsx">&lt;MyButton onButtonClick={() =&gt; console.log('custom click action')}&gt;
+</code></pre>
+<p>When we render the button, we'll pass in the <code>onButtonClick</code> prop just like the numbers from the <code>AddNumbers</code> component. Since we're not passing a string prop, it needs to be interpolating using curly braces <code>{ }</code>.</p>
+<h2>Try it out</h2>
+<p>Below is the <code>MyButton</code> component code combined together into a working example:</p>
+<pre><code class="language-jsx">function MyButton({ onButtonClick }) {
+  // here we're destructuring the props object
+  return &lt;button onClick={onButtonClick}&gt;click me&lt;/button&gt;;
+}
+
+function AddNumbers({ num1, num2 }) {
+  return &lt;div&gt;{num1 + num2}&lt;/div&gt;;
+}
+
+function App() {
+  return (
+    &lt;div&gt;
+      &lt;AddNumbers num1={5} num2={10} /&gt;
+      &lt;MyButton onButtonClick={() =&gt; console.log('you clicked')} /&gt;
+    &lt;/div&gt;
+  );
+}
+
+ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));
+</code></pre>
+<div class='codepen' data-codepen='react'></div>
+<h2>Exercise</h2>
+<p>Let's use our props knowledge to start building out the Tic-Tac-Toe app that we started in <a href="setting-up-environment.html" title="Learn how to setup a React environment using Create React App.">Setting up your Environment</a>.</p>
+<p>The app itself has already been scaffolded <a href="https://github.com/bitovi/react-exercises">here</a>. It includes 3 files each of which comes together to make up the game:</p>
+<ul>
+<li><code>Game.js</code> - This is the component which is responsible for running the game. It's the highest level component, and the most complex. It's in this file where we'll do most of our state management.</li>
+<li><code>Board.js</code> - This is a component which renders out the game board and all of the squares that make it up.</li>
+<li><code>Square.js</code> - This component represents a single square on the Tic-Tac-Toe board, it can be blank or populated with a symbol (X/O).</li>
+</ul>
+<p>✏️ Clone or fork the app from <a href="https://github.com/bitovi/react-exercises">GitHub</a> and run it locally with <code>npm install &amp;&amp; npm start</code> and choose the <code>Props</code> exercise. Now head over to <code>src/exercises/4 - Props/components</code>. These are the files you'll be editing for this exercise.</p>
+<h3>The problem</h3>
+<p>The goal of this exercise is to get a <code>console.log()</code> to happen whenever the user clicks on a square. This will require you to work modify some of the props in the scaffolded code.</p>
+<h4>Hints</h4>
+<ul>
+<li>Modify the <code>Square</code> component so that accepts two props:
+<ul>
+<li><code>onClick</code> - a callback which is executed when the user click on it</li>
+<li><code>symbol</code> - a string indicating what symbol is in the square (X, O or nothing)</li>
+</ul></li>
+<li>Modify the <code>Board</code> component so it renders out all 9 squares given to it by its <code>board</code> props (<code>board</code> is an array of strings)</li>
+<li>Modify the <code>Game</code> component so it passes the correct props into <code>&lt;Board /&gt;</code></li>
+</ul>
+<h3>The solution</h3>
+<h4>Square.js</h4>
+<pre><code class="language-jsx">function Square({ onClick, symbol }) {
+  return (
+    &lt;div className=&quot;square&quot; onClick={onClick}&gt;
+      {symbol}
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<div line-highlight='1,3,4,only'></div>
+<h4>Board.js</h4>
+<pre><code class="language-jsx">function Board({ onSquareClick, board }) {
+  return (
+    &lt;div className=&quot;board&quot;&gt;
+      {board.map((symbol, index) =&gt; (
+        &lt;Square
+          key={index}
+          symbol={symbol}
+          onClick={() =&gt; onSquareClick(index)}
+        /&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<div line-highlight='4-10,only'></div>
+<h4>Game.js</h4>
+<pre><code class="language-jsx">const blankBoard = ['', '', '', '', '', '', '', '', ''];
+
+function Game() {
+  const handleSquareClick = () =&gt; {
+    console.log('You clicked a square');
+  };
+
+  const getHint = () =&gt; {
+    console.log('Getting hint');
+  };
+
+  const toggleTheme = () =&gt; {
+    console.log('You toggled the theme');
+  };
+
+  return (
+    &lt;&gt;
+      &lt;Board board={blankBoard} onSquareClick={handleSquareClick} /&gt;
+      &lt;button onClick={getHint}&gt;Get Hint&lt;/button&gt;
+      &lt;button onClick={toggleTheme}&gt;Toggle Theme&lt;/button&gt;
+      current player: X
+    &lt;/&gt;
+  );
+}
+</code></pre>
+<div line-highlight='4-6,18,20,only'></div>
+
+</section>
+
+  			
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout slack">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://www.bitovi.com/community/slack">help</a> with an exercise, please reach out to us on
+             <a href="https://www.bitovi.com/community/slack">Slack</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/react/4-props.md"},"description":"Learn how to make components reusable with props. \n","name":"learn-react/props","title":"Props: Component Arguments","type":"page","parent":"learn-react","order":4,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+</body>
+</html>

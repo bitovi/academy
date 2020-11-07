@@ -106,6 +106,19 @@
 			
 		
 			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-react.html"
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							Learn React
+						</a>
+						
+					</li>
+				
+			
 		
 			
 		
@@ -483,12 +496,14 @@ var thousand = from(promise);
 thousand.subscribe(console.log);
 // thousand: 1000X
 &lt;/script&gt;
-</code></pre>
-<div class='codepen'></div>
+</code></pre></li>
+</ul>
+<div class='codepen' data-codepen=''></div>
 <blockquote>
 <p>HINT: <code>from</code> and <code>map</code> can be used to convert the payment promises to
 an observable that emits <code>{status: &quot;resolved&quot;, value}</code>.</p>
-</blockquote></li>
+</blockquote>
+<ul>
 <li><p><a href="https://rxjs-dev.firebaseapp.com/api/index/function/concat">concat</a> concatenates streams so events are produced in order.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
@@ -512,12 +527,14 @@ const letters = concat(first, second);
 fullName.subscribe(console.log);
 // letters: -A---B-x-yX
 &lt;/script&gt;
-</code></pre>
-<div class='codepen'></div>
+</code></pre></li>
+</ul>
+<div class='codepen' data-codepen=''></div>
 <blockquote>
 <p>HINT: <code>concat</code> can be used to make an observable emit a <code>{status: &quot;pending&quot;}</code>
 <strong>paymentStatus</strong> object before emitting the <code>{status: &quot;resolved&quot;, value}</code> <strong>paymentStatus</strong> object.</p>
-</blockquote></li>
+</blockquote>
+<ul>
 <li><p><a href="https://rxjs-dev.firebaseapp.com/api/operators/startWith">startWith</a>
 returns an Observable that emits the items you specify as arguments before it begins to emit items emitted by the source Observable.</p>
 <p>The following uses <code>startWith</code> to add  <code>&quot;A&quot;</code> before the <code>&quot;X&quot;</code> and <code>&quot;Y&quot;</code>
@@ -543,14 +560,14 @@ const letters = xAndY.pipe( startWith( &quot;A&quot; ) );
 letters.subscribe(console.log);
 // letters: A-X---Y
 &lt;/script&gt;
-</code></pre>
-<div class='codepen'></div>
-<div line-highlight='17'></div>
+</code></pre></li>
+</ul>
+<div class='codepen' data-codepen=''></div>
+  <div line-highlight='17'></div>
 <blockquote>
 <p>HINT: <code>startWith</code> is used by <code>toPaymentStatusObservable</code> to make sure
 a payment status of &quot;waiting&quot; is published first.</p>
-</blockquote></li>
-</ul>
+</blockquote>
 <ul>
 <li><p><a href="https://rxjs-dev.firebaseapp.com/api/index/function/of">of</a> converts a value (or values)
 to a observable.</p>
@@ -586,8 +603,9 @@ square.subscribe( console.log ) //-&gt; logs 4
 
 number.next(3)                  //-&gt; logs 9
 &lt;/script&gt;
-</code></pre>
-<div class='codepen'></div>
+</code></pre></li>
+</ul>
+<div class='codepen' data-codepen=''></div>
 <blockquote>
 <p>HINT: <code>pipe</code> can be used to combine:</p>
 <ul>
@@ -596,7 +614,8 @@ Observable of payment status objects.</li>
 <li>a <code>startWith</code> operator that ensures an Observable that emits <code>{status: &quot;waiting&quot;}</code>
 is emitted first.</li>
 </ul>
-</blockquote></li>
+</blockquote>
+<ul>
 <li><p><a href="https://rxjs-dev.firebaseapp.com/api/operators/mergeAll">mergeAll</a> takes an observable that emits inner observables
 and emits what the inner observables emits.</p>
 <p>In the following example, <code>observables</code> emits:</p>
@@ -622,14 +641,16 @@ const values = observables.pipe( mergeAll() );
 values.subscribe(console.log);
 // values: 1-2-3-a-b-cX
 &lt;/script&gt;
-</code></pre>
-<div class='codepen'></div>
-<div line-highlight='12'></div></li>
-<li><p>Read a value from an observable's last emitted value with the
-conditional operator (<code>?.</code>) like:</p>
+</code></pre></li>
+</ul>
+<div class='codepen' data-codepen=''></div>
+  <div line-highlight='12'></div>
+<ul>
+<li>Read a value from an observable's last emitted value with the
+conditional operator (<code>?.</code>) like:
 <pre><code class="language-html">{{ (paymentStatus | async)?.status }}
 </code></pre></li>
-<li><p>Use the ternary operator (<code>condition ? truthy : falsy</code>) in Angular like:</p>
+<li>Use the ternary operator (<code>condition ? truthy : falsy</code>) in Angular like:
 <pre><code class="language-html">{{ status === &quot;pending&quot; ? &quot;Paying&quot; : &quot;Pay&quot; }}
 </code></pre></li>
 </ul>

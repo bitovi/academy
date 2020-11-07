@@ -105,6 +105,19 @@
 			
 		
 			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-react.html"
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							Learn React
+						</a>
+						
+					</li>
+				
+			
 		
 			
 		
@@ -472,8 +485,9 @@ last.subscribe( v =&gt; console.log(&quot;last&quot;, v))
 // first: -Justin---RamiyaX
 // last:  ----Shah__---Meyer_X
 &lt;/script&gt;
-</code></pre>
-<div class='codepen'></div>
+</code></pre></li>
+</ul>
+<div class='codepen' data-codepen=''></div>
 <p>We can promote these to event-like objects with <code>map</code>:</p>
 <pre><code class="language-typescript">const firstEvents = first.pipe( map( (first) =&gt; {
     return {type: &quot;first&quot;, value: first};
@@ -566,13 +580,14 @@ const fullName = state.pipe( map( state =&gt; state.first +&quot; &quot;+ state.
 fullName.subscribe((fullName) =&gt; console.log(fullName));
 &lt;/script&gt;
 </code></pre>
-<div class='codepen'></div>
-<div line-highlight='25-38,only'></div>
+<div class='codepen' data-codepen=''></div>
+  <div line-highlight='25-38,only'></div>
 <blockquote>
 <p>NOTE: <code>fullName</code> can be derived more simply from <code>combine</code>. The reducer
 pattern is used here for illustrative purposes. It is able to support a larger
 set of stream transformations than <code>combine</code>.</p>
-</blockquote></li>
+</blockquote>
+<ul>
 <li><p>For a blur event, we should not save the last publish value
 so a <code>Subject</code> will work  better than a <code>BehaviorSubject</code>.</p></li>
 <li><p>Use <a href="https://angular.io/guide/template-syntax#property-binding--property-">a property binding</a> to set a property or attribute on an element.<br />

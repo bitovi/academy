@@ -251,6 +251,19 @@
 			
 		
 			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-react.html"
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							Learn React
+						</a>
+						
+					</li>
+				
+			
 		
 			
 		
@@ -522,24 +535,26 @@ constructor function.  It should return an instance of <code>$</code> with:</p>
 var elements = document.querySelectorAll(&quot;.dogs li&quot;);
 console.log(elements) // logs [&lt;li&gt;, &lt;li&gt;]
 &lt;/script&gt;
-</code></pre>
-<div class='codepen'></div></li>
-<li>The <code>[]</code> member operator can create enumerated properties:
-<pre><code class="language-js">var obj = {};
-obj[&quot;0&quot;] = &quot;x&quot;;
-obj[&quot;1&quot;] = &quot;y&quot;;
-</code></pre>
-<div class='codepen'></div></li>
-<li><code>Array.prototype.push</code> implementation looks like:
-<pre><code class="language-js">Array.prototype.push = function(){
-  var length = this.length || 0;
-  for(var i = 0; i &lt; arguments.length; i++) {
-      this[length + i] = arguments[i]
-  }
-  this.length = length + arguments.length;
-}
 </code></pre></li>
 </ul>
+<div class='codepen' data-codepen=''></div>
+- The `[]` member operator can create enumerated properties:
+  ```js
+  var obj = {};
+  obj["0"] = "x";
+  obj["1"] = "y";
+  ```
+<div class='codepen' data-codepen=''></div>
+- `Array.prototype.push` implementation looks like:
+  ```js
+  Array.prototype.push = function(){
+    var length = this.length || 0;
+    for(var i = 0; i < arguments.length; i++) {
+        this[length + i] = arguments[i]
+    }
+    this.length = length + arguments.length;
+  }
+  ```
 <h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -553,7 +568,7 @@ obj[&quot;1&quot;] = &quot;y&quot;;
 <h3>The problem</h3>
 <p><a href="http://api.jquery.com/html/">collection.html</a> either:</p>
 <ul>
-<li><p>gets the HTML contents of the first element in the set of matched elements.</p>
+<li>gets the HTML contents of the first element in the set of matched elements.
 <pre><code class="language-html">&lt;ul class='dogs'&gt;
   &lt;li&gt;&lt;b&gt;f&lt;/b&gt;ido&lt;/li&gt;
   &lt;li&gt;rover&lt;/li&gt;
@@ -566,10 +581,12 @@ import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
 var dogs = $('.dogs li');
 console.log( dogs.html() ) //logs &quot;&lt;b&gt;f&lt;/b&gt;ido&quot;
 &lt;/script&gt;
-</code></pre>
-<div class='codepen'></div></li>
-<li><p>sets the HTML contents of each element in the set of matched elements
-and returns the collection.</p>
+</code></pre></li>
+</ul>
+<div class='codepen' data-codepen=''></div>
+<ul>
+<li>sets the HTML contents of each element in the set of matched elements
+and returns the collection.
 <pre><code class="language-html">&lt;ul class='dogs'&gt;
   &lt;li&gt;fido&lt;/li&gt;
   &lt;li&gt;rover&lt;/li&gt;
@@ -582,9 +599,9 @@ import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
 var dogs = $('.dogs li');
 dogs.html('&lt;b&gt;rover&lt;/b&gt;') //-&gt; dogs
 &lt;/script&gt;
-</code></pre>
-<div class='codepen'></div></li>
+</code></pre></li>
 </ul>
+<div class='codepen' data-codepen=''></div>
 <p>Many of jQuery's methods either get or set depending on the number of arguments.</p>
 <p><details>
 <summary>Click to see test code</summary></p>
@@ -635,7 +652,7 @@ console.log( $(&quot;.first&quot;).val() ) //log &quot;first&quot;
 $(&quot;.second&quot;).val( &quot;SECOND&quot; );
 &lt;/script&gt;
 </code></pre>
-  <div class='codepen'></div>
+<div class='codepen' data-codepen=''></div>
 <p><details>
 <summary>Click to see test code</summary></p>
 <pre><code class="language-js">QUnit.test('$.fn.val', function(){
@@ -707,9 +724,9 @@ to tell if something is an instance of something else:</p>
 }
 const sponge = new Animal(&quot;bob&quot;)
 console.log( sponge instanceof Animal ) //-&gt; true
-</code></pre>
-<div class='codepen'></div></li>
+</code></pre></li>
 </ul>
+<div class='codepen' data-codepen=''></div>
 <h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -783,9 +800,9 @@ console.log(textNode.nodeValue)
 // logs &quot;My favorite element is &lt;script&gt;&quot;
 
 document.body.appendChild(textNode);
-</code></pre>
-<div class='codepen'></div></li>
+</code></pre></li>
 </ul>
+<div class='codepen' data-codepen=''></div>
 <h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -870,18 +887,20 @@ $( &quot;li.item-ii&quot; )
 <p></details></p>
 <h3>What you need to know</h3>
 <ul>
-<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll">parentNode.querySelectorAll</a> can be used to find all elements that match a selector who are
-descendants of the <code>parentNode</code> element.</p></li>
-<li><p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax">spread syntax</a> can be used to push multiple items to an array.</p>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll">parentNode.querySelectorAll</a> can be used to find all elements that match a selector who are
+descendants of the <code>parentNode</code> element.</li>
+<li>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax">spread syntax</a> can be used to push multiple items to an array.
 <pre><code class="language-js">const letters = [&quot;a&quot;,&quot;b&quot;];
 const lettersToAdd = [&quot;x&quot;,&quot;y&quot;];
 letters.push(...lettersToAdd);
 
 console.log(letters)
 // logs [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;]
-</code></pre>
-<div class='codepen'></div>
-<p>This can be done with <code>Array.prototype.push.apply</code> in older browsers.</p></li>
+</code></pre></li>
+</ul>
+<div class='codepen' data-codepen=''></div>
+<p>This can be done with <code>Array.prototype.push.apply</code> in older browsers.</p>
+<ul>
 <li><p>You need to make <code>$()</code> accept an array of nodes similar to how jQuery does:</p>
 <pre><code class="language-html">&lt;div id=&quot;first&quot;&gt;First&lt;/div&gt;
 &lt;span id=&quot;second&quot;&gt;Second&lt;/div&gt;
@@ -891,9 +910,9 @@ import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
 $([first, second])
   .css( &quot;border&quot;, &quot;solid 1px red&quot; );
 &lt;/script&gt;
-</code></pre>
-<div class='codepen'></div></li>
+</code></pre></li>
 </ul>
+<div class='codepen' data-codepen=''></div>
 <h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -964,9 +983,9 @@ $([first, second])
 }
 var logMe = makeLogger(&quot;me&quot;);
 logMe() //logs &quot;me&quot;
-</code></pre>
-<div class='codepen'></div></li>
+</code></pre></li>
 </ul>
+<div class='codepen' data-codepen=''></div>
 <h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>

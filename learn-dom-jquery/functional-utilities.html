@@ -250,6 +250,19 @@
 			
 		
 			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-react.html"
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							Learn React
+						</a>
+						
+					</li>
+				
+			
 		
 			
 		
@@ -451,27 +464,30 @@ object onto the <code>target</code> object.</p>
 for(var prop in obj) {
   console.log(prop) //logs &quot;foo&quot; then &quot;zed&quot;
 }
-</code></pre>
-<div class='codepen'></div></li>
-<li>Read a property with a string using the <code>[]</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors">member operator</a>.
-<pre><code class="language-js">var obj = {foo: &quot;bar&quot;};
-var prop = &quot;foo&quot;;
-console.log(obj[prop]) //logs &quot;bar&quot;
-</code></pre>
-<div class='codepen'></div></li>
-<li>Assign a property with a string using the <code>[]</code> member operator:
-<pre><code class="language-js">var obj = {};
-var prop = &quot;foo&quot;;
-obj[prop] = &quot;bar&quot;
-console.log(obj.prop) //logs &quot;bar&quot;
 </code></pre></li>
-<li>Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty">Object.prototype.hasOwnProperty</a> to detect if an object has
-the specified property as it's own property:
-<pre><code class="language-js">var obj = {foo: &quot;bar&quot;};
-console.log(obj.hasOwnProperty(&quot;foo&quot;)) //logs true
-</code></pre>
-<div class='codepen'></div></li>
 </ul>
+<div class='codepen' data-codepen=''></div>
+- Read a property with a string using the `[]` [member operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Property_accessors).
+  ```js
+  var obj = {foo: "bar"};
+  var prop = "foo";
+  console.log(obj[prop]) //logs "bar"
+  ```
+<div class='codepen' data-codepen=''></div>
+- Assign a property with a string using the `[]` member operator:
+  ```js
+  var obj = {};
+  var prop = "foo";
+  obj[prop] = "bar"
+  console.log(obj.prop) //logs "bar"
+  ```
+- Use [Object.prototype.hasOwnProperty](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/hasOwnProperty) to detect if an object has
+  the specified property as it's own property:
+  ```js
+  var obj = {foo: "bar"};
+  console.log(obj.hasOwnProperty("foo")) //logs true
+  ```
+<div class='codepen' data-codepen=''></div>
 <h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -513,9 +529,9 @@ console.log(obj.hasOwnProperty(&quot;foo&quot;)) //logs true
 <li><p><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/toString">Object.prototype.toString</a> called on built-in types returns the object class name:</p>
 <pre><code class="language-js">console.log( Object.prototype.toString.call(new Date) )
 //logs &quot;[object Date]&quot;
-</code></pre>
- <div class='codepen'></div></li>
+</code></pre></li>
 </ul>
+<div class='codepen' data-codepen=''></div>
 <h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -555,9 +571,9 @@ array. A value is array-like if:</p>
 <li>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in">in operator </a> returns <code>true</code> if the specified property is in the specified object or its prototype chain.
 <pre><code class="language-js">var obj = {foo: &quot;bar&quot;};
 console.log( &quot;foo&quot; in obj ) //logs true
-</code></pre>
-<div class='codepen'></div></li>
+</code></pre></li>
 </ul>
+<div class='codepen' data-codepen=''></div>
 <h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>

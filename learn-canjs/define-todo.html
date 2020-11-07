@@ -105,6 +105,19 @@
 			
 		
 			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-react.html"
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							Learn React
+						</a>
+						
+					</li>
+				
+			
 		
 			
 		
@@ -530,9 +543,10 @@ const MyType = DefineMap.extend(&quot;MyType&quot;,{});
 var instance = new MyType();
 
 console.log( instance instanceof MyType ) //logs true
-</code></pre>
-<div class='codepen'></div></li>
-<li><p>The <a href="https://canjs.com/doc/can-define.types.type.html" title="type">type</a> behavior defines a property’s type like:</p>
+</code></pre></li>
+</ul>
+<div class='codepen' data-codepen=''></div>
+- The <a href="https://canjs.com/doc/can-define.types.type.html" title="type">type</a> behavior defines a property’s type like:
 <pre><code class="language-js">import {DefineMap} from &quot;can&quot;;
 
 const Person = DefineMap.extend(&quot;Person&quot;,{
@@ -541,7 +555,8 @@ const Person = DefineMap.extend(&quot;Person&quot;,{
 
 console.log( new Person({age: &quot;3&quot;}).age ) //logs 3
 </code></pre>
-<div class='codepen'></div></li>
+<div class='codepen' data-codepen=''></div>
+<ul>
 <li><p>The <a href="https://canjs.com/doc/can-define.types.default.html" title="default">default</a> behavior defines a property’s initial value like:</p>
 <pre><code class="language-js">import {DefineMap} from &quot;can&quot;;
 
@@ -562,9 +577,9 @@ const Type = DefineMap.extend(&quot;Type&quot;,{
 
 var instance = new Type();
 instance.methodName() //logs &quot;run method&quot;
-</code></pre>
-<div class='codepen'></div></li>
+</code></pre></li>
 </ul>
+<div class='codepen' data-codepen=''></div>
 <h2>The solution</h2>
 <p>Create <em>models/todo.js</em> as follows:</p>
 <pre><code class="language-js">// models/todo.js

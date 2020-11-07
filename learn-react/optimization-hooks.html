@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/react/10-optimizaton-hooks.md
+	@page learn-react/optimization-hooks
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <meta name="description" content="Learn how to optimize your React apps with some helpful hooks. 
+">
+  <title>Bitovi Academy - Optimization Hooks</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-react.html"
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							Learn React
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="setting-up-environment.html"
+							title="Learn how to setup a React environment using Create React App.">
+							Setting up your Environment
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="intro-to-jsx.html"
+							title="Learn how to use React&#x27;s preferred markup syntax JSX, and combine HTML with JavaScript.">
+							Introduction to JSX
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="components.html"
+							title="Learn about the two fundamental ways of writing React components and their differences.">
+							What are React Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="props.html"
+							title="Learn how to make components reusable with props.">
+							Props: Component Arguments
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="styling-in-react.html"
+							title="Learn the different ways to style React components.">
+							Styling in React 3 Ways
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="manage-state.html"
+							title="Manage component and application state with hooks">
+							Managing State
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="intro-to-hooks.html"
+							title="Learn how to use React hooks to make functional components more powerful.">
+							Introduction to Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="stateful-hooks.html"
+							title="Learn how to hooks in React to manage the state of a component.">
+							Stateful Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="controlled-vs-uncontrolled-components.html"
+							title="Learn how to handle inputs in React and the difference between controlled and uncontrolled components.">
+							Controlled vs Uncontrolled
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="optimization-hooks.html"
+							title="Learn how to optimize your React apps with some helpful hooks.">
+							Optimization Hooks
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="context-hooks.html"
+							title="Learn how to manage global app state with context hooks.">
+							Context Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-web-components.html"
+							title="">
+							Learn Web Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-technology-consulting.html"
+							title="Learn how to perform technology consulting.">
+							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn how to build a moderately complex application with Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border">
+      <a href="..#courses">View More Courses</a>
+      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
+  </p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Optimization Hooks <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>Learn how to optimize your React apps with some helpful hooks.</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <h1>Optimization Hooks</h1>
+<p>In addition to the core hooks exposed by React, namely <code>useState</code> and <code>useEffect</code>, there are several hooks aimed at optimizing your code for performance.</p>
+<p>Specifically optimization through memoization. In a nutshell, memoization is the process of caching the values returned from long running functions, and returning the cached values when inputs are identical.</p>
+<p>There are two hooks which deal with memoization, <code>useMemo</code> and <code>useCallback</code>, let's take a look at them below.</p>
+<h2>useMemo</h2>
+<ul>
+<li>Returns a memoized value.</li>
+<li>Recalculated synchronously based on declared dependencies.</li>
+<li>Used to optimize expensive calculations.</li>
+</ul>
+<pre><code class="language-jsx">function Hello({ firstName, lastName }) {
+  const name = React.useMemo(() =&gt; {
+    // some expensive derived value
+    return `${firstName} ${lastName}`;
+  }, [firstName, lastName]);
+
+  return &lt;div&gt;{name}&lt;/div&gt;;
+}
+
+ReactDOM.render(
+  &lt;Hello firstName=&quot;Justin&quot; lastName=&quot;Meyer&quot; /&gt;,
+  document.getElementById('root')
+);
+</code></pre>
+<div class='codepen' data-codepen='react'></div>
+<p>In the code above, we're utilizing <code>useMemo</code> to memoize a value derived from two props, <code>firstName</code> and <code>lastName</code>. Imagine that in order to get the full <code>name</code>, we need to perform some long-running or expensive operation. Normally, we would perform this operation every time the component renders, regardless of the <code>firstName</code>/<code>lastName</code> prop values.</p>
+<p>When we memoize the value however, React keeps track of the inputs and outputs of this function, and caches values for all the possibilities it encounters. This means that if this component gets rendered with the same first and last name 100 times, we'll only need to perform the expensive operation once.</p>
+<p><code>useMemo</code> takes two arguments, the first is a function which performs the expensive operation and returns a value, the second is an array of dependencies. The dependency array determines which values, when changed, should cause the memoized value to be re-computed.</p>
+<p>To sum it all up:</p>
+<ul>
+<li>When we need to do something expensive
+<ol>
+<li>We wrap it in useMemo</li>
+<li>Specify when it should re-compute</li>
+</ol></li>
+</ul>
+<h3>useMemo to cache a function call</h3>
+<p>Let's take a look at a more real world example, here we'll generate primes, but show only some of them...</p>
+<p>Here's a look at it without <code>useMemo</code>:</p>
+<pre><code class="language-jsx">function Hello({ bigJSONBlob }) {
+  const data = JSON.parse(bigJSONBlob);
+  const lines = flatten(data);
+
+  return (
+    &lt;div&gt;
+      {lines.map((line) =&gt; (
+        &lt;div key={line}&gt;{line}&lt;/div&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+
+function flatten(input) {
+  return Object.keys(input)
+    .map((key) =&gt; {
+      if (typeof input[key] === 'object') {
+        return [`${key}:`, ...flatten(input[key]).map((line) =&gt; `  - ${line}`)];
+      }
+
+      return [`${key}: ${input[key]}`];
+    })
+    .flat();
+}
+
+ReactDOM.render(
+  &lt;Hello bigJSONBlob={'{&quot;hello&quot;: &quot;world&quot;}'} /&gt;,
+  document.getElementById('root')
+);
+</code></pre>
+<div class='codepen' data-codepen='react'></div>
+<p>This could get quite expensive for a large object, even the parsing could make a difference, so we memoize the whole value, only recalculating on <code>bigJSONBlob</code> changes</p>
+<pre><code class="language-jsx">function Hello({ bigJSONBlob }) {
+  const lines = React.useMemo(() =&gt; {
+    const data = JSON.parse(bigJSONBlob);
+    return flatten(data);
+  }, [bigJSONBlob]);
+
+  return (
+    &lt;div&gt;
+      {lines.map((line) =&gt; (
+        &lt;div key={line}&gt;{line}&lt;/div&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+
+function flatten(input) {
+  return Object.keys(input)
+    .map((key) =&gt; {
+      if (typeof input[key] === 'object') {
+        return [`${key}:`, ...flatten(input[key]).map((line) =&gt; `  - ${line}`)];
+      }
+
+      return [`${key}: ${input[key]}`];
+    })
+    .flat();
+}
+
+ReactDOM.render(
+  &lt;Hello bigJSONBlob={'{&quot;hello&quot;: &quot;world&quot;}'} /&gt;,
+  document.getElementById('root')
+);
+</code></pre>
+<div line-highlight='4,only'></div>
+<div class='codepen' data-codepen='react'></div>
+<h2>useCallback</h2>
+<ul>
+<li>A special case of useMemo that returns a function instead of a value.</li>
+<li><code>useCallback(fn, deps)</code> is equivalent to <code>useMemo(() =&gt; fn, deps)</code></li>
+<li>Used to maintain referential equality between renders.</li>
+</ul>
+<p><code>useCallback</code> is particularly useful when defining event handlers. In such cases, we're not necessarily interested in memoizing a single value, but rather, a callback function. This is very common in react, as we're constantly using callbacks as props.</p>
+<p>Below is a clickable <code>Hello</code> component which defines an un-memoized <code>handleClick</code> function.</p>
+<pre><code class="language-jsx">function Hello({ firstName, lastName }) {
+  const handleClick = () =&gt; {
+    console.log(`${firstName} ${lastName}`);
+  };
+
+  return &lt;button onClick={handleClick}&gt;Hello&lt;/button&gt;;
+}
+
+ReactDOM.render(
+  &lt;Hello firstName=&quot;Justin&quot; lastName=&quot;Meyer&quot; /&gt;,
+  document.getElementById('root')
+);
+</code></pre>
+<div class='codepen' data-codepen='react'></div>
+<p>Now below, we'll wrap <code>handleClick</code>'s logic in a <code>useCallback</code> so we can cache the results.</p>
+<pre><code class="language-jsx">function Hello({ firstName, lastName }) {
+  const handleClick = React.useCallback(() =&gt; {
+    console.log(`${firstName} ${lastName}`);
+  }, [firstName, lastName]);
+
+  return &lt;button onClick={handleClick}&gt;Hello&lt;/button&gt;;
+}
+
+ReactDOM.render(
+  &lt;Hello firstName=&quot;Justin&quot; lastName=&quot;Meyer&quot; /&gt;,
+  document.getElementById('root')
+);
+</code></pre>
+<div class='codepen' data-codepen='react'></div>
+<h2>Exercise</h2>
+<p>Let's use our optimization hooks knowledge to make our Tic-Tac-Toe game a bit more performant!</p>
+<p>Run the app locally with <code>npm start</code> and choose the <code>Optimization Hooks</code> exercise. Now head over to <code>src/exercises/8 - Optimization Hooks/components</code>. These are the files you'll be editing.</p>
+<h3>The problem</h3>
+<p>✏️ Modify the <code>Board</code> component so that it's <code>handleSquareClick</code> function uses the <code>useCallback</code> hook.</p>
+<h3>The solution</h3>
+<pre><code class="language-jsx">import React, { useState, useCallback } from 'react';
+import Square from '../../../app/components/Square';
+
+function Board() {
+  const [board, setBoard] = useState(['', '', '', '', '', '', '', '', '']);
+  const [isXTurn, setIsXTurn] = useState(true);
+
+  const handleSquareClick = useCallback(
+    (squareIndex) =&gt; {
+      if (board[squareIndex]) {
+        return;
+      }
+
+      const newBoard = [...board];
+      newBoard[squareIndex] = isXTurn ? 'X' : 'O';
+
+      setBoard(newBoard);
+      setIsXTurn((value) =&gt; !value);
+    },
+    [board, isXTurn],
+  );
+
+  return (
+    &lt;div className=&quot;board&quot;&gt;
+      {board.map((symbol, index) =&gt; (
+        &lt;Square
+          key={index}
+          symbol={symbol}
+          onClick={() =&gt; handleSquareClick(index)}
+        /&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+
+export default Board;
+</code></pre>
+<div line-highlight='8,only'></div>
+
+</section>
+
+  			
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout slack">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://www.bitovi.com/community/slack">help</a> with an exercise, please reach out to us on
+             <a href="https://www.bitovi.com/community/slack">Slack</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/react/10-optimizaton-hooks.md"},"description":"Learn how to optimize your React apps with some helpful hooks. \n","name":"learn-react/optimization-hooks","title":"Optimization Hooks","type":"page","parent":"learn-react","order":10,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+</body>
+</html>

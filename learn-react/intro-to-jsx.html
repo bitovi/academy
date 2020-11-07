@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/react/2-intro-to-jsx.md
+	@page learn-react/intro-to-jsx
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <meta name="description" content="Learn how to use React&#x27;s preferred markup syntax JSX, and combine HTML with JavaScript. 
+">
+  <title>Bitovi Academy - Introduction to JSX</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-react.html"
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							Learn React
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="setting-up-environment.html"
+							title="Learn how to setup a React environment using Create React App.">
+							Setting up your Environment
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="intro-to-jsx.html"
+							title="Learn how to use React&#x27;s preferred markup syntax JSX, and combine HTML with JavaScript.">
+							Introduction to JSX
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="components.html"
+							title="Learn about the two fundamental ways of writing React components and their differences.">
+							What are React Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="props.html"
+							title="Learn how to make components reusable with props.">
+							Props: Component Arguments
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="styling-in-react.html"
+							title="Learn the different ways to style React components.">
+							Styling in React 3 Ways
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="manage-state.html"
+							title="Manage component and application state with hooks">
+							Managing State
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="intro-to-hooks.html"
+							title="Learn how to use React hooks to make functional components more powerful.">
+							Introduction to Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="stateful-hooks.html"
+							title="Learn how to hooks in React to manage the state of a component.">
+							Stateful Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="controlled-vs-uncontrolled-components.html"
+							title="Learn how to handle inputs in React and the difference between controlled and uncontrolled components.">
+							Controlled vs Uncontrolled
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="optimization-hooks.html"
+							title="Learn how to optimize your React apps with some helpful hooks.">
+							Optimization Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="context-hooks.html"
+							title="Learn how to manage global app state with context hooks.">
+							Context Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-web-components.html"
+							title="">
+							Learn Web Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-technology-consulting.html"
+							title="Learn how to perform technology consulting.">
+							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn how to build a moderately complex application with Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border">
+      <a href="..#courses">View More Courses</a>
+      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
+  </p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Introduction to JSX <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>Learn how to use React's preferred markup syntax JSX, and combine HTML with JavaScript.</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <h2>Creating Views in React</h2>
+<p>Before we talk about JSX, let's discuss how user interfaces are created in React.</p>
+<p>At its core, React is a JavaScript library used for creating reusable front-end components. One of the unique features of React is that it allows you to describe the way your components look using only JavaScript, there's no HTML or templating languages strictly required.</p>
+<p>This is all done through the React <a href="https://reactjs.org/docs/react-api.html">element API</a>.</p>
+<p>But this &quot;all JS&quot; approach comes with some downsides, namely it becomes arduous to describe complex page hierarchies using only pure JavaScript. When first learning React, it's good to be aware of the element API, but keep in mind that most React developers will forego this for an alternative syntactic sugar called JSX.</p>
+<h3>React's Element API</h3>
+<p>React exposes an API for creating HTML elements using JavaScript. For example to create an <code>h1</code> we could write the following:</p>
+<pre><code class="language-js">React.createElement('h1', null, 'Hello World');
+</code></pre>
+<p>The code above will create an <code>h1</code> with the text &quot;Hello World&quot; inside of it (<code>&lt;h1&gt;Hello World&lt;/h1&gt;</code>). This is pure, vanilla JavaScript using a function <code>createElement</code> exposed by React. <code>createElement</code> can be used to model just about any HTML structure:</p>
+<pre><code class="language-js">React.createElement(
+  'div', // Tag name
+  { id: 'greeting' }, // Props, referred to as &quot;attributes&quot; in HTML
+  [
+    React.createElement('h1', null, 'Hello World'),
+    React.createElement('p', null, 'This is HTML'),
+  ], // Children
+);
+</code></pre>
+<p>The code above replicates the following HTML:</p>
+<pre><code class="language-html">&lt;div id=&quot;greeting&quot;&gt;
+  &lt;h1&gt;Hello World&lt;/h1&gt;
+  &lt;p&gt;This is HTML&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<p>As you can see, the XML-like nature of HTML allows us to model anything using a combination of a tag name, a set of attributes and children. Note how the more complex the HTML we're trying to model, the more complex the <code>React.createElement</code> code becomes.</p>
+<p>While it is possible to build entire apps using the <code>createElement</code> function, this is rarely done due to how messy it quickly becomes.</p>
+<p>Instead, React supports a JavaScript syntax extension called JSX which allows us to describe our application declaratively.</p>
+<h2>JSX</h2>
+<p>JSX is a special syntax <a href="https://stackoverflow.com/questions/44931479/compiling-vs-transpiling">transpile-able</a> by <a href="https://babeljs.io/">babel</a>, which looks almost identical to HTML.</p>
+<p>Instead of having to use the procedural <code>React.createElement</code> syntax, views can be defined and maintained in JSX and will automatically be transpiled into the equivalent <code>React.createElement</code> calls at build-time.</p>
+<p>JSX can be written alongside standard JavaScript, which makes for a powerful programming environment.</p>
+<h2>Differences With HTML</h2>
+<p>For the most part, JSX can be written exactly like the HTML you're most likely used to. There are a few difference to keep in mind however.</p>
+<h3>Inline Styling</h3>
+<p>In a normal HTML document, inline styles can be attached directly to an element using the <code>style</code> attribute. CSS styles are placed inside a string and separated by semi-colons.</p>
+<pre><code class="language-html">&lt;div style=&quot;color: red; background-color: blue;&quot;&gt;
+  Inline styles are different
+&lt;/div&gt;
+</code></pre>
+<p>The equivalent JSX looks very similar, but the styles are stored in an object:</p>
+<pre><code class="language-jsx">&lt;div style={{ color: 'red', backgroundColor: 'blue' }}&gt;
+  Inline styles are different
+&lt;/div&gt;
+</code></pre>
+<p>First, notice how instead of using a string to store the styles (like <code>style=&quot;&quot;</code>) we use curly brackets (like <code>style={}</code>). In JSX, we can interpolate JavaScript code into our attributes, and when doing so we use the curly bracket notation instead of quotes (quotes can be used only for string values).</p>
+<blockquote>
+<p>This is how JSX always works. Quotes always denote a string (JSX uses double quotes by convention, to mimic HTML, but single quotes also work). Using brackets allows other kinds on values, like: objects (like we'll be using for <code>style</code>), arrays, numbers, or even more JSX. Any JavaScript expression is valid inside the curly brackets.</p>
+</blockquote>
+<p>Inside of <code>style={}</code> we have an object of styles whose keys are css attributes and values are the value of the css. This structure closely resembles the <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration"><code>CSSStyleDeclaration</code></a> object used by the browser to store element styles (To see this run <code>document.body.style</code> in your browser console).</p>
+<p>Another thing you may note is the difference between <code>background-color</code> and <code>backgroundColor</code>. The reason for this, is that JavaScript does not support dashes as identifiers outside of strings. While it would be possible to write <code>&quot;background-color&quot;: &quot;blue&quot;</code>, the convention is to let React handle the conversion from camel-case to dashes.</p>
+<h3>Classes</h3>
+<p>In JSX, classes are defined using the <code>className=&quot;&quot;</code> property:</p>
+<pre><code class="language-jsx">&lt;div className=&quot;button primary&quot;&gt;So are classes&lt;/div&gt;
+</code></pre>
+<p>The reason for the discrepancy is that the React API is mirrored after the JavaScript DOM API and not after HTML itself. A lengthier description of the reasons is available on <a href="https://github.com/facebook/react/issues/13525#issuecomment-417818906">GitHub</a>.</p>
+<h3>Siblings</h3>
+<p>JSX requires that any sibling elements are wrapped inside of a parent. This is one of the most common errors encountered by beginners.</p>
+<p>The following JSX would throw an error:</p>
+<pre><code class="language-jsx">&lt;div&gt;Sibling 1&lt;/div&gt;
+&lt;div&gt;Sibling 2&lt;/div&gt;
+</code></pre>
+<p>To fix it, we'd need to wrap them both in a parent:</p>
+<pre><code class="language-jsx">&lt;div&gt;
+  &lt;div&gt;Sibling 1&lt;/div&gt;
+  &lt;div&gt;Sibling 2&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+<p>Now they're both wrapped in a parent <code>div</code> and the error will go away!</p>
+<h3>Fragments</h3>
+<p>Sometimes, you may encounter situations where wrapping your elements in an extra element is undesirable (<code>tr</code>, <code>td</code> for example). Fragments can either be written using the longform <code>&lt;React.Fragment&gt;&lt;/React.Fragment&gt;</code> syntax or the shorthand <code>&lt;&gt;&lt;/&gt;</code>.</p>
+<p>This JSX:</p>
+<pre><code class="language-jsx">&lt;&gt;
+  &lt;div&gt;Sibling 1&lt;/div&gt;
+  &lt;div&gt;Sibling 2&lt;/div&gt;
+&lt;/&gt;
+</code></pre>
+<p>Will output the following HTML:</p>
+<pre><code class="language-html">&lt;div&gt;Sibling 1&lt;/div&gt;
+&lt;div&gt;Sibling 2&lt;/div&gt;
+</code></pre>
+<p>Note how the the fragment components don't have any corresponding DOM output. This would also be true if we had used <code>&lt;React.Fragment&gt;</code> instead; they are the same.</p>
+<h2>JavaScript Interpolation</h2>
+<p>JSX is dynamic. You can easily insert values from variables and objects into your JSX:</p>
+<pre><code class="language-jsx">const name = &quot;Bitovi&quot;
+
+&lt;div className=&quot;button primary&quot;&gt;
+  Welcome to {name}!
+&lt;/div&gt;
+</code></pre>
+<p>In the code above, we've used the <code>{name}</code> syntax to tell JSX that we want to use the value stored in the <code>name</code> variable <code>&quot;Bitovi&quot;</code> into our view.</p>
+<p>You can take this a step further by interpolating multiple values, and using JavaScript functions to transform data on the fly. Anything that goes inside <code>{}</code> is executed as normal JavaScript. These are the same rules as the brackets on a prop: any JavaScript expression is valid inside the curly brackets.</p>
+<pre><code class="language-jsx">const person = {
+  name: 'mike',
+  profession: 'programmer',
+};
+
+&lt;div className=&quot;button primary&quot;&gt;
+  &lt;h1&gt;Hi I'm {person.name.toUpperCase()}!&lt;/h1&gt;
+  &lt;p&gt;I'm a {person.profession} living in Philadelphia&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<p><strong>Important:</strong> Only expressions which return a value may be interpolated. This includes static values, variables and calls to functions. It does not include control-flow statements such as <code>if</code>, <code>case</code>, <code>for</code>, <code>while</code>. These can either be abstracted behind a function, which is then called within the JSX or be re-written in a JSX-friendly way.</p>
+<p>Conditions can be re-written using the ternary operator.</p>
+<h3>JSX Is JavaScript</h3>
+<p>Remember, JSX is simply an alternative syntax for normal JavaScript - it is not magic. This means that you can use JSX as a normal value.</p>
+<pre><code class="language-jsx">const header = &lt;h1&gt;Hello World&lt;/h1&gt;;
+const body = &lt;p&gt;My name is {'Mike'}&lt;/p&gt;;
+
+const page = (
+  &lt;div&gt;
+    {header}
+    {body}
+  &lt;/div&gt;
+);
+</code></pre>
+<p>If rendered, <code>page</code> will output:</p>
+<pre><code class="language-html">&lt;div&gt;
+  &lt;h1&gt;Hello World&lt;/h1&gt;
+  &lt;p&gt;My name is Mike&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<p>If this surprises you, remember that underneath the syntactic sugar, JSX is nothing more than <code>React.createElement</code> calls:</p>
+<pre><code class="language-js">const header = React.createElement('h1', null, 'Hello World');
+const body = React.createElement('p', null, `Hello ${'Mike'}`);
+
+const page = React.createElement('div', null, [header, body]);
+</code></pre>
+<h3>Common Pitfalls</h3>
+<h4>Using Conditions</h4>
+<pre><code class="language-jsx">// This does not work
+&lt;div&gt;
+  {
+    if (a === b) { // Control flow does not belong in JSX
+      &quot;a and b are equal&quot;
+    } else {
+      &quot;a and b are different&quot;
+    }
+  }
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-jsx">// Can be accomplished with ternaries
+&lt;div&gt;
+  {
+    a === b ? 'a and b are equal' : 'a and b are different' // Ternaries are expressions. They return a value.
+  }
+&lt;/div&gt;
+</code></pre>
+<p>If ternaries seem excessive for any particular case, you can write all your logic in a separate function and invoke it from within JSX.</p>
+<pre><code class="language-jsx">&lt;div&gt;{outputResult()}&lt;/div&gt;
+</code></pre>
+<h4>Using Loops</h4>
+<pre><code class="language-jsx">// This does not work
+&lt;div&gt;
+  {
+    for (let n of [1, 2, 3, 4]) { // Control flow does not belong in JSX
+      &lt;span&gt;n&lt;/span&gt;
+    }
+  }
+&lt;/div&gt;
+</code></pre>
+<p>If you want to iterate within JSX, use methods such as <code>Array.map</code>, <code>Array.filter</code> and <code>Array.reduce</code>:</p>
+<pre><code class="language-jsx">// Mapping values to JSX elements
+&lt;div&gt;
+  {[1, 2, 3, 4].map((n) =&gt; (
+    &lt;span&gt;n&lt;/span&gt;
+  ))}
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-html">&lt;div&gt;
+  &lt;span&gt;1&lt;/span&gt;
+  &lt;span&gt;2&lt;/span&gt;
+  &lt;span&gt;3&lt;/span&gt;
+  &lt;span&gt;4&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<h2>Event Handling</h2>
+<p>One of the most powerful aspects of JavaScript is that it enables developers to respond to events on the browser. With JSX it's easy to listen for and respond to these events.</p>
+<pre><code class="language-jsx">&lt;div className=&quot;button primary&quot;&gt;
+  &lt;button onClick={(event) =&gt; console.log('Clicked')}&gt;click me&lt;/button&gt;
+&lt;/div&gt;
+</code></pre>
+<p>In the code above, we've attached an <code>onClick</code> listener to the <code>&lt;button&gt;</code> element. Whenever this button gets clicked now, the code inside the <code>onClick={...}</code> will get executed. The value always needs to be a function, and that function will get called with an <code>event</code> object.</p>
+<p>All <a href="https://reactjs.org/docs/events.html">events</a> supported in vanilla JavaScript are also supported in JSX.</p>
+<h2>Components</h2>
+<p>In React we can store our JSX inside of components. Components are like small containers which can be re-used throughout your application. For example, you might build a <code>Button</code> component which renders all the JSX required for a button.</p>
+<pre><code class="language-jsx">function MyButton() {
+  return (
+    &lt;div className=&quot;button primary&quot;&gt;
+      &lt;button&gt;click me&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+ReactDOM.render(&lt;MyButton /&gt;, document.getElementById('root'));
+</code></pre>
+<div class='codepen' data-codepen='react'></div>
+<p>In the code above, we're defining a functional components (a function which returns JSX) called <code>MyButton</code>.</p>
+<p>This component returns JSX and could then be rendered and re-used by another component like <code>App</code> below.</p>
+<pre><code class="language-jsx">function App() {
+  return (
+    &lt;div&gt;
+      &lt;MyButton /&gt;
+      &lt;MyButton /&gt;
+      &lt;MyButton /&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<p>Here the <code>App</code> component is rendering out the <code>MyButton</code> component 3 times. Note that when you render out custom components like this they don't need closing tags, instead they can be self-closing with a <code>/</code> tacked onto the end. You can also design them to have closing tags with extra elements rendered inside (see an explanation on JSX children <a href="https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891">here</a>).</p>
+
+</section>
+
+  			
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout slack">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://www.bitovi.com/community/slack">help</a> with an exercise, please reach out to us on
+             <a href="https://www.bitovi.com/community/slack">Slack</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/react/2-intro-to-jsx.md"},"description":"Learn how to use React's preferred markup syntax JSX, and combine HTML with JavaScript. \n","name":"learn-react/intro-to-jsx","title":"Introduction to JSX","type":"page","parent":"learn-react","order":2,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+</body>
+</html>
