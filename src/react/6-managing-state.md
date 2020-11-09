@@ -7,7 +7,9 @@
 
 ## What is state?
 
-In React, `state` is any data determining the presentation of your components. The value of a text box, whether or not a modal is open, and what page the app is currently showing are all potential examples of state.
+In React, `props` are the "arguments" that are passed to our component. Alternatively, `state` can be conceptualized as the "internal variables" of our function. But what makes `state` different from normal internal variables? `state` is given superpowers! Anytime `state` is changed (similarly with props), the component magically re-renders itself.
+
+Use `state` for internal variables, which when changed, should re-render the component. Examples include the value of a text box, whether or not a modal is open, and the current tab selection.
 
 Using functional components, the `useState()` hook provides a value and setter capable of holding any data type. (We will explain hooks in more detail in the coming lessons. For now, don't worry about what exactly a hook is.) This allows us to hold simple variables such as:
 
@@ -16,7 +18,10 @@ const [count, setCount] = useState(0);
 const [flag, setFlag] = useState(true);
 ```
 
-And even hold more complex data.
+In the example above, `count `starts at value 0 `setCount` is a function that allows us to update the count.
+Similarly, `flag` takes on the starting value of `true`, but if we need to change that we must use the `setFlag` function.
+
+`useState` can hold more complex data.
 
 ```js
 const [ viewModel, setViewModel ] = useState({
@@ -29,13 +34,9 @@ const [ viewModel, setViewModel ] = useState({
 })
 ```
 
-**Important:** When using objects or arrays, you must provide a new merged state when using the setter. The data created by `useState` is immutable and will always replace any internal state.
-
-_For class based components see [this.setState()](https://reactjs.org/docs/state-and-lifecycle.html)_
-
 ## Scope of State
 
-`useState` is scoped to the component it is declared in. For example, this simple component stores a simple string `savedText` and displays its value as the user makes changes to a text input.
+`useState` is scoped to the component it is declared in. For example, this component stores a simple string `savedText` and displays its value as the user makes changes to a text input.
 
 ```jsx
 import React, { useState } from 'react';
@@ -243,15 +244,3 @@ function ButtonComponent({ onButtonClick }) {
 ## What data should be kept in React state?
 
 There is no "right" answer for what data should be stored in state. Applications with simple API requirements may keep everything in state objects. Other apps may opt to store nearly everything in a separate global state management library.
-
-Talk about managing network requests
-
-## State or Context?
-
-## External State Libraries
-
-You don't need Redux.
-
-Apollo and Relay are cool if you have a graph.
-
-Talk about how Context can solve much of this problem.

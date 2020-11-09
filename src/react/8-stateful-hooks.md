@@ -44,6 +44,10 @@ This process is similar no matter what component you're building. The basic flow
 - Use the value as needed
 - Call the setter to change the value and trigger an update
 
+**Important:** When using objects or arrays, you must provide a new merged state when using the setter. The data created by `useState` is immutable and will always replace any internal state.
+
+_For class based components see [this.setState()](https://reactjs.org/docs/state-and-lifecycle.html)_
+
 ## useRef
 
 Just like `useState`, `useRef` is a data store, keeping track of values the component is interested in. In this case however, `useRef` helps store DOM references instead of state data.
