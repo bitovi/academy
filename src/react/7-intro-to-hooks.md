@@ -1,4 +1,4 @@
-@page learn-react/intro-to-hooks Introduction to Hooks
+@page learn-react/intro-to-hooks Class components vs hooks
 @parent learn-react 7
 
 @description Learn how to use React hooks to make functional components more powerful.
@@ -14,13 +14,13 @@ Hooks are not just a new tool, they're a whole new toolbox!
 
 With the release of version 16, hooks were added to the React API. Now, developers can use state and respond to lifecycle events, all from functional components.
 
-Many developers find this to be a huge improvement over using class components in equivalent situations because hooks tend to be a lot cleaner, more discrete and ultimately more scalable.
+Many developers find this to be a huge improvement over using class components because hooks tend to be a lot cleaner, more discrete and ultimately more scalable.
 
 Each hook exposed by the React API does something different, but there are a few which are used more than others. It's also important to keep in mind that it's possible to create your own custom hooks. This is why hooks are seen not just as an API improvement but a paradigm shift.
 
 The "Hooks" way of doing things is slowly becoming adopted not just by React but by 3rd party component libraries as well.
 
-**Most Popular Hooks**
+**Most Common Hooks**
 
 - **useState:** Returns a stateful value, and a function to update it.
 - **useEffect:** Accepts a function that contains imperative, possibly effect-ful code.
@@ -33,7 +33,7 @@ The "Hooks" way of doing things is slowly becoming adopted not just by React but
 - **useCallback:** Returns a memoized callback function. Special case of useMemo.
 - **useReducer:** An alternative to useState. Returns the current state paired with a dispatch method.
 
-Hooks allow you to co-locate all logic relating to a specific feature. No more splitting it between multiple lifecycle methods or duplicating logic.
+Hooks allow you to colocate all logic relating to a specific feature. No more splitting it between multiple lifecycle methods or duplicating logic.
 
 You also get the benefits of higher order components but with simple functions and without clogging up your component tree.
 
@@ -68,6 +68,7 @@ class Timer extends React.Component {
 
 ReactDOM.render(<Timer />, document.getElementById('root'));
 ```
+
 @codepen react
 
 In the example above we're implementing a `Timer` component which starts a timer when the component mounts. When the timer finishes the state is modified causing the component to re-render. Finally when the component un-mounts the time is cleared.
@@ -107,9 +108,10 @@ class Timer extends React.Component {
 
 ReactDOM.render(<Timer />, document.getElementById('root'));
 ```
+
 @codepen react
 
-Above we're adding in a second timer value and doubling our code in the process.
+When we add the second timer value above, we double our lines of code.
 
 Let's see how this would look with hooks...
 
@@ -131,6 +133,7 @@ function Timer() {
 
 ReactDOM.render(<Timer />, document.getElementById('root'));
 ```
+
 @codepen react
 
 `useState` can define a single piece of state with both the state value and a function for updating the value. Instead of the component's state being stored in one monolith object, it's broken out into discrete, well named units.
@@ -166,6 +169,7 @@ function Timer() {
 
 ReactDOM.render(<Timer />, document.getElementById('root'));
 ```
+
 @codepen react
 
 Now, our `useTimer` hooks returns a value which, when modified will cause the `Timer` component to re-render. We've abstracted away the logic of updating the `value` into the `useValue` hook.
