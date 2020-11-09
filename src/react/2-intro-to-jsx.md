@@ -9,15 +9,13 @@
 
 Before we talk about JSX, let's discuss how user interfaces are created in React.
 
-At its core, React is a JavaScript library used for creating reusable front-end components. One of the unique features of React is that it allows you to describe the way your components look using only JavaScript, there's no HTML or templating languages strictly required.
+At its core, React is a JavaScript library that helps create reusable front-end components. One of the unique features of React is that it allows you to describe the way your components look using only JavaScript.
 
-This is all done through the React [element API](https://reactjs.org/docs/react-api.html).
-
-But this "all JS" approach comes with some downsides, namely it becomes arduous to describe complex page hierarchies using only pure JavaScript. When first learning React, it's good to be aware of the element API, but keep in mind that most React developers will forego this for an alternative syntactic sugar called JSX.
+But this "all JS" approach comes with some downsides, namely it becomes arduous to describe complex page hierarchies using only pure JavaScript. When first learning React, it's good to be aware of the [element API](https://reactjs.org/docs/react-api.html), but keep in mind that most React developers will forego this for an alternative syntactic sugar called JSX.
 
 ### React's Element API
 
-React exposes an API for creating HTML elements using JavaScript. For example to create an `h1` we could write the following:
+React exposes an [API](https://reactjs.org/docs/react-api.html) for creating HTML elements using JavaScript. For example to create an `h1` we could write the following:
 
 ```js
 React.createElement('h1', null, 'Hello World');
@@ -36,7 +34,7 @@ React.createElement(
 );
 ```
 
-The code above replicates the following HTML:
+The code above produces the following HTML:
 
 ```html
 <div id="greeting">
@@ -47,13 +45,11 @@ The code above replicates the following HTML:
 
 As you can see, the XML-like nature of HTML allows us to model anything using a combination of a tag name, a set of attributes and children. Note how the more complex the HTML we're trying to model, the more complex the `React.createElement` code becomes.
 
-While it is possible to build entire apps using the `createElement` function, this is rarely done due to how messy it quickly becomes.
-
-Instead, React supports a JavaScript syntax extension called JSX which allows us to describe our application declaratively.
+While it is possible to build entire apps using the `createElement` function, this is rarely done due to how complicated it becomes. Instead, React supports a JavaScript syntax extension called JSX which allows us to describe our application declaratively.
 
 ## JSX
 
-JSX is a special syntax [transpile-able](https://stackoverflow.com/questions/44931479/compiling-vs-transpiling) by [babel](https://babeljs.io/), which looks almost identical to HTML.
+JSX is a special syntax that is [transpiled](https://stackoverflow.com/questions/44931479/compiling-vs-transpiling) by [babel](https://babeljs.io/), which looks almost identical to HTML.
 
 Instead of having to use the procedural `React.createElement` syntax, views can be defined and maintained in JSX and will automatically be transpiled into the equivalent `React.createElement` calls at build-time.
 
@@ -61,7 +57,7 @@ JSX can be written alongside standard JavaScript, which makes for a powerful pro
 
 ## Differences With HTML
 
-For the most part, JSX can be written exactly like the HTML you're most likely used to. There are a few difference to keep in mind however.
+For the most part, JSX can be written exactly like the HTML you're most likely used to. There are a few differences to keep in mind however.
 
 ### Inline Styling
 
@@ -83,9 +79,20 @@ The equivalent JSX looks very similar, but the styles are stored in an object:
 
 First, notice how instead of using a string to store the styles (like `style=""`) we use curly brackets (like `style={}`). In JSX, we can interpolate JavaScript code into our attributes, and when doing so we use the curly bracket notation instead of quotes (quotes can be used only for string values).
 
-> This is how JSX always works. Quotes always denote a string (JSX uses double quotes by convention, to mimic HTML, but single quotes also work). Using brackets allows other kinds on values, like: objects (like we'll be using for `style`), arrays, numbers, or even more JSX. Any JavaScript expression is valid inside the curly brackets.
+> This is how JSX works. Quotes always denote a string. Using curly brackets allows other kinds of values like arrays, numbers, booleans and objects (as we used above for `style`). You can even put functions or other JSX elements inside brackets! Any JavaScript expression is valid inside the curly brackets.
+>
+> ```jsx
+> <MyComponent
+>   numberArg={10}
+>   isFun={true}
+>   onClick={() => console.log("hey")}
+>   userName="Dan"
+> />
+> ```
 
-Inside of `style={}` we have an object of styles whose keys are css attributes and values are the value of the css. This structure closely resembles the [`CSSStyleDeclaration`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration) object used by the browser to store element styles (To see this run `document.body.style` in your browser console).
+Inside of `style={}` we have an object of styles whose keys are css attributes and values are css values. This structure closely resembles the [`CSSStyleDeclaration`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration) object used by the browser to store element styles.
+
+✏️ To see this run `document.body.style` in your browser console.
 
 Another thing you may note is the difference between `background-color` and `backgroundColor`.
 
@@ -148,14 +155,14 @@ Note how the the fragment components don't have any corresponding DOM output. Th
 JSX is dynamic. You can easily insert values from variables and objects into your JSX:
 
 ```jsx
-const name = "Bitovi"
+const name = "Bitovi";
 
 <div className="button primary">
   Welcome to {name}!
 </div>
 ```
 
-In the code above, we've used the `{name}` syntax to tell JSX that we want to use the value stored in the `name` variable `"Bitovi"` into our view.
+In the code above, we've used the `{name}` syntax to tell JSX that we want to render the value stored in the `name` variable (ie. `"Bitovi"`) into our view.
 
 You can take this a step further by interpolating multiple values, and using JavaScript functions to transform data on the fly. Anything that goes inside `{}` is executed as normal JavaScript. These are the same rules as the brackets on a prop: any JavaScript expression is valid inside the curly brackets.
 
@@ -168,7 +175,7 @@ const person = {
 <div className="button primary">
   <h1>Hi I'm {person.name.toUpperCase()}!</h1>
   <p>I'm a {person.profession} living in Philadelphia</p>
-</div>
+</div>;
 ```
 
 ### JSX Is JavaScript
@@ -278,7 +285,7 @@ If you want to iterate within JSX, use methods such as `Array.map`, `Array.filte
 
 ## Event Handling
 
-One of the most powerful aspects of JavaScript is that it enables developers to respond to events on the browser. With JSX it's easy to listen for and respond to these events.
+One of the most powerful aspects of JavaScript is that it enables developers to respond to events in the browser. With JSX it's easy to listen for and respond to these events.
 
 ```jsx
 <div className="button primary">
@@ -286,7 +293,7 @@ One of the most powerful aspects of JavaScript is that it enables developers to 
 </div>
 ```
 
-In the code above, we've attached an `onClick` listener to the `<button>` element. Whenever this button gets clicked now, the code inside the `onClick={...}` will get executed. The value always needs to be a function, and that function will get called with an `event` object.
+In the code above, we've attached an `onClick` listener to the `<button>` element. Whenever this button gets clicked, the code inside the `onClick={...}` will get executed. The value always needs to be a function, and that function will get called with an `event` object.
 
 All [events](https://reactjs.org/docs/events.html) supported in vanilla JavaScript are also supported in JSX.
 
@@ -295,7 +302,7 @@ All [events](https://reactjs.org/docs/events.html) supported in vanilla JavaScri
 In React we can store our JSX inside of components. Components are like small containers which can be re-used throughout your application. For example, you might build a `Button` component which renders all the JSX required for a button.
 
 ```jsx
-function MyButton() {
+function Button() {
   return (
     <div className="button primary">
       <button>click me</button>
@@ -303,11 +310,12 @@ function MyButton() {
   );
 }
 
-ReactDOM.render(<MyButton />, document.getElementById('root'));
+ReactDOM.render(<Button />, document.getElementById('root'));
 ```
+
 @codepen react
 
-In the code above, we're defining a functional components (a function which returns JSX) called `MyButton`.
+In the code above, we're defining a functional component (a function which returns JSX) called `Button`.
 
 This component returns JSX and could then be rendered and re-used by another component like `App` below.
 
@@ -315,12 +323,12 @@ This component returns JSX and could then be rendered and re-used by another com
 function App() {
   return (
     <div>
-      <MyButton />
-      <MyButton />
-      <MyButton />
+      <Button />
+      <Button />
+      <Button />
     </div>
   );
 }
 ```
 
-Here the `App` component is rendering out the `MyButton` component 3 times. Note that when you render out custom components like this they don't need closing tags, instead they can be self-closing with a `/` tacked onto the end. You can also design them to have closing tags with extra elements rendered inside (see an explanation on JSX children [here](https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891)).
+Here the `App` component is rendering the `Button` component 3 times. Note that when you render custom components like this they don't need closing tags, instead they can be self-closing with a `/` tacked onto the end. You can also design them to have closing tags with extra elements rendered inside (see an explanation on JSX children [here](https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891)).
