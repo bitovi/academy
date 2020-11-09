@@ -1,7 +1,7 @@
 @page learn-react/setting-up-environment Setting up your Environment
 @parent learn-react 1
 
-@description Learn how to setup a React environment using Create React App.
+@description Learn how to setup a React environment using [Create React App](https://create-react-app.dev/).
 
 @body
 
