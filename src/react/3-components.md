@@ -9,14 +9,15 @@ React is all about components. In fact the whole point of the library is to help
 
 But what is a component?
 
-In a nutshell, a component is function which takes in props and returns an element.
+In a nutshell, a component is function which uses props and state to return an element.
 
-- **Values** - The values of a component are all of the values the component is keeping track of. They include _component state_, which are the values the component controls itself, and _props_, which are supplied to the component.
-- **Side Effects** - The side effects of a component are the results of the operations which touch things outside of the component. This includes async operations, registering DOM event-handling and interaction with the browser. An easy way of knowing if something is a side-effect, try to think if it would work without accessing anything except the **values**.
+- **Props** - The props of a component are the same as arguments to a function.
+- **State** - The state are the values which the component controls itself.
+- **Side Effects** - The side effects of a component are the results of operations which interact with things outside of the component. This includes things like async fetching, registering DOM event-handlers and using browser APIs.
 
 ## Functional Components
 
-Functional components are simple. It's exceedingly easy to write them in React. In a nutshell, they're just functions which return a React element (usually written in the form of JSX).
+Functional components are simple. In a nutshell, they're just functions which return a React element, usually written in JSX.
 
 ```jsx
 function MyFuncComponent() {
@@ -27,7 +28,7 @@ ReactDOM.render(<MyFuncComponent />, document.getElementById('root'));
 ```
 @codepen react
 
-As you can see in the functional component above, there's not much magic happening. We simply define a function and return JSX from it.
+As you can see in the functional component above, there's not much magic happening. We simply define a function and return JSX.
 
 ## Class Components
 
@@ -46,7 +47,7 @@ ReactDOM.render(<MyClassComponent />, document.getElementById('root'));
 
 ## What's the Difference?
 
-No matter which type of component you're working with, they can be used the same way:
+The above `MyFuncComponent` and `MyClassComponent` produce the exact same result using the two different methods. No matter which type of component you're working with, they can be used the same way:
 
 ```jsx
 function App() {
@@ -58,8 +59,6 @@ function App() {
   );
 }
 ```
-
-Aside from the syntax there, they are functionally equivalent.
 
 Originally, class components were the most popular because they could keep track of state and respond to specific component lifecycle events. This wasn't possible in functional component until the release of the [React Hooks API](https://reactjs.org/docs/hooks-reference.html) in v16. Up until then, functional components were commonly referred to as _stateless components_.
 

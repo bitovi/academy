@@ -13,7 +13,7 @@ Before beginning this tutorial, you will want to have some familiarity with HTML
 
 - [https://github.com/bitovi/react-exercises]()
 
-This is the codebase you'll be using throughout the series of the lessons to improve your React skills.
+This is the codebase you'll be using throughout the series to improve your React skills.
 
 ```bash
 git clone https://github.com/bitovi/react-exercises
