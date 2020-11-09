@@ -87,7 +87,7 @@ First, notice how instead of using a string to store the styles (like `style=""`
 
 Inside of `style={}` we have an object of styles whose keys are css attributes and values are the value of the css. This structure closely resembles the [`CSSStyleDeclaration`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration) object used by the browser to store element styles (To see this run `document.body.style` in your browser console).
 
-Another thing you may note is the difference between `background-color` and `backgroundColor`. The reason for this, is that JavaScript does not support dashes as identifiers outside of strings. While it would be possible to write `"background-color": "blue"`, the convention is to let React handle the conversion from camel-case to dashes.
+Another thing you may note is the difference between `background-color` and `backgroundColor`.
 
 ### Classes
 
@@ -171,13 +171,9 @@ const person = {
 </div>
 ```
 
-**Important:** Only expressions which return a value may be interpolated. This includes static values, variables and calls to functions. It does not include control-flow statements such as `if`, `case`, `for`, `while`. These can either be abstracted behind a function, which is then called within the JSX or be re-written in a JSX-friendly way.
-
-Conditions can be re-written using the ternary operator.
-
 ### JSX Is JavaScript
 
-Remember, JSX is simply an alternative syntax for normal JavaScript - it is not magic. This means that you can use JSX as a normal value.
+Remember, JSX is simply an alternative syntax for normal JavaScript&mdash;it is not magic. This means that you can use JSX as a normal value.
 
 ```jsx
 const header = <h1>Hello World</h1>;
@@ -211,7 +207,13 @@ const page = React.createElement('div', null, [header, body]);
 
 ### Common Pitfalls
 
+Only expressions which return a value may be interpolated. This includes static values, variables and calls to functions. It does not include control-flow statements such as `if`, `case`, `for`, `while`. These can either be abstracted behind a function, which is then called within the JSX or be re-written in a JSX-friendly way.
+
+To put it simply: only things that you could pass into a function can be used inside the brackets.
+
 #### Using Conditions
+
+Conditions can be re-written using the ternary operator.
 
 ```jsx
 // This does not work

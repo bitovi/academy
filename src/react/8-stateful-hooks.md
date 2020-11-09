@@ -20,7 +20,7 @@ Let's take a look at each hook in turn and see what they can do.
 
 Let's start with `useState`.
 
-When `useState` is called, it returns an array with two elements in it. The first element is the state value itself, this is the value you would render out inside the JSX. The second element is a setter function, which, when called can be used to update the state and trigger a re-render.
+When `useState` is called, it returns an array with two elements in it. The first element is the state value itself, this is the value you would render inside the JSX. The second element is a setter function, which, when called can be used to update the state and trigger a re-render.
 
 ```jsx
 function Hello() {
