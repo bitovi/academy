@@ -7,15 +7,15 @@
 
 ## Different ways of styling components
 
-Styling in React is one of the most diverse and opinionated aspects of working with the library. React does a great job of combining HTML & JavaScript together, but is ultimately agnostic when it comes to working with CSS and styling.
+Styling in React is one of the most diverse and opinionated aspects of working with the library. React does a great job of combining HTML & JavaScript together, but it is ultimately agnostic when it comes to working with CSS and styling.
 
-The good news is that all of the same styling techniques you're used to using as a web developer, will still work in React. You can you stylesheets, inline styling, and even extension languages like SASS or LESS. After all, react apps are just normal websites with some complicated JavaScript running in the background.
+The good news is that all of the same styling techniques you're used to will still work in React. You can use stylesheets, inline styling, and even extension languages like SASS or LESS.
 
-Let's take a look at some of the ways we can go about styling React components and walk-through some of the pros and cons of each.
+Let's take a look at some of the ways we can go about styling React components and walk through some of the pros and cons of each.
 
 ## Inline styling
 
-The simplest way to style a component is with inline styling. All core JSX tags accept a `style` prop, essentially an object with css styles in it. As you can see below, we're able to construct style objects directly inside the JSX, and even interpolate JavaScript values inside of them.
+The simplest way to style a component is with inline styling. All core JSX tags accept a `style` prop, essentially an object with css styles in it. As you can see below, we're able to construct style objects directly inside the JSX, and even interpolate JavaScript values into them.
 
 ```jsx
 import { imageUrl } from './data';
@@ -40,7 +40,7 @@ Although this is the simplest way to add styles, it shouldn't be counted out. Us
 
 ## External Styles
 
-Like normal HTML, JSX elements can accept a class attribute (called `className`). Classes can either be located in a global style sheet included in the index.html file, or be directly included into a component (see below).
+Like normal HTML, JSX elements can accept a class attribute (called `className`). Classes can either be located in a global style sheet linked in the index.html file, or be directly imported into a component (see below).
 
 ```jsx
 import './thing.css';
@@ -50,7 +50,7 @@ function Thing({ isActive }) {
 }
 ```
 
-The component above uses a `thing` class that it's imported from `thing.css`. This is a common way of including classes in a component, but keep in mind that due to it's cascading nature, it's possible to encounter clashing names with a large component tree.
+The component above uses a `thing` class that is imported from `thing.css`. This is a common way of including classes in a component, but keep in mind that due to it's cascading nature, it's possible to encounter clashing names with a large component tree.
 
 Classnames can also be dynamically generated in response to props or component state. In the component below, the `thing-active` class is only added to the class name if the `isActive` prop is truthy.
 
@@ -84,11 +84,11 @@ function Thing({ isActive }) {
 
 A CSS Module is a CSS file in which all class names and animation names are scoped locally by default. This prevents a common problem with importing css into components, name clashing.
 
-When you define styles for a specific component, you want to be able to use descriptive names without having to worry about the other class names in the app they might conflict with. When you structure your css as a module, unique names are automatically generated solving the clashing issue.
+When you define styles for a specific component, you want to be able to use descriptive names without having to worry about the other class names in the app. When you structure your css as a module, unique names are automatically generated. This solves the clashing issue.
 
-This is also compatible with Sass/Less making it a good option if you want to use a class based styling approach.
+This is also compatible with SASS/LESS making it a good option if you want to use a class based styling approach.
 
-Below is the CSS you would write inside of a .css file. You can see looks normal, and we don't need to worry about naming.
+Below is the CSS you would write inside of a .css file. You can see that it looks normal, and we don't need to worry about conflicts.
 
 ```css
 .thing {
@@ -131,13 +131,15 @@ function Thing({ isActive }) {
 }
 ```
 
+Note that the `classnames` library can be used in conjunction with CSS modules as well.
+
 ## Styled Components
 
-The styled components philosophy is that everything is a component. Instead of separating your CSS and your React/JSX, they become integrated into one single entity. So instead of loading styles into a component from some external source, the styles are actually built into the component itself, and can be configured using props/state.
+The styled components philosophy is that everything is a component. Instead of separating your CSS and your JS, they become integrated into one single entity. So instead of loading styles into a component from some external source, the styles are actually built into the component itself, and can be configured using props/state.
 
-In a styled components implementation, a `Button` component for example, might take a `color` prop, or a `fontSize` prop, which you be used to determine it's style. This approach is closed integrated with React, and utilizes the built in React features (props/state) more than any other.
+In a styled components implementation, a `Button` component for example, might take a `color` prop, or a `fontSize` prop to determine its style. This approach is closed integrated with React, and utilizes the built in React features (props/state) more than any other.
 
-In the code below, we're using the emotion library to create a styled `Button` component. The syntax is a bit foreign, but this is essentially creating a `<button>` component which maps it's props to styles. For example, below, the button accepts a `color` and an `outline` prop, which are used to inform the styling that it receives.
+In the code below, we're using the [emotion](https://emotion.sh/docs/introduction) library to create a styled `Button` component. The syntax is a bit foreign, but this is essentially creating a `<button>` component which maps its props to styles. For example, the button below accepts a `color` and an `outline` prop, which are used to generate the styling.
 
 ```js
 import styled from '@emotion/styled';
@@ -173,7 +175,7 @@ function Thing() {
 
 The styled components approach is definitely a departure from traditional styling methodologies, however it makes up for it by integrating so nicely with the React paradigm.
 
-It's important to note that in many production code bases, some combination of the above styling techniques are utilized. Oftentimes some static css files will be necessary, and used alongside something like styled components. At the end of the day the right solution is the one that works for your team!
+It's important to note that in many production codebases, some combination of the above styling techniques are utilized. Oftentimes some static css files will be necessary, and used alongside something like styled components. At the end of the day the right solution is the one that works for your team!
 
 ## Exercise
 
