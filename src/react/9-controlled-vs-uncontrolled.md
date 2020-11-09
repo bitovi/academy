@@ -9,7 +9,7 @@
 
 One of the biggest mindset shifts for new developers learning React is the concept of a controlled vs uncontrolled component. This is something that is particularly important when building input components (text, checkbox, radio, etc).
 
-There are two types of input components we can create in React, controlled inputs and uncontrolled inputs.
+There are two types of input components we can create in React; controlled inputs and uncontrolled inputs.
 
 An uncontrolled input is one where we're not explicitly setting the value attribute. When a value attribute is not explicitly set, the input is ultimately controlled by the browser, and thus, out of the control of the React developer:
 
@@ -21,9 +21,10 @@ function SearchBar() {
 
 ReactDOM.render(<SearchBar />, document.getElementById('root'));
 ```
+
 @codepen react
 
-The `SearchBar` above is considered uncontrolled because we're not explicitly giving it a value. The value of the input is now entirely determined by the browser & the user, we as developers have no say.
+The `SearchBar` above is considered uncontrolled because we're not explicitly giving it a value. The value of the input is now entirely determined by the browser & the user. We as developers have no say.
 
 While this isn't necessarily a bad thing, it does make our lives as React developers more difficult. The reason being, at any given point in the lifecycle of this component, we don't know what the value of the input is. Assuming we'll want to use the value at some point, this becomes a problem. How do we access the input's value?
 
@@ -37,6 +38,7 @@ function SearchBar() {
 
 ReactDOM.render(<SearchBar />, document.getElementById('root'));
 ```
+
 @codepen react
 
 The component above is now considered to be "controlled", at any given point we always know what the value is (`hello`), and we've taken control away from the browser.
@@ -58,6 +60,7 @@ function SearchBar() {
 
 ReactDOM.render(<SearchBar />, document.getElementById('root'));
 ```
+
 @codepen react
 
 We'll create a piece of state called `inputValue`, use that as the value of the input, and update it whenever the input changes.
@@ -91,13 +94,14 @@ function SmartParentComponent() {
 
 ReactDOM.render(<SmartParentComponent />, document.getElementById('root'));
 ```
+
 @codepen react
 
-Above we've defined 2 component, `SmartParentComponent` and `SearchBar`. The `SearchBar` component accepts two props, one for the value of the input, and another for updating the value of the input. Notice that there is no state here, this is a dumb, stateless component.
+Above we've defined 2 components, `SmartParentComponent` and `SearchBar`. The `SearchBar` component accepts two props, one for the value of the input, and another for updating the value of the input. Notice that there is no state here. This is a stateless (ie. controlled) component.
 
-The `SmartParentComponent` does have state however, it is keeping track of the input value and how to set the input value. These are then passed down into the dumb `SearchBar` component, and used to control it.
+The `SmartParentComponent` does have state however, it is keeping track of the input value and how to set the input value. These are then passed down into the `SearchBar` component, and used to control it.
 
-This is another very common pattern. The idea is that we have a very simple, lightweight `SearchBar` component, which has no concept of state, instead it is entirely controlled by props passed down from a smart, stateful parent.
+This is another very common pattern. The idea is that we have a very simple, lightweight `SearchBar` component, which has no concept of state. Instead it is entirely controlled by props passed down from a smart, stateful parent.
 
 ## Exercise
 
@@ -141,4 +145,5 @@ function Search() {
 
 export default Search;
 ```
+
 @highlight 4,10,11,13,14,only
