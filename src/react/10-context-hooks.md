@@ -1,5 +1,5 @@
 @page learn-react/context-hooks Context Hooks
-@parent learn-react 11
+@parent learn-react 10
 
 @description Learn how to manage global app state with context hooks.
 

@@ -1,5 +1,5 @@
-@page learn-react/controlled-vs-uncontrolled-components Controlled vs Uncontrolled
-@parent learn-react 9
+@page learn-react/controlled-vs-uncontrolled Controlled vs Uncontrolled
+@parent learn-react 7
 
 @description Learn how to handle inputs in React and the difference between controlled and uncontrolled components.
 

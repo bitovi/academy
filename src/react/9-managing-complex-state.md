@@ -1,5 +1,5 @@
-@page learn-react/manage-state Managing Complex State
-@parent learn-react 6
+@page learn-react/managing-complex-state Managing Complex State
+@parent learn-react 9
 
 @description Manage component and application state with hooks.
 

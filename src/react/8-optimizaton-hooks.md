@@ -1,5 +1,5 @@
 @page learn-react/optimization-hooks Optimization Hooks
-@parent learn-react 10
+@parent learn-react 8
 
 @description Learn how to optimize your React apps with `useMemo` and `useCallback`.
 

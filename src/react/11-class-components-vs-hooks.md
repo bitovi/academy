@@ -1,5 +1,5 @@
-@page learn-react/intro-to-hooks Class components vs hooks
-@parent learn-react 7
+@page learn-react/class-components-vs-hooks Class components vs hooks
+@parent learn-react 11
 
 @description Learn how to use React hooks to make functional components more powerful.
 
