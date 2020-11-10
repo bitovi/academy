@@ -22,15 +22,13 @@ function Hello() {
   const [inputValue, setInputValue] = React.useState('');
 
   return (
-    <input
-      value={inputValue}
-      onChange={(e) => setInputValue(e.target.value)}
-    />
+    <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
   );
 }
 
 ReactDOM.render(<Hello />, document.getElementById('root'));
 ```
+
 @highlight 2,6,7,only
 @codepen react
 
@@ -103,6 +101,7 @@ Run the app locally with `npm start` and choose the `Stateful Hooks` exercise. N
 ### The problem
 
 ✏️ Modify the `Board` component so that it keeps track of the current state of the game and players using hooks.
+
 - store the current board in state, represented as an array of strings (ex. `["", "x", "o" ...]`)
 - store the current player in state, with a boolean called `isXTurn`
 - Fill out the `handleSquareClick` function so that it updates the board and changes the current player when the user clicks a `Square`.
@@ -144,4 +143,5 @@ function Board() {
 
 export default Board;
 ```
+
 @highlight 5,6,9-17,only

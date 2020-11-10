@@ -102,6 +102,7 @@ function MyButton({ onButtonClick }) {
   return <button onClick={onButtonClick}>click me</button>;
 }
 ```
+
 @highlight 1
 
 Notice above that the `MyButton` component now accepts a `onButtonClick` prop. Now whenever the button is clicked it will call the callback function, making the `MyButton` component more reusable.
@@ -136,6 +137,7 @@ function App() {
 
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
+
 @codepen react
 
 ## Exercise
@@ -175,6 +177,7 @@ function Square({ onClick, symbol }) {
   );
 }
 ```
+
 @highlight 1,3,4,only
 
 #### Board.js
@@ -194,6 +197,7 @@ function Board({ onSquareClick, board }) {
   );
 }
 ```
+
 @highlight 4-10,only
 
 #### Game.js
@@ -224,4 +228,5 @@ function Game() {
   );
 }
 ```
+
 @highlight 4-6,18,20,only

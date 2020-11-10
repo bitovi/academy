@@ -31,9 +31,10 @@ function Hello({ firstName, lastName }) {
 
 ReactDOM.render(
   <Hello firstName="Justin" lastName="Meyer" />,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 ```
+
 @codepen react
 
 In the code above, we're utilizing `useMemo` to memoize a value derived from two props, `firstName` and `lastName`. (Imagine that in order to get the full `name`, we need to perform some long-running or expensive operation.)
@@ -82,9 +83,10 @@ function flatten(input) {
 
 ReactDOM.render(
   <Hello bigJSONBlob={'{"hello": "world"}'} />,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 ```
+
 @codepen react
 
 This could get quite expensive for a large object, even the parsing could make a difference, so we memoize the whole value, only recalculating on `bigJSONBlob` changes
@@ -119,9 +121,10 @@ function flatten(input) {
 
 ReactDOM.render(
   <Hello bigJSONBlob={'{"hello": "world"}'} />,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 ```
+
 @highlight 2-5,only
 @codepen react
 
@@ -146,9 +149,10 @@ function Hello({ firstName, lastName }) {
 
 ReactDOM.render(
   <Hello firstName="Justin" lastName="Meyer" />,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 ```
+
 @codepen react
 
 Now below, we'll wrap `handleClick`'s logic in a `useCallback` so we can cache the results.
@@ -164,9 +168,10 @@ function Hello({ firstName, lastName }) {
 
 ReactDOM.render(
   <Hello firstName="Justin" lastName="Meyer" />,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 ```
+
 @codepen react
 
 ## Exercise
@@ -219,4 +224,5 @@ function Board() {
 
 export default Board;
 ```
+
 @highlight 8,only

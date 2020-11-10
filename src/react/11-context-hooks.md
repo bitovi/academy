@@ -58,6 +58,7 @@ import React, { createContext } from 'react';
 const defaultValue = 'Unknown';
 const UsernameContext = createContext(defaultValue);
 ```
+
 @highlight 3,only
 
 The default value is what the **Consumers** will get if they have no available **Provider**. This is often used more in testing than in production.
@@ -83,6 +84,7 @@ function App() {
   );
 }
 ```
+
 @highlight 8,only
 
 ### Writing a Consumer
@@ -114,6 +116,7 @@ function WhoAmI() {
   );
 }
 ```
+
 @highlight 15-21,only
 
 ### Updating the Context
@@ -160,6 +163,7 @@ function WhoAmI() {
   );
 }
 ```
+
 @highlight 3,8,21,22,only
 
 We have made three changes to our code:
@@ -205,6 +209,7 @@ function WhoAmI() {
   );
 }
 ```
+
 @highlight 13-22,only
 
 The method for consuming contexts has now shifted from callbacks from within JSX to simple, procedural function calls. This has the benefit of making the code flatter, and easier to read. Additionally, using multiple consumers becomes significant cleaner.
@@ -299,6 +304,7 @@ export function useTheme() {
   return theme;
 }
 ```
+
 @highlight 18-21,only
 
 Now, we can refactor our `Layout` component to use this new provider. Notice how much cleaner it looks when we abstract away the context logic into it's own component (`ThemeProvider`)
@@ -332,6 +338,7 @@ function Button({ label }) {
   );
 }
 ```
+
 @highlight 2,5,only
 
 ## Exercise
@@ -426,6 +433,7 @@ function Game() {
 
 export default Game;
 ```
+
 @highlight 5,7-9,15,39-41,49,59,only
 
 #### Square
@@ -454,4 +462,5 @@ function Square({ onClick, symbol, displayAsHint, id }) {
 
 export default Square;
 ```
+
 @highlight 5,only

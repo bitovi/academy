@@ -85,7 +85,7 @@ First, notice how instead of using a string to store the styles (like `style=""`
 > <MyComponent
 >   numberArg={10}
 >   isFun={true}
->   onClick={() => console.log("hey")}
+>   onClick={() => console.log('hey')}
 >   userName="Dan"
 > />
 > ```
@@ -155,11 +155,9 @@ Note how the the fragment components don't have any corresponding DOM output. Th
 JSX is dynamic. You can easily insert values from variables and objects into your JSX:
 
 ```jsx
-const name = "Bitovi";
+const name = 'Bitovi';
 
-<div className="button primary">
-  Welcome to {name}!
-</div>
+<div className="button primary">Welcome to {name}!</div>;
 ```
 
 In the code above, we've used the `{name}` syntax to tell JSX that we want to render the value stored in the `name` variable (ie. `"Bitovi"`) into our view.

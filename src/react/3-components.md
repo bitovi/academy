@@ -26,6 +26,7 @@ function MyFuncComponent() {
 
 ReactDOM.render(<MyFuncComponent />, document.getElementById('root'));
 ```
+
 @codepen react
 
 As you can see in the functional component above, there's not much magic happening. We simply define a function and return JSX.
@@ -43,6 +44,7 @@ class MyClassComponent extends React.Component {
 
 ReactDOM.render(<MyClassComponent />, document.getElementById('root'));
 ```
+
 @codepen react
 
 ## What's the Difference?
