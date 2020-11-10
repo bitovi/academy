@@ -43,4 +43,4 @@ Throughout this guide, we'll be building out a simple Tic-Tac-Toe game, graduall
 
 ## Next Steps
 
-✏️ Head over to the [first lesson](/learn-react/setting-up-environment.html) and get your environment setup.
+✏️ Head over to the [first lesson](/learn-react/setting-up-your-environment.html) and get your environment setup.
