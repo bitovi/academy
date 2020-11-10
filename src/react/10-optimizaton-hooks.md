@@ -1,7 +1,7 @@
 @page learn-react/optimization-hooks Optimization Hooks
 @parent learn-react 10
 
-@description Learn how to optimize your React apps with some helpful hooks.
+@description Learn how to optimize your React apps with `useMemo` and `useCallback`.
 
 @body
 
@@ -9,7 +9,7 @@
 
 In addition to the core hooks exposed by React, namely `useState` and `useEffect`, there are several hooks aimed at optimizing your code for performance.
 
-Specifically optimization through memoization. In a nutshell, memoization is the process of caching the values returned from long running functions, and returning the cached values when inputs are identical.
+Specifically, optimization through memoization. In a nutshell, memoization is the process of caching the values returned from long running functions, and returning the cached values when inputs are identical to the previous run.
 
 There are two hooks which deal with memoization, `useMemo` and `useCallback`, let's take a look at them below.
 
@@ -36,21 +36,21 @@ ReactDOM.render(
 ```
 @codepen react
 
-In the code above, we're utilizing `useMemo` to memoize a value derived from two props, `firstName` and `lastName`. Imagine that in order to get the full `name`, we need to perform some long-running or expensive operation. Normally, we would perform this operation every time the component renders, regardless of the `firstName`/`lastName` prop values.
+In the code above, we're utilizing `useMemo` to memoize a value derived from two props, `firstName` and `lastName`. (Imagine that in order to get the full `name`, we need to perform some long-running or expensive operation.)
 
-When we memoize the value however, React keeps track of the inputs and outputs of this function, and caches values for all the possibilities it encounters. This means that if this component gets rendered with the same first and last name 100 times, we'll only need to perform the expensive operation once.
+Normally, we would perform this operation every time the component renders, regardless of the `firstName`/`lastName` prop values. When we memoize the value however, React keeps track of the inputs and outputs of this function, and caches inputs and output for the last time it was run. This means that if this component gets rendered with the same first and last name 100 times in a row, we'll only need to perform the expensive operation once.
 
-`useMemo` takes two arguments, the first is a function which performs the expensive operation and returns a value, the second is an array of dependencies. The dependency array determines which values, when changed, should cause the memoized value to be re-computed.
+`useMemo` takes two arguments. The first is a function which performs the expensive operation and returns a value. The second is an array of dependencies. The dependency array determines which values, when changed, should cause the memoized value to be re-computed. All state values used in the function should be declared in the dependencies.
 
 To sum it all up:
 
 - When we need to do something expensive
-  1. We wrap it in useMemo
-  2. Specify when it should re-compute
+  1. We wrap it in `useMemo`.
+  2. Specify when it should re-compute.
 
 ### useMemo to cache a function call
 
-Let's take a look at a more real world example, here we'll generate primes, but show only some of them...
+Let's take a look at a more real world example. Here we'll parse a large JSON object, then flatten it into more easily printable lines.
 
 Here's a look at it without `useMemo`:
 
@@ -122,7 +122,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
-@highlight 4,only
+@highlight 2-5,only
 @codepen react
 
 ## useCallback
@@ -131,7 +131,7 @@ ReactDOM.render(
 - `useCallback(fn, deps)` is equivalent to `useMemo(() => fn, deps)`
 - Used to maintain referential equality between renders.
 
-`useCallback` is particularly useful when defining event handlers. In such cases, we're not necessarily interested in memoizing a single value, but rather, a callback function. This is very common in react, as we're constantly using callbacks as props.
+`useCallback` is particularly useful when defining event handlers. In such cases, we're not necessarily interested in memoizing a single value, but rather in memoizing a callback function. This is very common in React, as we frequently use callbacks as props.
 
 Below is a clickable `Hello` component which defines an un-memoized `handleClick` function.
 

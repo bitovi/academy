@@ -97,7 +97,7 @@ ReactDOM.render(<SmartParentComponent />, document.getElementById('root'));
 
 @codepen react
 
-Above we've defined 2 components, `SmartParentComponent` and `SearchBar`. The `SearchBar` component accepts two props, one for the value of the input, and another for updating the value of the input. Notice that there is no state here. This is a stateless (ie. controlled) component.
+Above we've defined both components, `SmartParentComponent` and `SearchBar`. The `SearchBar` component accepts two props: one for the value of the input, and another for updating the value of the input. Notice that there is no state here. This is a stateless (ie. controlled) component.
 
 The `SmartParentComponent` does have state however, it is keeping track of the input value and how to set the input value. These are then passed down into the `SearchBar` component, and used to control it.
 
@@ -105,7 +105,7 @@ This is another very common pattern. The idea is that we have a very simple, lig
 
 ## Exercise
 
-Let's use our knowledge of controlled vs uncontrolled components to build an input component! (note this will not be apart of the Tic-Tac-Toe game)
+Let's use our knowledge of controlled and uncontrolled components to build an input component! (Note: this will not be apart of the Tic-Tac-Toe game.)
 
 Run the app locally with `npm start` and choose the `Controlled vs Uncontrolled` exercise. Now head over to `src/exercises/a - Controlled vs Uncontrolled/components`. These are the files you'll be editing.
 

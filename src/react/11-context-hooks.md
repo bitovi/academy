@@ -7,9 +7,9 @@
 
 ## The Prop Drilling Problem
 
-A single component can take as many props as you want to give it, however just like arguments into functions it's a good idea to [limit this number](https://stackoverflow.com/questions/37695557/react-are-there-respectable-limits-to-number-of-props-on-react-components), as more props makes for a more confusing component.
+A single component can take as many props as you want to give it, but just like arguments in functions, it's a good idea to [limit this number](https://stackoverflow.com/questions/37695557/react-are-there-respectable-limits-to-number-of-props-on-react-components), as more props makes for [a more confusing component](https://martinfowler.com/bliki/CodeSmell.html).
 
-This however, can be difficult to do when you have a lot of data to pass through your component tree. Consider the following hierarchy with a few "drilled props". Lets imagine that the `Theme`, `Domain` amd `RootUrl` are decided within the `App` component, but are **only** needed within the `ButtonText` component. That is to say, `Dashboard` and `Button` have no business related to any of those props.
+However, this can be difficult to do when you have a lot of data to pass through your component tree. Consider the following hierarchy with a few "drilled props". Lets imagine that the `Theme`, `Domain` amd `RootUrl` are decided within the `App` component, but are **only** needed within the `ButtonText` component. That is to say, `Dashboard` and `Button` have no business related to any of those props.
 
 ```code
 ──┬ App(Theme, Domain, RootUrl)
@@ -36,15 +36,13 @@ function Component1(props) {
 }
 ```
 
-In this case, it doesn't matter if `Component1` even needs the `Theme` prop; it will always require it simply because `Component2` might require it. Many years ago, this was solved using libraries such as [Redux](https://redux.js.org/). These libraries would work by wrapping each component in a connector HoC (Higher-order Component) which would automatically pass in any required props.
-
-Today, we solve this problem using React's Context Providers and Consumers.
+In this case, it doesn't matter if `Component1` even needs the `Theme` prop; it will always require it simply because `Component2` might require it. Initially, this was solved using libraries such as [Redux](https://redux.js.org/). These libraries would work by wrapping each component in a connector Higher-order Component (HoC) which would automatically pass in any required props. Today, we solve this problem using React's Context Providers and Consumers.
 
 ## What is Context?
 
 One way to think about Contexts is an additional set of props which are passed transparently through React's internals instead of arguments. It involves three parts:
 
-1. **The Context:** Think of the context like a box of things. The box needs to be globally available to all who want to use it (Put it or take out). The usage of a global avoids using props to pass down information.
+1. **The Context:** Think of the context like a box of things. The box needs to be available to all who want to use it.
 2. **The Provider:** The provider puts things into the box. Whatever data it handles is only available to its children.
 3. **The Consumer:** The consumer takes things out of the box. It can only access the providers which are above it in the component hierarchy.
 
@@ -62,11 +60,11 @@ const UsernameContext = createContext(defaultValue);
 ```
 @highlight 3,only
 
-The default value is what the **Consumers** will use if they have no available **Provider**. You shouldn't see it on display very often.
+The default value is what the **Consumers** will get if they have no available **Provider**. This is often used more in testing than in production.
 
 ### Writing a Provider
 
-The provider constructor is exposed by the context. It is always accessible via `ContextName.Provider` and requires a single prop named `value`. This prop will be the value which provided to all of its **Consumers**.
+The provider component is exposed by the context. It is always accessible via `ContextName.Provider` and requires a single prop named `value`. This prop will be the value which provided to all of its **Consumers**.
 
 Any components we render inside of the provider will be able to access the information in the `value` prop, no matter how deeply nested they are in the component tree. This eliminates the need for prop drilling where a single prop would need to be passed down through multiple components.
 
@@ -239,6 +237,7 @@ return (
 const foo = useContext(FooContext);
 const bar = useContext(BarContext);
 const baz = useContext(BazContext);
+
 return (
   <span>
     {foo} {bar} {baz}
@@ -250,7 +249,7 @@ Much better.
 
 ## Advanced Provider Patterns
 
-The example above demonstrates the simplest use-case for context/useContext, but often times developers will organize their providers to abstract away a lot of the boilerplate.
+The example above demonstrates the simplest use-case for context, but often times developers will organize their providers to abstract away a lot of the boilerplate. Exposing your Context object directly can also result in more complex code and even more complex maintenance, as the consuming code is accessing the data directly. By creating wrappers for the `Provider` component and `useContext` hook, you can control exactly what data each component is using, thereby reducing code complexity and simplifying maintenance.
 
 Let us consider a more complex situation: Global styles. take a look at how we might refactor the `ThemeContext` so that it's wrapped in it's own custom component:
 
@@ -349,8 +348,8 @@ Run the app locally with `npm start` and choose the `Context Hooks` exercise. No
   - Create a new piece of state called `theme`, which will store the current theme used by the app (`themes.light` by default).
   - Create a `ThemeContext` object using `React.createContext()`
   - Wrap the component tree in `<ThemeContext.Provider>` and give it a value of the `theme` state.
-  - Create and export a custom hook called `useTheme` (this should just return `useContext(ThemeContext)`).
-  - (Optional )Add in a button which allows the user to switch between `themes.light` and `themes.dark`
+  - Create and export a custom hook called `useTheme`.
+  - (Optional) Add in a button which allows the user to switch between `themes.light` and `themes.dark`
 - `Square` Component
   - Get the theme from the new `useTheme` hook in the `Game` component.
 
