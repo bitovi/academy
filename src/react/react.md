@@ -33,14 +33,14 @@ One of the best things about React is that it can be used in any website, even o
 
 ## Course Outline
 
-This guide begins by walking you through how to [set up an environment](/learn-react/setting-up-environment.html), providing an introduction into [JSX](/learn-react/intro-to-jsx.html) (JavaScript flavor of XML) and some basic [react theory](/learn-react/react-theory.html).
+This guide begins by walking you through how to [set up an environment](/learn-react/setting-up-your-environment.html), providing an introduction into [JSX](/learn-react/intro-to-jsx.html) (JavaScript flavor of XML) and some basic [react theory](/learn-react/components.html).
 
-Once you're all setup and oriented into the framework, you'll learn how to build reusable web components using [props](/learn-react/props.html), and you will discover the difference between [controlled & uncontrolled](/learn-react/controlled-vs-uncontrolled-components.html) components. You'll also learn the various ways of doing [styling](/learn-react/styling-in-react.html), and how CSS can be integrated into JSX.
+Once you're all setup and oriented into the framework, you'll learn how to build reusable web components using [props](/learn-react/props.html), and you will discover the difference between [controlled & uncontrolled](/learn-react/controlled-vs-uncontrolled.html) components. You'll also learn the various ways of doing [styling](/learn-react/styling-in-react.html), and how CSS can be integrated into JSX.
 
-The second half of the guide will cover more intermediate topics like state management using [hooks](/learn-react/intro-to-hooks.html) and making components as [optimized](/learn-react/optimization-hooks.html) as possible.
+The second half of the guide will cover more intermediate topics like state management using [hooks](/learn-react/managing-complex-state.html) and making components as [optimized](/learn-react/optimization-hooks.html) as possible.
 
 Throughout this guide, we'll be building out a simple Tic-Tac-Toe game, gradually applying all of these concepts to produce a clean and optimized solution!
 
 ## Next Steps
 
-✏️ Head over to the [first lesson](/learn-react/setting-up-environment.html) and get your environment setup.
+✏️ Head over to the [first lesson](/learn-react/setting-up-your-environment.html) and get your environment setup.
