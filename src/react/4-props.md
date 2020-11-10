@@ -15,6 +15,8 @@ function addOneAndSeven() {
 }
 ```
 
+@highlight 2
+
 This is a perfectly good function, but notice that it always adds the same two numbers. In other words, it's only usable in very specific cases.
 
 We can make this function more reusable by allowing arguments to be passed in:
@@ -24,6 +26,8 @@ function addNumbers(num1, num2) {
   return num1 + num2;
 }
 ```
+
+@highlight 2
 
 The function is now infinitely more reusable because the caller can specify the numbers, instead of just having them be hardcoded.
 
@@ -39,6 +43,8 @@ function AddNumbers() {
 }
 ```
 
+@highlight 2
+
 Take a look at the `AddNumbers` component above. It returns a div with the result of adding `1 + 7`. This is fine, but suppose once again we wanted to specify which numbers it adds.
 
 We can solve this by modifying the `AddNumbers` component so that it accepts props for `num1` and `num2`.
@@ -50,6 +56,8 @@ function AddNumbers({ num1, num2 }) {
   return <div>{num1 + num2}</div>;
 }
 ```
+
+@highlight 2
 
 > In React, all functional components receive a `props` object as their first argument (class components get them in the constructor and at `this.props` in the methods).
 
@@ -90,6 +98,8 @@ function MyButton() {
 }
 ```
 
+@highlight 2
+
 The button above calls `console.log('clicked')` whenever the user clicks it. But once again, we're running into a re-usability issue.
 
 Suppose we wanted to perform an arbitrary action when the button is clicked instead of the hardcoded `console.log('clicked')`.
@@ -103,7 +113,7 @@ function MyButton({ onButtonClick }) {
 }
 ```
 
-@highlight 1
+@highlight 1,3
 
 Notice above that the `MyButton` component now accepts a `onButtonClick` prop. Now whenever the button is clicked it will call the callback function, making the `MyButton` component more reusable.
 
@@ -138,6 +148,7 @@ function App() {
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
+@highlight 1,2,5,6,12,13
 @codepen react
 
 ## Exercise

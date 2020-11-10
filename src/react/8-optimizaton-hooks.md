@@ -35,6 +35,7 @@ ReactDOM.render(
 );
 ```
 
+@highlight 2,5
 @codepen react
 
 In the code above, we're utilizing `useMemo` to memoize a value derived from two props, `firstName` and `lastName`. (Imagine that in order to get the full `name`, we need to perform some long-running or expensive operation.)
@@ -87,6 +88,7 @@ ReactDOM.render(
 );
 ```
 
+@highlight 2,3,only
 @codepen react
 
 This could get quite expensive for a large object, even the parsing could make a difference, so we memoize the whole value, only recalculating on `bigJSONBlob` changes
@@ -153,6 +155,7 @@ ReactDOM.render(
 );
 ```
 
+@highlight 2-4
 @codepen react
 
 Now below, we'll wrap `handleClick`'s logic in a `useCallback` so we can cache the results.
@@ -172,6 +175,7 @@ ReactDOM.render(
 );
 ```
 
+@highlight 2-4
 @codepen react
 
 ## Exercise
@@ -225,4 +229,4 @@ function Board() {
 export default Board;
 ```
 
-@highlight 8,only
+@highlight 8,20,only

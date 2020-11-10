@@ -29,7 +29,7 @@ function Hello() {
 ReactDOM.render(<Hello />, document.getElementById('root'));
 ```
 
-@highlight 2,6,7,only
+@highlight 2,5
 @codepen react
 
 Above is a simple example of using state to control an `input` element. The value of the input is determined entirely by the `inputValue` state (not the browser), and whenever the input changes, the state is updated to match.
@@ -85,6 +85,8 @@ function Hello() {
   return <div ref={parent} />;
 }
 ```
+
+@highlight 4,5,8
 
 In the code above we're doing a couple things:
 

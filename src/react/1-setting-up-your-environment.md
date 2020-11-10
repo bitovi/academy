@@ -117,6 +117,8 @@ npm install
 npm run build
 ```
 
+@highlight 4
+
 The final command will build the site and create a `build` folder. Check out the generated files. Notice how they're nicely minified and bundled!
 
 More information on the `build` folder and on deployment in general can be found in the [Create React App documentation](https://create-react-app.dev/docs/deployment/).

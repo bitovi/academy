@@ -28,6 +28,8 @@ function Component1({ Theme, Domain, RootUrl }) {
 }
 ```
 
+@highlight 1,2
+
 It is possible to re-write it using the spread operator, but what you gain in conciseness, you lose in clarity and performance. **Avoid writing components like this!**
 
 ```jsx
@@ -35,6 +37,8 @@ function Component1(props) {
   return <Component2 {...props} >
 }
 ```
+
+@highlight 1,2
 
 In this case, it doesn't matter if `Component1` even needs the `Theme` prop; it will always require it simply because `Component2` might require it. Initially, this was solved using libraries such as [Redux](https://redux.js.org/). These libraries would work by wrapping each component in a connector Higher-order Component (HoC) which would automatically pass in any required props. Today, we solve this problem using React's Context Providers and Consumers.
 
@@ -59,7 +63,7 @@ const defaultValue = 'Unknown';
 const UsernameContext = createContext(defaultValue);
 ```
 
-@highlight 3,only
+@highlight 4
 
 The default value is what the **Consumers** will get if they have no available **Provider**. This is often used more in testing than in production.
 
@@ -77,6 +81,7 @@ const UsernameContext = createContext(defaultValue);
 
 function App() {
   let [username, setUsername] = React.useState('No-name');
+
   return (
     <UsernameContext.Provider value={username}>
       <WhoAmI />
@@ -85,7 +90,7 @@ function App() {
 }
 ```
 
-@highlight 8,only
+@highlight 4,7,10
 
 ### Writing a Consumer
 
@@ -99,6 +104,7 @@ const UsernameContext = createContext(defaultValue);
 
 function App() {
   let [username, setUsername] = React.useState('No-name');
+
   return (
     <UsernameContext.Provider value={username}>
       <WhoAmI />
@@ -117,7 +123,7 @@ function WhoAmI() {
 }
 ```
 
-@highlight 15-21,only
+@highlight 16-22,only
 
 ### Updating the Context
 
@@ -129,11 +135,12 @@ import React, { createContext } from 'react';
 const defaultValue = {
   username: 'Unknown',
   setUsername: () => new Error('Not in provider'),
-}; // We cant update our box, only the values in the box
+};
 const UsernameContext = createContext(defaultValue);
 
 function App() {
   let [username, setUsername] = React.useState('No-name');
+
   return (
     <UsernameContext.Provider
       value={{ username: username, setUsername: setUsername }}
@@ -164,7 +171,7 @@ function WhoAmI() {
 }
 ```
 
-@highlight 3,8,21,22,only
+@highlight 3-6,14,27,28,31,only
 
 We have made three changes to our code:
 
@@ -174,7 +181,7 @@ We have made three changes to our code:
 
 ## Context with Hooks
 
-With the introduction of hooks, React also brought us the `useContext` hook. It allows us to consume Contexts without callbacks. In order to use it, the Context to the `useContext` hook.
+With the introduction of hooks, React also brought us the `useContext` hook. It allows us to consume Contexts without callbacks. In order to use it, pass the Context object to the `useContext` hook.
 
 The above example could be re-written to use the `useContext` hook as follows:
 
@@ -184,11 +191,12 @@ import React, { createContext, useContext } from 'react';
 const defaultValue = {
   username: 'Unknown',
   setUsername: () => new Error('Not in provider'),
-}; // We cant update our box, only the values in the box
+};
 const UsernameContext = createContext(defaultValue);
 
 function App() {
   let [username, setUsername] = React.useState('No-name');
+
   return (
     <UsernameContext.Provider
       value={{ username: username, setUsername: setUsername }}
@@ -200,6 +208,7 @@ function App() {
 
 function WhoAmI() {
   const value = useContext(UsernameContext);
+
   return (
     <>
       <span>{value.username}</span>
@@ -210,7 +219,7 @@ function WhoAmI() {
 }
 ```
 
-@highlight 13-22,only
+@highlight 22,only
 
 The method for consuming contexts has now shifted from callbacks from within JSX to simple, procedural function calls. This has the benefit of making the code flatter, and easier to read. Additionally, using multiple consumers becomes significant cleaner.
 
@@ -250,6 +259,8 @@ return (
 );
 ```
 
+@highlight 1-3
+
 Much better.
 
 ## Advanced Provider Patterns
@@ -276,6 +287,8 @@ export default function ThemeProvider({ theme, children }) {
   );
 }
 ```
+
+@highlight 10-16,only
 
 In the example above, we've taken away all of the `ThemeContext` logic and encapsulated it into it's own component `ThemeProvider`. This is a very common technique for organizing contexts in a scalable and reusable way.
 
@@ -311,16 +324,18 @@ Now, we can refactor our `Layout` component to use this new provider. Notice how
 
 ```jsx
 import React from 'react';
-import ThemeProvider from './ThemeProvider
+import ThemeProvider from './ThemeProvider';
 
 export default function Layout() {
   return (
-      <ThemeProvider theme="blue">
-          <Button label="Click Me!" />
-      </ThemeProvider>
+    <ThemeProvider theme="blue">
+      <Button label="Click Me!" />
+    </ThemeProvider>
   );
 }
 ```
+
+@highlight 6,8,only
 
 We can also refactor the way the `Button` component consumes the theme, by having it use the newly exposed `useTheme` custom hook.
 
@@ -339,7 +354,7 @@ function Button({ label }) {
 }
 ```
 
-@highlight 2,5,only
+@highlight 2,5
 
 ## Exercise
 

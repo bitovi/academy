@@ -22,6 +22,7 @@ function SearchBar() {
 ReactDOM.render(<SearchBar />, document.getElementById('root'));
 ```
 
+@highlight 3
 @codepen react
 
 The `SearchBar` above is considered uncontrolled because we're not explicitly giving it a value. The value of the input is now entirely determined by the browser & the user. We as developers have no say.
@@ -39,6 +40,7 @@ function SearchBar() {
 ReactDOM.render(<SearchBar />, document.getElementById('root'));
 ```
 
+@highlight 3
 @codepen react
 
 The component above is now considered to be "controlled", at any given point we always know what the value is (`hello`), and we've taken control away from the browser.
@@ -49,6 +51,7 @@ Obviously this isn't a great solution though because the value will always be "h
 // Controlled (with state)
 function SearchBar() {
   const [inputValue, setInputValue] = React.useState('');
+
   return (
     <input
       type="text"
@@ -61,6 +64,7 @@ function SearchBar() {
 ReactDOM.render(<SearchBar />, document.getElementById('root'));
 ```
 
+@highlight 2,8,9
 @codepen react
 
 We'll create a piece of state called `inputValue`, use that as the value of the input, and update it whenever the input changes.
@@ -95,6 +99,7 @@ function SmartParentComponent() {
 ReactDOM.render(<SmartParentComponent />, document.getElementById('root'));
 ```
 
+@highlight 2,6,7,13,17,18
 @codepen react
 
 Above we've defined both components, `SmartParentComponent` and `SearchBar`. The `SearchBar` component accepts two props: one for the value of the input, and another for updating the value of the input. Notice that there is no state here. This is a stateless (ie. controlled) component.

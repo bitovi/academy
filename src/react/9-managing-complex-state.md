@@ -57,13 +57,16 @@ function DisplayComponent() {
 }
 ```
 
+@highlight 4,6-8
+
 Now imagine our layout requires a button to confirm the `savedText` change, but the button appears in a different part of the page! How will we modify the state in a different component?
 
-Lucky for us, values and setters from `useState` are standard JavaScript variables and can be passed as `props`. We can create a 'Container' component to hold the state where both Display and Button components have access. _Consider the following structure:_
+Lucky for us, values and setters from `useState` are standard JavaScript variables and can be passed as `props`. We can create a `WrapperContainer` component to hold the state where both Display and Button components have access. _Consider the following structure:_
 
 ```jsx
 function WrapperContainer() {
   //TODO: setup the state variables
+
   return (
     <div>
       <div className="layout-left">
@@ -89,6 +92,8 @@ function ButtonComponent() {
   return <button type="button">Set Message</button>;
 }
 ```
+
+@highlight 2,only
 
 Let's create two state items in the `WrapperContaner`.
 
@@ -121,7 +126,9 @@ function WrapperContainer() {
 }
 ```
 
-Using this data in the `DisplayComponent` is simple. Deconstruct the state variables from `props` and update the component to call `setUnsavedText` on changes.
+@highlight 3,5,10-14,17
+
+Using this data in the `DisplayComponent` is simple. Use the props to render the component and call `setUnsavedText` on changes.
 
 ```jsx
 function DisplayComponent({ unsavedText, setUnsavedText, savedText }) {
@@ -139,6 +146,8 @@ function DisplayComponent({ unsavedText, setUnsavedText, savedText }) {
   );
 }
 ```
+
+@highlight 1,2-5,9,11
 
 Next, let's wire up that button. We'll define a `onButtonClick` callback to handle changes to the state variables. Pass the callback down to `ButtonComponent`.
 
@@ -171,6 +180,8 @@ function WrapperContainer() {
 }
 ```
 
+@highlight 2-3,5-10,15-19,22
+
 Lastly, update the `ButtonComponent` to use our new callback.
 
 ```jsx
@@ -182,6 +193,8 @@ function ButtonComponent({ onButtonClick }) {
   );
 }
 ```
+
+@highlight 1,3
 
 ### Completed Example
 
@@ -240,6 +253,8 @@ function ButtonComponent({ onButtonClick }) {
   );
 }
 ```
+
+@highlight 5,7,9-14,19-23,26,32,33-36,40,42,47,49
 
 ## What data should be kept in React state?
 

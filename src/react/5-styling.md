@@ -34,6 +34,8 @@ function Thing({ isActive }) {
 }
 ```
 
+@highlight 6-9
+
 In the example above we're specifying that the top level div should have a color of either black or white depending on the `isActive` prop, and it's background image url is imported from an external file.
 
 Although this is the simplest way to add styles, it shouldn't be counted out. Using inline styles like this is a great way of combining your HTML, CSS & JavaScript all into one neat package. It's especially useful when your styles will depend on component state or props.
@@ -50,6 +52,8 @@ function Thing({ isActive }) {
 }
 ```
 
+@highlight 4
+
 The component above uses a `thing` class that is imported from `thing.css`. This is a common way of including classes in a component, but keep in mind that due to it's cascading nature, it's possible to encounter clashing names with a large component tree.
 
 Classnames can also be dynamically generated in response to props or component state. In the component below, the `thing-active` class is only added to the class name if the `isActive` prop is truthy.
@@ -65,6 +69,8 @@ function Thing({ isActive }) {
 }
 ```
 
+@highlight 2-5
+
 ### Classnames
 
 Classnames is a small library that is widely used in the industry. It makes the process of creating dynamic classnames easier by providing a simple interface for constructing them. Note that this process is similar to the one described above, just made easier with the classnames library.
@@ -79,6 +85,8 @@ function Thing({ isActive }) {
   );
 }
 ```
+
+@highlight 6
 
 ## CSS Modules
 
@@ -100,6 +108,8 @@ Below is the CSS you would write inside of a .css file. You can see that it look
 }
 ```
 
+@highlight 1,5
+
 This css will then get transformed into the following. Notice the names change, while still maintaining the selector structure.
 
 ```css
@@ -112,6 +122,8 @@ This css will then get transformed into the following. Notice the names change, 
 }
 ```
 
+@highlight 1,5
+
 This would then be imported into your React component as a JavaScript module containing the mapped class names:
 
 ```js
@@ -120,6 +132,8 @@ module.exports = {
   active: 'Thing_active_wBa2p',
 };
 ```
+
+@highlight 2,3
 
 And the component could be styled like so:
 
@@ -130,6 +144,8 @@ function Thing({ isActive }) {
   return <div className={styles.thing}>Hello World!</div>;
 }
 ```
+
+@highlight 4
 
 Note that the `classnames` library can be used in conjunction with CSS modules as well.
 
@@ -157,6 +173,8 @@ export const Button = styled.button`
 `;
 ```
 
+@highlight 5,7,8,10
+
 This `Button` could then be imported into another component file and rendered with specific styles.
 
 ```jsx
@@ -172,6 +190,8 @@ function Thing() {
   );
 }
 ```
+
+@highlight 6-8
 
 The styled components approach is definitely a departure from traditional styling methodologies, however it makes up for it by integrating so nicely with the React paradigm.
 
@@ -245,6 +265,8 @@ function App() {
 export default App;
 ```
 
+@highlight 3,14,25,31-40,only
+
 #### Modular CSS
 
 `App.js`
@@ -273,6 +295,8 @@ function App() {
 
 export default App;
 ```
+
+@highlight 4,8-17,only
 
 `App.module.css`
 
@@ -308,6 +332,8 @@ export default App;
   background: #9ae6b4;
 }
 ```
+
+@highlight 1,12,23,28,only
 
 #### Styled Components
 
@@ -345,9 +371,9 @@ export const Square = styled.div`
 
   ${(props) =>
     props.hint &&
-    `
-    background: #9AE6B4;
-  `}
+    css`
+      background: #9ae6b4;
+    `}
 `;
 
 function App() {
@@ -368,3 +394,5 @@ function App() {
 
 export default App;
 ```
+
+@highlight 4,15,39-49,only

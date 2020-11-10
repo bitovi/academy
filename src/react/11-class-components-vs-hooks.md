@@ -1,4 +1,4 @@
-@page learn-react/class-components-vs-hooks Class components vs hooks
+@page learn-react/class-components-vs-hooks Class Components vs Hooks
 @parent learn-react 11
 
 @description Learn how to use React hooks to make functional components more powerful.
@@ -69,6 +69,7 @@ class Timer extends React.Component {
 ReactDOM.render(<Timer />, document.getElementById('root'));
 ```
 
+@highlight 2-4,7,11,15
 @codepen react
 
 In the example above we're implementing a `Timer` component which starts a timer when the component mounts. When the timer finishes the state is modified causing the component to re-render. Finally when the component un-mounts the time is cleared.
@@ -109,6 +110,7 @@ class Timer extends React.Component {
 ReactDOM.render(<Timer />, document.getElementById('root'));
 ```
 
+@highlight 3-4,8-9,13-14,18,only
 @codepen react
 
 When we add the second timer value above, we double our lines of code.
@@ -134,6 +136,7 @@ function Timer() {
 ReactDOM.render(<Timer />, document.getElementById('root'));
 ```
 
+@highlight 2,5-6
 @codepen react
 
 `useState` can define a single piece of state with both the state value and a function for updating the value. Instead of the component's state being stored in one monolith object, it's broken out into discrete, well named units.
@@ -154,7 +157,6 @@ function useTimer(delay) {
 
   React.useEffect(() => {
     const timer = setTimeout(() => setValue(true), delay);
-
     return () => clearTimeout(timer);
   }, []);
 
@@ -170,6 +172,7 @@ function Timer() {
 ReactDOM.render(<Timer />, document.getElementById('root'));
 ```
 
+@highlight 2,5-6,13
 @codepen react
 
 Now, our `useTimer` hooks returns a value which, when modified will cause the `Timer` component to re-render. We've abstracted away the logic of updating the `value` into the `useValue` hook.

@@ -69,6 +69,8 @@ In a normal HTML document, inline styles can be attached directly to an element 
 </div>
 ```
 
+@highlight 1
+
 The equivalent JSX looks very similar, but the styles are stored in an object:
 
 ```jsx
@@ -76,6 +78,8 @@ The equivalent JSX looks very similar, but the styles are stored in an object:
   Inline styles are different
 </div>
 ```
+
+@highlight 1
 
 First, notice how instead of using a string to store the styles (like `style=""`) we use curly brackets (like `style={}`). In JSX, we can interpolate JavaScript code into our attributes, and when doing so we use the curly bracket notation instead of quotes (quotes can be used only for string values).
 
@@ -98,7 +102,7 @@ Another thing you may note is the difference between `background-color` and `bac
 
 ### Classes
 
-In JSX, classes are defined using the `className=""` property:
+In JSX, classes are specified using the `className=""` property:
 
 ```jsx
 <div className="button primary">So are classes</div>
@@ -176,6 +180,8 @@ const person = {
 </div>;
 ```
 
+@highlight 7,8
+
 ### JSX Is JavaScript
 
 Remember, JSX is simply an alternative syntax for normal JavaScript&mdash;it is not magic. This means that you can use JSX as a normal value.
@@ -234,10 +240,11 @@ Conditions can be re-written using the ternary operator.
 ```
 
 ```jsx
-// Can be accomplished with ternaries
+// But the same can be accomplished with ternaries
 <div>
-  {
-    a === b ? 'a and b are equal' : 'a and b are different' // Ternaries are expressions. They return a value.
+  {a === b // Ternaries are expressions. They return a value.
+    ? 'a and b are equal'
+    : 'a and b are different'
   }
 </div>
 ```
@@ -272,6 +279,8 @@ If you want to iterate within JSX, use methods such as `Array.map`, `Array.filte
 </div>
 ```
 
+@highlight 3
+
 ```html
 <div>
   <span>1</span>
@@ -290,6 +299,8 @@ One of the most powerful aspects of JavaScript is that it enables developers to 
   <button onClick={(event) => console.log('Clicked')}>click me</button>
 </div>
 ```
+
+@highlight 2
 
 In the code above, we've attached an `onClick` listener to the `<button>` element. Whenever this button gets clicked, the code inside the `onClick={...}` will get executed. The value always needs to be a function, and that function will get called with an `event` object.
 

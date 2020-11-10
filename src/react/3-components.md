@@ -27,6 +27,7 @@ function MyFuncComponent() {
 ReactDOM.render(<MyFuncComponent />, document.getElementById('root'));
 ```
 
+@highlight 2
 @codepen react
 
 As you can see in the functional component above, there's not much magic happening. We simply define a function and return JSX.
@@ -45,6 +46,7 @@ class MyClassComponent extends React.Component {
 ReactDOM.render(<MyClassComponent />, document.getElementById('root'));
 ```
 
+@highlight 2-4
 @codepen react
 
 ## What's the Difference?
@@ -61,6 +63,8 @@ function App() {
   );
 }
 ```
+
+@highlight 4-5
 
 Originally, class components were the most popular because they could keep track of state and respond to specific component lifecycle events. This wasn't possible in functional component until the release of the [React Hooks API](https://reactjs.org/docs/hooks-reference.html) in v16. Up until then, functional components were commonly referred to as _stateless components_.
 
