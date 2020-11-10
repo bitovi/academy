@@ -3,8 +3,8 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/react/7-intro-to-hooks.md
-	@page learn-react/intro-to-hooks
+	source: src/react/11-class-components-vs-hooks.md
+	@page learn-react/class-components-vs-hooks
 ######################################################################## -->
 <html lang="en">
 <head>
@@ -13,7 +13,7 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Learn how to use React hooks to make functional components more powerful. 
 ">
-  <title>Bitovi Academy - Introduction to Hooks</title>
+  <title>Bitovi Academy - Class Components vs Hooks</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -111,7 +111,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
 							Learn React
 						</a>
 						
@@ -124,7 +124,7 @@
            						
            						">
 						<a class="page"
-							href="setting-up-environment.html"
+							href="setting-up-your-environment.html"
 							title="Learn how to setup a React environment using Create React App.">
 							Setting up your Environment
 						</a>
@@ -199,41 +199,8 @@
            						
            						">
 						<a class="page"
-							href="manage-state.html"
-							title="Manage component and application state with hooks">
-							Managing State
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="current
-           						parent
-           						expanded">
-						<a class="page"
-							href="intro-to-hooks.html"
-							title="Learn how to use React hooks to make functional components more powerful.">
-							Introduction to Hooks
-						</a>
-						
-							
-
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
 							href="stateful-hooks.html"
-							title="Learn how to hooks in React to manage the state of a component.">
+							title="Learn how to use hooks in React to manage the state of a component.">
 							Stateful Hooks
 						</a>
 						
@@ -247,7 +214,7 @@
            						
            						">
 						<a class="page"
-							href="controlled-vs-uncontrolled-components.html"
+							href="controlled-vs-uncontrolled.html"
 							title="Learn how to handle inputs in React and the difference between controlled and uncontrolled components.">
 							Controlled vs Uncontrolled
 						</a>
@@ -263,8 +230,23 @@
            						">
 						<a class="page"
 							href="optimization-hooks.html"
-							title="Learn how to optimize your React apps with some helpful hooks.">
+							title="Learn how to optimize your React apps with useMemo and useCallback.">
 							Optimization Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="managing-complex-state.html"
+							title="Manage component and application state with hooks.">
+							Managing Complex State
 						</a>
 						
 					</li>
@@ -281,6 +263,24 @@
 							title="Learn how to manage global app state with context hooks.">
 							Context Hooks
 						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="class-components-vs-hooks.html"
+							title="Learn how to use React hooks to make functional components more powerful.">
+							Class Components vs Hooks
+						</a>
+						
+							
+
 						
 					</li>
 				
@@ -402,7 +402,7 @@ covering CanJS core libraries.">
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Introduction to Hooks <code>page</code></h1>
+	<h1>Class Components vs Hooks <code>page</code></h1>
 </section>
 
   		
@@ -430,10 +430,10 @@ covering CanJS core libraries.">
 </ul>
 <p>Hooks are not just a new tool, they're a whole new toolbox!</p>
 <p>With the release of version 16, hooks were added to the React API. Now, developers can use state and respond to lifecycle events, all from functional components.</p>
-<p>Many developers find this to be a huge improvement over using class components in equivalent situations because hooks tend to be a lot cleaner, more discrete and ultimately more scalable.</p>
+<p>Many developers find this to be a huge improvement over using class components because hooks tend to be a lot cleaner, more discrete and ultimately more scalable.</p>
 <p>Each hook exposed by the React API does something different, but there are a few which are used more than others. It's also important to keep in mind that it's possible to create your own custom hooks. This is why hooks are seen not just as an API improvement but a paradigm shift.</p>
 <p>The &quot;Hooks&quot; way of doing things is slowly becoming adopted not just by React but by 3rd party component libraries as well.</p>
-<p><strong>Most Popular Hooks</strong></p>
+<p><strong>Most Common Hooks</strong></p>
 <ul>
 <li><strong>useState:</strong> Returns a stateful value, and a function to update it.</li>
 <li><strong>useEffect:</strong> Accepts a function that contains imperative, possibly effect-ful code.</li>
@@ -446,8 +446,8 @@ covering CanJS core libraries.">
 <li><strong>useCallback:</strong> Returns a memoized callback function. Special case of useMemo.</li>
 <li><strong>useReducer:</strong> An alternative to useState. Returns the current state paired with a dispatch method.</li>
 </ul>
-<p>Hooks allow you to co-locate all logic relating to a specific feature. No more splitting it between multiple lifecycle methods or duplicating logic.</p>
-<p>You also get the benefits of higher order components but with simple functions and without clogging up your component tree.</p>
+<p>Hooks allow you to colocate all logic relating to a specific feature. No more splitting it between multiple lifecycle methods or duplicating logic.</p>
+<p>You also get the benefits of higher-order components but with simple functions and without clogging up your component tree.</p>
 <p>So let's take a look at some basic hooks and start to get a feel for this new paradigm.</p>
 <h2>Class Components</h2>
 <p>To understand hooks, it will be useful to see what they're replacing in class components.</p>
@@ -474,6 +474,7 @@ covering CanJS core libraries.">
 
 ReactDOM.render(&lt;Timer /&gt;, document.getElementById('root'));
 </code></pre>
+<div line-highlight='2-4,7,11,15'></div>
 <div class='codepen' data-codepen='react'></div>
 <p>In the example above we're implementing a <code>Timer</code> component which starts a timer when the component mounts. When the timer finishes the state is modified causing the component to re-render. Finally when the component un-mounts the time is cleared.</p>
 <p>This implementation needs 3 functions and a state object, roughly 15 lines of code. Keep in mind also that we're only keeping track of 1 piece of state here.</p>
@@ -508,8 +509,9 @@ ReactDOM.render(&lt;Timer /&gt;, document.getElementById('root'));
 
 ReactDOM.render(&lt;Timer /&gt;, document.getElementById('root'));
 </code></pre>
+<div line-highlight='3-4,8-9,13-14,18,only'></div>
 <div class='codepen' data-codepen='react'></div>
-<p>Above we're adding in a second timer value and doubling our code in the process.</p>
+<p>When we add the second timer value above, we double our lines of code.</p>
 <p>Let's see how this would look with hooks...</p>
 <h2>Functional Component with Hooks</h2>
 <p>Here's that same timer written using the <code>useState</code> and <code>useEffect</code> hooks:</p>
@@ -526,8 +528,9 @@ ReactDOM.render(&lt;Timer /&gt;, document.getElementById('root'));
 
 ReactDOM.render(&lt;Timer /&gt;, document.getElementById('root'));
 </code></pre>
+<div line-highlight='2,5-6'></div>
 <div class='codepen' data-codepen='react'></div>
-<p><code>useState</code> can define a single piece of state with both the state value and a function for updating the value. Instead of the component's state being stored in one monolith object, it's broken out into discrete, well named units.</p>
+<p><code>useState</code> can define a single piece of state with both the state value and a function for updating the value. Instead of the component's state being stored in one monolith object, it's broken out into discrete, well-named units.</p>
 <p>In addition, instead of needing to define two lifecycle methods (<code>componentWillMount</code>, <code>componentWillUnmount</code>) we can utilize the <code>useEffect</code> hook which is able to simulate both in a single go.</p>
 <p>This combination of <code>useState</code> and <code>useEffect</code> gives you the ability to manage state and respond to lifecycle events all from a functional component. And as you can see, it cuts down on the amount of boilerplate code we need to write.</p>
 <h3>Custom Hooks</h3>
@@ -538,7 +541,6 @@ ReactDOM.render(&lt;Timer /&gt;, document.getElementById('root'));
 
   React.useEffect(() =&gt; {
     const timer = setTimeout(() =&gt; setValue(true), delay);
-
     return () =&gt; clearTimeout(timer);
   }, []);
 
@@ -553,6 +555,7 @@ function Timer() {
 
 ReactDOM.render(&lt;Timer /&gt;, document.getElementById('root'));
 </code></pre>
+<div line-highlight='2,5-6,13'></div>
 <div class='codepen' data-codepen='react'></div>
 <p>Now, our <code>useTimer</code> hooks returns a value which, when modified will cause the <code>Timer</code> component to re-render. We've abstracted away the logic of updating the <code>value</code> into the <code>useValue</code> hook.</p>
 
@@ -592,7 +595,7 @@ ReactDOM.render(&lt;Timer /&gt;, document.getElementById('root'));
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react/7-intro-to-hooks.md"},"description":"Learn how to use React hooks to make functional components more powerful. \n","name":"learn-react/intro-to-hooks","title":"Introduction to Hooks","type":"page","parent":"learn-react","order":7,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react/11-class-components-vs-hooks.md"},"description":"Learn how to use React hooks to make functional components more powerful. \n","name":"learn-react/class-components-vs-hooks","title":"Class Components vs Hooks","type":"page","parent":"learn-react","order":11,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

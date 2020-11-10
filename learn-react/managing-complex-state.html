@@ -3,17 +3,17 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/react/6-managing-state.md
-	@page learn-react/manage-state
+	source: src/react/9-managing-complex-state.md
+	@page learn-react/managing-complex-state
 ######################################################################## -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Manage component and application state with hooks 
+  <meta name="description" content="Manage component and application state with hooks. 
 ">
-  <title>Bitovi Academy - Managing State</title>
+  <title>Bitovi Academy - Managing Complex State</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -111,7 +111,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
 							Learn React
 						</a>
 						
@@ -124,7 +124,7 @@
            						
            						">
 						<a class="page"
-							href="setting-up-environment.html"
+							href="setting-up-your-environment.html"
 							title="Learn how to setup a React environment using Create React App.">
 							Setting up your Environment
 						</a>
@@ -195,45 +195,12 @@
 		
 			
 				
-					<li class="current
-           						parent
-           						expanded">
-						<a class="page"
-							href="manage-state.html"
-							title="Manage component and application state with hooks">
-							Managing State
-						</a>
-						
-							
-
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="intro-to-hooks.html"
-							title="Learn how to use React hooks to make functional components more powerful.">
-							Introduction to Hooks
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
 					<li class="
            						
            						">
 						<a class="page"
 							href="stateful-hooks.html"
-							title="Learn how to hooks in React to manage the state of a component.">
+							title="Learn how to use hooks in React to manage the state of a component.">
 							Stateful Hooks
 						</a>
 						
@@ -247,7 +214,7 @@
            						
            						">
 						<a class="page"
-							href="controlled-vs-uncontrolled-components.html"
+							href="controlled-vs-uncontrolled.html"
 							title="Learn how to handle inputs in React and the difference between controlled and uncontrolled components.">
 							Controlled vs Uncontrolled
 						</a>
@@ -263,9 +230,27 @@
            						">
 						<a class="page"
 							href="optimization-hooks.html"
-							title="Learn how to optimize your React apps with some helpful hooks.">
+							title="Learn how to optimize your React apps with useMemo and useCallback.">
 							Optimization Hooks
 						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="managing-complex-state.html"
+							title="Manage component and application state with hooks.">
+							Managing Complex State
+						</a>
+						
+							
+
 						
 					</li>
 				
@@ -280,6 +265,21 @@
 							href="context-hooks.html"
 							title="Learn how to manage global app state with context hooks.">
 							Context Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="class-components-vs-hooks.html"
+							title="Learn how to use React hooks to make functional components more powerful.">
+							Class Components vs Hooks
 						</a>
 						
 					</li>
@@ -402,7 +402,7 @@ covering CanJS core libraries.">
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Managing State <code>page</code></h1>
+	<h1>Managing Complex State <code>page</code></h1>
 </section>
 
   		
@@ -410,7 +410,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Manage component and application state with hooks</p>
+    <p>Manage component and application state with hooks.</p>
 
 </section>
 
@@ -424,12 +424,15 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>What is state?</h2>
-<p>In React, <code>state</code> is any data determining the presentation of your components. The value of a text box, whether or not a modal is open, and what page the app is currently showing are all potential examples of state.</p>
+<p>In React, <code>props</code> are the &quot;arguments&quot; that are passed to our component. Alternatively, <code>state</code> can be conceptualized as the &quot;internal variables&quot; of our function. But what makes <code>state</code> different from normal internal variables? <code>state</code> is given superpowers! Anytime <code>state</code> is changed (similarly with props), the component magically re-renders itself.</p>
+<p>Use <code>state</code> for internal variables, which when changed, should re-render the component. Examples include the value of a text box, whether or not a modal is open, and the current tab selection.</p>
 <p>Using functional components, the <code>useState()</code> hook provides a value and setter capable of holding any data type. (We will explain hooks in more detail in the coming lessons. For now, don't worry about what exactly a hook is.) This allows us to hold simple variables such as:</p>
 <pre><code class="language-js">const [count, setCount] = useState(0);
 const [flag, setFlag] = useState(true);
 </code></pre>
-<p>And even hold more complex data.</p>
+<p>In the example above, <code>count</code>starts at value 0 <code>setCount</code> is a function that allows us to update the count.
+Similarly, <code>flag</code> takes on the starting value of <code>true</code>, but if we need to change that we must use the <code>setFlag</code> function.</p>
+<p><code>useState</code> can hold more complex data.</p>
 <pre><code class="language-js">const [ viewModel, setViewModel ] = useState({
     showModal: false,
     currentUser: {
@@ -439,10 +442,8 @@ const [flag, setFlag] = useState(true);
     highlightItems: [1, 12, 15, 34, 66]
 })
 </code></pre>
-<p><strong>Important:</strong> When using objects or arrays, you must provide a new merged state when using the setter. The data created by <code>useState</code> is immutable and will always replace any internal state.</p>
-<p><em>For class based components see <a href="https://reactjs.org/docs/state-and-lifecycle.html">this.setState()</a></em></p>
 <h2>Scope of State</h2>
-<p><code>useState</code> is scoped to the component it is declared in. For example, this simple component stores a simple string <code>savedText</code> and displays its value as the user makes changes to a text input.</p>
+<p><code>useState</code> is scoped to the component it is declared in. For example, this component stores a simple string <code>savedText</code> and displays its value as the user makes changes to a text input.</p>
 <pre><code class="language-jsx">import React, { useState } from 'react';
 
 function DisplayComponent() {
@@ -460,10 +461,12 @@ function DisplayComponent() {
   );
 }
 </code></pre>
+<div line-highlight='4,6-8'></div>
 <p>Now imagine our layout requires a button to confirm the <code>savedText</code> change, but the button appears in a different part of the page! How will we modify the state in a different component?</p>
-<p>Lucky for us, values and setters from <code>useState</code> are standard JavaScript variables and can be passed as <code>props</code>. We can create a 'Container' component to hold the state where both Display and Button components have access. <em>Consider the following structure:</em></p>
+<p>Lucky for us, values and setters from <code>useState</code> are standard JavaScript variables and can be passed as <code>props</code>. We can create a <code>WrapperContainer</code> component to hold the state where both Display and Button components have access. <em>Consider the following structure:</em></p>
 <pre><code class="language-jsx">function WrapperContainer() {
   //TODO: setup the state variables
+
   return (
     &lt;div&gt;
       &lt;div className=&quot;layout-left&quot;&gt;
@@ -489,6 +492,7 @@ function ButtonComponent() {
   return &lt;button type=&quot;button&quot;&gt;Set Message&lt;/button&gt;;
 }
 </code></pre>
+<div line-highlight='2,only'></div>
 <p>Let's create two state items in the <code>WrapperContaner</code>.</p>
 <ul>
 <li><code>savedText</code> as we defined in the earlier example will hold the set message.</li>
@@ -517,7 +521,8 @@ function ButtonComponent() {
   );
 }
 </code></pre>
-<p>Using this data in the <code>DisplayComponent</code> is simple. Deconstruct the state variables from <code>props</code> and update the component to call <code>setUnsavedText</code> on changes.</p>
+<div line-highlight='3,5,10-14,17'></div>
+<p>Using this data in the <code>DisplayComponent</code> is simple. Use the props to render the component and call <code>setUnsavedText</code> on changes.</p>
 <pre><code class="language-jsx">function DisplayComponent({ unsavedText, setUnsavedText, savedText }) {
   function onSetText(event) {
     //notice we use the passed in setter defined in the WrapperContainer
@@ -533,7 +538,8 @@ function ButtonComponent() {
   );
 }
 </code></pre>
-<p>Next, let's wire up that button. We'll define a <code>onButtonClick</code> callback to handle changes to the state variables. Pass the callback down to <code>ButtonComponent</code>.</p>
+<div line-highlight='1,2-5,9,11'></div>
+<p>Next, let's wire up that button. We'll define an <code>onButtonClick</code> callback to handle changes to the state variables. Pass the callback down to <code>ButtonComponent</code>.</p>
 <pre><code class="language-jsx">function WrapperContainer() {
   const [savedText, setSavedText] = useState('');
   const [unsavedText, setUnsavedText] = useState('');
@@ -561,6 +567,7 @@ function ButtonComponent() {
   );
 }
 </code></pre>
+<div line-highlight='2-3,5-10,15-19,22'></div>
 <p>Lastly, update the <code>ButtonComponent</code> to use our new callback.</p>
 <pre><code class="language-jsx">function ButtonComponent({ onButtonClick }) {
   return (
@@ -570,6 +577,7 @@ function ButtonComponent() {
   );
 }
 </code></pre>
+<div line-highlight='1,3'></div>
 <h3>Completed Example</h3>
 <pre><code class="language-jsx">import React, { useState } from 'react';
 
@@ -625,14 +633,9 @@ function ButtonComponent({ onButtonClick }) {
   );
 }
 </code></pre>
+<div line-highlight='5,7,9-14,19-23,26,32,33-36,40,42,47,49'></div>
 <h2>What data should be kept in React state?</h2>
 <p>There is no &quot;right&quot; answer for what data should be stored in state. Applications with simple API requirements may keep everything in state objects. Other apps may opt to store nearly everything in a separate global state management library.</p>
-<p>Talk about managing network requests</p>
-<h2>State or Context?</h2>
-<h2>External State Libraries</h2>
-<p>You don't need Redux.</p>
-<p>Apollo and Relay are cool if you have a graph.</p>
-<p>Talk about how Context can solve much of this problem.</p>
 
 </section>
 
@@ -670,7 +673,7 @@ function ButtonComponent({ onButtonClick }) {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react/6-managing-state.md"},"description":"Manage component and application state with hooks \n","name":"learn-react/manage-state","title":"Managing State","type":"page","parent":"learn-react","order":6,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react/9-managing-complex-state.md"},"description":"Manage component and application state with hooks. \n","name":"learn-react/managing-complex-state","title":"Managing Complex State","type":"page","parent":"learn-react","order":9,"comment":" ","pathToRoot":"../.."};
     </script>
 
     

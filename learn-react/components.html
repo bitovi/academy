@@ -111,7 +111,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
 							Learn React
 						</a>
 						
@@ -124,7 +124,7 @@
            						
            						">
 						<a class="page"
-							href="setting-up-environment.html"
+							href="setting-up-your-environment.html"
 							title="Learn how to setup a React environment using Create React App.">
 							Setting up your Environment
 						</a>
@@ -202,38 +202,8 @@
            						
            						">
 						<a class="page"
-							href="manage-state.html"
-							title="Manage component and application state with hooks">
-							Managing State
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="intro-to-hooks.html"
-							title="Learn how to use React hooks to make functional components more powerful.">
-							Introduction to Hooks
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
 							href="stateful-hooks.html"
-							title="Learn how to hooks in React to manage the state of a component.">
+							title="Learn how to use hooks in React to manage the state of a component.">
 							Stateful Hooks
 						</a>
 						
@@ -247,7 +217,7 @@
            						
            						">
 						<a class="page"
-							href="controlled-vs-uncontrolled-components.html"
+							href="controlled-vs-uncontrolled.html"
 							title="Learn how to handle inputs in React and the difference between controlled and uncontrolled components.">
 							Controlled vs Uncontrolled
 						</a>
@@ -263,8 +233,23 @@
            						">
 						<a class="page"
 							href="optimization-hooks.html"
-							title="Learn how to optimize your React apps with some helpful hooks.">
+							title="Learn how to optimize your React apps with useMemo and useCallback.">
 							Optimization Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="managing-complex-state.html"
+							title="Manage component and application state with hooks.">
+							Managing Complex State
 						</a>
 						
 					</li>
@@ -280,6 +265,21 @@
 							href="context-hooks.html"
 							title="Learn how to manage global app state with context hooks.">
 							Context Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="class-components-vs-hooks.html"
+							title="Learn how to use React hooks to make functional components more powerful.">
+							Class Components vs Hooks
 						</a>
 						
 					</li>
@@ -425,21 +425,23 @@ covering CanJS core libraries.">
   				<section class="body">
     <p>React is all about components. In fact the whole point of the library is to help developers easily create reusable components.</p>
 <p>But what is a component?</p>
-<p>In a nutshell, a component is function which takes in props and returns an element.</p>
+<p>In a nutshell, a component is a function which uses props and state to return an element.</p>
 <ul>
-<li><strong>Values</strong> - The values of a component are all of the values the component is keeping track of. They include <em>component state</em>, which are the values the component controls itself, and <em>props</em>, which are supplied to the component.</li>
-<li><strong>Side Effects</strong> - The side effects of a component are the results of the operations which touch things outside of the component. This includes async operations, registering DOM event-handling and interaction with the browser. An easy way of knowing if something is a side-effect, try to think if it would work without accessing anything except the <strong>values</strong>.</li>
+<li><strong>Props</strong> - The props of a component are the same as arguments to a function.</li>
+<li><strong>State</strong> - The state are the values which the component controls itself.</li>
+<li><strong>Side Effects</strong> - The side effects of a component are the results of operations which interact with things outside of the component. This includes things like async fetching, registering DOM event-handlers and using browser APIs.</li>
 </ul>
 <h2>Functional Components</h2>
-<p>Functional components are simple. It's exceedingly easy to write them in React. In a nutshell, they're just functions which return a React element (usually written in the form of JSX).</p>
+<p>Functional components are simple. In a nutshell, they're just functions which return a React element, usually written in JSX.</p>
 <pre><code class="language-jsx">function MyFuncComponent() {
   return &lt;div&gt;hello world&lt;/div&gt;;
 }
 
 ReactDOM.render(&lt;MyFuncComponent /&gt;, document.getElementById('root'));
 </code></pre>
+<div line-highlight='2'></div>
 <div class='codepen' data-codepen='react'></div>
-<p>As you can see in the functional component above, there's not much magic happening. We simply define a function and return JSX from it.</p>
+<p>As you can see in the functional component above, there's not much magic happening. We simply define a function and return JSX.</p>
 <h2>Class Components</h2>
 <p>Class components are a bit more complex than functional ones. Class components are contained in a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes"><code>class</code></a> and have a <code>render</code> method which returns JSX.</p>
 <pre><code class="language-jsx">class MyClassComponent extends React.Component {
@@ -450,9 +452,10 @@ ReactDOM.render(&lt;MyFuncComponent /&gt;, document.getElementById('root'));
 
 ReactDOM.render(&lt;MyClassComponent /&gt;, document.getElementById('root'));
 </code></pre>
+<div line-highlight='2-4'></div>
 <div class='codepen' data-codepen='react'></div>
 <h2>What's the Difference?</h2>
-<p>No matter which type of component you're working with, they can be used the same way:</p>
+<p>The above <code>MyFuncComponent</code> and <code>MyClassComponent</code> produce the exact same result using the two different methods. No matter which type of component you're working with, they can be used the same way:</p>
 <pre><code class="language-jsx">function App() {
   return (
     &lt;div&gt;
@@ -462,8 +465,8 @@ ReactDOM.render(&lt;MyClassComponent /&gt;, document.getElementById('root'));
   );
 }
 </code></pre>
-<p>Aside from the syntax there, they are functionally equivalent.</p>
-<p>Originally, class components were the most popular because they could keep track of state and respond to specific component lifecycle events. This wasn't possible in functional component until the release of the <a href="https://reactjs.org/docs/hooks-reference.html">React Hooks API</a> in v16. Up until then, functional components were commonly referred to as <em>stateless components</em>.</p>
+<div line-highlight='4-5'></div>
+<p>Originally, class components were the most popular because they could keep track of state and respond to specific component lifecycle events. This wasn't possible in functional components until the release of the <a href="https://reactjs.org/docs/hooks-reference.html">React Hooks API</a> in v16. Up until then, functional components were commonly referred to as <em>stateless components</em>.</p>
 <p>Now both class and functional components are used commonly in code-bases around the world, but there has been a shift to using only functional components, as the syntax for them is more readable and cleaner.</p>
 <p>For the remainder of this training, we will be using functional components exclusively.</p>
 

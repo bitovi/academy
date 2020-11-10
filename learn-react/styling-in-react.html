@@ -111,7 +111,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
 							Learn React
 						</a>
 						
@@ -124,7 +124,7 @@
            						
            						">
 						<a class="page"
-							href="setting-up-environment.html"
+							href="setting-up-your-environment.html"
 							title="Learn how to setup a React environment using Create React App.">
 							Setting up your Environment
 						</a>
@@ -202,38 +202,8 @@
            						
            						">
 						<a class="page"
-							href="manage-state.html"
-							title="Manage component and application state with hooks">
-							Managing State
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="intro-to-hooks.html"
-							title="Learn how to use React hooks to make functional components more powerful.">
-							Introduction to Hooks
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
 							href="stateful-hooks.html"
-							title="Learn how to hooks in React to manage the state of a component.">
+							title="Learn how to use hooks in React to manage the state of a component.">
 							Stateful Hooks
 						</a>
 						
@@ -247,7 +217,7 @@
            						
            						">
 						<a class="page"
-							href="controlled-vs-uncontrolled-components.html"
+							href="controlled-vs-uncontrolled.html"
 							title="Learn how to handle inputs in React and the difference between controlled and uncontrolled components.">
 							Controlled vs Uncontrolled
 						</a>
@@ -263,8 +233,23 @@
            						">
 						<a class="page"
 							href="optimization-hooks.html"
-							title="Learn how to optimize your React apps with some helpful hooks.">
+							title="Learn how to optimize your React apps with useMemo and useCallback.">
 							Optimization Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="managing-complex-state.html"
+							title="Manage component and application state with hooks.">
+							Managing Complex State
 						</a>
 						
 					</li>
@@ -280,6 +265,21 @@
 							href="context-hooks.html"
 							title="Learn how to manage global app state with context hooks.">
 							Context Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="class-components-vs-hooks.html"
+							title="Learn how to use React hooks to make functional components more powerful.">
+							Class Components vs Hooks
 						</a>
 						
 					</li>
@@ -424,11 +424,11 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Different ways of styling components</h2>
-<p>Styling in React is one of the most diverse and opinionated aspects of working with the library. React does a great job of combining HTML &amp; JavaScript together, but is ultimately agnostic when it comes to working with CSS and styling.</p>
-<p>The good news is that all of the same styling techniques you're used to using as a web developer, will still work in React. You can you stylesheets, inline styling, and even extension languages like SASS or LESS. After all, react apps are just normal websites with some complicated JavaScript running in the background.</p>
-<p>Let's take a look at some of the ways we can go about styling React components and walk-through some of the pros and cons of each.</p>
+<p>Styling in React is one of the most diverse and opinionated aspects of working with the library. React does a great job of combining HTML &amp; JavaScript together, but it is ultimately agnostic when it comes to working with CSS and styling.</p>
+<p>The good news is that all of the same styling techniques you're used to will still work in React. You can use stylesheets, inline styling, and even extension languages like SASS or LESS.</p>
+<p>Let's take a look at some of the ways we can go about styling React components and walk through some of the pros and cons of each.</p>
 <h2>Inline styling</h2>
-<p>The simplest way to style a component is with inline styling. All core JSX tags accept a <code>style</code> prop, essentially an object with css styles in it. As you can see below, we're able to construct style objects directly inside the JSX, and even interpolate JavaScript values inside of them.</p>
+<p>The simplest way to style a component is with inline styling. All core JSX tags accept a <code>style</code> prop, essentially an object with css styles in it. As you can see below, we're able to construct style objects directly inside the JSX, and even interpolate JavaScript values into them.</p>
 <pre><code class="language-jsx">import { imageUrl } from './data';
 
 function Thing({ isActive }) {
@@ -444,17 +444,19 @@ function Thing({ isActive }) {
   );
 }
 </code></pre>
-<p>In the example above we're specifying that the top level div should have a color of either black or white depending on the <code>isActive</code> prop, and it's background image url is imported from an external file.</p>
+<div line-highlight='6-9'></div>
+<p>In the example above we're specifying that the top-level div should have a color of either black or white depending on the <code>isActive</code> prop, and it's background image URL is imported from an external file.</p>
 <p>Although this is the simplest way to add styles, it shouldn't be counted out. Using inline styles like this is a great way of combining your HTML, CSS &amp; JavaScript all into one neat package. It's especially useful when your styles will depend on component state or props.</p>
 <h2>External Styles</h2>
-<p>Like normal HTML, JSX elements can accept a class attribute (called <code>className</code>). Classes can either be located in a global style sheet included in the index.html file, or be directly included into a component (see below).</p>
+<p>Like normal HTML, JSX elements can accept a class attribute (called <code>className</code>). Classes can either be located in a global style sheet linked in the index.html file, or be directly imported into a component (see below).</p>
 <pre><code class="language-jsx">import './thing.css';
 
 function Thing({ isActive }) {
   return &lt;div className=&quot;thing&quot;&gt;Hello World!&lt;/div&gt;;
 }
 </code></pre>
-<p>The component above uses a <code>thing</code> class that it's imported from <code>thing.css</code>. This is a common way of including classes in a component, but keep in mind that due to it's cascading nature, it's possible to encounter clashing names with a large component tree.</p>
+<div line-highlight='4'></div>
+<p>The component above uses a <code>thing</code> class that is imported from <code>thing.css</code>. This is a common way of including classes in a component, but keep in mind that due to it's cascading nature, it's possible to encounter clashing names with a large component tree.</p>
 <p>Classnames can also be dynamically generated in response to props or component state. In the component below, the <code>thing-active</code> class is only added to the class name if the <code>isActive</code> prop is truthy.</p>
 <pre><code class="language-jsx">function Thing({ isActive }) {
   let className = 'thing';
@@ -465,6 +467,7 @@ function Thing({ isActive }) {
   return &lt;div className={className}&gt;Hello World!&lt;/div&gt;;
 }
 </code></pre>
+<div line-highlight='2-5'></div>
 <h3>Classnames</h3>
 <p>Classnames is a small library that is widely used in the industry. It makes the process of creating dynamic classnames easier by providing a simple interface for constructing them. Note that this process is similar to the one described above, just made easier with the classnames library.</p>
 <pre><code class="language-jsx">import cx from 'classnames';
@@ -476,11 +479,12 @@ function Thing({ isActive }) {
   );
 }
 </code></pre>
+<div line-highlight='6'></div>
 <h2>CSS Modules</h2>
 <p>A CSS Module is a CSS file in which all class names and animation names are scoped locally by default. This prevents a common problem with importing css into components, name clashing.</p>
-<p>When you define styles for a specific component, you want to be able to use descriptive names without having to worry about the other class names in the app they might conflict with. When you structure your css as a module, unique names are automatically generated solving the clashing issue.</p>
-<p>This is also compatible with Sass/Less making it a good option if you want to use a class based styling approach.</p>
-<p>Below is the CSS you would write inside of a .css file. You can see looks normal, and we don't need to worry about naming.</p>
+<p>When you define styles for a specific component, you want to be able to use descriptive names without having to worry about the other class names in the app. When you structure your css as a module, unique names are automatically generated. This solves the clashing issue.</p>
+<p>This is also compatible with SASS/LESS making it a good option if you want to use a class-based styling approach.</p>
+<p>Below is the CSS you would write inside of a .css file. You can see that it looks normal, and we don't need to worry about conflicts.</p>
 <pre><code class="language-css">.thing {
   border: 1em solid black;
 }
@@ -489,6 +493,7 @@ function Thing({ isActive }) {
   border-color: red;
 }
 </code></pre>
+<div line-highlight='1,5'></div>
 <p>This css will then get transformed into the following. Notice the names change, while still maintaining the selector structure.</p>
 <pre><code class="language-css">.Thing_thing_1FUOu {
   border: 1em solid black;
@@ -498,12 +503,14 @@ function Thing({ isActive }) {
   border-color: red;
 }
 </code></pre>
+<div line-highlight='1,5'></div>
 <p>This would then be imported into your React component as a JavaScript module containing the mapped class names:</p>
 <pre><code class="language-js">module.exports = {
   thing: 'Thing_thing_1FUOu',
   active: 'Thing_active_wBa2p',
 };
 </code></pre>
+<div line-highlight='2,3'></div>
 <p>And the component could be styled like so:</p>
 <pre><code class="language-jsx">import styles from './thing.module.css';
 
@@ -511,10 +518,12 @@ function Thing({ isActive }) {
   return &lt;div className={styles.thing}&gt;Hello World!&lt;/div&gt;;
 }
 </code></pre>
+<div line-highlight='4'></div>
+<p>Note that the <code>classnames</code> library can be used in conjunction with CSS modules as well.</p>
 <h2>Styled Components</h2>
-<p>The styled components philosophy is that everything is a component. Instead of separating your CSS and your React/JSX, they become integrated into one single entity. So instead of loading styles into a component from some external source, the styles are actually built into the component itself, and can be configured using props/state.</p>
-<p>In a styled components implementation, a <code>Button</code> component for example, might take a <code>color</code> prop, or a <code>fontSize</code> prop, which you be used to determine it's style. This approach is closed integrated with React, and utilizes the built in React features (props/state) more than any other.</p>
-<p>In the code below, we're using the emotion library to create a styled <code>Button</code> component. The syntax is a bit foreign, but this is essentially creating a <code>&lt;button&gt;</code> component which maps it's props to styles. For example, below, the button accepts a <code>color</code> and an <code>outline</code> prop, which are used to inform the styling that it receives.</p>
+<p>The styled components philosophy is that everything is a component. Instead of separating your CSS and your JS, they become integrated into one single entity. So instead of loading styles into a component from some external source, the styles are actually built into the component itself, and can be configured using props/state.</p>
+<p>In a styled components implementation, a <code>Button</code> component for example, might take a <code>color</code> prop, or a <code>fontSize</code> prop to determine its style. This approach is closed integrated with React, and utilizes the built-in React features (props/state) more than any other.</p>
+<p>In the code below, we're using the <a href="https://emotion.sh/docs/introduction">emotion</a> library to create a styled <code>Button</code> component. The syntax is a bit foreign, but this is essentially creating a <code>&lt;button&gt;</code> component which maps its props to styles. For example, the button below accepts a <code>color</code> and an <code>outline</code> prop, which are used to generate the styling.</p>
 <pre><code class="language-js">import styled from '@emotion/styled';
 
 export const Button = styled.button`
@@ -529,6 +538,7 @@ export const Button = styled.button`
     `}
 `;
 </code></pre>
+<div line-highlight='5,7,8,10'></div>
 <p>This <code>Button</code> could then be imported into another component file and rendered with specific styles.</p>
 <pre><code class="language-jsx">import Button from './Button';
 
@@ -542,8 +552,9 @@ function Thing() {
   );
 }
 </code></pre>
+<div line-highlight='6-8'></div>
 <p>The styled components approach is definitely a departure from traditional styling methodologies, however it makes up for it by integrating so nicely with the React paradigm.</p>
-<p>It's important to note that in many production code bases, some combination of the above styling techniques are utilized. Oftentimes some static css files will be necessary, and used alongside something like styled components. At the end of the day the right solution is the one that works for your team!</p>
+<p>It's important to note that in many production codebases, some combination of the above styling techniques are utilized. Oftentimes some static css files will be necessary, and used alongside something like styled components. At the end of the day the right solution is the one that works for your team!</p>
 <h2>Exercise</h2>
 <p>Let's use our styling knowledge to make our Tic-Tac-Toe game look amazing!</p>
 <p>Run the app locally with <code>npm start</code> and choose the <code>Styling</code> exercise. Now head over to <code>src/exercises/5 - Styling/components</code>. These are the files you'll be editing.</p>
@@ -609,6 +620,7 @@ function App() {
 
 export default App;
 </code></pre>
+<div line-highlight='3,14,25,31-40,only'></div>
 <h4>Modular CSS</h4>
 <p><code>App.js</code></p>
 <pre><code class="language-jsx">import React from 'react';
@@ -634,6 +646,7 @@ function App() {
 
 export default App;
 </code></pre>
+<div line-highlight='4,8-17,only'></div>
 <p><code>App.module.css</code></p>
 <pre><code class="language-css">.board {
   display: flex;
@@ -666,6 +679,7 @@ export default App;
   background: #9ae6b4;
 }
 </code></pre>
+<div line-highlight='1,12,23,28,only'></div>
 <h4>Styled Components</h4>
 <p><code>App.js</code></p>
 <pre><code class="language-jsx">import React from 'react';
@@ -699,9 +713,9 @@ export const Square = styled.div`
 
   ${(props) =&gt;
     props.hint &amp;&amp;
-    `
-    background: #9AE6B4;
-  `}
+    css`
+      background: #9ae6b4;
+    `}
 `;
 
 function App() {
@@ -722,6 +736,7 @@ function App() {
 
 export default App;
 </code></pre>
+<div line-highlight='4,15,39-49,only'></div>
 
 </section>
 

@@ -111,7 +111,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
 							Learn React
 						</a>
 						
@@ -124,7 +124,7 @@
            						
            						">
 						<a class="page"
-							href="setting-up-environment.html"
+							href="setting-up-your-environment.html"
 							title="Learn how to setup a React environment using Create React App.">
 							Setting up your Environment
 						</a>
@@ -202,38 +202,8 @@
            						
            						">
 						<a class="page"
-							href="manage-state.html"
-							title="Manage component and application state with hooks">
-							Managing State
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="intro-to-hooks.html"
-							title="Learn how to use React hooks to make functional components more powerful.">
-							Introduction to Hooks
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
 							href="stateful-hooks.html"
-							title="Learn how to hooks in React to manage the state of a component.">
+							title="Learn how to use hooks in React to manage the state of a component.">
 							Stateful Hooks
 						</a>
 						
@@ -247,7 +217,7 @@
            						
            						">
 						<a class="page"
-							href="controlled-vs-uncontrolled-components.html"
+							href="controlled-vs-uncontrolled.html"
 							title="Learn how to handle inputs in React and the difference between controlled and uncontrolled components.">
 							Controlled vs Uncontrolled
 						</a>
@@ -263,8 +233,23 @@
            						">
 						<a class="page"
 							href="optimization-hooks.html"
-							title="Learn how to optimize your React apps with some helpful hooks.">
+							title="Learn how to optimize your React apps with useMemo and useCallback.">
 							Optimization Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="managing-complex-state.html"
+							title="Manage component and application state with hooks.">
+							Managing Complex State
 						</a>
 						
 					</li>
@@ -280,6 +265,21 @@
 							href="context-hooks.html"
 							title="Learn how to manage global app state with context hooks.">
 							Context Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="class-components-vs-hooks.html"
+							title="Learn how to use React hooks to make functional components more powerful.">
+							Class Components vs Hooks
 						</a>
 						
 					</li>
@@ -424,76 +424,78 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Props Are Like Arguments</h2>
-<p>Props are React's way to make components more reusable.</p>
-<p>Think of props as similar to arguments you would pass into a function. For example, suppose we had an add method which added two numbers together, it might look something like this:</p>
+<p>Props are the same as arguments you would pass into a function. For example, suppose we had an add method which adds two numbers together. It might look something like this:</p>
 <pre><code class="language-js">function addOneAndSeven() {
   return 1 + 7;
 }
 </code></pre>
+<div line-highlight='2'></div>
 <p>This is a perfectly good function, but notice that it always adds the same two numbers. In other words, it's only usable in very specific cases.</p>
-<p>We can make this function more reusable by allowing arguments to be passed into it:</p>
+<p>We can make this function more reusable by allowing arguments to be passed in:</p>
 <pre><code class="language-js">function addNumbers(num1, num2) {
   return num1 + num2;
 }
 </code></pre>
-<p>The function is now infinitely more reusable because the caller can specify the numbers, instead of just having them be hardcoded in.</p>
+<div line-highlight='2'></div>
+<p>The function is now infinitely more reusable because the caller can specify the numbers, instead of just having them be hardcoded.</p>
 <p>This same principle applies to React components.</p>
 <h2>Basic Props Usage</h2>
-<p>Recall that React components are essentially just functions (or classes) which return an element. And like normal functions, we run into the same re-usability problems.</p>
+<p>Recall that React components are just functions (or classes) which return an element. And like normal functions, we run into the same re-usability problems.</p>
 <pre><code class="language-jsx">function AddNumbers() {
   return &lt;div&gt;{1 + 7}&lt;/div&gt;;
 }
 </code></pre>
+<div line-highlight='2'></div>
 <p>Take a look at the <code>AddNumbers</code> component above. It returns a div with the result of adding <code>1 + 7</code>. This is fine, but suppose once again we wanted to specify which numbers it adds.</p>
 <p>We can solve this by modifying the <code>AddNumbers</code> component so that it accepts props for <code>num1</code> and <code>num2</code>.</p>
-<blockquote>
-<p>In React, all components receive a <code>props</code> object as their first argument (class components get them in the constructor and at <code>this.props</code> in the methods).</p>
-</blockquote>
 <p>So we would change <code>AddNumbers</code> so that it would look like this.</p>
 <pre><code class="language-jsx">function AddNumbers({ num1, num2 }) {
   return &lt;div&gt;{num1 + num2}&lt;/div&gt;;
 }
 </code></pre>
+<div line-highlight='2'></div>
+<blockquote>
+<p>In React, all functional components receive a <code>props</code> object as their first argument (class components get them in the constructor and at <code>this.props</code> in the methods).</p>
+</blockquote>
 <p>We're also <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">destructuring</a> the props object, a convention used by much of the community and in the rest of this guide.</p>
 <p>The props object contains any values which are passed into the component when it's rendered.</p>
 <pre><code class="language-jsx">&lt;AddNumbers num1={1} num2={7} /&gt;
 &lt;AddNumbers num1={5} num2={-90} /&gt;
 </code></pre>
 <p>Whenever the <code>AddNumbers</code> component is rendered, we can now pass it <code>num1</code> &amp; <code>num2</code> props which it will use to do the calculation.</p>
-<p>Now, instead of having a hard-coded addition, the component is flexible and can be re-used in any scenario where it's necessary to display the result of adding two numbers.</p>
+<p>Now, instead of having a hardcoded addition, the component is flexible and can be re-used in any scenario where it's necessary to display the result of adding two numbers.</p>
 <h2>Prop Data Types</h2>
 <p>Props can be any data type or data structure. Anything you could pass into a JavaScript function can be passed into a component as a prop.</p>
 <pre><code class="language-jsx">&lt;Component
-  stringProp=&quot;string props can be passed using quotation marks&quot;
-  interpolatedStringProp={`The value is: ${value}`}
-  nonStringProp={[1, 2, 3]}
+  string=&quot;string props can be passed using quotation marks&quot;
+  interpolatedString={`The value is: ${value}`}
+  array={[1, 2, 3]}
 /&gt;
 </code></pre>
-<p>Props that are static strings can be passed using quotation marks, while non-string props must be passed in a set of curly brackets, this includes interpolated strings.</p>
+<p>Props that are static strings can be passed using quotation marks, while non-string props must be passed in a set of curly brackets; this includes interpolated strings.</p>
 <h2>Callback Props</h2>
-<p>Just like normal function arguments, React components can accept props of any data type (even other components).</p>
-<p>One of the most useful types of props are callbacks. Callback props allow us to specify what a component will do when an action occurs inside of it.</p>
+<p>Just like normal functions, React components can accept props of any data type (even other components). One of the most useful types of props are callbacks. Callback props allow us to specify what a component will do when an action occurs inside of it.</p>
 <pre><code class="language-jsx">function MyButton() {
   return &lt;button onClick={() =&gt; console.log('clicked')}&gt;click me&lt;/button&gt;;
 }
 </code></pre>
+<div line-highlight='2'></div>
 <p>The button above calls <code>console.log('clicked')</code> whenever the user clicks it. But once again, we're running into a re-usability issue.</p>
-<p>Suppose we wanted to perform an arbitrary action when the button is clicked instead of the hard-coded <code>console.log('clicked')</code>.</p>
-<p>To accomplish that, we would use a callback prop. To do so, simply pass the component a callback function as one of its props to be called whenever the button is clicked. Note that by convention, callback props should begin with <code>on</code> just like native DOM events:</p>
+<p>Suppose we wanted to perform an arbitrary action when the button is clicked instead of the hardcoded <code>console.log('clicked')</code>.</p>
+<p>To accomplish that, we would use a callback prop. To do so, simply pass the component a callback function as one of its props and pass that function to the button as the onClick prop. Note that by convention, callback props should begin with <code>on</code> just like native DOM events:</p>
 <pre><code class="language-jsx">function MyButton({ onButtonClick }) {
   // here we're destructuring the props object
   return &lt;button onClick={onButtonClick}&gt;click me&lt;/button&gt;;
 }
 </code></pre>
-<div line-highlight='1'></div>
-<p>Notice above that the <code>MyButton</code> component now accepts a <code>onButtonClick</code> prop. Now whenever the button is clicked it will call the callback function, making the button component more reusable.</p>
+<div line-highlight='1,3'></div>
+<p>Notice above that the <code>MyButton</code> component now accepts an <code>onButtonClick</code> prop. Now whenever the button is clicked it will call the callback function, making the <code>MyButton</code> component more reusable.</p>
 <pre><code class="language-jsx">&lt;MyButton onButtonClick={() =&gt; console.log('custom click action')}&gt;
 </code></pre>
-<p>When we render the button, we'll pass in the <code>onButtonClick</code> prop just like the numbers from the <code>AddNumbers</code> component. Since we're not passing a string prop, it needs to be interpolating using curly braces <code>{ }</code>.</p>
+<p>When we render the button, we'll pass in the <code>onButtonClick</code> prop just like the numbers from the <code>AddNumbers</code> component. Since we're not passing a string prop, it needs to be enclosed in curly brackets <code>{ }</code>.</p>
 <h2>Try it out</h2>
-<p>Below is the <code>MyButton</code> component code combined together into a working example:</p>
+<p>Below is the <code>MyButton</code> component code in a working example:</p>
 <pre><code class="language-jsx">function MyButton({ onButtonClick }) {
-  // here we're destructuring the props object
   return &lt;button onClick={onButtonClick}&gt;click me&lt;/button&gt;;
 }
 
@@ -512,16 +514,17 @@ function App() {
 
 ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));
 </code></pre>
+<div line-highlight='1,2,5,6,12,13'></div>
 <div class='codepen' data-codepen='react'></div>
 <h2>Exercise</h2>
-<p>Let's use our props knowledge to start building out the Tic-Tac-Toe app that we started in <a href="setting-up-environment.html" title="Learn how to setup a React environment using Create React App.">Setting up your Environment</a>.</p>
-<p>The app itself has already been scaffolded <a href="https://github.com/bitovi/react-exercises">here</a>. It includes 3 files each of which comes together to make up the game:</p>
+<p>Let's use our props knowledge to start building out the Tic-Tac-Toe app that we started in [learn-react/setting-up-environment].</p>
+<p>The app itself has already been <a href="https://github.com/bitovi/react-exercises">scaffolded</a>. It includes 3 files, each of which comes together to make up the game:</p>
 <ul>
-<li><code>Game.js</code> - This is the component which is responsible for running the game. It's the highest level component, and the most complex. It's in this file where we'll do most of our state management.</li>
-<li><code>Board.js</code> - This is a component which renders out the game board and all of the squares that make it up.</li>
-<li><code>Square.js</code> - This component represents a single square on the Tic-Tac-Toe board, it can be blank or populated with a symbol (X/O).</li>
+<li><code>Game.js</code> - This is the component which is responsible for running the game. It's the highest level component, and the most complex. This is where we'll do most of our state management.</li>
+<li><code>Board.js</code> - This is a component which renders out the game board and all of the squares inside of it.</li>
+<li><code>Square.js</code> - This component represents a single square on the Tic-Tac-Toe board. It can be blank or populated with a symbol such as X or O.</li>
 </ul>
-<p>✏️ Clone or fork the app from <a href="https://github.com/bitovi/react-exercises">GitHub</a> and run it locally with <code>npm install &amp;&amp; npm start</code> and choose the <code>Props</code> exercise. Now head over to <code>src/exercises/4 - Props/components</code>. These are the files you'll be editing for this exercise.</p>
+<p>✏️ Clone the app from <a href="https://github.com/bitovi/react-exercises">GitHub</a> and run it locally with <code>npm install &amp;&amp; npm start</code> and choose the <code>Props</code> exercise. Now head over to <code>src/exercises/4 - Props/components</code>. These are the files you'll be editing for this exercise.</p>
 <h3>The problem</h3>
 <p>The goal of this exercise is to get a <code>console.log()</code> to happen whenever the user clicks on a square. This will require you to work modify some of the props in the scaffolded code.</p>
 <h4>Hints</h4>
@@ -531,8 +534,8 @@ ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));
 <li><code>onClick</code> - a callback which is executed when the user click on it</li>
 <li><code>symbol</code> - a string indicating what symbol is in the square (X, O or nothing)</li>
 </ul></li>
-<li>Modify the <code>Board</code> component so it renders out all 9 squares given to it by its <code>board</code> props (<code>board</code> is an array of strings)</li>
-<li>Modify the <code>Game</code> component so it passes the correct props into <code>&lt;Board /&gt;</code></li>
+<li>Modify the <code>Board</code> component so it renders out all 9 squares given to it by its <code>board</code> props (<code>board</code> is an array of strings).</li>
+<li>Modify the <code>Game</code> component so it passes the correct props into <code>&lt;Board /&gt;</code>.</li>
 </ul>
 <h3>The solution</h3>
 <h4>Square.js</h4>

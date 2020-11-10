@@ -3,7 +3,7 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/react/11-context-hooks.md
+	source: src/react/10-context-hooks.md
 	@page learn-react/context-hooks
 ######################################################################## -->
 <html lang="en">
@@ -111,7 +111,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
 							Learn React
 						</a>
 						
@@ -124,7 +124,7 @@
            						
            						">
 						<a class="page"
-							href="setting-up-environment.html"
+							href="setting-up-your-environment.html"
 							title="Learn how to setup a React environment using Create React App.">
 							Setting up your Environment
 						</a>
@@ -199,38 +199,8 @@
            						
            						">
 						<a class="page"
-							href="manage-state.html"
-							title="Manage component and application state with hooks">
-							Managing State
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="intro-to-hooks.html"
-							title="Learn how to use React hooks to make functional components more powerful.">
-							Introduction to Hooks
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
 							href="stateful-hooks.html"
-							title="Learn how to hooks in React to manage the state of a component.">
+							title="Learn how to use hooks in React to manage the state of a component.">
 							Stateful Hooks
 						</a>
 						
@@ -244,7 +214,7 @@
            						
            						">
 						<a class="page"
-							href="controlled-vs-uncontrolled-components.html"
+							href="controlled-vs-uncontrolled.html"
 							title="Learn how to handle inputs in React and the difference between controlled and uncontrolled components.">
 							Controlled vs Uncontrolled
 						</a>
@@ -260,8 +230,23 @@
            						">
 						<a class="page"
 							href="optimization-hooks.html"
-							title="Learn how to optimize your React apps with some helpful hooks.">
+							title="Learn how to optimize your React apps with useMemo and useCallback.">
 							Optimization Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="managing-complex-state.html"
+							title="Manage component and application state with hooks.">
+							Managing Complex State
 						</a>
 						
 					</li>
@@ -281,6 +266,21 @@
 						
 							
 
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="class-components-vs-hooks.html"
+							title="Learn how to use React hooks to make functional components more powerful.">
+							Class Components vs Hooks
+						</a>
 						
 					</li>
 				
@@ -424,8 +424,8 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>The Prop Drilling Problem</h2>
-<p>A single component can take as many props as you want to give it, however just like arguments into functions it's a good idea to <a href="https://stackoverflow.com/questions/37695557/react-are-there-respectable-limits-to-number-of-props-on-react-components">limit this number</a>, as more props makes for a more confusing component.</p>
-<p>This however, can be difficult to do when you have a lot of data to pass through your component tree. Consider the following hierarchy with a few &quot;drilled props&quot;. Lets imagine that the <code>Theme</code>, <code>Domain</code> amd <code>RootUrl</code> are decided within the <code>App</code> component, but are <strong>only</strong> needed within the <code>ButtonText</code> component. That is to say, <code>Dashboard</code> and <code>Button</code> have no business related to any of those props.</p>
+<p>A single component can take as many props as you want to give it, but just like arguments in functions, it's a good idea to <a href="https://stackoverflow.com/questions/37695557/react-are-there-respectable-limits-to-number-of-props-on-react-components">limit this number</a>, as more props makes for <a href="https://martinfowler.com/bliki/CodeSmell.html">a more confusing component</a>.</p>
+<p>However, this can be difficult to do when you have a lot of data to pass through your component tree. Consider the following hierarchy with a few &quot;drilled props&quot;. Lets imagine that the <code>Theme</code>, <code>Domain</code> and <code>RootUrl</code> are decided within the <code>App</code> component, but are <strong>only</strong> needed within the <code>ButtonText</code> component. That is to say, <code>Dashboard</code> and <code>Button</code> have no business related to any of those props.</p>
 <pre><code class="language-code">──┬ App(Theme, Domain, RootUrl)
   └─┬ Dashboard(Theme, Domain, RootUrl)
     |─┬ Button(Theme, Domain, RootUrl)
@@ -438,17 +438,18 @@ covering CanJS core libraries.">
   return &lt;Component2 Theme={Theme} Domain={Domain} RootUrl={RootUrl}&gt;
 }
 </code></pre>
+<div line-highlight='1,2'></div>
 <p>It is possible to re-write it using the spread operator, but what you gain in conciseness, you lose in clarity and performance. <strong>Avoid writing components like this!</strong></p>
 <pre><code class="language-jsx">function Component1(props) {
   return &lt;Component2 {...props} &gt;
 }
 </code></pre>
-<p>In this case, it doesn't matter if <code>Component1</code> even needs the <code>Theme</code> prop; it will always require it simply because <code>Component2</code> might require it. Many years ago, this was solved using libraries such as <a href="https://redux.js.org/">Redux</a>. These libraries would work by wrapping each component in a connector HoC (Higher-order Component) which would automatically pass in any required props.</p>
-<p>Today, we solve this problem using React's Context Providers and Consumers.</p>
+<div line-highlight='1,2'></div>
+<p>In this case, it doesn't matter if <code>Component1</code> even needs the <code>Theme</code> prop; it will always require it simply because <code>Component2</code> might require it. Initially, this was solved using libraries such as <a href="https://redux.js.org/">Redux</a>. These libraries would work by wrapping each component in a connector Higher-order Component (HoC) which would automatically pass in any required props. Today, we solve this problem using React's Context Providers and Consumers.</p>
 <h2>What is Context?</h2>
 <p>One way to think about Contexts is an additional set of props which are passed transparently through React's internals instead of arguments. It involves three parts:</p>
 <ol>
-<li><strong>The Context:</strong> Think of the context like a box of things. The box needs to be globally available to all who want to use it (Put it or take out). The usage of a global avoids using props to pass down information.</li>
+<li><strong>The Context:</strong> Think of the context like a box of things. The box needs to be available to all who want to use it.</li>
 <li><strong>The Provider:</strong> The provider puts things into the box. Whatever data it handles is only available to its children.</li>
 <li><strong>The Consumer:</strong> The consumer takes things out of the box. It can only access the providers which are above it in the component hierarchy.</li>
 </ol>
@@ -460,10 +461,10 @@ covering CanJS core libraries.">
 const defaultValue = 'Unknown';
 const UsernameContext = createContext(defaultValue);
 </code></pre>
-<div line-highlight='3,only'></div>
-<p>The default value is what the <strong>Consumers</strong> will use if they have no available <strong>Provider</strong>. You shouldn't see it on display very often.</p>
+<div line-highlight='4'></div>
+<p>The default value is what the <strong>Consumers</strong> will get if they have no available <strong>Provider</strong>. This is often used more in testing than in production.</p>
 <h3>Writing a Provider</h3>
-<p>The provider constructor is exposed by the context. It is always accessible via <code>ContextName.Provider</code> and requires a single prop named <code>value</code>. This prop will be the value which provided to all of its <strong>Consumers</strong>.</p>
+<p>The provider component is exposed by the context. It is always accessible via <code>ContextName.Provider</code> and requires a single prop named <code>value</code>. This prop will be the value which provided to all of its <strong>Consumers</strong>.</p>
 <p>Any components we render inside of the provider will be able to access the information in the <code>value</code> prop, no matter how deeply nested they are in the component tree. This eliminates the need for prop drilling where a single prop would need to be passed down through multiple components.</p>
 <pre><code class="language-jsx">import React, { createContext } from 'react';
 
@@ -472,6 +473,7 @@ const UsernameContext = createContext(defaultValue);
 
 function App() {
   let [username, setUsername] = React.useState('No-name');
+
   return (
     &lt;UsernameContext.Provider value={username}&gt;
       &lt;WhoAmI /&gt;
@@ -479,7 +481,7 @@ function App() {
   );
 }
 </code></pre>
-<div line-highlight='8,only'></div>
+<div line-highlight='4,7,10'></div>
 <h3>Writing a Consumer</h3>
 <p>The consumer is similarly exposed by the context under <code>ContextName.Consumer</code>. It allows us to extract the value supplied to a producer above it using a callback.</p>
 <pre><code class="language-jsx">import React, { createContext } from 'react';
@@ -489,6 +491,7 @@ const UsernameContext = createContext(defaultValue);
 
 function App() {
   let [username, setUsername] = React.useState('No-name');
+
   return (
     &lt;UsernameContext.Provider value={username}&gt;
       &lt;WhoAmI /&gt;
@@ -506,7 +509,7 @@ function WhoAmI() {
   );
 }
 </code></pre>
-<div line-highlight='15-21,only'></div>
+<div line-highlight='16-22,only'></div>
 <h3>Updating the Context</h3>
 <p>As discussed before, Contexts are a lot like props. Their only difference is the method through which they are passed. To update them, we need to update the value that is passed into the <strong>Provider</strong>. Consider the following changes to make it possible:</p>
 <pre><code class="language-jsx">import React, { createContext } from 'react';
@@ -514,11 +517,12 @@ function WhoAmI() {
 const defaultValue = {
   username: 'Unknown',
   setUsername: () =&gt; new Error('Not in provider'),
-}; // We cant update our box, only the values in the box
+};
 const UsernameContext = createContext(defaultValue);
 
 function App() {
   let [username, setUsername] = React.useState('No-name');
+
   return (
     &lt;UsernameContext.Provider
       value={{ username: username, setUsername: setUsername }}
@@ -548,7 +552,7 @@ function WhoAmI() {
   );
 }
 </code></pre>
-<div line-highlight='3,8,21,22,only'></div>
+<div line-highlight='3-6,14,27,28,31,only'></div>
 <p>We have made three changes to our code:</p>
 <ol>
 <li>We have changed the shape of our context data from a String, to an Object. This was necessary to pass multiple properties within the same Context.</li>
@@ -556,18 +560,19 @@ function WhoAmI() {
 <li>We added 2 buttons to call the <code>setUsername</code> function in the <code>WhoAmI</code> component.</li>
 </ol>
 <h2>Context with Hooks</h2>
-<p>With the introduction of hooks, React also brought us the <code>useContext</code> hook. It allows us to consume Contexts without callbacks. In order to use it, the Context to the <code>useContext</code> hook.</p>
+<p>With the introduction of hooks, React also brought us the <code>useContext</code> hook. It allows us to consume Contexts without callbacks. In order to use it, pass the Context object to the <code>useContext</code> hook.</p>
 <p>The above example could be re-written to use the <code>useContext</code> hook as follows:</p>
 <pre><code class="language-jsx">import React, { createContext, useContext } from 'react';
 
 const defaultValue = {
   username: 'Unknown',
   setUsername: () =&gt; new Error('Not in provider'),
-}; // We cant update our box, only the values in the box
+};
 const UsernameContext = createContext(defaultValue);
 
 function App() {
   let [username, setUsername] = React.useState('No-name');
+
   return (
     &lt;UsernameContext.Provider
       value={{ username: username, setUsername: setUsername }}
@@ -579,6 +584,7 @@ function App() {
 
 function WhoAmI() {
   const value = useContext(UsernameContext);
+
   return (
     &lt;&gt;
       &lt;span&gt;{value.username}&lt;/span&gt;
@@ -588,8 +594,8 @@ function WhoAmI() {
   );
 }
 </code></pre>
-<div line-highlight='13-22,only'></div>
-<p>The method for consuming contexts has now shifted from callbacks from within JSX to simple, procedural function calls. This has the benefit of making the code flatter, and easier to read. Additionally, using multiple consumers becomes significant cleaner.</p>
+<div line-highlight='22,only'></div>
+<p>The method for consuming contexts has now shifted from callbacks from within JSX to simple, procedural function calls. This has the benefit of making the code flatter, and easier to read. Additionally, using multiple consumers becomes significantly cleaner.</p>
 <h4>Without Hooks:</h4>
 <pre><code class="language-jsx">return (
   &lt;FooContext.Consumer&gt;
@@ -613,15 +619,17 @@ function WhoAmI() {
 <pre><code class="language-jsx">const foo = useContext(FooContext);
 const bar = useContext(BarContext);
 const baz = useContext(BazContext);
+
 return (
   &lt;span&gt;
     {foo} {bar} {baz}
   &lt;/span&gt;
 );
 </code></pre>
+<div line-highlight='1-3'></div>
 <p>Much better.</p>
 <h2>Advanced Provider Patterns</h2>
-<p>The example above demonstrates the simplest use-case for context/useContext, but often times developers will organize their providers to abstract away a lot of the boilerplate.</p>
+<p>The example above demonstrates the simplest use-case for context, but often times developers will organize their providers to abstract away a lot of the boilerplate. Exposing your Context object directly can also result in more complex code and even more complex maintenance, as the consuming code is accessing the data directly. By creating wrappers for the <code>Provider</code> component and <code>useContext</code> hook, you can control exactly what data each component is using, thereby reducing code complexity and simplifying maintenance.</p>
 <p>Let us consider a more complex situation: Global styles. take a look at how we might refactor the <code>ThemeContext</code> so that it's wrapped in it's own custom component:</p>
 <pre><code class="language-jsx">import React, { createContext } from 'react';
 
@@ -640,6 +648,7 @@ export default function ThemeProvider({ theme, children }) {
   );
 }
 </code></pre>
+<div line-highlight='10-16,only'></div>
 <p>In the example above, we've taken away all of the <code>ThemeContext</code> logic and encapsulated it into it's own component <code>ThemeProvider</code>. This is a very common technique for organizing contexts in a scalable and reusable way.</p>
 <p>We can take this a step further by exporting a custom hook <code>useTheme</code> from this file, which can then be used by nested components like <code>Button</code> to access the theme:</p>
 <pre><code class="language-jsx">import React, { createContext } from 'react';
@@ -667,16 +676,17 @@ export function useTheme() {
 <div line-highlight='18-21,only'></div>
 <p>Now, we can refactor our <code>Layout</code> component to use this new provider. Notice how much cleaner it looks when we abstract away the context logic into it's own component (<code>ThemeProvider</code>)</p>
 <pre><code class="language-jsx">import React from 'react';
-import ThemeProvider from './ThemeProvider
+import ThemeProvider from './ThemeProvider';
 
 export default function Layout() {
   return (
-      &lt;ThemeProvider theme=&quot;blue&quot;&gt;
-          &lt;Button label=&quot;Click Me!&quot; /&gt;
-      &lt;/ThemeProvider&gt;
+    &lt;ThemeProvider theme=&quot;blue&quot;&gt;
+      &lt;Button label=&quot;Click Me!&quot; /&gt;
+    &lt;/ThemeProvider&gt;
   );
 }
 </code></pre>
+<div line-highlight='6,8,only'></div>
 <p>We can also refactor the way the <code>Button</code> component consumes the theme, by having it use the newly exposed <code>useTheme</code> custom hook.</p>
 <pre><code class="language-jsx">import React from 'react';
 import { useTheme } from './ThemeProvider';
@@ -691,7 +701,7 @@ function Button({ label }) {
   );
 }
 </code></pre>
-<div line-highlight='2,5,only'></div>
+<div line-highlight='2,5'></div>
 <h2>Exercise</h2>
 <p>Let's use our context hook knowledge to make our Tic-Tac-Toe use a style theme!</p>
 <p>Run the app locally with <code>npm start</code> and choose the <code>Context Hooks</code> exercise. Now head over to <code>src/exercises/9 - Context Hooks/components</code>. These are the files you'll be editing.</p>
@@ -703,8 +713,8 @@ function Button({ label }) {
 <li>Create a new piece of state called <code>theme</code>, which will store the current theme used by the app (<code>themes.light</code> by default).</li>
 <li>Create a <code>ThemeContext</code> object using <code>React.createContext()</code></li>
 <li>Wrap the component tree in <code>&lt;ThemeContext.Provider&gt;</code> and give it a value of the <code>theme</code> state.</li>
-<li>Create and export a custom hook called <code>useTheme</code> (this should just return <code>useContext(ThemeContext)</code>).</li>
-<li>(Optional )Add in a button which allows the user to switch between <code>themes.light</code> and <code>themes.dark</code></li>
+<li>Create and export a custom hook called <code>useTheme</code>.</li>
+<li>(Optional) Add in a button which allows the user to switch between <code>themes.light</code> and <code>themes.dark</code></li>
 </ul></li>
 <li><code>Square</code> Component
 <ul>
@@ -844,7 +854,7 @@ export default Square;
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react/11-context-hooks.md"},"description":"Learn how to manage global app state with context hooks. \n","name":"learn-react/context-hooks","title":"Context Hooks","type":"page","parent":"learn-react","order":11,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react/10-context-hooks.md"},"description":"Learn how to manage global app state with context hooks. \n","name":"learn-react/context-hooks","title":"Context Hooks","type":"page","parent":"learn-react","order":10,"comment":" ","pathToRoot":"../.."};
     </script>
 
     

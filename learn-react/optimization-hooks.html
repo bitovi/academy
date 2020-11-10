@@ -3,7 +3,7 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/react/10-optimizaton-hooks.md
+	source: src/react/8-optimizaton-hooks.md
 	@page learn-react/optimization-hooks
 ######################################################################## -->
 <html lang="en">
@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn how to optimize your React apps with some helpful hooks. 
+  <meta name="description" content="Learn how to optimize your React apps with &#x60;useMemo&#x60; and &#x60;useCallback&#x60;. 
 ">
   <title>Bitovi Academy - Optimization Hooks</title>
   
@@ -111,7 +111,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
 							Learn React
 						</a>
 						
@@ -124,7 +124,7 @@
            						
            						">
 						<a class="page"
-							href="setting-up-environment.html"
+							href="setting-up-your-environment.html"
 							title="Learn how to setup a React environment using Create React App.">
 							Setting up your Environment
 						</a>
@@ -199,38 +199,8 @@
            						
            						">
 						<a class="page"
-							href="manage-state.html"
-							title="Manage component and application state with hooks">
-							Managing State
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="intro-to-hooks.html"
-							title="Learn how to use React hooks to make functional components more powerful.">
-							Introduction to Hooks
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
 							href="stateful-hooks.html"
-							title="Learn how to hooks in React to manage the state of a component.">
+							title="Learn how to use hooks in React to manage the state of a component.">
 							Stateful Hooks
 						</a>
 						
@@ -244,7 +214,7 @@
            						
            						">
 						<a class="page"
-							href="controlled-vs-uncontrolled-components.html"
+							href="controlled-vs-uncontrolled.html"
 							title="Learn how to handle inputs in React and the difference between controlled and uncontrolled components.">
 							Controlled vs Uncontrolled
 						</a>
@@ -260,7 +230,7 @@
            						expanded">
 						<a class="page"
 							href="optimization-hooks.html"
-							title="Learn how to optimize your React apps with some helpful hooks.">
+							title="Learn how to optimize your React apps with useMemo and useCallback.">
 							Optimization Hooks
 						</a>
 						
@@ -277,9 +247,39 @@
            						
            						">
 						<a class="page"
+							href="managing-complex-state.html"
+							title="Manage component and application state with hooks.">
+							Managing Complex State
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="context-hooks.html"
 							title="Learn how to manage global app state with context hooks.">
 							Context Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="class-components-vs-hooks.html"
+							title="Learn how to use React hooks to make functional components more powerful.">
+							Class Components vs Hooks
 						</a>
 						
 					</li>
@@ -410,7 +410,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn how to optimize your React apps with some helpful hooks.</p>
+    <p>Learn how to optimize your React apps with <code>useMemo</code> and <code>useCallback</code>.</p>
 
 </section>
 
@@ -425,7 +425,7 @@ covering CanJS core libraries.">
   				<section class="body">
     <h1>Optimization Hooks</h1>
 <p>In addition to the core hooks exposed by React, namely <code>useState</code> and <code>useEffect</code>, there are several hooks aimed at optimizing your code for performance.</p>
-<p>Specifically optimization through memoization. In a nutshell, memoization is the process of caching the values returned from long running functions, and returning the cached values when inputs are identical.</p>
+<p>Specifically, optimization through memoization. In a nutshell, memoization is the process of caching the values returned from long-running functions, and returning the cached values when inputs are identical to the previous run.</p>
 <p>There are two hooks which deal with memoization, <code>useMemo</code> and <code>useCallback</code>, let's take a look at them below.</p>
 <h2>useMemo</h2>
 <ul>
@@ -444,23 +444,24 @@ covering CanJS core libraries.">
 
 ReactDOM.render(
   &lt;Hello firstName=&quot;Justin&quot; lastName=&quot;Meyer&quot; /&gt;,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 </code></pre>
+<div line-highlight='2,5'></div>
 <div class='codepen' data-codepen='react'></div>
-<p>In the code above, we're utilizing <code>useMemo</code> to memoize a value derived from two props, <code>firstName</code> and <code>lastName</code>. Imagine that in order to get the full <code>name</code>, we need to perform some long-running or expensive operation. Normally, we would perform this operation every time the component renders, regardless of the <code>firstName</code>/<code>lastName</code> prop values.</p>
-<p>When we memoize the value however, React keeps track of the inputs and outputs of this function, and caches values for all the possibilities it encounters. This means that if this component gets rendered with the same first and last name 100 times, we'll only need to perform the expensive operation once.</p>
-<p><code>useMemo</code> takes two arguments, the first is a function which performs the expensive operation and returns a value, the second is an array of dependencies. The dependency array determines which values, when changed, should cause the memoized value to be re-computed.</p>
+<p>In the code above, we're utilizing <code>useMemo</code> to memoize a value derived from two props, <code>firstName</code> and <code>lastName</code>. (Imagine that in order to get the full <code>name</code>, we need to perform some long-running or expensive operation.)</p>
+<p>Normally, we would perform this operation every time the component renders, regardless of the <code>firstName</code>/<code>lastName</code> prop values. When we memoize the value however, React keeps track of the inputs and outputs of this function, and caches inputs and output for the last time it was run. This means that if this component gets rendered with the same first and last name 100 times in a row, we'll only need to perform the expensive operation once.</p>
+<p><code>useMemo</code> takes two arguments. The first is a function which performs the expensive operation and returns a value. The second is an array of dependencies. The dependency array determines which values, when changed, should cause the memoized value to be re-computed. All state values used in the function should be declared in the dependencies.</p>
 <p>To sum it all up:</p>
 <ul>
 <li>When we need to do something expensive
 <ol>
-<li>We wrap it in useMemo</li>
-<li>Specify when it should re-compute</li>
+<li>We wrap it in <code>useMemo</code>.</li>
+<li>Specify when it should re-compute.</li>
 </ol></li>
 </ul>
 <h3>useMemo to cache a function call</h3>
-<p>Let's take a look at a more real world example, here we'll generate primes, but show only some of them...</p>
+<p>Let's take a look at a more real-world example. Here we'll parse a large JSON object, then flatten it into more easily printable lines.</p>
 <p>Here's a look at it without <code>useMemo</code>:</p>
 <pre><code class="language-jsx">function Hello({ bigJSONBlob }) {
   const data = JSON.parse(bigJSONBlob);
@@ -489,9 +490,10 @@ function flatten(input) {
 
 ReactDOM.render(
   &lt;Hello bigJSONBlob={'{&quot;hello&quot;: &quot;world&quot;}'} /&gt;,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 </code></pre>
+<div line-highlight='2,3,only'></div>
 <div class='codepen' data-codepen='react'></div>
 <p>This could get quite expensive for a large object, even the parsing could make a difference, so we memoize the whole value, only recalculating on <code>bigJSONBlob</code> changes</p>
 <pre><code class="language-jsx">function Hello({ bigJSONBlob }) {
@@ -523,10 +525,10 @@ function flatten(input) {
 
 ReactDOM.render(
   &lt;Hello bigJSONBlob={'{&quot;hello&quot;: &quot;world&quot;}'} /&gt;,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 </code></pre>
-<div line-highlight='4,only'></div>
+<div line-highlight='2-5,only'></div>
 <div class='codepen' data-codepen='react'></div>
 <h2>useCallback</h2>
 <ul>
@@ -534,7 +536,7 @@ ReactDOM.render(
 <li><code>useCallback(fn, deps)</code> is equivalent to <code>useMemo(() =&gt; fn, deps)</code></li>
 <li>Used to maintain referential equality between renders.</li>
 </ul>
-<p><code>useCallback</code> is particularly useful when defining event handlers. In such cases, we're not necessarily interested in memoizing a single value, but rather, a callback function. This is very common in react, as we're constantly using callbacks as props.</p>
+<p><code>useCallback</code> is particularly useful when defining event handlers. In such cases, we're not necessarily interested in memoizing a single value, but rather in memoizing a callback function. This is very common in React, as we frequently use callbacks as props.</p>
 <p>Below is a clickable <code>Hello</code> component which defines an un-memoized <code>handleClick</code> function.</p>
 <pre><code class="language-jsx">function Hello({ firstName, lastName }) {
   const handleClick = () =&gt; {
@@ -546,9 +548,10 @@ ReactDOM.render(
 
 ReactDOM.render(
   &lt;Hello firstName=&quot;Justin&quot; lastName=&quot;Meyer&quot; /&gt;,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 </code></pre>
+<div line-highlight='2-4'></div>
 <div class='codepen' data-codepen='react'></div>
 <p>Now below, we'll wrap <code>handleClick</code>'s logic in a <code>useCallback</code> so we can cache the results.</p>
 <pre><code class="language-jsx">function Hello({ firstName, lastName }) {
@@ -561,9 +564,10 @@ ReactDOM.render(
 
 ReactDOM.render(
   &lt;Hello firstName=&quot;Justin&quot; lastName=&quot;Meyer&quot; /&gt;,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 </code></pre>
+<div line-highlight='2-4'></div>
 <div class='codepen' data-codepen='react'></div>
 <h2>Exercise</h2>
 <p>Let's use our optimization hooks knowledge to make our Tic-Tac-Toe game a bit more performant!</p>
@@ -608,7 +612,7 @@ function Board() {
 
 export default Board;
 </code></pre>
-<div line-highlight='8,only'></div>
+<div line-highlight='8,20,only'></div>
 
 </section>
 
@@ -646,7 +650,7 @@ export default Board;
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react/10-optimizaton-hooks.md"},"description":"Learn how to optimize your React apps with some helpful hooks. \n","name":"learn-react/optimization-hooks","title":"Optimization Hooks","type":"page","parent":"learn-react","order":10,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react/8-optimizaton-hooks.md"},"description":"Learn how to optimize your React apps with `useMemo` and `useCallback`. \n","name":"learn-react/optimization-hooks","title":"Optimization Hooks","type":"page","parent":"learn-react","order":8,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

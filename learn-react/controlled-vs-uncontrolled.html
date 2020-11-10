@@ -3,8 +3,8 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/react/9-controlled-vs-uncontrolled.md
-	@page learn-react/controlled-vs-uncontrolled-components
+	source: src/react/7-controlled-vs-uncontrolled.md
+	@page learn-react/controlled-vs-uncontrolled
 ######################################################################## -->
 <html lang="en">
 <head>
@@ -111,7 +111,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
 							Learn React
 						</a>
 						
@@ -124,7 +124,7 @@
            						
            						">
 						<a class="page"
-							href="setting-up-environment.html"
+							href="setting-up-your-environment.html"
 							title="Learn how to setup a React environment using Create React App.">
 							Setting up your Environment
 						</a>
@@ -199,38 +199,8 @@
            						
            						">
 						<a class="page"
-							href="manage-state.html"
-							title="Manage component and application state with hooks">
-							Managing State
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="intro-to-hooks.html"
-							title="Learn how to use React hooks to make functional components more powerful.">
-							Introduction to Hooks
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
 							href="stateful-hooks.html"
-							title="Learn how to hooks in React to manage the state of a component.">
+							title="Learn how to use hooks in React to manage the state of a component.">
 							Stateful Hooks
 						</a>
 						
@@ -244,7 +214,7 @@
            						parent
            						expanded">
 						<a class="page"
-							href="controlled-vs-uncontrolled-components.html"
+							href="controlled-vs-uncontrolled.html"
 							title="Learn how to handle inputs in React and the difference between controlled and uncontrolled components.">
 							Controlled vs Uncontrolled
 						</a>
@@ -263,8 +233,23 @@
            						">
 						<a class="page"
 							href="optimization-hooks.html"
-							title="Learn how to optimize your React apps with some helpful hooks.">
+							title="Learn how to optimize your React apps with useMemo and useCallback.">
 							Optimization Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="managing-complex-state.html"
+							title="Manage component and application state with hooks.">
+							Managing Complex State
 						</a>
 						
 					</li>
@@ -280,6 +265,21 @@
 							href="context-hooks.html"
 							title="Learn how to manage global app state with context hooks.">
 							Context Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="class-components-vs-hooks.html"
+							title="Learn how to use React hooks to make functional components more powerful.">
+							Class Components vs Hooks
 						</a>
 						
 					</li>
@@ -425,7 +425,7 @@ covering CanJS core libraries.">
   				<section class="body">
     <h2>Introduction</h2>
 <p>One of the biggest mindset shifts for new developers learning React is the concept of a controlled vs uncontrolled component. This is something that is particularly important when building input components (text, checkbox, radio, etc).</p>
-<p>There are two types of input components we can create in React, controlled inputs and uncontrolled inputs.</p>
+<p>There are two types of input components we can create in React; controlled inputs and uncontrolled inputs.</p>
 <p>An uncontrolled input is one where we're not explicitly setting the value attribute. When a value attribute is not explicitly set, the input is ultimately controlled by the browser, and thus, out of the control of the React developer:</p>
 <pre><code class="language-jsx">// Uncontrolled
 function SearchBar() {
@@ -434,8 +434,9 @@ function SearchBar() {
 
 ReactDOM.render(&lt;SearchBar /&gt;, document.getElementById('root'));
 </code></pre>
+<div line-highlight='3'></div>
 <div class='codepen' data-codepen='react'></div>
-<p>The <code>SearchBar</code> above is considered uncontrolled because we're not explicitly giving it a value. The value of the input is now entirely determined by the browser &amp; the user, we as developers have no say.</p>
+<p>The <code>SearchBar</code> above is considered uncontrolled because we're not explicitly giving it a value. The value of the input is now entirely determined by the browser &amp; the user. We as developers have no say.</p>
 <p>While this isn't necessarily a bad thing, it does make our lives as React developers more difficult. The reason being, at any given point in the lifecycle of this component, we don't know what the value of the input is. Assuming we'll want to use the value at some point, this becomes a problem. How do we access the input's value?</p>
 <p>We can solve this problem by explicitly controlling the input (giving it a value).</p>
 <pre><code class="language-jsx">// Controlled (sort of)
@@ -445,12 +446,14 @@ function SearchBar() {
 
 ReactDOM.render(&lt;SearchBar /&gt;, document.getElementById('root'));
 </code></pre>
+<div line-highlight='3'></div>
 <div class='codepen' data-codepen='react'></div>
 <p>The component above is now considered to be &quot;controlled&quot;, at any given point we always know what the value is (<code>hello</code>), and we've taken control away from the browser.</p>
 <p>Obviously this isn't a great solution though because the value will always be &quot;hello&quot;. We can remedy this by involving state:</p>
 <pre><code class="language-jsx">// Controlled (with state)
 function SearchBar() {
   const [inputValue, setInputValue] = React.useState('');
+
   return (
     &lt;input
       type=&quot;text&quot;
@@ -462,6 +465,7 @@ function SearchBar() {
 
 ReactDOM.render(&lt;SearchBar /&gt;, document.getElementById('root'));
 </code></pre>
+<div line-highlight='2,8,9'></div>
 <div class='codepen' data-codepen='react'></div>
 <p>We'll create a piece of state called <code>inputValue</code>, use that as the value of the input, and update it whenever the input changes.</p>
 <p>The process outlined above is how most controlled inputs are structured. Whether it's a textbox, a color picker or a checkbox, we can use this same stateful strategy to construct it. By storing the value in state, we always have access to it, and we can even control what the value ends up being.</p>
@@ -490,12 +494,13 @@ function SmartParentComponent() {
 
 ReactDOM.render(&lt;SmartParentComponent /&gt;, document.getElementById('root'));
 </code></pre>
+<div line-highlight='2,6,7,13,17,18'></div>
 <div class='codepen' data-codepen='react'></div>
-<p>Above we've defined 2 component, <code>SmartParentComponent</code> and <code>SearchBar</code>. The <code>SearchBar</code> component accepts two props, one for the value of the input, and another for updating the value of the input. Notice that there is no state here, this is a dumb, stateless component.</p>
-<p>The <code>SmartParentComponent</code> does have state however, it is keeping track of the input value and how to set the input value. These are then passed down into the dumb <code>SearchBar</code> component, and used to control it.</p>
-<p>This is another very common pattern. The idea is that we have a very simple, lightweight <code>SearchBar</code> component, which has no concept of state, instead it is entirely controlled by props passed down from a smart, stateful parent.</p>
+<p>Above we've defined both components, <code>SmartParentComponent</code> and <code>SearchBar</code>. The <code>SearchBar</code> component accepts two props: one for the value of the input, and another for updating the value of the input. Notice that there is no state here. This is a stateless (ie. controlled) component.</p>
+<p>The <code>SmartParentComponent</code> does have state however, it is keeping track of the input value and how to set the input value. These are then passed down into the <code>SearchBar</code> component, and used to control it.</p>
+<p>This is another very common pattern. The idea is that we have a very simple, lightweight <code>SearchBar</code> component, which has no concept of state. Instead it is entirely controlled by props passed down from a smart, stateful parent.</p>
 <h2>Exercise</h2>
-<p>Let's use our knowledge of controlled vs uncontrolled components to build an input component! (note this will not be apart of the Tic-Tac-Toe game)</p>
+<p>Let's use our knowledge of controlled and uncontrolled components to build an input component! (Note: this will not be apart of the Tic-Tac-Toe game.)</p>
 <p>Run the app locally with <code>npm start</code> and choose the <code>Controlled vs Uncontrolled</code> exercise. Now head over to <code>src/exercises/a - Controlled vs Uncontrolled/components</code>. These are the files you'll be editing.</p>
 <h3>The problem</h3>
 <p>✏️ You'll be modifying the <code>Search</code> component so that it is a controlled input. Specifically, try your hand at the following:</p>
@@ -567,7 +572,7 @@ export default Search;
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react/9-controlled-vs-uncontrolled.md"},"description":"Learn how to handle inputs in React and the difference between controlled and uncontrolled components. \n","name":"learn-react/controlled-vs-uncontrolled-components","title":"Controlled vs Uncontrolled","type":"page","parent":"learn-react","order":9,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react/7-controlled-vs-uncontrolled.md"},"description":"Learn how to handle inputs in React and the difference between controlled and uncontrolled components. \n","name":"learn-react/controlled-vs-uncontrolled","title":"Controlled vs Uncontrolled","type":"page","parent":"learn-react","order":7,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

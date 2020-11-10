@@ -3,7 +3,7 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/react/8-stateful-hooks.md
+	source: src/react/6-stateful-hooks.md
 	@page learn-react/stateful-hooks
 ######################################################################## -->
 <html lang="en">
@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn how to hooks in React to manage the state of a component. 
+  <meta name="description" content="Learn how to use hooks in React to manage the state of a component. 
 ">
   <title>Bitovi Academy - Stateful Hooks</title>
   
@@ -111,7 +111,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
 							Learn React
 						</a>
 						
@@ -124,7 +124,7 @@
            						
            						">
 						<a class="page"
-							href="setting-up-environment.html"
+							href="setting-up-your-environment.html"
 							title="Learn how to setup a React environment using Create React App.">
 							Setting up your Environment
 						</a>
@@ -195,42 +195,12 @@
 		
 			
 				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="manage-state.html"
-							title="Manage component and application state with hooks">
-							Managing State
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="intro-to-hooks.html"
-							title="Learn how to use React hooks to make functional components more powerful.">
-							Introduction to Hooks
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
 					<li class="current
            						parent
            						expanded">
 						<a class="page"
 							href="stateful-hooks.html"
-							title="Learn how to hooks in React to manage the state of a component.">
+							title="Learn how to use hooks in React to manage the state of a component.">
 							Stateful Hooks
 						</a>
 						
@@ -247,7 +217,7 @@
            						
            						">
 						<a class="page"
-							href="controlled-vs-uncontrolled-components.html"
+							href="controlled-vs-uncontrolled.html"
 							title="Learn how to handle inputs in React and the difference between controlled and uncontrolled components.">
 							Controlled vs Uncontrolled
 						</a>
@@ -263,8 +233,23 @@
            						">
 						<a class="page"
 							href="optimization-hooks.html"
-							title="Learn how to optimize your React apps with some helpful hooks.">
+							title="Learn how to optimize your React apps with useMemo and useCallback.">
 							Optimization Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="managing-complex-state.html"
+							title="Manage component and application state with hooks.">
+							Managing Complex State
 						</a>
 						
 					</li>
@@ -280,6 +265,21 @@
 							href="context-hooks.html"
 							title="Learn how to manage global app state with context hooks.">
 							Context Hooks
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="class-components-vs-hooks.html"
+							title="Learn how to use React hooks to make functional components more powerful.">
+							Class Components vs Hooks
 						</a>
 						
 					</li>
@@ -410,7 +410,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn how to hooks in React to manage the state of a component.</p>
+    <p>Learn how to use hooks in React to manage the state of a component.</p>
 
 </section>
 
@@ -424,16 +424,11 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>What are stateful hooks?</h2>
-<ul>
-<li>Stores component state between renders</li>
-<li>Changes to the value of said state (with the setter) triggers re-renders.</li>
-</ul>
-<p>Stateful hooks are Reacts way of managing all of the data that a functional component needs to keep track of. The most widely used stateful hook, <code>useState</code>, streamlines the process of both using and updating individual state values in a straightforward way.</p>
-<p>Another stateful hook <code>useRef</code> gives component code access to the underlying DOM elements rendered out from the JSX.</p>
+<p>Stateful hooks are React's way of managing all of the data that a functional component needs to keep track of. The most widely used stateful hook, <code>useState</code>, streamlines the process of both using and updating individual state values in a straightforward way.</p>
+<p>Another stateful hook, <code>useRef</code>, gives component code access to the underlying DOM elements rendered from the JSX.</p>
 <p>Let's take a look at each hook in turn and see what they can do.</p>
 <h2>useState</h2>
-<p>Let's start with <code>useState</code>.</p>
-<p>When <code>useState</code> is called, it returns an array with two elements in it. The first element is the state value itself, this is the value you would render out inside the JSX. The second element is a setter function, which, when called can be used to update the state and trigger a re-render.</p>
+<p>When <code>useState</code> is called, it returns an array with two elements. The first element is the state value itself; this is the value you would render inside the JSX. The second element is a setter function, which when called, can be used to update the state and trigger a re-render.</p>
 <pre><code class="language-jsx">function Hello() {
   const [inputValue, setInputValue] = React.useState('');
 
@@ -444,18 +439,38 @@ covering CanJS core libraries.">
 
 ReactDOM.render(&lt;Hello /&gt;, document.getElementById('root'));
 </code></pre>
-<div line-highlight='4,8,9,only'></div>
+<div line-highlight='2,5'></div>
 <div class='codepen' data-codepen='react'></div>
-<p>Above is a simple example of using state to control an input element. The value of the input is determined entirely by the <code>inputValue</code> state (not the browser), and whenever the input changes, the state is updated to match.</p>
-<p>This process is similar no matter what component you're building. The basic flow goes as follows:</p>
-<ul>
+<p>Above is a simple example of using state to control an <code>input</code> element. The value of the input is determined entirely by the <code>inputValue</code> state (not the browser), and whenever the input changes, the state is updated to match.</p>
+<p>This process is similar no matter what component you're building. The basic flow is:</p>
+<ol>
 <li>Get the value and setter</li>
 <li>Use the value as needed</li>
 <li>Call the setter to change the value and trigger an update</li>
-</ul>
+</ol>
+<blockquote>
+<p><strong>Important:</strong> When using objects or arrays, you must provide a new state when using the setter, rather than changing the current values. The data created by <code>useState</code> is immutable and will always replace any manual changes.</p>
+<p>For example, using array methods like <code>.push()</code> or <code>.pop()</code> will lead to problems. Instead, use methods like <code>.concat()</code> and <code>.filter()</code> which create new arrays, and pass those values into the setter.</p>
+<pre><code class="language-jsx">function Hello() {
+  const [values, setValues] = React.useState([]);
+
+  return (
+    &lt;&gt;
+      {values}
+      &lt;button onChange={(e) =&gt; setValues(values.concat('click'))}&gt;
+        Click me
+      &lt;/button&gt;
+    &lt;/&gt;
+  );
+}
+
+ReactDOM.render(&lt;Hello /&gt;, document.getElementById('root'));
+</code></pre>
+<p><em>For class based components see <a href="https://reactjs.org/docs/state-and-lifecycle.html">this.setState()</a>.</em></p>
+</blockquote>
 <h2>useRef</h2>
 <p>Just like <code>useState</code>, <code>useRef</code> is a data store, keeping track of values the component is interested in. In this case however, <code>useRef</code> helps store DOM references instead of state data.</p>
-<p>DOM references give your component's code access to the underlying DOM element that your JSX is mapped to through a <code>.current</code> field. These references can then be used to make more specific changes to the DOM or maintain access to external libraries. It's important to note that updating refs doesn't cause updates like modifying the state does.</p>
+<p>DOM references give your component access to the underlying DOM elements that your JSX creates. These references can then be used to make more specific changes to the DOM or provide access to external libraries. To get to the value of a ref, it is always located in the <code>.current</code> property. It's important to note that updating refs does not cause updates like modifying the state does.</p>
 <p>Let's take a look at <code>useRef</code> in action:</p>
 <pre><code class="language-jsx">import React, { useRef, useEffect } from 'react';
 
@@ -470,27 +485,22 @@ function Hello() {
   return &lt;div ref={parent} /&gt;;
 }
 </code></pre>
+<div line-highlight='4,5,8'></div>
 <p>In the code above we're doing a couple things:</p>
 <ul>
-<li>Get refs for the parent and the map instance</li>
-<li>Pass the parent ref to the <code>div</code> JSX element</li>
-<li>Working inside a useEffect so we have access to <code>parent.current</code>, set the current map value</li>
+<li>Get refs for the parent and the map instances.</li>
+<li>Pass the parent ref to the <code>div</code> JSX element.</li>
+<li>Working inside a useEffect so we have access to <code>parent.current</code>, set the current map value.</li>
 </ul>
 <h2>Exercise</h2>
 <p>Let's use our stateful hooks knowledge to make our Tic-Tac-Toe game more functional!</p>
 <p>Run the app locally with <code>npm start</code> and choose the <code>Stateful Hooks</code> exercise. Now head over to <code>src/exercises/7 - Stateful Hooks/components</code>. These are the files you'll be editing.</p>
 <h3>The problem</h3>
-<p>✏️ Modify the <code>Board</code> component so that it keeps track of the current state of the game/players using hooks.</p>
+<p>✏️ Modify the <code>Board</code> component so that it keeps track of the current state of the game and players using hooks.</p>
 <ul>
-<li>store the current board in state
-<ul>
-<li>It should be represented as an array of strings (ex. <code>[&quot;&quot;, &quot;x&quot;, &quot;o&quot; ...]</code>)</li>
-</ul></li>
-<li>store the current player in state
-<ul>
-<li>This can be a boolean called <code>isXTurn</code></li>
-</ul></li>
-<li>Fill out the <code>handleSquareClick</code> function so that it updated the board and changes the current player when the user clicks a <code>Square</code>.</li>
+<li>store the current board in state, represented as an array of strings (ex. <code>[&quot;&quot;, &quot;x&quot;, &quot;o&quot; ...]</code>)</li>
+<li>store the current player in state, with a boolean called <code>isXTurn</code></li>
+<li>Fill out the <code>handleSquareClick</code> function so that it updates the board and changes the current player when the user clicks a <code>Square</code>.</li>
 </ul>
 <h3>The solution</h3>
 <pre><code class="language-jsx">import React, { useState } from 'react';
@@ -565,7 +575,7 @@ export default Board;
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react/8-stateful-hooks.md"},"description":"Learn how to hooks in React to manage the state of a component. \n","name":"learn-react/stateful-hooks","title":"Stateful Hooks","type":"page","parent":"learn-react","order":8,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react/6-stateful-hooks.md"},"description":"Learn how to use hooks in React to manage the state of a component. \n","name":"learn-react/stateful-hooks","title":"Stateful Hooks","type":"page","parent":"learn-react","order":6,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     
