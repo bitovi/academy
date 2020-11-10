@@ -9,7 +9,7 @@
 
 A single component can take as many props as you want to give it, but just like arguments in functions, it's a good idea to [limit this number](https://stackoverflow.com/questions/37695557/react-are-there-respectable-limits-to-number-of-props-on-react-components), as more props makes for [a more confusing component](https://martinfowler.com/bliki/CodeSmell.html).
 
-However, this can be difficult to do when you have a lot of data to pass through your component tree. Consider the following hierarchy with a few "drilled props". Lets imagine that the `Theme`, `Domain` amd `RootUrl` are decided within the `App` component, but are **only** needed within the `ButtonText` component. That is to say, `Dashboard` and `Button` have no business related to any of those props.
+However, this can be difficult to do when you have a lot of data to pass through your component tree. Consider the following hierarchy with a few "drilled props". Lets imagine that the `Theme`, `Domain` and `RootUrl` are decided within the `App` component, but are **only** needed within the `ButtonText` component. That is to say, `Dashboard` and `Button` have no business related to any of those props.
 
 ```code
 ──┬ App(Theme, Domain, RootUrl)
@@ -221,7 +221,7 @@ function WhoAmI() {
 
 @highlight 22,only
 
-The method for consuming contexts has now shifted from callbacks from within JSX to simple, procedural function calls. This has the benefit of making the code flatter, and easier to read. Additionally, using multiple consumers becomes significant cleaner.
+The method for consuming contexts has now shifted from callbacks from within JSX to simple, procedural function calls. This has the benefit of making the code flatter, and easier to read. Additionally, using multiple consumers becomes significantly cleaner.
 
 #### Without Hooks:
 

@@ -9,7 +9,7 @@ React is all about components. In fact the whole point of the library is to help
 
 But what is a component?
 
-In a nutshell, a component is function which uses props and state to return an element.
+In a nutshell, a component is a function which uses props and state to return an element.
 
 - **Props** - The props of a component are the same as arguments to a function.
 - **State** - The state are the values which the component controls itself.
@@ -66,7 +66,7 @@ function App() {
 
 @highlight 4-5
 
-Originally, class components were the most popular because they could keep track of state and respond to specific component lifecycle events. This wasn't possible in functional component until the release of the [React Hooks API](https://reactjs.org/docs/hooks-reference.html) in v16. Up until then, functional components were commonly referred to as _stateless components_.
+Originally, class components were the most popular because they could keep track of state and respond to specific component lifecycle events. This wasn't possible in functional components until the release of the [React Hooks API](https://reactjs.org/docs/hooks-reference.html) in v16. Up until then, functional components were commonly referred to as _stateless components_.
 
 Now both class and functional components are used commonly in code-bases around the world, but there has been a shift to using only functional components, as the syntax for them is more readable and cleaner.
 

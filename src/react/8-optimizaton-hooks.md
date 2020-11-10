@@ -9,7 +9,7 @@
 
 In addition to the core hooks exposed by React, namely `useState` and `useEffect`, there are several hooks aimed at optimizing your code for performance.
 
-Specifically, optimization through memoization. In a nutshell, memoization is the process of caching the values returned from long running functions, and returning the cached values when inputs are identical to the previous run.
+Specifically, optimization through memoization. In a nutshell, memoization is the process of caching the values returned from long-running functions, and returning the cached values when inputs are identical to the previous run.
 
 There are two hooks which deal with memoization, `useMemo` and `useCallback`, let's take a look at them below.
 
@@ -52,7 +52,7 @@ To sum it all up:
 
 ### useMemo to cache a function call
 
-Let's take a look at a more real world example. Here we'll parse a large JSON object, then flatten it into more easily printable lines.
+Let's take a look at a more real-world example. Here we'll parse a large JSON object, then flatten it into more easily printable lines.
 
 Here's a look at it without `useMemo`:
 

@@ -134,7 +134,7 @@ Now they're both wrapped in a parent `div` and the error will go away!
 
 ### Fragments
 
-Sometimes, you may encounter situations where wrapping your elements in an extra element is undesirable (`tr`, `td` for example). Fragments can either be written using the longform `<React.Fragment></React.Fragment>` syntax or the shorthand `<></>`.
+Sometimes, you may encounter situations where wrapping your elements in an extra element is undesirable (`tr`, `td` for example). Fragments can either be written using the long-form `<React.Fragment></React.Fragment>` syntax or the shorthand `<></>`.
 
 This JSX:
 
@@ -152,7 +152,7 @@ Will output the following HTML:
 <div>Sibling 2</div>
 ```
 
-Note how the the fragment components don't have any corresponding DOM output. This would also be true if we had used `<React.Fragment>` instead; they are the same.
+Note how the fragment components don't have any corresponding DOM output. This would also be true if we had used `<React.Fragment>` instead; they are the same.
 
 ## JavaScript Interpolation
 

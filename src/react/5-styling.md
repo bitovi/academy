@@ -36,7 +36,7 @@ function Thing({ isActive }) {
 
 @highlight 6-9
 
-In the example above we're specifying that the top level div should have a color of either black or white depending on the `isActive` prop, and it's background image url is imported from an external file.
+In the example above we're specifying that the top-level div should have a color of either black or white depending on the `isActive` prop, and it's background image URL is imported from an external file.
 
 Although this is the simplest way to add styles, it shouldn't be counted out. Using inline styles like this is a great way of combining your HTML, CSS & JavaScript all into one neat package. It's especially useful when your styles will depend on component state or props.
 
@@ -94,7 +94,7 @@ A CSS Module is a CSS file in which all class names and animation names are scop
 
 When you define styles for a specific component, you want to be able to use descriptive names without having to worry about the other class names in the app. When you structure your css as a module, unique names are automatically generated. This solves the clashing issue.
 
-This is also compatible with SASS/LESS making it a good option if you want to use a class based styling approach.
+This is also compatible with SASS/LESS making it a good option if you want to use a class-based styling approach.
 
 Below is the CSS you would write inside of a .css file. You can see that it looks normal, and we don't need to worry about conflicts.
 
@@ -153,7 +153,7 @@ Note that the `classnames` library can be used in conjunction with CSS modules a
 
 The styled components philosophy is that everything is a component. Instead of separating your CSS and your JS, they become integrated into one single entity. So instead of loading styles into a component from some external source, the styles are actually built into the component itself, and can be configured using props/state.
 
-In a styled components implementation, a `Button` component for example, might take a `color` prop, or a `fontSize` prop to determine its style. This approach is closed integrated with React, and utilizes the built in React features (props/state) more than any other.
+In a styled components implementation, a `Button` component for example, might take a `color` prop, or a `fontSize` prop to determine its style. This approach is closed integrated with React, and utilizes the built-in React features (props/state) more than any other.
 
 In the code below, we're using the [emotion](https://emotion.sh/docs/introduction) library to create a styled `Button` component. The syntax is a bit foreign, but this is essentially creating a `<button>` component which maps its props to styles. For example, the button below accepts a `color` and an `outline` prop, which are used to generate the styling.
 

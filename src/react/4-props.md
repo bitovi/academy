@@ -115,7 +115,7 @@ function MyButton({ onButtonClick }) {
 
 @highlight 1,3
 
-Notice above that the `MyButton` component now accepts a `onButtonClick` prop. Now whenever the button is clicked it will call the callback function, making the `MyButton` component more reusable.
+Notice above that the `MyButton` component now accepts an `onButtonClick` prop. Now whenever the button is clicked it will call the callback function, making the `MyButton` component more reusable.
 
 ```jsx
 <MyButton onButtonClick={() => console.log('custom click action')}>

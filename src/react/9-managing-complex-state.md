@@ -149,7 +149,7 @@ function DisplayComponent({ unsavedText, setUnsavedText, savedText }) {
 
 @highlight 1,2-5,9,11
 
-Next, let's wire up that button. We'll define a `onButtonClick` callback to handle changes to the state variables. Pass the callback down to `ButtonComponent`.
+Next, let's wire up that button. We'll define an `onButtonClick` callback to handle changes to the state variables. Pass the callback down to `ButtonComponent`.
 
 ```jsx
 function WrapperContainer() {

@@ -7,13 +7,13 @@
 
 ## The React Stack
 
-In its simplest form React is just a library. When developing real world applications, React is best used in combination with several other technologies. Let's take a look at some of these below:
+In its simplest form React is just a library. When developing real-world applications, React is best used in combination with several other technologies. Let's take a look at some of these below:
 
 - **[Babel](https://babeljs.io/)** - Babel is a JavaScript transpiler which allows developers to use the latest language features in a backwards compatible way. Specifically, React relies on Babel to transpile JSX (the syntax used to define components) into executable JavaScript code.
 - **[Webpack](https://webpack.js.org/)** - Webpack lets developers bundle their React components and apps into small, easily-servable bundles which are downloaded and run when the page loads. Additionally, Webpack can be configured for live-reloading during development.
 - **[Jest](https://jestjs.io/)** - Jest is [the most popular](https://www.npmtrends.com/ava-vs-jasmine-vs-jest-vs-mocha-vs-qunit) JavaScript testing library. It is built by the people behind React and can be used to test React components very easily.
 
-Besides the three highlighted above, there are many other technologies which can make developing in React a better experience. While it is possible to configure a codebase which integrates all of them together, the React team provide a tool to to do this for you. It is called [Create React App](https://github.com/facebook/create-react-app).
+Besides the three highlighted above, there are many other technologies which can make developing in React a better experience. While it is possible to configure a codebase which integrates all of them together, the React team provide a tool to do this for you. It is called [Create React App](https://github.com/facebook/create-react-app).
 
 ## Create React App
 
@@ -50,7 +50,7 @@ Let's walk through some of the generated files.
 
 The public folder contains static assets which will be served up as part of your website. You can include stylesheets, images and other static files. The most important file here is `index.html`, which is the page that will render React by default.
 
-Anything put inside this directory will be copied as is into the `build` directory during the build process. Generally, you shouldn't need to touch this folder too much.
+Anything put inside this directory will be copied as-is into the `build` directory during the build process. Generally, you shouldn't need to touch this folder too much.
 
 **/src**
 
@@ -104,7 +104,7 @@ The final script, `eject`, is very important and dangerous. In order to simplify
 
 One of the benefits of using `react-scripts` is its great build process. When you run the `npm run build` command, your site will automatically be bundled, minified, and written into a `build` folder.
 
-You can can then upload the folder to any web-server to be served statically (just like a normal HTML website), no special configuration required.
+You can then upload the folder to any web-server to be served statically (just like a normal HTML website), no special configuration required.
 
 ## Try it out
 

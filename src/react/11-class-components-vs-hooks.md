@@ -35,7 +35,7 @@ The "Hooks" way of doing things is slowly becoming adopted not just by React but
 
 Hooks allow you to colocate all logic relating to a specific feature. No more splitting it between multiple lifecycle methods or duplicating logic.
 
-You also get the benefits of higher order components but with simple functions and without clogging up your component tree.
+You also get the benefits of higher-order components but with simple functions and without clogging up your component tree.
 
 So let's take a look at some basic hooks and start to get a feel for this new paradigm.
 
@@ -139,7 +139,7 @@ ReactDOM.render(<Timer />, document.getElementById('root'));
 @highlight 2,5-6
 @codepen react
 
-`useState` can define a single piece of state with both the state value and a function for updating the value. Instead of the component's state being stored in one monolith object, it's broken out into discrete, well named units.
+`useState` can define a single piece of state with both the state value and a function for updating the value. Instead of the component's state being stored in one monolith object, it's broken out into discrete, well-named units.
 
 In addition, instead of needing to define two lifecycle methods (`componentWillMount`, `componentWillUnmount`) we can utilize the `useEffect` hook which is able to simulate both in a single go.
 
