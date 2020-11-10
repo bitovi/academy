@@ -362,16 +362,16 @@ a.quote-link:hover{
     <div class="courses" id="courses">
       <div class="academy-card course">
           <div class="course-logo">
-            <img src="./static/img/typescript.png" width="140">
+            <img src="./static/img/react.png" width="70">
           </div>
-          <h4>TypeScript</h4>
-          <p>Learn the essentials of TypeScript: types, functions, classes, interfaces and generics.</p>
+          <h4>React</h4>
+          <p>Build a feature-rich Tic-Tac-Toe game in this beginner React guide.</p>
           <div class="width100">
-            <p class='detail'><strong>Audience:</strong> Beginner JS developer</p>
-            <p class='detail'><strong>Goal:</strong> Be ready to develop a TypeScript project.</p>
-            <p class='detail'><strong>Time:</strong> 3 hours</p>
+            <p class='detail'><strong>Audience:</strong> Intermediate JS developers, new React developers</p>
+            <p class='detail'><strong>Goal:</strong> Learn the basics of React </p>
+            <p class='detail'><strong>Time:</strong> 6 hours</p>
           </div>
-          <a href="./learn-typescript.html" class="button button-grey full-width">Take this course</a>
+          <a href="./learn-react.html" class="button button-grey full-width">Take this course</a>
       </div>
       <div class="academy-card course">
           <div class="course-logo">
@@ -406,6 +406,19 @@ a.quote-link:hover{
     <div class="courses">
       <div class="academy-card course">
           <div class="course-logo">
+            <img src="./static/img/typescript.png" width="140">
+          </div>
+          <h4>TypeScript</h4>
+          <p>Learn the essentials of TypeScript: types, functions, classes, interfaces and generics.</p>
+          <div class="width100">
+            <p class='detail'><strong>Audience:</strong> Beginner JS developer</p>
+            <p class='detail'><strong>Goal:</strong> Be ready to develop a TypeScript project.</p>
+            <p class='detail'><strong>Time:</strong> 3 hours</p>
+          </div>
+          <a href="./learn-typescript.html" class="button button-grey full-width">Take this course</a>
+      </div>
+      <div class="academy-card course">
+          <div class="course-logo">
             <img src="./static/img/javascript.png" height="70">
           </div>
           <h4>Advanced JavaScript</h4>
@@ -431,13 +444,14 @@ a.quote-link:hover{
           </div>
           <a href="./learn-dom-jquery.html" class="button button-grey full-width">Take this course</a>
       </div>
+    </div>
+    <div class="courses">
       <div class="academy-card course">
           <div class="course-logo">
             <img src="./static/img/javascript.png" height="70">
           </div>
           <h4>Debug JavaScript</h4>
-          <p>Learn breakpoints and how to debug the scope, stack, prototypes, and
-  property changes.</p>
+          <p>Learn breakpoints and how to debug the scope, stack, prototypes, and property changes.</p>
           <div class="width100">
             <p class='detail'><strong>Audience:</strong> Beginner JS developers</p>
             <p class='detail'><strong>Goal:</strong> Debug most problems with chrome developer tools.</p>
@@ -445,8 +459,6 @@ a.quote-link:hover{
           </div>
           <a href="./learn-to-debug-javascript.html" class="button button-grey full-width">Take this course</a>
       </div>
-    </div>
-    <div class="courses">
       <div class="academy-card course">
           <div class="course-logo">
             <img src="./static/img/web-components.png" height="100">
@@ -473,7 +485,6 @@ a.quote-link:hover{
         </div>
         <a href="./learn-docker.html" class="button button-grey full-width">Take this course</a>
       </div>
-      <div class="academy-card course" style="background: transparent; border: none;">&nbsp;</div>
     </div>
   </div>
   <a name="live-events-section"></a>
@@ -536,27 +547,15 @@ a.quote-link:hover{
       </div>
       <div class="academy-card course">
         <div class="course-logo">
-          <img src="./static/img/react.png" width="70">
-        </div>
-        <h4>React</h4>
-        <p>Build a feature-rich Tic-Tac-Toe game in this beginner React guide.</p>
-        <div class="width100">
-          <p class='detail'><strong>Audience:</strong> Intermediate JS developers, new React developers</p>
-            <p class='detail'><strong>Goal:</strong> Learn the basics of React </p>
-            <p class='detail'><strong>Time:</strong> 6 hours</p>
-        </div>
-        <a href="./learn-react.html" class="button button-grey full-width">Take this course</a>
-      </div>
-    </div>
-    <div class="courses">
-      <div class="academy-card course">
-        <div class="course-logo">
           <img src="./static/img/javascript.png" width="60">
         </div>
         <h4>Your Course Here</h4>
         <p>Got an idea for a course? Let us know by submitting an issue.</p>
         <a class="button full-width" style="color: white" href="https://github.com/bitovi/academy/issues/new" target="\_blank">Submit your idea</a>
       </div>
+    </div>
+    <div class="courses">
+      <div class="academy-card course" style="background: transparent; border: none;">&nbsp;</div>
       <div class="academy-card course">
         <div class="course-logo">
           <img src="./static/img/slack.png" width="150">
