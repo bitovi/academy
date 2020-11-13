@@ -9,13 +9,13 @@
 
 Before we talk about JSX, let's discuss how user interfaces are created in React.
 
-At its core, React is a JavaScript library that helps create reusable front-end components. One of the unique features of React is that it allows you to describe the way your components look using only JavaScript.
+At its core, React is a JavaScript library that helps create reusable front-end views. One of the unique features of React is that it allows you to describe the way your components look using only JavaScript.
 
 But this "all JS" approach comes with some downsides, namely it becomes arduous to describe complex page hierarchies using only pure JavaScript. When first learning React, it's good to be aware of the [element API](https://reactjs.org/docs/react-api.html), but keep in mind that most React developers will forego this for an alternative syntactic sugar called JSX.
 
 ### React's Element API
 
-React exposes an [API](https://reactjs.org/docs/react-api.html) for creating HTML elements using JavaScript. For example to create an `h1` we could write the following:
+React exposes an [API](https://reactjs.org/docs/react-api.html) for creating DOM-like elements that are then rendered into the DOM using JavaScript. For example to create an `h1` we could write the following:
 
 ```js
 React.createElement('h1', null, 'Hello World');
@@ -34,7 +34,7 @@ React.createElement(
 );
 ```
 
-The code above produces the following HTML:
+The code above produces a something similar to the following HTML:
 
 ```html
 <div id="greeting">
@@ -94,9 +94,9 @@ First, notice how instead of using a string to store the styles (like `style=""`
 > />
 > ```
 
-Inside of `style={}` we have an object of styles whose keys are css attributes and values are css values. This structure closely resembles the [`CSSStyleDeclaration`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration) object used by the browser to store element styles.
+The object passed into `style={}` should be an object whose keys are css attributes and values are css values. This structure closely resembles the [`CSSStyleDeclaration`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration) object used by the browser to store element styles.
 
-✏️ To see this run `document.body.style` in your browser console.
+✏️ To see an example of this style object, run `document.body.style` in your browser console.
 
 Another thing you may note is the difference between `background-color` and `backgroundColor`.
 
@@ -152,9 +152,9 @@ Will output the following HTML:
 <div>Sibling 2</div>
 ```
 
-Note how the fragment components don't have any corresponding DOM output. This would also be true if we had used `<React.Fragment>` instead; they are the same.
+Note how the fragment components don't have any corresponding DOM output. This would also be true if `<React.Fragment>` was used instead; they are the same.
 
-## JavaScript Interpolation
+## JavaScript's JSX Interpolation
 
 JSX is dynamic. You can easily insert values from variables and objects into your JSX:
 
@@ -164,7 +164,7 @@ const name = 'Bitovi';
 <div className="button primary">Welcome to {name}!</div>;
 ```
 
-In the code above, we've used the `{name}` syntax to tell JSX that we want to render the value stored in the `name` variable (ie. `"Bitovi"`) into our view.
+In the code above, use the `{name}` syntax to tell JSX that to render the value stored in the `name` variable (ie. `"Bitovi"`) into our view.
 
 You can take this a step further by interpolating multiple values, and using JavaScript functions to transform data on the fly. Anything that goes inside `{}` is executed as normal JavaScript. These are the same rules as the brackets on a prop: any JavaScript expression is valid inside the curly brackets.
 
@@ -244,8 +244,7 @@ Conditions can be re-written using the ternary operator.
 <div>
   {a === b // Ternaries are expressions. They return a value.
     ? 'a and b are equal'
-    : 'a and b are different'
-  }
+    : 'a and b are different'}
 </div>
 ```
 
@@ -302,13 +301,15 @@ One of the most powerful aspects of JavaScript is that it enables developers to 
 
 @highlight 2
 
+Note to things above, all event names are camelcased (onClick, onMouseEnter, etc...).
+
 In the code above, we've attached an `onClick` listener to the `<button>` element. Whenever this button gets clicked, the code inside the `onClick={...}` will get executed. The value always needs to be a function, and that function will get called with an `event` object.
 
 All [events](https://reactjs.org/docs/events.html) supported in vanilla JavaScript are also supported in JSX.
 
 ## Components
 
-In React we can store our JSX inside of components. Components are like small containers which can be re-used throughout your application. For example, you might build a `Button` component which renders all the JSX required for a button.
+In React JSX is almost always the return value of our components. Components are like small containers which can be re-used throughout your application. For example, you might build a `Button` component which renders all the JSX required for a button.
 
 ```jsx
 function Button() {
