@@ -5,11 +5,11 @@
 
 @body
 
-## Creating Views in React
+## Creating HTML with React
 
-Before we talk about JSX, let's discuss how user interfaces are created in React.
+Before we talk about how React creates HTML, let's discuss how user interfaces are created in React.
 
-At its core, React is a JavaScript library that helps create reusable front-end views. One of the unique features of React is that it allows you to describe the way your components look using only JavaScript.
+At its core, React is a JavaScript library that helps create reusable front-end components. One of the unique features of React is that it allows you to describe the way your components look using only JavaScript.
 
 But this "all JS" approach comes with some downsides, namely it becomes arduous to describe complex page hierarchies using only pure JavaScript. When first learning React, it's good to be aware of the [element API](https://reactjs.org/docs/react-api.html), but keep in mind that most React developers will forego this for an alternative syntactic sugar called JSX.
 
@@ -34,7 +34,7 @@ React.createElement(
 );
 ```
 
-The code above produces a something similar to the following HTML:
+The code above produces something similar to the following HTML:
 
 ```html
 <div id="greeting">
@@ -94,11 +94,9 @@ First, notice how instead of using a string to store the styles (like `style=""`
 > />
 > ```
 
-The object passed into `style={}` should be an object whose keys are css attributes and values are css values. This structure closely resembles the [`CSSStyleDeclaration`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration) object used by the browser to store element styles.
+The object passed into `style={}` should map css attributes to css values. This structure closely resembles the [`CSSStyleDeclaration`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration) object used by the browser to store element styles.
 
 ✏️ To see an example of this style object, run `document.body.style` in your browser console.
-
-Another thing you may note is the difference between `background-color` and `backgroundColor`.
 
 ### Classes
 
