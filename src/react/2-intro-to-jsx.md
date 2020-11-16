@@ -34,7 +34,7 @@ React.createElement(
 );
 ```
 
-The code above produces something similar to the following HTML:
+The code above will produce the following HTML once rendered:
 
 ```html
 <div id="greeting">
@@ -152,7 +152,7 @@ Will output the following HTML:
 
 Note how the fragment components don't have any corresponding DOM output. This would also be true if `<React.Fragment>` was used instead; they are the same.
 
-## JavaScript's JSX Interpolation
+## JSX Interpolation
 
 JSX is dynamic. You can easily insert values from variables and objects into your JSX:
 
@@ -289,7 +289,7 @@ If you want to iterate within JSX, use methods such as `Array.map`, `Array.filte
 
 ## Event Handling
 
-One of the most powerful aspects of JavaScript is that it enables developers to respond to events in the browser. With JSX it's easy to listen for and respond to these events.
+One of the most powerful aspects of JavaScript is that it enables developers to respond to events in the browser. With JSX it's easy to listen for and respond to these events. In React, all event names are camelcased (onClick, onMouseEnter, etc...).
 
 ```jsx
 <div className="button primary">
@@ -298,8 +298,6 @@ One of the most powerful aspects of JavaScript is that it enables developers to 
 ```
 
 @highlight 2
-
-Note to things above, all event names are camelcased (onClick, onMouseEnter, etc...).
 
 In the code above, we've attached an `onClick` listener to the `<button>` element. Whenever this button gets clicked, the code inside the `onClick={...}` will get executed. The value always needs to be a function, and that function will get called with an `event` object.
 
