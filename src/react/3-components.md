@@ -1,7 +1,7 @@
 @page learn-react/components What are React Components
 @parent learn-react 3
 
-@description Learn about the two fundamental ways of writing React components and their differences.
+@description Learn about the two ways of writing React components and their differences.
 
 @body
 
@@ -9,10 +9,10 @@ React is all about components. In fact the whole point of the library is to help
 
 But what is a component?
 
-In a nutshell, a component is a function which uses props and state to return an element.
+A component is a function which uses props and state to return an element.
 
 - **Props** - The props of a component are the same as arguments to a function.
-- **State** - The state are the values which the component controls itself.
+- **State** - The state is the values which the component controls.
 - **Side Effects** - The side effects of a component are the results of operations which interact with things outside of the component. This includes things like async fetching, registering DOM event-handlers and using browser APIs.
 
 ## Functional Components
