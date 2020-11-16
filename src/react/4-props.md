@@ -35,7 +35,7 @@ This same principle applies to React components.
 
 ## Basic Props Usage
 
-Recall that React components are just functions (or classes) which return an element. And like normal functions, we run into the same reusability problems.
+React components are just functions which return an element. And like normal functions, we run into the same reusability problems.
 
 ```jsx
 function AddNumbers() {
@@ -59,7 +59,7 @@ function AddNumbers({ num1, num2 }) {
 
 @highlight 2
 
-> In React, all functional components receive a `props` object as their first argument (class components get them in the constructor and at `this.props` in the methods).
+> In React, all functional components receive a `props` object as their first argument.
 
 We're also [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) the props object, a convention used by much of the community and in the rest of this guide.
 

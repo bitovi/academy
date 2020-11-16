@@ -150,7 +150,7 @@ Will output the following HTML:
 <div>Sibling 2</div>
 ```
 
-Note how the fragment components don't have any corresponding DOM output. This would also be true if `<React.Fragment>` was used instead; they are the same.
+Note how the fragment components don't have any corresponding DOM output. This would also be true if `<React.Fragment>` was used instead. They're identical.
 
 ## JSX Interpolation
 
