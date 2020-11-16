@@ -35,7 +35,7 @@ This same principle applies to React components.
 
 ## Basic Props Usage
 
-Recall that React components are just functions (or classes) which return an element. And like normal functions, we run into the same re-usability problems.
+Recall that React components are just functions (or classes) which return an element. And like normal functions, we run into the same reusability problems.
 
 ```jsx
 function AddNumbers() {
@@ -72,7 +72,7 @@ The props object contains any values which are passed into the component when it
 
 Whenever the `AddNumbers` component is rendered, we can now pass it `num1` & `num2` props which it will use to do the calculation.
 
-Now, instead of having a hardcoded addition, the component is flexible and can be re-used in any scenario where it's necessary to display the result of adding two numbers.
+Now, instead of having a hardcoded addition, the component is flexible and can be reused in any scenario where it's necessary to display the result of adding two numbers.
 
 ## Prop Data Types
 
@@ -100,7 +100,7 @@ function MyButton() {
 
 @highlight 2
 
-The button above calls `console.log('clicked')` whenever the user clicks it. But once again, we're running into a re-usability issue.
+The button above calls `console.log('clicked')` whenever the user clicks it. But once again, we're running into a reusability issue.
 
 Suppose we wanted to perform an arbitrary action when the button is clicked instead of the hardcoded `console.log('clicked')`.
 

@@ -309,7 +309,7 @@ All [events](https://reactjs.org/docs/events.html) supported in vanilla JavaScri
 
 ## Components
 
-In React JSX is almost always the return value of our components. Components are like small containers which can be re-used throughout your application. For example, you might build a `Button` component which renders all the JSX required for a button.
+In React JSX is almost always the return value of our components. Components are like small containers which can be reused throughout your application. For example, you might build a `Button` component which renders all the JSX required for a button.
 
 ```jsx
 function Button() {
@@ -327,7 +327,7 @@ ReactDOM.render(<Button />, document.getElementById('root'));
 
 In the code above, we're defining a functional component (a function which returns JSX) called `Button`.
 
-This component returns JSX and could then be rendered and re-used by another component like `App` below.
+This component returns JSX and could then be rendered and reused by another component like `App` below.
 
 ```jsx
 function App() {

@@ -68,6 +68,6 @@ function App() {
 
 Originally, class components were the most popular because they could keep track of state and respond to specific component lifecycle events. This wasn't possible in functional components until the release of the [React Hooks API](https://reactjs.org/docs/hooks-reference.html) in v16. Up until then, functional components were commonly referred to as _stateless components_.
 
-Now both class and functional components are used commonly in code-bases around the world, but there has been a shift to using only functional components, as the syntax for them is more readable and cleaner.
+Now both class and functional components are used commonly in codebases around the world, but there has been a shift to using only functional components, as the syntax for them is more readable and cleaner.
 
 For the remainder of this training, we will be using functional components exclusively.
