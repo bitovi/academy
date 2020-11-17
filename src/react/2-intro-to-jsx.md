@@ -29,19 +29,19 @@ function App(props){
 }
 ```
 
-Above, we see that the component `HelloWorld` is capitalized. This is not an accident. It's mandatory. If a component name is lowercase, React assumes it to be a normal HTML tag (like `span`, or `div`). So the capital naming convention is useful in that it disambiguates the code from normal HTML elements.
+Even from this simple example, we can see 3 big takeaways.
 
-Also notice that our component has this argument called `props`. We will be going into more detail about this component in later sections but you can think of `props` as simply an argument object that we pass into a component to make it more reusable. Above, I'm reusing the component with 3 different names.
+1. the component `HelloWorld` is capitalized. This is not an accident. It's mandatory. If a component name is lowercase, React assumes it to be a normal HTML tag (like `span`, or `div`). So the capital naming convention is useful in that it disambiguates the code from normal HTML elements.
 
-And lastly, you'll notice that somehow via the magic of React, we have embedded html code directly into a function. We'll describe this magic (known as `JSX` below).
+2. We pass 'name' to our `HelloWorld` component. These HTML attribute-like descriptors are called `props`, and React passes them to the `HelloWorld` component for us. The argument `props` is simply an object containing all of the attribute-like things we passed in. We will be going into more detail about `props` later but recognize that they make components more reuseable. Above, I'm reusing the component with 3 different names.
+
+3. And lastly, you'll notice that somehow via the magic of React, we have embedded html code directly into a function. We'll describe this magic (known as `JSX` below).
 
 ## Creating HTML with React
 
 Before we talk about how React creates HTML, let's discuss how user interfaces are created in React.
 
-At its core, React is a JavaScript library that helps create reusable front-end components. One of the unique features of React is that it allows you to describe the way your components look using only JavaScript.
-
-But this "all JS" approach comes with some downsides, namely it becomes arduous to describe complex page hierarchies using only pure JavaScript. When first learning React, it's good to be aware of the [element API](https://reactjs.org/docs/react-api.html), but keep in mind that most React developers will forego this for an alternative syntactic sugar called JSX.
+At its core, React is a JavaScript library that allows you to describe the way your components look using only JavaScript. But this "all JS" approach comes with some downsides, namely it becomes arduous to describe complex page hierarchies using only pure JavaScript. When first learning React, it's good to be aware of the [element API](https://reactjs.org/docs/react-api.html), but keep in mind that most React developers will forego this for an alternative syntactic sugar called JSX.
 
 ### React's Element API
 
@@ -332,39 +332,3 @@ One of the most powerful aspects of JavaScript is that it enables developers to 
 In the code above, we've attached an `onClick` listener to the `<button>` element. Whenever this button gets clicked, the code inside the `onClick={...}` will get executed. The value always needs to be a function, and that function will get called with an `event` object.
 
 All [events](https://reactjs.org/docs/events.html) supported in vanilla JavaScript are also supported in JSX.
-
-## Components
-
-In React JSX is almost always the return value of our components. Components are like small containers which can be reused throughout your application. For example, you might build a `Button` component which renders all the JSX required for a button.
-
-```jsx
-function Button() {
-  return (
-    <div className="button primary">
-      <button>click me</button>
-    </div>
-  );
-}
-
-ReactDOM.render(<Button />, document.getElementById('root'));
-```
-
-@codepen react
-
-In the code above, we're defining a functional component (a function which returns JSX) called `Button`.
-
-This component returns JSX and could then be rendered and reused by another component like `App` below.
-
-```jsx
-function App() {
-  return (
-    <div>
-      <Button />
-      <Button />
-      <Button />
-    </div>
-  );
-}
-```
-
-Here the `App` component is rendering the `Button` component 3 times. Note that when you render custom components like this they don't need closing tags, instead they can be self-closing with a `/` tacked onto the end. You can also design them to have closing tags with extra elements rendered inside (see an explanation on JSX children [here](https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891)).

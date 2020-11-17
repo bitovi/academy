@@ -7,7 +7,41 @@
 
 React is all about components. In fact the whole point of the library is to help developers easily create reusable components.
 
-But what is a component?
+## Components
+
+Earlier, we learned that React JSX is almost always the return value of our components. Components are like small containers which can be reused throughout your application. For example, you might build a `Button` component which renders all the JSX required for a button. Here's an example.
+
+```jsx
+function Button() {
+  return (
+    <div className="button primary">
+      <button>click me</button>
+    </div>
+  );
+}
+
+ReactDOM.render(<Button />, document.getElementById('root'));
+```
+
+@codepen react
+
+In the code above, we're defining a functional component (a function which returns JSX) called `Button`.
+
+This component returns JSX and could then be rendered and reused by another component like `App` below.
+
+```jsx
+function App() {
+  return (
+    <div>
+      <Button />
+      <Button />
+      <Button />
+    </div>
+  );
+}
+```
+
+Here the `App` component is rendering the `Button` component 3 times. Note that when you render custom components like this they don't need closing tags, instead they can be self-closing with a `/` tacked onto the end. You can also design them to have closing tags with extra elements rendered inside (see an explanation on JSX children [here](https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891)).
 
 A component is a function which uses props and state to return an element.
 

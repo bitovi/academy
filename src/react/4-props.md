@@ -153,19 +153,11 @@ ReactDOM.render(<App />, document.getElementById('root'));
 
 ## Exercise
 
-Let's use our props knowledge to start building out the Tic-Tac-Toe app that we started in [learn-react/setting-up-environment].
-
-The app itself has already been [scaffolded](https://github.com/bitovi/react-exercises). It includes 3 files, each of which comes together to make up the game:
-
-- `Game.js` - This is the component which is responsible for running the game. It's the highest level component, and the most complex. This is where we'll do most of our state management.
-- `Board.js` - This is a component which renders out the game board and all of the squares inside of it.
-- `Square.js` - This component represents a single square on the Tic-Tac-Toe board. It can be blank or populated with a symbol such as X or O.
-
-✏️ Clone the app from [GitHub](https://github.com/bitovi/react-exercises) and run it locally with `npm install && npm start` and choose the `Props` exercise. Now head over to `src/exercises/4 - Props/components`. These are the files you'll be editing for this exercise.
+Let's use our props knowledge to start building out the Tic-Tac-Toe component.
 
 ### The problem
 
-The goal of this exercise is to get a `console.log()` to happen whenever the user clicks on a square. This will require you to work modify some of the props in the scaffolded code.
+The goal of this exercise is to get a `console.log()` to happen whenever the user clicks on a square. You will need to render the squares first. This will require you to work modify some of the props in the scaffolded code.
 
 #### Hints
 
@@ -175,9 +167,71 @@ The goal of this exercise is to get a `console.log()` to happen whenever the use
 - Modify the `Board` component so it renders out all 9 squares given to it by its `board` props (`board` is an array of strings).
 - Modify the `Game` component so it passes the correct props into `<Board />`.
 
+```jsx
+// Square will receive 2 props, "onClick" and "symbol"
+// Try destructuring the "props" object below to get them
+function Square(props) {
+  return (
+    <div
+      className="square"
+      // add an onClick handler that calls the onClick
+      // prop that was passed in
+    >
+      {/* display the "symbol" prop here */}
+    </div>
+  );
+}
+
+function Board({ onSquareClick, board }) {
+  return <div className="board">{/* 
+                Use the map function to loop over the "board" prop.
+                Each item in the board array should be mapped to 
+                a <Square /> component.
+
+                The Square component takes a symbol prop (x or o), an 
+                onClick prop, and since we're using the map function each
+                Square will also need a unique key prop.
+            */}</div>;
+}
+
+const blankBoard = ['', '', '', '', '', '', '', '', ''];
+
+function Game() {
+  const getHint = () => {
+    console.log('Getting hint');
+  };
+
+  const toggleTheme = () => {
+    console.log('You toggled the theme');
+  };
+
+  return (
+    <>
+      <Board
+        board={[]} // What should actually go here?
+        onSquareClick={() => {}}
+        // ^ Create a function to pass into onSquareClick
+        // that prints out "Clicked"
+      />
+      <button onClick={getHint}>Get Hint</button>
+      <button>Toggle Theme</button>
+      {/* 
+                ^ Add an onClick prop to the button above
+                (the toggleTheme function)
+            */}
+      current player: X
+    </>
+  );
+}
+```
+
+@codepen react
+
+You can run the code above by hovering over the code block and hitting Run, which is in the upper right hand corner. Only check the solution below once you've taken a pass yourself.
+
 ### The solution
 
-#### Square.js
+#### Square component
 
 ```jsx
 function Square({ onClick, symbol }) {
@@ -191,7 +245,7 @@ function Square({ onClick, symbol }) {
 
 @highlight 1,3,4,only
 
-#### Board.js
+#### Board component
 
 ```jsx
 function Board({ onSquareClick, board }) {
@@ -211,7 +265,7 @@ function Board({ onSquareClick, board }) {
 
 @highlight 4-10,only
 
-#### Game.js
+#### Game component
 
 ```jsx
 const blankBoard = ['', '', '', '', '', '', '', '', ''];
