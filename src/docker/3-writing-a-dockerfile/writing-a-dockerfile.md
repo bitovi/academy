@@ -124,6 +124,7 @@ There are more complex cases on when a trailing slash is required on a `<src>` o
 ## RUN instruction
 The `RUN` instruction allows arbitrary commands to be run during build time.
 
+In our case, we are using `RUN npm install` to install dependencies from the `package.json` file copied in to our image. As a reminder, `npm` is pre-installed as a part of our `node:15` base image.
 [Official Docs](https://docs.docker.com/engine/reference/builder/#run)
 
 ## EXPOSE instruction
