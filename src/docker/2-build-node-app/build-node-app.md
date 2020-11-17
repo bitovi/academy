@@ -1,0 +1,65 @@
+@page learn-docker/build-node-app Build a Node App
+@parent learn-docker 2
+
+@description Learn to setup a basic CanJS application using StealJS as the module loader.
+
+@body
+## Overview
+In this section, we are going to build a simple "Hello World" api using [Express](https://expressjs.com/).
+
+NodeJS is not required if you just want to read through this section and copy/paste the code snippets. If you want to run the application before we containerize it in the next section, you can install NodeJS [here](https://nodejs.org/en/download/).
+                  
+## Building our app
+The app requires only two files
+* package.json
+* index.js
+
+### package.json
+```
+{
+  "name": "bitops-academy-app",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
+```
+This file defines `express` as a standard dependency and `nodemon` as a dev depenency. Nodemon is used to run our Express server and watch the source code to hot-reload any new changes without needing to restart the server. It is a dev dependency because we don't want the overhead of running nodemon in production or even the bulk of keeping it in `node_modules/`.
+
+Our `package.json` also defines a `start` script. This is a convinient way to allow us to start our application by running `npm start`.
+
+### index.js
+```
+const express = require('express')
+const app = express()
+const port = process.env.PORT || 3000
+
+app.get('/', (req, res) => {
+  res.send('Hello World!')
+})
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
+```
+This file starts an express server listening on `localhost:3000`. If we access the root path it should return `Hello World!`. The default port 3000, but can be overwritten by setting the `PORT` environment variable before starting the server.
+
+## Run our app
+This step is optional, but to verify our app works you can run
+```
+npm install
+npm start
+```
+Open your browser to `localhost:3000` and you should see `Hello World!`
+
+![node app in browser](../static/img/docker/2-build-node-app/node-hello-world.png)
+
+## What's next
+Now that we've created a simple NodeJS app, we are going to containerizing it.
+    
