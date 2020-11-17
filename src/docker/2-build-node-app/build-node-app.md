@@ -17,7 +17,7 @@ The app requires only two files
 ### package.json
 ```
 {
-  "name": "bitops-academy-app",
+  "name": "bitovi-academy-app",
   "version": "1.0.0",
   "scripts": {
     "start": "nodemon index.js"

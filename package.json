@@ -32,7 +32,8 @@
     "dotenv": "^7.0.0",
     "gh-pages": "^2.0.1",
     "html2canvas": "^1.0.0-alpha.12",
-    "recursive-readdir": "^2.2.2"
+    "recursive-readdir": "^2.2.2",
+    "steal-qunit": "^1.0.2"
   },
   "bit-docs": {
     "dependencies": {

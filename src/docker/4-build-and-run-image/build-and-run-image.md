@@ -7,7 +7,7 @@
 
 ## Overview
 
-## App review
+## App Review
 In the last section, we created a `Dockerfile` for our NodeJS app.
 ```
 FROM node:15
@@ -136,6 +136,7 @@ $ docker ps
 CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
 
 ```
+
 ## Customize the port
 We can use the `-e` flag when running our container to set the `PORT` environment variable.
 ```
@@ -144,7 +145,7 @@ $ docker run --name my-container -p 8000:9000 -d -e PORT=9000 my-node-app:latest
 
 $ docker logs my-container
 
-> bitops-academy-app@1.0.0 start
+> bitovi-academy-app@1.0.0 start
 > nodemon src/index.js
 
 [nodemon] 2.0.6
@@ -155,3 +156,6 @@ $ docker logs my-container
 Example app listening at http://localhost:9000
 ```
 You'll see the last line of the logs indicating the app is now listening on port 9000. However, because we set the port mapping with `-p 8000:9000`, we still will view the application in our browser from `localhost:8000`.
+
+## Review
+We've 
