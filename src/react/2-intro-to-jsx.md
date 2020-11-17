@@ -5,6 +5,36 @@
 
 @body
 
+## What are Components?
+
+In React, `Components` are an encapsulation of an element's look and behavior. Here is an example "Hello World" component, that also prints my name.
+
+```jsx
+function HelloWorld(props) {
+  return <div>Hello World, my name is {props.name}</div>;
+}
+```
+
+and I would use this component, somewhere else in my app very similarly to how one embeds HTML, like this
+
+```jsx
+function App(props){
+  return (
+    <div>
+      <HelloWorld name="Dan">
+      <HelloWorld name="Kelsey">
+      <HelloWorld name="Mitchell">
+    </div>
+  )
+}
+```
+
+Above, we see that the component `HelloWorld` is capitalized. This is not an accident. It's mandatory. If a component name is lowercase, React assumes it to be a normal HTML tag (like `span`, or `div`). So the capital naming convention is useful in that it disambiguates the code from normal HTML elements.
+
+Also notice that our component has this argument called `props`. We will be going into more detail about this component in later sections but you can think of `props` as simply an argument object that we pass into a component to make it more reusable. Above, I'm reusing the component with 3 different names.
+
+And lastly, you'll notice that somehow via the magic of React, we have embedded html code directly into a function. We'll describe this magic (known as `JSX` below).
+
 ## Creating HTML with React
 
 Before we talk about how React creates HTML, let's discuss how user interfaces are created in React.

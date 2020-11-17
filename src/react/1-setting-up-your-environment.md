@@ -56,7 +56,7 @@ Anything put inside this directory will be copied as-is into the `build` directo
 
 The `src` folder is where all your React components should be stored alongside any logic for your app. This should already be seeded with a small sample app.
 
-The `index.js` file is known as the entry-point of the React application. This is where our application is initialized and mounted in the DOM.
+The `index.js` file is known as the entry point of the React application. This is where our application is initialized and mounted in the DOM.
 
 ```jsx
 import React from 'react';
@@ -104,7 +104,7 @@ The final script, `eject`, is very important and dangerous. In order to simplify
 
 One of the benefits of using `react-scripts` is its great build process. When you run the `npm run build` command, your site will automatically be bundled, minified, and written into a `build` folder.
 
-You can then upload the folder to any web-server to be served statically (just like a normal HTML website), no special configuration required.
+You can then upload the folder to any webserver to be served statically (just like a normal HTML website), no special configuration required.
 
 ## Try it out
 
