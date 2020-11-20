@@ -108,16 +108,14 @@ You can then upload the folder to any webserver to be served statically (just li
 
 ## Try it out
 
-✏️ Clone the [Tic-Tac-Toe](https://github.com/bitovi/react-exercises) app we'll be building in this training. This is the codebase you'll be using throughout the series to improve your React skills.
+Inside the `myapp` directory, run
 
 ```bash
-git clone https://github.com/bitovi/react-exercises
-cd react-exercises
 npm install
 npm run build
 ```
 
-@highlight 4
+@highlight 2
 
 The final command will build the site and create a `build` folder. Check out the generated files. Notice how they're nicely minified and bundled!
 

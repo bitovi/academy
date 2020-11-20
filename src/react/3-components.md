@@ -43,12 +43,6 @@ function App() {
 
 Here the `App` component is rendering the `Button` component 3 times. Note that when you render custom components like this they don't need closing tags, instead they can be self-closing with a `/` tacked onto the end. You can also design them to have closing tags with extra elements rendered inside (see an explanation on JSX children [here](https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891)).
 
-A component is a function which uses props and state to return an element.
-
-- **Props** - The props of a component are the same as arguments to a function.
-- **State** - The state is the values which the component controls.
-- **Side Effects** - The side effects of a component are the results of operations which interact with things outside of the component. This includes things like async fetching, registering DOM event-handlers and using browser APIs.
-
 ## Functional Components
 
 Functional components are simple. In a nutshell, they're just functions which return a React element, usually written in JSX.

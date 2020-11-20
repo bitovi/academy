@@ -168,12 +168,34 @@ The goal of this exercise is to get a `console.log()` to happen whenever the use
 - Modify the `Game` component so it passes the correct props into `<Board />`.
 
 ```jsx
+const squareStyling = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+};
+
+const boardStyling = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  width: '600px',
+  height: '600px',
+  boxShadow: '0px 3px 8px 0 rgba(0, 0, 0, 0.1)',
+  boxSizing: 'border-box',
+};
+
 // Square will receive 2 props, "onClick" and "symbol"
 // Try destructuring the "props" object below to get them
 function Square(props) {
   return (
     <div
-      className="square"
+      style={squareStyling}
       // add an onClick handler that calls the onClick
       // prop that was passed in
     >
@@ -183,15 +205,15 @@ function Square(props) {
 }
 
 function Board({ onSquareClick, board }) {
-  return <div className="board">{/* 
-                Use the map function to loop over the "board" prop.
-                Each item in the board array should be mapped to 
-                a <Square /> component.
+  return <div style={boardStyling}>{/*
+          Use the map function to loop over the "board" prop.
+          Each item in the board array should be mapped to
+          a <Square /> component.
 
-                The Square component takes a symbol prop (x or o), an 
-                onClick prop, and since we're using the map function each
-                Square will also need a unique key prop.
-            */}</div>;
+          The Square component takes a symbol prop (x or o), an
+          onClick prop, and since we're using the map function each
+          Square will also need a unique key prop.
+      */}</div>;
 }
 
 const blankBoard = ['', '', '', '', '', '', '', '', ''];
@@ -215,14 +237,16 @@ function Game() {
       />
       <button onClick={getHint}>Get Hint</button>
       <button>Toggle Theme</button>
-      {/* 
-                ^ Add an onClick prop to the button above
-                (the toggleTheme function)
-            */}
+      {/*
+        ^ Add an onClick prop to the button above
+        (the toggleTheme function)
+      */}
       current player: X
     </>
   );
 }
+
+ReactDOM.render(<Game />, document.getElementById('root'));
 ```
 
 @codepen react

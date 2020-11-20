@@ -7,33 +7,37 @@
 
 ## What are Components?
 
-In React, `Components` are an encapsulation of an element's look and behavior. Here is an example "Hello World" component, that also prints my name.
+In React, a `Component` is the encapsulation of an element's look and behavior. Here is an example "Hello World" component, that also prints my name. It is being used inside of another component named "App".
 
 ```jsx
 function HelloWorld(props) {
   return <div>Hello World, my name is {props.name}</div>;
 }
-```
 
-and I would use this component, somewhere else in my app very similarly to how one embeds HTML, like this
-
-```jsx
-function App(props){
+function App(props) {
   return (
     <div>
-      <HelloWorld name="Dan">
-      <HelloWorld name="Kelsey">
-      <HelloWorld name="Mitchell">
+      <HelloWorld name="Dan" />
+      <HelloWorld name="Kelsey" />
+      <HelloWorld name="Mitchell" />
     </div>
-  )
+  );
 }
+
+ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
-Even from this simple example, we can see 3 big takeaways.
+@codepen react
 
-1. the component `HelloWorld` is capitalized. This is not an accident. It's mandatory. If a component name is lowercase, React assumes it to be a normal HTML tag (like `span`, or `div`). So the capital naming convention is useful in that it disambiguates the code from normal HTML elements.
+Don't worry if some of this syntax is new to you, we will be going into more detail about components, and how they are constructed. Even if you don't understand every detail of what's happening above, we can see 3 big takeaways.
 
-2. We pass 'name' to our `HelloWorld` component. These HTML attribute-like descriptors are called `props`, and React passes them to the `HelloWorld` component for us. The argument `props` is simply an object containing all of the attribute-like things we passed in. We will be going into more detail about `props` later but recognize that they make components more reuseable. Above, I'm reusing the component with 3 different names.
+1. The `HelloWorld` component is simply a function. Moreover it is capitalized. This is not an accident. It's mandatory. Consider how the component is being used directly inside the `App` component, right next to normal HTML. If a component name is lowercase, React assumes that it is a normal HTML tag (like `span`, or `div`). So the capital naming convention is useful in that it disambiguates our `component` from a normal HTML element.
+
+> To drive the point home further, Imagine we created a component named lowercase `div`, then React wouldn't be able to tell the difference between a normal div and our component `div` since we use them identically. Hence the capitalization.
+
+2. We pass 'name' to our `HelloWorld` component. These HTML attribute-like descriptors are called `props`, and React passes them to the `HelloWorld` component for us. The argument `props` is simply an object containing all of the attribute-like things we passed in.
+
+> In the example above, we only passed in a single attribute so the `props` object would just be `{ name: 'Dan' }` for the first `HelloWorld` component. Notice also, that these `props` make the component more reusable. Above, I'm reusing the component with 3 different names.
 
 3. And lastly, you'll notice that somehow via the magic of React, we have embedded html code directly into a function. We'll describe this magic (known as `JSX` below).
 

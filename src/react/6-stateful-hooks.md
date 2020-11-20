@@ -108,6 +108,66 @@ Run the app locally with `npm start` and choose the `Stateful Hooks` exercise. N
 - store the current player in state, with a boolean called `isXTurn`
 - Fill out the `handleSquareClick` function so that it updates the board and changes the current player when the user clicks a `Square`.
 
+```jsx
+const squareStyling = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+  color: 'black',
+};
+
+const boardStyling = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  width: '600px',
+  height: '600px',
+  boxShadow: '0px 3px 8px 0 rgba(0, 0, 0, 0.1)',
+  boxSizing: 'border-box',
+};
+
+function Square({ onClick, symbol, id }) {
+  return (
+    <div id={id} onClick={onClick} style={squareStyling}>
+      {symbol}
+    </div>
+  );
+}
+
+function Board() {
+  const board = ['', '', '', '', '', '', '', '', ''];
+  // store the board in state
+  // store the current player in state
+
+  function handleSquareClick(square) {
+    // update the board
+    // update the current player
+  }
+
+  return (
+    <div style={boardStyling}>
+      {board.map((symbol, index) => (
+        <Square
+          key={index}
+          symbol={symbol}
+          onClick={() => handleSquareClick(index)}
+        />
+      ))}
+    </div>
+  );
+}
+
+ReactDOM.render(<Board />, document.getElementById('root'));
+```
+
+@codepen react
+
 ### The solution
 
 ```jsx

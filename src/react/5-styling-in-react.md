@@ -201,8 +201,6 @@ It's important to note that in many production codebases, some combination of th
 
 Let's use our styling knowledge to make our Tic-Tac-Toe game look amazing!
 
-Run the app locally with `npm start` and choose the `Styling` exercise. Now head over to `src/exercises/5 - Styling/components`. These are the files you'll be editing.
-
 ### The problem
 
 ✏️ You have been provided a basic set of global styles in App.css. Your task is to convert these initial styles into each of the other styling types.
@@ -210,6 +208,65 @@ Run the app locally with `npm start` and choose the `Styling` exercise. Now head
 - 1.  Inline Styles
 - 2.  Modular CSS
 - 3.  Styled Components
+
+```html
+<style>
+  .board {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 600px;
+    height: 600px;
+    box-shadow: 0px 3px 8px 0 rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+  }
+
+  .square {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 6em;
+  }
+
+  .square:hover {
+    cursor: pointer;
+    background: #bbdefb !important;
+  }
+
+  .square.hint {
+    background: #9ae6b4;
+  }
+</style>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+<script type="text/babel">
+  import React from 'react';
+  import ReactDOM from 'react-dom';
+  function App() {
+    return (
+      <div className="board">
+        <div className="square">O</div>
+        <div className="square">X</div>
+        <div className="square">O</div>
+        <div className="square hint"></div>
+        <div className="square">X</div>
+        <div className="square">X</div>
+        <div className="square"></div>
+        <div className="square">O</div>
+        <div className="square">X</div>
+      </div>
+    );
+  }
+  ReactDOM.render(<App />, document.getElementById('root'));
+</script>
+```
+
+@codepen react
 
 ### The solution
 

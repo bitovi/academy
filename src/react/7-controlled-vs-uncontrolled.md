@@ -112,8 +112,6 @@ This is another very common pattern. The idea is that we have a very simple, lig
 
 Let's use our knowledge of controlled and uncontrolled components to build an input component! (Note: this will not be apart of the Tic-Tac-Toe game.)
 
-Run the app locally with `npm start` and choose the `Controlled vs Uncontrolled` exercise. Now head over to `src/exercises/a - Controlled vs Uncontrolled/components`. These are the files you'll be editing.
-
 ### The problem
 
 ✏️ You'll be modifying the `Search` component so that it is a controlled input. Specifically, try your hand at the following:
@@ -121,6 +119,21 @@ Run the app locally with `npm start` and choose the `Controlled vs Uncontrolled`
 - Modify the `Search` component below so that it's value is controlled by state.
 - Modify the clear button so that, when clicked, it clears out the value of the input.
 - Make it so that the clear button is only visible when there is text in the input.
+
+```jsx
+function Search() {
+  return (
+    <div className="search-container">
+      <input className="search" />
+      <div className="clear">X</div>
+    </div>
+  );
+}
+
+ReactDOM.render(<Search />, document.getElementById('root'));
+```
+
+@codepen react
 
 ### The solution
 
