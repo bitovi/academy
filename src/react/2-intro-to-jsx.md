@@ -31,19 +31,37 @@ ReactDOM.render(<App />, document.getElementById('root'));
 
 Don't worry if some of this syntax is new to you, we will be going into more detail about components, and how they are constructed. Even if you don't understand every detail of what's happening above, we can see 3 big takeaways.
 
-1. The `HelloWorld` component is simply a function. Moreover it is capitalized. This is not an accident. It's mandatory. Consider how the component is being used directly inside the `App` component, right next to normal HTML. If a component name is lowercase, React assumes that it is a normal HTML tag (like `span`, or `div`). So the capital naming convention is useful in that it disambiguates our `component` from a normal HTML element.
+### 1. The `HelloWorld` component is simply a function and it is capitalized.
 
-> To drive the point home further, Imagine we created a component named lowercase `div`, then React wouldn't be able to tell the difference between a normal div and our component `div` since we use them identically. Hence the capitalization.
+This is not an accident. It's mandatory. Consider how the component is being used directly inside the `App` component, right next to normal HTML. If a component name is lowercase, React assumes that it is a normal HTML tag (like `span`, or `div`). So the capital naming convention is useful in that it disambiguates our `component` from a normal HTML element.
 
-2. We pass 'name' to our `HelloWorld` component. These HTML attribute-like descriptors are called `props`, and React passes them to the `HelloWorld` component for us. The argument `props` is simply an object containing all of the attribute-like things we passed in.
+> To drive the point home further, Imagine we created a component named lowercase `div`. In this case, React wouldn't be able to tell the difference between a normal div and our component `div` since we use them identically. Hence the capitalization.
+
+### 2. We can pass attribute-like things to our components. These are called `props`.
+
+```jsx
+function App(props) {
+  return (
+    <div>
+      <HelloWorld name="Dan" />
+      <HelloWorld name="Kelsey" />
+      <HelloWorld name="Mitchell" />
+    </div>
+  );
+}
+```
+
+@highlight 4
+
+In the example above we pass 'name' to our `HelloWorld` component. These HTML attribute-like descriptors are called `props`, and React does the work of wrapping them in an object, and supplying them as the first argument to the `HelloWorld` component for us. The argument `props` is simply an object containing all of the attribute-like things we passed in.
 
 > In the example above, we only passed in a single attribute so the `props` object would just be `{ name: 'Dan' }` for the first `HelloWorld` component. Notice also, that these `props` make the component more reusable. Above, I'm reusing the component with 3 different names.
 
-3. And lastly, you'll notice that somehow via the magic of React, we have embedded html code directly into a function. We'll describe this magic (known as `JSX` below).
+### 3. React allows us to embed HTML into our components. This is called `JSX`.
 
-## Creating HTML with React
+Technically this stuff isn't exactly HTML, it's a representation of what HTML should render when the component is evaluated.
 
-Before we talk about how React creates HTML, let's discuss how user interfaces are created in React.
+Before discussing how React performs this magic, let's discuss how user interfaces are created in React.
 
 At its core, React is a JavaScript library that allows you to describe the way your components look using only JavaScript. But this "all JS" approach comes with some downsides, namely it becomes arduous to describe complex page hierarchies using only pure JavaScript. When first learning React, it's good to be aware of the [element API](https://reactjs.org/docs/react-api.html), but keep in mind that most React developers will forego this for an alternative syntactic sugar called JSX.
 
@@ -336,3 +354,56 @@ One of the most powerful aspects of JavaScript is that it enables developers to 
 In the code above, we've attached an `onClick` listener to the `<button>` element. Whenever this button gets clicked, the code inside the `onClick={...}` will get executed. The value always needs to be a function, and that function will get called with an `event` object.
 
 All [events](https://reactjs.org/docs/events.html) supported in vanilla JavaScript are also supported in JSX.
+
+## Exercise
+
+In this exercise you will be creating a component that is a single square with width, and height set to 100px. This component will be able to take in two props, the first of which is a `backgroundColor`, which will set the background color of the sqaure, and the second `singleLetter`, which is a single character that will be displayed in the center of the square.
+
+```jsx
+<Square backgroundColor="red" singleLetter="Q" />
+```
+
+So if a person rendered that component, they would see
+
+<img src="../static/img/react/redQ.png" >
+
+Here's an empty codepen with React preloaded to get you started.
+
+```jsx
+function Square() {}
+
+ReactDOM.render(
+  <Square backgroundColor="red" singleLetter="Q" />,
+  document.getElementById('root'),
+);
+```
+
+@codepen react
+
+## Solution
+
+```jsx
+function Square(props) {
+  return (
+    <div
+      style={{
+        height: '100px',
+        width: '100px',
+        backgroundColor: props.backgroundColor,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      {props.singleLetter}
+    </div>
+  );
+}
+
+ReactDOM.render(
+  <Square backgroundColor="red" singleLetter="Q" />,
+  document.getElementById('root'),
+);
+```
+
+@codepen react
