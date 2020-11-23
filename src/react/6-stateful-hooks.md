@@ -98,8 +98,6 @@ In the code above we're doing a couple things:
 
 Let's use our stateful hooks knowledge to make our Tic-Tac-Toe game more functional!
 
-Run the app locally with `npm start` and choose the `Stateful Hooks` exercise. Now head over to `src/exercises/7 - Stateful Hooks/components`. These are the files you'll be editing.
-
 ### The problem
 
 ✏️ Modify the `Board` component so that it keeps track of the current state of the game and players using hooks.

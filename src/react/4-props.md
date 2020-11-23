@@ -90,7 +90,7 @@ Props that are static strings can be passed using quotation marks, while non-str
 
 ## Callback Props
 
-Just like normal functions, React components can accept props of any data type (even other components). One of the most useful types of props are callbacks. Callback props allow us to specify what a component will do when an action occurs inside of it.
+Just like normal functions, React components can accept props of any data type (even other components). One of the most useful types of props are callbacks. Callback props allow us to specify what a component will do when an action occurs inside of it. Below we have a button that takes an onClick handler that runs every time you click the button.
 
 ```jsx
 function MyButton() {
