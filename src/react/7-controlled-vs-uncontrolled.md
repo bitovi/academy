@@ -121,11 +121,35 @@ Let's use our knowledge of controlled and uncontrolled components to build an in
 - Make it so that the clear button is only visible when there is text in the input.
 
 ```jsx
+let searchContainer = {
+  display: 'flex',
+  width: '100%',
+  border: '1px solid black',
+  marginTop: '25px',
+  height: '40px',
+  fontSize: '2em',
+  padding: '10px',
+};
+
+let search = {
+  border: 0,
+  outline: 'none',
+  width: '100%',
+  paddingRight: '10px',
+  fontSize: '1em',
+};
+
+let clear = {
+  marginRight: '10px',
+  fontSize: '1em',
+  cursor: 'pointer',
+};
+
 function Search() {
   return (
-    <div className="search-container">
-      <input className="search" />
-      <div className="clear">X</div>
+    <div style={searchContainer}>
+      <input style={search} />
+      <div style={clear}>X</div>
     </div>
   );
 }
@@ -142,18 +166,42 @@ ReactDOM.render(<Search />, document.getElementById('root'));
 ```jsx
 import React, { useState } from 'react';
 
+let searchContainer = {
+  display: 'flex',
+  width: '100%',
+  border: '1px solid black',
+  marginTop: '25px',
+  height: '40px',
+  fontSize: '2em',
+  padding: '10px',
+};
+
+let search = {
+  border: 0,
+  outline: 'none',
+  width: '100%',
+  paddingRight: '10px',
+  fontSize: '1em',
+};
+
+let clear = {
+  marginRight: '10px',
+  fontSize: '1em',
+  cursor: 'pointer',
+};
+
 function Search() {
   const [value, setValue] = useState('');
 
   return (
-    <div className="search-container">
+    <div style={searchContainer}>
       <input
-        className="search"
+        style={search}
         value={value}
         onChange={(e) => setValue(e.target.value)}
       />
       {value && (
-        <div className="clear" onClick={() => setValue('')}>
+        <div style={clear} onClick={() => setValue('')}>
           X
         </div>
       )}
