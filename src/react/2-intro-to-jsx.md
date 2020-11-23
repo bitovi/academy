@@ -369,6 +369,8 @@ So if a person rendered that component, they would see
 
 Here's an empty codepen with React preloaded to get you started.
 
+#### Hover over the code below and select the run button in the upper right hand corner.
+
 ```jsx
 function Square() {}
 

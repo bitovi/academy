@@ -157,9 +157,9 @@ Let's use our props knowledge to start building out the Tic-Tac-Toe component.
 
 ### The problem
 
-The goal of this exercise is to get a `console.log()` to happen whenever the user clicks on a square. You will need to render the squares first. This will require you to work modify some of the props in the scaffolded code.
+The goal of this exercise to render a full Tic-Tac-Toe game board. But this time, we will pass the symbol (X, or O) into the Tic-Tac-Toe for rendering. Also we will pass a function down into the Tic-Tac-Toe cell that prints `console.log()` whenever the user clicks on a square. You will need to render the squares first. This will require you to work modify some of the props in the scaffolded code.
 
-#### Hints
+#### Instructions
 
 - Modify the `Square` component so that accepts two props:
   - `onClick` - a callback which is executed when the user click on it
@@ -219,14 +219,6 @@ function Board({ onSquareClick, board }) {
 const blankBoard = ['', '', '', '', '', '', '', '', ''];
 
 function Game() {
-  const getHint = () => {
-    console.log('Getting hint');
-  };
-
-  const toggleTheme = () => {
-    console.log('You toggled the theme');
-  };
-
   return (
     <>
       <Board
@@ -235,12 +227,6 @@ function Game() {
         // ^ Create a function to pass into onSquareClick
         // that prints out "Clicked"
       />
-      <button onClick={getHint}>Get Hint</button>
-      <button>Toggle Theme</button>
-      {/*
-        ^ Add an onClick prop to the button above
-        (the toggleTheme function)
-      */}
       current player: X
     </>
   );
@@ -299,19 +285,9 @@ function Game() {
     console.log('You clicked a square');
   };
 
-  const getHint = () => {
-    console.log('Getting hint');
-  };
-
-  const toggleTheme = () => {
-    console.log('You toggled the theme');
-  };
-
   return (
     <>
       <Board board={blankBoard} onSquareClick={handleSquareClick} />
-      <button onClick={getHint}>Get Hint</button>
-      <button onClick={toggleTheme}>Toggle Theme</button>
       current player: X
     </>
   );

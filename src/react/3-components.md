@@ -99,3 +99,72 @@ Originally, class components were the most popular because they could keep track
 Now both class and functional components are used commonly in codebases around the world, but there has been a shift to using only functional components, as the syntax for them is more readable and cleaner.
 
 For the remainder of this training, we will be using functional components exclusively.
+
+## Exercise
+
+In this exercise, we supply you with a single Tic-Tac-Toe cell component. And your job is to make a Board component that renders those Tic-Tac-Toe cells into a nice 3x3 grid. Bonus points if you update the cell component such that whenever a single cell is clicked, we `console.log` the string "Clicked".
+
+```jsx
+const squareStyling = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+};
+
+function Square() {
+  return <div style={squareStyling}></div>;
+}
+
+function Board() {
+  return <div>Nothing here yet</div>;
+}
+
+ReactDOM.render(<Board />, document.getElementById('root'));
+```
+
+@codepen react
+
+#### Hover over the code above and select the run button in the upper right hand corner.
+
+Go ahead and hover over the code above. You should see a run button in the top right hand corner. Once that is clicked you can change, and edit the code in Codepen. Give it a try!
+
+## Solution
+
+```jsx
+const squareStyling = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+};
+
+function Square() {
+  return (
+    <div style={squareStyling} onClick={() => console.log('Clicked')}></div>
+  );
+}
+
+function Board() {
+  return (
+    <div style={{ display: 'flex', width: '600px', flexWrap: 'wrap' }}>
+      {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((el) => (
+        <Square key={el} />
+      ))}
+    </div>
+  );
+}
+
+ReactDOM.render(<Board />, document.getElementById('root'));
+```
+
+@codepen react
+@highlight 14, 20-24
