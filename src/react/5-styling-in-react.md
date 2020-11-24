@@ -1,4 +1,4 @@
-@page learn-react/styling-in-react Styling in React 3 Ways
+@page learn-react/styling-in-react Styling in React
 @parent learn-react 5
 
 @description Learn the different ways to style React components.
@@ -7,7 +7,7 @@
 
 ## Different ways of styling components
 
-Styling in React is one of the most diverse and opinionated aspects of working with the library. React does a great job of combining HTML & JavaScript together, but it is ultimately agnostic when it comes to working with CSS and styling.
+Styling in React is a diverse and opinionated topic. React does a great job of combining HTML & JavaScript together, but it is ultimately agnostic when it comes to working with CSS and styling.
 
 The good news is that all of the same styling techniques you're used to will still work in React. You can use stylesheets, inline styling, and even extension languages like SASS or LESS.
 
@@ -16,6 +16,8 @@ Let's take a look at some of the ways we can go about styling React components a
 ## Inline styling
 
 The simplest way to style a component is with inline styling. All core JSX tags accept a `style` prop, essentially an object with css styles in it. As you can see below, we're able to construct style objects directly inside the JSX, and even interpolate JavaScript values into them.
+
+The object passed into `style={}` should map css attributes to css values. This structure closely resembles the [`CSSStyleDeclaration`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration) object used by the browser to store element styles.
 
 ```jsx
 import { imageUrl } from './data';
@@ -40,9 +42,13 @@ In the example above we're specifying that the top-level div should have a color
 
 Although this is the simplest way to add styles, it shouldn't be counted out. Using inline styles like this is a great way of combining your HTML, CSS & JavaScript all into one neat package. It's especially useful when your styles will depend on component state or props.
 
+One of the downsides of this approach is the performance cost associated with making and interpolating these style objects. Though, for many common layouts you will likely never run into performance concerns, but if you are rendering hundreds / thousands of components (nested tables, etc...), it would be faster to use a stylesheet. That being said there are libraries that mitigate this speed concern (namely `emotion`).
+
 ## External Styles
 
 Like normal HTML, JSX elements can accept a class attribute (called `className`). Classes can either be located in a global style sheet linked in the index.html file, or be directly imported into a component (see below).
+
+This import syntax can be used in any modern web-loader.
 
 ```jsx
 import './thing.css';
@@ -56,7 +62,7 @@ function Thing({ isActive }) {
 
 The component above uses a `thing` class that is imported from `thing.css`. This is a common way of including classes in a component, but keep in mind that due to it's cascading nature, it's possible to encounter clashing names with a large component tree.
 
-Classnames can also be dynamically generated in response to props or component state. In the component below, the `thing-active` class is only added to the class name if the `isActive` prop is truthy.
+`className`'s can also be dynamically generated in response to props or component state. In the component below, the `thing-active` class is only added to the class name if the `isActive` prop is truthy.
 
 ```jsx
 function Thing({ isActive }) {
@@ -71,9 +77,9 @@ function Thing({ isActive }) {
 
 @highlight 2-5
 
-### Classnames
+### Classnames (the npm package)
 
-Classnames is a small library that is widely used in the industry. It makes the process of creating dynamic classnames easier by providing a simple interface for constructing them. Note that this process is similar to the one described above, just made easier with the classnames library.
+[Classnames](https://www.npmjs.com/package/classnames), is a small library that is widely used in the industry. It makes the process of creating dynamic classnames easier by providing a simple interface for constructing them. Note that this process is similar to the one described above, just made easier with the classnames library.
 
 ```jsx
 import cx from 'classnames';
@@ -90,7 +96,7 @@ function Thing({ isActive }) {
 
 ## CSS Modules
 
-A CSS Module is a CSS file in which all class names and animation names are scoped locally by default. This prevents a common problem with importing css into components, name clashing.
+[A CSS Module](https://css-tricks.com/css-modules-part-1-need/) is a CSS file in which all class names and animation names are scoped locally by default. This means that if you've imported a . This prevents a common problem with importing css into components, name clashing.
 
 When you define styles for a specific component, you want to be able to use descriptive names without having to worry about the other class names in the app. When you structure your css as a module, unique names are automatically generated. This solves the clashing issue.
 
@@ -99,11 +105,11 @@ This is also compatible with SASS/LESS making it a good option if you want to us
 Below is the CSS you would write inside of a .css file. You can see that it looks normal, and we don't need to worry about conflicts.
 
 ```css
-.thing {
+.border {
   border: 1em solid black;
 }
 
-.thing.active {
+.border.active {
   border-color: red;
 }
 ```
@@ -113,11 +119,11 @@ Below is the CSS you would write inside of a .css file. You can see that it look
 This css will then get transformed into the following. Notice the names change, while still maintaining the selector structure.
 
 ```css
-.Thing_thing_1FUOu {
+.HelloWorld_border_1FUOu {
   border: 1em solid black;
 }
 
-.Thing_thing_1FUOu.Thing_active_wBa2p {
+.HelloWorld_border_1FUOu.HelloWorld_active_wBa2p {
   border-color: red;
 }
 ```
@@ -128,8 +134,8 @@ This would then be imported into your React component as a JavaScript module con
 
 ```js
 module.exports = {
-  thing: 'Thing_thing_1FUOu',
-  active: 'Thing_active_wBa2p',
+  thing: 'HelloWorld_border_1FUOu',
+  active: 'HelloWorld_active_wBa2p',
 };
 ```
 
@@ -138,9 +144,9 @@ module.exports = {
 And the component could be styled like so:
 
 ```jsx
-import styles from './thing.module.css';
+import styles from './hello-world.module.css';
 
-function Thing({ isActive }) {
+function HelloWorld({ isActive }) {
   return <div className={styles.thing}>Hello World!</div>;
 }
 ```
@@ -148,6 +154,8 @@ function Thing({ isActive }) {
 @highlight 4
 
 Note that the `classnames` library can be used in conjunction with CSS modules as well.
+
+Find a way to create an example of this, and link it.
 
 ## Styled Components
 
@@ -197,6 +205,8 @@ The styled components approach is definitely a departure from traditional stylin
 
 It's important to note that in many production codebases, some combination of the above styling techniques are utilized. Oftentimes some static css files will be necessary, and used alongside something like styled components. At the end of the day the right solution is the one that works for your team!
 
+Find a way to create an example of this, and link it.
+
 ## Exercise
 
 Let's use our styling knowledge to make our Tic-Tac-Toe game look amazing!
@@ -205,9 +215,9 @@ Let's use our styling knowledge to make our Tic-Tac-Toe game look amazing!
 
 ✏️ You have been provided a basic set of global styles in App.css. Your task is to convert these initial styles into each of the other styling types.
 
-- 1.  Inline Styles
-- 2.  Modular CSS
-- 3.  Styled Components
+1.  Inline Styles
+2.  Modular CSS
+3.  Styled Components
 
 ```html
 <style>
