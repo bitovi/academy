@@ -1,7 +1,7 @@
 @page learn-docker/build-node-app Build a Node App
 @parent learn-docker 2
 
-@description Learn to setup a basic CanJS application using StealJS as the module loader.
+@description Build a simple Express API to use for the rest of the course.
 
 @body
 ## Overview
@@ -11,8 +11,8 @@ NodeJS is not required if you just want to read through this section and copy/pa
                   
 ## Building our app
 The app requires only two files
-* package.json
-* index.js
+* `package.json`
+* `src/index.js`
 
 ### package.json
 ```
@@ -31,11 +31,11 @@ The app requires only two files
   }
 }
 ```
-This file defines `express` as a standard dependency and `nodemon` as a dev depenency. Nodemon is used to run our Express server and watch the source code to hot-reload any new changes without needing to restart the server. It is a dev dependency because we don't want the overhead of running nodemon in production or even the bulk of keeping it in `node_modules/`.
+This file defines `express` as a standard dependency and `nodemon` as a dev depenency. Nodemon is used to run our Express server and watches the source code to hot-reload any new changes without needing to restart the server. It is a dev dependency because we don't want the overhead of running nodemon in production or even the bulk of keeping it in `node_modules/`.
 
-Our `package.json` also defines a `start` script. This is a convinient way to allow us to start our application by running `npm start`.
+Our `package.json` also defines a `start` script and a `start:prod`. These are convinient ways to allow us to start our application with nodemon or node by running `npm start` or `npm run start:prod`.
 
-### index.js
+### src/index.js
 ```
 const express = require('express')
 const app = express()
@@ -49,7 +49,7 @@ app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
 ```
-This file starts an express server listening on `localhost:3000`. If we access the root path it should return `Hello World!`. The default port 3000, but can be overwritten by setting the `PORT` environment variable before starting the server.
+This file starts an express server listening on `localhost:3000`. If we access the root path it should return `Hello World!`. The default port is 3000, but can be overwritten by setting the `PORT` environment variable before starting the server.
 
 ## Run our app
 This step is optional, but to verify our app works you can run
@@ -62,5 +62,5 @@ Open your browser to `localhost:3000` and you should see `Hello World!`
 ![node app in browser](../static/img/docker/2-build-node-app/node-hello-world.png)
 
 ## What's next
-Now that we've created a simple NodeJS app, we are going to containerizing it.
+Now that we've created a simple NodeJS app, we are going to containerize it.
     

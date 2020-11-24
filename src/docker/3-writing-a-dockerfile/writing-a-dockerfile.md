@@ -1,14 +1,12 @@
 @page learn-docker/writing-a-dockerfile Writing a Dockerfile
 @parent learn-docker 3
 
-@description Learn to setup a basic CanJS application using StealJS as the module loader.
+@description Write a Dockerfile to containerize the node app.
 
 @body
 
-## Overview
-
 ## Our Dockerfile
-The `Dockerfile` for our NodeJS app looks like this
+Starting with the solution, the `Dockerfile` for our NodeJS app should look like this:
 ```
 FROM node:15
 
@@ -25,13 +23,13 @@ CMD npm start
 ```
 Copy and paste this to the root of your project and name the file `Dockerfile`.
 
-Let's break down each instruction.
+Let's break down each line.
 ## FROM instruction
-The `FROM` instruction is the first line of any Dockerfile. It sets the base image to be used as a starting point for all other instructions. Using base images allows deferring installation of a kernal and low level package installation to the provider of the base image.
+The `FROM` instruction is the first line of any Dockerfile. It sets the base image to be used as a starting point for all other instructions. Using base images allows deferring installation of a kernal and low level packages to the provider of the base image.
 
-In our case, We are using `node:15`. `node` specifies the name of the image and `15` is a tag specifying the version of the image. This base image has the latest version of NodeJS 15 pre-installed, allowing the rest of the `Dockerfile` to focus on application specific logic. The node `Dockerfile` also has a `FROM` instruction, using [Debian](https://hub.docker.com/_/debian) as its base image. This layering of Docker images is one of Docker's most powerful features.
+In our case, We are using `node:15`. `node` specifies the name of the base image and `15` is a tag specifying the version of the image. This base image has the latest version of NodeJS 15 pre-installed, allowing the rest of the `Dockerfile` to focus on logic specific to our application. The `node:15` image also has a `Dockerfile` which means it also has a `FROM` instruction. `node:15` uses [Debian](https://hub.docker.com/_/debian) as its base image. This layering of Docker images repeats until a Dockerfile uses `FROM scratch` as its base image.
 
-By default, Docker will look for base images from [Dockerhub](https://hub.docker.com/). For example, the `node` image we are using is pulled from [here](https://hub.docker.com/_/node), but you can create your own base images and share them publically or privately to abstract shared tasks from users of it.
+By default, Docker will look for images  on [Dockerhub](https://hub.docker.com/). For example, the `node` image we are using is pulled from [here](https://hub.docker.com/_/node), but you can create your own base images and share them publically or privately to dockerhub or other package registries.
 
 [Official Docs](https://docs.docker.com/engine/reference/builder/#from)
 
@@ -107,7 +105,7 @@ The `COPY` instruction follows the syntax `COPY [--chown=<user>:<group>] <src>..
 - `<src>...` specifies what file(s) or directories should be copied in to the docker image.
     - Each file/directory should be separated by a space (` `)
     - Each entry supports wildcards and matching. For example: `COPY hom* .` Will match all files starting with "hom"
-- `<dest>` specifies where each src entry should be copied to in the docker image. `.`. Will put each entry in the `WORKDIR` or the root directory if no `WORKDIR` is specified.
+- `<dest>` specifies where each src entry should be copied to in the docker image. `.` will put each entry in the `WORKDIR` or the root directory if no `WORKDIR` is specified.
 
 In our case, we have
 ```
@@ -115,7 +113,7 @@ WORKDIR app
 COPY src src
 COPY package.json .
 ```
-This will result in our `src/` directory being copied to `/app/src/` and `package.json` file to `/app/package.json` within the image. Using two `COPY` instructions instead of one is just preference and has no performance gains one way or another.
+This will result in our `src/` directory being copied to `/app/src/` and `package.json` file to `/app/package.json` within the image. Using two `COPY` instructions instead of one is just preference and has no functional difference one way or another.
 
 There are more complex cases on when a trailing slash is required on a `<src>` or `<dest>` and how to handle whitespace. These advanced rules can be found in the offical docs.
 
@@ -125,6 +123,7 @@ There are more complex cases on when a trailing slash is required on a `<src>` o
 The `RUN` instruction allows arbitrary commands to be run during build time.
 
 In our case, we are using `RUN npm install` to install dependencies from the `package.json` file copied in to our image. As a reminder, `npm` is pre-installed as a part of our `node:15` base image.
+
 [Official Docs](https://docs.docker.com/engine/reference/builder/#run)
 
 ## EXPOSE instruction

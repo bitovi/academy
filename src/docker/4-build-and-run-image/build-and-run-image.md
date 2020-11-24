@@ -1,11 +1,9 @@
 @page learn-docker/build-and-run-image Build and Run An Image
 @parent learn-docker 4
 
-@description Learn to setup a basic CanJS application using StealJS as the module loader.
+@description Build an image and run a container for our node app.
 
 @body
-
-## Overview
 
 ## App Review
 In the last section, we created a `Dockerfile` for our NodeJS app.
@@ -24,6 +22,7 @@ EXPOSE $PORT
 CMD npm start
 ```
 At this point, our directory shoud look like this
+
 ![app directory](../static/img/docker/4-build-and-run-image/app-directory.png)
 
 ## Build our image
@@ -32,9 +31,9 @@ Ensure you have docker desktop running on your machine, then open a terminal to 
 docker build -t my-node-app .
 ```
 - The `-t my-node-app` argument tells Docker to call the image produced by the `Dockefile` "my-node-app" and tag it as "latest". The "latest" tag is the default tag, but can be overridden when building an image with `:<tagname>`. For example, if we wanted to tag our image as `v1.0.0`, we would run `docker build -t my-node-app:v1.0.0 .`.
-- The `.` argument tells Docker the directory it can find our `Dockerfile`.
+- The `.` argument tells Docker where it can find our `Dockerfile`.
 
-Running the above command should product output similar to below
+Running the above command should produce output similar to below
 ```
 $ docker build -t my-node-app .
 Sending build context to Docker daemon  4.608kB
@@ -87,7 +86,7 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 my-node-app         latest              848464f1725a        5 seconds ago       944MB
 node                15                  b34e90f5c9c0        24 hours ago        935MB
 ```
-You'll notice there's also a `node:15` image in our registgry. This is because we defined is as our base image in our `Dockerfile` (`FROM node:15`).
+You'll notice there's also a `node:15` image in our registgry. This is because we defined it as our base image in our `Dockerfile` (`FROM node:15`). It was pulled from Dockerhub so it can be used locally.
 
 ## Run our image
 We're finally ready to run our image. Open a terminal and run
@@ -95,11 +94,11 @@ We're finally ready to run our image. Open a terminal and run
 docker run --name my-container -p 8000:8000 -d my-node-app:latest
 ```
 - `--name my-container` gives our container a friendly name. If this is not provided, Docker will name the container for you.
-- `-p 8000:8000` publishes the container's internal port 8000 to our host machine's port 8000. This will allow us to access our app from `localhost:8000`
+- `-p 8000:8000` publishes the container's internal port 8000 to our host machine's port 8000. This will allow us to access the app from `localhost:8000`
 - `-d` runs the container in detatched mode. This runs the process as a background process.
-- `my-node-app:latest` specifies what image we want to run. If this image does not exist in our local registry, Docker will try and find and download a match from [Dockerhub](https://hub.docker.com/)
+- `my-node-app:latest` specifies what image we want to run. If this image does not exist in our local registry, Docker will try and find and download a match from [Dockerhub](https://hub.docker.com/).
 
-Running the above command should product output similar to below
+Running the above command should produce output similar to below
 ```
 $ docker run --name my-container -p 8000:8000 -d my-node-app:latest
 71cfe418a26a05bbebb160f541e53c025157dc7ee2c333ab2309c7bc66bb24e3

@@ -1,7 +1,7 @@
 @page learn-docker/production-readiness Production Readiness
 @parent learn-docker 6
 
-@description Trimming the fat from our docker image
+@description Trimming the fat from our docker image.
 
 @body
 

@@ -1,7 +1,7 @@
 @page learn-docker Learn Docker
 @parent bit-academy 4
 
-@description Build and containerize a Node app then orchestrate a more complex example with docker-compose in this Docker guide.
+@description Build and containerize a Node app then orchestrate multiple containers with docker-compose in this Docker guide.
 
 @body
 
@@ -11,8 +11,7 @@
 <img src="https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.png?width=200"
   style="float:left"/> <span style="margin-top: 10px;display: inline-block;">Click here to join<br/>Bitovi's Slack Community</span></a>
 
-Join Bitovi's Slack Community to get help on Bitovi Academy courses or other
-Angular, React, CanJS and JavaScript problems.
+Join Bitovi's Slack Community to get help on Bitovi Academy courses or JavaScript and DevOps problems.
 
 Please ask questions related to DevOps in the [DevOps Chat Room](https://bitovi-community.slack.com/archives/CFNC1510S).
 
@@ -29,26 +28,19 @@ Who has time to read?  This video covers the content on this page. Watch fullscr
 
 ## Overview
 
-In this tutorial we will take a simple node api, containerize and run it with Docker. We will explore how to optimize the image for production as well as how to optimize local development.
+In this tutorial we will take a simple node api and containerize it to run with Docker. We will explore how to optimize the image for production as well as how to streamline local development workflows.
 
 Afterwards, we will look at orchestrating multiple docker images to form a full stack application using docker-compose.
 
 ## Outline
 
-TODO
-
-- [learn-rxjs/basics] - Learn how to create observables
-- [learn-rxjs/angular] - Read and write to observables in Angular
-- [learn-rxjs/clean-card-number] - How to use `map`
-- [learn-rxjs/debugging] - How to debug observables without messing up state
-- [learn-rxjs/card-error] - Use `map` again
-- [learn-rxjs/error-on-blur] - Only show the card error when blurred - `merge`, `scan`
-- [learn-rxjs/expiry] - Read, validate, and show the error of the expiry
-- [learn-rxjs/cvc] - Read, validate, and show the error of the CVC
-- [learn-rxjs/disable-pay-button] - Disable the pay button if any part of the card has an error - `combineLatest`
-- [learn-rxjs/request-payment] - Make a request when the pay button is clicked
-- [learn-rxjs/show-paying] - Update the pay button's text while payments are pending
-- [learn-rxjs/disable-while-pending] - Disable the payment button while payments are pending
+- [learn-docker/what-is-docker] - Explore Docker concepts and architecture
+- [learn-docker/build-node-app] - Build a simple Express API to use for the rest of the course
+- [learn-docker/writing-a-dockerfile] - Write a Dockerfile to containerize the node app
+- [learn-docker/build-and-run-image] - Build an image and run a container for our node app
+- [learn-docker/volumes-and-local-development] - Streamline local development workflows with bind mounts
+- [learn-docker/production-readiness] - Trimming the fat from our docker image
+- [learn-docker/docker-compose] - Make Docker easier to use and orchestrate multiple containers
 
 ## Prerequisites
 
