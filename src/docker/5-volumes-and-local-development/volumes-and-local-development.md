@@ -12,10 +12,10 @@ With the concepts we've explored so far, running a containerized service with Do
 3. Rebuild the image (`docker build ...`)
 4. Run the container (`docker run ...`)
 
-We're going to explore how to make things much more efficient.
+In particular, rebuilding an image with `docker build` takes too long. We're going to explore how to make things much more efficient.
 
 ## Volumes
-A Docker container has no built in persistence. Beyond what is put on to an image during the build phase, all other data is discarded when a container is destroyed. Without volumes, running databases or applications that require state would be impossible.
+A Docker container has no built in persistence. Beyond what is built in to an image during the build phase, all other data is discarded when a container is destroyed. Without volumes, running databases or applications that require state would be impossible.
 
 Volumes provide a persistent storage mechanism that can be managed through Docker's CLI. They can be shared between multiple containers and can be stored on remote hosts or cloud providers.
 
@@ -31,7 +31,7 @@ The above commands create a volume called `my-vol` and on container creation is 
 ## Bind Mounts
 Bind mounts are similar to volumes, but in comparison have limited functionality. Instead of creating a named volume, the contents of a host machine's directory can be mounted to a directory in a container.
 
-For example the following command will overwrite the contents of the `/data` directory in the container with the contents of `/Users/connor/data`. When the container is running, the contents are mirrored between the two regardless if a change originates from the container or the host machine. 
+For example the following command will overwrite the contents of the `/data` directory in the container with the contents of `/Users/connor/data`. When the container is running, the contents are mirrored between the two locations regardless if a change originates from the container or the host machine. 
 ```
 docker run -v /Users/connor/data:/data my-image
 ```
@@ -58,7 +58,7 @@ res.send('Hello Bitovi!')
 ```
 save the file and refresh your browser. It should now say `Hello Bitovi!`. 
 
-What's happenging is the nodemon process is watching the `src/` directory in the container for changes. Because our host-machine's `src/` directory is mounted to the container's `app/src/` directory, when we save the chage to `index.js`, it is replicated in the container causing nodemon to restart the server. We can see this in the contianer logs:
+What's happening is the nodemon process is watching the `src/` directory in the container for changes. Because our host-machine's `src/` directory is mounted to the container's `app/src/` directory (`-v "$(pwd)"/src:/app/src`), when we save the chage to `index.js`, it is replicated in the container causing nodemon to restart the server. We can see this in the contianer logs:
 ```
 $ docker logs my-container
 
@@ -75,3 +75,4 @@ Example app listening at http://localhost:8000
 [nodemon] starting `node src/index.js`
 Example app listening at http://localhost:8000
 ```
+This approach means we only need to build an image once

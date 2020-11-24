@@ -20,7 +20,8 @@ The app requires only two files
   "name": "bitovi-academy-app",
   "version": "1.0.0",
   "scripts": {
-    "start": "nodemon index.js"
+   "start": "nodemon src/index.js",
+   "start:prod": "node src/index.js"
   },
   "dependencies": {
     "express": "^4.17.1"

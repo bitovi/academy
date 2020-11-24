@@ -12,11 +12,11 @@ The `Dockerfile` for our NodeJS app looks like this
 ```
 FROM node:15
 
-ARG PORT 8000
-ENV PORT $PORT
+ARG PORT=8000
+ENV PORT=$PORT
 
 WORKDIR app
-COPY src .
+COPY src src
 COPY package.json .
 
 RUN npm install
@@ -38,7 +38,7 @@ By default, Docker will look for base images from [Dockerhub](https://hub.docker
 ## ARG instruction
 The `ARG` instruction is used to define variables that are only available during the image build process. The instruction follows the syntax `ARG <name> [=<default value>]`.
 
-In our case, `ARG PORT 8000` is defining an argument called `PORT` with a default value of `8000`. It can be accessed in later instructions in the `Dockerfile` like a standard environment variable (`$PORT`) and overwriten during the build process with the `--build-arg` cli argument ([Docs](https://docs.docker.com/engine/reference/commandline/build/#set-build-time-variables---build-arg)).
+In our case, `ARG PORT=8000` is defining an argument called `PORT` with a default value of `8000`. It can be accessed in later instructions in the `Dockerfile` like a standard environment variable (`$PORT`) and overwriten during the build process with the `--build-arg` cli argument ([Docs](https://docs.docker.com/engine/reference/commandline/build/#set-build-time-variables---build-arg)).
 
 [Official Docs](https://docs.docker.com/engine/reference/builder/#arg)
 
@@ -48,8 +48,8 @@ The `ENV` instruction is used to define environment variables. Like `ARG`, it fo
 To give us the flexibility to set and use variables at build time and run time, we use both `ARG` and `ENV` instructions together:
 
 ```
-ARG PORT 8000
-ENV PORT $PORT
+ARG PORT=8000
+ENV PORT=$PORT
 ```
 
 ### ARG vs ENV
@@ -112,10 +112,10 @@ The `COPY` instruction follows the syntax `COPY [--chown=<user>:<group>] <src>..
 In our case, we have
 ```
 WORKDIR app
-COPY src .
+COPY src src
 COPY package.json .
 ```
-This will result in our `src/` directory and `package.json` file being copied to `/app/src/` and `/app/package.json` within the image. Using two `COPY` instructions instead of one is just preference and has no performance gains one way or another.
+This will result in our `src/` directory being copied to `/app/src/` and `package.json` file to `/app/package.json` within the image. Using two `COPY` instructions instead of one is just preference and has no performance gains one way or another.
 
 There are more complex cases on when a trailing slash is required on a `<src>` or `<dest>` and how to handle whitespace. These advanced rules can be found in the offical docs.
 
@@ -137,8 +137,8 @@ EXPOSE 80/udp
 
 In our case, we want the port exposed by our container to match the port our application is running on (remember: `const port = process.env.PORT || 3000` in `src/index.js`), therefore, we are publishing the value of our `PORT` environment variable.
 ```
-ARG PORT 8000
-ENV PORT $PORT
+ARG PORT=8000
+ENV PORT=$PORT
 ...
 EXPOSE $PORT
 ```
