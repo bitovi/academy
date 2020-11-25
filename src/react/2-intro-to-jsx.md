@@ -357,7 +357,7 @@ All [events](https://reactjs.org/docs/events.html) supported in vanilla JavaScri
 
 ## Exercise
 
-In this exercise you will be creating a component that is a single square with width, and height set to 100px. This component will be able to take in two props, the first of which is a `backgroundColor`, which will set the background color of the sqaure, and the second `singleLetter`, which is a single character that will be displayed in the center of the square.
+In this exercise you will be creating a component that is a single square with width, and height set to 100px. This component will be able to take in two props, the first of which is a `backgroundColor`, which will set the background color of the square, and the second `singleLetter`, which is a single character that will be displayed in the center of the square.
 
 ```jsx
 <Square backgroundColor="red" singleLetter="Q" />

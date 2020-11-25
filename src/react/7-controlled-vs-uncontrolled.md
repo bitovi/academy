@@ -29,7 +29,7 @@ The `SearchBar` above is considered uncontrolled because we're not explicitly gi
 
 While this isn't necessarily a bad thing, it does make our lives as React developers more difficult. The reason being, at any given point in the lifecycle of this component, we don't know what the value of the input is. Assuming we'll want to use the value at some point, this becomes a problem. How do we access the input's value?
 
-We can solve this problem by explicitly controlling the input (giving it a value).
+We can solve this problem by <b>explicitly</b> controlling the input (giving it a value).
 
 ```jsx
 // Controlled (sort of)
@@ -164,8 +164,6 @@ ReactDOM.render(<Search />, document.getElementById('root'));
 #### Search
 
 ```jsx
-import React, { useState } from 'react';
-
 let searchContainer = {
   display: 'flex',
   width: '100%',
@@ -191,7 +189,7 @@ let clear = {
 };
 
 function Search() {
-  const [value, setValue] = useState('');
+  const [value, setValue] = React.useState('');
 
   return (
     <div style={searchContainer}>
@@ -209,7 +207,8 @@ function Search() {
   );
 }
 
-export default Search;
+ReactDOM.render(<Search />, document.getElementById('root'));
 ```
 
-@highlight 4,10,11,13,14,only
+@codepen react
+@highlight 26,32,33,35,36,only
