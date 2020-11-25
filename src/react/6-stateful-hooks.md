@@ -201,8 +201,18 @@ function Square({ onClick, symbol, id }) {
 }
 
 function Board() {
-  const [board, setBoard] = useState(['', '', '', '', '', '', '', '', '']);
-  const [isXTurn, setIsXTurn] = useState(true);
+  const [board, setBoard] = React.useState([
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+  ]);
+  const [isXTurn, setIsXTurn] = React.useState(true);
 
   function handleSquareClick(squareIndex) {
     if (board[squareIndex]) {
@@ -217,7 +227,7 @@ function Board() {
   }
 
   return (
-    <div className="board">
+    <div style={boardStyling}>
       {board.map((symbol, index) => (
         <Square
           key={index}
@@ -229,7 +239,8 @@ function Board() {
   );
 }
 
-export default Board;
+ReactDOM.render(<Board />, document.getElementById('root'));
 ```
 
-@highlight 5,6,9-17,only
+@codepen react
+@highlight 33,44,46-56,only
