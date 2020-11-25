@@ -199,13 +199,11 @@ function ButtonComponent({ onButtonClick }) {
 ### Completed Example
 
 ```jsx
-import React, { useState } from 'react';
-
 function WrapperContainer() {
   // define the savedText to be shown
-  const [savedText, setSavedText] = useState('');
+  const [savedText, setSavedText] = React.useState('');
   // create a holder for unsaved text
-  const [unsavedText, setUnsavedText] = useState('');
+  const [unsavedText, setUnsavedText] = React.useState('');
 
   function onButtonClick() {
     // save the new savedText
@@ -252,8 +250,11 @@ function ButtonComponent({ onButtonClick }) {
     </button>
   );
 }
+
+ReactDOM.render(<WrapperContainer />, document.getElementById('root'));
 ```
 
+@codepen react
 @highlight 5,7,9-14,19-23,26,32,33-36,40,42,47,49
 
 ## What data should be kept in React state?

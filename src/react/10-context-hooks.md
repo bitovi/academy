@@ -360,8 +360,6 @@ function Button({ label }) {
 
 Let's use our context hook knowledge to make our Tic-Tac-Toe use a style theme!
 
-Run the app locally with `npm start` and choose the `Context Hooks` exercise. Now head over to `src/exercises/9 - Context Hooks/components`. These are the files you'll be editing.
-
 ### The problem
 
 ✏️ Let's add in the ability to use a style theme for our app.
@@ -375,31 +373,96 @@ Run the app locally with `npm start` and choose the `Context Hooks` exercise. No
 - `Square` Component
   - Get the theme from the new `useTheme` hook in the `Game` component.
 
-### The solution
-
-#### Game
+Here's the starter code
 
 ```jsx
-import React, { useContext, useState } from 'react';
-import Board from '../../../app/components/Board';
-import {
-  getHintForBoard,
-  boardHasWinner,
-  blankBoard,
-  themes,
-} from '../../../app/utils';
+const squareStyling = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+  color: 'black',
+};
 
-const ThemeContext = React.createContext();
+const boardStyling = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  width: '600px',
+  height: '600px',
+  boxShadow: '0px 3px 8px 0 rgba(0, 0, 0, 0.1)',
+  boxSizing: 'border-box',
+};
 
-export function useTheme() {
-  return useContext(ThemeContext);
+function boardHasWinner(board) {
+  const winningCombos = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  const winningCombo = winningCombos.find((combo) => {
+    return (
+      board[combo[0]] !== '' &&
+      board[combo[0]] === board[combo[1]] &&
+      board[combo[0]] === board[combo[2]]
+    );
+  });
+  return !!winningCombo;
 }
 
+function Square({ onClick, symbol, id }) {
+  const theme = {}; // Get this from a custom hook
+
+  return (
+    <div
+      id={id}
+      style={Object.assign({}, squareStyling, {
+        color: theme.text,
+        backgroundColor: theme.background,
+      })}
+      onClick={onClick}
+    >
+      {symbol}
+    </div>
+  );
+}
+
+function Board({ board, handleSquareClick }) {
+  return (
+    <div style={boardStyling}>
+      {board.map((symbol, index) => (
+        <Square
+          key={index}
+          symbol={symbol}
+          onClick={() => handleSquareClick(index)}
+        />
+      ))}
+    </div>
+  );
+}
+
+// Create a context for your theme
+// Provide a theme (light or dark) to the children of this component
+// Export a custom hook that returns the current theme
+// Consume the custom hook in Square.js
+// Create a state and button that allows the user to switch between themes
+
+const blankBoard = ['', '', '', '', '', '', '', '', ''];
+
 function Game() {
-  const [board, setBoard] = useState(blankBoard);
-  const [isXTurn, setIsXTurn] = useState(true);
-  const [hintSquare, setHintSquare] = useState(-1);
-  const [theme, setTheme] = useState(themes.light);
+  const [board, setBoard] = React.useState(blankBoard);
+  const [isXTurn, setIsXTurn] = React.useState(true);
 
   const currentPlayer = isXTurn ? 'X' : 'O';
 
@@ -415,12 +478,147 @@ function Game() {
         setBoard(newBoard);
         setIsXTurn(!isXTurn);
       }
-      setHintSquare(-1);
     }
   }
 
-  async function handleGetHint() {
-    setHintSquare(await getHintForBoard(board, currentPlayer));
+  function resetGame() {
+    setIsXTurn(true);
+    setBoard(blankBoard);
+  }
+
+  return (
+    <>
+      <Board board={board} handleSquareClick={handleSquareClick} />
+      <button onClick={() => {}}>Toggle Theme</button>
+      current player: {currentPlayer}
+    </>
+  );
+}
+
+ReactDOM.render(<Game />, document.getElementById('root'));
+```
+
+@codepen react
+
+### The solution
+
+#### Game
+
+```jsx
+const squareStyling = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+  color: 'black',
+};
+
+const boardStyling = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  width: '600px',
+  height: '600px',
+  boxShadow: '0px 3px 8px 0 rgba(0, 0, 0, 0.1)',
+  boxSizing: 'border-box',
+};
+
+function boardHasWinner(board) {
+  const winningCombos = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+
+  const winningCombo = winningCombos.find((combo) => {
+    return (
+      board[combo[0]] !== '' &&
+      board[combo[0]] === board[combo[1]] &&
+      board[combo[0]] === board[combo[2]]
+    );
+  });
+  return !!winningCombo;
+}
+
+const themes = {
+  light: {
+    text: '#4A5568',
+    background: '#EDF2F7',
+  },
+  dark: {
+    text: '#EDF2F7',
+    background: '#4A5568',
+  },
+};
+const ThemeContext = React.createContext();
+
+function useTheme() {
+  return React.useContext(ThemeContext);
+}
+
+function Square({ onClick, symbol, id }) {
+  const theme = useTheme();
+
+  return (
+    <div
+      id={id}
+      style={Object.assign({}, squareStyling, {
+        color: theme.text,
+        backgroundColor: theme.background,
+      })}
+      onClick={onClick}
+    >
+      {symbol}
+    </div>
+  );
+}
+
+function Board({ board, handleSquareClick }) {
+  return (
+    <div style={boardStyling}>
+      {board.map((symbol, index) => (
+        <Square
+          key={index}
+          symbol={symbol}
+          onClick={() => handleSquareClick(index)}
+        />
+      ))}
+    </div>
+  );
+}
+
+const blankBoard = ['', '', '', '', '', '', '', '', ''];
+
+function Game() {
+  const [board, setBoard] = React.useState(blankBoard);
+  const [isXTurn, setIsXTurn] = React.useState(true);
+  const [theme, setTheme] = React.useState(themes.light);
+
+  const currentPlayer = isXTurn ? 'X' : 'O';
+
+  function handleSquareClick(squareIndex) {
+    if (!board[squareIndex]) {
+      const newBoard = [...board];
+      newBoard[squareIndex] = currentPlayer;
+
+      if (boardHasWinner(newBoard)) {
+        alert(`${currentPlayer} Wins!`);
+        resetGame();
+      } else {
+        setBoard(newBoard);
+        setIsXTurn(!isXTurn);
+      }
+    }
   }
 
   function handleToggleTheme() {
@@ -434,48 +632,15 @@ function Game() {
 
   return (
     <ThemeContext.Provider value={theme}>
-      <Board
-        board={board}
-        onSquareClick={handleSquareClick}
-        hintSquare={hintSquare}
-      />
-      <button onClick={handleGetHint}>Get Hint</button>
+      <Board board={board} handleSquareClick={handleSquareClick} />
       <button onClick={handleToggleTheme}>Toggle Theme</button>
       current player: {currentPlayer}
     </ThemeContext.Provider>
   );
 }
 
-export default Game;
+ReactDOM.render(<Game />, document.getElementById('root'));
 ```
 
-@highlight 5,7-9,15,39-41,49,59,only
-
-#### Square
-
-```jsx
-import React from 'react';
-import { useTheme } from './Game';
-
-function Square({ onClick, symbol, displayAsHint, id }) {
-  const theme = useTheme();
-
-  return (
-    <div
-      id={id}
-      className="square"
-      onClick={onClick}
-      style={{
-        color: theme.text,
-        background: displayAsHint ? '#9AE6B4' : theme.background,
-      }}
-    >
-      {symbol}
-    </div>
-  );
-}
-
-export default Square;
-```
-
-@highlight 5,only
+@codepen react
+@highlight 46-55,56,58-60,63,98,117-119,127,131 only

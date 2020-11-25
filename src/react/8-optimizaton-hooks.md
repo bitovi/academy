@@ -182,23 +182,135 @@ ReactDOM.render(
 
 Let's use our optimization hooks knowledge to make our Tic-Tac-Toe game a bit more performant!
 
-Run the app locally with `npm start` and choose the `Optimization Hooks` exercise. Now head over to `src/exercises/8 - Optimization Hooks/components`. These are the files you'll be editing.
-
 ### The problem
 
 ✏️ Modify the `Board` component so that it's `handleSquareClick` function uses the `useCallback` hook.
 
+```jsx
+const squareStyling = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+  color: 'black',
+};
+
+const boardStyling = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  width: '600px',
+  height: '600px',
+  boxShadow: '0px 3px 8px 0 rgba(0, 0, 0, 0.1)',
+  boxSizing: 'border-box',
+};
+
+function Square({ onClick, symbol, id }) {
+  return (
+    <div id={id} onClick={onClick} style={squareStyling}>
+      {symbol}
+    </div>
+  );
+}
+
+function Board() {
+  const [board, setBoard] = React.useState([
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+  ]);
+  const [isXTurn, setIsXTurn] = React.useState(true);
+
+  function handleSquareClick(squareIndex) {
+    if (board[squareIndex]) {
+      return;
+    }
+
+    const newBoard = [...board];
+    newBoard[squareIndex] = isXTurn ? 'X' : 'O';
+
+    setBoard(newBoard);
+    setIsXTurn((value) => !value);
+  }
+
+  return (
+    <div style={boardStyling}>
+      {board.map((symbol, index) => (
+        <Square
+          key={index}
+          symbol={symbol}
+          onClick={() => handleSquareClick(index)}
+        />
+      ))}
+    </div>
+  );
+}
+
+ReactDOM.render(<Board />, document.getElementById('root'));
+```
+
+@codepen react
+
 ### The solution
 
 ```jsx
-import React, { useState, useCallback } from 'react';
-import Square from '../../../app/components/Square';
+const squareStyling = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+  color: 'black',
+};
+
+const boardStyling = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  width: '600px',
+  height: '600px',
+  boxShadow: '0px 3px 8px 0 rgba(0, 0, 0, 0.1)',
+  boxSizing: 'border-box',
+};
+
+function Square({ onClick, symbol, id }) {
+  return (
+    <div id={id} onClick={onClick} style={squareStyling}>
+      {symbol}
+    </div>
+  );
+}
 
 function Board() {
-  const [board, setBoard] = useState(['', '', '', '', '', '', '', '', '']);
-  const [isXTurn, setIsXTurn] = useState(true);
+  const [board, setBoard] = React.useState([
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+  ]);
+  const [isXTurn, setIsXTurn] = React.useState(true);
 
-  const handleSquareClick = useCallback(
+  const handleSquareClick = React.useCallback(
     (squareIndex) => {
       if (board[squareIndex]) {
         return;
@@ -214,7 +326,7 @@ function Board() {
   );
 
   return (
-    <div className="board">
+    <div style={boardStyling}>
       {board.map((symbol, index) => (
         <Square
           key={index}
@@ -226,7 +338,8 @@ function Board() {
   );
 }
 
-export default Board;
+ReactDOM.render(<Board />, document.getElementById('root'));
 ```
 
-@highlight 8,20,only
+@codepen react
+@highlight 46,58,only
