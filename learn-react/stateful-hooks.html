@@ -111,7 +111,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will have mastered functional components, hooks, and component optimization.">
 							Learn React
 						</a>
 						
@@ -155,7 +155,7 @@
            						">
 						<a class="page"
 							href="components.html"
-							title="Learn about the two fundamental ways of writing React components and their differences.">
+							title="Learn about the two ways of writing React components and their differences.">
 							What are React Components
 						</a>
 						
@@ -186,7 +186,7 @@
 						<a class="page"
 							href="styling-in-react.html"
 							title="Learn the different ways to style React components.">
-							Styling in React 3 Ways
+							Styling in React
 						</a>
 						
 					</li>
@@ -265,21 +265,6 @@
 							href="context-hooks.html"
 							title="Learn how to manage global app state with context hooks.">
 							Context Hooks
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="class-components-vs-hooks.html"
-							title="Learn how to use React hooks to make functional components more powerful.">
-							Class Components vs Hooks
 						</a>
 						
 					</li>
@@ -494,7 +479,6 @@ function Hello() {
 </ul>
 <h2>Exercise</h2>
 <p>Let's use our stateful hooks knowledge to make our Tic-Tac-Toe game more functional!</p>
-<p>Run the app locally with <code>npm start</code> and choose the <code>Stateful Hooks</code> exercise. Now head over to <code>src/exercises/7 - Stateful Hooks/components</code>. These are the files you'll be editing.</p>
 <h3>The problem</h3>
 <p>✏️ Modify the <code>Board</code> component so that it keeps track of the current state of the game and players using hooks.</p>
 <ul>
@@ -502,13 +486,108 @@ function Hello() {
 <li>store the current player in state, with a boolean called <code>isXTurn</code></li>
 <li>Fill out the <code>handleSquareClick</code> function so that it updates the board and changes the current player when the user clicks a <code>Square</code>.</li>
 </ul>
-<h3>The solution</h3>
-<pre><code class="language-jsx">import React, { useState } from 'react';
-import Square from '../../../app/components/Square';
+<pre><code class="language-jsx">const squareStyling = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+  color: 'black',
+};
+
+const boardStyling = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  width: '600px',
+  height: '600px',
+  boxShadow: '0px 3px 8px 0 rgba(0, 0, 0, 0.1)',
+  boxSizing: 'border-box',
+};
+
+function Square({ onClick, symbol, id }) {
+  return (
+    &lt;div id={id} onClick={onClick} style={squareStyling}&gt;
+      {symbol}
+    &lt;/div&gt;
+  );
+}
 
 function Board() {
-  const [board, setBoard] = useState(['', '', '', '', '', '', '', '', '']);
-  const [isXTurn, setIsXTurn] = useState(true);
+  const board = ['', '', '', '', '', '', '', '', ''];
+  // store the board in state
+  // store the current player in state
+
+  function handleSquareClick(square) {
+    // update the board
+    // update the current player
+  }
+
+  return (
+    &lt;div style={boardStyling}&gt;
+      {board.map((symbol, index) =&gt; (
+        &lt;Square
+          key={index}
+          symbol={symbol}
+          onClick={() =&gt; handleSquareClick(index)}
+        /&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+
+ReactDOM.render(&lt;Board /&gt;, document.getElementById('root'));
+</code></pre>
+<div class='codepen' data-codepen='react'></div>
+<h3>The solution</h3>
+<pre><code class="language-jsx">const squareStyling = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+  color: 'black',
+};
+
+const boardStyling = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  width: '600px',
+  height: '600px',
+  boxShadow: '0px 3px 8px 0 rgba(0, 0, 0, 0.1)',
+  boxSizing: 'border-box',
+};
+
+function Square({ onClick, symbol, id }) {
+  return (
+    &lt;div id={id} onClick={onClick} style={squareStyling}&gt;
+      {symbol}
+    &lt;/div&gt;
+  );
+}
+
+function Board() {
+  const [board, setBoard] = React.useState([
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+  ]);
+  const [isXTurn, setIsXTurn] = React.useState(true);
 
   function handleSquareClick(squareIndex) {
     if (board[squareIndex]) {
@@ -523,7 +602,7 @@ function Board() {
   }
 
   return (
-    &lt;div className=&quot;board&quot;&gt;
+    &lt;div style={boardStyling}&gt;
       {board.map((symbol, index) =&gt; (
         &lt;Square
           key={index}
@@ -535,9 +614,10 @@ function Board() {
   );
 }
 
-export default Board;
+ReactDOM.render(&lt;Board /&gt;, document.getElementById('root'));
 </code></pre>
-<div line-highlight='5,6,9-17,only'></div>
+<div class='codepen' data-codepen='react'></div>
+<div line-highlight='33,44,46-56,only'></div>
 
 </section>
 

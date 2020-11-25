@@ -111,7 +111,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will have mastered functional components, hooks, and component optimization.">
 							Learn React
 						</a>
 						
@@ -155,7 +155,7 @@
            						">
 						<a class="page"
 							href="components.html"
-							title="Learn about the two fundamental ways of writing React components and their differences.">
+							title="Learn about the two ways of writing React components and their differences.">
 							What are React Components
 						</a>
 						
@@ -186,7 +186,7 @@
 						<a class="page"
 							href="styling-in-react.html"
 							title="Learn the different ways to style React components.">
-							Styling in React 3 Ways
+							Styling in React
 						</a>
 						
 					</li>
@@ -265,21 +265,6 @@
 							href="context-hooks.html"
 							title="Learn how to manage global app state with context hooks.">
 							Context Hooks
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="class-components-vs-hooks.html"
-							title="Learn how to use React hooks to make functional components more powerful.">
-							Class Components vs Hooks
 						</a>
 						
 					</li>
@@ -579,13 +564,11 @@ function ButtonComponent() {
 </code></pre>
 <div line-highlight='1,3'></div>
 <h3>Completed Example</h3>
-<pre><code class="language-jsx">import React, { useState } from 'react';
-
-function WrapperContainer() {
+<pre><code class="language-jsx">function WrapperContainer() {
   // define the savedText to be shown
-  const [savedText, setSavedText] = useState('');
+  const [savedText, setSavedText] = React.useState('');
   // create a holder for unsaved text
-  const [unsavedText, setUnsavedText] = useState('');
+  const [unsavedText, setUnsavedText] = React.useState('');
 
   function onButtonClick() {
     // save the new savedText
@@ -632,7 +615,10 @@ function ButtonComponent({ onButtonClick }) {
     &lt;/button&gt;
   );
 }
+
+ReactDOM.render(&lt;WrapperContainer /&gt;, document.getElementById('root'));
 </code></pre>
+<div class='codepen' data-codepen='react'></div>
 <div line-highlight='5,7,9-14,19-23,26,32,33-36,40,42,47,49'></div>
 <h2>What data should be kept in React state?</h2>
 <p>There is no &quot;right&quot; answer for what data should be stored in state. Applications with simple API requirements may keep everything in state objects. Other apps may opt to store nearly everything in a separate global state management library.</p>
@@ -673,7 +659,7 @@ function ButtonComponent({ onButtonClick }) {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react/9-managing-complex-state.md"},"description":"Manage component and application state with hooks. \n","name":"learn-react/managing-complex-state","title":"Managing Complex State","type":"page","parent":"learn-react","order":9,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react/9-managing-complex-state.md"},"description":"Manage component and application state with hooks. \n","name":"learn-react/managing-complex-state","title":"Managing Complex State","type":"page","parent":"learn-react","order":9,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

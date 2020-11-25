@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn about the two fundamental ways of writing React components and their differences. 
+  <meta name="description" content="Learn about the two ways of writing React components and their differences. 
 ">
   <title>Bitovi Academy - What are React Components</title>
   
@@ -111,7 +111,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will have mastered functional components, hooks, and component optimization.">
 							Learn React
 						</a>
 						
@@ -155,7 +155,7 @@
            						expanded">
 						<a class="page"
 							href="components.html"
-							title="Learn about the two fundamental ways of writing React components and their differences.">
+							title="Learn about the two ways of writing React components and their differences.">
 							What are React Components
 						</a>
 						
@@ -189,7 +189,7 @@
 						<a class="page"
 							href="styling-in-react.html"
 							title="Learn the different ways to style React components.">
-							Styling in React 3 Ways
+							Styling in React
 						</a>
 						
 					</li>
@@ -265,21 +265,6 @@
 							href="context-hooks.html"
 							title="Learn how to manage global app state with context hooks.">
 							Context Hooks
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="class-components-vs-hooks.html"
-							title="Learn how to use React hooks to make functional components more powerful.">
-							Class Components vs Hooks
 						</a>
 						
 					</li>
@@ -410,7 +395,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn about the two fundamental ways of writing React components and their differences.</p>
+    <p>Learn about the two ways of writing React components and their differences.</p>
 
 </section>
 
@@ -424,13 +409,32 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <p>React is all about components. In fact the whole point of the library is to help developers easily create reusable components.</p>
-<p>But what is a component?</p>
-<p>In a nutshell, a component is a function which uses props and state to return an element.</p>
-<ul>
-<li><strong>Props</strong> - The props of a component are the same as arguments to a function.</li>
-<li><strong>State</strong> - The state are the values which the component controls itself.</li>
-<li><strong>Side Effects</strong> - The side effects of a component are the results of operations which interact with things outside of the component. This includes things like async fetching, registering DOM event-handlers and using browser APIs.</li>
-</ul>
+<h2>Components</h2>
+<p>Earlier, we learned that React JSX is almost always the return value of our components. Components are like small containers which can be reused throughout your application. For example, you might build a <code>Button</code> component which renders all the JSX required for a button. Here's an example.</p>
+<pre><code class="language-jsx">function Button() {
+  return (
+    &lt;div className=&quot;button primary&quot;&gt;
+      &lt;button&gt;click me&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+ReactDOM.render(&lt;Button /&gt;, document.getElementById('root'));
+</code></pre>
+<div class='codepen' data-codepen='react'></div>
+<p>In the code above, we're defining a functional component (a function which returns JSX) called <code>Button</code>.</p>
+<p>This component returns JSX and could then be rendered and reused by another component like <code>App</code> below.</p>
+<pre><code class="language-jsx">function App() {
+  return (
+    &lt;div&gt;
+      &lt;Button /&gt;
+      &lt;Button /&gt;
+      &lt;Button /&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<p>Here the <code>App</code> component is rendering the <code>Button</code> component 3 times. Note that when you render custom components like this they don't need closing tags, instead they can be self-closing with a <code>/</code> tacked onto the end. You can also design them to have closing tags with extra elements rendered inside (see an explanation on JSX children <a href="https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891">here</a>).</p>
 <h2>Functional Components</h2>
 <p>Functional components are simple. In a nutshell, they're just functions which return a React element, usually written in JSX.</p>
 <pre><code class="language-jsx">function MyFuncComponent() {
@@ -467,8 +471,66 @@ ReactDOM.render(&lt;MyClassComponent /&gt;, document.getElementById('root'));
 </code></pre>
 <div line-highlight='4-5'></div>
 <p>Originally, class components were the most popular because they could keep track of state and respond to specific component lifecycle events. This wasn't possible in functional components until the release of the <a href="https://reactjs.org/docs/hooks-reference.html">React Hooks API</a> in v16. Up until then, functional components were commonly referred to as <em>stateless components</em>.</p>
-<p>Now both class and functional components are used commonly in code-bases around the world, but there has been a shift to using only functional components, as the syntax for them is more readable and cleaner.</p>
+<p>Now both class and functional components are used commonly in codebases around the world, but there has been a shift to using only functional components, as the syntax for them is more readable and cleaner.</p>
 <p>For the remainder of this training, we will be using functional components exclusively.</p>
+<h2>Exercise</h2>
+<p>In this exercise, we supply you with a single Tic-Tac-Toe cell component. And your job is to make a Board component that renders those Tic-Tac-Toe cells into a nice 3x3 grid. Bonus points if you update the cell component such that whenever a single cell is clicked, we <code>console.log</code> the string &quot;Clicked&quot;.</p>
+<pre><code class="language-jsx">const squareStyling = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+};
+
+function Square() {
+  return &lt;div style={squareStyling}&gt;&lt;/div&gt;;
+}
+
+function Board() {
+  return &lt;div&gt;Nothing here yet&lt;/div&gt;;
+}
+
+ReactDOM.render(&lt;Board /&gt;, document.getElementById('root'));
+</code></pre>
+<div class='codepen' data-codepen='react'></div>
+<h4>Hover over the code above and select the run button in the upper right hand corner.</h4>
+<p>Go ahead and hover over the code above. You should see a run button in the top right hand corner. Once that is clicked you can change, and edit the code in Codepen. Give it a try!</p>
+<h2>Solution</h2>
+<pre><code class="language-jsx">const squareStyling = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+};
+
+function Square() {
+  return (
+    &lt;div style={squareStyling} onClick={() =&gt; console.log('Clicked')}&gt;&lt;/div&gt;
+  );
+}
+
+function Board() {
+  return (
+    &lt;div style={{ display: 'flex', width: '600px', flexWrap: 'wrap' }}&gt;
+      {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((el) =&gt; (
+        &lt;Square key={el} /&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+
+ReactDOM.render(&lt;Board /&gt;, document.getElementById('root'));
+</code></pre>
+<div class='codepen' data-codepen='react'></div>
+<div line-highlight='14, 20-24'></div>
 
 </section>
 
@@ -506,7 +568,7 @@ ReactDOM.render(&lt;MyClassComponent /&gt;, document.getElementById('root'));
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react/3-components.md"},"description":"Learn about the two fundamental ways of writing React components and their differences. \n","name":"learn-react/components","title":"What are React Components","type":"page","parent":"learn-react","order":3,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react/3-components.md"},"description":"Learn about the two ways of writing React components and their differences. \n","name":"learn-react/components","title":"What are React Components","type":"page","parent":"learn-react","order":3,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

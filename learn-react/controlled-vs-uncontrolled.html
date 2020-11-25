@@ -111,7 +111,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will have mastered functional components, hooks, and component optimization.">
 							Learn React
 						</a>
 						
@@ -155,7 +155,7 @@
            						">
 						<a class="page"
 							href="components.html"
-							title="Learn about the two fundamental ways of writing React components and their differences.">
+							title="Learn about the two ways of writing React components and their differences.">
 							What are React Components
 						</a>
 						
@@ -186,7 +186,7 @@
 						<a class="page"
 							href="styling-in-react.html"
 							title="Learn the different ways to style React components.">
-							Styling in React 3 Ways
+							Styling in React
 						</a>
 						
 					</li>
@@ -265,21 +265,6 @@
 							href="context-hooks.html"
 							title="Learn how to manage global app state with context hooks.">
 							Context Hooks
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="class-components-vs-hooks.html"
-							title="Learn how to use React hooks to make functional components more powerful.">
-							Class Components vs Hooks
 						</a>
 						
 					</li>
@@ -438,7 +423,7 @@ ReactDOM.render(&lt;SearchBar /&gt;, document.getElementById('root'));
 <div class='codepen' data-codepen='react'></div>
 <p>The <code>SearchBar</code> above is considered uncontrolled because we're not explicitly giving it a value. The value of the input is now entirely determined by the browser &amp; the user. We as developers have no say.</p>
 <p>While this isn't necessarily a bad thing, it does make our lives as React developers more difficult. The reason being, at any given point in the lifecycle of this component, we don't know what the value of the input is. Assuming we'll want to use the value at some point, this becomes a problem. How do we access the input's value?</p>
-<p>We can solve this problem by explicitly controlling the input (giving it a value).</p>
+<p>We can solve this problem by <b>explicitly</b> controlling the input (giving it a value).</p>
 <pre><code class="language-jsx">// Controlled (sort of)
 function SearchBar() {
   return &lt;input type=&quot;text&quot; value=&quot;hello&quot; /&gt;;
@@ -501,7 +486,6 @@ ReactDOM.render(&lt;SmartParentComponent /&gt;, document.getElementById('root'))
 <p>This is another very common pattern. The idea is that we have a very simple, lightweight <code>SearchBar</code> component, which has no concept of state. Instead it is entirely controlled by props passed down from a smart, stateful parent.</p>
 <h2>Exercise</h2>
 <p>Let's use our knowledge of controlled and uncontrolled components to build an input component! (Note: this will not be apart of the Tic-Tac-Toe game.)</p>
-<p>Run the app locally with <code>npm start</code> and choose the <code>Controlled vs Uncontrolled</code> exercise. Now head over to <code>src/exercises/a - Controlled vs Uncontrolled/components</code>. These are the files you'll be editing.</p>
 <h3>The problem</h3>
 <p>✏️ You'll be modifying the <code>Search</code> component so that it is a controlled input. Specifically, try your hand at the following:</p>
 <ul>
@@ -509,22 +493,80 @@ ReactDOM.render(&lt;SmartParentComponent /&gt;, document.getElementById('root'))
 <li>Modify the clear button so that, when clicked, it clears out the value of the input.</li>
 <li>Make it so that the clear button is only visible when there is text in the input.</li>
 </ul>
-<h3>The solution</h3>
-<h4>Search</h4>
-<pre><code class="language-jsx">import React, { useState } from 'react';
+<pre><code class="language-jsx">let searchContainer = {
+  display: 'flex',
+  width: '100%',
+  border: '1px solid black',
+  marginTop: '25px',
+  height: '40px',
+  fontSize: '2em',
+  padding: '10px',
+};
+
+let search = {
+  border: 0,
+  outline: 'none',
+  width: '100%',
+  paddingRight: '10px',
+  fontSize: '1em',
+};
+
+let clear = {
+  marginRight: '10px',
+  fontSize: '1em',
+  cursor: 'pointer',
+};
 
 function Search() {
-  const [value, setValue] = useState('');
+  return (
+    &lt;div style={searchContainer}&gt;
+      &lt;input style={search} /&gt;
+      &lt;div style={clear}&gt;X&lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+ReactDOM.render(&lt;Search /&gt;, document.getElementById('root'));
+</code></pre>
+<div class='codepen' data-codepen='react'></div>
+<h3>The solution</h3>
+<h4>Search</h4>
+<pre><code class="language-jsx">let searchContainer = {
+  display: 'flex',
+  width: '100%',
+  border: '1px solid black',
+  marginTop: '25px',
+  height: '40px',
+  fontSize: '2em',
+  padding: '10px',
+};
+
+let search = {
+  border: 0,
+  outline: 'none',
+  width: '100%',
+  paddingRight: '10px',
+  fontSize: '1em',
+};
+
+let clear = {
+  marginRight: '10px',
+  fontSize: '1em',
+  cursor: 'pointer',
+};
+
+function Search() {
+  const [value, setValue] = React.useState('');
 
   return (
-    &lt;div className=&quot;search-container&quot;&gt;
+    &lt;div style={searchContainer}&gt;
       &lt;input
-        className=&quot;search&quot;
+        style={search}
         value={value}
         onChange={(e) =&gt; setValue(e.target.value)}
       /&gt;
       {value &amp;&amp; (
-        &lt;div className=&quot;clear&quot; onClick={() =&gt; setValue('')}&gt;
+        &lt;div style={clear} onClick={() =&gt; setValue('')}&gt;
           X
         &lt;/div&gt;
       )}
@@ -532,9 +574,10 @@ function Search() {
   );
 }
 
-export default Search;
+ReactDOM.render(&lt;Search /&gt;, document.getElementById('root'));
 </code></pre>
-<div line-highlight='4,10,11,13,14,only'></div>
+<div class='codepen' data-codepen='react'></div>
+<div line-highlight='26,32,33,35,36,only'></div>
 
 </section>
 

@@ -111,7 +111,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will have mastered functional components, hooks, and component optimization.">
 							Learn React
 						</a>
 						
@@ -155,7 +155,7 @@
            						">
 						<a class="page"
 							href="components.html"
-							title="Learn about the two fundamental ways of writing React components and their differences.">
+							title="Learn about the two ways of writing React components and their differences.">
 							What are React Components
 						</a>
 						
@@ -189,7 +189,7 @@
 						<a class="page"
 							href="styling-in-react.html"
 							title="Learn the different ways to style React components.">
-							Styling in React 3 Ways
+							Styling in React
 						</a>
 						
 					</li>
@@ -265,21 +265,6 @@
 							href="context-hooks.html"
 							title="Learn how to manage global app state with context hooks.">
 							Context Hooks
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="class-components-vs-hooks.html"
-							title="Learn how to use React hooks to make functional components more powerful.">
-							Class Components vs Hooks
 						</a>
 						
 					</li>
@@ -440,7 +425,7 @@ covering CanJS core libraries.">
 <p>The function is now infinitely more reusable because the caller can specify the numbers, instead of just having them be hardcoded.</p>
 <p>This same principle applies to React components.</p>
 <h2>Basic Props Usage</h2>
-<p>Recall that React components are just functions (or classes) which return an element. And like normal functions, we run into the same re-usability problems.</p>
+<p>React components are just functions which return an element. And like normal functions, we run into the same reusability problems.</p>
 <pre><code class="language-jsx">function AddNumbers() {
   return &lt;div&gt;{1 + 7}&lt;/div&gt;;
 }
@@ -455,7 +440,7 @@ covering CanJS core libraries.">
 </code></pre>
 <div line-highlight='2'></div>
 <blockquote>
-<p>In React, all functional components receive a <code>props</code> object as their first argument (class components get them in the constructor and at <code>this.props</code> in the methods).</p>
+<p>In React, all functional components receive a <code>props</code> object as their first argument.</p>
 </blockquote>
 <p>We're also <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">destructuring</a> the props object, a convention used by much of the community and in the rest of this guide.</p>
 <p>The props object contains any values which are passed into the component when it's rendered.</p>
@@ -463,7 +448,7 @@ covering CanJS core libraries.">
 &lt;AddNumbers num1={5} num2={-90} /&gt;
 </code></pre>
 <p>Whenever the <code>AddNumbers</code> component is rendered, we can now pass it <code>num1</code> &amp; <code>num2</code> props which it will use to do the calculation.</p>
-<p>Now, instead of having a hardcoded addition, the component is flexible and can be re-used in any scenario where it's necessary to display the result of adding two numbers.</p>
+<p>Now, instead of having a hardcoded addition, the component is flexible and can be reused in any scenario where it's necessary to display the result of adding two numbers.</p>
 <h2>Prop Data Types</h2>
 <p>Props can be any data type or data structure. Anything you could pass into a JavaScript function can be passed into a component as a prop.</p>
 <pre><code class="language-jsx">&lt;Component
@@ -474,13 +459,13 @@ covering CanJS core libraries.">
 </code></pre>
 <p>Props that are static strings can be passed using quotation marks, while non-string props must be passed in a set of curly brackets; this includes interpolated strings.</p>
 <h2>Callback Props</h2>
-<p>Just like normal functions, React components can accept props of any data type (even other components). One of the most useful types of props are callbacks. Callback props allow us to specify what a component will do when an action occurs inside of it.</p>
+<p>Just like normal functions, React components can accept props of any data type (even other components). One of the most useful types of props are callbacks. Callback props allow us to specify what a component will do when an action occurs inside of it. Below we have a button that takes an onClick handler that runs every time you click the button.</p>
 <pre><code class="language-jsx">function MyButton() {
   return &lt;button onClick={() =&gt; console.log('clicked')}&gt;click me&lt;/button&gt;;
 }
 </code></pre>
 <div line-highlight='2'></div>
-<p>The button above calls <code>console.log('clicked')</code> whenever the user clicks it. But once again, we're running into a re-usability issue.</p>
+<p>The button above calls <code>console.log('clicked')</code> whenever the user clicks it. But once again, we're running into a reusability issue.</p>
 <p>Suppose we wanted to perform an arbitrary action when the button is clicked instead of the hardcoded <code>console.log('clicked')</code>.</p>
 <p>To accomplish that, we would use a callback prop. To do so, simply pass the component a callback function as one of its props and pass that function to the button as the onClick prop. Note that by convention, callback props should begin with <code>on</code> just like native DOM events:</p>
 <pre><code class="language-jsx">function MyButton({ onButtonClick }) {
@@ -517,17 +502,10 @@ ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));
 <div line-highlight='1,2,5,6,12,13'></div>
 <div class='codepen' data-codepen='react'></div>
 <h2>Exercise</h2>
-<p>Let's use our props knowledge to start building out the Tic-Tac-Toe app that we started in [learn-react/setting-up-environment].</p>
-<p>The app itself has already been <a href="https://github.com/bitovi/react-exercises">scaffolded</a>. It includes 3 files, each of which comes together to make up the game:</p>
-<ul>
-<li><code>Game.js</code> - This is the component which is responsible for running the game. It's the highest level component, and the most complex. This is where we'll do most of our state management.</li>
-<li><code>Board.js</code> - This is a component which renders out the game board and all of the squares inside of it.</li>
-<li><code>Square.js</code> - This component represents a single square on the Tic-Tac-Toe board. It can be blank or populated with a symbol such as X or O.</li>
-</ul>
-<p>✏️ Clone the app from <a href="https://github.com/bitovi/react-exercises">GitHub</a> and run it locally with <code>npm install &amp;&amp; npm start</code> and choose the <code>Props</code> exercise. Now head over to <code>src/exercises/4 - Props/components</code>. These are the files you'll be editing for this exercise.</p>
+<p>Let's use our props knowledge to start building out the Tic-Tac-Toe component.</p>
 <h3>The problem</h3>
-<p>The goal of this exercise is to get a <code>console.log()</code> to happen whenever the user clicks on a square. This will require you to work modify some of the props in the scaffolded code.</p>
-<h4>Hints</h4>
+<p>The goal of this exercise to render a full Tic-Tac-Toe game board. But this time, we will pass the symbol (X, or O) into the Tic-Tac-Toe for rendering. Also we will pass a function down into the Tic-Tac-Toe cell that prints <code>console.log()</code> whenever the user clicks on a square. You will need to render the squares first. This will require you to work modify some of the props in the scaffolded code.</p>
+<h4>Instructions</h4>
 <ul>
 <li>Modify the <code>Square</code> component so that accepts two props:
 <ul>
@@ -537,8 +515,76 @@ ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));
 <li>Modify the <code>Board</code> component so it renders out all 9 squares given to it by its <code>board</code> props (<code>board</code> is an array of strings).</li>
 <li>Modify the <code>Game</code> component so it passes the correct props into <code>&lt;Board /&gt;</code>.</li>
 </ul>
+<pre><code class="language-jsx">const squareStyling = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+};
+
+const boardStyling = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  width: '600px',
+  height: '600px',
+  boxShadow: '0px 3px 8px 0 rgba(0, 0, 0, 0.1)',
+  boxSizing: 'border-box',
+};
+
+// Square will receive 2 props, &quot;onClick&quot; and &quot;symbol&quot;
+// Try destructuring the &quot;props&quot; object below to get them
+function Square(props) {
+  return (
+    &lt;div
+      style={squareStyling}
+      // add an onClick handler that calls the onClick
+      // prop that was passed in
+    &gt;
+      {/* display the &quot;symbol&quot; prop here */}
+    &lt;/div&gt;
+  );
+}
+
+function Board({ onSquareClick, board }) {
+  return &lt;div style={boardStyling}&gt;{/*
+          Use the map function to loop over the &quot;board&quot; prop.
+          Each item in the board array should be mapped to
+          a &lt;Square /&gt; component.
+
+          The Square component takes a symbol prop (x or o), an
+          onClick prop, and since we're using the map function each
+          Square will also need a unique key prop.
+      */}&lt;/div&gt;;
+}
+
+const blankBoard = ['', '', '', '', '', '', '', '', ''];
+
+function Game() {
+  return (
+    &lt;&gt;
+      &lt;Board
+        board={[]} // What should actually go here?
+        onSquareClick={() =&gt; {}}
+        // ^ Create a function to pass into onSquareClick
+        // that prints out &quot;Clicked&quot;
+      /&gt;
+      current player: X
+    &lt;/&gt;
+  );
+}
+
+ReactDOM.render(&lt;Game /&gt;, document.getElementById('root'));
+</code></pre>
+<div class='codepen' data-codepen='react'></div>
+<p>You can run the code above by hovering over the code block and hitting Run, which is in the upper right hand corner. Only check the solution below once you've taken a pass yourself.</p>
 <h3>The solution</h3>
-<h4>Square.js</h4>
+<h4>Square component</h4>
 <pre><code class="language-jsx">function Square({ onClick, symbol }) {
   return (
     &lt;div className=&quot;square&quot; onClick={onClick}&gt;
@@ -548,7 +594,7 @@ ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));
 }
 </code></pre>
 <div line-highlight='1,3,4,only'></div>
-<h4>Board.js</h4>
+<h4>Board component</h4>
 <pre><code class="language-jsx">function Board({ onSquareClick, board }) {
   return (
     &lt;div className=&quot;board&quot;&gt;
@@ -564,7 +610,7 @@ ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));
 }
 </code></pre>
 <div line-highlight='4-10,only'></div>
-<h4>Game.js</h4>
+<h4>Game component</h4>
 <pre><code class="language-jsx">const blankBoard = ['', '', '', '', '', '', '', '', ''];
 
 function Game() {
@@ -572,19 +618,9 @@ function Game() {
     console.log('You clicked a square');
   };
 
-  const getHint = () =&gt; {
-    console.log('Getting hint');
-  };
-
-  const toggleTheme = () =&gt; {
-    console.log('You toggled the theme');
-  };
-
   return (
     &lt;&gt;
       &lt;Board board={blankBoard} onSquareClick={handleSquareClick} /&gt;
-      &lt;button onClick={getHint}&gt;Get Hint&lt;/button&gt;
-      &lt;button onClick={toggleTheme}&gt;Toggle Theme&lt;/button&gt;
       current player: X
     &lt;/&gt;
   );
