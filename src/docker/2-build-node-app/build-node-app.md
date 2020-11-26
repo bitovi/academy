@@ -31,9 +31,9 @@ The app requires only two files
   }
 }
 ```
-This file defines `express` as a standard dependency and `nodemon` as a dev depenency. Nodemon is used to run our Express server and watches the source code to hot-reload any new changes without needing to restart the server. It is a dev dependency because we don't want the overhead of running nodemon in production or even the bulk of keeping it in `node_modules/`.
+This file defines `express` as a standard dependency and `nodemon` as a dev dependency. Nodemon is used to run our Express server and watches the source code to hot-reload any new changes without needing to restart the server. It is a dev dependency because we don't want the overhead of running nodemon in production or even the bulk of keeping it in `node_modules/`.
 
-Our `package.json` also defines a `start` script and a `start:prod`. These are convinient ways to allow us to start our application with nodemon or node by running `npm start` or `npm run start:prod`.
+Our `package.json` also defines a `start` script and a `start:prod`. These are convenient ways to allow us to start our application with nodemon or node by running `npm start` or `npm run start:prod`.
 
 ### src/index.js
 ```

@@ -5,6 +5,12 @@
 
 @body
 
+Welcome to Part 4 of Bitovi academy's Learn Docker training. In this video we're going to build a Dockerfile.
+
+If you recall from part 2, a Dockerfile is a plain text file used to build an image. Let's do it.
+
+
+
 ## Our Dockerfile
 Starting with the solution, the `Dockerfile` for our NodeJS app should look like this:
 ```

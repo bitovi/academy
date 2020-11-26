@@ -18,7 +18,7 @@ Containers are an abstraction at the app layer that packages application artifac
 ![Docker Architecture](../static/img/docker/1-what-is-docker/docker-arch.png)
 
 ## Dockerfiles, Images and Containers
-A Dockerfile is used to build a Docker image. It is a plain-text file that contains a series of instructions telling Docker what operating system, application dependencies and application source code is required to are required to run the application.
+A Dockerfile is used to build a Docker image. It is a plain-text file that contains a series of instructions telling Docker what operating system, application dependencies and application source code is required to run the application.
 
 A Docker image is a static artifact that is built from a Dockerfile and is tagged and published to a registry where it can be shared.
 
