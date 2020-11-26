@@ -24,9 +24,9 @@ my-node-app:dev
 That's a lot of typing and memorization to run a container. Docker compose condenses all of this into one command: `docker-compose up`.
 
 ## Docker Compose
-Docker Compose is a cli included with Docker that provides a declarative way to building and running multiple Docker images. With Docker Compose, the nomenclature for one of these containers is called a "service".
+Docker Compose is a cli included with Docker that provides a declarative way to building and running multiple Docker containers. With Docker Compose, the nomenclature for one of these containers is called a "service".
 
-Docker Compose reads a special file called `docker-compose.yml` that defines . Docker Compose ensures containers are run in consistent way without needing to type docker build and run flags into the console.
+Docker Compose reads a special file called `docker-compose.yml` that defines any number of services' port mappings, volumes, interdependencies and more. Docker Compose ensures containers are run in a consistent way without needing to type `docker build` and `docker run` along with numerous arguments into the console.
 
 ## Replacing docker run
 Instead of running
@@ -80,7 +80,7 @@ my-app_1  | Example app listening at http://localhost:8000
 You can press `ctrl+c` or run `docker-compose down` from a separate tab to kill your container(s). 
 
 ## Replacing docker build
-Now that we've replaced `docker run` with `docker-compose up`, Let's update `docker-compose.yml` to allow Docker Compose to manage builds:
+Now that we've replaced `docker run` with `docker-compose up`, Let's update `docker-compose.yml` to allow Docker Compose to manage builds too.
 ```
 version: "3.8"
 services:
@@ -104,10 +104,10 @@ Run `docker-compose build` to build a fresh copy of `my-node-app`.
 ## Customizing Behaviour
 Now we can control how our image is built and run from `.env`. 
 
-Changing `MY_ENV=dev` to `MY_ENV=prod` will cause `docker-compose up` to create a container in the correct mode. If the image does not exist, `docker-compose up` will automatically run `docker-compose build` for us! 
+Changing `MY_ENV=dev` to `MY_ENV=prod` will cause `docker-compose up` to create a container in the production mode. If an image does not exist, `docker-compose up` will automatically run `docker-compose build` for us! 
 
 ## Let's add more containers!
-Let's add a MySQL database and ensure it is running before starting the `my-app` service
+Let's add a MySQL database and ensure it is running before starting the `my-app` service.
 
 ### .env
 ```

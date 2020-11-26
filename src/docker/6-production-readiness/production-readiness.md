@@ -23,7 +23,7 @@ node                15                  969d445a1755        6 days ago          
 ```
 Docker provides a set of official images that are designed to provide drop-in solutions for popular runtimes and services. Many of these images provide variants of the image based on a developer's requirements. The `node` image repository on Dockerhub has 3 main variants:
 * `node:<version>`: This is the standard image that contains everything you'll need to run `node`. It's often the default choice if your specific needs and requirements are unclear. It's also the largest of all the variants
-* `node:<version>-slim`: The "slim" variant contains only the necessary packages needed to run `node`. It is a good choice, if your image only requires `node` and can operate without other packages like `git`.
+* `node:<version>-slim`: The "slim" variant contains only the necessary packages needed to run `node`. It is a good choice if your image only requires `node` and can operate without other external dependencies like `gcc`.
 * `node:<version>-alpine`: Instead of using debian as the base image, The alpine variant uses [Alpine Linux](https://hub.docker.com/_/alpine). The alpine Docker image is designed to be as minimal as possible at only `5MB` in size.
 
 Pulling these images into our local registry from Dockerhub using `docker pull`, allows us to inspect the size difference between the node variants
