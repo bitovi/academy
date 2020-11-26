@@ -25,18 +25,18 @@ Copy and paste this to the root of your project and name the file `Dockerfile`.
 
 Let's break down each line.
 ## FROM instruction
-The `FROM` instruction is the first line of any Dockerfile. It sets the base image to be used as a starting point for all other instructions. Using base images allows deferring installation of a kernal and low level packages to the provider of the base image.
+The `FROM` instruction is the first line of any Dockerfile. It sets the base image to be used as a starting point for all other instructions. Using base images allows deferring installation of a kernel and low level packages to the provider of the base image.
 
 In our case, We are using `node:15`. `node` specifies the name of the base image and `15` is a tag specifying the version of the image. This base image has the latest version of NodeJS 15 pre-installed, allowing the rest of the `Dockerfile` to focus on logic specific to our application. The `node:15` image also has a `Dockerfile` which means it also has a `FROM` instruction. `node:15` uses [Debian](https://hub.docker.com/_/debian) as its base image. This layering of Docker images repeats until a Dockerfile uses `FROM scratch` as its base image.
 
-By default, Docker will look for images  on [Dockerhub](https://hub.docker.com/). For example, the `node` image we are using is pulled from [here](https://hub.docker.com/_/node), but you can create your own base images and share them publically or privately to dockerhub or other package registries.
+By default, Docker will look for images  on [Dockerhub](https://hub.docker.com/). For example, the `node` image we are using is pulled from [here](https://hub.docker.com/_/node), but you can create your own base images and share them publicly or privately to Dockerhub or other package registries.
 
 [Official Docs](https://docs.docker.com/engine/reference/builder/#from)
 
 ## ARG instruction
 The `ARG` instruction is used to define variables that are only available during the image build process. The instruction follows the syntax `ARG <name> [=<default value>]`.
 
-In our case, `ARG PORT=8000` is defining an argument called `PORT` with a default value of `8000`. It can be accessed in later instructions in the `Dockerfile` like a standard environment variable (`$PORT`) and overwriten during the build process with the `--build-arg` cli argument ([Docs](https://docs.docker.com/engine/reference/commandline/build/#set-build-time-variables---build-arg)).
+In our case, `ARG PORT=8000` is defining an argument called `PORT` with a default value of `8000`. It can be accessed in later instructions in the `Dockerfile` like a standard environment variable (`$PORT`) and overwritten during the build process with the `--build-arg` cli argument ([Docs](https://docs.docker.com/engine/reference/commandline/build/#set-build-time-variables---build-arg)).
 
 [Official Docs](https://docs.docker.com/engine/reference/builder/#arg)
 
@@ -90,7 +90,7 @@ The `WORKDIR` instruction can be used multiple times.
 ```
 WORKDIR x
 WORKDIR y
-WORKDIR Z
+WORKDIR z
 RUN pwd
 ```
 Will result in `RUN pwd` and any later instruction being run in the `/x/y/z/` directory.
@@ -115,7 +115,7 @@ COPY package.json .
 ```
 This will result in our `src/` directory being copied to `/app/src/` and `package.json` file to `/app/package.json` within the image. Using two `COPY` instructions instead of one is just preference and has no functional difference one way or another.
 
-There are more complex cases on when a trailing slash is required on a `<src>` or `<dest>` and how to handle whitespace. These advanced rules can be found in the offical docs.
+There are more complex cases on when a trailing slash is required on a `<src>` or `<dest>` and how to handle whitespace. These advanced rules can be found in the official docs.
 
 [Official Docs](https://docs.docker.com/engine/reference/builder/#copy)
 

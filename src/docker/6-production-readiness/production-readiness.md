@@ -23,10 +23,10 @@ node                15                  969d445a1755        6 days ago          
 ```
 Docker provides a set of official images that are designed to provide drop-in solutions for popular runtimes and services. Many of these images provide variants of the image based on a developer's requirements. The `node` image repository on Dockerhub has 3 main variants:
 * `node:<version>`: This is the standard image that contains everything you'll need to run `node`. It's often the default choice if your specific needs and requirements are unclear. It's also the largest of all the variants
-* `node:<version>-slim`: The "slim" variant contains only the neceesary
-* `node:<version>-alpine`: Instead of using debian as the base image, The alpine variant uses [Alpine Linux](https://hub.docker.com/_/alpine). The alpine Docker image is deesigned to be as minimal as possible at only `5MB` in size.
+* `node:<version>-slim`: The "slim" variant contains only the necessary packages needed to run `node`. It is a good choice, if your image only requires `node` and can operate without other packages like `git`.
+* `node:<version>-alpine`: Instead of using debian as the base image, The alpine variant uses [Alpine Linux](https://hub.docker.com/_/alpine). The alpine Docker image is designed to be as minimal as possible at only `5MB` in size.
 
-Pulling these images into oour local registry from Dockerhub using `docker pull`, allows us to inspect the size difference between the node variants
+Pulling these images into our local registry from Dockerhub using `docker pull`, allows us to inspect the size difference between the node variants
 ```
 $ docker pull node:15
 $ docker pull node:15-slim
@@ -73,7 +73,7 @@ We are using `npm install` to install application dependencies during the Docker
 
 A multi-stage build is a Dockerfile with multiple `FROM` instructions. This is typically done to keep the final image size down by separating what is required to build an application from what is required to run it by allowing selective artifacts to be copied from one stage to another.
 
-This is especially powerful in compiled languages like go or java where multi-stage builds can be used to have your first stage compile the source code into a runtime artifact and then only the runtime artifact is copied in to the final image.
+This is especially powerful in compiled languages like Go or Java where multi-stage builds can be used to have your first stage compile the source code into a runtime artifact and then only the runtime artifact is copied in to a leaner final image.
 
 ## Targets
 By using the `--target` cli argument when building our image, we can tell Docker to stop building at a specific stage. We will use this alone with a `prod` stage and a `dev` stage to give us our desired result. 
@@ -149,9 +149,9 @@ docker rm -f my-dev-container my-prod-container
 ```
 
 ## A word of caution
-Using multi-stage builds to customize container behaviour can create issues where an image works locally, but doesn't work in production. Be sure to test your production image during your CI pipeline or before comitting to source control.
+Using multi-stage builds to customize container behavior can create issues where an image works locally, but doesn't work in production. Be sure to test your production image during your CI pipeline or before committing to source control.
 
 ## Review
-Our Dockerfile has been updated to be significantly smaller from a smaller base image and eliminating uncessary dependencies. We also use multi-stage builds to allow local development to still be done efficiently. 
+Our Dockerfile has been updated to be significantly smaller from a smaller base image and eliminating unnecessary dependencies. We also use multi-stage builds to allow local development to still be done efficiently. 
 
 With all this complexity, there are a lot of cli commands and flags to remember. In the last section, we will be looking at using `docker-compose` to simplify the building and running of images.

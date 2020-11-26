@@ -26,7 +26,7 @@ That's a lot of typing and memorization to run a container. Docker compose conde
 ## Docker Compose
 Docker Compose is a cli included with Docker that provides a declarative way to building and running multiple Docker images. With Docker Compose, the nomenclature for one of these containers is called a "service".
 
-Docker Compse reads a special file called `docker-compose.yml` that defines . Docker Compose ensures containers are run in consistent way without needing to type docker build and run flags into the console.
+Docker Compose reads a special file called `docker-compose.yml` that defines . Docker Compose ensures containers are run in consistent way without needing to type docker build and run flags into the console.
 
 ## Replacing docker run
 Instead of running
@@ -39,7 +39,7 @@ $ docker run \
 -v "$(pwd)"/src:/app/src \
 my-node-app:dev
 ```
-we can captrre all of these arguments in a `docker-compose.yml` file. 
+we can capture all of these arguments in a `docker-compose.yml` file. 
 
 First create a `.env` file with the following content. `docker-compose` will automatically read these environment variables and allow us to use them throughout `docker-compose.yml`.
 ```
@@ -171,6 +171,6 @@ my-app_1  | Example app listening at http://localhost:8000
 ```
 
 ## Review
-This course has taken your through Docker fundementals and has only scratched the surface of container orchestration. Docker Compose has a large list of commands (`docker-compose --help`) and an extensive [compose file reference](https://docs.docker.com/compose/compose-file) for all your container needs. It could be an entire course in itself.
+This course has taken you through Docker fundamentals and has only scratched the surface of container orchestration. Docker Compose has a large list of commands (`docker-compose --help`) and an extensive [compose file reference](https://docs.docker.com/compose/compose-file) for all your container needs. It could be an entire course in itself.
 
 I hope this course has whet your appetite on containers and orchestration. What do you want to see next? Kubernetes? AWS? Load Testing? CI/CD? [Let us know](https://github.com/bitovi/academy/issues)!

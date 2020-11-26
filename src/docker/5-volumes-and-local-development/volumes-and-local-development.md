@@ -40,11 +40,11 @@ The only catch is the host machine directory must be an absolute path.
 [Official Docs](https://docs.docker.com/storage/bind-mounts/)
 
 ## Local Development
-The most common usecase for bind mounts is in local development environments. Instead of rebuilding an image on every code change, we can mount our application's `src/` directory to the `/app/src` directory of our container.
+The most common use case for bind mounts is in local development environments. Instead of rebuilding an image on every code change, we can mount our application's `src/` directory to the `/app/src` directory of our container.
 
 Open a terminal at the root of your application and run
 ```
-docker run --name my-container -p 8000:8000 -d -v "$(pwd)"/src:/app/src my-node-app:latest
+docker run --name my-container -p 8000:8000 -d -v $PWD/src:/app/src my-node-app:latest
 ```
 Verify it's working by going to `localhost:8000` in your browser. You should see `Hello World!`.
 
@@ -58,7 +58,7 @@ res.send('Hello Bitovi!')
 ```
 save the file and refresh your browser. It should now say `Hello Bitovi!`. 
 
-What's happening is the nodemon process is watching the `src/` directory in the container for changes. Because our host-machine's `src/` directory is mounted to the container's `app/src/` directory (`-v "$(pwd)"/src:/app/src`), when we save the chage to `index.js`, it is replicated in the container causing nodemon to restart the server. We can see this in the contianer logs:
+What's happening is the nodemon process is watching the `src/` directory in the container for changes. Because our host-machine's `src/` directory is mounted to the container's `app/src/` directory (`-v $PWD/src:/app/src`), when we save the change to `index.js`, it is replicated in the container causing nodemon to restart the server. We can see this in the container logs:
 ```
 $ docker logs my-container
 

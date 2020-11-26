@@ -21,7 +21,7 @@ RUN npm install
 EXPOSE $PORT
 CMD npm start
 ```
-At this point, our directory shoud look like this
+At this point, our directory should look like this
 
 ![app directory](../static/img/docker/4-build-and-run-image/app-directory.png)
 
@@ -30,7 +30,7 @@ Ensure you have docker desktop running on your machine, then open a terminal to 
 ```
 docker build -t my-node-app .
 ```
-- The `-t my-node-app` argument tells Docker to call the image produced by the `Dockefile` "my-node-app" and tag it as "latest". The "latest" tag is the default tag, but can be overridden when building an image with `:<tagname>`. For example, if we wanted to tag our image as `v1.0.0`, we would run `docker build -t my-node-app:v1.0.0 .`.
+- The `-t my-node-app` argument tells Docker to call the image produced by the `Dockerfile` "my-node-app" and tag it as "latest". The "latest" tag is the default tag, but can be overridden when building an image with `:<tagname>`. For example, if we wanted to tag our image as `v1.0.0`, we would run `docker build -t my-node-app:v1.0.0 .`.
 - The `.` argument tells Docker where it can find our `Dockerfile`.
 
 Running the above command should produce output similar to below
@@ -86,7 +86,7 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 my-node-app         latest              848464f1725a        5 seconds ago       944MB
 node                15                  b34e90f5c9c0        24 hours ago        935MB
 ```
-You'll notice there's also a `node:15` image in our registgry. This is because we defined it as our base image in our `Dockerfile` (`FROM node:15`). It was pulled from Dockerhub so it can be used locally.
+You'll notice there's also a `node:15` image in our registry. This is because we defined it as our base image in our `Dockerfile` (`FROM node:15`). It was pulled from Dockerhub so it can be used locally.
 
 ## Run our image
 We're finally ready to run our image. Open a terminal and run
@@ -95,7 +95,7 @@ docker run --name my-container -p 8000:8000 -d my-node-app:latest
 ```
 - `--name my-container` gives our container a friendly name. If this is not provided, Docker will name the container for you.
 - `-p 8000:8000` publishes the container's internal port 8000 to our host machine's port 8000. This will allow us to access the app from `localhost:8000`
-- `-d` runs the container in detatched mode. This runs the process as a background process.
+- `-d` runs the container in detached mode. This runs the process as a background process.
 - `my-node-app:latest` specifies what image we want to run. If this image does not exist in our local registry, Docker will try and find and download a match from [Dockerhub](https://hub.docker.com/).
 
 Running the above command should produce output similar to below
@@ -166,7 +166,7 @@ docker build -t my-node-app .
 # Build an image with a custom tag
 docker build -t my-node-app:v1.0.0 .
 
-# List images in regsitry
+# List images in registry
 docker image ls
 
 # Create a container
