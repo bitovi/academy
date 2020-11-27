@@ -1,28 +1,28 @@
 @page learn-react/stateful-hooks Stateful Hooks
 @parent learn-react 6
 
-@description Learn how to use hooks in React to manage the state of a component.
+@description Learn how to use React's hooks to manage the state of a component.
 
 @body
 
 ## What are stateful hooks?
 
-Stateful hooks are React's way of managing all of the data that a functional component needs to keep track of. The most widely used stateful hook, `useState`, streamlines the process of both using and updating individual state values in a straightforward way.
+Stateful hooks are React's way of managing the data that a functional component needs to remember. The most widely used stateful hook, [`useState`](https://reactjs.org/docs/hooks-state.html), streamlines the process of both using and updating individual state values in a straightforward way.
 
 Another stateful hook, `useRef`, gives component code access to the underlying DOM elements rendered from the JSX.
 
-Let's take a look at each hook in turn and see what they can do.
+Let's take a look at each hook and see what they can do.
 
 ## useState
 
-When `useState` is called, it returns an array with two elements. The first element is the state value itself; this is the value you would render inside the JSX. The second element is a setter function, which when called, can be used to update the state and trigger a re-render.
+`useState` is called with a single argument, it returns an array with two elements. The argument to `useState` is the default value of the `state` that you are creating. The first element of the return value is the state value itself; this is the value you would render inside the JSX. The second element is a setter function, which when called, can be used to update the state value and trigger a re-render.
 
 ```jsx
 function Hello() {
   const [inputValue, setInputValue] = React.useState('');
 
   return (
-    <input value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
+    <input value={inputValue.toUpperCase()} onChange={(e) => setInputValue(e.target.value} />
   );
 }
 
@@ -32,17 +32,19 @@ ReactDOM.render(<Hello />, document.getElementById('root'));
 @highlight 2,5
 @codepen react
 
-Above is a simple example of using state to control an `input` element. The value of the input is determined entirely by the `inputValue` state (not the browser), and whenever the input changes, the state is updated to match.
+Above is a simple example of using state to control an `input` element. The starting value of `inputValue` is `''` because it is the argument to `React.useState`. If we were to call `setInputValue('hello')`, then `inputValue` would change to `hello` and the component would re-render.
 
-This process is similar no matter what component you're building. The basic flow is:
+Note also that the input box always displays the `uppercase` value of the text. This is because when we display the text value (when we pass the `value` prop to the `input`), we uppercase the string.
 
-1. Get the value and setter
+This process is similar no matter what component you're building. The basic pattern is:
+
+1. Get the value and setter (the return value of [`React.useState`](https://reactjs.org/docs/hooks-state.html)).
 2. Use the value as needed
 3. Call the setter to change the value and trigger an update
 
-> **Important:** When using objects or arrays, you must provide a new state when using the setter, rather than changing the current values. The data created by `useState` is immutable and will always replace any manual changes.
+> **Important:** When using objects or arrays, you must provide a new state object when using the setter, rather than changing the values within the object. The data created by `useState` is immutable and will always replace any manual changes.
 >
-> For example, using array methods like `.push()` or `.pop()` will lead to problems. Instead, use methods like `.concat()` and `.filter()` which create new arrays, and pass those values into the setter.
+> For example, using a state object that is an array, make sure never to use `.push()` or `.pop()` directly on it. Instead, use methods like `.concat()` and `.filter()` which create new arrays, and pass those values into the setter.
 >
 > ```jsx
 > function Hello() {
@@ -60,8 +62,6 @@ This process is similar no matter what component you're building. The basic flow
 >
 > ReactDOM.render(<Hello />, document.getElementById('root'));
 > ```
->
-> _For class based components see [this.setState()](https://reactjs.org/docs/state-and-lifecycle.html)._
 
 ## useRef
 

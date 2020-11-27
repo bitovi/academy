@@ -48,7 +48,7 @@ One of the downsides of this approach is the performance cost associated with ma
 
 Like normal HTML, JSX elements can accept a class attribute (called `className`). Classes can either be located in a global style sheet linked in the index.html file, or be directly imported into a component (see below).
 
-This import syntax can be used in any modern web-loader.
+This import syntax can be used in any modern web-loader. React uses `webpack` to accomplish this.
 
 ```jsx
 import './thing.css';
@@ -60,7 +60,7 @@ function Thing({ isActive }) {
 
 @highlight 4
 
-The component above uses a `thing` class that is imported from `thing.css`. This is a common way of including classes in a component, but keep in mind that due to it's cascading nature, it's possible to encounter clashing names with a large component tree.
+The component above uses a `thing` class that is imported from `thing.css`. This is a common way of including classes in a component, but keep in mind that due to its cascading nature, it's possible to encounter clashing names with a large component tree.
 
 `className`'s can also be dynamically generated in response to props or component state. In the component below, the `thing-active` class is only added to the class name if the `isActive` prop is truthy.
 
@@ -134,7 +134,7 @@ This would then be imported into your React component as a JavaScript module con
 
 ```js
 module.exports = {
-  thing: 'HelloWorld_border_1FUOu',
+  helloWorld: 'HelloWorld_border_1FUOu',
   active: 'HelloWorld_active_wBa2p',
 };
 ```
@@ -147,7 +147,7 @@ And the component could be styled like so:
 import styles from './hello-world.module.css';
 
 function HelloWorld({ isActive }) {
-  return <div className={styles.thing}>Hello World!</div>;
+  return <div className={styles.helloWorld}>Hello World!</div>;
 }
 ```
 
@@ -201,11 +201,11 @@ function Thing() {
 
 @highlight 6-8
 
+Remember that if you just supply a `prop` with no value (ie... the `outline` in `<Button outline>`), then React supplies the value of `true`. It assumes it is a boolean prop.
+
 The styled components approach is definitely a departure from traditional styling methodologies, however it makes up for it by integrating so nicely with the React paradigm.
 
 It's important to note that in many production codebases, some combination of the above styling techniques are utilized. Oftentimes some static css files will be necessary, and used alongside something like styled components. At the end of the day the right solution is the one that works for your team!
-
-Find a way to create an example of this, and link it.
 
 ## Exercise
 
@@ -363,7 +363,7 @@ function App() {
 export default App;
 ```
 
-@highlight 4,8-17,only
+@highlight 2,4,8-17,only
 
 `App.module.css`
 

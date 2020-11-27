@@ -139,7 +139,7 @@ function AddNumbers({ num1, num2 }) {
 function App() {
   return (
     <div>
-      <AddNumbers num1={5} num2={10} />
+      <AddNumbers num1={5} num2={10} isCool />
       <MyButton onButtonClick={() => console.log('you clicked')} />
     </div>
   );
@@ -150,6 +150,8 @@ ReactDOM.render(<App />, document.getElementById('root'));
 
 @highlight 1,2,5,6,12,13
 @codepen react
+
+Notice that if you supply a `prop` with no value (ie... the `isCool` in `<AddNumbers num1={5} num2={10} isCool/>`), then React supplies the value of `true`. It assumes it is a boolean prop.
 
 ## Exercise
 
