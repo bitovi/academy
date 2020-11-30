@@ -38,7 +38,7 @@ The WIRDIR instruction tells docker to create this directory if it does not alre
 
 ### RUN npm install
 The run instruction allows us to run arbitrary commands during build time. In our case were using run to run NPM install to install the dependencies to find in our package.json file
-
+cd 
 ### EXPOSE $PORT
 Honestly the expose instruction is mostly just documentation to whoever is reading the Docker file it doesn't actually do anything but it's suppose supposed to specify that we are looking to expose a port from that container in reality when we run the container with Docker run commands will need to specify the port mapping explicitly with a Dash P flag.
 

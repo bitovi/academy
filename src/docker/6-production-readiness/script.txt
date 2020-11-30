@@ -1,0 +1,10 @@
+Welcome to part 7 of Bitovi academies learn doctor training. 
+
+Our docker image is huge. Reducing its total size is going to make it faster to pull and start up in production. Also always running our node app with nodemon is wasteful from a cpu and memory perspective.
+
+We are going to look at two strategies for addressing this.
+
+
+First we're going to be changing the FROM instruction in our Dockerfile.
+
+We are currently using node:15. Node along with many other official docker images provide variants.
