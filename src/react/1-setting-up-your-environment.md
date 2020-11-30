@@ -119,3 +119,7 @@ npm run build
 The final command will build the site and create a `build` folder. Check out the generated files. Notice how they're nicely minified and bundled!
 
 More information on the `build` folder and on deployment in general can be found in the [Create React App documentation](https://create-react-app.dev/docs/deployment/).
+
+## Next Steps
+
+✏️ Head over to the [next lesson](intro-to-jsx.html) to learn more about JSX.

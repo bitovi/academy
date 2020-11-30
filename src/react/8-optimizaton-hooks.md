@@ -343,3 +343,7 @@ ReactDOM.render(<Board />, document.getElementById('root'));
 
 @codepen react
 @highlight 46,58,only
+
+## Next Steps
+
+✏️ Head over to the [next lesson](managing-complex-state.html) to get a more comprehensive example on how one can use state.

@@ -69,7 +69,7 @@ The default value is what the **Consumers** will get if they have no available *
 
 ### Writing a Provider
 
-The provider component is exposed by the context. It is always accessible via `ContextName.Provider` and requires a single prop named `value`. This prop will be the value which provided to all of its **Consumers**.
+The provider component is exposed by the context. It is always accessible via `ContextName.Provider` and requires a single prop named `value`. This prop will be provided to all of its **Consumers**.
 
 Any components we render inside of the provider will be able to access the information in the `value` prop, no matter how deeply nested they are in the component tree. This eliminates the need for prop drilling where a single prop would need to be passed down through multiple components.
 

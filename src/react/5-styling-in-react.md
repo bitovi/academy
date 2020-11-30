@@ -48,7 +48,7 @@ One of the downsides of this approach is the performance cost associated with ma
 
 Like normal HTML, JSX elements can accept a class attribute (called `className`). Classes can either be located in a global style sheet linked in the index.html file, or be directly imported into a component (see below).
 
-This import syntax can be used in any modern web-loader. React uses `webpack` to accomplish this.
+This import syntax can be used in any modern web-loader. Create React App uses `webpack` to accomplish this.
 
 ```jsx
 import './thing.css';
@@ -161,7 +161,7 @@ Find a way to create an example of this, and link it.
 
 The styled components philosophy is that everything is a component. Instead of separating your CSS and your JS, they become integrated into one single entity. So instead of loading styles into a component from some external source, the styles are actually built into the component itself, and can be configured using props/state.
 
-In a styled components implementation, a `Button` component for example, might take a `color` prop, or a `fontSize` prop to determine its style. This approach is closed integrated with React, and utilizes the built-in React features (props/state) more than any other.
+In a styled components implementation, a `Button` component for example, might take a `color` prop, or a `fontSize` prop to determine its style. This approach is closely integrated with React, and utilizes the built-in React features (props/state) more than any other.
 
 In the code below, we're using the [emotion](https://emotion.sh/docs/introduction) library to create a styled `Button` component. The syntax is a bit foreign, but this is essentially creating a `<button>` component which maps its props to styles. For example, the button below accepts a `color` and an `outline` prop, which are used to generate the styling.
 
@@ -463,3 +463,7 @@ export default App;
 ```
 
 @highlight 4,15,39-49,only
+
+## Next Steps
+
+✏️ Head over to the [next lesson](stateful-hooks.html) to get a deeper appreciation for how hooks can simplify your life.

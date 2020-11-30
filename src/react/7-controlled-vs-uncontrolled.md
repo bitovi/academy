@@ -212,3 +212,7 @@ ReactDOM.render(<Search />, document.getElementById('root'));
 
 @codepen react
 @highlight 26,32,33,35,36,only
+
+## Next Steps
+
+✏️ Head over to the [next lesson](optimization-hooks.html) to get performance advice on how to speed up components.

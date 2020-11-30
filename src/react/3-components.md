@@ -168,3 +168,7 @@ ReactDOM.render(<Board />, document.getElementById('root'));
 
 @codepen react
 @highlight 14, 20-24
+
+## Next Steps
+
+✏️ Head over to the [next lesson](props.html) to get a more detailed understanding of props.

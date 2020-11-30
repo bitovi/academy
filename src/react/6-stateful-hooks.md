@@ -1,7 +1,7 @@
 @page learn-react/stateful-hooks Stateful Hooks
 @parent learn-react 6
 
-@description Learn how to use React's hooks to manage the state of a component.
+@description Learn how to use React hooks to manage the state of a component.
 
 @body
 
@@ -15,7 +15,7 @@ Let's take a look at each hook and see what they can do.
 
 ## useState
 
-`useState` is called with a single argument, it returns an array with two elements. The argument to `useState` is the default value of the `state` that you are creating. The first element of the return value is the state value itself; this is the value you would render inside the JSX. The second element is a setter function, which when called, can be used to update the state value and trigger a re-render.
+`useState` accepts a single parameter and returns an array with two elements. The argument to `useState` is the default value of the `state` that you are creating. The first element of the return value is the state value itself; this is the value you would render inside the JSX. The second element is a setter function, which when called, can be used to update the state value and trigger a re-render.
 
 ```jsx
 function Hello() {
@@ -244,3 +244,7 @@ ReactDOM.render(<Board />, document.getElementById('root'));
 
 @codepen react
 @highlight 33,44,46-56,only
+
+## Next Steps
+
+✏️ Head over to the [next lesson](controlled-vs-uncontrolled.html) to learn how React manages browser inputs.

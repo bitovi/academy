@@ -159,7 +159,7 @@ Let's use our props knowledge to start building out the Tic-Tac-Toe component.
 
 ### The problem
 
-The goal of this exercise to render a full Tic-Tac-Toe game board. But this time, we will pass the symbol (X, or O) into the Tic-Tac-Toe for rendering. Also we will pass a function down into the Tic-Tac-Toe cell that prints `console.log()` whenever the user clicks on a square. You will need to render the squares first. This will require you to work modify some of the props in the scaffolded code.
+The goal of this exercise to render a full Tic-Tac-Toe game board. But this time, we will pass the symbol (X, or O) into the Tic-Tac-Toe for rendering. Also we will pass a function down into the Tic-Tac-Toe cell that prints `console.log()` whenever the user clicks on a square. You will need to render the squares first. This will require you to modify some of the props in the scaffolded code.
 
 #### Instructions
 
@@ -297,3 +297,7 @@ function Game() {
 ```
 
 @highlight 4-6,18,20,only
+
+## Next Steps
+
+✏️ Head over to the [next lesson](styling-in-react.html) to learn all the different ways one can style components.

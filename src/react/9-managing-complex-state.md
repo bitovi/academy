@@ -260,3 +260,7 @@ ReactDOM.render(<WrapperContainer />, document.getElementById('root'));
 ## What data should be kept in React state?
 
 There is no "right" answer for what data should be stored in state. Applications with simple API requirements may keep everything in state objects. Other apps may opt to store nearly everything in a separate global state management library.
+
+## Next Steps
+
+✏️ Head over to the [next lesson](context-hooks.html) to get a more detailed picture on how and when you can use context.
