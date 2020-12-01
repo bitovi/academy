@@ -243,26 +243,42 @@ You can run the code above by hovering over the code block and hitting Run, whic
 
 ### The solution
 
-#### Square component
-
 ```jsx
+const squareStyling = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+};
+
+const boardStyling = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  width: '600px',
+  height: '600px',
+  boxShadow: '0px 3px 8px 0 rgba(0, 0, 0, 0.1)',
+  boxSizing: 'border-box',
+};
+
+// Square will receive 2 props, "onClick" and "symbol"
+// Try destructuring the "props" object below to get them
 function Square({ onClick, symbol }) {
   return (
-    <div className="square" onClick={onClick}>
+    <div style={squareStyling} onClick={onClick}>
       {symbol}
     </div>
   );
 }
-```
 
-@highlight 1,3,4,only
-
-#### Board component
-
-```jsx
 function Board({ onSquareClick, board }) {
   return (
-    <div className="board">
+    <div style={boardStyling}>
       {board.map((symbol, index) => (
         <Square
           key={index}
@@ -273,13 +289,7 @@ function Board({ onSquareClick, board }) {
     </div>
   );
 }
-```
 
-@highlight 4-10,only
-
-#### Game component
-
-```jsx
 const blankBoard = ['', '', '', '', '', '', '', '', ''];
 
 function Game() {
@@ -294,9 +304,11 @@ function Game() {
     </>
   );
 }
+
+ReactDOM.render(<Game />, document.getElementById('root'));
 ```
 
-@highlight 4-6,18,20,only
+@codepen react
 
 ## Next Steps
 

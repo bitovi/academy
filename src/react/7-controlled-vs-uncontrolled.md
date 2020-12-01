@@ -213,6 +213,26 @@ ReactDOM.render(<Search />, document.getElementById('root'));
 @codepen react
 @highlight 26,32,33,35,36,only
 
+> A quick note on syntax like
+>
+> ```jsx
+> {
+>   value && (
+>     <div style={clear} onClick={() => setValue('')}>
+>       X
+>     </div>
+>   );
+> }
+> ```
+>
+> Because HTML simply gets converted to a `React.createElement` call, you can use javascript "short-circuiting" to conditionally render HTML. Consider the expression.
+>
+> ```jsx
+> isBool && React.createElement('h1', null, 'Hello World');
+> ```
+>
+> If `isBool` is true, then it will return the `React.createElement` expression, if `isBool` is false, then this whole expression will return `false` which `React` will ignore when putting elements into the DOM. In this way, it becomes a convenient shorthand for conditionally rendering HTML.
+
 ## Next Steps
 
 ✏️ Head over to the [next lesson](optimization-hooks.html) to get performance advice on how to speed up components.
