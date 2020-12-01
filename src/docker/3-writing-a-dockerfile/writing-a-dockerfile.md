@@ -9,7 +9,7 @@
 
 ## Our Dockerfile
 Starting with the solution, the `Dockerfile` for our NodeJS app should look like this:
-```
+```dockerfile
 FROM node:15
 
 ARG PORT=8000
@@ -47,7 +47,7 @@ The `ENV` instruction is used to define environment variables. Like `ARG`, it fo
 
 To give us the flexibility to set and use variables at build time and run time, we use both `ARG` and `ENV` instructions together:
 
-```
+```dockerfile
 ARG PORT=8000
 ENV PORT=$PORT
 ```
@@ -89,7 +89,7 @@ ENV PORT=$PORT
 The `WORKDIR` instruction sets the working directory for any subsequent instructions. If the directory does not exist, it will be automatically created.
 
 The `WORKDIR` instruction can be used multiple times.
-```
+```dockerfile
 WORKDIR x
 WORKDIR y
 WORKDIR z
@@ -110,7 +110,7 @@ The `COPY` instruction follows the syntax `COPY [--chown=<user>:<group>] <src>..
 - `<dest>` specifies where each src entry should be copied to in the docker image. `.` will put each entry in the `WORKDIR` or the root directory if no `WORKDIR` is specified.
 
 In our case, we have
-```
+```dockerfile
 WORKDIR app
 COPY src src
 COPY package.json .
@@ -132,12 +132,12 @@ In our case, we are using `RUN npm install` to install dependencies from the `pa
 `EXPOSE` specifies which ports the when running the container. Each port is separated by a space (` `). By default the container listens using TCP, but UDP can be used by adding `/udp` after the port.
 
 For example:
-```
+```dockerfile
 EXPOSE 80/udp
 ```
 
 In our case, we want the port exposed by our container to match the port our application is running on (remember: `const port = process.env.PORT || 3000` in `src/index.js`), therefore, we are publishing the value of our `PORT` environment variable.
-```
+```dockerfile
 ARG PORT=8000
 ENV PORT=$PORT
 ...

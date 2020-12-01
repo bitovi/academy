@@ -22,7 +22,7 @@ A Docker container has no built in persistence. Beyond what is built in to an im
 Volumes provide a persistent storage mechanism that can be managed through Docker's CLI. They can be shared between multiple containers and can be stored on remote hosts or cloud providers.
 
 Consider the following example:
-```
+```bash
 docker volume create my-vol
 docker run -v my-vol:/data my-image
 ```
@@ -34,7 +34,7 @@ The above commands create a volume called `my-vol` and on container creation is 
 Bind mounts are similar to volumes, but in comparison have limited functionality. Instead of creating a named volume, the contents of a host machine's directory can be mounted to a directory in a container.
 
 For example the following command will overwrite the contents of the `/data` directory in the container with the contents of `/Users/connor/data`. When the container is running, the contents are mirrored between the two locations regardless if a change originates from the container or the host machine. 
-```
+```bash
 docker run -v /Users/connor/data:/data my-image
 ```
 The only catch is the host machine directory must be an absolute path.
@@ -45,23 +45,23 @@ The only catch is the host machine directory must be an absolute path.
 The most common use case for bind mounts is in local development environments. Instead of rebuilding an image on every code change, we can mount our application's `src/` directory to the `/app/src` directory of our container.
 
 Open a terminal at the root of your application and run
-```
+```bash
 docker run --name my-container -p 8000:8000 -d -v $PWD/src:/app/src my-node-app:latest
 ```
 Verify it's working by going to `localhost:8000` in your browser. You should see `Hello World!`.
 
 Now open `src/index.js` and change line 6 from
-```
+```js
 res.send('Hello World!')
 ```
 to
-```
+```js
 res.send('Hello Bitovi!')
 ```
 save the file and refresh your browser. It should now say `Hello Bitovi!`. 
 
 What's happening is the nodemon process is watching the `src/` directory in the container for changes. Because our host-machine's `src/` directory is mounted to the container's `app/src/` directory (`-v $PWD/src:/app/src`), when we save the change to `index.js`, it is replicated in the container causing nodemon to restart the server. We can see this in the container logs:
-```
+```bash
 $ docker logs my-container
 
 > bitovi-academy-app@1.0.0 start

@@ -9,12 +9,12 @@
 
 ## Overview
 At this point, we are building our image with
-```
+```bash
 $ MY_ENV=dev
 $ docker build -t my-node-app:$MY_ENV --target $MY_ENV .
 ```
 and running it with
-```
+```bash
 $ MY_PORT=9000
 $ docker run \
 --name my-container \
@@ -32,7 +32,7 @@ Docker Compose reads a special file called `docker-compose.yml` that defines any
 
 ## Replacing docker run
 Instead of running
-``` 
+``` bash
 $ MY_PORT=9000
 $ docker run \
 --name my-container \
@@ -44,12 +44,12 @@ my-node-app:dev
 we can capture all of these arguments in a `docker-compose.yml` file. 
 
 First create a `.env` file with the following content. `docker-compose` will automatically read these environment variables and allow us to use them throughout `docker-compose.yml`.
-```
+```bash
 MY_PORT=8000
 MY_ENV=dev
 ```
 Create a `docker-compose.yml` in the root of your application repo and paste the following content:
-```
+```yaml
 version: "3.8"
 services:
   my-app:
@@ -64,7 +64,7 @@ services:
 Hopefully, this file is self-explanatory. It creates a service called "my-app" that creates an instance of our `my-node-app` image with the desired port mapping, volumes and environment variables defined.
 
 Run `docker-compose up` and watch the magic.
-```
+```bash
 $ docker-compose up
 Starting nodeapp_my-app_1 ... done
 Attaching to nodeapp_my-app_1
@@ -83,7 +83,7 @@ You can press `ctrl+c` or run `docker-compose down` from a separate tab to kill 
 
 ## Replacing docker build
 Now that we've replaced `docker run` with `docker-compose up`, Let's update `docker-compose.yml` to allow Docker Compose to manage builds too.
-```
+```yaml
 version: "3.8"
 services:
   my-app:
@@ -112,7 +112,7 @@ Changing `MY_ENV=dev` to `MY_ENV=prod` will cause `docker-compose up` to create 
 Let's add a MySQL database and ensure it is running before starting the `my-app` service.
 
 ### .env
-```
+```yaml
 # My App
 MY_ENV=prod
 MY_PORT=8000
@@ -124,7 +124,7 @@ MYSQL_USER=my_user
 MYSQL_PASSWORD=S3cure!_user
 ```
 ### docker-compose.yml
-```
+```yaml
 version: "3.8"
 services:
   my-app:
@@ -155,7 +155,7 @@ volumes:
 ```
 
 Finally, let's start everything up
-```
+```bash
 $ docker-compose up
 Creating network "nodeapp_default" with the default driver
 Creating nodeapp_db_1 ... done

@@ -9,7 +9,7 @@
 
 ## App Review
 In the last section, we created a `Dockerfile` for our NodeJS app.
-```
+```dockerfile
 FROM node:15
 
 ARG PORT=8000
@@ -29,14 +29,14 @@ At this point, our directory should look like this
 
 ## Build our image
 Ensure you have docker desktop running on your machine, then open a terminal to your application directory and run
-```
+```bash
 docker build -t my-node-app .
 ```
 - The `-t my-node-app` argument tells Docker to call the image produced by the `Dockerfile` "my-node-app" and tag it as "latest". The "latest" tag is the default tag, but can be overridden when building an image with `:<tagname>`. For example, if we wanted to tag our image as `v1.0.0`, we would run `docker build -t my-node-app:v1.0.0 .`.
 - The `.` argument tells Docker where it can find our `Dockerfile`.
 
 Running the above command should produce output similar to below
-```
+```bash
 $ docker build -t my-node-app .
 Sending build context to Docker daemon  4.608kB
 Step 1/9 : FROM node:15
@@ -82,7 +82,7 @@ Successfully tagged my-node-app:latest
 
 ## View our image
 The `my-node-app:latest` image has been saved to our local Docker registry. Run `docker image ls` and you can see information about it.
-```
+```bash
 $ docker image ls
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 my-node-app         latest              848464f1725a        5 seconds ago       944MB
@@ -92,7 +92,7 @@ You'll notice there's also a `node:15` image in our registry. This is because we
 
 ## Run our image
 We're finally ready to run our image. Open a terminal and run
-```
+```bash
 docker run --name my-container -p 8000:8000 -d my-node-app:latest
 ```
 - `--name my-container` gives our container a friendly name. If this is not provided, Docker will name the container for you.
@@ -101,7 +101,7 @@ docker run --name my-container -p 8000:8000 -d my-node-app:latest
 - `my-node-app:latest` specifies what image we want to run. If this image does not exist in our local registry, Docker will try and find and download a match from [Dockerhub](https://hub.docker.com/).
 
 Running the above command should produce output similar to below
-```
+```bash
 $ docker run --name my-container -p 8000:8000 -d my-node-app:latest
 71cfe418a26a05bbebb160f541e53c025157dc7ee2c333ab2309c7bc66bb24e3
 ```
@@ -109,13 +109,13 @@ Open your browser to `localhost:8000` and you should see `Hello World!`. You jus
 
 ## Interacting with our container
 Run `docker ps` to see the status of all running containers
-```
+```bash
 $ docker ps
 CONTAINER ID        IMAGE                COMMAND                  CREATED              STATUS              PORTS                    NAMES
 71cfe418a26a        my-node-app:latest   "docker-entrypoint.s…"   About a minute ago   Up About a minute   0.0.0.0:8000->8000/tcp   my-container
 ```
 You can view logs with `docker logs <container-name>`
-```
+```bash
 $ docker logs my-container
 
 > bitovi-academy-app@1.0.0 start
@@ -129,7 +129,7 @@ $ docker logs my-container
 Example app listening at http://localhost:8000
 ```
 Finally, stop our container with `docker stop <container-name>` and `docker rm <container-name>`. If you want to do this with one command, just run `docker rm -f <container-name>`.
-```
+```bash
 $ docker rm -f my-container
 my-container
 
@@ -140,7 +140,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 
 ## Customize the port
 We can use the `-e` flag when starting our container to set the `PORT` environment variable.
-```
+```bash
 $ MY_PORT=9000
 $ docker run --name my-container -p 8000:$MY_PORT -d -e PORT=$MY_PORT my-node-app:latest
 0c0a51e7a19f37d503452892df9498de18c5dc78719aae2511b42a32f1f734ad
@@ -161,7 +161,7 @@ You'll see the last line of the logs indicating the app is now listening on port
 
 ## Review
 We've built an image and run a container for our node app. Here's a cheat sheet of all the commands we ran.
-```
+```bash
 # Build an image
 docker build -t my-node-app .
 

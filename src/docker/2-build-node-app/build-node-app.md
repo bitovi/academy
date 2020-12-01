@@ -18,7 +18,7 @@ The app requires only two files
 * `src/index.js`
 
 ### package.json
-```
+```json
 {
   "name": "bitovi-academy-app",
   "version": "1.0.0",
@@ -39,7 +39,7 @@ This file defines `express` as a standard dependency and `nodemon` as a dev depe
 Our `package.json` also defines a `start` script and a `start:prod`. These are convenient ways to allow us to start our application with nodemon or node by running `npm start` or `npm run start:prod`.
 
 ### src/index.js
-```
+```js
 const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
@@ -56,7 +56,7 @@ This file starts an express server listening on `localhost:3000`. If we access t
 
 ## Run our app
 This step is optional, but to verify our app works you can run
-```
+```bash
 npm install
 npm start
 ```
