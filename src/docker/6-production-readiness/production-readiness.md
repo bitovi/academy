@@ -5,6 +5,8 @@
 
 @body
 
+<iframe width="560" height="315" src="https://youtu.be/aVCr1bGjw0k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Overview
 We want to make our image as lightweight as possible. Reducing image size will make it faster to pull and run in production. In its current state, our simple node app is a staggering `944MB`!
 ```

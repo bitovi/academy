@@ -4,6 +4,9 @@
 @description Build a simple Express API to use for the rest of the course.
 
 @body
+
+<iframe width="560" height="315" src="https://youtu.be/6sHuGWj5cGM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 ## Overview
 In this section, we are going to build a simple "Hello World" api using [Express](https://expressjs.com/).
 
