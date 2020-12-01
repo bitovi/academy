@@ -5,7 +5,7 @@
 
 @body
 
-<iframe width="560" height="315" src="https://youtu.be/HLPEIKVaZeE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HLPEIKVaZeE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Overview
 At this point, we are building our image with

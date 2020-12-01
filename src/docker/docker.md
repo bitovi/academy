@@ -5,7 +5,7 @@
 
 @body
 
-<iframe width="560" height="315" src="https://youtu.be/uu9bsgiBo40" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uu9bsgiBo40" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Before You Begin
 
