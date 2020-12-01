@@ -19,15 +19,6 @@ Please ask questions related to DevOps in the [DevOps Chat Room](https://bitovi-
 
 If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/academy/issues) or email `contact@bitovi.com`.
 
-## Video
-
-Who has time to read?  This video covers the content on this page. Watch fullscreen. 
-
-<video width="560" height="315" controls>
-                     <source src="https://www.bitovi.com/hubfs/DevOps%20Page/academy/learn-docker.mp4" type="video/mp4">
-                   Your browser does not support the video tag.
-</video>
-
 ## Overview
 
 In this tutorial we will take a simple node api and containerize it to run with Docker. We will explore how to optimize the image for production as well as how to streamline local development workflows.
