@@ -460,7 +460,19 @@ a.quote-link:hover{
           </div>
           <a href="./learn-web-components.html" class="button button-grey full-width">Take this course</a>
       </div>
-      <div class="academy-card course" style="background: transparent; border: none;">&nbsp;</div>
+      <div class="academy-card course">
+        <div class="course-logo">
+          <img src="./static/img/docker/logo.png" height="70">
+        </div>
+        <h4>Docker</h4>
+        <p>Build and containerize a Node app then orchestrate a more complex example with docker-compose in this Docker guide.</p>
+        <div class="width100">
+          <p class='detail'><strong>Audience:</strong> Intermediate developers, new DevOps Engineers</p>
+            <p class='detail'><strong>Goal:</strong> Learn Docker fundamentals and container orchestration</p>
+            <p class='detail'><strong>Time:</strong> 2 hours</p>
+        </div>
+        <a href="./learn-docker.html" class="button button-grey full-width">Take this course</a>
+      </div>
       <div class="academy-card course" style="background: transparent; border: none;">&nbsp;</div>
     </div>
   </div>
@@ -534,19 +546,6 @@ a.quote-link:hover{
             <p class='detail'><strong>Time:</strong> 6 hours</p>
         </div>
         <a href="./learn-react.html" class="button button-grey full-width">Take this course</a>
-      </div>
-      <div class="academy-card course">
-        <div class="course-logo">
-          <img src="./static/img/docker/logo.png" height="70">
-        </div>
-        <h4>Docker</h4>
-        <p>Build and containerize a Node app then orchestrate a more complex example with docker-compose in this Docker guide.</p>
-        <div class="width100">
-          <p class='detail'><strong>Audience:</strong> Intermediate developers, new DevOps Engineers</p>
-            <p class='detail'><strong>Goal:</strong> Learn the basics of Docker </p>
-            <p class='detail'><strong>Time:</strong> 2 hours</p>
-        </div>
-        <a href="./learn-docker.html" class="button button-grey full-width">Take this course</a>
       </div>
     </div>
     <div class="courses">
