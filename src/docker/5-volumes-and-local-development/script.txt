@@ -1,0 +1,23 @@
+Welcome to part 6 of Bitovi academies learn doctor training. 
+
+With the concepts we've explored so far, Trying to locally develop a containerized service is very slow. To test every code change, a developer would have to 
+
+In this video we're going to look at volumes
+...
+
+
+When a container is destroyed, any state is lost with it. Docker offers volumes which can be mounted to a container allowing data to be persisted outside of a containers lifecycle.
+
+This is especially useful for running databases in containers, but also allows us to not have to rebuild containers on every code change.
+
+To use volumes, we'll add the -v flag to our `docker run` command
+
+docker run --name my-container -p 8000:8000 -d -v $PWD/src:/app/src my-node-app:latest
+
+mounting our local src directory to the containers /app/src/ directory Allowing changes on either side to be reflected.
+
+Code change
+
+docker logs -f my-container
+
+Thats it! Next we'll be looking at changing up our Dockerfile to make it ready for production
