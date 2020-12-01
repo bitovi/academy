@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/docker/5-volumes-and-local-development/volumes-and-local-development.md
+	@page learn-docker/volumes-and-local-development
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <meta name="description" content="Streamline local development workflows with bind mounts. 
+">
+  <title>Bitovi Academy - Volumes and Local Development</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-react.html"
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							Learn React
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-web-components.html"
+							title="">
+							Learn Web Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a Node app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="what-is-docker.html"
+							title="Explore Docker concepts and architecture.">
+							What is Docker
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="build-node-app.html"
+							title="Build a simple Express API to use for the rest of the course.">
+							Build a Node App
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="writing-a-dockerfile.html"
+							title="Write a Dockerfile to containerize the node app.">
+							Writing a Dockerfile
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="build-and-run-image.html"
+							title="Build an image and run a container for our node app.">
+							Build and Run An Image
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="volumes-and-local-development.html"
+							title="Streamline local development workflows with bind mounts.">
+							Volumes and Local Development
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="production-readiness.html"
+							title="Trimming the fat from our docker image.">
+							Production Readiness
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="docker-compose.html"
+							title="Make Docker easier to use and orchestrate multiple containers.">
+							Docker Compose
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-technology-consulting.html"
+							title="Learn how to perform technology consulting.">
+							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn how to build a moderately complex application with Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border">
+      <a href="..#courses">View More Courses</a>
+      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
+  </p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Volumes and Local Development <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>Streamline local development workflows with bind mounts.</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/8sGPAiFu66s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2>Overview</h2>
+<p>With the concepts we've explored so far, running a containerized service with Docker when trying to make code changes would be incredibly inefficient. To test every code change, a developer would have to</p>
+<ol>
+<li>Make the code change</li>
+<li>Stop the container (<code>docker rm -f ...</code>)</li>
+<li>Rebuild the image (<code>docker build ...</code>)</li>
+<li>Run the container (<code>docker run ...</code>)</li>
+</ol>
+<p>In particular, rebuilding an image with <code>docker build</code> takes too long. We're going to explore how to make things much more efficient.</p>
+<h2>Volumes</h2>
+<p>A Docker container has no built in persistence. Beyond what is built in to an image during the build phase, all other data is discarded when a container is destroyed. Without volumes, running databases or applications that require state would be impossible.</p>
+<p>Volumes provide a persistent storage mechanism that can be managed through Docker's CLI. They can be shared between multiple containers and can be stored on remote hosts or cloud providers.</p>
+<p>Consider the following example:</p>
+<pre><code>docker volume create my-vol
+docker run -v my-vol:/data my-image
+</code></pre>
+<p>The above commands create a volume called <code>my-vol</code> and on container creation is mounted to the <code>/data</code> directory. As the application runs, the contents of <code>/data</code> are persisted in the volume so that when the container is destroyed, the data is not lost.</p>
+<p><a href="https://docs.docker.com/storage/volumes/">Official Docs</a></p>
+<h2>Bind Mounts</h2>
+<p>Bind mounts are similar to volumes, but in comparison have limited functionality. Instead of creating a named volume, the contents of a host machine's directory can be mounted to a directory in a container.</p>
+<p>For example the following command will overwrite the contents of the <code>/data</code> directory in the container with the contents of <code>/Users/connor/data</code>. When the container is running, the contents are mirrored between the two locations regardless if a change originates from the container or the host machine.</p>
+<pre><code>docker run -v /Users/connor/data:/data my-image
+</code></pre>
+<p>The only catch is the host machine directory must be an absolute path.</p>
+<p><a href="https://docs.docker.com/storage/bind-mounts/">Official Docs</a></p>
+<h2>Local Development</h2>
+<p>The most common use case for bind mounts is in local development environments. Instead of rebuilding an image on every code change, we can mount our application's <code>src/</code> directory to the <code>/app/src</code> directory of our container.</p>
+<p>Open a terminal at the root of your application and run</p>
+<pre><code>docker run --name my-container -p 8000:8000 -d -v $PWD/src:/app/src my-node-app:latest
+</code></pre>
+<p>Verify it's working by going to <code>localhost:8000</code> in your browser. You should see <code>Hello World!</code>.</p>
+<p>Now open <code>src/index.js</code> and change line 6 from</p>
+<pre><code>res.send('Hello World!')
+</code></pre>
+<p>to</p>
+<pre><code>res.send('Hello Bitovi!')
+</code></pre>
+<p>save the file and refresh your browser. It should now say <code>Hello Bitovi!</code>.</p>
+<p>What's happening is the nodemon process is watching the <code>src/</code> directory in the container for changes. Because our host-machine's <code>src/</code> directory is mounted to the container's <code>app/src/</code> directory (<code>-v $PWD/src:/app/src</code>), when we save the change to <code>index.js</code>, it is replicated in the container causing nodemon to restart the server. We can see this in the container logs:</p>
+<pre><code>$ docker logs my-container
+
+&gt; bitovi-academy-app@1.0.0 start
+&gt; nodemon src/index.js
+
+[nodemon] 2.0.6
+[nodemon] to restart at any time, enter `rs`
+[nodemon] watching path(s): *.*
+[nodemon] watching extensions: js,mjs,json
+[nodemon] starting `node src/index.js`
+Example app listening at http://localhost:8000
+[nodemon] restarting due to changes...
+[nodemon] starting `node src/index.js`
+Example app listening at http://localhost:8000
+</code></pre>
+<p>This approach means we only need to build an image once</p>
+
+</section>
+
+  			
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout slack">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://www.bitovi.com/community/slack">help</a> with an exercise, please reach out to us on
+             <a href="https://www.bitovi.com/community/slack">Slack</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/docker/5-volumes-and-local-development/volumes-and-local-development.md"},"description":"Streamline local development workflows with bind mounts. \n","name":"learn-docker/volumes-and-local-development","title":"Volumes and Local Development","type":"page","parent":"learn-docker","order":5,"comment":" ","pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+</body>
+</html>

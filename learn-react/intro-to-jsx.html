@@ -111,7 +111,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will have mastered functional components, hooks, and component optimization.">
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
 							Learn React
 						</a>
 						
@@ -158,7 +158,7 @@
            						">
 						<a class="page"
 							href="components.html"
-							title="Learn about the two ways of writing React components and their differences.">
+							title="Learn about the two fundamental ways of writing React components and their differences.">
 							What are React Components
 						</a>
 						
@@ -189,7 +189,7 @@
 						<a class="page"
 							href="styling-in-react.html"
 							title="Learn the different ways to style React components.">
-							Styling in React
+							Styling in React 3 Ways
 						</a>
 						
 					</li>
@@ -271,6 +271,21 @@
 				
 			
 		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="class-components-vs-hooks.html"
+							title="Learn how to use React hooks to make functional components more powerful.">
+							Class Components vs Hooks
+						</a>
+						
+					</li>
+				
+			
+		
 	</ul>
 
 
@@ -317,10 +332,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-canjs.html"
-							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
-covering CanJS core libraries.">
-							Learn CanJS
+							href="../learn-docker.html"
+							title="Build and containerize a Node app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
 						</a>
 						
 					</li>
@@ -351,6 +365,22 @@ covering CanJS core libraries.">
 							href="../learn-technology-consulting.html"
 							title="Learn how to perform technology consulting.">
 							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
 						</a>
 						
 					</li>
@@ -408,53 +438,12 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>What are Components?</h2>
-<p>In React, a <code>Component</code> is the encapsulation of an element's look and behavior. Here is an example &quot;Hello World&quot; component, that also prints my name. It is being used inside of another component named &quot;App&quot;.</p>
-<pre><code class="language-jsx">function HelloWorld(props) {
-  return &lt;div&gt;Hello World, my name is {props.name}&lt;/div&gt;;
-}
-
-function App(props) {
-  return (
-    &lt;div&gt;
-      &lt;HelloWorld name=&quot;Dan&quot; /&gt;
-      &lt;HelloWorld name=&quot;Kelsey&quot; /&gt;
-      &lt;HelloWorld name=&quot;Mitchell&quot; /&gt;
-    &lt;/div&gt;
-  );
-}
-
-ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));
-</code></pre>
-<div class='codepen' data-codepen='react'></div>
-<p>Don't worry if some of this syntax is new to you, we will be going into more detail about components, and how they are constructed. Even if you don't understand every detail of what's happening above, we can see 3 big takeaways.</p>
-<h3>1. The <code>HelloWorld</code> component is simply a function and it is capitalized.</h3>
-<p>This is not an accident. It's mandatory. Consider how the component is being used directly inside the <code>App</code> component, right next to normal HTML. If a component name is lowercase, React assumes that it is a normal HTML tag (like <code>span</code>, or <code>div</code>). So the capital naming convention is useful in that it disambiguates our <code>component</code> from a normal HTML element.</p>
-<blockquote>
-<p>To drive the point home further, Imagine we created a component named lowercase <code>div</code>. In this case, React wouldn't be able to tell the difference between a normal div and our component <code>div</code> since we use them identically. Hence the capitalization.</p>
-</blockquote>
-<h3>2. We can pass attribute-like things to our components. These are called <code>props</code>.</h3>
-<pre><code class="language-jsx">function App(props) {
-  return (
-    &lt;div&gt;
-      &lt;HelloWorld name=&quot;Dan&quot; /&gt;
-      &lt;HelloWorld name=&quot;Kelsey&quot; /&gt;
-      &lt;HelloWorld name=&quot;Mitchell&quot; /&gt;
-    &lt;/div&gt;
-  );
-}
-</code></pre>
-<div line-highlight='4'></div>
-<p>In the example above we pass 'name' to our <code>HelloWorld</code> component. These HTML attribute-like descriptors are called <code>props</code>, and React does the work of wrapping them in an object, and supplying them as the first argument to the <code>HelloWorld</code> component for us. The argument <code>props</code> is simply an object containing all of the attribute-like things we passed in.</p>
-<blockquote>
-<p>In the example above, we only passed in a single attribute so the <code>props</code> object would just be <code>{ name: 'Dan' }</code> for the first <code>HelloWorld</code> component. Notice also, that these <code>props</code> make the component more reusable. Above, I'm reusing the component with 3 different names.</p>
-</blockquote>
-<h3>3. React allows us to embed HTML into our components. This is called <code>JSX</code>.</h3>
-<p>Technically this stuff isn't exactly HTML, it's a representation of what HTML should render when the component is evaluated.</p>
-<p>Before discussing how React performs this magic, let's discuss how user interfaces are created in React.</p>
-<p>At its core, React is a JavaScript library that allows you to describe the way your components look using only JavaScript. But this &quot;all JS&quot; approach comes with some downsides, namely it becomes arduous to describe complex page hierarchies using only pure JavaScript. When first learning React, it's good to be aware of the <a href="https://reactjs.org/docs/react-api.html">element API</a>, but keep in mind that most React developers will forego this for an alternative syntactic sugar called JSX.</p>
+    <h2>Creating Views in React</h2>
+<p>Before we talk about JSX, let's discuss how user interfaces are created in React.</p>
+<p>At its core, React is a JavaScript library that helps create reusable front-end components. One of the unique features of React is that it allows you to describe the way your components look using only JavaScript.</p>
+<p>But this &quot;all JS&quot; approach comes with some downsides, namely it becomes arduous to describe complex page hierarchies using only pure JavaScript. When first learning React, it's good to be aware of the <a href="https://reactjs.org/docs/react-api.html">element API</a>, but keep in mind that most React developers will forego this for an alternative syntactic sugar called JSX.</p>
 <h3>React's Element API</h3>
-<p>React exposes an <a href="https://reactjs.org/docs/react-api.html">API</a> for creating DOM-like elements that are then rendered into the DOM using JavaScript. For example to create an <code>h1</code> we could write the following:</p>
+<p>React exposes an <a href="https://reactjs.org/docs/react-api.html">API</a> for creating HTML elements using JavaScript. For example to create an <code>h1</code> we could write the following:</p>
 <pre><code class="language-js">React.createElement('h1', null, 'Hello World');
 </code></pre>
 <p>The code above will create an <code>h1</code> with the text &quot;Hello World&quot; inside of it (<code>&lt;h1&gt;Hello World&lt;/h1&gt;</code>). This is pure, vanilla JavaScript using a function <code>createElement</code> exposed by React. <code>createElement</code> can be used to model just about any HTML structure:</p>
@@ -467,7 +456,7 @@ ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));
   ], // Children
 );
 </code></pre>
-<p>The code above will produce the following HTML once rendered:</p>
+<p>The code above produces the following HTML:</p>
 <pre><code class="language-html">&lt;div id=&quot;greeting&quot;&gt;
   &lt;h1&gt;Hello World&lt;/h1&gt;
   &lt;p&gt;This is HTML&lt;/p&gt;
@@ -505,8 +494,9 @@ ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));
 /&gt;
 </code></pre>
 </blockquote>
-<p>The object passed into <code>style={}</code> should map css attributes to css values. This structure closely resembles the <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration"><code>CSSStyleDeclaration</code></a> object used by the browser to store element styles.</p>
-<p>✏️ To see an example of this style object, run <code>document.body.style</code> in your browser console.</p>
+<p>Inside of <code>style={}</code> we have an object of styles whose keys are css attributes and values are css values. This structure closely resembles the <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration"><code>CSSStyleDeclaration</code></a> object used by the browser to store element styles.</p>
+<p>✏️ To see this run <code>document.body.style</code> in your browser console.</p>
+<p>Another thing you may note is the difference between <code>background-color</code> and <code>backgroundColor</code>.</p>
 <h3>Classes</h3>
 <p>In JSX, classes are specified using the <code>className=&quot;&quot;</code> property:</p>
 <pre><code class="language-jsx">&lt;div className=&quot;button primary&quot;&gt;So are classes&lt;/div&gt;
@@ -537,14 +527,14 @@ ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));
 <pre><code class="language-html">&lt;div&gt;Sibling 1&lt;/div&gt;
 &lt;div&gt;Sibling 2&lt;/div&gt;
 </code></pre>
-<p>Note how the fragment components don't have any corresponding DOM output. This would also be true if <code>&lt;React.Fragment&gt;</code> was used instead. They're identical.</p>
-<h2>JSX Interpolation</h2>
+<p>Note how the fragment components don't have any corresponding DOM output. This would also be true if we had used <code>&lt;React.Fragment&gt;</code> instead; they are the same.</p>
+<h2>JavaScript Interpolation</h2>
 <p>JSX is dynamic. You can easily insert values from variables and objects into your JSX:</p>
 <pre><code class="language-jsx">const name = 'Bitovi';
 
 &lt;div className=&quot;button primary&quot;&gt;Welcome to {name}!&lt;/div&gt;;
 </code></pre>
-<p>In the code above, use the <code>{name}</code> syntax to tell JSX that to render the value stored in the <code>name</code> variable (ie. <code>&quot;Bitovi&quot;</code>) into our view.</p>
+<p>In the code above, we've used the <code>{name}</code> syntax to tell JSX that we want to render the value stored in the <code>name</code> variable (ie. <code>&quot;Bitovi&quot;</code>) into our view.</p>
 <p>You can take this a step further by interpolating multiple values, and using JavaScript functions to transform data on the fly. Anything that goes inside <code>{}</code> is executed as normal JavaScript. These are the same rules as the brackets on a prop: any JavaScript expression is valid inside the curly brackets.</p>
 <pre><code class="language-jsx">const person = {
   name: 'mike',
@@ -601,7 +591,8 @@ const page = React.createElement('div', null, [header, body]);
 &lt;div&gt;
   {a === b // Ternaries are expressions. They return a value.
     ? 'a and b are equal'
-    : 'a and b are different'}
+    : 'a and b are different'
+  }
 &lt;/div&gt;
 </code></pre>
 <p>If ternaries seem excessive for any particular case, you can write all your logic in a separate function and invoke it from within JSX.</p>
@@ -634,7 +625,7 @@ const page = React.createElement('div', null, [header, body]);
 &lt;/div&gt;
 </code></pre>
 <h2>Event Handling</h2>
-<p>One of the most powerful aspects of JavaScript is that it enables developers to respond to events in the browser. With JSX it's easy to listen for and respond to these events. In React, all event names are camelcased (onClick, onMouseEnter, etc...).</p>
+<p>One of the most powerful aspects of JavaScript is that it enables developers to respond to events in the browser. With JSX it's easy to listen for and respond to these events.</p>
 <pre><code class="language-jsx">&lt;div className=&quot;button primary&quot;&gt;
   &lt;button onClick={(event) =&gt; console.log('Clicked')}&gt;click me&lt;/button&gt;
 &lt;/div&gt;
@@ -642,46 +633,32 @@ const page = React.createElement('div', null, [header, body]);
 <div line-highlight='2'></div>
 <p>In the code above, we've attached an <code>onClick</code> listener to the <code>&lt;button&gt;</code> element. Whenever this button gets clicked, the code inside the <code>onClick={...}</code> will get executed. The value always needs to be a function, and that function will get called with an <code>event</code> object.</p>
 <p>All <a href="https://reactjs.org/docs/events.html">events</a> supported in vanilla JavaScript are also supported in JSX.</p>
-<h2>Exercise</h2>
-<p>In this exercise you will be creating a component that is a single square with width, and height set to 100px. This component will be able to take in two props, the first of which is a <code>backgroundColor</code>, which will set the background color of the square, and the second <code>singleLetter</code>, which is a single character that will be displayed in the center of the square.</p>
-<pre><code class="language-jsx">&lt;Square backgroundColor=&quot;red&quot; singleLetter=&quot;Q&quot; /&gt;
-</code></pre>
-<p>So if a person rendered that component, they would see</p>
-<p><img src="../static/img/react/redQ.png" ></p>
-<p>Here's an empty codepen with React preloaded to get you started.</p>
-<h4>Hover over the code below and select the run button in the upper right hand corner.</h4>
-<pre><code class="language-jsx">function Square() {}
-
-ReactDOM.render(
-  &lt;Square backgroundColor=&quot;red&quot; singleLetter=&quot;Q&quot; /&gt;,
-  document.getElementById('root'),
-);
-</code></pre>
-<div class='codepen' data-codepen='react'></div>
-<h2>Solution</h2>
-<pre><code class="language-jsx">function Square(props) {
+<h2>Components</h2>
+<p>In React we can store our JSX inside of components. Components are like small containers which can be re-used throughout your application. For example, you might build a <code>Button</code> component which renders all the JSX required for a button.</p>
+<pre><code class="language-jsx">function Button() {
   return (
-    &lt;div
-      style={{
-        height: '100px',
-        width: '100px',
-        backgroundColor: props.backgroundColor,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}
-    &gt;
-      {props.singleLetter}
+    &lt;div className=&quot;button primary&quot;&gt;
+      &lt;button&gt;click me&lt;/button&gt;
     &lt;/div&gt;
   );
 }
 
-ReactDOM.render(
-  &lt;Square backgroundColor=&quot;red&quot; singleLetter=&quot;Q&quot; /&gt;,
-  document.getElementById('root'),
-);
+ReactDOM.render(&lt;Button /&gt;, document.getElementById('root'));
 </code></pre>
 <div class='codepen' data-codepen='react'></div>
+<p>In the code above, we're defining a functional component (a function which returns JSX) called <code>Button</code>.</p>
+<p>This component returns JSX and could then be rendered and re-used by another component like <code>App</code> below.</p>
+<pre><code class="language-jsx">function App() {
+  return (
+    &lt;div&gt;
+      &lt;Button /&gt;
+      &lt;Button /&gt;
+      &lt;Button /&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<p>Here the <code>App</code> component is rendering the <code>Button</code> component 3 times. Note that when you render custom components like this they don't need closing tags, instead they can be self-closing with a <code>/</code> tacked onto the end. You can also design them to have closing tags with extra elements rendered inside (see an explanation on JSX children <a href="https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891">here</a>).</p>
 
 </section>
 

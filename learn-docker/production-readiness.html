@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/docker/6-production-readiness/production-readiness.md
+	@page learn-docker/production-readiness
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <meta name="description" content="Trimming the fat from our docker image. 
+">
+  <title>Bitovi Academy - Production Readiness</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-react.html"
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							Learn React
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-web-components.html"
+							title="">
+							Learn Web Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a Node app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="what-is-docker.html"
+							title="Explore Docker concepts and architecture.">
+							What is Docker
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="build-node-app.html"
+							title="Build a simple Express API to use for the rest of the course.">
+							Build a Node App
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="writing-a-dockerfile.html"
+							title="Write a Dockerfile to containerize the node app.">
+							Writing a Dockerfile
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="build-and-run-image.html"
+							title="Build an image and run a container for our node app.">
+							Build and Run An Image
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="volumes-and-local-development.html"
+							title="Streamline local development workflows with bind mounts.">
+							Volumes and Local Development
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="production-readiness.html"
+							title="Trimming the fat from our docker image.">
+							Production Readiness
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="docker-compose.html"
+							title="Make Docker easier to use and orchestrate multiple containers.">
+							Docker Compose
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-technology-consulting.html"
+							title="Learn how to perform technology consulting.">
+							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn how to build a moderately complex application with Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border">
+      <a href="..#courses">View More Courses</a>
+      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
+  </p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Production Readiness <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>Trimming the fat from our docker image.</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/aVCr1bGjw0k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2>Overview</h2>
+<p>We want to make our image as lightweight as possible. Reducing image size will make it faster to pull and run in production. In its current state, our simple node app is a staggering <code>944MB</code>!</p>
+<pre><code>$ docker image ls my-node-app
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+my-node-app         latest              78ef31600011        7 seconds ago       944MB
+</code></pre>
+<p>We're going to explore 2 simple ways to make our image small and ready for production.</p>
+<h2>Base Image Variants</h2>
+<p>The simplest and most significant change is updating the <code>FROM</code> instruction in our Dockerfile. The <code>node:15</code> image is <code>935MB</code>. That's 99% of our image!</p>
+<pre><code>$ docker image ls node
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+node                15                  969d445a1755        6 days ago          935MB
+</code></pre>
+<p>Docker provides a set of official images that are designed to provide drop-in solutions for popular runtimes and services. Many of these images provide variants of the image based on a developer's requirements. The <code>node</code> image repository on Dockerhub has 3 main variants:</p>
+<ul>
+<li><code>node:&lt;version&gt;</code>: This is the standard image that contains everything you'll need to run <code>node</code>. It's often the default choice if your specific needs and requirements are unclear. It's also the largest of all the variants</li>
+<li><code>node:&lt;version&gt;-slim</code>: The &quot;slim&quot; variant contains only the necessary packages needed to run <code>node</code>. It is a good choice if your image only requires <code>node</code> and can operate without other external dependencies like <code>gcc</code>.</li>
+<li><code>node:&lt;version&gt;-alpine</code>: Instead of using debian as the base image, The alpine variant uses <a href="https://hub.docker.com/_/alpine">Alpine Linux</a>. The alpine Docker image is designed to be as minimal as possible at only <code>5MB</code> in size.</li>
+</ul>
+<p>Pulling these images into our local registry from Dockerhub using <code>docker pull</code>, allows us to inspect the size difference between the node variants</p>
+<pre><code>$ docker pull node:15
+$ docker pull node:15-slim
+$ docker pull node:15-alpine
+$ docker image ls node
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+node                15-slim             4b7012d853dc        6 days ago          159MB
+node                15                  969d445a1755        6 days ago          935MB
+node                15-alpine           7ddc154413f5        7 days ago          109MB
+</code></pre>
+<p>As you can see, <code>node:15-slim</code> is <code>159MB</code>, a fraction of the size of <code>node:15</code>. Meanwhile, <code>node:15-alpine</code> is even smaller at <code>109MB</code>. As a general rule, you'll want to use the smallest base image that meets your needs.</p>
+<h2>Updating our <code>FROM</code> instruction</h2>
+<p>Update <code>FROM node:15</code> in our Dockerfile to <code>FROM node:15-alpine</code>. The whole file should now look like this:</p>
+<pre><code>FROM node:15-alpine
+
+ARG PORT=8000
+ENV PORT=$PORT
+
+WORKDIR app
+COPY src src
+COPY package.json .
+
+RUN npm install
+EXPOSE $PORT
+CMD npm start
+</code></pre>
+<p>Now rebuild the image with an <code>alpine</code> tag</p>
+<pre><code>docker build -t my-node-app:alpine .
+</code></pre>
+<p>Finally, lets compare the difference:</p>
+<pre><code>$ docker image ls my-node-app
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+my-node-app         alpine              a86e7ef34019        12 seconds ago      118MB
+my-node-app         latest              78ef31600011        18 minutes ago      944MB
+</code></pre>
+<p>By using the <code>alpine</code> node image variant, we've reduced the total image size by 87.5%!</p>
+<h2>Multi-Stage Builds</h2>
+<p>We are using <code>npm install</code> to install application dependencies during the Docker build phase. By default, <code>npm install</code> installs both standard and dev dependencies. We want to conditionally install all dependencies when building for local development, but only download standard dependencies with <code>npm install --only=prod</code> when building to run in production.</p>
+<p>A multi-stage build is a Dockerfile with multiple <code>FROM</code> instructions. This is typically done to keep the final image size down by separating what is required to build an application from what is required to run it by allowing selective artifacts to be copied from one stage to another.</p>
+<p>This is especially powerful in compiled languages like Go or Java where multi-stage builds can be used to have your first stage compile the source code into a runtime artifact and then only the runtime artifact is copied in to a leaner final image.</p>
+<h2>Targets</h2>
+<p>By using the <code>--target</code> cli argument when building our image, we can tell Docker to stop building at a specific stage. We will use this alone with a <code>prod</code> stage and a <code>dev</code> stage to give us our desired result.</p>
+<p>Replace our node app's Dockerfile to the following:</p>
+<pre><code>FROM node:15-alpine as prod
+ARG PORT=8000
+ENV PORT=$PORT
+
+WORKDIR app
+COPY src src
+COPY package.json .
+
+RUN npm install --only=prod
+EXPOSE $PORT
+CMD npm run start:prod
+
+FROM prod as dev
+RUN npm install --only=dev
+CMD npm start
+</code></pre>
+<p>Most of the Dockerfile remains the same with some notable exceptions:</p>
+<ul>
+<li><code>FROM node:15-alpine as prod</code>: We added <code>as prod</code> here to give our stage a name.</li>
+<li><code>RUN npm install --only=prod</code>: We added <code>--only=prod</code> to tell <code>npm</code> to ignore dev dependencies when building for production.</li>
+<li><code>CMD npm run start:prod</code>: We updated our CMD to <code>start:prod</code> to run our app with node instead of nodemon. <code>start:prod</code> is defined in <code>package.json</code></li>
+<li><code>FROM prod as dev</code>: We are starting a new stage called <code>dev</code> and using our <code>prod</code> stage as the base image.</li>
+<li><code>RUN npm install --only=dev</code>: Install only dev dependencies because we've already installed standard dependencies in the prerequisite <code>prod</code> stage</li>
+<li><code>CMD npm start</code>: Start the container with nodemon</li>
+</ul>
+<p>Now when building our image, we can provide <code>--target=prod</code> or <code>--target=dev</code> to customize our final image. If we run <code>docker build</code> without the <code>--target</code> flag, it will run all stages by default, but we will be explicit with <code>--target=dev</code></p>
+<pre><code># Build our prod image
+docker build -t my-node-app:prod --target=prod .
+
+# Build our dev image
+docker build -t my-node-app:dev --target=dev .
+
+# Compare the results
+$ docker image ls my-node-app
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+my-node-app         dev                 57966959f28a        13 seconds ago      118MB
+my-node-app         prod                739cd7430f03        25 seconds ago      115MB
+my-node-app         alpine              a86e7ef34019        54 minutes ago      118MB
+my-node-app         latest              78ef31600011        About an hour ago   944MB
+</code></pre>
+<p>The savings in size we see in this example are trivial (<code>3MB</code>) because we only have the one dev dependency (nodemon). The savings and complexity added from utilizing multi-stage builds increases as the number of dependencies increases. Running nodemon is also more memory and cpu intensive so there are also underlying performance savings with this approach.</p>
+<p>There are a lot of powerful things you can do with multi-stage builds. Check out the <a href="https://docs.docker.com/develop/develop-images/multistage-build/">Official Docs</a> for more inspiration.</p>
+<h2>Test our images</h2>
+<p>Let's run both prod and dev images to make sure they work. Notice when we run our prod image, we don't bother mounting our local source code as nodemon is not running to enable reloading.</p>
+<pre><code># Start Dev image
+$ docker run --name my-dev-container -p 8000:8000 -d -v &quot;$(pwd)&quot;/src:/app/src my-node-app:dev
+b67e760ef59c2c42c2737720031537f169302513b37b4b97478c8f21e59791bb
+
+# Start Prod image
+$ docker run --name my-prod-container -p 9000:8000 -d my-node-app:prod
+200d00aafb79ed371428c9f647e5f7ef2ad9d2ddd3281587401a6fc6267c0101
+
+# Test Dev container
+$ curl localhost:8000
+Hello Bitovi!
+
+# Test Prod container
+$ curl localhost:9000
+Hello Bitovi!
+
+# Kill our containers
+docker rm -f my-dev-container my-prod-container
+</code></pre>
+<h2>A word of caution</h2>
+<p>Using multi-stage builds to customize container behavior can create issues where an image works locally, but doesn't work in production. Be sure to test your production image during your CI pipeline or before committing to source control.</p>
+<h2>Review</h2>
+<p>Our Dockerfile has been updated to be significantly smaller from a smaller base image and eliminating unnecessary dependencies. We also use multi-stage builds to allow local development to still be done efficiently.</p>
+<p>With all this complexity, there are a lot of cli commands and flags to remember. In the last section, we will be looking at using <code>docker-compose</code> to simplify the building and running of images.</p>
+
+</section>
+
+  			
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout slack">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://www.bitovi.com/community/slack">help</a> with an exercise, please reach out to us on
+             <a href="https://www.bitovi.com/community/slack">Slack</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/docker/6-production-readiness/production-readiness.md"},"description":"Trimming the fat from our docker image. \n","name":"learn-docker/production-readiness","title":"Production Readiness","type":"page","parent":"learn-docker","order":6,"comment":" ","pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+</body>
+</html>

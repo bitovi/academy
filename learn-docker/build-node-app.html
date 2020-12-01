@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/docker/2-build-node-app/build-node-app.md
+	@page learn-docker/build-node-app
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <meta name="description" content="Build a simple Express API to use for the rest of the course. 
+">
+  <title>Bitovi Academy - Build a Node App</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-react.html"
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							Learn React
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-web-components.html"
+							title="">
+							Learn Web Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a Node app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="what-is-docker.html"
+							title="Explore Docker concepts and architecture.">
+							What is Docker
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="build-node-app.html"
+							title="Build a simple Express API to use for the rest of the course.">
+							Build a Node App
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="writing-a-dockerfile.html"
+							title="Write a Dockerfile to containerize the node app.">
+							Writing a Dockerfile
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="build-and-run-image.html"
+							title="Build an image and run a container for our node app.">
+							Build and Run An Image
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="volumes-and-local-development.html"
+							title="Streamline local development workflows with bind mounts.">
+							Volumes and Local Development
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="production-readiness.html"
+							title="Trimming the fat from our docker image.">
+							Production Readiness
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="docker-compose.html"
+							title="Make Docker easier to use and orchestrate multiple containers.">
+							Docker Compose
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-technology-consulting.html"
+							title="Learn how to perform technology consulting.">
+							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn how to build a moderately complex application with Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border">
+      <a href="..#courses">View More Courses</a>
+      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
+  </p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Build a Node App <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>Build a simple Express API to use for the rest of the course.</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/6sHuGWj5cGM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<h2>Overview</h2>
+<p>In this section, we are going to build a simple &quot;Hello World&quot; api using <a href="https://expressjs.com/">Express</a>.</p>
+<p>NodeJS is not required if you just want to read through this section and copy/paste the code snippets. If you want to run the application before we containerize it in the next section, you can install NodeJS <a href="https://nodejs.org/en/download/">here</a>.</p>
+<h2>Building our app</h2>
+<p>The app requires only two files</p>
+<ul>
+<li><code>package.json</code></li>
+<li><code>src/index.js</code></li>
+</ul>
+<h3>package.json</h3>
+<pre><code>{
+  &quot;name&quot;: &quot;bitovi-academy-app&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;scripts&quot;: {
+   &quot;start&quot;: &quot;nodemon src/index.js&quot;,
+   &quot;start:prod&quot;: &quot;node src/index.js&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;express&quot;: &quot;^4.17.1&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;nodemon&quot;: &quot;^2.0.6&quot;
+  }
+}
+</code></pre>
+<p>This file defines <code>express</code> as a standard dependency and <code>nodemon</code> as a dev dependency. Nodemon is used to run our Express server and watches the source code to hot-reload any new changes without needing to restart the server. It is a dev dependency because we don't want the overhead of running nodemon in production or even the bulk of keeping it in <code>node_modules/</code>.</p>
+<p>Our <code>package.json</code> also defines a <code>start</code> script and a <code>start:prod</code>. These are convenient ways to allow us to start our application with nodemon or node by running <code>npm start</code> or <code>npm run start:prod</code>.</p>
+<h3>src/index.js</h3>
+<pre><code>const express = require('express')
+const app = express()
+const port = process.env.PORT || 3000
+
+app.get('/', (req, res) =&gt; {
+  res.send('Hello World!')
+})
+
+app.listen(port, () =&gt; {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
+</code></pre>
+<p>This file starts an express server listening on <code>localhost:3000</code>. If we access the root path it should return <code>Hello World!</code>. The default port is 3000, but can be overwritten by setting the <code>PORT</code> environment variable before starting the server.</p>
+<h2>Run our app</h2>
+<p>This step is optional, but to verify our app works you can run</p>
+<pre><code>npm install
+npm start
+</code></pre>
+<p>Open your browser to <code>localhost:3000</code> and you should see <code>Hello World!</code></p>
+<p><img src="../static/img/docker/2-build-node-app/node-hello-world.png" alt="node app in browser" /></p>
+<h2>What's next</h2>
+<p>Now that we've created a simple NodeJS app, we are going to containerize it.</p>
+
+</section>
+
+  			
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout slack">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://www.bitovi.com/community/slack">help</a> with an exercise, please reach out to us on
+             <a href="https://www.bitovi.com/community/slack">Slack</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/docker/2-build-node-app/build-node-app.md"},"description":"Build a simple Express API to use for the rest of the course. \n","name":"learn-docker/build-node-app","title":"Build a Node App","type":"page","parent":"learn-docker","order":2,"comment":" ","pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+</body>
+</html>
