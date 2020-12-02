@@ -111,7 +111,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will have mastered functional components, hooks, and component optimization.">
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
 							Learn React
 						</a>
 						
@@ -155,7 +155,7 @@
            						">
 						<a class="page"
 							href="components.html"
-							title="Learn about the two ways of writing React components and their differences.">
+							title="Learn about the two fundamental ways of writing React components and their differences.">
 							What are React Components
 						</a>
 						
@@ -186,7 +186,7 @@
 						<a class="page"
 							href="styling-in-react.html"
 							title="Learn the different ways to style React components.">
-							Styling in React
+							Styling in React 3 Ways
 						</a>
 						
 					</li>
@@ -200,7 +200,7 @@
            						">
 						<a class="page"
 							href="stateful-hooks.html"
-							title="Learn how to use React hooks to manage the state of a component.">
+							title="Learn how to use hooks in React to manage the state of a component.">
 							Stateful Hooks
 						</a>
 						
@@ -271,6 +271,21 @@
 				
 			
 		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="class-components-vs-hooks.html"
+							title="Learn how to use React hooks to make functional components more powerful.">
+							Class Components vs Hooks
+						</a>
+						
+					</li>
+				
+			
+		
 	</ul>
 
 
@@ -317,10 +332,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-canjs.html"
-							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
-covering CanJS core libraries.">
-							Learn CanJS
+							href="../learn-docker.html"
+							title="Build and containerize a Node app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
 						</a>
 						
 					</li>
@@ -351,6 +365,22 @@ covering CanJS core libraries.">
 							href="../learn-technology-consulting.html"
 							title="Learn how to perform technology consulting.">
 							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
 						</a>
 						
 					</li>
@@ -449,7 +479,7 @@ const UsernameContext = createContext(defaultValue);
 <div line-highlight='4'></div>
 <p>The default value is what the <strong>Consumers</strong> will get if they have no available <strong>Provider</strong>. This is often used more in testing than in production.</p>
 <h3>Writing a Provider</h3>
-<p>The provider component is exposed by the context. It is always accessible via <code>ContextName.Provider</code> and requires a single prop named <code>value</code>. This prop will be provided to all of its <strong>Consumers</strong>.</p>
+<p>The provider component is exposed by the context. It is always accessible via <code>ContextName.Provider</code> and requires a single prop named <code>value</code>. This prop will be the value which provided to all of its <strong>Consumers</strong>.</p>
 <p>Any components we render inside of the provider will be able to access the information in the <code>value</code> prop, no matter how deeply nested they are in the component tree. This eliminates the need for prop drilling where a single prop would need to be passed down through multiple components.</p>
 <pre><code class="language-jsx">import React, { createContext } from 'react';
 
@@ -689,6 +719,7 @@ function Button({ label }) {
 <div line-highlight='2,5'></div>
 <h2>Exercise</h2>
 <p>Let's use our context hook knowledge to make our Tic-Tac-Toe use a style theme!</p>
+<p>Run the app locally with <code>npm start</code> and choose the <code>Context Hooks</code> exercise. Now head over to <code>src/exercises/9 - Context Hooks/components</code>. These are the files you'll be editing.</p>
 <h3>The problem</h3>
 <p>✏️ Let's add in the ability to use a style theme for our app.</p>
 <ul>
@@ -705,229 +736,28 @@ function Button({ label }) {
 <li>Get the theme from the new <code>useTheme</code> hook in the <code>Game</code> component.</li>
 </ul></li>
 </ul>
-<p>Here's the starter code</p>
-<pre><code class="language-jsx">const squareStyling = {
-  width: '200px',
-  height: '200px',
-  border: '1px solid black',
-  boxSizing: 'border-box',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  fontSize: '6em',
-  color: 'black',
-};
-
-const boardStyling = {
-  display: 'flex',
-  flexWrap: 'wrap',
-  flexDirection: 'row',
-  justifyContent: 'flex-start',
-  width: '600px',
-  height: '600px',
-  boxShadow: '0px 3px 8px 0 rgba(0, 0, 0, 0.1)',
-  boxSizing: 'border-box',
-};
-
-function boardHasWinner(board) {
-  const winningCombos = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-
-  const winningCombo = winningCombos.find((combo) =&gt; {
-    return (
-      board[combo[0]] !== '' &amp;&amp;
-      board[combo[0]] === board[combo[1]] &amp;&amp;
-      board[combo[0]] === board[combo[2]]
-    );
-  });
-  return !!winningCombo;
-}
-
-function Square({ onClick, symbol, id }) {
-  const theme = {}; // Get this from a custom hook
-
-  return (
-    &lt;div
-      id={id}
-      style={Object.assign({}, squareStyling, {
-        color: theme.text,
-        backgroundColor: theme.background,
-      })}
-      onClick={onClick}
-    &gt;
-      {symbol}
-    &lt;/div&gt;
-  );
-}
-
-function Board({ board, handleSquareClick }) {
-  return (
-    &lt;div style={boardStyling}&gt;
-      {board.map((symbol, index) =&gt; (
-        &lt;Square
-          key={index}
-          symbol={symbol}
-          onClick={() =&gt; handleSquareClick(index)}
-        /&gt;
-      ))}
-    &lt;/div&gt;
-  );
-}
-
-// Create a context for your theme
-// Provide a theme (light or dark) to the children of this component
-// Export a custom hook that returns the current theme
-// Consume the custom hook in Square.js
-// Create a state and button that allows the user to switch between themes
-
-const blankBoard = ['', '', '', '', '', '', '', '', ''];
-
-function Game() {
-  const [board, setBoard] = React.useState(blankBoard);
-  const [isXTurn, setIsXTurn] = React.useState(true);
-
-  const currentPlayer = isXTurn ? 'X' : 'O';
-
-  function handleSquareClick(squareIndex) {
-    if (!board[squareIndex]) {
-      const newBoard = [...board];
-      newBoard[squareIndex] = currentPlayer;
-
-      if (boardHasWinner(newBoard)) {
-        alert(`${currentPlayer} Wins!`);
-        resetGame();
-      } else {
-        setBoard(newBoard);
-        setIsXTurn(!isXTurn);
-      }
-    }
-  }
-
-  function resetGame() {
-    setIsXTurn(true);
-    setBoard(blankBoard);
-  }
-
-  return (
-    &lt;&gt;
-      &lt;Board board={board} handleSquareClick={handleSquareClick} /&gt;
-      &lt;button onClick={() =&gt; {}}&gt;Toggle Theme&lt;/button&gt;
-      current player: {currentPlayer}
-    &lt;/&gt;
-  );
-}
-
-ReactDOM.render(&lt;Game /&gt;, document.getElementById('root'));
-</code></pre>
-<div class='codepen' data-codepen='react'></div>
 <h3>The solution</h3>
 <h4>Game</h4>
-<pre><code class="language-jsx">const squareStyling = {
-  width: '200px',
-  height: '200px',
-  border: '1px solid black',
-  boxSizing: 'border-box',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  fontSize: '6em',
-  color: 'black',
-};
+<pre><code class="language-jsx">import React, { useContext, useState } from 'react';
+import Board from '../../../app/components/Board';
+import {
+  getHintForBoard,
+  boardHasWinner,
+  blankBoard,
+  themes,
+} from '../../../app/utils';
 
-const boardStyling = {
-  display: 'flex',
-  flexWrap: 'wrap',
-  flexDirection: 'row',
-  justifyContent: 'flex-start',
-  width: '600px',
-  height: '600px',
-  boxShadow: '0px 3px 8px 0 rgba(0, 0, 0, 0.1)',
-  boxSizing: 'border-box',
-};
-
-function boardHasWinner(board) {
-  const winningCombos = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-
-  const winningCombo = winningCombos.find((combo) =&gt; {
-    return (
-      board[combo[0]] !== '' &amp;&amp;
-      board[combo[0]] === board[combo[1]] &amp;&amp;
-      board[combo[0]] === board[combo[2]]
-    );
-  });
-  return !!winningCombo;
-}
-
-const themes = {
-  light: {
-    text: '#4A5568',
-    background: '#EDF2F7',
-  },
-  dark: {
-    text: '#EDF2F7',
-    background: '#4A5568',
-  },
-};
 const ThemeContext = React.createContext();
 
-function useTheme() {
-  return React.useContext(ThemeContext);
+export function useTheme() {
+  return useContext(ThemeContext);
 }
-
-function Square({ onClick, symbol, id }) {
-  const theme = useTheme();
-
-  return (
-    &lt;div
-      id={id}
-      style={Object.assign({}, squareStyling, {
-        color: theme.text,
-        backgroundColor: theme.background,
-      })}
-      onClick={onClick}
-    &gt;
-      {symbol}
-    &lt;/div&gt;
-  );
-}
-
-function Board({ board, handleSquareClick }) {
-  return (
-    &lt;div style={boardStyling}&gt;
-      {board.map((symbol, index) =&gt; (
-        &lt;Square
-          key={index}
-          symbol={symbol}
-          onClick={() =&gt; handleSquareClick(index)}
-        /&gt;
-      ))}
-    &lt;/div&gt;
-  );
-}
-
-const blankBoard = ['', '', '', '', '', '', '', '', ''];
 
 function Game() {
-  const [board, setBoard] = React.useState(blankBoard);
-  const [isXTurn, setIsXTurn] = React.useState(true);
-  const [theme, setTheme] = React.useState(themes.light);
+  const [board, setBoard] = useState(blankBoard);
+  const [isXTurn, setIsXTurn] = useState(true);
+  const [hintSquare, setHintSquare] = useState(-1);
+  const [theme, setTheme] = useState(themes.light);
 
   const currentPlayer = isXTurn ? 'X' : 'O';
 
@@ -943,7 +773,12 @@ function Game() {
         setBoard(newBoard);
         setIsXTurn(!isXTurn);
       }
+      setHintSquare(-1);
     }
+  }
+
+  async function handleGetHint() {
+    setHintSquare(await getHintForBoard(board, currentPlayer));
   }
 
   function handleToggleTheme() {
@@ -957,17 +792,46 @@ function Game() {
 
   return (
     &lt;ThemeContext.Provider value={theme}&gt;
-      &lt;Board board={board} handleSquareClick={handleSquareClick} /&gt;
+      &lt;Board
+        board={board}
+        onSquareClick={handleSquareClick}
+        hintSquare={hintSquare}
+      /&gt;
+      &lt;button onClick={handleGetHint}&gt;Get Hint&lt;/button&gt;
       &lt;button onClick={handleToggleTheme}&gt;Toggle Theme&lt;/button&gt;
       current player: {currentPlayer}
     &lt;/ThemeContext.Provider&gt;
   );
 }
 
-ReactDOM.render(&lt;Game /&gt;, document.getElementById('root'));
+export default Game;
 </code></pre>
-<div class='codepen' data-codepen='react'></div>
-<div line-highlight='46-55,56,58-60,63,98,117-119,127,131 only'></div>
+<div line-highlight='5,7-9,15,39-41,49,59,only'></div>
+<h4>Square</h4>
+<pre><code class="language-jsx">import React from 'react';
+import { useTheme } from './Game';
+
+function Square({ onClick, symbol, displayAsHint, id }) {
+  const theme = useTheme();
+
+  return (
+    &lt;div
+      id={id}
+      className=&quot;square&quot;
+      onClick={onClick}
+      style={{
+        color: theme.text,
+        background: displayAsHint ? '#9AE6B4' : theme.background,
+      }}
+    &gt;
+      {symbol}
+    &lt;/div&gt;
+  );
+}
+
+export default Square;
+</code></pre>
+<div line-highlight='5,only'></div>
 
 </section>
 
@@ -1005,7 +869,7 @@ ReactDOM.render(&lt;Game /&gt;, document.getElementById('root'));
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react/10-context-hooks.md"},"description":"Learn how to manage global app state with context hooks. \n","name":"learn-react/context-hooks","title":"Context Hooks","type":"page","parent":"learn-react","order":10,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react/10-context-hooks.md"},"description":"Learn how to manage global app state with context hooks. \n","name":"learn-react/context-hooks","title":"Context Hooks","type":"page","parent":"learn-react","order":10,"comment":" ","pathToRoot":"../.."};
     </script>
 
     
