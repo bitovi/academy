@@ -15,7 +15,9 @@ Let's take a look at each hook and see what they can do.
 
 ## useState
 
-`useState` accepts a single parameter and returns an array with two elements. The argument to `useState` is the default value of the `state` that you are creating. The first element of the return value is the state value itself; this is the value you would render inside the JSX. The second element is a setter function, which when called, can be used to update the state value and trigger a re-render.
+[`useState`](https://reactjs.org/docs/hooks-state.html) accepts a single parameter and returns an array with two elements. The argument to `useState` is the default value of the `state` that you are creating. The first element of the return value is the state value itself; this is the value you would render inside the JSX. The second element is a setter function, which, when called, can be used to update the state value and trigger a re-render.
+
+Here's an example of a React component that uses state to power an input element.
 
 ```jsx
 function Hello() {
@@ -38,7 +40,7 @@ Note also that the input box always displays the `uppercase` value of the text. 
 
 This process is similar no matter what component you're building. The basic pattern is:
 
-1. Get the value and setter (the return value of [`React.useState`](https://reactjs.org/docs/hooks-state.html)).
+1. Get the value and setter from [`useState`](https://reactjs.org/docs/hooks-state.html)).
 2. Use the value as needed
 3. Call the setter to change the value and trigger an update
 

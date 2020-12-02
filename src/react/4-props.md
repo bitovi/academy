@@ -132,7 +132,11 @@ function MyButton({ onButtonClick }) {
   return <button onClick={onButtonClick}>click me</button>;
 }
 
-function AddNumbers({ num1, num2 }) {
+function AddNumbers({ num1, num2, isCool }) {
+  if (isCool) {
+    console.log('This component rocks');
+  }
+
   return <div>{num1 + num2}</div>;
 }
 
@@ -159,7 +163,7 @@ Let's use our props knowledge to start building out the Tic-Tac-Toe component.
 
 ### The problem
 
-The goal of this exercise to render a full Tic-Tac-Toe game board. But this time, we will pass the symbol (X, or O) into the Tic-Tac-Toe for rendering. Also we will pass a function down into the Tic-Tac-Toe cell that prints `console.log()` whenever the user clicks on a square. You will need to render the squares first. This will require you to modify some of the props in the scaffolded code.
+The goal of this exercise to render a full Tic-Tac-Toe game board. But this time, we will pass the symbol (X, or O) into the Tic-Tac-Toe for rendering. Also we will pass a function down into the Tic-Tac-Toe cell that prints `console.log()` whenever the user clicks on a square. You will need to render the squares first. This will require you to modify some of the props in the starter code below.
 
 #### Instructions
 

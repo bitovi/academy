@@ -101,6 +101,25 @@ As you can see, the XML-like nature of HTML allows us to model anything using a 
 
 While it is possible to build entire apps using the `createElement` function, this is rarely done due to how complicated it becomes. Instead, React supports a JavaScript syntax extension called JSX which allows us to describe our application declaratively.
 
+You might be wondering, "What does it mean to render this HTML?". It simply means that we use `ReactDOM.render` to convert the HTML-like components into actual DOM element. Here's an example.
+
+```jsx
+function HelloWorld() {
+  return (
+    <div id="greeting">
+      <h1>Hello World</h1>
+      <p>This is HTML</p>
+    </div>
+  );
+}
+
+ReactDOM.render(<HelloWorld />, document.getElementById('root'));
+```
+
+@codepen react
+
+React splits apart the steps where you "define" the HTML from the part where you "render" it, because it affords you a couple niceties. It will "re-render" components when the data going into them changes. We will discuss more about all this in the next section.
+
 ## JSX
 
 JSX is a special syntax that is [transpiled](https://stackoverflow.com/questions/44931479/compiling-vs-transpiling) by [babel](https://babeljs.io/), which looks almost identical to HTML.
@@ -242,13 +261,19 @@ Remember, JSX is simply an alternative syntax for normal JavaScript&mdash;it is 
 const header = <h1>Hello World</h1>;
 const body = <p>My name is {'Mike'}</p>;
 
-const page = (
-  <div>
-    {header}
-    {body}
-  </div>
-);
+function MyPage() {
+  return (
+    <div>
+      {header}
+      {body}
+    </div>
+  );
+}
+
+ReactDOM.render(<MyPage />, document.getElementById('root'));
 ```
+
+@codepen react
 
 If rendered, `page` will output:
 

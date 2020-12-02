@@ -45,7 +45,7 @@ Here the `App` component is rendering the `Button` component 3 times. Note that 
 
 ## Functional Components
 
-Functional components are simple. In a nutshell, they're just functions which return a React element, usually written in JSX.
+Functional components are simple. They're just functions which return a React element, usually written in JSX.
 
 ```jsx
 function MyFuncComponent() {
