@@ -1,7 +1,7 @@
 @page learn-docker/writing-a-dockerfile Writing a Dockerfile
 @parent learn-docker 3
 
-@description Write a Dockerfile to containerize the node app.
+@description Write a Dockerfile to containerize the NodeJS app.
 
 @body
 

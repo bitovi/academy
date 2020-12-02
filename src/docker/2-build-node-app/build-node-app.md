@@ -1,4 +1,4 @@
-@page learn-docker/build-node-app Build a Node App
+@page learn-docker/build-node-app Build a NodeJS App
 @parent learn-docker 2
 
 @description Build a simple Express API to use for the rest of the course.

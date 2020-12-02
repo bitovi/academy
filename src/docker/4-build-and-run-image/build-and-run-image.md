@@ -1,7 +1,7 @@
 @page learn-docker/build-and-run-image Build and Run An Image
 @parent learn-docker 4
 
-@description Build an image and run a container for our node app.
+@description Build an image and run a container for our NodeJS app.
 
 @body
 
@@ -160,7 +160,7 @@ Example app listening at http://localhost:9000
 You'll see the last line of the logs indicating the app is now listening on port 9000. However, because we set the port mapping with `-p 8000:9000`, we still will view the application in our browser from `localhost:8000`.
 
 ## Review
-We've built an image and run a container for our node app. Here's a cheat sheet of all the commands we ran.
+We've built an image and run a container for our NodeJS app. Here's a cheat sheet of all the commands we ran.
 ```bash
 # Build an image
 docker build -t my-node-app .

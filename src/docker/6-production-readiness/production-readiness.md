@@ -8,7 +8,7 @@
 <iframe width="560" height="315" src="https://www.youtube.com/embed/aVCr1bGjw0k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Overview
-We want to make our image as lightweight as possible. Reducing image size will make it faster to pull and run in production. In its current state, our simple node app is a staggering `944MB`!
+We want to make our image as lightweight as possible. Reducing image size will make it faster to pull and run in production. In its current state, our simple NodeJS app is a staggering `944MB`!
 ```bash
 $ docker image ls my-node-app
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
@@ -80,7 +80,7 @@ This is especially powerful in compiled languages like Go or Java where multi-st
 ## Targets
 By using the `--target` cli argument when building our image, we can tell Docker to stop building at a specific stage. We will use this alone with a `prod` stage and a `dev` stage to give us our desired result. 
 
-Replace our node app's Dockerfile to the following:
+Replace our NodeJS app's Dockerfile to the following:
 ```dockerfile
 FROM node:15-alpine as prod
 ARG PORT=8000
