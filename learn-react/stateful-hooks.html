@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn how to use hooks in React to manage the state of a component. 
+  <meta name="description" content="Learn how to use React hooks to manage the state of a component. 
 ">
   <title>Bitovi Academy - Stateful Hooks</title>
   
@@ -111,7 +111,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-react.html"
-							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will have mastered functional components, hooks, and component optimization.">
 							Learn React
 						</a>
 						
@@ -155,7 +155,7 @@
            						">
 						<a class="page"
 							href="components.html"
-							title="Learn about the two fundamental ways of writing React components and their differences.">
+							title="Learn about the two ways of writing React components and their differences.">
 							What are React Components
 						</a>
 						
@@ -186,7 +186,7 @@
 						<a class="page"
 							href="styling-in-react.html"
 							title="Learn the different ways to style React components.">
-							Styling in React 3 Ways
+							Styling in React
 						</a>
 						
 					</li>
@@ -200,7 +200,7 @@
            						expanded">
 						<a class="page"
 							href="stateful-hooks.html"
-							title="Learn how to use hooks in React to manage the state of a component.">
+							title="Learn how to use React hooks to manage the state of a component.">
 							Stateful Hooks
 						</a>
 						
@@ -271,21 +271,6 @@
 				
 			
 		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="class-components-vs-hooks.html"
-							title="Learn how to use React hooks to make functional components more powerful.">
-							Class Components vs Hooks
-						</a>
-						
-					</li>
-				
-			
-		
 	</ul>
 
 
@@ -332,9 +317,10 @@
            						
            						">
 						<a class="page"
-							href="../learn-docker.html"
-							title="Build and containerize a Node app then orchestrate multiple containers with docker-compose in this Docker guide.">
-							Learn Docker
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
 						</a>
 						
 					</li>
@@ -365,22 +351,6 @@
 							href="../learn-technology-consulting.html"
 							title="Learn how to perform technology consulting.">
 							Learn Technology Consulting
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="../learn-canjs.html"
-							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
-covering CanJS core libraries.">
-							Learn CanJS
 						</a>
 						
 					</li>
@@ -425,7 +395,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn how to use hooks in React to manage the state of a component.</p>
+    <p>Learn how to use React hooks to manage the state of a component.</p>
 
 </section>
 
@@ -439,16 +409,17 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>What are stateful hooks?</h2>
-<p>Stateful hooks are React's way of managing all of the data that a functional component needs to keep track of. The most widely used stateful hook, <code>useState</code>, streamlines the process of both using and updating individual state values in a straightforward way.</p>
+<p>Stateful hooks are React's way of managing the data that a functional component needs to remember. The most widely used stateful hook, <a href="https://reactjs.org/docs/hooks-state.html"><code>useState</code></a>, streamlines the process of both using and updating individual state values in a straightforward way.</p>
 <p>Another stateful hook, <code>useRef</code>, gives component code access to the underlying DOM elements rendered from the JSX.</p>
-<p>Let's take a look at each hook in turn and see what they can do.</p>
+<p>Let's take a look at each hook and see what they can do.</p>
 <h2>useState</h2>
-<p>When <code>useState</code> is called, it returns an array with two elements. The first element is the state value itself; this is the value you would render inside the JSX. The second element is a setter function, which when called, can be used to update the state and trigger a re-render.</p>
+<p><a href="https://reactjs.org/docs/hooks-state.html"><code>useState</code></a> accepts a single parameter and returns an array with two elements. The argument to <code>useState</code> is the default value of the <code>state</code> that you are creating. The first element of the return value is the state value itself; this is the value you would render inside the JSX. The second element is a setter function, which, when called, can be used to update the state value and trigger a re-render.</p>
+<p>Here's an example of a React component that uses state to power an input element.</p>
 <pre><code class="language-jsx">function Hello() {
   const [inputValue, setInputValue] = React.useState('');
 
   return (
-    &lt;input value={inputValue} onChange={(e) =&gt; setInputValue(e.target.value)} /&gt;
+    &lt;input value={inputValue.toUpperCase()} onChange={(e) =&gt; setInputValue(e.target.value} /&gt;
   );
 }
 
@@ -456,16 +427,17 @@ ReactDOM.render(&lt;Hello /&gt;, document.getElementById('root'));
 </code></pre>
 <div line-highlight='2,5'></div>
 <div class='codepen' data-codepen='react'></div>
-<p>Above is a simple example of using state to control an <code>input</code> element. The value of the input is determined entirely by the <code>inputValue</code> state (not the browser), and whenever the input changes, the state is updated to match.</p>
-<p>This process is similar no matter what component you're building. The basic flow is:</p>
+<p>Above is a simple example of using state to control an <code>input</code> element. The starting value of <code>inputValue</code> is <code>''</code> because it is the argument to <code>React.useState</code>. If we were to call <code>setInputValue('hello')</code>, then <code>inputValue</code> would change to <code>hello</code> and the component would re-render.</p>
+<p>Note also that the input box always displays the <code>uppercase</code> value of the text. This is because when we display the text value (when we pass the <code>value</code> prop to the <code>input</code>), we uppercase the string.</p>
+<p>This process is similar no matter what component you're building. The basic pattern is:</p>
 <ol>
-<li>Get the value and setter</li>
+<li>Get the value and setter from <a href="https://reactjs.org/docs/hooks-state.html"><code>useState</code></a>).</li>
 <li>Use the value as needed</li>
 <li>Call the setter to change the value and trigger an update</li>
 </ol>
 <blockquote>
-<p><strong>Important:</strong> When using objects or arrays, you must provide a new state when using the setter, rather than changing the current values. The data created by <code>useState</code> is immutable and will always replace any manual changes.</p>
-<p>For example, using array methods like <code>.push()</code> or <code>.pop()</code> will lead to problems. Instead, use methods like <code>.concat()</code> and <code>.filter()</code> which create new arrays, and pass those values into the setter.</p>
+<p><strong>Important:</strong> When using objects or arrays, you must provide a new state object when using the setter, rather than changing the values within the object. The data created by <code>useState</code> is immutable and will always replace any manual changes.</p>
+<p>For example, using a state object that is an array, make sure never to use <code>.push()</code> or <code>.pop()</code> directly on it. Instead, use methods like <code>.concat()</code> and <code>.filter()</code> which create new arrays, and pass those values into the setter.</p>
 <pre><code class="language-jsx">function Hello() {
   const [values, setValues] = React.useState([]);
 
@@ -481,7 +453,6 @@ ReactDOM.render(&lt;Hello /&gt;, document.getElementById('root'));
 
 ReactDOM.render(&lt;Hello /&gt;, document.getElementById('root'));
 </code></pre>
-<p><em>For class based components see <a href="https://reactjs.org/docs/state-and-lifecycle.html">this.setState()</a>.</em></p>
 </blockquote>
 <h2>useRef</h2>
 <p>Just like <code>useState</code>, <code>useRef</code> is a data store, keeping track of values the component is interested in. In this case however, <code>useRef</code> helps store DOM references instead of state data.</p>
@@ -509,7 +480,6 @@ function Hello() {
 </ul>
 <h2>Exercise</h2>
 <p>Let's use our stateful hooks knowledge to make our Tic-Tac-Toe game more functional!</p>
-<p>Run the app locally with <code>npm start</code> and choose the <code>Stateful Hooks</code> exercise. Now head over to <code>src/exercises/7 - Stateful Hooks/components</code>. These are the files you'll be editing.</p>
 <h3>The problem</h3>
 <p>✏️ Modify the <code>Board</code> component so that it keeps track of the current state of the game and players using hooks.</p>
 <ul>
@@ -517,13 +487,108 @@ function Hello() {
 <li>store the current player in state, with a boolean called <code>isXTurn</code></li>
 <li>Fill out the <code>handleSquareClick</code> function so that it updates the board and changes the current player when the user clicks a <code>Square</code>.</li>
 </ul>
-<h3>The solution</h3>
-<pre><code class="language-jsx">import React, { useState } from 'react';
-import Square from '../../../app/components/Square';
+<pre><code class="language-jsx">const squareStyling = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+  color: 'black',
+};
+
+const boardStyling = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  width: '600px',
+  height: '600px',
+  boxShadow: '0px 3px 8px 0 rgba(0, 0, 0, 0.1)',
+  boxSizing: 'border-box',
+};
+
+function Square({ onClick, symbol, id }) {
+  return (
+    &lt;div id={id} onClick={onClick} style={squareStyling}&gt;
+      {symbol}
+    &lt;/div&gt;
+  );
+}
 
 function Board() {
-  const [board, setBoard] = useState(['', '', '', '', '', '', '', '', '']);
-  const [isXTurn, setIsXTurn] = useState(true);
+  const board = ['', '', '', '', '', '', '', '', ''];
+  // store the board in state
+  // store the current player in state
+
+  function handleSquareClick(square) {
+    // update the board
+    // update the current player
+  }
+
+  return (
+    &lt;div style={boardStyling}&gt;
+      {board.map((symbol, index) =&gt; (
+        &lt;Square
+          key={index}
+          symbol={symbol}
+          onClick={() =&gt; handleSquareClick(index)}
+        /&gt;
+      ))}
+    &lt;/div&gt;
+  );
+}
+
+ReactDOM.render(&lt;Board /&gt;, document.getElementById('root'));
+</code></pre>
+<div class='codepen' data-codepen='react'></div>
+<h3>The solution</h3>
+<pre><code class="language-jsx">const squareStyling = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+  color: 'black',
+};
+
+const boardStyling = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  width: '600px',
+  height: '600px',
+  boxShadow: '0px 3px 8px 0 rgba(0, 0, 0, 0.1)',
+  boxSizing: 'border-box',
+};
+
+function Square({ onClick, symbol, id }) {
+  return (
+    &lt;div id={id} onClick={onClick} style={squareStyling}&gt;
+      {symbol}
+    &lt;/div&gt;
+  );
+}
+
+function Board() {
+  const [board, setBoard] = React.useState([
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+  ]);
+  const [isXTurn, setIsXTurn] = React.useState(true);
 
   function handleSquareClick(squareIndex) {
     if (board[squareIndex]) {
@@ -538,7 +603,7 @@ function Board() {
   }
 
   return (
-    &lt;div className=&quot;board&quot;&gt;
+    &lt;div style={boardStyling}&gt;
       {board.map((symbol, index) =&gt; (
         &lt;Square
           key={index}
@@ -550,9 +615,12 @@ function Board() {
   );
 }
 
-export default Board;
+ReactDOM.render(&lt;Board /&gt;, document.getElementById('root'));
 </code></pre>
-<div line-highlight='5,6,9-17,only'></div>
+<div class='codepen' data-codepen='react'></div>
+<div line-highlight='33,44,46-56,only'></div>
+<h2>Next Steps</h2>
+<p>✏️ Head over to the <a href="controlled-vs-uncontrolled.html">next lesson</a> to learn how React manages browser inputs.</p>
 
 </section>
 
@@ -590,7 +658,7 @@ export default Board;
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react/6-stateful-hooks.md"},"description":"Learn how to use hooks in React to manage the state of a component. \n","name":"learn-react/stateful-hooks","title":"Stateful Hooks","type":"page","parent":"learn-react","order":6,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react/6-stateful-hooks.md"},"description":"Learn how to use React hooks to manage the state of a component. \n","name":"learn-react/stateful-hooks","title":"Stateful Hooks","type":"page","parent":"learn-react","order":6,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing. 
+  <meta name="description" content="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will have mastered functional components, hooks, and component optimization. 
 ">
   <title>Bitovi Academy - Learn React</title>
   
@@ -111,7 +111,7 @@
            						expanded">
 						<a class="page"
 							href="learn-react.html"
-							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.">
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will have mastered functional components, hooks, and component optimization.">
 							Learn React
 						</a>
 						
@@ -155,7 +155,7 @@
            						">
 						<a class="page"
 							href="learn-react/components.html"
-							title="Learn about the two fundamental ways of writing React components and their differences.">
+							title="Learn about the two ways of writing React components and their differences.">
 							What are React Components
 						</a>
 						
@@ -186,7 +186,7 @@
 						<a class="page"
 							href="learn-react/styling-in-react.html"
 							title="Learn the different ways to style React components.">
-							Styling in React 3 Ways
+							Styling in React
 						</a>
 						
 					</li>
@@ -200,7 +200,7 @@
            						">
 						<a class="page"
 							href="learn-react/stateful-hooks.html"
-							title="Learn how to use hooks in React to manage the state of a component.">
+							title="Learn how to use React hooks to manage the state of a component.">
 							Stateful Hooks
 						</a>
 						
@@ -268,21 +268,6 @@
 				
 			
 		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="learn-react/class-components-vs-hooks.html"
-							title="Learn how to use React hooks to make functional components more powerful.">
-							Class Components vs Hooks
-						</a>
-						
-					</li>
-				
-			
-		
 	</ul>
 
 
@@ -329,9 +314,10 @@
            						
            						">
 						<a class="page"
-							href="learn-docker.html"
-							title="Build and containerize a Node app then orchestrate multiple containers with docker-compose in this Docker guide.">
-							Learn Docker
+							href="learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
 						</a>
 						
 					</li>
@@ -362,22 +348,6 @@
 							href="learn-technology-consulting.html"
 							title="Learn how to perform technology consulting.">
 							Learn Technology Consulting
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="learn-canjs.html"
-							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
-covering CanJS core libraries.">
-							Learn CanJS
 						</a>
 						
 					</li>
@@ -422,7 +392,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.</p>
+    <p>Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will have mastered functional components, hooks, and component optimization.</p>
 
 </section>
 
@@ -437,15 +407,6 @@ covering CanJS core libraries.">
   				<section class="body">
     <h2>Before You Begin</h2>
 <p>Before beginning this tutorial, you will want to have some familiarity with HTML and <a href="https://www.bitovi.com/academy/learn-advanced-javascript.html">JavaScript</a>. Specifically, you will need to understand <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions">functions</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">objects</a>, and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">arrays</a>. Additionally, you should be familiar with some of the more recent <a href="https://medium.com/sons-of-javascript/javascript-an-introduction-to-es6-1819d0d89a0f">ECMAScript</a> features, such as <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">arrow functions</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let">let</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const">const</a> and the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters">rest operator</a>. It is also beneficial to have some familiarity with <a href="https://docs.npmjs.com/about-npm/">NPM</a>, though it is not strictly necessary to begin.</p>
-<p>✏️ You'll want to clone down a copy of the exercise repository used in this course:</p>
-<ul>
-<li><a href="">https://github.com/bitovi/react-exercises</a></li>
-</ul>
-<p>This is the codebase you'll be using throughout the series to improve your React skills.</p>
-<pre><code class="language-bash">git clone https://github.com/bitovi/react-exercises
-cd react-exercises
-npm install
-</code></pre>
 <h2>What is React?</h2>
 <p>In a nutshell, React is a <a href="https://www.coursereport.com/blog/front-end-development-vs-back-end-development-where-to-start">front-end</a> JavaScript library which makes it very easy to build scalable apps.</p>
 <p>While it's most commonly used for building web apps, React can also be used to create mobile &amp; desktop apps through <a href="https://reactnative.dev/">React Native</a> and <a href="https://www.electronjs.org/">Electron</a>. Although this course will not explicitly cover them, the theory contained here will still fully apply to other environments.</p>
@@ -495,7 +456,7 @@ npm install
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react/react.md"},"description":"Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing. \n","name":"learn-react","title":"Learn React","type":"page","parent":"bit-academy","order":5,"comment":" ","pathToRoot":".."};
+      var docObject = {"src":{"path":"src/react/react.md"},"description":"Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will have mastered functional components, hooks, and component optimization. \n","name":"learn-react","title":"Learn React","type":"page","parent":"bit-academy","order":5,"comment":" ","pathToRoot":".."};
     </script>
 
     
