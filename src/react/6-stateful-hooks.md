@@ -48,6 +48,32 @@ This process is similar no matter what component you're building. The basic patt
 >
 > For example, using a state object that is an array, make sure never to use `.push()` or `.pop()` directly on it. Instead, use methods like `.concat()` and `.filter()` which create new arrays, and pass those values into the setter.
 >
+> ### Wrong
+>
+> ```jsx
+> function Hello() {
+>   const [values, setValues] = React.useState([]);
+>
+>   return (
+>     <>
+>       {values}
+>       <button
+>         onChange={(e) => {
+>           values.push('click');
+>           setValues(values);
+>         }}
+>       >
+>         Click me
+>       </button>
+>     </>
+>   );
+> }
+>
+> ReactDOM.render(<Hello />, document.getElementById('root'));
+> ```
+>
+> ### Right
+>
 > ```jsx
 > function Hello() {
 >   const [values, setValues] = React.useState([]);
@@ -74,27 +100,31 @@ DOM references give your component access to the underlying DOM elements that yo
 Let's take a look at `useRef` in action:
 
 ```jsx
-import React, { useRef, useEffect } from 'react';
-
 function Hello() {
-  const parent = useRef();
-  const map = useRef();
+  const nameRef = React.useRef();
 
-  useEffect(() => {
-    map.current = new google.maps.Map(parent.current, {});
-  }, []);
-
-  return <div ref={parent} />;
+  return (
+    <>
+      <label>
+        Name:
+        <input placeholder="name" type="text" ref={nameRef} />
+      </label>
+      <button onClick={() => nameRef.current.focus()}>Focus Name Input</button>
+    </>
+  );
 }
+ReactDOM.render(<Hello />, document.getElementById('root'));
 ```
 
-@highlight 4,5,8
+@highlight 2,8,10
+@codepen react
 
 In the code above we're doing a couple things:
 
-- Get refs for the parent and the map instances.
-- Pass the parent ref to the `div` JSX element.
-- Working inside a useEffect so we have access to `parent.current`, set the current map value.
+- Creating a ref that will reference the input field.
+- Use that input ref so that button onClick handler to `.focus()` on the underlying DOM element.
+
+This strategy is useful when you need to interface with older libraries that require you have the reference to the actual DOM element instance.
 
 ## Exercise
 
