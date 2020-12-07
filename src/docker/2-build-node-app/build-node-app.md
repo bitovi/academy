@@ -8,9 +8,9 @@
 <iframe width="560" height="315" src="https://www.youtube.com/embed/6sHuGWj5cGM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Overview
-In this section, we are going to build a simple "Hello World" api using [Express](https://expressjs.com/).
+In this section, we are going to build a simple "Hello World" service using [Express](https://expressjs.com/).
 
-NodeJS is not required if you just want to read through this section and copy/paste the code snippets. If you want to run the application before we containerize it in the next section, you can install NodeJS [here](https://nodejs.org/en/download/).
+NodeJS is not required if you just want to read through this section and copy/paste the code snippets. If you want to run the application natively before we containerize it in the next section, you can install NodeJS [here](https://nodejs.org/en/download/).
                   
 ## Building our app
 The app requires only two files
@@ -18,6 +18,7 @@ The app requires only two files
 * `src/index.js`
 
 ### package.json
+✏️ Create `package.json` in the root of your repository.
 ```json
 {
   "name": "bitovi-academy-app",
@@ -39,6 +40,7 @@ This file defines `express` as a standard dependency and `nodemon` as a dev depe
 Our `package.json` also defines a `start` script and a `start:prod`. These are convenient ways to allow us to start our application with nodemon or node by running `npm start` or `npm run start:prod`.
 
 ### src/index.js
+✏️ Create a `src` directory and `index.js` within it.
 ```js
 const express = require('express')
 const app = express()
@@ -55,7 +57,7 @@ app.listen(port, () => {
 This file starts an express server listening on `localhost:3000`. If we access the root path it should return `Hello World!`. The default port is 3000, but can be overwritten by setting the `PORT` environment variable before starting the server.
 
 ## Run our app
-This step is optional, but to verify our app works you can run
+✏️ This step is optional, but to verify our app works you can run:
 ```bash
 npm install
 npm start

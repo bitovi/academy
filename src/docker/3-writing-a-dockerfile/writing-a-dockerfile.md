@@ -8,7 +8,9 @@
 <iframe width="560" height="315" src="https://www.youtube.com/embed/LiAkpRc6z0Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Our Dockerfile
-Starting with the solution, the `Dockerfile` for our NodeJS app should look like this:
+Starting with the solution, the `Dockerfile` for our NodeJS app should look like this. 
+
+✏️ Copy and paste this to the root of your project and name the file `Dockerfile`:
 ```dockerfile
 FROM node:15
 
@@ -23,11 +25,15 @@ RUN npm install
 EXPOSE $PORT
 CMD npm start
 ```
-Copy and paste this to the root of your project and name the file `Dockerfile`.
 
 Let's break down each line.
 ## FROM instruction
-The `FROM` instruction is the first line of any Dockerfile. It sets the base image to be used as a starting point for all other instructions. Using base images allows deferring installation of a kernel and low level packages to the provider of the base image.
+The `FROM` instruction is the first line of any Dockerfile. It sets the base image to be used as a starting point for all other instructions. Using base images allows deferring:
+
+- installation of a kernel and
+- installtion of low level packages
+
+to the provider of the base image.
 
 In our case, We are using `node:15`. `node` specifies the name of the base image and `15` is a tag specifying the version of the image. This base image has the latest version of NodeJS 15 pre-installed, allowing the rest of the `Dockerfile` to focus on logic specific to our application. The `node:15` image also has a `Dockerfile` which means it also has a `FROM` instruction. `node:15` uses [Debian](https://hub.docker.com/_/debian) as its base image. This layering of Docker images repeats until a Dockerfile uses `FROM scratch` as its base image.
 
@@ -43,7 +49,7 @@ In our case, `ARG PORT=8000` is defining an argument called `PORT` with a defaul
 [Official Docs](https://docs.docker.com/engine/reference/builder/#arg)
 
 ## ENV instruction
-The `ENV` instruction is used to define environment variables. Like `ARG`, it follows the syntax `ENV <name> [=<default value>]`. The difference between `ARG` and `ENV` is `ENV` can be used during the image build process and also when the container is running, but only `ARG` can be overwritten during the build process. `ENV` can also be overwritten at run time with the `-e` cli argument or an env file ([Docs](https://docs.docker.com/engine/reference/run/#env-environment-variables)).
+The `ENV` instruction is used to define environment variables. Like `ARG`, it follows the syntax `ENV <name> [=<default value>]`. The difference between `ARG` and `ENV` is that variables defined with the `ENV` instruction can be used during the image build process and also when the container is running as standard environment variables. However, only `ARG` defined variables can be actually overwritten during the build process with the `--build-arg` cli argument. `ENV` can be overwritten at run time with the `-e` cli argument or an env file ([Docs](https://docs.docker.com/engine/reference/run/#env-environment-variables)).
 
 To give us the flexibility to set and use variables at build time and run time, we use both `ARG` and `ENV` instructions together:
 
@@ -103,7 +109,7 @@ In our case, `WORKDIR app` will create the `/app/` directory for us to copy our 
 
 ## COPY instruction
 The `COPY` instruction follows the syntax `COPY [--chown=<user>:<group>] <src>... <dest>`.
-- `--chown=<user>:<group>` allows setting the permissions of the target file or directory using [chown](https://linux.die.net/man/1/chown). This is only available to Linux based images
+- `--chown=<user>:<group>` allows setting the ownership of the target file or directory using [chown](https://linux.die.net/man/1/chown). This is only available to Linux based images
 - `<src>...` specifies what file(s) or directories should be copied in to the docker image.
     - Each file/directory should be separated by a space (` `)
     - Each entry supports wildcards and matching. For example: `COPY hom* .` Will match all files starting with "hom"

@@ -37,5 +37,5 @@ Afterwards, we will look at orchestrating multiple docker images to form a full 
 
 ## Prerequisites
 
-- This course only requires Docker Desktop installed. Follow the official docs for [installation steps](https://docs.docker.com/get-docker/).
-- This guide uses NodeJS. However, the code is all explained. If you want to run the code without Docker, you will need to [install NodeJS](https://nodejs.org/en/download/). This is optional.
+- ✏️ This course only requires Docker Desktop installed. Follow the official docs for [installation steps](https://docs.docker.com/get-docker/).
+- ✏️ This guide uses NodeJS. However, the code is all explained. If you want to run the code without Docker, you will need to [install NodeJS](https://nodejs.org/en/download/). This is optional.
