@@ -46,7 +46,7 @@ Normally, we would perform this operation every time the component renders, rega
 
 To sum it all up:
 
-- When we need to do something expensive
+- When we need to do something expensive:
   1. We wrap it in `useMemo`.
   2. Specify when it should re-compute.
 
@@ -91,7 +91,7 @@ ReactDOM.render(
 @highlight 2,3,only
 @codepen react
 
-This could get quite expensive for a large object, even the parsing could make a difference, so we memoize the whole value, only recalculating on `bigJSONBlob` changes
+This could get quite expensive for a large object, even the parsing could make a difference, so we memoize the whole value, only recalculating on `bigJSONBlob` changes. It uses `===` to detect changes and not a deep object comparison.
 
 ```jsx
 function Hello({ bigJSONBlob }) {
@@ -136,7 +136,7 @@ ReactDOM.render(
 - `useCallback(fn, deps)` is equivalent to `useMemo(() => fn, deps)`
 - Used to maintain referential equality between renders.
 
-`useCallback` is particularly useful when defining event handlers. In such cases, we're not necessarily interested in memoizing a single value, but rather in memoizing a callback function. This is very common in React, as we frequently use callbacks as props.
+[`useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback) is particularly useful when defining event handlers. In such cases, we're not necessarily interested in memoizing a single value, but rather in memoizing a callback function. This is very common in React, as we frequently use callbacks as props.
 
 Below is a clickable `Hello` component which defines an un-memoized `handleClick` function.
 
