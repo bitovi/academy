@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs'; 
 
 import { ListComponent } from './list.component';
@@ -19,7 +19,7 @@ describe('ListComponent', () => {
   let fixture: ComponentFixture<ListComponent>;
   let injectedOrderService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ListComponent ],
       providers: [{
@@ -28,7 +28,7 @@ describe('ListComponent', () => {
       }]
     })
     .compileComponents();
-    injectedOrderService = TestBed.get(OrderService);
+    injectedOrderService = TestBed.inject(OrderService);
   }));
 
   beforeEach(() => {

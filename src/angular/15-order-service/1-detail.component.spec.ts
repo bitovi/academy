@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DetailComponent } from './detail.component';
 import { ImageUrlPipe } from 'src/app/image-url.pipe';
@@ -43,7 +43,7 @@ describe('DetailComponent', () => {
     }
   }
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ DetailComponent, ImageUrlPipe ],
       imports: [ RouterTestingModule ],

@@ -15,8 +15,8 @@ describe('RestaurantService', () => {
   }));
 
   beforeEach(() => {
-    httpMock = TestBed.get(HttpTestingController);
-    restaurantService = TestBed.get(RestaurantService);
+    httpMock = TestBed.inject(HttpTestingController);
+    restaurantService = TestBed.inject(RestaurantService);
   })
 
   it('should be created', () => {

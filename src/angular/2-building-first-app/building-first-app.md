@@ -1,13 +1,13 @@
 @page learn-angular/building-our-first-app Generate an App
 @parent learn-angular 2
 
-@description Learn how to generate an Angular application with it's command line interface (CLI).
+@description Learn how to generate an Angular 11 application with it's command line interface (CLI).
 
 @body
 
 ## How to Use This Guide
 
-This guide will walk you through building an application in Angular. Each page of the guide is based on building a new feature, and may have multiple "problems" to solve. Each problem will be explained and include requirements and any set-up steps needed. Most problems will also include unit tests to update to verify the solution has been implemented correctly. The ✏️ icon will be used to indicate when commands need to be run or when files need to be updated. If you have any issues or suggestions as you move through this training, we'd love you to submit a <a href="https://github.com/bitovi/academy/issues/new" target="_blank">GitHub issue</a> for it! 💖
+This guide will walk you through building an application in Angular 11. Each page of the guide is based on building a new feature, and may have multiple "problems" to solve. Each problem will be explained and include requirements and any set-up steps needed. Most problems will also include unit tests to update to verify the solution has been implemented correctly. The ✏️ icon will be used to indicate when commands need to be run or when files need to be updated. If you have any issues or suggestions as you move through this training, we'd love you to submit a <a href="https://github.com/bitovi/academy/issues/new" target="_blank">GitHub issue</a> for it! 💖
 
 ## Overview
 
@@ -81,7 +81,7 @@ We'll start by globally installing the Angular CLI.
 ✏️ Run the following:
 
 ```shell
-npm install -g @angular/cli@7
+npm install -g @angular/cli@11
 ```
 
 ## Generating a new app
@@ -180,7 +180,42 @@ This file is the config schema for an Angular Workspace. By default Angular conf
 
 ### tsconfig.json
 
-This file contains our typescript compiling options.
+This file contains our TypeScript compiling options. In Angular 11, "strict mode" is set to true by default. Angular's strict mode enforces the [TypeScript strict flag](https://www.staging-typescript.org/tsconfig#strict) and a few additional TypeScript rules: `forceConsistentCasingInFileNames`, `noImplicitReturns`, `noFallthroughCasesInSwitch`. Additionally this mode turns on Angular-specific compiler flags `strictTemplates`, `strictInjectionParameters` and `strictInputAccessModifiers`. This Template type checking was made available with [Angular Ivy](https://angular.io/guide/ivy) and will throw compiler errors for incorrect typings inside templates. 
+
+
+```json
+/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "es2020",
+    "lib": [
+      "es2018",
+      "dom"
+    ]
+  },
+  "angularCompilerOptions": {
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  }
+}
+```
+@highlight 8
+
 
 ### src/main.ts
 
