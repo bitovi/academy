@@ -98,7 +98,7 @@ function Thing({ isActive }) {
 
 ## CSS Modules
 
-[A CSS Module](https://css-tricks.com/css-modules-part-1-need/) is a CSS file in which all class names and animation names are scoped locally by default. This means that if you've imported a . This prevents a common problem with importing css into components, name clashing.
+[A CSS Module](https://css-tricks.com/css-modules-part-1-need/) is a CSS file in which all class names and animation names are scoped locally by default. This prevents a common problem with importing css into components, name clashing.
 
 When you define styles for a specific component, you want to be able to use descriptive names without having to worry about the other class names in the app. When you structure your css as a module, unique names are automatically generated. This solves the clashing issue.
 
@@ -156,8 +156,6 @@ function HelloWorld({ isActive }) {
 @highlight 4
 
 Note that the `classnames` library can be used in conjunction with CSS modules as well.
-
-Find a way to create an example of this, and link it.
 
 ## Styled Components
 
