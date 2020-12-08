@@ -1,23 +1,51 @@
 @page learn-react/components What are React Components
 @parent learn-react 3
 
-@description Learn about the two fundamental ways of writing React components and their differences.
+@description Learn about the two ways of writing React components and their differences.
 
 @body
 
 React is all about components. In fact the whole point of the library is to help developers easily create reusable components.
 
-But what is a component?
+## Components
 
-In a nutshell, a component is a function which uses props and state to return an element.
+Earlier, we learned that React JSX is almost always the return value of our components. Components are like small containers which can be reused throughout your application. For example, you might build a `Button` component which renders all the JSX required for a button. Here's an example.
 
-- **Props** - The props of a component are the same as arguments to a function.
-- **State** - The state are the values which the component controls itself.
-- **Side Effects** - The side effects of a component are the results of operations which interact with things outside of the component. This includes things like async fetching, registering DOM event-handlers and using browser APIs.
+```jsx
+function Button() {
+  return (
+    <div className="button primary">
+      <button>click me</button>
+    </div>
+  );
+}
+
+ReactDOM.render(<Button />, document.getElementById('root'));
+```
+
+@codepen react
+
+In the code above, we're defining a functional component (a function which returns JSX) called `Button`.
+
+This component returns JSX and could then be rendered and reused by another component like `App` below.
+
+```jsx
+function App() {
+  return (
+    <div>
+      <Button />
+      <Button />
+      <Button />
+    </div>
+  );
+}
+```
+
+Here the `App` component is rendering the `Button` component 3 times. Note that when you render custom components like this they don't need closing tags, instead they can be self-closing with a `/` tacked onto the end. You can also design them to have closing tags with extra elements rendered inside (see an explanation on JSX children [here](https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891)).
 
 ## Functional Components
 
-Functional components are simple. In a nutshell, they're just functions which return a React element, usually written in JSX.
+Functional components are simple. They're just functions which return a React element, usually written in JSX.
 
 ```jsx
 function MyFuncComponent() {
@@ -68,6 +96,79 @@ function App() {
 
 Originally, class components were the most popular because they could keep track of state and respond to specific component lifecycle events. This wasn't possible in functional components until the release of the [React Hooks API](https://reactjs.org/docs/hooks-reference.html) in v16. Up until then, functional components were commonly referred to as _stateless components_.
 
-Now both class and functional components are used commonly in code-bases around the world, but there has been a shift to using only functional components, as the syntax for them is more readable and cleaner.
+Now both class and functional components are used commonly in codebases around the world, but there has been a shift to using only functional components, as the syntax for them is more readable and cleaner.
 
 For the remainder of this training, we will be using functional components exclusively.
+
+## Exercise
+
+In this exercise, we supply you with a single Tic-Tac-Toe cell component. And your job is to make a Board component that renders those Tic-Tac-Toe cells into a nice 3x3 grid. Bonus points if you update the cell component such that whenever a single cell is clicked, we `console.log` the string "Clicked".
+
+```jsx
+const squareStyling = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+};
+
+function Square() {
+  return <div style={squareStyling}></div>;
+}
+
+function Board() {
+  return <div>Nothing here yet</div>;
+}
+
+ReactDOM.render(<Board />, document.getElementById('root'));
+```
+
+@codepen react
+
+#### Hover over the code above and select the run button in the upper right hand corner.
+
+Go ahead and hover over the code above. You should see a run button in the top right hand corner. Once that is clicked you can change, and edit the code in Codepen. Give it a try!
+
+## Solution
+
+```jsx
+const squareStyling = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+};
+
+function Square() {
+  return (
+    <div style={squareStyling} onClick={() => console.log('Clicked')}></div>
+  );
+}
+
+function Board() {
+  return (
+    <div style={{ display: 'flex', width: '600px', flexWrap: 'wrap' }}>
+      {[0, 1, 2, 3, 4, 5, 6, 7, 8].map((el) => (
+        <Square key={el} />
+      ))}
+    </div>
+  );
+}
+
+ReactDOM.render(<Board />, document.getElementById('root'));
+```
+
+@codepen react
+@highlight 14, 20-24
+
+## Next Steps
+
+✏️ Head over to the [next lesson](props.html) to get a more detailed understanding of props.

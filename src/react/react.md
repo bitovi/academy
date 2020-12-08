@@ -1,25 +1,13 @@
 @page learn-react Learn React
 @parent bit-academy 5
 
-@description Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will master Hooks, Unit Testing, Optimization, and Routing.
+@description Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will have mastered functional components, hooks, and component optimization.
 
 @body
 
 ## Before You Begin
 
 Before beginning this tutorial, you will want to have some familiarity with HTML and [JavaScript](https://www.bitovi.com/academy/learn-advanced-javascript.html). Specifically, you will need to understand [functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions), [objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object), and [arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array). Additionally, you should be familiar with some of the more recent [ECMAScript](https://medium.com/sons-of-javascript/javascript-an-introduction-to-es6-1819d0d89a0f) features, such as [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), [const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) and the [rest operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters). It is also beneficial to have some familiarity with [NPM](https://docs.npmjs.com/about-npm/), though it is not strictly necessary to begin.
-
-✏️ You'll want to clone down a copy of the exercise repository used in this course:
-
-- [https://github.com/bitovi/react-exercises]()
-
-This is the codebase you'll be using throughout the series to improve your React skills.
-
-```bash
-git clone https://github.com/bitovi/react-exercises
-cd react-exercises
-npm install
-```
 
 ## What is React?
 

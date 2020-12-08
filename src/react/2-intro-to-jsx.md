@@ -5,17 +5,71 @@
 
 @body
 
-## Creating Views in React
+## What are Components?
 
-Before we talk about JSX, let's discuss how user interfaces are created in React.
+In React, a `Component` is the encapsulation of an element's look and behavior. Here is an example "Hello World" component, that also prints my name. It is being used inside of another component named "App".
 
-At its core, React is a JavaScript library that helps create reusable front-end components. One of the unique features of React is that it allows you to describe the way your components look using only JavaScript.
+```jsx
+function HelloWorld(props) {
+  return <div>Hello World, my name is {props.name}</div>;
+}
 
-But this "all JS" approach comes with some downsides, namely it becomes arduous to describe complex page hierarchies using only pure JavaScript. When first learning React, it's good to be aware of the [element API](https://reactjs.org/docs/react-api.html), but keep in mind that most React developers will forego this for an alternative syntactic sugar called JSX.
+function App(props) {
+  return (
+    <div>
+      <HelloWorld name="Dan" />
+      <HelloWorld name="Kelsey" />
+      <HelloWorld name="Mitchell" />
+    </div>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));
+```
+
+@codepen react
+
+Don't worry if some of this syntax is new to you, we will be going into more detail about components, and how they are constructed. Even if you don't understand every detail of what's happening above, we can see 3 big takeaways.
+
+### 1. The `HelloWorld` component is simply a function and the first letter is capitalized.
+
+This is not an accident. It's mandatory. Consider how the component is being used directly inside the `App` component, right next to normal HTML. If a component name is all lowercase, React assumes that it is a normal HTML tag (like `span`, or `div`). So the first letter must be capital so that it can be differentiated from a normal HTML element.
+
+By and large, the React community has centered around the convention of using (PascalCase)[https://techterms.com/definition/pascalcase] to name `components`. As far as React is concerned though, your component simply needs to begin with a capital letter to be treated as a custom component.
+
+> To drive the point home further, Imagine we created a component named lowercase `div`. In this case, React wouldn't be able to tell the difference between a normal div and our component `div` since we use them identically. Hence the capitalization.
+
+### 2. We can pass attribute-like things to our components. These are called `props`.
+
+```jsx
+function App(props) {
+  return (
+    <div>
+      <HelloWorld name="Dan" />
+      <HelloWorld name="Kelsey" />
+      <HelloWorld name="Mitchell" />
+    </div>
+  );
+}
+```
+
+@highlight 4
+
+In the example above we pass 'name' to our `HelloWorld` component. These HTML attribute-like descriptors are called `props`, and React does the work of wrapping them in an object, and supplying them as the first argument to the `HelloWorld` component for us. The argument `props` is simply an object containing all of the attribute-like things we passed in.
+
+> In the example above, we only passed in a single attribute so the `props` object would just be `{ name: 'Dan' }` for the first `HelloWorld` component. Notice also, that these `props` make the component more reusable. Above, I'm reusing the component with 3 different names.
+
+### 3. React allows us to embed HTML into our components. This is called `JSX`.
+
+Technically this stuff isn't exactly HTML, it's a representation of what HTML should render when the component is evaluated.
+
+Before discussing how React performs this magic, let's discuss how user interfaces are created in React.
+
+At its core, React is a JavaScript library that allows you to describe the way your components look using only JavaScript. But this "all JS" approach comes with some downsides, namely it becomes arduous to describe complex page hierarchies using only pure JavaScript. When first learning React, it's good to be aware of the [element API](https://reactjs.org/docs/react-api.html), but keep in mind that most React developers will forego this for an alternative syntactic sugar called JSX.
 
 ### React's Element API
 
-React exposes an [API](https://reactjs.org/docs/react-api.html) for creating HTML elements using JavaScript. For example to create an `h1` we could write the following:
+React exposes an [API](https://reactjs.org/docs/react-api.html) for creating DOM-like elements that are then rendered into the DOM using JavaScript. For example to create an `h1` we could write the following:
 
 ```js
 React.createElement('h1', null, 'Hello World');
@@ -34,7 +88,7 @@ React.createElement(
 );
 ```
 
-The code above produces the following HTML:
+The code above will produce the following HTML once rendered:
 
 ```html
 <div id="greeting">
@@ -46,6 +100,25 @@ The code above produces the following HTML:
 As you can see, the XML-like nature of HTML allows us to model anything using a combination of a tag name, a set of attributes and children. Note how the more complex the HTML we're trying to model, the more complex the `React.createElement` code becomes.
 
 While it is possible to build entire apps using the `createElement` function, this is rarely done due to how complicated it becomes. Instead, React supports a JavaScript syntax extension called JSX which allows us to describe our application declaratively.
+
+You might be wondering, "What does it mean to render this HTML?". It simply means that we use `ReactDOM.render` to convert the HTML-like components into actual DOM element. Here's an example.
+
+```jsx
+function HelloWorld() {
+  return (
+    <div id="greeting">
+      <h1>Hello World</h1>
+      <p>This is HTML</p>
+    </div>
+  );
+}
+
+ReactDOM.render(<HelloWorld />, document.getElementById('root'));
+```
+
+@codepen react
+
+React splits apart the steps where you "define" the HTML from the part where you "render" it, because it affords you a couple niceties. It will "re-render" components when the data going into them changes. We will discuss more about all this in the next section.
 
 ## JSX
 
@@ -94,11 +167,9 @@ First, notice how instead of using a string to store the styles (like `style=""`
 > />
 > ```
 
-Inside of `style={}` we have an object of styles whose keys are css attributes and values are css values. This structure closely resembles the [`CSSStyleDeclaration`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration) object used by the browser to store element styles.
+The object passed into `style={}` should map css attributes to css values. This structure closely resembles the [`CSSStyleDeclaration`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration) object used by the browser to store element styles.
 
-✏️ To see this run `document.body.style` in your browser console.
-
-Another thing you may note is the difference between `background-color` and `backgroundColor`.
+✏️ To see an example of this style object, run `document.body.style` in your browser console.
 
 ### Classes
 
@@ -152,9 +223,9 @@ Will output the following HTML:
 <div>Sibling 2</div>
 ```
 
-Note how the fragment components don't have any corresponding DOM output. This would also be true if we had used `<React.Fragment>` instead; they are the same.
+Note how the fragment components don't have any corresponding DOM output. This would also be true if `<React.Fragment>` was used instead. They're identical.
 
-## JavaScript Interpolation
+## JSX Interpolation
 
 JSX is dynamic. You can easily insert values from variables and objects into your JSX:
 
@@ -164,7 +235,7 @@ const name = 'Bitovi';
 <div className="button primary">Welcome to {name}!</div>;
 ```
 
-In the code above, we've used the `{name}` syntax to tell JSX that we want to render the value stored in the `name` variable (ie. `"Bitovi"`) into our view.
+In the code above, use the `{name}` syntax to tell JSX that to render the value stored in the `name` variable (ie. `"Bitovi"`) into our view.
 
 You can take this a step further by interpolating multiple values, and using JavaScript functions to transform data on the fly. Anything that goes inside `{}` is executed as normal JavaScript. These are the same rules as the brackets on a prop: any JavaScript expression is valid inside the curly brackets.
 
@@ -190,13 +261,19 @@ Remember, JSX is simply an alternative syntax for normal JavaScript&mdash;it is 
 const header = <h1>Hello World</h1>;
 const body = <p>My name is {'Mike'}</p>;
 
-const page = (
-  <div>
-    {header}
-    {body}
-  </div>
-);
+function MyPage() {
+  return (
+    <div>
+      {header}
+      {body}
+    </div>
+  );
+}
+
+ReactDOM.render(<MyPage />, document.getElementById('root'));
 ```
+
+@codepen react
 
 If rendered, `page` will output:
 
@@ -244,8 +321,7 @@ Conditions can be re-written using the ternary operator.
 <div>
   {a === b // Ternaries are expressions. They return a value.
     ? 'a and b are equal'
-    : 'a and b are different'
-  }
+    : 'a and b are different'}
 </div>
 ```
 
@@ -292,7 +368,7 @@ If you want to iterate within JSX, use methods such as `Array.map`, `Array.filte
 
 ## Event Handling
 
-One of the most powerful aspects of JavaScript is that it enables developers to respond to events in the browser. With JSX it's easy to listen for and respond to these events.
+One of the most powerful aspects of JavaScript is that it enables developers to respond to events in the browser. With JSX it's easy to listen for and respond to these events. In React, all event names are camelcased (onClick, onMouseEnter, etc...).
 
 ```jsx
 <div className="button primary">
@@ -306,38 +382,65 @@ In the code above, we've attached an `onClick` listener to the `<button>` elemen
 
 All [events](https://reactjs.org/docs/events.html) supported in vanilla JavaScript are also supported in JSX.
 
-## Components
+## Exercise
 
-In React we can store our JSX inside of components. Components are like small containers which can be re-used throughout your application. For example, you might build a `Button` component which renders all the JSX required for a button.
+In this exercise you will be creating a component that is a single square with width, and height set to 100px. This component will be able to take in two props, the first of which is a `backgroundColor`, which will set the background color of the square, and the second `singleLetter`, which is a single character that will be displayed in the center of the square.
 
 ```jsx
-function Button() {
-  return (
-    <div className="button primary">
-      <button>click me</button>
-    </div>
-  );
+<Square backgroundColor="red" singleLetter="Q" />
+```
+
+So if a person rendered that component, they would see
+
+<img src="../static/img/react/redQ.png" >
+
+Here's an empty codepen with React preloaded to get you started.
+
+#### Hover over the code below and select the run button in the upper right hand corner.
+
+```jsx
+function Square() {
+  return <div>Placeholder for your code</div>;
 }
 
-ReactDOM.render(<Button />, document.getElementById('root'));
+ReactDOM.render(
+  <Square backgroundColor="red" singleLetter="Q" />,
+  document.getElementById('root'),
+);
 ```
 
 @codepen react
 
-In the code above, we're defining a functional component (a function which returns JSX) called `Button`.
-
-This component returns JSX and could then be rendered and re-used by another component like `App` below.
+## Solution
 
 ```jsx
-function App() {
+function Square(props) {
   return (
-    <div>
-      <Button />
-      <Button />
-      <Button />
+    <div
+      style={{
+        height: '100px',
+        width: '100px',
+        backgroundColor: props.backgroundColor,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      {props.singleLetter}
     </div>
   );
 }
+
+ReactDOM.render(
+  <Square backgroundColor="red" singleLetter="Q" />,
+  document.getElementById('root'),
+);
 ```
 
-Here the `App` component is rendering the `Button` component 3 times. Note that when you render custom components like this they don't need closing tags, instead they can be self-closing with a `/` tacked onto the end. You can also design them to have closing tags with extra elements rendered inside (see an explanation on JSX children [here](https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891)).
+@codepen react
+
+> Note: You'll see `ReactDOM.render` in all of the code samples in this tutorial. `ReactDOM.render` injects a component (first argument) into a DOM element (second argument).
+
+## Next Steps
+
+✏️ Head over to the [next lesson](components.html) to get the inside scoop on how components are made.
