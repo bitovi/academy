@@ -248,7 +248,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 11 application with it&#x27;s command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -857,7 +857,7 @@ describe('RestaurantComponent', () =&gt; {
 </code></pre>
  <div line-highlight="3,7,9-106,116-119,169-170,172-267,"></div>
 <p>✏️ Update the spec file  <strong>src/app/app.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { TestBed, async, fakeAsync, tick, flush } from '@angular/core/testing';
+<pre><code class="language-ts">import { TestBed, fakeAsync, waitForAsync, tick, flush } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { By } from '@angular/platform-browser';
@@ -1040,7 +1040,7 @@ describe('AppComponent', () =&gt; {
   let location: Location;
   let fixture;
 
-  beforeEach(async(() =&gt; {
+  beforeEach(waitForAsync(() =&gt; {
     TestBed.configureTestingModule({
       imports: [
         AppRoutingModule, HttpClientModule
@@ -1060,8 +1060,8 @@ describe('AppComponent', () =&gt; {
     })
     .compileComponents();
 
-    router = TestBed.get(Router);
-    location = TestBed.get(Location);
+    router = TestBed.inject(Router);
+    location = TestBed.inject(Location);
 
     fixture = TestBed.createComponent(AppComponent);
   }));
@@ -1144,7 +1144,7 @@ describe('AppComponent', () =&gt; {
 
 });
 </code></pre>
- <div line-highlight="5,13-14,16-112,114-119,121,123-125,127,129-174,176-177,187,195-200,202,232,240,268,283,only"></div>
+ <div line-highlight="1,5,13-14,16-112,114-119,121,123-125,127,129-174,176-177,187,195-200,202,232,240,268,283,only"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
@@ -1363,7 +1363,7 @@ to show a loading icon to the user while data is loading:</p>
 <h2>P2: To Verify Solution</h2>
 <p>You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>!</p>
 <p>✏️ Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+<pre><code class="language-ts">import { waitForAsync, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs'; 
 import { ImageUrlPipe } from '../image-url.pipe';
@@ -1473,7 +1473,7 @@ describe('RestaurantComponent', () =&gt; {
   let component: RestaurantComponent;
   let fixture: ComponentFixture&lt;RestaurantComponent&gt;;
 
-  beforeEach(async(() =&gt; {
+  beforeEach(waitForAsync(() =&gt; {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule
@@ -1656,7 +1656,7 @@ describe('RestaurantComponent', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="169,174-175,266-268,272-280,282-289,only"></div>
+ <div line-highlight="1,111,169,174-175,266-268,272-280,282-289,only"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>

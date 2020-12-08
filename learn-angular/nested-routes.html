@@ -248,7 +248,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 11 application with it&#x27;s command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -797,7 +797,7 @@ export class DetailComponent implements OnInit {
 <h2>How to Verify Your Solution is Correct</h2>
 <p>When you click the detail button on a restaurant from the restaurant list view you'll see the detail view of that restaurant.</p>
 <p>✏️ Update the spec file  <strong>src/app/restaurant/detail.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+<pre><code class="language-ts">import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs'; 
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -871,7 +871,7 @@ describe('DetailComponent', () =&gt; {
   let component: DetailComponent;
   let fixture: ComponentFixture&lt;DetailComponent&gt;;
 
-  beforeEach(async(() =&gt; {
+  beforeEach(waitForAsync(() =&gt; {
     TestBed.configureTestingModule({
       declarations: [ DetailComponent, ImageUrlPipe ],
       imports: [RouterTestingModule],
@@ -955,7 +955,7 @@ describe('DetailComponent', () =&gt; {
 });
 </code></pre>
 <p>✏️ Update the spec file  <strong>src/app/app.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { TestBed, async, fakeAsync, tick, flush } from '@angular/core/testing';
+<pre><code class="language-ts">import { TestBed, waitForAsync, fakeAsync, tick, flush } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { By } from '@angular/platform-browser';
@@ -1140,7 +1140,7 @@ describe('AppComponent', () =&gt; {
   let location: Location;
   let fixture;
 
-  beforeEach(async(() =&gt; {
+  beforeEach(waitForAsync(() =&gt; {
     TestBed.configureTestingModule({
       imports: [
         AppRoutingModule, HttpClientModule, ReactiveFormsModule
@@ -1161,8 +1161,8 @@ describe('AppComponent', () =&gt; {
     })
     .compileComponents();
 
-    router = TestBed.get(Router);
-    location = TestBed.get(Location);
+    router = TestBed.inject(Router);
+    location = TestBed.inject(Location);
 
     fixture = TestBed.createComponent(AppComponent);
   }));

@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn how to generate an Angular application with it&#x27;s command line interface (CLI). 
+  <meta name="description" content="Learn how to generate an Angular 11 application with it&#x27;s command line interface (CLI). 
 ">
   <title>Bitovi Academy - Generate an App</title>
   
@@ -248,7 +248,7 @@ covering CanJS core libraries.">
            						expanded">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 11 application with it&#x27;s command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -545,7 +545,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn how to generate an Angular application with it's command line interface (CLI).</p>
+    <p>Learn how to generate an Angular 11 application with it's command line interface (CLI).</p>
 
 </section>
 
@@ -559,7 +559,7 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>How to Use This Guide</h2>
-<p>This guide will walk you through building an application in Angular. Each page of the guide is based on building a new feature, and may have multiple &quot;problems&quot; to solve. Each problem will be explained and include requirements and any set-up steps needed. Most problems will also include unit tests to update to verify the solution has been implemented correctly. The ✏️ icon will be used to indicate when commands need to be run or when files need to be updated. If you have any issues or suggestions as you move through this training, we'd love you to submit a <a href="https://github.com/bitovi/academy/issues/new" target="_blank">GitHub issue</a> for it! 💖</p>
+<p>This guide will walk you through building an application in Angular 11. Each page of the guide is based on building a new feature, and may have multiple &quot;problems&quot; to solve. Each problem will be explained and include requirements and any set-up steps needed. Most problems will also include unit tests to update to verify the solution has been implemented correctly. The ✏️ icon will be used to indicate when commands need to be run or when files need to be updated. If you have any issues or suggestions as you move through this training, we'd love you to submit a <a href="https://github.com/bitovi/academy/issues/new" target="_blank">GitHub issue</a> for it! 💖</p>
 <h2>Overview</h2>
 <p>In this part, we will:</p>
 <ul>
@@ -614,7 +614,7 @@ style="border: solid 1px black; max-width: 320px;"/></p>
 <p>Angular has a command line interface or CLI that does a lot of the initial legwork in setting up a minimal app, as well as letting you easily create and include new components on the fly.</p>
 <p>We'll start by globally installing the Angular CLI.</p>
 <p>✏️ Run the following:</p>
-<pre><code class="language-shell">npm install -g @angular/cli@7
+<pre><code class="language-shell">npm install -g @angular/cli@11
 </code></pre>
 <h2>Generating a new app</h2>
 <p>We're going to build a restaurant menu and ordering application. The final result will look like this:</p>
@@ -686,7 +686,38 @@ cd place-my-order
 <p>This file is the config schema for an Angular Workspace. By default Angular configures Webpack for it's build process, and uses the angular.json file for the build information.</p>
 <p>(Note, prior to Angular v6, this file was .angular-cli.json. When migrating versions, having the wrong workspace config file name is a cause for problems.)</p>
 <h3>tsconfig.json</h3>
-<p>This file contains our typescript compiling options.</p>
+<p>This file contains our TypeScript compiling options. In Angular 11, &quot;strict mode&quot; is set to true by default. Angular's strict mode enforces the <a href="https://www.staging-typescript.org/tsconfig#strict">TypeScript strict flag</a> and a few additional TypeScript rules: <code>forceConsistentCasingInFileNames</code>, <code>noImplicitReturns</code>, <code>noFallthroughCasesInSwitch</code>. Additionally this mode turns on Angular-specific compiler flags <code>strictTemplates</code>, <code>strictInjectionParameters</code> and <code>strictInputAccessModifiers</code>. This Template type checking was made available with <a href="https://angular.io/guide/ivy">Angular Ivy</a> and will throw compiler errors for incorrect typings inside templates.</p>
+<pre><code class="language-json">/* To learn more about this file see: https://angular.io/config/tsconfig. */
+{
+  &quot;compileOnSave&quot;: false,
+  &quot;compilerOptions&quot;: {
+    &quot;baseUrl&quot;: &quot;./&quot;,
+    &quot;outDir&quot;: &quot;./dist/out-tsc&quot;,
+    &quot;forceConsistentCasingInFileNames&quot;: true,
+    &quot;strict&quot;: true,
+    &quot;noImplicitReturns&quot;: true,
+    &quot;noFallthroughCasesInSwitch&quot;: true,
+    &quot;sourceMap&quot;: true,
+    &quot;declaration&quot;: false,
+    &quot;downlevelIteration&quot;: true,
+    &quot;experimentalDecorators&quot;: true,
+    &quot;moduleResolution&quot;: &quot;node&quot;,
+    &quot;importHelpers&quot;: true,
+    &quot;target&quot;: &quot;es2015&quot;,
+    &quot;module&quot;: &quot;es2020&quot;,
+    &quot;lib&quot;: [
+      &quot;es2018&quot;,
+      &quot;dom&quot;
+    ]
+  },
+  &quot;angularCompilerOptions&quot;: {
+    &quot;strictInjectionParameters&quot;: true,
+    &quot;strictInputAccessModifiers&quot;: true,
+    &quot;strictTemplates&quot;: true
+  }
+}
+</code></pre>
+<div line-highlight='8'></div>
 <h3>src/main.ts</h3>
 <p>This is the entry point of our application, it compiles and bootstraps our app.</p>
 <h3>src/index.html</h3>
@@ -733,13 +764,13 @@ for us.</p>
 <p>The change we needed to make for our tests to pass is on the highlighted line 37.</p>
 <p>We also included <code>schemas</code> metadata for our module. <a href="https://angular.io/api/core/NO_ERRORS_SCHEMA">NO_ERRORS_SCHEMA</a> will keep the compiler from throwing errors when unknown components are included in the tested components. In unit tests we often only want to test the very small piece of code we're work on and don't care about deeply nested components <a href="https://medium.com/@fivedicephoto/why-you-shouldnt-use-no-errors-schema-in-angular-unit-tests-cdd478c30782" target="\_blank">unless we're testing the props in a parent/child component relationship</a>. For our purposes in this training, it's safe to use here.</p>
 <p>✏️ Update <strong>src/app.component.spec.ts</strong>:</p>
-<pre><code class="language-ts">import { TestBed, async } from '@angular/core/testing';
+<pre><code class="language-ts">import { TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('AppComponent', () =&gt; {
-  beforeEach(async(() =&gt; {
+  beforeEach(waitForAsync(() =&gt; {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule
@@ -820,7 +851,7 @@ describe('AppComponent', () =&gt; {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/2-building-first-app/building-first-app.md"},"description":"Learn how to generate an Angular application with it's command line interface (CLI). \n","name":"learn-angular/building-our-first-app","title":"Generate an App","type":"page","parent":"learn-angular","order":2,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/2-building-first-app/building-first-app.md"},"description":"Learn how to generate an Angular 11 application with it's command line interface (CLI). \n","name":"learn-angular/building-our-first-app","title":"Generate an App","type":"page","parent":"learn-angular","order":2,"comment":" ","pathToRoot":"../.."};
     </script>
 
     

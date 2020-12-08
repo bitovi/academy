@@ -247,7 +247,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 11 application with it&#x27;s command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -565,6 +565,174 @@ covering CanJS core libraries.">
 <li>Create an environment variable</li>
 <li>Update list view on socket events.</li>
 </ul>
+<h2>P1: How to Verify Your Solution is Correct</h2>
+<p>If you've implemented the solution correctly you should now be able to navigate to <a href="http://localhost:4200/order-history" target="\_blank">http://localhost:4200/order-history</a> and see orders be created, updated or removed without refreshing the page!</p>
+<p>✏️ Update <strong>src/app/order/history.component.spec.ts</strong></p>
+<pre><code class="language-ts">import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { of } from 'rxjs'; 
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+
+import { HistoryComponent } from './history.component';
+import { OrderService } from '../order.service';
+import { Socket } from 'ngx-socket-io';
+import { ListComponent } from '../list/list.component';
+
+class MockOrderService {
+  getOrders() {
+    return of({
+      data: [{
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Onion fries&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Roasted Salmon&quot;, &quot;price&quot;: 23.99}],
+      &quot;name&quot;: &quot;Client 1&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;new&quot;,
+      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
+      },
+      {
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Steak Tacos&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Guacamole&quot;, &quot;price&quot;: 3.99}],
+      &quot;name&quot;: &quot;Client 2&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;preparing&quot;,
+      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
+      },
+      {
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Mac &amp; Cheese&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Grilled chicken&quot;, &quot;price&quot;: 23.99}],
+      &quot;name&quot;: &quot;Client 3&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;delivery&quot;,
+      &quot;_id&quot;: &quot;0awcHyo8iD7XjahX&quot;,
+      },
+      {
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Eggrolls&quot;, &quot;price&quot;: 5.99}, {&quot;name&quot;: &quot;Fried Rice&quot;, &quot;price&quot;: 18.99}],
+      &quot;name&quot;: &quot;Client 4&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;delivered&quot;,
+      &quot;_id&quot;: &quot;1awcJyo3iD6CpvhZ&quot;,
+      }
+    ]
+    })
+  }
+}
+
+class MockSocketService {
+    on() {
+        return of({
+            &quot;restaurant&quot;:&quot;1bluO7wmYTTIPpeD&quot;,
+            &quot;name&quot;:&quot;test&quot;,
+            &quot;address&quot;:null,
+            &quot;phone&quot;:null,
+            &quot;items&quot;:[{&quot;name&quot;:&quot;Crab Pancakes with Sorrel Syrup&quot;,&quot;price&quot;:35.99}],
+            &quot;status&quot;:&quot;new&quot;,
+            &quot;_id&quot;:&quot;YQ1xrhKfkUgZxdNF&quot;
+        });
+    }
+}
+
+describe('HistoryComponent', () =&gt; {
+  let component: HistoryComponent;
+  let fixture: ComponentFixture&lt;HistoryComponent&gt;;
+
+  beforeEach(waitForAsync(() =&gt; {
+    TestBed.configureTestingModule({
+      declarations: [ HistoryComponent, ListComponent ],
+      providers: [{
+        provide: OrderService,
+        useClass: MockOrderService
+      }, {
+        provide: Socket, 
+        useClass: MockSocketService
+      }],
+      schemas: [
+        NO_ERRORS_SCHEMA
+      ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(HistoryComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  it('should set response from getOrders service to orders member', () =&gt; {
+    const fixture = TestBed.createComponent(HistoryComponent);
+    fixture.detectChanges();
+    let expectedOrders = [{
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Onion fries&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Roasted Salmon&quot;, &quot;price&quot;: 23.99}],
+      &quot;name&quot;: &quot;Client 1&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;new&quot;,
+      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
+      },
+      {
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Steak Tacos&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Guacamole&quot;, &quot;price&quot;: 3.99}],
+      &quot;name&quot;: &quot;Client 2&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;preparing&quot;,
+      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
+      },
+      {
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Mac &amp; Cheese&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Grilled chicken&quot;, &quot;price&quot;: 23.99}],
+      &quot;name&quot;: &quot;Client 3&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;delivery&quot;,
+      &quot;_id&quot;: &quot;0awcHyo8iD7XjahX&quot;,
+      },
+      {
+      &quot;address&quot;: null,
+      &quot;items&quot;: [{&quot;name&quot;: &quot;Eggrolls&quot;, &quot;price&quot;: 5.99}, {&quot;name&quot;: &quot;Fried Rice&quot;, &quot;price&quot;: 18.99}],
+      &quot;name&quot;: &quot;Client 4&quot;,
+      &quot;phone&quot;: null,
+      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
+      &quot;status&quot;: &quot;delivered&quot;,
+      &quot;_id&quot;: &quot;1awcJyo3iD6CpvhZ&quot;,
+      }
+    ];
+    let orders = fixture.componentInstance.orders;
+    expect(orders.value).toEqual(expectedOrders);
+  });
+
+  it('should display orders in UI', () =&gt; {
+    const fixture = TestBed.createComponent(HistoryComponent);
+    fixture.detectChanges();
+    let compiled = fixture.debugElement.nativeElement;
+    let orderDivs = compiled.querySelectorAll('.order:not(.header):not(.empty)');
+    expect(orderDivs.length).toEqual(4);
+  })
+
+  it('should display orders with appropriate classes', () =&gt; {
+    const fixture = TestBed.createComponent(HistoryComponent);
+    fixture.detectChanges();
+    let compiled = fixture.debugElement.nativeElement;
+    let newOrder = compiled.getElementsByClassName('new');
+    let preparingOrder = compiled.getElementsByClassName('preparing');
+    let deliveryOrder = compiled.getElementsByClassName('delivery');
+    let deliveredOrder = compiled.getElementsByClassName('delivered');
+    expect(newOrder.length).toEqual(1);
+    expect(preparingOrder.length).toEqual(1);
+    expect(deliveryOrder.length).toEqual(1);
+    expect(deliveredOrder.length).toEqual(1);
+  });
+});
+</code></pre>
 <h2>Install NGX Socket.io Module</h2>
 <pre><code class="language-bash">npm install --save ngx-socket-io
 </code></pre>
@@ -617,7 +785,10 @@ const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
 export class AppModule { }
 </code></pre>
 <div line-highlight='18-20,40,only'></div>
-<h2>Use Polyfills</h2>
+<!-- This polyfill doesn't seem neccesary for Angular 10, but the bug is still open and doesn't mention Angular 9+, so I'm leaving this here until the issue is actually resolved.
+     Bug report: https://github.com/socketio/socket.io-client/issues/1206 
+-->
+<!-- ## Use Polyfills
 <p>Currently there's a bug with the latest CLI verion when using socket.io. Until it's fixed, we can use polyfills.</p>
 <p>✏️ Update <strong>src/polyfills.ts</strong> to:</p>
 <pre><code class="language-ts">/**
@@ -687,6 +858,7 @@ import 'zone.js/dist/zone';  // Included with Angular CLI.
 
 </code></pre>
 <div line-highlight='20, only'></div>
+-->
 <h2>Listen to Socket Events</h2>
 <p>We'll use <code>apiUrl</code> for our Socket.io connection, and listen for <code>orders created</code>, <code>order updated</code>, and <code>orders deleted</code> events to change our list on:</p>
 <p>✏️ Update <strong>src/app/order/history.component.ts</strong></p>

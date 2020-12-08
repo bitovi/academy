@@ -454,7 +454,7 @@ ReactDOM.render(
 <p><code>useMemo</code> takes two arguments. The first is a function which performs the expensive operation and returns a value. The second is an array of dependencies. The dependency array determines which values, when changed, should cause the memoized value to be re-computed. All state values used in the function should be declared in the dependencies.</p>
 <p>To sum it all up:</p>
 <ul>
-<li>When we need to do something expensive
+<li>When we need to do something expensive:
 <ol>
 <li>We wrap it in <code>useMemo</code>.</li>
 <li>Specify when it should re-compute.</li>
@@ -495,7 +495,7 @@ ReactDOM.render(
 </code></pre>
 <div line-highlight='2,3,only'></div>
 <div class='codepen' data-codepen='react'></div>
-<p>This could get quite expensive for a large object, even the parsing could make a difference, so we memoize the whole value, only recalculating on <code>bigJSONBlob</code> changes</p>
+<p>This could get quite expensive for a large object, even the parsing could make a difference, so we memoize the whole value, only recalculating on <code>bigJSONBlob</code> changes. It uses <code>===</code> to detect changes and not a deep object comparison.</p>
 <pre><code class="language-jsx">function Hello({ bigJSONBlob }) {
   const lines = React.useMemo(() =&gt; {
     const data = JSON.parse(bigJSONBlob);
@@ -536,7 +536,7 @@ ReactDOM.render(
 <li><code>useCallback(fn, deps)</code> is equivalent to <code>useMemo(() =&gt; fn, deps)</code></li>
 <li>Used to maintain referential equality between renders.</li>
 </ul>
-<p><code>useCallback</code> is particularly useful when defining event handlers. In such cases, we're not necessarily interested in memoizing a single value, but rather in memoizing a callback function. This is very common in React, as we frequently use callbacks as props.</p>
+<p><a href="https://reactjs.org/docs/hooks-reference.html#usecallback"><code>useCallback</code></a> is particularly useful when defining event handlers. In such cases, we're not necessarily interested in memoizing a single value, but rather in memoizing a callback function. This is very common in React, as we frequently use callbacks as props.</p>
 <p>Below is a clickable <code>Hello</code> component which defines an un-memoized <code>handleClick</code> function.</p>
 <pre><code class="language-jsx">function Hello({ firstName, lastName }) {
   const handleClick = () =&gt; {

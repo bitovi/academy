@@ -248,7 +248,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 11 application with it&#x27;s command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -1375,8 +1375,8 @@ describe('RestaurantService', () =&gt; {
   }));
 
   beforeEach(() =&gt; {
-    httpMock = TestBed.get(HttpTestingController);
-    restaurantService = TestBed.get(RestaurantService);
+    httpMock = TestBed.inject(HttpTestingController);
+    restaurantService = TestBed.inject(RestaurantService);
   })
 
   it('should be created', () =&gt; {
@@ -1726,8 +1726,8 @@ describe('RestaurantService', () =&gt; {
   }));
 
   beforeEach(() =&gt; {
-    httpMock = TestBed.get(HttpTestingController);
-    restaurantService = TestBed.get(RestaurantService);
+    httpMock = TestBed.inject(HttpTestingController);
+    restaurantService = TestBed.inject(RestaurantService);
   })
 
   it('should be created', () =&gt; {
@@ -2014,7 +2014,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 </blockquote>
 <h2>P4: How to Verify Your Solution is Correct</h2>
 <p>✏️ Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+<pre><code class="language-ts">import { waitForAsync, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs'; 
 
@@ -2140,7 +2140,7 @@ describe('RestaurantComponent', () =&gt; {
   let component: RestaurantComponent;
   let fixture: ComponentFixture&lt;RestaurantComponent&gt;;
 
-  beforeEach(async(() =&gt; {
+  beforeEach(waitForAsync(() =&gt; {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,

@@ -490,7 +490,7 @@ covering CanJS core libraries.">
 ReactDOM.render(&lt;Timer /&gt;, document.getElementById('root'));
 </code></pre>
 <div line-highlight='2-4,7,11,15'></div>
-<div class='codepen' data-codepen='react'></div>
+<div class='codepen'></div>
 <p>In the example above we're implementing a <code>Timer</code> component which starts a timer when the component mounts. When the timer finishes the state is modified causing the component to re-render. Finally when the component un-mounts the time is cleared.</p>
 <p>This implementation needs 3 functions and a state object, roughly 15 lines of code. Keep in mind also that we're only keeping track of 1 piece of state here.</p>
 <p>Multiple state values make this even messier.</p>
@@ -525,7 +525,7 @@ ReactDOM.render(&lt;Timer /&gt;, document.getElementById('root'));
 ReactDOM.render(&lt;Timer /&gt;, document.getElementById('root'));
 </code></pre>
 <div line-highlight='3-4,8-9,13-14,18,only'></div>
-<div class='codepen' data-codepen='react'></div>
+<div class='codepen'></div>
 <p>When we add the second timer value above, we double our lines of code.</p>
 <p>Let's see how this would look with hooks...</p>
 <h2>Functional Component with Hooks</h2>
@@ -544,7 +544,7 @@ ReactDOM.render(&lt;Timer /&gt;, document.getElementById('root'));
 ReactDOM.render(&lt;Timer /&gt;, document.getElementById('root'));
 </code></pre>
 <div line-highlight='2,5-6'></div>
-<div class='codepen' data-codepen='react'></div>
+<div class='codepen'></div>
 <p><code>useState</code> can define a single piece of state with both the state value and a function for updating the value. Instead of the component's state being stored in one monolith object, it's broken out into discrete, well-named units.</p>
 <p>In addition, instead of needing to define two lifecycle methods (<code>componentWillMount</code>, <code>componentWillUnmount</code>) we can utilize the <code>useEffect</code> hook which is able to simulate both in a single go.</p>
 <p>This combination of <code>useState</code> and <code>useEffect</code> gives you the ability to manage state and respond to lifecycle events all from a functional component. And as you can see, it cuts down on the amount of boilerplate code we need to write.</p>
@@ -571,7 +571,7 @@ function Timer() {
 ReactDOM.render(&lt;Timer /&gt;, document.getElementById('root'));
 </code></pre>
 <div line-highlight='2,5-6,13'></div>
-<div class='codepen' data-codepen='react'></div>
+<div class='codepen'></div>
 <p>Now, our <code>useTimer</code> hooks returns a value which, when modified will cause the <code>Timer</code> component to re-render. We've abstracted away the logic of updating the <code>value</code> into the <code>useValue</code> hook.</p>
 
 </section>

@@ -248,7 +248,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 11 application with it&#x27;s command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -575,7 +575,7 @@ style="border: solid 1px black; max-width: 400px;"/></p>
 <h2>How to Verify Your Solution is Correct</h2>
 <p>If you've implemented the solution correctly, when you use the select boxes to choose state and city, you should see a list of just restaurants from the selected city returned.</p>
 <p>✏️ Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+<pre><code class="language-ts">import { waitForAsync, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs'; 
 
@@ -702,7 +702,7 @@ describe('RestaurantComponent', () =&gt; {
   let fixture: ComponentFixture&lt;RestaurantComponent&gt;;
   let injectedService;
   
-  beforeEach(async(() =&gt; {
+  beforeEach(waitForAsync(() =&gt; {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
@@ -1037,8 +1037,8 @@ describe('RestaurantService', () =&gt; {
   }));
 
   beforeEach(() =&gt; {
-    httpMock = TestBed.get(HttpTestingController);
-    restaurantService = TestBed.get(RestaurantService);
+    httpMock = TestBed.inject(HttpTestingController);
+    restaurantService = TestBed.inject(RestaurantService);
   })
 
   it('should be created', () =&gt; {

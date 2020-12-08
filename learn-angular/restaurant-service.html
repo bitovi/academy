@@ -248,7 +248,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 11 application with it&#x27;s command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -981,8 +981,8 @@ describe('RestaurantService', () =&gt; {
   }));
 
   beforeEach(() =&gt; {
-    httpMock = TestBed.get(HttpTestingController);
-    restaurantService = TestBed.get(RestaurantService);
+    httpMock = TestBed.inject(HttpTestingController);
+    restaurantService = TestBed.inject(RestaurantService);
   })
 
   it('should be created', () =&gt; {
@@ -1379,8 +1379,8 @@ describe('RestaurantService', () =&gt; {
   }));
 
   beforeEach(() =&gt; {
-    httpMock = TestBed.get(HttpTestingController);
-    restaurantService = TestBed.get(RestaurantService);
+    httpMock = TestBed.inject(HttpTestingController);
+    restaurantService = TestBed.inject(RestaurantService);
   })
 
   it('should be created', () =&gt; {

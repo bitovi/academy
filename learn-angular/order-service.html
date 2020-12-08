@@ -247,7 +247,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 11 application with it&#x27;s command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -640,8 +640,8 @@ describe('OrderService', () =&gt; {
   }));
 
   beforeEach(() =&gt; {
-    httpMock = TestBed.get(HttpTestingController);
-    orderService = TestBed.get(OrderService);
+    httpMock = TestBed.inject(HttpTestingController);
+    orderService = TestBed.inject(OrderService);
   })
 
   it('should make a get request to get orders', () =&gt; {
@@ -1053,7 +1053,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 <h2>P3: How to Verify Your Solution is Correct</h2>
 <p>If you've implemented everything correctly, you should now be able to create an order from the UI and see a record of your completed order once it's created.</p>
 <p>✏️ Update the menu-items spec file  <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+<pre><code class="language-ts">import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs'; 
@@ -1145,7 +1145,7 @@ describe('OrderComponent', () =&gt; {
   let fixture: ComponentFixture&lt;OrderComponent&gt;;
   let injectedOrderService;
 
-  beforeEach(async(() =&gt; {
+  beforeEach(waitForAsync(() =&gt; {
     TestBed.configureTestingModule({
       declarations: [ OrderComponent, MenuItemsComponent ], 
       imports: [  ReactiveFormsModule, RouterTestingModule ],
@@ -1163,7 +1163,7 @@ describe('OrderComponent', () =&gt; {
       schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
-    injectedOrderService = TestBed.get(OrderService);
+    injectedOrderService = TestBed.inject(OrderService);
   }));
   
 
@@ -1334,7 +1334,7 @@ describe('OrderComponent', () =&gt; {
 
 });
 </code></pre>
- <div line-highlight="11,64-73,85-86,91,104-106,109,111,113,169,217-233,235-252,254-278,only"></div>
+ <div line-highlight="1,11,64-73,85-86,91,93,104-106,109,111,113,169,217-233,235-252,254-278,only"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>

@@ -248,7 +248,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 11 application with it&#x27;s command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -590,7 +590,7 @@ those components going forward.</p>
 &lt;/a&gt;
 </code></pre>
 <p>✏️ Update the spec file  <strong>src/app/app.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { TestBed, async } from '@angular/core/testing';
+<pre><code class="language-ts">import { TestBed, waitForAsync } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 
@@ -606,7 +606,7 @@ describe('AppComponent', () =&gt; {
   let location: Location;
   let fixture;
 
-  beforeEach(async(() =&gt; {
+  beforeEach(waitForAsync(() =&gt; {
     TestBed.configureTestingModule({
       imports: [
         AppRoutingModule
@@ -619,8 +619,8 @@ describe('AppComponent', () =&gt; {
       ]
     }).compileComponents();
 
-    router = TestBed.get(Router);
-    location = TestBed.get(Location);
+    router = TestBed.inject(Router);
+    location = TestBed.inject(Location);
 
     fixture = TestBed.createComponent(AppComponent);
   }));

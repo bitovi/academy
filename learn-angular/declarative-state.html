@@ -248,7 +248,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 11 application with it&#x27;s command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -807,7 +807,7 @@ takes an emitted value and returns a modified value that will be passed to the s
 <h3>Emitting Values From Another Stream</h3>
 <p>When using a stream you may want to emit values from another stream as part of the original stream. RxJS offers a
 variety of ways to do this, but the one we'll demonstrate is the
-<a href="https://rxjs-dev.firebaseapp.com/api/index/operators/flatMap"><code>flatMap</code></a> operator. Like the map operator it takes an
+<a href="https://rxjs-dev.firebaseapp.com/api/operators/flatMap"><code>flatMap</code></a> operator. Like the map operator it takes an
 emitted value from a stream, but instead of returning a modified value it returns another stream whose emitted values
 will be passed to the subsequent operators.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.3.3/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -957,7 +957,7 @@ state select control has been changed</li>
 </ul>
 <h2>How to Verify Your Solution is Correct</h2>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+<pre><code class="language-ts">import { waitForAsync, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, timer } from 'rxjs';
 import {delay, mapTo} from &quot;rxjs/operators&quot;;
@@ -1088,7 +1088,7 @@ describe('RestaurantComponent', () =&gt; {
   let fixture: ComponentFixture&lt;RestaurantComponent&gt;;
   let injectedService;
 
-  beforeEach(async(() =&gt; {
+  beforeEach(waitForAsync(() =&gt; {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
@@ -1101,7 +1101,7 @@ describe('RestaurantComponent', () =&gt; {
       declarations: [ RestaurantComponent, ImageUrlPipe ]
     })
         .compileComponents();
-    injectedService = TestBed.get(RestaurantService);
+    injectedService = TestBed.inject(RestaurantService);
   }));
 
   beforeEach(() =&gt; {

@@ -248,7 +248,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 11 application with it&#x27;s command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -575,7 +575,7 @@ covering CanJS core libraries.">
 <h2>P1: How to Verify Your Solution is Correct</h2>
 <p>When you navigate to the <code>/order</code> path from a restaurant detail page you should see your new order component.</p>
 <p>✏️ Update the spec file  <strong>src/app/app.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { TestBed, async, fakeAsync, tick, flush } from '@angular/core/testing';
+<pre><code class="language-ts">import { TestBed, waitForAsync, fakeAsync, tick, flush } from '@angular/core/testing';
 import { Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { By } from '@angular/platform-browser';
@@ -761,7 +761,7 @@ describe('AppComponent', () =&gt; {
   let location: Location;
   let fixture;
 
-  beforeEach(async(() =&gt; {
+  beforeEach(waitForAsync(() =&gt; {
     TestBed.configureTestingModule({
       imports: [
         AppRoutingModule, HttpClientModule, ReactiveFormsModule
@@ -782,8 +782,8 @@ describe('AppComponent', () =&gt; {
     })
     .compileComponents();
 
-    router = TestBed.get(Router);
-    location = TestBed.get(Location);
+    router = TestBed.inject(Router);
+    location = TestBed.inject(Location);
 
     fixture = TestBed.createComponent(AppComponent);
   }));
@@ -1357,11 +1357,10 @@ export class OrderComponent implements OnInit, OnDestroy {
 <h2>Importing 3rd Party Plugins</h2>
 <p>In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let's import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started" target="\_blank">ngx-bootstrap</a>:</p>
 <p>✏️  Run:</p>
-<pre><code class="language-bash">ng add ngx-bootstrap  --component tabs
+<pre><code class="language-bash">ng add ngx-bootstrap
 </code></pre>
-<p>Ng add is a convenient way to import 3rd party libs that will update <code>angular.json</code> and <code>package.json</code> with any changes we need, as well as automatically import the 3rd party module into our root app module. Don't forget to restart the client server!</p>
-<p>Your root app module should now look like this:</p>
-<p><strong>src/app/app.module.ts</strong></p>
+<p>Ng add is a convenient way to import 3rd party libs that will update <code>angular.json</code> and <code>package.json</code> with any changes we need.</p>
+<p>✏️ Update <strong>src/app/app.module.ts</strong>. Once you're done, don't forget to restart the server!</p>
 <pre><code class="language-ts">import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
@@ -1988,7 +1987,7 @@ platformBrowserDynamic()
 <div line-highlight='24,26,32,41-31,45-47,49-51,only'></div>
 <h2>P4: How to Verify Your Solution is Correct</h2>
 <p>✏️ Update the menu-items spec file  <strong>src/app/order/menu-items/menu-items.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+<pre><code class="language-ts">import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MenuItemsComponent } from './menu-items.component';
 
@@ -1996,7 +1995,7 @@ describe('MenuItemsComponent', () =&gt; {
   let component: MenuItemsComponent;
   let fixture: ComponentFixture&lt;MenuItemsComponent&gt;;
 
-  beforeEach(async(() =&gt; {
+  beforeEach(waitForAsync(() =&gt; {
     TestBed.configureTestingModule({
       declarations: [ MenuItemsComponent ]
     })
@@ -2044,7 +2043,7 @@ describe('MenuItemsComponent', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="39-53,only"></div>
+ <div line-highlight="1,9,39-53,only"></div>
 <h2>P4: Solution</h2>
 <p>✏️ Update <strong>src/app/order/menu-items.component.html</strong></p>
 <pre><code class="language-html">&lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of items&quot;&gt;
