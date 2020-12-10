@@ -7,7 +7,7 @@
 
 ## Basics
 
-You should have completed (Intro to JSX)[learn-react/intro-to-jsx.html] before attempting these problems.
+You should have completed [Intro to JSX](learn-react/intro-to-jsx.html) before attempting these problems.
 
 ## Question 1
 
@@ -23,7 +23,7 @@ I've supplied you with css classes, "grey", "green" and "default". Create a Reac
 
 ## What you've just done
 
-While these may be simple to some they lock in the values that are necessary.
+While these may be simple to some, they lock in the details that are necessary for React usage.
 
 1. React components start with a capital letter
 2. Inlined styles are camelcased versions of styling in HTML. When applying a class in React, use "className".
