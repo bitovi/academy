@@ -35,7 +35,7 @@ This same principle applies to React components.
 
 ## Basic Props Usage
 
-Recall that React components are just functions (or classes) which return an element. And like normal functions, we run into the same re-usability problems.
+React components are just functions which return an element. And like normal functions, we run into the same reusability problems.
 
 ```jsx
 function AddNumbers() {
@@ -59,7 +59,7 @@ function AddNumbers({ num1, num2 }) {
 
 @highlight 2
 
-> In React, all functional components receive a `props` object as their first argument (class components get them in the constructor and at `this.props` in the methods).
+> In React, all functional components receive a `props` object as their first argument.
 
 We're also [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) the props object, a convention used by much of the community and in the rest of this guide.
 
@@ -72,7 +72,7 @@ The props object contains any values which are passed into the component when it
 
 Whenever the `AddNumbers` component is rendered, we can now pass it `num1` & `num2` props which it will use to do the calculation.
 
-Now, instead of having a hardcoded addition, the component is flexible and can be re-used in any scenario where it's necessary to display the result of adding two numbers.
+Now, instead of having a hardcoded addition, the component is flexible and can be reused in any scenario where it's necessary to display the result of adding two numbers.
 
 ## Prop Data Types
 
@@ -90,7 +90,7 @@ Props that are static strings can be passed using quotation marks, while non-str
 
 ## Callback Props
 
-Just like normal functions, React components can accept props of any data type (even other components). One of the most useful types of props are callbacks. Callback props allow us to specify what a component will do when an action occurs inside of it.
+Just like normal functions, React components can accept props of any data type (even other components). One of the most useful types of props are callbacks. Callback props allow us to specify what a component will do when an action occurs inside of it. Below we have a button that takes an onClick handler that runs every time you click the button.
 
 ```jsx
 function MyButton() {
@@ -100,7 +100,7 @@ function MyButton() {
 
 @highlight 2
 
-The button above calls `console.log('clicked')` whenever the user clicks it. But once again, we're running into a re-usability issue.
+The button above calls `console.log('clicked')` whenever the user clicks it. But once again, we're running into a reusability issue.
 
 Suppose we wanted to perform an arbitrary action when the button is clicked instead of the hardcoded `console.log('clicked')`.
 
@@ -132,14 +132,18 @@ function MyButton({ onButtonClick }) {
   return <button onClick={onButtonClick}>click me</button>;
 }
 
-function AddNumbers({ num1, num2 }) {
+function AddNumbers({ num1, num2, isCool }) {
+  if (isCool) {
+    console.log('This component rocks');
+  }
+
   return <div>{num1 + num2}</div>;
 }
 
 function App() {
   return (
     <div>
-      <AddNumbers num1={5} num2={10} />
+      <AddNumbers num1={5} num2={10} isCool />
       <MyButton onButtonClick={() => console.log('you clicked')} />
     </div>
   );
@@ -151,23 +155,17 @@ ReactDOM.render(<App />, document.getElementById('root'));
 @highlight 1,2,5,6,12,13
 @codepen react
 
+Notice that if you supply a `prop` with no value (ie... the `isCool` in `<AddNumbers num1={5} num2={10} isCool/>`), then React supplies the value of `true`. It assumes it is a boolean prop.
+
 ## Exercise
 
-Let's use our props knowledge to start building out the Tic-Tac-Toe app that we started in [learn-react/setting-up-environment].
-
-The app itself has already been [scaffolded](https://github.com/bitovi/react-exercises). It includes 3 files, each of which comes together to make up the game:
-
-- `Game.js` - This is the component which is responsible for running the game. It's the highest level component, and the most complex. This is where we'll do most of our state management.
-- `Board.js` - This is a component which renders out the game board and all of the squares inside of it.
-- `Square.js` - This component represents a single square on the Tic-Tac-Toe board. It can be blank or populated with a symbol such as X or O.
-
-✏️ Clone the app from [GitHub](https://github.com/bitovi/react-exercises) and run it locally with `npm install && npm start` and choose the `Props` exercise. Now head over to `src/exercises/4 - Props/components`. These are the files you'll be editing for this exercise.
+Let's use our props knowledge to start building out the Tic-Tac-Toe component.
 
 ### The problem
 
-The goal of this exercise is to get a `console.log()` to happen whenever the user clicks on a square. This will require you to work modify some of the props in the scaffolded code.
+The goal of this exercise to render a full Tic-Tac-Toe game board. But this time, we will pass the symbol (X, or O) into the Tic-Tac-Toe for rendering. Also we will pass a function down into the Tic-Tac-Toe cell that prints `console.log()` whenever the user clicks on a square. You will need to render the squares first. This will require you to modify some of the props in the starter code below.
 
-#### Hints
+#### Instructions
 
 - Modify the `Square` component so that accepts two props:
   - `onClick` - a callback which is executed when the user click on it
@@ -175,28 +173,116 @@ The goal of this exercise is to get a `console.log()` to happen whenever the use
 - Modify the `Board` component so it renders out all 9 squares given to it by its `board` props (`board` is an array of strings).
 - Modify the `Game` component so it passes the correct props into `<Board />`.
 
+```jsx
+const squareStyling = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+};
+
+const boardStyling = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  width: '600px',
+  height: '600px',
+  boxShadow: '0px 3px 8px 0 rgba(0, 0, 0, 0.1)',
+  boxSizing: 'border-box',
+};
+
+// Square will receive 2 props, "onClick" and "symbol"
+// Try destructuring the "props" object below to get them
+function Square(props) {
+  return (
+    <div
+      style={squareStyling}
+      // add an onClick handler that calls the onClick
+      // prop that was passed in
+    >
+      {/* display the "symbol" prop here */}
+    </div>
+  );
+}
+
+function Board({ onSquareClick, board }) {
+  return <div style={boardStyling}>{/*
+          Use the map function to loop over the "board" prop.
+          Each item in the board array should be mapped to
+          a <Square /> component.
+
+          The Square component takes a symbol prop (x or o), an
+          onClick prop, and since we're using the map function each
+          Square will also need a unique key prop.
+      */}</div>;
+}
+
+const blankBoard = ['', '', '', '', '', '', '', '', ''];
+
+function Game() {
+  return (
+    <>
+      <Board
+        board={[]} // What should actually go here?
+        onSquareClick={() => {}}
+        // ^ Create a function to pass into onSquareClick
+        // that prints out "Clicked"
+      />
+      current player: X
+    </>
+  );
+}
+
+ReactDOM.render(<Game />, document.getElementById('root'));
+```
+
+@codepen react
+
+You can run the code above by hovering over the code block and hitting Run, which is in the upper right hand corner. Only check the solution below once you've taken a pass yourself.
+
 ### The solution
 
-#### Square.js
-
 ```jsx
+const squareStyling = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+};
+
+const boardStyling = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  width: '600px',
+  height: '600px',
+  boxShadow: '0px 3px 8px 0 rgba(0, 0, 0, 0.1)',
+  boxSizing: 'border-box',
+};
+
+// Square will receive 2 props, "onClick" and "symbol"
+// Try destructuring the "props" object below to get them
 function Square({ onClick, symbol }) {
   return (
-    <div className="square" onClick={onClick}>
+    <div style={squareStyling} onClick={onClick}>
       {symbol}
     </div>
   );
 }
-```
 
-@highlight 1,3,4,only
-
-#### Board.js
-
-```jsx
 function Board({ onSquareClick, board }) {
   return (
-    <div className="board">
+    <div style={boardStyling}>
       {board.map((symbol, index) => (
         <Square
           key={index}
@@ -207,13 +293,7 @@ function Board({ onSquareClick, board }) {
     </div>
   );
 }
-```
 
-@highlight 4-10,only
-
-#### Game.js
-
-```jsx
 const blankBoard = ['', '', '', '', '', '', '', '', ''];
 
 function Game() {
@@ -221,23 +301,19 @@ function Game() {
     console.log('You clicked a square');
   };
 
-  const getHint = () => {
-    console.log('Getting hint');
-  };
-
-  const toggleTheme = () => {
-    console.log('You toggled the theme');
-  };
-
   return (
     <>
       <Board board={blankBoard} onSquareClick={handleSquareClick} />
-      <button onClick={getHint}>Get Hint</button>
-      <button onClick={toggleTheme}>Toggle Theme</button>
       current player: X
     </>
   );
 }
+
+ReactDOM.render(<Game />, document.getElementById('root'));
 ```
 
-@highlight 4-6,18,20,only
+@codepen react
+
+## Next Steps
+
+✏️ Head over to the [next lesson](styling-in-react.html) to learn all the different ways one can style components.

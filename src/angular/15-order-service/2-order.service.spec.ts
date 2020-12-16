@@ -15,8 +15,8 @@ describe('OrderService', () => {
   }));
 
   beforeEach(() => {
-    httpMock = TestBed.get(HttpTestingController);
-    orderService = TestBed.get(OrderService);
+    httpMock = TestBed.inject(HttpTestingController);
+    orderService = TestBed.inject(OrderService);
   })
 
   it('should make a get request to get orders', () => {

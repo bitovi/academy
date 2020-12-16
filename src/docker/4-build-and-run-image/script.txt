@@ -1,0 +1,24 @@
+Welcome to part 5 of Bitovi academies learn docker training. Last chapter we wrote our Dockerfile, In this video we're going to build and run our image.
+
+To build it in to an image, we'll use the `docker build` command.
+
+From a terminal, we're going to run
+
+`docker build -t my-node-app .`
+`docker build -t my-node-app:test .`
+
+`docker image ls`
+- node 15
+
+`docker run --name my-container -p 8000:8000 -d my-node-app:latest`
+
+localhost:8000
+
+docker ps
+
+docker logs my-container
+
+docker rm -f my-container
+
+-E 
+docker run --name my-container -p 8000:$MY_PORT -d -e PORT=$MY_PORT my-node-app:latest

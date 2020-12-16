@@ -46,7 +46,7 @@ Normally, we would perform this operation every time the component renders, rega
 
 To sum it all up:
 
-- When we need to do something expensive
+- When we need to do something expensive:
   1. We wrap it in `useMemo`.
   2. Specify when it should re-compute.
 
@@ -91,7 +91,7 @@ ReactDOM.render(
 @highlight 2,3,only
 @codepen react
 
-This could get quite expensive for a large object, even the parsing could make a difference, so we memoize the whole value, only recalculating on `bigJSONBlob` changes
+This could get quite expensive for a large object, even the parsing could make a difference, so we memoize the whole value, only recalculating on `bigJSONBlob` changes. It uses `===` to detect changes and not a deep object comparison.
 
 ```jsx
 function Hello({ bigJSONBlob }) {
@@ -136,7 +136,7 @@ ReactDOM.render(
 - `useCallback(fn, deps)` is equivalent to `useMemo(() => fn, deps)`
 - Used to maintain referential equality between renders.
 
-`useCallback` is particularly useful when defining event handlers. In such cases, we're not necessarily interested in memoizing a single value, but rather in memoizing a callback function. This is very common in React, as we frequently use callbacks as props.
+[`useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback) is particularly useful when defining event handlers. In such cases, we're not necessarily interested in memoizing a single value, but rather in memoizing a callback function. This is very common in React, as we frequently use callbacks as props.
 
 Below is a clickable `Hello` component which defines an un-memoized `handleClick` function.
 
@@ -182,23 +182,135 @@ ReactDOM.render(
 
 Let's use our optimization hooks knowledge to make our Tic-Tac-Toe game a bit more performant!
 
-Run the app locally with `npm start` and choose the `Optimization Hooks` exercise. Now head over to `src/exercises/8 - Optimization Hooks/components`. These are the files you'll be editing.
-
 ### The problem
 
 ✏️ Modify the `Board` component so that it's `handleSquareClick` function uses the `useCallback` hook.
 
+```jsx
+const squareStyling = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+  color: 'black',
+};
+
+const boardStyling = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  width: '600px',
+  height: '600px',
+  boxShadow: '0px 3px 8px 0 rgba(0, 0, 0, 0.1)',
+  boxSizing: 'border-box',
+};
+
+function Square({ onClick, symbol, id }) {
+  return (
+    <div id={id} onClick={onClick} style={squareStyling}>
+      {symbol}
+    </div>
+  );
+}
+
+function Board() {
+  const [board, setBoard] = React.useState([
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+  ]);
+  const [isXTurn, setIsXTurn] = React.useState(true);
+
+  function handleSquareClick(squareIndex) {
+    if (board[squareIndex]) {
+      return;
+    }
+
+    const newBoard = [...board];
+    newBoard[squareIndex] = isXTurn ? 'X' : 'O';
+
+    setBoard(newBoard);
+    setIsXTurn((value) => !value);
+  }
+
+  return (
+    <div style={boardStyling}>
+      {board.map((symbol, index) => (
+        <Square
+          key={index}
+          symbol={symbol}
+          onClick={() => handleSquareClick(index)}
+        />
+      ))}
+    </div>
+  );
+}
+
+ReactDOM.render(<Board />, document.getElementById('root'));
+```
+
+@codepen react
+
 ### The solution
 
 ```jsx
-import React, { useState, useCallback } from 'react';
-import Square from '../../../app/components/Square';
+const squareStyling = {
+  width: '200px',
+  height: '200px',
+  border: '1px solid black',
+  boxSizing: 'border-box',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: '6em',
+  color: 'black',
+};
+
+const boardStyling = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  flexDirection: 'row',
+  justifyContent: 'flex-start',
+  width: '600px',
+  height: '600px',
+  boxShadow: '0px 3px 8px 0 rgba(0, 0, 0, 0.1)',
+  boxSizing: 'border-box',
+};
+
+function Square({ onClick, symbol, id }) {
+  return (
+    <div id={id} onClick={onClick} style={squareStyling}>
+      {symbol}
+    </div>
+  );
+}
 
 function Board() {
-  const [board, setBoard] = useState(['', '', '', '', '', '', '', '', '']);
-  const [isXTurn, setIsXTurn] = useState(true);
+  const [board, setBoard] = React.useState([
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+    '',
+  ]);
+  const [isXTurn, setIsXTurn] = React.useState(true);
 
-  const handleSquareClick = useCallback(
+  const handleSquareClick = React.useCallback(
     (squareIndex) => {
       if (board[squareIndex]) {
         return;
@@ -214,7 +326,7 @@ function Board() {
   );
 
   return (
-    <div className="board">
+    <div style={boardStyling}>
       {board.map((symbol, index) => (
         <Square
           key={index}
@@ -226,7 +338,12 @@ function Board() {
   );
 }
 
-export default Board;
+ReactDOM.render(<Board />, document.getElementById('root'));
 ```
 
-@highlight 8,20,only
+@codepen react
+@highlight 46,58,only
+
+## Next Steps
+
+✏️ Head over to the [next lesson](managing-complex-state.html) to get a more comprehensive example on how one can use state.

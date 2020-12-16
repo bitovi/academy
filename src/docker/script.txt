@@ -1,0 +1,24 @@
+Hello and welcome to Bitovi academy's Learn Docker training. This video is an overview of the entire course.
+
+Before we start, its important that everyone knows about Bitovi's community slack. 
+
+It's a great place to ask questions and talk tech with like-minded individuals.
+
+Docker bundles runtime dependencies with application source code into an image - 
+This creates a common and repeatable experience 
+whether an application is being run on a developer's workstation or a production server. 
+
+In this course, to cover Docker basics, we will be building a simple NodeJS API from scratch and then containerizing it.
+
+Once we have built and run our Docker image, we will explore using volume mounting to make local development of 
+containerized applications more efficient. 
+
+Then we will look at how to make our image ready for production and publish it to a package registry.
+
+Finally, we will move on to a more complex example where we orchestrate multiple pre-existing docker images using docker-compose.
+
+Because we are using Docker, you will only need Docker Desktop installed.
+
+
+You can watch these videos or read the write-up for each section at bitovi.com/academy/learn-docker for more details and code snippets
+I hope you're ready to dive in to Docker with me. Let's get to it.

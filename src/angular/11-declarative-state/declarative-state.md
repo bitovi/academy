@@ -133,7 +133,7 @@ takes an emitted value and returns a modified value that will be passed to the s
 ### Emitting Values From Another Stream
 When using a stream you may want to emit values from another stream as part of the original stream. RxJS offers a 
 variety of ways to do this, but the one we'll demonstrate is the 
-[`flatMap`](https://rxjs-dev.firebaseapp.com/api/index/operators/flatMap) operator. Like the map operator it takes an 
+[`flatMap`](https://rxjs-dev.firebaseapp.com/api/operators/flatMap) operator. Like the map operator it takes an 
 emitted value from a stream, but instead of returning a modified value it returns another stream whose emitted values
 will be passed to the subsequent operators.
 

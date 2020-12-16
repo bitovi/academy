@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, timer } from 'rxjs';
 import {delay, mapTo} from "rxjs/operators";
@@ -129,7 +129,7 @@ describe('RestaurantComponent', () => {
   let fixture: ComponentFixture<RestaurantComponent>;
   let injectedService;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
@@ -142,7 +142,7 @@ describe('RestaurantComponent', () => {
       declarations: [ RestaurantComponent, ImageUrlPipe ]
     })
         .compileComponents();
-    injectedService = TestBed.get(RestaurantService);
+    injectedService = TestBed.inject(RestaurantService);
   }));
 
   beforeEach(() => {
