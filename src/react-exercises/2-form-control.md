@@ -7,7 +7,7 @@
 
 ## Form Controls
 
-You should have completed (Intro to JSX)[learn-react/intro-to-jsx.html] before attempting these problems.
+You should have completed [Stateful Hooks](/learn-react/stateful-hooks.html) before attempting these problems.
 
 ## Question 1
 

@@ -7,7 +7,7 @@
 
 ## Arrays
 
-You should have completed (Intro to JSX)[learn-react/components.html] before attempting these problems.
+You should have completed [Controlled vs Uncontrolled](/learn-react/controlled-vs-uncontrolled.html) before attempting these problems.
 
 ## Question 1
 
