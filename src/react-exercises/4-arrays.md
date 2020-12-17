@@ -78,4 +78,4 @@ While these may be simple to some, they lock in the details that are necessary f
 
 ## Next Steps
 
-✏️ Head over to the [next lesson](state-control.html) to learn more about JSX.
+✏️ Head over to the [next lesson](state-control.html) to learn more about how to use state efficiently.
