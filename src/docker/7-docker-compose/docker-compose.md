@@ -9,12 +9,12 @@
 
 ## Overview
 At this point, we are building our image with
-```
+```bash
 $ MY_ENV=dev
 $ docker build -t my-node-app:$MY_ENV --target $MY_ENV .
 ```
 and running it with
-```
+```bash
 $ MY_PORT=9000
 $ docker run \
 --name my-container \
@@ -26,13 +26,13 @@ my-node-app:dev
 That's a lot of typing and memorization to run a container. Docker compose condenses all of this into one command: `docker-compose up`.
 
 ## Docker Compose
-Docker Compose is a cli included with Docker that provides a declarative way to building and running multiple Docker containers. With Docker Compose, the nomenclature for one of these containers is called a "service".
+Docker Compose is a cli included with Docker that provides a declarative way to building and running multiple Docker containers. When Docker Compose manages a container, it is called a "service".
 
 Docker Compose reads a special file called `docker-compose.yml` that defines any number of services' port mappings, volumes, interdependencies and more. Docker Compose ensures containers are run in a consistent way without needing to type `docker build` and `docker run` along with numerous arguments into the console.
 
 ## Replacing docker run
 Instead of running
-``` 
+``` bash
 $ MY_PORT=9000
 $ docker run \
 --name my-container \
@@ -44,12 +44,12 @@ my-node-app:dev
 we can capture all of these arguments in a `docker-compose.yml` file. 
 
 First create a `.env` file with the following content. `docker-compose` will automatically read these environment variables and allow us to use them throughout `docker-compose.yml`.
-```
+```bash
 MY_PORT=8000
 MY_ENV=dev
 ```
 Create a `docker-compose.yml` in the root of your application repo and paste the following content:
-```
+```yaml
 version: "3.8"
 services:
   my-app:
@@ -64,7 +64,7 @@ services:
 Hopefully, this file is self-explanatory. It creates a service called "my-app" that creates an instance of our `my-node-app` image with the desired port mapping, volumes and environment variables defined.
 
 Run `docker-compose up` and watch the magic.
-```
+```bash
 $ docker-compose up
 Starting nodeapp_my-app_1 ... done
 Attaching to nodeapp_my-app_1
@@ -83,7 +83,7 @@ You can press `ctrl+c` or run `docker-compose down` from a separate tab to kill 
 
 ## Replacing docker build
 Now that we've replaced `docker run` with `docker-compose up`, Let's update `docker-compose.yml` to allow Docker Compose to manage builds too.
-```
+```yaml
 version: "3.8"
 services:
   my-app:
@@ -111,8 +111,11 @@ Changing `MY_ENV=dev` to `MY_ENV=prod` will cause `docker-compose up` to create 
 ## Let's add more containers!
 Let's add a MySQL database and ensure it is running before starting the `my-app` service.
 
+We'll use the `mysql:5.7` image from [Dockerhub](https://hub.docker.com/_/mysql).
+
 ### .env
-```
+The Dockerhub page specifies several required environment variables to pass in to the container. We'll add these to `.env`
+```yaml
 # My App
 MY_ENV=prod
 MY_PORT=8000
@@ -124,7 +127,8 @@ MYSQL_USER=my_user
 MYSQL_PASSWORD=S3cure!_user
 ```
 ### docker-compose.yml
-```
+The `db` service we're adding below should be intuitive based on what's been covered so far. The exception is the `volumes:` section.
+```yaml
 version: "3.8"
 services:
   my-app:
@@ -144,7 +148,6 @@ services:
      image: mysql:5.7
      volumes:
        - db_data:/var/lib/mysql
-     restart: always
      environment:
        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
        MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -154,8 +157,24 @@ volumes:
     db_data: {}
 ```
 
-Finally, let's start everything up
+#### Volumes
+As mentioned in [volumes-and-local-development](Volumes and Local Development), volumes are used to persist state outside container creation and destruction.
+
+We are creating a volume called `db_data`. Docker Compose [documentation](https://docs.docker.com/compose/compose-file/#volumes) specifies configuration parameters available when declaring a volume, but more often than not, it is sufficient to use the default configuration as shown below:
 ```
+volumes:
+    db_data: {}
+```
+
+Lastly, we use the volume as the `<src>` side of the `volumes` block of the `db` service. This ensures the contents of `/var/lib/mysql` are saved to the `db_data` volume preventing data loss on container destruction and restarts.
+```
+volumes:
+- db_data:/var/lib/mysql
+```
+
+### Test
+Finally, let's start everything up
+```bash
 $ docker-compose up
 Creating network "nodeapp_default" with the default driver
 Creating nodeapp_db_1 ... done
