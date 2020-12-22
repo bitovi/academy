@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Build an image and run a container for our node app. 
+  <meta name="description" content="Build an image and run a container for our NodeJS app. 
 ">
   <title>Bitovi Academy - Build and Run An Image</title>
   
@@ -158,7 +158,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-docker.html"
-							title="Build and containerize a Node app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
 							Learn Docker
 						</a>
 						
@@ -188,7 +188,7 @@
 						<a class="page"
 							href="build-node-app.html"
 							title="Build a simple Express API to use for the rest of the course.">
-							Build a Node App
+							Build a NodeJS App
 						</a>
 						
 					</li>
@@ -202,7 +202,7 @@
            						">
 						<a class="page"
 							href="writing-a-dockerfile.html"
-							title="Write a Dockerfile to containerize the node app.">
+							title="Write a Dockerfile to containerize the NodeJS app.">
 							Writing a Dockerfile
 						</a>
 						
@@ -217,7 +217,7 @@
            						expanded">
 						<a class="page"
 							href="build-and-run-image.html"
-							title="Build an image and run a container for our node app.">
+							title="Build an image and run a container for our NodeJS app.">
 							Build and Run An Image
 						</a>
 						
@@ -235,7 +235,7 @@
            						">
 						<a class="page"
 							href="volumes-and-local-development.html"
-							title="Streamline local development workflows with bind mounts.">
+							title="Streamline local development with bind mounts.">
 							Volumes and Local Development
 						</a>
 						
@@ -250,7 +250,7 @@
            						">
 						<a class="page"
 							href="production-readiness.html"
-							title="Trimming the fat from our docker image.">
+							title="Learn to reduce the size of docker images.">
 							Production Readiness
 						</a>
 						
@@ -365,7 +365,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Build an image and run a container for our node app.</p>
+    <p>Build an image and run a container for our NodeJS app.</p>
 
 </section>
 
@@ -381,7 +381,7 @@ covering CanJS core libraries.">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/sQ4TG6cfSfw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <h2>App Review</h2>
 <p>In the last section, we created a <code>Dockerfile</code> for our NodeJS app.</p>
-<pre><code>FROM node:15
+<pre><code class="language-dockerfile">FROM node:15
 
 ARG PORT=8000
 ENV PORT=$PORT
@@ -398,14 +398,14 @@ CMD npm start
 <p><img src="../static/img/docker/4-build-and-run-image/app-directory.png" alt="app directory" /></p>
 <h2>Build our image</h2>
 <p>Ensure you have docker desktop running on your machine, then open a terminal to your application directory and run</p>
-<pre><code>docker build -t my-node-app .
+<pre><code class="language-bash">docker build -t my-node-app .
 </code></pre>
 <ul>
 <li>The <code>-t my-node-app</code> argument tells Docker to call the image produced by the <code>Dockerfile</code> &quot;my-node-app&quot; and tag it as &quot;latest&quot;. The &quot;latest&quot; tag is the default tag, but can be overridden when building an image with <code>:&lt;tagname&gt;</code>. For example, if we wanted to tag our image as <code>v1.0.0</code>, we would run <code>docker build -t my-node-app:v1.0.0 .</code>.</li>
 <li>The <code>.</code> argument tells Docker where it can find our <code>Dockerfile</code>.</li>
 </ul>
 <p>Running the above command should produce output similar to below</p>
-<pre><code>$ docker build -t my-node-app .
+<pre><code class="language-bash">$ docker build -t my-node-app .
 Sending build context to Docker daemon  4.608kB
 Step 1/9 : FROM node:15
  ---&gt; b34e90f5c9c0
@@ -449,7 +449,7 @@ Successfully tagged my-node-app:latest
 </code></pre>
 <h2>View our image</h2>
 <p>The <code>my-node-app:latest</code> image has been saved to our local Docker registry. Run <code>docker image ls</code> and you can see information about it.</p>
-<pre><code>$ docker image ls
+<pre><code class="language-bash">$ docker image ls
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 my-node-app         latest              848464f1725a        5 seconds ago       944MB
 node                15                  b34e90f5c9c0        24 hours ago        935MB
@@ -457,7 +457,7 @@ node                15                  b34e90f5c9c0        24 hours ago        
 <p>You'll notice there's also a <code>node:15</code> image in our registry. This is because we defined it as our base image in our <code>Dockerfile</code> (<code>FROM node:15</code>). It was pulled from Dockerhub so it can be used locally.</p>
 <h2>Run our image</h2>
 <p>We're finally ready to run our image. Open a terminal and run</p>
-<pre><code>docker run --name my-container -p 8000:8000 -d my-node-app:latest
+<pre><code class="language-bash">docker run --name my-container -p 8000:8000 -d my-node-app:latest
 </code></pre>
 <ul>
 <li><code>--name my-container</code> gives our container a friendly name. If this is not provided, Docker will name the container for you.</li>
@@ -466,18 +466,18 @@ node                15                  b34e90f5c9c0        24 hours ago        
 <li><code>my-node-app:latest</code> specifies what image we want to run. If this image does not exist in our local registry, Docker will try and find and download a match from <a href="https://hub.docker.com/">Dockerhub</a>.</li>
 </ul>
 <p>Running the above command should produce output similar to below</p>
-<pre><code>$ docker run --name my-container -p 8000:8000 -d my-node-app:latest
+<pre><code class="language-bash">$ docker run --name my-container -p 8000:8000 -d my-node-app:latest
 71cfe418a26a05bbebb160f541e53c025157dc7ee2c333ab2309c7bc66bb24e3
 </code></pre>
 <p>Open your browser to <code>localhost:8000</code> and you should see <code>Hello World!</code>. You just ran your first docker image!</p>
 <h2>Interacting with our container</h2>
 <p>Run <code>docker ps</code> to see the status of all running containers</p>
-<pre><code>$ docker ps
+<pre><code class="language-bash">$ docker ps
 CONTAINER ID        IMAGE                COMMAND                  CREATED              STATUS              PORTS                    NAMES
 71cfe418a26a        my-node-app:latest   &quot;docker-entrypoint.s…&quot;   About a minute ago   Up About a minute   0.0.0.0:8000-&gt;8000/tcp   my-container
 </code></pre>
 <p>You can view logs with <code>docker logs &lt;container-name&gt;</code></p>
-<pre><code>$ docker logs my-container
+<pre><code class="language-bash">$ docker logs my-container
 
 &gt; bitovi-academy-app@1.0.0 start
 &gt; nodemon src/index.js
@@ -490,7 +490,7 @@ CONTAINER ID        IMAGE                COMMAND                  CREATED       
 Example app listening at http://localhost:8000
 </code></pre>
 <p>Finally, stop our container with <code>docker stop &lt;container-name&gt;</code> and <code>docker rm &lt;container-name&gt;</code>. If you want to do this with one command, just run <code>docker rm -f &lt;container-name&gt;</code>.</p>
-<pre><code>$ docker rm -f my-container
+<pre><code class="language-bash">$ docker rm -f my-container
 my-container
 
 $ docker ps
@@ -499,7 +499,7 @@ CONTAINER ID        IMAGE               COMMAND             CREATED             
 </code></pre>
 <h2>Customize the port</h2>
 <p>We can use the <code>-e</code> flag when starting our container to set the <code>PORT</code> environment variable.</p>
-<pre><code>$ MY_PORT=9000
+<pre><code class="language-bash">$ MY_PORT=9000
 $ docker run --name my-container -p 8000:$MY_PORT -d -e PORT=$MY_PORT my-node-app:latest
 0c0a51e7a19f37d503452892df9498de18c5dc78719aae2511b42a32f1f734ad
 
@@ -517,8 +517,8 @@ Example app listening at http://localhost:9000
 </code></pre>
 <p>You'll see the last line of the logs indicating the app is now listening on port 9000. However, because we set the port mapping with <code>-p 8000:9000</code>, we still will view the application in our browser from <code>localhost:8000</code>.</p>
 <h2>Review</h2>
-<p>We've built an image and run a container for our node app. Here's a cheat sheet of all the commands we ran.</p>
-<pre><code># Build an image
+<p>We've built an image and run a container for our NodeJS app. Here's a cheat sheet of all the commands we ran.</p>
+<pre><code class="language-bash"># Build an image
 docker build -t my-node-app .
 
 # Build an image with a custom tag
@@ -577,7 +577,7 @@ docker rm -f &lt;container-name&gt;
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/docker/4-build-and-run-image/build-and-run-image.md"},"description":"Build an image and run a container for our node app. \n","name":"learn-docker/build-and-run-image","title":"Build and Run An Image","type":"page","parent":"learn-docker","order":4,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/docker/4-build-and-run-image/build-and-run-image.md"},"description":"Build an image and run a container for our NodeJS app. \n","name":"learn-docker/build-and-run-image","title":"Build and Run An Image","type":"page","parent":"learn-docker","order":4,"comment":" ","pathToRoot":"../.."};
     </script>
 
     

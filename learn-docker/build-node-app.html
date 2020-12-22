@@ -13,7 +13,7 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Build a simple Express API to use for the rest of the course. 
 ">
-  <title>Bitovi Academy - Build a Node App</title>
+  <title>Bitovi Academy - Build a NodeJS App</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -158,7 +158,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-docker.html"
-							title="Build and containerize a Node app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
 							Learn Docker
 						</a>
 						
@@ -188,7 +188,7 @@
 						<a class="page"
 							href="build-node-app.html"
 							title="Build a simple Express API to use for the rest of the course.">
-							Build a Node App
+							Build a NodeJS App
 						</a>
 						
 							
@@ -205,7 +205,7 @@
            						">
 						<a class="page"
 							href="writing-a-dockerfile.html"
-							title="Write a Dockerfile to containerize the node app.">
+							title="Write a Dockerfile to containerize the NodeJS app.">
 							Writing a Dockerfile
 						</a>
 						
@@ -220,7 +220,7 @@
            						">
 						<a class="page"
 							href="build-and-run-image.html"
-							title="Build an image and run a container for our node app.">
+							title="Build an image and run a container for our NodeJS app.">
 							Build and Run An Image
 						</a>
 						
@@ -235,7 +235,7 @@
            						">
 						<a class="page"
 							href="volumes-and-local-development.html"
-							title="Streamline local development workflows with bind mounts.">
+							title="Streamline local development with bind mounts.">
 							Volumes and Local Development
 						</a>
 						
@@ -250,7 +250,7 @@
            						">
 						<a class="page"
 							href="production-readiness.html"
-							title="Trimming the fat from our docker image.">
+							title="Learn to reduce the size of docker images.">
 							Production Readiness
 						</a>
 						
@@ -357,7 +357,7 @@ covering CanJS core libraries.">
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Build a Node App <code>page</code></h1>
+	<h1>Build a NodeJS App <code>page</code></h1>
 </section>
 
   		
@@ -380,8 +380,8 @@ covering CanJS core libraries.">
   				<section class="body">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/6sHuGWj5cGM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <h2>Overview</h2>
-<p>In this section, we are going to build a simple &quot;Hello World&quot; api using <a href="https://expressjs.com/">Express</a>.</p>
-<p>NodeJS is not required if you just want to read through this section and copy/paste the code snippets. If you want to run the application before we containerize it in the next section, you can install NodeJS <a href="https://nodejs.org/en/download/">here</a>.</p>
+<p>In this section, we are going to build a simple &quot;Hello World&quot; service using <a href="https://expressjs.com/">Express</a>.</p>
+<p>NodeJS is not required if you just want to read through this section and copy/paste the code snippets. If you want to run the application natively before we containerize it in the next section, you can install NodeJS <a href="https://nodejs.org/en/download/">here</a>.</p>
 <h2>Building our app</h2>
 <p>The app requires only two files</p>
 <ul>
@@ -389,7 +389,8 @@ covering CanJS core libraries.">
 <li><code>src/index.js</code></li>
 </ul>
 <h3>package.json</h3>
-<pre><code>{
+<p>✏️ Create <code>package.json</code> in the root of your repository.</p>
+<pre><code class="language-json">{
   &quot;name&quot;: &quot;bitovi-academy-app&quot;,
   &quot;version&quot;: &quot;1.0.0&quot;,
   &quot;scripts&quot;: {
@@ -407,7 +408,8 @@ covering CanJS core libraries.">
 <p>This file defines <code>express</code> as a standard dependency and <code>nodemon</code> as a dev dependency. Nodemon is used to run our Express server and watches the source code to hot-reload any new changes without needing to restart the server. It is a dev dependency because we don't want the overhead of running nodemon in production or even the bulk of keeping it in <code>node_modules/</code>.</p>
 <p>Our <code>package.json</code> also defines a <code>start</code> script and a <code>start:prod</code>. These are convenient ways to allow us to start our application with nodemon or node by running <code>npm start</code> or <code>npm run start:prod</code>.</p>
 <h3>src/index.js</h3>
-<pre><code>const express = require('express')
+<p>✏️ Create a <code>src</code> directory and <code>index.js</code> within it.</p>
+<pre><code class="language-js">const express = require('express')
 const app = express()
 const port = process.env.PORT || 3000
 
@@ -421,8 +423,8 @@ app.listen(port, () =&gt; {
 </code></pre>
 <p>This file starts an express server listening on <code>localhost:3000</code>. If we access the root path it should return <code>Hello World!</code>. The default port is 3000, but can be overwritten by setting the <code>PORT</code> environment variable before starting the server.</p>
 <h2>Run our app</h2>
-<p>This step is optional, but to verify our app works you can run</p>
-<pre><code>npm install
+<p>✏️ This step is optional, but to verify our app works you can run:</p>
+<pre><code class="language-bash">npm install
 npm start
 </code></pre>
 <p>Open your browser to <code>localhost:3000</code> and you should see <code>Hello World!</code></p>
@@ -466,7 +468,7 @@ npm start
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/docker/2-build-node-app/build-node-app.md"},"description":"Build a simple Express API to use for the rest of the course. \n","name":"learn-docker/build-node-app","title":"Build a Node App","type":"page","parent":"learn-docker","order":2,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/docker/2-build-node-app/build-node-app.md"},"description":"Build a simple Express API to use for the rest of the course. \n","name":"learn-docker/build-node-app","title":"Build a NodeJS App","type":"page","parent":"learn-docker","order":2,"comment":" ","pathToRoot":"../.."};
     </script>
 
     

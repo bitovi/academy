@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Trimming the fat from our docker image. 
+  <meta name="description" content="Learn to reduce the size of docker images. 
 ">
   <title>Bitovi Academy - Production Readiness</title>
   
@@ -158,7 +158,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-docker.html"
-							title="Build and containerize a Node app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
 							Learn Docker
 						</a>
 						
@@ -188,7 +188,7 @@
 						<a class="page"
 							href="build-node-app.html"
 							title="Build a simple Express API to use for the rest of the course.">
-							Build a Node App
+							Build a NodeJS App
 						</a>
 						
 					</li>
@@ -202,7 +202,7 @@
            						">
 						<a class="page"
 							href="writing-a-dockerfile.html"
-							title="Write a Dockerfile to containerize the node app.">
+							title="Write a Dockerfile to containerize the NodeJS app.">
 							Writing a Dockerfile
 						</a>
 						
@@ -217,7 +217,7 @@
            						">
 						<a class="page"
 							href="build-and-run-image.html"
-							title="Build an image and run a container for our node app.">
+							title="Build an image and run a container for our NodeJS app.">
 							Build and Run An Image
 						</a>
 						
@@ -232,7 +232,7 @@
            						">
 						<a class="page"
 							href="volumes-and-local-development.html"
-							title="Streamline local development workflows with bind mounts.">
+							title="Streamline local development with bind mounts.">
 							Volumes and Local Development
 						</a>
 						
@@ -247,7 +247,7 @@
            						expanded">
 						<a class="page"
 							href="production-readiness.html"
-							title="Trimming the fat from our docker image.">
+							title="Learn to reduce the size of docker images.">
 							Production Readiness
 						</a>
 						
@@ -365,7 +365,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Trimming the fat from our docker image.</p>
+    <p>Learn to reduce the size of docker images.</p>
 
 </section>
 
@@ -380,26 +380,26 @@ covering CanJS core libraries.">
   				<section class="body">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/aVCr1bGjw0k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <h2>Overview</h2>
-<p>We want to make our image as lightweight as possible. Reducing image size will make it faster to pull and run in production. In its current state, our simple node app is a staggering <code>944MB</code>!</p>
-<pre><code>$ docker image ls my-node-app
+<p>We want to make our image as lightweight as possible. Reducing image size will make it faster to pull and run in production. In its current state, our simple NodeJS app is a staggering <code>944MB</code>!</p>
+<pre><code class="language-bash">$ docker image ls my-node-app
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 my-node-app         latest              78ef31600011        7 seconds ago       944MB
 </code></pre>
-<p>We're going to explore 2 simple ways to make our image small and ready for production.</p>
+<p>We're going to explore two simple ways to make our image small and ready for production.</p>
 <h2>Base Image Variants</h2>
 <p>The simplest and most significant change is updating the <code>FROM</code> instruction in our Dockerfile. The <code>node:15</code> image is <code>935MB</code>. That's 99% of our image!</p>
-<pre><code>$ docker image ls node
+<pre><code class="language-bash">$ docker image ls node
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 node                15                  969d445a1755        6 days ago          935MB
 </code></pre>
 <p>Docker provides a set of official images that are designed to provide drop-in solutions for popular runtimes and services. Many of these images provide variants of the image based on a developer's requirements. The <code>node</code> image repository on Dockerhub has 3 main variants:</p>
 <ul>
-<li><code>node:&lt;version&gt;</code>: This is the standard image that contains everything you'll need to run <code>node</code>. It's often the default choice if your specific needs and requirements are unclear. It's also the largest of all the variants</li>
+<li><code>node:&lt;version&gt;</code>: This is the standard image that contains everything you'll need to run <code>node</code>. It's often the default choice if your specific needs and requirements are unclear. It's also the largest of all the variants.</li>
 <li><code>node:&lt;version&gt;-slim</code>: The &quot;slim&quot; variant contains only the necessary packages needed to run <code>node</code>. It is a good choice if your image only requires <code>node</code> and can operate without other external dependencies like <code>gcc</code>.</li>
 <li><code>node:&lt;version&gt;-alpine</code>: Instead of using debian as the base image, The alpine variant uses <a href="https://hub.docker.com/_/alpine">Alpine Linux</a>. The alpine Docker image is designed to be as minimal as possible at only <code>5MB</code> in size.</li>
 </ul>
 <p>Pulling these images into our local registry from Dockerhub using <code>docker pull</code>, allows us to inspect the size difference between the node variants</p>
-<pre><code>$ docker pull node:15
+<pre><code class="language-bash">$ docker pull node:15
 $ docker pull node:15-slim
 $ docker pull node:15-alpine
 $ docker image ls node
@@ -411,7 +411,7 @@ node                15-alpine           7ddc154413f5        7 days ago          
 <p>As you can see, <code>node:15-slim</code> is <code>159MB</code>, a fraction of the size of <code>node:15</code>. Meanwhile, <code>node:15-alpine</code> is even smaller at <code>109MB</code>. As a general rule, you'll want to use the smallest base image that meets your needs.</p>
 <h2>Updating our <code>FROM</code> instruction</h2>
 <p>Update <code>FROM node:15</code> in our Dockerfile to <code>FROM node:15-alpine</code>. The whole file should now look like this:</p>
-<pre><code>FROM node:15-alpine
+<pre><code class="language-dockerfile">FROM node:15-alpine
 
 ARG PORT=8000
 ENV PORT=$PORT
@@ -425,10 +425,10 @@ EXPOSE $PORT
 CMD npm start
 </code></pre>
 <p>Now rebuild the image with an <code>alpine</code> tag</p>
-<pre><code>docker build -t my-node-app:alpine .
+<pre><code class="language-bash">docker build -t my-node-app:alpine .
 </code></pre>
 <p>Finally, lets compare the difference:</p>
-<pre><code>$ docker image ls my-node-app
+<pre><code class="language-bash">$ docker image ls my-node-app
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 my-node-app         alpine              a86e7ef34019        12 seconds ago      118MB
 my-node-app         latest              78ef31600011        18 minutes ago      944MB
@@ -437,11 +437,11 @@ my-node-app         latest              78ef31600011        18 minutes ago      
 <h2>Multi-Stage Builds</h2>
 <p>We are using <code>npm install</code> to install application dependencies during the Docker build phase. By default, <code>npm install</code> installs both standard and dev dependencies. We want to conditionally install all dependencies when building for local development, but only download standard dependencies with <code>npm install --only=prod</code> when building to run in production.</p>
 <p>A multi-stage build is a Dockerfile with multiple <code>FROM</code> instructions. This is typically done to keep the final image size down by separating what is required to build an application from what is required to run it by allowing selective artifacts to be copied from one stage to another.</p>
-<p>This is especially powerful in compiled languages like Go or Java where multi-stage builds can be used to have your first stage compile the source code into a runtime artifact and then only the runtime artifact is copied in to a leaner final image.</p>
+<p>This is especially powerful in compiled languages like Go or Java where multi-stage builds can be used to have your first stage compile the source code into a runtime artifact and then only the runtime artifact is copied into a leaner final image.</p>
 <h2>Targets</h2>
 <p>By using the <code>--target</code> cli argument when building our image, we can tell Docker to stop building at a specific stage. We will use this alone with a <code>prod</code> stage and a <code>dev</code> stage to give us our desired result.</p>
-<p>Replace our node app's Dockerfile to the following:</p>
-<pre><code>FROM node:15-alpine as prod
+<p>Replace our NodeJS app's Dockerfile to the following:</p>
+<pre><code class="language-dockerfile">FROM node:15-alpine as prod
 ARG PORT=8000
 ENV PORT=$PORT
 
@@ -467,7 +467,7 @@ CMD npm start
 <li><code>CMD npm start</code>: Start the container with nodemon</li>
 </ul>
 <p>Now when building our image, we can provide <code>--target=prod</code> or <code>--target=dev</code> to customize our final image. If we run <code>docker build</code> without the <code>--target</code> flag, it will run all stages by default, but we will be explicit with <code>--target=dev</code></p>
-<pre><code># Build our prod image
+<pre><code class="language-bash"># Build our prod image
 docker build -t my-node-app:prod --target=prod .
 
 # Build our dev image
@@ -485,7 +485,7 @@ my-node-app         latest              78ef31600011        About an hour ago   
 <p>There are a lot of powerful things you can do with multi-stage builds. Check out the <a href="https://docs.docker.com/develop/develop-images/multistage-build/">Official Docs</a> for more inspiration.</p>
 <h2>Test our images</h2>
 <p>Let's run both prod and dev images to make sure they work. Notice when we run our prod image, we don't bother mounting our local source code as nodemon is not running to enable reloading.</p>
-<pre><code># Start Dev image
+<pre><code class="language-bash"># Start Dev image
 $ docker run --name my-dev-container -p 8000:8000 -d -v &quot;$(pwd)&quot;/src:/app/src my-node-app:dev
 b67e760ef59c2c42c2737720031537f169302513b37b4b97478c8f21e59791bb
 
@@ -546,7 +546,7 @@ docker rm -f my-dev-container my-prod-container
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/docker/6-production-readiness/production-readiness.md"},"description":"Trimming the fat from our docker image. \n","name":"learn-docker/production-readiness","title":"Production Readiness","type":"page","parent":"learn-docker","order":6,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/docker/6-production-readiness/production-readiness.md"},"description":"Learn to reduce the size of docker images. \n","name":"learn-docker/production-readiness","title":"Production Readiness","type":"page","parent":"learn-docker","order":6,"comment":" ","pathToRoot":"../.."};
     </script>
 
     

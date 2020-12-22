@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Write a Dockerfile to containerize the node app. 
+  <meta name="description" content="Write a Dockerfile to containerize the NodeJS app. 
 ">
   <title>Bitovi Academy - Writing a Dockerfile</title>
   
@@ -158,7 +158,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-docker.html"
-							title="Build and containerize a Node app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
 							Learn Docker
 						</a>
 						
@@ -188,7 +188,7 @@
 						<a class="page"
 							href="build-node-app.html"
 							title="Build a simple Express API to use for the rest of the course.">
-							Build a Node App
+							Build a NodeJS App
 						</a>
 						
 					</li>
@@ -202,7 +202,7 @@
            						expanded">
 						<a class="page"
 							href="writing-a-dockerfile.html"
-							title="Write a Dockerfile to containerize the node app.">
+							title="Write a Dockerfile to containerize the NodeJS app.">
 							Writing a Dockerfile
 						</a>
 						
@@ -220,7 +220,7 @@
            						">
 						<a class="page"
 							href="build-and-run-image.html"
-							title="Build an image and run a container for our node app.">
+							title="Build an image and run a container for our NodeJS app.">
 							Build and Run An Image
 						</a>
 						
@@ -235,7 +235,7 @@
            						">
 						<a class="page"
 							href="volumes-and-local-development.html"
-							title="Streamline local development workflows with bind mounts.">
+							title="Streamline local development with bind mounts.">
 							Volumes and Local Development
 						</a>
 						
@@ -250,7 +250,7 @@
            						">
 						<a class="page"
 							href="production-readiness.html"
-							title="Trimming the fat from our docker image.">
+							title="Learn to reduce the size of docker images.">
 							Production Readiness
 						</a>
 						
@@ -365,7 +365,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Write a Dockerfile to containerize the node app.</p>
+    <p>Write a Dockerfile to containerize the NodeJS app.</p>
 
 </section>
 
@@ -380,8 +380,9 @@ covering CanJS core libraries.">
   				<section class="body">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/LiAkpRc6z0Y" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <h2>Our Dockerfile</h2>
-<p>Starting with the solution, the <code>Dockerfile</code> for our NodeJS app should look like this:</p>
-<pre><code>FROM node:15
+<p>Starting with the solution, the <code>Dockerfile</code> for our NodeJS app should look like this.</p>
+<p>✏️ Copy and paste this to the root of your project and name the file <code>Dockerfile</code>:</p>
+<pre><code class="language-dockerfile">FROM node:15
 
 ARG PORT=8000
 ENV PORT=$PORT
@@ -394,10 +395,14 @@ RUN npm install
 EXPOSE $PORT
 CMD npm start
 </code></pre>
-<p>Copy and paste this to the root of your project and name the file <code>Dockerfile</code>.</p>
 <p>Let's break down each line.</p>
 <h2>FROM instruction</h2>
-<p>The <code>FROM</code> instruction is the first line of any Dockerfile. It sets the base image to be used as a starting point for all other instructions. Using base images allows deferring installation of a kernel and low level packages to the provider of the base image.</p>
+<p>The <code>FROM</code> instruction is the first line of any Dockerfile. It sets the base image to be used as a starting point for all other instructions. Using base images allows deferring:</p>
+<ul>
+<li>installation of a kernel and</li>
+<li>installtion of low level packages</li>
+</ul>
+<p>to the provider of the base image.</p>
 <p>In our case, We are using <code>node:15</code>. <code>node</code> specifies the name of the base image and <code>15</code> is a tag specifying the version of the image. This base image has the latest version of NodeJS 15 pre-installed, allowing the rest of the <code>Dockerfile</code> to focus on logic specific to our application. The <code>node:15</code> image also has a <code>Dockerfile</code> which means it also has a <code>FROM</code> instruction. <code>node:15</code> uses <a href="https://hub.docker.com/_/debian">Debian</a> as its base image. This layering of Docker images repeats until a Dockerfile uses <code>FROM scratch</code> as its base image.</p>
 <p>By default, Docker will look for images  on <a href="https://hub.docker.com/">Dockerhub</a>. For example, the <code>node</code> image we are using is pulled from <a href="https://hub.docker.com/_/node">here</a>, but you can create your own base images and share them publicly or privately to Dockerhub or other package registries.</p>
 <p><a href="https://docs.docker.com/engine/reference/builder/#from">Official Docs</a></p>
@@ -406,9 +411,9 @@ CMD npm start
 <p>In our case, <code>ARG PORT=8000</code> is defining an argument called <code>PORT</code> with a default value of <code>8000</code>. It can be accessed in later instructions in the <code>Dockerfile</code> like a standard environment variable (<code>$PORT</code>) and overwritten during the build process with the <code>--build-arg</code> cli argument (<a href="https://docs.docker.com/engine/reference/commandline/build/#set-build-time-variables---build-arg">Docs</a>).</p>
 <p><a href="https://docs.docker.com/engine/reference/builder/#arg">Official Docs</a></p>
 <h2>ENV instruction</h2>
-<p>The <code>ENV</code> instruction is used to define environment variables. Like <code>ARG</code>, it follows the syntax <code>ENV &lt;name&gt; [=&lt;default value&gt;]</code>. The difference between <code>ARG</code> and <code>ENV</code> is <code>ENV</code> can be used during the image build process and also when the container is running, but only <code>ARG</code> can be overwritten during the build process. <code>ENV</code> can also be overwritten at run time with the <code>-e</code> cli argument or an env file (<a href="https://docs.docker.com/engine/reference/run/#env-environment-variables">Docs</a>).</p>
+<p>The <code>ENV</code> instruction is used to define environment variables. Like <code>ARG</code>, it follows the syntax <code>ENV &lt;name&gt; [=&lt;default value&gt;]</code>. The difference between <code>ARG</code> and <code>ENV</code> is that variables defined with the <code>ENV</code> instruction can be used during the image build process and also when the container is running as standard environment variables. However, only <code>ARG</code> defined variables can be actually overwritten during the build process with the <code>--build-arg</code> cli argument. <code>ENV</code> can be overwritten at run time with the <code>-e</code> cli argument or an env file (<a href="https://docs.docker.com/engine/reference/run/#env-environment-variables">Docs</a>).</p>
 <p>To give us the flexibility to set and use variables at build time and run time, we use both <code>ARG</code> and <code>ENV</code> instructions together:</p>
-<pre><code>ARG PORT=8000
+<pre><code class="language-dockerfile">ARG PORT=8000
 ENV PORT=$PORT
 </code></pre>
 <h3>ARG vs ENV</h3>
@@ -444,7 +449,7 @@ ENV PORT=$PORT
 <h2>WORKDIR instruction</h2>
 <p>The <code>WORKDIR</code> instruction sets the working directory for any subsequent instructions. If the directory does not exist, it will be automatically created.</p>
 <p>The <code>WORKDIR</code> instruction can be used multiple times.</p>
-<pre><code>WORKDIR x
+<pre><code class="language-dockerfile">WORKDIR x
 WORKDIR y
 WORKDIR z
 RUN pwd
@@ -455,7 +460,7 @@ RUN pwd
 <h2>COPY instruction</h2>
 <p>The <code>COPY</code> instruction follows the syntax <code>COPY [--chown=&lt;user&gt;:&lt;group&gt;] &lt;src&gt;... &lt;dest&gt;</code>.</p>
 <ul>
-<li><code>--chown=&lt;user&gt;:&lt;group&gt;</code> allows setting the permissions of the target file or directory using <a href="https://linux.die.net/man/1/chown">chown</a>. This is only available to Linux based images</li>
+<li><code>--chown=&lt;user&gt;:&lt;group&gt;</code> allows setting the ownership of the target file or directory using <a href="https://linux.die.net/man/1/chown">chown</a>. This is only available to Linux based images</li>
 <li><code>&lt;src&gt;...</code> specifies what file(s) or directories should be copied in to the docker image.
 <ul>
 <li>Each file/directory should be separated by a space (<code></code>)</li>
@@ -464,7 +469,7 @@ RUN pwd
 <li><code>&lt;dest&gt;</code> specifies where each src entry should be copied to in the docker image. <code>.</code> will put each entry in the <code>WORKDIR</code> or the root directory if no <code>WORKDIR</code> is specified.</li>
 </ul>
 <p>In our case, we have</p>
-<pre><code>WORKDIR app
+<pre><code class="language-dockerfile">WORKDIR app
 COPY src src
 COPY package.json .
 </code></pre>
@@ -478,10 +483,10 @@ COPY package.json .
 <h2>EXPOSE instruction</h2>
 <p><code>EXPOSE</code> specifies which ports the when running the container. Each port is separated by a space (<code></code>). By default the container listens using TCP, but UDP can be used by adding <code>/udp</code> after the port.</p>
 <p>For example:</p>
-<pre><code>EXPOSE 80/udp
+<pre><code class="language-dockerfile">EXPOSE 80/udp
 </code></pre>
 <p>In our case, we want the port exposed by our container to match the port our application is running on (remember: <code>const port = process.env.PORT || 3000</code> in <code>src/index.js</code>), therefore, we are publishing the value of our <code>PORT</code> environment variable.</p>
-<pre><code>ARG PORT=8000
+<pre><code class="language-dockerfile">ARG PORT=8000
 ENV PORT=$PORT
 ...
 EXPOSE $PORT
@@ -531,7 +536,7 @@ EXPOSE $PORT
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/docker/3-writing-a-dockerfile/writing-a-dockerfile.md"},"description":"Write a Dockerfile to containerize the node app. \n","name":"learn-docker/writing-a-dockerfile","title":"Writing a Dockerfile","type":"page","parent":"learn-docker","order":3,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/docker/3-writing-a-dockerfile/writing-a-dockerfile.md"},"description":"Write a Dockerfile to containerize the NodeJS app. \n","name":"learn-docker/writing-a-dockerfile","title":"Writing a Dockerfile","type":"page","parent":"learn-docker","order":3,"comment":" ","pathToRoot":"../.."};
     </script>
 
     

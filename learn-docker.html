@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Build and containerize a Node app then orchestrate multiple containers with docker-compose in this Docker guide. 
+  <meta name="description" content="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide. 
 ">
   <title>Bitovi Academy - Learn Docker</title>
   
@@ -158,7 +158,7 @@
            						expanded">
 						<a class="page"
 							href="learn-docker.html"
-							title="Build and containerize a Node app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
 							Learn Docker
 						</a>
 						
@@ -188,7 +188,7 @@
 						<a class="page"
 							href="learn-docker/build-node-app.html"
 							title="Build a simple Express API to use for the rest of the course.">
-							Build a Node App
+							Build a NodeJS App
 						</a>
 						
 					</li>
@@ -202,7 +202,7 @@
            						">
 						<a class="page"
 							href="learn-docker/writing-a-dockerfile.html"
-							title="Write a Dockerfile to containerize the node app.">
+							title="Write a Dockerfile to containerize the NodeJS app.">
 							Writing a Dockerfile
 						</a>
 						
@@ -217,7 +217,7 @@
            						">
 						<a class="page"
 							href="learn-docker/build-and-run-image.html"
-							title="Build an image and run a container for our node app.">
+							title="Build an image and run a container for our NodeJS app.">
 							Build and Run An Image
 						</a>
 						
@@ -232,7 +232,7 @@
            						">
 						<a class="page"
 							href="learn-docker/volumes-and-local-development.html"
-							title="Streamline local development workflows with bind mounts.">
+							title="Streamline local development with bind mounts.">
 							Volumes and Local Development
 						</a>
 						
@@ -247,7 +247,7 @@
            						">
 						<a class="page"
 							href="learn-docker/production-readiness.html"
-							title="Trimming the fat from our docker image.">
+							title="Learn to reduce the size of docker images.">
 							Production Readiness
 						</a>
 						
@@ -362,7 +362,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Build and containerize a Node app then orchestrate multiple containers with docker-compose in this Docker guide.</p>
+    <p>Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.</p>
 
 </section>
 
@@ -384,22 +384,22 @@ style="float:left"/> <span style="margin-top: 10px;display: inline-block;">Click
 <p>Please ask questions related to DevOps in the <a href="https://bitovi-community.slack.com/archives/CFNC1510S">DevOps Chat Room</a>.</p>
 <p>If you find bugs in this training or have suggestions, create an <a href="https://github.com/bitovi/academy/issues">issue</a> or email <code>contact@bitovi.com</code>.</p>
 <h2>Overview</h2>
-<p>In this tutorial we will take a simple node api and containerize it to run with Docker. We will explore how to optimize the image for production as well as how to streamline local development workflows.</p>
+<p>In this tutorial we will take a simple NodeJS api and containerize it to run with Docker. We will explore how to optimize the image for production as well as how to streamline local development workflows.</p>
 <p>Afterwards, we will look at orchestrating multiple docker images to form a full stack application using docker-compose.</p>
 <h2>Outline</h2>
 <ul>
 <li><a href="learn-docker/what-is-docker.html" title="Explore Docker concepts and architecture.">What is Docker</a> - Explore Docker concepts and architecture</li>
-<li><a href="learn-docker/build-node-app.html" title="Build a simple Express API to use for the rest of the course.">Build a Node App</a> - Build a simple Express API to use for the rest of the course</li>
-<li><a href="learn-docker/writing-a-dockerfile.html" title="Write a Dockerfile to containerize the node app.">Writing a Dockerfile</a> - Write a Dockerfile to containerize the node app</li>
-<li><a href="learn-docker/build-and-run-image.html" title="Build an image and run a container for our node app.">Build and Run An Image</a> - Build an image and run a container for our node app</li>
-<li><a href="learn-docker/volumes-and-local-development.html" title="Streamline local development workflows with bind mounts.">Volumes and Local Development</a> - Streamline local development workflows with bind mounts</li>
-<li><a href="learn-docker/production-readiness.html" title="Trimming the fat from our docker image.">Production Readiness</a> - Trimming the fat from our docker image</li>
+<li><a href="learn-docker/build-node-app.html" title="Build a simple Express API to use for the rest of the course.">Build a NodeJS App</a> - Build a simple Express API to use for the rest of the course</li>
+<li><a href="learn-docker/writing-a-dockerfile.html" title="Write a Dockerfile to containerize the NodeJS app.">Writing a Dockerfile</a> - Write a Dockerfile to containerize the NodeJS app</li>
+<li><a href="learn-docker/build-and-run-image.html" title="Build an image and run a container for our NodeJS app.">Build and Run An Image</a> - Build an image and run a container for our NodeJS app</li>
+<li><a href="learn-docker/volumes-and-local-development.html" title="Streamline local development with bind mounts.">Volumes and Local Development</a> - Streamline local development workflows with bind mounts</li>
+<li><a href="learn-docker/production-readiness.html" title="Learn to reduce the size of docker images.">Production Readiness</a> - Trimming the fat from our docker image</li>
 <li><a href="learn-docker/docker-compose.html" title="Make Docker easier to use and orchestrate multiple containers.">Docker Compose</a> - Make Docker easier to use and orchestrate multiple containers</li>
 </ul>
 <h2>Prerequisites</h2>
 <ul>
-<li>This course only requires Docker Desktop installed. Follow the official docs for <a href="https://docs.docker.com/get-docker/">installation steps</a>.</li>
-<li>This guide uses NodeJS. However, the code is all explained. If you want to run the code without Docker, you will need to <a href="https://nodejs.org/en/download/">install NodeJS</a>. This is optional.</li>
+<li>✏️ This course only requires Docker Desktop installed. Follow the official docs for <a href="https://docs.docker.com/get-docker/">installation steps</a>.</li>
+<li>✏️ This guide uses NodeJS. However, the code is all explained. If you want to run the code without Docker, you will need to <a href="https://nodejs.org/en/download/">install NodeJS</a>. This is optional.</li>
 </ul>
 
 </section>
@@ -438,7 +438,7 @@ style="float:left"/> <span style="margin-top: 10px;display: inline-block;">Click
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/docker/docker.md"},"description":"Build and containerize a Node app then orchestrate multiple containers with docker-compose in this Docker guide. \n","name":"learn-docker","title":"Learn Docker","type":"page","parent":"bit-academy","order":4,"comment":" ","pathToRoot":".."};
+      var docObject = {"src":{"path":"src/docker/docker.md"},"description":"Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide. \n","name":"learn-docker","title":"Learn Docker","type":"page","parent":"bit-academy","order":4,"comment":" ","pathToRoot":".."};
     </script>
 
     

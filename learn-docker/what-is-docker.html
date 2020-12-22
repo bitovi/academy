@@ -158,7 +158,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-docker.html"
-							title="Build and containerize a Node app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
 							Learn Docker
 						</a>
 						
@@ -191,7 +191,7 @@
 						<a class="page"
 							href="build-node-app.html"
 							title="Build a simple Express API to use for the rest of the course.">
-							Build a Node App
+							Build a NodeJS App
 						</a>
 						
 					</li>
@@ -205,7 +205,7 @@
            						">
 						<a class="page"
 							href="writing-a-dockerfile.html"
-							title="Write a Dockerfile to containerize the node app.">
+							title="Write a Dockerfile to containerize the NodeJS app.">
 							Writing a Dockerfile
 						</a>
 						
@@ -220,7 +220,7 @@
            						">
 						<a class="page"
 							href="build-and-run-image.html"
-							title="Build an image and run a container for our node app.">
+							title="Build an image and run a container for our NodeJS app.">
 							Build and Run An Image
 						</a>
 						
@@ -235,7 +235,7 @@
            						">
 						<a class="page"
 							href="volumes-and-local-development.html"
-							title="Streamline local development workflows with bind mounts.">
+							title="Streamline local development with bind mounts.">
 							Volumes and Local Development
 						</a>
 						
@@ -250,7 +250,7 @@
            						">
 						<a class="page"
 							href="production-readiness.html"
-							title="Trimming the fat from our docker image.">
+							title="Learn to reduce the size of docker images.">
 							Production Readiness
 						</a>
 						
@@ -380,14 +380,14 @@ covering CanJS core libraries.">
   				<section class="body">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/eD2xZZis2GI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <h2>Overview</h2>
-<p>Traditional application deployment requires packaging application source code into an artifact and deploying it to a server that has a compatible operating system, runtime and other dependant libraries.</p>
+<p>Traditional application deployment requires packaging application source code into an artifact. An artifact is the output of the transformation from application source code to a runnable asset. In the case of NodeJS, it is Javascript with dependencies installed (node_modules). The artifact is deployed to a server that has a compatible operating system, runtime and other dependent libraries.</p>
 <p>Docker exists to address these issues. Docker bundles runtime dependencies with application source code into an image - creating a unified experience whether an application is being run on a developer's workstation or a production server.</p>
 <h2>VMs vs Docker Containers</h2>
-<p>Virtual machines (VM) are an abstraction of a physical server turning one server into many. A hypervisor is installed on the host server allowing multiple VMs to run on a single machine. Each VM includes a full copy of an operating system (OS) making it resource intensive to run and slow to boot.</p>
+<p><a href="https://www.vmware.com/topics/glossary/content/virtual-machine">Virtual machines</a> (VM) are an abstraction of a physical server turning one server into many. A <a href="https://www.vmware.com/topics/glossary/content/hypervisor">hypervisor</a> is installed on the host server allowing multiple VMs to run on a single machine. Each VM includes a full copy of an operating system (OS) making it resource intensive to run and slow to boot.</p>
 <p>Containers are an abstraction at the app layer that packages application artifacts and dependencies together. The fundamental difference is containers share the same host operating system, but each container runs in it's own isolated process controlled by the Docker Engine. Containers are more lightweight than VMs and typically boot in seconds instead of minutes.</p>
 <p><img src="../static/img/docker/1-what-is-docker/docker-arch.png" alt="Docker Architecture" /></p>
 <h2>Dockerfiles, Images and Containers</h2>
-<p>A Dockerfile is used to build a Docker image. It is a plain-text file that contains a series of instructions telling Docker what operating system, application dependencies and application source code is required to run the application.</p>
+<p>A Dockerfile is used to build a Docker image. A dockerfile is a plain-text file that contains a series of instructions telling Docker what operating system, application dependencies and application source code is required to run the application.</p>
 <p>A Docker image is a static artifact that is built from a Dockerfile and is tagged and published to a registry where it can be shared.</p>
 <p>A Docker container is a running instance of a Docker image.</p>
 <p><img src="../static/img/docker/1-what-is-docker/dockerfile-images-containers.png" alt="Dockerfile images and containers" /></p>

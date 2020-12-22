@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Streamline local development workflows with bind mounts. 
+  <meta name="description" content="Streamline local development with bind mounts. 
 ">
   <title>Bitovi Academy - Volumes and Local Development</title>
   
@@ -158,7 +158,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-docker.html"
-							title="Build and containerize a Node app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
 							Learn Docker
 						</a>
 						
@@ -188,7 +188,7 @@
 						<a class="page"
 							href="build-node-app.html"
 							title="Build a simple Express API to use for the rest of the course.">
-							Build a Node App
+							Build a NodeJS App
 						</a>
 						
 					</li>
@@ -202,7 +202,7 @@
            						">
 						<a class="page"
 							href="writing-a-dockerfile.html"
-							title="Write a Dockerfile to containerize the node app.">
+							title="Write a Dockerfile to containerize the NodeJS app.">
 							Writing a Dockerfile
 						</a>
 						
@@ -217,7 +217,7 @@
            						">
 						<a class="page"
 							href="build-and-run-image.html"
-							title="Build an image and run a container for our node app.">
+							title="Build an image and run a container for our NodeJS app.">
 							Build and Run An Image
 						</a>
 						
@@ -232,7 +232,7 @@
            						expanded">
 						<a class="page"
 							href="volumes-and-local-development.html"
-							title="Streamline local development workflows with bind mounts.">
+							title="Streamline local development with bind mounts.">
 							Volumes and Local Development
 						</a>
 						
@@ -250,7 +250,7 @@
            						">
 						<a class="page"
 							href="production-readiness.html"
-							title="Trimming the fat from our docker image.">
+							title="Learn to reduce the size of docker images.">
 							Production Readiness
 						</a>
 						
@@ -365,7 +365,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Streamline local development workflows with bind mounts.</p>
+    <p>Streamline local development with bind mounts.</p>
 
 </section>
 
@@ -380,7 +380,7 @@ covering CanJS core libraries.">
   				<section class="body">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/8sGPAiFu66s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <h2>Overview</h2>
-<p>With the concepts we've explored so far, running a containerized service with Docker when trying to make code changes would be incredibly inefficient. To test every code change, a developer would have to</p>
+<p>With the concepts we've explored so far, building an image and starting a container after every  code change would be incredibly inefficient. To test every code change, a developer would have to</p>
 <ol>
 <li>Make the code change</li>
 <li>Stop the container (<code>docker rm -f ...</code>)</li>
@@ -389,10 +389,10 @@ covering CanJS core libraries.">
 </ol>
 <p>In particular, rebuilding an image with <code>docker build</code> takes too long. We're going to explore how to make things much more efficient.</p>
 <h2>Volumes</h2>
-<p>A Docker container has no built in persistence. Beyond what is built in to an image during the build phase, all other data is discarded when a container is destroyed. Without volumes, running databases or applications that require state would be impossible.</p>
+<p>A Docker container has no built in persistence. Beyond the image itself, all other data is discarded when a container is destroyed. Without volumes, running databases or applications that require state would be impossible.</p>
 <p>Volumes provide a persistent storage mechanism that can be managed through Docker's CLI. They can be shared between multiple containers and can be stored on remote hosts or cloud providers.</p>
-<p>Consider the following example:</p>
-<pre><code>docker volume create my-vol
+<p>The following creates a volume called <code>my-vol</code> and on container creation is mounted to the <code>/data</code> directory. As the application runs, the contents of <code>/data</code> are persisted in the volume so that when the container is destroyed, the data is not lost.</p>
+<pre><code class="language-bash">docker volume create my-vol
 docker run -v my-vol:/data my-image
 </code></pre>
 <p>The above commands create a volume called <code>my-vol</code> and on container creation is mounted to the <code>/data</code> directory. As the application runs, the contents of <code>/data</code> are persisted in the volume so that when the container is destroyed, the data is not lost.</p>
@@ -400,25 +400,27 @@ docker run -v my-vol:/data my-image
 <h2>Bind Mounts</h2>
 <p>Bind mounts are similar to volumes, but in comparison have limited functionality. Instead of creating a named volume, the contents of a host machine's directory can be mounted to a directory in a container.</p>
 <p>For example the following command will overwrite the contents of the <code>/data</code> directory in the container with the contents of <code>/Users/connor/data</code>. When the container is running, the contents are mirrored between the two locations regardless if a change originates from the container or the host machine.</p>
-<pre><code>docker run -v /Users/connor/data:/data my-image
+<pre><code class="language-bash">docker run -v /Users/connor/data:/data my-image
 </code></pre>
-<p>The only catch is the host machine directory must be an absolute path.</p>
+<p>The only catch is the host machine directory must be an absolute path. This can be worked around by using $PWD to print out the current working directory when creating a container.</p>
+<pre><code class="language-bash">docker run -v $PWD/data:/data my-image
+</code></pre>
 <p><a href="https://docs.docker.com/storage/bind-mounts/">Official Docs</a></p>
 <h2>Local Development</h2>
 <p>The most common use case for bind mounts is in local development environments. Instead of rebuilding an image on every code change, we can mount our application's <code>src/</code> directory to the <code>/app/src</code> directory of our container.</p>
 <p>Open a terminal at the root of your application and run</p>
-<pre><code>docker run --name my-container -p 8000:8000 -d -v $PWD/src:/app/src my-node-app:latest
+<pre><code class="language-bash">docker run --name my-container -p 8000:8000 -d -v $PWD/src:/app/src my-node-app:latest
 </code></pre>
 <p>Verify it's working by going to <code>localhost:8000</code> in your browser. You should see <code>Hello World!</code>.</p>
 <p>Now open <code>src/index.js</code> and change line 6 from</p>
-<pre><code>res.send('Hello World!')
+<pre><code class="language-js">res.send('Hello World!')
 </code></pre>
 <p>to</p>
-<pre><code>res.send('Hello Bitovi!')
+<pre><code class="language-js">res.send('Hello Bitovi!')
 </code></pre>
 <p>save the file and refresh your browser. It should now say <code>Hello Bitovi!</code>.</p>
-<p>What's happening is the nodemon process is watching the <code>src/</code> directory in the container for changes. Because our host-machine's <code>src/</code> directory is mounted to the container's <code>app/src/</code> directory (<code>-v $PWD/src:/app/src</code>), when we save the change to <code>index.js</code>, it is replicated in the container causing nodemon to restart the server. We can see this in the container logs:</p>
-<pre><code>$ docker logs my-container
+<p>What's happening is the nodemon process is watching the <code>src/</code> directory in the container for changes. Because our host-machine's <code>src/</code> directory is mounted to the container's <code>app/src/</code> directory (<code>-v $PWD/src:/app/src</code>), when we save the change to <code>index.js</code>, it is replicated in the container causing nodemon to restart the server. We can see this by following the container's log with the <code>-f</code> flag:</p>
+<pre><code class="language-bash">$ docker logs -f my-container
 
 &gt; bitovi-academy-app@1.0.0 start
 &gt; nodemon src/index.js
@@ -471,7 +473,7 @@ Example app listening at http://localhost:8000
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/docker/5-volumes-and-local-development/volumes-and-local-development.md"},"description":"Streamline local development workflows with bind mounts. \n","name":"learn-docker/volumes-and-local-development","title":"Volumes and Local Development","type":"page","parent":"learn-docker","order":5,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/docker/5-volumes-and-local-development/volumes-and-local-development.md"},"description":"Streamline local development with bind mounts. \n","name":"learn-docker/volumes-and-local-development","title":"Volumes and Local Development","type":"page","parent":"learn-docker","order":5,"comment":" ","pathToRoot":"../.."};
     </script>
 
     

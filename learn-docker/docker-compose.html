@@ -158,7 +158,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-docker.html"
-							title="Build and containerize a Node app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
 							Learn Docker
 						</a>
 						
@@ -188,7 +188,7 @@
 						<a class="page"
 							href="build-node-app.html"
 							title="Build a simple Express API to use for the rest of the course.">
-							Build a Node App
+							Build a NodeJS App
 						</a>
 						
 					</li>
@@ -202,7 +202,7 @@
            						">
 						<a class="page"
 							href="writing-a-dockerfile.html"
-							title="Write a Dockerfile to containerize the node app.">
+							title="Write a Dockerfile to containerize the NodeJS app.">
 							Writing a Dockerfile
 						</a>
 						
@@ -217,7 +217,7 @@
            						">
 						<a class="page"
 							href="build-and-run-image.html"
-							title="Build an image and run a container for our node app.">
+							title="Build an image and run a container for our NodeJS app.">
 							Build and Run An Image
 						</a>
 						
@@ -232,7 +232,7 @@
            						">
 						<a class="page"
 							href="volumes-and-local-development.html"
-							title="Streamline local development workflows with bind mounts.">
+							title="Streamline local development with bind mounts.">
 							Volumes and Local Development
 						</a>
 						
@@ -247,7 +247,7 @@
            						">
 						<a class="page"
 							href="production-readiness.html"
-							title="Trimming the fat from our docker image.">
+							title="Learn to reduce the size of docker images.">
 							Production Readiness
 						</a>
 						
@@ -381,11 +381,11 @@ covering CanJS core libraries.">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/HLPEIKVaZeE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <h2>Overview</h2>
 <p>At this point, we are building our image with</p>
-<pre><code>$ MY_ENV=dev
+<pre><code class="language-bash">$ MY_ENV=dev
 $ docker build -t my-node-app:$MY_ENV --target $MY_ENV .
 </code></pre>
 <p>and running it with</p>
-<pre><code>$ MY_PORT=9000
+<pre><code class="language-bash">$ MY_PORT=9000
 $ docker run \
 --name my-container \
 -p 8000:$MY_PORT \
@@ -395,11 +395,11 @@ my-node-app:dev
 </code></pre>
 <p>That's a lot of typing and memorization to run a container. Docker compose condenses all of this into one command: <code>docker-compose up</code>.</p>
 <h2>Docker Compose</h2>
-<p>Docker Compose is a cli included with Docker that provides a declarative way to building and running multiple Docker containers. With Docker Compose, the nomenclature for one of these containers is called a &quot;service&quot;.</p>
+<p>Docker Compose is a cli included with Docker that provides a declarative way to building and running multiple Docker containers. When Docker Compose manages a container, it is called a &quot;service&quot;.</p>
 <p>Docker Compose reads a special file called <code>docker-compose.yml</code> that defines any number of services' port mappings, volumes, interdependencies and more. Docker Compose ensures containers are run in a consistent way without needing to type <code>docker build</code> and <code>docker run</code> along with numerous arguments into the console.</p>
 <h2>Replacing docker run</h2>
 <p>Instead of running</p>
-<pre><code>$ MY_PORT=9000
+<pre><code class="language-bash">$ MY_PORT=9000
 $ docker run \
 --name my-container \
 -p 8000:$MY_PORT \
@@ -409,11 +409,11 @@ my-node-app:dev
 </code></pre>
 <p>we can capture all of these arguments in a <code>docker-compose.yml</code> file.</p>
 <p>First create a <code>.env</code> file with the following content. <code>docker-compose</code> will automatically read these environment variables and allow us to use them throughout <code>docker-compose.yml</code>.</p>
-<pre><code>MY_PORT=8000
+<pre><code class="language-bash">MY_PORT=8000
 MY_ENV=dev
 </code></pre>
 <p>Create a <code>docker-compose.yml</code> in the root of your application repo and paste the following content:</p>
-<pre><code>version: &quot;3.8&quot;
+<pre><code class="language-yaml">version: &quot;3.8&quot;
 services:
   my-app:
     image: my-node-app:${MY_ENV}
@@ -426,7 +426,7 @@ services:
 </code></pre>
 <p>Hopefully, this file is self-explanatory. It creates a service called &quot;my-app&quot; that creates an instance of our <code>my-node-app</code> image with the desired port mapping, volumes and environment variables defined.</p>
 <p>Run <code>docker-compose up</code> and watch the magic.</p>
-<pre><code>$ docker-compose up
+<pre><code class="language-bash">$ docker-compose up
 Starting nodeapp_my-app_1 ... done
 Attaching to nodeapp_my-app_1
 my-app_1  | 
@@ -443,7 +443,7 @@ my-app_1  | Example app listening at http://localhost:8000
 <p>You can press <code>ctrl+c</code> or run <code>docker-compose down</code> from a separate tab to kill your container(s).</p>
 <h2>Replacing docker build</h2>
 <p>Now that we've replaced <code>docker run</code> with <code>docker-compose up</code>, Let's update <code>docker-compose.yml</code> to allow Docker Compose to manage builds too.</p>
-<pre><code>version: &quot;3.8&quot;
+<pre><code class="language-yaml">version: &quot;3.8&quot;
 services:
   my-app:
     build:
@@ -468,8 +468,10 @@ Run <code>docker-compose build</code> to build a fresh copy of <code>my-node-app
 <p>Changing <code>MY_ENV=dev</code> to <code>MY_ENV=prod</code> will cause <code>docker-compose up</code> to create a container in the production mode. If an image does not exist, <code>docker-compose up</code> will automatically run <code>docker-compose build</code> for us!</p>
 <h2>Let's add more containers!</h2>
 <p>Let's add a MySQL database and ensure it is running before starting the <code>my-app</code> service.</p>
+<p>We'll use the <code>mysql:5.7</code> image from <a href="https://hub.docker.com/_/mysql">Dockerhub</a>.</p>
 <h3>.env</h3>
-<pre><code># My App
+<p>The Dockerhub page specifies several required environment variables to pass in to the container. We'll add these to <code>.env</code></p>
+<pre><code class="language-yaml"># My App
 MY_ENV=prod
 MY_PORT=8000
 
@@ -480,7 +482,8 @@ MYSQL_USER=my_user
 MYSQL_PASSWORD=S3cure!_user
 </code></pre>
 <h3>docker-compose.yml</h3>
-<pre><code>version: &quot;3.8&quot;
+<p>The <code>db</code> service we're adding below should be intuitive based on what's been covered so far. The exception is the <code>volumes:</code> section.</p>
+<pre><code class="language-yaml">version: &quot;3.8&quot;
 services:
   my-app:
     build:
@@ -499,7 +502,6 @@ services:
      image: mysql:5.7
      volumes:
        - db_data:/var/lib/mysql
-     restart: always
      environment:
        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
        MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -508,8 +510,19 @@ services:
 volumes:
     db_data: {}
 </code></pre>
+<h4>Volumes</h4>
+<p>As mentioned in [volumes-and-local-development](Volumes and Local Development), volumes are used to persist state outside container creation and destruction.</p>
+<p>We are creating a volume called <code>db_data</code>. Docker Compose <a href="https://docs.docker.com/compose/compose-file/#volumes">documentation</a> specifies configuration parameters available when declaring a volume, but more often than not, it is sufficient to use the default configuration as shown below:</p>
+<pre><code>volumes:
+    db_data: {}
+</code></pre>
+<p>Lastly, we use the volume as the <code>&lt;src&gt;</code> side of the <code>volumes</code> block of the <code>db</code> service. This ensures the contents of <code>/var/lib/mysql</code> are saved to the <code>db_data</code> volume preventing data loss on container destruction and restarts.</p>
+<pre><code>volumes:
+- db_data:/var/lib/mysql
+</code></pre>
+<h3>Test</h3>
 <p>Finally, let's start everything up</p>
-<pre><code>$ docker-compose up
+<pre><code class="language-bash">$ docker-compose up
 Creating network &quot;nodeapp_default&quot; with the default driver
 Creating nodeapp_db_1 ... done
 Creating nodeapp_my-app_1 ... done
