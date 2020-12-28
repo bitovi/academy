@@ -35,7 +35,7 @@ Don't worry if some of this syntax is new to you, we will be going into more det
 
 This is not an accident. It's mandatory. Consider how the component is being used directly inside the `App` component, right next to normal HTML. If a component name is all lowercase, React assumes that it is a normal HTML tag (like `span`, or `div`). So the first letter must be capital so that it can be differentiated from a normal HTML element.
 
-By and large, the React community has centered around the convention of using (PascalCase)[https://techterms.com/definition/pascalcase] to name `components`. As far as React is concerned though, your component simply needs to begin with a capital letter to be treated as a custom component.
+By and large, the React community has centered around the convention of using [PascalCase](https://techterms.com/definition/pascalcase) to name `components`. As far as React is concerned though, your component simply needs to begin with a capital letter to be treated as a custom component.
 
 > To drive the point home further, Imagine we created a component named lowercase `div`. In this case, React wouldn't be able to tell the difference between a normal div and our component `div` since we use them identically. Hence the capitalization.
 
