@@ -161,9 +161,9 @@ Note that the `classnames` library can be used in conjunction with CSS modules a
 
 The styled components philosophy is that everything is a component. Instead of separating your CSS and your JS, they become integrated into one single entity. So instead of loading styles into a component from some external source, the styles are actually built into the component itself, and can be configured using props/state.
 
-In a styled components implementation, a `Button` component for example, might take a `color` prop, or a `fontSize` prop to determine its style. This approach is closely integrated with React, and utilizes the built-in React features (props/state) more than any other.
+In a styled components implementation, a `Button` component for example, might take a `color` prop or a `fontSize` prop to determine its style. This approach is closely integrated with React, and utilizes the built-in React features (props/state) more than any other.
 
-In the code below, we're using the [emotion](https://emotion.sh/docs/introduction) library to create a styled `Button` component. The syntax is a bit foreign, but this is essentially creating a `<button>` component which maps its props to styles. For example, the button below accepts a `color` and an `outline` prop, which are used to generate the styling.
+In the code below, we're using the [emotion](https://emotion.sh/docs/introduction) library to create a styled `Button` component. The syntax is a bit foreign, but this is essentially creating a `<button>` component which maps its props to styles. The button below accepts a `color` and an `outline` prop, which are used to generate the styling.
 
 ```js
 import styled from '@emotion/styled';
