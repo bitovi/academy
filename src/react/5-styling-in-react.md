@@ -44,7 +44,7 @@ Although this is the simplest way to add styles, it shouldn't be counted out. Us
 
 One of the downsides of this approach is the performance cost associated with making and interpolating these style objects. Though, for many common layouts you will likely never run into performance concerns. In the off-chance that you are rendering hundreds / thousands of components (nested tables, etc...), it would be faster to use a stylesheet.
 
-That being said there are libraries that mitigate this speed concern while still using inline styling (namely `emotion`). They perform a build step conversion that takes your inline styles and generates stylesheets for them.
+That being said there are libraries that mitigate this speed concern while still using inline styling (namely [`emotion`](https://emotion.sh/docs/introduction)). They perform a build step conversion that takes your inline styles and generates stylesheets for them.
 
 ## External Styles
 
