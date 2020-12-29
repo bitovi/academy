@@ -102,7 +102,7 @@ For the remainder of this training, we will be using functional components exclu
 
 ## Exercise
 
-In this exercise, we supply you with a single Tic-Tac-Toe cell component. And your job is to make a Board component that renders those Tic-Tac-Toe cells into a nice 3x3 grid. Bonus points if you update the cell component such that whenever a single cell is clicked, we `console.log` the string "Clicked".
+In this exercise, we supply you with a single Tic-Tac-Toe cell component. And your job is to make a Board component that renders those Tic-Tac-Toe cells into a nice 3x3 grid. Bonus points if you update the cell component such that whenever a single cell is clicked, we `console.log` the string "Clicked", hint: take a look [here](intro-to-jsx.html#event-handling) for a refresher on event handling.
 
 ```jsx
 const squareStyling = {

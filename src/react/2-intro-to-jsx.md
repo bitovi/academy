@@ -39,7 +39,7 @@ By and large, the React community has centered around the convention of using [P
 
 > To drive the point home further, Imagine we created a component named lowercase `div`. In this case, React wouldn't be able to tell the difference between a normal div and our component `div` since we use them identically. Hence the capitalization.
 
-### 2. We can pass attribute-like things to our components. These are called `props`.
+### 2. We can pass attribute-like values to our components. These are called `props` which is short for properties.
 
 ```jsx
 function App(props) {
@@ -57,9 +57,9 @@ function App(props) {
 
 In the example above we pass 'name' to our `HelloWorld` component. These HTML attribute-like descriptors are called `props`, and React does the work of wrapping them in an object, and supplying them as the first argument to the `HelloWorld` component for us. The argument `props` is simply an object containing all of the attribute-like things we passed in.
 
-> In the example above, we only passed in a single attribute so the `props` object would just be `{ name: 'Dan' }` for the first `HelloWorld` component. Notice also, that these `props` make the component more reusable. Above, I'm reusing the component with 3 different names.
+> In the example above, we only passed in a single attribute so the `props` object would just be `{ name: 'Dan' }` for the first `HelloWorld` component. Also these `props` make the component more reusable, as the above component is used with 3 names without duplication of code.
 
-### 3. React allows us to embed HTML into our components. This is called `JSX`.
+### 3. React allows us to embed HTML into our components. This is called `JSX` which stands for `JavaScript XML`.
 
 Technically this stuff isn't exactly HTML, it's a representation of what HTML should render when the component is evaluated.
 
@@ -118,7 +118,7 @@ ReactDOM.render(<HelloWorld />, document.getElementById('root'));
 
 @codepen react
 
-React splits apart the steps where you "define" the HTML from the part where you "render" it, because it affords you a couple niceties. It will "re-render" components when the data going into them changes. We will discuss more about all this in the next section.
+React splits apart the steps where you "define" the HTML from the part where you "render" it, and will "re-render" components when the data going into them changes. We'll discuss some of the benefits that offers us in the section below.
 
 ## JSX
 
@@ -235,7 +235,7 @@ const name = 'Bitovi';
 <div className="button primary">Welcome to {name}!</div>;
 ```
 
-In the code above, use the `{name}` syntax to tell JSX that to render the value stored in the `name` variable (ie. `"Bitovi"`) into our view.
+In the code above, use the `{name}` syntax to tell JSX that to render the value stored in the `name` variable (i.e. `"Bitovi"`) into our view.
 
 You can take this a step further by interpolating multiple values, and using JavaScript functions to transform data on the fly. Anything that goes inside `{}` is executed as normal JavaScript. These are the same rules as the brackets on a prop: any JavaScript expression is valid inside the curly brackets.
 
@@ -253,7 +253,7 @@ const person = {
 
 @highlight 7,8
 
-### JSX Is JavaScript
+### JSX is JavaScript
 
 Remember, JSX is simply an alternative syntax for normal JavaScript&mdash;it is not magic. This means that you can use JSX as a normal value.
 
