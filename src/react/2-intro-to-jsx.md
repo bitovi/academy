@@ -349,13 +349,15 @@ If you want to iterate within JSX, use methods such as `Array.map`, `Array.filte
 ```jsx
 // Mapping values to JSX elements
 <div>
-  {[1, 2, 3, 4].map((n) => (
-    <span>n</span>
+  {[1, 2, 3, 4].map((n, index) => (
+    <span key={index}>{n}</span>
   ))}
 </div>
 ```
 
 @highlight 3
+
+_Note: Due to how React [stores elements in memory](https://reactjs.org/docs/lists-and-keys.html#keys), list items require a stable `key` to identify them in the [Virtual DOM](https://reactjs.org/docs/faq-internals.html)._ 
 
 ```html
 <div>

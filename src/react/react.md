@@ -15,7 +15,7 @@ In a nutshell, React is a [front-end](https://www.coursereport.com/blog/front-en
 
 While it's most commonly used for building web apps, React can also be used to create mobile & desktop apps through [React Native](https://reactnative.dev/) and [Electron](https://www.electronjs.org/). Although this course will not explicitly cover them, the theory contained here will still fully apply to other environments.
 
-React's goal is to enable developers to break down the view layer of their apps into small, reusable chunks called [components](https://reactjs.org/docs/components-and-props.html). In turn, the components are rendered as plain HTML and will automatically update whenever the data in your app changes. We refer to the data driving the application as _state_.
+React's goal is to enable developers to break down the view layer of their apps into small, reusable chunks called [components](https://reactjs.org/docs/components-and-props.html). These components are rendered as plain HTML and tracked in memory as [Virtual DOM](https://reactjs.org/docs/faq-internals.html) objects. As data or _state_ in the application changes, the underlying Virtual DOM is updated and we see the coresponding markup change. This makes React very efficent at making updates as only components that have changed will be rendered again.
 
 One of the best things about React is that it can be used in any website, even one that is already built with another framework. This makes it easy to convert an existing project to React, or just use it for one part of a site.
 
