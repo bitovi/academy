@@ -11,7 +11,7 @@ In React, `props` are the "arguments" that are passed to our component. Alternat
 
 Use `state` for internal variables, which when changed, should re-render the component. Examples include the value of a text box, whether or not a modal is open, and the current tab selection.
 
-Using functional components, the `useState()` hook provides a value and setter capable of holding any data type. (We will explain hooks in more detail in the coming lessons. For now, don't worry about what exactly a hook is.) This allows us to hold simple variables such as:
+Using functional components, the `useState()` hook provides a value and setter capable of holding any data type. This allows us to hold simple variables such as:
 
 ```js
 const [count, setCount] = useState(0);
@@ -126,7 +126,7 @@ function WrapperContainer() {
 }
 ```
 
-@highlight 3,5,10-14,17
+@highlight 3,5,10-14
 
 Using this data in the `DisplayComponent` is simple. Use the props to render the component and call `setUnsavedText` on changes.
 
@@ -153,7 +153,9 @@ Next, let's wire up that button. We'll define an `onButtonClick` callback to han
 
 ```jsx
 function WrapperContainer() {
+  // define the savedText to be shown
   const [savedText, setSavedText] = useState('');
+  // create a holder for unsaved text
   const [unsavedText, setUnsavedText] = useState('');
 
   function onButtonClick() {
@@ -180,7 +182,7 @@ function WrapperContainer() {
 }
 ```
 
-@highlight 2-3,5-10,15-19,22
+@highlight 7-12, 24
 
 Lastly, update the `ButtonComponent` to use our new callback.
 
@@ -255,11 +257,13 @@ ReactDOM.render(<WrapperContainer />, document.getElementById('root'));
 ```
 
 @codepen react
-@highlight 5,7,9-14,19-23,26,32,33-36,40,42,47,49
+@highlight 2-5,7-12,17-21,24,30-34,38,40,47-49
 
 ## What data should be kept in React state?
 
-There is no "right" answer for what data should be stored in state. Applications with simple API requirements may keep everything in state objects. Other apps may opt to store nearly everything in a separate global state management library.
+There is no "right" answer for what data should be stored in state. Applications with simple API requirements may keep everything in state objects. Other apps may opt to store nearly everything in a separate global state management library such as Redux or Apollo.
+
+For a purely React method of maintaining and exposing state accross your application, check out the [next lesson on Context.](context-hooks.html)
 
 ## Next Steps
 
