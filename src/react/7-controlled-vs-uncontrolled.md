@@ -102,7 +102,7 @@ ReactDOM.render(<SmartParentComponent />, document.getElementById('root'));
 @highlight 2,6,7,13,17,18
 @codepen react
 
-Above we've defined both components, `SmartParentComponent` and `SearchBar`. The `SearchBar` component accepts two props: one for the value of the input, and another for updating the value of the input. Notice that there is no state here. This is a stateless (ie. controlled) component.
+Above we've defined both components, `SmartParentComponent` and `SearchBar`. The `SearchBar` component accepts two props: one for the value of the input, and another for updating the value of the input. Notice that there is no state here. This is a stateless (i.e. controlled) component.
 
 The `SmartParentComponent` does have state however, it is keeping track of the input value and how to set the input value. These are then passed down into the `SearchBar` component, and used to control it.
 
@@ -123,7 +123,7 @@ Let's use our knowledge of controlled and uncontrolled components to build an in
 ```jsx
 let searchContainer = {
   display: 'flex',
-  width: '100%',
+  width: '500px',
   border: '1px solid black',
   marginTop: '25px',
   height: '40px',
