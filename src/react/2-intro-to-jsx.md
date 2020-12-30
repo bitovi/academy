@@ -55,7 +55,7 @@ function App(props) {
 
 @highlight 4
 
-In the example above we pass 'name' to our `HelloWorld` component. These HTML attribute-like descriptors are called `props`, and React does the work of wrapping them in an object, and supplying them as the first argument to the `HelloWorld` component for us. The argument `props` is simply an object containing all of the attribute-like things we passed in.
+In the example above we pass 'name' to our `HelloWorld` component. These HTML attribute-like descriptors are called `props`, and React does the work of wrapping them in an object, and supplying them as the first argument to the `HelloWorld` component for us. The argument `props` is simply an object containing all of the attribute-like values we passed in.
 
 > In the example above, we only passed in a single attribute so the `props` object would just be `{ name: 'Dan' }` for the first `HelloWorld` component. Also these `props` make the component more reusable, as the above component is used with 3 names without duplication of code.
 
@@ -67,7 +67,7 @@ Before discussing how React performs this magic, let's discuss how user interfac
 
 At its core, React is a JavaScript library that allows you to describe the way your components look using only JavaScript. But this "all JS" approach comes with some downsides, namely it becomes arduous to describe complex page hierarchies using only pure JavaScript. When first learning React, it's good to be aware of the [element API](https://reactjs.org/docs/react-api.html), but keep in mind that most React developers will forego this for an alternative syntactic sugar called JSX.
 
-### React's Element API
+## React's Element API
 
 React exposes an [API](https://reactjs.org/docs/react-api.html) for creating DOM-like elements that are then rendered into the DOM using JavaScript. For example to create an `h1` we could write the following:
 
@@ -293,7 +293,7 @@ const body = React.createElement('p', null, `Hello ${'Mike'}`);
 const page = React.createElement('div', null, [header, body]);
 ```
 
-### Common Pitfalls
+## Common Pitfalls
 
 Only expressions which return a value may be interpolated. This includes static values, variables and calls to functions. It does not include control-flow statements such as `if`, `case`, `for`, `while`. These can either be abstracted behind a function, which is then called within the JSX or be re-written in a JSX-friendly way.
 
@@ -357,7 +357,7 @@ If you want to iterate within JSX, use methods such as `Array.map`, `Array.filte
 
 @highlight 3
 
-_Note: Due to how React [stores elements in memory](https://reactjs.org/docs/lists-and-keys.html#keys), list items require a stable `key` to identify them in the [Virtual DOM](https://reactjs.org/docs/faq-internals.html)._ 
+_✏️ Note: Due to how React [stores elements in memory](https://reactjs.org/docs/lists-and-keys.html#keys), list items require a stable `key` to identify them in the [Virtual DOM](https://reactjs.org/docs/faq-internals.html)._
 
 ```html
 <div>
@@ -395,6 +395,8 @@ In this exercise you will be creating a component that is a single square with w
 So if a person rendered that component, they would see
 
 <img src="../static/img/react/redQ.png" >
+
+_✏️ Note: Centering content inside of a div is easy with flexbox. Simply add `"display: flex; justify-content: center; align-items: center;"` to the parent div which holds the content you wish to be centered. Remember the differences between normal CSS, and inline styles with React though._
 
 Here's an empty codepen with React preloaded to get you started.
 
