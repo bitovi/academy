@@ -21,7 +21,7 @@ One of the best things about React is that it can be used in any website, even o
 
 ## Course Outline
 
-This guide begins by walking you through how to [set up an environment](learn-react/setting-up-your-environment.html), providing an introduction into [JSX](learn-react/intro-to-jsx.html) (JavaScript flavor of XML) and some basic [react theory](learn-react/components.html).
+This guide begins by walking you through how to [set up an environment](learn-react/setting-up-your-environment.html), providing an introduction into [JSX](learn-react/intro-to-jsx.html) (JavaScript flavor of XML) and some basic [React theory](learn-react/components.html).
 
 Once you're all setup and oriented into the framework, you'll learn how to build reusable web components using [props](learn-react/props.html), and you will discover the difference between [controlled & uncontrolled](learn-react/controlled-vs-uncontrolled.html) components. You'll also learn the various ways of doing [styling](learn-react/styling-in-react.html), and how CSS can be integrated into JSX.
 

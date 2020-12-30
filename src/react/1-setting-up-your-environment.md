@@ -104,7 +104,7 @@ The final script, `eject`, is very important and dangerous. In order to simplify
 
 ## Deployment
 
-One of the benefits of using `react-scripts` is its great build process. When you run the `npm run build` command, your site will automatically be bundled, minified, and written into a `build` folder.
+One of the benefits of using `react-scripts` is its great build process. When you run the `npm run build` command, your site will automatically be [bundled](https://www.simplethread.com/javascript-modules-and-code-bundling-explained/), [minified](<https://en.wikipedia.org/wiki/Minification_(programming)>), and written into a `build` folder.
 
 You can then upload the folder to any webserver to be served statically (just like a normal HTML website), no special configuration required.
 
@@ -118,7 +118,7 @@ npm run build
 
 @highlight 2
 
-The final command will build the site and create a `build` folder. Check out the generated files. Notice how they're nicely minified and bundled!
+The final command will build the site and create a `build` folder. Check out the generated files. Notice how they're nicely [minified](<https://en.wikipedia.org/wiki/Minification_(programming)>) and [bundled](https://www.simplethread.com/javascript-modules-and-code-bundling-explained/)!
 
 More information on the `build` folder and on deployment in general can be found in the [Create React App documentation](https://create-react-app.dev/docs/deployment/).
 
