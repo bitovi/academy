@@ -24,7 +24,7 @@ function Hello() {
   const [inputValue, setInputValue] = React.useState('');
 
   return (
-    <input value={inputValue.toUpperCase()} onChange={(e) => setInputValue(e.target.value} />
+    <input value={inputValue.toUpperCase()} onChange={(e) => setInputValue(e.target.value)} />
   );
 }
 

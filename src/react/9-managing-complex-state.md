@@ -95,7 +95,7 @@ function ButtonComponent() {
 
 @highlight 2,only
 
-Let's create two state items in the `WrapperContaner`.
+Let's create two state items in the `WrapperContainer`.
 
 - `savedText` as we defined in the earlier example will hold the set message.
 - `unsavedText` will keep the inputs typed by the user until they are saved
