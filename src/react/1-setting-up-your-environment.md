@@ -67,6 +67,8 @@ import App from './App';
 ReactDOM.render(<App />, document.getElementById('root'));
 ```
 
+> Note: feel free to hover above the above code snippet as well as future code snippets to see a copy button, or in other cases a copy and a run button which will open the code in a `CodeSandbox` environment.
+
 **package.json**
 
 The `package.json` file is kept intentionally small, and includes only a few dependencies by default:
