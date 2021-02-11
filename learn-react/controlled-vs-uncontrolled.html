@@ -496,7 +496,7 @@ ReactDOM.render(&lt;SmartParentComponent /&gt;, document.getElementById('root'))
 </code></pre>
 <div line-highlight='2,6,7,13,17,18'></div>
 <div class='codepen' data-codepen='react'></div>
-<p>Above we've defined both components, <code>SmartParentComponent</code> and <code>SearchBar</code>. The <code>SearchBar</code> component accepts two props: one for the value of the input, and another for updating the value of the input. Notice that there is no state here. This is a stateless (ie. controlled) component.</p>
+<p>Above we've defined both components, <code>SmartParentComponent</code> and <code>SearchBar</code>. The <code>SearchBar</code> component accepts two props: one for the value of the input, and another for updating the value of the input. Notice that there is no state here. This is a stateless (i.e. controlled) component.</p>
 <p>The <code>SmartParentComponent</code> does have state however, it is keeping track of the input value and how to set the input value. These are then passed down into the <code>SearchBar</code> component, and used to control it.</p>
 <p>This is another very common pattern. The idea is that we have a very simple, lightweight <code>SearchBar</code> component, which has no concept of state. Instead it is entirely controlled by props passed down from a smart, stateful parent.</p>
 <h2>Exercise</h2>
@@ -510,7 +510,7 @@ ReactDOM.render(&lt;SmartParentComponent /&gt;, document.getElementById('root'))
 </ul>
 <pre><code class="language-jsx">let searchContainer = {
   display: 'flex',
-  width: '100%',
+  width: '500px',
   border: '1px solid black',
   marginTop: '25px',
   height: '40px',

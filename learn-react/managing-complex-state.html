@@ -426,7 +426,7 @@ covering CanJS core libraries.">
     <h2>What is state?</h2>
 <p>In React, <code>props</code> are the &quot;arguments&quot; that are passed to our component. Alternatively, <code>state</code> can be conceptualized as the &quot;internal variables&quot; of our function. But what makes <code>state</code> different from normal internal variables? <code>state</code> is given superpowers! Anytime <code>state</code> is changed (similarly with props), the component magically re-renders itself.</p>
 <p>Use <code>state</code> for internal variables, which when changed, should re-render the component. Examples include the value of a text box, whether or not a modal is open, and the current tab selection.</p>
-<p>Using functional components, the <code>useState()</code> hook provides a value and setter capable of holding any data type. (We will explain hooks in more detail in the coming lessons. For now, don't worry about what exactly a hook is.) This allows us to hold simple variables such as:</p>
+<p>Using functional components, the <code>useState()</code> hook provides a value and setter capable of holding any data type. This allows us to hold simple variables such as:</p>
 <pre><code class="language-js">const [count, setCount] = useState(0);
 const [flag, setFlag] = useState(true);
 </code></pre>
@@ -493,7 +493,7 @@ function ButtonComponent() {
 }
 </code></pre>
 <div line-highlight='2,only'></div>
-<p>Let's create two state items in the <code>WrapperContaner</code>.</p>
+<p>Let's create two state items in the <code>WrapperContainer</code>.</p>
 <ul>
 <li><code>savedText</code> as we defined in the earlier example will hold the set message.</li>
 <li><code>unsavedText</code> will keep the inputs typed by the user until they are saved</li>
@@ -521,7 +521,7 @@ function ButtonComponent() {
   );
 }
 </code></pre>
-<div line-highlight='3,5,10-14,17'></div>
+<div line-highlight='3,5,10-14'></div>
 <p>Using this data in the <code>DisplayComponent</code> is simple. Use the props to render the component and call <code>setUnsavedText</code> on changes.</p>
 <pre><code class="language-jsx">function DisplayComponent({ unsavedText, setUnsavedText, savedText }) {
   function onSetText(event) {
@@ -541,7 +541,9 @@ function ButtonComponent() {
 <div line-highlight='1,2-5,9,11'></div>
 <p>Next, let's wire up that button. We'll define an <code>onButtonClick</code> callback to handle changes to the state variables. Pass the callback down to <code>ButtonComponent</code>.</p>
 <pre><code class="language-jsx">function WrapperContainer() {
+  // define the savedText to be shown
   const [savedText, setSavedText] = useState('');
+  // create a holder for unsaved text
   const [unsavedText, setUnsavedText] = useState('');
 
   function onButtonClick() {
@@ -567,7 +569,7 @@ function ButtonComponent() {
   );
 }
 </code></pre>
-<div line-highlight='2-3,5-10,15-19,22'></div>
+<div line-highlight='7-12, 24'></div>
 <p>Lastly, update the <code>ButtonComponent</code> to use our new callback.</p>
 <pre><code class="language-jsx">function ButtonComponent({ onButtonClick }) {
   return (
@@ -634,9 +636,10 @@ function ButtonComponent({ onButtonClick }) {
 ReactDOM.render(&lt;WrapperContainer /&gt;, document.getElementById('root'));
 </code></pre>
 <div class='codepen' data-codepen='react'></div>
-<div line-highlight='5,7,9-14,19-23,26,32,33-36,40,42,47,49'></div>
+<div line-highlight='2-5,7-12,17-21,24,30-34,38,40,47-49'></div>
 <h2>What data should be kept in React state?</h2>
-<p>There is no &quot;right&quot; answer for what data should be stored in state. Applications with simple API requirements may keep everything in state objects. Other apps may opt to store nearly everything in a separate global state management library.</p>
+<p>There is no &quot;right&quot; answer for what data should be stored in state. Applications with simple API requirements may keep everything in state objects. Other apps may opt to store nearly everything in a separate global state management library such as Redux or Apollo.</p>
+<p>For a purely React method of maintaining and exposing state accross your application, check out the <a href="context-hooks.html">next lesson on Context.</a></p>
 <h2>Next Steps</h2>
 <p>✏️ Head over to the <a href="context-hooks.html">next lesson</a> to get a more detailed picture on how and when you can use context.</p>
 

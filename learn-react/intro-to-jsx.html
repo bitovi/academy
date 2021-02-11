@@ -445,11 +445,11 @@ ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));
 <p>Don't worry if some of this syntax is new to you, we will be going into more detail about components, and how they are constructed. Even if you don't understand every detail of what's happening above, we can see 3 big takeaways.</p>
 <h3>1. The <code>HelloWorld</code> component is simply a function and the first letter is capitalized.</h3>
 <p>This is not an accident. It's mandatory. Consider how the component is being used directly inside the <code>App</code> component, right next to normal HTML. If a component name is all lowercase, React assumes that it is a normal HTML tag (like <code>span</code>, or <code>div</code>). So the first letter must be capital so that it can be differentiated from a normal HTML element.</p>
-<p>By and large, the React community has centered around the convention of using (PascalCase)<a href="https://techterms.com/definition/pascalcase" title="https://techterms.com/definition/pascalcase">https://techterms.com/definition/pascalcase</a> to name <code>components</code>. As far as React is concerned though, your component simply needs to begin with a capital letter to be treated as a custom component.</p>
+<p>By and large, the React community has centered around the convention of using <a href="https://techterms.com/definition/pascalcase">PascalCase</a> to name <code>components</code>. As far as React is concerned though, your component simply needs to begin with a capital letter to be treated as a custom component.</p>
 <blockquote>
 <p>To drive the point home further, Imagine we created a component named lowercase <code>div</code>. In this case, React wouldn't be able to tell the difference between a normal div and our component <code>div</code> since we use them identically. Hence the capitalization.</p>
 </blockquote>
-<h3>2. We can pass attribute-like things to our components. These are called <code>props</code>.</h3>
+<h3>2. We can pass attribute-like values to our components. These are called <code>props</code> which is short for properties.</h3>
 <pre><code class="language-jsx">function App(props) {
   return (
     &lt;div&gt;
@@ -461,15 +461,15 @@ ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));
 }
 </code></pre>
 <div line-highlight='4'></div>
-<p>In the example above we pass 'name' to our <code>HelloWorld</code> component. These HTML attribute-like descriptors are called <code>props</code>, and React does the work of wrapping them in an object, and supplying them as the first argument to the <code>HelloWorld</code> component for us. The argument <code>props</code> is simply an object containing all of the attribute-like things we passed in.</p>
+<p>In the example above we pass 'name' to our <code>HelloWorld</code> component. These HTML attribute-like descriptors are called <code>props</code>, and React does the work of wrapping them in an object, and supplying them as the first argument to the <code>HelloWorld</code> component for us. The argument <code>props</code> is simply an object containing all of the attribute-like values we passed in.</p>
 <blockquote>
-<p>In the example above, we only passed in a single attribute so the <code>props</code> object would just be <code>{ name: 'Dan' }</code> for the first <code>HelloWorld</code> component. Notice also, that these <code>props</code> make the component more reusable. Above, I'm reusing the component with 3 different names.</p>
+<p>In the example above, we only passed in a single attribute so the <code>props</code> object would just be <code>{ name: 'Dan' }</code> for the first <code>HelloWorld</code> component. Also these <code>props</code> make the component more reusable, as the above component is used with 3 names without duplication of code.</p>
 </blockquote>
-<h3>3. React allows us to embed HTML into our components. This is called <code>JSX</code>.</h3>
+<h3>3. React allows us to embed HTML into our components. This is called <code>JSX</code> which stands for <code>JavaScript XML</code>.</h3>
 <p>Technically this stuff isn't exactly HTML, it's a representation of what HTML should render when the component is evaluated.</p>
 <p>Before discussing how React performs this magic, let's discuss how user interfaces are created in React.</p>
 <p>At its core, React is a JavaScript library that allows you to describe the way your components look using only JavaScript. But this &quot;all JS&quot; approach comes with some downsides, namely it becomes arduous to describe complex page hierarchies using only pure JavaScript. When first learning React, it's good to be aware of the <a href="https://reactjs.org/docs/react-api.html">element API</a>, but keep in mind that most React developers will forego this for an alternative syntactic sugar called JSX.</p>
-<h3>React's Element API</h3>
+<h2>React's Element API</h2>
 <p>React exposes an <a href="https://reactjs.org/docs/react-api.html">API</a> for creating DOM-like elements that are then rendered into the DOM using JavaScript. For example to create an <code>h1</code> we could write the following:</p>
 <pre><code class="language-js">React.createElement('h1', null, 'Hello World');
 </code></pre>
@@ -504,7 +504,7 @@ ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));
 ReactDOM.render(&lt;HelloWorld /&gt;, document.getElementById('root'));
 </code></pre>
 <div class='codepen' data-codepen='react'></div>
-<p>React splits apart the steps where you &quot;define&quot; the HTML from the part where you &quot;render&quot; it, because it affords you a couple niceties. It will &quot;re-render&quot; components when the data going into them changes. We will discuss more about all this in the next section.</p>
+<p>React splits apart the steps where you &quot;define&quot; the HTML from the part where you &quot;render&quot; it, and will &quot;re-render&quot; components when the data going into them changes. We'll discuss some of the benefits that offers us in the section below.</p>
 <h2>JSX</h2>
 <p>JSX is a special syntax that is <a href="https://stackoverflow.com/questions/44931479/compiling-vs-transpiling">transpiled</a> by <a href="https://babeljs.io/">babel</a>, which looks almost identical to HTML.</p>
 <p>Instead of having to use the procedural <code>React.createElement</code> syntax, views can be defined and maintained in JSX and will automatically be transpiled into the equivalent <code>React.createElement</code> calls at build-time.</p>
@@ -574,7 +574,7 @@ ReactDOM.render(&lt;HelloWorld /&gt;, document.getElementById('root'));
 
 &lt;div className=&quot;button primary&quot;&gt;Welcome to {name}!&lt;/div&gt;;
 </code></pre>
-<p>In the code above, use the <code>{name}</code> syntax to tell JSX that to render the value stored in the <code>name</code> variable (ie. <code>&quot;Bitovi&quot;</code>) into our view.</p>
+<p>In the code above, use the <code>{name}</code> syntax to tell JSX that to render the value stored in the <code>name</code> variable (i.e. <code>&quot;Bitovi&quot;</code>) into our view.</p>
 <p>You can take this a step further by interpolating multiple values, and using JavaScript functions to transform data on the fly. Anything that goes inside <code>{}</code> is executed as normal JavaScript. These are the same rules as the brackets on a prop: any JavaScript expression is valid inside the curly brackets.</p>
 <pre><code class="language-jsx">const person = {
   name: 'mike',
@@ -587,7 +587,7 @@ ReactDOM.render(&lt;HelloWorld /&gt;, document.getElementById('root'));
 &lt;/div&gt;;
 </code></pre>
 <div line-highlight='7,8'></div>
-<h3>JSX Is JavaScript</h3>
+<h3>JSX is JavaScript</h3>
 <p>Remember, JSX is simply an alternative syntax for normal JavaScript&mdash;it is not magic. This means that you can use JSX as a normal value.</p>
 <pre><code class="language-jsx">const header = &lt;h1&gt;Hello World&lt;/h1&gt;;
 const body = &lt;p&gt;My name is {'Mike'}&lt;/p&gt;;
@@ -616,7 +616,7 @@ const body = React.createElement('p', null, `Hello ${'Mike'}`);
 
 const page = React.createElement('div', null, [header, body]);
 </code></pre>
-<h3>Common Pitfalls</h3>
+<h2>Common Pitfalls</h2>
 <p>Only expressions which return a value may be interpolated. This includes static values, variables and calls to functions. It does not include control-flow statements such as <code>if</code>, <code>case</code>, <code>for</code>, <code>while</code>. These can either be abstracted behind a function, which is then called within the JSX or be re-written in a JSX-friendly way.</p>
 <p>To put it simply: only things that you could pass into a function can be used inside the brackets.</p>
 <h4>Using Conditions</h4>
@@ -655,12 +655,13 @@ const page = React.createElement('div', null, [header, body]);
 <p>If you want to iterate within JSX, use methods such as <code>Array.map</code>, <code>Array.filter</code> and <code>Array.reduce</code>:</p>
 <pre><code class="language-jsx">// Mapping values to JSX elements
 &lt;div&gt;
-  {[1, 2, 3, 4].map((n) =&gt; (
-    &lt;span&gt;n&lt;/span&gt;
+  {[1, 2, 3, 4].map((n, index) =&gt; (
+    &lt;span key={index}&gt;{n}&lt;/span&gt;
   ))}
 &lt;/div&gt;
 </code></pre>
 <div line-highlight='3'></div>
+<p><em>✏️ Note: Due to how React <a href="https://reactjs.org/docs/lists-and-keys.html#keys">stores elements in memory</a>, list items require a stable <code>key</code> to identify them in the <a href="https://reactjs.org/docs/faq-internals.html">Virtual DOM</a>.</em></p>
 <pre><code class="language-html">&lt;div&gt;
   &lt;span&gt;1&lt;/span&gt;
   &lt;span&gt;2&lt;/span&gt;
@@ -683,6 +684,7 @@ const page = React.createElement('div', null, [header, body]);
 </code></pre>
 <p>So if a person rendered that component, they would see</p>
 <p><img src="../static/img/react/redQ.png" ></p>
+<p><em>✏️ Note: Centering content inside of a div is easy with flexbox. Simply add <code>&quot;display: flex; justify-content: center; align-items: center;&quot;</code> to the parent div which holds the content you wish to be centered. Remember the differences between normal CSS, and inline styles with React though.</em></p>
 <p>Here's an empty codepen with React preloaded to get you started.</p>
 <h4>Hover over the code below and select the run button in the upper right hand corner.</h4>
 <pre><code class="language-jsx">function Square() {
