@@ -25,7 +25,7 @@ An interface in TypeScript is a way to define the shape an entity should adhere 
 Some times all properties on an object don't need to be required, using the ``?`` lets us tell the TypeScript compiler which properties aren't required.
 
 @sourceref ./6-2-optional.ts
-@highlight 5
+@highlight 4
 @codepen
 
 ## Classes Implementing Interfaces

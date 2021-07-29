@@ -126,8 +126,9 @@ the length of the DNA sequence:
 @codepen
 
 Now scientists want to mix the DNA of multiple dinosaurs.
-So open the `3-functions-dnaCost.ts` file and  modify this function to take an unknown amount of
-sequences:
+Open the `3-functions-dnaCost.ts` file and modify this function to:
+1. take an unknown amount of sequences;
+2. return the sum of baseCost and the length of each sequence.
 
 ```ts
 let raptorDNA = "CGGCA";

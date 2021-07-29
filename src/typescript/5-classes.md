@@ -308,7 +308,7 @@ employee2.safetyQuote();
 ✏️ Run the following to verify the solution:
 
 ```shell
-npm run 4-classes
+npm run 4b-classes
 ```
 
 ### The Solution
