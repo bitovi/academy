@@ -56,7 +56,7 @@ _Attendees:_ Delivery Director, Team Lead, client stakeholders
 
 Once you've received a verbal commitment from the client, it's a good time to start setting expectations. For small projects, this may be done over email, but for large projects, a scheduled meeting is recommended.
 
-> Note: Pursuing a signed SOW should occur in parallel to this phase
+> Note: Pursuing a signed [SOW](#statement-of-work) should occur in parallel to this phase
 
 Before this meeting, a Team Lead should be selected, and the Delivery Director officially brought onto the project. They should both be introduced when setting up this meeting.
 

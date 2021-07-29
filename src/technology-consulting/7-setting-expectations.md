@@ -82,7 +82,7 @@ Principals used:
 
 ## Exercise: The Difficult Developer
 
-There is one particularly grumpy client developer that joins your team in the middle of the project. Every idea you propose they argue against. They tend to nitpick all your pull requests with bikeshed-type comments. Recently, they proposed that we rewrite our project in Angular because it's easier to onboard new developers to a popular framework.
+There is one particularly grumpy client developer that joins your team in the middle of the project. Every idea you propose they argue against. They tend to nitpick all your pull requests with [bikeshed-type](https://en.wikipedia.org/wiki/Law_of_triviality) comments. Recently, they proposed that we rewrite our project in Angular because it's easier to onboard new developers to a popular framework.
 
 __What do you do?__
 
