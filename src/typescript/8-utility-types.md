@@ -30,6 +30,7 @@ interface Dinosaur {
 ## Partial&lt;Type&gt;
 
 All properties of `Type`, but optional.
+Partial is often used when you need to partially update an object. See `example` below.
 
 ```typescript
 type AnotherDinosaur = Partial<Dinosaur>;
@@ -40,11 +41,27 @@ interface YetAnotherDinosaur {
   diet?: Diet;
   age?: number;
 }
+
+// example
+function updateDinosaur(
+  dinosaur: Dinosaur,
+  fieldsToUpdate: Partial<Dinosaur>
+): Dinosaur {
+  return { ...dino, ...fieldsToUpdate };
+}
+
+const oldDino: Dinosaur = {
+  species: "Tyrannosaurus rex",
+  diet: Diet.Carnivore,
+};
+const newDino: Dinosaur = updateDinosaur(dino1, {
+  diet: Diet.Omnivore,
+});
 ```
 
 ## Required&lt;Type&gt;
 
-All properties of `Type`, but required.
+All properties of `Type`, but required. For instance, you might use it when you are able to initialize all the properties of an object and want to avoid checking for null/undefined for the optional properties.
 
 ```typescript
 type AnotherDinosaur = Required<Dinosaur>;
@@ -57,7 +74,7 @@ interface YetAnotherDinosaur extends Dinosaur {
 
 ## Readonly&lt;Type&gt;
 
-All properties of `Type`, but they are readonly.
+All properties of `Type`, but they are readonly. Use it to prevent objects from being mutated.
 
 ```typescript
 type NamableDinosaur = { name: string } & Dinosaur; // this is an intersection between { name: string } and Dinosaur. Think { name: string } + Dinosaur
@@ -80,11 +97,12 @@ dino.age += 1;
 
 ## Record&lt;Keys,Type&gt;
 
-Shortcut for defining properties keys and values.
+Shortcut for defining properties keys and values. Particularly useful when you have a type in which multiple keys share the same value `Type`, so you could avoid repeating the pattern `key: type;`
 
 ```typescript
 let dinosCollection: Record<string, Dinosaur> = {
   // Record<string, Dinosaur> is equivalent to { [key: string]: Dinosaur }
+  // Could also be written as Record<'trex' | 'triceratops', Dinosaur>
   trex: {
     species: "Tyrannosaurus rex",
     diet: Diet.Carnivore,
@@ -98,7 +116,7 @@ let dinosCollection: Record<string, Dinosaur> = {
 
 ## Pick&lt;Type, Keys&gt;
 
-Selects only the properties defined in Keys
+Selects only the properties defined in Keys. Useful if you want a subset of `Type`
 
 ```typescript
 type LesserDinosaur = Pick<Dinosaur, "species" | "age">;
@@ -114,7 +132,7 @@ let lesserDino: LesserDinosaur = {
 
 ## Omit&lt;Type, Keys&gt;
 
-Selects all properties but the ones defined in Keys
+Selects all properties but the ones defined in Keys. Useful if you want a subset of `Type`
 
 ```typescript
 type LesserDinosaur = Omit<Dinosaur, "species" | "age">;
@@ -130,7 +148,7 @@ lesserDino.species = "Tyranossaurus rex";
 
 ## Exclude&lt;Type, ExcludedUnion&gt;
 
-Removes from `Type` if is assignable to `Union`
+Removes from `Type` if is assignable to `Union`. Useful if you want a subset of `Type`
 
 ```typescript
 type Species = "Tyrannosaurus rex" | "Triceratops horridus";
@@ -153,6 +171,19 @@ type SpeciesGone = Extract<Species, "Triceratops horridus">; // in this case, eq
 
 const dino: SpeciesGone = "Triceratops horridus";
 // Only triceratops remains now!
+
+// we can also extract common keys between 2 Types
+interface Mammal {
+  species: string;
+  diet: Diet;
+  weight: number;
+}
+
+type CommonKeys = Extract<keyof Mammal, keyof Dinosaur>;
+// which is equivalent to:
+// type CommonKeys = keyof Mammal & keyof Dinosaur;
+// or:
+// type CommonKeys = "species" | "diet"
 ```
 
 ## NonNullable&lt;Type&gt;
