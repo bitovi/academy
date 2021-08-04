@@ -21,7 +21,7 @@ Typechecking is the process of verifying and enforcing the constraints of types.
 
 ### Static vs. Dynamic Typing
 
-JavaScript an "untyped" or "dynamically typed" language. Type is associated with a value instead of a variable.
+JavaScript is an "untyped" or "dynamically typed" language. Type is associated with a value instead of a variable.
 JavaScript can assign variables to values of different types:
 
 ```js

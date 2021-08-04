@@ -92,7 +92,7 @@ Change is hard. However, this guide includes
 strategies for working through these obstacles. If these challenges
 seem daunting, the first place
 to start is the [learn-technology-consulting/communication]
-guide. Effective communication is the foundation towards working through
+guide. Effective communication is the foundation towards
 working through these sort of obstacles.
 
 
