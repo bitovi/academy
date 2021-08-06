@@ -31,6 +31,29 @@ The [tslint-to-eslint-config repository](https://github.com/typescript-eslint/ts
 2. Run `npx tslint-to-eslint-config`.
 
 And that's it!
+
+## Configuration
+
 After the migration, you should see a new file called `.eslintrc.js` with ESLint configuration in it.
+It looks like this one:
+
+```javascript
+module.exports = {
+  extends: "eslint:recommended",
+  rules: {
+    // override default options
+    "no-console": "error",
+    "no-alert": "error",
+    "yoda": ["error", "never"],
+
+    // disable
+    "init-declarations": "off",
+    "no-inline-comments": "off",
+  },
+};
+```
+
+Yes, there is a `Yoda` rule in ESLint. It is a rule under "best practice" category, and what it does is that it can enforce developers to either write a condition like `if (lightsaber.color === 'red')` or `if ('red' === lightsaber.color)`.
+Here is a [list of ESLint rules](https://eslint.org/docs/rules/). Take some time getting to know them! 
 
 For more information on Typescript with ESLint, you can refer to the [typescript-eslint repository](https://github.com/typescript-eslint/typescript-eslint).
