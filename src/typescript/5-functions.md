@@ -1,5 +1,5 @@
 @page learn-typescript/functions Functions
-@parent learn-typescript 4
+@parent learn-typescript 5
 
 @description Learn how to annotate functions parameters and return values, use different parameter types available.
 

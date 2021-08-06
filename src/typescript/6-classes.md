@@ -1,5 +1,5 @@
 @page learn-typescript/classes Classes
-@parent learn-typescript 5
+@parent learn-typescript 6
 
 @description  Learn to use classes and inheritance in TypeScript, about the `constructor` method, and how to use public, private, protected, and readonly modifiers.
 
@@ -46,7 +46,7 @@ that add type safety.
 
 In the following TypeScript class example, the `name` member is defined on line 4. We'll look at setting the name via the constructor next.
 
-@sourceref ./5-2-typescript-class.ts
+@sourceref ./6-2-typescript-class.ts
 @codepen
 @highlight 3
 
@@ -55,19 +55,19 @@ In the following TypeScript class example, the `name` member is defined on line 
 
 The constructor method is how to initialize a new object with members. The constructor is called when we instantiate a new object from calling a class with the `new` keyword - it constructs and returns a new object for us with properties we gave it.
 
-@sourceref ./5-3-class-constructor.ts
+@sourceref ./6-3-class-constructor.ts
 @codepen
 @highlight 3
 
 When declaring members, it's also possible to instantiate a value on them.
 
-@sourceref ./5-3-class-constructor-initialized.ts
+@sourceref ./6-3-class-constructor-initialized.ts
 @codepen
 @highlight 3
 
 Using the constructor to set public members is quite a common pattern, which is why TypeScript also provides a shorthand.
 
-@sourceref ./5-4-constructor-short.ts
+@sourceref ./6-4-constructor-short.ts
 @codepen
 @highlight 2
 
@@ -77,7 +77,7 @@ Using the constructor to set public members is quite a common pattern, which is 
 
 Inheritance is a way to extend functionality of existing classes. If the derived class contains its own constructor function, it MUST call a super method with params matching that of its parent class. Super is a call to the parent constructor method to ensure the properties are set for the parent. The following shows accessing the move method from the parent class and adding run and talk methods to the child class.
 
-@sourceref ./5-5-inheritance.ts
+@sourceref ./6-5-inheritance.ts
 @codepen
 @highlight 9,11
 
@@ -87,7 +87,7 @@ When you need a property to be shared across multiple instances, you can use a _
 
 This example shows the use of a static property `cageInstances` to count the number of instances of `DinoCage`:
 
-@sourceref ./5-6-statics.ts
+@sourceref ./6-6-statics.ts
 @codepen
 @highlight 2,10
 
@@ -97,7 +97,7 @@ This example shows the use of a static property `cageInstances` to count the num
 
 In TypeScript all members are public by default, meaning they are publicly accessible.
 
-@sourceref ./5-7-public.ts
+@sourceref ./6-7-public.ts
 @codepen
 @highlight 3
 
@@ -105,7 +105,7 @@ In TypeScript all members are public by default, meaning they are publicly acces
 
 Members marked private are unable to be accessed from outside their containing class.
 
-@sourceref ./5-8-private.ts
+@sourceref ./6-8-private.ts
 @codepen
 @highlight 3,13
 
@@ -113,7 +113,7 @@ Members marked private are unable to be accessed from outside their containing c
 
 Protected modifiers are similar to private modifiers in that they can't be accessed but they CAN be accessed by deriving classes. The following example shows an inherited class that can access it's parent protected property `teethCount`:
 
-@sourceref ./5-9-protected.ts
+@sourceref ./6-9-protected.ts
 @codepen
 @highlight 4,19
 
@@ -122,7 +122,7 @@ Protected modifiers are similar to private modifiers in that they can't be acces
 
 Readonly modifiers allow properties to be read, but not changed after initialization. Read-only members can be accessed outside the class, but their value can't be changed.
 
-@sourceref ./5-10-readonly.ts
+@sourceref ./6-10-readonly.ts
 @codepen
 @highlight 2,10
 

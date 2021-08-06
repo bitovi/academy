@@ -1,5 +1,5 @@
 @page learn-typescript/generics Generics
-@parent learn-typescript 7
+@parent learn-typescript 8
 
 @description Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript.
 
