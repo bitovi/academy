@@ -1,5 +1,5 @@
 @page learn-typescript/functions Functions
-@parent learn-typescript 4
+@parent learn-typescript 5
 
 @description Learn how to annotate functions parameters and return values, use different parameter types available.
 
@@ -122,7 +122,7 @@ The following function in `3-functions-dnaCost.ts` calculates the cost of synthe
 a DNA sequence to make a dinosaur. It calculates the cost by adding a `baseCost` plus
 the length of the DNA sequence:
 
-@sourceref ./4-exercise-start.ts
+@sourceref ./5-exercise-start.ts
 @codepen
 
 Now scientists want to mix the DNA of multiple dinosaurs.
@@ -157,7 +157,7 @@ npm run 3-functions
 ✏️ Update `3-functions-dnaCost.ts` to add each sequence to the
 base cost.  This solution uses [Array.prototype.reduce](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce):
 
-@sourceref ./4-exercise-solution.ts
+@sourceref ./5-exercise-solution.ts
 
 
 

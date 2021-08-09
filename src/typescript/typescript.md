@@ -32,7 +32,7 @@ Angular and many other frameworks use TypeScript to take advantage of its typech
 - IDE Support - configure TypeScript and learn about different IDEs that help support TypeScript development.
 - Types - understand basic types and how to enforce them.
   ```typescript
-  let isCarnivore: boolean = true;
+  let isCarnivore: boolean;
   ```
 - Functions - how to annotate functions parameters and return values, different parameter types available, and how to bind `this`.
   ```typescript
@@ -42,11 +42,11 @@ Angular and many other frameworks use TypeScript to take advantage of its typech
   ```
 - Classes - using classes and inheritance in TypeScript, explaining the ``constructor`` method, and using public, private, protected, and readonly modifiers.
   ```typescript
-  class ParkEmployee {
-    name: string;
-    constructor(name) { this.name = name; }
-    sayHi() {
-      console.log(`Hi, my name is ${this.name}`);
+  class Human {
+    constructor(public firstName: string, public lastName: string) {}
+
+    getFullName(): string {
+      return `${this.firstName} ${this.lastName}`;
     }
   }
   ```
