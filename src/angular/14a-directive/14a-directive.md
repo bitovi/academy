@@ -23,7 +23,6 @@ In order to fix this, we will create an Attribute Directive that will change the
 - What ElementRef are in Angular
 - What HostListener are in Angular
 - How to create a Directive
-- How to apply a Directive to an HTML Element
 
 
 ## What are Directives in angular
