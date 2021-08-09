@@ -49,9 +49,9 @@ describe('OnlyNumbersDirective', () => {
   function simulateTyping(value: string) {
     let buildString: string = '';
     for (let singleValue of value) {
-      let eventMock = new KeyboardEvent('keydown', { key: singleValue, cancelable: true })
-      debugElement.nativeElement.dispatchEvent(eventMock);
-      if (eventMock.defaultPrevented) {
+      const keydownEvent = new KeyboardEvent('keydown', { key: singleValue, cancelable: true })
+      debugElement.nativeElement.dispatchEvent(keydownEvent);
+      if (keydownEvent.defaultPrevented) {
       } else {
         buildString = buildString.concat(singleValue);
       }
