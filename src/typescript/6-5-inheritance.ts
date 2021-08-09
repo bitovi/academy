@@ -1,19 +1,19 @@
 class Dinosaur {
   constructor(public name: string) {}
 
-  move(distanceInFeet: number = 0) {
+  move(distanceInFeet: number = 0): void {
     console.log(`${this.name} moved ${distanceInFeet} feet.`);
   }
 }
 
 class Velociraptor extends Dinosaur {
   constructor(name: string, public speed: number) {
-    super(name)
+    super(name);
   }
-  run() {
+  run(): void {
     console.log(`${this.name} runs at ${this.speed}mph.`);
   }
-  talk() {
+  talk(): void {
     console.log(`${this.name} screeches.`);
   }
 }

@@ -1,5 +1,5 @@
 class DinoCage {
-  static cageInstances: number = 0;
+  static cageInstances = 0;
   constructor() {
     DinoCage.cageInstances++;
   }
