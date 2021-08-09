@@ -104,6 +104,7 @@ ng g directive onlyNumbers
 ✏️ Update the spec file  __src/app/image-url.pipe.spec.ts__ to be:
 
 @sourceref ./only-numbers.directive.spec.ts
+@highlight 2, 5, 8,only
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
