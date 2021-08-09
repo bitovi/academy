@@ -70,6 +70,16 @@ type AnotherDinosaur = Required<Dinosaur>;
 interface YetAnotherDinosaur extends Dinosaur {
   age: number; // turning age property to required
 }
+
+const trex: AnotherDinosaur = {
+  species: 'Tyranossaurus',
+  diet: Diet.Carnivore,
+  age: 30,
+}
+
+if (trex.age > 30) {
+  // there is no need to check if age is null because it is a required property
+}
 ```
 
 ## Readonly&lt;Type&gt;
@@ -188,7 +198,7 @@ type CommonKeys = Extract<keyof Mammal, keyof Dinosaur>;
 
 ## NonNullable&lt;Type&gt;
 
-Excludes `null` and `undefined` from `Type`
+Excludes `null` and `undefined` from `Type`. Prevent any runtime errors from occurring because we forgot to assign to a property.
 
 ```typescript
 type Species = "Tyrannosaurus rex" | "Triceratops horridus" | null | undefined;
