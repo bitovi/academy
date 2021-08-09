@@ -43,7 +43,7 @@ Full configuration options are available here: <a href="http://json.schemastore.
 
 We can also configure linting options to catch bugs and help enforce uniform styling. The following options will warn on unused local variables and parameters, and expressions or declarations implying 'any'.
 
-Besides linting with the Typescript compiler, `tsc`, it is recommended to use a specialized linter like TSLint (now deprecated) or `ESLint`.
+Besides linting with the TypeScript compiler, `tsc`, it is recommended to use a specialized linter like TSLint (now deprecated) or `ESLint`.
 
 ```javascript
 {
@@ -69,7 +69,7 @@ ESLint is a static code analysis tool. It helps us find and fix problems with ou
 
 - TSLint is [deprecated](https://github.com/palantir/tslint) since January 2020, in favor of ESLint.
 
-- ESLint supports both Typescript and JavaScript, so it can be used on a wider variety of projects when compared to TSLint.
+- ESLint supports both TypeScript and JavaScript, so it can be used on a wider variety of projects when compared to TSLint.
 
 - Performance improvements [have been listed](https://blog.palantir.com/tslint-in-2019-1a144c2317a9 "TSLint in 2019") as one of the reasons by the TSLint creators and maintainers for its deprecation.
 
@@ -110,7 +110,7 @@ module.exports = {
 Yes, there is a `Yoda` rule in ESLint. It is a rule under "best practice" category, and what it does is that it can enforce developers to either write a condition like `if (lightsaber.color === 'red')` or `if ('red' === lightsaber.color)`.
 Here is a [list of ESLint rules](https://eslint.org/docs/rules/). Take some time getting to know them!
 
-For more information on Typescript with ESLint, you can refer to the [typescript-eslint repository](https://github.com/typescript-eslint/typescript-eslint).
+For more information on TypeScript with ESLint, you can refer to the [typescript-eslint repository](https://github.com/typescript-eslint/typescript-eslint).
 
 ## Exercise: Exporting and Importing
 
