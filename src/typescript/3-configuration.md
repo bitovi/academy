@@ -61,7 +61,7 @@ Besides linting with the TypeScript compiler, `tsc`, it is recommended to use a 
 
 ### What is ESLint?
 
-ESLint is a static code analysis tool. It helps us find and fix problems with our code and is highly customizable.
+ESLint is a static code analysis tool. It helps us find and fix problematic patterns with our code, enforce style guidelines and is highly customizable - you can code and plug in your own rules.
 
 ### Why Migrate to ESLint?
 
