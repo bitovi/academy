@@ -27,7 +27,7 @@ In order to fix this, we will create an Attribute Directive that will change the
 
 ## What are Directives in angular
 
-In Angular, Directives are classes that tell Angular to change the appearance or behavior of DOM Elements. Angular comes with a set of <a href="https://angular.io/guide/built-in-directivess" target="\_blank" >Built-in</a> Directives,
+In Angular, Directives are classes that tell Angular to change the appearance or behavior of DOM Elements. Angular comes with a set of <a href="https://angular.io/guide/built-in-directives" target="\_blank" >Built-in</a> Directives,
 and they consist of three types:
 - Components Directives
 - Attribute Directives
