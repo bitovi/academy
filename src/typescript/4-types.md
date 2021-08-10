@@ -201,7 +201,8 @@ In this exercise, we will learn to spot and correct basic type errors by
 fixing the type errors in `2a-fix-errors.ts`:
 
 ```typescript
-let isLoading = true;
+let isLoading: boolean;
+isLoading = true;
 isLoading = 'false';
 
 let inventory: Array<number> = [];
@@ -261,7 +262,8 @@ npm run 2a-types
 ✏️ Update `2a-fix-errors.ts` to look like:
 
 ```typescript
-let isLoading = true;
+let isLoading: boolean;
+isLoading = true;
 isLoading = false;
 
 let inventory: Array<string> = [];

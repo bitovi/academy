@@ -1,6 +1,6 @@
 class Dinosaur {
   name: string;
-  age = 0; // type number is inferred
+  age = 0;
   constructor(name: string) {
     this.name = name;
   }
