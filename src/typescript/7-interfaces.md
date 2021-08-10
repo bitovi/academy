@@ -1,5 +1,5 @@
 @page learn-typescript/interfaces Interfaces
-@parent learn-typescript 6
+@parent learn-typescript 7
 
 @description Learn how to write Interfaces, set optional properties, and about the power of using interfaces in classes and functions
 
@@ -17,14 +17,14 @@ Interfaces are a powerful way to enforce types and document what our code provid
 
 An interface in TypeScript is a way to define the shape an entity should adhere to. An interface defines the members - properties, methods, and events. It may be easy to think of it as the signature of an API. It's worth noting that interfaces aren't transpiled into our output JavaScript, they're simply used for typechecking during the development process.
 
-@sourceref ./6-1-interface.ts
+@sourceref ./7-1-interface.ts
 @codepen
 
 ## Optional Properties
 
 Some times all properties on an object don't need to be required, using the ``?`` lets us tell the TypeScript compiler which properties aren't required.
 
-@sourceref ./6-2-optional.ts
+@sourceref ./7-2-optional.ts
 @highlight 4
 @codepen
 
@@ -32,26 +32,26 @@ Some times all properties on an object don't need to be required, using the ``?`
 
 In the case that a class needs to follow an object structure, we can use interfaces to define that 'contract'.
 
-@sourceref ./6-3-classes.ts
+@sourceref ./7-3-classes.ts
 @codepen
 
 ## Interfaces in Functions
 
 Interfaces are incredibly useful in describing the shape of objects we want to use in multiple situations. The following functions both require a ``Dinosaur`` object shape we've defined in the ``Dinosaur`` interface.
 
-@sourceref ./6-3-2-functions.ts
+@sourceref ./7-3-2-functions.ts
 @codepen
 
 ## Interfaces Describing Functions
 
 We can also use interfaces to describe functions, basically creating reusable types for functions. On the left side in parenthesis we list the parameters, and to the right of the colon we state the return type.
 
-@sourceref ./6-3-3-describefuncs.ts
+@sourceref ./7-3-3-describefuncs.ts
 @codepen
 
 It's possible to use the `type` keyword as an interface to describe a function.
 
-@sourceref ./6-3-4-describefuncs-type.ts
+@sourceref ./7-3-4-describefuncs-type.ts
 @codepen
 
 ## Type Assertion
@@ -60,12 +60,12 @@ We briefly mentioned type assertion when talk about types, but when dealing with
 
 For instance, consider the following code:
 
-@sourceref ./6-4-type-assertion.ts
+@sourceref ./7-4-type-assertion.ts
 @codepen
 
 When we create empty object literals in TypeScript, they are inferred to be objects with zero properties. To fix this, we can use type assertions to let the compiler explicitly know what we want from our object.
 
-@sourceref ./6-4-2-type-assertion.ts
+@sourceref ./7-4-2-type-assertion.ts
 @codepen
 
 ## Exercise 1: Write Interfaces to Describe an Object
