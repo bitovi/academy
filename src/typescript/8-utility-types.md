@@ -1,13 +1,13 @@
 @page learn-typescript/utility-types Utility Types
 @parent learn-typescript 8
 
-@description Learn the Utility Types Typescript provides for you
+@description Learn About the Utility Types provided by TypeScript
 
 @body
 
 ## Overview
 
-Utility Types are built-in helper types meant for common type transformations.
+Utility Types are built-in helper Types meant for common Type transformations.
 
 In this section you will see a small description for the most used Utility Types.
 
