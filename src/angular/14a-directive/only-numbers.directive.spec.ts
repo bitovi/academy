@@ -47,13 +47,13 @@ describe('OnlyNumbersDirective', () => {
   });
 
   function simulateTyping(value: string) {
-    let buildString: string = '';
+    let buildString = '';
     for (let singleValue of value) {
       const keydownEvent = new KeyboardEvent('keydown', { key: singleValue, cancelable: true })
       debugElement.nativeElement.dispatchEvent(keydownEvent);
       if (keydownEvent.defaultPrevented) {
       } else {
-        buildString = buildString.concat(singleValue);
+        buildString = `${buildString}${singleValue}`;
       }
     }
     debugElement.nativeElement.value = buildString;
