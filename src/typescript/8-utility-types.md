@@ -15,9 +15,9 @@ We are going to repeat the interface Dinosaur below throughout the examples.
 
 ```typescript
 enum Diet {
-  "Carnivore",
-  "Herbivore",
-  "Omnivore",
+  'Carnivore',
+  'Herbivore',
+  'Omnivore',
 }
 
 interface Dinosaur {
@@ -51,7 +51,7 @@ function updateDinosaur(
 }
 
 const oldDino: Dinosaur = {
-  species: "Tyrannosaurus rex",
+  species: 'Tyrannosaurus rex',
   diet: Diet.Carnivore,
 };
 const newDino: Dinosaur = updateDinosaur(dino1, {
@@ -72,10 +72,10 @@ interface YetAnotherDinosaur extends Dinosaur {
 }
 
 const trex: AnotherDinosaur = {
-  species: 'Tyranossaurus',
+  species: 'Tyrannosaurus rex',
   diet: Diet.Carnivore,
   age: 30,
-}
+};
 
 if (trex.age > 30) {
   // there is no need to check if age is null because it is a required property
@@ -92,9 +92,9 @@ type AnotherDinosaur = Readonly<NamableDinosaur>;
 
 // Meet Bruno, another dinosaur
 let dino: AnotherDinosaur = {
-  name: "Bruno",
+  name: 'Bruno',
   age: 27,
-  species: "Tyrannosaurus rex",
+  species: 'Tyrannosaurus rex',
   diet: Diet.Carnivore,
 };
 dino.age = 0;
@@ -114,11 +114,11 @@ let dinosCollection: Record<string, Dinosaur> = {
   // Record<string, Dinosaur> is equivalent to { [key: string]: Dinosaur }
   // Could also be written as Record<'trex' | 'triceratops', Dinosaur>
   trex: {
-    species: "Tyrannosaurus rex",
+    species: 'Tyrannosaurus rex',
     diet: Diet.Carnivore,
   },
   triceratops: {
-    species: "Triceratops horridus",
+    species: 'Triceratops horridus',
     diet: Diet.Herbivore,
   },
 };
@@ -129,10 +129,10 @@ let dinosCollection: Record<string, Dinosaur> = {
 Selects only the properties defined in Keys. Useful if you want a subset of `Type`
 
 ```typescript
-type LesserDinosaur = Pick<Dinosaur, "species" | "age">;
+type LesserDinosaur = Pick<Dinosaur, 'species' | 'age'>;
 
 let lesserDino: LesserDinosaur = {
-  species: "Tyranossaurus rex",
+  species: 'Tyrannosaurus rex',
   age: 27,
   // diet: Diet.Carnivore, <- if this line was present, then the error below would be thrown by typescript
   // Type '{ species: string; age: number; diet: Diet; }' is not assignable to type 'LesserDinosaur'.
@@ -145,13 +145,13 @@ let lesserDino: LesserDinosaur = {
 Selects all properties but the ones defined in Keys. Useful if you want a subset of `Type`
 
 ```typescript
-type LesserDinosaur = Omit<Dinosaur, "species" | "age">;
+type LesserDinosaur = Omit<Dinosaur, 'species' | 'age'>;
 
 const lesserDino: LesserDinosaur = {
   diet: Diet.Carnivore,
 };
 
-lesserDino.species = "Tyranossaurus rex";
+lesserDino.species = 'Tyrannosaurus rex';
 // Property 'species' does not exist on type 'LesserDinosaur'.
 // species and age properties are gone!
 ```
@@ -161,11 +161,11 @@ lesserDino.species = "Tyranossaurus rex";
 Removes from `Type` if is assignable to `Union`. Useful if you want a subset of `Type`
 
 ```typescript
-type Species = "Tyrannosaurus rex" | "Triceratops horridus";
+type Species = 'Tyrannosaurus rex' | 'Triceratops horridus';
 
-type SpeciesGone = Exclude<Species, "Triceratops horridus">; // SpeciesGone is Species minus Triceratops horridus
+type SpeciesGone = Exclude<Species, 'Triceratops horridus'>; // SpeciesGone is Species minus Triceratops horridus
 
-const dino: SpeciesGone = "Triceratops horridus";
+const dino: SpeciesGone = 'Triceratops horridus';
 // Type '"Triceratops horridus"' is not assignable to type '"Tyrannosaurus rex"'.
 // Only rex remains now!
 ```
@@ -175,11 +175,11 @@ const dino: SpeciesGone = "Triceratops horridus";
 Extracts from `Type` if is assignable to `Union`
 
 ```typescript
-type Species = "Tyrannosaurus rex" | "Triceratops horridus";
+type Species = 'Tyrannosaurus rex' | 'Triceratops horridus';
 
-type SpeciesGone = Extract<Species, "Triceratops horridus">; // in this case, equivalent to type SpeciesGone = "Triceratops horridus"
+type SpeciesGone = Extract<Species, 'Triceratops horridus'>; // in this case, equivalent to type SpeciesGone = 'Triceratops horridus'
 
-const dino: SpeciesGone = "Triceratops horridus";
+const dino: SpeciesGone = 'Triceratops horridus';
 // Only triceratops remains now!
 
 // we can also extract common keys between 2 Types
@@ -193,7 +193,7 @@ type CommonKeys = Extract<keyof Mammal, keyof Dinosaur>;
 // which is equivalent to:
 // type CommonKeys = keyof Mammal & keyof Dinosaur;
 // or:
-// type CommonKeys = "species" | "diet"
+// type CommonKeys = 'species' | 'diet'
 ```
 
 ## NonNullable&lt;Type&gt;
@@ -201,10 +201,10 @@ type CommonKeys = Extract<keyof Mammal, keyof Dinosaur>;
 Excludes `null` and `undefined` from `Type`. Prevent any runtime errors from occurring because we forgot to assign to a property.
 
 ```typescript
-type Species = "Tyrannosaurus rex" | "Triceratops horridus" | null | undefined;
+type Species = 'Tyrannosaurus rex' | 'Triceratops horridus' | null | undefined;
 
 type NNSpecies = NonNullable<Species>;
-// equivalent to type NNSpecies = "Tyrannosaurus rex" | "Triceratops horridus"
+// equivalent to type NNSpecies = 'Tyrannosaurus rex' | 'Triceratops horridus'
 ```
 
 ## ReturnType&lt;Type&gt;
@@ -239,3 +239,62 @@ There are other built-in Utility Types:
   - Uncapitalize&lt;StringType&gt;
 
 If you would like to dive deeper onto them, check the [official documentation](https://www.typescriptlang.org/docs/handbook/utility-types.html "The Typescript Handbook") for TypeScript.
+
+## Exercise: Create a new Type from existing Type
+
+### The Problem
+
+Update the `9-utility-types.ts` in order to create a new `Tyrannosaurus` type that enforces diet property to be `Diet.Carnivore` and all `Dinosaur` properties to be required. Remember to take advantage of Utility Types and using existing `Dinosaur` Type when creating the new `Tyrannosaurus` Type.
+
+```typescript
+interface Dinosaur {
+  species: string;
+  diet: Diet;
+  age?: number;
+}
+
+enum Diet {
+  'Carnivore',
+  'Herbivore',
+  'Omnivore',
+}
+
+type Tyrannosaurus = Dinosaur;
+
+export { Diet, Tyrannosaurus };
+```
+
+### Verify Your Solution
+
+✏️ Run the following to verify your solution:
+
+```shell
+npm run 9-utility-types
+```
+
+### The Solution
+
+<details>
+<summary>Click to see the solution</summary>
+
+✏️ Update `9-utility-types.ts` to the following:
+
+```typescript
+interface Dinosaur {
+  species: string;
+  diet: Diet;
+  age?: number;
+}
+
+enum Diet {
+  'Carnivore',
+  'Herbivore',
+  'Omnivore',
+}
+
+type Tyrannosaurus = Required<Dinosaur & { diet: Diet.Carnivore }>;
+
+export { Diet, Tyrannosaurus };
+```
+
+</details>
