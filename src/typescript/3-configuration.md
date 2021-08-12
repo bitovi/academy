@@ -73,7 +73,7 @@ ESLint is a static code analysis tool. It helps us find and fix problematic patt
 
 - Performance improvements [have been listed](https://blog.palantir.com/tslint-in-2019-1a144c2317a9 "TSLint in 2019") as one of the reasons by the TSLint creators and maintainers for its deprecation.
 
-### Before we start
+### Before Starting
 
 It should be fairly painless to migrate to ESLint, but we do recommended checking if there are any TSLint rules that are considered essential to your project, and comparing those with ESLint to see if there are mismatches regarding your project's requirements. This [Migration Guide](https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/ROADMAP.md) is a great source for comparing ESLint and TSLint rules.
 
