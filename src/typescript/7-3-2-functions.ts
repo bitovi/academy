@@ -8,12 +8,12 @@ let dinoA = {
   name: 'Blue',
   breed: 'Velociraptor',
   location: 'Section B'
-}
+};
 
 let dinoB = {
   name: 'Sally',
   location: 'Section C'
-}
+};
 
 function dinoCatcher(dinosaur: Dinosaur) {
   console.log(`Caught ${dinosaur.name} at ${dinosaur.location}`);

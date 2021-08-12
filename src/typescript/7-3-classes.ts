@@ -11,7 +11,7 @@ class ClonedDino implements Dinosaur {
   breed: string;
   height?: number;
   location: string;
-  roar() {
+  roar(): void {
     console.log('roar');
   };
 }

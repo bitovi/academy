@@ -70,7 +70,7 @@ In that repository, there is a _0-why-hello-world.html_ page that looks like the
 
 After cloning and installing the repository, we will:
 
-1. Create a simple _0-why-hello-world.ts_ TypeScript file that writes out `"Hello Wold"`.
+1. Create a simple _0-why-hello-world.ts_ TypeScript file that writes out `"Hello World"`.
 2. Compile that code the _0-why-hello-world.ts_ JavaScript file.
 3. Open _0-why-hello-world.html_ and verify that we've written and compiled some TypeScript!
 4. Run the exercise repository's tests for this exercise.
@@ -103,7 +103,7 @@ repository. To use it:
 
 4. ✏️ Open the `learn-typescript` folder in your favorite editor:
   ```shell
-   code .
+   code . # if you are using VS Code
   ```
    > The '.' after the editor is a shorthand to refer to the folder you're currently in
 

@@ -1,13 +1,13 @@
 class Leoplurodon {
   readonly location: string;
-  readonly numberOfFlippers: number = 4;
-  readonly magic:boolean = true;
+  readonly numberOfFlippers = 4;
+  readonly magic = true;
   constructor (theLocation: string) {
     this.location = theLocation;
   }
 
-  updateLocation(location: string) {
-    this.location = location // Cannot assign to 'location' because it is a read-only property.ts(2540)
+  updateLocation(location: string): void {
+    this.location = location; // Cannot assign to 'location' because it is a read-only property.ts(2540)
   }
 }
 let firstStop = new Leoplurodon("On the way to Candy Mountain");
