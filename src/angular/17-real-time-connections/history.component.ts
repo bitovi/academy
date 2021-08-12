@@ -4,7 +4,7 @@ import { ResponseData } from '../../restaurant/restaurant.service';
 import { Socket } from 'ngx-socket-io';
 
 interface Data<T> {
-  value: Array<T>;
+  value: T[];
   isPending: boolean;
 }
 

@@ -6,7 +6,7 @@ import { RestaurantService, ResponseData, State, City } from './restaurant.servi
 import { Restaurant } from './restaurant';
 
 export interface Data<T> {
-  value: Array<T>;
+  value: T[];
   isPending: boolean;
 }
 
@@ -18,17 +18,17 @@ export interface Data<T> {
 export class RestaurantComponent implements OnInit, OnDestroy {
   form: FormGroup;
 
-  public restaurants: Data<Restaurant> = {
+  restaurants: Data<Restaurant> = {
     value: [],
     isPending: false
   }
 
-  public states: Data<State> = {
+   states: Data<State> = {
     isPending: false,
     value: []
   };
 
-  public cities: Data<City> = {
+  cities: Data<City> = {
     isPending: false,
     value: []
   };

@@ -3,7 +3,7 @@ interface Item {
 }
 
 interface Menu {
-    lunch: Array<Item>;
+    lunch: Item[];
 }
 
 interface Address {

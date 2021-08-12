@@ -49,14 +49,14 @@ class AboutComponent {
   selector: 'home-component',
   template: `
     <p>A home component!</p>
-
-    {{$mySubscription | async }}
+    <ng-container *ngIf="$myObservable | async as mySubscription">
+        {{mySubscription}}
+    </ng-container>
     `
 })
 class HomeComponent implements OnInit{
   $myObservable: Observable<string>;
-  $mySubscription: Subscription;
-  
+
   constructor(private fb:FormBuilder) {
   
   }
@@ -75,8 +75,6 @@ class HomeComponent implements OnInit{
           observer.complete();
       }, 3000);
   });
-
-   this.$mySubscription = this.$myObservable;
 
   }
 }

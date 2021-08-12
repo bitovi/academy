@@ -3,7 +3,7 @@ import { OrderService, Order } from '../order.service';
 import { ResponseData } from '../../restaurant/restaurant.service';
 
 interface Data<T> {
-  value: Array<T>;
+  value: T[];
   isPending: boolean;
 }
 
