@@ -15,7 +15,7 @@ const { Component, VERSION, Directive, ElementRef, HostListener} = ng.core;
 class OnlyLettersDirective {
 
  allowedKeys: string[] = ['Backspace', 'ArrowLeft', 'ArrowRight'];
- regExp: RegExp =  new RegExp(/^[A-Za-z]*$/g);
+ regExp =  new RegExp(/^[A-Za-z]*$/g);
 
  constructor(private elementRef: ElementRef) { }
   @HostListener('keydown', ['$event'])

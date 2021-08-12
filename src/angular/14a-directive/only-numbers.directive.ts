@@ -6,7 +6,7 @@ import {Directive, ElementRef, HostListener} from '@angular/core';
 export class OnlyNumbersDirective {
 
   private allowedKeys: string[] = ['Backspace', 'ArrowLeft', 'ArrowRight'];
-  private regExp: RegExp =  new RegExp(/^[0-9]*$/g);
+  private regExp =  new RegExp(/^[0-9]*$/g);
 
   constructor(private elementRef: ElementRef) { }
 

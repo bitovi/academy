@@ -20,8 +20,8 @@ In order to fix this, we will create an Attribute Directive that will change the
 ## What You Need to Know
 
 - What Directives are in Angular
-- What ElementRef are in Angular
-- What HostListener are in Angular
+- What ElementRef is
+- What HostListeners are
 - How to create a Directive
 
 
@@ -35,7 +35,7 @@ and they consist of three types:
 
 # Components Directives
 In this training, we previously talked about <a href="/academy/academy/learn-angular/creating-components.html">Components</a>. 
-Components are a type of Directive. It uses the `@Component` decorator function along with a template, style, and other logic needed for the view. 
+Components are a type of Directive. Components use the `@Component` decorator function along with a template, style, and other logic needed for the view. 
 <a href="https://angular.io/guide/built-in-directives#:~:text=Components%E2%80%94-,directives,-with%20a%20template" target="\_blank" >Read more</a>
 
 # Attribute Directives
@@ -46,13 +46,13 @@ Attributes and Component <a href="https://angular.io/guide/attribute-directives"
 Structural Directives are types of Directives that are used to change HTML DOM layout, by adding, removing and manipulating Elements. 
 <a href="https://angular.io/guide/structural-directives" target="\_blank" >Read more</a>
 
-## What ElementRef are in Angular
-In Angular, ElementRef (Element Reference) are a wrapper around a native DOM Element inside of a View. 
+## ElementRef
+In Angular, ElementRef (Element Reference) is a wrapper around a native DOM Element inside of a View. 
 The ElementRef class contains a property `nativeElement`, which references the underlying DOM object that we can use to manipulate the DOM
 <a href="https://angular.io/api/core/ElementRef" target="\_blank" >Read more</a>.
 When creating a Directive, we use ElementRef to gain reference to the HtmlElement, which the Directive will be used on, and perform any manipulation we need to.
 
-## What HostListener are in Angular
+## HostListener
 In Angular, @HostListeners() is a function decorator that allows you to listen and handle events from the host elements.
 Some examples of host events include `Keyboard`, `Click`, `mousehover` etc <a href="https://angular.io/api/core/HostListener" target="\_blank" >Read more</a>.
 When creating a Directive, we use the @HostListeners() decorator in the Directive Class to listen for host events. Based on the event, we can perform any action needed.
@@ -62,9 +62,9 @@ When creating a Directive, we use the @HostListeners() decorator in the Directiv
 ```bash
 ng generate directive onlyNumbers
 ```
-This will generate a directive file: `only-numbers.directive.ts`
+This will generate the directive file: `only-numbers.directive.ts` and the spec file:  `only-numbers.directive.spec.ts`
 
-## How to build a Directive
+## How to Build a Directive
 As we have discussed above, Directives are very useful tools in Angular that can help improve your web application. The example below shows an Attribute Directive that would allow a user to enter only `letters` in an input field.
 
 @sourceref ./directive.html
