@@ -1,5 +1,5 @@
 @page learn-typescript/utility-types Utility Types
-@parent learn-typescript 8
+@parent learn-typescript 9
 
 @description Learn About the Utility Types provided by TypeScript
 
