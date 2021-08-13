@@ -1,5 +1,5 @@
 @page learn-angular/creating-directive Creating Directive
-@parent learn-angular 14
+@parent learn-angular 15
 
 @description Learn how to create Directives in Angular that can change the appearance or behavior of DOM Elements.
 
@@ -8,7 +8,7 @@
 ## Problem
 While filling out the  `phone number` field, you might have noticed that users can type in both letters and numbers. This is a problem because we do not want users entering letters in the `phone number` field.
 
-<img src="../static/img/angular/14a-directives/order-form-thumbnails.png"
+<img src="../static/img/angular/15-directives/order-form-thumbnails.png"
 style="border: solid 1px black; max-width: 420px;"/>
 
 In order to fix this, we will create an Attribute Directive that will change the behavior of the Phone Input Field, and will ensure that only numbers are allowed in the field.
