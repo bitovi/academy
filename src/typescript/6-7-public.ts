@@ -4,13 +4,13 @@ class Dinosaur {
   constructor(name: string) {
     this.name = name;
   }
-  public walk(distanceInFeet: number) {
+  public walk(distanceInFeet: number): void {
     console.log(`${this.name} walked ${distanceInFeet} feet.`);
   }
 }
 
 let myDino = new Dinosaur('Mildred');
-console.log(myDino.name)
+console.log(myDino.name);
 //Logs "Mildred"
-myDino.walk(7)
+myDino.walk(7);
 //Logs "Mildred walked 7 feet."

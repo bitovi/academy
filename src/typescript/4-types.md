@@ -56,7 +56,7 @@ let name: string = 'Leoplurodon';
 ```typescript
 let list: number[] = [1, 2, 3];
 
-let raptors: Array<string> = ['Blue','Charlie','Delta']
+let raptors: Array<string> = ['Blue','Charlie','Delta'];
 ```
 
 ### Object
@@ -84,17 +84,17 @@ sillyList = ["boop", 5]; //will error
 Enums allow the aliasing of names to a list of numeric values. Like most indexing, enums start their first member at 0.
 
 ```typescript
-enum Color { Red, Green, Blue }
-let greenColor: Color = Color.Green
+enum Color { Red, Green, Blue };
+let greenColor: Color = Color.Green;
 ```
 
 Enums can have their first value manually set, or manually set all values
 
 ```typescript
-enum Month { January = 1, February, March, April, May, June }
+enum Month { January = 1, February, March, April, May, June };
 let feb = Month[2];
 
-enum Month { January = 1, March = 3, May = 5}
+enum Month { January = 1, March = 3, May = 5};
 let may = Month[5];
 ```
 
@@ -127,7 +127,7 @@ The never type represents a value that will never occur.
 
 ```typescript
 function error(message: string): never {
-    throw new Error(message);
+  throw new Error(message);
 }
 ```
 
@@ -164,7 +164,7 @@ person.address.number = 'five fifty-five';
 TypeScript will infer the return value of a function as well.
 
 ```typescript
-function multiplier(a: number, b: number ){
+function multiplier(a: number, b: number) {
   return a*b;
 }
 var multiplied: number = multiplier(2,3);
@@ -201,7 +201,8 @@ In this exercise, we will learn to spot and correct basic type errors by
 fixing the type errors in `2a-fix-errors.ts`:
 
 ```typescript
-let isLoading: boolean = true;
+let isLoading: boolean;
+isLoading = true;
 isLoading = 'false';
 
 let inventory: Array<number> = [];
@@ -225,7 +226,7 @@ The exports of `2a-fix-errors.ts` should look like:
 
 ```typescript
 it("exports are correct", function(){
-	assert.equal( isLoading, false,
+	assert.equal(isLoading, false,
 		"isLoading");
 
 	assert.deepEqual(
@@ -261,7 +262,8 @@ npm run 2a-types
 ✏️ Update `2a-fix-errors.ts` to look like:
 
 ```typescript
-let isLoading: boolean = true;
+let isLoading: boolean;
+isLoading = true;
 isLoading = false;
 
 let inventory: Array<string> = [];

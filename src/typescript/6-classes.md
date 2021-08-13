@@ -25,7 +25,7 @@ class ParkEmployee {
   constructor(name){
     this.name = name;
   }
-  sayHi(){
+  sayHi() {
     console.log("Hi, my name is " + this.name);
   }
 }
@@ -138,7 +138,7 @@ class DinoBuilder {
   dinoName = 'Trex';
   yawn() {
     setTimeout(function() {
-      console.log(`${this.dinoName} yawned.`)
+      console.log(`${this.dinoName} yawned.`);
     }, 50);
   }
 }
@@ -157,7 +157,7 @@ class DinoBuilder {
   dinoName = 'Trex';
   yawn() {
     setTimeout(() => {
-      console.log(`${this.dinoName} yawned.`)
+      console.log(`${this.dinoName} yawned.`);
     }, 50);
   }
 }
@@ -175,7 +175,7 @@ Wrong `this`:
 class DinoBuilder {
   dinoName = 'Trex';
   roar() {
-    console.log(`${this.dinoName} roared.`)
+    console.log(`${this.dinoName} roared.`);
   }
 }
 
@@ -193,7 +193,7 @@ Right `this`:
 class DinoBuilder {
   dinoName = 'Trex';
   roar = () => {
-    console.log(`${this.dinoName} roared.`)
+    console.log(`${this.dinoName} roared.`);
   }
 }
 
@@ -223,7 +223,7 @@ DinoKeeper.prototype.sayHi = function() {
   return this.name + ' says "hi"';
 }
 
-let employee1 = new DinoKeeper("Joe");
+let employee1 = new DinoKeeper('Joe');
 employee1.sayHi();
 //Joe says "hi"
 ```
@@ -258,17 +258,19 @@ npm run 4a-classes
 class DinoKeeper {
   name: string;
 
-  constructor(name:string) {
+  constructor(name: string) {
     this.name = name;
   }
 
-  sayHi():string {
+  sayHi(): string {
     return `${this.name} says "hi"`;
   }
 }
-let employee1 = new DinoKeeper("Joe");
+let employee1 = new DinoKeeper('Joe');
 employee1.sayHi();
 //Logs "Joe says "hi""
+
+export default DinoKeeper;
 ```
 
 </details>
@@ -297,7 +299,7 @@ export default Specialist;
 For example, you should be able to use `Specialist` as folows:
 
 ```typescript
-let employee2 = new Specialist("Owen", 14);
+let employee2 = new Specialist('Owen', 14);
 employee2.sayHi(); //Owen says 'hi'
 employee2.safetyQuote();
 //Logs "Never turn your back to the cage. Trust me, I have 14 years of experience"

@@ -11,6 +11,6 @@ class ParkEmployee {
 
 }
 
-let raptorGuy = new ParkEmployee("Owen");
+let raptorGuy = new ParkEmployee('Owen');
 raptorGuy.sayHi();
 //Logs "Hi, my name is Owen"
