@@ -56,7 +56,6 @@ some boilerplate for the state and city `<select>` controls:
 
 @diff ../6-restaurant-service/app.module.ts ./app.module.ts
 
-
 ## How to Verify Your Solution is Correct
 
 When you visit <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>, there will now be state and city dropdown options populated with fake data.

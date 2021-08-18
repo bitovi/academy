@@ -157,13 +157,13 @@ This distinction is clearly important, you wouldn't want to make separate reques
 you reference the states observable in the view. You need someway to make cold observables hot, to satisfy that 
 requirement RxJS contains a variety of ways to share the stream between subscribers. This is a particularly complex 
 topic so we'll only be reviewing a single way, the 
-[`shareReplay`](https://rxjs-dev.firebaseapp.com/api/index/operators/shareReplay) operator.
+[`shareReplay`](https://rxjs-dev.firebaseapp.com/api/operators/shareReplay) operator.
 
-The [`shareReplay`](https://rxjs-dev.firebaseapp.com/api/index/operators/shareReplay) operator essentially works by
+The [`shareReplay`](https://rxjs-dev.firebaseapp.com/api/operators/shareReplay) operator essentially works by
 making the preceding portion of the stream hot. Once the stream is subscribed to,
-[`shareReplay`](https://rxjs-dev.firebaseapp.com/api/index/operators/shareReplay) will share the results produced, 
+[`shareReplay`](https://rxjs-dev.firebaseapp.com/api/operators/shareReplay) will share the results produced, 
 preventing multiple instances of the stream from running. That's the "sharing" functionality of
-[`shareReplay`](https://rxjs-dev.firebaseapp.com/api/index/operators/shareReplay), but it also performs the other 
+[`shareReplay`](https://rxjs-dev.firebaseapp.com/api/operators/shareReplay), but it also performs the other 
 important function of "replaying".
 
 In our template we have code that looks like:

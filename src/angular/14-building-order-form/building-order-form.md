@@ -253,12 +253,12 @@ Event binding in Angular follows a simple pattern - the event name in parenthesi
 
 ## P4: Solution
 
-✏️ Update __src/app/order/menu-items.component.html__
+✏️ Update __src/app/order/menu-items/menu-items.component.html__
 
 @diff ./child-component/menu-items.component-props.html ./child-component/menu-items-1.component.html only
 
 
-✏️ Update __src/app/order/menu-items.component.ts__
+✏️ Update __src/app/order/menu-items/menu-items.component.ts__
 
 @diff ./child-component/menu-items.component-props.ts ./child-component/menu-items-1.component.ts only
 
