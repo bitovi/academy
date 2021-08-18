@@ -93,7 +93,7 @@ ng test
 
 For this problem, we will:
 
-- Create an order when the user submits a service.
+- Create an order when the user submits the form using the service.
 - Disable the button while the order is being processed.
 - Show the completed order to the user.
 - Let the user start a new order.
