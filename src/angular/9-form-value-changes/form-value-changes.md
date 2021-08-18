@@ -51,7 +51,7 @@ This example shows how to unsubscribe from observable multiple.
 
 @sourceref ./multiple-subscriptions.html
 @codepen
-@highlight 100-102,105-107,116-117,only
+@highlight 100-102,105-107,115-116,only
 
 ## Listening to Form Changes
 

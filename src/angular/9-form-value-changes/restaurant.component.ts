@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import {takeUntil} from "rxjs/operators";
-import {Subject} from 'rxjs';
+import { takeUntil } from "rxjs/operators";
+import { Subject } from 'rxjs';
 
 import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';

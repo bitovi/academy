@@ -14,7 +14,8 @@
 const { Component, NgModule, VERSION, OnInit, OnDestroy, Injectable } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
-const { Observable, Subscription } = rxjs;
+const { Observable, Subject } = rxjs;
+const { takeUntil } = rxjs.operators;
 
 @Injectable({
   providedIn: 'root'
@@ -74,7 +75,7 @@ class AppComponent implements OnInit{
     `
 })
 class DestroyComponent implements OnInit, OnDestroy {
-  mySubscription: Subscription;
+  private unSubscribe = new Subject<void>();
   myDisplayValue: string;
   
   constructor(private obsService: ObsService) {}
@@ -83,7 +84,7 @@ class DestroyComponent implements OnInit, OnDestroy {
 
   startObservable() {
     //subscribing to a service that emits observable values every second.
-    this.mySubscription = this.obsService.getObs().subscribe((val) => {
+     this.obsService.getObs().pipe(takeUntil(this.unSubscribe)).subscribe((val) => {
       console.log('new value', val);
       this.myDisplayValue = val;
     });
@@ -91,9 +92,8 @@ class DestroyComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     console.log('destroying component');
-    if(this.mySubscription) {
-      this.mySubscription.unsubscribe();
-    }
+    this.unSubscribe.next();
+    this.unSubscribe.complete();
   }
 }   
 DestroyComponent.parameters = [ObsService]; 

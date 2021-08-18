@@ -4,7 +4,8 @@ import { FormGroup, FormBuilder, FormArray, AbstractControl } from '@angular/for
 
 import { RestaurantService } from '../restaurant/restaurant.service';
 import { Restaurant } from '../restaurant/restaurant';
-import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from "rxjs/operators";
 
 //CUSTOM VALIDATION FUNCTION TO ENSURE THAT THE ITEMS FORM VALUE CONTAINS AT LEAST ONE ITEM. 
 function minLengthArray(min: number) {
@@ -29,7 +30,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   completedOrder: any;
   orderComplete = false;
   orderProcessing = false;
-  private subscription: Subscription;
+  private unSubscribe = new Subject<void>();
 
   constructor(
     private route: ActivatedRoute, 

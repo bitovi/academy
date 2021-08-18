@@ -16,7 +16,7 @@ const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
 const { Routes, RouterModule } = ng.router;
 const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
-const { Observable, Subscription, Subject } = rxjs;
+const { Observable, Subject } = rxjs;
 const { takeUntil } = rxjs.operators;
 
 @Component({
@@ -56,10 +56,10 @@ class AboutComponent {
 
     `
 })
-class HomeComponent implements OnInit, onDest{
+class HomeComponent implements OnInit, OnDestroy {
   private unSubscribe = new Subject<void>();
-  $myObservable: Observable<string>;
-  $myOtherObservable: Observable<string>;
+  myObservable$: Observable<string>;
+  myOtherObservable$: Observable<string>;
   myDisplayValue: string;
   myOtherDisplayValue: string;
   
@@ -68,7 +68,7 @@ class HomeComponent implements OnInit, onDest{
   }
 
   ngOnInit() {
-    this.$myObservable = new Observable(observer => {
+    this.myObservable$ = new Observable(observer => {
       setTimeout(() => {
           observer.next('hello observable');
       }, 1000);
@@ -82,7 +82,7 @@ class HomeComponent implements OnInit, onDest{
       }, 3000);
     });
 
-    this.$myOtherObservable = new Observable(observer => {
+    this.myOtherObservable$ = new Observable(observer => {
       setTimeout(() => {
           observer.next('hello other observable');
       }, 1500);
@@ -97,12 +97,12 @@ class HomeComponent implements OnInit, onDest{
     });
 
     //creating the first subscription
-    this.$myObservable.pipe(takeUntil(this.unSubscribe)).subscribe((val) => {
+    this.myObservable$.pipe(takeUntil(this.unSubscribe)).subscribe((val) => {
       this.myDisplayValue = val;
     });
 
     //taking the first subscription and adding another to it
-    this.$myOtherObservable.pipe(takeUntil(this.unSubscribe)).subscribe((val) => {
+    this.myOtherObservable$.pipe(takeUntil(this.unSubscribe)).subscribe((val) => {
       this.myOtherDisplayValue = val;
     });
 
@@ -113,7 +113,7 @@ class HomeComponent implements OnInit, onDest{
 
   ngOnDestroy() {
     this.unSubscribe.next();
-    this.unSubscribe.unsubscribe();
+    this.unSubscribe.complete();
   }
 }
 //THIS IS A HACK JUST FOR CODEPEN TO WORK

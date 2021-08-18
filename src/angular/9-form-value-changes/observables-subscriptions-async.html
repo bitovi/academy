@@ -49,20 +49,20 @@ class AboutComponent {
   selector: 'home-component',
   template: `
     <p>A home component!</p>
-    <ng-container *ngIf="$myObservable | async as mySubscription">
+    <ng-container *ngIf="myObservable$ | async as mySubscription">
         {{mySubscription}}
     </ng-container>
     `
 })
 class HomeComponent implements OnInit{
-  $myObservable: Observable<string>;
+  myObservable$: Observable<string>;
 
   constructor(private fb:FormBuilder) {
   
   }
 
   ngOnInit() {
-    this.$myObservable = new Observable(observer => {
+    this.myObservable$ = new Observable(observer => {
       setTimeout(() => {
           observer.next('hello observable');
       }, 1000);
