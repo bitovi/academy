@@ -62,9 +62,9 @@ Below is a simple representation on how angular provides and injected pipe into 
 
 @sourceref ./item-total.pipe.ts
 
-✏️ Update __src/app/order/list/list.component.html__ to use the item total pipe:
+✏️ Update __src/app/order/order.component.ts__ to use the item total pipe:
 
-@diff ../17-order-history-component/list.component.html ./list.component.html only.
+@diff ../14-building-order-form/order.component-solution.ts ./component-solution.ts only
 
 ✏️ Update __src/app/order/list/list.component.html__ to use the item total pipe:
 
