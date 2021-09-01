@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 interface Data<T> {
-  value: Array<T>;
+  value: T[];
   isPending: boolean;
 }
 

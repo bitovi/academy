@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { takeUntil } from "rxjs/operators";
+import { Subject } from 'rxjs';
 
 import { RestaurantService, ResponseData, State, City } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data<T> {
-  value: Array<T>;
+  value: T[];
   isPending: boolean;
 }
 
@@ -18,22 +19,22 @@ export interface Data<T> {
 export class RestaurantComponent implements OnInit, OnDestroy {
   form: FormGroup;
 
-  public restaurants: Data<Restaurant> = {
+  restaurants: Data<Restaurant> = {
     value: [],
     isPending: false
   }
 
-  public states: Data<State> = {
+  states: Data<State> = {
     isPending: false,
     value: []
   };
 
-  public cities: Data<City> = {
+  cities: Data<City> = {
     isPending: false,
     value: []
   }
 
-  private subscription: Subscription;
+  private unSubscribe = new Subject<void>();
 
   constructor(
     private restaurantService: RestaurantService,
@@ -48,9 +49,8 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if(this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    this.unSubscribe.next()
+    this.unSubscribe.unsubscribe();
   }
 
   createForm() {
@@ -64,7 +64,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
   onChanges(): void {
     let state:string;
-    const stateChanges = this.form.get('state').valueChanges.subscribe(val => {
+    this.form.get('state').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe(val => {
       this.restaurants.value = [];
       if (val) {
         //only enable city if state has value
@@ -89,15 +89,14 @@ export class RestaurantComponent implements OnInit, OnDestroy {
         state = '';
       }
     });
-    this.subscription = stateChanges;
 
 
-    const cityChanges = this.form.get('city').valueChanges.subscribe(val => {
+    this.form.get('city').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe(val => {
       if(val) {
         this.getRestaurants(state, val);
       }
     });
-    this.subscription.add(cityChanges);
+
   }
 
   getStates() {

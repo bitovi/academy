@@ -101,7 +101,7 @@ let fakeRestaurants = [
   styleUrls: ['./restaurant.component.less']
 })
 export class RestaurantComponent implements OnInit {
-  public restaurants: any[] = [];
+  restaurants: any[] = [];
 
   constructor() { }
 

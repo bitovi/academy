@@ -4,8 +4,8 @@ interface Item {
 }
 
 interface Menu {
-    lunch: Array<Item>;
-    dinner: Array<Item>;
+    lunch: Item[];
+    dinner: Item[];
 }
 
 interface Address {

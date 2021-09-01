@@ -41,17 +41,17 @@ In this example, click the button to start subscribing to the observables - you'
 @codepen
 @highlight 14,17,49,50,62-64,71,73,77-78,80,84-90,92-97,only
 
-This example shows creating a subscription to an observable, and using an <a href="https://angular.io/api/common/AsyncPipe" target="\_blank">async pipe</a> to display the value. This is useful for displaying observable values in templates without the need to unsubscribe as that's handled by the pipe.
+This example shows creating a subscription to an observable, and using an <a href="https://angular.io/api/common/AsyncPipe" target="\_blank">async pipe</a> to display the value. This is useful for displaying observable values in templates without the need to unsubscribe as that's handled by the pipe when the component is destroyed .
 
 @sourceref ./observables-subscriptions-async.html
 @codepen
 @highlight 53,57,58,65-76,79,only
 
-This example creates a subscription, then adds to it.
+This example shows how to unsubscribe from observable multiple.
 
 @sourceref ./multiple-subscriptions.html
 @codepen
-@highlight 98-101,103-106,only
+@highlight 100-102,105-107,115-116,only
 
 ## Listening to Form Changes
 
@@ -83,7 +83,7 @@ When you interact with the dropdown menus, you should see their values logged to
 ✏️ Update __src/app/restaurant/restaurant.component.ts__
 
 @sourceref restaurant.component.ts
-@highlight 1,3,18,36,53-57,65,67-78
+@highlight 1,3-4,19,37,53-57,65,67-78
 
 Now that we know how to get values from our dropdowns, let's populate them with real data. We can get our list of states immediately, but to get our cities, we'll want to make an get request based on the state the user selected.
 
@@ -190,7 +190,6 @@ Now that our service is in working order, let's populate our dropdowns with stat
 ✏️ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
 
 @diff ../8-state-city-options/restaurant.component.spec.ts ./restaurant.component-citystate.spec.ts
-
 
 ## P4: What You Need to Know
 
