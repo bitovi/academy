@@ -11,7 +11,7 @@ While filling out the  `phone number` field, you might have noticed that users c
 <img src="../static/img/angular/15-directives/order-form-thumbnails.png"
 style="border: solid 1px black; max-width: 420px;"/>
 
-In order to fix this, we will create an Attribute Directive that will change the behavior of the Phone Input Field, and will ensure that only numbers are allowed in the field.
+In order to fix this, we will create an Attribute Directive that will change the behavior of the Phone Input Field, and will ensure that only numbers can be entered in the field.
 
 ```html
   <input name="phone" type="text" pmoOnlyNumbers class="form-control" formControlName="phone">
@@ -43,7 +43,7 @@ Attribute Directives are a type of directive that are mainly used to listen or c
 Attributes and Component <a href="https://angular.io/guide/attribute-directives" target="\_blank">Read more</a>.
 
 # Structural Directives
-Structural Directives are types of Directives that are used to change HTML DOM layout, by adding, removing and manipulating Elements. 
+Structural Directives are types of Directives that are used to change HTML DOM layout, by adding, removing or manipulating Elements. 
 <a href="https://angular.io/guide/structural-directives" target="\_blank" >Read more</a>
 
 ## ElementRef
