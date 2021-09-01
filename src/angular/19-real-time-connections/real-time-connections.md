@@ -1,5 +1,5 @@
 @page learn-angular/real-time-connection Real Time Connections
-@parent learn-angular 18
+@parent learn-angular 19
 
 @description Updating Order History View with Real Time Connection
 @body

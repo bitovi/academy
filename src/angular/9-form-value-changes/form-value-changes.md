@@ -31,7 +31,7 @@ Our end goal is to be able to show restaurants based on state, then city. As we 
 
 ## Observables and Subscriptions
 
-For a more robust understanding of Observables, Subscriptions, and other RxJS core tenants check out our  <a href="/academy/academy/learn-rxjs.html">[RxJS RxJS guide]</a>. For the following exercises, Observables are lazy collections of multiple values over time. We can subscribe to observables to get any new data, or create and add to Subscriptions of observables.
+For a more robust understanding of Observables, Subscriptions, and other RxJS core tenants check out our  <a href="/academy/academy/learn-rxjs.html">RxJS RxJS guide</a>. For the following exercises, Observables are lazy collections of multiple values over time. We can subscribe to observables to get any new data, or create and add to Subscriptions of observables.
 
 This example shows creating a subscription to an observable, saving it's value to a member on the component and displaying it in the template. This is useful for when we want to capture and observables values and make changes based on them, but subscriptions do need to be cleaned up to avoid memory leaks. Whenever a component is destroyed an <a href="https://angular.io/api/core/OnDestroy" target="\_blank">ngOnDestroy</a> method is called. This is a good place to put our cleanup code, like unsubscribing from observables.
 
