@@ -3,7 +3,7 @@ import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data {
-  value: Array<Restaurant>;
+  value: Restaurant[];
   isPending: boolean;
 }
 
@@ -13,7 +13,7 @@ export interface Data {
   styleUrls: ['./restaurant.component.less']
 })
 export class RestaurantComponent implements OnInit {
-  public restaurants: Data = {
+ restaurants: Data = {
     value: [],
     isPending: false
   };

@@ -40,9 +40,9 @@ const { ReactiveFormsModule, FormControl, FormGroup } = ng.forms;
   `
 })
 class AppComponent {
-  public formValue;
+  formValue;
 
-  public userForm = new FormGroup({
+  userForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
     email: new FormControl('')

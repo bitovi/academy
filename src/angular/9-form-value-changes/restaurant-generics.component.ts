@@ -1,12 +1,13 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { takeUntil } from "rxjs/operators";
+import { Subject } from 'rxjs';
 
 import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data {
-  value: Array<Restaurant>;
+  value: Restaurant[];
   isPending: boolean;
 }
 
@@ -18,22 +19,22 @@ export interface Data {
 export class RestaurantComponent implements OnInit, OnDestroy {
   form: FormGroup;
 
-  public restaurants: Data = {
+  restaurants: Data = {
     value: [],
     isPending: false
   }
 
-  public states = {
+  states = {
     isPending: false,
     value: [{name: "Illinois", short: "IL"}, {name: "Wisconsin", short: "WI"}]
   };
 
-  public cities = {
+  cities = {
     isPending: false,
     value: [{name: "Springfield"},{name: "Madison"}]
   }
 
-  private subscription: Subscription;
+  private unSubscribe = new Subject<void>();
 
   constructor(
     private restaurantService: RestaurantService,
@@ -51,9 +52,8 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if(this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    this.unSubscribe.next()
+    this.unSubscribe.unsubscribe();
   }
 
   createForm() {
@@ -65,15 +65,13 @@ export class RestaurantComponent implements OnInit, OnDestroy {
     this.onChanges();
   }
   onChanges(): void {
-    const stateChanges = this.form.get('state').valueChanges.subscribe(val => {
+    this.form.get('state').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe(val => {
       console.log('state', val);
     });
-    this.subscription = stateChanges;
 
 
-    const cityChanges = this.form.get('city').valueChanges.subscribe(val => {
+    this.form.get('city').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe(val => {
       console.log('city', val);
     });
-    this.subscription.add(cityChanges);
   }
 }

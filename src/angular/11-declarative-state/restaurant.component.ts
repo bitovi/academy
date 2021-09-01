@@ -6,7 +6,7 @@ import { RestaurantService, ResponseData, State, City } from './restaurant.servi
 import { Restaurant } from './restaurant';
 
 export interface Data<T> {
-  value: Array<T>;
+  value: T[];
   isPending: boolean;
 }
 

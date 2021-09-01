@@ -4,8 +4,8 @@ import { FormGroup, FormBuilder, FormArray, AbstractControl } from '@angular/for
 
 import { RestaurantService } from '../restaurant/restaurant.service';
 import { Restaurant } from '../restaurant/restaurant';
-import { Subscription } from 'rxjs';
-
+import { Subject } from 'rxjs';
+import { takeUntil } from "rxjs/operators";
 
 function minLengthArray(min: number) {
   return (c: AbstractControl): {[key: string]: any} => {
@@ -23,13 +23,13 @@ function minLengthArray(min: number) {
 export class OrderComponent implements OnInit, OnDestroy {
   orderForm: FormGroup;
   restaurant: Restaurant;
-  isLoading: boolean = true;
+  isLoading = true;
   items: FormArray;
-  orderTotal: number = 0.0;
+  orderTotal = 0.0;
   completedOrder: any;
-  orderComplete: boolean = false;
-  orderProcessing: boolean = false;
-  private subscription: Subscription;
+  orderComplete = false;
+  orderProcessing = false;
+  private unSubscribe = new Subject<void>();
 
   constructor(
     private route: ActivatedRoute, 
@@ -49,9 +49,8 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    this.unSubscribe.next();
+    this.unSubscribe.complete();
   }
 
   createOrderForm() {
@@ -66,7 +65,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   onChanges() {
-    this.subscription = this.orderForm.get('items').valueChanges.subscribe(val => {
+    this.orderForm.get('items').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe(val => {
       let total = 0.0;
       val.forEach((item: any) => {
         total += item.price;

@@ -3,7 +3,7 @@ import { OrderService, Order } from '../order.service';
 import { ResponseData } from '../../restaurant/restaurant.service';
 
 interface Data<T> {
-  value: Array<T>;
+  value: T[];
   isPending: boolean;
 }
 
@@ -13,7 +13,7 @@ interface Data<T> {
   styleUrls: ['./history.component.less']
 })
 export class HistoryComponent implements OnInit {
-  public orders: Data<Order> = {
+  orders: Data<Order> = {
     value: [],
     isPending: true
   }
@@ -35,28 +35,28 @@ export class HistoryComponent implements OnInit {
   }
 
   get newOrders() {
-    let orders =  this.orders.value.filter((order) => {
+    const orders =  this.orders.value.filter((order) => {
       return order.status === "new";
     });
     return orders;
   }
 
    get preparingOrders() {
-    let orders =  this.orders.value.filter((order) => {
+    const orders =  this.orders.value.filter((order) => {
       return order.status === "preparing";
     });
     return orders;
    }
 
    get deliveryOrders() {
-    let orders =  this.orders.value.filter((order) => {
+    const orders =  this.orders.value.filter((order) => {
       return order.status === "delivery";
     });
     return orders;
    }
 
    get deliveredOrders() {
-    let orders =  this.orders.value.filter((order) => {
+    const orders =  this.orders.value.filter((order) => {
       return order.status === "delivered";
     });
     return orders;

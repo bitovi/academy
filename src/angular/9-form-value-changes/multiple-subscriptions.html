@@ -16,8 +16,8 @@ const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
 const { Routes, RouterModule } = ng.router;
 const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
-const { Observable, Subscription } = rxjs;
-
+const { Observable, Subject } = rxjs;
+const { takeUntil } = rxjs.operators;
 
 @Component({
   selector: 'my-app',
@@ -53,12 +53,13 @@ class AboutComponent {
     <p>{{myDisplayValue}}</p>
 
     <p>{{myOtherDisplayValue}}</p>
+
     `
 })
-class HomeComponent implements OnInit{
-  $myObservable: Observable<string>;
-  $myOtherObservable: Observable<string>;
-  $mySubscription: Subscription;
+class HomeComponent implements OnInit, OnDestroy {
+  private unSubscribe = new Subject<void>();
+  myObservable$: Observable<string>;
+  myOtherObservable$: Observable<string>;
   myDisplayValue: string;
   myOtherDisplayValue: string;
   
@@ -67,7 +68,7 @@ class HomeComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.$myObservable = new Observable(observer => {
+    this.myObservable$ = new Observable(observer => {
       setTimeout(() => {
           observer.next('hello observable');
       }, 1000);
@@ -81,14 +82,14 @@ class HomeComponent implements OnInit{
       }, 3000);
     });
 
-    this.$myOtherObservable = new Observable(observer => {
+    this.myOtherObservable$ = new Observable(observer => {
       setTimeout(() => {
           observer.next('hello other observable');
       }, 1500);
 
       setTimeout(() => {
           observer.next('I am good');
-      }, 2500);
+      }, 9500);
 
       setTimeout(() => {
           observer.complete();
@@ -96,19 +97,23 @@ class HomeComponent implements OnInit{
     });
 
     //creating the first subscription
-    this.$mySubscription = this.$myObservable.subscribe((val) => {
+    this.myObservable$.pipe(takeUntil(this.unSubscribe)).subscribe((val) => {
       this.myDisplayValue = val;
     });
 
     //taking the first subscription and adding another to it
-    this.$mySubscription.add(this.$myOtherObservable.subscribe((val) => {
+    this.myOtherObservable$.pipe(takeUntil(this.unSubscribe)).subscribe((val) => {
       this.myOtherDisplayValue = val;
-    }));
-   
+    });
+
   }
 
+
+
+
   ngOnDestroy() {
-    this.$mySubscription.unsubscribe();
+    this.unSubscribe.next();
+    this.unSubscribe.complete();
   }
 }
 //THIS IS A HACK JUST FOR CODEPEN TO WORK
