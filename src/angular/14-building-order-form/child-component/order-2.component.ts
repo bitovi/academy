@@ -4,7 +4,8 @@ import { FormGroup, FormBuilder, FormArray, AbstractControl } from '@angular/for
 
 import { RestaurantService } from '../restaurant/restaurant.service';
 import { Restaurant } from '../restaurant/restaurant';
-import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from "rxjs/operators";
 
 //CUSTOM VALIDATION FUNCTION TO ENSURE THAT THE ITEMS FORM VALUE CONTAINS AT LEAST ONE ITEM. 
 function minLengthArray(min: number) {
@@ -29,7 +30,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   completedOrder: any;
   orderComplete: boolean = false;
   orderProcessing: boolean = false;
-  private subscription: Subscription;
+  private unSubscribe = new Subject<void>();
 
   constructor(
     private route: ActivatedRoute, 
@@ -47,9 +48,8 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if(this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    this.unSubscribe.next();
+    this.unSubscribe.complete();
   }
 
   createOrderForm() {
@@ -81,7 +81,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   onChanges() {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
-    this.subscription = this.orderForm.get('items').valueChanges.subscribe(val => {
+    this.orderForm.get('items').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe(val => {
       let total = 0.0;
       if(val.length) {
         val.forEach((item: any) => {

@@ -16,7 +16,8 @@ const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
 const { Routes, RouterModule } = ng.router;
 const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
-const { Observable, Subscription } = rxjs;
+const { Observable, Subject } = rxjs;
+const { takeUntil } = rxjs.operators;
 
 
 @Component({
@@ -67,7 +68,7 @@ class AboutComponent {
 })
 class HomeComponent implements OnInit, OnDestroy {
   myQuickForm: FormGroup;
-  mySubscription: Subscription;
+  private unSubscribe = new Subject<void>();
 
   constructor(private fb:FormBuilder) {
   
@@ -80,14 +81,15 @@ class HomeComponent implements OnInit, OnDestroy {
       email: {value: '', disabled: false}
     });
 
-    this.mySubscription = this.myQuickForm.valueChanges.subscribe((val) => {
+    this.myQuickForm.valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe((val) => {
       console.log(val);
     });
 
   }
 
   ngOnDestroy() {
-    this.mySubscription.unsubscribe();
+    this.unSubscribe.next();
+    this.unSubscribe.complete();
   }
 }
 //THIS IS A HACK JUST FOR CODEPEN TO WORK

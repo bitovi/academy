@@ -4,7 +4,7 @@ import { Restaurant } from './restaurant';
 import { environment } from '../../environments/environment';
 
 export interface ResponseData<dataType> {
-  data: Array<dataType>;
+  data: dataType[];
 }
 
 export interface State {

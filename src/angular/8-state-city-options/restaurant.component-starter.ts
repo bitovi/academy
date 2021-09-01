@@ -5,7 +5,7 @@ import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data {
-  value: Array<Restaurant>;
+  value: Restaurant[];
   isPending: boolean;
 }
 
@@ -17,17 +17,17 @@ export interface Data {
 export class RestaurantComponent implements OnInit {
   form: FormGroup;
 
-  public restaurants: Data = {
+  restaurants: Data = {
     value: [],
     isPending: false
   }
 
-  public states = {
+  states = {
     isPending: false,
     value: [{name: "Illinois", short: "IL"}, {name: "Wisconsin", short: "WI"}]
   };
 
-  public cities = {
+  cities = {
     isPending: false,
     value: [{name: "Springfield"},{name: "Madison"}]
   }
