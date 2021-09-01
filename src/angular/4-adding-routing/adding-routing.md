@@ -91,7 +91,7 @@ The following example will render the AboutComponent in the router-outlet when t
 
 @sourceref ./path-route.html
 @codepen
-@highlight 62, only
+@highlight 62-63, only
 
 ## Using Wildcards
 

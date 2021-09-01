@@ -1,5 +1,5 @@
 @page learn-angular/order-history-component Order History Component
-@parent learn-angular 16
+@parent learn-angular 17
 
 @description Writing the Order History Component
 @body
@@ -96,13 +96,13 @@ We want to be able to see a list of all created orders and their varying statuse
 
 ## P3: Setup
 
-1\. ✏️ Copy the following into __src/app/order/history.component.ts__. You will fill out its
+1\. ✏️ Copy the following into __src/app/order/history/history.component.ts__. You will fill out its
 `getOrders` method.  The getters `newOrders`, `preparingOrders`, `deliveryOrders`, and `deliveredOrders` will be used later.
 
 @sourceref ./history.component.ts
 @highlight 18,22
 
-2\. ✏️ Copy the following into __src/app/order/history.component.html__.  You will need to
+2\. ✏️ Copy the following into __src/app/order/history/history.component.html__.  You will need to
 iterate through orders and add the right class names to the outer `<div>` for each order.
 
 @sourceref ./0-history.component.html

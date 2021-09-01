@@ -67,7 +67,7 @@ After that, we will begin exploring how to handle complex state mechanics by cre
 form that displays cities and states ([learn-angular/state-city-options]). We will
 make selecting a state filter cities ([learn-angular/form-value-changes]) and
 selecting a city filter the restaurants ([learn-angular/updating-service-params]). As
-an optional and advanced exercise, you can convert handle the state declartively
+an optional and advanced exercise, you can convert handle the state declaratively
 with RxJS ([learn-angular/declarative-state]).
 
 After writing all that code, it's good to learn a bit about testing. While this tutorial

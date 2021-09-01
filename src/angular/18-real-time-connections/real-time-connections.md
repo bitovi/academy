@@ -1,5 +1,5 @@
 @page learn-angular/real-time-connection Real Time Connections
-@parent learn-angular 17
+@parent learn-angular 18
 
 @description Updating Order History View with Real Time Connection
 @body
@@ -54,7 +54,7 @@ Currently there's a bug with the latest CLI verion when using socket.io. Until i
 
 ✏️ Update __src/app/order/history.component.ts__
 
- @diff ../16-order-history-component/history.component-solution.ts ./history.component.ts only
+ @diff ../17-order-history-component/history.component-solution.ts ./history.component.ts only
 
 
 Now as we create, update, and delete orders we can see them updated in real time across different browser tab instances!

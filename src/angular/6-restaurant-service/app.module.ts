@@ -18,7 +18,7 @@ import { ImageUrlPipe } from './image-url.pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
