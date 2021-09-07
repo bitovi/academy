@@ -13,14 +13,14 @@ describe('ItemTotalPipe', () => {
     expect(pipe).toBeTruthy();
   });
 
-  it('transform Item[] and get the total cost of item price', () => {
+  it('transform Item[] and return the sum of each item price, total price should be 30.98', () => {
     const total = pipe.transform(mockItemList);
     expect(total).toEqual(30.98);
   });
 
   it('expect empty array to be 0', () => {
     const total = pipe.transform([]);
-    expect(total).toBeFalsy();
+    expect(total).toEqual(0);
   });
 
 });

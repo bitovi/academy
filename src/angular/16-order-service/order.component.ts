@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, FormArray, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, AbstractControl, Validators } from '@angular/forms';
 
 import { RestaurantService } from '../restaurant/restaurant.service';
 import { Restaurant } from '../restaurant/restaurant';
@@ -56,20 +56,20 @@ export class OrderComponent implements OnInit, OnDestroy {
   createOrderForm() {
     this.orderForm = this.formBuilder.group({
       restaurant: [this.restaurant._id],
-      name: [null],
-      address:  [null],
-      phone: [null],
+      name: [null, Validators.required],
+      address:  [null, Validators.required],
+      phone: [null, Validators.required],
       items: [[], minLengthArray(1)]
     });
     this.onChanges();
   }
 
   onChanges() {
-    this.orderForm.get('items').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe(val => {
+    this.orderForm.get('items').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe((val) => {
       let total = 0.0;
-      val.forEach((item: any) => {
+      for (const item of val) {
         total += item.price;
-      });
+      }
       this.orderTotal = Math.round(total * 100) / 100;
     });
   }

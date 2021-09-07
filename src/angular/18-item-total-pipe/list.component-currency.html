@@ -11,7 +11,7 @@
       </ul>
     </div>
 
-    <div class="total">{{(order.items | itemTotal)}}</div>
+    <div class="total">{{(order.items | itemTotal) | currency}}</div>
   
     <div class="actions">
       <span class="badge">{{statusTitle}}</span>

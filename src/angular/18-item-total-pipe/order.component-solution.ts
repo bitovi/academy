@@ -1,13 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, FormArray, AbstractControl } from '@angular/forms';
+import { FormGroup, FormBuilder, FormArray, AbstractControl, Validators } from '@angular/forms';
 
 import { RestaurantService } from '../restaurant/restaurant.service';
 import { Restaurant } from '../restaurant/restaurant';
+import { OrderService, Order, Item } from './order.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from "rxjs/operators";
+import {ItemTotalPipe} from "../item-total.pipe";
 
-//CUSTOM VALIDATION FUNCTION TO ENSURE THAT THE ITEMS FORM VALUE CONTAINS AT LEAST ONE ITEM. 
+
 function minLengthArray(min: number) {
   return (c: AbstractControl): {[key: string]: any} => {
       if (c.value.length >= min)
@@ -27,7 +29,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   isLoading = true;
   items: FormArray;
   orderTotal = 0.0;
-  completedOrder: any;
+  completedOrder: Order;
   orderComplete = false;
   orderProcessing = false;
   private unSubscribe = new Subject<void>();
@@ -35,12 +37,13 @@ export class OrderComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute, 
     private restaurantService: RestaurantService,
-    private formBuilder: FormBuilder 
+    private orderService: OrderService,
+    private formBuilder: FormBuilder,
+    private itemTotal: ItemTotalPipe
   ) { 
   }
 
   ngOnInit() {
-    //GETTING THE RESTAURANT FROM THE ROUTE SLUG
     const slug = this.route.snapshot.paramMap.get('slug');
 
     this.restaurantService.getRestaurant(slug).subscribe((data:Restaurant) => {
@@ -58,35 +61,34 @@ export class OrderComponent implements OnInit, OnDestroy {
   createOrderForm() {
     this.orderForm = this.formBuilder.group({
       restaurant: [this.restaurant._id],
-      name: [null],
-      address:  [null],
-      phone: [null],
-      //PASSING OUR CUSTOM VALIDATION FUNCTION TO THIS FORM CONTROL
-      items: [[], minLengthArray(1)] 
+      name: [null, Validators.required],
+      address:  [null, Validators.required],
+      phone: [null, Validators.required],
+      items: [[], minLengthArray(1)]
     });
     this.onChanges();
   }
 
   onChanges() {
-    // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
-    this.orderForm.get('items').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe(val => {
-      let total = 0.0;
-      if(val.length) {
-        val.forEach((item: any) => {
-          total += item.price;
-        });
-        this.orderTotal = Math.round(total * 100) / 100;
-      }
-      else {
-        this.orderTotal = total;
-      }
+    this.orderForm.get('items').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe((val: Item[])=> {
+
+      this.orderTotal = this.itemTotal.transform(val);
+
+    });
+  }
+
+  onSubmit() {
+    this.orderProcessing = true;
+    this.orderService.createOrder(this.orderForm.value).subscribe((res: Order) => {
+      this.completedOrder = res;
+      this.orderComplete = true;
+      this.orderProcessing = false;
     });
   }
 
   startNewOrder() {
     this.orderComplete = false;
-    this.completedOrder = this.orderForm.value;
-    //CLEAR THE ORDER FORM
+    this.orderTotal = 0.0;
     this.createOrderForm();
   }
 

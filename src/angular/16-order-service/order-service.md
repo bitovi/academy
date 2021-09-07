@@ -27,7 +27,7 @@ let myorder = {
   _id: 'a123123bdd',
   name: 'Jennifer',
   address: '123 Main st',
-  phone: '867-5309'
+  phone: '867-5309',
   status: 'new',
   items: [
     {
@@ -121,7 +121,6 @@ Before starting:
     a `startNewOrder` that will start a new order.
 
 @diff ../14-building-order-form/child-component/order-2.component.ts ./order.component.ts only
-
 
 ## P3: How to Verify Your Solution is Correct
 

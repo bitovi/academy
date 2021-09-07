@@ -9,7 +9,7 @@
 <my-app></my-app>
 <script type="typescript">
 // app.js
-const { Component, VERSION, Pipe, PipeTransform, InjectionToken , Inject} = ng.core;
+const { Component, VERSION, Pipe, PipeTransform} = ng.core;
 
 @Pipe({name: 'prefix'})
 class PrefixPipe implements PipeTransform {
@@ -21,23 +21,22 @@ class PrefixPipe implements PipeTransform {
   }
 }
 
-const pereFixPipeProvider = (): PrefixPipe => {
-  return new PrefixPipe()
-}
-const PREFIX_PIPE_TOKEN = new InjectionToken<PrefixPipe>('PREFIX_PIPE_TOKEN');
-
 @Component({
   selector: 'my-app',
   template: `
   <h2>{{word}}</h2>
   <br>
-   <h2>{{'same' | prefix: 'the'}}</h2>
+   <h2>{{word2 | prefix: 'long'}}</h2>
   `
 })
-class AppComponent {
-  word = 'selector'
-  constructor(@Inject(PREFIX_PIPE_TOKEN) private prefixPipe: PrefixPipe) {
-  this.word = prefixPipe.transform(this.word, 'new')
+class AppComponent implements OnInit {
+  word = 'two';
+  word2 = 'term';
+  constructor(private prefixPipe: PrefixPipe) {
+  }
+
+  ngOnInit() {
+    this.word = this.prefixPipe.transform(this.word, 'seventy');
   }
 }
 
@@ -51,9 +50,7 @@ const { CommonModule } = ng.common;
   CommonModule],
   declarations: [AppComponent, PrefixPipe],
   bootstrap: [AppComponent],
-  providers: [
-    {provide: PREFIX_PIPE_TOKEN, useFactory : pereFixPipeProvider }
-  ]
+  providers: [PrefixPipe]
 })
 class AppModule {}
 

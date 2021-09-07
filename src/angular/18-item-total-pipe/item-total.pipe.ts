@@ -8,7 +8,7 @@ export class ItemTotalPipe implements PipeTransform {
 
   transform(items: Item[]): number {
     let itemTotal = 0.0;
-    if (items) {
+    if (items.length) {
       for (const item of items) {
         itemTotal += item.price;
       }
