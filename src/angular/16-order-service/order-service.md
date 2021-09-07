@@ -114,7 +114,7 @@ Before starting:
 
 1\. ✏️ Update __src/app/order/order.component.html__ to show the completed order:
 
-@diff ../14-building-order-form/order.component-final.html ./order.component.html only
+@diff ../15-directive/order.component.directive.html ./order.component.html only
 
 
 2\. ✏️ Update __src/app/order/order.component.ts__ to have a `onSubmit` method and

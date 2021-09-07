@@ -93,7 +93,7 @@ Add the Currency Pipe to the `order.component.html` , `menu-items.component.html
 
 ✏️ Update __src/app/order/order.component.html__ to use the Currency Pipe:
 
-@diff ../14-building-order-form/order.component-final.html ./order.component-currency-pipe.html only
+@diff ../16-order-service/order.component.html ./order.component.html only
 
 ✏️ Update __src/app/order/list/list.component.html__ to use the currency Pipe:
 

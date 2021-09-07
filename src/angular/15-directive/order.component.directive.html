@@ -33,10 +33,10 @@
       </div>
       <div class="submit">
         <h4>Total: ${{orderTotal}}</h4>
-        <div class="loading" *ngIf="orderProcessing"></div>
-        <button type="submit" [disabled]="!orderForm.valid || orderProcessing" class="btn">
-          Place My Order!
-        </button>
+          <div class="loading" *ngIf="orderProcessing"></div>
+          <button type="submit" [disabled]="!orderForm.valid || orderProcessing" class="btn">
+            Place My Order!
+          </button>
       </div>
     </form>
   </ng-template>
