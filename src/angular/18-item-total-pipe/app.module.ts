@@ -4,6 +4,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 
+import { MenuItemsComponent } from './order/menu-items/menu-items.component';
+import { HistoryComponent } from './order/history/history.component';
+import { ListComponent } from './order/list/list.component';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -22,6 +26,9 @@ import { ItemTotalPipe } from './item-total.pipe';
         ImageUrlPipe,
         DetailComponent,
         OrderComponent,
+        MenuItemsComponent,
+        HistoryComponent,
+        ListComponent,
         OnlyNumbersDirective,
         ItemTotalPipe
     ],

@@ -38,7 +38,7 @@ To provide the __Pipe__ just created to the entire application, simply add the P
 ✏️ Update __src/app/app.module.ts__
 
 @sourceref ./app.module.ts
-@highlight 26, 35, only
+@highlight 42, only
 
 Now the Pipe is available to be used in components across the application <a href="https://angular.io/guide/providers" target="\_blank">Providers</a>.
 
