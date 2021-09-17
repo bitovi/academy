@@ -32,8 +32,8 @@ ng g pipe itemTotal
 ```
 
 ## Provide Pipe Globally
-Unlike services, Pipes are not readily injectable into our components. In order to be able to use Pipes in a component, it has to be provided to the application globally. 
-To provide the __Pipe__ just created to the entire application, simply add the Pipe to the provider array in the `app.module.ts` file. [Learn More](https://angular.io/guide/providers)
+Unlike services, Pipes are not readily injectable into our components. In order to be able to use Pipes in a component, it has to be provided in the app module. 
+To provide the __Pipe__ just created in the app module, simply add the Pipe to the provider array in the `app.module.ts` file. [Learn More](https://angular.io/guide/providers)
 
 ✏️ Update __src/app/app.module.ts__
 
