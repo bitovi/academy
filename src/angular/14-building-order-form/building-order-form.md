@@ -48,7 +48,7 @@ When you navigate to the `/order` path from a restaurant detail page you should 
 
 __src/app/app-routing.module.ts__
 
-@diff ../13-nested-routes/app-routing.module.ts ./app-routing.module.ts
+@diff ../13-nested-routes/app-routing.module.ts ./app-routing.module.ts only
 
 
 ## Problem 2: Build Out the Order Component
@@ -106,8 +106,7 @@ The order form component needs to get the restaurant from the route slug, and ne
 
 ✏️ Update __src/app/order/order.component.ts__
 
-@diff ./order.component-starter.ts ./order.component-solution.ts
-
+@diff ./order.component-starter.ts ./order.component-solution.ts only
 
 ## Importing 3rd Party Plugins
 
@@ -124,7 +123,7 @@ Ng add is a convenient way to import 3rd party libs that will update `angular.js
 ✏️ Update __src/app/app.module.ts__. Once you're done, don't forget to restart the server!
 
 @diff ../8-state-city-options/app.module.ts ./app.module.ts
-@highlight 5, 29
+@highlight 5, 29, only
 
 Now let's add the markup to our order component implementing the tabs widget.
 
@@ -341,7 +340,7 @@ Other concepts used here:
 
 ✏️ Update __src/app/order/order.component.html__
 
-@diff ./child-component/order-2.component.html ./order.component-final.html
+@diff ./child-component/order-2.component.html ./order.component-final.html only
 
 
 We now have a form that updates the `items` formControl when items are selected and shows the user an updated total!

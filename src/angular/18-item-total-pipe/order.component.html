@@ -9,13 +9,13 @@
     <ul class="list-group panel">
       <li class="list-group-item" *ngFor="let item of completedOrder.items">
         <label>
-          {{item.name}} <span class="badge">${{item.price}}</span>
+          {{item.name}} <span class="badge">{{item.price | currency}}</span>
         </label>
       </li>
 
       <li class="list-group-item">
         <label>
-          Total <span class="badge">${{orderTotal}}</span>
+          Total <span class="badge">{{orderTotal | currency}}</span>
         </label>
       </li>
     </ul>
@@ -63,7 +63,7 @@
         <p class="help-text">Please enter your phone number.</p>
       </div>
       <div class="submit">
-        <h4>Total: ${{orderTotal}}</h4>
+        <h4>Total: {{orderTotal | currency}}</h4>
           <div class="loading" *ngIf="orderProcessing"></div>
           <button type="submit" [disabled]="!orderForm.valid || orderProcessing" class="btn">
             Place My Order!

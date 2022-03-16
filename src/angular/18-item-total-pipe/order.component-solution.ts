@@ -4,8 +4,11 @@ import { FormGroup, FormBuilder, FormArray, AbstractControl, Validators } from '
 
 import { RestaurantService } from '../restaurant/restaurant.service';
 import { Restaurant } from '../restaurant/restaurant';
+import { OrderService, Order, Item } from './order.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from "rxjs/operators";
+import {ItemTotalPipe} from "../item-total.pipe";
+
 
 function minLengthArray(min: number) {
   return (c: AbstractControl): {[key: string]: any} => {
@@ -26,7 +29,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   isLoading = true;
   items: FormArray;
   orderTotal = 0.0;
-  completedOrder: any;
+  completedOrder: Order;
   orderComplete = false;
   orderProcessing = false;
   private unSubscribe = new Subject<void>();
@@ -34,7 +37,9 @@ export class OrderComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute, 
     private restaurantService: RestaurantService,
-    private formBuilder: FormBuilder 
+    private orderService: OrderService,
+    private formBuilder: FormBuilder,
+    private itemTotal: ItemTotalPipe
   ) { 
   }
 
@@ -65,18 +70,20 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   onChanges() {
-    this.orderForm.get('items').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe((val) => {
-      let total = 0.0;
-      for (const item of val) {
-        total += item.price;
-      }
-      this.orderTotal = Math.round(total * 100) / 100;
+    this.orderForm.get('items').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe((val: Item[])=> {
+
+      this.orderTotal = this.itemTotal.transform(val);
+
     });
   }
 
   onSubmit() {
     this.orderProcessing = true;
-    //call createOrder here
+    this.orderService.createOrder(this.orderForm.value).subscribe((res: Order) => {
+      this.completedOrder = res;
+      this.orderComplete = true;
+      this.orderProcessing = false;
+    });
   }
 
   startNewOrder() {

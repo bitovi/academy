@@ -1,5 +1,5 @@
 @page learn-angular/real-time-connection Real Time Connections
-@parent learn-angular 18
+@parent learn-angular 19
 
 @description Updating Order History View with Real Time Connection
 @body
@@ -32,7 +32,7 @@ npm install --save ngx-socket-io
 ✏️ Update __src/app/app.module.ts__ to:
 
 @sourceref ./app.module.ts
-@highlight 18-20,40,only
+@highlight 20-22,44,only
 
 <!-- This polyfill doesn't seem neccesary for Angular 10, but the bug is still open and doesn't mention Angular 9+, so I'm leaving this here until the issue is actually resolved.
      Bug report: https://github.com/socketio/socket.io-client/issues/1206 

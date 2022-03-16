@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -14,6 +14,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { MenuItemsComponent } from './order/menu-items/menu-items.component';
 import { HistoryComponent } from './order/history/history.component';
 import { ListComponent } from './order/list/list.component';
+import { OnlyNumbersDirective } from './only-numbers.directive';
+import { ItemTotalPipe } from './item-total.pipe';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from '../environments/environment';
@@ -29,7 +31,9 @@ const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
     OrderComponent,
     MenuItemsComponent,
     HistoryComponent,
-    ListComponent
+    ListComponent,
+    OnlyNumbersDirective,
+    ItemTotalPipe
   ],
   imports: [
     BrowserModule,
@@ -39,7 +43,7 @@ const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
     TabsModule.forRoot(),
     SocketIoModule.forRoot(config)
   ],
-  providers: [],
+  providers: [ItemTotalPipe, {provide: DEFAULT_CURRENCY_CODE, useValue: 'USD'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
