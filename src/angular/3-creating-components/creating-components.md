@@ -51,11 +51,11 @@ This will create a new component for us and import it in our root module.
 |   |       |── new-component-name.component.html
 ```
 
-Generated components have the same structure - a name.component.ts file that will contain the boilerplate code for the Angular component class. This class will also have a component decorator pointing to the name.component.less file for styles, and the name.component.html file for it's template. Styles and templates can also be written inline in the decorator with backticks to escape the code using the keys `style` and `template`. 
+Generated components have the same structure - a name.component.ts file that will contain the boilerplate code for the Angular component class. This class will also have a component decorator pointing to the name.component.less file for styles, and the name.component.html file for it's template. Styles and templates can also be written inline in the decorator with backticks to escape the code using the keys `style` and `template`.
 
 ## Bind Data to Components
 
-Like most modern JS frameworks, Angular provides us a way of displaying data dynamically in the DOM. Properties declared in a component can be used in the component template with double curly brace syntax: `{{myTitle}}`
+Like most modern JS frameworks, Angular provides us a way of displaying data dynamically in the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model). Properties declared in a component can be used in the component template with double curly brace syntax: `{{myTitle}}`
 
 @sourceref ./template.html
 @codepen
@@ -78,14 +78,21 @@ The component should provide the following HTML:
 
 ```html
 <div class="homepage">
-  <img src="./assets/images/homepage-hero.jpg" alt="Restaurant table with glasses." width="250" height="380" />
+  <img
+    src="./assets/images/homepage-hero.jpg"
+    alt="Restaurant table with glasses."
+    width="250"
+    height="380"
+  />
   <h1><!-- TITLE GOES HERE --></h1>
   <p>
-    We make it easier than ever to order gourmet food
-    from your favorite local restaurants.
+    We make it easier than ever to order gourmet food from your favorite local
+    restaurants.
   </p>
   <p>
-     <a class="btn" routerLink="/restaurants" role="button">Choose a Restaurant</a>
+    <a class="btn" routerLink="/restaurants" role="button"
+      >Choose a Restaurant</a
+    >
   </p>
 </div>
 ```
@@ -106,26 +113,25 @@ To get this application up and running quicker so we can focus on the architectu
 npm install place-my-order-assets --save
 ```
 
-Open the ``angular.json`` file, and make the following changes to include these files in our build process. This will copy the images into our assets directory for when we serve our application.
+Open the `angular.json` file, and make the following changes to include these files in our build process. This will copy the images into our assets directory for when we serve our application.
 
-> Pay close attention that you're making these changes under the "build" key and not the "test" key, as the code looks very similar. The build key should be close to line 17.
+> Pay close attention that you're making these changes under the "build" key and not the "test" key, as the code looks very similar. The build key should be close to line 20.
 
 <details open>
 <summary>section copied - angular.json</summary>
 ✏️ Update __angular.json__:
 
 @sourceref ./angular.json
-@highlight 25-39,only
-
+@highlight 29-41,only
 
 </details>
 
-__Any time changes are made to the `angular.json` file, we need to restart our server to catch the new changes.__
+**Any time changes are made to the `angular.json` file, we need to restart our server to catch the new changes.**
 
-✏️ __Restart your server.__
+✏️ **Quit process by running `Ctrl + C`.**
 
 While we are building the component, it will be nice to see it in the
-application. One of the ways components can be rendered is by putting them in markup. We'll do this by putting our `<pmo-home></pmo-home>` tag in our base app component markup.  To see the
+application. One of the ways components can be rendered is by putting them in markup. We'll do this by putting our `<pmo-home></pmo-home>` tag in our base app component markup. To see the
 `<pmo-home>` component, do the following.
 
 ✏️ Run:
@@ -134,7 +140,7 @@ application. One of the ways components can be rendered is by putting them in ma
 ng g component home
 ```
 
-✏️ Update __src/app/app.component.html__ to be:
+✏️ Update **src/app/app.component.html** to be:
 
 ```html
 <h1>Place My Order App: Coming Soon!</h1>
@@ -142,20 +148,28 @@ ng g component home
 
 <pmo-home></pmo-home>
 ```
+
 @highlight 4
 
-✏️ Update __src/app/home/home.component.html__ to be:
+✏️ Update **src/app/home/home.component.html** to be:
 
 ```html
 <div class="homepage">
-  <img src="./assets/images/homepage-hero.jpg" alt="Restaurant table with glasses." width="250" height="380" />
+  <img
+    src="./assets/images/homepage-hero.jpg"
+    alt="Restaurant table with glasses."
+    width="250"
+    height="380"
+  />
   <h1><!-- TITLE GOES HERE --></h1>
   <p>
-    We make it easier than ever to order gourmet food
-    from your favorite local restaurants.
+    We make it easier than ever to order gourmet food from your favorite local
+    restaurants.
   </p>
   <p>
-     <a class="btn" routerLink="/restaurants" role="button">Choose a Restaurant</a>
+    <a class="btn" routerLink="/restaurants" role="button"
+      >Choose a Restaurant</a
+    >
   </p>
 </div>
 ```
@@ -164,38 +178,48 @@ Run `npm run start`, and your app should compile with no errors, and you'll be a
 
 ## P1: How to Verify Your Solution is Correct
 
-✏️ Update the spec file  __src/app/home/home.component.spec.ts__ to be:
+✏️ Update the spec file **src/app/home/home.component.spec.ts** to be:
 
 @sourceref ./home.component.spec.ts
+@highlight 25-41
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## P1: Solution
 
-✏️ Update __src/app/home/home.component.html__
+✏️ Update **src/app/home/home.component.html**
 
 ```html
 <div class="homepage">
-  <img src="./assets/images/homepage-hero.jpg" alt="Restaurant table with glasses." width="250" height="380" />
-  <h1>{{title}}</h1>
+  <img
+    src="./assets/images/homepage-hero.jpg"
+    alt="Restaurant table with glasses."
+    width="250"
+    height="380"
+  />
+  <h1>{{ title }}</h1>
   <p>
-    We make it easier than ever to order gourmet food
-    from your favorite local restaurants.
+    We make it easier than ever to order gourmet food from your favorite local
+    restaurants.
   </p>
   <p>
-     <a class="btn" routerLink="/restaurants" role="button">Choose a Restaurant</a>
+    <a class="btn" routerLink="/restaurants" role="button"
+      >Choose a Restaurant</a
+    >
   </p>
 </div>
 ```
 
-__src/app/home/home.component.ts__
+@highlight 8
+
+**src/app/home/home.component.ts**
 
 @sourceref ./home.component.ts
 @highlight 9
 
 ## Problem 2: Write Restaurant Component Markup that Displays a List of Restaurants
 
-We want to display a list of restaurants in our UI once the data has been set on the restaurants member.  It will look like:
+We want to display a list of restaurants in our UI once the data has been set on the restaurants member. It will look like:
 
 <img src="../static/img/angular/3-creating-components/restaurant-component.png"
   style="border: solid 1px black; max-width: 640px;"/>
@@ -214,7 +238,7 @@ template directives. Template directives in Angular help us iterate through and 
 
 ## \*ngIf
 
-<a href="https://angular.io/api/common/NgIf" target="\_blank">ngIf</a> is a structural directive that allows us to conditionally render content. It can be paired with <a href="https://angular.io/guide/structural-directives#the-ng-template" target="\_blank">ng-template</a> to render an `else` block.
+<a href="https://angular.io/api/common/NgIf" target="\_blank">ngIf</a> is a structural directive that allows us to conditionally render content. It can be paired with <a href="https://angular.io/guide/structural-directives#creating-template-fragments-with-ng-template" target="\_blank">ng-template</a> to render an `else` block.
 
 This example shows content blocks based on the value of boolean `showMyContent`.
 
@@ -234,7 +258,7 @@ This example displays each name in the `myList` array in an `li` tag.
 
 ## ng-container
 
-<a href="https://angular.io/guide/structural-directives#ngcontainer" target="\_blank">ng-container</a> is an element that allows us to create template bindings without creating a DOM element. Only one structural directive is allowed per host element (to avoid confusion around which directive would take precedence) making this directive handy for when we have several logic directives to apply to content.  
+<a href="https://angular.io/guide/structural-directives#ngcontainer" target="\_blank">ng-container</a> is an element that allows us to create template bindings without creating a DOM element. Only one structural directive is allowed per host element (to avoid confusion around which directive would take precedence) making this directive handy for when we have several logic directives to apply to content.
 
 This example shows using logic directives to display data without creating additional DOM elements.
 
@@ -246,13 +270,13 @@ This example shows using logic directives to display data without creating addit
 
 The <a href="https://angular.io/api/common/NgClass" target="\_blank">ng-class</a> directive is a way to set classes on elements based on boolean logic. ng-class can take a single class, an array of classes, key value pairs with boolean values, or regexes.
 
-This example shows various ways classes can be added to elements. 
+This example shows various ways classes can be added to elements.
 
 @sourceref ./ng-class.html
 @codepen
 @highlight 17, 19, 21, 23,25, 27-30, 34, only
 
-Notice in the above example our `ng-class` is surrounded by `[ ]`. This signals that we're passing in an object, instead of just a string. When using <a href="https://angular.io/guide/template-syntax#property-binding--property-" target="\_blank">property binding</a>, `ngClass="value"` will evaluate the value as a string of _"value"_ and `[ngClass]="value"` as whatever the component property value is.
+Notice in the above example our `ng-class` is surrounded by `[ ]`. This signals that we're passing in an object, instead of just a string. When using <a href="https://angular.io/guide/property-binding" target="\_blank">property binding</a>, `ngClass="value"` will evaluate the value as a string of _"value"_ and `[ngClass]="value"` as whatever the component property value is.
 
 @sourceref ./ng-class-property.html
 @codepen
@@ -263,11 +287,12 @@ Notice in the above example our `ng-class` is surrounded by `[ ]`. This signals 
 Here is the markup to show for each restaurant:
 
 ```html
-<img src="{{restaurant.images.thumbnail}}" width="100" height="100">
-<h3>{{restaurant.name}}</h3>
+<img src="{{ restaurant.images.thumbnail }}" width="100" height="100" />
+<h3>{{ restaurant.name }}</h3>
 
 <div class="address" *ngIf="restaurant.address">
-  {{restaurant.address.street}}<br />{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
+  {{ restaurant.address.street }}<br />{{ restaurant.address.city }},
+  {{ restaurant.address.state }} {{ restaurant.address.zip }}
 </div>
 
 <div class="hours-price">
@@ -276,9 +301,7 @@ Here is the markup to show for each restaurant:
   <span class="open-now">Open Now</span>
 </div>
 
-<a class="btn" [routerLink]="['/restaurants', restaurant.slug]">
-  Details
-</a>
+<a class="btn" [routerLink]="['/restaurants', restaurant.slug]"> Details </a>
 <br />
 ```
 
@@ -296,29 +319,30 @@ ng g component restaurant
 
 For now, we'll use fake data for a list of restaurants in the component, and put the data in a setTimeout to simulate an api call.
 
-✏️ Update __src/app/restaurant/restaurant.component.ts__ to be:
+✏️ Update **src/app/restaurant/restaurant.component.ts** to be:
 
 @sourceref ./restaurant.component.ts
 
-✏️ Update __src/app/restaurant/restaurant.component.html__ to be:
+@highlight 3-97, 104, 109-111
+
+✏️ Update **src/app/restaurant/restaurant.component.html** to be:
 
 ```html
 <div class="restaurants">
   <h2 class="page-header">Restaurants</h2>
   <!-- if restaurants has a length show the list -->
 
-    <!-- inside this container, show the following markup for each restaurant -->
-    <div class="restaurant">
+  <!-- inside this container, show the following markup for each restaurant -->
+  <div class="restaurant">
 
-    </div>
-    <!-- end of restaurant markup -->
+  </div>
+  <!-- end of restaurant markup -->
 </div>
 ```
 
-> Reminder: The markup that should be written out for each restaurant can be
-  found in the [exercise description](#problem-2-write-restaurant-component-markup-that-displays-a-list-of-restaurants).
+> Reminder: The markup that should be written out for each restaurant can be found in the [exercise description](#p2-technical-requirements).
 
-✏️ To see our component working, we can paste it into our __src/app/app.component.html__ file just like with the home component:
+✏️ To see our component working, we can paste it into our **src/app/app.component.html** file just like with the home component:
 
 ```html
 <h1>Place My Order App: Coming Soon!</h1>
@@ -326,19 +350,23 @@ For now, we'll use fake data for a list of restaurants in the component, and put
 
 <pmo-restaurant></pmo-restaurant>
 ```
+
 @highlight 4
 
 ## P2: How to Verify Your Solution is Correct
 
-✏️ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
+✏️ Update the spec file **src/app/restaurant/restaurant.component.spec.ts** to be:
 
 @sourceref ./restaurant.component.spec.ts
+
+@highlight 1-7, 17, 32-74
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## P2: Solution
 
-✏️ Update __src/app/restaurant/restaurant.component.html__ to the following:
+✏️ Update **src/app/restaurant/restaurant.component.html** to the following:
 
 @sourceref ./restaurant.component.html
-@highlight 3,4
+
+@highlight 3-23
