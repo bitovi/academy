@@ -3,17 +3,17 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/angular/3a-pipes/3a-pipes.md
-	@page learn-angular/creating-pipes
+	source: src/angular/15-directive/15-directive.md
+	@page learn-angular/creating-directive
 ######################################################################## -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn how to create a custom pipe in Angular that returns a modified version of a string. 
+  <meta name="description" content="Learn how to create Directives in Angular that can change the appearance or behavior of DOM Elements. 
 ">
-  <title>Bitovi Academy - Creating Pipes</title>
+  <title>Bitovi Academy - Creating Directive</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -273,17 +273,14 @@ covering CanJS core libraries.">
 		
 			
 				
-					<li class="current
-           						parent
-           						expanded">
+					<li class="
+           						
+           						">
 						<a class="page"
 							href="creating-pipes.html"
 							title="Learn how to create a custom pipe in Angular that returns a modified version of a string.">
 							Creating Pipes
 						</a>
-						
-							
-
 						
 					</li>
 				
@@ -456,14 +453,17 @@ covering CanJS core libraries.">
 		
 			
 				
-					<li class="
-           						
-           						">
+					<li class="current
+           						parent
+           						expanded">
 						<a class="page"
 							href="creating-directive.html"
 							title="Learn how to create Directives in Angular that can change the appearance or behavior of DOM Elements.">
 							Creating Directive
 						</a>
+						
+							
+
 						
 					</li>
 				
@@ -567,7 +567,7 @@ covering CanJS core libraries.">
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Creating Pipes <code>page</code></h1>
+	<h1>Creating Directive <code>page</code></h1>
 </section>
 
   		
@@ -575,7 +575,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn how to create a custom pipe in Angular that returns a modified version of a string.</p>
+    <p>Learn how to create Directives in Angular that can change the appearance or behavior of DOM Elements.</p>
 
 </section>
 
@@ -589,31 +589,52 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Problem</h2>
-<p>You may have noticed an image error in our rendered html page. We're using an API in this demo that wasn't built for our exact purposes, and we need a different image path for our app to serve.</p>
-<p><img src="../static/img/angular/3-creating-components/restaurant-component.png"
-style="border: solid 1px black; max-width: 320px;"/></p>
-<p>In this exercise, we will fix the path of the thumbnail images in <strong>src/app/restaurant/restaurant.component.html</strong>.</p>
-<p><img src="../static/img/angular/3b-creating-pipes/restaurant-thumbnails.png"
-style="border: solid 1px black; max-width: 320px;"/></p>
-<p>Currently the path is written out like:</p>
-<pre><code class="language-html">&lt;img src=&quot;{{restaurant.images.thumbnail}}&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
+<p>While filling out the  <code>phone number</code> field, you might have noticed that users can type in both letters and numbers. This is a problem because we do not want users entering letters in the <code>phone number</code> field.</p>
+<p><img src="../static/img/angular/15-directives/order-form-thumbnails.png"
+style="border: solid 1px black; max-width: 420px;"/></p>
+<p>In order to fix this, we will create an Attribute Directive that will change the behavior of the Phone Input Field, and will ensure that only numbers can be entered in the field.</p>
+<pre><code class="language-html">  &lt;input name=&quot;phone&quot; type=&quot;text&quot; pmoOnlyNumbers class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
 </code></pre>
-<p><code>restaurant.images.thumbnail</code> will be a path like <code>node_modules/place-my-order-assets/image.png</code>.  We need to change that path to be more like <code>./assets/image.png</code>. Once
-the path rewriting is fixed, images will show up correctly.</p>
 <h2>What You Need to Know</h2>
 <ul>
-<li>How to generate a pipe</li>
-<li>How to use a pipe to transform data</li>
+<li>What Directives are in Angular</li>
+<li>What ElementRef is</li>
+<li>What HostListeners are</li>
+<li>How to create a Directive</li>
 </ul>
-<h2>How to Generate a Pipe via the CLI</h2>
-<p>Generate a pipe with the following command:</p>
-<pre><code class="language-bash">ng g pipe imageUrl
+<h2>What are Directives in Angular</h2>
+<p>In Angular, Directives are classes that tell Angular to change the appearance or behavior of DOM Elements. Angular comes with a set of <a href="https://angular.io/guide/built-in-directives" target="\_blank" >Built-in</a> Directives,
+and they consist of three types:</p>
+<ul>
+<li>Components Directives</li>
+<li>Attribute Directives</li>
+<li>Structural Directives</li>
+</ul>
+<h1>Components Directives</h1>
+<p>In this training, we previously talked about <a href="/academy/academy/learn-angular/creating-components.html">Components</a>.
+Components are a type of Directive. Components use the <code>@Component</code> decorator function along with a template, style, and other logic needed for the view.
+<a href="https://angular.io/guide/built-in-directives#:~:text=Components%E2%80%94-,directives,-with%20a%20template" target="\_blank" >Read more</a></p>
+<h1>Attribute Directives</h1>
+<p>Attribute Directives are a type of directive that are mainly used to listen or change the behavior or appearance of DOM Elements,
+Attributes and Component <a href="https://angular.io/guide/attribute-directives" target="\_blank">Read more</a>.</p>
+<h1>Structural Directives</h1>
+<p>Structural Directives are types of Directives that are used to change HTML DOM layout, by adding, removing or manipulating Elements.
+<a href="https://angular.io/guide/structural-directives" target="\_blank" >Read more</a></p>
+<h2>ElementRef</h2>
+<p>In Angular, ElementRef (Element Reference) is a wrapper around a native DOM Element inside of a View.
+The ElementRef class contains a property <code>nativeElement</code>, which references the underlying DOM object that we can use to manipulate the DOM
+<a href="https://angular.io/api/core/ElementRef" target="\_blank" >Read more</a>.
+When creating a Directive, we use ElementRef to gain reference to the HtmlElement, which the Directive will be used on, and perform any manipulation we need to.</p>
+<h2>HostListener</h2>
+<p>In Angular, @HostListeners() is a function decorator that allows you to listen and handle events from the host elements.
+Some examples of host events include <code>Keyboard</code>, <code>Click</code>, <code>mousehover</code> etc <a href="https://angular.io/api/core/HostListener" target="\_blank" >Read more</a>.
+When creating a Directive, we use the @HostListeners() decorator in the Directive Class to listen for host events. Based on the event, we can perform any action needed.</p>
+<h2>How to Generate a Directive via the CLI</h2>
+<pre><code class="language-bash">ng generate directive onlyNumbers
 </code></pre>
-<p>This will generate a pipe file: <code>image-url.pipe.ts</code></p>
-<h2>How to Build a Pipe</h2>
-<p><a href="https://angular.io/guide/pipes" target="\_blank">Angular Pipes</a> come in handy to transform content in our templates. Pipes allow us to transform data to display to the user in our HTML without modifying the original source.</p>
-<p>Angular comes with several built-it pipes like DatePipe, UpperCasePipe, LowerCasePipe, CurrencyPipe, and PercentPipe. These pipes can be used in templates to modify the way data displays. We can build custom pipes as well. Pipes require one parameter - the value we can to change, but can take an additional parameters as well.</p>
-<p>This example takes the value to be transformed and a parameter to use as an exponential multiplier.</p>
+<p>This will generate the directive file: <code>only-numbers.directive.ts</code> and the spec file:  <code>only-numbers.directive.spec.ts</code></p>
+<h2>How to Build a Directive</h2>
+<p>As we have discussed above, Directives are very useful tools in Angular that can help improve your web application. The example below shows an Attribute Directive that would allow a user to enter only <code>letters</code> in an input field.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -625,21 +646,33 @@ the path rewriting is fixed, images will show up correctly.</p>
 &lt;my-app&gt;&lt;/my-app&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 // app.js
-const { Component, VERSION, Pipe, PipeTransform } = ng.core;
+const { Component, VERSION, Directive, ElementRef, HostListener} = ng.core;
 
+@Directive({ selector: '[pmoOnlyLetters]'})
+class OnlyLettersDirective {
 
-@Pipe({name: 'exponentialStrength'})
-class ExponentialStrengthPipe implements PipeTransform {
-  transform(value: number, exponent: number): number {
-    return Math.pow(value, isNaN(exponent) ? 1 : exponent);
+ allowedKeys: string[] = ['Backspace', 'ArrowLeft', 'ArrowRight'];
+ regExp =  new RegExp(/^[A-Za-z]*$/g);
+
+ constructor(private elementRef: ElementRef) { }
+  @HostListener('keydown', ['$event'])
+  onKeyDown(keyboardEvent: KeyboardEvent) {
+   if(this.allowedKeys.indexOf(keyboardEvent.key) !== -1) {
+      return;
+    }
+    const inputNativeElementValue = this.elementRef.nativeElement.value;
+    const next = `${inputNativeElementValue}${keyboardEvent.key}`;
+    if(next &amp;&amp; !next.match(this.regExp)) {
+      keyboardEvent.preventDefault();
+    }
   }
 }
 
 @Component({
   selector: 'my-app',
   template: `
-  &lt;h2&gt;Power Booster&lt;/h2&gt;
-  &lt;p&gt;Super power boost: {{2 | exponentialStrength: 10}}&lt;/p&gt;
+  &lt;h2&gt;Allow Only Letters Directive&lt;/h2&gt;
+    &lt;input name=&quot;phone&quot; type=&quot;text&quot; pmoOnlyLetters&gt;
   `
 })
 class AppComponent {
@@ -653,9 +686,8 @@ const { NgModule } = ng.core;
 const { CommonModule } = ng.common;
 
 @NgModule({
-  imports: [ BrowserModule,
-  CommonModule],
-  declarations: [AppComponent, ExponentialStrengthPipe],
+  imports: [ BrowserModule, CommonModule],
+  declarations: [AppComponent, OnlyLettersDirective],
   bootstrap: [AppComponent],
   providers: []
 })
@@ -671,153 +703,166 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='15-20, 26,only'></div>
+<div line-highlight='14-32, 38,only'></div>
 <h2>Technical Requirements</h2>
 <ol>
-<li>Use an <code>imageUrl</code> <strong>pipe</strong> in <strong>src/app/restaurant/restaurant.component.html</strong> to rewrite the path.  Using a pipe looks like the following:</li>
+<li>Use an <code>onlyNumber</code> <strong>Directive</strong> in <strong>src/app/order/order.component.html</strong> in the phone number input field.  Using the Directive should look like this:</li>
 </ol>
-<pre><code class="language-html">&lt;img src=&quot;{{restaurant.images.thumbnail | imageUrl}}&quot;/&gt;
+<pre><code class="language-html">&lt;input name=&quot;phone&quot; type=&quot;text&quot; pmoOnlyNumbers class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
 </code></pre>
 <ol start="2">
-<li>Generate and implement the <code>imageUrl</code> <strong>pipe</strong>.</li>
+<li>Generate and implement the <code>onlyNumber</code> <strong>Directive</strong>.</li>
 </ol>
-<p>The pipe will take an image url and transform it to the path we actually want to serve the image from. For example, from <code>node_modules/place-my-order-assets</code> to <code>./assets</code>.  This pipe will be used on our restaurant image thumbnail.</p>
+<p>The Directive will be used to listen for the event on the input field. This Directive will be used in our order form phone number field.</p>
 <blockquote>
-<p>Hint: Use String.prototype.replace to create the new path with image name.</p>
+<p>Hint 1: Use regex  <code>regExp: RegExp = new RegExp(/^[0-9]*$/g)</code> to test if the input value contains any letters.</p>
 </blockquote>
 <h2>Setup</h2>
-<p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong> file to use the pipe we will create:</p>
-<pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
-  &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
-  &lt;ng-container *ngIf=&quot;restaurants.length&quot;&gt;
-    &lt;div class=&quot;restaurant&quot; *ngFor=&quot;let restaurant of restaurants&quot;&gt;
-
-      &lt;img src=&quot;{{restaurant.images.thumbnail | imageUrl}}&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
-      &lt;h3&gt;{{restaurant.name}}&lt;/h3&gt;
-
-      &lt;div class=&quot;address&quot; *ngIf=&quot;restaurant.address&quot;&gt;
-        {{restaurant.address.street}}&lt;br /&gt;{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
-      &lt;/div&gt;
-
-      &lt;div class=&quot;hours-price&quot;&gt;
-        $$$&lt;br /&gt;
-        Hours: M-F 10am-11pm
-        &lt;span class=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
-      &lt;/div&gt;
-
-      &lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
-        Details
-      &lt;/a&gt;
-      &lt;br /&gt;
-    &lt;/div&gt;
+<p>✏️ Update <strong>src/app/order/order.component.html</strong> file to use the Directive we will create:</p>
+<pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
+  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
   &lt;/ng-container&gt;
+  &lt;ng-template #showOrderForm&gt;
+    &lt;h2&gt;Order here&lt;/h2&gt;
+    &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+      &lt;tabset&gt;
+        &lt;tab heading=&quot;Lunch Menu&quot;&gt;
+          &lt;ul class=&quot;list-group&quot;&gt;
+            &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
+          &lt;/ul&gt;
+        &lt;/tab&gt;
+        &lt;tab heading=&quot;Dinner menu&quot;&gt;
+          &lt;ul class=&quot;list-group&quot;&gt;
+            &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
+          &lt;/ul&gt;
+        &lt;/tab&gt;
+      &lt;/tabset&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
+        &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
+        &lt;p&gt;Please enter your name.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
+        &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
+        &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
+        &lt;input name=&quot;phone&quot; type=&quot;text&quot; pmoOnlyNumbers class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+        &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;submit&quot;&gt;
+        &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
+          &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
+          &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
+            Place My Order!
+          &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+  &lt;/ng-template&gt;
 &lt;/div&gt;
 </code></pre>
- <div line-highlight="6,"></div>
-<p>✏️ Run the following to generate the <strong>pipe</strong> and the pipe's tests:</p>
-<pre><code class="language-bash">ng g pipe imageUrl
+<div line-highlight='31,only'></div>
+<p>✏️ Run the following to generate the <strong>Directive</strong> and the directive's tests:</p>
+<pre><code class="language-bash">ng g directive onlyNumbers
 </code></pre>
 <h2>How to Verify Your Solution is Correct</h2>
-<p>✏️ Update the restaurant spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to include the new pipe:</p>
-<pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { ImageUrlPipe } from '../image-url.pipe';
+<p>✏️ Update the spec file  <strong>src/app/only-numbers.directive.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { OnlyNumbersDirective } from './only-numbers.directive';
+import {Component, DebugElement} from &quot;@angular/core&quot;;
+import {ComponentFixture, TestBed} from &quot;@angular/core/testing&quot;;
+import {FormsModule} from &quot;@angular/forms&quot;;
+import {By} from &quot;@angular/platform-browser&quot;;
 
-import { RestaurantComponent } from './restaurant.component';
+@Component({
+  template: `&lt;input name=&quot;phone&quot; type=&quot;text&quot; pmoOnlyNumbers /&gt;`
+})
+class TestInputComponent {}
 
-describe('RestaurantComponent', () =&gt; {
-  let component: RestaurantComponent;
-  let fixture: ComponentFixture&lt;RestaurantComponent&gt;;
-
-  beforeEach(async(() =&gt; {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [ RestaurantComponent, ImageUrlPipe ]
-    })
-    .compileComponents();
-  }));
+describe('OnlyNumbersDirective', () =&gt; {
+  let debugElement: DebugElement;
+  let fixture: ComponentFixture&lt;TestInputComponent&gt;;
 
   beforeEach(() =&gt; {
-    fixture = TestBed.createComponent(RestaurantComponent);
-    component = fixture.componentInstance;
+    fixture = TestBed.configureTestingModule({
+      declarations: [OnlyNumbersDirective, TestInputComponent],
+      imports: [FormsModule],
+      providers: []
+    }).createComponent(TestInputComponent);
     fixture.detectChanges();
+    debugElement = fixture.debugElement.query(By.css('input'));
   });
 
-  it('should create', () =&gt; {
-    expect(component).toBeTruthy();
+  it('should create an instance', () =&gt; {
+    const directive = new OnlyNumbersDirective(debugElement);
+    expect(directive).toBeTruthy();
   });
 
-  it('should render title in a h2 tag', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h2').textContent).toContain('Restaurants');
+  it('should contain only text 329053', () =&gt; {
+    const inputString = '32T90V53CFACR';
+    simulateTyping(inputString);
+    expect(debugElement.nativeElement.value).toEqual('329053');
   });
 
-  it('should not show any restaurants markup if no restaurants', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.restaurant')).toBe(null);
+  it('should contain only text 200', () =&gt; {
+    const inputString = 'THisIsA200LETTERWORD';
+    simulateTyping(inputString);
+    expect(debugElement.nativeElement.value).toEqual('200');
   });
 
-  it('should have two .restaurant divs',  &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    fixture.detectChanges();
-    tick(501);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let restaurantDivs = compiled.getElementsByClassName('restaurant');
-    let hoursDivs = compiled.getElementsByClassName('hours-price');
-    expect(restaurantDivs.length).toEqual(2);
-    expect(hoursDivs.length).toEqual(2);
-  }));
+  it('should be an empty string', () =&gt; {
+    const inputString = 'STRING OF LETTER NO NUMBER';
+    simulateTyping(inputString);
+    expect(debugElement.nativeElement.value).toBe('');
+  });
 
-  it('should display restaurant information',  &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
+  function simulateTyping(value: string) {
+    let buildString = '';
+    for (const singleValue of value) {
+      const keydownEvent = new KeyboardEvent('keydown', { key: singleValue, cancelable: true })
+      debugElement.nativeElement.dispatchEvent(keydownEvent);
+      if (keydownEvent.defaultPrevented) {
+      } else {
+        buildString = `${buildString}${singleValue}`;
+      }
+    }
+    debugElement.nativeElement.value = buildString;
+    debugElement.nativeElement.dispatchEvent(new Event('input'));
     fixture.detectChanges();
-    tick(501);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.restaurant h3').textContent).toContain('Poutine Palace');
-  }));
-
+  }
 });
 
-</code></pre>
-<div line-highlight='3,16, only'></div>
-<p>✏️ Update the spec file  <strong>src/app/image-url.pipe.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { ImageUrlPipe } from './image-url.pipe';
-
-describe('ImageUrlPipe', () =&gt; {
-  it('create an instance', () =&gt; {
-    const pipe = new ImageUrlPipe();
-    expect(pipe).toBeTruthy();
-  });
-
-  it('returns a string with proper assets path', () =&gt; {
-    const pipe = new ImageUrlPipe();
-    expect(pipe.transform('node_modules/place-my-order-assets/tacos.png')).toBe('./assets/tacos.png');
-  })
-});
 </code></pre>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
 <h2>Solution</h2>
-<p>✏️ Update <strong>src/app/image-url.pipe.ts</strong> to:</p>
-<pre><code class="language-ts">import { Pipe, PipeTransform } from '@angular/core';
+<p>✏️ Update <strong>src/app/only-numbers.directive.ts</strong> to:</p>
+<pre><code class="language-ts">import {Directive, ElementRef, HostListener} from '@angular/core';
 
-@Pipe({
-  name: 'imageUrl'
+@Directive({
+  selector: '[pmoOnlyNumbers]'
 })
-export class ImageUrlPipe implements PipeTransform {
+export class OnlyNumbersDirective {
 
-  transform(value: string): string {
-    return value.replace('node_modules/place-my-order-assets', './assets');
+  private allowedKeys: string[] = ['Backspace', 'ArrowLeft', 'ArrowRight'];
+  private regExp =  new RegExp(/^[0-9]*$/g);
+
+  constructor(private elementRef: ElementRef) { }
+
+  @HostListener('keydown', ['$event'])
+  onKeyDown(keyboardEvent: KeyboardEvent) {
+    if(this.allowedKeys.indexOf(keyboardEvent.key) !== -1) {
+      return;
+    }
+    const inputNativeElementValue = this.elementRef.nativeElement.value;
+    const next = `${inputNativeElementValue}${keyboardEvent.key}`;
+    if(next &amp;&amp; !next.match(this.regExp)) {
+      keyboardEvent.preventDefault();
+    }
   }
+
 }
 
 </code></pre>
@@ -858,7 +903,7 @@ export class ImageUrlPipe implements PipeTransform {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/3a-pipes/3a-pipes.md"},"description":"Learn how to create a custom pipe in Angular that returns a modified version of a string. \n","name":"learn-angular/creating-pipes","title":"Creating Pipes","type":"page","parent":"learn-angular","order":3,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/15-directive/15-directive.md"},"description":"Learn how to create Directives in Angular that can change the appearance or behavior of DOM Elements. \n","name":"learn-angular/creating-directive","title":"Creating Directive","type":"page","parent":"learn-angular","order":15,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

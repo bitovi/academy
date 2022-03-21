@@ -3,16 +3,16 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/angular/16-order-service/order-service.md
-	@page learn-angular/order-service
+	source: src/angular/18-item-total-pipe/item-total-pipe.md
+	@page learn-angular/item-total-pipe
 ######################################################################## -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Writing the Order Service ">
-  <title>Bitovi Academy - Order Service</title>
+  <meta name="description" content="Write an Item Total Pipe to help manage item total calculation across our application. ">
+  <title>Bitovi Academy - Item Total Pipe</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -467,17 +467,14 @@ covering CanJS core libraries.">
 		
 			
 				
-					<li class="current
-           						parent
-           						expanded">
+					<li class="
+           						
+           						">
 						<a class="page"
 							href="order-service.html"
 							title="Writing the Order Service">
 							Order Service
 						</a>
-						
-							
-
 						
 					</li>
 				
@@ -500,14 +497,17 @@ covering CanJS core libraries.">
 		
 			
 				
-					<li class="
-           						
-           						">
+					<li class="current
+           						parent
+           						expanded">
 						<a class="page"
 							href="item-total-pipe.html"
 							title="Write an Item Total Pipe to help manage item total calculation across our application.">
 							Item Total Pipe
 						</a>
+						
+							
+
 						
 					</li>
 				
@@ -566,7 +566,7 @@ covering CanJS core libraries.">
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Order Service <code>page</code></h1>
+	<h1>Item Total Pipe <code>page</code></h1>
 </section>
 
   		
@@ -574,7 +574,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Writing the Order Service</p>
+    <p>Write an Item Total Pipe to help manage item total calculation across our application.</p>
 
 </section>
 
@@ -590,498 +590,145 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this part, we will:</p>
 <ul>
-<li>Create a new order service</li>
-<li>Write interfaces to describe orders and items in orders</li>
-<li>Add data methods to our service</li>
-<li>Import our new order service to our component &amp; create an order</li>
-<li>Show completed order in UI</li>
+<li>Create a new Pipe called Item Totals</li>
+<li>Use Angular Default Currency Pipe</li>
 </ul>
-<h2>Problem 1: Create Order Service and Export Items and Order interfaces</h2>
-<p>We need to create a new service to handle creating and updating orders. We'll need two interfaces - one to describe the order, one to describe items in the order.</p>
-<h2>P1: Technical Requirements</h2>
-<p>Create a new service <code>order</code> in the order directory, and write and export <code>Order</code> and <code>Item</code> interfaces representing these objects in the new service:</p>
-<pre><code class="language-typescript">let myorder = {
-  _id: 'a123123bdd',
-  name: 'Jennifer',
-  address: '123 Main st',
-  phone: '867-5309',
-  status: 'new',
-  items: [
-    {
-      name: 'tacos',
-      price: 6.99
+<h2>Problem</h2>
+<p>Now that our application is coming together nicely, you might have noticed we are repeating the same code to calculate the total prices of our items.
+We can simplify this by creating an Item Total Pipe which we will use in <code>order-component.ts</code> file and in the <code>order-history-component.html</code> file. The pipe will transform an array of items and return the total sum of the price of each item.</p>
+<h1>What You Need to Know</h1>
+<p>How to:</p>
+<ul>
+<li>Generate a Pipe using Angular Cli  (you previously learned this in the <a href="/academy/academy/learn-angular/creating-pipes.html">Creating Pipes</a> section! ✔️)</li>
+<li>Provide a Pipe globally to the entire application, so it can be used in any component</li>
+</ul>
+<h2>Generating Pipe</h2>
+<p>✏️ Run the following to generate the <strong>Pipe</strong> and the test files:</p>
+<pre><code class="language-bash">ng g pipe itemTotal
+</code></pre>
+<h2>Provide Pipe Globally</h2>
+<p>Unlike services, Pipes are not readily injectable into our components. In order to be able to use Pipes in a component, it has to be provided in the app module.
+To provide the <strong>Pipe</strong> just created in the app module, simply add the Pipe to the provider array in the <code>app.module.ts</code> file. <a href="https://angular.io/guide/providers">Learn More</a></p>
+<p>✏️ Update <strong>src/app/app.module.ts</strong></p>
+<pre><code class="language-ts">import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+
+import { MenuItemsComponent } from './order/menu-items/menu-items.component';
+import { HistoryComponent } from './order/history/history.component';
+import { ListComponent } from './order/list/list.component';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { ImageUrlPipe } from './image-url.pipe';
+import { DetailComponent } from './restaurant/detail/detail.component';
+import { OrderComponent } from './order/order.component';
+import { OnlyNumbersDirective } from './only-numbers.directive';
+import { ItemTotalPipe } from './item-total.pipe';
+
+@NgModule({
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        RestaurantComponent,
+        ImageUrlPipe,
+        DetailComponent,
+        OrderComponent,
+        MenuItemsComponent,
+        HistoryComponent,
+        ListComponent,
+        OnlyNumbersDirective,
+        ItemTotalPipe
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        TabsModule.forRoot()
+    ],
+    providers: [ItemTotalPipe],
+    bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+</code></pre>
+<div line-highlight='42, only'></div>
+<p>Now the Pipe is available to be used in components across the application <a href="https://angular.io/guide/providers" target="\_blank">Providers</a>.</p>
+<p>The example below shows how to provide a Pipe globally in Angular. The Pipe being created will transform two separate words into one compound word. It will take a string value, then a parameter, that is used as a prefix to the string value.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+// app.js
+const { Component, VERSION, Pipe, PipeTransform} = ng.core;
+
+@Pipe({name: 'prefix'})
+class PrefixPipe implements PipeTransform {
+  transform(value: string, prefix: string): string {
+  if(prefix &amp;&amp; value ) {
+    return `${prefix}-${value}`;
     }
-  ]
-}
-</code></pre>
-<h2>P1: What you Need to Know</h2>
-<ul>
-<li><p>How to create services (you learned this in previous sections! ✔️)</p></li>
-<li><p>How to write interfaces (you learned this in previous sections! ✔️)</p>
-<pre><code class="language-bash">  ng g service order/order
-</code></pre></li>
-</ul>
-<h2>P1: Solution</h2>
-<p>✏️ Update <strong>src/app/order/order.service.ts</strong></p>
-<pre><code class="language-ts">import { Injectable } from '@angular/core';
-
-export interface Item {
-  name: string;
-  price: number;
-}
-
-export interface Order {
-  _id: string;
-  name: string;
-  address: string;
-  phone: string;
-  status: string;
-  items: Item[];
-}
-
-@Injectable({
-  providedIn: 'root'
-})
-export class OrderService {
-
-  constructor() { }
-
-}
-</code></pre>
-<div line-highlight='3-6, 8-15'></div>
-<h2>Problem 2: Finish the Order Service</h2>
-<p>With our order service we'll want to be able to create new orders, updating existing orders, delete orders, and view all orders.</p>
-<h2>P2: Setup</h2>
-<p>✏️ Paste the following into <strong>src/app/order/order.service.spec.ts</strong>:</p>
-<pre><code class="language-ts">import { TestBed } from '@angular/core/testing';
-
-import { OrderService } from './order.service';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import { HttpRequest } from '@angular/common/http';
-
-describe('OrderService', () =&gt; {
-  let httpMock : HttpTestingController;
-  let orderService: OrderService;
-  beforeEach(() =&gt; TestBed.configureTestingModule({
-    imports: [HttpClientTestingModule],
-    providers: [
-      OrderService
-    ]
-  }));
-
-  beforeEach(() =&gt; {
-    httpMock = TestBed.inject(HttpTestingController);
-    orderService = TestBed.inject(OrderService);
-  })
-
-  it('should make a get request to get orders', () =&gt; {
-    const mockOrder = {
-      data: [
-        {_id: 'adsfsdf',
-        name: 'Jennifer',
-        address: '123 main',
-        phone: '555-555-5555',
-        status: 'new',
-        items: [
-          {
-            name: 'nummy fries',
-            price: 2.56
-          }
-        ]}
-      ]
-    };
-
-    orderService.getOrders().subscribe((orders) =&gt; {
-      expect(orders).toEqual(mockOrder);
-    });
-
-    let url = 'http://localhost:7070/orders';
-    const req = httpMock.expectOne(url);
-
-    expect(req.request.method).toEqual('GET');
-    req.flush(mockOrder);
-
-    httpMock.verify();
-  });
-
-  it('should make a get request to create an order', () =&gt; {
-    const mockOrder = {
-      data: [
-        {_id: 'adsfsdf',
-        name: 'Jennifer',
-        address: '123 main',
-        phone: '555-555-5555',
-        status: 'old',
-        items: [
-          {
-            name: 'nummy fries',
-            price: 2.56
-          }
-        ]}
-      ]
-    };
-
-    const createdOrder = {
-      _id: 'adsfsdf',
-      name: 'Jennifer',
-      address: '123 main',
-      phone: '555-555-5555',
-      status: 'new',
-      items: [
-        {
-          name: 'nummy fries',
-          price: 2.56
-        }
-      ]}
-
-    orderService.createOrder(mockOrder.data[0]).subscribe((orders) =&gt; {
-      expect(orders).toEqual(mockOrder);
-    });
-
-    let url = 'http://localhost:7070/orders';
-    httpMock.expectOne((request: HttpRequest&lt;any&gt;) =&gt; {
-      console.log(request.body);
-      return request.method == 'POST'
-        &amp;&amp; request.url == url
-        &amp;&amp; JSON.stringify(request.body) == JSON.stringify(createdOrder);
-    }).flush(mockOrder);
-
-    httpMock.verify();
-  });
-
-  it('should make a put request to update an order', () =&gt; {
-    const mockOrder = {
-      data: [
-        {_id: 'adsfsdf',
-        name: 'Jennifer',
-        address: '123 main',
-        phone: '555-555-5555',
-        status: 'old',
-        items: [
-          {
-            name: 'nummy fries',
-            price: 2.56
-          }
-        ]}
-      ]
-    };
-
-    const createdOrder = {
-      _id: 'adsfsdf',
-      name: 'Jennifer',
-      address: '123 main',
-      phone: '555-555-5555',
-      status: 'delivered',
-      items: [
-        {
-          name: 'nummy fries',
-          price: 2.56
-        }
-      ]};
-
-    orderService.updateOrder(mockOrder.data[0], 'delivered').subscribe((orders) =&gt; {
-      expect(orders).toEqual(mockOrder);
-    });
-
-    let url = 'http://localhost:7070/orders/adsfsdf';
-    httpMock.expectOne((request: HttpRequest&lt;any&gt;) =&gt; {
-      console.log(request.body);
-      return request.method == 'PUT'
-        &amp;&amp; request.url == url
-        &amp;&amp; JSON.stringify(request.body) == JSON.stringify(createdOrder);
-    }).flush(mockOrder);
-
-    httpMock.verify();
-  });
-
-  it('should make a delete request to delete an order', () =&gt; {
-    const mockOrder = {
-      data: [
-        {_id: 'adsfsdf',
-        name: 'Jennifer',
-        address: '123 main',
-        phone: '555-555-5555',
-        status: 'old',
-        items: [
-          {
-            name: 'nummy fries',
-            price: 2.56
-          }
-        ]}
-      ]
-    };
-
-    orderService.deleteOrder('adsfsdf').subscribe((orders) =&gt; {
-      expect(orders).toEqual(mockOrder);
-    });
-
-    let url = 'http://localhost:7070/orders/adsfsdf';
-    const req = httpMock.expectOne(url);
-
-    expect(req.request.method).toEqual('DELETE');
-    req.flush(mockOrder);
-
-    httpMock.verify();
-  });
-});
-</code></pre>
-<p>Now, try to understand what this test is doing and
-implement the remainder of <code>order.service.ts</code> to
-get the tests to pass.</p>
-<p>✏️ Run your tests with:</p>
-<pre><code class="language-shell">ng test
-</code></pre>
-<h2>P2: What You Need to Know</h2>
-<ul>
-<li>You will need to look at the test code to determine
-the method signatures on <code>OrderService</code>.</li>
-<li>You will need to make sure <code>HttpClient</code> is imported and
-added as a property in the  <code>OrderService</code> constructor.</li>
-</ul>
-<h2>P2: Solution</h2>
-<p>✏️ Update <strong>src/app/order/order.service.ts</strong></p>
-<pre><code class="language-ts">import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
-
-export interface Item {
-  name: string;
-  price: number;
-}
-
-export interface Order {
-  _id: string;
-  name: string;
-  address: string;
-  phone: string;
-  status: string;
-  items: Item[];
-}
-
-@Injectable({
-  providedIn: 'root'
-})
-export class OrderService {
-
-  constructor(private httpClient: HttpClient) { }
-
-  getOrders() {
-    return this.httpClient.get(environment.apiUrl + '/orders');
-  }
-
-  createOrder(order: Order) {
-    let orderData = Object.assign({}, order);
-    orderData.status = 'new';
-    return this.httpClient.post(environment.apiUrl + '/orders', orderData)
-  }
-
-  updateOrder(order: Order, action: string) {
-    let orderData = Object.assign({}, order);
-    orderData.status = action;
-    return this.httpClient.put(environment.apiUrl + '/orders/' + orderData._id, orderData);
-  }
-
-  deleteOrder(id: string) {
-    return this.httpClient.delete(environment.apiUrl + '/orders/' + id);
-  }
-}
-
-</code></pre>
- <div line-highlight="2-3,24,26-28,30-34,36-40,42-44,only"></div>
-<h2>Problem 3: Use the OrderService in the OrderComponent to Create an Order</h2>
-<h2>P3: Technical Requirements</h2>
-<p>For this problem, we will:</p>
-<ul>
-<li>Create an order when the user submits the form using the service.</li>
-<li>Disable the button while the order is being processed.</li>
-<li>Show the completed order to the user.</li>
-<li>Let the user start a new order.</li>
-</ul>
-<p>How we will solve this:</p>
-<ol>
-<li>We will import the order service, and save it as <code>orderService</code> in the
-<code>OrderComponent</code>'s <code>constructor</code>.</li>
-<li>Call <code>orderService</code>'s <code>createOrder</code> with the <code>orderForm</code>'s values.</li>
-<li>While the order is being created <code>orderProcessing</code> should be <code>true</code>.</li>
-<li>Once complete, <code>orderComplete</code> should be set to <code>true</code>
-and set back to <code>false</code> when <code>.startNewOrder()</code> is called.</li>
-<li>We will save the completed order in <code>completedOrder</code>.</li>
-</ol>
-<h2>P3: Setup</h2>
-<p>Before starting:</p>
-<p>1. ✏️ Update <strong>src/app/order/order.component.html</strong> to show the completed order:</p>
-<pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
-  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
-    &lt;h3&gt;Thanks for your order {{completedOrder.name}}!&lt;/h3&gt;
-    &lt;div&gt;&lt;label class=&quot;control-label&quot;&gt;
-      Confirmation Number: {{completedOrder._id}}&lt;/label&gt;
-    &lt;/div&gt;
-
-    &lt;h4&gt;Items ordered:&lt;/h4&gt;
-    &lt;ul class=&quot;list-group panel&quot;&gt;
-      &lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of completedOrder.items&quot;&gt;
-        &lt;label&gt;
-          {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
-        &lt;/label&gt;
-      &lt;/li&gt;
-
-      &lt;li class=&quot;list-group-item&quot;&gt;
-        &lt;label&gt;
-          Total &lt;span class=&quot;badge&quot;&gt;${{orderTotal}}&lt;/span&gt;
-        &lt;/label&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-
-    &lt;div&gt;&lt;label class=&quot;control-label&quot;&gt;
-      Phone: {{completedOrder.phone}}
-    &lt;/label&gt;&lt;/div&gt;
-    &lt;div&gt;&lt;label class=&quot;control-label&quot;&gt;
-      Address: {{completedOrder.address}}
-      &lt;/label&gt;&lt;/div&gt;
-    &lt;p&gt;
-      &lt;button (click)=&quot;startNewOrder()&quot;&gt;
-        Place another order
-      &lt;/button&gt;
-    &lt;/p&gt;
-  &lt;/ng-container&gt;
-  &lt;ng-template #showOrderForm&gt;
-    &lt;h2&gt;Order here&lt;/h2&gt;
-    &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
-      &lt;tabset&gt;
-        &lt;tab heading=&quot;Lunch Menu&quot;&gt;
-          &lt;ul class=&quot;list-group&quot;&gt;
-            &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
-          &lt;/ul&gt;
-        &lt;/tab&gt;
-        &lt;tab heading=&quot;Dinner menu&quot;&gt;
-          &lt;ul class=&quot;list-group&quot;&gt;
-            &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
-          &lt;/ul&gt;
-        &lt;/tab&gt;
-      &lt;/tabset&gt;
-      &lt;div class=&quot;form-group&quot;&gt;
-        &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-        &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
-        &lt;p&gt;Please enter your name.&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;form-group&quot;&gt;
-        &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-        &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
-        &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;form-group&quot;&gt;
-        &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
-        &lt;input name=&quot;phone&quot; type=&quot;text&quot; pmoOnlyNumbers class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
-        &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
-      &lt;/div&gt;
-      &lt;div class=&quot;submit&quot;&gt;
-        &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
-          &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
-          &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
-            Place My Order!
-          &lt;/button&gt;
-      &lt;/div&gt;
-    &lt;/form&gt;
-  &lt;/ng-template&gt;
-&lt;/div&gt;
-</code></pre>
- <div line-highlight="3-6,8-14,16-21,23-33,only"></div>
-<p>2. ✏️ Update <strong>src/app/order/order.component.ts</strong> to have a <code>onSubmit</code> method and
-a <code>startNewOrder</code> that will start a new order.</p>
-<pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, FormArray, AbstractControl, Validators } from '@angular/forms';
-
-import { RestaurantService } from '../restaurant/restaurant.service';
-import { Restaurant } from '../restaurant/restaurant';
-import { Subject } from 'rxjs';
-import { takeUntil } from &quot;rxjs/operators&quot;;
-
-function minLengthArray(min: number) {
-  return (c: AbstractControl): {[key: string]: any} =&gt; {
-      if (c.value.length &gt;= min)
-          return null;
-      return { 'minLengthArray': {valid: false }};
+    return value;
   }
 }
 
 @Component({
-  selector: 'pmo-order',
-  templateUrl: './order.component.html',
-  styleUrls: ['./order.component.less']
+  selector: 'my-app',
+  template: `
+  &lt;h2&gt;{{word}}&lt;/h2&gt;
+  &lt;br&gt;
+   &lt;h2&gt;{{word2 | prefix: 'long'}}&lt;/h2&gt;
+  `
 })
-export class OrderComponent implements OnInit, OnDestroy {
-  orderForm: FormGroup;
-  restaurant: Restaurant;
-  isLoading = true;
-  items: FormArray;
-  orderTotal = 0.0;
-  completedOrder: any;
-  orderComplete = false;
-  orderProcessing = false;
-  private unSubscribe = new Subject&lt;void&gt;();
-
-  constructor(
-    private route: ActivatedRoute, 
-    private restaurantService: RestaurantService,
-    private formBuilder: FormBuilder 
-  ) { 
+class AppComponent implements OnInit {
+  word = 'two';
+  word2 = 'term';
+  constructor(private prefixPipe: PrefixPipe) {
   }
 
   ngOnInit() {
-    const slug = this.route.snapshot.paramMap.get('slug');
-
-    this.restaurantService.getRestaurant(slug).subscribe((data:Restaurant) =&gt; {
-      this.restaurant = data;
-      this.isLoading = false;      
-      this.createOrderForm();
-    })
+    this.word = this.prefixPipe.transform(this.word, 'seventy');
   }
-
-  ngOnDestroy(): void {
-    this.unSubscribe.next();
-    this.unSubscribe.complete();
-  }
-
-  createOrderForm() {
-    this.orderForm = this.formBuilder.group({
-      restaurant: [this.restaurant._id],
-      name: [null, Validators.required],
-      address:  [null, Validators.required],
-      phone: [null, Validators.required],
-      items: [[], minLengthArray(1)]
-    });
-    this.onChanges();
-  }
-
-  onChanges() {
-    this.orderForm.get('items').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe((val) =&gt; {
-      let total = 0.0;
-      for (const item of val) {
-        total += item.price;
-      }
-      this.orderTotal = Math.round(total * 100) / 100;
-    });
-  }
-
-  onSubmit() {
-    this.orderProcessing = true;
-    //call createOrder here
-  }
-
-  startNewOrder() {
-    this.orderComplete = false;
-    this.orderTotal = 0.0;
-    this.createOrderForm();
-  }
-
 }
 
+// main.js
+const { BrowserModule } = ng.platformBrowser;
+const { NgModule } = ng.core;
+const { CommonModule } = ng.common;
+
+@NgModule({
+  imports: [ BrowserModule,
+  CommonModule],
+  declarations: [AppComponent, PrefixPipe],
+  bootstrap: [AppComponent],
+  providers: [PrefixPipe]
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
 </code></pre>
- <div line-highlight="3,26,28,30-31,37,42,44-46,58-61,68,70-71,73-74,77-79,84,only"></div>
-<h2>P3: How to Verify Your Solution is Correct</h2>
-<p>If you've implemented everything correctly, you should now be able to create an order from the UI and see a record of your completed order once it's created.</p>
-<p>✏️ Update the menu-items spec file  <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
+<div class='codepen'></div>
+<div line-highlight='14-22, 27, 29, 39, 51, 53, only'></div>
+<h2>How to Verify Your Solution is Correct</h2>
+<p>✏️ Update the order spec file <strong>src/app/order/order.component.spec.ts</strong> to include and provide the new Pipe:</p>
 <pre><code class="language-ts">import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute } from '@angular/router';
@@ -1093,6 +740,7 @@ import { RestaurantService } from '../restaurant/restaurant.service';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MenuItemsComponent } from './menu-items/menu-items.component';
 import { OrderService } from './order.service';
+import {ItemTotalPipe} from &quot;../item-total.pipe&quot;;
 
 class MockRestaurantService {
   getRestaurant(slug:string) {
@@ -1188,13 +836,13 @@ describe('OrderComponent', () =&gt; {
       {
         provide: OrderService,
         useClass: MockOrderService
-      }],
+      },
+        ItemTotalPipe],
       schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
     injectedOrderService = TestBed.inject(OrderService);
   }));
-  
 
   beforeEach(() =&gt; {
     fixture = TestBed.createComponent(OrderComponent);
@@ -1363,18 +1011,64 @@ describe('OrderComponent', () =&gt; {
 
 });
 </code></pre>
- <div line-highlight="1,11,64-73,85-86,91,93,104-106,109,111,113,169,217-233,235-252,254-278,only"></div>
+<div line-highlight='12, 109, only'></div>
+<p>✏️ Update the spec file  <strong>item-total.pipe.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { ItemTotalPipe } from './item-total.pipe';
+import { Item } from &quot;./order/order.service&quot;;
+
+describe('ItemTotalPipe', () =&gt; {
+
+  let mockItemList: Item[] = [
+   {name: &quot;Truffle Noodles&quot;, price: 14.99},
+   {name: &quot;Garlic Fries&quot;, price: 15.99}
+  ]
+  const pipe =  new ItemTotalPipe();
+
+  it('create an instance', () =&gt; {
+    expect(pipe).toBeTruthy();
+  });
+
+  it('transform Item[] and return the sum of each item price, total price should be 30.98', () =&gt; {
+    const total = pipe.transform(mockItemList);
+    expect(total).toEqual(30.98);
+  });
+
+  it('expect empty array to be 0', () =&gt; {
+    const total = pipe.transform([]);
+    expect(total).toEqual(0);
+  });
+
+});
+
+</code></pre>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h2>P3: What You Need to Know</h2>
-<ul>
-<li>How to import a service</li>
-<li>How to call a method on a service and get the result</li>
-<li>How to show/hide content using *ngIf</li>
-</ul>
-<h2>P3: Solution</h2>
-<p>✏️ Update <strong>src/app/order/order.component.ts</strong></p>
+<h2>Solution</h2>
+<p>✏️ Update <strong>src/app/item-total.pipe.ts</strong> to:</p>
+<pre><code class="language-ts">import { Pipe, PipeTransform } from '@angular/core';
+import {Item} from &quot;./order/order.service&quot;;
+
+@Pipe({
+  name: 'itemTotal'
+})
+export class ItemTotalPipe implements PipeTransform {
+
+  transform(items: Item[]): number {
+    let itemTotal = 0.0;
+    if (items.length) {
+      for (const item of items) {
+        itemTotal += item.price;
+      }
+      return Math.round(itemTotal * 100) / 100;
+    }
+    return itemTotal;
+  }
+
+}
+
+</code></pre>
+<p>✏️ Update <strong>src/app/order/order.component.ts</strong> to use the item total Pipe:</p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, FormArray, AbstractControl, Validators } from '@angular/forms';
@@ -1384,6 +1078,7 @@ import { Restaurant } from '../restaurant/restaurant';
 import { OrderService, Order, Item } from './order.service';
 import { Subject } from 'rxjs';
 import { takeUntil } from &quot;rxjs/operators&quot;;
+import {ItemTotalPipe} from &quot;../item-total.pipe&quot;;
 
 
 function minLengthArray(min: number) {
@@ -1414,7 +1109,8 @@ export class OrderComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute, 
     private restaurantService: RestaurantService,
     private orderService: OrderService,
-    private formBuilder: FormBuilder 
+    private formBuilder: FormBuilder,
+    private itemTotal: ItemTotalPipe
   ) { 
   }
 
@@ -1445,12 +1141,10 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   onChanges() {
-    this.orderForm.get('items').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe((val: Item[])  =&gt; {
-      let total = 0.0;
-      for (const item of val) {
-        total += item.price;
-      }
-      this.orderTotal = Math.round(total * 100) / 100;
+    this.orderForm.get('items').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe((val: Item[])=&gt; {
+
+      this.orderTotal = this.itemTotal.transform(val);
+
     });
   }
 
@@ -1472,7 +1166,228 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="7,31,39,71,82-86,only"></div>
+<div line-highlight='10, 42, 75, only'></div>
+<p>✏️ Update <strong>src/app/order/list/list.component.html</strong> to use the item total Pipe:</p>
+<pre><code class="language-html">&lt;h4&gt;{{listTitle}}&lt;/h4&gt;
+&lt;ng-container *ngFor=&quot;let order of orders&quot;&gt;
+  &lt;div [ngClass]=&quot;['order', order.status? order.status: '']&quot;&gt;
+    &lt;address&gt;
+      {{order.name}} &lt;br /&gt;{{order.address}} &lt;br /&gt;{{order.phone}}
+    &lt;/address&gt;
+  
+    &lt;div class=&quot;items&quot;&gt;
+      &lt;ul&gt;
+        &lt;li *ngFor=&quot;let item of order.items&quot;&gt;{{item.name}}&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;total&quot;&gt;{{(order.items | itemTotal)}}&lt;/div&gt;
+  
+    &lt;div class=&quot;actions&quot;&gt;
+      &lt;span class=&quot;badge&quot;&gt;{{statusTitle}}&lt;/span&gt;
+        &lt;p class=&quot;action&quot; *ngIf=&quot;action&quot;&gt;
+          Mark as:
+          &lt;a href=&quot;javascript://&quot; (click)=&quot;markAs(order, action)&quot;&gt;
+            {{actionTitle}}
+          &lt;/a&gt;
+        &lt;/p&gt;
+  
+      &lt;p class=&quot;action&quot;&gt;
+        &lt;a href=&quot;javascript://&quot;  (click)=&quot;delete(order._id)&quot;&gt;Delete&lt;/a&gt;
+      &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/ng-container&gt;
+
+&lt;div class=&quot;order empty&quot;&gt;{{emptyMessage}}&lt;/div&gt;
+
+</code></pre>
+ <div line-highlight="14,only"></div>
+<h2>Using Currency Pipe</h2>
+<p>Now that we have finished implementing our Item Total Pipe, this is a good time for us to talk about using Currency Pipe. You might have noticed that our prices are in USD, which is a currency, and is a perfect use for the Currency Pipe.
+Angular provides us with a <a href="https://angular.io/api/common/CurrencyPipe">Currency Pipe</a> that formats a number as currency using locale rules. Locale Rules refers to a user's country or region specific details like currency, language and more.</p>
+<h1>What You Need to Know</h1>
+<p>How to:</p>
+<ul>
+<li>Apply a Pipe (you previously learned this ✔️)</li>
+<li>Set a default Currency Code</li>
+</ul>
+<p>Like all the other Pipe we have created, the Currency Pipe can be used the exact same way.
+Add the Currency Pipe to the <code>order.component.html</code> , <code>menu-items.component.html</code> and <code>list.component.html</code>:</p>
+<p>✏️ Update <strong>src/app/order/order.component.html</strong> to use the Currency Pipe:</p>
+<pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
+  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
+    &lt;h3&gt;Thanks for your order {{completedOrder.name}}!&lt;/h3&gt;
+    &lt;div&gt;&lt;label class=&quot;control-label&quot;&gt;
+      Confirmation Number: {{completedOrder._id}}&lt;/label&gt;
+    &lt;/div&gt;
+
+    &lt;h4&gt;Items ordered:&lt;/h4&gt;
+    &lt;ul class=&quot;list-group panel&quot;&gt;
+      &lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of completedOrder.items&quot;&gt;
+        &lt;label&gt;
+          {{item.name}} &lt;span class=&quot;badge&quot;&gt;{{item.price | currency}}&lt;/span&gt;
+        &lt;/label&gt;
+      &lt;/li&gt;
+
+      &lt;li class=&quot;list-group-item&quot;&gt;
+        &lt;label&gt;
+          Total &lt;span class=&quot;badge&quot;&gt;{{orderTotal | currency}}&lt;/span&gt;
+        &lt;/label&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;div&gt;&lt;label class=&quot;control-label&quot;&gt;
+      Phone: {{completedOrder.phone}}
+    &lt;/label&gt;&lt;/div&gt;
+    &lt;div&gt;&lt;label class=&quot;control-label&quot;&gt;
+      Address: {{completedOrder.address}}
+      &lt;/label&gt;&lt;/div&gt;
+    &lt;p&gt;
+      &lt;button (click)=&quot;startNewOrder()&quot;&gt;
+        Place another order
+      &lt;/button&gt;
+    &lt;/p&gt;
+  &lt;/ng-container&gt;
+  &lt;ng-template #showOrderForm&gt;
+    &lt;h2&gt;Order here&lt;/h2&gt;
+    &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+      &lt;tabset&gt;
+        &lt;tab heading=&quot;Lunch Menu&quot;&gt;
+          &lt;ul class=&quot;list-group&quot;&gt;
+            &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
+          &lt;/ul&gt;
+        &lt;/tab&gt;
+        &lt;tab heading=&quot;Dinner menu&quot;&gt;
+          &lt;ul class=&quot;list-group&quot;&gt;
+            &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
+          &lt;/ul&gt;
+        &lt;/tab&gt;
+      &lt;/tabset&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
+        &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
+        &lt;p&gt;Please enter your name.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
+        &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
+        &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;form-group&quot;&gt;
+        &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
+        &lt;input name=&quot;phone&quot; type=&quot;text&quot; pmoOnlyNumbers class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+        &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;submit&quot;&gt;
+        &lt;h4&gt;Total: {{orderTotal | currency}}&lt;/h4&gt;
+          &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
+          &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
+            Place My Order!
+          &lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/form&gt;
+  &lt;/ng-template&gt;
+&lt;/div&gt;
+</code></pre>
+ <div line-highlight="12,18,66,only"></div>
+<p>✏️ Update <strong>src/app/order/list/list.component.html</strong> to use the currency Pipe:</p>
+<pre><code class="language-html">&lt;h4&gt;{{listTitle}}&lt;/h4&gt;
+&lt;ng-container *ngFor=&quot;let order of orders&quot;&gt;
+  &lt;div [ngClass]=&quot;['order', order.status? order.status: '']&quot;&gt;
+    &lt;address&gt;
+      {{order.name}} &lt;br /&gt;{{order.address}} &lt;br /&gt;{{order.phone}}
+    &lt;/address&gt;
+  
+    &lt;div class=&quot;items&quot;&gt;
+      &lt;ul&gt;
+        &lt;li *ngFor=&quot;let item of order.items&quot;&gt;{{item.name}}&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;div class=&quot;total&quot;&gt;{{(order.items | itemTotal) | currency}}&lt;/div&gt;
+  
+    &lt;div class=&quot;actions&quot;&gt;
+      &lt;span class=&quot;badge&quot;&gt;{{statusTitle}}&lt;/span&gt;
+        &lt;p class=&quot;action&quot; *ngIf=&quot;action&quot;&gt;
+          Mark as:
+          &lt;a href=&quot;javascript://&quot; (click)=&quot;markAs(order, action)&quot;&gt;
+            {{actionTitle}}
+          &lt;/a&gt;
+        &lt;/p&gt;
+  
+      &lt;p class=&quot;action&quot;&gt;
+        &lt;a href=&quot;javascript://&quot;  (click)=&quot;delete(order._id)&quot;&gt;Delete&lt;/a&gt;
+      &lt;/p&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/ng-container&gt;
+
+&lt;div class=&quot;order empty&quot;&gt;{{emptyMessage}}&lt;/div&gt;
+
+</code></pre>
+ <div line-highlight="14,only"></div>
+<p>✏️ Update <strong>src/app/order/menu-items/menu-items.component.html</strong> to use the Currency Pipe:</p>
+<pre><code class="language-html">&lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of items&quot;&gt;
+  &lt;label&gt;
+    &lt;input type=&quot;checkbox&quot; (change)=&quot;updateItems(item)&quot; &gt;
+    {{item.name}} &lt;span class=&quot;badge&quot;&gt;{{item.price | currency}}&lt;/span&gt;
+  &lt;/label&gt;
+&lt;/li&gt;
+</code></pre>
+ <div line-highlight="4,only"></div>
+<h2>Set Default Currency Code</h2>
+<p>In our application we want to have a default currency regardless of what country or language the user is accessing our application from.
+To do this, simply provide the default currency you want use in the entire application (we previously discussed how to implement this).</p>
+<p>✏️ Update <strong>app.module.ts</strong> to provide currency code:</p>
+<pre><code class="language-ts">import { BrowserModule } from '@angular/platform-browser';
+import { DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+
+import { MenuItemsComponent } from './order/menu-items/menu-items.component';
+import { HistoryComponent } from './order/history/history.component';
+import { ListComponent } from './order/list/list.component';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { ImageUrlPipe } from './image-url.pipe';
+import { DetailComponent } from './restaurant/detail/detail.component';
+import { OrderComponent } from './order/order.component';
+import { OnlyNumbersDirective } from './only-numbers.directive';
+import { ItemTotalPipe } from './item-total.pipe';
+
+@NgModule({
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        RestaurantComponent,
+        ImageUrlPipe,
+        DetailComponent,
+        OrderComponent,
+        MenuItemsComponent,
+        HistoryComponent,
+        ListComponent,
+        OnlyNumbersDirective,
+        ItemTotalPipe
+    ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        TabsModule.forRoot()
+    ],
+    providers: [ItemTotalPipe, {provide: DEFAULT_CURRENCY_CODE, useValue: 'USD'}],
+    bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+</code></pre>
+ <div line-highlight="2,42,only"></div>
 
 </section>
 
@@ -1510,7 +1425,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/16-order-service/order-service.md"},"description":"Writing the Order Service ","name":"learn-angular/order-service","title":"Order Service","type":"page","parent":"learn-angular","order":16,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/18-item-total-pipe/item-total-pipe.md"},"description":"Write an Item Total Pipe to help manage item total calculation across our application. ","name":"learn-angular/item-total-pipe","title":"Item Total Pipe","type":"page","parent":"learn-angular","order":18,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

@@ -3,7 +3,7 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/angular/17-real-time-connections/real-time-connections.md
+	source: src/angular/19-real-time-connections/real-time-connections.md
 	@page learn-angular/real-time-connection
 ######################################################################## -->
 <html lang="en">
@@ -456,6 +456,21 @@ covering CanJS core libraries.">
            						
            						">
 						<a class="page"
+							href="creating-directive.html"
+							title="Learn how to create Directives in Angular that can change the appearance or behavior of DOM Elements.">
+							Creating Directive
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="order-service.html"
 							title="Writing the Order Service">
 							Order Service
@@ -474,6 +489,21 @@ covering CanJS core libraries.">
 							href="order-history-component.html"
 							title="Writing the Order History Component">
 							Order History Component
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="item-total-pipe.html"
+							title="Write an Item Total Pipe to help manage item total calculation across our application.">
+							Item Total Pipe
 						</a>
 						
 					</li>
@@ -739,7 +769,7 @@ describe('HistoryComponent', () =&gt; {
 <h2>Import and Configure Socket.io</h2>
 <p>✏️ Update <strong>src/app/app.module.ts</strong> to:</p>
 <pre><code class="language-ts">import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 
@@ -754,6 +784,8 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { MenuItemsComponent } from './order/menu-items/menu-items.component';
 import { HistoryComponent } from './order/history/history.component';
 import { ListComponent } from './order/list/list.component';
+import { OnlyNumbersDirective } from './only-numbers.directive';
+import { ItemTotalPipe } from './item-total.pipe';
 
 import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { environment } from '../environments/environment';
@@ -769,7 +801,9 @@ const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
     OrderComponent,
     MenuItemsComponent,
     HistoryComponent,
-    ListComponent
+    ListComponent,
+    OnlyNumbersDirective,
+    ItemTotalPipe
   ],
   imports: [
     BrowserModule,
@@ -779,12 +813,12 @@ const config: SocketIoConfig = { url: environment.apiUrl, options: {} };
     TabsModule.forRoot(),
     SocketIoModule.forRoot(config)
   ],
-  providers: [],
+  providers: [ItemTotalPipe, {provide: DEFAULT_CURRENCY_CODE, useValue: 'USD'}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
 </code></pre>
-<div line-highlight='18-20,40,only'></div>
+<div line-highlight='20-22,44,only'></div>
 <!-- This polyfill doesn't seem neccesary for Angular 10, but the bug is still open and doesn't mention Angular 9+, so I'm leaving this here until the issue is actually resolved.
      Bug report: https://github.com/socketio/socket.io-client/issues/1206 
 -->
@@ -868,7 +902,7 @@ import { ResponseData } from '../../restaurant/restaurant.service';
 import { Socket } from 'ngx-socket-io';
 
 interface Data&lt;T&gt; {
-  value: Array&lt;T&gt;;
+  value: T[];
   isPending: boolean;
 }
 
@@ -948,7 +982,7 @@ export class HistoryComponent implements OnInit, OnDestroy {
 
 }
 </code></pre>
- <div line-highlight="1,4,16,23-24,31-32,35-38,41-43,47-48,62,67,74,81,only"></div>
+ <div line-highlight="1,4,16-17,23-24,31-32,35-38,41-43,47-48,58,62,65,67,72,74,79,81,only"></div>
 <p>Now as we create, update, and delete orders we can see them updated in real time across different browser tab instances!</p>
 
 </section>
@@ -987,7 +1021,7 @@ export class HistoryComponent implements OnInit, OnDestroy {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/17-real-time-connections/real-time-connections.md"},"description":"Updating Order History View with Real Time Connection ","name":"learn-angular/real-time-connection","title":"Real Time Connections","type":"page","parent":"learn-angular","order":17,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/19-real-time-connections/real-time-connections.md"},"description":"Updating Order History View with Real Time Connection ","name":"learn-angular/real-time-connection","title":"Real Time Connections","type":"page","parent":"learn-angular","order":19,"comment":" ","pathToRoot":"../.."};
     </script>
 
     

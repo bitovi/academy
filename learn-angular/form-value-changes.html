@@ -460,6 +460,21 @@ covering CanJS core libraries.">
            						
            						">
 						<a class="page"
+							href="creating-directive.html"
+							title="Learn how to create Directives in Angular that can change the appearance or behavior of DOM Elements.">
+							Creating Directive
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="order-service.html"
 							title="Writing the Order Service">
 							Order Service
@@ -478,6 +493,21 @@ covering CanJS core libraries.">
 							href="order-history-component.html"
 							title="Writing the Order History Component">
 							Order History Component
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="item-total-pipe.html"
+							title="Write an Item Total Pipe to help manage item total calculation across our application.">
+							Item Total Pipe
 						</a>
 						
 					</li>
@@ -580,7 +610,7 @@ covering CanJS core libraries.">
 <li>How to unsubscribe from subscriptions</li>
 </ul>
 <h2>Observables and Subscriptions</h2>
-<p>For a more robust understanding of Observables, Subscriptions, and other RxJS core tenants check out our [RxJS RxJS guide]. For the following exercises, Observables are lazy collections of multiple values over time. We can subscribe to observables to get any new data, or create and add to Subscriptions of observables.</p>
+<p>For a more robust understanding of Observables, Subscriptions, and other RxJS core tenants check out our  <a href="/academy/academy/learn-rxjs.html">[RxJS guide]</a>. For the following exercises, Observables are lazy collections of multiple values over time. We can subscribe to observables to get any new data, or create and add to Subscriptions of observables.</p>
 <p>This example shows creating a subscription to an observable, saving it's value to a member on the component and displaying it in the template. This is useful for when we want to capture and observables values and make changes based on them, but subscriptions do need to be cleaned up to avoid memory leaks. Whenever a component is destroyed an <a href="https://angular.io/api/core/OnDestroy" target="\_blank">ngOnDestroy</a> method is called. This is a good place to put our cleanup code, like unsubscribing from observables.</p>
 <p>In this example, click the button to start subscribing to the observables - you'll see two variables logged: the new observable value and the subscription value. Then click the &quot;remove component&quot; button to see what happens when a component is destroyed. Next delete line 95, follow the same process and see what happens!</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -599,7 +629,8 @@ covering CanJS core libraries.">
 const { Component, NgModule, VERSION, OnInit, OnDestroy, Injectable } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
-const { Observable, Subscription } = rxjs;
+const { Observable, Subject } = rxjs;
+const { takeUntil } = rxjs.operators;
 
 @Injectable({
   providedIn: 'root'
@@ -659,7 +690,7 @@ class AppComponent implements OnInit{
     `
 })
 class DestroyComponent implements OnInit, OnDestroy {
-  $mySubscription: Subscription;
+  private unSubscribe = new Subject&lt;void&gt;();
   myDisplayValue: string;
   
   constructor(private obsService: ObsService) {}
@@ -668,7 +699,7 @@ class DestroyComponent implements OnInit, OnDestroy {
 
   startObservable() {
     //subscribing to a service that emits observable values every second.
-    this.$mySubscription = this.obsService.getObs().subscribe((val) =&gt; {
+     this.obsService.getObs().pipe(takeUntil(this.unSubscribe)).subscribe((val) =&gt; {
       console.log('new value', val);
       this.myDisplayValue = val;
     });
@@ -676,9 +707,8 @@ class DestroyComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     console.log('destroying component');
-    if(this.$mySubscription) {
-      this.$mySubscription.unsubscribe();
-    }
+    this.unSubscribe.next();
+    this.unSubscribe.complete();
   }
 }   
 DestroyComponent.parameters = [ObsService]; 
@@ -705,7 +735,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='14,17,49,50,62-64,71,73,77-78,80,84-90,92-97,only'></div>
-<p>This example shows creating a subscription to an observable, and using an <a href="https://angular.io/api/common/AsyncPipe" target="\_blank">async pipe</a> to display the value. This is useful for displaying observable values in templates without the need to unsubscribe as that's handled by the pipe.</p>
+<p>This example shows creating a subscription to an observable, and using an <a href="https://angular.io/api/common/AsyncPipe" target="\_blank">async pipe</a> to display the value. This is useful for displaying observable values in templates without the need to unsubscribe as that's handled by the pipe when the component is destroyed .</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -757,20 +787,20 @@ class AboutComponent {
   selector: 'home-component',
   template: `
     &lt;p&gt;A home component!&lt;/p&gt;
-
-    {{$mySubscription | async }}
+    &lt;ng-container *ngIf=&quot;myObservable$ | async as mySubscription&quot;&gt;
+        {{mySubscription}}
+    &lt;/ng-container&gt;
     `
 })
 class HomeComponent implements OnInit{
-  $myObservable: Observable&lt;string&gt;;
-  $mySubscription: Subscription;
-  
+  myObservable$: Observable&lt;string&gt;;
+
   constructor(private fb:FormBuilder) {
   
   }
 
   ngOnInit() {
-    this.$myObservable = new Observable(observer =&gt; {
+    this.myObservable$ = new Observable(observer =&gt; {
       setTimeout(() =&gt; {
           observer.next('hello observable');
       }, 1000);
@@ -783,8 +813,6 @@ class HomeComponent implements OnInit{
           observer.complete();
       }, 3000);
   });
-
-   this.$mySubscription = this.$myObservable;
 
   }
 }
@@ -827,7 +855,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='53,57,58,65-76,79,only'></div>
-<p>This example creates a subscription, then adds to it.</p>
+<p>This example shows how to unsubscribe from observable multiple.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -846,8 +874,8 @@ const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
 const { Routes, RouterModule } = ng.router;
 const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
-const { Observable, Subscription } = rxjs;
-
+const { Observable, Subject } = rxjs;
+const { takeUntil } = rxjs.operators;
 
 @Component({
   selector: 'my-app',
@@ -883,12 +911,13 @@ class AboutComponent {
     &lt;p&gt;{{myDisplayValue}}&lt;/p&gt;
 
     &lt;p&gt;{{myOtherDisplayValue}}&lt;/p&gt;
+
     `
 })
-class HomeComponent implements OnInit{
-  $myObservable: Observable&lt;string&gt;;
-  $myOtherObservable: Observable&lt;string&gt;;
-  $mySubscription: Subscription;
+class HomeComponent implements OnInit, OnDestroy {
+  private unSubscribe = new Subject&lt;void&gt;();
+  myObservable$: Observable&lt;string&gt;;
+  myOtherObservable$: Observable&lt;string&gt;;
   myDisplayValue: string;
   myOtherDisplayValue: string;
   
@@ -897,7 +926,7 @@ class HomeComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.$myObservable = new Observable(observer =&gt; {
+    this.myObservable$ = new Observable(observer =&gt; {
       setTimeout(() =&gt; {
           observer.next('hello observable');
       }, 1000);
@@ -911,14 +940,14 @@ class HomeComponent implements OnInit{
       }, 3000);
     });
 
-    this.$myOtherObservable = new Observable(observer =&gt; {
+    this.myOtherObservable$ = new Observable(observer =&gt; {
       setTimeout(() =&gt; {
           observer.next('hello other observable');
       }, 1500);
 
       setTimeout(() =&gt; {
           observer.next('I am good');
-      }, 2500);
+      }, 9500);
 
       setTimeout(() =&gt; {
           observer.complete();
@@ -926,19 +955,23 @@ class HomeComponent implements OnInit{
     });
 
     //creating the first subscription
-    this.$mySubscription = this.$myObservable.subscribe((val) =&gt; {
+    this.myObservable$.pipe(takeUntil(this.unSubscribe)).subscribe((val) =&gt; {
       this.myDisplayValue = val;
     });
 
     //taking the first subscription and adding another to it
-    this.$mySubscription.add(this.$myOtherObservable.subscribe((val) =&gt; {
+    this.myOtherObservable$.pipe(takeUntil(this.unSubscribe)).subscribe((val) =&gt; {
       this.myOtherDisplayValue = val;
-    }));
-   
+    });
+
   }
 
+
+
+
   ngOnDestroy() {
-    this.$mySubscription.unsubscribe();
+    this.unSubscribe.next();
+    this.unSubscribe.complete();
   }
 }
 //THIS IS A HACK JUST FOR CODEPEN TO WORK
@@ -979,7 +1012,7 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='98-101,103-106,only'></div>
+<div line-highlight='100-102,105-107,115-116,only'></div>
 <h2>Listening to Form Changes</h2>
 <p>We can listen to changes to values on FormControls and FormGroup using the valueChanges method, which emits an observable. The following example subscribes to any changes to the FormGroup (which must be unsubscribed on destroy to avoid memory leaks) and also subscribes to a single FormControl and displays the value using an async pipe.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -1176,13 +1209,14 @@ platformBrowserDynamic()
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { takeUntil } from &quot;rxjs/operators&quot;;
+import { Subject } from 'rxjs';
 
 import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data {
-  value: Array&lt;Restaurant&gt;;
+  value: Restaurant[];
   isPending: boolean;
 }
 
@@ -1194,22 +1228,22 @@ export interface Data {
 export class RestaurantComponent implements OnInit, OnDestroy {
   form: FormGroup;
 
-  public restaurants: Data = {
+  restaurants: Data = {
     value: [],
     isPending: false
   }
 
-  public states = {
+  states = {
     isPending: false,
     value: [{name: &quot;Illinois&quot;, short: &quot;IL&quot;}, {name: &quot;Wisconsin&quot;, short: &quot;WI&quot;}]
   };
 
-  public cities = {
+  cities = {
     isPending: false,
     value: [{name: &quot;Springfield&quot;},{name: &quot;Madison&quot;}]
   }
 
-  private subscription: Subscription;
+  private unSubscribe = new Subject&lt;void&gt;();
 
   constructor(
     private restaurantService: RestaurantService,
@@ -1227,9 +1261,8 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if(this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    this.unSubscribe.next()
+    this.unSubscribe.unsubscribe();
   }
 
   createForm() {
@@ -1241,21 +1274,18 @@ export class RestaurantComponent implements OnInit, OnDestroy {
     this.onChanges();
   }
   onChanges(): void {
-    const stateChanges = this.form.get('state').valueChanges.subscribe(val =&gt; {
+    this.form.get('state').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe(val =&gt; {
       console.log('state', val);
     });
-    this.subscription = stateChanges;
 
-
-    const cityChanges = this.form.get('city').valueChanges.subscribe(val =&gt; {
+    this.form.get('city').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe(val =&gt; {
       console.log('city', val);
     });
-    this.subscription.add(cityChanges);
   }
 }
 
 </code></pre>
-<div line-highlight='1,3,18,36,53-57,65,67-78'></div>
+<div line-highlight='1,3-4,19,37,53-57,65,67-78'></div>
 <p>Now that we know how to get values from our dropdowns, let's populate them with real data. We can get our list of states immediately, but to get our cities, we'll want to make an get request based on the state the user selected.</p>
 <h2>Problem 2: Write Service Methods to Get States and Cities from API</h2>
 <p>We want to be able to get lists of cities and states from our API to populate the dropdown options.</p>
@@ -1318,7 +1348,7 @@ class UsersService {
   `
 })
 class AppComponent implements OnInit{
-  public user: User;
+  user: User;
 
   constructor(private usersService: UsersService) {}
 
@@ -1881,7 +1911,7 @@ import { Restaurant } from './restaurant';
 import { environment } from '../../environments/environment';
 
 export interface ResponseData&lt;dataType&gt; {
-  data: Array&lt;dataType&gt;;
+  data:dataType[];
 }
 
 export interface State {
@@ -1919,13 +1949,14 @@ export class RestaurantService {
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { takeUntil } from &quot;rxjs/operators&quot;;
+import { Subject } from 'rxjs';
 
 import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data {
-  value: Array&lt;Restaurant&gt;;
+  value: Restaurant[];
   isPending: boolean;
 }
 
@@ -1937,22 +1968,22 @@ export interface Data {
 export class RestaurantComponent implements OnInit, OnDestroy {
   form: FormGroup;
 
-  public restaurants: Data = {
+  restaurants: Data = {
     value: [],
     isPending: false
   }
 
-  public states = {
+  states = {
     isPending: false,
     value: [{name: &quot;Illinois&quot;, short: &quot;IL&quot;}, {name: &quot;Wisconsin&quot;, short: &quot;WI&quot;}]
   };
 
-  public cities = {
+  cities = {
     isPending: false,
     value: [{name: &quot;Springfield&quot;},{name: &quot;Madison&quot;}]
   }
 
-  private subscription: Subscription;
+  private unSubscribe = new Subject&lt;void&gt;();
 
   constructor(
     private restaurantService: RestaurantService,
@@ -1970,9 +2001,8 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if(this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    this.unSubscribe.next()
+    this.unSubscribe.unsubscribe();
   }
 
   createForm() {
@@ -1984,20 +2014,18 @@ export class RestaurantComponent implements OnInit, OnDestroy {
     this.onChanges();
   }
   onChanges(): void {
-    const stateChanges = this.form.get('state').valueChanges.subscribe(val =&gt; {
+    this.form.get('state').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe(val =&gt; {
       console.log('state', val);
     });
-    this.subscription = stateChanges;
 
 
-    const cityChanges = this.form.get('city').valueChanges.subscribe(val =&gt; {
+    this.form.get('city').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe(val =&gt; {
       console.log('city', val);
     });
-    this.subscription.add(cityChanges);
   }
 }
 </code></pre>
- <div line-highlight="47,only"></div>
+ <div line-highlight="48,only"></div>
 <h2>Problem 4: Get Cities and States Based on Dropdown Values</h2>
 <p>Now that our service is in working order, let's populate our dropdowns with state and city data. We will want our list of states to be available right away, but we will want to fetch our list of cities only after we have the state value selected by the user.</p>
 <h2>P4: Technical Requirements</h2>
@@ -2453,13 +2481,14 @@ describe('RestaurantComponent', () =&gt; {
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from &quot;rxjs/operators&quot;;
 
 import { RestaurantService, ResponseData, State, City } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data&lt;T&gt; {
-  value: Array&lt;T&gt;;
+  value: T[];
   isPending: boolean;
 }
 
@@ -2471,22 +2500,22 @@ export interface Data&lt;T&gt; {
 export class RestaurantComponent implements OnInit, OnDestroy {
   form: FormGroup;
 
-  public restaurants: Data&lt;Restaurant&gt; = {
+  restaurants: Data&lt;Restaurant&gt; = {
     value: [],
     isPending: false
   }
 
-  public states: Data&lt;State&gt; = {
+   states: Data&lt;State&gt; = {
     isPending: false,
     value: []
   };
 
-  public cities: Data&lt;City&gt; = {
+  cities: Data&lt;City&gt; = {
     isPending: false,
     value: []
   };
 
-  private subscription: Subscription;
+  private unSubscribe = new Subject&lt;void&gt;();
 
   constructor(
     private restaurantService: RestaurantService,
@@ -2501,9 +2530,8 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if(this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    this.unSubscribe.next();
+    this.unSubscribe.complete();
   }
 
   createForm() {
@@ -2517,7 +2545,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
   onChanges(): void {
     let state:string;
-    const stateChanges = this.form.get('state').valueChanges.subscribe(val =&gt; {
+    this.form.get('state').pipe(takeUntil(this.unSubscribe)).valueChanges.subscribe(val =&gt; {
       this.restaurants.value = [];
       if (val) {
         //only enable city if state has value
@@ -2581,7 +2609,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   }
 }
 </code></pre>
- <div line-highlight="5,8-9,21,26,28,31,33,47,58-59,66,68-90,96-98,103-107,109,111-121,123,127-128,only"></div>
+ <div line-highlight="6,9-10,22,27,29,32,34,48,53,58-59,66-90,92,95-98,100,103-107,109,111-121,123,127-128,only"></div>
 
 </section>
 

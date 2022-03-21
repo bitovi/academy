@@ -460,6 +460,21 @@ covering CanJS core libraries.">
            						
            						">
 						<a class="page"
+							href="creating-directive.html"
+							title="Learn how to create Directives in Angular that can change the appearance or behavior of DOM Elements.">
+							Creating Directive
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="order-service.html"
 							title="Writing the Order Service">
 							Order Service
@@ -478,6 +493,21 @@ covering CanJS core libraries.">
 							href="order-history-component.html"
 							title="Writing the Order History Component">
 							Order History Component
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="item-total-pipe.html"
+							title="Write an Item Total Pipe to help manage item total calculation across our application.">
+							Item Total Pipe
 						</a>
 						
 					</li>
@@ -1200,7 +1230,7 @@ import { Restaurant } from './restaurant';
 import { environment } from '../../environments/environment';
 
 export interface ResponseData&lt;dataType&gt; {
-  data: Array&lt;dataType&gt;;
+  data: dataType[];
 }
 
 export interface State {
@@ -1235,17 +1265,18 @@ export class RestaurantService {
   }
 }
 </code></pre>
- <div line-highlight="27-29,only"></div>
+ <div line-highlight="7,27-29,only"></div>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { takeUntil } from &quot;rxjs/operators&quot;;
+import { Subject } from 'rxjs';
 
 import { RestaurantService, ResponseData, State, City } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data&lt;T&gt; {
-  value: Array&lt;T&gt;;
+  value: T[];
   isPending: boolean;
 }
 
@@ -1257,22 +1288,22 @@ export interface Data&lt;T&gt; {
 export class RestaurantComponent implements OnInit, OnDestroy {
   form: FormGroup;
 
-  public restaurants: Data&lt;Restaurant&gt; = {
+  restaurants: Data&lt;Restaurant&gt; = {
     value: [],
     isPending: false
   }
 
-  public states: Data&lt;State&gt; = {
+  states: Data&lt;State&gt; = {
     isPending: false,
     value: []
   };
 
-  public cities: Data&lt;City&gt; = {
+  cities: Data&lt;City&gt; = {
     isPending: false,
     value: []
   }
 
-  private subscription: Subscription;
+  private unSubscribe = new Subject&lt;void&gt;();
 
   constructor(
     private restaurantService: RestaurantService,
@@ -1287,9 +1318,8 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if(this.subscription) {
-      this.subscription.unsubscribe();
-    }
+    this.unSubscribe.next()
+    this.unSubscribe.unsubscribe();
   }
 
   createForm() {
@@ -1303,7 +1333,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
   onChanges(): void {
     let state:string;
-    const stateChanges = this.form.get('state').valueChanges.subscribe(val =&gt; {
+    this.form.get('state').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe(val =&gt; {
       this.restaurants.value = [];
       if (val) {
         //only enable city if state has value
@@ -1328,15 +1358,14 @@ export class RestaurantComponent implements OnInit, OnDestroy {
         state = '';
       }
     });
-    this.subscription = stateChanges;
 
 
-    const cityChanges = this.form.get('city').valueChanges.subscribe(val =&gt; {
+    this.form.get('city').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe(val =&gt; {
       if(val) {
         this.getRestaurants(state, val);
       }
     });
-    this.subscription.add(cityChanges);
+
   }
 
   getStates() {
@@ -1368,7 +1397,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="97,123-124,"></div>
+ <div line-highlight="27,53,67,94,96,122-123,"></div>
 
 </section>
 

@@ -460,6 +460,21 @@ covering CanJS core libraries.">
            						
            						">
 						<a class="page"
+							href="creating-directive.html"
+							title="Learn how to create Directives in Angular that can change the appearance or behavior of DOM Elements.">
+							Creating Directive
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="order-service.html"
 							title="Writing the Order Service">
 							Order Service
@@ -478,6 +493,21 @@ covering CanJS core libraries.">
 							href="order-history-component.html"
 							title="Writing the Order History Component">
 							Order History Component
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="item-total-pipe.html"
+							title="Write an Item Total Pipe to help manage item total calculation across our application.">
+							Item Total Pipe
 						</a>
 						
 					</li>
@@ -866,12 +896,12 @@ isn't opened, the connection is being shared between the subscribers.</p>
 you reference the states observable in the view. You need someway to make cold observables hot, to satisfy that
 requirement RxJS contains a variety of ways to share the stream between subscribers. This is a particularly complex
 topic so we'll only be reviewing a single way, the
-<a href="https://rxjs-dev.firebaseapp.com/api/index/operators/shareReplay"><code>shareReplay</code></a> operator.</p>
-<p>The <a href="https://rxjs-dev.firebaseapp.com/api/index/operators/shareReplay"><code>shareReplay</code></a> operator essentially works by
+<a href="https://rxjs-dev.firebaseapp.com/api/operators/shareReplay"><code>shareReplay</code></a> operator.</p>
+<p>The <a href="https://rxjs-dev.firebaseapp.com/api/operators/shareReplay"><code>shareReplay</code></a> operator essentially works by
 making the preceding portion of the stream hot. Once the stream is subscribed to,
-<a href="https://rxjs-dev.firebaseapp.com/api/index/operators/shareReplay"><code>shareReplay</code></a> will share the results produced,
+<a href="https://rxjs-dev.firebaseapp.com/api/operators/shareReplay"><code>shareReplay</code></a> will share the results produced,
 preventing multiple instances of the stream from running. That's the &quot;sharing&quot; functionality of
-<a href="https://rxjs-dev.firebaseapp.com/api/index/operators/shareReplay"><code>shareReplay</code></a>, but it also performs the other
+<a href="https://rxjs-dev.firebaseapp.com/api/operators/shareReplay"><code>shareReplay</code></a>, but it also performs the other
 important function of &quot;replaying&quot;.</p>
 <p>In our template we have code that looks like:</p>
 <pre><code class="language-html">&lt;ng-container *ngIf=&quot;!states.isPending&quot;&gt;
@@ -1479,7 +1509,7 @@ import { RestaurantService, ResponseData, State, City } from './restaurant.servi
 import { Restaurant } from './restaurant';
 
 export interface Data&lt;T&gt; {
-  value: Array&lt;T&gt;;
+  value: T[];
   isPending: boolean;
 }
 

@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn about TypeScript configurations and IDES good for TypeScript Development. 
+  <meta name="description" content="Learn about good IDEs for TypeScript Development. 
 ">
   <title>Bitovi Academy - IDE Support</title>
   
@@ -125,12 +125,27 @@
            						expanded">
 						<a class="page"
 							href="ide-support.html"
-							title="Learn about TypeScript configurations and IDES good for TypeScript Development.">
+							title="Learn about good IDEs for TypeScript Development.">
 							IDE Support
 						</a>
 						
 							
 
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="configuration.html"
+							title="Learn about TypeScript Configurations and Linting">
+							Configuration
+						</a>
 						
 					</li>
 				
@@ -197,6 +212,8 @@
 			
 		
 			
+		
+			
 				
 					<li class="
            						
@@ -211,6 +228,19 @@
 				
 			
 		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="utility-types.html"
+							title="Learn About the Utility Types provided by TypeScript">
+							Utility Types
+						</a>
+						
+					</li>
+				
 			
 		
 	</ul>
@@ -367,7 +397,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn about TypeScript configurations and IDES good for TypeScript Development.</p>
+    <p>Learn about good IDEs for TypeScript Development.</p>
 
 </section>
 
@@ -381,41 +411,7 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
-<p>In this section we'll learn about TypeScript configuration options to help us optimize our workflow, and look at IDEs that have great TypeScript support for building TypeScript projects.</p>
-<p>For the exercise, we will learn how to import and export functions between modules.</p>
-<h2>Configuring TypeScript</h2>
-<p>We're able to configure how our projects use TypeScript from selecting which files to compile to removing comments from those files. This is done through the creation of a <code>tsconfig.json</code> file.</p>
-<h3>tsconfig.json</h3>
-<p>Customize the TypeScript compiling and linting options by creating a <code>tsconfig.json</code> file in the root directory of your TypeScript project. The following config will</p>
-<ul>
-<li>specify ECMAScript target version as 'es5'</li>
-<li>specify module code generation (from 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015' or 'esnext')</li>
-<li>generate source map files</li>
-<li>remove comments from compiled code</li>
-</ul>
-<p>The following is just example config code. <strong>Don't add this to your project or the tests for the TypeScript exercises in this training will fail.</strong></p>
-<pre><code class="language-javascript">{
-    &quot;compilerOptions&quot;: {
-        &quot;target&quot;: &quot;es5&quot;,
-        &quot;module&quot;: &quot;commonjs&quot;,
-        &quot;sourceMap&quot;: true,
-        &quot;removeComments&quot;: true
-    }
-}
-</code></pre>
-<p>Full configuration options are available here: <a href="http://json.schemastore.org/tsconfig" target="\_blank">http://json.schemastore.org/tsconfig</a></p>
-<h3>Linting</h3>
-<p>We can also configure linting options to catch bugs and help enforce uniform styling. The following options will warn on unused local variables and parameters, and expressions or declarations implying 'any'.</p>
-<pre><code class="language-javascript">{
-    &quot;compilerOptions&quot;: {
-        ...
-        &quot;noUnusedLocals&quot;: true,
-        &quot;noUnusedParameters&quot;: true,
-        &quot;noImplicitAny&quot;: true
-        ...
-    }
-}
-</code></pre>
+<p>In this section we'll look at IDEs that have great TypeScript support for building TypeScript projects.</p>
 <h2>IDEs</h2>
 <p>Integrated Development Environments have come a long way in supporting modern web development. With little to no configuration IDEs offer built-in debugging, Git integration, command line usage, and robust packages for additional add-ons.</p>
 <h3>Visual Studio Code</h3>
@@ -427,61 +423,6 @@ covering CanJS core libraries.">
 <h3>Webstorm</h3>
 <p><a href="https://www.jetbrains.com/webstorm/download/" target="\_blank">Webstorm</a> is a platform by JetBrains that is loved for its great code refactoring assistance and version control integration, but it does require a paid subscription.</p>
 <p><a href="../static/img/webstorm-screenshot.png" target="\_blank"><img src="../static/img/webstorm-screenshot.png" width="100%" alt="Webstorm screenshot" /></a></p>
-<h2>Exercise: Exporting and Importing</h2>
-<h3>The Problem</h3>
-<p>In this exercise, we will:</p>
-<ul>
-<li>Update <em>1-ide-greeter.ts</em> to export the <code>greeter</code> function as the <code>default</code>
-export. <em>1-ide-greeter.ts</em> currently looks like:
-<pre><code class="language-ts">function greeter(person: string) {
-  return &quot;Hello, &quot; + person;
-}
-</code></pre></li>
-<li>Update <em>1-ide-hello-earth.ts</em>, to import and use <code>greeter</code>. <em>1-ide-hello-earth.ts</em> currently looks like:
-<pre><code class="language-ts">document.body.innerHTML = greeter(&quot;Earth&quot;);
-</code></pre></li>
-<li>Compile <em>1-ide-hello-earth.ts</em> to JavaScript so we can run it.</li>
-</ul>
-<h3>What You Need to Know</h3>
-<ul>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export">Export</a> a default value like:
-<pre><code class="language-typescript">const value:string = &quot;My Value&quot;;
-export default value;
-</code></pre></li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">Import</a> a default value like:
-<pre><code class="language-typescript">import value from &quot;./value-exporter&quot;;
-</code></pre></li>
-</ul>
-<h3>Verify Your Solution</h3>
-<p>✏️ Run the following to verify your solution works:</p>
-<pre><code class="language-shell">npm run 1-ide
-</code></pre>
-<h3>The Solution</h3>
-<p><details>
-<summary>Click to see the solution</summary>
-✏️ Update <code>1-ide-greeter.ts</code> to:</p>
-<pre><code class="language-typescript">function greeter(person: string) {
-    return &quot;Hello, &quot; + person;
-}
-
-export default greeter;
-</code></pre>
-<div line-highlight='5'></div>
-<p>✏️ Update <code>1-ide-hello-earth.ts</code> to:</p>
-<pre><code class="language-typescript">import greeter from './1-ide-greeter';
-
-document.body.innerHTML = greeter(&quot;Earth&quot;);
-</code></pre>
-<div line-highlight='1'></div>
-<p>✏️ Compile <code>1-ide-hello-earth.ts</code> with:</p>
-<pre><code class="language-shell">tsc 1-ide-hello-earth.ts
-</code></pre>
-<p></details></p>
-<h3>Things to Explore</h3>
-<ul>
-<li>Hover over <code>greeter</code>, what does your IDE show?</li>
-<li>Pass a number to <code>greeter</code>, what does your IDE show?</li>
-</ul>
 
 </section>
 
@@ -519,7 +460,7 @@ document.body.innerHTML = greeter(&quot;Earth&quot;);
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/typescript/2-ide-support.md"},"description":"Learn about TypeScript configurations and IDES good for TypeScript Development. \n","name":"learn-typescript/ide-support","title":"IDE Support","type":"page","parent":"learn-typescript","order":2,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/typescript/2-ide-support.md"},"description":"Learn about good IDEs for TypeScript Development. \n","name":"learn-typescript/ide-support","title":"IDE Support","type":"page","parent":"learn-typescript","order":2,"comment":" ","pathToRoot":"../.."};
     </script>
 
     

@@ -3,7 +3,7 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/angular/16-order-history-component/order-history-component.md
+	source: src/angular/17-order-history-component/order-history-component.md
 	@page learn-angular/order-history-component
 ######################################################################## -->
 <html lang="en">
@@ -456,6 +456,21 @@ covering CanJS core libraries.">
            						
            						">
 						<a class="page"
+							href="creating-directive.html"
+							title="Learn how to create Directives in Angular that can change the appearance or behavior of DOM Elements.">
+							Creating Directive
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="order-service.html"
 							title="Writing the Order Service">
 							Order Service
@@ -478,6 +493,21 @@ covering CanJS core libraries.">
 						
 							
 
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="item-total-pipe.html"
+							title="Write an Item Total Pipe to help manage item total calculation across our application.">
+							Item Total Pipe
+						</a>
 						
 					</li>
 				
@@ -994,12 +1024,12 @@ export class AppRoutingModule { }
 <code>order.status</code> value. Make sure you've created a new order.</li>
 </ol>
 <h2>P3: Setup</h2>
-<p>1. ✏️ Copy the following into <strong>src/app/order/history.component.ts</strong>. You will fill out its
+<p>1. ✏️ Copy the following into <strong>src/app/order/history/history.component.ts</strong>. You will fill out its
 <code>getOrders</code> method.  The getters <code>newOrders</code>, <code>preparingOrders</code>, <code>deliveryOrders</code>, and <code>deliveredOrders</code> will be used later.</p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 
 interface Data&lt;T&gt; {
-  value: Array&lt;T&gt;;
+  value: T[];
   isPending: boolean;
 }
 
@@ -1052,7 +1082,7 @@ export class HistoryComponent implements OnInit {
 
 </code></pre>
 <div line-highlight='18,22'></div>
-<p>2. ✏️ Copy the following into <strong>src/app/order/history.component.html</strong>.  You will need to
+<p>2. ✏️ Copy the following into <strong>src/app/order/history/history.component.html</strong>.  You will need to
 iterate through orders and add the right class names to the outer <code>&lt;div&gt;</code> for each order.</p>
 <pre><code class="language-html">&lt;div class=&quot;order-history&quot;&gt;
   &lt;div class=&quot;order header&quot;&gt;
@@ -1259,7 +1289,7 @@ import { OrderService, Order } from '../order.service';
 import { ResponseData } from '../../restaurant/restaurant.service';
 
 interface Data&lt;T&gt; {
-  value: Array&lt;T&gt;;
+  value: T[];
   isPending: boolean;
 }
 
@@ -1269,7 +1299,7 @@ interface Data&lt;T&gt; {
   styleUrls: ['./history.component.less']
 })
 export class HistoryComponent implements OnInit {
-  public orders: Data&lt;Order&gt; = {
+  orders: Data&lt;Order&gt; = {
     value: [],
     isPending: true
   }
@@ -1291,28 +1321,28 @@ export class HistoryComponent implements OnInit {
   }
 
   get newOrders() {
-    let orders =  this.orders.value.filter((order) =&gt; {
+    const orders =  this.orders.value.filter((order) =&gt; {
       return order.status === &quot;new&quot;;
     });
     return orders;
   }
 
    get preparingOrders() {
-    let orders =  this.orders.value.filter((order) =&gt; {
+    const orders =  this.orders.value.filter((order) =&gt; {
       return order.status === &quot;preparing&quot;;
     });
     return orders;
    }
 
    get deliveryOrders() {
-    let orders =  this.orders.value.filter((order) =&gt; {
+    const orders =  this.orders.value.filter((order) =&gt; {
       return order.status === &quot;delivery&quot;;
     });
     return orders;
    }
 
    get deliveredOrders() {
-    let orders =  this.orders.value.filter((order) =&gt; {
+    const orders =  this.orders.value.filter((order) =&gt; {
       return order.status === &quot;delivered&quot;;
     });
     return orders;
@@ -1321,7 +1351,7 @@ export class HistoryComponent implements OnInit {
 }
 
 </code></pre>
- <div line-highlight="2-3,16-18,21-24,32-33,42,61,only"></div>
+ <div line-highlight="2-3,16-18,21-24,32-33,38,42,45,52,59,61,only"></div>
 <p>✏️ Update <strong>src/app/order/history.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-history&quot;&gt;
   &lt;div class=&quot;order header&quot;&gt;
@@ -1794,9 +1824,9 @@ export class ListComponent implements OnInit {
 
   total(items: Item[]) {
     let total = 0.0;
-      items.forEach((item: Item) =&gt; {
-        total += item.price;
-      });
+    for (const item of items) {
+      total += item.price;
+    }
     return Math.round(total * 100) / 100;
   }
 }
@@ -1840,7 +1870,7 @@ export class ListComponent implements OnInit {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/16-order-history-component/order-history-component.md"},"description":"Writing the Order History Component ","name":"learn-angular/order-history-component","title":"Order History Component","type":"page","parent":"learn-angular","order":16,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/17-order-history-component/order-history-component.md"},"description":"Writing the Order History Component ","name":"learn-angular/order-history-component","title":"Order History Component","type":"page","parent":"learn-angular","order":17,"comment":" ","pathToRoot":"../.."};
     </script>
 
     

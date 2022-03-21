@@ -460,6 +460,21 @@ covering CanJS core libraries.">
            						
            						">
 						<a class="page"
+							href="creating-directive.html"
+							title="Learn how to create Directives in Angular that can change the appearance or behavior of DOM Elements.">
+							Creating Directive
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="order-service.html"
 							title="Writing the Order Service">
 							Order Service
@@ -478,6 +493,21 @@ covering CanJS core libraries.">
 							href="order-history-component.html"
 							title="Writing the Order History Component">
 							Order History Component
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="item-total-pipe.html"
+							title="Write an Item Total Pipe to help manage item total calculation across our application.">
+							Item Total Pipe
 						</a>
 						
 					</li>
@@ -615,7 +645,7 @@ const { Component, VERSION } = ng.core;
   `
 })
 class AppComponent {
-  public myTitle: string = 'Hello world.';
+  myTitle = 'Hello world.';
   constructor() {
   }
 }
@@ -683,8 +713,8 @@ class ChildComponent {
   `
 })
 class AppComponent {
-  public myTitle: string = 'Hello world.';
-  public sillyObject = {
+  myTitle = 'Hello world.';
+  sillyObject = {
     name: 'hello there',
     id: 5
   }
@@ -1002,7 +1032,7 @@ describe('HomeComponent', () =&gt; {
   styleUrls: ['./home.component.less']
 })
 export class HomeComponent implements OnInit {
-  public title: string = 'Ordering food has never been easier';
+  title = 'Ordering food has never been easier';
 
   constructor() { }
 
@@ -1056,7 +1086,7 @@ const { Component, VERSION } = ng.core;
   `
 })
 class AppComponent {
-  public showMyContent: boolean = false;
+  showMyContent = false;
   constructor() {
   }
 }
@@ -1113,7 +1143,7 @@ const { Component, VERSION } = ng.core;
   `
 })
 class AppComponent {
-  public myList: string[] = ['blue', 'charlie', 'delta', 'echo'];
+  myList: string[] = ['blue', 'charlie', 'delta', 'echo'];
   constructor() {
   }
 }
@@ -1173,7 +1203,7 @@ const { Component, VERSION } = ng.core;
   `
 })
 class AppComponent {
-  public certainThing: boolean = true;
+  certainThing = true;
   myThings : any[] = [
     {name: 'Blue', id: 001},
     {name: 'Charlie', id: 002},
@@ -1247,7 +1277,7 @@ const { Component, VERSION } = ng.core;
   `
 })
 class AppComponent {
-  public classIsActive: boolean = false;
+  classIsActive = false;
   constructor() {
   }
 }
@@ -1475,7 +1505,7 @@ let fakeRestaurants = [
   styleUrls: ['./restaurant.component.less']
 })
 export class RestaurantComponent implements OnInit {
-  public restaurants: any[] = [];
+  restaurants: any[] = [];
 
   constructor() { }
 

@@ -127,8 +127,23 @@
            						">
 						<a class="page"
 							href="learn-typescript/ide-support.html"
-							title="Learn about TypeScript configurations and IDES good for TypeScript Development.">
+							title="Learn about good IDEs for TypeScript Development.">
 							IDE Support
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="learn-typescript/configuration.html"
+							title="Learn about TypeScript Configurations and Linting">
+							Configuration
 						</a>
 						
 					</li>
@@ -196,6 +211,8 @@
 			
 		
 			
+		
+			
 				
 					<li class="
            						
@@ -210,6 +227,19 @@
 				
 			
 		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="learn-typescript/utility-types.html"
+							title="Learn About the Utility Types provided by TypeScript">
+							Utility Types
+						</a>
+						
+					</li>
+				
 			
 		
 	</ul>
@@ -395,7 +425,7 @@ Angular, React, CanJS and JavaScript problems.</p>
 <li>Why TypeScript - learn what TypeScript is and how to compile it.</li>
 <li>IDE Support - configure TypeScript and learn about different IDEs that help support TypeScript development.</li>
 <li>Types - understand basic types and how to enforce them.
-<pre><code class="language-typescript">let isCarnivore: boolean = true;
+<pre><code class="language-typescript">let isCarnivore: boolean;
 </code></pre></li>
 <li>Functions - how to annotate functions parameters and return values, different parameter types available, and how to bind <code>this</code>.
 <pre><code class="language-typescript">function add(x: number, y: number): number {
@@ -403,11 +433,11 @@ Angular, React, CanJS and JavaScript problems.</p>
 }
 </code></pre></li>
 <li>Classes - using classes and inheritance in TypeScript, explaining the <code>constructor</code> method, and using public, private, protected, and readonly modifiers.
-<pre><code class="language-typescript">class ParkEmployee {
-  name: string;
-  constructor(name) { this.name = name; }
-  sayHi() {
-    console.log(`Hi, my name is ${this.name}`);
+<pre><code class="language-typescript">class Human {
+  constructor(public firstName: string, public lastName: string) {}
+
+  getFullName(): string {
+    return `${this.firstName} ${this.lastName}`;
   }
 }
 </code></pre></li>

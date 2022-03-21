@@ -3,7 +3,7 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/typescript/6-interfaces.md
+	source: src/typescript/7-interfaces.md
 	@page learn-typescript/interfaces
 ######################################################################## -->
 <html lang="en">
@@ -125,8 +125,23 @@
            						">
 						<a class="page"
 							href="ide-support.html"
-							title="Learn about TypeScript configurations and IDES good for TypeScript Development.">
+							title="Learn about good IDEs for TypeScript Development.">
 							IDE Support
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="configuration.html"
+							title="Learn about TypeScript Configurations and Linting">
+							Configuration
 						</a>
 						
 					</li>
@@ -197,6 +212,8 @@
 			
 		
 			
+		
+			
 				
 					<li class="
            						
@@ -211,6 +228,19 @@
 				
 			
 		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="utility-types.html"
+							title="Learn About the Utility Types provided by TypeScript">
+							Utility Types
+						</a>
+						
+					</li>
+				
 			
 		
 	</ul>
@@ -403,8 +433,10 @@ function trackDino(dino: Dinosaur) {
 }
 
 let blue = {
-  name: 'blue', breed: 'Velociraptor',
-  height: 7, location: 'Section B'
+  name: 'blue',
+  breed: 'Velociraptor',
+  height: 7,
+  location: 'Section B'
 };
 trackDino(blue);
 //Logs &quot;Section B&quot;
@@ -430,7 +462,7 @@ trackDino(blue);
 //Logs &quot;Section B&quot;
 
 </code></pre>
-<div line-highlight='5'></div>
+<div line-highlight='4'></div>
 <div class='codepen'></div>
 <h2>Classes Implementing Interfaces</h2>
 <p>In the case that a class needs to follow an object structure, we can use interfaces to define that 'contract'.</p>
@@ -447,7 +479,7 @@ class ClonedDino implements Dinosaur {
   breed: string;
   height?: number;
   location: string;
-  roar() {
+  roar(): void {
     console.log('roar');
   };
 }
@@ -466,12 +498,12 @@ let dinoA = {
   name: 'Blue',
   breed: 'Velociraptor',
   location: 'Section B'
-}
+};
 
 let dinoB = {
   name: 'Sally',
   location: 'Section C'
-}
+};
 
 function dinoCatcher(dinosaur: Dinosaur) {
   console.log(`Caught ${dinosaur.name} at ${dinosaur.location}`);
@@ -495,7 +527,7 @@ let dinoMaker : DinoDNAMixer = function (dino1: string, dino2: string, spliceIdx
   return dino1.substring(spliceIdx) + dino2.substring(spliceIdx);
 }
 
-let newDino = dinoMaker('CGGCAD', 'ACGCAA', 3)
+let newDino = dinoMaker('CGGCAD', 'ACGCAA', 3);
 console.log(newDino); //logs 'CADCAA'
 
 </code></pre>
@@ -639,7 +671,7 @@ export function createParkSlug(dinoPark: DinoPark) {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/typescript/6-interfaces.md"},"description":"Learn how to write Interfaces, set optional properties, and about the power of using interfaces in classes and functions \n","name":"learn-typescript/interfaces","title":"Interfaces","type":"page","parent":"learn-typescript","order":6,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/typescript/7-interfaces.md"},"description":"Learn how to write Interfaces, set optional properties, and about the power of using interfaces in classes and functions \n","name":"learn-typescript/interfaces","title":"Interfaces","type":"page","parent":"learn-typescript","order":7,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

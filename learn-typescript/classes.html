@@ -3,7 +3,7 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/typescript/5-classes.md
+	source: src/typescript/6-classes.md
 	@page learn-typescript/classes
 ######################################################################## -->
 <html lang="en">
@@ -125,8 +125,23 @@
            						">
 						<a class="page"
 							href="ide-support.html"
-							title="Learn about TypeScript configurations and IDES good for TypeScript Development.">
+							title="Learn about good IDEs for TypeScript Development.">
 							IDE Support
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="configuration.html"
+							title="Learn about TypeScript Configurations and Linting">
+							Configuration
 						</a>
 						
 					</li>
@@ -197,6 +212,8 @@
 			
 		
 			
+		
+			
 				
 					<li class="
            						
@@ -211,6 +228,19 @@
 				
 			
 		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="utility-types.html"
+							title="Learn About the Utility Types provided by TypeScript">
+							Utility Types
+						</a>
+						
+					</li>
+				
 			
 		
 	</ul>
@@ -396,7 +426,7 @@ simple class might look like:</p>
   constructor(name){
     this.name = name;
   }
-  sayHi(){
+  sayHi() {
     console.log(&quot;Hi, my name is &quot; + this.name);
   }
 }
@@ -425,7 +455,7 @@ class ParkEmployee {
 
 }
 
-let raptorGuy = new ParkEmployee(&quot;Owen&quot;);
+let raptorGuy = new ParkEmployee('Owen');
 raptorGuy.sayHi();
 //Logs &quot;Hi, my name is Owen&quot;
 
@@ -441,8 +471,8 @@ raptorGuy.sayHi();
   }
 }
 
-let dino = new Dinosaur(&quot;Billy&quot;);
-console.log(dino.name)
+let dino = new Dinosaur('Billy');
+console.log(dino.name);
 //Logs &quot;Billy&quot;
 
 </code></pre>
@@ -451,7 +481,7 @@ console.log(dino.name)
 <p>When declaring members, it's also possible to instantiate a value on them.</p>
 <pre><code class="language-ts">class Dinosaur {
   name: string;
-  age: number = 0;
+  age = 0;
   constructor(name: string) {
     this.name = name;
   }
@@ -466,8 +496,7 @@ console.log(dino.age);
 <div line-highlight='3'></div>
 <p>Using the constructor to set public members is quite a common pattern, which is why TypeScript also provides a shorthand.</p>
 <pre><code class="language-ts">class Dinosaur {
-  constructor(public name: string) {
-  }
+  constructor(public name: string) {}
 }
 let dino = new Dinosaur('Billy');
 console.log(dino.name);
@@ -484,19 +513,19 @@ console.log(dino.name);
 <pre><code class="language-ts">class Dinosaur {
   constructor(public name: string) {}
 
-  move(distanceInFeet: number = 0) {
+  move(distanceInFeet: number = 0): void {
     console.log(`${this.name} moved ${distanceInFeet} feet.`);
   }
 }
 
 class Velociraptor extends Dinosaur {
   constructor(name: string, public speed: number) {
-    super(name)
+    super(name);
   }
-  run() {
+  run(): void {
     console.log(`${this.name} runs at ${this.speed}mph.`);
   }
-  talk() {
+  talk(): void {
     console.log(`${this.name} screeches.`);
   }
 }
@@ -516,7 +545,7 @@ blue.run();
 <p>When you need a property to be shared across multiple instances, you can use a <strong>static</strong> property. These are shared by all instances of the class as well as inheriting classes. Both members and methods on a class can be static. Each instance accesses the static value through prepending the name of the class.</p>
 <p>This example shows the use of a static property <code>cageInstances</code> to count the number of instances of <code>DinoCage</code>:</p>
 <pre><code class="language-ts">class DinoCage {
-  static cageInstances: number = 0;
+  static cageInstances = 0;
   constructor() {
     DinoCage.cageInstances++;
   }
@@ -538,15 +567,15 @@ console.log(DinoCage.cageInstances);
   constructor(name: string) {
     this.name = name;
   }
-  public walk(distanceInFeet: number) {
+  public walk(distanceInFeet: number): void {
     console.log(`${this.name} walked ${distanceInFeet} feet.`);
   }
 }
 
 let myDino = new Dinosaur('Mildred');
-console.log(myDino.name)
+console.log(myDino.name);
 //Logs &quot;Mildred&quot;
-myDino.walk(7)
+myDino.walk(7);
 //Logs &quot;Mildred walked 7 feet.&quot;
 
 </code></pre>
@@ -559,13 +588,14 @@ myDino.walk(7)
   private dna: string;
   constructor(name: string, dna: string) {
     this.name = name;
+    this.dna = dna;
   }
-  public walk(distanceInFeet: number) {
+  public walk(distanceInFeet: number): void {
     console.log(`${this.name} walked ${distanceInFeet} feet.`);
   }
 }
 
-let scaryDino = new Dinosaur(&quot;Indominous&quot;, &quot;cuttlefish&quot;)
+let scaryDino = new Dinosaur('Indominous', 'cuttlefish');
 scaryDino.dna;
 //Property 'dna' is private and only accessible within class 'Dinosaur'.
 
@@ -603,14 +633,14 @@ class GeneticallyModifiedDinosaur extends Dinosaur {
 <p>Readonly modifiers allow properties to be read, but not changed after initialization. Read-only members can be accessed outside the class, but their value can't be changed.</p>
 <pre><code class="language-ts">class Leoplurodon {
   readonly location: string;
-  readonly numberOfFlippers: number = 4;
-  readonly magic:boolean = true;
+  readonly numberOfFlippers = 4;
+  readonly magic = true;
   constructor (theLocation: string) {
     this.location = theLocation;
   }
 
-  updateLocation(location: string) {
-    this.location = location // Cannot assign to 'location' because it is a read-only property.ts(2540)
+  updateLocation(location: string): void {
+    this.location = location; // Cannot assign to 'location' because it is a read-only property.ts(2540)
   }
 }
 let firstStop = new Leoplurodon(&quot;On the way to Candy Mountain&quot;);
@@ -626,7 +656,7 @@ firstStop.location = &quot;On a bridge&quot;; // error! location is readonly.
   dinoName = 'Trex';
   yawn() {
     setTimeout(function() {
-      console.log(`${this.dinoName} yawned.`)
+      console.log(`${this.dinoName} yawned.`);
     }, 50);
   }
 }
@@ -642,7 +672,7 @@ dino.yawn();
   dinoName = 'Trex';
   yawn() {
     setTimeout(() =&gt; {
-      console.log(`${this.dinoName} yawned.`)
+      console.log(`${this.dinoName} yawned.`);
     }, 50);
   }
 }
@@ -657,7 +687,7 @@ dino.yawn();
 <pre><code class="language-typescript">class DinoBuilder {
   dinoName = 'Trex';
   roar() {
-    console.log(`${this.dinoName} roared.`)
+    console.log(`${this.dinoName} roared.`);
   }
 }
 
@@ -672,7 +702,7 @@ setTimeout(dino.roar, 50);
 <pre><code class="language-typescript">class DinoBuilder {
   dinoName = 'Trex';
   roar = () =&gt; {
-    console.log(`${this.dinoName} roared.`)
+    console.log(`${this.dinoName} roared.`);
   }
 }
 
@@ -696,7 +726,7 @@ DinoKeeper.prototype.sayHi = function() {
   return this.name + ' says &quot;hi&quot;';
 }
 
-let employee1 = new DinoKeeper(&quot;Joe&quot;);
+let employee1 = new DinoKeeper('Joe');
 employee1.sayHi();
 //Joe says &quot;hi&quot;
 </code></pre>
@@ -716,17 +746,19 @@ employee1.sayHi();
 <pre><code class="language-typescript">class DinoKeeper {
   name: string;
 
-  constructor(name:string) {
+  constructor(name: string) {
     this.name = name;
   }
 
-  sayHi():string {
+  sayHi(): string {
     return `${this.name} says &quot;hi&quot;`;
   }
 }
-let employee1 = new DinoKeeper(&quot;Joe&quot;);
+let employee1 = new DinoKeeper('Joe');
 employee1.sayHi();
 //Logs &quot;Joe says &quot;hi&quot;&quot;
+
+export default DinoKeeper;
 </code></pre>
 <p></details></p>
 <h2>Exercise: Extend a Class</h2>
@@ -746,14 +778,14 @@ export default Specialist;
 <li>Have a <code>safetyQuote</code> method that returns <code>&quot;Never turn your back to the cage. Trust me, I have ${experience} years of experience&quot;</code>.</li>
 </ul>
 <p>For example, you should be able to use <code>Specialist</code> as folows:</p>
-<pre><code class="language-typescript">let employee2 = new Specialist(&quot;Owen&quot;, 14);
+<pre><code class="language-typescript">let employee2 = new Specialist('Owen', 14);
 employee2.sayHi(); //Owen says 'hi'
 employee2.safetyQuote();
 //Logs &quot;Never turn your back to the cage. Trust me, I have 14 years of experience&quot;
 </code></pre>
 <h3>Verify Your Solution</h3>
 <p>✏️ Run the following to verify the solution:</p>
-<pre><code class="language-shell">npm run 4-classes
+<pre><code class="language-shell">npm run 4b-classes
 </code></pre>
 <h3>The Solution</h3>
 <p><details>
@@ -811,7 +843,7 @@ export default Specialist;
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/typescript/5-classes.md"},"description":"Learn to use classes and inheritance in TypeScript, about the `constructor` method, and how to use public, private, protected, and readonly modifiers. \n","name":"learn-typescript/classes","title":"Classes","type":"page","parent":"learn-typescript","order":5,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/typescript/6-classes.md"},"description":"Learn to use classes and inheritance in TypeScript, about the `constructor` method, and how to use public, private, protected, and readonly modifiers. \n","name":"learn-typescript/classes","title":"Classes","type":"page","parent":"learn-typescript","order":6,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

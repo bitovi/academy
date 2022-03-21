@@ -460,6 +460,21 @@ covering CanJS core libraries.">
            						
            						">
 						<a class="page"
+							href="creating-directive.html"
+							title="Learn how to create Directives in Angular that can change the appearance or behavior of DOM Elements.">
+							Creating Directive
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="order-service.html"
 							title="Writing the Order Service">
 							Order Service
@@ -478,6 +493,21 @@ covering CanJS core libraries.">
 							href="order-history-component.html"
 							title="Writing the Order History Component">
 							Order History Component
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="item-total-pipe.html"
+							title="Write an Item Total Pipe to help manage item total calculation across our application.">
+							Item Total Pipe
 						</a>
 						
 					</li>
@@ -590,7 +620,7 @@ import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
 
 export interface Data {
-  value: Array&lt;Restaurant&gt;;
+  value: Restaurant[];
   isPending: boolean;
 }
 
@@ -602,17 +632,17 @@ export interface Data {
 export class RestaurantComponent implements OnInit {
   form: FormGroup;
 
-  public restaurants: Data = {
+  restaurants: Data = {
     value: [],
     isPending: false
   }
 
-  public states = {
+  states = {
     isPending: false,
     value: [{name: &quot;Illinois&quot;, short: &quot;IL&quot;}, {name: &quot;Wisconsin&quot;, short: &quot;WI&quot;}]
   };
 
-  public cities = {
+  cities = {
     isPending: false,
     value: [{name: &quot;Springfield&quot;},{name: &quot;Madison&quot;}]
   }
@@ -640,7 +670,7 @@ export class RestaurantComponent implements OnInit {
 }
 
 </code></pre>
- <div line-highlight="2,18,25-27,30-33,35-39,42,49,51-53,only"></div>
+ <div line-highlight="2,18,20,25-27,30-33,35-39,42,49,51-53,only"></div>
 <p>Make sure to use the <code>formControl</code> directive to tie the selects to
 their FormControls in the component.</p>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong> to include
@@ -730,7 +760,7 @@ import { ImageUrlPipe } from './image-url.pipe';
 export class AppModule { }
 
 </code></pre>
- <div line-highlight="5,23-24,"></div>
+ <div line-highlight="5,24,"></div>
 <h2>How to Verify Your Solution is Correct</h2>
 <p>When you visit <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>, there will now be state and city dropdown options populated with fake data.</p>
 <p><img src="../static/img/angular/pmo-dropdowns.gif" alt="Place My Order App city and state dropdowns" title="Place My Order App city and state dropdowns" /></p>
@@ -1494,7 +1524,7 @@ const { ReactiveFormsModule, FormControl } = ng.forms;
   `
 })
 class AppComponent {
-  public  name = new FormControl('');
+  name = new FormControl('');
 
   constructor() {}
 }
@@ -1566,9 +1596,9 @@ const { ReactiveFormsModule, FormControl, FormGroup } = ng.forms;
   `
 })
 class AppComponent {
-  public formValue;
+  formValue;
 
-  public userForm = new FormGroup({
+  userForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
     email: new FormControl('')
@@ -1657,9 +1687,9 @@ const { ReactiveFormsModule, FormControl, FormGroup, FormArray } = ng.forms;
   `
 })
 class AppComponent {
-  public formValue;
+  formValue;
 
-  public usersForm = new FormGroup({
+  usersForm = new FormGroup({
     users: new FormArray([
       new FormGroup({
         firstName: new FormControl(''),
@@ -1677,10 +1707,10 @@ class AppComponent {
   constructor() {}
 
   addGroup() {
-    let usersArray = this.usersForm.get('users') as FormArray;
-    let usersLen = usersArray.length;
+    const usersArray = this.usersForm.get('users') as FormArray;
+    const usersLen = usersArray.length;
 
-    let newUserGroup =  new FormGroup({
+    const newUserGroup =  new FormGroup({
       firstName: new FormControl(''),
       lastName: new FormControl(''),
       email: new FormControl('')
@@ -1817,17 +1847,17 @@ export interface Data {
 export class RestaurantComponent implements OnInit {
   form: FormGroup;
 
-  public restaurants: Data = {
+  restaurants: Data = {
     value: [],
     isPending: false
   }
 
-  public states = {
+  states = {
     isPending: false,
     value: [{name: &quot;Illinois&quot;, short: &quot;IL&quot;}, {name: &quot;Wisconsin&quot;, short: &quot;WI&quot;}]
   };
 
-  public cities = {
+  cities = {
     isPending: false,
     value: [{name: &quot;Springfield&quot;},{name: &quot;Madison&quot;}]
   }
