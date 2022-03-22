@@ -1,4 +1,9 @@
-import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+  tick,
+  fakeAsync,
+} from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ImageUrlPipe } from '../image-url.pipe';
 
@@ -8,15 +13,13 @@ describe('RestaurantComponent', () => {
   let component: RestaurantComponent;
   let fixture: ComponentFixture<RestaurantComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [ RestaurantComponent, ImageUrlPipe ]
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
+      declarations: [RestaurantComponent, ImageUrlPipe],
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RestaurantComponent);
@@ -42,25 +45,26 @@ describe('RestaurantComponent', () => {
     expect(compiled.querySelector('.restaurant')).toBe(null);
   });
 
-  it('should have two .restaurant divs',  <any>fakeAsync((): void => {
+  it('should have two .restaurant divs', fakeAsync((): void => {
     const fixture = TestBed.createComponent(RestaurantComponent);
     fixture.detectChanges();
     tick(501);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    let restaurantDivs = compiled.getElementsByClassName('restaurant');
-    let hoursDivs = compiled.getElementsByClassName('hours-price');
+    const restaurantDivs = compiled.getElementsByClassName('restaurant');
+    const hoursDivs = compiled.getElementsByClassName('hours-price');
     expect(restaurantDivs.length).toEqual(2);
     expect(hoursDivs.length).toEqual(2);
   }));
 
-  it('should display restaurant information',  <any>fakeAsync((): void => {
+  it('should display restaurant information', fakeAsync((): void => {
     const fixture = TestBed.createComponent(RestaurantComponent);
     fixture.detectChanges();
     tick(501);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.restaurant h3').textContent).toContain('Poutine Palace');
+    expect(compiled.querySelector('.restaurant h3').textContent).toContain(
+      'Poutine Palace'
+    );
   }));
-
 });
