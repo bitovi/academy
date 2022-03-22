@@ -44,32 +44,26 @@ describe('RestaurantComponent', () => {
     expect(compiled.querySelector('.restaurant')).toBe(null);
   });
 
-  it(
-    'should have two .restaurant divs',
-    fakeAsync((): void => {
-      const fixture = TestBed.createComponent(RestaurantComponent);
-      fixture.detectChanges();
-      tick(501);
-      fixture.detectChanges();
-      const compiled = fixture.debugElement.nativeElement;
-      let restaurantDivs = compiled.getElementsByClassName('restaurant');
-      let hoursDivs = compiled.getElementsByClassName('hours-price');
-      expect(restaurantDivs.length).toEqual(2);
-      expect(hoursDivs.length).toEqual(2);
-    })
-  );
+  it('should have two .restaurant divs', fakeAsync((): void => {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick(501);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    let restaurantDivs = compiled.getElementsByClassName('restaurant');
+    let hoursDivs = compiled.getElementsByClassName('hours-price');
+    expect(restaurantDivs.length).toEqual(2);
+    expect(hoursDivs.length).toEqual(2);
+  }));
 
-  it(
-    'should display restaurant information',
-    fakeAsync((): void => {
-      const fixture = TestBed.createComponent(RestaurantComponent);
-      fixture.detectChanges();
-      tick(501);
-      fixture.detectChanges();
-      const compiled = fixture.debugElement.nativeElement;
-      expect(compiled.querySelector('.restaurant h3').textContent).toContain(
-        'Poutine Palace'
-      );
-    })
-  );
+  it('should display restaurant information', fakeAsync((): void => {
+    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
+    tick(501);
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector('.restaurant h3').textContent).toContain(
+      'Poutine Palace'
+    );
+  }));
 });
