@@ -50,8 +50,8 @@ describe('RestaurantComponent', () => {
     tick(501);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    let restaurantDivs = compiled.getElementsByClassName('restaurant');
-    let hoursDivs = compiled.getElementsByClassName('hours-price');
+    const restaurantDivs = compiled.getElementsByClassName('restaurant');
+    const hoursDivs = compiled.getElementsByClassName('hours-price');
     expect(restaurantDivs.length).toEqual(2);
     expect(hoursDivs.length).toEqual(2);
   }));
