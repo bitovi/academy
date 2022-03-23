@@ -16,7 +16,7 @@ In this part, we will:
 ## Problem 1: Make RestaurantComponent Use the `getRestaurants` Function
 
 In this section, we will change `RestaurantComponent` to actually get
-data from the service API.  Instead of two hard coded restaurants, we will
+data from the service API. Instead of two hard coded restaurants, we will
 see a longer list:
 
 <img src="../static/img/angular/7-data-into-view/1-after.png"
@@ -25,25 +25,25 @@ see a longer list:
 ## P1: Technical Requirements
 
 1. Change `RestaurantComponent`'s _restaurant_ property definition:
-  ```typescript
-  public restaurants: any[] = [];
-  ```
+
+```typescript
+restaurants: any[] = [];
+```
+
 2. Use `RestaurantService`'s `getRestaurants` to get an array of restaurants and
-  set it on `RestaurantComponent`'s _restaurant_ property.
+   set it on `RestaurantComponent`'s _restaurant_ property.
 
 ## P1: How to Verify Your Solution is Correct
 
 You should be able see a list of all restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>, instead of the two that were previously hard-coded.
 
-✏️ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
+✏️ Update the spec file **src/app/restaurant/restaurant.component.spec.ts** to be:
 
 @diff ../3a-pipes/restaurant.component.spec-with-pipe.ts ./restaurant.component.spec-service.ts
 
-
-✏️ Update the spec file  __src/app/app.component.spec.ts__ to be:
+✏️ Update the spec file **src/app/app.component.spec.ts** to be:
 
 @diff ../5-creating-navigation/app.component.spec.ts ./app.component.spec.ts only
-
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
@@ -70,7 +70,7 @@ an RxJS observable changes:
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
 <script type="typescript">
-const {Observable} = rxjs;
+const { Observable } = rxjs;
 
 const observable = Observable.create(function (observer) {
   observer.next(1);
@@ -78,21 +78,21 @@ const observable = Observable.create(function (observer) {
   observer.next(3);
 });
 
-observable.subscribe( function subscriber( value ){
-    console.log('got value ' + value);
-    // Logs 1, 2, 3
-} );
+observable.subscribe(function subscriber(value) {
+  console.log('got value ' + value);
+  // Logs 1, 2, 3
+});
 </script>
 ```
+
 @codepen
 @highlight 11
 
 ## P1: Solution
 
-✏️ Update __src/app/restaurant/restaurant.component.ts__ as follows:
+✏️ Update **src/app/restaurant/restaurant.component.ts** as follows:
 
 @diff ../3-creating-components/restaurant.component.ts ./restaurant.component-service.ts
-
 
 ## Problem 2: Show a Loading State while Restaurants are Being Requested
 
@@ -113,27 +113,27 @@ This icon will be shown with the following HTML:
 
    ```js
    let data = {
-     value: [], //aray of restaurants
-     isPending: false //boolean
-   }
+     value: [], // array of restaurants
+     isPending: false, // boolean
+   };
    ```
+
 2. Change the `restaurants` member to use the new `Data` type in the `RestaurantsComponent`.
 3. Right before you call the `getRestaurants` method, set the restaurants `isPending` value to true.
 4. Once the `getRestaurants` response is received, set the restaurants `value` to the response data and `isPending` value to false.
 5. Update the html to match the new restaurant object values and to show the following HTML while `isPending` is true:
 
-   ```html
-   <div class="restaurant loading"></div>
-   ```
+```html
+<div class="restaurant loading"></div>
+```
 
 ## P2: To Verify Solution
 
 You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>!
 
-✏️ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
+✏️ Update the spec file **src/app/restaurant/restaurant.component.spec.ts** to be:
 
 @diff ./restaurant.component.spec-service.ts ./restaurant.component.spec.ts only
-
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
@@ -144,15 +144,13 @@ You should be able see a list of restaurants when you navigate to <a href="http:
 
 ## P2: Solution
 
-✏️ Update __src/app/restaurant/restaurant.component.ts__ to:
+✏️ Update **src/app/restaurant/restaurant.component.ts** to:
 
 @diff ./restaurant.component-service.ts ./restaurant.component.ts
 
-
-✏️ Update __src/app/restaurant/restaurant.component.html__ to:
+✏️ Update **src/app/restaurant/restaurant.component.html** to:
 
 @diff ../3a-pipes/restaurant.component.html ./restaurant.component.html
-
 
 ## Did You Know?
 

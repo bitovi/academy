@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
+import { ResponseData, RestaurantService } from './restaurant.service';
 
 export interface Data {
   value: Restaurant[];
@@ -10,14 +10,15 @@ export interface Data {
 @Component({
   selector: 'pmo-restaurant',
   templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less']
+  styleUrls: ['./restaurant.component.less'],
 })
 export class RestaurantComponent implements OnInit {
- restaurants: Data = {
+  restaurants: Data = {
     value: [],
-    isPending: false
+    isPending: false,
   };
-  constructor(private restaurantService: RestaurantService) { }
+
+  constructor(private restaurantService: RestaurantService) {}
 
   ngOnInit() {
     this.restaurants.isPending = true;
