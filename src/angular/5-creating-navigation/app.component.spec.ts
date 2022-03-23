@@ -86,7 +86,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     tick();
 
-    let homeLinkLi = compiled.querySelector('li');
+    const homeLinkLi = compiled.querySelector('li');
     expect(homeLinkLi?.classList).toContain('active');
     expect(compiled.querySelectorAll('.active').length).toBe(1);
     flush();
@@ -100,7 +100,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
 
     expect(location.path()).toBe('/restaurants');
-    let restaurantsLinkLi = compiled.querySelector('li:nth-child(2)');
+    const restaurantsLinkLi = compiled.querySelector('li:nth-child(2)');
     expect(restaurantsLinkLi?.classList).toContain('active');
     expect(compiled.querySelectorAll('.active').length).toBe(1);
     flush();
