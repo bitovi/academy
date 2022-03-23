@@ -85,7 +85,7 @@ ng g pipe imageUrl
 
 @sourceref ./restaurant.component.spec-with-pipe.ts
 
-@highlight 8,18, only
+@highlight 8,17, only
 
 ✏️ Update the spec file **src/app/image-url.pipe.spec.ts** to be:
 

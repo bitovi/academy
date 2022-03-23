@@ -1,12 +1,11 @@
 import {
   ComponentFixture,
+  fakeAsync,
   TestBed,
   tick,
-  fakeAsync,
 } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ImageUrlPipe } from '../image-url.pipe';
-
 import { RestaurantComponent } from './restaurant.component';
 
 describe('RestaurantComponent', () => {
@@ -16,8 +15,7 @@ describe('RestaurantComponent', () => {
     await TestBed.configureTestingModule({
       imports: [RouterTestingModule],
       declarations: [RestaurantComponent, ImageUrlPipe],
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(RestaurantComponent);
   });
