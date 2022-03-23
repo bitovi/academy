@@ -101,7 +101,7 @@ describe('RestaurantService', () => {
   });
 
   it('can set proper properties on restaurant type', () => {
-    let restaurant: Restaurant = {
+    const restaurant: Restaurant = {
       name: 'Taco Joint',
       slug: 'taco-joint',
       images: {
