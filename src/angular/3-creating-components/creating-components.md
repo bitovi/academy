@@ -359,8 +359,6 @@ For now, we'll use fake data for a list of restaurants in the component, and put
 
 @sourceref ./restaurant.component.spec.ts
 
-@highlight 1-7, 17, 32-74
-
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## P2: Solution
