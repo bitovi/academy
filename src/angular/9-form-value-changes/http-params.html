@@ -27,10 +27,10 @@ interface User {
 })
 class UsersService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   getUsers() {
-    const params = new HttpParams()
+    const params = new HttpParams();
     params.set('_page', "1").set('_limit', "1");
     return this.httpClient.get<any>('/api/users', {params});
   }
@@ -39,6 +39,7 @@ class UsersService {
     return this.httpClient.get<any>('/api/users/' + id);
   }
 }
+
 //THIS IS A HACK JUST FOR CODEPEN TO WORK
 //UsersService.parameters = [HttpClient];
 

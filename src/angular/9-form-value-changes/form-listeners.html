@@ -39,11 +39,9 @@ const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
 class AppComponent {
   myQuickForm: FormGroup;
 
-  constructor(private fb:FormBuilder) {
-  
-  }
+  constructor(private fb:FormBuilder) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.myQuickForm = this.fb.group({
       firstName: {value: '', disabled: false},
       lastName: {value: '', disabled: false},
@@ -55,9 +53,10 @@ class AppComponent {
     });
   }
 }
+
 //THIS IS A HACK JUST FOR CODEPEN TO WORK
 AppComponent.parameters = [FormBuilder];
-            
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
