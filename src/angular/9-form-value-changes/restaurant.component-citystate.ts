@@ -62,7 +62,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   }
 
   onChanges(): void {
-    let previousState: string = this.form.get('state')?.value;
+    let state: string = this.form.get('state')?.value;
 
     this.form
       .get('state')
@@ -77,7 +77,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
           });
 
           // if state has a value and has changed, clear previous city value
-          if (previousState !== val) {
+          if (state !== val) {
             this.form.get('city')?.patchValue('');
           }
 
@@ -90,7 +90,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
             emitEvent: false,
           });
         }
-        previousState = val;
+        state = val;
       });
 
     this.form
