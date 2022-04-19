@@ -1,113 +1,108 @@
-import { TestBed, waitForAsync, fakeAsync, tick, flush } from '@angular/core/testing';
-import { Router } from '@angular/router';
 import { Location } from '@angular/common';
-import { By } from '@angular/platform-browser';
-
-import { AppComponent } from './app.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+  ComponentFixture,
+  fakeAsync,
+  flush,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ImageUrlPipe } from './image-url.pipe';
 
 describe('AppComponent', () => {
-  let router: Router;
+  let fixture: ComponentFixture<AppComponent>;
   let location: Location;
-  let fixture;
+  let router: Router;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        AppRoutingModule
-      ],
-      declarations: [
-        AppComponent, HomeComponent, RestaurantComponent, ImageUrlPipe
-      ],
-      schemas: [
-        NO_ERRORS_SCHEMA
-      ]
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [AppRoutingModule],
+      declarations: [AppComponent, HomeComponent, RestaurantComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
-    router = TestBed.inject(Router);
-    location = TestBed.inject(Location);
-
     fixture = TestBed.createComponent(AppComponent);
-  }));
+    location = TestBed.inject(Location);
+    router = TestBed.inject(Router);
+  });
 
   it('should create the app', () => {
-    const app = fixture.debugElement.componentInstance;
+    const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
   it(`should have as title 'place-my-order'`, () => {
-    const app = fixture.debugElement.componentInstance;
+    const app = fixture.componentInstance;
     expect(app.title).toEqual('place-my-order');
   });
 
   it('should render title in a h1 tag', () => {
-    const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('place-my-order.com');
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h1')?.textContent).toContain(
+      'place-my-order.com'
+    );
   });
 
-  it('should render the HomeComponent with router navigates to "/" path', () => {
-    const compiled = fixture.debugElement.nativeElement;
+  it('should render the HomeComponent with router navigates to "/" path', fakeAsync(() => {
+    const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['']).then(() => {
       expect(location.path()).toBe('');
       expect(compiled.querySelector('pmo-home')).not.toBe(null);
     });
-  });
+  }));
 
-  it('should render the RestaurantsComponent with router navigates to "/restaurants" path', () => {
-    const compiled = fixture.debugElement.nativeElement;
+  it('should render the RestaurantsComponent with router navigates to "/restaurants" path', fakeAsync(() => {
+    const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants']).then(() => {
       expect(location.path()).toBe('/restaurants');
       expect(compiled.querySelector('pmo-restaurant')).not.toBe(null);
     });
-  });
+  }));
 
   it('should have the home navigation link href set to ""', () => {
     fixture.detectChanges();
-    let homeLink = fixture.debugElement.query(By.css('li a'));
-    let href = homeLink.nativeElement.getAttribute('href');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const homeLink = compiled.querySelector('li a');
+    const href = homeLink?.getAttribute('href');
     expect(href).toEqual('/');
   });
 
   it('should have the restaurants navigation link href set to ""', () => {
     fixture.detectChanges();
-    let restaurantsLink = fixture.debugElement.query(By.css('li:nth-child(2) a'));
-    let href = restaurantsLink.nativeElement.getAttribute('href');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const restaurantsLink = compiled.querySelector('li:nth-child(2) a');
+    const href = restaurantsLink?.getAttribute('href');
     expect(href).toEqual('/restaurants');
   });
 
   it('should make the home navigation link class active when the router navigates to "/" path', fakeAsync(() => {
-    const compiled = fixture.debugElement.nativeElement;
-    router.navigate(['']).then(() => {
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
-      let homeLinkLi = fixture.debugElement.query(By.css('li'));
-      expect(homeLinkLi.nativeElement.classList).toContain('active');
-      expect(compiled.querySelectorAll('.active').length).toBe(1);
-      fixture.destroy();
-      flush();
-    });
+    const compiled = fixture.nativeElement as HTMLElement;
+    router.navigate(['']);
+    fixture.detectChanges();
+    tick();
+
+    const homeLinkLi = compiled.querySelector('li');
+    expect(homeLinkLi?.classList).toContain('active');
+    expect(compiled.querySelectorAll('.active').length).toBe(1);
+    flush();
   }));
 
   it('should make the restaurants navigation link class active when the router navigates to "/restaurants" path', fakeAsync(() => {
-    const compiled = fixture.debugElement.nativeElement;
-    router.navigate(['restaurants']).then(() => {
-      expect(location.path()).toBe('/restaurants');
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
-      let restaurantsLinkLi = fixture.debugElement.query(By.css('li:nth-child(2)'));
-      expect(restaurantsLinkLi.nativeElement.classList).toContain('active');
-      expect(compiled.querySelectorAll('.active').length).toBe(1);
-      fixture.destroy();
-      flush();
-    });
-  }));
+    const compiled = fixture.nativeElement as HTMLElement;
+    router.navigate(['restaurants']);
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
 
+    expect(location.path()).toBe('/restaurants');
+    const restaurantsLinkLi = compiled.querySelector('li:nth-child(2)');
+    expect(restaurantsLinkLi?.classList).toContain('active');
+    expect(compiled.querySelectorAll('.active').length).toBe(1);
+    flush();
+  }));
 });
