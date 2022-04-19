@@ -19,9 +19,9 @@ We need to set up routes for the home view and restaurant view.
 
 ## Technical Requirements
 
-Create routes for the `HomeComponent` and `RestaurantComponent`. When the route is `''`, the `HomeComponent` should display, and when the route is `/restaurants` the `RestaurantComponent` should display. These changes should be made in __src/app/app-routing.module.ts__.
+Create routes for the `HomeComponent` and `RestaurantComponent`. When the route is `''`, the `HomeComponent` should display, and when the route is `/restaurants` the `RestaurantComponent` should display. These changes should be made in **src/app/app-routing.module.ts**.
 
-Notice that you will be able to click the __Choose a Restaurant__ button
+Notice that you will be able to click the **Choose a Restaurant** button
 at the end of this tutorial:
 
 <video controls style="border: solid 1px black; max-width: 640px;">
@@ -31,28 +31,25 @@ at the end of this tutorial:
 
 ## Setup
 
-`<router-outlet>`, which handles routing to a component based on a url, was added to our __src/app/app.component.html__ file when we first generated our app and answered `yes` to the routing question. But since that time, we added components to that view.  Let's remove those components because `<router-outlet>` will handle showing
+`<router-outlet>`, which handles routing to a component based on a url, was added to our **src/app/app.component.html** file when we first generated our app and answered `yes` to the routing question. But since that time, we added components to that view. Let's remove those components because `<router-outlet>` will handle showing
 those components going forward.
 
-✏️ Update __src/app/app.component.html__ to:
+✏️ Update **src/app/app.component.html** to:
 
 @sourceref ./app.component.html
 @highlight 1-2,only
 
 ## How to Verify Your Solution is Correct
 
-If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>. You may have noticed the ```routerLink``` attribute on the `<a>` tag in our home component markup. This one of the ways we link to specific routes in our app. When you click that link, you should see the restaurants component.
+If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>. You may have noticed the `routerLink` attribute on the `<a>` tag in our home component markup. This one of the ways we link to specific routes in our app. When you click that link, you should see the restaurants component.
 
 ```html
-<a class="btn" routerLink="/restaurants" role="button">
-  Choose a Restaurant
-</a>
+<a class="btn" routerLink="/restaurants" role="button"> Choose a Restaurant </a>
 ```
 
-✏️ Update the spec file  __src/app/app.component.spec.ts__ to be:
+✏️ Update the spec file **src/app/app.component.spec.ts** to be:
 
-@sourceref ./app.component.spec.ts
-@highlight 2-3,5-9,12-14,19,22,24-26,29-30,32,52-58,60-66,only
+@diff ../2-building-first-app/app.component.spec.ts ./app.component.spec.ts
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
@@ -72,15 +69,16 @@ To be able to navigate between different views in our app, we can take advantage
 
 ```typescript
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [];
 
-@@NgModule({
+@NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
 ```
 
 The router module takes an array of routes we can generate in a few different ways that will render content in the `router-outlet` directive.
@@ -119,29 +117,29 @@ As our applications grow, it doesn't make sense to load all the code at once. Th
 
 ## <base-href>
 
-In our index.html file, the angular cli included `<base href="/>`. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base" target="\_blank">here</a>, but it's important to know this is how the Angular router will how to compose URLs - the value in the "href" attribute specifies the base URL for all relative URLs contained in the app. If you'd like to serve your app from a different directory(where ever the index.html will be served from) or have a specific hosting url that your app will be deployed at you will need to change the `base href` to match.
+In our index.html file, the angular cli included `<base href="/>`. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base" target="\_blank">here</a>, but it's important to know this is how the Angular router will know how to compose URLs - the value in the `href` attribute specifies the base URL for all relative URLs contained in the app. If you'd like to serve your app from a different directory (wherever the index.html will be served from) or have a specific hosting URL that your app will be deployed at, you will need to change the `base href` to match.
 
 ```html
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>PlaceMyOrder</title>
-        <base href="/">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" type="image/x-icon" href="favicon.ico">
-    </head>
-    <body>
-        <pmo-root></pmo-root>
-    </body>
+<head>
+  <meta charset="utf-8">
+  <title>PlaceMyOrder</title>
+  <base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+  <pmo-root></pmo-root>
+</body>
 </html>
 ```
+
 @highlight 6
 
 ## Solution
 
-✏️ Update __src/app/app-routing.module.ts__ to:
+✏️ Update **src/app/app-routing.module.ts** to:
 
 @sourceref ./app-routing.module.ts
-@highlight 3-15
+@highlight 3,4,6-15
