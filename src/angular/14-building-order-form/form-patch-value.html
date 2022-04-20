@@ -46,7 +46,7 @@ class AppComponent implements OnInit {
 
   constructor(private fb:FormBuilder) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.myQuickForm = this.fb.group({
       firstName: {value: '', disabled: false},
       lastName: {value: '', disabled: false},
@@ -54,9 +54,9 @@ class AppComponent implements OnInit {
     });
   }
 
-  customChange(ev) {
-    let newVal = ev.currentTarget.value;
-    let formControl = this.myQuickForm.get('firstName');
+  customChange(ev): void {
+    const newVal = ev.currentTarget.value;
+    const formControl = this.myQuickForm.get('firstName');
     formControl.patchValue(newVal);
   }
 }

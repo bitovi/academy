@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 interface Item {
   name: string;
@@ -8,14 +8,12 @@ interface Item {
 @Component({
   selector: 'pmo-menu-items',
   templateUrl: './menu-items.component.html',
-  styleUrls: ['./menu-items.component.less']
+  styleUrls: ['./menu-items.component.less'],
 })
 export class MenuItemsComponent implements OnInit {
-  @Input() items: Item[];
+  @Input() items?: Item[];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit(): void {}
 }
