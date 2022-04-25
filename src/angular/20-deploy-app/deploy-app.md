@@ -19,7 +19,7 @@ In this part, we will:
 
 For our production app, we won't be running a local server, instead we'll point to `https://place-my-order-api.herokuapp.com`. All we need to do is add the apiUrl variable to our production environment file. When we do a production build by running `ng build --prod`, our production file will be used.
 
-✏️ Update __src/environments/environment.production.ts__:
+✏️ Update **src/environments/environment.prod.ts**:
 
 @sourceref ./environment.prod.ts
 
@@ -57,7 +57,6 @@ firebase init
 4. Configure as a single-page app (rewrite all urls to /index.html)? (yes)
 5. Set up automatic builds and deploys with GitHub? (no)
 
-
 ```shell
 firebase use --add
 ```
@@ -67,7 +66,7 @@ firebase use --add
 
 ## Deploy App
 
-We need to get our app ready to deploy, so we'll create a build with the production flag.  
+We need to get our app ready to deploy, so we'll create a build with the production flag.
 
 ```shell
 ng build --prod
@@ -85,21 +84,18 @@ Now when we view our project url from the page Firebase launches we'll see our a
 ```json
  "scripts": {
     "ng": "ng",
-    "start": "ng serve --proxy-config proxy.conf.json",
+    "start": "ng serve",
     "build": "ng build",
+    "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
     "api": "place-my-order-api --port 7070",
-    "deploy": "ng build --prod && firebase deploy"
+    "deploy": "ng build && firebase deploy"
   },
-  ```
+```
 
 ## Survey
 
 Thanks for taking this Bitovi training! We are constantly looking to improve this
-course.  Please fill out the following survey and we will send you a t-shirt!
-
-
+course. Please fill out the following survey and we will send you a t-shirt!
 
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScIukb7B5Q3d0I9xRge8_VDmQS9gNJqhJmjcJb_5aAKFMqFmA/viewform?embedded=true" width="640" height="1900" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
