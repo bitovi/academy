@@ -13,8 +13,9 @@
     statusTitle="New Order!"
     action="preparing"
     actionTitle="Preparing"
-    emptyMessage="No new orders">
-    </pmo-list>
+    emptyMessage="No new orders"
+  >
+  </pmo-list>
 
   <pmo-list
     [orders]="preparingOrders"
@@ -23,8 +24,9 @@
     statusTitle="Preparing"
     action="delivery"
     actionTitle="Out for delivery"
-    emptyMessage="No orders preparing">
-    </pmo-list>
+    emptyMessage="No orders preparing"
+  >
+  </pmo-list>
 
   <pmo-list
     [orders]="deliveryOrders"
@@ -33,14 +35,16 @@
     statusTitle="Out for delivery"
     action="delivered"
     actionTitle="Delivered"
-    emptyMessage="No orders are being delivered">
-    </pmo-list>
+    emptyMessage="No orders are being delivered"
+  >
+  </pmo-list>
 
   <pmo-list
     [orders]="deliveredOrders"
     listTitle="Delivery"
     status="delivered"
     statusTitle="Delivered"
-    emptyMessage="No delivered orders">
-    </pmo-list>
+    emptyMessage="No delivered orders"
+  >
+  </pmo-list>
 </div>
