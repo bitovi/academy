@@ -22,17 +22,17 @@ In the next section we're going to be creating a restaurant detail view. We'll n
 - How to write a unit test. Here's a codeblock to get you started:
 
   ```typescript
-    it('should make a get request to get a restaurant based on its slug', () => {
-    });
+  it('should make a get request to get a restaurant based on its slug', () => {
+    
+  });
   ```
 
 ## Solution
 
-✏️ Update __src/app/restaurant/restaurant.service.ts__
+✏️ Update **src/app/restaurant/restaurant.service.ts**
 
 @diff ../10-updating-service-params/restaurant.service-httpparams.ts ./restaurant.service.ts only
 
-
-✏️ Update __src/app/restaurant/restaurant.service.spec.ts__
+✏️ Update **src/app/restaurant/restaurant.service.spec.ts**
 
 @diff ../10-updating-service-params/restaurant.service-httpparams.spec.ts ./restaurant.service.spec-withrestaurant.ts only
