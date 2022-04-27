@@ -9,12 +9,11 @@ export class DetailComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  getUrl(image:string): string {
+  getUrl(image: string): string {
     // THIS IS A DIFFERENT WAY TO HANDLE THE IMAGE PATH
-    return image.replace('node_modules/place-my-order-assets', './assets')
+    return image.replace('node_modules/place-my-order-assets', './assets');
   }
-
 }

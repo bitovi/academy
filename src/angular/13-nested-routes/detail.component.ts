@@ -1,32 +1,37 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
-import { RestaurantService } from '../restaurant.service';
 import { Restaurant } from '../restaurant';
+import { RestaurantService } from '../restaurant.service';
 
 @Component({
   selector: 'pmo-detail',
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.less']
+  styleUrls: ['./detail.component.less'],
 })
 export class DetailComponent implements OnInit {
-  restaurant: Restaurant;
+  restaurant?: Restaurant;
   isLoading: boolean = true;
 
-  constructor(private route: ActivatedRoute, private restaurantService: RestaurantService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private restaurantService: RestaurantService
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     const slug = this.route.snapshot.paramMap.get('slug');
-    this.restaurantService.getRestaurant(slug)
-     .subscribe((data:Restaurant) => {
-       this.restaurant = data;
-       this.isLoading = false;
-      });
+
+    if (slug) {
+      this.restaurantService
+        .getRestaurant(slug)
+        .subscribe((data: Restaurant) => {
+          this.restaurant = data;
+          this.isLoading = false;
+        });
+    }
   }
 
-  getUrl(image:string): string {
+  getUrl(image: string): string {
     // THIS IS A DIFFERENT WAY TO HANDLE THE IMAGE PATH
-    return image.replace('node_modules/place-my-order-assets', './assets')
+    return image.replace('node_modules/place-my-order-assets', './assets');
   }
-
 }

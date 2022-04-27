@@ -46,13 +46,13 @@ Create a new component called `detail` in the restaurant component folder that i
 ng g component restaurant/detail
 ```
 
-✏️  Update __src/app/restaurant/detail/detail.component.html__:
+✏️ Update **src/app/restaurant/detail/detail.component.html**:
 
 @sourceref ./detail.component.html
 
 We've also added a method called by the html that will return a proper url path for our restaurant image.
 
-✏️  Update __src/app/restaurant/detail/detail.component.ts__:
+✏️ Update **src/app/restaurant/detail/detail.component.ts**:
 
 @sourceref ./detail.component-starter.ts
 @highlight 15-18
@@ -61,23 +61,22 @@ We've also added a method called by the html that will return a proper url path 
 
 When you click the detail button on a restaurant from the restaurant list view you'll see the detail view of that restaurant.
 
-✏️ Update the spec file  __src/app/restaurant/detail.component.spec.ts__ to be:
+✏️ Update the spec file **src/app/restaurant/detail.component.spec.ts** to be:
 
 @sourceref ./detail.component.spec.ts
 
-✏️ Update the spec file  __src/app/app.component.spec.ts__ to be:
+✏️ Update the spec file **src/app/app.component.spec.ts** to be:
 
 @diff ../8-state-city-options/app.component.spec.ts ./app.component.spec.ts only
-
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## Solution
 
-✏️ Update __src/app/app-routing.module.ts__
+✏️ Update **src/app/app-routing.module.ts**
 
 @diff ../4-adding-routing/app-routing.module.ts ./app-routing.module.ts
 
-✏️ Update __src/app/restaurant/detail/detail.component.ts__
+✏️ Update **src/app/restaurant/detail/detail.component.ts**
 
 @diff ./detail.component-starter.ts ./detail.component.ts
