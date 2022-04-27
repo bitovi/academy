@@ -247,7 +247,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular 11 application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 13 application with it&#x27;s command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -382,7 +382,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="updating-service-params.html"
-							title="Learn  how to make a service take multiple parameters.">
+							title="Learn how to make a service take multiple parameters.">
 							Filter Restaurants by City
 						</a>
 						
@@ -1202,7 +1202,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 &lt;div class=&quot;order empty&quot;&gt;{{emptyMessage}}&lt;/div&gt;
 
 </code></pre>
- <div line-highlight="14,only"></div>
+ <div line-highlight="1,3,5,7,10,14-15,17-24,26,32,only"></div>
 <h2>Using Currency Pipe</h2>
 <p>Now that we have finished implementing our Item Total Pipe, this is a good time for us to talk about using Currency Pipe. You might have noticed that our prices are in USD, which is a currency, and is a perfect use for the Currency Pipe.
 Angular provides us with a <a href="https://angular.io/api/common/CurrencyPipe">Currency Pipe</a> that formats a number as currency using locale rules. Locale Rules refers to a user's country or region specific details like currency, language and more.</p>
@@ -1290,7 +1290,7 @@ Add the Currency Pipe to the <code>order.component.html</code> , <code>menu-item
   &lt;/ng-template&gt;
 &lt;/div&gt;
 </code></pre>
- <div line-highlight="12,18,66,only"></div>
+ <div line-highlight="2-5,12,18,23-28,30-32,39,41,44,46,52,57,62,66-70,only"></div>
 <p>✏️ Update <strong>src/app/order/list/list.component.html</strong> to use the currency Pipe:</p>
 <pre><code class="language-html">&lt;h4&gt;{{listTitle}}&lt;/h4&gt;
 &lt;ng-container *ngFor=&quot;let order of orders&quot;&gt;
@@ -1340,16 +1340,12 @@ Add the Currency Pipe to the <code>order.component.html</code> , <code>menu-item
 <p>In our application we want to have a default currency regardless of what country or language the user is accessing our application from.
 To do this, simply provide the default currency you want use in the entire application (we previously discussed how to implement this).</p>
 <p>✏️ Update <strong>app.module.ts</strong> to provide currency code:</p>
-<pre><code class="language-ts">import { BrowserModule } from '@angular/platform-browser';
+<pre><code class="language-ts">import { HttpClientModule } from '@angular/common/http';
 import { DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-
-import { MenuItemsComponent } from './order/menu-items/menu-items.component';
-import { HistoryComponent } from './order/history/history.component';
-import { ListComponent } from './order/list/list.component';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -1357,41 +1353,48 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
 import { ImageUrlPipe } from './image-url.pipe';
 import { DetailComponent } from './restaurant/detail/detail.component';
 import { OrderComponent } from './order/order.component';
+import { MenuItemsComponent } from './order/menu-items/menu-items.component';
 import { OnlyNumbersDirective } from './only-numbers.directive';
+import { HistoryComponent } from './order/history/history.component';
+import { ListComponent } from './order/list/list.component';
 import { ItemTotalPipe } from './item-total.pipe';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HomeComponent,
-        RestaurantComponent,
-        ImageUrlPipe,
-        DetailComponent,
-        OrderComponent,
-        MenuItemsComponent,
-        HistoryComponent,
-        ListComponent,
-        OnlyNumbersDirective,
-        ItemTotalPipe
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        TabsModule.forRoot()
-    ],
-    providers: [ItemTotalPipe, {provide: DEFAULT_CURRENCY_CODE, useValue: 'USD'}],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    RestaurantComponent,
+    ImageUrlPipe,
+    DetailComponent,
+    OrderComponent,
+    MenuItemsComponent,
+    OnlyNumbersDirective,
+    HistoryComponent,
+    ListComponent,
+    ItemTotalPipe
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    TabsModule.forRoot()
+  ],
+  providers: [
+    ItemTotalPipe,
+    { provide: DEFAULT_CURRENCY_CODE, useValue: 'USD' },
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
-
 </code></pre>
- <div line-highlight="2,42,only"></div>
+ <div line-highlight="2,5,21-46,only"></div>
 
 </section>
 
   			
+  			<bit-prev-next class="footer" list-selector=".sidebar-left ul li.parent.expanded ul"></bit-prev-next>
   		
     </div>
 

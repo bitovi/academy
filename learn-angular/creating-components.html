@@ -248,7 +248,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular 11 application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 13 application with it&#x27;s command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -386,7 +386,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="updating-service-params.html"
-							title="Learn  how to make a service take multiple parameters.">
+							title="Learn how to make a service take multiple parameters.">
 							Filter Restaurants by City
 						</a>
 						
@@ -624,7 +624,7 @@ and restaurant list view in the next exercise.</p>
 </code></pre>
 <p>Generated components have the same structure - a name.component.ts file that will contain the boilerplate code for the Angular component class. This class will also have a component decorator pointing to the name.component.less file for styles, and the name.component.html file for it's template. Styles and templates can also be written inline in the decorator with backticks to escape the code using the keys <code>style</code> and <code>template</code>.</p>
 <h2>Bind Data to Components</h2>
-<p>Like most modern JS frameworks, Angular provides us a way of displaying data dynamically in the DOM. Properties declared in a component can be used in the component template with double curly brace syntax: <code>{{myTitle}}</code></p>
+<p>Like most modern JS frameworks, Angular provides us a way of displaying data dynamically in the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model">DOM</a>. Properties declared in a component can be used in the component template with double curly brace syntax: <code>{{myTitle}}</code></p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -755,14 +755,21 @@ platformBrowserDynamic()
 style="border: solid 1px black; max-width: 640px;"/></p>
 <p>The component should provide the following HTML:</p>
 <pre><code class="language-html">&lt;div class=&quot;homepage&quot;&gt;
-  &lt;img src=&quot;./assets/images/homepage-hero.jpg&quot; alt=&quot;Restaurant table with glasses.&quot; width=&quot;250&quot; height=&quot;380&quot; /&gt;
+  &lt;img
+    src=&quot;./assets/images/homepage-hero.jpg&quot;
+    alt=&quot;Restaurant table with glasses.&quot;
+    width=&quot;250&quot;
+    height=&quot;380&quot;
+  /&gt;
   &lt;h1&gt;&lt;!-- TITLE GOES HERE --&gt;&lt;/h1&gt;
   &lt;p&gt;
-    We make it easier than ever to order gourmet food
-    from your favorite local restaurants.
+    We make it easier than ever to order gourmet food from your favorite local
+    restaurants.
   &lt;/p&gt;
   &lt;p&gt;
-     &lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;&gt;Choose a Restaurant&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;
+      &gt;Choose a Restaurant&lt;/a
+    &gt;
   &lt;/p&gt;
 &lt;/div&gt;
 </code></pre>
@@ -779,7 +786,7 @@ something that reads the component's <code>title</code> property.</p>
 </code></pre>
 <p>Open the <code>angular.json</code> file, and make the following changes to include these files in our build process. This will copy the images into our assets directory for when we serve our application.</p>
 <blockquote>
-<p>Pay close attention that you're making these changes under the &quot;build&quot; key and not the &quot;test&quot; key, as the code looks very similar. The build key should be close to line 17.</p>
+<p>Pay close attention that you're making these changes under the &quot;build&quot; key and not the &quot;test&quot; key, as the code looks very similar. The build key should be close to line 20.</p>
 </blockquote>
 <p><details open>
 <summary>section copied - angular.json</summary>
@@ -790,15 +797,18 @@ something that reads the component's <code>title</code> property.</p>
   &quot;newProjectRoot&quot;: &quot;projects&quot;,
   &quot;projects&quot;: {
     &quot;place-my-order&quot;: {
-      &quot;root&quot;: &quot;&quot;,
-      &quot;sourceRoot&quot;: &quot;src&quot;,
       &quot;projectType&quot;: &quot;application&quot;,
-      &quot;prefix&quot;: &quot;pmo&quot;,
       &quot;schematics&quot;: {
         &quot;@schematics/angular:component&quot;: {
           &quot;style&quot;: &quot;less&quot;
+        },
+        &quot;@schematics/angular:application&quot;: {
+          &quot;strict&quot;: true
         }
       },
+      &quot;root&quot;: &quot;&quot;,
+      &quot;sourceRoot&quot;: &quot;src&quot;,
+      &quot;prefix&quot;: &quot;pmo&quot;,
       &quot;architect&quot;: {
         &quot;build&quot;: {
           &quot;builder&quot;: &quot;@angular-devkit/build-angular:browser&quot;,
@@ -807,7 +817,8 @@ something that reads the component's <code>title</code> property.</p>
             &quot;index&quot;: &quot;src/index.html&quot;,
             &quot;main&quot;: &quot;src/main.ts&quot;,
             &quot;polyfills&quot;: &quot;src/polyfills.ts&quot;,
-            &quot;tsConfig&quot;: &quot;src/tsconfig.app.json&quot;,
+            &quot;tsConfig&quot;: &quot;tsconfig.app.json&quot;,
+            &quot;inlineStyleLanguage&quot;: &quot;less&quot;,
             &quot;assets&quot;: [
               &quot;src/favicon.ico&quot;,
               &quot;src/assets&quot;,
@@ -825,41 +836,48 @@ something that reads the component's <code>title</code> property.</p>
           },
           &quot;configurations&quot;: {
             &quot;production&quot;: {
+              &quot;budgets&quot;: [
+                {
+                  &quot;type&quot;: &quot;initial&quot;,
+                  &quot;maximumWarning&quot;: &quot;500kb&quot;,
+                  &quot;maximumError&quot;: &quot;1mb&quot;
+                },
+                {
+                  &quot;type&quot;: &quot;anyComponentStyle&quot;,
+                  &quot;maximumWarning&quot;: &quot;2kb&quot;,
+                  &quot;maximumError&quot;: &quot;4kb&quot;
+                }
+              ],
               &quot;fileReplacements&quot;: [
                 {
                   &quot;replace&quot;: &quot;src/environments/environment.ts&quot;,
                   &quot;with&quot;: &quot;src/environments/environment.prod.ts&quot;
                 }
               ],
-              &quot;optimization&quot;: true,
-              &quot;outputHashing&quot;: &quot;all&quot;,
-              &quot;sourceMap&quot;: false,
-              &quot;extractCss&quot;: true,
-              &quot;namedChunks&quot;: false,
-              &quot;aot&quot;: true,
-              &quot;extractLicenses&quot;: true,
-              &quot;vendorChunk&quot;: false,
-              &quot;buildOptimizer&quot;: true,
-              &quot;budgets&quot;: [
-                {
-                  &quot;type&quot;: &quot;initial&quot;,
-                  &quot;maximumWarning&quot;: &quot;2mb&quot;,
-                  &quot;maximumError&quot;: &quot;5mb&quot;
-                }
-              ]
+              &quot;outputHashing&quot;: &quot;all&quot;
+            },
+            &quot;development&quot;: {
+              &quot;buildOptimizer&quot;: false,
+              &quot;optimization&quot;: false,
+              &quot;vendorChunk&quot;: true,
+              &quot;extractLicenses&quot;: false,
+              &quot;sourceMap&quot;: true,
+              &quot;namedChunks&quot;: true
             }
-          }
+          },
+          &quot;defaultConfiguration&quot;: &quot;production&quot;
         },
         &quot;serve&quot;: {
           &quot;builder&quot;: &quot;@angular-devkit/build-angular:dev-server&quot;,
-          &quot;options&quot;: {
-            &quot;browserTarget&quot;: &quot;place-my-order:build&quot;
-          },
           &quot;configurations&quot;: {
             &quot;production&quot;: {
               &quot;browserTarget&quot;: &quot;place-my-order:build:production&quot;
+            },
+            &quot;development&quot;: {
+              &quot;browserTarget&quot;: &quot;place-my-order:build:development&quot;
             }
-          }
+          },
+          &quot;defaultConfiguration&quot;: &quot;development&quot;
         },
         &quot;extract-i18n&quot;: {
           &quot;builder&quot;: &quot;@angular-devkit/build-angular:extract-i18n&quot;,
@@ -872,56 +890,17 @@ something that reads the component's <code>title</code> property.</p>
           &quot;options&quot;: {
             &quot;main&quot;: &quot;src/test.ts&quot;,
             &quot;polyfills&quot;: &quot;src/polyfills.ts&quot;,
-            &quot;tsConfig&quot;: &quot;src/tsconfig.spec.json&quot;,
-            &quot;karmaConfig&quot;: &quot;src/karma.conf.js&quot;,
-            &quot;styles&quot;: [
-              &quot;src/styles.less&quot;
-            ],
-            &quot;scripts&quot;: [],
+            &quot;tsConfig&quot;: &quot;tsconfig.spec.json&quot;,
+            &quot;karmaConfig&quot;: &quot;karma.conf.js&quot;,
+            &quot;inlineStyleLanguage&quot;: &quot;less&quot;,
             &quot;assets&quot;: [
               &quot;src/favicon.ico&quot;,
               &quot;src/assets&quot;
-            ]
-          }
-        },
-        &quot;lint&quot;: {
-          &quot;builder&quot;: &quot;@angular-devkit/build-angular:tslint&quot;,
-          &quot;options&quot;: {
-            &quot;tsConfig&quot;: [
-              &quot;src/tsconfig.app.json&quot;,
-              &quot;src/tsconfig.spec.json&quot;
             ],
-            &quot;exclude&quot;: [
-              &quot;**/node_modules/**&quot;
-            ]
-          }
-        }
-      }
-    },
-    &quot;place-my-order-e2e&quot;: {
-      &quot;root&quot;: &quot;e2e/&quot;,
-      &quot;projectType&quot;: &quot;application&quot;,
-      &quot;prefix&quot;: &quot;&quot;,
-      &quot;architect&quot;: {
-        &quot;e2e&quot;: {
-          &quot;builder&quot;: &quot;@angular-devkit/build-angular:protractor&quot;,
-          &quot;options&quot;: {
-            &quot;protractorConfig&quot;: &quot;e2e/protractor.conf.js&quot;,
-            &quot;devServerTarget&quot;: &quot;place-my-order:serve&quot;
-          },
-          &quot;configurations&quot;: {
-            &quot;production&quot;: {
-              &quot;devServerTarget&quot;: &quot;place-my-order:serve:production&quot;
-            }
-          }
-        },
-        &quot;lint&quot;: {
-          &quot;builder&quot;: &quot;@angular-devkit/build-angular:tslint&quot;,
-          &quot;options&quot;: {
-            &quot;tsConfig&quot;: &quot;e2e/tsconfig.e2e.json&quot;,
-            &quot;exclude&quot;: [
-              &quot;**/node_modules/**&quot;
-            ]
+            &quot;styles&quot;: [
+              &quot;src/styles.less&quot;
+            ],
+            &quot;scripts&quot;: []
           }
         }
       }
@@ -929,15 +908,14 @@ something that reads the component's <code>title</code> property.</p>
   },
   &quot;defaultProject&quot;: &quot;place-my-order&quot;
 }
-        
 
 </code></pre>
-<div line-highlight='25-39,only'></div>
+<div line-highlight='29-41,only'></div>
 <p></details></p>
 <p><strong>Any time changes are made to the <code>angular.json</code> file, we need to restart our server to catch the new changes.</strong></p>
-<p>✏️ <strong>Restart your server.</strong></p>
+<p>✏️ <strong>Quit process by running <code>Ctrl + C</code>.</strong></p>
 <p>While we are building the component, it will be nice to see it in the
-application. One of the ways components can be rendered is by putting them in markup. We'll do this by putting our <code>&lt;pmo-home&gt;&lt;/pmo-home&gt;</code> tag in our base app component markup.  To see the
+application. One of the ways components can be rendered is by putting them in markup. We'll do this by putting our <code>&lt;pmo-home&gt;&lt;/pmo-home&gt;</code> tag in our base app component markup. To see the
 <code>&lt;pmo-home&gt;</code> component, do the following.</p>
 <p>✏️ Run:</p>
 <pre><code class="language-shell">ng g component home
@@ -951,21 +929,28 @@ application. One of the ways components can be rendered is by putting them in ma
 <div line-highlight='4'></div>
 <p>✏️ Update <strong>src/app/home/home.component.html</strong> to be:</p>
 <pre><code class="language-html">&lt;div class=&quot;homepage&quot;&gt;
-  &lt;img src=&quot;./assets/images/homepage-hero.jpg&quot; alt=&quot;Restaurant table with glasses.&quot; width=&quot;250&quot; height=&quot;380&quot; /&gt;
+  &lt;img
+    src=&quot;./assets/images/homepage-hero.jpg&quot;
+    alt=&quot;Restaurant table with glasses.&quot;
+    width=&quot;250&quot;
+    height=&quot;380&quot;
+  /&gt;
   &lt;h1&gt;&lt;!-- TITLE GOES HERE --&gt;&lt;/h1&gt;
   &lt;p&gt;
-    We make it easier than ever to order gourmet food
-    from your favorite local restaurants.
+    We make it easier than ever to order gourmet food from your favorite local
+    restaurants.
   &lt;/p&gt;
   &lt;p&gt;
-     &lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;&gt;Choose a Restaurant&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;
+      &gt;Choose a Restaurant&lt;/a
+    &gt;
   &lt;/p&gt;
 &lt;/div&gt;
 </code></pre>
 <p>Run <code>npm run start</code>, and your app should compile with no errors, and you'll be able to see the home component. Later we'll move the home component to it's own page with a unique route.</p>
 <h2>P1: How to Verify Your Solution is Correct</h2>
-<p>✏️ Update the spec file  <strong>src/app/home/home.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+<p>✏️ Update the spec file <strong>src/app/home/home.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
 
@@ -973,12 +958,12 @@ describe('HomeComponent', () =&gt; {
   let component: HomeComponent;
   let fixture: ComponentFixture&lt;HomeComponent&gt;;
 
-  beforeEach(waitForAsync(() =&gt; {
-    TestBed.configureTestingModule({
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
       declarations: [ HomeComponent ]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() =&gt; {
     fixture = TestBed.createComponent(HomeComponent);
@@ -994,35 +979,47 @@ describe('HomeComponent', () =&gt; {
     const fixture = TestBed.createComponent(HomeComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Ordering food has never been easier');
+    expect(compiled.querySelector('h1').textContent).toContain(
+      'Ordering food has never been easier'
+    );
   });
 
   it('should have a member &quot;title&quot; on the component', () =&gt; {
     const fixture = TestBed.createComponent(HomeComponent);
     fixture.detectChanges();
-    expect(fixture.componentInstance.title).toContain('Ordering food has never been easier');
+    expect((fixture.componentInstance as any).title).toContain(
+      'Ordering food has never been easier'
+    );
   });
-
 });
 
 </code></pre>
+<div line-highlight='25-41'></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
 <h2>P1: Solution</h2>
 <p>✏️ Update <strong>src/app/home/home.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;homepage&quot;&gt;
-  &lt;img src=&quot;./assets/images/homepage-hero.jpg&quot; alt=&quot;Restaurant table with glasses.&quot; width=&quot;250&quot; height=&quot;380&quot; /&gt;
-  &lt;h1&gt;{{title}}&lt;/h1&gt;
+  &lt;img
+    src=&quot;./assets/images/homepage-hero.jpg&quot;
+    alt=&quot;Restaurant table with glasses.&quot;
+    width=&quot;250&quot;
+    height=&quot;380&quot;
+  /&gt;
+  &lt;h1&gt;{{ title }}&lt;/h1&gt;
   &lt;p&gt;
-    We make it easier than ever to order gourmet food
-    from your favorite local restaurants.
+    We make it easier than ever to order gourmet food from your favorite local
+    restaurants.
   &lt;/p&gt;
   &lt;p&gt;
-     &lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;&gt;Choose a Restaurant&lt;/a&gt;
+    &lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;
+      &gt;Choose a Restaurant&lt;/a
+    &gt;
   &lt;/p&gt;
 &lt;/div&gt;
 </code></pre>
+<div line-highlight='8'></div>
 <p><strong>src/app/home/home.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 
@@ -1036,14 +1033,15 @@ export class HomeComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }
+
 </code></pre>
 <div line-highlight='9'></div>
 <h2>Problem 2: Write Restaurant Component Markup that Displays a List of Restaurants</h2>
-<p>We want to display a list of restaurants in our UI once the data has been set on the restaurants member.  It will look like:</p>
+<p>We want to display a list of restaurants in our UI once the data has been set on the restaurants member. It will look like:</p>
 <p><img src="../static/img/angular/3-creating-components/restaurant-component.png"
 style="border: solid 1px black; max-width: 640px;"/></p>
 <blockquote>
@@ -1059,7 +1057,7 @@ template directives. Template directives in Angular help us iterate through and 
 <li>ng-class - set classes on elements.</li>
 </ul>
 <h2>*ngIf</h2>
-<p><a href="https://angular.io/api/common/NgIf" target="\_blank">ngIf</a> is a structural directive that allows us to conditionally render content. It can be paired with <a href="https://angular.io/guide/structural-directives#the-ng-template" target="\_blank">ng-template</a> to render an <code>else</code> block.</p>
+<p><a href="https://angular.io/api/common/NgIf" target="\_blank">ngIf</a> is a structural directive that allows us to conditionally render content. It can be paired with <a href="https://angular.io/guide/structural-directives#creating-template-fragments-with-ng-template" target="\_blank">ng-template</a> to render an <code>else</code> block.</p>
 <p>This example shows content blocks based on the value of boolean <code>showMyContent</code>.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1314,7 +1312,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='17, 19, 21, 23,25, 27-30, 34, only'></div>
-<p>Notice in the above example our <code>ng-class</code> is surrounded by <code>[ ]</code>. This signals that we're passing in an object, instead of just a string. When using <a href="https://angular.io/guide/template-syntax#property-binding--property-" target="\_blank">property binding</a>, <code>ngClass=&quot;value&quot;</code> will evaluate the value as a string of <em>&quot;value&quot;</em> and <code>[ngClass]=&quot;value&quot;</code> as whatever the component property value is.</p>
+<p>Notice in the above example our <code>ng-class</code> is surrounded by <code>[ ]</code>. This signals that we're passing in an object, instead of just a string. When using <a href="https://angular.io/guide/property-binding" target="\_blank">property binding</a>, <code>ngClass=&quot;value&quot;</code> will evaluate the value as a string of <em>&quot;value&quot;</em> and <code>[ngClass]=&quot;value&quot;</code> as whatever the component property value is.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1376,11 +1374,12 @@ platformBrowserDynamic()
 <div line-highlight='17,19,23,only'></div>
 <h2>P2: Technical Requirements</h2>
 <p>Here is the markup to show for each restaurant:</p>
-<pre><code class="language-html">&lt;img src=&quot;{{restaurant.images.thumbnail}}&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
-&lt;h3&gt;{{restaurant.name}}&lt;/h3&gt;
+<pre><code class="language-html">&lt;img src=&quot;{{ restaurant.images.thumbnail }}&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+&lt;h3&gt;{{ restaurant.name }}&lt;/h3&gt;
 
 &lt;div class=&quot;address&quot; *ngIf=&quot;restaurant.address&quot;&gt;
-  {{restaurant.address.street}}&lt;br /&gt;{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
+  {{ restaurant.address.street }}&lt;br /&gt;{{ restaurant.address.city }},
+  {{ restaurant.address.state }} {{ restaurant.address.zip }}
 &lt;/div&gt;
 
 &lt;div class=&quot;hours-price&quot;&gt;
@@ -1389,9 +1388,7 @@ platformBrowserDynamic()
   &lt;span class=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
 &lt;/div&gt;
 
-&lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
-  Details
-&lt;/a&gt;
+&lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt; Details &lt;/a&gt;
 &lt;br /&gt;
 </code></pre>
 <p>To solve this problem, use Angular directives to iterate through data and display properties of restaurants.</p>
@@ -1404,135 +1401,134 @@ platformBrowserDynamic()
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong> to be:</p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 
-
-let fakeRestaurants = [
+const fakeRestaurants = [
   {
-    &quot;name&quot;: &quot;Poutine Palace&quot;,
-    &quot;slug&quot;: &quot;poutine-palace&quot;,
-    &quot;images&quot;: {
-      &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-      &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-      &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+    name: 'Poutine Palace',
+    slug: 'poutine-palace',
+    images: {
+      thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+      owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+      banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
     },
-    &quot;menu&quot;: {
-      &quot;lunch&quot;: [
+    menu: {
+      lunch: [
         {
-          &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-          &quot;price&quot;: 35.99
+          name: 'Crab Pancakes with Sorrel Syrup',
+          price: 35.99,
         },
         {
-          &quot;name&quot;: &quot;Steamed Mussels&quot;,
-          &quot;price&quot;: 21.99
+          name: 'Steamed Mussels',
+          price: 21.99,
         },
         {
-          &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-          &quot;price&quot;: 35.99
-        }
+          name: 'Spinach Fennel Watercress Ravioli',
+          price: 35.99,
+        },
       ],
-      &quot;dinner&quot;: [
+      dinner: [
         {
-          &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-          &quot;price&quot;: 21.99
+          name: 'Gunthorp Chicken',
+          price: 21.99,
         },
         {
-          &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-          &quot;price&quot;: 45.99
+          name: 'Herring in Lavender Dill Reduction',
+          price: 45.99,
         },
         {
-          &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-          &quot;price&quot;: 45.99
-        }
-      ]
+          name: 'Chicken with Tomato Carrot Chutney Sauce',
+          price: 45.99,
+        },
+      ],
     },
-    &quot;address&quot;: {
-      &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-      &quot;city&quot;: &quot;Green Bay&quot;,
-      &quot;state&quot;: &quot;WI&quot;,
-      &quot;zip&quot;: &quot;53205&quot;
+    address: {
+      street: '230 W Kinzie Street',
+      city: 'Green Bay',
+      state: 'WI',
+      zip: '53205',
     },
-    &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+    _id: '3ZOZyTY1LH26LnVw',
   },
   {
-    &quot;name&quot;: &quot;Cheese Curd City&quot;,
-    &quot;slug&quot;: &quot;cheese-curd-city&quot;,
-    &quot;images&quot;: {
-      &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
-      &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-      &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+    name: 'Cheese Curd City',
+    slug: 'cheese-curd-city',
+    images: {
+      thumbnail: 'node_modules/place-my-order-assets/images/2-thumbnail.jpg',
+      owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+      banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
     },
-    &quot;menu&quot;: {
-      &quot;lunch&quot;: [
+    menu: {
+      lunch: [
         {
-          &quot;name&quot;: &quot;Ricotta Gnocchi&quot;,
-          &quot;price&quot;: 15.99
+          name: 'Ricotta Gnocchi',
+          price: 15.99,
         },
         {
-          &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-          &quot;price&quot;: 21.99
+          name: 'Gunthorp Chicken',
+          price: 21.99,
         },
         {
-          &quot;name&quot;: &quot;Garlic Fries&quot;,
-          &quot;price&quot;: 15.99
-        }
+          name: 'Garlic Fries',
+          price: 15.99,
+        },
       ],
-      &quot;dinner&quot;: [
+      dinner: [
         {
-          &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-          &quot;price&quot;: 45.99
+          name: 'Herring in Lavender Dill Reduction',
+          price: 45.99,
         },
         {
-          &quot;name&quot;: &quot;Truffle Noodles&quot;,
-          &quot;price&quot;: 14.99
+          name: 'Truffle Noodles',
+          price: 14.99,
         },
         {
-          &quot;name&quot;: &quot;Charred Octopus&quot;,
-          &quot;price&quot;: 25.99
-        }
-      ]
+          name: 'Charred Octopus',
+          price: 25.99,
+        },
+      ],
     },
-    &quot;address&quot;: {
-      &quot;street&quot;: &quot;2451 W Washburne Ave&quot;,
-      &quot;city&quot;: &quot;Green Bay&quot;,
-      &quot;state&quot;: &quot;WI&quot;,
-      &quot;zip&quot;: &quot;53295&quot;
+    address: {
+      street: '2451 W Washburne Ave',
+      city: 'Green Bay',
+      state: 'WI',
+      zip: '53295',
     },
-    &quot;_id&quot;: &quot;Ar0qBJHxM3ecOhcr&quot;
-  }
+    _id: 'Ar0qBJHxM3ecOhcr',
+  },
 ];
+
 @Component({
   selector: 'pmo-restaurant',
   templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less']
+  styleUrls: ['./restaurant.component.less'],
 })
 export class RestaurantComponent implements OnInit {
   restaurants: any[] = [];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     setTimeout(() =&gt; {
       this.restaurants = fakeRestaurants;
-    }, 500)
+    }, 500);
   }
-
 }
 
 </code></pre>
+<div line-highlight='3-97, 104, 109-111'></div>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong> to be:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
   &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
   &lt;!-- if restaurants has a length show the list --&gt;
 
-    &lt;!-- inside this container, show the following markup for each restaurant --&gt;
-    &lt;div class=&quot;restaurant&quot;&gt;
+  &lt;!-- inside this container, show the following markup for each restaurant --&gt;
+  &lt;div class=&quot;restaurant&quot;&gt;
 
-    &lt;/div&gt;
-    &lt;!-- end of restaurant markup --&gt;
+  &lt;/div&gt;
+  &lt;!-- end of restaurant markup --&gt;
 &lt;/div&gt;
 </code></pre>
 <blockquote>
-<p>Reminder: The markup that should be written out for each restaurant can be
-found in the <a href="#problem-2-write-restaurant-component-markup-that-displays-a-list-of-restaurants">exercise description</a>.</p>
+<p>Reminder: The markup that should be written out for each restaurant can be found in the <a href="#p2-technical-requirements">exercise description</a>.</p>
 </blockquote>
 <p>✏️ To see our component working, we can paste it into our <strong>src/app/app.component.html</strong> file just like with the home component:</p>
 <pre><code class="language-html">&lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;
@@ -1542,71 +1538,63 @@ found in the <a href="#problem-2-write-restaurant-component-markup-that-displays
 </code></pre>
 <div line-highlight='4'></div>
 <h2>P2: How to Verify Your Solution is Correct</h2>
-<p>✏️ Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { waitForAsync, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+<p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-
 import { RestaurantComponent } from './restaurant.component';
 
 describe('RestaurantComponent', () =&gt; {
-  let component: RestaurantComponent;
   let fixture: ComponentFixture&lt;RestaurantComponent&gt;;
 
-  beforeEach(waitForAsync(() =&gt; {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
-      declarations: [ RestaurantComponent ]
-    })
-    .compileComponents();
-  }));
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
+      declarations: [RestaurantComponent],
+    }).compileComponents();
 
-  beforeEach(() =&gt; {
     fixture = TestBed.createComponent(RestaurantComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () =&gt; {
+    const component: RestaurantComponent = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 
   it('should render title in a h2 tag', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h2').textContent).toContain('Restaurants');
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h2')?.textContent).toContain('Restaurants');
   });
 
   it('should not show any restaurants markup if no restaurants', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
+    const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('.restaurant')).toBe(null);
   });
 
-  it('should have two .restaurant divs',  &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
+  it('should have two .restaurant divs', fakeAsync((): void =&gt; {
     fixture.detectChanges();
     tick(501);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let restaurantDivs = compiled.getElementsByClassName('restaurant');
-    let hoursDivs = compiled.getElementsByClassName('hours-price');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const restaurantDivs = compiled.getElementsByClassName('restaurant');
+    const hoursDivs = compiled.getElementsByClassName('hours-price');
     expect(restaurantDivs.length).toEqual(2);
     expect(hoursDivs.length).toEqual(2);
   }));
 
-  it('should display restaurant information',  &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
+  it('should display restaurant information', fakeAsync((): void =&gt; {
     fixture.detectChanges();
     tick(501);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.restaurant h3').textContent).toContain('Poutine Palace');
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.restaurant h3')?.textContent).toContain(
+      'Poutine Palace'
+    );
   }));
-
 });
 
 </code></pre>
@@ -1619,12 +1607,12 @@ describe('RestaurantComponent', () =&gt; {
   &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
   &lt;ng-container *ngIf=&quot;restaurants.length&quot;&gt;
     &lt;div class=&quot;restaurant&quot; *ngFor=&quot;let restaurant of restaurants&quot;&gt;
-
-      &lt;img src=&quot;{{restaurant.images.thumbnail}}&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
-      &lt;h3&gt;{{restaurant.name}}&lt;/h3&gt;
+      &lt;img src=&quot;{{ restaurant.images.thumbnail }}&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+      &lt;h3&gt;{{ restaurant.name }}&lt;/h3&gt;
 
       &lt;div class=&quot;address&quot; *ngIf=&quot;restaurant.address&quot;&gt;
-        {{restaurant.address.street}}&lt;br /&gt;{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
+        {{ restaurant.address.street }}&lt;br /&gt;{{ restaurant.address.city }},
+        {{ restaurant.address.state }} {{ restaurant.address.zip }}
       &lt;/div&gt;
 
       &lt;div class=&quot;hours-price&quot;&gt;
@@ -1640,12 +1628,14 @@ describe('RestaurantComponent', () =&gt; {
     &lt;/div&gt;
   &lt;/ng-container&gt;
 &lt;/div&gt;
+
 </code></pre>
-<div line-highlight='3,4'></div>
+<div line-highlight='3-23'></div>
 
 </section>
 
   			
+  			<bit-prev-next class="footer" list-selector=".sidebar-left ul li.parent.expanded ul"></bit-prev-next>
   		
     </div>
 

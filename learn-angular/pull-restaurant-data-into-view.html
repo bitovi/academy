@@ -248,7 +248,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular 11 application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 13 application with it&#x27;s command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -386,7 +386,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="updating-service-params.html"
-							title="Learn  how to make a service take multiple parameters.">
+							title="Learn how to make a service take multiple parameters.">
 							Filter Restaurants by City
 						</a>
 						
@@ -597,7 +597,7 @@ covering CanJS core libraries.">
 </ul>
 <h2>Problem 1: Make RestaurantComponent Use the <code>getRestaurants</code> Function</h2>
 <p>In this section, we will change <code>RestaurantComponent</code> to actually get
-data from the service API.  Instead of two hard coded restaurants, we will
+data from the service API. Instead of two hard coded restaurants, we will
 see a longer list:</p>
 <p><img src="../static/img/angular/7-data-into-view/1-after.png"
 style="border: solid 1px black; max-width: 640px;"/></p>
@@ -605,7 +605,7 @@ style="border: solid 1px black; max-width: 640px;"/></p>
 <ol>
 <li>Change <code>RestaurantComponent</code>'s <em>restaurant</em> property definition:</li>
 </ol>
-<pre><code class="language-typescript">public restaurants: any[] = [];
+<pre><code class="language-typescript">restaurants: any[] = [];
 </code></pre>
 <ol start="2">
 <li>Use <code>RestaurantService</code>'s <code>getRestaurants</code> to get an array of restaurants and
@@ -613,568 +613,575 @@ set it on <code>RestaurantComponent</code>'s <em>restaurant</em> property.</li>
 </ol>
 <h2>P1: How to Verify Your Solution is Correct</h2>
 <p>You should be able see a list of all restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>, instead of the two that were previously hard-coded.</p>
-<p>✏️ Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { async, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+<p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { of } from 'rxjs'; 
+import { of } from 'rxjs';
 import { ImageUrlPipe } from '../image-url.pipe';
-
 import { RestaurantComponent } from './restaurant.component';
 import { RestaurantService } from './restaurant.service';
 
 class MockRestaurantService {
   getRestaurants() {
     return of({
-      data: [{
-        &quot;name&quot;: &quot;Poutine Palace&quot;,
-        &quot;slug&quot;: &quot;poutine-palace&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+      data: [
+        {
+          name: 'Poutine Palace',
+          slug: 'poutine-palace',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              {
+                name: 'Crab Pancakes with Sorrel Syrup',
+                price: 35.99,
+              },
+              {
+                name: 'Steamed Mussels',
+                price: 21.99,
+              },
+              {
+                name: 'Spinach Fennel Watercress Ravioli',
+                price: 35.99,
+              },
+            ],
+            dinner: [
+              {
+                name: 'Gunthorp Chicken',
+                price: 21.99,
+              },
+              {
+                name: 'Herring in Lavender Dill Reduction',
+                price: 45.99,
+              },
+              {
+                name: 'Chicken with Tomato Carrot Chutney Sauce',
+                price: 45.99,
+              },
+            ],
+          },
+          address: {
+            street: '230 W Kinzie Street',
+            city: 'Green Bay',
+            state: 'WI',
+            zip: '53205',
+          },
+          _id: '3ZOZyTY1LH26LnVw',
         },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-              &quot;price&quot;: 35.99
-            },
-            {
-              &quot;name&quot;: &quot;Steamed Mussels&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-              &quot;price&quot;: 35.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-              &quot;price&quot;: 45.99
-            }
-          ]
+        {
+          name: 'Cheese Curd City',
+          slug: 'cheese-curd-city',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/2-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              {
+                name: 'Ricotta Gnocchi',
+                price: 15.99,
+              },
+              {
+                name: 'Gunthorp Chicken',
+                price: 21.99,
+              },
+              {
+                name: 'Garlic Fries',
+                price: 15.99,
+              },
+            ],
+            dinner: [
+              {
+                name: 'Herring in Lavender Dill Reduction',
+                price: 45.99,
+              },
+              {
+                name: 'Truffle Noodles',
+                price: 14.99,
+              },
+              {
+                name: 'Charred Octopus',
+                price: 25.99,
+              },
+            ],
+          },
+          address: {
+            street: '2451 W Washburne Ave',
+            city: 'Green Bay',
+            state: 'WI',
+            zip: '53295',
+          },
+          _id: 'Ar0qBJHxM3ecOhcr',
         },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53205&quot;
-        },
-        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-      },
-      {
-        &quot;name&quot;: &quot;Cheese Curd City&quot;,
-        &quot;slug&quot;: &quot;cheese-curd-city&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
-        },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Ricotta Gnocchi&quot;,
-              &quot;price&quot;: 15.99
-            },
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Garlic Fries&quot;,
-              &quot;price&quot;: 15.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Truffle Noodles&quot;,
-              &quot;price&quot;: 14.99
-            },
-            {
-              &quot;name&quot;: &quot;Charred Octopus&quot;,
-              &quot;price&quot;: 25.99
-            }
-          ]
-        },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;2451 W Washburne Ave&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53295&quot;
-        },
-        &quot;_id&quot;: &quot;Ar0qBJHxM3ecOhcr&quot;
-      }]}
-            )
+      ],
+    });
   }
 }
+
 describe('RestaurantComponent', () =&gt; {
-  let component: RestaurantComponent;
   let fixture: ComponentFixture&lt;RestaurantComponent&gt;;
 
-  beforeEach(async(() =&gt; {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
+      declarations: [RestaurantComponent, ImageUrlPipe],
+      providers: [
+        { provide: RestaurantService, useClass: MockRestaurantService },
       ],
-      providers: [{
-        provide: RestaurantService,
-        useClass: MockRestaurantService
-      }],
-      declarations: [ RestaurantComponent, ImageUrlPipe ]
-    })
-    .compileComponents();
-  }));
+    }).compileComponents();
 
-  beforeEach(() =&gt; {
     fixture = TestBed.createComponent(RestaurantComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () =&gt; {
+    const component: RestaurantComponent = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 
   it('should render title in a h2 tag', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h2').textContent).toContain('Restaurants');
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h2')?.textContent).toContain('Restaurants');
   });
 
   it('should not show any restaurants markup if no restaurants', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    const compiled = fixture.debugElement.nativeElement;
+    const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('.restaurant')).toBe(null);
   });
 
-  it('should have two .restaurant divs',  &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
+  it('should have two .restaurant divs', fakeAsync((): void =&gt; {
     fixture.detectChanges();
     tick(501);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let restaurantDivs = compiled.getElementsByClassName('restaurant');
-    let hoursDivs = compiled.getElementsByClassName('hours-price');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const restaurantDivs = compiled.getElementsByClassName('restaurant');
+    const hoursDivs = compiled.getElementsByClassName('hours-price');
     expect(restaurantDivs.length).toEqual(2);
     expect(hoursDivs.length).toEqual(2);
   }));
 
-  it('should display restaurant information',  &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
+  it('should display restaurant information', fakeAsync((): void =&gt; {
     fixture.detectChanges();
     tick(501);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.restaurant h3').textContent).toContain('Poutine Palace');
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.restaurant h3')?.textContent).toContain(
+      'Poutine Palace'
+    );
   }));
 
-  it('should set restaurants member to response of getRestaurants method', &lt;any&gt;fakeAsync((): void =&gt; {
+  it('should set restaurants member to response of getRestaurants method', fakeAsync((): void =&gt; {
     const fixture = TestBed.createComponent(RestaurantComponent);
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    let expectedRestaurants = [{
-        &quot;name&quot;: &quot;Poutine Palace&quot;,
-        &quot;slug&quot;: &quot;poutine-palace&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+    const expectedRestaurants = [
+      {
+        name: 'Poutine Palace',
+        slug: 'poutine-palace',
+        images: {
+          thumbnail:
+            'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+          owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+          banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
         },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
+        menu: {
+          lunch: [
             {
-              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-              &quot;price&quot;: 35.99
+              name: 'Crab Pancakes with Sorrel Syrup',
+              price: 35.99,
             },
             {
-              &quot;name&quot;: &quot;Steamed Mussels&quot;,
-              &quot;price&quot;: 21.99
+              name: 'Steamed Mussels',
+              price: 21.99,
             },
             {
-              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-              &quot;price&quot;: 35.99
-            }
+              name: 'Spinach Fennel Watercress Ravioli',
+              price: 35.99,
+            },
           ],
-          &quot;dinner&quot;: [
+          dinner: [
             {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
+              name: 'Gunthorp Chicken',
+              price: 21.99,
             },
             {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
+              name: 'Herring in Lavender Dill Reduction',
+              price: 45.99,
             },
             {
-              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-              &quot;price&quot;: 45.99
-            }
-          ]
+              name: 'Chicken with Tomato Carrot Chutney Sauce',
+              price: 45.99,
+            },
+          ],
         },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53205&quot;
+        address: {
+          street: '230 W Kinzie Street',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53205',
         },
-        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
+        _id: '3ZOZyTY1LH26LnVw',
       },
       {
-        &quot;name&quot;: &quot;Cheese Curd City&quot;,
-        &quot;slug&quot;: &quot;cheese-curd-city&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+        name: 'Cheese Curd City',
+        slug: 'cheese-curd-city',
+        images: {
+          thumbnail:
+            'node_modules/place-my-order-assets/images/2-thumbnail.jpg',
+          owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+          banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
         },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
+        menu: {
+          lunch: [
             {
-              &quot;name&quot;: &quot;Ricotta Gnocchi&quot;,
-              &quot;price&quot;: 15.99
+              name: 'Ricotta Gnocchi',
+              price: 15.99,
             },
             {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
+              name: 'Gunthorp Chicken',
+              price: 21.99,
             },
             {
-              &quot;name&quot;: &quot;Garlic Fries&quot;,
-              &quot;price&quot;: 15.99
-            }
+              name: 'Garlic Fries',
+              price: 15.99,
+            },
           ],
-          &quot;dinner&quot;: [
+          dinner: [
             {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
+              name: 'Herring in Lavender Dill Reduction',
+              price: 45.99,
             },
             {
-              &quot;name&quot;: &quot;Truffle Noodles&quot;,
-              &quot;price&quot;: 14.99
+              name: 'Truffle Noodles',
+              price: 14.99,
             },
             {
-              &quot;name&quot;: &quot;Charred Octopus&quot;,
-              &quot;price&quot;: 25.99
-            }
-          ]
+              name: 'Charred Octopus',
+              price: 25.99,
+            },
+          ],
         },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;2451 W Washburne Ave&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53295&quot;
+        address: {
+          street: '2451 W Washburne Ave',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53295',
         },
-        &quot;_id&quot;: &quot;Ar0qBJHxM3ecOhcr&quot;
-      }];
+        _id: 'Ar0qBJHxM3ecOhcr',
+      },
+    ];
     expect(fixture.componentInstance.restaurants).toEqual(expectedRestaurants);
   }));
-
 });
 
 </code></pre>
- <div line-highlight="3,7,9-106,116-119,169-170,172-267,"></div>
-<p>✏️ Update the spec file  <strong>src/app/app.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { TestBed, fakeAsync, waitForAsync, tick, flush } from '@angular/core/testing';
-import { Router } from '@angular/router';
-import { Location } from '@angular/common';
-import { By } from '@angular/platform-browser';
-import { of } from 'rxjs'; 
-
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './home/home.component';
-import { RestaurantComponent } from './restaurant/restaurant.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ImageUrlPipe } from './image-url.pipe';
+ <div line-highlight="8,11,13-114,123-125,167-269,"></div>
+<p>✏️ Update the spec file <strong>src/app/app.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { Location } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+  ComponentFixture,
+  fakeAsync,
+  flush,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { of } from 'rxjs';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { ImageUrlPipe } from './image-url.pipe';
+import { RestaurantComponent } from './restaurant/restaurant.component';
 import { RestaurantService } from './restaurant/restaurant.service';
 
 class MockRestaurantService {
   getRestaurants() {
     return of({
-      data: [{
-        &quot;name&quot;: &quot;Poutine Palace&quot;,
-        &quot;slug&quot;: &quot;poutine-palace&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+      data: [
+        {
+          name: 'Poutine Palace',
+          slug: 'poutine-palace',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              {
+                name: 'Crab Pancakes with Sorrel Syrup',
+                price: 35.99,
+              },
+              {
+                name: 'Steamed Mussels',
+                price: 21.99,
+              },
+              {
+                name: 'Spinach Fennel Watercress Ravioli',
+                price: 35.99,
+              },
+            ],
+            dinner: [
+              {
+                name: 'Gunthorp Chicken',
+                price: 21.99,
+              },
+              {
+                name: 'Herring in Lavender Dill Reduction',
+                price: 45.99,
+              },
+              {
+                name: 'Chicken with Tomato Carrot Chutney Sauce',
+                price: 45.99,
+              },
+            ],
+          },
+          address: {
+            street: '230 W Kinzie Street',
+            city: 'Green Bay',
+            state: 'WI',
+            zip: '53205',
+          },
+          _id: '3ZOZyTY1LH26LnVw',
         },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-              &quot;price&quot;: 35.99
-            },
-            {
-              &quot;name&quot;: &quot;Steamed Mussels&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-              &quot;price&quot;: 35.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-              &quot;price&quot;: 45.99
-            }
-          ]
+        {
+          name: 'Cheese Curd City',
+          slug: 'cheese-curd-city',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/2-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              {
+                name: 'Ricotta Gnocchi',
+                price: 15.99,
+              },
+              {
+                name: 'Gunthorp Chicken',
+                price: 21.99,
+              },
+              {
+                name: 'Garlic Fries',
+                price: 15.99,
+              },
+            ],
+            dinner: [
+              {
+                name: 'Herring in Lavender Dill Reduction',
+                price: 45.99,
+              },
+              {
+                name: 'Truffle Noodles',
+                price: 14.99,
+              },
+              {
+                name: 'Charred Octopus',
+                price: 25.99,
+              },
+            ],
+          },
+          address: {
+            street: '2451 W Washburne Ave',
+            city: 'Green Bay',
+            state: 'WI',
+            zip: '53295',
+          },
+          _id: 'Ar0qBJHxM3ecOhcr',
         },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53205&quot;
-        },
-        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-      },
-      {
-        &quot;name&quot;: &quot;Cheese Curd City&quot;,
-        &quot;slug&quot;: &quot;cheese-curd-city&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
-        },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Ricotta Gnocchi&quot;,
-              &quot;price&quot;: 15.99
-            },
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Garlic Fries&quot;,
-              &quot;price&quot;: 15.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Truffle Noodles&quot;,
-              &quot;price&quot;: 14.99
-            },
-            {
-              &quot;name&quot;: &quot;Charred Octopus&quot;,
-              &quot;price&quot;: 25.99
-            }
-          ]
-        },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;2451 W Washburne Ave&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53295&quot;
-        },
-        &quot;_id&quot;: &quot;Ar0qBJHxM3ecOhcr&quot;
-      }]}
-            )
+      ],
+    });
   }
 
   getStates() {
     return of({
       data: [
-        {&quot;short&quot;:&quot;MO&quot;,&quot;name&quot;:&quot;Missouri&quot;},
-        {&quot;short&quot;:&quot;CA  &quot;,&quot;name&quot;:&quot;California&quot;},
-        {&quot;short&quot;:&quot;MI&quot;,&quot;name&quot;:&quot;Michigan&quot;}]
+        { short: 'MO', name: 'Missouri' },
+        { short: 'CA  ', name: 'California' },
+        { short: 'MI', name: 'Michigan' },
+      ],
     });
   }
 
-  getCities(state:string) {
+  getCities(state: string) {
     return of({
-      data: [{&quot;name&quot;:&quot;Sacramento&quot;,&quot;state&quot;:&quot;CA&quot;},{&quot;name&quot;:&quot;Oakland&quot;,&quot;state&quot;:&quot;CA&quot;}]
+      data: [
+        { name: 'Sacramento', state: 'CA' },
+        { name: 'Oakland', state: 'CA' },
+      ],
     });
   }
 
-  getRestaurant(slug:string) {
+  getRestaurant(slug: string) {
     return of({
-      &quot;name&quot;: &quot;Poutine Palace&quot;,
-      &quot;slug&quot;: &quot;poutine-palace&quot;,
-      &quot;images&quot;: {
-        &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-        &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-        &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+      name: 'Poutine Palace',
+      slug: 'poutine-palace',
+      images: {
+        thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+        owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+        banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
       },
-      &quot;menu&quot;: {
-        &quot;lunch&quot;: [
+      menu: {
+        lunch: [
           {
-            &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-            &quot;price&quot;: 35.99
+            name: 'Crab Pancakes with Sorrel Syrup',
+            price: 35.99,
           },
           {
-            &quot;name&quot;: &quot;Steamed Mussels&quot;,
-            &quot;price&quot;: 21.99
+            name: 'Steamed Mussels',
+            price: 21.99,
           },
           {
-            &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-            &quot;price&quot;: 35.99
-          }
+            name: 'Spinach Fennel Watercress Ravioli',
+            price: 35.99,
+          },
         ],
-        &quot;dinner&quot;: [
+        dinner: [
           {
-            &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-            &quot;price&quot;: 21.99
+            name: 'Gunthorp Chicken',
+            price: 21.99,
           },
           {
-            &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-            &quot;price&quot;: 45.99
+            name: 'Herring in Lavender Dill Reduction',
+            price: 45.99,
           },
           {
-            &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-            &quot;price&quot;: 45.99
-          }
-        ]
+            name: 'Chicken with Tomato Carrot Chutney Sauce',
+            price: 45.99,
+          },
+        ],
       },
-      &quot;address&quot;: {
-        &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-        &quot;city&quot;: &quot;Green Bay&quot;,
-        &quot;state&quot;: &quot;WI&quot;,
-        &quot;zip&quot;: &quot;53205&quot;
+      address: {
+        street: '230 W Kinzie Street',
+        city: 'Green Bay',
+        state: 'WI',
+        zip: '53205',
       },
-      &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-    })
+      _id: '3ZOZyTY1LH26LnVw',
+    });
   }
 }
 
 describe('AppComponent', () =&gt; {
-  let router: Router;
+  let fixture: ComponentFixture&lt;AppComponent&gt;;
   let location: Location;
-  let fixture;
+  let router: Router;
 
-  beforeEach(waitForAsync(() =&gt; {
-    TestBed.configureTestingModule({
-      imports: [
-        AppRoutingModule, HttpClientModule
-      ],
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      imports: [AppRoutingModule, HttpClientModule],
       declarations: [
-        AppComponent, HomeComponent, RestaurantComponent, ImageUrlPipe
+        AppComponent,
+        HomeComponent,
+        RestaurantComponent,
+        ImageUrlPipe,
       ],
-      schemas: [
-        NO_ERRORS_SCHEMA
-      ]
-    }).overrideComponent(RestaurantComponent, {
-      set: {
-        providers: [
-          { provide: RestaurantService, useClass: MockRestaurantService }
-        ]
-      }
-    })
-    .compileComponents();
-
-    router = TestBed.inject(Router);
-    location = TestBed.inject(Location);
+      providers: [
+        { provide: RestaurantService, useClass: MockRestaurantService },
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
-  }));
+    location = TestBed.inject(Location);
+    router = TestBed.inject(Router);
+  });
 
   it('should create the app', () =&gt; {
-    const app = fixture.debugElement.componentInstance;
+    const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
   it(`should have as title 'place-my-order'`, () =&gt; {
-    const app = fixture.debugElement.componentInstance;
+    const app = fixture.componentInstance;
     expect(app.title).toEqual('place-my-order');
   });
 
   it('should render title in a h1 tag', () =&gt; {
-    const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('place-my-order.com');
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h1')?.textContent).toContain(
+      'place-my-order.com'
+    );
   });
 
-  it('should render the HomeComponent with router navigates to &quot;/&quot; path', () =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
+  it('should render the HomeComponent with router navigates to &quot;/&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['']).then(() =&gt; {
       expect(location.path()).toBe('');
       expect(compiled.querySelector('pmo-home')).not.toBe(null);
     });
-  });
+  }));
 
-  it('should render the RestaurantsComponent with router navigates to &quot;/restaurants&quot; path', () =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
+  it('should render the RestaurantsComponent with router navigates to &quot;/restaurants&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants']).then(() =&gt; {
       expect(location.path()).toBe('/restaurants');
       expect(compiled.querySelector('pmo-restaurant')).not.toBe(null);
     });
-  });
+  }));
 
   it('should have the home navigation link href set to &quot;&quot;', () =&gt; {
     fixture.detectChanges();
-    let homeLink = fixture.debugElement.query(By.css('li a'));
-    let href = homeLink.nativeElement.getAttribute('href');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const homeLink = compiled.querySelector('li a');
+    const href = homeLink?.getAttribute('href');
     expect(href).toEqual('/');
   });
 
   it('should have the restaurants navigation link href set to &quot;&quot;', () =&gt; {
     fixture.detectChanges();
-    let restaurantsLink = fixture.debugElement.query(By.css('li:nth-child(2) a'));
-    let href = restaurantsLink.nativeElement.getAttribute('href');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const restaurantsLink = compiled.querySelector('li:nth-child(2) a');
+    const href = restaurantsLink?.getAttribute('href');
     expect(href).toEqual('/restaurants');
   });
 
   it('should make the home navigation link class active when the router navigates to &quot;/&quot; path', fakeAsync(() =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
-    router.navigate(['']).then(() =&gt; {
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
-      let homeLinkLi = fixture.debugElement.query(By.css('li'));
-      expect(homeLinkLi.nativeElement.classList).toContain('active');
-      expect(compiled.querySelectorAll('.active').length).toBe(1);
-      fixture.destroy();
-      flush();
-    });
+    const compiled = fixture.nativeElement as HTMLElement;
+    router.navigate(['']);
+    fixture.detectChanges();
+    tick();
+
+    let homeLinkLi = compiled.querySelector('li');
+    expect(homeLinkLi?.classList).toContain('active');
+    expect(compiled.querySelectorAll('.active').length).toBe(1);
+    flush();
   }));
 
   it('should make the restaurants navigation link class active when the router navigates to &quot;/restaurants&quot; path', fakeAsync(() =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
-    router.navigate(['restaurants']).then(() =&gt; {
-      expect(location.path()).toBe('/restaurants');
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
-      let restaurantsLinkLi = fixture.debugElement.query(By.css('li:nth-child(2)'));
-      expect(restaurantsLinkLi.nativeElement.classList).toContain('active');
-      expect(compiled.querySelectorAll('.active').length).toBe(1);
-      fixture.destroy();
-      flush();
-    });
-  }));
+    const compiled = fixture.nativeElement as HTMLElement;
+    router.navigate(['restaurants']);
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
 
+    expect(location.path()).toBe('/restaurants');
+    let restaurantsLinkLi = compiled.querySelector('li:nth-child(2)');
+    expect(restaurantsLinkLi?.classList).toContain('active');
+    expect(compiled.querySelectorAll('.active').length).toBe(1);
+    flush();
+  }));
 });
+
 </code></pre>
- <div line-highlight="1,5,13-14,16-112,114-119,121,123-125,127,129-174,176-177,187,195-200,202,232,240,268,283,only"></div>
+ <div line-highlight="2,12,16,18,20-118,120,122-128,130,132-139,141-189,198-207,239,247,272,286,only"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
@@ -1327,7 +1334,7 @@ platformBrowserDynamic()
 an RxJS observable changes:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
-const {Observable} = rxjs;
+const { Observable } = rxjs;
 
 const observable = Observable.create(function (observer) {
   observer.next(1);
@@ -1335,10 +1342,10 @@ const observable = Observable.create(function (observer) {
   observer.next(3);
 });
 
-observable.subscribe( function subscriber( value ){
-    console.log('got value ' + value);
-    // Logs 1, 2, 3
-} );
+observable.subscribe(function subscriber(value) {
+  console.log('got value ' + value);
+  // Logs 1, 2, 3
+});
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
@@ -1346,18 +1353,18 @@ observable.subscribe( function subscriber( value ){
 <h2>P1: Solution</h2>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong> as follows:</p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
-import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
+import { ResponseData, RestaurantService } from './restaurant.service';
 
 @Component({
   selector: 'pmo-restaurant',
   templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less']
+  styleUrls: ['./restaurant.component.less'],
 })
 export class RestaurantComponent implements OnInit {
-  public restaurants: Restaurant[] = [];
+  restaurants: Restaurant[] = [];
 
-  constructor(private restaurantService: RestaurantService) { }
+  constructor(private restaurantService: RestaurantService) {}
 
   ngOnInit() {
     this.restaurantService.getRestaurants().subscribe((res: ResponseData) =&gt; {
@@ -1367,7 +1374,7 @@ export class RestaurantComponent implements OnInit {
 }
 
 </code></pre>
- <div line-highlight="2-3,11,13,16-18,"></div>
+ <div line-highlight="2-3,11,13,15-18,"></div>
 <h2>Problem 2: Show a Loading State while Restaurants are Being Requested</h2>
 <p>Sometimes the server can take a long time to respond. It's a better experience for the user
 to show a loading icon to the user while data is loading:</p>
@@ -1379,314 +1386,314 @@ to show a loading icon to the user while data is loading:</p>
 <ol>
 <li><p>Create a new interface <code>Data</code> that represents the following object:</p>
 <pre><code class="language-js">let data = {
-  value: [], //aray of restaurants
-  isPending: false //boolean
-}
+  value: [], // array of restaurants
+  isPending: false, // boolean
+};
 </code></pre></li>
 <li><p>Change the <code>restaurants</code> member to use the new <code>Data</code> type in the <code>RestaurantsComponent</code>.</p></li>
 <li><p>Right before you call the <code>getRestaurants</code> method, set the restaurants <code>isPending</code> value to true.</p></li>
 <li><p>Once the <code>getRestaurants</code> response is received, set the restaurants <code>value</code> to the response data and <code>isPending</code> value to false.</p></li>
-<li><p>Update the html to match the new restaurant object values and to show the following HTML while <code>isPending</code> is true:</p>
-<pre><code class="language-html">&lt;div class=&quot;restaurant loading&quot;&gt;&lt;/div&gt;
-</code></pre></li>
+<li><p>Update the html to match the new restaurant object values and to show the following HTML while <code>isPending</code> is true:</p></li>
 </ol>
+<pre><code class="language-html">&lt;div class=&quot;restaurant loading&quot;&gt;&lt;/div&gt;
+</code></pre>
 <h2>P2: To Verify Solution</h2>
 <p>You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>!</p>
-<p>✏️ Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { waitForAsync, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+<p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { of } from 'rxjs'; 
+import { of } from 'rxjs';
 import { ImageUrlPipe } from '../image-url.pipe';
-
 import { RestaurantComponent } from './restaurant.component';
 import { RestaurantService } from './restaurant.service';
 
 class MockRestaurantService {
   getRestaurants() {
     return of({
-      data: [{
-        &quot;name&quot;: &quot;Poutine Palace&quot;,
-        &quot;slug&quot;: &quot;poutine-palace&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+      data: [
+        {
+          name: 'Poutine Palace',
+          slug: 'poutine-palace',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              {
+                name: 'Crab Pancakes with Sorrel Syrup',
+                price: 35.99,
+              },
+              {
+                name: 'Steamed Mussels',
+                price: 21.99,
+              },
+              {
+                name: 'Spinach Fennel Watercress Ravioli',
+                price: 35.99,
+              },
+            ],
+            dinner: [
+              {
+                name: 'Gunthorp Chicken',
+                price: 21.99,
+              },
+              {
+                name: 'Herring in Lavender Dill Reduction',
+                price: 45.99,
+              },
+              {
+                name: 'Chicken with Tomato Carrot Chutney Sauce',
+                price: 45.99,
+              },
+            ],
+          },
+          address: {
+            street: '230 W Kinzie Street',
+            city: 'Green Bay',
+            state: 'WI',
+            zip: '53205',
+          },
+          _id: '3ZOZyTY1LH26LnVw',
         },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-              &quot;price&quot;: 35.99
-            },
-            {
-              &quot;name&quot;: &quot;Steamed Mussels&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-              &quot;price&quot;: 35.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-              &quot;price&quot;: 45.99
-            }
-          ]
+        {
+          name: 'Cheese Curd City',
+          slug: 'cheese-curd-city',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/2-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              {
+                name: 'Ricotta Gnocchi',
+                price: 15.99,
+              },
+              {
+                name: 'Gunthorp Chicken',
+                price: 21.99,
+              },
+              {
+                name: 'Garlic Fries',
+                price: 15.99,
+              },
+            ],
+            dinner: [
+              {
+                name: 'Herring in Lavender Dill Reduction',
+                price: 45.99,
+              },
+              {
+                name: 'Truffle Noodles',
+                price: 14.99,
+              },
+              {
+                name: 'Charred Octopus',
+                price: 25.99,
+              },
+            ],
+          },
+          address: {
+            street: '2451 W Washburne Ave',
+            city: 'Green Bay',
+            state: 'WI',
+            zip: '53295',
+          },
+          _id: 'Ar0qBJHxM3ecOhcr',
         },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53205&quot;
-        },
-        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-      },
-      {
-        &quot;name&quot;: &quot;Cheese Curd City&quot;,
-        &quot;slug&quot;: &quot;cheese-curd-city&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
-        },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Ricotta Gnocchi&quot;,
-              &quot;price&quot;: 15.99
-            },
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Garlic Fries&quot;,
-              &quot;price&quot;: 15.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Truffle Noodles&quot;,
-              &quot;price&quot;: 14.99
-            },
-            {
-              &quot;name&quot;: &quot;Charred Octopus&quot;,
-              &quot;price&quot;: 25.99
-            }
-          ]
-        },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;2451 W Washburne Ave&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53295&quot;
-        },
-        &quot;_id&quot;: &quot;Ar0qBJHxM3ecOhcr&quot;
-      }]}
-            )
+      ],
+    });
   }
 }
+
 describe('RestaurantComponent', () =&gt; {
-  let component: RestaurantComponent;
   let fixture: ComponentFixture&lt;RestaurantComponent&gt;;
 
-  beforeEach(waitForAsync(() =&gt; {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      imports: [RouterTestingModule],
+      declarations: [RestaurantComponent, ImageUrlPipe],
+      providers: [
+        { provide: RestaurantService, useClass: MockRestaurantService },
       ],
-      providers: [{
-        provide: RestaurantService,
-        useClass: MockRestaurantService
-      }],
-      declarations: [ RestaurantComponent, ImageUrlPipe ]
-    })
-    .compileComponents();
-  }));
+    }).compileComponents();
 
-  beforeEach(() =&gt; {
     fixture = TestBed.createComponent(RestaurantComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () =&gt; {
+    const component: RestaurantComponent = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 
   it('should render title in a h2 tag', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h2').textContent).toContain('Restaurants');
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h2')?.textContent).toContain('Restaurants');
   });
 
   it('should not show any restaurants markup if no restaurants', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    const compiled = fixture.debugElement.nativeElement;
+    const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('.restaurant')).toBe(null);
   });
 
-  it('should have two .restaurant divs',  &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
+  it('should have two .restaurant divs', fakeAsync((): void =&gt; {
     fixture.detectChanges();
     tick(501);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let restaurantDivs = compiled.getElementsByClassName('restaurant');
-    let hoursDivs = compiled.getElementsByClassName('hours-price');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const restaurantDivs = compiled.getElementsByClassName('restaurant');
+    const hoursDivs = compiled.getElementsByClassName('hours-price');
     expect(restaurantDivs.length).toEqual(2);
     expect(hoursDivs.length).toEqual(2);
   }));
 
-  it('should display restaurant information',  &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
+  it('should display restaurant information', fakeAsync((): void =&gt; {
     fixture.detectChanges();
     tick(501);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.restaurant h3').textContent).toContain('Poutine Palace');
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.restaurant h3')?.textContent).toContain(
+      'Poutine Palace'
+    );
   }));
 
-  it('should set restaurants value to restaurants response data and set isPending to false', &lt;any&gt;fakeAsync((): void =&gt; {
+  it('should set restaurants value to restaurants response data and set isPending to false', fakeAsync((): void =&gt; {
     const fixture = TestBed.createComponent(RestaurantComponent);
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    let expectedRestaurants = {
-      value: [{
-        &quot;name&quot;: &quot;Poutine Palace&quot;,
-        &quot;slug&quot;: &quot;poutine-palace&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+    const expectedRestaurants = {
+      value: [
+        {
+          name: 'Poutine Palace',
+          slug: 'poutine-palace',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              {
+                name: 'Crab Pancakes with Sorrel Syrup',
+                price: 35.99,
+              },
+              {
+                name: 'Steamed Mussels',
+                price: 21.99,
+              },
+              {
+                name: 'Spinach Fennel Watercress Ravioli',
+                price: 35.99,
+              },
+            ],
+            dinner: [
+              {
+                name: 'Gunthorp Chicken',
+                price: 21.99,
+              },
+              {
+                name: 'Herring in Lavender Dill Reduction',
+                price: 45.99,
+              },
+              {
+                name: 'Chicken with Tomato Carrot Chutney Sauce',
+                price: 45.99,
+              },
+            ],
+          },
+          address: {
+            street: '230 W Kinzie Street',
+            city: 'Green Bay',
+            state: 'WI',
+            zip: '53205',
+          },
+          _id: '3ZOZyTY1LH26LnVw',
         },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-              &quot;price&quot;: 35.99
-            },
-            {
-              &quot;name&quot;: &quot;Steamed Mussels&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-              &quot;price&quot;: 35.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-              &quot;price&quot;: 45.99
-            }
-          ]
+        {
+          name: 'Cheese Curd City',
+          slug: 'cheese-curd-city',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/2-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              {
+                name: 'Ricotta Gnocchi',
+                price: 15.99,
+              },
+              {
+                name: 'Gunthorp Chicken',
+                price: 21.99,
+              },
+              {
+                name: 'Garlic Fries',
+                price: 15.99,
+              },
+            ],
+            dinner: [
+              {
+                name: 'Herring in Lavender Dill Reduction',
+                price: 45.99,
+              },
+              {
+                name: 'Truffle Noodles',
+                price: 14.99,
+              },
+              {
+                name: 'Charred Octopus',
+                price: 25.99,
+              },
+            ],
+          },
+          address: {
+            street: '2451 W Washburne Ave',
+            city: 'Green Bay',
+            state: 'WI',
+            zip: '53295',
+          },
+          _id: 'Ar0qBJHxM3ecOhcr',
         },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53205&quot;
-        },
-        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-      },
-      {
-        &quot;name&quot;: &quot;Cheese Curd City&quot;,
-        &quot;slug&quot;: &quot;cheese-curd-city&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
-        },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Ricotta Gnocchi&quot;,
-              &quot;price&quot;: 15.99
-            },
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Garlic Fries&quot;,
-              &quot;price&quot;: 15.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Truffle Noodles&quot;,
-              &quot;price&quot;: 14.99
-            },
-            {
-              &quot;name&quot;: &quot;Charred Octopus&quot;,
-              &quot;price&quot;: 25.99
-            }
-          ]
-        },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;2451 W Washburne Ave&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53295&quot;
-        },
-        &quot;_id&quot;: &quot;Ar0qBJHxM3ecOhcr&quot;
-      }],
-      isPending: false
-    }
+      ],
+      isPending: false,
+    };
     expect(fixture.componentInstance.restaurants).toEqual(expectedRestaurants);
   }));
 
   it('should show a loading div while isPending is true', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
     fixture.detectChanges();
     fixture.componentInstance.restaurants.isPending = true;
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let loadingDiv = compiled.querySelector('.loading');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const loadingDiv = compiled.querySelector('.loading');
     expect(loadingDiv).toBeTruthy();
   });
 
   it('should not show a loading div if isPending is false', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
     fixture.componentInstance.restaurants.isPending = false;
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let loadingDiv = compiled.querySelector('.loading');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const loadingDiv = compiled.querySelector('.loading');
     expect(loadingDiv).toBe(null);
   });
-
 });
 
 </code></pre>
- <div line-highlight="1,111,169,174-175,266-268,272-280,282-289,only"></div>
+ <div line-highlight="167,172-219,221-266,268-270,274-281,283-290,only"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
@@ -1698,8 +1705,8 @@ describe('RestaurantComponent', () =&gt; {
 <h2>P2: Solution</h2>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong> to:</p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
-import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
+import { ResponseData, RestaurantService } from './restaurant.service';
 
 export interface Data {
   value: Restaurant[];
@@ -1709,16 +1716,17 @@ export interface Data {
 @Component({
   selector: 'pmo-restaurant',
   templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less']
+  styleUrls: ['./restaurant.component.less'],
 })
 export class RestaurantComponent implements OnInit {
- restaurants: Data = {
+  restaurants: Data = {
     value: [],
-    isPending: false
+    isPending: false,
   };
-  constructor(private restaurantService: RestaurantService) { }
 
-  ngOnInit() {
+  constructor(private restaurantService: RestaurantService) {}
+
+  ngOnInit(): void {
     this.restaurants.isPending = true;
     this.restaurantService.getRestaurants().subscribe((res: ResponseData) =&gt; {
       this.restaurants.value = res.data;
@@ -1728,19 +1736,23 @@ export class RestaurantComponent implements OnInit {
 }
 
 </code></pre>
- <div line-highlight="5-7,16-18,23,25-26,28-29,"></div>
+ <div line-highlight="5-7,16-18,23-24,26-27,29-30,"></div>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong> to:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
   &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
   &lt;div class=&quot;restaurant loading&quot; *ngIf=&quot;restaurants.isPending&quot;&gt;&lt;/div&gt;
   &lt;ng-container *ngIf=&quot;restaurants.value.length&quot;&gt;
     &lt;div class=&quot;restaurant&quot; *ngFor=&quot;let restaurant of restaurants.value&quot;&gt;
-
-      &lt;img src=&quot;{{restaurant.images.thumbnail | imageUrl}}&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
-      &lt;h3&gt;{{restaurant.name}}&lt;/h3&gt;
+      &lt;img
+        src=&quot;{{ restaurant.images.thumbnail | imageUrl }}&quot;
+        width=&quot;100&quot;
+        height=&quot;100&quot;
+      /&gt;
+      &lt;h3&gt;{{ restaurant.name }}&lt;/h3&gt;
 
       &lt;div class=&quot;address&quot; *ngIf=&quot;restaurant.address&quot;&gt;
-        {{restaurant.address.street}}&lt;br /&gt;{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
+        {{ restaurant.address.street }}&lt;br /&gt;{{ restaurant.address.city }},
+        {{ restaurant.address.state }} {{ restaurant.address.zip }}
       &lt;/div&gt;
 
       &lt;div class=&quot;hours-price&quot;&gt;
@@ -1770,6 +1782,7 @@ export class RestaurantComponent implements OnInit {
 </section>
 
   			
+  			<bit-prev-next class="footer" list-selector=".sidebar-left ul li.parent.expanded ul"></bit-prev-next>
   		
     </div>
 

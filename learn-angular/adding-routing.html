@@ -248,7 +248,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular 11 application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 13 application with it&#x27;s command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -386,7 +386,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="updating-service-params.html"
-							title="Learn  how to make a service take multiple parameters.">
+							title="Learn how to make a service take multiple parameters.">
 							Filter Restaurants by City
 						</a>
 						
@@ -606,7 +606,7 @@ at the end of this tutorial:</p>
   <source src="../static/img/angular/4-adding-routing/after.mp4" type="video/mp4">
 </video>
 <h2>Setup</h2>
-<p><code>&lt;router-outlet&gt;</code>, which handles routing to a component based on a url, was added to our <strong>src/app/app.component.html</strong> file when we first generated our app and answered <code>yes</code> to the routing question. But since that time, we added components to that view.  Let's remove those components because <code>&lt;router-outlet&gt;</code> will handle showing
+<p><code>&lt;router-outlet&gt;</code>, which handles routing to a component based on a url, was added to our <strong>src/app/app.component.html</strong> file when we first generated our app and answered <code>yes</code> to the routing question. But since that time, we added components to that view. Let's remove those components because <code>&lt;router-outlet&gt;</code> will handle showing
 those components going forward.</p>
 <p>✏️ Update <strong>src/app/app.component.html</strong> to:</p>
 <pre><code class="language-html">&lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;
@@ -615,82 +615,72 @@ those components going forward.</p>
 <div line-highlight='1-2,only'></div>
 <h2>How to Verify Your Solution is Correct</h2>
 <p>If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>. You may have noticed the <code>routerLink</code> attribute on the <code>&lt;a&gt;</code> tag in our home component markup. This one of the ways we link to specific routes in our app. When you click that link, you should see the restaurants component.</p>
-<pre><code class="language-html">&lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;&gt;
-  Choose a Restaurant
-&lt;/a&gt;
+<pre><code class="language-html">&lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;&gt; Choose a Restaurant &lt;/a&gt;
 </code></pre>
-<p>✏️ Update the spec file  <strong>src/app/app.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { TestBed, waitForAsync } from '@angular/core/testing';
+<p>✏️ Update the spec file <strong>src/app/app.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { Location } from '@angular/common';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common';
-
-import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ImageUrlPipe } from './image-url.pipe';
 
 describe('AppComponent', () =&gt; {
-  let router: Router;
-  let location: Location;
-  let fixture;
+  let fixture: ComponentFixture&lt;AppComponent&gt;;
 
-  beforeEach(waitForAsync(() =&gt; {
-    TestBed.configureTestingModule({
-      imports: [
-        AppRoutingModule
-      ],
-      declarations: [
-        AppComponent, HomeComponent, RestaurantComponent, ImageUrlPipe
-      ],
-      schemas: [
-        NO_ERRORS_SCHEMA
-      ]
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      imports: [AppRoutingModule],
+      declarations: [AppComponent, HomeComponent, RestaurantComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
-    router = TestBed.inject(Router);
-    location = TestBed.inject(Location);
-
     fixture = TestBed.createComponent(AppComponent);
-  }));
+  });
 
   it('should create the app', () =&gt; {
-    const app = fixture.debugElement.componentInstance;
+    const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
   it(`should have as title 'place-my-order'`, () =&gt; {
-    const app = fixture.debugElement.componentInstance;
+    const app = fixture.componentInstance;
     expect(app.title).toEqual('place-my-order');
   });
 
   it('should render title in a h1 tag', () =&gt; {
-    const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Place My Order App: Coming Soon!');
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h1')?.textContent).toContain(
+      'Place My Order App: Coming Soon!'
+    );
   });
 
-  it('should render the HomeComponent with router navigates to &quot;/&quot; path', () =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
+  it('should render the HomeComponent with router navigates to &quot;/&quot; path', fakeAsync(() =&gt; {
+    const location: Location = TestBed.inject(Location);
+    const router: Router = TestBed.inject(Router);
+    const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['']).then(() =&gt; {
       expect(location.path()).toBe('');
       expect(compiled.querySelector('pmo-home')).not.toBe(null);
     });
-  });
+  }));
 
-  it('should render the RestaurantsComponent with router navigates to &quot;/restaurants&quot; path', () =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
+  it('should render the RestaurantsComponent with router navigates to &quot;/restaurants&quot; path', fakeAsync(() =&gt; {
+    const location: Location = TestBed.inject(Location);
+    const router: Router = TestBed.inject(Router);
+    const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants']).then(() =&gt; {
       expect(location.path()).toBe('/restaurants');
       expect(compiled.querySelector('pmo-restaurant')).not.toBe(null);
     });
-  });
-
+  }));
 });
+
 </code></pre>
-<div line-highlight='2-3,5-9,12-14,19,22,24-26,29-30,32,52-58,60-66,only'></div>
+ <div line-highlight="1,3-5,7-8,11,15-17,20,36-38,41-49,51-59,"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
@@ -794,15 +784,15 @@ platformBrowserDynamic()
 <h2>Router</h2>
 <p>To be able to navigate between different views in our app, we can take advantage of Angular's built-in routing module. We already told Angular we'd like to set up routing, so it generated <code>src/app/app-routing.module.ts</code> for us and included it in our root module. <code>src/app/app-routing.module.ts</code> currently looks like:</p>
 <pre><code class="language-typescript">import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [];
 
-@NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
 </code></pre>
 <p>The router module takes an array of routes we can generate in a few different ways that will render content in the <code>router-outlet</code> directive.</p>
 <h2>Setting Paths to Components</h2>
@@ -1255,27 +1245,26 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='114, only'></div>
 <h2>&lt;base-href&gt;</h2>
-<p>In our index.html file, the angular cli included <code>&lt;base href=&quot;/&gt;</code>. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base" target="\_blank">here</a>, but it's important to know this is how the Angular router will how to compose URLs - the value in the &quot;href&quot; attribute specifies the base URL for all relative URLs contained in the app. If you'd like to serve your app from a different directory(where ever the index.html will be served from) or have a specific hosting url that your app will be deployed at you will need to change the <code>base href</code> to match.</p>
+<p>In our index.html file, the angular cli included <code>&lt;base href=&quot;/&gt;</code>. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base" target="\_blank">here</a>, but it's important to know this is how the Angular router will know how to compose URLs - the value in the <code>href</code> attribute specifies the base URL for all relative URLs contained in the app. If you'd like to serve your app from a different directory (wherever the index.html will be served from) or have a specific hosting URL that your app will be deployed at, you will need to change the <code>base href</code> to match.</p>
 <pre><code class="language-html">&lt;!doctype html&gt;
 &lt;html lang=&quot;en&quot;&gt;
-    &lt;head&gt;
-        &lt;meta charset=&quot;utf-8&quot;&gt;
-        &lt;title&gt;PlaceMyOrder&lt;/title&gt;
-        &lt;base href=&quot;/&quot;&gt;
-
-        &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
-        &lt;link rel=&quot;icon&quot; type=&quot;image/x-icon&quot; href=&quot;favicon.ico&quot;&gt;
-    &lt;/head&gt;
-    &lt;body&gt;
-        &lt;pmo-root&gt;&lt;/pmo-root&gt;
-    &lt;/body&gt;
+&lt;head&gt;
+  &lt;meta charset=&quot;utf-8&quot;&gt;
+  &lt;title&gt;PlaceMyOrder&lt;/title&gt;
+  &lt;base href=&quot;/&quot;&gt;
+  &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+  &lt;link rel=&quot;icon&quot; type=&quot;image/x-icon&quot; href=&quot;favicon.ico&quot;&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;pmo-root&gt;&lt;/pmo-root&gt;
+&lt;/body&gt;
 &lt;/html&gt;
 </code></pre>
 <div line-highlight='6'></div>
 <h2>Solution</h2>
 <p>✏️ Update <strong>src/app/app-routing.module.ts</strong> to:</p>
 <pre><code class="language-ts">import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
 
@@ -1287,21 +1276,22 @@ const routes: Routes = [
   {
     path: 'restaurants',
     component: RestaurantComponent,
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
 
 </code></pre>
-<div line-highlight='3-15'></div>
+<div line-highlight='3,4,6-15'></div>
 
 </section>
 
   			
+  			<bit-prev-next class="footer" list-selector=".sidebar-left ul li.parent.expanded ul"></bit-prev-next>
   		
     </div>
 
@@ -1335,7 +1325,7 @@ export class AppRoutingModule { }
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/4-adding-routing/adding-routing.md"},"description":"Learn how to add basic routing to components in an Angular application. \n","name":"learn-angular/adding-routing","title":"Adding Routing","type":"page","parent":"learn-angular","order":4,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/4-adding-routing/adding-routing.md"},"description":"Learn how to add basic routing to components in an Angular application. \n","name":"learn-angular/adding-routing","title":"Adding Routing","type":"page","parent":"learn-angular","order":4,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"ngmodule":"({","pathToRoot":"../.."};
     </script>
 
     

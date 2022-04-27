@@ -247,7 +247,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular 11 application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 13 application with it&#x27;s command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -382,7 +382,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="updating-service-params.html"
-							title="Learn  how to make a service take multiple parameters.">
+							title="Learn how to make a service take multiple parameters.">
 							Filter Restaurants by City
 						</a>
 						
@@ -606,324 +606,335 @@ covering CanJS core libraries.">
 <h2>P1: How to Verify Your Solution is Correct</h2>
 <p>If you've implemented the solution correctly you should be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see <em>'history works!'</em>.</p>
 <p>✏️ Update the spec file  <strong>src/app/app.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { TestBed, waitForAsync, fakeAsync, tick, flush } from '@angular/core/testing';
-import { Router } from '@angular/router';
-import { Location } from '@angular/common';
-import { By } from '@angular/platform-browser';
-import { of } from 'rxjs'; 
-
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './home/home.component';
-import { RestaurantComponent } from './restaurant/restaurant.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ImageUrlPipe } from './image-url.pipe';
+<pre><code class="language-ts">import { Location } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { RestaurantService } from './restaurant/restaurant.service';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+  ComponentFixture,
+  fakeAsync,
+  flush,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DetailComponent } from './restaurant/detail/detail.component';
-import { OrderComponent } from './order/order.component';
+import { Router } from '@angular/router';
+import { of } from 'rxjs';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { ImageUrlPipe } from './image-url.pipe';
 import { HistoryComponent } from './order/history/history.component';
+import { OrderComponent } from './order/order.component';
+import { DetailComponent } from './restaurant/detail/detail.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { RestaurantService } from './restaurant/restaurant.service';
 
 class MockRestaurantService {
   getRestaurants() {
     return of({
-      data: [{
-        &quot;name&quot;: &quot;Poutine Palace&quot;,
-        &quot;slug&quot;: &quot;poutine-palace&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+      data: [
+        {
+          name: 'Poutine Palace',
+          slug: 'poutine-palace',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              {
+                name: 'Crab Pancakes with Sorrel Syrup',
+                price: 35.99,
+              },
+              {
+                name: 'Steamed Mussels',
+                price: 21.99,
+              },
+              {
+                name: 'Spinach Fennel Watercress Ravioli',
+                price: 35.99,
+              },
+            ],
+            dinner: [
+              {
+                name: 'Gunthorp Chicken',
+                price: 21.99,
+              },
+              {
+                name: 'Herring in Lavender Dill Reduction',
+                price: 45.99,
+              },
+              {
+                name: 'Chicken with Tomato Carrot Chutney Sauce',
+                price: 45.99,
+              },
+            ],
+          },
+          address: {
+            street: '230 W Kinzie Street',
+            city: 'Green Bay',
+            state: 'WI',
+            zip: '53205',
+          },
+          _id: '3ZOZyTY1LH26LnVw',
         },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-              &quot;price&quot;: 35.99
-            },
-            {
-              &quot;name&quot;: &quot;Steamed Mussels&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-              &quot;price&quot;: 35.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-              &quot;price&quot;: 45.99
-            }
-          ]
+        {
+          name: 'Cheese Curd City',
+          slug: 'cheese-curd-city',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/2-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              {
+                name: 'Ricotta Gnocchi',
+                price: 15.99,
+              },
+              {
+                name: 'Gunthorp Chicken',
+                price: 21.99,
+              },
+              {
+                name: 'Garlic Fries',
+                price: 15.99,
+              },
+            ],
+            dinner: [
+              {
+                name: 'Herring in Lavender Dill Reduction',
+                price: 45.99,
+              },
+              {
+                name: 'Truffle Noodles',
+                price: 14.99,
+              },
+              {
+                name: 'Charred Octopus',
+                price: 25.99,
+              },
+            ],
+          },
+          address: {
+            street: '2451 W Washburne Ave',
+            city: 'Green Bay',
+            state: 'WI',
+            zip: '53295',
+          },
+          _id: 'Ar0qBJHxM3ecOhcr',
         },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53205&quot;
-        },
-        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-      },
-      {
-        &quot;name&quot;: &quot;Cheese Curd City&quot;,
-        &quot;slug&quot;: &quot;cheese-curd-city&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
-        },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Ricotta Gnocchi&quot;,
-              &quot;price&quot;: 15.99
-            },
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Garlic Fries&quot;,
-              &quot;price&quot;: 15.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Truffle Noodles&quot;,
-              &quot;price&quot;: 14.99
-            },
-            {
-              &quot;name&quot;: &quot;Charred Octopus&quot;,
-              &quot;price&quot;: 25.99
-            }
-          ]
-        },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;2451 W Washburne Ave&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53295&quot;
-        },
-        &quot;_id&quot;: &quot;Ar0qBJHxM3ecOhcr&quot;
-      }]}
-            )
+      ],
+    });
   }
 
   getStates() {
     return of({
       data: [
-        {&quot;short&quot;:&quot;MO&quot;,&quot;name&quot;:&quot;Missouri&quot;},
-        {&quot;short&quot;:&quot;CA  &quot;,&quot;name&quot;:&quot;California&quot;},
-        {&quot;short&quot;:&quot;MI&quot;,&quot;name&quot;:&quot;Michigan&quot;}]
+        { short: 'MO', name: 'Missouri' },
+        { short: 'CA  ', name: 'California' },
+        { short: 'MI', name: 'Michigan' },
+      ],
     });
   }
 
-  getCities(state:string) {
+  getCities(state: string) {
     return of({
-      data: [{&quot;name&quot;:&quot;Sacramento&quot;,&quot;state&quot;:&quot;CA&quot;},{&quot;name&quot;:&quot;Oakland&quot;,&quot;state&quot;:&quot;CA&quot;}]
+      data: [
+        { name: 'Sacramento', state: 'CA' },
+        { name: 'Oakland', state: 'CA' },
+      ],
     });
   }
 
-  getRestaurant(slug:string) {
+  getRestaurant(slug: string) {
     return of({
-      &quot;name&quot;: &quot;Poutine Palace&quot;,
-      &quot;slug&quot;: &quot;poutine-palace&quot;,
-      &quot;images&quot;: {
-        &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-        &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-        &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+      name: 'Poutine Palace',
+      slug: 'poutine-palace',
+      images: {
+        thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+        owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+        banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
       },
-      &quot;menu&quot;: {
-        &quot;lunch&quot;: [
+      menu: {
+        lunch: [
           {
-            &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-            &quot;price&quot;: 35.99
+            name: 'Crab Pancakes with Sorrel Syrup',
+            price: 35.99,
           },
           {
-            &quot;name&quot;: &quot;Steamed Mussels&quot;,
-            &quot;price&quot;: 21.99
+            name: 'Steamed Mussels',
+            price: 21.99,
           },
           {
-            &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-            &quot;price&quot;: 35.99
-          }
+            name: 'Spinach Fennel Watercress Ravioli',
+            price: 35.99,
+          },
         ],
-        &quot;dinner&quot;: [
+        dinner: [
           {
-            &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-            &quot;price&quot;: 21.99
+            name: 'Gunthorp Chicken',
+            price: 21.99,
           },
           {
-            &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-            &quot;price&quot;: 45.99
+            name: 'Herring in Lavender Dill Reduction',
+            price: 45.99,
           },
           {
-            &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-            &quot;price&quot;: 45.99
-          }
-        ]
+            name: 'Chicken with Tomato Carrot Chutney Sauce',
+            price: 45.99,
+          },
+        ],
       },
-      &quot;address&quot;: {
-        &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-        &quot;city&quot;: &quot;Green Bay&quot;,
-        &quot;state&quot;: &quot;WI&quot;,
-        &quot;zip&quot;: &quot;53205&quot;
+      address: {
+        street: '230 W Kinzie Street',
+        city: 'Green Bay',
+        state: 'WI',
+        zip: '53205',
       },
-      &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-    })
+      _id: '3ZOZyTY1LH26LnVw',
+    });
   }
 }
 
 describe('AppComponent', () =&gt; {
-  let router: Router;
+  let fixture: ComponentFixture&lt;AppComponent&gt;;
   let location: Location;
-  let fixture;
+  let router: Router;
 
-  beforeEach(waitForAsync(() =&gt; {
-    TestBed.configureTestingModule({
-      imports: [
-        AppRoutingModule, HttpClientModule, ReactiveFormsModule
-      ],
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      imports: [AppRoutingModule, HttpClientModule, ReactiveFormsModule],
       declarations: [
-        AppComponent, HomeComponent, RestaurantComponent, 
-        ImageUrlPipe, DetailComponent, OrderComponent, HistoryComponent
+        AppComponent,
+        HomeComponent,
+        RestaurantComponent,
+        ImageUrlPipe,
+        DetailComponent,
+        OrderComponent,
+        HistoryComponent,
       ],
-      schemas: [
-        NO_ERRORS_SCHEMA
-      ]
-    }).overrideComponent(RestaurantComponent, {
-      set: {
-        providers: [
-          { provide: RestaurantService, useClass: MockRestaurantService }
-        ],
-        template: '&lt;p&gt; I am a fake restaurant component&lt;/p&gt;'
-      }
+      providers: [
+        { provide: RestaurantService, useClass: MockRestaurantService },
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
     })
-    .compileComponents();
-
-    router = TestBed.inject(Router);
-    location = TestBed.inject(Location);
+      .overrideComponent(RestaurantComponent, {
+        set: { template: '&lt;p&gt;I am a fake restaurant component&lt;/p&gt;' },
+      })
+      .compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
-  }));
+    location = TestBed.inject(Location);
+    router = TestBed.inject(Router);
+  });
 
   it('should create the app', () =&gt; {
-    const app = fixture.debugElement.componentInstance;
+    const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
   it(`should have as title 'place-my-order'`, () =&gt; {
-    const app = fixture.debugElement.componentInstance;
+    const app = fixture.componentInstance;
     expect(app.title).toEqual('place-my-order');
   });
 
   it('should render title in a h1 tag', () =&gt; {
-    const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('place-my-order.com');
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h1')?.textContent).toContain(
+      'place-my-order.com'
+    );
   });
 
-  it('should render the HomeComponent with router navigates to &quot;/&quot; path', () =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
+  it('should render the HomeComponent with router navigates to &quot;/&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['']).then(() =&gt; {
       expect(location.path()).toBe('');
       expect(compiled.querySelector('pmo-home')).not.toBe(null);
     });
-  });
+  }));
 
-  it('should render the RestaurantsComponent with router navigates to &quot;/restaurants&quot; path', () =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
+  it('should render the RestaurantsComponent with router navigates to &quot;/restaurants&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants']).then(() =&gt; {
       expect(location.path()).toBe('/restaurants');
       expect(compiled.querySelector('pmo-restaurant')).not.toBe(null);
     });
-  });
+  }));
 
-  it('should render the DetailComponent with router navigates to &quot;/restaurants/slug&quot; path', () =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
+  it('should render the DetailComponent with router navigates to &quot;/restaurants/slug&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants/crab-shack']).then(() =&gt; {
       expect(location.path()).toBe('/restaurants/crab-shack');
       expect(compiled.querySelector('pmo-detail')).not.toBe(null);
     });
-  });
+  }));
 
-  it('should render the OrderComponent with router navigates to &quot;/restaurants/slug/order&quot; path', () =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
+  it('should render the OrderComponent with router navigates to &quot;/restaurants/slug/order&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants/crab-shack/order']).then(() =&gt; {
       expect(location.path()).toBe('/restaurants/crab-shack/order');
       expect(compiled.querySelector('pmo-order')).not.toBe(null);
     });
-  });
+  }));
 
-  it('should render the HistoryComponent with router navigates to &quot;/order-history&quot; path', () =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
+  it('should render the HistoryComponent with router navigates to &quot;/order-history&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['order-history']).then(() =&gt; {
       expect(location.path()).toBe('/order-history');
       expect(compiled.querySelector('pmo-history')).not.toBe(null);
     });
-  });
+  }));
 
   it('should have the home navigation link href set to &quot;&quot;', () =&gt; {
     fixture.detectChanges();
-    let homeLink = fixture.debugElement.query(By.css('li a'));
-    let href = homeLink.nativeElement.getAttribute('href');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const homeLink = compiled.querySelector('li a');
+    const href = homeLink?.getAttribute('href');
     expect(href).toEqual('/');
   });
 
   it('should have the restaurants navigation link href set to &quot;&quot;', () =&gt; {
     fixture.detectChanges();
-    let restaurantsLink = fixture.debugElement.query(By.css('li:nth-child(2) a'));
-    let href = restaurantsLink.nativeElement.getAttribute('href');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const restaurantsLink = compiled.querySelector('li:nth-child(2) a');
+    const href = restaurantsLink?.getAttribute('href');
     expect(href).toEqual('/restaurants');
   });
 
   it('should make the home navigation link class active when the router navigates to &quot;/&quot; path', fakeAsync(() =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
-    router.navigate(['']).then(() =&gt; {
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
-      let homeLinkLi = fixture.debugElement.query(By.css('li'));
-      expect(homeLinkLi.nativeElement.classList).toContain('active');
-      expect(compiled.querySelectorAll('.active').length).toBe(1);
-      fixture.destroy();
-      flush();
-    });
+    const compiled = fixture.nativeElement as HTMLElement;
+    router.navigate(['']);
+    fixture.detectChanges();
+    tick();
+
+    const homeLinkLi = compiled.querySelector('li');
+    expect(homeLinkLi?.classList).toContain('active');
+    expect(compiled.querySelectorAll('.active').length).toBe(1);
+    flush();
   }));
 
   it('should make the restaurants navigation link class active when the router navigates to &quot;/restaurants&quot; path', fakeAsync(() =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
-    router.navigate(['restaurants']).then(() =&gt; {
-      expect(location.path()).toBe('/restaurants');
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
-      let restaurantsLinkLi = fixture.debugElement.query(By.css('li:nth-child(2)'));
-      expect(restaurantsLinkLi.nativeElement.classList).toContain('active');
-      expect(compiled.querySelectorAll('.active').length).toBe(1);
-      fixture.destroy();
-      flush();
-    });
-  }));
+    const compiled = fixture.nativeElement as HTMLElement;
+    router.navigate(['restaurants']);
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
 
+    expect(location.path()).toBe('/restaurants');
+    const restaurantsLinkLi = compiled.querySelector('li:nth-child(2)');
+    expect(restaurantsLinkLi?.classList).toContain('active');
+    expect(compiled.querySelectorAll('.active').length).toBe(1);
+    flush();
+  }));
 });
+
 </code></pre>
- <div line-highlight="18,194-195,265,267-269,285,302,313,only"></div>
+ <div line-highlight="4-10,13,18,28-35,37-65,67-71,73,75-82,84-120,128-131,136,138-141,145,147-152,154-155,157-159,161-163,165-167,169,171-173,175-177,179-181,184-188,190,196,200-202,204-215,217-220,228,233,239-242,245-246,253-254,261-262,269-270,275,277-281,283,287-289,295-297,302-305,307-311,314-318,320-325,only"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
@@ -1014,7 +1025,7 @@ export class AppRoutingModule { }
 &lt;router-outlet&gt;&lt;/router-outlet&gt;
 
 </code></pre>
- <div line-highlight="6,11-13,"></div>
+ <div line-highlight="5,8-9,11-13,"></div>
 <h2>Problem 3: List All Orders</h2>
 <p>We want to be able to see a list of all created orders and their varying statuses of &quot;new&quot;, &quot;preparing&quot;, &quot;delivery&quot;, and &quot;delivered&quot;.</p>
 <h2>P3: Technical Requirements</h2>
@@ -1489,110 +1500,122 @@ of orders and other values like:
 </code></pre>
  <div line-highlight="9-17,19-27,29-37,39-45,only"></div>
 <p>3. ✏️ Update <strong>src/app/order/list/list.component.html</strong> to its final html:</p>
-<pre><code class="language-html">&lt;h4&gt;{{listTitle}}&lt;/h4&gt;
+<pre><code class="language-html">&lt;h4&gt;{{ listTitle }}&lt;/h4&gt;
 &lt;ng-container *ngFor=&quot;let order of orders&quot;&gt;
-  &lt;div [ngClass]=&quot;['order', order.status? order.status: '']&quot;&gt;
+  &lt;div [ngClass]=&quot;['order', order.status ? order.status : '']&quot;&gt;
     &lt;address&gt;
-      {{order.name}} &lt;br /&gt;{{order.address}} &lt;br /&gt;{{order.phone}}
+      {{ order.name }} &lt;br /&gt;{{ order.address }} &lt;br /&gt;{{ order.phone }}
     &lt;/address&gt;
-  
+
     &lt;div class=&quot;items&quot;&gt;
       &lt;ul&gt;
-        &lt;li *ngFor=&quot;let item of order.items&quot;&gt;{{item.name}}&lt;/li&gt;
+        &lt;li *ngFor=&quot;let item of order.items&quot;&gt;{{ item.name }}&lt;/li&gt;
       &lt;/ul&gt;
     &lt;/div&gt;
-  
-    &lt;div class=&quot;total&quot;&gt;${{total(order.items)}}&lt;/div&gt;
-  
+
+    &lt;div class=&quot;total&quot;&gt;${{ total(order.items) }}&lt;/div&gt;
+
     &lt;div class=&quot;actions&quot;&gt;
-      &lt;span class=&quot;badge&quot;&gt;{{statusTitle}}&lt;/span&gt;
-        &lt;p class=&quot;action&quot; *ngIf=&quot;action&quot;&gt;
-          Mark as:
-          &lt;a href=&quot;javascript://&quot; (click)=&quot;markAs(order, action)&quot;&gt;
-            {{actionTitle}}
-          &lt;/a&gt;
-        &lt;/p&gt;
-  
+      &lt;span class=&quot;badge&quot;&gt;{{ statusTitle }}&lt;/span&gt;
+      &lt;p class=&quot;action&quot; *ngIf=&quot;action&quot;&gt;
+        Mark as:
+        &lt;button class=&quot;btn-link&quot; (click)=&quot;markAs(order, action)&quot;&gt;
+          {{ actionTitle }}
+        &lt;/button&gt;
+      &lt;/p&gt;
+
       &lt;p class=&quot;action&quot;&gt;
-        &lt;a href=&quot;javascript://&quot;  (click)=&quot;delete(order._id)&quot;&gt;Delete&lt;/a&gt;
+        &lt;button class=&quot;btn-link&quot; (click)=&quot;delete(order._id)&quot;&gt;Delete&lt;/button&gt;
       &lt;/p&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/ng-container&gt;
 
-&lt;div class=&quot;order empty&quot;&gt;{{emptyMessage}}&lt;/div&gt;
+&lt;div class=&quot;order empty&quot;&gt;{{ emptyMessage }}&lt;/div&gt;
 
 </code></pre>
 <h2>P4: How to Verify Your Solution is Correct</h2>
 <p>✏️ Update  <strong>src/app/order/history/history.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs'; 
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+<pre><code class="language-ts">import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Observable, of } from 'rxjs';
+import { ListComponent } from '../list/list.component';
+import { Order, OrderService } from '../order.service';
 
 import { HistoryComponent } from './history.component';
-import { OrderService } from '../order.service';
-import { ListComponent } from '../list/list.component';
 
 class MockOrderService {
-  getOrders() {
+  getOrders(): Observable&lt;{ data: Order[] }&gt; {
     return of({
-      data: [{
-      &quot;address&quot;: null,
-      &quot;items&quot;: [{&quot;name&quot;: &quot;Onion fries&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Roasted Salmon&quot;, &quot;price&quot;: 23.99}],
-      &quot;name&quot;: &quot;Client 1&quot;,
-      &quot;phone&quot;: null,
-      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
-      &quot;status&quot;: &quot;new&quot;,
-      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
-      },
-      {
-      &quot;address&quot;: null,
-      &quot;items&quot;: [{&quot;name&quot;: &quot;Steak Tacos&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Guacamole&quot;, &quot;price&quot;: 3.99}],
-      &quot;name&quot;: &quot;Client 2&quot;,
-      &quot;phone&quot;: null,
-      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
-      &quot;status&quot;: &quot;preparing&quot;,
-      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
-      },
-      {
-      &quot;address&quot;: null,
-      &quot;items&quot;: [{&quot;name&quot;: &quot;Mac &amp; Cheese&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Grilled chicken&quot;, &quot;price&quot;: 23.99}],
-      &quot;name&quot;: &quot;Client 3&quot;,
-      &quot;phone&quot;: null,
-      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
-      &quot;status&quot;: &quot;delivery&quot;,
-      &quot;_id&quot;: &quot;0awcHyo8iD7XjahX&quot;,
-      },
-      {
-      &quot;address&quot;: null,
-      &quot;items&quot;: [{&quot;name&quot;: &quot;Eggrolls&quot;, &quot;price&quot;: 5.99}, {&quot;name&quot;: &quot;Fried Rice&quot;, &quot;price&quot;: 18.99}],
-      &quot;name&quot;: &quot;Client 4&quot;,
-      &quot;phone&quot;: null,
-      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
-      &quot;status&quot;: &quot;delivered&quot;,
-      &quot;_id&quot;: &quot;1awcJyo3iD6CpvhZ&quot;,
-      }
-    ]
-    })
+      data: [
+        {
+          address: '',
+          items: [
+            { name: 'Onion fries', price: 15.99 },
+            { name: 'Roasted Salmon', price: 23.99 },
+          ],
+          name: 'Client 1',
+          phone: '',
+          restaurant: 'uPkA2jiZi24tCvXh',
+          status: 'new',
+          _id: '0awcHyo3iD6CpvhX',
+        },
+        {
+          address: '',
+          items: [
+            { name: 'Steak Tacos', price: 15.99 },
+            { name: 'Guacamole', price: 3.99 },
+          ],
+          name: 'Client 2',
+          phone: '',
+          restaurant: 'uPkA2jiZi24tCvXh',
+          status: 'preparing',
+          _id: '0awcHyo3iD6CpvhX',
+        },
+        {
+          address: '',
+          items: [
+            { name: 'Mac &amp; Cheese', price: 15.99 },
+            { name: 'Grilled chicken', price: 23.99 },
+          ],
+          name: 'Client 3',
+          phone: '',
+          restaurant: 'uPkA2jiZi24tCvXh',
+          status: 'delivery',
+          _id: '0awcHyo8iD7XjahX',
+        },
+        {
+          address: '',
+          items: [
+            { name: 'Eggrolls', price: 5.99 },
+            { name: 'Fried Rice', price: 18.99 },
+          ],
+          name: 'Client 4',
+          phone: '',
+          restaurant: 'uPkA2jiZi24tCvXh',
+          status: 'delivered',
+          _id: '1awcJyo3iD6CpvhZ',
+        },
+      ],
+    });
   }
 }
 describe('HistoryComponent', () =&gt; {
   let component: HistoryComponent;
   let fixture: ComponentFixture&lt;HistoryComponent&gt;;
 
-  beforeEach(waitForAsync(() =&gt; {
-    TestBed.configureTestingModule({
-      declarations: [ HistoryComponent, ListComponent ],
-      providers: [{
-        provide: OrderService,
-        useClass: MockOrderService
-      }],
-      schemas: [
-        NO_ERRORS_SCHEMA
-      ]
-    })
-    .compileComponents();
-  }));
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      declarations: [HistoryComponent, ListComponent],
+      providers: [
+        {
+          provide: OrderService,
+          useClass: MockOrderService,
+        },
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
+  });
 
   beforeEach(() =&gt; {
     fixture = TestBed.createComponent(HistoryComponent);
@@ -1605,106 +1628,117 @@ describe('HistoryComponent', () =&gt; {
   });
 
   it('should set response from getOrders service to orders member', () =&gt; {
-    const fixture = TestBed.createComponent(HistoryComponent);
-    fixture.detectChanges();
-    let expectedOrders = [{
-      &quot;address&quot;: null,
-      &quot;items&quot;: [{&quot;name&quot;: &quot;Onion fries&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Roasted Salmon&quot;, &quot;price&quot;: 23.99}],
-      &quot;name&quot;: &quot;Client 1&quot;,
-      &quot;phone&quot;: null,
-      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
-      &quot;status&quot;: &quot;new&quot;,
-      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
+    const expectedOrders: Order[] = [
+      {
+        address: '',
+        items: [
+          { name: 'Onion fries', price: 15.99 },
+          { name: 'Roasted Salmon', price: 23.99 },
+        ],
+        name: 'Client 1',
+        phone: '',
+        restaurant: 'uPkA2jiZi24tCvXh',
+        status: 'new',
+        _id: '0awcHyo3iD6CpvhX',
       },
       {
-      &quot;address&quot;: null,
-      &quot;items&quot;: [{&quot;name&quot;: &quot;Steak Tacos&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Guacamole&quot;, &quot;price&quot;: 3.99}],
-      &quot;name&quot;: &quot;Client 2&quot;,
-      &quot;phone&quot;: null,
-      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
-      &quot;status&quot;: &quot;preparing&quot;,
-      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
+        address: '',
+        items: [
+          { name: 'Steak Tacos', price: 15.99 },
+          { name: 'Guacamole', price: 3.99 },
+        ],
+        name: 'Client 2',
+        phone: '',
+        restaurant: 'uPkA2jiZi24tCvXh',
+        status: 'preparing',
+        _id: '0awcHyo3iD6CpvhX',
       },
       {
-      &quot;address&quot;: null,
-      &quot;items&quot;: [{&quot;name&quot;: &quot;Mac &amp; Cheese&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Grilled chicken&quot;, &quot;price&quot;: 23.99}],
-      &quot;name&quot;: &quot;Client 3&quot;,
-      &quot;phone&quot;: null,
-      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
-      &quot;status&quot;: &quot;delivery&quot;,
-      &quot;_id&quot;: &quot;0awcHyo8iD7XjahX&quot;,
+        address: '',
+        items: [
+          { name: 'Mac &amp; Cheese', price: 15.99 },
+          { name: 'Grilled chicken', price: 23.99 },
+        ],
+        name: 'Client 3',
+        phone: '',
+        restaurant: 'uPkA2jiZi24tCvXh',
+        status: 'delivery',
+        _id: '0awcHyo8iD7XjahX',
       },
       {
-      &quot;address&quot;: null,
-      &quot;items&quot;: [{&quot;name&quot;: &quot;Eggrolls&quot;, &quot;price&quot;: 5.99}, {&quot;name&quot;: &quot;Fried Rice&quot;, &quot;price&quot;: 18.99}],
-      &quot;name&quot;: &quot;Client 4&quot;,
-      &quot;phone&quot;: null,
-      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
-      &quot;status&quot;: &quot;delivered&quot;,
-      &quot;_id&quot;: &quot;1awcJyo3iD6CpvhZ&quot;,
-      }
+        address: '',
+        items: [
+          { name: 'Eggrolls', price: 5.99 },
+          { name: 'Fried Rice', price: 18.99 },
+        ],
+        name: 'Client 4',
+        phone: '',
+        restaurant: 'uPkA2jiZi24tCvXh',
+        status: 'delivered',
+        _id: '1awcJyo3iD6CpvhZ',
+      },
     ];
-    let orders = fixture.componentInstance.orders;
+    const orders = fixture.componentInstance.orders;
     expect(orders.value).toEqual(expectedOrders);
   });
 
   it('should display orders in UI', () =&gt; {
-    const fixture = TestBed.createComponent(HistoryComponent);
-    fixture.detectChanges();
-    let compiled = fixture.debugElement.nativeElement;
-    let orderDivs = compiled.querySelectorAll('.order:not(.header):not(.empty)');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const orderDivs = compiled.querySelectorAll(
+      '.order:not(.header):not(.empty)'
+    );
     expect(orderDivs.length).toEqual(4);
-  })
+  });
 
   it('should display orders with appropriate classes', () =&gt; {
-    const fixture = TestBed.createComponent(HistoryComponent);
-    fixture.detectChanges();
-    let compiled = fixture.debugElement.nativeElement;
-    let newOrder = compiled.getElementsByClassName('new');
-    let preparingOrder = compiled.getElementsByClassName('preparing');
-    let deliveryOrder = compiled.getElementsByClassName('delivery');
-    let deliveredOrder = compiled.getElementsByClassName('delivered');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const newOrder = compiled.getElementsByClassName('new');
+    const preparingOrder = compiled.getElementsByClassName('preparing');
+    const deliveryOrder = compiled.getElementsByClassName('delivery');
+    const deliveredOrder = compiled.getElementsByClassName('delivered');
     expect(newOrder.length).toEqual(1);
     expect(preparingOrder.length).toEqual(1);
     expect(deliveryOrder.length).toEqual(1);
     expect(deliveredOrder.length).toEqual(1);
   });
 });
+
 </code></pre>
- <div line-highlight="3,7,58,62-65,only"></div>
+ <div line-highlight="1-5,10,12-61,69-79,93,95-104,107-116,119-128,131-140,143,148-151,156-160,165,only"></div>
 <p>✏️ Update  <strong>src/app/order/list/list.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs'; 
+<pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
+import { Order, OrderService } from '../order.service';
 
 import { ListComponent } from './list.component';
-import { OrderService } from '../order.service';
 
 class MockOrderService {
-  updateOrder(order, status) {
-    return of({})
+  updateOrder(order: Order, status: string) {
+    return of({});
   }
 
-  deleteOrder(orderId) {
-    return of({})
+  deleteOrder(orderId: string) {
+    return of({});
   }
 }
 
 describe('ListComponent', () =&gt; {
   let component: ListComponent;
   let fixture: ComponentFixture&lt;ListComponent&gt;;
-  let injectedOrderService;
+  let injectedOrderService: OrderService;
 
-  beforeEach(waitForAsync(() =&gt; {
-    TestBed.configureTestingModule({
-      declarations: [ ListComponent ],
-      providers: [{
-        provide: OrderService,
-        useClass: MockOrderService
-      }]
-    })
-    .compileComponents();
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      declarations: [ListComponent],
+      providers: [
+        {
+          provide: OrderService,
+          useClass: MockOrderService,
+        },
+      ],
+    }).compileComponents();
     injectedOrderService = TestBed.inject(OrderService);
-  }));
+  });
 
   beforeEach(() =&gt; {
     fixture = TestBed.createComponent(ListComponent);
@@ -1717,63 +1751,77 @@ describe('ListComponent', () =&gt; {
   });
 
   it('should display the order total', () =&gt; {
-    const fixture = TestBed.createComponent(ListComponent);
     fixture.componentInstance.orders = [
       {
-      &quot;address&quot;: null,
-      &quot;items&quot;: [{&quot;name&quot;: &quot;Onion fries&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Roasted Salmon&quot;, &quot;price&quot;: 23.99}],
-      &quot;name&quot;: &quot;Client 1&quot;,
-      &quot;phone&quot;: null,
-      &quot;status&quot;: &quot;new&quot;,
-      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
-      }
-    ]
+        address: '',
+        items: [
+          { name: 'Onion fries', price: 15.99 },
+          { name: 'Roasted Salmon', price: 23.99 },
+        ],
+        name: 'Client 1',
+        phone: '',
+        restaurant: 'uPkA2jiZi24tCvXh',
+        status: 'new',
+        _id: '0awcHyo3iD6CpvhX',
+      },
+    ];
     fixture.detectChanges();
-    let compiled = fixture.debugElement.nativeElement;
-
-    expect(compiled.querySelector('.total').textContent).toEqual('$39.98')
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.total')?.textContent).toEqual('$39.98');
   });
 
   it('should call orderService updateOrder with order and action when &quot;mark as&quot; is clicked', () =&gt; {
-    const fixture = TestBed.createComponent(ListComponent);
-    let updateOrderSpy = spyOn(injectedOrderService, 'updateOrder').and.callThrough();
-    let order1 =  {
-      &quot;address&quot;: null,
-      &quot;items&quot;: [{&quot;name&quot;: &quot;Onion fries&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Roasted Salmon&quot;, &quot;price&quot;: 23.99}],
-      &quot;name&quot;: &quot;Client 1&quot;,
-      &quot;phone&quot;: null,
-      &quot;status&quot;: &quot;new&quot;,
-      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
-      }
-    fixture.componentInstance.orders = [
-      order1
-    ];
+    const updateOrderSpy = spyOn(
+      injectedOrderService,
+      'updateOrder'
+    ).and.callThrough();
+    const order1 = {
+      address: '',
+      items: [
+        { name: 'Onion fries', price: 15.99 },
+        { name: 'Roasted Salmon', price: 23.99 },
+      ],
+      name: 'Client 1',
+      phone: '',
+      restaurant: 'uPkA2jiZi24tCvXh',
+      status: 'new',
+      _id: '0awcHyo3iD6CpvhX',
+    };
+    fixture.componentInstance.orders = [order1];
     fixture.componentInstance.action = 'preparing';
     fixture.componentInstance.actionTitle = 'Preparing';
     fixture.detectChanges();
-    let compiled = fixture.debugElement.nativeElement;
-    let markAsLink = compiled.querySelector('.actions .action a');
-    markAsLink.click();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const markAsLink = compiled.querySelector(
+      '.actions .action button'
+    ) as HTMLButtonElement;
+    markAsLink?.click();
     expect(updateOrderSpy).toHaveBeenCalledWith(order1, 'preparing');
   });
 
   it('should call orderService deleteOrder with id when delete item is clicked', () =&gt; {
-    const fixture = TestBed.createComponent(ListComponent);
-    let deleteOrderSpy = spyOn(injectedOrderService, 'deleteOrder').and.callThrough();
-    let order1 =  {
-      &quot;address&quot;: null,
-      &quot;items&quot;: [{&quot;name&quot;: &quot;Onion fries&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Roasted Salmon&quot;, &quot;price&quot;: 23.99}],
-      &quot;name&quot;: &quot;Client 1&quot;,
-      &quot;phone&quot;: null,
-      &quot;status&quot;: &quot;new&quot;,
-      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
-      }
-    fixture.componentInstance.orders = [
-      order1
-    ]
+    const deleteOrderSpy = spyOn(
+      injectedOrderService,
+      'deleteOrder'
+    ).and.callThrough();
+    const order1 = {
+      address: '',
+      items: [
+        { name: 'Onion fries', price: 15.99 },
+        { name: 'Roasted Salmon', price: 23.99 },
+      ],
+      name: 'Client 1',
+      phone: '',
+      restaurant: 'uPkA2jiZi24tCvXh',
+      status: 'new',
+      _id: '0awcHyo3iD6CpvhX',
+    };
+    fixture.componentInstance.orders = [order1];
     fixture.detectChanges();
-    let compiled = fixture.debugElement.nativeElement;
-    let deleteLink = compiled.querySelector('.actions .action a');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const deleteLink = compiled.querySelector(
+      '.actions .action button'
+    ) as HTMLButtonElement;
     deleteLink.click();
     expect(deleteOrderSpy).toHaveBeenCalledWith('0awcHyo3iD6CpvhX');
   });
@@ -1837,6 +1885,7 @@ export class ListComponent implements OnInit {
 </section>
 
   			
+  			<bit-prev-next class="footer" list-selector=".sidebar-left ul li.parent.expanded ul"></bit-prev-next>
   		
     </div>
 

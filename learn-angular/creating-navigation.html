@@ -248,7 +248,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular 11 application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 13 application with it&#x27;s command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -386,7 +386,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="updating-service-params.html"
-							title="Learn  how to make a service take multiple parameters.">
+							title="Learn how to make a service take multiple parameters.">
 							Filter Restaurants by City
 						</a>
 						
@@ -596,7 +596,7 @@ covering CanJS core libraries.">
 </ul>
 <h2>Problem</h2>
 <p>We want to create <em>Home</em> and <em>Restaurant</em> links in our app navigation that can
-be used to navigate between pages.  We also want those links to change color
+be used to navigate between pages. We also want those links to change color
 if they are for the current page or not.</p>
 <p><img src="../static/img/angular/pmo-working-nav.gif"
 style="border: solid 1px black; "
@@ -605,139 +605,135 @@ title="Place My Order App working nav"/></p>
 <p>Create a navigation menu that will route to our home and restaurant components when clicked, as well as show an <code>active</code> class on the <code>li</code> element when the route is active.</p>
 <p>Make your changes in the <strong>src/app/app.component.html</strong> file. The markup structure should look like this:</p>
 <pre><code class="language-html">&lt;header&gt;
-    &lt;nav&gt;
-     &lt;h1&gt;place-my-order.com&lt;/h1&gt;
-     &lt;ul&gt;
-       &lt;li&gt;
-         &lt;a&gt;Home&lt;/a&gt;
-       &lt;/li&gt;
-       &lt;li&gt;
-         &lt;a&gt;Restaurants&lt;/a&gt;
-       &lt;/li&gt;
-     &lt;/ul&gt;
-    &lt;/nav&gt;
-  &lt;/header&gt;
+  &lt;nav&gt;
+    &lt;h1&gt;place-my-order.com&lt;/h1&gt;
+    &lt;ul&gt;
+      &lt;li&gt;
+        &lt;a&gt;Home&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;a&gt;Restaurants&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
 </code></pre>
 <h2>How to Verify Your Solution is Correct</h2>
 <p>You will know you've completed the exercise correctly when you can click the nav items to
 see the UI change and see the active class on the current nav item.</p>
 <p><img src="../static/img/angular/pmo-working-nav.gif" alt="Place My Order App working nav" title="Place My Order App working nav" /></p>
-<p>✏️ Update the spec file  <strong>src/app/app.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { TestBed, waitForAsync, fakeAsync, tick, flush } from '@angular/core/testing';
+<p>✏️ Update the spec file <strong>src/app/app.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { Location } from '@angular/common';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+  ComponentFixture,
+  fakeAsync,
+  flush,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { Location } from '@angular/common';
-import { By } from '@angular/platform-browser';
-
-import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ImageUrlPipe } from './image-url.pipe';
 
 describe('AppComponent', () =&gt; {
-  let router: Router;
+  let fixture: ComponentFixture&lt;AppComponent&gt;;
   let location: Location;
-  let fixture;
+  let router: Router;
 
-  beforeEach(waitForAsync(() =&gt; {
-    TestBed.configureTestingModule({
-      imports: [
-        AppRoutingModule
-      ],
-      declarations: [
-        AppComponent, HomeComponent, RestaurantComponent, ImageUrlPipe
-      ],
-      schemas: [
-        NO_ERRORS_SCHEMA
-      ]
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      imports: [AppRoutingModule],
+      declarations: [AppComponent, HomeComponent, RestaurantComponent],
+      schemas: [NO_ERRORS_SCHEMA],
     }).compileComponents();
 
-    router = TestBed.inject(Router);
-    location = TestBed.inject(Location);
-
     fixture = TestBed.createComponent(AppComponent);
-  }));
+    location = TestBed.inject(Location);
+    router = TestBed.inject(Router);
+  });
 
   it('should create the app', () =&gt; {
-    const app = fixture.debugElement.componentInstance;
+    const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
   it(`should have as title 'place-my-order'`, () =&gt; {
-    const app = fixture.debugElement.componentInstance;
+    const app = fixture.componentInstance;
     expect(app.title).toEqual('place-my-order');
   });
 
   it('should render title in a h1 tag', () =&gt; {
-    const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('place-my-order.com');
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h1')?.textContent).toContain(
+      'place-my-order.com'
+    );
   });
 
-  it('should render the HomeComponent with router navigates to &quot;/&quot; path', () =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
+  it('should render the HomeComponent with router navigates to &quot;/&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['']).then(() =&gt; {
       expect(location.path()).toBe('');
       expect(compiled.querySelector('pmo-home')).not.toBe(null);
     });
-  });
+  }));
 
-  it('should render the RestaurantsComponent with router navigates to &quot;/restaurants&quot; path', () =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
+  it('should render the RestaurantsComponent with router navigates to &quot;/restaurants&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants']).then(() =&gt; {
       expect(location.path()).toBe('/restaurants');
       expect(compiled.querySelector('pmo-restaurant')).not.toBe(null);
     });
-  });
+  }));
 
   it('should have the home navigation link href set to &quot;&quot;', () =&gt; {
     fixture.detectChanges();
-    let homeLink = fixture.debugElement.query(By.css('li a'));
-    let href = homeLink.nativeElement.getAttribute('href');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const homeLink = compiled.querySelector('li a');
+    const href = homeLink?.getAttribute('href');
     expect(href).toEqual('/');
   });
 
   it('should have the restaurants navigation link href set to &quot;&quot;', () =&gt; {
     fixture.detectChanges();
-    let restaurantsLink = fixture.debugElement.query(By.css('li:nth-child(2) a'));
-    let href = restaurantsLink.nativeElement.getAttribute('href');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const restaurantsLink = compiled.querySelector('li:nth-child(2) a');
+    const href = restaurantsLink?.getAttribute('href');
     expect(href).toEqual('/restaurants');
   });
 
   it('should make the home navigation link class active when the router navigates to &quot;/&quot; path', fakeAsync(() =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
-    router.navigate(['']).then(() =&gt; {
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
-      let homeLinkLi = fixture.debugElement.query(By.css('li'));
-      expect(homeLinkLi.nativeElement.classList).toContain('active');
-      expect(compiled.querySelectorAll('.active').length).toBe(1);
-      fixture.destroy();
-      flush();
-    });
+    const compiled = fixture.nativeElement as HTMLElement;
+    router.navigate(['']);
+    fixture.detectChanges();
+    tick();
+
+    const homeLinkLi = compiled.querySelector('li');
+    expect(homeLinkLi?.classList).toContain('active');
+    expect(compiled.querySelectorAll('.active').length).toBe(1);
+    flush();
   }));
 
   it('should make the restaurants navigation link class active when the router navigates to &quot;/restaurants&quot; path', fakeAsync(() =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
-    router.navigate(['restaurants']).then(() =&gt; {
-      expect(location.path()).toBe('/restaurants');
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
-      let restaurantsLinkLi = fixture.debugElement.query(By.css('li:nth-child(2)'));
-      expect(restaurantsLinkLi.nativeElement.classList).toContain('active');
-      expect(compiled.querySelectorAll('.active').length).toBe(1);
-      fixture.destroy();
-      flush();
-    });
-  }));
+    const compiled = fixture.nativeElement as HTMLElement;
+    router.navigate(['restaurants']);
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
 
+    expect(location.path()).toBe('/restaurants');
+    const restaurantsLinkLi = compiled.querySelector('li:nth-child(2)');
+    expect(restaurantsLinkLi?.classList).toContain('active');
+    expect(compiled.querySelectorAll('.active').length).toBe(1);
+    flush();
+  }));
 });
+
 </code></pre>
- <div line-highlight="1,4,51,70-75,77-82,84-96,98-111,only"></div>
+ <div line-highlight="3-9,18-19,29-30,47,67-73,75-81,83-87,89-93,95-100,102-107,only"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
@@ -1313,22 +1309,26 @@ platformBrowserDynamic()
   &lt;nav&gt;
     &lt;h1&gt;place-my-order.com&lt;/h1&gt;
     &lt;ul&gt;
-      &lt;li routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
-        &lt;a routerLink=&quot;/&quot; &gt;Home&lt;/a&gt;
+      &lt;li routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{ exact: true }&quot;&gt;
+        &lt;a routerLink=&quot;/&quot;&gt;Home&lt;/a&gt;
       &lt;/li&gt;
-      &lt;li [ngClass]=&quot;{'active' : rla.isActive} &quot;&gt;
-        &lt;a routerLink=&quot;/restaurants&quot; routerLinkActive #rla=&quot;routerLinkActive&quot;&gt;Restaurants&lt;/a&gt;
+      &lt;li [ngClass]=&quot;{ active: rla.isActive }&quot;&gt;
+        &lt;a routerLink=&quot;/restaurants&quot; routerLinkActive #rla=&quot;routerLinkActive&quot;
+          &gt;Restaurants&lt;/a
+        &gt;
       &lt;/li&gt;
     &lt;/ul&gt;
   &lt;/nav&gt;
 &lt;/header&gt;
 &lt;router-outlet&gt;&lt;/router-outlet&gt;
+
 </code></pre>
- <div line-highlight="1-13,"></div>
+ <div line-highlight="1-15,"></div>
 
 </section>
 
   			
+  			<bit-prev-next class="footer" list-selector=".sidebar-left ul li.parent.expanded ul"></bit-prev-next>
   		
     </div>
 
