@@ -48,6 +48,7 @@
       "bit-docs-html-codepen-link": "^2.1.0",
       "bit-docs-html-highlight-line": "^0.5.4",
       "bit-docs-html-toc": "^1.1.1",
+      "bit-docs-html-prev-next": "0.0.1-rc1",
       "@bitovi/calendar-events-component": "^0.0.11"
     },
     "glob": {
