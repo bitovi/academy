@@ -1,13 +1,12 @@
 import { ItemTotalPipe } from './item-total.pipe';
-import { Item } from "./order/order.service";
+import { Item } from './order/order.service';
 
 describe('ItemTotalPipe', () => {
-
-  let mockItemList: Item[] = [
-   {name: "Truffle Noodles", price: 14.99},
-   {name: "Garlic Fries", price: 15.99}
-  ]
-  const pipe =  new ItemTotalPipe();
+  const mockItemList: Item[] = [
+    { name: 'Truffle Noodles', price: 14.99 },
+    { name: 'Garlic Fries', price: 15.99 },
+  ];
+  const pipe = new ItemTotalPipe();
 
   it('create an instance', () => {
     expect(pipe).toBeTruthy();
@@ -22,5 +21,4 @@ describe('ItemTotalPipe', () => {
     const total = pipe.transform([]);
     expect(total).toEqual(0);
   });
-
 });

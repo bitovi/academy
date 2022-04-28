@@ -11,11 +11,11 @@
 // app.js
 const { Component, VERSION, Pipe, PipeTransform} = ng.core;
 
-@Pipe({name: 'prefix'})
+@Pipe({ name: 'prefix' })
 class PrefixPipe implements PipeTransform {
   transform(value: string, prefix: string): string {
-  if(prefix && value ) {
-    return `${prefix}-${value}`;
+    if (prefix && value) {
+      return `${prefix}-${value}`;
     }
     return value;
   }
@@ -24,18 +24,18 @@ class PrefixPipe implements PipeTransform {
 @Component({
   selector: 'my-app',
   template: `
-  <h2>{{word}}</h2>
-  <br>
-   <h2>{{word2 | prefix: 'long'}}</h2>
-  `
+    <h2>{{ word }}</h2>
+    <br />
+    <h2>{{ word2 | prefix: 'long' }}</h2>
+  `,
 })
 class AppComponent implements OnInit {
   word = 'two';
   word2 = 'term';
-  constructor(private prefixPipe: PrefixPipe) {
-  }
 
-  ngOnInit() {
+  constructor(private prefixPipe: PrefixPipe) {}
+
+  ngOnInit(): void {
     this.word = this.prefixPipe.transform(this.word, 'seventy');
   }
 }
@@ -46,8 +46,7 @@ const { NgModule } = ng.core;
 const { CommonModule } = ng.common;
 
 @NgModule({
-  imports: [ BrowserModule,
-  CommonModule],
+  imports: [BrowserModule, CommonModule],
   declarations: [AppComponent, PrefixPipe],
   bootstrap: [AppComponent],
   providers: [PrefixPipe]
