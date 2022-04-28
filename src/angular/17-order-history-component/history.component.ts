@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Order } from '../order.service';
 
 interface Data<T> {
   value: T[];
@@ -8,46 +9,44 @@ interface Data<T> {
 @Component({
   selector: 'pmo-history',
   templateUrl: './history.component.html',
-  styleUrls: ['./history.component.less']
+  styleUrls: ['./history.component.less'],
 })
 export class HistoryComponent implements OnInit {
-
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getOrders();
   }
 
-  getOrders() {
-   //get orders here
+  getOrders(): void {
+    // get orders here
   }
 
-  get newOrders() {
-    let orders =  this.orders.value.filter((order) => {
-      return order.status === "new";
+  get newOrders(): Order[] {
+    const orders = this.orders.value.filter((order) => {
+      return order.status === 'new';
     });
     return orders;
   }
 
-   get preparingOrders() {
-    let orders =  this.orders.value.filter((order) => {
-      return order.status === "preparing";
+  get preparingOrders(): Order[] {
+    const orders = this.orders.value.filter((order) => {
+      return order.status === 'preparing';
     });
     return orders;
-   }
+  }
 
-   get deliveryOrders() {
-    let orders =  this.orders.value.filter((order) => {
-      return order.status === "delivery";
+  get deliveryOrders(): Order[] {
+    const orders = this.orders.value.filter((order) => {
+      return order.status === 'delivery';
     });
     return orders;
-   }
+  }
 
-   get deliveredOrders() {
-    let orders =  this.orders.value.filter((order) => {
-      return order.status === "delivered";
+  get deliveredOrders(): Order[] {
+    const orders = this.orders.value.filter((order) => {
+      return order.status === 'delivered';
     });
     return orders;
-   }
-
+  }
 }

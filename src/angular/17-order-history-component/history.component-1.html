@@ -9,12 +9,12 @@
   <ng-container *ngFor="let order of orders.value">
     <div [ngClass]="['order', order.status]">
       <address>
-        {{order.name}} <br />{{order.address}} <br />{{order.phone}}
+        {{ order.name }} <br />{{ order.address }} <br />{{ order.phone }}
       </address>
 
       <div class="items">
         <ul>
-          <li *ngFor="let item of order.items">{{item.name}}</li>
+          <li *ngFor="let item of order.items">{{ item.name }}</li>
         </ul>
       </div>
 
@@ -22,15 +22,13 @@
 
       <div class="actions">
         <span class="badge">Status title?</span>
-          <p class="action" *ngIf="action">
-            Mark as:
-            <a href="javascript://">
-              next step
-            </a>
-          </p>
+        <p class="action" *ngIf="false">
+          Mark as:
+          <button class="btn-link">next step</button>
+        </p>
 
         <p class="action">
-          <a href="javascript://" >Delete</a>
+          <button class="btn-link">Delete</button>
         </p>
       </div>
     </div>
