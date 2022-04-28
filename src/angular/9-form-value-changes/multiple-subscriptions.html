@@ -41,8 +41,7 @@ class AppComponent {
   `
 })
 class AboutComponent {
-  constructor() {
-  }
+  constructor() {}
 }
 
 @Component({
@@ -50,24 +49,21 @@ class AboutComponent {
   template: `
     <p>A home component!</p>
 
-    <p>{{myDisplayValue}}</p>
+    <p>{{ myDisplayValue }}</p>
 
-    <p>{{myOtherDisplayValue}}</p>
-
-    `
+    <p>{{ myOtherDisplayValue }}</p>
+  `
 })
 class HomeComponent implements OnInit, OnDestroy {
-  private unSubscribe = new Subject<void>();
+  private onDestroy$ = new Subject<void>();
   myObservable$: Observable<string>;
   myOtherObservable$: Observable<string>;
   myDisplayValue: string;
   myOtherDisplayValue: string;
-  
-  constructor(private fb:FormBuilder) {
-  
-  }
 
-  ngOnInit() {
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {
     this.myObservable$ = new Observable(observer => {
       setTimeout(() => {
           observer.next('hello observable');
@@ -96,26 +92,25 @@ class HomeComponent implements OnInit, OnDestroy {
       }, 3500);
     });
 
-    //creating the first subscription
-    this.myObservable$.pipe(takeUntil(this.unSubscribe)).subscribe((val) => {
-      this.myDisplayValue = val;
-    });
+    this.myObservable$
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((val) => {
+        this.myDisplayValue = val;
+      });
 
-    //taking the first subscription and adding another to it
-    this.myOtherObservable$.pipe(takeUntil(this.unSubscribe)).subscribe((val) => {
-      this.myOtherDisplayValue = val;
-    });
-
+    this.myOtherObservable$
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((val) => {
+        this.myOtherDisplayValue = val;
+      });
   }
 
-
-
-
-  ngOnDestroy() {
-    this.unSubscribe.next();
-    this.unSubscribe.complete();
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 }
+
 //THIS IS A HACK JUST FOR CODEPEN TO WORK
 HomeComponent.parameters = [FormBuilder];
 
@@ -130,7 +125,6 @@ const routes: Routes = [
 })
 class AppRoutingModule { }
 
-                 
 @NgModule({
   declarations: [AppComponent, AboutComponent, HomeComponent],
   imports: [
