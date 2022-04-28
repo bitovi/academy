@@ -95,7 +95,7 @@ numbers.next(2);
 ```
 @codepen
 
-Read more about this technique on [RxJS's documentation](https://rxjs-dev.firebaseapp.com/guide/subject#multicasted-observables).
+Read more about this technique on [RxJS's documentation](https://rxjs.dev/guide/subject#multicasted-observables).
 
 
 ## Solution

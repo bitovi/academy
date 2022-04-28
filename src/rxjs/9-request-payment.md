@@ -69,8 +69,8 @@ In this section, we will:
 - Call [event.preventDefault()](https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault) to prevent an submit event from posting
   to a url.
 
-- [withLatestFrom](https://rxjs-dev.firebaseapp.com/api/operators/withLatestFrom) works like
-  [combineLatest](https://rxjs-dev.firebaseapp.com/api/index/function/combineLatest), but it
+- [withLatestFrom](https://rxjs.dev/api/operators/withLatestFrom) works like
+  [combineLatest](https://rxjs.dev/api/index/function/combineLatest), but it
   only publishes when the source observable emits a value. It publishes an array
   with the last source value and sibling values.
 
