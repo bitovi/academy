@@ -1,32 +1,29 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 interface Item {
   name: string;
-  price: number
+  price: number;
 }
 
 @Component({
   selector: 'pmo-menu-items',
   templateUrl: './menu-items.component.html',
-  styleUrls: ['./menu-items.component.less']
+  styleUrls: ['./menu-items.component.less'],
 })
 export class MenuItemsComponent implements OnInit {
-  @Input() items: Item[] = [];
+  @Input() items?: Item[];
   selectedItems: Item[] = [];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit(): void {}
 
-  updateItems(item: Item) {
-    let index = this.selectedItems.indexOf(item);
-    if(index > -1) {
+  updateItems(item: Item): void {
+    const index = this.selectedItems.indexOf(item);
+    if (index > -1) {
       this.selectedItems.splice(index, 1);
-    }
-    else {
+    } else {
       this.selectedItems.push(item);
     }
   }
-
 }
