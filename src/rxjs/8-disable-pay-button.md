@@ -30,7 +30,7 @@ In this section, we will:
 
 ## What you need to know
 
-- The [combineLatest](https://rxjs-dev.firebaseapp.com/api/index/function/combineLatest) static method combines several values into a single value:
+- The [combineLatest](https://rxjs.dev/api/index/function/combineLatest) static method combines several values into a single value:
 
   ```html
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>

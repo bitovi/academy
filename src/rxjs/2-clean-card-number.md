@@ -31,12 +31,12 @@ In this section, we will:
 
 ## What you need to know
 
-- RxJS has [operators](http://reactivex.io/documentation/operators.html)
+- RxJS has [operators](https://rxjs.dev/guide/operators)
   ([an older but better explanation](http://reactivex.io/rxjs/manual/overview.html#operators)) that are used to
   convert one observable to another observable.  In RxJS, you typically create your own operators
-  by using operator generator functions like [map](https://rxjs-dev.firebaseapp.com/api/operators/map).
+  by using operator generator functions like [map](https://rxjs.dev/api/operators/map).
 
-  Those operators are passed to [source.pipe(operator)](https://rxjs-dev.firebaseapp.com/api/index/function/pipe) to convert the source observable to a new observable.
+  Those operators are passed to [source.pipe(operator)](https://rxjs.dev/api/index/function/pipe) to convert the source observable to a new observable.
 
   The following uses `map` to create a `mapToNumber` operator:
 

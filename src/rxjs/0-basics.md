@@ -147,7 +147,7 @@ unsubscribed. This helps avoid memory leaks.
 ### Unsubscribing
 
 The `observable.subscribe()` method returns
-a [subscription](https://rxjs-dev.firebaseapp.com/api/index/class/Subscription) which can be used to cancel
+a [subscription](https://rxjs.dev/api/index/class/Subscription) which can be used to cancel
 the subscription like:
 
 ```js

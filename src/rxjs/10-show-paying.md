@@ -48,7 +48,7 @@ This is a tricky problem. A promise has state (if it's pending or resolved). We 
 to convert this state to observables.  The pattern is to map the promises to an observable of
 observables and then _flatten_ that observable with `mergeAll`.
 
-- [from](https://rxjs-dev.firebaseapp.com/api/index/function/from) - converts a
+- [from](https://rxjs.dev/api/index/function/from) - converts a
   `Promise` to an observable.  The following `thousand` observable emits
   `1000` when `promise` resolves:
 
@@ -74,7 +74,7 @@ observables and then _flatten_ that observable with `mergeAll`.
   > HINT: `from` and `map` can be used to convert the payment promises to
   > an observable that emits `{status: "resolved", value}`.
 
-- [concat](https://rxjs-dev.firebaseapp.com/api/index/function/concat) concatenates streams so events are produced in order.
+- [concat](https://rxjs.dev/api/index/function/concat) concatenates streams so events are produced in order.
 
   ```html
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
@@ -105,7 +105,7 @@ observables and then _flatten_ that observable with `mergeAll`.
   > HINT: `concat` can be used to make an observable emit a `{status: "pending"}`
   > __paymentStatus__ object before emitting the `{status: "resolved", value}` __paymentStatus__ object.
 
-- [startWith](https://rxjs-dev.firebaseapp.com/api/operators/startWith)
+- [startWith](https://rxjs.dev/api/operators/startWith)
   returns an Observable that emits the items you specify as arguments before it begins to emit items emitted by the source Observable.
 
   The following uses `startWith` to add  `"A"` before the `"X"` and `"Y"`
@@ -155,7 +155,7 @@ observables and then _flatten_ that observable with `mergeAll`.
   > HINT: `of` can be used to convert plain __paymentStatus__ objects into an observable
   > that emits the __paymentStatus__ object.
 
-- The static [pipe](https://rxjs-dev.firebaseapp.com/api/index/function/pipe) function can be used
+- The static [pipe](https://rxjs.dev/api/index/function/pipe) function can be used
   to combine operators. The following makes a `squareStartingWith2` operator that ensures
   a `2` will be the first number squared and a `4` the first value emitted:
 
@@ -187,7 +187,7 @@ observables and then _flatten_ that observable with `mergeAll`.
   > - a `startWith` operator that ensures an Observable that emits `{status: "waiting"}`
   >   is emitted first.
 
-- [mergeAll](https://rxjs-dev.firebaseapp.com/api/operators/mergeAll) takes an observable that emits inner observables
+- [mergeAll](https://rxjs.dev/api/operators/mergeAll) takes an observable that emits inner observables
   and emits what the inner observables emits.
 
   In the following example, `observables` emits:

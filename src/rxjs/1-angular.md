@@ -16,7 +16,7 @@ Who has time to read?  This video covers the content on this page. Watch fullscr
 In this section, we will:
 
 - Create a CodePen setup with Angular and the HTML of our form.
-- Write values to a [Subject](https://rxjs-dev.firebaseapp.com/guide/subject)
+- Write values to a [Subject](https://rxjs.dev/guide/subject)
   and write out the value of the subject in the template.
 
 ## How to solve this problem
@@ -43,7 +43,7 @@ remainder of this tutorial.
 @highlight 12-59,only
 
 
-Initialize a [BehaviorSubject](https://rxjs-dev.firebaseapp.com/api/index/class/BehaviorSubject) instance on a `class` like the following:
+Initialize a [BehaviorSubject](https://rxjs.dev/api/index/class/BehaviorSubject) instance on a `class` like the following:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js"></script>
