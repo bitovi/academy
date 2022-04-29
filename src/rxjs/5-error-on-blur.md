@@ -40,7 +40,7 @@ In this section, we will:
   For example, we might have a `first` and a `last` stream:
 
   ```html
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
   <script type="typescript">
   const {of, zip, timer, from, merge} = rxjs;
   const {delay, map, scan} = rxjs.operators;
@@ -131,7 +131,7 @@ In this section, we will:
   See it all together here:
 
   ```html
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
   <script type="typescript">
   const {of, zip, timer, from, merge} = rxjs;
   const {delay, map, scan} = rxjs.operators;

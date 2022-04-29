@@ -53,7 +53,7 @@ observables and then _flatten_ that observable with `mergeAll`.
   `1000` when `promise` resolves:
 
   ```html
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
   <script type="typescript">
   const {from} = rxjs;
 
@@ -77,7 +77,7 @@ observables and then _flatten_ that observable with `mergeAll`.
 - [concat](https://rxjs.dev/api/index/function/concat) concatenates streams so events are produced in order.
 
   ```html
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
   <script type="typescript">
   const {of, zip, timer, from, concat} = rxjs;
 
@@ -112,7 +112,7 @@ observables and then _flatten_ that observable with `mergeAll`.
   values are emitted.
 
   ```html
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
   <script type="typescript">
   const {of, zip, timer, from} = rxjs;
   const {startWith} = rxjs.operators;
@@ -160,7 +160,7 @@ observables and then _flatten_ that observable with `mergeAll`.
   a `2` will be the first number squared and a `4` the first value emitted:
 
   ```html
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
   <script type="typescript">
   const {from, pipe, Subject} = rxjs;
   const {map, startWith} = rxjs.operators;
@@ -198,7 +198,7 @@ observables and then _flatten_ that observable with `mergeAll`.
   the numbers and letters directly.
 
   ```html
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
   <script type="typescript">
   const {of} = rxjs;
   const {mergeAll} = rxjs.operators;

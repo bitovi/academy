@@ -46,7 +46,7 @@ remainder of this tutorial.
 Initialize a [BehaviorSubject](https://rxjs.dev/api/index/class/BehaviorSubject) instance on a `class` like the following:
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
 <script type="typescript">
 const {BehaviorSubject} = rxjs;
 
@@ -66,7 +66,7 @@ remembers its last value.  Any new subscribers will immediately
 be sent the last value.
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
 <script type="typescript">
 const {BehaviorSubject} = rxjs;
 
@@ -85,7 +85,7 @@ subject.subscribe((value) => console.log(value));
 Emit a value on a Subject by calling `subject.next()`:
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
 <script type="typescript">
 const {BehaviorSubject} = rxjs;
 
