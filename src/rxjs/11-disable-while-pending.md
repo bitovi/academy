@@ -24,14 +24,14 @@ if that execution causes side effects. The following shows that the `square` map
 runs twice, once for every subscription on the `squares` observable.
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
 <script type="typescript">
 const {Subject} = rxjs;
 const {map} = rxjs.operators;
 
-const numbers = new Subject();
+const numbers = new Subject<number>();
 
-const square = map( (x)=> {
+const square = map( (x: number) => {
     console.log("mapping");
     return x*x;
 } );
@@ -57,7 +57,7 @@ numbers.next(2);
 You can change this by converting the observable to a subject with:
 
 ```js
-.pipe(multicast(new Subject()), refCount())
+.pipe(share({ connector: () => new Subject() }))
 ```
 
 The following shows this using this technique to run `square` only once
@@ -65,20 +65,20 @@ for all subscribers of `squares`:
 
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
 <script type="typescript">
 const {Subject} = rxjs;
-const {map, multicast, refCount} = rxjs.operators;
+const {map, share} = rxjs.operators;
 
-const numbers = new Subject();
+const numbers = new Subject<number>();
 
-const square = map( (x)=> {
+const square = map( (x: number) => {
     console.log("mapping");
     return x*x;
 } );
 
 const squares = numbers.pipe(square)
-    .pipe(multicast(new Subject()), refCount());
+    .pipe(share({ connector: () => new Subject() }));
 
 squares.subscribe( (value) => {
     console.log("squares1",value);
@@ -95,7 +95,7 @@ numbers.next(2);
 ```
 @codepen
 
-Read more about this technique on [RxJS's documentation](https://rxjs.dev/guide/subject#multicasted-observables).
+Read more about this technique on [RxJS's documentation](https://rxjs.dev/guide/subject#multicasted-observables). Note that the `multicast` and `refCount` operators are [deprecated](https://rxjs.dev/deprecations/multicasting#multicast) in RxJS 7, and the [`share`](https://rxjs.dev/api/operators/share) operator used above is analogous to the functionality formerly provided by `multicast(() => new Subject()), refCount()`.
 
 
 ## Solution

@@ -11,7 +11,7 @@
 // app.js
 const { Component, VERSION } = ng.core;
 const { BehaviorSubject, Subject, merge, combineLatest, of, from, concat, pipe } = rxjs;
-const { map, tap, scan, withLatestFrom, mergeAll, startWith, multicast, refCount } = rxjs.operators;
+const { map, tap, scan, withLatestFrom, mergeAll, startWith, share } = rxjs.operators;
 
 const cleanCardNumber = map((card) => {
     if (card) {
@@ -243,7 +243,7 @@ class AppComponent {
 
         const paymentStatusObservables = payments.pipe(toPaymentStatusObservable);
 
-        this.paymentStatus = paymentStatusObservables.pipe(mergeAll()).pipe(multicast(new Subject()), refCount());
+        this.paymentStatus = paymentStatusObservables.pipe(mergeAll()).pipe(share({ connector: () => new Subject() }));
 
         this.disablePaymentButton = disablePaymentButton(this.isCardInvalid, this.paymentStatus);
     }
