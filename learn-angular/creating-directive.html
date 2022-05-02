@@ -589,21 +589,28 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Problem</h2>
-<p>While filling out the  <code>phone number</code> field, you might have noticed that users can type in both letters and numbers. This is a problem because we do not want users entering letters in the <code>phone number</code> field.</p>
+<p>While filling out the <code>phone number</code> field, you might have noticed that users can type in both letters and numbers. This is a problem because we do not want users entering letters in the <code>phone number</code> field.</p>
 <p><img src="../static/img/angular/15-directives/order-form-thumbnails.png"
 style="border: solid 1px black; max-width: 420px;"/></p>
 <p>In order to fix this, we will create an Attribute Directive that will change the behavior of the Phone Input Field, and will ensure that only numbers can be entered in the field.</p>
-<pre><code class="language-html">  &lt;input name=&quot;phone&quot; type=&quot;text&quot; pmoOnlyNumbers class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+<pre><code class="language-html">&lt;input
+  name=&quot;phone&quot;
+  type=&quot;text&quot;
+  pmoOnlyNumbers
+  class=&quot;form-control&quot;
+  formControlName=&quot;phone&quot;
+/&gt;
 </code></pre>
+<div line-highlight='4'></div>
 <h2>What You Need to Know</h2>
 <ul>
-<li>What Directives are in Angular</li>
+<li>What Directives are</li>
 <li>What ElementRef is</li>
 <li>What HostListeners are</li>
 <li>How to create a Directive</li>
 </ul>
-<h2>What are Directives in Angular</h2>
-<p>In Angular, Directives are classes that tell Angular to change the appearance or behavior of DOM Elements. Angular comes with a set of <a href="https://angular.io/guide/built-in-directives" target="\_blank" >Built-in</a> Directives,
+<h2>What are Directives</h2>
+<p>Directives are classes that tell Angular to change the appearance or behavior of DOM Elements. Angular comes with a set of <a href="https://angular.io/guide/built-in-directives" target="\_blank" >Built-in</a> Directives,
 and they consist of three types:</p>
 <ul>
 <li>Components Directives</li>
@@ -611,28 +618,30 @@ and they consist of three types:</p>
 <li>Structural Directives</li>
 </ul>
 <h1>Components Directives</h1>
-<p>In this training, we previously talked about <a href="/academy/academy/learn-angular/creating-components.html">Components</a>.
+<p>In this training, we previously talked about <a href="creating-components.html" title="Learn how to create basic components in Angular and iterate through data using an Angular for loop.">Components</a>.
 Components are a type of Directive. Components use the <code>@Component</code> decorator function along with a template, style, and other logic needed for the view.
 <a href="https://angular.io/guide/built-in-directives#:~:text=Components%E2%80%94-,directives,-with%20a%20template" target="\_blank" >Read more</a></p>
 <h1>Attribute Directives</h1>
 <p>Attribute Directives are a type of directive that are mainly used to listen or change the behavior or appearance of DOM Elements,
-Attributes and Component <a href="https://angular.io/guide/attribute-directives" target="\_blank">Read more</a>.</p>
+Attributes and Components.
+<a href="https://angular.io/guide/attribute-directives" target="\_blank">Read more</a>.</p>
 <h1>Structural Directives</h1>
-<p>Structural Directives are types of Directives that are used to change HTML DOM layout, by adding, removing or manipulating Elements.
+<p>Structural Directives are types of Directives that are used to change HTML DOM layout by adding, removing or manipulating Elements.
 <a href="https://angular.io/guide/structural-directives" target="\_blank" >Read more</a></p>
 <h2>ElementRef</h2>
-<p>In Angular, ElementRef (Element Reference) is a wrapper around a native DOM Element inside of a View.
-The ElementRef class contains a property <code>nativeElement</code>, which references the underlying DOM object that we can use to manipulate the DOM
-<a href="https://angular.io/api/core/ElementRef" target="\_blank" >Read more</a>.
-When creating a Directive, we use ElementRef to gain reference to the HtmlElement, which the Directive will be used on, and perform any manipulation we need to.</p>
+<p>ElementRef (Element Reference) is a wrapper around a native DOM Element inside of a View.
+The ElementRef class contains a property <code>nativeElement</code>, which references the underlying DOM object that we can use to manipulate the DOM.
+<a href="https://angular.io/api/core/ElementRef" target="\_blank" >Read more</a>.</p>
+<p>When creating a Directive, we use ElementRef to gain reference to the native HTML Element, which the Directive will be used on, and perform any manipulation we need to.</p>
 <h2>HostListener</h2>
-<p>In Angular, @HostListeners() is a function decorator that allows you to listen and handle events from the host elements.
-Some examples of host events include <code>Keyboard</code>, <code>Click</code>, <code>mousehover</code> etc <a href="https://angular.io/api/core/HostListener" target="\_blank" >Read more</a>.
-When creating a Directive, we use the @HostListeners() decorator in the Directive Class to listen for host events. Based on the event, we can perform any action needed.</p>
+<p>HostListener is a function decorator that allows you to listen and handle DOM events from the host element.
+Some examples of events include <code>keyboard</code> and <code>mouse</code> events.
+<a href="https://angular.io/api/core/HostListener" target="\_blank" >Read more</a>.</p>
+<p>When creating a Directive, we use the @HostListener decorator in the Directive Class to listen for host events. Based on the event, we can perform any action needed.</p>
 <h2>How to Generate a Directive via the CLI</h2>
 <pre><code class="language-bash">ng generate directive onlyNumbers
 </code></pre>
-<p>This will generate the directive file: <code>only-numbers.directive.ts</code> and the spec file:  <code>only-numbers.directive.spec.ts</code></p>
+<p>This will generate the directive file: <code>only-numbers.directive.ts</code> and the spec file: <code>only-numbers.directive.spec.ts</code></p>
 <h2>How to Build a Directive</h2>
 <p>As we have discussed above, Directives are very useful tools in Angular that can help improve your web application. The example below shows an Attribute Directive that would allow a user to enter only <code>letters</code> in an input field.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -646,23 +655,25 @@ When creating a Directive, we use the @HostListeners() decorator in the Directiv
 &lt;my-app&gt;&lt;/my-app&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 // app.js
-const { Component, VERSION, Directive, ElementRef, HostListener} = ng.core;
+const { Component, VERSION, Directive, ElementRef, HostListener } = ng.core;
 
-@Directive({ selector: '[pmoOnlyLetters]'})
+@Directive({
+  selector: '[pmoOnlyLetters]',
+})
 class OnlyLettersDirective {
+  allowedKeys: string[] = ['Backspace', 'ArrowLeft', 'ArrowRight'];
+  regExp: RegExp = new RegExp(/^[A-Za-z]*$/g);
 
- allowedKeys: string[] = ['Backspace', 'ArrowLeft', 'ArrowRight'];
- regExp =  new RegExp(/^[A-Za-z]*$/g);
+  constructor(private elementRef: ElementRef) {}
 
- constructor(private elementRef: ElementRef) { }
   @HostListener('keydown', ['$event'])
   onKeyDown(keyboardEvent: KeyboardEvent) {
-   if(this.allowedKeys.indexOf(keyboardEvent.key) !== -1) {
+    if (this.allowedKeys.indexOf(keyboardEvent.key) !== -1) {
       return;
     }
     const inputNativeElementValue = this.elementRef.nativeElement.value;
     const next = `${inputNativeElementValue}${keyboardEvent.key}`;
-    if(next &amp;&amp; !next.match(this.regExp)) {
+    if (next &amp;&amp; !next.match(this.regExp)) {
       keyboardEvent.preventDefault();
     }
   }
@@ -672,7 +683,7 @@ class OnlyLettersDirective {
   selector: 'my-app',
   template: `
   &lt;h2&gt;Allow Only Letters Directive&lt;/h2&gt;
-    &lt;input name=&quot;phone&quot; type=&quot;text&quot; pmoOnlyLetters&gt;
+  &lt;input name=&quot;phone&quot; type=&quot;text&quot; pmoOnlyLetters&gt;
   `
 })
 class AppComponent {
@@ -703,80 +714,134 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='14-32, 38,only'></div>
+<div line-highlight='14-34, 40,only'></div>
 <h2>Technical Requirements</h2>
 <ol>
-<li>Use an <code>onlyNumber</code> <strong>Directive</strong> in <strong>src/app/order/order.component.html</strong> in the phone number input field.  Using the Directive should look like this:</li>
+<li>Use an <code>onlyNumber</code> <strong>Directive</strong> in <strong>src/app/order/order.component.html</strong> in the phone number input field. Using the Directive should look like this:</li>
 </ol>
-<pre><code class="language-html">&lt;input name=&quot;phone&quot; type=&quot;text&quot; pmoOnlyNumbers class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+<pre><code class="language-html">&lt;input
+  name=&quot;phone&quot;
+  type=&quot;text&quot;
+  pmoOnlyNumbers
+  class=&quot;form-control&quot;
+  formControlName=&quot;phone&quot;
+/&gt;
 </code></pre>
+<div line-highlight='4'></div>
 <ol start="2">
 <li>Generate and implement the <code>onlyNumber</code> <strong>Directive</strong>.</li>
 </ol>
 <p>The Directive will be used to listen for the event on the input field. This Directive will be used in our order form phone number field.</p>
 <blockquote>
-<p>Hint 1: Use regex  <code>regExp: RegExp = new RegExp(/^[0-9]*$/g)</code> to test if the input value contains any letters.</p>
+<p>Hint: Use regex <code>regExp: RegExp = new RegExp(/^[0-9]*$/g)</code> to test if the input value contains any letters.</p>
 </blockquote>
 <h2>Setup</h2>
 <p>✏️ Update <strong>src/app/order/order.component.html</strong> file to use the Directive we will create:</p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
-  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
-  &lt;/ng-container&gt;
+  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;&lt;/ng-container&gt;
   &lt;ng-template #showOrderForm&gt;
     &lt;h2&gt;Order here&lt;/h2&gt;
     &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
       &lt;tabset&gt;
-        &lt;tab heading=&quot;Lunch Menu&quot;&gt;
+        &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
-            &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
+            &lt;pmo-menu-items
+              [items]=&quot;restaurant?.menu?.lunch&quot;
+              formControlName=&quot;items&quot;
+            &gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
-        &lt;tab heading=&quot;Dinner menu&quot;&gt;
+        &lt;tab heading=&quot;Dinner Menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
-            &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
+            &lt;pmo-menu-items
+              [items]=&quot;restaurant?.menu?.dinner&quot;
+              formControlName=&quot;items&quot;
+            &gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
       &lt;/tabset&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-        &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
+        &lt;input
+          name=&quot;name&quot;
+          type=&quot;text&quot;
+          class=&quot;form-control&quot;
+          formControlName=&quot;name&quot;
+        /&gt;
         &lt;p&gt;Please enter your name.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-        &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
+        &lt;input
+          name=&quot;address&quot;
+          type=&quot;text&quot;
+          class=&quot;form-control&quot;
+          formControlName=&quot;address&quot;
+        /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
-        &lt;input name=&quot;phone&quot; type=&quot;text&quot; pmoOnlyNumbers class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+        &lt;input
+          name=&quot;phone&quot;
+          type=&quot;text&quot;
+          pmoOnlyNumbers
+          class=&quot;form-control&quot;
+          formControlName=&quot;phone&quot;
+        /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;submit&quot;&gt;
-        &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
-          &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
-          &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
-            Place My Order!
-          &lt;/button&gt;
+        &lt;h4&gt;Total: ${{ orderTotal }}&lt;/h4&gt;
+        &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
+        &lt;button
+          type=&quot;submit&quot;
+          [disabled]=&quot;!orderForm.valid || orderProcessing&quot;
+          class=&quot;btn&quot;
+        &gt;
+          Place My Order!
+        &lt;/button&gt;
       &lt;/div&gt;
     &lt;/form&gt;
   &lt;/ng-template&gt;
 &lt;/div&gt;
+
 </code></pre>
-<div line-highlight='31,only'></div>
+ <div line-highlight="49,only"></div>
 <p>✏️ Run the following to generate the <strong>Directive</strong> and the directive's tests:</p>
 <pre><code class="language-bash">ng g directive onlyNumbers
 </code></pre>
 <h2>How to Verify Your Solution is Correct</h2>
-<p>✏️ Update the spec file  <strong>src/app/only-numbers.directive.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { OnlyNumbersDirective } from './only-numbers.directive';
-import {Component, DebugElement} from &quot;@angular/core&quot;;
-import {ComponentFixture, TestBed} from &quot;@angular/core/testing&quot;;
-import {FormsModule} from &quot;@angular/forms&quot;;
-import {By} from &quot;@angular/platform-browser&quot;;
+<p>✏️ Update the spec file <strong>src/app/only-numbers.directive.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { Component, DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { By } from '@angular/platform-browser';
+import { OnlyNumbersDirective } from './only-numbers.directive';
+
+const simulateTyping = &lt;T&gt;(
+  debugElement: DebugElement,
+  fixture: ComponentFixture&lt;T&gt;,
+  value: string
+) =&gt; {
+  let buildString = '';
+  for (const singleValue of value) {
+    const keydownEvent = new KeyboardEvent('keydown', {
+      key: singleValue,
+      cancelable: true,
+    });
+    debugElement.nativeElement.dispatchEvent(keydownEvent);
+    if (!keydownEvent.defaultPrevented) {
+      buildString = `${buildString}${singleValue}`;
+    }
+  }
+  debugElement.nativeElement.value = buildString;
+  debugElement.nativeElement.dispatchEvent(new Event('input'));
+  fixture.detectChanges();
+};
 
 @Component({
-  template: `&lt;input name=&quot;phone&quot; type=&quot;text&quot; pmoOnlyNumbers /&gt;`
+  template: `&lt;input name=&quot;phone&quot; type=&quot;text&quot; pmoOnlyNumbers /&gt;`,
 })
 class TestInputComponent {}
 
@@ -788,7 +853,7 @@ describe('OnlyNumbersDirective', () =&gt; {
     fixture = TestBed.configureTestingModule({
       declarations: [OnlyNumbersDirective, TestInputComponent],
       imports: [FormsModule],
-      providers: []
+      providers: [],
     }).createComponent(TestInputComponent);
     fixture.detectChanges();
     debugElement = fixture.debugElement.query(By.css('input'));
@@ -801,36 +866,21 @@ describe('OnlyNumbersDirective', () =&gt; {
 
   it('should contain only text 329053', () =&gt; {
     const inputString = '32T90V53CFACR';
-    simulateTyping(inputString);
+    simulateTyping(debugElement, fixture, inputString);
     expect(debugElement.nativeElement.value).toEqual('329053');
   });
 
   it('should contain only text 200', () =&gt; {
     const inputString = 'THisIsA200LETTERWORD';
-    simulateTyping(inputString);
+    simulateTyping(debugElement, fixture, inputString);
     expect(debugElement.nativeElement.value).toEqual('200');
   });
 
   it('should be an empty string', () =&gt; {
     const inputString = 'STRING OF LETTER NO NUMBER';
-    simulateTyping(inputString);
+    simulateTyping(debugElement, fixture, inputString);
     expect(debugElement.nativeElement.value).toBe('');
   });
-
-  function simulateTyping(value: string) {
-    let buildString = '';
-    for (const singleValue of value) {
-      const keydownEvent = new KeyboardEvent('keydown', { key: singleValue, cancelable: true })
-      debugElement.nativeElement.dispatchEvent(keydownEvent);
-      if (keydownEvent.defaultPrevented) {
-      } else {
-        buildString = `${buildString}${singleValue}`;
-      }
-    }
-    debugElement.nativeElement.value = buildString;
-    debugElement.nativeElement.dispatchEvent(new Event('input'));
-    fixture.detectChanges();
-  }
 });
 
 </code></pre>
@@ -839,30 +889,28 @@ describe('OnlyNumbersDirective', () =&gt; {
 </blockquote>
 <h2>Solution</h2>
 <p>✏️ Update <strong>src/app/only-numbers.directive.ts</strong> to:</p>
-<pre><code class="language-ts">import {Directive, ElementRef, HostListener} from '@angular/core';
+<pre><code class="language-ts">import { Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
-  selector: '[pmoOnlyNumbers]'
+  selector: '[pmoOnlyNumbers]',
 })
 export class OnlyNumbersDirective {
-
   private allowedKeys: string[] = ['Backspace', 'ArrowLeft', 'ArrowRight'];
-  private regExp =  new RegExp(/^[0-9]*$/g);
+  private regExp: RegExp = new RegExp(/^[0-9]*$/g);
 
-  constructor(private elementRef: ElementRef) { }
+  constructor(private elementRef: ElementRef) {}
 
   @HostListener('keydown', ['$event'])
   onKeyDown(keyboardEvent: KeyboardEvent) {
-    if(this.allowedKeys.indexOf(keyboardEvent.key) !== -1) {
+    if (this.allowedKeys.indexOf(keyboardEvent.key) !== -1) {
       return;
     }
     const inputNativeElementValue = this.elementRef.nativeElement.value;
     const next = `${inputNativeElementValue}${keyboardEvent.key}`;
-    if(next &amp;&amp; !next.match(this.regExp)) {
+    if (next &amp;&amp; !next.match(this.regExp)) {
       keyboardEvent.preventDefault();
     }
   }
-
 }
 
 </code></pre>

@@ -598,321 +598,332 @@ covering CanJS core libraries.">
 <li>Create a custom component to handle item selection</li>
 </ul>
 <h2>Creating an Order Form Component</h2>
-<p>Our order form is how we can create new orders. We'll use a reactive form to get data from the users, use a custom validation function to make sure at least once item has been selected, and calculate the order total every time a new item is selected or unselected.</p>
+<p>Our order form is how we can create new orders. We'll use a reactive form to get data from the users, use a custom validation function to make sure at least one item has been selected, and calculate the order total every time a new item is selected or unselected.</p>
 <h2>Problem 1: Create New Route for Ordering From a Restaurant</h2>
 <h2>P1: Technical Requirements</h2>
 <p>Create a new <code>order</code> component, and create a route for our new component! The path should be <code>/restaurants/{{slug}}/order</code>.</p>
 <h2>P1: How to Verify Your Solution is Correct</h2>
 <p>When you navigate to the <code>/order</code> path from a restaurant detail page you should see your new order component.</p>
-<p>✏️ Update the spec file  <strong>src/app/app.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { TestBed, waitForAsync, fakeAsync, tick, flush } from '@angular/core/testing';
-import { Router } from '@angular/router';
-import { Location } from '@angular/common';
-import { By } from '@angular/platform-browser';
-import { of } from 'rxjs'; 
-
-import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
-import { HomeComponent } from './home/home.component';
-import { RestaurantComponent } from './restaurant/restaurant.component';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ImageUrlPipe } from './image-url.pipe';
+<p>✏️ Update the spec file <strong>src/app/app.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { Location } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { RestaurantService } from './restaurant/restaurant.service';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+  ComponentFixture,
+  fakeAsync,
+  flush,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DetailComponent } from './restaurant/detail/detail.component';
+import { Router } from '@angular/router';
+import { of } from 'rxjs';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { ImageUrlPipe } from './image-url.pipe';
 import { OrderComponent } from './order/order.component';
+import { DetailComponent } from './restaurant/detail/detail.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { RestaurantService } from './restaurant/restaurant.service';
 
 class MockRestaurantService {
   getRestaurants() {
     return of({
-      data: [{
-        &quot;name&quot;: &quot;Poutine Palace&quot;,
-        &quot;slug&quot;: &quot;poutine-palace&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+      data: [
+        {
+          name: 'Poutine Palace',
+          slug: 'poutine-palace',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              {
+                name: 'Crab Pancakes with Sorrel Syrup',
+                price: 35.99,
+              },
+              {
+                name: 'Steamed Mussels',
+                price: 21.99,
+              },
+              {
+                name: 'Spinach Fennel Watercress Ravioli',
+                price: 35.99,
+              },
+            ],
+            dinner: [
+              {
+                name: 'Gunthorp Chicken',
+                price: 21.99,
+              },
+              {
+                name: 'Herring in Lavender Dill Reduction',
+                price: 45.99,
+              },
+              {
+                name: 'Chicken with Tomato Carrot Chutney Sauce',
+                price: 45.99,
+              },
+            ],
+          },
+          address: {
+            street: '230 W Kinzie Street',
+            city: 'Green Bay',
+            state: 'WI',
+            zip: '53205',
+          },
+          _id: '3ZOZyTY1LH26LnVw',
         },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-              &quot;price&quot;: 35.99
-            },
-            {
-              &quot;name&quot;: &quot;Steamed Mussels&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-              &quot;price&quot;: 35.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-              &quot;price&quot;: 45.99
-            }
-          ]
+        {
+          name: 'Cheese Curd City',
+          slug: 'cheese-curd-city',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/2-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              {
+                name: 'Ricotta Gnocchi',
+                price: 15.99,
+              },
+              {
+                name: 'Gunthorp Chicken',
+                price: 21.99,
+              },
+              {
+                name: 'Garlic Fries',
+                price: 15.99,
+              },
+            ],
+            dinner: [
+              {
+                name: 'Herring in Lavender Dill Reduction',
+                price: 45.99,
+              },
+              {
+                name: 'Truffle Noodles',
+                price: 14.99,
+              },
+              {
+                name: 'Charred Octopus',
+                price: 25.99,
+              },
+            ],
+          },
+          address: {
+            street: '2451 W Washburne Ave',
+            city: 'Green Bay',
+            state: 'WI',
+            zip: '53295',
+          },
+          _id: 'Ar0qBJHxM3ecOhcr',
         },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53205&quot;
-        },
-        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-      },
-      {
-        &quot;name&quot;: &quot;Cheese Curd City&quot;,
-        &quot;slug&quot;: &quot;cheese-curd-city&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
-        },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Ricotta Gnocchi&quot;,
-              &quot;price&quot;: 15.99
-            },
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Garlic Fries&quot;,
-              &quot;price&quot;: 15.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Truffle Noodles&quot;,
-              &quot;price&quot;: 14.99
-            },
-            {
-              &quot;name&quot;: &quot;Charred Octopus&quot;,
-              &quot;price&quot;: 25.99
-            }
-          ]
-        },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;2451 W Washburne Ave&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53295&quot;
-        },
-        &quot;_id&quot;: &quot;Ar0qBJHxM3ecOhcr&quot;
-      }]}
-            )
+      ],
+    });
   }
 
   getStates() {
     return of({
       data: [
-        {&quot;short&quot;:&quot;MO&quot;,&quot;name&quot;:&quot;Missouri&quot;},
-        {&quot;short&quot;:&quot;CA  &quot;,&quot;name&quot;:&quot;California&quot;},
-        {&quot;short&quot;:&quot;MI&quot;,&quot;name&quot;:&quot;Michigan&quot;}]
+        { short: 'MO', name: 'Missouri' },
+        { short: 'CA  ', name: 'California' },
+        { short: 'MI', name: 'Michigan' },
+      ],
     });
   }
 
-  getCities(state:string) {
+  getCities(state: string) {
     return of({
-      data: [{&quot;name&quot;:&quot;Sacramento&quot;,&quot;state&quot;:&quot;CA&quot;},{&quot;name&quot;:&quot;Oakland&quot;,&quot;state&quot;:&quot;CA&quot;}]
+      data: [
+        { name: 'Sacramento', state: 'CA' },
+        { name: 'Oakland', state: 'CA' },
+      ],
     });
   }
 
-  getRestaurant(slug:string) {
+  getRestaurant(slug: string) {
     return of({
-      &quot;name&quot;: &quot;Poutine Palace&quot;,
-      &quot;slug&quot;: &quot;poutine-palace&quot;,
-      &quot;images&quot;: {
-        &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-        &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-        &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+      name: 'Poutine Palace',
+      slug: 'poutine-palace',
+      images: {
+        thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+        owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+        banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
       },
-      &quot;menu&quot;: {
-        &quot;lunch&quot;: [
+      menu: {
+        lunch: [
           {
-            &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-            &quot;price&quot;: 35.99
+            name: 'Crab Pancakes with Sorrel Syrup',
+            price: 35.99,
           },
           {
-            &quot;name&quot;: &quot;Steamed Mussels&quot;,
-            &quot;price&quot;: 21.99
+            name: 'Steamed Mussels',
+            price: 21.99,
           },
           {
-            &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-            &quot;price&quot;: 35.99
-          }
+            name: 'Spinach Fennel Watercress Ravioli',
+            price: 35.99,
+          },
         ],
-        &quot;dinner&quot;: [
+        dinner: [
           {
-            &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-            &quot;price&quot;: 21.99
+            name: 'Gunthorp Chicken',
+            price: 21.99,
           },
           {
-            &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-            &quot;price&quot;: 45.99
+            name: 'Herring in Lavender Dill Reduction',
+            price: 45.99,
           },
           {
-            &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-            &quot;price&quot;: 45.99
-          }
-        ]
+            name: 'Chicken with Tomato Carrot Chutney Sauce',
+            price: 45.99,
+          },
+        ],
       },
-      &quot;address&quot;: {
-        &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-        &quot;city&quot;: &quot;Green Bay&quot;,
-        &quot;state&quot;: &quot;WI&quot;,
-        &quot;zip&quot;: &quot;53205&quot;
+      address: {
+        street: '230 W Kinzie Street',
+        city: 'Green Bay',
+        state: 'WI',
+        zip: '53205',
       },
-      &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-    })
+      _id: '3ZOZyTY1LH26LnVw',
+    });
   }
 }
 
 describe('AppComponent', () =&gt; {
-  let router: Router;
+  let fixture: ComponentFixture&lt;AppComponent&gt;;
   let location: Location;
-  let fixture;
+  let router: Router;
 
-  beforeEach(waitForAsync(() =&gt; {
-    TestBed.configureTestingModule({
-      imports: [
-        AppRoutingModule, HttpClientModule, ReactiveFormsModule
-      ],
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      imports: [AppRoutingModule, HttpClientModule, ReactiveFormsModule],
       declarations: [
-        AppComponent, HomeComponent, RestaurantComponent, ImageUrlPipe, DetailComponent, OrderComponent
+        AppComponent,
+        HomeComponent,
+        RestaurantComponent,
+        ImageUrlPipe,
+        DetailComponent,
+        OrderComponent,
       ],
-      schemas: [
-        NO_ERRORS_SCHEMA
-      ]
-    }).overrideComponent(RestaurantComponent, {
-      set: {
-        providers: [
-          { provide: RestaurantService, useClass: MockRestaurantService }
-        ],
-        template: '&lt;p&gt; I am a fake restaurant component&lt;/p&gt;'
-      }
+      providers: [
+        { provide: RestaurantService, useClass: MockRestaurantService },
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
     })
-    .compileComponents();
-
-    router = TestBed.inject(Router);
-    location = TestBed.inject(Location);
+      .overrideComponent(RestaurantComponent, {
+        set: { template: '&lt;p&gt;I am a fake restaurant component&lt;/p&gt;' },
+      })
+      .compileComponents();
 
     fixture = TestBed.createComponent(AppComponent);
-  }));
+    location = TestBed.inject(Location);
+    router = TestBed.inject(Router);
+  });
 
   it('should create the app', () =&gt; {
-    const app = fixture.debugElement.componentInstance;
+    const app = fixture.componentInstance;
     expect(app).toBeTruthy();
   });
 
   it(`should have as title 'place-my-order'`, () =&gt; {
-    const app = fixture.debugElement.componentInstance;
+    const app = fixture.componentInstance;
     expect(app.title).toEqual('place-my-order');
   });
 
   it('should render title in a h1 tag', () =&gt; {
-    const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('place-my-order.com');
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h1')?.textContent).toContain(
+      'place-my-order.com'
+    );
   });
 
-  it('should render the HomeComponent with router navigates to &quot;/&quot; path', () =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
+  it('should render the HomeComponent with router navigates to &quot;/&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['']).then(() =&gt; {
       expect(location.path()).toBe('');
       expect(compiled.querySelector('pmo-home')).not.toBe(null);
     });
-  });
+  }));
 
-  it('should render the RestaurantsComponent with router navigates to &quot;/restaurants&quot; path', () =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
+  it('should render the RestaurantsComponent with router navigates to &quot;/restaurants&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants']).then(() =&gt; {
       expect(location.path()).toBe('/restaurants');
       expect(compiled.querySelector('pmo-restaurant')).not.toBe(null);
     });
-  });
+  }));
 
-  it('should render the DetailComponent with router navigates to &quot;/restaurants/slug&quot; path', () =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
+  it('should render the DetailComponent with router navigates to &quot;/restaurants/slug&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants/crab-shack']).then(() =&gt; {
       expect(location.path()).toBe('/restaurants/crab-shack');
       expect(compiled.querySelector('pmo-detail')).not.toBe(null);
     });
-  });
+  }));
 
-  it('should render the OrderComponent with router navigates to &quot;/restaurants/slug/order&quot; path', () =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
+  it('should render the OrderComponent with router navigates to &quot;/restaurants/slug/order&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants/crab-shack/order']).then(() =&gt; {
       expect(location.path()).toBe('/restaurants/crab-shack/order');
       expect(compiled.querySelector('pmo-order')).not.toBe(null);
     });
-  });
+  }));
 
   it('should have the home navigation link href set to &quot;&quot;', () =&gt; {
     fixture.detectChanges();
-    let homeLink = fixture.debugElement.query(By.css('li a'));
-    let href = homeLink.nativeElement.getAttribute('href');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const homeLink = compiled.querySelector('li a');
+    const href = homeLink?.getAttribute('href');
     expect(href).toEqual('/');
   });
 
   it('should have the restaurants navigation link href set to &quot;&quot;', () =&gt; {
     fixture.detectChanges();
-    let restaurantsLink = fixture.debugElement.query(By.css('li:nth-child(2) a'));
-    let href = restaurantsLink.nativeElement.getAttribute('href');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const restaurantsLink = compiled.querySelector('li:nth-child(2) a');
+    const href = restaurantsLink?.getAttribute('href');
     expect(href).toEqual('/restaurants');
   });
 
   it('should make the home navigation link class active when the router navigates to &quot;/&quot; path', fakeAsync(() =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
-    router.navigate(['']).then(() =&gt; {
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
-      let homeLinkLi = fixture.debugElement.query(By.css('li'));
-      expect(homeLinkLi.nativeElement.classList).toContain('active');
-      expect(compiled.querySelectorAll('.active').length).toBe(1);
-      fixture.destroy();
-      flush();
-    });
+    const compiled = fixture.nativeElement as HTMLElement;
+    router.navigate(['']);
+    fixture.detectChanges();
+    tick();
+
+    const homeLinkLi = compiled.querySelector('li');
+    expect(homeLinkLi?.classList).toContain('active');
+    expect(compiled.querySelectorAll('.active').length).toBe(1);
+    flush();
   }));
 
   it('should make the restaurants navigation link class active when the router navigates to &quot;/restaurants&quot; path', fakeAsync(() =&gt; {
-    const compiled = fixture.debugElement.nativeElement;
-    router.navigate(['restaurants']).then(() =&gt; {
-      expect(location.path()).toBe('/restaurants');
-      fixture.detectChanges();
-      tick();
-      fixture.detectChanges();
-      let restaurantsLinkLi = fixture.debugElement.query(By.css('li:nth-child(2)'));
-      expect(restaurantsLinkLi.nativeElement.classList).toContain('active');
-      expect(compiled.querySelectorAll('.active').length).toBe(1);
-      fixture.destroy();
-      flush();
-    });
-  }));
+    const compiled = fixture.nativeElement as HTMLElement;
+    router.navigate(['restaurants']);
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
 
+    expect(location.path()).toBe('/restaurants');
+    const restaurantsLinkLi = compiled.querySelector('li:nth-child(2)');
+    expect(restaurantsLinkLi?.classList).toContain('active');
+    expect(compiled.querySelectorAll('.active').length).toBe(1);
+    flush();
+  }));
 });
+
 </code></pre>
- <div line-highlight="1,4-5,17,22-28,30-58,60-66,68-114,120-122,126,128,132,134-139,141-142,144-145,148-149,152-154,156,158-159,162-163,166-169,171-177,185,187-190,193,195-201,203-204,206,215,220,225,227-228,231-232,239-240,247-248,255-259,261,265-266,268,272-273,275,278-288,292-303,only"></div>
+ <div line-highlight="18,208,267,269-272,304,315,only"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
@@ -926,12 +937,11 @@ describe('AppComponent', () =&gt; {
 <h2>P1: Solution</h2>
 <p><strong>src/app/app-routing.module.ts</strong></p>
 <pre><code class="language-ts">import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
+import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { RestaurantComponent } from './restaurant/restaurant.component';
-import { DetailComponent } from './restaurant/detail/detail.component';
 import { OrderComponent } from './order/order.component';
+import { DetailComponent } from './restaurant/detail/detail.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
 
 const routes: Routes = [
   {
@@ -949,17 +959,17 @@ const routes: Routes = [
   {
     path: 'restaurants/:slug/order',
     component: OrderComponent,
-  }
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
 
 </code></pre>
- <div line-highlight="2,7,22-25,30,32,only"></div>
+ <div line-highlight="4,21-24,only"></div>
 <h2>Problem 2: Build Out the Order Component</h2>
 <p>We've covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes. Let's practice those concepts.</p>
 <p>We've provided some starting code to get through this section to help you get the restaurant based on the route slug, create a new reactive form to collect order information, and update the order total whenever the <code>items</code> FormControl value changes.</p>
@@ -968,18 +978,20 @@ export class AppRoutingModule { }
 <h2>P2: Setup</h2>
 <p>✏️ Update the <strong>src/order/order.component.html</strong> file to be:</p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
-  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
-  &lt;/ng-container&gt;
+  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;&lt;/ng-container&gt;
   &lt;ng-template #showOrderForm&gt;
     &lt;h2&gt;Order here&lt;/h2&gt;
     &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
       &lt;ng-container *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
         &lt;h4&gt;Lunch Menu&lt;/h4&gt;
         &lt;ul class=&quot;list-group&quot;&gt;
-          &lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of restaurant.menu.lunch;&quot;&gt;
+          &lt;li
+            class=&quot;list-group-item&quot;
+            *ngFor=&quot;let item of restaurant?.menu?.lunch&quot;
+          &gt;
             &lt;label&gt;
-              &lt;input type=&quot;checkbox&quot; formControlName=&quot;items&quot;&gt;
-              {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
+              &lt;input type=&quot;checkbox&quot; formControlName=&quot;items&quot; /&gt;
+              {{ item.name }} &lt;span class=&quot;badge&quot;&gt;${{ item.price }}&lt;/span&gt;
             &lt;/label&gt;
           &lt;/li&gt;
         &lt;/ul&gt;
@@ -987,35 +999,57 @@ export class AppRoutingModule { }
       &lt;ng-container *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
         &lt;h4&gt;Dinner Menu&lt;/h4&gt;
         &lt;ul class=&quot;list-group&quot;&gt;
-          &lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of restaurant.menu.dinner;&quot;&gt;
+          &lt;li
+            class=&quot;list-group-item&quot;
+            *ngFor=&quot;let item of restaurant?.menu?.dinner&quot;
+          &gt;
             &lt;label&gt;
-              &lt;input type=&quot;checkbox&quot; formControlName=&quot;items&quot;&gt;
-              {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
+              &lt;input type=&quot;checkbox&quot; formControlName=&quot;items&quot; /&gt;
+              {{ item.name }} &lt;span class=&quot;badge&quot;&gt;${{ item.price }}&lt;/span&gt;
             &lt;/label&gt;
           &lt;/li&gt;
         &lt;/ul&gt;
       &lt;/ng-container&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-        &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
+        &lt;input
+          name=&quot;name&quot;
+          type=&quot;text&quot;
+          class=&quot;form-control&quot;
+          formControlName=&quot;name&quot;
+        /&gt;
         &lt;p&gt;Please enter your name.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-        &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
+        &lt;input
+          name=&quot;address&quot;
+          type=&quot;text&quot;
+          class=&quot;form-control&quot;
+          formControlName=&quot;address&quot;
+        /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
-        &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+        &lt;input
+          name=&quot;phone&quot;
+          type=&quot;text&quot;
+          class=&quot;form-control&quot;
+          formControlName=&quot;phone&quot;
+        /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;submit&quot;&gt;
-        &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
-          &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
-          &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
-            Place My Order!
-          &lt;/button&gt;
+        &lt;h4&gt;Total: ${{ orderTotal }}&lt;/h4&gt;
+        &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
+        &lt;button
+          type=&quot;submit&quot;
+          [disabled]=&quot;!orderForm.valid || orderProcessing&quot;
+          class=&quot;btn&quot;
+        &gt;
+          Place My Order!
+        &lt;/button&gt;
       &lt;/div&gt;
     &lt;/form&gt;
   &lt;/ng-template&gt;
@@ -1024,33 +1058,40 @@ export class AppRoutingModule { }
 </code></pre>
 <p>✏️ Update the <strong>src/app/order/order.component.ts</strong> file to be:</p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, FormArray, AbstractControl } from '@angular/forms';
-
-import { RestaurantService } from '../restaurant/restaurant.service';
-import { Restaurant } from '../restaurant/restaurant';
 import { Subject } from 'rxjs';
-import { takeUntil } from &quot;rxjs/operators&quot;;
+import { takeUntil } from 'rxjs/operators';
+import { Restaurant } from '../restaurant/restaurant';
+import { RestaurantService } from '../restaurant/restaurant.service';
 
-//CUSTOM VALIDATION FUNCTION TO ENSURE THAT THE ITEMS FORM VALUE CONTAINS AT LEAST ONE ITEM. 
-function minLengthArray(min: number) {
-  return (c: AbstractControl): {[key: string]: any} =&gt; {
-      if (c.value.length &gt;= min)
-          return null;
-      return { 'minLengthArray': {valid: false }};
-  }
+// CUSTOM VALIDATION FUNCTION TO ENSURE THAT THE ITEMS FORM VALUE CONTAINS AT LEAST ONE ITEM.
+function minLengthArray(min: number): ValidatorFn {
+  return (c: AbstractControl): ValidationErrors | null =&gt; {
+    if (c.value.length &gt;= min) {
+      return null;
+    }
+    return { minLengthArray: { valid: false } };
+  };
 }
 
 @Component({
   selector: 'pmo-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.less']
+  styleUrls: ['./order.component.less'],
 })
 export class OrderComponent implements OnInit, OnDestroy {
-  orderForm: FormGroup;
-  restaurant: Restaurant;
+  orderForm?: FormGroup;
+  restaurant?: Restaurant;
   isLoading = true;
-  items: FormArray;
+  items?: FormArray;
   orderTotal = 0.0;
   completedOrder: any;
   orderComplete = false;
@@ -1058,39 +1099,36 @@ export class OrderComponent implements OnInit, OnDestroy {
   private unSubscribe = new Subject&lt;void&gt;();
 
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private restaurantService: RestaurantService,
-    private formBuilder: FormBuilder 
-  ) { 
+    private formBuilder: FormBuilder
+  ) {}
+
+  ngOnInit(): void {
+    // GET THE RESTAURANT FROM THE ROUTE SLUG
   }
 
-  ngOnInit() {
-    //GET THE RESTAURANT FROM THE ROUTE SLUG
-    
-  }
+  ngOnDestroy(): void {}
 
-  ngOnDestroy(): void {
-  }
-
-  createOrderForm() {
-    //CREATE AN ORDER FORM TO COLLECT: RESTAURANT ID, NAME, ADDRESS, PHONE, AND ITEMS
+  createOrderForm(): void {
+    // CREATE AN ORDER FORM TO COLLECT: RESTAURANT ID, NAME, ADDRESS, PHONE, AND ITEMS
     // ITEMS SHOULD USE THE CUSTOM MINLENGTH ARRAY VALIDATION
-    this.orderForm = this.formBuilder.group({
-    });
+    this.orderForm = this.formBuilder.group({});
     this.onChanges();
   }
 
-  onChanges() {
+  onChanges(): void {
     // SUBSCRIBE TO THE ITEMS FORMCONTROL CHANGE TO CALCULATE A NEW TOTAL
   }
 
-  startNewOrder() {
+  onSubmit(): void {}
+
+  startNewOrder(): void {
     this.orderComplete = false;
-    this.completedOrder = this.orderForm.value;
-    //CLEAR THE ORDER FORM
+    this.completedOrder = this.orderForm?.value;
+    // CLEAR THE ORDER FORM
     this.createOrderForm();
   }
-
 }
 
 </code></pre>
@@ -1101,12 +1139,13 @@ export class OrderComponent implements OnInit, OnDestroy {
 <li><p>Listen to form value changes (you learned this in previous sections! ✔️)</p></li>
 <li><p>Add validation:</p>
 <p>This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation" target="\_blank">validation</a>. Here's an example of a form with form controls with different validation, and one that's value is set to an array.</p>
-<pre><code class="language-typescript">function coolKidsChecker(isACoolKid: string) {
-  return (c: AbstractControl): {[key: string]: any} =&gt; {
-      if (c.value === isACoolKid)
-          return null;
-      return { 'coolKidsChecker': {valid: false }};
-  }
+<pre><code class="language-typescript">function coolKidsChecker(isACoolKid: string): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null =&gt; {
+    if (control.value === isACoolKid) {
+      return null;
+    }
+    return { coolKidsChecker: { valid: false } };
+  };
 }
 
 this.myValidatingForm = this.formBuilder.group({
@@ -1117,64 +1156,63 @@ this.myValidatingForm = this.formBuilder.group({
 </code></pre></li>
 </ul>
 <h2>P2: How to Verify Your Solution is Correct</h2>
-<p>✏️ Update the order spec file  <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs'; 
-
-import { OrderComponent } from './order.component';
+<p>✏️ Update the order spec file <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
 import { RestaurantService } from '../restaurant/restaurant.service';
+import { OrderComponent } from './order.component';
 
 class MockRestaurantService {
-  getRestaurant(slug:string) {
+  getRestaurant(slug: string) {
     return of({
-        &quot;name&quot;: &quot;Poutine Palace&quot;,
-        &quot;slug&quot;: &quot;poutine-palace&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
-        },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-              &quot;price&quot;: 35.99
-            },
-            {
-              &quot;name&quot;: &quot;Steamed Mussels&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-              &quot;price&quot;: 35.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-              &quot;price&quot;: 45.99
-            }
-          ]
-        },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53205&quot;
-        },
-        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-      })
+      name: 'Poutine Palace',
+      slug: 'poutine-palace',
+      images: {
+        thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+        owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+        banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+      },
+      menu: {
+        lunch: [
+          {
+            name: 'Crab Pancakes with Sorrel Syrup',
+            price: 35.99,
+          },
+          {
+            name: 'Steamed Mussels',
+            price: 21.99,
+          },
+          {
+            name: 'Spinach Fennel Watercress Ravioli',
+            price: 35.99,
+          },
+        ],
+        dinner: [
+          {
+            name: 'Gunthorp Chicken',
+            price: 21.99,
+          },
+          {
+            name: 'Herring in Lavender Dill Reduction',
+            price: 45.99,
+          },
+          {
+            name: 'Chicken with Tomato Carrot Chutney Sauce',
+            price: 45.99,
+          },
+        ],
+      },
+      address: {
+        street: '230 W Kinzie Street',
+        city: 'Green Bay',
+        state: 'WI',
+        zip: '53205',
+      },
+      _id: '3ZOZyTY1LH26LnVw',
+    });
   }
 }
 
@@ -1182,30 +1220,32 @@ const MockActivatedRoute = {
   snapshot: {
     paramMap: {
       get() {
-        return 'poutine-palace'
-      }
-    }
-  }
-}
+        return 'poutine-palace';
+      },
+    },
+  },
+};
 
 describe('OrderComponent', () =&gt; {
   let component: OrderComponent;
   let fixture: ComponentFixture&lt;OrderComponent&gt;;
 
-  beforeEach(async(() =&gt; {
-    TestBed.configureTestingModule({
-      declarations: [ OrderComponent ], 
-      imports: [  ReactiveFormsModule, RouterTestingModule ],
-      providers: [{
-        provide: RestaurantService,
-        useClass: MockRestaurantService
-      }, {
-        provide: ActivatedRoute,
-        useValue: MockActivatedRoute
-      }]
-    })
-    .compileComponents();
-  }));
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      declarations: [OrderComponent],
+      imports: [ReactiveFormsModule, RouterTestingModule],
+      providers: [
+        {
+          provide: RestaurantService,
+          useClass: MockRestaurantService,
+        },
+        {
+          provide: ActivatedRoute,
+          useValue: MockActivatedRoute,
+        },
+      ],
+    }).compileComponents();
+  });
 
   beforeEach(() =&gt; {
     fixture = TestBed.createComponent(OrderComponent);
@@ -1218,106 +1258,112 @@ describe('OrderComponent', () =&gt; {
   });
 
   it('should get a restaurant based on route slug', () =&gt; {
-    let mockRestaurant = {
-      &quot;name&quot;: &quot;Poutine Palace&quot;,
-      &quot;slug&quot;: &quot;poutine-palace&quot;,
-      &quot;images&quot;: {
-        &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-        &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-        &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+    const mockRestaurant = {
+      name: 'Poutine Palace',
+      slug: 'poutine-palace',
+      images: {
+        thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+        owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+        banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
       },
-      &quot;menu&quot;: {
-        &quot;lunch&quot;: [
+      menu: {
+        lunch: [
           {
-            &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-            &quot;price&quot;: 35.99
+            name: 'Crab Pancakes with Sorrel Syrup',
+            price: 35.99,
           },
           {
-            &quot;name&quot;: &quot;Steamed Mussels&quot;,
-            &quot;price&quot;: 21.99
+            name: 'Steamed Mussels',
+            price: 21.99,
           },
           {
-            &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-            &quot;price&quot;: 35.99
-          }
+            name: 'Spinach Fennel Watercress Ravioli',
+            price: 35.99,
+          },
         ],
-        &quot;dinner&quot;: [
+        dinner: [
           {
-            &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-            &quot;price&quot;: 21.99
+            name: 'Gunthorp Chicken',
+            price: 21.99,
           },
           {
-            &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-            &quot;price&quot;: 45.99
+            name: 'Herring in Lavender Dill Reduction',
+            price: 45.99,
           },
           {
-            &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-            &quot;price&quot;: 45.99
-          }
-        ]
+            name: 'Chicken with Tomato Carrot Chutney Sauce',
+            price: 45.99,
+          },
+        ],
       },
-      &quot;address&quot;: {
-        &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-        &quot;city&quot;: &quot;Green Bay&quot;,
-        &quot;state&quot;: &quot;WI&quot;,
-        &quot;zip&quot;: &quot;53205&quot;
+      address: {
+        street: '230 W Kinzie Street',
+        city: 'Green Bay',
+        state: 'WI',
+        zip: '53205',
       },
-      &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-    }
-    const fixture = TestBed.createComponent(OrderComponent);
-    fixture.detectChanges();
-    expect(fixture.componentInstance.restaurant).toEqual(mockRestaurant)
+      _id: '3ZOZyTY1LH26LnVw',
+    };
+    expect(fixture.componentInstance.restaurant).toEqual(mockRestaurant);
   });
 
   it('should have an orderForm formGroup', () =&gt; {
-    const fixture = TestBed.createComponent(OrderComponent);
-    fixture.detectChanges();
-    expect(fixture.componentInstance.orderForm.controls.restaurant).toBeTruthy();
-    expect(fixture.componentInstance.orderForm.controls.address).toBeTruthy();
-    expect(fixture.componentInstance.orderForm.controls.phone).toBeTruthy();
-    expect(fixture.componentInstance.orderForm.controls.items).toBeTruthy();
+    expect(
+      fixture.componentInstance.orderForm?.controls['restaurant']
+    ).toBeTruthy();
+    expect(
+      fixture.componentInstance.orderForm?.controls['address']
+    ).toBeTruthy();
+    expect(fixture.componentInstance.orderForm?.controls['phone']).toBeTruthy();
+    expect(fixture.componentInstance.orderForm?.controls['items']).toBeTruthy();
   });
 
   it('should have a validator on items formControl', () =&gt; {
-    const fixture = TestBed.createComponent(OrderComponent);
-    fixture.detectChanges();
-    let itemFormControl = fixture.componentInstance.orderForm.controls.items;
-    expect(itemFormControl.valid).toEqual(false);
+    const itemFormControl =
+      fixture.componentInstance.orderForm?.controls['items'];
+    expect(itemFormControl?.valid).toEqual(false);
   });
-
 });
 
 </code></pre>
 <h2>P2: Solution</h2>
 <p>✏️ Update <strong>src/app/order/order.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, FormArray, AbstractControl, Validators} from '@angular/forms';
-
-import { RestaurantService } from '../restaurant/restaurant.service';
-import { Restaurant } from '../restaurant/restaurant';
 import { Subject } from 'rxjs';
-import { takeUntil } from &quot;rxjs/operators&quot;;
+import { takeUntil } from 'rxjs/operators';
+import { Restaurant } from '../restaurant/restaurant';
+import { RestaurantService } from '../restaurant/restaurant.service';
 
-//CUSTOM VALIDATION FUNCTION TO ENSURE THAT THE ITEMS FORM VALUE CONTAINS AT LEAST ONE ITEM. 
-function minLengthArray(min: number) {
-  return (c: AbstractControl): {[key: string]: any} =&gt; {
-      if (c.value.length &gt;= min)
-          return null;
-      return { 'minLengthArray': {valid: false }};
-  }
+// CUSTOM VALIDATION FUNCTION TO ENSURE THAT THE ITEMS FORM VALUE CONTAINS AT LEAST ONE ITEM.
+function minLengthArray(min: number): ValidatorFn {
+  return (c: AbstractControl): ValidationErrors | null =&gt; {
+    if (c.value.length &gt;= min) {
+      return null;
+    }
+    return { minLengthArray: { valid: false } };
+  };
 }
 
 @Component({
   selector: 'pmo-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.less']
+  styleUrls: ['./order.component.less'],
 })
 export class OrderComponent implements OnInit, OnDestroy {
-  orderForm: FormGroup;
-  restaurant: Restaurant;
+  orderForm?: FormGroup;
+  restaurant?: Restaurant;
   isLoading = true;
-  items: FormArray;
+  items?: FormArray;
   orderTotal = 0.0;
   completedOrder: any;
   orderComplete = false;
@@ -1325,21 +1371,24 @@ export class OrderComponent implements OnInit, OnDestroy {
   private unSubscribe = new Subject&lt;void&gt;();
 
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private restaurantService: RestaurantService,
-    private formBuilder: FormBuilder 
-  ) { 
-  }
+    private formBuilder: FormBuilder
+  ) {}
 
-  ngOnInit() {
-    //GETTING THE RESTAURANT FROM THE ROUTE SLUG
+  ngOnInit(): void {
+    // GETTING THE RESTAURANT FROM THE ROUTE SLUG
     const slug = this.route.snapshot.paramMap.get('slug');
 
-    this.restaurantService.getRestaurant(slug).subscribe((data:Restaurant) =&gt; {
-      this.restaurant = data;
-      this.isLoading = false;      
-      this.createOrderForm();
-    })
+    if (slug) {
+      this.restaurantService
+        .getRestaurant(slug)
+        .subscribe((data: Restaurant) =&gt; {
+          this.restaurant = data;
+          this.isLoading = false;
+          this.createOrderForm();
+        });
+    }
   }
 
   ngOnDestroy(): void {
@@ -1347,57 +1396,61 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.unSubscribe.complete();
   }
 
-  createOrderForm() {
+  createOrderForm(): void {
     this.orderForm = this.formBuilder.group({
-      restaurant: [this.restaurant._id],
+      restaurant: [this.restaurant?._id],
       name: [null, Validators.required],
-      address:  [null, Validators.required],
+      address: [null, Validators.required],
       phone: [null, Validators.required],
-      //PASSING OUR CUSTOM VALIDATION FUNCTION TO THIS FORM CONTROL
-      items: [[], minLengthArray(1)] 
+      // PASSING OUR CUSTOM VALIDATION FUNCTION TO THIS FORM CONTROL
+      items: [[], minLengthArray(1)],
     });
     this.onChanges();
   }
 
-  onChanges() {
+  onChanges(): void {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
-    this.orderForm.get('items').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe(val =&gt; {
-      let total = 0.0;
-      if(val.length) {
-        for (const item of val) {
-          total += item.price;
+    this.orderForm
+      ?.get('items')
+      ?.valueChanges.pipe(takeUntil(this.unSubscribe))
+      .subscribe((val) =&gt; {
+        let total = 0.0;
+        if (val.length) {
+          for (const item of val) {
+            total += item.price;
+          }
+          this.orderTotal = Math.round(total * 100) / 100;
+        } else {
+          this.orderTotal = total;
         }
-        this.orderTotal = Math.round(total * 100) / 100;
-      }
-      else {
-        this.orderTotal = total;
-      }
-    });
+      });
   }
 
-  startNewOrder() {
+  onSubmit(): void {}
+
+  startNewOrder(): void {
     this.orderComplete = false;
-    this.completedOrder = this.orderForm.value;
-    //CLEAR THE ORDER FORM
+    this.completedOrder = this.orderForm?.value;
+    // CLEAR THE ORDER FORM
     this.createOrderForm();
   }
-
 }
+
 </code></pre>
- <div line-highlight="3,43-44,46-49,54-55,60-66,71-83,only"></div>
+ <div line-highlight="9,50-51,53-61,64-66,70-77,82-96,106,only"></div>
 <h2>Importing 3rd Party Plugins</h2>
 <p>In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let's import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started" target="\_blank">ngx-bootstrap</a>:</p>
-<p>✏️  Run:</p>
+<p>✏️ Run:</p>
 <pre><code class="language-bash">ng add ngx-bootstrap
 </code></pre>
 <p>Ng add is a convenient way to import 3rd party libs that will update <code>angular.json</code> and <code>package.json</code> with any changes we need.</p>
 <p>✏️ Update <strong>src/app/app.module.ts</strong>. Once you're done, don't forget to restart the server!</p>
-<pre><code class="language-ts">import { BrowserModule } from '@angular/platform-browser';
+<pre><code class="language-ts">import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -1420,6 +1473,7 @@ import { OrderComponent } from './order/order.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
     TabsModule.forRoot()
   ],
   providers: [],
@@ -1428,33 +1482,37 @@ import { OrderComponent } from './order/order.component';
 export class AppModule { }
 
 </code></pre>
- <div line-highlight="5,12-13,20-22,29,"></div>
-<div line-highlight='5, 29, only'></div>
+<div line-highlight='5, 6, 29, 30, only'></div>
 <p>Now let's add the markup to our order component implementing the tabs widget.</p>
 <p>✏️ Update <strong>src/app/order/order.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
-  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
-  &lt;/ng-container&gt;
+  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;&lt;/ng-container&gt;
   &lt;ng-template #showOrderForm&gt;
     &lt;h2&gt;Order here&lt;/h2&gt;
     &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
       &lt;tabset&gt;
         &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
-            &lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of restaurant.menu.lunch;&quot;&gt;
+            &lt;li
+              class=&quot;list-group-item&quot;
+              *ngFor=&quot;let item of restaurant?.menu?.lunch&quot;
+            &gt;
               &lt;label&gt;
-                &lt;input type=&quot;checkbox&quot; formControlName=&quot;items&quot;&gt;
-                {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
+                &lt;input type=&quot;checkbox&quot; formControlName=&quot;items&quot; /&gt;
+                {{ item.name }} &lt;span class=&quot;badge&quot;&gt;${{ item.price }}&lt;/span&gt;
               &lt;/label&gt;
             &lt;/li&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
-        &lt;tab heading=&quot;Dinner menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
+        &lt;tab heading=&quot;Dinner Menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
-            &lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of restaurant.menu.dinner;&quot;&gt;
+            &lt;li
+              class=&quot;list-group-item&quot;
+              *ngFor=&quot;let item of restaurant?.menu?.dinner&quot;
+            &gt;
               &lt;label&gt;
-                &lt;input type=&quot;checkbox&quot; formControlName=&quot;items&quot;&gt;
-                {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
+                &lt;input type=&quot;checkbox&quot; formControlName=&quot;items&quot; /&gt;
+                {{ item.name }} &lt;span class=&quot;badge&quot;&gt;${{ item.price }}&lt;/span&gt;
               &lt;/label&gt;
             &lt;/li&gt;
           &lt;/ul&gt;
@@ -1462,45 +1520,68 @@ export class AppModule { }
       &lt;/tabset&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-        &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
+        &lt;input
+          name=&quot;name&quot;
+          type=&quot;text&quot;
+          class=&quot;form-control&quot;
+          formControlName=&quot;name&quot;
+        /&gt;
         &lt;p&gt;Please enter your name.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-        &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
+        &lt;input
+          name=&quot;address&quot;
+          type=&quot;text&quot;
+          class=&quot;form-control&quot;
+          formControlName=&quot;address&quot;
+        /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
-        &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+        &lt;input
+          name=&quot;phone&quot;
+          type=&quot;text&quot;
+          class=&quot;form-control&quot;
+          formControlName=&quot;phone&quot;
+        /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;submit&quot;&gt;
-        &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
-          &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
-          &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
-            Place My Order!
-          &lt;/button&gt;
+        &lt;h4&gt;Total: ${{ orderTotal }}&lt;/h4&gt;
+        &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
+        &lt;button
+          type=&quot;submit&quot;
+          [disabled]=&quot;!orderForm.valid || orderProcessing&quot;
+          class=&quot;btn&quot;
+        &gt;
+          Place My Order!
+        &lt;/button&gt;
       &lt;/div&gt;
     &lt;/form&gt;
   &lt;/ng-template&gt;
 &lt;/div&gt;
+
 </code></pre>
- <div line-highlight="7-28,only"></div>
+ <div line-highlight="6-33,only"></div>
 <p>Now when we view the order form of our route, we'll see a nice form and tabs for lunch and dinner menu options.</p>
 <p><img src="../static/img/angular/pmo-tabs-working.gif" alt="Place My Order App tabs" title="Place My Order App tabs" /></p>
 <h2>Problem 3: Create Custom Menu-Items Component</h2>
 <p>We're going to build another component to use in our form to handle selecting order items. We use data-binding to pass data between components. We'll use the <code>@Input()</code> to get our list of items from the restaurant to display in our child component, and eventually hook it into our Reactive Form using the <code>formControlName</code> attribute as shown below.</p>
-<pre><code class="language-html">&lt;pmo-menu-items [data]=&quot;restaurant.menu.lunch&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
+<pre><code class="language-html">&lt;pmo-menu-items
+  [data]=&quot;restaurant.menu.lunch&quot;
+  formControlName=&quot;items&quot;
+&gt;&lt;/pmo-menu-items&gt;
 </code></pre>
 <h2>P3: Technical Requirements</h2>
 <p>We want the menu-items component take an array of menu items and iterate through them in the template.</p>
 <p>Each menu item should have this markup:</p>
-<pre><code class="language-html">&lt;li class=&quot;list-group-item&quot; &gt;
-    &lt;label&gt;
-        &lt;input type=&quot;checkbox&quot;&gt;
-        ITEM_NAME &lt;span class=&quot;badge&quot;&gt;$ ITEM_PRICE&lt;/span&gt;
-    &lt;/label&gt;
+<pre><code class="language-html">&lt;li class=&quot;list-group-item&quot;&gt;
+  &lt;label&gt;
+    &lt;input type=&quot;checkbox&quot; /&gt;
+    ITEM_NAME &lt;span class=&quot;badge&quot;&gt;$ ITEM_PRICE&lt;/span&gt;
+  &lt;/label&gt;
 &lt;/li&gt;
 </code></pre>
 <h2>P3: Setup</h2>
@@ -1511,8 +1592,7 @@ export class AppModule { }
 <p>Go ahead and put your new component in the order history component.</p>
 <p>✏️ Update <strong>src/app/order/order.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
-  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
-  &lt;/ng-container&gt;
+  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;&lt;/ng-container&gt;
   &lt;ng-template #showOrderForm&gt;
     &lt;h2&gt;Order here&lt;/h2&gt;
     &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
@@ -1522,7 +1602,7 @@ export class AppModule { }
             &lt;pmo-menu-items&gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
-        &lt;tab heading=&quot;Dinner menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
+        &lt;tab heading=&quot;Dinner Menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
             &lt;pmo-menu-items&gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
@@ -1530,91 +1610,110 @@ export class AppModule { }
       &lt;/tabset&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-        &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
+        &lt;input
+          name=&quot;name&quot;
+          type=&quot;text&quot;
+          class=&quot;form-control&quot;
+          formControlName=&quot;name&quot;
+        /&gt;
         &lt;p&gt;Please enter your name.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-        &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
+        &lt;input
+          name=&quot;address&quot;
+          type=&quot;text&quot;
+          class=&quot;form-control&quot;
+          formControlName=&quot;address&quot;
+        /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
-        &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+        &lt;input
+          name=&quot;phone&quot;
+          type=&quot;text&quot;
+          class=&quot;form-control&quot;
+          formControlName=&quot;phone&quot;
+        /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;submit&quot;&gt;
-        &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
-          &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
-          &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
-            Place My Order!
-          &lt;/button&gt;
+        &lt;h4&gt;Total: ${{ orderTotal }}&lt;/h4&gt;
+        &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
+        &lt;button
+          type=&quot;submit&quot;
+          [disabled]=&quot;!orderForm.valid || orderProcessing&quot;
+          class=&quot;btn&quot;
+        &gt;
+          Place My Order!
+        &lt;/button&gt;
       &lt;/div&gt;
     &lt;/form&gt;
   &lt;/ng-template&gt;
 &lt;/div&gt;
-</code></pre>
- <div line-highlight="10,15,only"></div>
-<h2>P3: How to Verify Your Solution is Correct</h2>
-<p>✏️ Update the order spec file  <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs'; 
 
-import { OrderComponent } from './order.component';
+</code></pre>
+ <div line-highlight="9,14,only"></div>
+<h2>P3: How to Verify Your Solution is Correct</h2>
+<p>✏️ Update the order spec file <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
 import { RestaurantService } from '../restaurant/restaurant.service';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { OrderComponent } from './order.component';
 
 class MockRestaurantService {
-  getRestaurant(slug:string) {
+  getRestaurant(slug: string) {
     return of({
-        &quot;name&quot;: &quot;Poutine Palace&quot;,
-        &quot;slug&quot;: &quot;poutine-palace&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
-        },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-              &quot;price&quot;: 35.99
-            },
-            {
-              &quot;name&quot;: &quot;Steamed Mussels&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-              &quot;price&quot;: 35.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-              &quot;price&quot;: 45.99
-            }
-          ]
-        },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53205&quot;
-        },
-        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-      })
+      name: 'Poutine Palace',
+      slug: 'poutine-palace',
+      images: {
+        thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+        owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+        banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+      },
+      menu: {
+        lunch: [
+          {
+            name: 'Crab Pancakes with Sorrel Syrup',
+            price: 35.99,
+          },
+          {
+            name: 'Steamed Mussels',
+            price: 21.99,
+          },
+          {
+            name: 'Spinach Fennel Watercress Ravioli',
+            price: 35.99,
+          },
+        ],
+        dinner: [
+          {
+            name: 'Gunthorp Chicken',
+            price: 21.99,
+          },
+          {
+            name: 'Herring in Lavender Dill Reduction',
+            price: 45.99,
+          },
+          {
+            name: 'Chicken with Tomato Carrot Chutney Sauce',
+            price: 45.99,
+          },
+        ],
+      },
+      address: {
+        street: '230 W Kinzie Street',
+        city: 'Green Bay',
+        state: 'WI',
+        zip: '53205',
+      },
+      _id: '3ZOZyTY1LH26LnVw',
+    });
   }
 }
 
@@ -1622,31 +1721,33 @@ const MockActivatedRoute = {
   snapshot: {
     paramMap: {
       get() {
-        return 'poutine-palace'
-      }
-    }
-  }
-}
+        return 'poutine-palace';
+      },
+    },
+  },
+};
 
 describe('OrderComponent', () =&gt; {
   let component: OrderComponent;
   let fixture: ComponentFixture&lt;OrderComponent&gt;;
 
-  beforeEach(async(() =&gt; {
-    TestBed.configureTestingModule({
-      declarations: [ OrderComponent ], 
-      imports: [  ReactiveFormsModule, RouterTestingModule ],
-      providers: [{
-        provide: RestaurantService,
-        useClass: MockRestaurantService
-      }, {
-        provide: ActivatedRoute,
-        useValue: MockActivatedRoute
-      }],
-      schemas: [ NO_ERRORS_SCHEMA ]
-    })
-    .compileComponents();
-  }));
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      declarations: [OrderComponent],
+      imports: [ReactiveFormsModule, RouterTestingModule],
+      providers: [
+        {
+          provide: RestaurantService,
+          useClass: MockRestaurantService,
+        },
+        {
+          provide: ActivatedRoute,
+          useValue: MockActivatedRoute,
+        },
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
+  });
 
   beforeEach(() =&gt; {
     fixture = TestBed.createComponent(OrderComponent);
@@ -1659,79 +1760,77 @@ describe('OrderComponent', () =&gt; {
   });
 
   it('should get a restaurant based on route slug', () =&gt; {
-    let mockRestaurant = {
-      &quot;name&quot;: &quot;Poutine Palace&quot;,
-      &quot;slug&quot;: &quot;poutine-palace&quot;,
-      &quot;images&quot;: {
-        &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-        &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-        &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+    const mockRestaurant = {
+      name: 'Poutine Palace',
+      slug: 'poutine-palace',
+      images: {
+        thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+        owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+        banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
       },
-      &quot;menu&quot;: {
-        &quot;lunch&quot;: [
+      menu: {
+        lunch: [
           {
-            &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-            &quot;price&quot;: 35.99
+            name: 'Crab Pancakes with Sorrel Syrup',
+            price: 35.99,
           },
           {
-            &quot;name&quot;: &quot;Steamed Mussels&quot;,
-            &quot;price&quot;: 21.99
+            name: 'Steamed Mussels',
+            price: 21.99,
           },
           {
-            &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-            &quot;price&quot;: 35.99
-          }
+            name: 'Spinach Fennel Watercress Ravioli',
+            price: 35.99,
+          },
         ],
-        &quot;dinner&quot;: [
+        dinner: [
           {
-            &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-            &quot;price&quot;: 21.99
+            name: 'Gunthorp Chicken',
+            price: 21.99,
           },
           {
-            &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-            &quot;price&quot;: 45.99
+            name: 'Herring in Lavender Dill Reduction',
+            price: 45.99,
           },
           {
-            &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-            &quot;price&quot;: 45.99
-          }
-        ]
+            name: 'Chicken with Tomato Carrot Chutney Sauce',
+            price: 45.99,
+          },
+        ],
       },
-      &quot;address&quot;: {
-        &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-        &quot;city&quot;: &quot;Green Bay&quot;,
-        &quot;state&quot;: &quot;WI&quot;,
-        &quot;zip&quot;: &quot;53205&quot;
+      address: {
+        street: '230 W Kinzie Street',
+        city: 'Green Bay',
+        state: 'WI',
+        zip: '53205',
       },
-      &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-    }
-    const fixture = TestBed.createComponent(OrderComponent);
-    fixture.detectChanges();
-    expect(fixture.componentInstance.restaurant).toEqual(mockRestaurant)
+      _id: '3ZOZyTY1LH26LnVw',
+    };
+    expect(fixture.componentInstance.restaurant).toEqual(mockRestaurant);
   });
 
   it('should have an orderForm formGroup', () =&gt; {
-    const fixture = TestBed.createComponent(OrderComponent);
-    fixture.detectChanges();
-    expect(fixture.componentInstance.orderForm.controls.restaurant).toBeTruthy();
-    expect(fixture.componentInstance.orderForm.controls.address).toBeTruthy();
-    expect(fixture.componentInstance.orderForm.controls.phone).toBeTruthy();
-    expect(fixture.componentInstance.orderForm.controls.items).toBeTruthy();
+    expect(
+      fixture.componentInstance.orderForm?.controls['restaurant']
+    ).toBeTruthy();
+    expect(
+      fixture.componentInstance.orderForm?.controls['address']
+    ).toBeTruthy();
+    expect(fixture.componentInstance.orderForm?.controls['phone']).toBeTruthy();
+    expect(fixture.componentInstance.orderForm?.controls['items']).toBeTruthy();
   });
 
   it('should have a validator on items formControl', () =&gt; {
-    const fixture = TestBed.createComponent(OrderComponent);
-    fixture.detectChanges();
-    let itemFormControl = fixture.componentInstance.orderForm.controls.items;
-    expect(itemFormControl.valid).toEqual(false);
+    const itemFormControl =
+      fixture.componentInstance.orderForm?.controls['items'];
+    expect(itemFormControl?.valid).toEqual(false);
   });
-
 });
 
 </code></pre>
- <div line-highlight="9,86-87,"></div>
-<p>✏️ Update the menu-items spec file  <strong>src/app/order/menu-items/menu-items.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+ <div line-highlight="1,89,"></div>
+<p>✏️ Update the menu-items spec file <strong>src/app/order/menu-items/menu-items.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MenuItemsComponent } from './menu-items.component';
 
@@ -1739,12 +1838,11 @@ describe('MenuItemsComponent', () =&gt; {
   let component: MenuItemsComponent;
   let fixture: ComponentFixture&lt;MenuItemsComponent&gt;;
 
-  beforeEach(async(() =&gt; {
-    TestBed.configureTestingModule({
-      declarations: [ MenuItemsComponent ]
-    })
-    .compileComponents();
-  }));
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      declarations: [MenuItemsComponent],
+    }).compileComponents();
+  });
 
   beforeEach(() =&gt; {
     fixture = TestBed.createComponent(MenuItemsComponent);
@@ -1757,16 +1855,15 @@ describe('MenuItemsComponent', () =&gt; {
   });
 
   it('should display a list of inputs', () =&gt; {
-    const fixture = TestBed.createComponent(MenuItemsComponent);
     fixture.componentInstance.items = [
-      {&quot;name&quot;:&quot;Charred Octopus&quot;,&quot;price&quot;:25.99},
-      {&quot;name&quot;:&quot;Steamed Mussels&quot;,&quot;price&quot;:21.99},
-      {&quot;name&quot;:&quot;Ricotta Gnocchi&quot;,&quot;price&quot;:15.99}
+      { name: 'Charred Octopus', price: 25.99 },
+      { name: 'Steamed Mussels', price: 21.99 },
+      { name: 'Ricotta Gnocchi', price: 15.99 },
     ];
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let itemLabels = compiled.getElementsByTagName('label');
-    expect(itemLabels.length).toEqual(3)
+    const compiled = fixture.debugElement.nativeElement as HTMLElement;
+    const itemLabels = compiled.getElementsByTagName('label');
+    expect(itemLabels.length).toEqual(3);
   });
 });
 
@@ -1849,13 +1946,14 @@ platformBrowserDynamic()
 <p>✏️ Update <strong>src/app/order/menu-items.component.html</strong></p>
 <pre><code class="language-html">&lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of items&quot;&gt;
   &lt;label&gt;
-    &lt;input type=&quot;checkbox&quot;&gt;
-    {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
+    &lt;input type=&quot;checkbox&quot; /&gt;
+    {{ item.name }} &lt;span class=&quot;badge&quot;&gt;${{ item.price }}&lt;/span&gt;
   &lt;/label&gt;
 &lt;/li&gt;
+
 </code></pre>
 <p>✏️ Update <strong>src/app/order/menu-items.component.ts</strong></p>
-<pre><code class="language-ts">import { Component, OnInit, Input } from '@angular/core';
+<pre><code class="language-ts">import { Component, Input, OnInit } from '@angular/core';
 
 interface Item {
   name: string;
@@ -1865,77 +1963,92 @@ interface Item {
 @Component({
   selector: 'pmo-menu-items',
   templateUrl: './menu-items.component.html',
-  styleUrls: ['./menu-items.component.less']
+  styleUrls: ['./menu-items.component.less'],
 })
 export class MenuItemsComponent implements OnInit {
-  @Input() items: Item[];
+  @Input() items?: Item[];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit(): void {}
 }
 
 </code></pre>
 <p>✏️ Update <strong>src/app/order/order.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
-  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
-  &lt;/ng-container&gt;
+  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;&lt;/ng-container&gt;
   &lt;ng-template #showOrderForm&gt;
     &lt;h2&gt;Order here&lt;/h2&gt;
     &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
       &lt;tabset&gt;
         &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
-            &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot;&gt;&lt;/pmo-menu-items&gt;
+            &lt;pmo-menu-items [items]=&quot;restaurant?.menu?.lunch&quot;&gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
-        &lt;tab heading=&quot;Dinner menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
+        &lt;tab heading=&quot;Dinner Menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
-            &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot;&gt;&lt;/pmo-menu-items&gt;
+            &lt;pmo-menu-items [items]=&quot;restaurant?.menu?.dinner&quot;&gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
       &lt;/tabset&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-        &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
+        &lt;input
+          name=&quot;name&quot;
+          type=&quot;text&quot;
+          class=&quot;form-control&quot;
+          formControlName=&quot;name&quot;
+        /&gt;
         &lt;p&gt;Please enter your name.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-        &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
+        &lt;input
+          name=&quot;address&quot;
+          type=&quot;text&quot;
+          class=&quot;form-control&quot;
+          formControlName=&quot;address&quot;
+        /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
-        &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+        &lt;input
+          name=&quot;phone&quot;
+          type=&quot;text&quot;
+          class=&quot;form-control&quot;
+          formControlName=&quot;phone&quot;
+        /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;submit&quot;&gt;
-        &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
-          &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
-          &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
-            Place My Order!
-          &lt;/button&gt;
+        &lt;h4&gt;Total: ${{ orderTotal }}&lt;/h4&gt;
+        &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
+        &lt;button
+          type=&quot;submit&quot;
+          [disabled]=&quot;!orderForm.valid || orderProcessing&quot;
+          class=&quot;btn&quot;
+        &gt;
+          Place My Order!
+        &lt;/button&gt;
       &lt;/div&gt;
     &lt;/form&gt;
   &lt;/ng-template&gt;
 &lt;/div&gt;
 
 </code></pre>
- <div line-highlight="10,15,only"></div>
+ <div line-highlight="9,14,only"></div>
 <h2>Problem 4: Attaching Event Handlers to Item Checkboxes</h2>
 <p>Next, we want to know when a checkbox has been checked or unchecked, and update an array called <code>selectedItems</code> containing all checked items.</p>
 <h2>P4: Technical Requirements</h2>
 <p>Create a function in the MenuItemsComponent called <code>updateItems</code> that fires whenever a checkbox is checked and takes a parameter of the item that has been checked. In the <code>updateItems</code> function use the following code to update the <code>selectedItems</code> array:</p>
-<pre><code class="language-typescript"> let index = this.selectedItems.indexOf(item);
-  if(index &gt; -1) {
-    this.selectedItems.splice(index, 1);
-  }
-  else {
-    this.selectedItems.push(item);
-  }
+<pre><code class="language-typescript">let index = this.selectedItems.indexOf(item);
+if (index &gt; -1) {
+  this.selectedItems.splice(index, 1);
+} else {
+  this.selectedItems.push(item);
+}
 </code></pre>
 <h2>P4: What You Need to Know</h2>
 <h2>Event Handlers in Angular</h2>
@@ -1964,7 +2077,7 @@ const { ReactiveFormsModule, FormControl } = ng.forms;
     &lt;p&gt;A home component!&lt;/p&gt;
 
     &lt;button (click)=&quot;willCallOnClick()&quot;&gt;Click me!&lt;/button&gt;
-    {{clickMessage}}
+    {{ clickMessage }}
     &lt;button (click)=&quot;willCallWithParam(clickMessage)&quot;&gt;log click message&lt;/button&gt;
     &lt;p&gt;
       Value: {{ name.value }}
@@ -1976,23 +2089,23 @@ const { ReactiveFormsModule, FormControl } = ng.forms;
   `
 })
 class AppComponent {
-  public  name = new FormControl('');
+  public name = new FormControl('');
 
   constructor() {}
 
-  willCallOnClick() {
+  willCallOnClick(): void {
     this.clickMessage = 'You are my hero!';
   }
 
-  willCallWithParam(message: string) {
+  willCallWithParam(message: string): void {
     console.log(message + ' from my 1st click')
   }
 
-  willCallOnBlur(event) {
+  willCallOnBlur(event): void {
     console.log('value', event.target.value);
   }
 }
-           
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -2017,8 +2130,8 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='24,26,32,41-31,45-47,49-51,only'></div>
 <h2>P4: How to Verify Your Solution is Correct</h2>
-<p>✏️ Update the menu-items spec file  <strong>src/app/order/menu-items/menu-items.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+<p>✏️ Update the menu-items spec file <strong>src/app/order/menu-items/menu-items.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MenuItemsComponent } from './menu-items.component';
 
@@ -2026,12 +2139,11 @@ describe('MenuItemsComponent', () =&gt; {
   let component: MenuItemsComponent;
   let fixture: ComponentFixture&lt;MenuItemsComponent&gt;;
 
-  beforeEach(waitForAsync(() =&gt; {
-    TestBed.configureTestingModule({
-      declarations: [ MenuItemsComponent ]
-    })
-    .compileComponents();
-  }));
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      declarations: [MenuItemsComponent],
+    }).compileComponents();
+  });
 
   beforeEach(() =&gt; {
     fixture = TestBed.createComponent(MenuItemsComponent);
@@ -2044,148 +2156,143 @@ describe('MenuItemsComponent', () =&gt; {
   });
 
   it('should display a list of inputs', () =&gt; {
-    const fixture = TestBed.createComponent(MenuItemsComponent);
     fixture.componentInstance.items = [
-      {&quot;name&quot;:&quot;Charred Octopus&quot;,&quot;price&quot;:25.99},
-      {&quot;name&quot;:&quot;Steamed Mussels&quot;,&quot;price&quot;:21.99},
-      {&quot;name&quot;:&quot;Ricotta Gnocchi&quot;,&quot;price&quot;:15.99}
+      { name: 'Charred Octopus', price: 25.99 },
+      { name: 'Steamed Mussels', price: 21.99 },
+      { name: 'Ricotta Gnocchi', price: 15.99 },
     ];
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let itemLabels = compiled.getElementsByTagName('label');
-    expect(itemLabels.length).toEqual(3)
+    const compiled = fixture.debugElement.nativeElement as HTMLElement;
+    const itemLabels = compiled.getElementsByTagName('label');
+    expect(itemLabels.length).toEqual(3);
   });
 
   it('should call an updateItems function when a checkbox is selected or unselected', () =&gt; {
-    const fixture = TestBed.createComponent(MenuItemsComponent);
     fixture.componentInstance.items = [
-      {&quot;name&quot;:&quot;Charred Octopus&quot;,&quot;price&quot;:25.99},
-      {&quot;name&quot;:&quot;Steamed Mussels&quot;,&quot;price&quot;:21.99},
-      {&quot;name&quot;:&quot;Ricotta Gnocchi&quot;,&quot;price&quot;:15.99}
+      { name: 'Charred Octopus', price: 25.99 },
+      { name: 'Steamed Mussels', price: 21.99 },
+      { name: 'Ricotta Gnocchi', price: 15.99 },
     ];
     fixture.detectChanges();
-    let changeSpy = spyOn(fixture.componentInstance, 'updateItems');
+    const changeSpy = spyOn(fixture.componentInstance, 'updateItems');
     const compiled = fixture.debugElement.nativeElement;
     const input = compiled.getElementsByTagName('input')[0];
     input.click();
     fixture.detectChanges();
     expect(changeSpy).toHaveBeenCalled();
-  })
+  });
 });
 
 </code></pre>
- <div line-highlight="1,9,39-53,only"></div>
+ <div line-highlight="37-50,only"></div>
 <h2>P4: Solution</h2>
 <p>✏️ Update <strong>src/app/order/menu-items/menu-items.component.html</strong></p>
 <pre><code class="language-html">&lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of items&quot;&gt;
   &lt;label&gt;
-    &lt;input type=&quot;checkbox&quot; (change)=&quot;updateItems(item)&quot; &gt;
-    {{item.name}} &lt;span class=&quot;badge&quot;&gt;${{item.price}}&lt;/span&gt;
+    &lt;input type=&quot;checkbox&quot; (change)=&quot;updateItems(item)&quot; /&gt;
+    {{ item.name }} &lt;span class=&quot;badge&quot;&gt;${{ item.price }}&lt;/span&gt;
   &lt;/label&gt;
 &lt;/li&gt;
+
 </code></pre>
  <div line-highlight="3,only"></div>
 <p>✏️ Update <strong>src/app/order/menu-items/menu-items.component.ts</strong></p>
-<pre><code class="language-ts">import { Component, OnInit, Input } from '@angular/core';
+<pre><code class="language-ts">import { Component, Input, OnInit } from '@angular/core';
 
 interface Item {
   name: string;
-  price: number
+  price: number;
 }
 
 @Component({
   selector: 'pmo-menu-items',
   templateUrl: './menu-items.component.html',
-  styleUrls: ['./menu-items.component.less']
+  styleUrls: ['./menu-items.component.less'],
 })
 export class MenuItemsComponent implements OnInit {
-  @Input() items: Item[] = [];
+  @Input() items?: Item[];
   selectedItems: Item[] = [];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit(): void {}
 
-  updateItems(item: Item) {
-    let index = this.selectedItems.indexOf(item);
-    if(index &gt; -1) {
+  updateItems(item: Item): void {
+    const index = this.selectedItems.indexOf(item);
+    if (index &gt; -1) {
       this.selectedItems.splice(index, 1);
-    }
-    else {
+    } else {
       this.selectedItems.push(item);
     }
   }
-
 }
 
 </code></pre>
- <div line-highlight="14-15,22-30,only"></div>
+ <div line-highlight="15,21-28,only"></div>
 <h2>Problem 5: Update OrderFormComponent with selectedItems Array from MenuItemsComponent</h2>
 <p>Now we want to let the form know what the selected items are as they change so we can update the order total accordingly.</p>
 <h2>P5: Technical Requirements</h2>
 <p>Create an <code>itemsChanged</code> EventEmitter property that emits the <code>selectedItems</code> value every time it changes, and in the parent OrderForm component update the <code>items</code> FormControl with the value.</p>
 <h2>P5: How to Verify Your Solution is Correct</h2>
-<p>✏️ Update the menu-items spec file  <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs'; 
-
-import { OrderComponent } from './order.component';
+<p>✏️ Update the menu-items spec file <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
 import { RestaurantService } from '../restaurant/restaurant.service';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MenuItemsComponent } from './menu-items/menu-items.component';
+import { OrderComponent } from './order.component';
 
 class MockRestaurantService {
-  getRestaurant(slug:string) {
+  getRestaurant(slug: string) {
     return of({
-        &quot;name&quot;: &quot;Poutine Palace&quot;,
-        &quot;slug&quot;: &quot;poutine-palace&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
-        },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-              &quot;price&quot;: 35.99
-            },
-            {
-              &quot;name&quot;: &quot;Steamed Mussels&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-              &quot;price&quot;: 35.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-              &quot;price&quot;: 45.99
-            }
-          ]
-        },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53205&quot;
-        },
-        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-      })
+      name: 'Poutine Palace',
+      slug: 'poutine-palace',
+      images: {
+        thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+        owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+        banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+      },
+      menu: {
+        lunch: [
+          {
+            name: 'Crab Pancakes with Sorrel Syrup',
+            price: 35.99,
+          },
+          {
+            name: 'Steamed Mussels',
+            price: 21.99,
+          },
+          {
+            name: 'Spinach Fennel Watercress Ravioli',
+            price: 35.99,
+          },
+        ],
+        dinner: [
+          {
+            name: 'Gunthorp Chicken',
+            price: 21.99,
+          },
+          {
+            name: 'Herring in Lavender Dill Reduction',
+            price: 45.99,
+          },
+          {
+            name: 'Chicken with Tomato Carrot Chutney Sauce',
+            price: 45.99,
+          },
+        ],
+      },
+      address: {
+        street: '230 W Kinzie Street',
+        city: 'Green Bay',
+        state: 'WI',
+        zip: '53205',
+      },
+      _id: '3ZOZyTY1LH26LnVw',
+    });
   }
 }
 
@@ -2193,31 +2300,33 @@ const MockActivatedRoute = {
   snapshot: {
     paramMap: {
       get() {
-        return 'poutine-palace'
-      }
-    }
-  }
-}
+        return 'poutine-palace';
+      },
+    },
+  },
+};
 
 describe('OrderComponent', () =&gt; {
   let component: OrderComponent;
   let fixture: ComponentFixture&lt;OrderComponent&gt;;
 
-  beforeEach(async(() =&gt; {
-    TestBed.configureTestingModule({
-      declarations: [ OrderComponent, MenuItemsComponent ], 
-      imports: [  ReactiveFormsModule, RouterTestingModule ],
-      providers: [{
-        provide: RestaurantService,
-        useClass: MockRestaurantService
-      }, {
-        provide: ActivatedRoute,
-        useValue: MockActivatedRoute
-      }],
-      schemas: [ NO_ERRORS_SCHEMA ]
-    })
-    .compileComponents();
-  }));
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      declarations: [OrderComponent, MenuItemsComponent],
+      imports: [ReactiveFormsModule, RouterTestingModule],
+      providers: [
+        {
+          provide: RestaurantService,
+          useClass: MockRestaurantService,
+        },
+        {
+          provide: ActivatedRoute,
+          useValue: MockActivatedRoute,
+        },
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
+  });
 
   beforeEach(() =&gt; {
     fixture = TestBed.createComponent(OrderComponent);
@@ -2230,110 +2339,116 @@ describe('OrderComponent', () =&gt; {
   });
 
   it('should get a restaurant based on route slug', () =&gt; {
-    let mockRestaurant = {
-      &quot;name&quot;: &quot;Poutine Palace&quot;,
-      &quot;slug&quot;: &quot;poutine-palace&quot;,
-      &quot;images&quot;: {
-        &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-        &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-        &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+    const mockRestaurant = {
+      name: 'Poutine Palace',
+      slug: 'poutine-palace',
+      images: {
+        thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+        owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+        banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
       },
-      &quot;menu&quot;: {
-        &quot;lunch&quot;: [
+      menu: {
+        lunch: [
           {
-            &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-            &quot;price&quot;: 35.99
+            name: 'Crab Pancakes with Sorrel Syrup',
+            price: 35.99,
           },
           {
-            &quot;name&quot;: &quot;Steamed Mussels&quot;,
-            &quot;price&quot;: 21.99
+            name: 'Steamed Mussels',
+            price: 21.99,
           },
           {
-            &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-            &quot;price&quot;: 35.99
-          }
+            name: 'Spinach Fennel Watercress Ravioli',
+            price: 35.99,
+          },
         ],
-        &quot;dinner&quot;: [
+        dinner: [
           {
-            &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-            &quot;price&quot;: 21.99
+            name: 'Gunthorp Chicken',
+            price: 21.99,
           },
           {
-            &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-            &quot;price&quot;: 45.99
+            name: 'Herring in Lavender Dill Reduction',
+            price: 45.99,
           },
           {
-            &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-            &quot;price&quot;: 45.99
-          }
-        ]
+            name: 'Chicken with Tomato Carrot Chutney Sauce',
+            price: 45.99,
+          },
+        ],
       },
-      &quot;address&quot;: {
-        &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-        &quot;city&quot;: &quot;Green Bay&quot;,
-        &quot;state&quot;: &quot;WI&quot;,
-        &quot;zip&quot;: &quot;53205&quot;
+      address: {
+        street: '230 W Kinzie Street',
+        city: 'Green Bay',
+        state: 'WI',
+        zip: '53205',
       },
-      &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-    }
-    const fixture = TestBed.createComponent(OrderComponent);
-    fixture.detectChanges();
-    expect(fixture.componentInstance.restaurant).toEqual(mockRestaurant)
+      _id: '3ZOZyTY1LH26LnVw',
+    };
+    expect(fixture.componentInstance.restaurant).toEqual(mockRestaurant);
   });
 
   it('should have an orderForm formGroup', () =&gt; {
-    const fixture = TestBed.createComponent(OrderComponent);
-    fixture.detectChanges();
-    expect(fixture.componentInstance.orderForm.controls.restaurant).toBeTruthy();
-    expect(fixture.componentInstance.orderForm.controls.address).toBeTruthy();
-    expect(fixture.componentInstance.orderForm.controls.phone).toBeTruthy();
-    expect(fixture.componentInstance.orderForm.controls.items).toBeTruthy();
+    expect(
+      fixture.componentInstance.orderForm?.controls['restaurant']
+    ).toBeTruthy();
+    expect(
+      fixture.componentInstance.orderForm?.controls['address']
+    ).toBeTruthy();
+    expect(fixture.componentInstance.orderForm?.controls['phone']).toBeTruthy();
+    expect(fixture.componentInstance.orderForm?.controls['items']).toBeTruthy();
   });
 
   it('should have a validator on items formControl', () =&gt; {
-    const fixture = TestBed.createComponent(OrderComponent);
-    fixture.detectChanges();
-    let itemFormControl = fixture.componentInstance.orderForm.controls.items;
-    expect(itemFormControl.valid).toEqual(false);
+    const itemFormControl =
+      fixture.componentInstance.orderForm?.controls['items'];
+    expect(itemFormControl?.valid).toEqual(false);
   });
 
   it('should get updated selected Items when child component changes', () =&gt; {
-    const fixture = TestBed.createComponent(OrderComponent);
     fixture.detectChanges();
-    let changeSpy = spyOn(fixture.componentInstance, 'getChange');
-    const compiled = fixture.debugElement.nativeElement;
-    let childInput = compiled.getElementsByTagName('pmo-menu-items')[0].getElementsByTagName('input')[0];
+    const changeSpy = spyOn(fixture.componentInstance, 'getChange');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const childInput = compiled
+      .getElementsByTagName('pmo-menu-items')[0]
+      .getElementsByTagName('input')[0];
     childInput.click();
     expect(changeSpy).toHaveBeenCalled();
   });
 
   it('should update items FormControl when updateItems is called', () =&gt; {
-    const fixture = TestBed.createComponent(OrderComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let childInput = compiled.getElementsByTagName('pmo-menu-items')[0].getElementsByTagName('input')[0];
-    let formItems = fixture.componentInstance.orderForm.get('items');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const childInput = compiled
+      .getElementsByTagName('pmo-menu-items')[0]
+      .getElementsByTagName('input')[0];
+    const formItems = fixture.componentInstance.orderForm?.get('items');
     childInput.click();
     fixture.detectChanges();
-    expect(formItems.value).toEqual([{&quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,&quot;price&quot;: 35.99}])
+    expect(formItems?.value).toEqual([
+      { name: 'Crab Pancakes with Sorrel Syrup', price: 35.99 },
+    ]);
   });
 
   it('should update the order total when the items FormControl value changes', () =&gt; {
-    const fixture = TestBed.createComponent(OrderComponent);
     fixture.detectChanges();
-    let compiled = fixture.debugElement.nativeElement;
-    let childInput1 = compiled.getElementsByTagName('pmo-menu-items')[0].getElementsByTagName('input')[0];
-    let childInput2 = compiled.getElementsByTagName('pmo-menu-items')[0].getElementsByTagName('input')[1];
+    const compiled = fixture.nativeElement as HTMLElement;
+    const childInput1 = compiled
+      .getElementsByTagName('pmo-menu-items')[0]
+      .getElementsByTagName('input')[0];
+    const childInput2 = compiled
+      .getElementsByTagName('pmo-menu-items')[0]
+      .getElementsByTagName('input')[1];
     childInput1.click();
     childInput2.click();
     fixture.detectChanges();
-    let orderText = compiled.querySelector('.submit h4');
-    expect(orderText.textContent).toEqual('Total: $57.98')
-  })
-
+    const orderText = compiled.querySelector('.submit h4');
+    expect(orderText?.textContent).toEqual('Total: $57.98');
+  });
 });
+
 </code></pre>
- <div line-highlight="10,79,171-179,181-190,192-203,only"></div>
+ <div line-highlight="8,78,171-180,182-194,196-210,only"></div>
 <h2>P5: What you need to know</h2>
 <h2>Emitting Data to Parent Components</h2>
 <p>To pass data to parent components in Angular, the <a href="https://angular.io/api/core/EventEmitter" target="_blank">EventEmitter</a> class is used in combination with the <a href="https://angular.io/api/core/Output" target="_blank">Output decorator</a>. The Output decorator marks a property to be listened to during change detection, and we call the <code>emit</code> method to broadcast the property's new value.</p>
@@ -2368,7 +2483,7 @@ const { ReactiveFormsModule, FormControl } = ng.forms;
   ],
   template: `
     &lt;p&gt;Parent component!&lt;/p&gt;
-    &lt;p&gt;Message from child: {{message}}&lt;/p&gt;
+    &lt;p&gt;Message from child: {{ message }}&lt;/p&gt;
     &lt;child-component (sendMessage)=&quot;getMessage($event)&quot;&gt;&lt;/child-component&gt;
   `
 })
@@ -2376,12 +2491,12 @@ class ParentComponent implements OnInit {
   public message: string;
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
 
   }
 
-  getMessage(ev) {
-    this.message = ev;
+  getMessage(event): void {
+    this.message = event;
   }
 }
 
@@ -2410,11 +2525,11 @@ class ChildComponent implements OnInit {
  
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
 
   }
 
-  callToEmit() {
+  callToEmit(): void {
     this.sendMessage.emit(this.childMessage.value);
   }
 }
@@ -2492,7 +2607,7 @@ class AppComponent implements OnInit {
 
   constructor(private fb:FormBuilder) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.myQuickForm = this.fb.group({
       firstName: {value: '', disabled: false},
       lastName: {value: '', disabled: false},
@@ -2500,9 +2615,9 @@ class AppComponent implements OnInit {
     });
   }
 
-  customChange(ev) {
-    let newVal = ev.currentTarget.value;
-    let formControl = this.myQuickForm.get('firstName');
+  customChange(ev): void {
+    const newVal = ev.currentTarget.value;
+    const formControl = this.myQuickForm.get('firstName');
     formControl.patchValue(newVal);
   }
 }
@@ -2538,137 +2653,173 @@ platformBrowserDynamic()
 </ul>
 <h2>P5: Solution</h2>
 <p>✏️ Update <strong>src/app/order/menu-items.component.ts</strong></p>
-<pre><code class="language-ts">import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+<pre><code class="language-ts">import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 interface Item {
   name: string;
-  price: number
+  price: number;
 }
 
 @Component({
   selector: 'pmo-menu-items',
   templateUrl: './menu-items.component.html',
-  styleUrls: ['./menu-items.component.less']
+  styleUrls: ['./menu-items.component.less'],
 })
 export class MenuItemsComponent implements OnInit {
-  @Input() items: Item[] = [];
+  @Input() items?: Item[];
+  @Output() itemsChanged: EventEmitter&lt;Item[]&gt; = new EventEmitter();
   selectedItems: Item[] = [];
-  @Output() itemsChanged: EventEmitter&lt;any&gt; = new EventEmitter();
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit(): void {}
 
-  updateItems(item: Item) {
-    let index = this.selectedItems.indexOf(item);
-    if(index &gt; -1) {
+  updateItems(item: Item): void {
+    const index = this.selectedItems.indexOf(item);
+    if (index &gt; -1) {
       this.selectedItems.splice(index, 1);
-    }
-    else {
+    } else {
       this.selectedItems.push(item);
     }
     this.itemsChanged.emit(this.selectedItems);
   }
-
 }
 
 </code></pre>
- <div line-highlight="1,16,31,only"></div>
+ <div line-highlight="1,15,29,only"></div>
 <p>✏️ Update <strong>src/app/order/order.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
-  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
-  &lt;/ng-container&gt;
+  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;&lt;/ng-container&gt;
   &lt;ng-template #showOrderForm&gt;
     &lt;h2&gt;Order here&lt;/h2&gt;
     &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
       &lt;tabset&gt;
-        &lt;tab heading=&quot;Lunch Menu&quot;&gt;
+        &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
-            &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot; (itemsChanged)=&quot;getChange($event)&quot; &gt;&lt;/pmo-menu-items&gt;
+            &lt;pmo-menu-items
+              [items]=&quot;restaurant?.menu?.lunch&quot;
+              (itemsChanged)=&quot;getChange($event)&quot;
+            &gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
-        &lt;tab heading=&quot;Dinner menu&quot;&gt;
+        &lt;tab heading=&quot;Dinner Menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
-            &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot; (itemsChanged)=&quot;getChange($event)&quot; &gt;&lt;/pmo-menu-items&gt;
+            &lt;pmo-menu-items
+              [items]=&quot;restaurant?.menu?.dinner&quot;
+              (itemsChanged)=&quot;getChange($event)&quot;
+            &gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
       &lt;/tabset&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-        &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
+        &lt;input
+          name=&quot;name&quot;
+          type=&quot;text&quot;
+          class=&quot;form-control&quot;
+          formControlName=&quot;name&quot;
+        /&gt;
         &lt;p&gt;Please enter your name.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-        &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
+        &lt;input
+          name=&quot;address&quot;
+          type=&quot;text&quot;
+          class=&quot;form-control&quot;
+          formControlName=&quot;address&quot;
+        /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
-        &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+        &lt;input
+          name=&quot;phone&quot;
+          type=&quot;text&quot;
+          class=&quot;form-control&quot;
+          formControlName=&quot;phone&quot;
+        /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;submit&quot;&gt;
-        &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
-          &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
-          &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
-            Place My Order!
-          &lt;/button&gt;
+        &lt;h4&gt;Total: ${{ orderTotal }}&lt;/h4&gt;
+        &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
+        &lt;button
+          type=&quot;submit&quot;
+          [disabled]=&quot;!orderForm.valid || orderProcessing&quot;
+          class=&quot;btn&quot;
+        &gt;
+          Place My Order!
+        &lt;/button&gt;
       &lt;/div&gt;
     &lt;/form&gt;
   &lt;/ng-template&gt;
 &lt;/div&gt;
+
 </code></pre>
- <div line-highlight="8,10,13,15,only"></div>
+ <div line-highlight="9-12,17-20,only"></div>
 <p>✏️ Update <strong>src/app/order/order.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, FormArray, AbstractControl } from '@angular/forms';
-
-import { RestaurantService } from '../restaurant/restaurant.service';
-import { Restaurant } from '../restaurant/restaurant';
 import { Subject } from 'rxjs';
-import { takeUntil } from &quot;rxjs/operators&quot;;
+import { takeUntil } from 'rxjs/operators';
+import { Restaurant } from '../restaurant/restaurant';
+import { RestaurantService } from '../restaurant/restaurant.service';
 
-//CUSTOM VALIDATION FUNCTION TO ENSURE THAT THE ITEMS FORM VALUE CONTAINS AT LEAST ONE ITEM. 
-function minLengthArray(min: number) {
-  return (c: AbstractControl): {[key: string]: any} =&gt; {
-      if (c.value.length &gt;= min)
-          return null;
-      return { 'minLengthArray': {valid: false }};
-  }
+// CUSTOM VALIDATION FUNCTION TO ENSURE THAT THE ITEMS FORM VALUE CONTAINS AT LEAST ONE ITEM.
+function minLengthArray(min: number): ValidatorFn {
+  return (c: AbstractControl): ValidationErrors | null =&gt; {
+    if (c.value.length &gt;= min) {
+      return null;
+    }
+    return { minLengthArray: { valid: false } };
+  };
 }
 
 @Component({
   selector: 'pmo-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.less']
+  styleUrls: ['./order.component.less'],
 })
 export class OrderComponent implements OnInit, OnDestroy {
-  orderForm: FormGroup;
-  restaurant: Restaurant;
-  isLoading: boolean = true;
-  items: FormArray;
-  orderTotal: number = 0.0;
+  orderForm?: FormGroup;
+  restaurant?: Restaurant;
+  isLoading = true;
+  items?: FormArray;
+  orderTotal = 0.0;
   completedOrder: any;
-  orderComplete: boolean = false;
-  orderProcessing: boolean = false;
+  orderComplete = false;
+  orderProcessing = false;
   private unSubscribe = new Subject&lt;void&gt;();
 
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private restaurantService: RestaurantService,
     private formBuilder: FormBuilder
-  ) { 
-  }
+  ) {}
 
-  ngOnInit() {
-    let slug = this.route.snapshot.paramMap.get('slug');
-    this.restaurantService.getRestaurant(slug).subscribe((res:Restaurant) =&gt; {
-      this.restaurant = res;
-      this.createOrderForm();
-    });    
+  ngOnInit(): void {
+    // GETTING THE RESTAURANT FROM THE ROUTE SLUG
+    const slug = this.route.snapshot.paramMap.get('slug');
+
+    if (slug) {
+      this.restaurantService
+        .getRestaurant(slug)
+        .subscribe((data: Restaurant) =&gt; {
+          this.restaurant = data;
+          this.isLoading = false;
+          this.createOrderForm();
+        });
+    }
   }
 
   ngOnDestroy(): void {
@@ -2676,62 +2827,65 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.unSubscribe.complete();
   }
 
-  createOrderForm() {
-    //CREATE AN ORDER FORM TO COLLECT: RESTAURANT ID, NAME, ADDRESS, PHONE, AND ITEMS
-    // ITEMS SHOULD USE THE CUSTOM MINLENGTH ARRAY VALIDATION
+  createOrderForm(): void {
     this.orderForm = this.formBuilder.group({
-      restaurant: [{value: this.restaurant._id}],
-      name: [''],
-      address: [''],
-      phone: [''],
-      items: [[], minLengthArray(1)]
+      restaurant: [this.restaurant?._id],
+      name: [null, Validators.required],
+      address: [null, Validators.required],
+      phone: [null, Validators.required],
+      // PASSING OUR CUSTOM VALIDATION FUNCTION TO THIS FORM CONTROL
+      items: [[], minLengthArray(1)],
     });
     this.onChanges();
   }
 
-  getChange(newItems: []) {
-    let currentItems = this.orderForm.get('items').value;
+  getChange(newItems: []): void {
+    const currentItems = this.orderForm?.get('items')?.value;
 
     for (let i = 0; i &lt; newItems.length; i++) {
-      let item = newItems[i];
-      let idx = currentItems.indexOf(item);
+      const item = newItems[i];
+      const idx = currentItems.indexOf(item);
       if (idx === -1) {
         currentItems.push(item);
       }
-      
     }
-    this.orderForm.get('items').patchValue(newItems);
+    this.orderForm?.get('items')?.patchValue(newItems);
   }
 
-  onChanges() {
+  onChanges(): void {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
-    this.orderForm.get('items').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe(val =&gt; {
-      let total = 0.0;
-      if(val.length) {
-        for (const item of val) {
-          total += item.price;
+    this.orderForm
+      ?.get('items')
+      ?.valueChanges.pipe(takeUntil(this.unSubscribe))
+      .subscribe((val) =&gt; {
+        let total = 0.0;
+        if (val.length) {
+          for (const item of val) {
+            total += item.price;
+          }
+          this.orderTotal = Math.round(total * 100) / 100;
+        } else {
+          this.orderTotal = total;
         }
-        this.orderTotal = Math.round(total * 100) / 100;
-      }
-      else {
-        this.orderTotal = total;
-      }
-    });
+      });
   }
 
-  startNewOrder() {
+  onSubmit(): void {}
+
+  startNewOrder(): void {
     this.orderComplete = false;
-    this.completedOrder = this.orderForm.value;
+    this.completedOrder = this.orderForm?.value;
+    // CLEAR THE ORDER FORM
     this.createOrderForm();
   }
-
 }
+
 </code></pre>
- <div line-highlight="3,27,29,31-32,38,43-45,47,56-57,59-63,68-69,71-75,77-79,94,102,only"></div>
+ <div line-highlight="81-82,84-91,119,only"></div>
 <h2>Control Value Accessor</h2>
-<p>Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the  <a href="https://angular.io/api/forms/ControlValueAccessor" target="_blank">Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.</p>
+<p>Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the <a href="https://angular.io/api/forms/ControlValueAccessor" target="_blank">Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.</p>
 <p>✏️ Update <strong>src/app/order/menu-items.component.ts</strong></p>
-<pre><code class="language-ts">import { Component, Input, forwardRef } from '@angular/core';
+<pre><code class="language-ts">import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 interface Item {
@@ -2747,19 +2901,18 @@ interface Item {
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() =&gt; MenuItemsComponent),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class MenuItemsComponent implements ControlValueAccessor {
-  @Input() items: Item[];
+  @Input() items?: Item[];
+  @Input('value') _value: Item[] = [];
 
-  constructor() { }
+  constructor() {}
 
-  @Input('value') _value: Item[];
-
-  onChange: any = () =&gt; { };
-  onTouched: any = () =&gt; { };
+  onChange: any = () =&gt; {};
+  onTouched: any = () =&gt; {};
 
   get value() {
     return this._value;
@@ -2771,33 +2924,31 @@ export class MenuItemsComponent implements ControlValueAccessor {
     this.onTouched();
   }
 
-  registerOnChange( fn : any ) : void {
+  registerOnChange(fn: any): void {
     this.onChange = fn;
   }
 
-  registerOnTouched( fn : any ) : void {
+  registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
 
-  writeValue(value:Item[]) {
+  writeValue(value: Item[]) {
     this.value = value;
   }
 
-  updateItems(item: Item) {
-    let index = this._value.indexOf(item);
-    if(index !== -1) {
-      this._value.splice(index, 1)
-    }
-    else {
-      this._value.push(item);
+  updateItems(item: Item): void {
+    const index = this._value?.indexOf(item) ?? -1;
+    if (index !== -1) {
+      this._value?.splice(index, 1);
+    } else {
+      this._value?.push(item);
     }
     this.writeValue(this._value);
   }
-
 }
 
 </code></pre>
-<div line-highlight='1, 2, 8-14, 16'></div>
+ <div line-highlight="1-2,13-19,21,23,27-28,30-31,34-38,40-42,44-46,48-50,53-55,57,59-60,only"></div>
 <p>Other concepts used here:</p>
 <h3>forwardRef</h3>
 <p><a href="https://angular.io/api/core/forwardRef" target="\_blank">https://angular.io/api/core/forwardRef</a> Used to reference a token that may not be defined when we need it.</p>
@@ -2806,112 +2957,136 @@ export class MenuItemsComponent implements ControlValueAccessor {
 <h3>Use New Menu Items Component in Order Form</h3>
 <p>✏️ Update <strong>src/app/order/order.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
-  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
-  &lt;/ng-container&gt;
+  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;&lt;/ng-container&gt;
   &lt;ng-template #showOrderForm&gt;
     &lt;h2&gt;Order here&lt;/h2&gt;
     &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
       &lt;tabset&gt;
-        &lt;tab heading=&quot;Lunch Menu&quot;&gt;
+        &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
-            &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
+            &lt;pmo-menu-items
+              [items]=&quot;restaurant?.menu?.lunch&quot;
+              formControlName=&quot;items&quot;
+            &gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
-        &lt;tab heading=&quot;Dinner menu&quot;&gt;
+        &lt;tab heading=&quot;Dinner Menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
-            &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
+            &lt;pmo-menu-items
+              [items]=&quot;restaurant?.menu?.dinner&quot;
+              formControlName=&quot;items&quot;
+            &gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
       &lt;/tabset&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-        &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
+        &lt;input
+          name=&quot;name&quot;
+          type=&quot;text&quot;
+          class=&quot;form-control&quot;
+          formControlName=&quot;name&quot;
+        /&gt;
         &lt;p&gt;Please enter your name.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-        &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
+        &lt;input
+          name=&quot;address&quot;
+          type=&quot;text&quot;
+          class=&quot;form-control&quot;
+          formControlName=&quot;address&quot;
+        /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
-        &lt;input name=&quot;phone&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+        &lt;input
+          name=&quot;phone&quot;
+          type=&quot;text&quot;
+          class=&quot;form-control&quot;
+          formControlName=&quot;phone&quot;
+        /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;submit&quot;&gt;
-        &lt;h4&gt;Total: ${{orderTotal}}&lt;/h4&gt;
-          &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
-          &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
-            Place My Order!
-          &lt;/button&gt;
+        &lt;h4&gt;Total: ${{ orderTotal }}&lt;/h4&gt;
+        &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
+        &lt;button
+          type=&quot;submit&quot;
+          [disabled]=&quot;!orderForm.valid || orderProcessing&quot;
+          class=&quot;btn&quot;
+        &gt;
+          Place My Order!
+        &lt;/button&gt;
       &lt;/div&gt;
     &lt;/form&gt;
   &lt;/ng-template&gt;
 &lt;/div&gt;
+
 </code></pre>
- <div line-highlight="10,15,only"></div>
+ <div line-highlight="11,19,only"></div>
 <p>We now have a form that updates the <code>items</code> formControl when items are selected and shows the user an updated total!</p>
 <h3>Update Order Component Tests</h3>
-<p>✏️ Update the order spec file  <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs'; 
-
-import { OrderComponent } from './order.component';
+<p>✏️ Update the order spec file <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
 import { RestaurantService } from '../restaurant/restaurant.service';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MenuItemsComponent } from './menu-items/menu-items.component';
+import { OrderComponent } from './order.component';
 
 class MockRestaurantService {
-  getRestaurant(slug:string) {
+  getRestaurant(slug: string) {
     return of({
-        &quot;name&quot;: &quot;Poutine Palace&quot;,
-        &quot;slug&quot;: &quot;poutine-palace&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
-        },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-              &quot;price&quot;: 35.99
-            },
-            {
-              &quot;name&quot;: &quot;Steamed Mussels&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-              &quot;price&quot;: 35.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-              &quot;price&quot;: 45.99
-            }
-          ]
-        },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53205&quot;
-        },
-        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-      })
+      name: 'Poutine Palace',
+      slug: 'poutine-palace',
+      images: {
+        thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+        owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+        banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+      },
+      menu: {
+        lunch: [
+          {
+            name: 'Crab Pancakes with Sorrel Syrup',
+            price: 35.99,
+          },
+          {
+            name: 'Steamed Mussels',
+            price: 21.99,
+          },
+          {
+            name: 'Spinach Fennel Watercress Ravioli',
+            price: 35.99,
+          },
+        ],
+        dinner: [
+          {
+            name: 'Gunthorp Chicken',
+            price: 21.99,
+          },
+          {
+            name: 'Herring in Lavender Dill Reduction',
+            price: 45.99,
+          },
+          {
+            name: 'Chicken with Tomato Carrot Chutney Sauce',
+            price: 45.99,
+          },
+        ],
+      },
+      address: {
+        street: '230 W Kinzie Street',
+        city: 'Green Bay',
+        state: 'WI',
+        zip: '53205',
+      },
+      _id: '3ZOZyTY1LH26LnVw',
+    });
   }
 }
 
@@ -2919,31 +3094,33 @@ const MockActivatedRoute = {
   snapshot: {
     paramMap: {
       get() {
-        return 'poutine-palace'
-      }
-    }
-  }
-}
+        return 'poutine-palace';
+      },
+    },
+  },
+};
 
 describe('OrderComponent', () =&gt; {
   let component: OrderComponent;
   let fixture: ComponentFixture&lt;OrderComponent&gt;;
 
-  beforeEach(async(() =&gt; {
-    TestBed.configureTestingModule({
-      declarations: [ OrderComponent, MenuItemsComponent ], 
-      imports: [  ReactiveFormsModule, RouterTestingModule ],
-      providers: [{
-        provide: RestaurantService,
-        useClass: MockRestaurantService
-      }, {
-        provide: ActivatedRoute,
-        useValue: MockActivatedRoute
-      }],
-      schemas: [ NO_ERRORS_SCHEMA ]
-    })
-    .compileComponents();
-  }));
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      declarations: [OrderComponent, MenuItemsComponent],
+      imports: [ReactiveFormsModule, RouterTestingModule],
+      providers: [
+        {
+          provide: RestaurantService,
+          useClass: MockRestaurantService,
+        },
+        {
+          provide: ActivatedRoute,
+          useValue: MockActivatedRoute,
+        },
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
+  });
 
   beforeEach(() =&gt; {
     fixture = TestBed.createComponent(OrderComponent);
@@ -2956,97 +3133,101 @@ describe('OrderComponent', () =&gt; {
   });
 
   it('should get a restaurant based on route slug', () =&gt; {
-    let mockRestaurant = {
-      &quot;name&quot;: &quot;Poutine Palace&quot;,
-      &quot;slug&quot;: &quot;poutine-palace&quot;,
-      &quot;images&quot;: {
-        &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-        &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-        &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+    const mockRestaurant = {
+      name: 'Poutine Palace',
+      slug: 'poutine-palace',
+      images: {
+        thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+        owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+        banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
       },
-      &quot;menu&quot;: {
-        &quot;lunch&quot;: [
+      menu: {
+        lunch: [
           {
-            &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-            &quot;price&quot;: 35.99
+            name: 'Crab Pancakes with Sorrel Syrup',
+            price: 35.99,
           },
           {
-            &quot;name&quot;: &quot;Steamed Mussels&quot;,
-            &quot;price&quot;: 21.99
+            name: 'Steamed Mussels',
+            price: 21.99,
           },
           {
-            &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-            &quot;price&quot;: 35.99
-          }
+            name: 'Spinach Fennel Watercress Ravioli',
+            price: 35.99,
+          },
         ],
-        &quot;dinner&quot;: [
+        dinner: [
           {
-            &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-            &quot;price&quot;: 21.99
+            name: 'Gunthorp Chicken',
+            price: 21.99,
           },
           {
-            &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-            &quot;price&quot;: 45.99
+            name: 'Herring in Lavender Dill Reduction',
+            price: 45.99,
           },
           {
-            &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-            &quot;price&quot;: 45.99
-          }
-        ]
+            name: 'Chicken with Tomato Carrot Chutney Sauce',
+            price: 45.99,
+          },
+        ],
       },
-      &quot;address&quot;: {
-        &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-        &quot;city&quot;: &quot;Green Bay&quot;,
-        &quot;state&quot;: &quot;WI&quot;,
-        &quot;zip&quot;: &quot;53205&quot;
+      address: {
+        street: '230 W Kinzie Street',
+        city: 'Green Bay',
+        state: 'WI',
+        zip: '53205',
       },
-      &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-    }
-    const fixture = TestBed.createComponent(OrderComponent);
-    fixture.detectChanges();
-    expect(fixture.componentInstance.restaurant).toEqual(mockRestaurant)
+      _id: '3ZOZyTY1LH26LnVw',
+    };
+    expect(fixture.componentInstance.restaurant).toEqual(mockRestaurant);
   });
 
   it('should have an orderForm formGroup', () =&gt; {
-    const fixture = TestBed.createComponent(OrderComponent);
-    fixture.detectChanges();
-    expect(fixture.componentInstance.orderForm.controls.restaurant).toBeTruthy();
-    expect(fixture.componentInstance.orderForm.controls.address).toBeTruthy();
-    expect(fixture.componentInstance.orderForm.controls.phone).toBeTruthy();
-    expect(fixture.componentInstance.orderForm.controls.items).toBeTruthy();
+    expect(
+      fixture.componentInstance.orderForm?.controls['restaurant']
+    ).toBeTruthy();
+    expect(
+      fixture.componentInstance.orderForm?.controls['address']
+    ).toBeTruthy();
+    expect(fixture.componentInstance.orderForm?.controls['phone']).toBeTruthy();
+    expect(fixture.componentInstance.orderForm?.controls['items']).toBeTruthy();
   });
 
   it('should have a validator on items formControl', () =&gt; {
-    const fixture = TestBed.createComponent(OrderComponent);
-    fixture.detectChanges();
-    let itemFormControl = fixture.componentInstance.orderForm.controls.items;
-    expect(itemFormControl.valid).toEqual(false);
+    const itemFormControl =
+      fixture.componentInstance.orderForm?.controls['items'];
+    expect(itemFormControl?.valid).toEqual(false);
   });
 
   it('should update items FormControl when setUpdatesItems is called', () =&gt; {
-    const fixture = TestBed.createComponent(OrderComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let childInput = compiled.getElementsByTagName('pmo-menu-items')[0].getElementsByTagName('input')[0];
-    let formItems = fixture.componentInstance.orderForm.get('items');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const childInput = compiled
+      .getElementsByTagName('pmo-menu-items')[0]
+      .getElementsByTagName('input')[0];
+    const formItems = fixture.componentInstance.orderForm?.get('items');
     childInput.click();
     fixture.detectChanges();
-    expect(formItems.value).toEqual([{&quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,&quot;price&quot;: 35.99}])
+    expect(formItems?.value).toEqual([
+      { name: 'Crab Pancakes with Sorrel Syrup', price: 35.99 },
+    ]);
   });
 
   it('should update the order total when the items FormControl value changes', () =&gt; {
-    const fixture = TestBed.createComponent(OrderComponent);
     fixture.detectChanges();
-    let compiled = fixture.debugElement.nativeElement;
-    let childInput1 = compiled.getElementsByTagName('pmo-menu-items')[0].getElementsByTagName('input')[0];
-    let childInput2 = compiled.getElementsByTagName('pmo-menu-items')[0].getElementsByTagName('input')[1];
+    const compiled = fixture.nativeElement as HTMLElement;
+    const childInput1 = compiled
+      .getElementsByTagName('pmo-menu-items')[0]
+      .getElementsByTagName('input')[0];
+    const childInput2 = compiled
+      .getElementsByTagName('pmo-menu-items')[0]
+      .getElementsByTagName('input')[1];
     childInput1.click();
     childInput2.click();
     fixture.detectChanges();
-    let orderText = compiled.querySelector('.submit h4');
-    expect(orderText.textContent).toEqual('Total: $57.98')
-  })
-
+    const orderText = compiled.querySelector('.submit h4');
+    expect(orderText?.textContent).toEqual('Total: $57.98');
+  });
 });
 
 </code></pre>

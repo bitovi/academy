@@ -599,7 +599,7 @@ covering CanJS core libraries.">
 </ul>
 <h2>Add Production API URL</h2>
 <p>For our production app, we won't be running a local server, instead we'll point to <code>https://place-my-order-api.herokuapp.com</code>. All we need to do is add the apiUrl variable to our production environment file. When we do a production build by running <code>ng build --prod</code>, our production file will be used.</p>
-<p>✏️ Update <strong>src/environments/environment.production.ts</strong>:</p>
+<p>✏️ Update <strong>src/environments/environment.prod.ts</strong>:</p>
 <pre><code class="language-ts">export const environment = {
   production: true,
   apiUrl: 'https://place-my-order-api.herokuapp.com'
@@ -644,18 +644,17 @@ firebase open hosting:site
 <h2>Update npm scripts</h2>
 <pre><code class="language-json"> &quot;scripts&quot;: {
     &quot;ng&quot;: &quot;ng&quot;,
-    &quot;start&quot;: &quot;ng serve --proxy-config proxy.conf.json&quot;,
+    &quot;start&quot;: &quot;ng serve&quot;,
     &quot;build&quot;: &quot;ng build&quot;,
+    &quot;watch&quot;: &quot;ng build --watch --configuration development&quot;,
     &quot;test&quot;: &quot;ng test&quot;,
-    &quot;lint&quot;: &quot;ng lint&quot;,
-    &quot;e2e&quot;: &quot;ng e2e&quot;,
     &quot;api&quot;: &quot;place-my-order-api --port 7070&quot;,
-    &quot;deploy&quot;: &quot;ng build --prod &amp;&amp; firebase deploy&quot;
+    &quot;deploy&quot;: &quot;ng build &amp;&amp; firebase deploy&quot;
   },
 </code></pre>
 <h2>Survey</h2>
 <p>Thanks for taking this Bitovi training! We are constantly looking to improve this
-course.  Please fill out the following survey and we will send you a t-shirt!</p>
+course. Please fill out the following survey and we will send you a t-shirt!</p>
 <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScIukb7B5Q3d0I9xRge8_VDmQS9gNJqhJmjcJb_5aAKFMqFmA/viewform?embedded=true" width="640" height="1900" frameborder="0" marginheight="0" marginwidth="0">Loading...</iframe>
 
 </section>

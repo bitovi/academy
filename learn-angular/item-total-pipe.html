@@ -599,7 +599,7 @@ We can simplify this by creating an Item Total Pipe which we will use in <code>o
 <h1>What You Need to Know</h1>
 <p>How to:</p>
 <ul>
-<li>Generate a Pipe using Angular Cli  (you previously learned this in the <a href="/academy/academy/learn-angular/creating-pipes.html">Creating Pipes</a> section! ✔️)</li>
+<li>Generate a Pipe using Angular CLI (you previously learned this in the <a href="creating-pipes.html" title="Learn how to create a custom pipe in Angular that returns a modified version of a string.">Creating Pipes</a> section! ✔️)</li>
 <li>Provide a Pipe globally to the entire application, so it can be used in any component</li>
 </ul>
 <h2>Generating Pipe</h2>
@@ -610,16 +610,12 @@ We can simplify this by creating an Item Total Pipe which we will use in <code>o
 <p>Unlike services, Pipes are not readily injectable into our components. In order to be able to use Pipes in a component, it has to be provided in the app module.
 To provide the <strong>Pipe</strong> just created in the app module, simply add the Pipe to the provider array in the <code>app.module.ts</code> file. <a href="https://angular.io/guide/providers">Learn More</a></p>
 <p>✏️ Update <strong>src/app/app.module.ts</strong></p>
-<pre><code class="language-ts">import { BrowserModule } from '@angular/platform-browser';
+<pre><code class="language-ts">import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-
-import { MenuItemsComponent } from './order/menu-items/menu-items.component';
-import { HistoryComponent } from './order/history/history.component';
-import { ListComponent } from './order/list/list.component';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -627,32 +623,36 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
 import { ImageUrlPipe } from './image-url.pipe';
 import { DetailComponent } from './restaurant/detail/detail.component';
 import { OrderComponent } from './order/order.component';
+import { MenuItemsComponent } from './order/menu-items/menu-items.component';
 import { OnlyNumbersDirective } from './only-numbers.directive';
+import { HistoryComponent } from './order/history/history.component';
+import { ListComponent } from './order/list/list.component';
 import { ItemTotalPipe } from './item-total.pipe';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        HomeComponent,
-        RestaurantComponent,
-        ImageUrlPipe,
-        DetailComponent,
-        OrderComponent,
-        MenuItemsComponent,
-        HistoryComponent,
-        ListComponent,
-        OnlyNumbersDirective,
-        ItemTotalPipe
-    ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        TabsModule.forRoot()
-    ],
-    providers: [ItemTotalPipe],
-    bootstrap: [AppComponent]
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    RestaurantComponent,
+    ImageUrlPipe,
+    DetailComponent,
+    OrderComponent,
+    MenuItemsComponent,
+    OnlyNumbersDirective,
+    HistoryComponent,
+    ListComponent,
+    ItemTotalPipe
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    TabsModule.forRoot()
+  ],
+  providers: [ItemTotalPipe],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }
 
@@ -673,11 +673,11 @@ export class AppModule { }
 // app.js
 const { Component, VERSION, Pipe, PipeTransform} = ng.core;
 
-@Pipe({name: 'prefix'})
+@Pipe({ name: 'prefix' })
 class PrefixPipe implements PipeTransform {
   transform(value: string, prefix: string): string {
-  if(prefix &amp;&amp; value ) {
-    return `${prefix}-${value}`;
+    if (prefix &amp;&amp; value) {
+      return `${prefix}-${value}`;
     }
     return value;
   }
@@ -686,18 +686,18 @@ class PrefixPipe implements PipeTransform {
 @Component({
   selector: 'my-app',
   template: `
-  &lt;h2&gt;{{word}}&lt;/h2&gt;
-  &lt;br&gt;
-   &lt;h2&gt;{{word2 | prefix: 'long'}}&lt;/h2&gt;
-  `
+    &lt;h2&gt;{{ word }}&lt;/h2&gt;
+    &lt;br /&gt;
+    &lt;h2&gt;{{ word2 | prefix: 'long' }}&lt;/h2&gt;
+  `,
 })
 class AppComponent implements OnInit {
   word = 'two';
   word2 = 'term';
-  constructor(private prefixPipe: PrefixPipe) {
-  }
 
-  ngOnInit() {
+  constructor(private prefixPipe: PrefixPipe) {}
+
+  ngOnInit(): void {
     this.word = this.prefixPipe.transform(this.word, 'seventy');
   }
 }
@@ -708,8 +708,7 @@ const { NgModule } = ng.core;
 const { CommonModule } = ng.common;
 
 @NgModule({
-  imports: [ BrowserModule,
-  CommonModule],
+  imports: [BrowserModule, CommonModule],
   declarations: [AppComponent, PrefixPipe],
   bootstrap: [AppComponent],
   providers: [PrefixPipe]
@@ -726,84 +725,89 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='14-22, 27, 29, 39, 51, 53, only'></div>
+<div line-highlight='14-22, 27, 29, 39, 50, 52, only'></div>
 <h2>How to Verify Your Solution is Correct</h2>
-<p>✏️ Update the order spec file <strong>src/app/order/order.component.spec.ts</strong> to include and provide the new Pipe:</p>
-<pre><code class="language-ts">import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
-import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs'; 
-
-import { OrderComponent } from './order.component';
+<p>✏️ Update the following spec files to include and provide the new Pipe:</p>
+<ul>
+<li><strong>src/app/order/order.component.spec.ts</strong></li>
+</ul>
+<pre><code class="language-ts">import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { of } from 'rxjs';
+import { ItemTotalPipe } from '../item-total.pipe';
 import { RestaurantService } from '../restaurant/restaurant.service';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { MenuItemsComponent } from './menu-items/menu-items.component';
-import { OrderService } from './order.service';
-import {ItemTotalPipe} from &quot;../item-total.pipe&quot;;
+import { OrderComponent } from './order.component';
+import { OrderForm, OrderService } from './order.service';
 
 class MockRestaurantService {
-  getRestaurant(slug:string) {
+  getRestaurant(slug: string) {
     return of({
-        &quot;name&quot;: &quot;Poutine Palace&quot;,
-        &quot;slug&quot;: &quot;poutine-palace&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
-        },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-              &quot;price&quot;: 35.99
-            },
-            {
-              &quot;name&quot;: &quot;Steamed Mussels&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-              &quot;price&quot;: 35.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-              &quot;price&quot;: 45.99
-            }
-          ]
-        },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53205&quot;
-        },
-        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-      })
+      name: 'Poutine Palace',
+      slug: 'poutine-palace',
+      images: {
+        thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+        owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+        banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+      },
+      menu: {
+        lunch: [
+          {
+            name: 'Crab Pancakes with Sorrel Syrup',
+            price: 35.99,
+          },
+          {
+            name: 'Steamed Mussels',
+            price: 21.99,
+          },
+          {
+            name: 'Spinach Fennel Watercress Ravioli',
+            price: 35.99,
+          },
+        ],
+        dinner: [
+          {
+            name: 'Gunthorp Chicken',
+            price: 21.99,
+          },
+          {
+            name: 'Herring in Lavender Dill Reduction',
+            price: 45.99,
+          },
+          {
+            name: 'Chicken with Tomato Carrot Chutney Sauce',
+            price: 45.99,
+          },
+        ],
+      },
+      address: {
+        street: '230 W Kinzie Street',
+        city: 'Green Bay',
+        state: 'WI',
+        zip: '53205',
+      },
+      _id: '3ZOZyTY1LH26LnVw',
+    });
   }
 }
 
 class MockOrderService {
-  createOrder(order) {
+  createOrder(order: OrderForm) {
     return of({
-      &quot;address&quot;: null,
-      &quot;items&quot;: [{&quot;name&quot;: &quot;Onion fries&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Roasted Salmon&quot;, &quot;price&quot;: 23.99}],
-      &quot;name&quot;: &quot;Jennifer Hungry&quot;,
-      &quot;phone&quot;: null,
-      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
-      &quot;status&quot;: &quot;preparing&quot;,
-      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
-    })
+      address: null,
+      items: [
+        { name: 'Onion fries', price: 15.99 },
+        { name: 'Roasted Salmon', price: 23.99 },
+      ],
+      name: 'Jennifer Hungry',
+      phone: null,
+      restaurant: 'uPkA2jiZi24tCvXh',
+      status: 'preparing',
+      _id: '0awcHyo3iD6CpvhX',
+    });
   }
 }
 
@@ -811,38 +815,40 @@ const MockActivatedRoute = {
   snapshot: {
     paramMap: {
       get() {
-        return 'poutine-palace'
-      }
-    }
-  }
-}
+        return 'poutine-palace';
+      },
+    },
+  },
+};
 
 describe('OrderComponent', () =&gt; {
   let component: OrderComponent;
   let fixture: ComponentFixture&lt;OrderComponent&gt;;
-  let injectedOrderService;
+  let orderService: OrderService;
 
-  beforeEach(waitForAsync(() =&gt; {
-    TestBed.configureTestingModule({
-      declarations: [ OrderComponent, MenuItemsComponent ], 
-      imports: [  ReactiveFormsModule, RouterTestingModule ],
-      providers: [{
-        provide: RestaurantService,
-        useClass: MockRestaurantService
-      }, {
-        provide: ActivatedRoute,
-        useValue: MockActivatedRoute
-      },
-      {
-        provide: OrderService,
-        useClass: MockOrderService
-      },
-        ItemTotalPipe],
-      schemas: [ NO_ERRORS_SCHEMA ]
-    })
-    .compileComponents();
-    injectedOrderService = TestBed.inject(OrderService);
-  }));
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      declarations: [OrderComponent, MenuItemsComponent],
+      imports: [ReactiveFormsModule, RouterTestingModule],
+      providers: [
+        {
+          provide: RestaurantService,
+          useClass: MockRestaurantService,
+        },
+        {
+          provide: ActivatedRoute,
+          useValue: MockActivatedRoute,
+        },
+        {
+          provide: OrderService,
+          useClass: MockOrderService,
+        },
+        ItemTotalPipe,
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
+    orderService = TestBed.inject(OrderService);
+  });
 
   beforeEach(() =&gt; {
     fixture = TestBed.createComponent(OrderComponent);
@@ -855,174 +861,828 @@ describe('OrderComponent', () =&gt; {
   });
 
   it('should get a restaurant based on route slug', () =&gt; {
-    let mockRestaurant = {
-      &quot;name&quot;: &quot;Poutine Palace&quot;,
-      &quot;slug&quot;: &quot;poutine-palace&quot;,
-      &quot;images&quot;: {
-        &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-        &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-        &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+    const mockRestaurant = {
+      name: 'Poutine Palace',
+      slug: 'poutine-palace',
+      images: {
+        thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+        owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+        banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
       },
-      &quot;menu&quot;: {
-        &quot;lunch&quot;: [
+      menu: {
+        lunch: [
           {
-            &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-            &quot;price&quot;: 35.99
+            name: 'Crab Pancakes with Sorrel Syrup',
+            price: 35.99,
           },
           {
-            &quot;name&quot;: &quot;Steamed Mussels&quot;,
-            &quot;price&quot;: 21.99
+            name: 'Steamed Mussels',
+            price: 21.99,
           },
           {
-            &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-            &quot;price&quot;: 35.99
-          }
+            name: 'Spinach Fennel Watercress Ravioli',
+            price: 35.99,
+          },
         ],
-        &quot;dinner&quot;: [
+        dinner: [
           {
-            &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-            &quot;price&quot;: 21.99
+            name: 'Gunthorp Chicken',
+            price: 21.99,
           },
           {
-            &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-            &quot;price&quot;: 45.99
+            name: 'Herring in Lavender Dill Reduction',
+            price: 45.99,
           },
           {
-            &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-            &quot;price&quot;: 45.99
-          }
-        ]
+            name: 'Chicken with Tomato Carrot Chutney Sauce',
+            price: 45.99,
+          },
+        ],
       },
-      &quot;address&quot;: {
-        &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-        &quot;city&quot;: &quot;Green Bay&quot;,
-        &quot;state&quot;: &quot;WI&quot;,
-        &quot;zip&quot;: &quot;53205&quot;
+      address: {
+        street: '230 W Kinzie Street',
+        city: 'Green Bay',
+        state: 'WI',
+        zip: '53205',
       },
-      &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-    }
-    const fixture = TestBed.createComponent(OrderComponent);
-    fixture.detectChanges();
-    expect(fixture.componentInstance.restaurant).toEqual(mockRestaurant)
+      _id: '3ZOZyTY1LH26LnVw',
+    };
+    expect(fixture.componentInstance.restaurant).toEqual(mockRestaurant);
   });
 
   it('should have an orderForm formGroup', () =&gt; {
-    const fixture = TestBed.createComponent(OrderComponent);
-    fixture.detectChanges();
-    expect(fixture.componentInstance.orderForm.controls.restaurant).toBeTruthy();
-    expect(fixture.componentInstance.orderForm.controls.address).toBeTruthy();
-    expect(fixture.componentInstance.orderForm.controls.phone).toBeTruthy();
-    expect(fixture.componentInstance.orderForm.controls.items).toBeTruthy();
+    expect(
+      fixture.componentInstance.orderForm?.controls['restaurant']
+    ).toBeTruthy();
+    expect(
+      fixture.componentInstance.orderForm?.controls['address']
+    ).toBeTruthy();
+    expect(fixture.componentInstance.orderForm?.controls['phone']).toBeTruthy();
+    expect(fixture.componentInstance.orderForm?.controls['items']).toBeTruthy();
   });
 
   it('should have a validator on items formControl', () =&gt; {
-    const fixture = TestBed.createComponent(OrderComponent);
-    fixture.detectChanges();
-    let itemFormControl = fixture.componentInstance.orderForm.controls.items;
-    expect(itemFormControl.valid).toEqual(false);
+    const itemFormControl =
+      fixture.componentInstance.orderForm?.controls['items'];
+    expect(itemFormControl?.valid).toEqual(false);
   });
 
   it('should update items FormControl when setUpdatesItems is called', () =&gt; {
-    const fixture = TestBed.createComponent(OrderComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let childInput = compiled.getElementsByTagName('pmo-menu-items')[0].getElementsByTagName('input')[0];
-    let formItems = fixture.componentInstance.orderForm.get('items');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const childInput = compiled
+      .getElementsByTagName('pmo-menu-items')[0]
+      .getElementsByTagName('input')[0];
+    const formItems = fixture.componentInstance.orderForm?.get('items');
     childInput.click();
     fixture.detectChanges();
-    expect(formItems.value).toEqual([{&quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,&quot;price&quot;: 35.99}])
+    expect(formItems?.value).toEqual([
+      { name: 'Crab Pancakes with Sorrel Syrup', price: 35.99 },
+    ]);
   });
 
   it('should update the order total when the items FormControl value changes', () =&gt; {
-    const fixture = TestBed.createComponent(OrderComponent);
     fixture.detectChanges();
-    let compiled = fixture.debugElement.nativeElement;
-    let childInput1 = compiled.getElementsByTagName('pmo-menu-items')[0].getElementsByTagName('input')[0];
-    let childInput2 = compiled.getElementsByTagName('pmo-menu-items')[0].getElementsByTagName('input')[1];
+    const compiled = fixture.nativeElement as HTMLElement;
+    const childInput1 = compiled
+      .getElementsByTagName('pmo-menu-items')[0]
+      .getElementsByTagName('input')[0];
+    const childInput2 = compiled
+      .getElementsByTagName('pmo-menu-items')[0]
+      .getElementsByTagName('input')[1];
     childInput1.click();
     childInput2.click();
     fixture.detectChanges();
-    let orderText = compiled.querySelector('.submit h4');
-    expect(orderText.textContent).toEqual('Total: $57.98')
+    const orderText = compiled.querySelector('.submit h4');
+    expect(orderText?.textContent).toEqual('Total: $57.98');
   });
 
   it('should call the orderService createOrder on form submit with form values', () =&gt; {
-    const fixture = TestBed.createComponent(OrderComponent);
-    fixture.detectChanges();
-    let createOrderSpy = spyOn(injectedOrderService, 'createOrder').and.callThrough();
-    let expectedOrderValue = {
+    const createOrderSpy = spyOn(orderService, 'createOrder').and.callThrough();
+    const expectedOrderValue: OrderForm = {
       restaurant: '12345',
       name: 'Jennifer Hungry',
-      address:  '123 Main St',
-      phone: &quot;555-555-5555&quot;,
-      items: [{name: &quot;Onion fries&quot;, price: 15.99}, {name: &quot;Roasted Salmon&quot;, price: 23.99}]
+      address: '123 Main St',
+      phone: '555-555-5555',
+      items: [
+        { name: 'Onion fries', price: 15.99 },
+        { name: 'Roasted Salmon', price: 23.99 },
+      ],
     };
-    let compiled = fixture.debugElement.nativeElement;
-    fixture.componentInstance.orderForm.setValue(expectedOrderValue);
+    const compiled = fixture.nativeElement as HTMLElement;
+    fixture.componentInstance.orderForm?.setValue(expectedOrderValue);
     fixture.detectChanges();
-    compiled.querySelector('button[type=&quot;submit&quot;]').click();
+    (
+      compiled.querySelector('button[type=&quot;submit&quot;]') as HTMLButtonElement
+    ).click();
     expect(createOrderSpy).toHaveBeenCalledWith(expectedOrderValue);
   });
 
   it('should show completed order when order is complete', () =&gt; {
-    const fixture = TestBed.createComponent(OrderComponent);
-    fixture.detectChanges();
-    let expectedOrderValue = {
+    const expectedOrderValue: OrderForm = {
       restaurant: '12345',
       name: 'Jennifer Hungry',
-      address:  '123 Main St',
-      phone: &quot;555-555-5555&quot;,
-      items: [{name: &quot;Onion fries&quot;, price: 15.99}, {name: &quot;Roasted Salmon&quot;, price: 23.99}]
+      address: '123 Main St',
+      phone: '555-555-5555',
+      items: [
+        { name: 'Onion fries', price: 15.99 },
+        { name: 'Roasted Salmon', price: 23.99 },
+      ],
     };
-    let compiled = fixture.debugElement.nativeElement;
-    fixture.componentInstance.orderForm.setValue(expectedOrderValue);
+    const compiled = fixture.nativeElement as HTMLElement;
+    fixture.componentInstance.orderForm?.setValue(expectedOrderValue);
     fixture.detectChanges();
-    compiled.querySelector('button[type=&quot;submit&quot;]').click();
+    (
+      compiled.querySelector('button[type=&quot;submit&quot;]') as HTMLButtonElement
+    ).click();
     fixture.detectChanges();
-    let displayedOrder = compiled.querySelector('h3');
-    expect(displayedOrder.textContent).toEqual('Thanks for your order Jennifer Hungry!');
+    const displayedOrder = compiled.querySelector('h3');
+    expect(displayedOrder?.textContent).toEqual(
+      'Thanks for your order Jennifer Hungry!'
+    );
   });
 
   it('should clear the form values when create new order is clicked', () =&gt; {
-    const fixture = TestBed.createComponent(OrderComponent);
-    fixture.detectChanges();
-    let expectedOrderValue = {
+    const expectedOrderValue: OrderForm = {
       restaurant: '12345',
       name: 'Jennifer Hungry',
-      address:  '123 Main St',
-      phone: &quot;555-555-5555&quot;,
-      items: [{name: &quot;Onion fries&quot;, price: 15.99}, {name: &quot;Roasted Salmon&quot;, price: 23.99}]
+      address: '123 Main St',
+      phone: '555-555-5555',
+      items: [
+        { name: 'Onion fries', price: 15.99 },
+        { name: 'Roasted Salmon', price: 23.99 },
+      ],
     };
-    let compiled = fixture.debugElement.nativeElement;
-    fixture.componentInstance.orderForm.setValue(expectedOrderValue);
+    const compiled = fixture.nativeElement as HTMLElement;
+    fixture.componentInstance.orderForm?.setValue(expectedOrderValue);
     fixture.detectChanges();
-    compiled.querySelector('button[type=&quot;submit&quot;]').click();
+    (
+      compiled.querySelector('button[type=&quot;submit&quot;]') as HTMLButtonElement
+    ).click();
     fixture.detectChanges();
-    compiled.querySelector('button:nth-child(1)').click();
-    let emptyform = {
+    (
+      compiled.querySelector('button:nth-child(1)') as HTMLButtonElement
+    ).click();
+    const emptyform = {
       restaurant: '3ZOZyTY1LH26LnVw',
       name: null,
       address: null,
       phone: null,
-      items: []
-    }
-    expect(fixture.componentInstance.orderForm.value).toEqual(emptyform);
+      items: [],
+    };
+    expect(fixture.componentInstance.orderForm?.value).toEqual(emptyform);
+  });
+});
+
+</code></pre>
+ <div line-highlight="7,113,only"></div>
+<ul>
+<li><strong>src/app/app.component.spec.ts</strong></li>
+</ul>
+<pre><code class="language-ts">import { Location } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+  ComponentFixture,
+  fakeAsync,
+  flush,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { of } from 'rxjs';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { ImageUrlPipe } from './image-url.pipe';
+import { ItemTotalPipe } from './item-total.pipe';
+import { HistoryComponent } from './order/history/history.component';
+import { OrderComponent } from './order/order.component';
+import { DetailComponent } from './restaurant/detail/detail.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+import { RestaurantService } from './restaurant/restaurant.service';
+
+class MockRestaurantService {
+  getRestaurants() {
+    return of({
+      data: [
+        {
+          name: 'Poutine Palace',
+          slug: 'poutine-palace',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              {
+                name: 'Crab Pancakes with Sorrel Syrup',
+                price: 35.99,
+              },
+              {
+                name: 'Steamed Mussels',
+                price: 21.99,
+              },
+              {
+                name: 'Spinach Fennel Watercress Ravioli',
+                price: 35.99,
+              },
+            ],
+            dinner: [
+              {
+                name: 'Gunthorp Chicken',
+                price: 21.99,
+              },
+              {
+                name: 'Herring in Lavender Dill Reduction',
+                price: 45.99,
+              },
+              {
+                name: 'Chicken with Tomato Carrot Chutney Sauce',
+                price: 45.99,
+              },
+            ],
+          },
+          address: {
+            street: '230 W Kinzie Street',
+            city: 'Green Bay',
+            state: 'WI',
+            zip: '53205',
+          },
+          _id: '3ZOZyTY1LH26LnVw',
+        },
+        {
+          name: 'Cheese Curd City',
+          slug: 'cheese-curd-city',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/2-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              {
+                name: 'Ricotta Gnocchi',
+                price: 15.99,
+              },
+              {
+                name: 'Gunthorp Chicken',
+                price: 21.99,
+              },
+              {
+                name: 'Garlic Fries',
+                price: 15.99,
+              },
+            ],
+            dinner: [
+              {
+                name: 'Herring in Lavender Dill Reduction',
+                price: 45.99,
+              },
+              {
+                name: 'Truffle Noodles',
+                price: 14.99,
+              },
+              {
+                name: 'Charred Octopus',
+                price: 25.99,
+              },
+            ],
+          },
+          address: {
+            street: '2451 W Washburne Ave',
+            city: 'Green Bay',
+            state: 'WI',
+            zip: '53295',
+          },
+          _id: 'Ar0qBJHxM3ecOhcr',
+        },
+      ],
+    });
+  }
+
+  getStates() {
+    return of({
+      data: [
+        { short: 'MO', name: 'Missouri' },
+        { short: 'CA  ', name: 'California' },
+        { short: 'MI', name: 'Michigan' },
+      ],
+    });
+  }
+
+  getCities(state: string) {
+    return of({
+      data: [
+        { name: 'Sacramento', state: 'CA' },
+        { name: 'Oakland', state: 'CA' },
+      ],
+    });
+  }
+
+  getRestaurant(slug: string) {
+    return of({
+      name: 'Poutine Palace',
+      slug: 'poutine-palace',
+      images: {
+        thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+        owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+        banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+      },
+      menu: {
+        lunch: [
+          {
+            name: 'Crab Pancakes with Sorrel Syrup',
+            price: 35.99,
+          },
+          {
+            name: 'Steamed Mussels',
+            price: 21.99,
+          },
+          {
+            name: 'Spinach Fennel Watercress Ravioli',
+            price: 35.99,
+          },
+        ],
+        dinner: [
+          {
+            name: 'Gunthorp Chicken',
+            price: 21.99,
+          },
+          {
+            name: 'Herring in Lavender Dill Reduction',
+            price: 45.99,
+          },
+          {
+            name: 'Chicken with Tomato Carrot Chutney Sauce',
+            price: 45.99,
+          },
+        ],
+      },
+      address: {
+        street: '230 W Kinzie Street',
+        city: 'Green Bay',
+        state: 'WI',
+        zip: '53205',
+      },
+      _id: '3ZOZyTY1LH26LnVw',
+    });
+  }
+}
+
+describe('AppComponent', () =&gt; {
+  let fixture: ComponentFixture&lt;AppComponent&gt;;
+  let location: Location;
+  let router: Router;
+
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      imports: [AppRoutingModule, HttpClientModule, ReactiveFormsModule],
+      declarations: [
+        AppComponent,
+        HomeComponent,
+        RestaurantComponent,
+        ImageUrlPipe,
+        DetailComponent,
+        OrderComponent,
+        HistoryComponent,
+        ItemTotalPipe,
+      ],
+      providers: [
+        { provide: RestaurantService, useClass: MockRestaurantService },
+        ItemTotalPipe,
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
+    })
+      .overrideComponent(RestaurantComponent, {
+        set: { template: '&lt;p&gt;I am a fake restaurant component&lt;/p&gt;' },
+      })
+      .compileComponents();
+
+    fixture = TestBed.createComponent(AppComponent);
+    location = TestBed.inject(Location);
+    router = TestBed.inject(Router);
   });
 
+  it('should create the app', () =&gt; {
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
+  });
+
+  it(`should have as title 'place-my-order'`, () =&gt; {
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual('place-my-order');
+  });
+
+  it('should render title in a h1 tag', () =&gt; {
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h1')?.textContent).toContain(
+      'place-my-order.com'
+    );
+  });
+
+  it('should render the HomeComponent with router navigates to &quot;/&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.nativeElement as HTMLElement;
+    router.navigate(['']).then(() =&gt; {
+      expect(location.path()).toBe('');
+      expect(compiled.querySelector('pmo-home')).not.toBe(null);
+    });
+  }));
+
+  it('should render the RestaurantsComponent with router navigates to &quot;/restaurants&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.nativeElement as HTMLElement;
+    router.navigate(['restaurants']).then(() =&gt; {
+      expect(location.path()).toBe('/restaurants');
+      expect(compiled.querySelector('pmo-restaurant')).not.toBe(null);
+    });
+  }));
+
+  it('should render the DetailComponent with router navigates to &quot;/restaurants/slug&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.nativeElement as HTMLElement;
+    router.navigate(['restaurants/crab-shack']).then(() =&gt; {
+      expect(location.path()).toBe('/restaurants/crab-shack');
+      expect(compiled.querySelector('pmo-detail')).not.toBe(null);
+    });
+  }));
+
+  it('should render the OrderComponent with router navigates to &quot;/restaurants/slug/order&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.nativeElement as HTMLElement;
+    router.navigate(['restaurants/crab-shack/order']).then(() =&gt; {
+      expect(location.path()).toBe('/restaurants/crab-shack/order');
+      expect(compiled.querySelector('pmo-order')).not.toBe(null);
+    });
+  }));
+
+  it('should render the HistoryComponent with router navigates to &quot;/order-history&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.nativeElement as HTMLElement;
+    router.navigate(['order-history']).then(() =&gt; {
+      expect(location.path()).toBe('/order-history');
+      expect(compiled.querySelector('pmo-history')).not.toBe(null);
+    });
+  }));
+
+  it('should have the home navigation link href set to &quot;&quot;', () =&gt; {
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const homeLink = compiled.querySelector('li a');
+    const href = homeLink?.getAttribute('href');
+    expect(href).toEqual('/');
+  });
+
+  it('should have the restaurants navigation link href set to &quot;&quot;', () =&gt; {
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const restaurantsLink = compiled.querySelector('li:nth-child(2) a');
+    const href = restaurantsLink?.getAttribute('href');
+    expect(href).toEqual('/restaurants');
+  });
+
+  it('should make the home navigation link class active when the router navigates to &quot;/&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.nativeElement as HTMLElement;
+    router.navigate(['']);
+    fixture.detectChanges();
+    tick();
+
+    const homeLinkLi = compiled.querySelector('li');
+    expect(homeLinkLi?.classList).toContain('active');
+    expect(compiled.querySelectorAll('.active').length).toBe(1);
+    flush();
+  }));
+
+  it('should make the restaurants navigation link class active when the router navigates to &quot;/restaurants&quot; path', fakeAsync(() =&gt; {
+    const compiled = fixture.nativeElement as HTMLElement;
+    router.navigate(['restaurants']);
+    fixture.detectChanges();
+    tick();
+    fixture.detectChanges();
+
+    expect(location.path()).toBe('/restaurants');
+    const restaurantsLinkLi = compiled.querySelector('li:nth-child(2)');
+    expect(restaurantsLinkLi?.classList).toContain('active');
+    expect(compiled.querySelectorAll('.active').length).toBe(1);
+    flush();
+  }));
 });
+
 </code></pre>
-<div line-highlight='12, 109, only'></div>
-<p>✏️ Update the spec file  <strong>item-total.pipe.spec.ts</strong> to be:</p>
+ <div line-highlight="18,212,216,only"></div>
+<ul>
+<li><strong>src/app/order/history/history.component.spec.ts</strong></li>
+</ul>
+<pre><code class="language-ts">import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Observable, of } from 'rxjs';
+import { ItemTotalPipe } from 'src/app/item-total.pipe';
+import { ListComponent } from '../list/list.component';
+import { Order, OrderService } from '../order.service';
+
+import { HistoryComponent } from './history.component';
+
+class MockOrderService {
+  getOrders(): Observable&lt;{ data: Order[] }&gt; {
+    return of({
+      data: [
+        {
+          address: '',
+          items: [
+            { name: 'Onion fries', price: 15.99 },
+            { name: 'Roasted Salmon', price: 23.99 },
+          ],
+          name: 'Client 1',
+          phone: '',
+          restaurant: 'uPkA2jiZi24tCvXh',
+          status: 'new',
+          _id: '0awcHyo3iD6CpvhX',
+        },
+        {
+          address: '',
+          items: [
+            { name: 'Steak Tacos', price: 15.99 },
+            { name: 'Guacamole', price: 3.99 },
+          ],
+          name: 'Client 2',
+          phone: '',
+          restaurant: 'uPkA2jiZi24tCvXh',
+          status: 'preparing',
+          _id: '0awcHyo3iD6CpvhX',
+        },
+        {
+          address: '',
+          items: [
+            { name: 'Mac &amp; Cheese', price: 15.99 },
+            { name: 'Grilled chicken', price: 23.99 },
+          ],
+          name: 'Client 3',
+          phone: '',
+          restaurant: 'uPkA2jiZi24tCvXh',
+          status: 'delivery',
+          _id: '0awcHyo8iD7XjahX',
+        },
+        {
+          address: '',
+          items: [
+            { name: 'Eggrolls', price: 5.99 },
+            { name: 'Fried Rice', price: 18.99 },
+          ],
+          name: 'Client 4',
+          phone: '',
+          restaurant: 'uPkA2jiZi24tCvXh',
+          status: 'delivered',
+          _id: '1awcJyo3iD6CpvhZ',
+        },
+      ],
+    });
+  }
+}
+describe('HistoryComponent', () =&gt; {
+  let component: HistoryComponent;
+  let fixture: ComponentFixture&lt;HistoryComponent&gt;;
+
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      declarations: [HistoryComponent, ListComponent, ItemTotalPipe],
+      providers: [
+        {
+          provide: OrderService,
+          useClass: MockOrderService,
+        },
+        ItemTotalPipe,
+      ],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
+  });
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(HistoryComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  it('should set response from getOrders service to orders member', () =&gt; {
+    const expectedOrders: Order[] = [
+      {
+        address: '',
+        items: [
+          { name: 'Onion fries', price: 15.99 },
+          { name: 'Roasted Salmon', price: 23.99 },
+        ],
+        name: 'Client 1',
+        phone: '',
+        restaurant: 'uPkA2jiZi24tCvXh',
+        status: 'new',
+        _id: '0awcHyo3iD6CpvhX',
+      },
+      {
+        address: '',
+        items: [
+          { name: 'Steak Tacos', price: 15.99 },
+          { name: 'Guacamole', price: 3.99 },
+        ],
+        name: 'Client 2',
+        phone: '',
+        restaurant: 'uPkA2jiZi24tCvXh',
+        status: 'preparing',
+        _id: '0awcHyo3iD6CpvhX',
+      },
+      {
+        address: '',
+        items: [
+          { name: 'Mac &amp; Cheese', price: 15.99 },
+          { name: 'Grilled chicken', price: 23.99 },
+        ],
+        name: 'Client 3',
+        phone: '',
+        restaurant: 'uPkA2jiZi24tCvXh',
+        status: 'delivery',
+        _id: '0awcHyo8iD7XjahX',
+      },
+      {
+        address: '',
+        items: [
+          { name: 'Eggrolls', price: 5.99 },
+          { name: 'Fried Rice', price: 18.99 },
+        ],
+        name: 'Client 4',
+        phone: '',
+        restaurant: 'uPkA2jiZi24tCvXh',
+        status: 'delivered',
+        _id: '1awcJyo3iD6CpvhZ',
+      },
+    ];
+    const orders = fixture.componentInstance.orders;
+    expect(orders.value).toEqual(expectedOrders);
+  });
+
+  it('should display orders in UI', () =&gt; {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const orderDivs = compiled.querySelectorAll(
+      '.order:not(.header):not(.empty)'
+    );
+    expect(orderDivs.length).toEqual(4);
+  });
+
+  it('should display orders with appropriate classes', () =&gt; {
+    const compiled = fixture.nativeElement as HTMLElement;
+    const newOrder = compiled.getElementsByClassName('new');
+    const preparingOrder = compiled.getElementsByClassName('preparing');
+    const deliveryOrder = compiled.getElementsByClassName('delivery');
+    const deliveredOrder = compiled.getElementsByClassName('delivered');
+    expect(newOrder.length).toEqual(1);
+    expect(preparingOrder.length).toEqual(1);
+    expect(deliveryOrder.length).toEqual(1);
+    expect(deliveredOrder.length).toEqual(1);
+  });
+});
+
+</code></pre>
+ <div line-highlight="4,72,78,only"></div>
+<ul>
+<li><strong>src/app/order/list/list.component.spec.ts</strong></li>
+</ul>
+<pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { of } from 'rxjs';
+import { ItemTotalPipe } from 'src/app/item-total.pipe';
+import { Order, OrderService } from '../order.service';
+
+import { ListComponent } from './list.component';
+
+class MockOrderService {
+  updateOrder(order: Order, status: string) {
+    return of({});
+  }
+
+  deleteOrder(orderId: string) {
+    return of({});
+  }
+}
+
+describe('ListComponent', () =&gt; {
+  let component: ListComponent;
+  let fixture: ComponentFixture&lt;ListComponent&gt;;
+  let injectedOrderService: OrderService;
+
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      declarations: [ListComponent, ItemTotalPipe],
+      providers: [
+        {
+          provide: OrderService,
+          useClass: MockOrderService,
+        },
+        ItemTotalPipe,
+      ],
+    }).compileComponents();
+    injectedOrderService = TestBed.inject(OrderService);
+  });
+
+  beforeEach(() =&gt; {
+    fixture = TestBed.createComponent(ListComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  it('should display the order total', () =&gt; {
+    fixture.componentInstance.orders = [
+      {
+        address: '',
+        items: [
+          { name: 'Onion fries', price: 15.99 },
+          { name: 'Roasted Salmon', price: 23.99 },
+        ],
+        name: 'Client 1',
+        phone: '',
+        restaurant: 'uPkA2jiZi24tCvXh',
+        status: 'new',
+        _id: '0awcHyo3iD6CpvhX',
+      },
+    ];
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.total')?.textContent).toEqual('$39.98');
+  });
+
+  it('should call orderService updateOrder with order and action when &quot;mark as&quot; is clicked', () =&gt; {
+    const updateOrderSpy = spyOn(
+      injectedOrderService,
+      'updateOrder'
+    ).and.callThrough();
+    const order1 = {
+      address: '',
+      items: [
+        { name: 'Onion fries', price: 15.99 },
+        { name: 'Roasted Salmon', price: 23.99 },
+      ],
+      name: 'Client 1',
+      phone: '',
+      restaurant: 'uPkA2jiZi24tCvXh',
+      status: 'new',
+      _id: '0awcHyo3iD6CpvhX',
+    };
+    fixture.componentInstance.orders = [order1];
+    fixture.componentInstance.action = 'preparing';
+    fixture.componentInstance.actionTitle = 'Preparing';
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const markAsLink = compiled.querySelector(
+      '.actions .action button'
+    ) as HTMLButtonElement;
+    markAsLink?.click();
+    expect(updateOrderSpy).toHaveBeenCalledWith(order1, 'preparing');
+  });
+
+  it('should call orderService deleteOrder with id when delete item is clicked', () =&gt; {
+    const deleteOrderSpy = spyOn(
+      injectedOrderService,
+      'deleteOrder'
+    ).and.callThrough();
+    const order1 = {
+      address: '',
+      items: [
+        { name: 'Onion fries', price: 15.99 },
+        { name: 'Roasted Salmon', price: 23.99 },
+      ],
+      name: 'Client 1',
+      phone: '',
+      restaurant: 'uPkA2jiZi24tCvXh',
+      status: 'new',
+      _id: '0awcHyo3iD6CpvhX',
+    };
+    fixture.componentInstance.orders = [order1];
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const deleteLink = compiled.querySelector(
+      '.actions .action button'
+    ) as HTMLButtonElement;
+    deleteLink.click();
+    expect(deleteOrderSpy).toHaveBeenCalledWith('0awcHyo3iD6CpvhX');
+  });
+});
+
+</code></pre>
+ <div line-highlight="3,25,31,only"></div>
+<p>✏️ Update the spec file <strong>item-total.pipe.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { ItemTotalPipe } from './item-total.pipe';
-import { Item } from &quot;./order/order.service&quot;;
+import { Item } from './order/order.service';
 
 describe('ItemTotalPipe', () =&gt; {
-
-  let mockItemList: Item[] = [
-   {name: &quot;Truffle Noodles&quot;, price: 14.99},
-   {name: &quot;Garlic Fries&quot;, price: 15.99}
-  ]
-  const pipe =  new ItemTotalPipe();
+  const mockItemList: Item[] = [
+    { name: 'Truffle Noodles', price: 14.99 },
+    { name: 'Garlic Fries', price: 15.99 },
+  ];
+  const pipe = new ItemTotalPipe();
 
   it('create an instance', () =&gt; {
     expect(pipe).toBeTruthy();
@@ -1037,7 +1697,6 @@ describe('ItemTotalPipe', () =&gt; {
     const total = pipe.transform([]);
     expect(total).toEqual(0);
   });
-
 });
 
 </code></pre>
@@ -1047,13 +1706,12 @@ describe('ItemTotalPipe', () =&gt; {
 <h2>Solution</h2>
 <p>✏️ Update <strong>src/app/item-total.pipe.ts</strong> to:</p>
 <pre><code class="language-ts">import { Pipe, PipeTransform } from '@angular/core';
-import {Item} from &quot;./order/order.service&quot;;
+import { Item } from './order/order.service';
 
 @Pipe({
-  name: 'itemTotal'
+  name: 'itemTotal',
 })
 export class ItemTotalPipe implements PipeTransform {
-
   transform(items: Item[]): number {
     let itemTotal = 0.0;
     if (items.length) {
@@ -1064,64 +1722,75 @@ export class ItemTotalPipe implements PipeTransform {
     }
     return itemTotal;
   }
-
 }
 
 </code></pre>
 <p>✏️ Update <strong>src/app/order/order.component.ts</strong> to use the item total Pipe:</p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { FormGroup, FormBuilder, FormArray, AbstractControl, Validators } from '@angular/forms';
-
-import { RestaurantService } from '../restaurant/restaurant.service';
-import { Restaurant } from '../restaurant/restaurant';
-import { OrderService, Order, Item } from './order.service';
 import { Subject } from 'rxjs';
-import { takeUntil } from &quot;rxjs/operators&quot;;
-import {ItemTotalPipe} from &quot;../item-total.pipe&quot;;
+import { takeUntil } from 'rxjs/operators';
+import { ItemTotalPipe } from '../item-total.pipe';
+import { Restaurant } from '../restaurant/restaurant';
+import { RestaurantService } from '../restaurant/restaurant.service';
+import { Order, OrderService } from './order.service';
 
-
-function minLengthArray(min: number) {
-  return (c: AbstractControl): {[key: string]: any} =&gt; {
-      if (c.value.length &gt;= min)
-          return null;
-      return { 'minLengthArray': {valid: false }};
-  }
+// CUSTOM VALIDATION FUNCTION TO ENSURE THAT THE ITEMS FORM VALUE CONTAINS AT LEAST ONE ITEM.
+function minLengthArray(min: number): ValidatorFn {
+  return (c: AbstractControl): ValidationErrors | null =&gt; {
+    if (c.value.length &gt;= min) {
+      return null;
+    }
+    return { minLengthArray: { valid: false } };
+  };
 }
 
 @Component({
   selector: 'pmo-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.less']
+  styleUrls: ['./order.component.less'],
 })
 export class OrderComponent implements OnInit, OnDestroy {
-  orderForm: FormGroup;
-  restaurant: Restaurant;
+  orderForm?: FormGroup;
+  restaurant?: Restaurant;
   isLoading = true;
-  items: FormArray;
+  items?: FormArray;
   orderTotal = 0.0;
-  completedOrder: Order;
+  completedOrder?: Order;
   orderComplete = false;
   orderProcessing = false;
   private unSubscribe = new Subject&lt;void&gt;();
 
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private restaurantService: RestaurantService,
     private orderService: OrderService,
     private formBuilder: FormBuilder,
     private itemTotal: ItemTotalPipe
-  ) { 
-  }
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
+    // GETTING THE RESTAURANT FROM THE ROUTE SLUG
     const slug = this.route.snapshot.paramMap.get('slug');
 
-    this.restaurantService.getRestaurant(slug).subscribe((data:Restaurant) =&gt; {
-      this.restaurant = data;
-      this.isLoading = false;      
-      this.createOrderForm();
-    })
+    if (slug) {
+      this.restaurantService
+        .getRestaurant(slug)
+        .subscribe((data: Restaurant) =&gt; {
+          this.restaurant = data;
+          this.isLoading = false;
+          this.createOrderForm();
+        });
+    }
   }
 
   ngOnDestroy(): void {
@@ -1129,80 +1798,99 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.unSubscribe.complete();
   }
 
-  createOrderForm() {
+  createOrderForm(): void {
     this.orderForm = this.formBuilder.group({
-      restaurant: [this.restaurant._id],
+      restaurant: [this.restaurant?._id],
       name: [null, Validators.required],
-      address:  [null, Validators.required],
+      address: [null, Validators.required],
       phone: [null, Validators.required],
-      items: [[], minLengthArray(1)]
+      // PASSING OUR CUSTOM VALIDATION FUNCTION TO THIS FORM CONTROL
+      items: [[], minLengthArray(1)],
     });
     this.onChanges();
   }
 
-  onChanges() {
-    this.orderForm.get('items').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe((val: Item[])=&gt; {
+  getChange(newItems: []): void {
+    const currentItems = this.orderForm?.get('items')?.value;
 
-      this.orderTotal = this.itemTotal.transform(val);
-
-    });
+    for (let i = 0; i &lt; newItems.length; i++) {
+      const item = newItems[i];
+      const idx = currentItems.indexOf(item);
+      if (idx === -1) {
+        currentItems.push(item);
+      }
+    }
+    this.orderForm?.get('items')?.patchValue(newItems);
   }
 
-  onSubmit() {
+  onChanges(): void {
+    // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
+    this.orderForm
+      ?.get('items')
+      ?.valueChanges.pipe(takeUntil(this.unSubscribe))
+      .subscribe((val) =&gt; {
+        this.orderTotal = this.itemTotal.transform(val);
+      });
+  }
+
+  onSubmit(): void {
     this.orderProcessing = true;
-    this.orderService.createOrder(this.orderForm.value).subscribe((res: Order) =&gt; {
-      this.completedOrder = res;
-      this.orderComplete = true;
-      this.orderProcessing = false;
-    });
+    this.orderService
+      .createOrder(this.orderForm?.value)
+      .subscribe((res: Order) =&gt; {
+        this.completedOrder = res;
+        this.orderComplete = true;
+        this.orderProcessing = false;
+      });
   }
 
-  startNewOrder() {
+  startNewOrder(): void {
     this.orderComplete = false;
+    this.completedOrder = this.orderForm?.value;
     this.orderTotal = 0.0;
+    // CLEAR THE ORDER FORM
     this.createOrderForm();
   }
-
 }
 
 </code></pre>
-<div line-highlight='10, 42, 75, only'></div>
+ <div line-highlight="14,49-50,104,only"></div>
 <p>✏️ Update <strong>src/app/order/list/list.component.html</strong> to use the item total Pipe:</p>
-<pre><code class="language-html">&lt;h4&gt;{{listTitle}}&lt;/h4&gt;
+<pre><code class="language-html">&lt;h4&gt;{{ listTitle }}&lt;/h4&gt;
 &lt;ng-container *ngFor=&quot;let order of orders&quot;&gt;
-  &lt;div [ngClass]=&quot;['order', order.status? order.status: '']&quot;&gt;
+  &lt;div [ngClass]=&quot;['order', order.status ? order.status : '']&quot;&gt;
     &lt;address&gt;
-      {{order.name}} &lt;br /&gt;{{order.address}} &lt;br /&gt;{{order.phone}}
+      {{ order.name }} &lt;br /&gt;{{ order.address }} &lt;br /&gt;{{ order.phone }}
     &lt;/address&gt;
-  
+
     &lt;div class=&quot;items&quot;&gt;
       &lt;ul&gt;
-        &lt;li *ngFor=&quot;let item of order.items&quot;&gt;{{item.name}}&lt;/li&gt;
+        &lt;li *ngFor=&quot;let item of order.items&quot;&gt;{{ item.name }}&lt;/li&gt;
       &lt;/ul&gt;
     &lt;/div&gt;
 
-    &lt;div class=&quot;total&quot;&gt;{{(order.items | itemTotal)}}&lt;/div&gt;
-  
+    &lt;div class=&quot;total&quot;&gt;${{ order.items | itemTotal }}&lt;/div&gt;
+
     &lt;div class=&quot;actions&quot;&gt;
-      &lt;span class=&quot;badge&quot;&gt;{{statusTitle}}&lt;/span&gt;
-        &lt;p class=&quot;action&quot; *ngIf=&quot;action&quot;&gt;
-          Mark as:
-          &lt;a href=&quot;javascript://&quot; (click)=&quot;markAs(order, action)&quot;&gt;
-            {{actionTitle}}
-          &lt;/a&gt;
-        &lt;/p&gt;
-  
+      &lt;span class=&quot;badge&quot;&gt;{{ statusTitle }}&lt;/span&gt;
+      &lt;p class=&quot;action&quot; *ngIf=&quot;action&quot;&gt;
+        Mark as:
+        &lt;button class=&quot;btn-link&quot; (click)=&quot;markAs(order, action)&quot;&gt;
+          {{ actionTitle }}
+        &lt;/button&gt;
+      &lt;/p&gt;
+
       &lt;p class=&quot;action&quot;&gt;
-        &lt;a href=&quot;javascript://&quot;  (click)=&quot;delete(order._id)&quot;&gt;Delete&lt;/a&gt;
+        &lt;button class=&quot;btn-link&quot; (click)=&quot;delete(order._id)&quot;&gt;Delete&lt;/button&gt;
       &lt;/p&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/ng-container&gt;
 
-&lt;div class=&quot;order empty&quot;&gt;{{emptyMessage}}&lt;/div&gt;
+&lt;div class=&quot;order empty&quot;&gt;{{ emptyMessage }}&lt;/div&gt;
 
 </code></pre>
- <div line-highlight="1,3,5,7,10,14-15,17-24,26,32,only"></div>
+ <div line-highlight="14,only"></div>
 <h2>Using Currency Pipe</h2>
 <p>Now that we have finished implementing our Item Total Pipe, this is a good time for us to talk about using Currency Pipe. You might have noticed that our prices are in USD, which is a currency, and is a perfect use for the Currency Pipe.
 Angular provides us with a <a href="https://angular.io/api/common/CurrencyPipe">Currency Pipe</a> that formats a number as currency using locale rules. Locale Rules refers to a user's country or region specific details like currency, language and more.</p>
@@ -1216,124 +1904,155 @@ Angular provides us with a <a href="https://angular.io/api/common/CurrencyPipe">
 Add the Currency Pipe to the <code>order.component.html</code> , <code>menu-items.component.html</code> and <code>list.component.html</code>:</p>
 <p>✏️ Update <strong>src/app/order/order.component.html</strong> to use the Currency Pipe:</p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
-  &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;
-    &lt;h3&gt;Thanks for your order {{completedOrder.name}}!&lt;/h3&gt;
-    &lt;div&gt;&lt;label class=&quot;control-label&quot;&gt;
-      Confirmation Number: {{completedOrder._id}}&lt;/label&gt;
+  &lt;ng-container *ngIf=&quot;orderComplete &amp;&amp; completedOrder; else showOrderForm&quot;&gt;
+    &lt;h3&gt;Thanks for your order {{ completedOrder.name }}!&lt;/h3&gt;
+    &lt;div&gt;
+      &lt;label class=&quot;control-label&quot;&gt;
+        Confirmation Number: {{ completedOrder._id }}&lt;/label
+      &gt;
     &lt;/div&gt;
 
     &lt;h4&gt;Items ordered:&lt;/h4&gt;
     &lt;ul class=&quot;list-group panel&quot;&gt;
       &lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of completedOrder.items&quot;&gt;
         &lt;label&gt;
-          {{item.name}} &lt;span class=&quot;badge&quot;&gt;{{item.price | currency}}&lt;/span&gt;
+          {{ item.name }}
+          &lt;span class=&quot;badge&quot;&gt;${{ item.price | currency }}&lt;/span&gt;
         &lt;/label&gt;
       &lt;/li&gt;
 
       &lt;li class=&quot;list-group-item&quot;&gt;
         &lt;label&gt;
-          Total &lt;span class=&quot;badge&quot;&gt;{{orderTotal | currency}}&lt;/span&gt;
+          Total &lt;span class=&quot;badge&quot;&gt;${{ orderTotal | currency }}&lt;/span&gt;
         &lt;/label&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
 
-    &lt;div&gt;&lt;label class=&quot;control-label&quot;&gt;
-      Phone: {{completedOrder.phone}}
-    &lt;/label&gt;&lt;/div&gt;
-    &lt;div&gt;&lt;label class=&quot;control-label&quot;&gt;
-      Address: {{completedOrder.address}}
-      &lt;/label&gt;&lt;/div&gt;
+    &lt;div&gt;
+      &lt;label class=&quot;control-label&quot;&gt; Phone: {{ completedOrder.phone }} &lt;/label&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+      &lt;label class=&quot;control-label&quot;&gt;
+        Address: {{ completedOrder.address }}
+      &lt;/label&gt;
+    &lt;/div&gt;
     &lt;p&gt;
-      &lt;button (click)=&quot;startNewOrder()&quot;&gt;
-        Place another order
-      &lt;/button&gt;
+      &lt;button (click)=&quot;startNewOrder()&quot;&gt;Place another order&lt;/button&gt;
     &lt;/p&gt;
   &lt;/ng-container&gt;
   &lt;ng-template #showOrderForm&gt;
     &lt;h2&gt;Order here&lt;/h2&gt;
     &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
       &lt;tabset&gt;
-        &lt;tab heading=&quot;Lunch Menu&quot;&gt;
+        &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
-            &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
+            &lt;pmo-menu-items
+              [items]=&quot;restaurant?.menu?.lunch&quot;
+              formControlName=&quot;items&quot;
+            &gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
-        &lt;tab heading=&quot;Dinner menu&quot;&gt;
+        &lt;tab heading=&quot;Dinner Menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
-            &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot; formControlName=&quot;items&quot;&gt;&lt;/pmo-menu-items&gt;
+            &lt;pmo-menu-items
+              [items]=&quot;restaurant?.menu?.dinner&quot;
+              formControlName=&quot;items&quot;
+            &gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
       &lt;/tabset&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-        &lt;input name=&quot;name&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;name&quot;&gt;
+        &lt;input
+          name=&quot;name&quot;
+          type=&quot;text&quot;
+          class=&quot;form-control&quot;
+          formControlName=&quot;name&quot;
+        /&gt;
         &lt;p&gt;Please enter your name.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-        &lt;input name=&quot;address&quot; type=&quot;text&quot; class=&quot;form-control&quot; formControlName=&quot;address&quot;&gt;
+        &lt;input
+          name=&quot;address&quot;
+          type=&quot;text&quot;
+          class=&quot;form-control&quot;
+          formControlName=&quot;address&quot;
+        /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
-        &lt;input name=&quot;phone&quot; type=&quot;text&quot; pmoOnlyNumbers class=&quot;form-control&quot; formControlName=&quot;phone&quot;&gt;
+        &lt;input
+          name=&quot;phone&quot;
+          type=&quot;text&quot;
+          pmoOnlyNumbers
+          class=&quot;form-control&quot;
+          formControlName=&quot;phone&quot;
+        /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;submit&quot;&gt;
-        &lt;h4&gt;Total: {{orderTotal | currency}}&lt;/h4&gt;
-          &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
-          &lt;button type=&quot;submit&quot; [disabled]=&quot;!orderForm.valid || orderProcessing&quot; class=&quot;btn&quot;&gt;
-            Place My Order!
-          &lt;/button&gt;
+        &lt;h4&gt;Total: {{ orderTotal | currency }}&lt;/h4&gt;
+        &lt;div class=&quot;loading&quot; *ngIf=&quot;orderProcessing&quot;&gt;&lt;/div&gt;
+        &lt;button
+          type=&quot;submit&quot;
+          [disabled]=&quot;!orderForm.valid || orderProcessing&quot;
+          class=&quot;btn&quot;
+        &gt;
+          Place My Order!
+        &lt;/button&gt;
       &lt;/div&gt;
     &lt;/form&gt;
   &lt;/ng-template&gt;
 &lt;/div&gt;
+
 </code></pre>
- <div line-highlight="2-5,12,18,23-28,30-32,39,41,44,46,52,57,62,66-70,only"></div>
+ <div line-highlight="14-15,21,91,only"></div>
 <p>✏️ Update <strong>src/app/order/list/list.component.html</strong> to use the currency Pipe:</p>
-<pre><code class="language-html">&lt;h4&gt;{{listTitle}}&lt;/h4&gt;
+<pre><code class="language-html">&lt;h4&gt;{{ listTitle }}&lt;/h4&gt;
 &lt;ng-container *ngFor=&quot;let order of orders&quot;&gt;
-  &lt;div [ngClass]=&quot;['order', order.status? order.status: '']&quot;&gt;
+  &lt;div [ngClass]=&quot;['order', order.status ? order.status : '']&quot;&gt;
     &lt;address&gt;
-      {{order.name}} &lt;br /&gt;{{order.address}} &lt;br /&gt;{{order.phone}}
+      {{ order.name }} &lt;br /&gt;{{ order.address }} &lt;br /&gt;{{ order.phone }}
     &lt;/address&gt;
-  
+
     &lt;div class=&quot;items&quot;&gt;
       &lt;ul&gt;
-        &lt;li *ngFor=&quot;let item of order.items&quot;&gt;{{item.name}}&lt;/li&gt;
+        &lt;li *ngFor=&quot;let item of order.items&quot;&gt;{{ item.name }}&lt;/li&gt;
       &lt;/ul&gt;
     &lt;/div&gt;
 
-    &lt;div class=&quot;total&quot;&gt;{{(order.items | itemTotal) | currency}}&lt;/div&gt;
-  
+    &lt;div class=&quot;total&quot;&gt;{{ order.items | itemTotal | currency }}&lt;/div&gt;
+
     &lt;div class=&quot;actions&quot;&gt;
-      &lt;span class=&quot;badge&quot;&gt;{{statusTitle}}&lt;/span&gt;
-        &lt;p class=&quot;action&quot; *ngIf=&quot;action&quot;&gt;
-          Mark as:
-          &lt;a href=&quot;javascript://&quot; (click)=&quot;markAs(order, action)&quot;&gt;
-            {{actionTitle}}
-          &lt;/a&gt;
-        &lt;/p&gt;
-  
+      &lt;span class=&quot;badge&quot;&gt;{{ statusTitle }}&lt;/span&gt;
+      &lt;p class=&quot;action&quot; *ngIf=&quot;action&quot;&gt;
+        Mark as:
+        &lt;button class=&quot;btn-link&quot; (click)=&quot;markAs(order, action)&quot;&gt;
+          {{ actionTitle }}
+        &lt;/button&gt;
+      &lt;/p&gt;
+
       &lt;p class=&quot;action&quot;&gt;
-        &lt;a href=&quot;javascript://&quot;  (click)=&quot;delete(order._id)&quot;&gt;Delete&lt;/a&gt;
+        &lt;button class=&quot;btn-link&quot; (click)=&quot;delete(order._id)&quot;&gt;Delete&lt;/button&gt;
       &lt;/p&gt;
     &lt;/div&gt;
   &lt;/div&gt;
 &lt;/ng-container&gt;
 
-&lt;div class=&quot;order empty&quot;&gt;{{emptyMessage}}&lt;/div&gt;
+&lt;div class=&quot;order empty&quot;&gt;{{ emptyMessage }}&lt;/div&gt;
 
 </code></pre>
  <div line-highlight="14,only"></div>
 <p>✏️ Update <strong>src/app/order/menu-items/menu-items.component.html</strong> to use the Currency Pipe:</p>
 <pre><code class="language-html">&lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of items&quot;&gt;
   &lt;label&gt;
-    &lt;input type=&quot;checkbox&quot; (change)=&quot;updateItems(item)&quot; &gt;
-    {{item.name}} &lt;span class=&quot;badge&quot;&gt;{{item.price | currency}}&lt;/span&gt;
+    &lt;input type=&quot;checkbox&quot; (change)=&quot;updateItems(item)&quot; /&gt;
+    {{ item.name }} &lt;span class=&quot;badge&quot;&gt;{{ item.price | currency }}&lt;/span&gt;
   &lt;/label&gt;
 &lt;/li&gt;
+
 </code></pre>
  <div line-highlight="4,only"></div>
 <h2>Set Default Currency Code</h2>
@@ -1388,8 +2107,9 @@ import { ItemTotalPipe } from './item-total.pipe';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
 </code></pre>
- <div line-highlight="2,5,21-46,only"></div>
+ <div line-highlight="2,42-45,only"></div>
 
 </section>
 

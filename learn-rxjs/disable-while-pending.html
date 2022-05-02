@@ -468,14 +468,14 @@ covering CanJS core libraries.">
 <p>Observables and their operators execute with every new subscription. This can cause problems
 if that execution causes side effects. The following shows that the <code>square</code> mapping
 runs twice, once for every subscription on the <code>squares</code> observable.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const {Subject} = rxjs;
 const {map} = rxjs.operators;
 
-const numbers = new Subject();
+const numbers = new Subject&lt;number&gt;();
 
-const square = map( (x)=&gt; {
+const square = map( (x: number) =&gt; {
     console.log(&quot;mapping&quot;);
     return x*x;
 } );
@@ -498,24 +498,24 @@ numbers.next(2);
 </code></pre>
 <div class='codepen'></div>
 <p>You can change this by converting the observable to a subject with:</p>
-<pre><code class="language-js">.pipe(multicast(new Subject()), refCount())
+<pre><code class="language-js">.pipe(share({ connector: () =&gt; new Subject() }))
 </code></pre>
 <p>The following shows this using this technique to run <code>square</code> only once
 for all subscribers of <code>squares</code>:</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const {Subject} = rxjs;
-const {map, multicast, refCount} = rxjs.operators;
+const {map, share} = rxjs.operators;
 
-const numbers = new Subject();
+const numbers = new Subject&lt;number&gt;();
 
-const square = map( (x)=&gt; {
+const square = map( (x: number) =&gt; {
     console.log(&quot;mapping&quot;);
     return x*x;
 } );
 
 const squares = numbers.pipe(square)
-    .pipe(multicast(new Subject()), refCount());
+    .pipe(share({ connector: () =&gt; new Subject() }));
 
 squares.subscribe( (value) =&gt; {
     console.log(&quot;squares1&quot;,value);
@@ -531,22 +531,22 @@ numbers.next(2);
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<p>Read more about this technique on <a href="https://rxjs-dev.firebaseapp.com/guide/subject#multicasted-observables">RxJS's documentation</a>.</p>
+<p>Read more about this technique on <a href="https://rxjs.dev/guide/subject#multicasted-observables">RxJS's documentation</a>. Note that the <code>multicast</code> and <code>refCount</code> operators are <a href="https://rxjs.dev/deprecations/multicasting#multicast">deprecated</a> in RxJS 7, and the <a href="https://rxjs.dev/api/operators/share"><code>share</code></a> operator used above is analogous to the functionality formerly provided by <code>multicast(() =&gt; new Subject()), refCount()</code>.</p>
 <h2>Solution</h2>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/core@6.0.5/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/common@6.0.5/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/compiler@6.0.5/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@6.0.5/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@6.0.5/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/3.19.0/core.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@12.2.16/bundles/core.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.11.4/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@12.2.16/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@12.2.16/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@12.2.16/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@12.2.16/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
 &lt;my-app&gt;&lt;/my-app&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 // app.js
 const { Component, VERSION } = ng.core;
 const { BehaviorSubject, Subject, merge, combineLatest, of, from, concat, pipe } = rxjs;
-const { map, tap, scan, withLatestFrom, mergeAll, startWith, multicast, refCount } = rxjs.operators;
+const { map, tap, scan, withLatestFrom, mergeAll, startWith, share } = rxjs.operators;
 
 const cleanCardNumber = map((card) =&gt; {
     if (card) {
@@ -745,14 +745,14 @@ function disablePaymentButton(isCardInvalid, paymentStatus) {
     `
 })
 class AppComponent {
-    userCardNumber = new BehaviorSubject&lt;String&gt;();
-    userCardNumberBlurred = new Subject&lt;Boolean&gt;();
+    userCardNumber = new BehaviorSubject&lt;string&gt;();
+    userCardNumberBlurred = new Subject&lt;boolean&gt;();
 
-    userExpiry = new BehaviorSubject&lt;Array&gt;();
-    userExpiryBlurred = new Subject&lt;Boolean&gt;();
+    userExpiry = new BehaviorSubject&lt;[]&gt;();
+    userExpiryBlurred = new Subject&lt;boolean&gt;();
 
-    userCVC = new BehaviorSubject&lt;String&gt;();
-    userCVCBlurred = new Subject&lt;Boolean&gt;();
+    userCVC = new BehaviorSubject&lt;string&gt;();
+    userCVCBlurred = new Subject&lt;boolean&gt;();
 
     paySubmitted = new Subject();
 
@@ -778,7 +778,7 @@ class AppComponent {
 
         const paymentStatusObservables = payments.pipe(toPaymentStatusObservable);
 
-        this.paymentStatus = paymentStatusObservables.pipe(mergeAll()).pipe(multicast(new Subject()), refCount());
+        this.paymentStatus = paymentStatusObservables.pipe(mergeAll()).pipe(share({ connector: () =&gt; new Subject() }));
 
         this.disablePaymentButton = disablePaymentButton(this.isCardInvalid, this.paymentStatus);
     }

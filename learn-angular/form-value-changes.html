@@ -594,7 +594,7 @@ covering CanJS core libraries.">
 <li>Learn about Observables and Subscriptions</li>
 <li>Learn about listening to form value changes</li>
 <li>Learn about AbstractControl properties and methods</li>
-<li>Create subscription to form changes</li>
+<li>Create Subscription to form changes</li>
 <li>Use onDestroy to unsubscribe from form changes</li>
 <li>Learn about HttpParams</li>
 <li>Create new methods on our RestaurantService</li>
@@ -605,14 +605,14 @@ covering CanJS core libraries.">
 <p>Our end goal is to be able to show restaurants based on state, then city. As we move through getting each piece of information from the user we want to be able to update the next step - like getting a list of cities based on the state selected. We'll implement this form functionality in a few small steps.</p>
 <h2>P1: What You Need to Know</h2>
 <ul>
-<li>How observables and subscriptions work</li>
+<li>How Observables and Subscriptions work</li>
 <li>How to subscribe to the valueChanges method on a FormGroup (or FormControl)</li>
-<li>How to unsubscribe from subscriptions</li>
+<li>How to unsubscribe from Subscriptions</li>
 </ul>
 <h2>Observables and Subscriptions</h2>
-<p>For a more robust understanding of Observables, Subscriptions, and other RxJS core tenants check out our  <a href="/academy/academy/learn-rxjs.html">[RxJS guide]</a>. For the following exercises, Observables are lazy collections of multiple values over time. We can subscribe to observables to get any new data, or create and add to Subscriptions of observables.</p>
-<p>This example shows creating a subscription to an observable, saving it's value to a member on the component and displaying it in the template. This is useful for when we want to capture and observables values and make changes based on them, but subscriptions do need to be cleaned up to avoid memory leaks. Whenever a component is destroyed an <a href="https://angular.io/api/core/OnDestroy" target="\_blank">ngOnDestroy</a> method is called. This is a good place to put our cleanup code, like unsubscribing from observables.</p>
-<p>In this example, click the button to start subscribing to the observables - you'll see two variables logged: the new observable value and the subscription value. Then click the &quot;remove component&quot; button to see what happens when a component is destroyed. Next delete line 95, follow the same process and see what happens!</p>
+<p>For a more robust understanding of Observables, Subscriptions, and other RxJS core tenants check out our <a href="/learn-rxjs.html">RxJS guide</a>. For the following exercises, Observables are lazy collections of multiple values over time. We can subscribe to Observables to get any new data, or create and add to Subscriptions of Observables.</p>
+<p>This example shows creating a Subscription to an Observable, saving it's value to a member on the component and displaying it in the template. This is useful for when we want to capture an Observable's values and make changes based on them, but Subscriptions do need to be cleaned up to avoid memory leaks. Whenever a component is destroyed an <a href="https://angular.io/api/core/OnDestroy" target="\_blank">ngOnDestroy</a> method is called. This is a good place to put our cleanup code, like unsubscribing from Observables.</p>
+<p>In this example, click the button to start subscribing to the Observables - you'll see two variables logged: the new Observable value and the Subscription value. Then click the &quot;remove component&quot; button to see what happens when a component is destroyed. Next delete lines 90 and 91, follow the same process and see what happens!</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -636,11 +636,9 @@ const { takeUntil } = rxjs.operators;
   providedIn: 'root'
 })
 class ObsService {
+  constructor() {}
 
-  constructor() { }
-
-  getObs() {
-
+  getObs(): Observable&lt;number&gt; {
     return new Observable&lt;number&gt;(observer =&gt; {
       console.log('New subscription created');
       let count = 0;
@@ -667,15 +665,12 @@ class ObsService {
     &lt;p *ngIf=&quot;!yayComponent&quot;&gt;I am a very sad empty component now&lt;/p&gt;
   `
 })
-class AppComponent implements OnInit{
-  public yayComponent: boolean = true;
-  constructor() {
-  }
+class AppComponent {
+  yayComponent: boolean = true;
   
-  ngOnInit() {
-  }
+  constructor() {}
 
-  removeComponent() {
+  removeComponent(): void {
     this.yayComponent = false;
   }
 }
@@ -686,33 +681,35 @@ class AppComponent implements OnInit{
     &lt;p&gt;This component will be destroyed. Rawr.&lt;/p&gt;
     &lt;button (click)=&quot;startObservable()&quot;&gt;start observable&lt;/button&gt;
 
-    &lt;p&gt;{{myDisplayValue}}&lt;/p&gt;
+    &lt;p&gt;{{ myDisplayValue }}&lt;/p&gt;
     `
 })
-class DestroyComponent implements OnInit, OnDestroy {
-  private unSubscribe = new Subject&lt;void&gt;();
+class DestroyComponent implements OnDestroy {
+  private onDestroy$ = new Subject&lt;void&gt;();
   myDisplayValue: string;
-  
+
   constructor(private obsService: ObsService) {}
 
-  ngOnInit() {}
-
-  startObservable() {
-    //subscribing to a service that emits observable values every second.
-     this.obsService.getObs().pipe(takeUntil(this.unSubscribe)).subscribe((val) =&gt; {
-      console.log('new value', val);
-      this.myDisplayValue = val;
-    });
+  startObservable(): void {
+    // subscribing to a service that emits observable values every second.
+    this.obsService.getObs()
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((val) =&gt; {
+        console.log('new value', val);
+        this.myDisplayValue = val;
+      });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     console.log('destroying component');
-    this.unSubscribe.next();
-    this.unSubscribe.complete();
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
-}   
+}
+
+//THIS IS A HACK JUST FOR CODEPEN TO WORK
 DestroyComponent.parameters = [ObsService]; 
-                 
+
 @NgModule({
   declarations: [AppComponent, DestroyComponent],
   imports: [
@@ -734,8 +731,8 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='14,17,49,50,62-64,71,73,77-78,80,84-90,92-97,only'></div>
-<p>This example shows creating a subscription to an observable, and using an <a href="https://angular.io/api/common/AsyncPipe" target="\_blank">async pipe</a> to display the value. This is useful for displaying observable values in templates without the need to unsubscribe as that's handled by the pipe when the component is destroyed .</p>
+<div line-highlight='48,49,54,58-60,67,73,78-85,89-91,only'></div>
+<p>This example shows creating a Subscription to an Observable, and using an <a href="https://angular.io/api/common/AsyncPipe" target="\_blank">async pipe</a> to display the value. This is useful for displaying Observable values in templates without the need to unsubscribe as that's handled by the pipe when the component is destroyed .</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -753,7 +750,6 @@ const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
 const { Routes, RouterModule } = ng.router;
-const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
 const { Observable, Subscription } = rxjs;
 
 
@@ -779,27 +775,24 @@ class AppComponent {
   `
 })
 class AboutComponent {
-  constructor() {
-  }
+  constructor() {}
 }
 
 @Component({
   selector: 'home-component',
   template: `
     &lt;p&gt;A home component!&lt;/p&gt;
-    &lt;ng-container *ngIf=&quot;myObservable$ | async as mySubscription&quot;&gt;
-        {{mySubscription}}
+    &lt;ng-container *ngIf=&quot;myObservable$ | async as latestObservableValue&quot;&gt;
+        {{ latestObservableValue }}
     &lt;/ng-container&gt;
     `
 })
-class HomeComponent implements OnInit{
+class HomeComponent implements OnInit {
   myObservable$: Observable&lt;string&gt;;
 
-  constructor(private fb:FormBuilder) {
-  
-  }
+  constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.myObservable$ = new Observable(observer =&gt; {
       setTimeout(() =&gt; {
           observer.next('hello observable');
@@ -812,13 +805,9 @@ class HomeComponent implements OnInit{
       setTimeout(() =&gt; {
           observer.complete();
       }, 3000);
-  });
-
+    });
   }
 }
-//THIS IS A HACK JUST FOR CODEPEN TO WORK
-HomeComponent.parameters = [FormBuilder];
-
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -828,16 +817,14 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-class AppRoutingModule { }
+class AppRoutingModule {}
 
-                 
 @NgModule({
   declarations: [AppComponent, AboutComponent, HomeComponent],
   imports: [
     BrowserModule,
     CommonModule,
-    AppRoutingModule, 
-    ReactiveFormsModule
+    AppRoutingModule,
   ],
   bootstrap: [AppComponent],
   providers: []
@@ -854,8 +841,8 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='53,57,58,65-76,79,only'></div>
-<p>This example shows how to unsubscribe from observable multiple.</p>
+<div line-highlight='50-52,56,61-73,only'></div>
+<p>This example shows how to unsubscribe from multiple Observables.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -899,8 +886,7 @@ class AppComponent {
   `
 })
 class AboutComponent {
-  constructor() {
-  }
+  constructor() {}
 }
 
 @Component({
@@ -908,24 +894,21 @@ class AboutComponent {
   template: `
     &lt;p&gt;A home component!&lt;/p&gt;
 
-    &lt;p&gt;{{myDisplayValue}}&lt;/p&gt;
+    &lt;p&gt;{{ myDisplayValue }}&lt;/p&gt;
 
-    &lt;p&gt;{{myOtherDisplayValue}}&lt;/p&gt;
-
-    `
+    &lt;p&gt;{{ myOtherDisplayValue }}&lt;/p&gt;
+  `
 })
 class HomeComponent implements OnInit, OnDestroy {
-  private unSubscribe = new Subject&lt;void&gt;();
+  private onDestroy$ = new Subject&lt;void&gt;();
   myObservable$: Observable&lt;string&gt;;
   myOtherObservable$: Observable&lt;string&gt;;
   myDisplayValue: string;
   myOtherDisplayValue: string;
-  
-  constructor(private fb:FormBuilder) {
-  
-  }
 
-  ngOnInit() {
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {
     this.myObservable$ = new Observable(observer =&gt; {
       setTimeout(() =&gt; {
           observer.next('hello observable');
@@ -954,26 +937,25 @@ class HomeComponent implements OnInit, OnDestroy {
       }, 3500);
     });
 
-    //creating the first subscription
-    this.myObservable$.pipe(takeUntil(this.unSubscribe)).subscribe((val) =&gt; {
-      this.myDisplayValue = val;
-    });
+    this.myObservable$
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((val) =&gt; {
+        this.myDisplayValue = val;
+      });
 
-    //taking the first subscription and adding another to it
-    this.myOtherObservable$.pipe(takeUntil(this.unSubscribe)).subscribe((val) =&gt; {
-      this.myOtherDisplayValue = val;
-    });
-
+    this.myOtherObservable$
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((val) =&gt; {
+        this.myOtherDisplayValue = val;
+      });
   }
 
-
-
-
-  ngOnDestroy() {
-    this.unSubscribe.next();
-    this.unSubscribe.complete();
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 }
+
 //THIS IS A HACK JUST FOR CODEPEN TO WORK
 HomeComponent.parameters = [FormBuilder];
 
@@ -988,7 +970,6 @@ const routes: Routes = [
 })
 class AppRoutingModule { }
 
-                 
 @NgModule({
   declarations: [AppComponent, AboutComponent, HomeComponent],
   imports: [
@@ -1012,9 +993,9 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='100-102,105-107,115-116,only'></div>
+<div line-highlight='58,95-99,101-105,109-110,only'></div>
 <h2>Listening to Form Changes</h2>
-<p>We can listen to changes to values on FormControls and FormGroup using the valueChanges method, which emits an observable. The following example subscribes to any changes to the FormGroup (which must be unsubscribed on destroy to avoid memory leaks) and also subscribes to a single FormControl and displays the value using an async pipe.</p>
+<p>We can listen to changes to values on FormControls and FormGroup using the valueChanges method, which emits an Observable. The following example subscribes to any changes to the FormGroup (which must be unsubscribed on destroy to avoid memory leaks).</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1056,11 +1037,9 @@ const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
 class AppComponent {
   myQuickForm: FormGroup;
 
-  constructor(private fb:FormBuilder) {
-  
-  }
+  constructor(private fb:FormBuilder) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.myQuickForm = this.fb.group({
       firstName: {value: '', disabled: false},
       lastName: {value: '', disabled: false},
@@ -1072,9 +1051,10 @@ class AppComponent {
     });
   }
 }
+
 //THIS IS A HACK JUST FOR CODEPEN TO WORK
 AppComponent.parameters = [FormBuilder];
-            
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -1097,7 +1077,7 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='53-55,only'></div>
+<div line-highlight='51-53,only'></div>
 <h2>Call Methods on FormControls</h2>
 <p>The ReactiveForms API makes it easy for us to change our FormControls as needed. As a reminder, the FormControl class extends the <a href="https://angular.io/api/forms/AbstractControl">AbstractControl</a> class which has a lot of helpful properties and methods on it. The following example shows enabling and disabling controls via the <code>enable</code> and <code>disable</code> methods, and displaying the <code>enabled</code> FormControl property.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -1201,19 +1181,17 @@ platformBrowserDynamic()
 <h2>P1: Technical Requirements</h2>
 <ol>
 <li>Subscribe to the <code>state</code> and <code>city</code> formControl value changes and log the resulting value to the console.</li>
-<li>Unsubscribe from subscription created in step 1 in the <code>ngOnDestroy</code> function</li>
+<li>Unsubscribe from Subscription created in step 1 in the <code>ngOnDestroy</code> function</li>
 </ol>
 <h2>P1: To Verify Your Solution is Correct</h2>
 <p>When you interact with the dropdown menus, you should see their values logged to the console as you change them.</p>
 <h2>P1: Solution</h2>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>
-<pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
+<pre><code class="language-ts">import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { takeUntil } from &quot;rxjs/operators&quot;;
-import { Subject } from 'rxjs';
-
-import { RestaurantService, ResponseData } from './restaurant.service';
+import { Subject, takeUntil } from 'rxjs';
 import { Restaurant } from './restaurant';
+import { ResponseData, RestaurantService } from './restaurant.service';
 
 export interface Data {
   value: Restaurant[];
@@ -1223,75 +1201,79 @@ export interface Data {
 @Component({
   selector: 'pmo-restaurant',
   templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less']
+  styleUrls: ['./restaurant.component.less'],
 })
 export class RestaurantComponent implements OnInit, OnDestroy {
-  form: FormGroup;
+  form: FormGroup = this.createForm();
 
   restaurants: Data = {
     value: [],
-    isPending: false
-  }
+    isPending: false,
+  };
 
   states = {
     isPending: false,
-    value: [{name: &quot;Illinois&quot;, short: &quot;IL&quot;}, {name: &quot;Wisconsin&quot;, short: &quot;WI&quot;}]
+    value: [
+      { name: 'Illinois', short: 'IL' },
+      { name: 'Wisconsin', short: 'WI' },
+    ],
   };
 
   cities = {
     isPending: false,
-    value: [{name: &quot;Springfield&quot;},{name: &quot;Madison&quot;}]
-  }
+    value: [{ name: 'Springfield' }, { name: 'Madison' }],
+  };
 
-  private unSubscribe = new Subject&lt;void&gt;();
+  private onDestroy$ = new Subject&lt;void&gt;();
 
   constructor(
     private restaurantService: RestaurantService,
     private fb: FormBuilder
-    ) {
-  }
+  ) {}
 
-  ngOnInit() {
-    this.createForm();
-
+  ngOnInit(): void {
+    this.restaurants.isPending = true;
     this.restaurantService.getRestaurants().subscribe((res: ResponseData) =&gt; {
       this.restaurants.value = res.data;
       this.restaurants.isPending = false;
     });
+
+    this.form
+      .get('state')
+      ?.valueChanges.pipe(takeUntil(this.onDestroy$))
+      .subscribe((val) =&gt; {
+        console.log('state', val);
+      });
+
+    this.form
+      .get('city')
+      ?.valueChanges.pipe(takeUntil(this.onDestroy$))
+      .subscribe((val) =&gt; {
+        console.log('city', val);
+      });
   }
 
-  ngOnDestroy() {
-    this.unSubscribe.next()
-    this.unSubscribe.unsubscribe();
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 
-  createForm() {
-    this.form = this.fb.group({
-      state: {value: '', disabled: false},
-      city: {value: '', disabled: false},
-    });
-
-    this.onChanges();
-  }
-  onChanges(): void {
-    this.form.get('state').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe(val =&gt; {
-      console.log('state', val);
-    });
-
-    this.form.get('city').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe(val =&gt; {
-      console.log('city', val);
+  createForm(): FormGroup {
+    return this.fb.group({
+      state: { value: '', disabled: false },
+      city: { value: '', disabled: false },
     });
   }
 }
 
 </code></pre>
-<div line-highlight='1,3-4,19,37,53-57,65,67-78'></div>
-<p>Now that we know how to get values from our dropdowns, let's populate them with real data. We can get our list of states immediately, but to get our cities, we'll want to make an get request based on the state the user selected.</p>
+<div line-highlight='1,3,17,38,39,51-69'></div>
+<p>Now that we know how to get values from our dropdowns, let's populate them with real data. We can get our list of states immediately, but to get our cities, we'll want to make a GET request based on the state the user selected.</p>
 <h2>Problem 2: Write Service Methods to Get States and Cities from API</h2>
 <p>We want to be able to get lists of cities and states from our API to populate the dropdown options.</p>
 <h2>P2: What You Need to Know</h2>
 <h2>How to use HttpParams</h2>
-<p><a href="https://angular.io/api/common/http/HttpParams" target="\_blank">HttpParams</a> are part of Angulars HTTPClient API and help us create parameters for our requests.</p>
+<p><a href="https://angular.io/api/common/http/HttpParams" target="\_blank">HttpParams</a> are part of Angulars HttpClient API and help us create parameters for our requests.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1321,10 +1303,10 @@ interface User {
 })
 class UsersService {
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   getUsers() {
-    const params = new HttpParams()
+    const params = new HttpParams();
     params.set('_page', &quot;1&quot;).set('_limit', &quot;1&quot;);
     return this.httpClient.get&lt;any&gt;('/api/users', {params});
   }
@@ -1333,6 +1315,7 @@ class UsersService {
     return this.httpClient.get&lt;any&gt;('/api/users/' + id);
   }
 }
+
 //THIS IS A HACK JUST FOR CODEPEN TO WORK
 //UsersService.parameters = [HttpClient];
 
@@ -1386,92 +1369,102 @@ platformBrowserDynamic()
 <p>Method 1 - <code>getStates</code> takes no params and makes a request to <code>'/api/states'</code></p>
 <p>Method 2 - <code>getCities</code>, takes a string param called 'state' a makes a request to <code>'/api/cities?state=&quot;{state abbreviation here}&quot;'</code></p>
 <h2>P2: How to Verify Your Solution is Correct</h2>
-<p>✏️ Update the spec file  <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { TestBed } from '@angular/core/testing';
-
-import { ResponseData, RestaurantService } from './restaurant.service';
+<p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
 import { Restaurant } from './restaurant';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { ResponseData, RestaurantService } from './restaurant.service';
 
 describe('RestaurantService', () =&gt; {
-  let httpMock : HttpTestingController;
-  let restaurantService: RestaurantService;
-
-  beforeEach(() =&gt; TestBed.configureTestingModule({
-    imports: [HttpClientTestingModule],
-    providers: [
-      RestaurantService
-    ]
-  }));
+  let httpMock: HttpTestingController;
+  let service: RestaurantService;
 
   beforeEach(() =&gt; {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+    });
+
     httpMock = TestBed.inject(HttpTestingController);
-    restaurantService = TestBed.inject(RestaurantService);
-  })
+    service = TestBed.inject(RestaurantService);
+  });
 
   it('should be created', () =&gt; {
-    expect(restaurantService).toBeTruthy();
+    expect(service).toBeTruthy();
   });
- 
+
   it('should make a get request to restaurants', () =&gt; {
     const mockRestaurants = {
-      data: [{
-      &quot;name&quot;:&quot;Brunch Place&quot;,
-      &quot;slug&quot;:&quot;brunch-place&quot;,
-      &quot;images&quot;:{
-        &quot;thumbnail&quot;:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-        &quot;owner&quot;:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
-        &quot;banner&quot;:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;},
-        &quot;menu&quot;:{
-          &quot;lunch&quot;:[
-            {&quot;name&quot;:&quot;Ricotta Gnocchi&quot;,&quot;price&quot;:15.99},
-            {&quot;name&quot;:&quot;Garlic Fries&quot;,&quot;price&quot;:15.99},
-            {&quot;name&quot;:&quot;Charred Octopus&quot;,&quot;price&quot;:25.99}
-          ],
-          &quot;dinner&quot;:[
-            {&quot;name&quot;:&quot;Steamed Mussels&quot;,&quot;price&quot;:21.99},
-            {&quot;name&quot;:&quot;Roasted Salmon&quot;,&quot;price&quot;:23.99},
-            {&quot;name&quot;:&quot;Crab Pancakes with Sorrel Syrup&quot;,&quot;price&quot;:35.99}
-          ]
-        },
-        &quot;address&quot;:{
-          &quot;street&quot;:&quot;2451 W Washburne Ave&quot;,
-          &quot;city&quot;:&quot;Ann Arbor&quot;,&quot;state&quot;:&quot;MI&quot;,&quot;zip&quot;:&quot;53295&quot;},
-          &quot;_id&quot;:&quot;xugqxQIX5rPJTLBv&quot;
+      data: [
+        {
+          name: 'Brunch Place',
+          slug: 'brunch-place',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/2-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              { name: 'Ricotta Gnocchi', price: 15.99 },
+              { name: 'Garlic Fries', price: 15.99 },
+              { name: 'Charred Octopus', price: 25.99 },
+            ],
+            dinner: [
+              { name: 'Steamed Mussels', price: 21.99 },
+              { name: 'Roasted Salmon', price: 23.99 },
+              { name: 'Crab Pancakes with Sorrel Syrup', price: 35.99 },
+            ],
+          },
+          address: {
+            street: '2451 W Washburne Ave',
+            city: 'Ann Arbor',
+            state: 'MI',
+            zip: '53295',
+          },
+          _id: 'xugqxQIX5rPJTLBv',
         },
         {
-          &quot;name&quot;:&quot;Taco Joint&quot;,
-          &quot;slug&quot;:&quot;taco-joint&quot;,
-          &quot;images&quot;:{
-            &quot;thumbnail&quot;:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-            &quot;owner&quot;:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
-            &quot;banner&quot;:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;},
-            &quot;menu&quot;:{
-              &quot;lunch&quot;:[
-                {&quot;name&quot;:&quot;Beef Tacos&quot;,&quot;price&quot;:15.99},
-                {&quot;name&quot;:&quot;Chicken Tacos&quot;,&quot;price&quot;:15.99},
-                {&quot;name&quot;:&quot;Guacamole&quot;,&quot;price&quot;:25.99}
-              ],
-              &quot;dinner&quot;:[
-                {&quot;name&quot;:&quot;Shrimp Tacos&quot;,&quot;price&quot;:21.99},
-                {&quot;name&quot;:&quot;Chicken Enchilada&quot;,&quot;price&quot;:23.99},
-                {&quot;name&quot;:&quot;Elotes&quot;,&quot;price&quot;:35.99}
-              ]
-            },
-            &quot;address&quot;:{
-              &quot;street&quot;:&quot;13 N 21st St&quot;,
-              &quot;city&quot;:&quot;Chicago&quot;,&quot;state&quot;:&quot;IL&quot;,&quot;zip&quot;:&quot;53295&quot;},
-              &quot;_id&quot;:&quot;xugqxQIX5dfgdgTLBv&quot;
-            }]
-          };
+          name: 'Taco Joint',
+          slug: 'taco-joint',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/2-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              { name: 'Beef Tacos', price: 15.99 },
+              { name: 'Chicken Tacos', price: 15.99 },
+              { name: 'Guacamole', price: 25.99 },
+            ],
+            dinner: [
+              { name: 'Shrimp Tacos', price: 21.99 },
+              { name: 'Chicken Enchilada', price: 23.99 },
+              { name: 'Elotes', price: 35.99 },
+            ],
+          },
+          address: {
+            street: '13 N 21st St',
+            city: 'Chicago',
+            state: 'IL',
+            zip: '53295',
+          },
+          _id: 'xugqxQIX5dfgdgTLBv',
+        },
+      ],
+    };
 
-    restaurantService.getRestaurants().subscribe((restaurants:ResponseData) =&gt; {
+    service.getRestaurants().subscribe((restaurants: ResponseData) =&gt; {
       expect(restaurants).toEqual(mockRestaurants);
     });
 
-    let url = 'http://localhost:7070/restaurants';
+    const url = 'http://localhost:7070/restaurants';
     const req = httpMock.expectOne(url);
-
 
     expect(req.request.method).toEqual('GET');
     req.flush(mockRestaurants);
@@ -1480,48 +1473,48 @@ describe('RestaurantService', () =&gt; {
   });
 
   it('can set proper properties on restaurant type', () =&gt; {
-    let restaurant: Restaurant = {
-      name:&quot;Taco Joint&quot;,
-      slug:&quot;taco-joint&quot;,
-      images:{
-        thumbnail:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-        owner:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
-        banner:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+    const restaurant: Restaurant = {
+      name: 'Taco Joint',
+      slug: 'taco-joint',
+      images: {
+        thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+        owner: 'node_modules/place-my-order-assets/images/2-owner.jpg',
+        banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
       },
-      menu:{
-        lunch:[
-          {name:&quot;Beef Tacos&quot;,&quot;price&quot;:15.99},
-          {name:&quot;Chicken Tacos&quot;,&quot;price&quot;:15.99},
-          {name:&quot;Guacamole&quot;,&quot;price&quot;:25.99}
+      menu: {
+        lunch: [
+          { name: 'Beef Tacos', price: 15.99 },
+          { name: 'Chicken Tacos', price: 15.99 },
+          { name: 'Guacamole', price: 25.99 },
         ],
-        dinner:[
-          {name:&quot;Shrimp Tacos&quot;,&quot;price&quot;:21.99},
-          {name:&quot;Chicken Enchilada&quot;,&quot;price&quot;:23.99},
-          {name:&quot;Elotes&quot;,&quot;price&quot;:35.99}
-        ]
+        dinner: [
+          { name: 'Shrimp Tacos', price: 21.99 },
+          { name: 'Chicken Enchilada', price: 23.99 },
+          { name: 'Elotes', price: 35.99 },
+        ],
       },
-      address:{
-        street:&quot;13 N 21st St&quot;,
-        city:&quot;Chicago&quot;,&quot;state&quot;:&quot;IL&quot;,&quot;zip&quot;:&quot;53295&quot;
+      address: {
+        street: '13 N 21st St',
+        city: 'Chicago',
+        state: 'IL',
+        zip: '53295',
       },
-      _id:&quot;xugqxQIX5dfgdgTLBv&quot;
-    }
-    //will error if interface isn't implemented correctly
+      _id: 'xugqxQIX5dfgdgTLBv',
+    };
+    // will error if interface isn't implemented correctly
     expect(true).toBe(true);
   });
 
   it('should make a get request to states', () =&gt; {
     const mockStates = {
-      data: [
-        {name: 'Missouri', short: 'MO'}
-      ]
+      data: [{ name: 'Missouri', short: 'MO' }],
     };
 
-    restaurantService.getStates().subscribe((states) =&gt; {
+    service.getStates().subscribe((states) =&gt; {
       expect(states).toEqual(mockStates);
     });
 
-    let url = 'http://localhost:7070/states';
+    const url = 'http://localhost:7070/states';
     const req = httpMock.expectOne(url);
 
     expect(req.request.method).toEqual('GET');
@@ -1532,62 +1525,63 @@ describe('RestaurantService', () =&gt; {
 
   it('should make a get request to cities', () =&gt; {
     const mockCities = {
-      data: [
-        {name: 'Kansas City', state: 'MO'}
-      ]
+      data: [{ name: 'Kansas City', state: 'MO' }],
     };
 
-    restaurantService.getCities('MO').subscribe((cities) =&gt; {
+    service.getCities('MO').subscribe((cities) =&gt; {
       expect(cities).toEqual(mockCities);
     });
 
-    let url = 'http://localhost:7070/cities?state=MO';
+    const url = 'http://localhost:7070/cities?state=MO';
     const req = httpMock.expectOne(url);
     expect(req.request.method).toEqual('GET');
     req.flush(mockCities);
 
     httpMock.verify();
   });
-
 });
+
 </code></pre>
- <div line-highlight="5,8-9,11-16,20,24,26,29-46,48-51,54-77,79,83,94-100,102-106,108-112,114-116,118,120,124-125,127-128,131-132,135-136,138-139,141-142,144-149,151-153,155-158,160-161,"></div>
+ <div line-highlight="136-139,141-143,145-146,148-149,151-152,154-157,159-161,163-166,168-169,"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
 <h2>P2: Solution</h2>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.service.ts</strong></p>
-<pre><code class="language-ts">import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Restaurant } from './restaurant';
+<pre><code class="language-ts">import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { Restaurant } from './restaurant';
 
 export interface ResponseData {
   data: Restaurant[];
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RestaurantService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
-
-  getRestaurants() {
-    return this.httpClient.get&lt;ResponseData&gt;(environment.apiUrl + '/restaurants');
+  getRestaurants(): Observable&lt;ResponseData&gt; {
+    return this.httpClient.get&lt;ResponseData&gt;(
+      environment.apiUrl + '/restaurants'
+    );
   }
 
-  getStates() {
+  getStates(): Observable&lt;any&gt; {
     return this.httpClient.get&lt;any&gt;(environment.apiUrl + '/states');
   }
 
-  getCities(state:string) {
+  getCities(state: string): Observable&lt;any&gt; {
     const params = new HttpParams().set('state', state);
-    return this.httpClient.get&lt;any&gt;(environment.apiUrl + '/cities', {params});
+    return this.httpClient.get&lt;any&gt;(environment.apiUrl + '/cities', { params });
   }
 }
+
 </code></pre>
- <div line-highlight="2,11,15,17-18,21-23,25-28,"></div>
+ <div line-highlight="1,23-25,27-30,"></div>
 <h2>Problem 3: Use Generics to Modify ResponseData interface to Work with States and Cities Data</h2>
 <p>We would like to use the <code>ResponseData</code> interface we wrote to describe the response for the state and city requests, but it only works with and array of type <code>Restaurant</code>.</p>
 <h2>P3: What You Need to Know</h2>
@@ -1692,13 +1686,14 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='18-23,25-29,36,41,46,47,51-55,57-61,63-67,68-71,only'></div>
 <h2>P3: Technical Requirements</h2>
-<p>Convert the <code>ResponseData</code> interface use generics so it can take a type of <code>Restaurant</code>, <code>State</code>, or <code>City</code>. We've written the state &amp; city interfaces for you. Make sure to update the getRestaurants method in the RestaurantComponent as well.</p>
+<p>Convert the <code>ResponseData</code> interface to use generics so it can take a type of <code>Restaurant</code>, <code>State</code>, or <code>City</code>. We've written the state &amp; city interfaces for you. Make sure to update the getRestaurants method in the RestaurantComponent as well.</p>
 <h2>P3: Setup</h2>
 <p>✏️ Update your <strong>src/app/restaurant/restaurant.service.ts</strong> file to be:</p>
-<pre><code class="language-ts">import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Restaurant } from './restaurant';
+<pre><code class="language-ts">import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { Restaurant } from './restaurant';
 
 export interface ResponseData {
   data: Restaurant[];
@@ -1715,114 +1710,133 @@ export interface City {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RestaurantService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
-
-  getRestaurants() {
-    return this.httpClient.get&lt;ResponseData&gt;(environment.apiUrl + '/restaurants');
+  getRestaurants(): Observable&lt;ResponseData&gt; {
+    return this.httpClient.get&lt;ResponseData&gt;(
+      environment.apiUrl + '/restaurants'
+    );
   }
 
-  getStates() {
+  getStates(): Observable&lt;any&gt; {
     return this.httpClient.get&lt;any&gt;(environment.apiUrl + '/states');
   }
 
-  getCities(state:string) {
+  getCities(state: string): Observable&lt;any&gt; {
     const params = new HttpParams().set('state', state);
-    return this.httpClient.get&lt;any&gt;(environment.apiUrl + '/cities', {params});
+    return this.httpClient.get&lt;any&gt;(environment.apiUrl + '/cities', { params });
   }
 }
-</code></pre>
- <div line-highlight="10-12,15-18,39,"></div>
-<h2>P3: How to Verify Your Solution is Correct</h2>
-<p>✏️ Update the spec file  <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { TestBed } from '@angular/core/testing';
 
-import { ResponseData, RestaurantService, State, City } from './restaurant.service';
+</code></pre>
+ <div line-highlight="11-13,16-19,41,"></div>
+<h2>P3: How to Verify Your Solution is Correct</h2>
+<p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import {
+  HttpClientTestingModule,
+  HttpTestingController,
+} from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
 import { Restaurant } from './restaurant';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {
+  City,
+  ResponseData,
+  RestaurantService,
+  State,
+} from './restaurant.service';
 
 describe('RestaurantService', () =&gt; {
-  let httpMock : HttpTestingController;
-  let restaurantService: RestaurantService;
-
-  beforeEach(() =&gt; TestBed.configureTestingModule({
-    imports: [HttpClientTestingModule],
-    providers: [
-      RestaurantService
-    ]
-  }));
+  let httpMock: HttpTestingController;
+  let service: RestaurantService;
 
   beforeEach(() =&gt; {
-    httpMock = TestBed.inject(HttpTestingController);
-    restaurantService = TestBed.inject(RestaurantService);
-  })
-
-  it('should be created', () =&gt; {
-    expect(restaurantService).toBeTruthy();
-  });
- 
-  it('should make a get request to restaurants', () =&gt; {
-    const mockRestaurants = {
-      data: [{
-      &quot;name&quot;:&quot;Brunch Place&quot;,
-      &quot;slug&quot;:&quot;brunch-place&quot;,
-      &quot;images&quot;:{
-        &quot;thumbnail&quot;:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-        &quot;owner&quot;:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
-        &quot;banner&quot;:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;},
-        &quot;menu&quot;:{
-          &quot;lunch&quot;:[
-            {&quot;name&quot;:&quot;Ricotta Gnocchi&quot;,&quot;price&quot;:15.99},
-            {&quot;name&quot;:&quot;Garlic Fries&quot;,&quot;price&quot;:15.99},
-            {&quot;name&quot;:&quot;Charred Octopus&quot;,&quot;price&quot;:25.99}
-          ],
-          &quot;dinner&quot;:[
-            {&quot;name&quot;:&quot;Steamed Mussels&quot;,&quot;price&quot;:21.99},
-            {&quot;name&quot;:&quot;Roasted Salmon&quot;,&quot;price&quot;:23.99},
-            {&quot;name&quot;:&quot;Crab Pancakes with Sorrel Syrup&quot;,&quot;price&quot;:35.99}
-          ]
-        },
-        &quot;address&quot;:{
-          &quot;street&quot;:&quot;2451 W Washburne Ave&quot;,
-          &quot;city&quot;:&quot;Ann Arbor&quot;,&quot;state&quot;:&quot;MI&quot;,&quot;zip&quot;:&quot;53295&quot;},
-          &quot;_id&quot;:&quot;xugqxQIX5rPJTLBv&quot;
-        },
-        {
-          &quot;name&quot;:&quot;Taco Joint&quot;,
-          &quot;slug&quot;:&quot;taco-joint&quot;,
-          &quot;images&quot;:{
-            &quot;thumbnail&quot;:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-            &quot;owner&quot;:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
-            &quot;banner&quot;:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;},
-            &quot;menu&quot;:{
-              &quot;lunch&quot;:[
-                {&quot;name&quot;:&quot;Beef Tacos&quot;,&quot;price&quot;:15.99},
-                {&quot;name&quot;:&quot;Chicken Tacos&quot;,&quot;price&quot;:15.99},
-                {&quot;name&quot;:&quot;Guacamole&quot;,&quot;price&quot;:25.99}
-              ],
-              &quot;dinner&quot;:[
-                {&quot;name&quot;:&quot;Shrimp Tacos&quot;,&quot;price&quot;:21.99},
-                {&quot;name&quot;:&quot;Chicken Enchilada&quot;,&quot;price&quot;:23.99},
-                {&quot;name&quot;:&quot;Elotes&quot;,&quot;price&quot;:35.99}
-              ]
-            },
-            &quot;address&quot;:{
-              &quot;street&quot;:&quot;13 N 21st St&quot;,
-              &quot;city&quot;:&quot;Chicago&quot;,&quot;state&quot;:&quot;IL&quot;,&quot;zip&quot;:&quot;53295&quot;},
-              &quot;_id&quot;:&quot;xugqxQIX5dfgdgTLBv&quot;
-            }]
-          };
-
-    restaurantService.getRestaurants().subscribe((restaurants:ResponseData&lt;Restaurant&gt;) =&gt; {
-      expect(restaurants).toEqual(mockRestaurants);
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
     });
 
-    let url = 'http://localhost:7070/restaurants';
-    const req = httpMock.expectOne(url);
+    httpMock = TestBed.inject(HttpTestingController);
+    service = TestBed.inject(RestaurantService);
+  });
 
+  it('should be created', () =&gt; {
+    expect(service).toBeTruthy();
+  });
+
+  it('should make a get request to restaurants', () =&gt; {
+    const mockRestaurants = {
+      data: [
+        {
+          name: 'Brunch Place',
+          slug: 'brunch-place',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/2-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              { name: 'Ricotta Gnocchi', price: 15.99 },
+              { name: 'Garlic Fries', price: 15.99 },
+              { name: 'Charred Octopus', price: 25.99 },
+            ],
+            dinner: [
+              { name: 'Steamed Mussels', price: 21.99 },
+              { name: 'Roasted Salmon', price: 23.99 },
+              { name: 'Crab Pancakes with Sorrel Syrup', price: 35.99 },
+            ],
+          },
+          address: {
+            street: '2451 W Washburne Ave',
+            city: 'Ann Arbor',
+            state: 'MI',
+            zip: '53295',
+          },
+          _id: 'xugqxQIX5rPJTLBv',
+        },
+        {
+          name: 'Taco Joint',
+          slug: 'taco-joint',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/2-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              { name: 'Beef Tacos', price: 15.99 },
+              { name: 'Chicken Tacos', price: 15.99 },
+              { name: 'Guacamole', price: 25.99 },
+            ],
+            dinner: [
+              { name: 'Shrimp Tacos', price: 21.99 },
+              { name: 'Chicken Enchilada', price: 23.99 },
+              { name: 'Elotes', price: 35.99 },
+            ],
+          },
+          address: {
+            street: '13 N 21st St',
+            city: 'Chicago',
+            state: 'IL',
+            zip: '53295',
+          },
+          _id: 'xugqxQIX5dfgdgTLBv',
+        },
+      ],
+    };
+
+    service
+      .getRestaurants()
+      .subscribe((restaurants: ResponseData&lt;Restaurant&gt;) =&gt; {
+        expect(restaurants).toEqual(mockRestaurants);
+      });
+
+    const url = 'http://localhost:7070/restaurants';
+    const req = httpMock.expectOne(url);
 
     expect(req.request.method).toEqual('GET');
     req.flush(mockRestaurants);
@@ -1831,48 +1845,48 @@ describe('RestaurantService', () =&gt; {
   });
 
   it('can set proper properties on restaurant type', () =&gt; {
-    let restaurant: Restaurant = {
-      name:&quot;Taco Joint&quot;,
-      slug:&quot;taco-joint&quot;,
-      images:{
-        thumbnail:&quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-        owner:&quot;node_modules/place-my-order-assets/images/2-owner.jpg&quot;,
-        banner:&quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+    const restaurant: Restaurant = {
+      name: 'Taco Joint',
+      slug: 'taco-joint',
+      images: {
+        thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+        owner: 'node_modules/place-my-order-assets/images/2-owner.jpg',
+        banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
       },
-      menu:{
-        lunch:[
-          {name:&quot;Beef Tacos&quot;,&quot;price&quot;:15.99},
-          {name:&quot;Chicken Tacos&quot;,&quot;price&quot;:15.99},
-          {name:&quot;Guacamole&quot;,&quot;price&quot;:25.99}
+      menu: {
+        lunch: [
+          { name: 'Beef Tacos', price: 15.99 },
+          { name: 'Chicken Tacos', price: 15.99 },
+          { name: 'Guacamole', price: 25.99 },
         ],
-        dinner:[
-          {name:&quot;Shrimp Tacos&quot;,&quot;price&quot;:21.99},
-          {name:&quot;Chicken Enchilada&quot;,&quot;price&quot;:23.99},
-          {name:&quot;Elotes&quot;,&quot;price&quot;:35.99}
-        ]
+        dinner: [
+          { name: 'Shrimp Tacos', price: 21.99 },
+          { name: 'Chicken Enchilada', price: 23.99 },
+          { name: 'Elotes', price: 35.99 },
+        ],
       },
-      address:{
-        street:&quot;13 N 21st St&quot;,
-        city:&quot;Chicago&quot;,&quot;state&quot;:&quot;IL&quot;,&quot;zip&quot;:&quot;53295&quot;
+      address: {
+        street: '13 N 21st St',
+        city: 'Chicago',
+        state: 'IL',
+        zip: '53295',
       },
-      _id:&quot;xugqxQIX5dfgdgTLBv&quot;
-    }
-    //will error if interface isn't implemented correctly
+      _id: 'xugqxQIX5dfgdgTLBv',
+    };
+    // will error if interface isn't implemented correctly
     expect(true).toBe(true);
   });
 
   it('should make a get request to states', () =&gt; {
     const mockStates = {
-      data: [
-        {name: 'Missouri', short: 'MO'}
-      ]
+      data: [{ name: 'Missouri', short: 'MO' }],
     };
 
-    restaurantService.getStates().subscribe((states:ResponseData&lt;State&gt;) =&gt; {
+    service.getStates().subscribe((states: ResponseData&lt;State&gt;) =&gt; {
       expect(states).toEqual(mockStates);
     });
 
-    let url = 'http://localhost:7070/states';
+    const url = 'http://localhost:7070/states';
     const req = httpMock.expectOne(url);
 
     expect(req.request.method).toEqual('GET');
@@ -1883,35 +1897,34 @@ describe('RestaurantService', () =&gt; {
 
   it('should make a get request to cities', () =&gt; {
     const mockCities = {
-      data: [
-        {name: 'Kansas City', state: 'MO'}
-      ]
+      data: [{ name: 'Kansas City', state: 'MO' }],
     };
 
-    restaurantService.getCities('MO').subscribe((cities:ResponseData&lt;City&gt;) =&gt; {
+    service.getCities('MO').subscribe((cities: ResponseData&lt;City&gt;) =&gt; {
       expect(cities).toEqual(mockCities);
     });
 
-    let url = 'http://localhost:7070/cities?state=MO';
+    const url = 'http://localhost:7070/cities?state=MO';
     const req = httpMock.expectOne(url);
     expect(req.request.method).toEqual('GET');
     req.flush(mockCities);
 
     httpMock.verify();
   });
-
 });
+
 </code></pre>
- <div line-highlight="3,79,131,151,"></div>
+ <div line-highlight="7-12,95-99,148,166,"></div>
 <h2>P3: Solution</h2>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.service.ts</strong></p>
-<pre><code class="language-ts">import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Restaurant } from './restaurant';
+<pre><code class="language-ts">import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { Restaurant } from './restaurant';
 
-export interface ResponseData&lt;dataType&gt; {
-  data:dataType[];
+export interface ResponseData&lt;DataType&gt; {
+  data: DataType[];
 }
 
 export interface State {
@@ -1925,35 +1938,40 @@ export interface City {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RestaurantService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
-
-  getRestaurants() {
-    return this.httpClient.get&lt;ResponseData&lt;Restaurant&gt;&gt;(environment.apiUrl + '/restaurants');
+  getRestaurants(): Observable&lt;ResponseData&lt;Restaurant&gt;&gt; {
+    return this.httpClient.get&lt;ResponseData&lt;Restaurant&gt;&gt;(
+      environment.apiUrl + '/restaurants'
+    );
   }
 
-  getStates() {
-    return this.httpClient.get&lt;ResponseData&lt;State&gt;&gt;(environment.apiUrl + '/states');
+  getStates(): Observable&lt;ResponseData&lt;State&gt;&gt; {
+    return this.httpClient.get&lt;ResponseData&lt;State&gt;&gt;(
+      environment.apiUrl + '/states'
+    );
   }
 
-  getCities(state:string) {
+  getCities(state: string): Observable&lt;ResponseData&lt;City&gt;&gt; {
     const params = new HttpParams().set('state', state);
-    return this.httpClient.get&lt;ResponseData&lt;City&gt;&gt;(environment.apiUrl + '/cities', {params});
+    return this.httpClient.get&lt;ResponseData&lt;City&gt;&gt;(
+      environment.apiUrl + '/cities',
+      { params }
+    );
   }
 }
-</code></pre>
- <div line-highlight="6-7,28,32,37,"></div>
-<p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>
-<pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { takeUntil } from &quot;rxjs/operators&quot;;
-import { Subject } from 'rxjs';
 
-import { RestaurantService, ResponseData } from './restaurant.service';
+</code></pre>
+ <div line-highlight="7-8,27-28,33-36,39,41-44,"></div>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>
+<pre><code class="language-ts">import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
 import { Restaurant } from './restaurant';
+import { ResponseData, RestaurantService } from './restaurant.service';
 
 export interface Data {
   value: Restaurant[];
@@ -1963,69 +1981,75 @@ export interface Data {
 @Component({
   selector: 'pmo-restaurant',
   templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less']
+  styleUrls: ['./restaurant.component.less'],
 })
 export class RestaurantComponent implements OnInit, OnDestroy {
-  form: FormGroup;
+  form: FormGroup = this.createForm();
 
   restaurants: Data = {
     value: [],
-    isPending: false
-  }
+    isPending: false,
+  };
 
   states = {
     isPending: false,
-    value: [{name: &quot;Illinois&quot;, short: &quot;IL&quot;}, {name: &quot;Wisconsin&quot;, short: &quot;WI&quot;}]
+    value: [
+      { name: 'Illinois', short: 'IL' },
+      { name: 'Wisconsin', short: 'WI' },
+    ],
   };
 
   cities = {
     isPending: false,
-    value: [{name: &quot;Springfield&quot;},{name: &quot;Madison&quot;}]
-  }
+    value: [{ name: 'Springfield' }, { name: 'Madison' }],
+  };
 
-  private unSubscribe = new Subject&lt;void&gt;();
+  private onDestroy$ = new Subject&lt;void&gt;();
 
   constructor(
     private restaurantService: RestaurantService,
     private fb: FormBuilder
-    ) {
+  ) {}
+
+  ngOnInit(): void {
+    this.restaurants.isPending = true;
+    this.restaurantService
+      .getRestaurants()
+      .subscribe((res: ResponseData&lt;Restaurant&gt;) =&gt; {
+        this.restaurants.value = res.data;
+        this.restaurants.isPending = false;
+      });
+
+    this.form
+      .get('state')
+      ?.valueChanges.pipe(takeUntil(this.onDestroy$))
+      .subscribe((val) =&gt; {
+        console.log('state', val);
+      });
+
+    this.form
+      .get('city')
+      ?.valueChanges.pipe(takeUntil(this.onDestroy$))
+      .subscribe((val) =&gt; {
+        console.log('city', val);
+      });
   }
 
-  ngOnInit() {
-    this.createForm();
-
-    this.restaurantService.getRestaurants().subscribe((res: ResponseData&lt;Restaurant&gt;) =&gt; {
-      this.restaurants.value = res.data;
-      this.restaurants.isPending = false;
-    });
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 
-  ngOnDestroy() {
-    this.unSubscribe.next()
-    this.unSubscribe.unsubscribe();
-  }
-
-  createForm() {
-    this.form = this.fb.group({
-      state: {value: '', disabled: false},
-      city: {value: '', disabled: false},
-    });
-
-    this.onChanges();
-  }
-  onChanges(): void {
-    this.form.get('state').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe(val =&gt; {
-      console.log('state', val);
-    });
-
-
-    this.form.get('city').valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe(val =&gt; {
-      console.log('city', val);
+  createForm(): FormGroup {
+    return this.fb.group({
+      state: { value: '', disabled: false },
+      city: { value: '', disabled: false },
     });
   }
 }
+
 </code></pre>
- <div line-highlight="48,only"></div>
+ <div line-highlight="47-51,66,only"></div>
 <h2>Problem 4: Get Cities and States Based on Dropdown Values</h2>
 <p>Now that our service is in working order, let's populate our dropdowns with state and city data. We will want our list of states to be available right away, but we will want to fetch our list of cities only after we have the state value selected by the user.</p>
 <h2>P4: Technical Requirements</h2>
@@ -2041,437 +2065,438 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 <p>Hint: You'll want to clear the fake data from the state and city value props, and move the call to get restaurants out of the ngOnInit function.</p>
 </blockquote>
 <h2>P4: How to Verify Your Solution is Correct</h2>
-<p>✏️ Update the spec file  <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { waitForAsync, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+<p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { of } from 'rxjs'; 
-
+import { of } from 'rxjs';
+import { ImageUrlPipe } from '../image-url.pipe';
 import { RestaurantComponent } from './restaurant.component';
 import { RestaurantService } from './restaurant.service';
-import { ImageUrlPipe } from '../image-url.pipe';
-import { ReactiveFormsModule } from '@angular/forms';
 
 class MockRestaurantService {
   getRestaurants() {
     return of({
-      data: [{
-        &quot;name&quot;: &quot;Poutine Palace&quot;,
-        &quot;slug&quot;: &quot;poutine-palace&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+      data: [
+        {
+          name: 'Poutine Palace',
+          slug: 'poutine-palace',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              {
+                name: 'Crab Pancakes with Sorrel Syrup',
+                price: 35.99,
+              },
+              {
+                name: 'Steamed Mussels',
+                price: 21.99,
+              },
+              {
+                name: 'Spinach Fennel Watercress Ravioli',
+                price: 35.99,
+              },
+            ],
+            dinner: [
+              {
+                name: 'Gunthorp Chicken',
+                price: 21.99,
+              },
+              {
+                name: 'Herring in Lavender Dill Reduction',
+                price: 45.99,
+              },
+              {
+                name: 'Chicken with Tomato Carrot Chutney Sauce',
+                price: 45.99,
+              },
+            ],
+          },
+          address: {
+            street: '230 W Kinzie Street',
+            city: 'Green Bay',
+            state: 'WI',
+            zip: '53205',
+          },
+          _id: '3ZOZyTY1LH26LnVw',
         },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-              &quot;price&quot;: 35.99
-            },
-            {
-              &quot;name&quot;: &quot;Steamed Mussels&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-              &quot;price&quot;: 35.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-              &quot;price&quot;: 45.99
-            }
-          ]
+        {
+          name: 'Cheese Curd City',
+          slug: 'cheese-curd-city',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/2-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              {
+                name: 'Ricotta Gnocchi',
+                price: 15.99,
+              },
+              {
+                name: 'Gunthorp Chicken',
+                price: 21.99,
+              },
+              {
+                name: 'Garlic Fries',
+                price: 15.99,
+              },
+            ],
+            dinner: [
+              {
+                name: 'Herring in Lavender Dill Reduction',
+                price: 45.99,
+              },
+              {
+                name: 'Truffle Noodles',
+                price: 14.99,
+              },
+              {
+                name: 'Charred Octopus',
+                price: 25.99,
+              },
+            ],
+          },
+          address: {
+            street: '2451 W Washburne Ave',
+            city: 'Green Bay',
+            state: 'WI',
+            zip: '53295',
+          },
+          _id: 'Ar0qBJHxM3ecOhcr',
         },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53205&quot;
-        },
-        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-      },
-      {
-        &quot;name&quot;: &quot;Cheese Curd City&quot;,
-        &quot;slug&quot;: &quot;cheese-curd-city&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
-        },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Ricotta Gnocchi&quot;,
-              &quot;price&quot;: 15.99
-            },
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Garlic Fries&quot;,
-              &quot;price&quot;: 15.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Truffle Noodles&quot;,
-              &quot;price&quot;: 14.99
-            },
-            {
-              &quot;name&quot;: &quot;Charred Octopus&quot;,
-              &quot;price&quot;: 25.99
-            }
-          ]
-        },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;2451 W Washburne Ave&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53295&quot;
-        },
-        &quot;_id&quot;: &quot;Ar0qBJHxM3ecOhcr&quot;
-      }]}
-            )
+      ],
+    });
   }
 
   getStates() {
     return of({
       data: [
-        {&quot;short&quot;:&quot;MO&quot;,&quot;name&quot;:&quot;Missouri&quot;},
-        {&quot;short&quot;:&quot;CA  &quot;,&quot;name&quot;:&quot;California&quot;},
-        {&quot;short&quot;:&quot;MI&quot;,&quot;name&quot;:&quot;Michigan&quot;}]
+        { short: 'MO', name: 'Missouri' },
+        { short: 'CA  ', name: 'California' },
+        { short: 'MI', name: 'Michigan' },
+      ],
     });
   }
 
-  getCities(state:string) {
+  getCities(state: string) {
     return of({
-      data: [{&quot;name&quot;:&quot;Sacramento&quot;,&quot;state&quot;:&quot;CA&quot;},{&quot;name&quot;:&quot;Oakland&quot;,&quot;state&quot;:&quot;CA&quot;}]
+      data: [
+        { name: 'Sacramento', state: 'CA' },
+        { name: 'Oakland', state: 'CA' },
+      ],
     });
   }
 }
+
 describe('RestaurantComponent', () =&gt; {
-  let component: RestaurantComponent;
   let fixture: ComponentFixture&lt;RestaurantComponent&gt;;
 
-  beforeEach(waitForAsync(() =&gt; {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        ReactiveFormsModule
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      imports: [RouterTestingModule, ReactiveFormsModule],
+      declarations: [RestaurantComponent, ImageUrlPipe],
+      providers: [
+        { provide: RestaurantService, useClass: MockRestaurantService },
       ],
-      providers: [{
-        provide: RestaurantService,
-        useClass: MockRestaurantService
-      }],
-      declarations: [ RestaurantComponent, ImageUrlPipe ]
-    })
-    .compileComponents();
-  }));
+    }).compileComponents();
 
-  beforeEach(() =&gt; {
     fixture = TestBed.createComponent(RestaurantComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () =&gt; {
+    const component: RestaurantComponent = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 
   it('should render title in a h2 tag', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h2').textContent).toContain('Restaurants');
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h2')?.textContent).toContain('Restaurants');
   });
 
   it('should not show any restaurants markup if no restaurants', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    const compiled = fixture.debugElement.nativeElement;
+    const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('.restaurant')).toBe(null);
   });
 
-  it('should have two .restaurant divs',  &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
+  it('should have two .restaurant divs', fakeAsync((): void =&gt; {
     fixture.detectChanges();
     tick(501);
-    fixture.componentInstance.form.get('state').patchValue('CA');
-    fixture.componentInstance.form.get('city').patchValue('Sacramento');
+    fixture.componentInstance.form.get('state')?.patchValue('CA');
+    fixture.componentInstance.form.get('city')?.patchValue('Sacramento');
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let restaurantDivs = compiled.getElementsByClassName('restaurant');
-    let hoursDivs = compiled.getElementsByClassName('hours-price');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const restaurantDivs = compiled.getElementsByClassName('restaurant');
+    const hoursDivs = compiled.getElementsByClassName('hours-price');
     expect(restaurantDivs.length).toEqual(2);
     expect(hoursDivs.length).toEqual(2);
   }));
 
-  it('should display restaurant information',  &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
+  it('should display restaurant information', fakeAsync((): void =&gt; {
     fixture.detectChanges();
     tick(501);
-    fixture.componentInstance.form.get('state').patchValue('CA');
-    fixture.componentInstance.form.get('city').patchValue('Sacramento');
+    fixture.componentInstance.form.get('state')?.patchValue('CA');
+    fixture.componentInstance.form.get('city')?.patchValue('Sacramento');
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.restaurant h3').textContent).toContain('Poutine Palace');
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.restaurant h3')?.textContent).toContain(
+      'Poutine Palace'
+    );
   }));
 
-  it('should set restaurants value to restaurants response data and set isPending to false when state and city form values are selected', &lt;any&gt;fakeAsync((): void =&gt; {
+  it('should set restaurants value to restaurants response data and set isPending to false when state and city form values are selected', fakeAsync((): void =&gt; {
     const fixture = TestBed.createComponent(RestaurantComponent);
     fixture.detectChanges();
     tick();
-    fixture.componentInstance.form.get('state').patchValue('CA');
-    fixture.componentInstance.form.get('city').patchValue('Sacramento');
+    fixture.componentInstance.form.get('state')?.patchValue('CA');
+    fixture.componentInstance.form.get('city')?.patchValue('Sacramento');
     fixture.detectChanges();
-    let expectedRestaurants = {
-      value: [{
-        &quot;name&quot;: &quot;Poutine Palace&quot;,
-        &quot;slug&quot;: &quot;poutine-palace&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+    const expectedRestaurants = {
+      value: [
+        {
+          name: 'Poutine Palace',
+          slug: 'poutine-palace',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              {
+                name: 'Crab Pancakes with Sorrel Syrup',
+                price: 35.99,
+              },
+              {
+                name: 'Steamed Mussels',
+                price: 21.99,
+              },
+              {
+                name: 'Spinach Fennel Watercress Ravioli',
+                price: 35.99,
+              },
+            ],
+            dinner: [
+              {
+                name: 'Gunthorp Chicken',
+                price: 21.99,
+              },
+              {
+                name: 'Herring in Lavender Dill Reduction',
+                price: 45.99,
+              },
+              {
+                name: 'Chicken with Tomato Carrot Chutney Sauce',
+                price: 45.99,
+              },
+            ],
+          },
+          address: {
+            street: '230 W Kinzie Street',
+            city: 'Green Bay',
+            state: 'WI',
+            zip: '53205',
+          },
+          _id: '3ZOZyTY1LH26LnVw',
         },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-              &quot;price&quot;: 35.99
-            },
-            {
-              &quot;name&quot;: &quot;Steamed Mussels&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-              &quot;price&quot;: 35.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-              &quot;price&quot;: 45.99
-            }
-          ]
+        {
+          name: 'Cheese Curd City',
+          slug: 'cheese-curd-city',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/2-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              {
+                name: 'Ricotta Gnocchi',
+                price: 15.99,
+              },
+              {
+                name: 'Gunthorp Chicken',
+                price: 21.99,
+              },
+              {
+                name: 'Garlic Fries',
+                price: 15.99,
+              },
+            ],
+            dinner: [
+              {
+                name: 'Herring in Lavender Dill Reduction',
+                price: 45.99,
+              },
+              {
+                name: 'Truffle Noodles',
+                price: 14.99,
+              },
+              {
+                name: 'Charred Octopus',
+                price: 25.99,
+              },
+            ],
+          },
+          address: {
+            street: '2451 W Washburne Ave',
+            city: 'Green Bay',
+            state: 'WI',
+            zip: '53295',
+          },
+          _id: 'Ar0qBJHxM3ecOhcr',
         },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53205&quot;
-        },
-        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-      },
-      {
-        &quot;name&quot;: &quot;Cheese Curd City&quot;,
-        &quot;slug&quot;: &quot;cheese-curd-city&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
-        },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Ricotta Gnocchi&quot;,
-              &quot;price&quot;: 15.99
-            },
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Garlic Fries&quot;,
-              &quot;price&quot;: 15.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Truffle Noodles&quot;,
-              &quot;price&quot;: 14.99
-            },
-            {
-              &quot;name&quot;: &quot;Charred Octopus&quot;,
-              &quot;price&quot;: 25.99
-            }
-          ]
-        },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;2451 W Washburne Ave&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53295&quot;
-        },
-        &quot;_id&quot;: &quot;Ar0qBJHxM3ecOhcr&quot;
-      }],
-      isPending: false
-    }
+      ],
+      isPending: false,
+    };
     expect(fixture.componentInstance.restaurants).toEqual(expectedRestaurants);
   }));
 
   it('should show a loading div while isPending is true', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
     fixture.detectChanges();
     fixture.componentInstance.restaurants.isPending = true;
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let loadingDiv = compiled.querySelector('.loading');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const loadingDiv = compiled.querySelector('.loading');
     expect(loadingDiv).toBeTruthy();
   });
 
   it('should not show a loading div if isPending is false', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
+    fixture.detectChanges();
     fixture.componentInstance.restaurants.isPending = false;
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let loadingDiv = compiled.querySelector('.loading');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const loadingDiv = compiled.querySelector('.loading');
     expect(loadingDiv).toBe(null);
   });
 
   it('should have a form property with city and state keys', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
     fixture.detectChanges();
-    expect(fixture.componentInstance.form.controls.state).toBeTruthy();
-    expect(fixture.componentInstance.form.controls.city).toBeTruthy();
+    expect(fixture.componentInstance.form.controls['state']).toBeTruthy();
+    expect(fixture.componentInstance.form.controls['city']).toBeTruthy();
   });
 
   it('should show a state dropdown', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let stateSelect = compiled.querySelector('select[formcontrolname=&quot;state&quot;]');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const stateSelect = compiled.querySelector(
+      'select[formcontrolname=&quot;state&quot;]'
+    );
     expect(stateSelect).toBeTruthy();
   });
 
   it('should show a city dropdown', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let citySelect = compiled.querySelector('select[formcontrolname=&quot;city&quot;]');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const citySelect = compiled.querySelector('select[formcontrolname=&quot;city&quot;]');
     expect(citySelect).toBeTruthy();
   });
 
-  it('should set states value to states response data and set isPending to false', &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
+  it('should set states value to states response data and set isPending to false', fakeAsync((): void =&gt; {
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    let expectedStates = {
+    const expectedStates = {
       value: [
-        {&quot;short&quot;:&quot;MO&quot;,&quot;name&quot;:&quot;Missouri&quot;},
-        {&quot;short&quot;:&quot;CA  &quot;,&quot;name&quot;:&quot;California&quot;},
-        {&quot;short&quot;:&quot;MI&quot;,&quot;name&quot;:&quot;Michigan&quot;}
+        { short: 'MO', name: 'Missouri' },
+        { short: 'CA  ', name: 'California' },
+        { short: 'MI', name: 'Michigan' },
       ],
-      isPending: false
-    }
+      isPending: false,
+    };
     expect(fixture.componentInstance.states).toEqual(expectedStates);
   }));
 
-  it('should set state dropdown options to be values of states member', &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
+  it('should set state dropdown options to be values of states member', fakeAsync((): void =&gt; {
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let stateOption = compiled.querySelector('select[formcontrolname=&quot;state&quot;] option:nth-child(2)');
-    expect(stateOption.textContent).toEqual(' Missouri');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const stateOption = compiled.querySelector(
+      'select[formcontrolname=&quot;state&quot;] option:nth-child(2)'
+    ) as HTMLInputElement;
+    expect(stateOption.textContent).toEqual(' Missouri ');
     expect(stateOption.value).toEqual('MO');
   }));
 
-  it('should set cities value to cities response data and set isPending to false', &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
+  it('should set cities value to cities response data and set isPending to false', fakeAsync((): void =&gt; {
     fixture.detectChanges();
     tick();
-    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.componentInstance.form.get('state')?.patchValue('CA');
     fixture.detectChanges();
-    let expectedCities = {
+    const expectedCities = {
       value: [
-        {&quot;name&quot;:&quot;Sacramento&quot;,&quot;state&quot;:&quot;CA&quot;},
-        {&quot;name&quot;:&quot;Oakland&quot;,&quot;state&quot;:&quot;CA&quot;}
+        { name: 'Sacramento', state: 'CA' },
+        { name: 'Oakland', state: 'CA' },
       ],
-      isPending: false
-    }
+      isPending: false,
+    };
     expect(fixture.componentInstance.cities).toEqual(expectedCities);
   }));
 
-  it('should set city dropdown options to be values of cities member when state value is selected', &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
+  it('should set city dropdown options to be values of cities member when state value is selected', fakeAsync((): void =&gt; {
     fixture.detectChanges();
     tick();
-    fixture.componentInstance.form.get('state').patchValue('CA');
+    fixture.componentInstance.form.get('state')?.patchValue('CA');
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let cityOption = compiled.querySelector('select[formcontrolname=&quot;city&quot;] option:nth-child(2)');
-    expect(cityOption.textContent).toEqual(' Sacramento');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const cityOption = compiled.querySelector(
+      'select[formcontrolname=&quot;city&quot;] option:nth-child(2)'
+    ) as HTMLInputElement;
+    expect(cityOption.textContent).toEqual(' Sacramento ');
     expect(cityOption.value).toEqual('Sacramento');
   }));
 
-  it('state dropdown should be disabled until states are populated', &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    let storeGetStatesFunc = fixture.componentInstance.getStates;
-    fixture.componentInstance.getStates = () =&gt; {}; //preventing getStates func from being called 
-    fixture.detectChanges(); //detecting changes for createForm func to be called
-    let stateFormControl1 = fixture.componentInstance.form.get('state');
-    expect(stateFormControl1.enabled).toBe(false);
+  it('state dropdown should be disabled until states are populated', fakeAsync((): void =&gt; {
+    const storeGetStatesFunc = fixture.componentInstance.getStates;
+    fixture.componentInstance.getStates = () =&gt; {}; // preventing getStates func from being called
+    fixture.detectChanges(); // detecting changes for createForm func to be called
+    const stateFormControl1 = fixture.componentInstance.form.get('state');
+    expect(stateFormControl1?.enabled).toBe(false);
     fixture.componentInstance.getStates = storeGetStatesFunc;
-    fixture.componentInstance.getStates();  //calling getStates func when we want it
+    fixture.componentInstance.getStates(); // calling getStates func when we want it
     fixture.detectChanges();
-    let stateFormControl2 = fixture.componentInstance.form.get('state');
-    expect(stateFormControl2.enabled).toBe(true);
+    const stateFormControl2 = fixture.componentInstance.form.get('state');
+    expect(stateFormControl2?.enabled).toBe(true);
   }));
 
-  it('city dropdown should be disabled until cities are populated', &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    fixture.detectChanges(); //detecting changes for createForm func to be called
-    let cityFormControl1 = fixture.componentInstance.form.get('city');
-    expect(cityFormControl1.enabled).toBe(false);
-    fixture.componentInstance.form.get('state').patchValue('CA');
+  it('city dropdown should be disabled until cities are populated', fakeAsync((): void =&gt; {
+    fixture.detectChanges(); // detecting changes for createForm func to be called
+    const cityFormControl1 = fixture.componentInstance.form.get('city');
+    expect(cityFormControl1?.enabled).toBe(false);
+    fixture.componentInstance.form.get('state')?.patchValue('CA');
     fixture.detectChanges();
-    let cityFormControl2 = fixture.componentInstance.form.get('city');
-    expect(cityFormControl2.enabled).toBe(true);
+    const cityFormControl2 = fixture.componentInstance.form.get('city');
+    expect(cityFormControl2?.enabled).toBe(true);
   }));
 
-  it('should reset list of cities when new state is selected', &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    fixture.detectChanges(); //detecting changes for createForm func to be called
-    fixture.componentInstance.form.get('state').patchValue('CA');
-    fixture.componentInstance.form.get('city').patchValue('Sacramento');
+  it('should reset list of cities when new state is selected', fakeAsync((): void =&gt; {
+    fixture.detectChanges(); // detecting changes for createForm func to be called
+    fixture.componentInstance.form.get('state')?.patchValue('CA');
+    fixture.componentInstance.form.get('city')?.patchValue('Sacramento');
     fixture.detectChanges();
     expect(fixture.componentInstance.restaurants.value.length).toEqual(2);
-    fixture.componentInstance.form.get('state').patchValue('MO');
+    fixture.componentInstance.form.get('state')?.patchValue('MO');
     fixture.detectChanges();
     expect(fixture.componentInstance.restaurants.value.length).toEqual(0);
   }));
 });
+
 </code></pre>
- <div line-highlight="1,3,13-19,21-49,51-55,57-65,67-105,108-109,111-113,115,117-121,124,127-131,133-139,142,144,155-156,160-161,165-166,169-170,172-174,179-180,183-184,186-187,190-191,194-195,197-290,293,296,300-301,306,309-310,315,317-318,322,324-325,330-333,337-342,344-346,348-351,353-362,364-373,375-378,380-390,392-404,406-415,417-427,"></div>
+ <div line-highlight="116-121,123-124,126-130,132-133,145,169-170,182-183,191,195-196,294,340-353,355-365,367-380,382-393,395-406,408-416,418-427,"></div>
 <h2>P4: What You Need to Know</h2>
 <ul>
 <li>How to call service methods in a component</li>
@@ -2479,13 +2504,16 @@ describe('RestaurantComponent', () =&gt; {
 </ul>
 <h2>P4: Solution</h2>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>
-<pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
+<pre><code class="language-ts">import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Subject } from 'rxjs';
-import { takeUntil } from &quot;rxjs/operators&quot;;
-
-import { RestaurantService, ResponseData, State, City } from './restaurant.service';
+import { Subject, takeUntil } from 'rxjs';
 import { Restaurant } from './restaurant';
+import {
+  City,
+  ResponseData,
+  RestaurantService,
+  State,
+} from './restaurant.service';
 
 export interface Data&lt;T&gt; {
   value: T[];
@@ -2495,121 +2523,126 @@ export interface Data&lt;T&gt; {
 @Component({
   selector: 'pmo-restaurant',
   templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less']
+  styleUrls: ['./restaurant.component.less'],
 })
 export class RestaurantComponent implements OnInit, OnDestroy {
-  form: FormGroup;
+  form: FormGroup = this.createForm();
 
   restaurants: Data&lt;Restaurant&gt; = {
     value: [],
-    isPending: false
-  }
-
-   states: Data&lt;State&gt; = {
     isPending: false,
-    value: []
+  };
+
+  states: Data&lt;State&gt; = {
+    isPending: false,
+    value: [],
   };
 
   cities: Data&lt;City&gt; = {
     isPending: false,
-    value: []
+    value: [],
   };
 
-  private unSubscribe = new Subject&lt;void&gt;();
+  private onDestroy$ = new Subject&lt;void&gt;();
 
   constructor(
     private restaurantService: RestaurantService,
     private fb: FormBuilder
-    ) {
-  }
+  ) {}
 
-  ngOnInit() {
-    this.createForm();
-
+  ngOnInit(): void {
     this.getStates();
-  }
-
-  ngOnDestroy() {
-    this.unSubscribe.next();
-    this.unSubscribe.complete();
-  }
-
-  createForm() {
-    this.form = this.fb.group({
-      state: {value: '', disabled: true},
-      city: {value: '', disabled: true},
-    });
-
     this.onChanges();
   }
 
-  onChanges(): void {
-    let state:string;
-    this.form.get('state').pipe(takeUntil(this.unSubscribe)).valueChanges.subscribe(val =&gt; {
-      this.restaurants.value = [];
-      if (val) {
-        //only enable city if state has value
-        this.form.get('city').enable({
-          onlySelf: true,
-          emitEvent: false
-        });
-        //if state has a value and has changed, clear previous city value
-        if (state != val) {
-          this.form.get('city').patchValue('');
-        }
-        //fetch cities based on state val
-        this.getCities(val);
-        state = val;
-      }
-      else {
-        //disable city if no value
-        this.form.get('city').disable({
-          onlySelf: true,
-          emitEvent: false
-        });
-        state = '';
-      }
-    });
-    this.subscription = stateChanges;
-
-
-    const cityChanges = this.form.get('city').valueChanges.subscribe(val =&gt; {
-      if(val) {
-        this.getRestaurants();
-      }
-    });
-    this.subscription.add(cityChanges);
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 
-  getStates() {
+  createForm(): FormGroup {
+    return this.fb.group({
+      state: { value: '', disabled: true },
+      city: { value: '', disabled: true },
+    });
+  }
+
+  onChanges(): void {
+    let state: string = this.form.get('state')?.value;
+
+    this.form
+      .get('state')
+      ?.valueChanges.pipe(takeUntil(this.onDestroy$))
+      .subscribe((val) =&gt; {
+        this.restaurants.value = [];
+        if (val) {
+          // only enable city if state has value
+          this.form.get('city')?.enable({
+            onlySelf: true,
+            emitEvent: false,
+          });
+
+          // if state has a value and has changed, clear previous city value
+          if (state !== val) {
+            this.form.get('city')?.patchValue('');
+          }
+
+          // fetch cities based on state val
+          this.getCities(val);
+        } else {
+          // disable city if no value
+          this.form.get('city')?.disable({
+            onlySelf: true,
+            emitEvent: false,
+          });
+        }
+        state = val;
+      });
+
+    this.form
+      .get('city')
+      ?.valueChanges.pipe(takeUntil(this.onDestroy$))
+      .subscribe((val) =&gt; {
+        if (val) {
+          this.getRestaurants();
+        }
+      });
+  }
+
+  getStates(): void {
     this.restaurantService.getStates().subscribe((res: ResponseData&lt;State&gt;) =&gt; {
       this.states.value = res.data;
       this.states.isPending = false;
-      this.form.get('state').enable();
+      this.form.get('state')?.enable();
     });
   }
 
-  getCities(state:string) {
+  getCities(state: string): void {
     this.cities.isPending = true;
-    this.restaurantService.getCities(state).subscribe((res: ResponseData&lt;City&gt;) =&gt; {
-      this.cities.value = res.data;
-      this.cities.isPending = false;
-      this.form.get('city').enable({
-        onlySelf: true,
-        emitEvent: false
+    this.restaurantService
+      .getCities(state)
+      .subscribe((res: ResponseData&lt;City&gt;) =&gt; {
+        this.cities.value = res.data;
+        this.cities.isPending = false;
+        this.form.get('city')?.enable({
+          onlySelf: true,
+          emitEvent: false,
+        });
       });
-    });
   }
 
-  getRestaurants() {
-    this.restaurantService.getRestaurants().subscribe((res: ResponseData&lt;Restaurant&gt;) =&gt; {
-      this.restaurants.value = res.data;
-      this.restaurants.isPending = false;
-    });
+  getRestaurants(): void {
+    this.restaurantService
+      .getRestaurants()
+      .subscribe((res: ResponseData&lt;Restaurant&gt;) =&gt; {
+        this.restaurants.value = res.data;
+        this.restaurants.isPending = false;
+      });
   }
 }
+
 </code></pre>
- <div line-highlight="6,9-10,22,27,29,32,34,48,53,58-59,66-90,92,95-98,100,103-107,109,111-121,123,127-128,only"></div>
+ <div line-highlight="5-10,12-13,25,30,32,35,37,48-49,59-60,64-65,71-77,79-82,84-93,100-102,104,106-112,114-115,117-124,126,128-129,134-135,only"></div>
 
 </section>
 

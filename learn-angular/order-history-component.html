@@ -605,7 +605,7 @@ covering CanJS core libraries.">
 </ol>
 <h2>P1: How to Verify Your Solution is Correct</h2>
 <p>If you've implemented the solution correctly you should be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see <em>'history works!'</em>.</p>
-<p>✏️ Update the spec file  <strong>src/app/app.component.spec.ts</strong> to be:</p>
+<p>✏️ Update the spec file <strong>src/app/app.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { Location } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -934,7 +934,7 @@ describe('AppComponent', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="4-10,13,18,28-35,37-65,67-71,73,75-82,84-120,128-131,136,138-141,145,147-152,154-155,157-159,161-163,165-167,169,171-173,175-177,179-181,184-188,190,196,200-202,204-215,217-220,228,233,239-242,245-246,253-254,261-262,269-270,275,277-281,283,287-289,295-297,302-305,307-311,314-318,320-325,only"></div>
+ <div line-highlight="18,210,277,279-282,314,325,only"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
@@ -953,13 +953,12 @@ describe('AppComponent', () =&gt; {
 <p>Then route to the component:</p>
 <p>✏️ Update <strong>src/app/app-routing.module.ts</strong></p>
 <pre><code class="language-ts">import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
+import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { RestaurantComponent } from './restaurant/restaurant.component';
-import { DetailComponent } from './restaurant/detail/detail.component';
-import { OrderComponent } from './order/order.component';
 import { HistoryComponent } from './order/history/history.component';
+import { OrderComponent } from './order/order.component';
+import { DetailComponent } from './restaurant/detail/detail.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
 
 const routes: Routes = [
   {
@@ -975,23 +974,23 @@ const routes: Routes = [
     component: DetailComponent,
   },
   {
-    path: 'restaurants/:slug/:order',
+    path: 'restaurants/:slug/order',
     component: OrderComponent,
   },
   {
     path: 'order-history',
-    component: HistoryComponent
-  }
+    component: HistoryComponent,
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
 
 </code></pre>
-<div line-highlight='8, 27-30,only'></div>
+<div line-highlight='4, 26-29, only'></div>
 <h2>Problem 2: Add <code>HistoryComponent</code> to navigation</h2>
 <p>We want a user to be able to navigate to the HistoryComponent via a link in the main navigation.</p>
 <h2>P2: Technical Requirements</h2>
@@ -1010,13 +1009,15 @@ export class AppRoutingModule { }
   &lt;nav&gt;
     &lt;h1&gt;place-my-order.com&lt;/h1&gt;
     &lt;ul&gt;
-      &lt;li routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
+      &lt;li routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{ exact: true }&quot;&gt;
         &lt;a routerLink=&quot;/&quot;&gt;Home&lt;/a&gt;
       &lt;/li&gt;
-      &lt;li [ngClass]=&quot;{'active' : rla.isActive} &quot;&gt;
-        &lt;a routerLink=&quot;/restaurants&quot; routerLinkActive #rla=&quot;routerLinkActive&quot;&gt;Restaurants&lt;/a&gt;
+      &lt;li [ngClass]=&quot;{ active: rla.isActive }&quot;&gt;
+        &lt;a routerLink=&quot;/restaurants&quot; routerLinkActive #rla=&quot;routerLinkActive&quot;
+          &gt;Restaurants&lt;/a
+        &gt;
       &lt;/li&gt;
-      &lt;li routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
+      &lt;li routerLinkActive=&quot;active&quot; [routerLinkActiveOptions]=&quot;{ exact: true }&quot;&gt;
         &lt;a routerLink=&quot;/order-history&quot;&gt;Order History&lt;/a&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
@@ -1025,19 +1026,19 @@ export class AppRoutingModule { }
 &lt;router-outlet&gt;&lt;/router-outlet&gt;
 
 </code></pre>
- <div line-highlight="5,8-9,11-13,"></div>
+ <div line-highlight="13-15,"></div>
 <h2>Problem 3: List All Orders</h2>
 <p>We want to be able to see a list of all created orders and their varying statuses of &quot;new&quot;, &quot;preparing&quot;, &quot;delivery&quot;, and &quot;delivered&quot;.</p>
 <h2>P3: Technical Requirements</h2>
 <ol>
 <li>List all orders in the <code>HistoryComponent</code>.</li>
-<li>Make sure the <code>&lt;div&gt;</code> for each order has a class name of <em>'order'</em> and a class name that is the
-<code>order.status</code> value. Make sure you've created a new order.</li>
+<li>Make sure the <code>&lt;div&gt;</code> for each order has a class name of <em>'order'</em> and a class name that is the <code>order.status</code> value. Make sure you've created a new order.</li>
 </ol>
 <h2>P3: Setup</h2>
 <p>1. ✏️ Copy the following into <strong>src/app/order/history/history.component.ts</strong>. You will fill out its
-<code>getOrders</code> method.  The getters <code>newOrders</code>, <code>preparingOrders</code>, <code>deliveryOrders</code>, and <code>deliveredOrders</code> will be used later.</p>
+<code>getOrders</code> method. The getters <code>newOrders</code>, <code>preparingOrders</code>, <code>deliveryOrders</code>, and <code>deliveredOrders</code> will be used later.</p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
+import { Order } from '../order.service';
 
 interface Data&lt;T&gt; {
   value: T[];
@@ -1047,53 +1048,51 @@ interface Data&lt;T&gt; {
 @Component({
   selector: 'pmo-history',
   templateUrl: './history.component.html',
-  styleUrls: ['./history.component.less']
+  styleUrls: ['./history.component.less'],
 })
 export class HistoryComponent implements OnInit {
-
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getOrders();
   }
 
-  getOrders() {
-   //get orders here
+  getOrders(): void {
+    // get orders here
   }
 
-  get newOrders() {
-    let orders =  this.orders.value.filter((order) =&gt; {
-      return order.status === &quot;new&quot;;
+  get newOrders(): Order[] {
+    const orders = this.orders.value.filter((order) =&gt; {
+      return order.status === 'new';
     });
     return orders;
   }
 
-   get preparingOrders() {
-    let orders =  this.orders.value.filter((order) =&gt; {
-      return order.status === &quot;preparing&quot;;
+  get preparingOrders(): Order[] {
+    const orders = this.orders.value.filter((order) =&gt; {
+      return order.status === 'preparing';
     });
     return orders;
-   }
+  }
 
-   get deliveryOrders() {
-    let orders =  this.orders.value.filter((order) =&gt; {
-      return order.status === &quot;delivery&quot;;
+  get deliveryOrders(): Order[] {
+    const orders = this.orders.value.filter((order) =&gt; {
+      return order.status === 'delivery';
     });
     return orders;
-   }
+  }
 
-   get deliveredOrders() {
-    let orders =  this.orders.value.filter((order) =&gt; {
-      return order.status === &quot;delivered&quot;;
+  get deliveredOrders(): Order[] {
+    const orders = this.orders.value.filter((order) =&gt; {
+      return order.status === 'delivered';
     });
     return orders;
-   }
-
+  }
 }
 
 </code></pre>
 <div line-highlight='18,22'></div>
-<p>2. ✏️ Copy the following into <strong>src/app/order/history/history.component.html</strong>.  You will need to
+<p>2. ✏️ Copy the following into <strong>src/app/order/history/history.component.html</strong>. You will need to
 iterate through orders and add the right class names to the outer <code>&lt;div&gt;</code> for each order.</p>
 <pre><code class="language-html">&lt;div class=&quot;order-history&quot;&gt;
   &lt;div class=&quot;order header&quot;&gt;
@@ -1106,12 +1105,12 @@ iterate through orders and add the right class names to the outer <code>&lt;div&
   &lt;ng-container LOOP_HERE&gt;
     &lt;div class=&quot;ADD RIGHT CLASS NAMES&quot;&gt;
       &lt;address&gt;
-        {{order.name}} &lt;br /&gt;{{order.address}} &lt;br /&gt;{{order.phone}}
+        {{ order.name }} &lt;br /&gt;{{ order.address }} &lt;br /&gt;{{ order.phone }}
       &lt;/address&gt;
 
       &lt;div class=&quot;items&quot;&gt;
         &lt;ul&gt;
-          &lt;li *ngFor=&quot;let item of order.items&quot;&gt;{{item.name}}&lt;/li&gt;
+          &lt;li *ngFor=&quot;let item of order.items&quot;&gt;{{ item.name }}&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/div&gt;
 
@@ -1119,15 +1118,13 @@ iterate through orders and add the right class names to the outer <code>&lt;div&
 
       &lt;div class=&quot;actions&quot;&gt;
         &lt;span class=&quot;badge&quot;&gt;Status title?&lt;/span&gt;
-          &lt;p class=&quot;action&quot; *ngIf=&quot;action&quot;&gt;
-            Mark as:
-            &lt;a href=&quot;javascript://&quot;&gt;
-              next step
-            &lt;/a&gt;
-          &lt;/p&gt;
+        &lt;p class=&quot;action&quot; *ngIf=&quot;false&quot;&gt;
+          Mark as:
+          &lt;button class=&quot;btn-link&quot;&gt;next step&lt;/button&gt;
+        &lt;/p&gt;
 
         &lt;p class=&quot;action&quot;&gt;
-          &lt;a href=&quot;javascript://&quot; &gt;Delete&lt;/a&gt;
+          &lt;button class=&quot;btn-link&quot;&gt;Delete&lt;/button&gt;
         &lt;/p&gt;
       &lt;/div&gt;
     &lt;/div&gt;
@@ -1137,70 +1134,84 @@ iterate through orders and add the right class names to the outer <code>&lt;div&
 </code></pre>
 <div line-highlight='9,10'></div>
 <h2>P3: How to Verify Your Solution is Correct</h2>
-<p>✏️ Update the menu-items spec file  <strong>src/app/order/history/history.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs'; 
+<p>✏️ Update the menu-items spec file <strong>src/app/order/history/history.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Observable, of } from 'rxjs';
+import { Order, OrderService } from '../order.service';
 
 import { HistoryComponent } from './history.component';
-import { OrderService } from '../order.service';
 
 class MockOrderService {
-  getOrders() {
+  getOrders(): Observable&lt;{ data: Order[] }&gt; {
     return of({
-      data: [{
-      &quot;address&quot;: null,
-      &quot;items&quot;: [{&quot;name&quot;: &quot;Onion fries&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Roasted Salmon&quot;, &quot;price&quot;: 23.99}],
-      &quot;name&quot;: &quot;Client 1&quot;,
-      &quot;phone&quot;: null,
-      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
-      &quot;status&quot;: &quot;new&quot;,
-      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
-      },
-      {
-      &quot;address&quot;: null,
-      &quot;items&quot;: [{&quot;name&quot;: &quot;Steak Tacos&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Guacamole&quot;, &quot;price&quot;: 3.99}],
-      &quot;name&quot;: &quot;Client 2&quot;,
-      &quot;phone&quot;: null,
-      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
-      &quot;status&quot;: &quot;preparing&quot;,
-      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
-      },
-      {
-      &quot;address&quot;: null,
-      &quot;items&quot;: [{&quot;name&quot;: &quot;Mac &amp; Cheese&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Grilled chicken&quot;, &quot;price&quot;: 23.99}],
-      &quot;name&quot;: &quot;Client 3&quot;,
-      &quot;phone&quot;: null,
-      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
-      &quot;status&quot;: &quot;delivery&quot;,
-      &quot;_id&quot;: &quot;0awcHyo8iD7XjahX&quot;,
-      },
-      {
-      &quot;address&quot;: null,
-      &quot;items&quot;: [{&quot;name&quot;: &quot;Eggrolls&quot;, &quot;price&quot;: 5.99}, {&quot;name&quot;: &quot;Fried Rice&quot;, &quot;price&quot;: 18.99}],
-      &quot;name&quot;: &quot;Client 4&quot;,
-      &quot;phone&quot;: null,
-      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
-      &quot;status&quot;: &quot;delivered&quot;,
-      &quot;_id&quot;: &quot;1awcJyo3iD6CpvhZ&quot;,
-      }
-    ]
-    })
+      data: [
+        {
+          address: '',
+          items: [
+            { name: 'Onion fries', price: 15.99 },
+            { name: 'Roasted Salmon', price: 23.99 },
+          ],
+          name: 'Client 1',
+          phone: '',
+          restaurant: 'uPkA2jiZi24tCvXh',
+          status: 'new',
+          _id: '0awcHyo3iD6CpvhX',
+        },
+        {
+          address: '',
+          items: [
+            { name: 'Steak Tacos', price: 15.99 },
+            { name: 'Guacamole', price: 3.99 },
+          ],
+          name: 'Client 2',
+          phone: '',
+          restaurant: 'uPkA2jiZi24tCvXh',
+          status: 'preparing',
+          _id: '0awcHyo3iD6CpvhX',
+        },
+        {
+          address: '',
+          items: [
+            { name: 'Mac &amp; Cheese', price: 15.99 },
+            { name: 'Grilled chicken', price: 23.99 },
+          ],
+          name: 'Client 3',
+          phone: '',
+          restaurant: 'uPkA2jiZi24tCvXh',
+          status: 'delivery',
+          _id: '0awcHyo8iD7XjahX',
+        },
+        {
+          address: '',
+          items: [
+            { name: 'Eggrolls', price: 5.99 },
+            { name: 'Fried Rice', price: 18.99 },
+          ],
+          name: 'Client 4',
+          phone: '',
+          restaurant: 'uPkA2jiZi24tCvXh',
+          status: 'delivered',
+          _id: '1awcJyo3iD6CpvhZ',
+        },
+      ],
+    });
   }
 }
 describe('HistoryComponent', () =&gt; {
   let component: HistoryComponent;
   let fixture: ComponentFixture&lt;HistoryComponent&gt;;
 
-  beforeEach(waitForAsync(() =&gt; {
-    TestBed.configureTestingModule({
-      declarations: [ HistoryComponent ],
-      providers: [{
-        provide: OrderService,
-        useClass: MockOrderService
-      }]
-    })
-    .compileComponents();
-  }));
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      declarations: [HistoryComponent],
+      providers: [
+        {
+          provide: OrderService,
+          useClass: MockOrderService,
+        },
+      ],
+    }).compileComponents();
+  });
 
   beforeEach(() =&gt; {
     fixture = TestBed.createComponent(HistoryComponent);
@@ -1213,65 +1224,74 @@ describe('HistoryComponent', () =&gt; {
   });
 
   it('should set response from getOrders service to orders member', () =&gt; {
-    const fixture = TestBed.createComponent(HistoryComponent);
-    fixture.detectChanges();
-    let expectedOrders = [{
-      &quot;address&quot;: null,
-      &quot;items&quot;: [{&quot;name&quot;: &quot;Onion fries&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Roasted Salmon&quot;, &quot;price&quot;: 23.99}],
-      &quot;name&quot;: &quot;Client 1&quot;,
-      &quot;phone&quot;: null,
-      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
-      &quot;status&quot;: &quot;new&quot;,
-      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
+    const expectedOrders: Order[] = [
+      {
+        address: '',
+        items: [
+          { name: 'Onion fries', price: 15.99 },
+          { name: 'Roasted Salmon', price: 23.99 },
+        ],
+        name: 'Client 1',
+        phone: '',
+        restaurant: 'uPkA2jiZi24tCvXh',
+        status: 'new',
+        _id: '0awcHyo3iD6CpvhX',
       },
       {
-      &quot;address&quot;: null,
-      &quot;items&quot;: [{&quot;name&quot;: &quot;Steak Tacos&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Guacamole&quot;, &quot;price&quot;: 3.99}],
-      &quot;name&quot;: &quot;Client 2&quot;,
-      &quot;phone&quot;: null,
-      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
-      &quot;status&quot;: &quot;preparing&quot;,
-      &quot;_id&quot;: &quot;0awcHyo3iD6CpvhX&quot;,
+        address: '',
+        items: [
+          { name: 'Steak Tacos', price: 15.99 },
+          { name: 'Guacamole', price: 3.99 },
+        ],
+        name: 'Client 2',
+        phone: '',
+        restaurant: 'uPkA2jiZi24tCvXh',
+        status: 'preparing',
+        _id: '0awcHyo3iD6CpvhX',
       },
       {
-      &quot;address&quot;: null,
-      &quot;items&quot;: [{&quot;name&quot;: &quot;Mac &amp; Cheese&quot;, &quot;price&quot;: 15.99}, {&quot;name&quot;: &quot;Grilled chicken&quot;, &quot;price&quot;: 23.99}],
-      &quot;name&quot;: &quot;Client 3&quot;,
-      &quot;phone&quot;: null,
-      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
-      &quot;status&quot;: &quot;delivery&quot;,
-      &quot;_id&quot;: &quot;0awcHyo8iD7XjahX&quot;,
+        address: '',
+        items: [
+          { name: 'Mac &amp; Cheese', price: 15.99 },
+          { name: 'Grilled chicken', price: 23.99 },
+        ],
+        name: 'Client 3',
+        phone: '',
+        restaurant: 'uPkA2jiZi24tCvXh',
+        status: 'delivery',
+        _id: '0awcHyo8iD7XjahX',
       },
       {
-      &quot;address&quot;: null,
-      &quot;items&quot;: [{&quot;name&quot;: &quot;Eggrolls&quot;, &quot;price&quot;: 5.99}, {&quot;name&quot;: &quot;Fried Rice&quot;, &quot;price&quot;: 18.99}],
-      &quot;name&quot;: &quot;Client 4&quot;,
-      &quot;phone&quot;: null,
-      &quot;restaurant&quot;: &quot;uPkA2jiZi24tCvXh&quot;,
-      &quot;status&quot;: &quot;delivered&quot;,
-      &quot;_id&quot;: &quot;1awcJyo3iD6CpvhZ&quot;,
-      }
+        address: '',
+        items: [
+          { name: 'Eggrolls', price: 5.99 },
+          { name: 'Fried Rice', price: 18.99 },
+        ],
+        name: 'Client 4',
+        phone: '',
+        restaurant: 'uPkA2jiZi24tCvXh',
+        status: 'delivered',
+        _id: '1awcJyo3iD6CpvhZ',
+      },
     ];
-    let orders = fixture.componentInstance.orders;
+    const orders = fixture.componentInstance.orders;
     expect(orders.value).toEqual(expectedOrders);
   });
 
   it('should display orders in UI', () =&gt; {
-    const fixture = TestBed.createComponent(HistoryComponent);
-    fixture.detectChanges();
-    let compiled = fixture.debugElement.nativeElement;
-    let orderDivs = compiled.querySelectorAll('.order:not(.header):not(.empty)');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const orderDivs = compiled.querySelectorAll(
+      '.order:not(.header):not(.empty)'
+    );
     expect(orderDivs.length).toEqual(4);
-  })
+  });
 
   it('should display orders with appropriate classes', () =&gt; {
-    const fixture = TestBed.createComponent(HistoryComponent);
-    fixture.detectChanges();
-    let compiled = fixture.debugElement.nativeElement;
-    let newOrder = compiled.getElementsByClassName('new');
-    let preparingOrder = compiled.getElementsByClassName('preparing');
-    let deliveryOrder = compiled.getElementsByClassName('delivery');
-    let deliveredOrder = compiled.getElementsByClassName('delivered');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const newOrder = compiled.getElementsByClassName('new');
+    const preparingOrder = compiled.getElementsByClassName('preparing');
+    const deliveryOrder = compiled.getElementsByClassName('delivery');
+    const deliveredOrder = compiled.getElementsByClassName('delivered');
     expect(newOrder.length).toEqual(1);
     expect(preparingOrder.length).toEqual(1);
     expect(deliveryOrder.length).toEqual(1);
@@ -1285,19 +1305,19 @@ describe('HistoryComponent', () =&gt; {
 </blockquote>
 <h2>P3: What You Need to Know</h2>
 <ul>
-<li>How to import a service and get data out of it.  Hint: Import it and create a
+<li>How to import a service and get data out of it. Hint: Import it and create a
 property in the constructor.</li>
-<li>How to loop through values in HTML.  Hint: <code>*ngFor</code>.</li>
+<li>How to loop through values in HTML. Hint: <code>*ngFor</code>.</li>
 </ul>
-<p>For this step, you'll need to know how to add multiple class names.  You can do this with
+<p>For this step, you'll need to know how to add multiple class names. You can do this with
 <code>[ngClass]</code> and setting it to an array like:</p>
-<pre><code class="language-html">&lt;div [ngClass]=&quot;['first','second']&quot;&gt;
+<pre><code class="language-html">&lt;div [ngClass]=&quot;['first','second']&quot;&gt;&lt;/div&gt;
 </code></pre>
 <h2>P3: Solution</h2>
 <p>✏️ Update <strong>src/app/order/history.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
-import { OrderService, Order } from '../order.service';
-import { ResponseData } from '../../restaurant/restaurant.service';
+import { ResponseData } from 'src/app/restaurant/restaurant.service';
+import { Order, OrderService } from '../order.service';
 
 interface Data&lt;T&gt; {
   value: T[];
@@ -1307,62 +1327,54 @@ interface Data&lt;T&gt; {
 @Component({
   selector: 'pmo-history',
   templateUrl: './history.component.html',
-  styleUrls: ['./history.component.less']
+  styleUrls: ['./history.component.less'],
 })
 export class HistoryComponent implements OnInit {
-  orders: Data&lt;Order&gt; = {
-    value: [],
-    isPending: true
-  }
+  orders: Data&lt;Order&gt; = { value: [], isPending: true };
 
-  constructor(
-    private orderService: OrderService
-    ) {
-    }
+  constructor(private orderService: OrderService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getOrders();
-
   }
 
-  getOrders() {
+  getOrders(): void {
     this.orderService.getOrders().subscribe((res: ResponseData&lt;Order&gt;) =&gt; {
       this.orders.value = res.data;
     });
   }
 
-  get newOrders() {
-    const orders =  this.orders.value.filter((order) =&gt; {
-      return order.status === &quot;new&quot;;
+  get newOrders(): Order[] {
+    const orders = this.orders.value.filter((order) =&gt; {
+      return order.status === 'new';
     });
     return orders;
   }
 
-   get preparingOrders() {
-    const orders =  this.orders.value.filter((order) =&gt; {
-      return order.status === &quot;preparing&quot;;
+  get preparingOrders(): Order[] {
+    const orders = this.orders.value.filter((order) =&gt; {
+      return order.status === 'preparing';
     });
     return orders;
-   }
+  }
 
-   get deliveryOrders() {
-    const orders =  this.orders.value.filter((order) =&gt; {
-      return order.status === &quot;delivery&quot;;
+  get deliveryOrders(): Order[] {
+    const orders = this.orders.value.filter((order) =&gt; {
+      return order.status === 'delivery';
     });
     return orders;
-   }
+  }
 
-   get deliveredOrders() {
-    const orders =  this.orders.value.filter((order) =&gt; {
-      return order.status === &quot;delivered&quot;;
+  get deliveredOrders(): Order[] {
+    const orders = this.orders.value.filter((order) =&gt; {
+      return order.status === 'delivered';
     });
     return orders;
-   }
-
+  }
 }
 
 </code></pre>
- <div line-highlight="2-3,16-18,21-24,32-33,38,42,45,52,59,61,only"></div>
+ <div line-highlight="2-3,16,18,25-26,54,only"></div>
 <p>✏️ Update <strong>src/app/order/history.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-history&quot;&gt;
   &lt;div class=&quot;order header&quot;&gt;
@@ -1375,12 +1387,12 @@ export class HistoryComponent implements OnInit {
   &lt;ng-container *ngFor=&quot;let order of orders.value&quot;&gt;
     &lt;div [ngClass]=&quot;['order', order.status]&quot;&gt;
       &lt;address&gt;
-        {{order.name}} &lt;br /&gt;{{order.address}} &lt;br /&gt;{{order.phone}}
+        {{ order.name }} &lt;br /&gt;{{ order.address }} &lt;br /&gt;{{ order.phone }}
       &lt;/address&gt;
 
       &lt;div class=&quot;items&quot;&gt;
         &lt;ul&gt;
-          &lt;li *ngFor=&quot;let item of order.items&quot;&gt;{{item.name}}&lt;/li&gt;
+          &lt;li *ngFor=&quot;let item of order.items&quot;&gt;{{ item.name }}&lt;/li&gt;
         &lt;/ul&gt;
       &lt;/div&gt;
 
@@ -1388,15 +1400,13 @@ export class HistoryComponent implements OnInit {
 
       &lt;div class=&quot;actions&quot;&gt;
         &lt;span class=&quot;badge&quot;&gt;Status title?&lt;/span&gt;
-          &lt;p class=&quot;action&quot; *ngIf=&quot;action&quot;&gt;
-            Mark as:
-            &lt;a href=&quot;javascript://&quot;&gt;
-              next step
-            &lt;/a&gt;
-          &lt;/p&gt;
+        &lt;p class=&quot;action&quot; *ngIf=&quot;false&quot;&gt;
+          Mark as:
+          &lt;button class=&quot;btn-link&quot;&gt;next step&lt;/button&gt;
+        &lt;/p&gt;
 
         &lt;p class=&quot;action&quot;&gt;
-          &lt;a href=&quot;javascript://&quot; &gt;Delete&lt;/a&gt;
+          &lt;button class=&quot;btn-link&quot;&gt;Delete&lt;/button&gt;
         &lt;/p&gt;
       &lt;/div&gt;
     &lt;/div&gt;
@@ -1425,15 +1435,16 @@ of orders and other values like:
   statusTitle=&quot;New Order!&quot;
   action=&quot;preparing&quot;
   actionTitle=&quot;Preparing&quot;
-  emptyMessage=&quot;No new orders&quot;&gt;
-  &lt;/pmo-list&gt;
+  emptyMessage=&quot;No new orders&quot;
+&gt;
+&lt;/pmo-list&gt;
 </code></pre></li>
 <li><code>ListComponent</code> will take the following values:
 <ul>
 <li><code>orders</code> - an array of orders based on status property</li>
 <li><code>listTitle</code> - A title for the list: &quot;NewOrders&quot; , &quot;Preparing&quot; , &quot;Out for Delivery&quot; , &quot;Delivery&quot;</li>
 <li><code>status</code> - Which status the list is &quot;new&quot;, &quot;preparing&quot;, &quot;delivery&quot;, &quot;delivered&quot;</li>
-<li><code>statusTitle</code> - Another title for the status: &quot;New Order!&quot;, &quot;Preparing&quot;, &quot;Out for delivery&quot;,  &quot;Delivered&quot;</li>
+<li><code>statusTitle</code> - Another title for the status: &quot;New Order!&quot;, &quot;Preparing&quot;, &quot;Out for delivery&quot;, &quot;Delivered&quot;</li>
 <li><code>action</code> - What status items can be moved to: &quot;preparing&quot;, &quot;delivery&quot;, &quot;delivered&quot;</li>
 <li><code>actionTitle</code> - A title for the action: &quot;Preparing&quot;, &quot;Out for delivery&quot;, &quot;Delivered&quot;</li>
 <li><code>emptyMessage</code> - What to show when there are no orders in the list: &quot;No new orders&quot;, &quot;No orders preparing&quot;, &quot;No orders are being delivered&quot;, &quot;No delivered orders&quot;</li>
@@ -1465,8 +1476,9 @@ of orders and other values like:
     statusTitle=&quot;New Order!&quot;
     action=&quot;preparing&quot;
     actionTitle=&quot;Preparing&quot;
-    emptyMessage=&quot;No new orders&quot;&gt;
-    &lt;/pmo-list&gt;
+    emptyMessage=&quot;No new orders&quot;
+  &gt;
+  &lt;/pmo-list&gt;
 
   &lt;pmo-list
     [orders]=&quot;preparingOrders&quot;
@@ -1475,8 +1487,9 @@ of orders and other values like:
     statusTitle=&quot;Preparing&quot;
     action=&quot;delivery&quot;
     actionTitle=&quot;Out for delivery&quot;
-    emptyMessage=&quot;No orders preparing&quot;&gt;
-    &lt;/pmo-list&gt;
+    emptyMessage=&quot;No orders preparing&quot;
+  &gt;
+  &lt;/pmo-list&gt;
 
   &lt;pmo-list
     [orders]=&quot;deliveryOrders&quot;
@@ -1485,20 +1498,22 @@ of orders and other values like:
     statusTitle=&quot;Out for delivery&quot;
     action=&quot;delivered&quot;
     actionTitle=&quot;Delivered&quot;
-    emptyMessage=&quot;No orders are being delivered&quot;&gt;
-    &lt;/pmo-list&gt;
+    emptyMessage=&quot;No orders are being delivered&quot;
+  &gt;
+  &lt;/pmo-list&gt;
 
   &lt;pmo-list
     [orders]=&quot;deliveredOrders&quot;
     listTitle=&quot;Delivery&quot;
     status=&quot;delivered&quot;
     statusTitle=&quot;Delivered&quot;
-    emptyMessage=&quot;No delivered orders&quot;&gt;
-    &lt;/pmo-list&gt;
+    emptyMessage=&quot;No delivered orders&quot;
+  &gt;
+  &lt;/pmo-list&gt;
 &lt;/div&gt;
 
 </code></pre>
- <div line-highlight="9-17,19-27,29-37,39-45,only"></div>
+ <div line-highlight="9-18,20-29,31-40,42-49,only"></div>
 <p>3. ✏️ Update <strong>src/app/order/list/list.component.html</strong> to its final html:</p>
 <pre><code class="language-html">&lt;h4&gt;{{ listTitle }}&lt;/h4&gt;
 &lt;ng-container *ngFor=&quot;let order of orders&quot;&gt;
@@ -1535,7 +1550,7 @@ of orders and other values like:
 
 </code></pre>
 <h2>P4: How to Verify Your Solution is Correct</h2>
-<p>✏️ Update  <strong>src/app/order/history/history.component.spec.ts</strong> to be:</p>
+<p>✏️ Update <strong>src/app/order/history/history.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Observable, of } from 'rxjs';
@@ -1704,8 +1719,8 @@ describe('HistoryComponent', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="1-5,10,12-61,69-79,93,95-104,107-116,119-128,131-140,143,148-151,156-160,165,only"></div>
-<p>✏️ Update  <strong>src/app/order/list/list.component.spec.ts</strong> to be:</p>
+ <div line-highlight="1,4,71,78,only"></div>
+<p>✏️ Update <strong>src/app/order/list/list.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { Order, OrderService } from '../order.service';
@@ -1838,39 +1853,36 @@ describe('ListComponent', () =&gt; {
 </ul>
 <h2>P4: Solution</h2>
 <p>✏️ Update <strong>src/app/order/list.component.ts</strong></p>
-<pre><code class="language-ts">import { Component, OnInit, Input } from '@angular/core';
-import { Order, Item, OrderService } from '../order.service';
-
+<pre><code class="language-ts">import { Component, Input, OnInit } from '@angular/core';
+import { Item, Order, OrderService } from '../order.service';
 
 @Component({
   selector: 'pmo-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.less']
+  styleUrls: ['./list.component.less'],
 })
 export class ListComponent implements OnInit {
-  @Input() orders: Order[];
-  @Input() listTitle: string;
-  @Input() status: string;
-  @Input() statusTitle: string;
-  @Input() action: string;
-  @Input() actionTitle: string;
-  @Input() emptyMessage: string;
+  @Input() orders?: Order[];
+  @Input() listTitle?: string;
+  @Input() status?: string;
+  @Input() statusTitle?: string;
+  @Input() action?: string;
+  @Input() actionTitle?: string;
+  @Input() emptyMessage?: string;
 
-  constructor(private orderService: OrderService) { }
+  constructor(private orderService: OrderService) {}
 
-  ngOnInit() {}
+  ngOnInit(): void {}
 
-  markAs(order: Order, action: string) {
-    this.orderService.updateOrder(order, action).subscribe(() =&gt; {
-    });
+  markAs(order: Order, action: string): void {
+    this.orderService.updateOrder(order, action).subscribe();
   }
 
-  delete(id:string) {
-    this.orderService.deleteOrder(id).subscribe(() =&gt; {
-    })
+  delete(id: string): void {
+    this.orderService.deleteOrder(id).subscribe();
   }
 
-  total(items: Item[]) {
+  total(items: Item[]): number {
     let total = 0.0;
     for (const item of items) {
       total += item.price;

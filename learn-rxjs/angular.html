@@ -460,7 +460,7 @@ covering CanJS core libraries.">
 <p>In this section, we will:</p>
 <ul>
 <li>Create a CodePen setup with Angular and the HTML of our form.</li>
-<li>Write values to a <a href="https://rxjs-dev.firebaseapp.com/guide/subject">Subject</a>
+<li>Write values to a <a href="https://rxjs.dev/guide/subject">Subject</a>
 and write out the value of the subject in the template.</li>
 </ul>
 <h2>How to solve this problem</h2>
@@ -478,14 +478,14 @@ UserCardNumber: {{ GET-CARD-NUMBER-HERE }} &lt;br/&gt;
 example to launch a CodePen with Angular and the HTML of
 the credit card form. You will edit this CodePen for the
 remainder of this tutorial.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/core@6.0.5/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/common@6.0.5/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/compiler@6.0.5/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@6.0.5/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@6.0.5/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/3.19.0/core.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@12.2.16/bundles/core.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.11.4/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@12.2.16/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@12.2.16/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@12.2.16/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@12.2.16/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
 &lt;my-app&gt;&lt;/my-app&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 // app.js
@@ -618,13 +618,13 @@ form {
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='12-59,only'></div>
-<p>Initialize a <a href="https://rxjs-dev.firebaseapp.com/api/index/class/BehaviorSubject">BehaviorSubject</a> instance on a <code>class</code> like the following:</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+<p>Initialize a <a href="https://rxjs.dev/api/index/class/BehaviorSubject">BehaviorSubject</a> instance on a <code>class</code> like the following:</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const {BehaviorSubject} = rxjs;
 
 class AppComponent {  
-  userCardNumber = new BehaviorSubject&lt;String&gt;();
+  userCardNumber = new BehaviorSubject&lt;string&gt;();
 }
 
 var app = new AppComponent();
@@ -636,11 +636,11 @@ console.log(app.userCardNumber) // logs Observable
 <p>A <code>BehaviorSubject</code> is just like a <code>Subject</code> except that it
 remembers its last value.  Any new subscribers will immediately
 be sent the last value.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const {BehaviorSubject} = rxjs;
 
-var subject = new BehaviorSubject&lt;String&gt;();
+var subject = new BehaviorSubject&lt;string&gt;();
 
 subject.next(&quot;THE PAST&quot;);
 
@@ -651,12 +651,12 @@ subject.subscribe((value) =&gt; console.log(value));
 <div class='codepen'></div>
 <div line-highlight='9-10'></div>
 <p>Emit a value on a Subject by calling <code>subject.next()</code>:</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const {BehaviorSubject} = rxjs;
 
 class AppComponent {  
-  userCardNumber = new BehaviorSubject&lt;String&gt;();
+  userCardNumber = new BehaviorSubject&lt;string&gt;();
 }
 
 var app = new AppComponent();
@@ -678,14 +678,14 @@ app.userCardNumber.next(&quot;1111-2222-3333-4444&quot;); //logs &quot;1111-2222
 </code></pre>
 <p>Read more about this technique <a href="https://blog.angular-academy.io/angular-reactive-templates/">here</a>.</p>
 <h2>The solution</h2>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/core@6.0.5/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/common@6.0.5/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/compiler@6.0.5/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@6.0.5/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@6.0.5/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/3.19.0/core.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@12.2.16/bundles/core.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.11.4/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@12.2.16/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@12.2.16/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@12.2.16/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@12.2.16/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
 &lt;my-app&gt;&lt;/my-app&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 // app.js
@@ -714,7 +714,7 @@ const { BehaviorSubject } = rxjs;
     `
 })
 class AppComponent {
-    userCardNumber = new BehaviorSubject&lt;String&gt;();
+    userCardNumber = new BehaviorSubject&lt;string&gt;();
 
     constructor() {
 

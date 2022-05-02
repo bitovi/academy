@@ -473,7 +473,7 @@ enables the <a href="https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pat
 be called with the value. The following creates an
 observable that emits 3 values.  The <code>subscriber</code> function
 will be called back each time:</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const {Observable} = rxjs;
 
@@ -496,7 +496,7 @@ observable.subscribe( subscriber );
 provides loose coupling. An observable can have many
 subscribers. The following adds two subscribers to an
 observable:</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const {Observable} = rxjs;
 
@@ -532,7 +532,7 @@ to all three events with the following:</p>
 <p>The following creates an observable that immediately
 publishes a <code>1</code>, then after a second it publishes a <code>2</code>
 and completes:</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const {Observable} = rxjs;
 
@@ -569,7 +569,7 @@ the <code>1</code> value is published synchronously. Then
 </blockquote>
 <h3>Unsubscribing</h3>
 <p>The <code>observable.subscribe()</code> method returns
-a <a href="https://rxjs-dev.firebaseapp.com/api/index/class/Subscription">subscription</a> which can be used to cancel
+a <a href="https://rxjs.dev/api/index/class/Subscription">subscription</a> which can be used to cancel
 the subscription like:</p>
 <pre><code class="language-js">var subscription = observable.subscribe( ... );
 subscription.unsubscribe();
@@ -577,7 +577,7 @@ subscription.unsubscribe();
 <p>Unsubscribing prevents receiving future notifications and avoids memory leaks.</p>
 <p>The following unsubscribes after the first published value. Notice that
 the <code>subscriber</code> function is only called once.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const {Observable} = rxjs;
 
@@ -606,7 +606,7 @@ a majority of what you will do with RxJS.</p>
 into<br />
 ... a running sum published by <code>numberSummer</code>.</p>
 <p>Read the inline comments below to see how this works.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const {Observable} = rxjs;
 
@@ -660,7 +660,7 @@ even undesirable. Lets see what a distinct execution means.</p>
 <p>In the following example, the observable emits a random number
 after a second then completes.  Notice that each subscriber gets a different
 random value.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const {Observable} = rxjs;
 
@@ -686,7 +686,7 @@ every subscription creates a new observable execution. The following
 example shows this more directly.
 The example logs <em>'observable execution'</em> each time <code>observable.subscribe</code>
 is called:</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const {Observable} = rxjs;
 
@@ -719,7 +719,7 @@ you often want multiple subscribers receiving the same value.</p>
 to many observables at once without creating new execution contexts.</p>
 <p>In the following example, you'll notice that each subscription gets
 the same random value:</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const {Subject} = rxjs;
 

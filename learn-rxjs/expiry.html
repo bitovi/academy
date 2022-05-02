@@ -489,14 +489,14 @@ we will update the displayed expiry error, if there is one, on every future keys
 <p>You already know everything you need to know.  Apply what you learned from
 <code>cardNumber</code>, <code>cardError</code> and <code>showCardError</code> to <code>expiry</code>, <code>expiryError</code>, and <code>showExpiryError</code>.</p>
 <h2>The solution</h2>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/core@6.0.5/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/common@6.0.5/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/compiler@6.0.5/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@6.0.5/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@6.0.5/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/3.19.0/core.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@12.2.16/bundles/core.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.11.4/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@12.2.16/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@12.2.16/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@12.2.16/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@12.2.16/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
 &lt;my-app&gt;&lt;/my-app&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 // app.js
@@ -620,11 +620,11 @@ const validateExpiry = map((expiry) =&gt; {
     `
 })
 class AppComponent {
-    userCardNumber = new BehaviorSubject&lt;String&gt;();
-    userCardNumberBlurred = new Subject&lt;Boolean&gt;();
+    userCardNumber = new BehaviorSubject&lt;string&gt;();
+    userCardNumberBlurred = new Subject&lt;boolean&gt;();
 
-    userExpiry = new BehaviorSubject&lt;Array&gt;();
-    userExpiryBlurred = new Subject&lt;Boolean&gt;();
+    userExpiry = new BehaviorSubject&lt;[]&gt;();
+    userExpiryBlurred = new Subject&lt;boolean&gt;();
 
     constructor() {
         this.cardNumber = this.userCardNumber.pipe(cleanCardNumber)

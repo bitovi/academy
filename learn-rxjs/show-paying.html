@@ -493,10 +493,10 @@ the observables emitted by <code>paymentStatusObservables</code>.</p></li>
 to convert this state to observables.  The pattern is to map the promises to an observable of
 observables and then <em>flatten</em> that observable with <code>mergeAll</code>.</p>
 <ul>
-<li><p><a href="https://rxjs-dev.firebaseapp.com/api/index/function/from">from</a> - converts a
+<li><p><a href="https://rxjs.dev/api/index/function/from">from</a> - converts a
 <code>Promise</code> to an observable.  The following <code>thousand</code> observable emits
 <code>1000</code> when <code>promise</code> resolves:</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const {from} = rxjs;
 
@@ -519,8 +519,8 @@ thousand.subscribe(console.log);
 an observable that emits <code>{status: &quot;resolved&quot;, value}</code>.</p>
 </blockquote>
 <ul>
-<li><p><a href="https://rxjs-dev.firebaseapp.com/api/index/function/concat">concat</a> concatenates streams so events are produced in order.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+<li><p><a href="https://rxjs.dev/api/index/function/concat">concat</a> concatenates streams so events are produced in order.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const {of, zip, timer, from, concat} = rxjs;
 
@@ -550,11 +550,11 @@ fullName.subscribe(console.log);
 <strong>paymentStatus</strong> object before emitting the <code>{status: &quot;resolved&quot;, value}</code> <strong>paymentStatus</strong> object.</p>
 </blockquote>
 <ul>
-<li><p><a href="https://rxjs-dev.firebaseapp.com/api/operators/startWith">startWith</a>
+<li><p><a href="https://rxjs.dev/api/operators/startWith">startWith</a>
 returns an Observable that emits the items you specify as arguments before it begins to emit items emitted by the source Observable.</p>
 <p>The following uses <code>startWith</code> to add  <code>&quot;A&quot;</code> before the <code>&quot;X&quot;</code> and <code>&quot;Y&quot;</code>
 values are emitted.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const {of, zip, timer, from} = rxjs;
 const {startWith} = rxjs.operators;
@@ -597,10 +597,10 @@ to a observable.</p>
 <p>HINT: <code>of</code> can be used to convert plain <strong>paymentStatus</strong> objects into an observable
 that emits the <strong>paymentStatus</strong> object.</p>
 </blockquote></li>
-<li><p>The static <a href="https://rxjs-dev.firebaseapp.com/api/index/function/pipe">pipe</a> function can be used
+<li><p>The static <a href="https://rxjs.dev/api/index/function/pipe">pipe</a> function can be used
 to combine operators. The following makes a <code>squareStartingWith2</code> operator that ensures
 a <code>2</code> will be the first number squared and a <code>4</code> the first value emitted:</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const {from, pipe, Subject} = rxjs;
 const {map, startWith} = rxjs.operators;
@@ -631,7 +631,7 @@ is emitted first.</li>
 </ul>
 </blockquote>
 <ul>
-<li><p><a href="https://rxjs-dev.firebaseapp.com/api/operators/mergeAll">mergeAll</a> takes an observable that emits inner observables
+<li><p><a href="https://rxjs.dev/api/operators/mergeAll">mergeAll</a> takes an observable that emits inner observables
 and emits what the inner observables emits.</p>
 <p>In the following example, <code>observables</code> emits:</p>
 <ol>
@@ -640,7 +640,7 @@ and emits what the inner observables emits.</p>
 </ol>
 <p><code>mergeAll</code> <em>flattens</em> <code>observables</code> so that <code>values</code> emits
 the numbers and letters directly.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 const {of} = rxjs;
 const {mergeAll} = rxjs.operators;
@@ -670,14 +670,14 @@ conditional operator (<code>?.</code>) like:
 </code></pre></li>
 </ul>
 <h2>The solution</h2>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/core@6.0.5/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/common@6.0.5/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/compiler@6.0.5/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@6.0.5/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@6.0.5/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/3.19.0/core.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@12.2.16/bundles/core.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.11.4/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@12.2.16/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@12.2.16/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@12.2.16/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@12.2.16/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
 &lt;my-app&gt;&lt;/my-app&gt;
 &lt;script type=&quot;typescript&quot;&gt;
 // app.js
@@ -878,14 +878,14 @@ const toPaymentStatusObservable = pipe(
     `
 })
 class AppComponent {
-    userCardNumber = new BehaviorSubject&lt;String&gt;();
-    userCardNumberBlurred = new Subject&lt;Boolean&gt;();
+    userCardNumber = new BehaviorSubject&lt;string&gt;();
+    userCardNumberBlurred = new Subject&lt;boolean&gt;();
 
-    userExpiry = new BehaviorSubject&lt;Array&gt;();
-    userExpiryBlurred = new Subject&lt;Boolean&gt;();
+    userExpiry = new BehaviorSubject&lt;[]&gt;();
+    userExpiryBlurred = new Subject&lt;boolean&gt;();
 
-    userCVC = new BehaviorSubject&lt;String&gt;();
-    userCVCBlurred = new Subject&lt;Boolean&gt;();
+    userCVC = new BehaviorSubject&lt;string&gt;();
+    userCVCBlurred = new Subject&lt;boolean&gt;();
 
     paySubmitted = new Subject();
 
