@@ -37,7 +37,7 @@ observable that emits 3 values.  The `subscriber` function
 will be called back each time:
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
 <script type="typescript">
 const {Observable} = rxjs;
 
@@ -63,7 +63,7 @@ subscribers. The following adds two subscribers to an
 observable:
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
 <script type="typescript">
 const {Observable} = rxjs;
 
@@ -108,7 +108,7 @@ and completes:
 
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
 <script type="typescript">
 const {Observable} = rxjs;
 
@@ -161,7 +161,7 @@ The following unsubscribes after the first published value. Notice that
 the `subscriber` function is only called once.
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
 <script type="typescript">
 const {Observable} = rxjs;
 
@@ -198,7 +198,7 @@ Read the inline comments below to see how this works.
 
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
 <script type="typescript">
 const {Observable} = rxjs;
 
@@ -259,7 +259,7 @@ random value.
 
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
 <script type="typescript">
 const {Observable} = rxjs;
 
@@ -288,7 +288,7 @@ The example logs _'observable execution'_ each time `observable.subscribe`
 is called:
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
 <script type="typescript">
 const {Observable} = rxjs;
 
@@ -326,7 +326,7 @@ In the following example, you'll notice that each subscription gets
 the same random value:
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
 <script type="typescript">
 const {Subject} = rxjs;
 

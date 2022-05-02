@@ -41,7 +41,7 @@ In this section, we will:
   The following uses `map` to create a `mapToNumber` operator:
 
   ```html
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
   <script type="typescript">
   const {Subject} = rxjs;
   const {map} = rxjs.operators;

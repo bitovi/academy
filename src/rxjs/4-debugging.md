@@ -51,7 +51,7 @@ that the `float` values do __not__ match the `int` values!!
 
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
 <script type="typescript">
 const {Observable} = rxjs;
 const {map} = rxjs.operators;
@@ -88,7 +88,7 @@ to perform a side-effect (such as logging) on every emission on a source observa
 The following uses tap to log `floats0to100` values so they match:
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
 <script type="typescript">
 const {Observable} = rxjs;
 const {map, tap} = rxjs.operators;

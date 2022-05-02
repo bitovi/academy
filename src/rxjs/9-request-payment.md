@@ -83,7 +83,7 @@ In this section, we will:
 
   ```html
   <div id="clickMe">Click Me</div>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
   <script type="typescript">
   const {fromEvent, interval} = rxjs;
   const {map, withLatestFrom} = rxjs.operators;

@@ -39,7 +39,7 @@ This credit card form:
 - Logs a success message when payment has completed.
 - Simulates a payment with a `Promise` that resolves in 2 seconds.
 
-We will use [RxJS](https://rxjs-dev.firebaseapp.com/) and [Angular 6](https://v6.angular.io/docs)
+We will use [RxJS 7.4](https://rxjs.dev) and [Angular 12](https://v12.angular.io/docs)
 for this example.  All code examples will be able to work in a [CodePen](https://codepen.io/justinbmeyer/pen/vvpNJz) so you just need a browser to complete this tutorial!
 
 Each section of the guide is broken down into the following sections:

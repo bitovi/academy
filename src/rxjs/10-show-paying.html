@@ -1,11 +1,11 @@
-<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js"/></script>
-<script src="https://unpkg.com/@angular/core@6.0.5/bundles/core.umd.js"/></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js"></script>
-<script src="https://unpkg.com/@angular/common@6.0.5/bundles/common.umd.js"></script>
-<script src="https://unpkg.com/@angular/compiler@6.0.5/bundles/compiler.umd.js"></script>
-<script src="https://unpkg.com/@angular/platform-browser@6.0.5/bundles/platform-browser.umd.js"></script>
-<script src="https://unpkg.com/@angular/platform-browser-dynamic@6.0.5/bundles/platform-browser-dynamic.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/3.19.0/core.js"></script>
+<script src="https://unpkg.com/@angular/core@12.2.16/bundles/core.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.11.4/zone.min.js"></script>
+<script src="https://unpkg.com/@angular/common@12.2.16/bundles/common.umd.js"></script>
+<script src="https://unpkg.com/@angular/compiler@12.2.16/bundles/compiler.umd.js"></script>
+<script src="https://unpkg.com/@angular/platform-browser@12.2.16/bundles/platform-browser.umd.js"></script>
+<script src="https://unpkg.com/@angular/platform-browser-dynamic@12.2.16/bundles/platform-browser-dynamic.umd.js"></script>
 <my-app></my-app>
 <script type="typescript">
 // app.js
@@ -206,14 +206,14 @@ const toPaymentStatusObservable = pipe(
     `
 })
 class AppComponent {
-    userCardNumber = new BehaviorSubject<String>();
-    userCardNumberBlurred = new Subject<Boolean>();
+    userCardNumber = new BehaviorSubject<string>();
+    userCardNumberBlurred = new Subject<boolean>();
 
-    userExpiry = new BehaviorSubject<Array>();
-    userExpiryBlurred = new Subject<Boolean>();
+    userExpiry = new BehaviorSubject<[]>();
+    userExpiryBlurred = new Subject<boolean>();
 
-    userCVC = new BehaviorSubject<String>();
-    userCVCBlurred = new Subject<Boolean>();
+    userCVC = new BehaviorSubject<string>();
+    userCVCBlurred = new Subject<boolean>();
 
     paySubmitted = new Subject();
 
