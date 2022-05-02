@@ -108,8 +108,8 @@ function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
     `
 })
 class AppComponent {
-    userCardNumber = new BehaviorSubject<String>();
-    userCardNumberBlurred = new Subject<Boolean>();
+    userCardNumber = new BehaviorSubject<string>();
+    userCardNumberBlurred = new Subject<boolean>();
 
     constructor() {
         this.cardNumber = this.userCardNumber.pipe(cleanCardNumber)

@@ -176,14 +176,14 @@ function paymentPromises(paySubmitted, card) {
     `
 })
 class AppComponent {
-    userCardNumber = new BehaviorSubject<String>();
-    userCardNumberBlurred = new Subject<Boolean>();
+    userCardNumber = new BehaviorSubject<string>();
+    userCardNumberBlurred = new Subject<boolean>();
 
-    userExpiry = new BehaviorSubject<Array>();
-    userExpiryBlurred = new Subject<Boolean>();
+    userExpiry = new BehaviorSubject<[]>();
+    userExpiryBlurred = new Subject<boolean>();
 
-    userCVC = new BehaviorSubject<String>();
-    userCVCBlurred = new Subject<Boolean>();
+    userCVC = new BehaviorSubject<string>();
+    userCVCBlurred = new Subject<boolean>();
 
     paySubmitted = new Subject();
 

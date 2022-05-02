@@ -55,7 +55,7 @@ const log = function(name) {
     `
 })
 class AppComponent {
-    userCardNumber = new BehaviorSubject<String>();
+    userCardNumber = new BehaviorSubject<string>();
 
     constructor() {
         this.cardNumber = this.userCardNumber.pipe(cleanCardNumber)

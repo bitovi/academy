@@ -129,11 +129,11 @@ const validateExpiry = map((expiry) => {
     `
 })
 class AppComponent {
-    userCardNumber = new BehaviorSubject<String>();
-    userCardNumberBlurred = new Subject<Boolean>();
+    userCardNumber = new BehaviorSubject<string>();
+    userCardNumberBlurred = new Subject<boolean>();
 
-    userExpiry = new BehaviorSubject<Array>();
-    userExpiryBlurred = new Subject<Boolean>();
+    userExpiry = new BehaviorSubject<[]>();
+    userExpiryBlurred = new Subject<boolean>();
 
     constructor() {
         this.cardNumber = this.userCardNumber.pipe(cleanCardNumber)

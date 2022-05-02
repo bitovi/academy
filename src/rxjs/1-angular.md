@@ -51,7 +51,7 @@ Initialize a [BehaviorSubject](https://rxjs.dev/api/index/class/BehaviorSubject)
 const {BehaviorSubject} = rxjs;
 
 class AppComponent {  
-  userCardNumber = new BehaviorSubject<String>();
+  userCardNumber = new BehaviorSubject<string>();
 }
 
 var app = new AppComponent();
@@ -70,7 +70,7 @@ be sent the last value.
 <script type="typescript">
 const {BehaviorSubject} = rxjs;
 
-var subject = new BehaviorSubject<String>();
+var subject = new BehaviorSubject<string>();
 
 subject.next("THE PAST");
 
@@ -90,7 +90,7 @@ Emit a value on a Subject by calling `subject.next()`:
 const {BehaviorSubject} = rxjs;
 
 class AppComponent {  
-  userCardNumber = new BehaviorSubject<String>();
+  userCardNumber = new BehaviorSubject<string>();
 }
 
 var app = new AppComponent();
