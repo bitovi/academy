@@ -14,7 +14,7 @@ In this part, we will:
 
 ## Problem
 
-In the next section we're going to be creating a restaurant detail view. We'll need to have a method on our service that returns one restaurant from the list. Write this method and call it `getRestaurant`. It should take a string param "slug" and make a get request to the path `'/api/restaurants/slug-here'`. Then write a unit test for this method ensuring it makes the correct request and returns an object type of `Restaurant`.
+In the next section we're going to be creating a restaurant detail view. We'll need to have a method on our service that returns one restaurant from the list. Write this method and call it `getRestaurant`. It should take a string param "slug" and make a get request to the path `'/restaurants/slug-here'`. Then write a unit test for this method ensuring it makes the correct request and returns an object type of `Restaurant`.
 
 ## What You Need to Know
 
