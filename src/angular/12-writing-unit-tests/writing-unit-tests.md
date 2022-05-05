@@ -26,6 +26,7 @@ In the next section we're going to be creating a restaurant detail view. We'll n
     
   });
   ```
+- Refer to the existing tests on the service to see how to use `HttpMock` to test `HttpClient` calls.
 
 ## Solution
 
