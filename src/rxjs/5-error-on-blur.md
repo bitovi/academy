@@ -217,8 +217,11 @@ In this section, we will:
   <div *ngIf="expression">Show this</div>
   ```
 
-## The solution
+## The Solution
 
+<details>
+<summary>Click to see the solution</summary>
 @sourceref ./5-error-on-blur.html
 @codepen
 @highlight 13-14,35-81,87,94-95,112,119,only
+</details>

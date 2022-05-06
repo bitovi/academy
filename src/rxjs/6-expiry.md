@@ -50,8 +50,11 @@ Finally:
 You already know everything you need to know. Apply what you learned from
 `cardNumber`, `cardError` and `showCardError` to `expiry`, `expiryError`, and `showExpiryError`.
 
-## The solution
+## The Solution
 
+<details>
+<summary>Click to see the solution</summary>
 @sourceref ./6-expiry.html
 @codepen
 @highlight 83-100,108,119-126,142-143,152-154,only
+</details>

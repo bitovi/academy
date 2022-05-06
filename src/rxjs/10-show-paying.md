@@ -235,8 +235,11 @@ observables and then _flatten_ that observable with `mergeAll`.
   {{ status === "pending" ? "Paying" : "Pay" }}
   ```
 
-## The solution
+## The Solution
 
+<details>
+<summary>Click to see the solution</summary>
 @sourceref ./10-show-paying.html
 @codepen
 @highlight 148-176,216,256-258,only
+</details>

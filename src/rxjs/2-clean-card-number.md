@@ -66,8 +66,11 @@ In this section, we will:
   CardNumber: {{ cardNumber | async }} <br />
   ```
 
-## The solution
+## The Solution
 
+<details>
+<summary>Click to see the solution</summary>
 @sourceref ./2-clean-card-number.html
 @codepen
 @highlight 14,16-20,44,51,only
+</details>
