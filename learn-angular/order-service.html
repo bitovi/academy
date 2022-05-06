@@ -704,6 +704,7 @@ describe('OrderService', () =&gt; {
         {
           _id: 'adsfsdf',
           name: 'Jennifer',
+          restaurant: 'FoodLand',
           address: '123 main',
           phone: '555-555-5555',
           status: 'new',
@@ -730,7 +731,7 @@ describe('OrderService', () =&gt; {
     httpMock.verify();
   });
 
-  it('should make a get request to create an order', () =&gt; {
+  it('should make a post request to create an order', () =&gt; {
     const mockOrder = {
       _id: 'adsfsdf',
       restaurant: '12345',
@@ -864,10 +865,16 @@ get the tests to pass.</p>
 </code></pre>
 <h2>P2: What You Need to Know</h2>
 <ul>
-<li>You will need to look at the test code to determine
-the method signatures on <code>OrderService</code>.</li>
+<li>The method signatures for the methods you'll be adding to <code>OrderService</code>:
+<ul>
+<li><code>getOrders(): Observable&lt;{data: Order[]}&gt;</code> should make a <code>GET</code> request</li>
+<li><code>createOrder(orderForm: OrderForm): Observable&lt;Order&gt;</code> should make a <code>POST</code> request</li>
+<li><code>updateOrder(order: Order, status: string): Observable&lt;Order&gt;</code> should make a <code>PUT</code> request to <code>/orders/&lt;order-id&gt;</code></li>
+<li><code>deleteOrder(orderId: string): Observable&lt;Order&gt;</code> should make a <code>DELETE</code> request to <code>/orders/&lt;order-id&gt;</code></li>
+</ul></li>
 <li>You will need to make sure <code>HttpClient</code> is imported and
 added as a property in the <code>OrderService</code> constructor.</li>
+<li>You can pass a request <code>body</code> using the second argument of <code>HttpClient</code> <code>post</code> and <code>put</code> methods.</li>
 </ul>
 <h2>P2: Solution</h2>
 <p>✏️ Update <strong>src/app/order/order.service.ts</strong></p>

@@ -595,7 +595,7 @@ covering CanJS core libraries.">
 <li>Write a unit test for the getRestaurant method</li>
 </ul>
 <h2>Problem</h2>
-<p>In the next section we're going to be creating a restaurant detail view. We'll need to have a method on our service that returns one restaurant from the list. Write this method and call it <code>getRestaurant</code>. It should take a string param &quot;slug&quot; and make a get request to the path <code>'/api/restaurants/slug-here'</code>. Then write a unit test for this method ensuring it makes the correct request and returns an object type of <code>Restaurant</code>.</p>
+<p>In the next section we're going to be creating a restaurant detail view. We'll need to have a method on our service that returns one restaurant from the list. Write this method and call it <code>getRestaurant</code>. It should take a string param &quot;slug&quot; and make a get request to the path <code>'/restaurants/slug-here'</code>. Then write a unit test for this method ensuring it makes the correct request and returns an object type of <code>Restaurant</code>.</p>
 <h2>What You Need to Know</h2>
 <ul>
 <li><p>How to write a method on a service that takes a param. You've learned this in previous sections.</p></li>
@@ -604,6 +604,7 @@ covering CanJS core libraries.">
   
 });
 </code></pre></li>
+<li><p>Refer to the existing tests on the service to see how to use <code>HttpMock</code> to test <code>HttpClient</code> calls.</p></li>
 </ul>
 <h2>Solution</h2>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.service.ts</strong></p>

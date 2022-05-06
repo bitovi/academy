@@ -307,7 +307,7 @@
            						">
 						<a class="page"
 							href="learn-rxjs/show-paying.html"
-							title="Learn how to flatten an observable that emits observables.  Learn how to order observables.">
+							title="Learn how to flatten an observable that emits observables. Learn how to order observables.">
 							Show paying
 						</a>
 						
@@ -459,7 +459,7 @@ Angular, React, CanJS and JavaScript problems.</p>
 <p>Please ask questions related to RxJS and Angular in the <a href="https://bitovi-community.slack.com/messages/CFD2J3HT3">Angular Chat Room</a>.</p>
 <p>If you find bugs in this training or have suggestions, create an <a href="https://github.com/bitovi/academy/issues">issue</a> or email <code>contact@bitovi.com</code>.</p>
 <h2>Video</h2>
-<p>Who has time to read?  This video covers the content on this page. Watch fullscreen.</p>
+<p>Who has time to read? This video covers the content on this page. Watch fullscreen.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/3uPT-gcxs0E" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <h2>Overview</h2>
 <p>In this tutorial we will create the following validating credit card form:</p>
@@ -473,11 +473,11 @@ Angular, React, CanJS and JavaScript problems.</p>
 <li>Simulates a payment with a <code>Promise</code> that resolves in 2 seconds.</li>
 </ul>
 <p>We will use <a href="https://rxjs.dev">RxJS 7.4</a> and <a href="https://v12.angular.io/docs">Angular 12</a>
-for this example.  All code examples will be able to work in a <a href="https://codepen.io/justinbmeyer/pen/vvpNJz">CodePen</a> so you just need a browser to complete this tutorial!</p>
+for this example. All code examples will be able to work in a <a href="https://codepen.io/justinbmeyer/pen/vvpNJz">CodePen</a> so you just need a browser to complete this tutorial!</p>
 <p>Each section of the guide is broken down into the following sections:</p>
 <ul>
 <li><strong>The problem</strong> — A description of what the section is trying to accomplish.</li>
-<li><strong>What you need to know</strong> — Information about CanJS that is useful for solving the problem.</li>
+<li><strong>What you need to know</strong> — Information that is useful for solving the problem.</li>
 <li><strong>The solution</strong> — The solution to the problem.</li>
 </ul>
 <h2>Outline</h2>
@@ -492,30 +492,28 @@ for this example.  All code examples will be able to work in a <a href="https://
 <li><a href="learn-rxjs/cvc.html" title="Apply what you've learned from previous sections to the cvc field.">CVC</a> - Read, validate, and show the error of the CVC</li>
 <li><a href="learn-rxjs/disable-pay-button.html" title="Learn how to combine the latest values of two RxJS observables with the combineLatest operator.">Disable pay button</a> - Disable the pay button if any part of the card has an error - <code>combineLatest</code></li>
 <li><a href="learn-rxjs/request-payment.html" title="">Request payment</a> - Make a request when the pay button is clicked</li>
-<li><a href="learn-rxjs/show-paying.html" title="Learn how to flatten an observable that emits observables.  Learn how to order observables.">Show paying</a> - Update the pay button's text while payments are pending</li>
+<li><a href="learn-rxjs/show-paying.html" title="Learn how to flatten an observable that emits observables. Learn how to order observables.">Show paying</a> - Update the pay button's text while payments are pending</li>
 <li><a href="learn-rxjs/disable-while-pending.html" title="Learn how to convert an observable to a multicast subject.">Disable while pending</a> - Disable the payment button while payments are pending</li>
 </ul>
 <h2>Logic Flow</h2>
-<p>The following presentation shows how the observables are wired up.  This will
+<p>The following presentation shows how the observables are wired up. This will
 be a useful reference for understanding how the tutorial works:</p>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vS1c0TjlkqGDCI0-R_QUvmZ3oFFTcapVK8zLosgq94g3_w2rQPifGHwZy209xadXI0EchaaB60vCcqj/embed?start=false&loop=false&delayms=3000" frameborder="0" width="640" height="374" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 <h2>Tips</h2>
 <ul>
-<li>Open Developer Tools and stack CodePen vertically:<br />
-<img src="./static/img/codepen-stack.png" width="50%" alt="CodePen stacked" title="CodePen stacked"
-style="border: solid 1px #808080"/></li>
-<li>Save your CodePen</li>
-<li>If you can't figure out what is breaking, use an <a href="https://www.diffchecker.com/">online diff checker</a> to
-compare your code with the solution.<br />
-<img src="./static/img/diff-checker.png" width="50%" alt="Diff Checker" title="DiffChecker"
-style="border: solid 1px #808080"/></li>
+<li><p>Open Developer Tools and stack CodePen vertically:</p>
+<p><img src="./static/img/codepen-stack.png" width="50%" alt="CodePen stacked" title="CodePen stacked" style="border: solid 1px #808080" /></p></li>
+<li><p>Save your CodePen</p></li>
+<li><p>If you can't figure out what is breaking, use an <a href="https://www.diffchecker.com/">online diff checker</a> to
+compare your code with the solution.</p>
+<p><img src="./static/img/diff-checker.png" width="50%" alt="Diff Checker" title="DiffChecker" style="border: solid 1px #808080" /></p></li>
 </ul>
 <h2>Prerequisites</h2>
 <ul>
-<li>This guide makes a minor use of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promises</a>.  A basic understanding of promises is required.</li>
+<li>This guide makes a minor use of <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promises</a>. A basic understanding of promises is required.</li>
 <li>This guide makes a minor use of TypeScript. TypeScript knowledge is <em>not</em> required, but it
-might help to make sense of the solutions.  The <a href="learn-typescript.html" title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">Learn TypeScript</a> guide is more than sufficient
+might help to make sense of the solutions. The <a href="learn-typescript.html" title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">Learn TypeScript</a> guide is more than sufficient
 background.</li>
 <li>This guide uses Angular. However, most of the Angular parts are explained. Angular experience is
 not required; however, experience in some other modern web framework <strong>is</strong> required.</li>

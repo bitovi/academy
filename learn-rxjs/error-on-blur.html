@@ -310,7 +310,7 @@
            						">
 						<a class="page"
 							href="show-paying.html"
-							title="Learn how to flatten an observable that emits observables.  Learn how to order observables.">
+							title="Learn how to flatten an observable that emits observables. Learn how to order observables.">
 							Show paying
 						</a>
 						
@@ -481,72 +481,85 @@ events to update a stateful object.</p>
 <p>For example, we might have a <code>first</code> and a <code>last</code> stream:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
-const {of, zip, timer, from, merge} = rxjs;
-const {delay, map, scan} = rxjs.operators;
+  const { of, zip, timer, from, merge } = rxjs;
+  const { delay, map, scan } = rxjs.operators;
 
-function sequentially(value, dueTime, period){
+  function sequentially(value, dueTime, period) {
     return zip(
-        from(value),
-        timer(dueTime, period),
-        value =&gt; value
-    )
-}
+      from(value),
+      timer(dueTime, period),
+      value =&gt; value
+    );
+  }
 
-const first = sequentially([&quot;Justin&quot;, &quot;Ramiya&quot;], 0, 1000);
-const last = sequentially([&quot;Shah&quot;, &quot;Meyer&quot;], 500, 1000);
+  const first = sequentially([&quot;Justin&quot;, &quot;Ramiya&quot;], 0, 1000);
+  const last = sequentially([&quot;Shah&quot;, &quot;Meyer&quot;], 500, 1000);
 
-first.subscribe( v =&gt; console.log(&quot;first&quot;, v));
-last.subscribe( v =&gt; console.log(&quot;last&quot;, v))
-// first: -Justin---RamiyaX
-// last:  ----Shah__---Meyer_X
+  first.subscribe((v) =&gt; console.log(&quot;first&quot;, v));
+  last.subscribe((v) =&gt; console.log(&quot;last&quot;, v));
+  // first: -Justin---RamiyaX
+  // last:  ----Shah__---Meyer_X
 &lt;/script&gt;
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
 <p>We can promote these to event-like objects with <code>map</code>:</p>
-<pre><code class="language-typescript">const firstEvents = first.pipe( map( (first) =&gt; {
-    return {type: &quot;first&quot;, value: first};
-} ) );
+<pre><code class="language-typescript">const firstEvents = first.pipe(
+  map((first) =&gt; {
+    return { type: 'first', value: first };
+  })
+);
 
-const lastEvents = last.pipe( map( (last) =&gt; {
-    return {type: &quot;last&quot;, value: last}
-} ) );
+const lastEvents = last.pipe(
+  map((last) =&gt; {
+    return { type: 'last', value: last };
+  })
+);
 // firstEvents: -{t:fst,v:Jus}---{t:fst,v:Ram}X
 // lastEvents:  ----{t:lst,v:Sha}---{t:lst,v:Myr}X
 </code></pre>
 <p>Next, we can merge these into a single stream:</p>
-<pre><code class="language-js">const merged = merge(firstEvents,lastEvents)
-// merged: -{type: &quot;first&quot;,  value: &quot;Justin&quot;}
-//          -{type: &quot;last&quot;,  value: &quot;Shah&quot;}
-//          -{type: &quot;first&quot;, value: &quot;Ramiya&quot;}
-//          -{type: &quot;last&quot;,  value: &quot;Meyer&quot;}X
+<pre><code class="language-js">const merged = merge(firstEvents, lastEvents);
+// merged:  -{ type: &quot;first&quot;, value: &quot;Justin&quot; }
+//          -{ type: &quot;last&quot;,  value: &quot;Shah&quot; }
+//          -{ type: &quot;first&quot;, value: &quot;Ramiya&quot; }
+//          -{ type: &quot;last&quot;,  value: &quot;Meyer&quot; }X
 </code></pre>
 <p>We can &quot;reduce&quot; (or <code>scan</code>) these events based on a previous
 state. The following copies the old state and updates it using the event
 data:</p>
-<pre><code class="language-js">const state = merged.pipe( scan( (previous, event) =&gt; {
-    switch( event.type ) {
-      case &quot;first&quot;:
-        return { ...previous, first: event.value };
-      case &quot;last&quot;:
-        return { ...previous, last: event.value };
-      default:
-        return previous;
-    }
-}, {first: &quot;&quot;, last: &quot;&quot;}) );
-  // state: -{first:&quot;Justin&quot;, last:&quot;&quot;}
-  //         -{first:&quot;Justin&quot;, last:&quot;Shah&quot;}
-  //         -{first:&quot;Ramiya&quot;, last:&quot;Shah&quot;}
-  //         -{first:&quot;Ramiya&quot;, last:&quot;Meyer&quot;}X
+<pre><code class="language-js">const state = merged.pipe(
+  scan(
+    (previous, event) =&gt; {
+      switch (event.type) {
+        case 'first':
+          return { ...previous, first: event.value };
+        case 'last':
+          return { ...previous, last: event.value };
+        default:
+          return previous;
+      }
+    },
+    { first: '', last: '' }
+  )
+);
+// state:  -{ first: &quot;Justin&quot;, last: &quot;&quot; }
+//         -{ first: &quot;Justin&quot;, last: &quot;Shah&quot; }
+//         -{ first: &quot;Ramiya&quot;, last: &quot;Shah&quot; }
+//         -{ first: &quot;Ramiya&quot;, last: &quot;Meyer&quot; }X
 </code></pre>
 <p>The following is an even more terse way of doing the same thing:</p>
-<pre><code class="language-js">const state = merged.pipe( scan( (previous, event) =&gt; {
-  return {...previous, [event.type]: event.value};
-}, {first: &quot;&quot;, last: &quot;&quot;} ) );
-
+<pre><code class="language-js">const state = merged.pipe(
+  scan(
+    (previous, event) =&gt; {
+      return { ...previous, [event.type]: event.value };
+    },
+    { first: '', last: '' }
+  )
+);
 </code></pre>
 <p>Finally, we can map this state to another value:</p>
-<pre><code class="language-js">const fullName = state.pipe( map( state =&gt; state.first +&quot; &quot;+ state.last ) );
+<pre><code class="language-js">const fullName = state.pipe(map((state) =&gt; state.first + ' ' + state.last));
 // fullName: -Justin
 //            -Justin Shah
 //            -Ramiya Shah
@@ -555,48 +568,57 @@ data:</p>
 <p>See it all together here:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
-const {of, zip, timer, from, merge} = rxjs;
-const {delay, map, scan} = rxjs.operators;
+  const { of, zip, timer, from, merge } = rxjs;
+  const { delay, map, scan } = rxjs.operators;
 
-function sequentially(value, dueTime, period){
+  function sequentially(value, dueTime, period) {
     return zip(
-        from(value),
-        timer(dueTime, period),
-        value =&gt; value
+      from(value),
+      timer(dueTime, period),
+      value =&gt; value
+    );
+  }
+
+  const first = sequentially([&quot;Justin&quot;, &quot;Ramiya&quot;], 0, 1000);
+  const last = sequentially([&quot;Shah&quot;, &quot;Meyer&quot;], 500, 1000);
+
+  const firstEvents = first.pipe(
+    map((first) =&gt; {
+      return { type: &quot;first&quot;, value: first };
+    })
+  );
+
+  const lastEvents = last.pipe(
+    map((last) =&gt; {
+      return { type: &quot;last&quot;, value: last };
+    })
+  );
+
+  const merged = merge(firstEvents,lastEvents);
+
+  const state = merged.pipe(
+    scan(
+      (previous, event) =&gt; {
+        switch (event.type) {
+          case &quot;first&quot;:
+            return { ...previous, first: event.value };
+          case &quot;last&quot;:
+            return { ...previous, last: event.value };
+          default:
+            return previous;
+        }
+      },
+      { first: &quot;&quot;, last: &quot;&quot; }
     )
-}
+  );
 
-const first = sequentially([&quot;Justin&quot;, &quot;Ramiya&quot;], 0, 1000);
-const last = sequentially([&quot;Shah&quot;, &quot;Meyer&quot;], 500, 1000);
+  const fullName = state.pipe(map(state =&gt; state.first + &quot; &quot; + state.last));
 
-const firstEvents = first.pipe( map( (first) =&gt; {
-    return {type: &quot;first&quot;, value: first};
-} ) );
-
-const lastEvents = last.pipe( map( (last) =&gt; {
-    return {type: &quot;last&quot;, value: last}
-} ) );
-
-const merged = merge(firstEvents,lastEvents);
-
-const state = merged.pipe( scan( (previous, event) =&gt; {
-    switch( event.type ) {
-      case &quot;first&quot;:
-        return { ...previous, first: event.value };
-      case &quot;last&quot;:
-        return { ...previous, last: event.value };
-      default:
-        return previous;
-    }
-}, {first: &quot;&quot;, last: &quot;&quot;}) );
-
-const fullName = state.pipe( map( state =&gt; state.first +&quot; &quot;+ state.last ) );
-
-fullName.subscribe((fullName) =&gt; console.log(fullName));
+  fullName.subscribe((fullName) =&gt; console.log(fullName));
 &lt;/script&gt;
 </code></pre>
 <div class='codepen' data-codepen=''></div>
-  <div line-highlight='25-38,only'></div>
+  <div line-highlight='29-47,only'></div>
 <blockquote>
 <p>NOTE: <code>fullName</code> can be derived more simply from <code>combine</code>. The reducer
 pattern is used here for illustrative purposes. It is able to support a larger
@@ -604,17 +626,19 @@ set of stream transformations than <code>combine</code>.</p>
 </blockquote>
 <ul>
 <li><p>For a blur event, we should not save the last publish value
-so a <code>Subject</code> will work  better than a <code>BehaviorSubject</code>.</p></li>
+so a <code>Subject</code> will work better than a <code>BehaviorSubject</code>.</p></li>
 <li><p>Use <a href="https://angular.io/guide/template-syntax#property-binding--property-">a property binding</a> to set a property or attribute on an element.<br />
 To add <code>my-class</code> to the <code>className</code> when <code>testValue</code> is truthy:</p>
-<pre><code class="language-html">&lt;div [class.my-class]=&quot;testValue&quot;&gt;
+<pre><code class="language-html">&lt;div [class.my-class]=&quot;testValue&quot;&gt;&lt;/div&gt;
 </code></pre></li>
 <li><p><a href="https://angular.io/api/common/NgIf">ngIf</a> is used to conditionally render
 an element. The following will show the <code>div</code> if <code>expression</code> is truthy:</p>
 <pre><code class="language-html">&lt;div *ngIf=&quot;expression&quot;&gt;Show this&lt;/div&gt;
 </code></pre></li>
 </ul>
-<h2>The solution</h2>
+<h2>The Solution</h2>
+<p><details>
+<summary>Click to see the solution</summary></p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/3.19.0/core.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@12.2.16/bundles/core.umd.js&quot;&gt;&lt;/script&gt;
@@ -625,219 +649,221 @@ an element. The following will show the <code>div</code> if <code>expression</co
 &lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@12.2.16/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
 &lt;my-app&gt;&lt;/my-app&gt;
 &lt;script type=&quot;typescript&quot;&gt;
-// app.js
-const { Component, VERSION } = ng.core;
-const { BehaviorSubject, Subject, merge } = rxjs;
-const { map, tap, scan } = rxjs.operators;
+  // app.js
+  const { Component, VERSION } = ng.core;
+  const { BehaviorSubject, Subject, merge } = rxjs;
+  const { map, tap, scan } = rxjs.operators;
 
-const cleanCardNumber = map((card) =&gt; {
+  const cleanCardNumber = map((card) =&gt; {
     if (card) {
-        return card.replace(/[\s-]/g, &quot;&quot;);
+      return card.replace(/[\s-]/g, &quot;&quot;);
     }
-});
+  });
 
-const validateCard = map((card) =&gt; {
+  const validateCard = map((card) =&gt; {
     if (!card) {
-        return &quot;There is no card&quot;
+      return &quot;There is no card&quot;;
     }
     if (card.length !== 16) {
-        return &quot;There should be 16 characters in a card&quot;;
+      return &quot;There should be 16 characters in a card&quot;;
     }
-});
+  });
 
-const log = function(name) {
-    return tap(value =&gt; console.log(name, value))
-}
+  const log = (name) =&gt; {
+    return tap((value) =&gt; console.log(name, value));
+  };
 
-function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
-
+  function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
     const errorEvents = errorObservable.pipe(
-        map((error) =&gt; {
-            return {type: error ? &quot;invalid&quot; : &quot;valid&quot;}
-        })
+      map((error) =&gt; {
+        return { type: error ? &quot;invalid&quot; : &quot;valid&quot; };
+      })
     );
 
     const focusEvents = blurredObservable.pipe(
-        map((isBlurred) =&gt; {
-            return {type: isBlurred ? &quot;blurred&quot; : &quot;focused&quot;};
-        })
+      map((isBlurred) =&gt; {
+        return { type: isBlurred ? &quot;blurred&quot; : &quot;focused&quot; };
+      })
     );
 
-    var events = merge(errorEvents, focusEvents);
+    const events = merge(errorEvents, focusEvents);
 
-    const eventsToState = scan((previous, event) =&gt; {
+    const eventsToState = scan(
+      (previous, event) =&gt; {
         switch (event.type) {
-            case &quot;valid&quot;:
-                return {...previous,
-                    isValid: true,
-                    showCardError: false
-                };
-            case &quot;invalid&quot;:
-                return {
-                    ...previous,
-                    isValid: false,
-                    showCardError: previous.hasBeenBlurred
-                };
-            case &quot;blurred&quot;:
-                return {
-                    ...previous,
-                    hasBeenBlurred: true,
-                    showCardError: !previous.isValid
-                };
-            default:
-                return previous;
+          case &quot;valid&quot;:
+            return { ...previous, isValid: true, showCardError: false };
+          case &quot;invalid&quot;:
+            return {
+              ...previous,
+              isValid: false,
+              showCardError: previous.hasBeenBlurred,
+            };
+          case &quot;blurred&quot;:
+            return {
+              ...previous,
+              hasBeenBlurred: true,
+              showCardError: !previous.isValid,
+            };
+          default:
+            return previous;
         }
-    }, {
+      },
+      {
         hasBeenBlurred: false,
         showCardError: false,
-        isValid: false
-    });
+        isValid: false,
+      }
+    );
 
-    var state = events.pipe(eventsToState);
+    const state = events.pipe(eventsToState);
 
-    return state.pipe( map(state =&gt; state.showCardError) );
+    return state.pipe(map((state) =&gt; state.showCardError));
+  }
 
-}
-
-@Component({
+  @Component({
     selector: 'my-app',
     template: `
-        &lt;form&gt;
+      &lt;form&gt;
+        &lt;div class=&quot;message&quot; *ngIf=&quot;showCardError | async&quot;&gt;{{ cardError | async }}&lt;/div&gt;
 
-            &lt;div class=&quot;message&quot;
-                *ngIf=&quot;(showCardError | async)&quot;&gt;{{ (cardError | async) }}&lt;/div&gt;
+        &lt;input
+          type=&quot;text&quot;
+          name=&quot;cardNumber&quot;
+          placeholder=&quot;Card Number&quot;
+          (input)=&quot;userCardNumber.next($event.target.value)&quot;
+          (blur)=&quot;userCardNumberBlurred.next(true)&quot;
+          [class.is-error]=&quot;showCardError | async&quot;
+        /&gt;
 
-            &lt;input type=&quot;text&quot; name=&quot;cardNumber&quot; placeholder=&quot;Card Number&quot;
-                (input)=&quot;userCardNumber.next( $event.target.value )&quot;
-                (blur)=&quot;userCardNumberBlurred.next( true )&quot;
-                [class.is-error]=&quot;showCardError | async&quot;/&gt;
+        &lt;input type=&quot;text&quot; name=&quot;expiry&quot; placeholder=&quot;MM-YY&quot; /&gt;
 
-            &lt;input type=&quot;text&quot; name=&quot;expiry&quot; placeholder=&quot;MM-YY&quot;/&gt;
+        &lt;input type=&quot;text&quot; name=&quot;cvc&quot; placeholder=&quot;CVC&quot; /&gt;
 
-            &lt;input type=&quot;text&quot; name=&quot;cvc&quot; placeholder=&quot;CVC&quot;/&gt;
-
-            &lt;button&gt;
-                PAY
-            &lt;/button&gt;
-        &lt;/form&gt;
-        UserCardNumber: {{ (userCardNumber | async) }} &lt;br/&gt;
-        CardNumber: {{ (cardNumber | async) }} &lt;br/&gt;
+        &lt;button&gt;
+          PAY
+        &lt;/button&gt;
+      &lt;/form&gt;
+      UserCardNumber: {{ userCardNumber | async }} &lt;br /&gt;
+      CardNumber: {{ cardNumber | async }} &lt;br /&gt;
     `
-})
-class AppComponent {
+  })
+  class AppComponent {
     userCardNumber = new BehaviorSubject&lt;string&gt;();
     userCardNumberBlurred = new Subject&lt;boolean&gt;();
 
     constructor() {
-        this.cardNumber = this.userCardNumber.pipe(cleanCardNumber)
-            .pipe( log(&quot;cardNumber&quot;) );
-        this.cardError = this.cardNumber.pipe(validateCard);
-        this.showCardError = showOnlyWhenBlurredOnce(this.cardError, this.userCardNumberBlurred);
+      this.cardNumber = this.userCardNumber
+        .pipe(cleanCardNumber)
+        .pipe(log(&quot;cardNumber&quot;));
+      this.cardError = this.cardNumber.pipe(validateCard);
+      this.showCardError = showOnlyWhenBlurredOnce(this.cardError, this.userCardNumberBlurred);
     }
-}
+  }
 
-// main.js
-const { BrowserModule } = ng.platformBrowser;
-const { NgModule } = ng.core;
-const { CommonModule } = ng.common;
+  // main.js
+  const { BrowserModule } = ng.platformBrowser;
+  const { NgModule } = ng.core;
+  const { CommonModule } = ng.common;
 
-@NgModule({
+  @NgModule({
     imports: [
-        BrowserModule,
-        CommonModule,
+      BrowserModule,
+      CommonModule,
     ],
     declarations: [AppComponent],
     bootstrap: [AppComponent],
     providers: []
-})
-class AppModule {}
+  })
+  class AppModule {}
 
-const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+  const { platformBrowserDynamic } = ng.platformBrowserDynamic;
 
-platformBrowserDynamic()
+  platformBrowserDynamic()
     .bootstrapModule(AppModule)
     .catch(err =&gt; console.error(err));
 &lt;/script&gt;
 &lt;style&gt;
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
-body {
-  background-color: rgba(8, 211, 67, 0.3);
-  padding: 2%;
-  font-family: 'Raleway', sans-serif;
-  font-size: 1em;
-}
-input {
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 1em;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 500;
-  padding: 12px;
-  border: 1px solid #ccc;
-  outline-color: white;
-  transition: background-color 0.5s ease;
-  transition: outline-color 0.5s ease;
-}
-input[name=cardNumber] {
-  border-bottom: 0;
-}
-input[name=expiry],
-input[name=cvc] {
-  width: 50%;
-}
-input[name=expiry] {
-  float: left;
-  border-right: 0;
-}
-input::placeholder {
-  color: #999;
-  font-weight: 400;
-}
-input:focus {
-  background-color: rgba(130, 245, 249, 0.1);
-  outline-color: #82f5f9;
-}
-input.is-error {
-  background-color: rgba(250, 55, 55, 0.1);
-}
-input.is-error:focus {
-  outline-color: #ffbdbd;
-}
-button {
-  font-size: 1em;
-  font-family: 'Raleway', sans-serif;
-  background-color: #08d343;
-  border: 0;
-  box-shadow: 0px 1px 3px 1px rgba(51, 51, 51, 0.16);
-  color: white;
-  font-weight: 500;
-  letter-spacing: 1px;
-  margin-top: 30px;
-  padding: 12px;
-  text-transform: uppercase;
-  width: 100%;
-}
-button:disabled {
-  opacity: 0.4;
-  background-color: #999999;
-}
-form {
-  background-color: white;
-  box-shadow: 0px 17px 22px 1px rgba(51, 51, 51, 0.16);
-  padding: 40px;
-  margin: 0 auto;
-  max-width: 500px;
-}
-.message {
-  margin-bottom: 20px;
-  color: #fa3737;
-}
+  @import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
+  body {
+    background-color: rgba(8, 211, 67, 0.3);
+    padding: 2%;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1em;
+  }
+  input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1em;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    padding: 12px;
+    border: 1px solid #ccc;
+    outline-color: white;
+    transition: background-color 0.5s ease;
+    transition: outline-color 0.5s ease;
+  }
+  input[name='cardNumber'] {
+    border-bottom: 0;
+  }
+  input[name='expiry'],
+  input[name='cvc'] {
+    width: 50%;
+  }
+  input[name='expiry'] {
+    float: left;
+    border-right: 0;
+  }
+  input::placeholder {
+    color: #999;
+    font-weight: 400;
+  }
+  input:focus {
+    background-color: rgba(130, 245, 249, 0.1);
+    outline-color: #82f5f9;
+  }
+  input.is-error {
+    background-color: rgba(250, 55, 55, 0.1);
+  }
+  input.is-error:focus {
+    outline-color: #ffbdbd;
+  }
+  button {
+    font-size: 1em;
+    font-family: 'Raleway', sans-serif;
+    background-color: #08d343;
+    border: 0;
+    box-shadow: 0px 1px 3px 1px rgba(51, 51, 51, 0.16);
+    color: white;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 30px;
+    padding: 12px;
+    text-transform: uppercase;
+    width: 100%;
+  }
+  button:disabled {
+    opacity: 0.4;
+    background-color: #999999;
+  }
+  form {
+    background-color: white;
+    box-shadow: 0px 17px 22px 1px rgba(51, 51, 51, 0.16);
+    padding: 40px;
+    margin: 0 auto;
+    max-width: 500px;
+  }
+  .message {
+    margin-bottom: 20px;
+    color: #fa3737;
+  }
 &lt;/style&gt;
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='13-14,35-83,91,95-96,112,118,only'></div>
+<div line-highlight='13-14,35-81,87,94-95,112,119,only'></div>
+</details>
 
 </section>
 

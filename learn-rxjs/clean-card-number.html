@@ -311,7 +311,7 @@
            						">
 						<a class="page"
 							href="show-paying.html"
-							title="Learn how to flatten an observable that emits observables.  Learn how to order observables.">
+							title="Learn how to flatten an observable that emits observables. Learn how to order observables.">
 							Show paying
 						</a>
 						
@@ -455,7 +455,7 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Video</h2>
-<p>Who has time to read?  This video covers the content on this page. Watch fullscreen.</p>
+<p>Who has time to read? This video covers the content on this page. Watch fullscreen.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/lk77m-Dwjro" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <h2>The problem</h2>
 <p>In this section, we will:</p>
@@ -469,31 +469,31 @@ spaces or dashes.</li>
 text of the <code>userCardNumber</code> input without spaces (<code>\s</code>) or dashes (<code>-</code>).</li>
 <li>Create a <code>cleanCardNumber</code> operator that maps the <code>this.userCardNumber</code> to <code>this.cardNumber</code>.</li>
 <li>Write out the value of the <code>this.cardNumber</code> observable like:
-<pre><code class="language-html">CardNumber: {{ (cardNumber | async) }} &lt;br/&gt;
+<pre><code class="language-html">CardNumber: {{ cardNumber | async }} &lt;br /&gt;
 </code></pre></li>
 </ul>
 <h2>What you need to know</h2>
 <ul>
 <li><p>RxJS has <a href="https://rxjs.dev/guide/operators">operators</a>
 (<a href="http://reactivex.io/rxjs/manual/overview.html#operators">an older but better explanation</a>) that are used to
-convert one observable to another observable.  In RxJS, you typically create your own operators
+convert one observable to another observable. In RxJS, you typically create your own operators
 by using operator generator functions like <a href="https://rxjs.dev/api/operators/map">map</a>.</p>
 <p>Those operators are passed to <a href="https://rxjs.dev/api/index/function/pipe">source.pipe(operator)</a> to convert the source observable to a new observable.</p>
 <p>The following uses <code>map</code> to create a <code>mapToNumber</code> operator:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
-const {Subject} = rxjs;
-const {map} = rxjs.operators;
+  const { Subject } = rxjs;
+  const { map } = rxjs.operators;
 
-const mapToNumber = map( value =&gt; +value );
+  const mapToNumber = map(value =&gt; +value);
 
-const source = new Subject();
-const number = source.pipe( mapToNumber );
+  const source = new Subject();
+  const number = source.pipe(mapToNumber);
 
-number.subscribe( console.log );
+  number.subscribe(console.log);
 
-source.next(true); // logs 1
-source.next(&quot;2&quot;);  // logs 2
+  source.next(true); // logs 1
+  source.next(&quot;2&quot;);  // logs 2
 &lt;/script&gt;
 </code></pre></li>
 </ul>
@@ -501,10 +501,12 @@ source.next(&quot;2&quot;);  // logs 2
 <ul>
 <li>Use <code>cardNumber.replace(/[\s-]/g, &quot;&quot;)</code> to clean the card number.</li>
 <li>Write out the <code>cardNumber</code> after the <code>userCardNumber</code> like:
-<pre><code class="language-html">CardNumber: {{ (cardNumber | async) }} &lt;br/&gt;
+<pre><code class="language-html">CardNumber: {{ cardNumber | async }} &lt;br /&gt;
 </code></pre></li>
 </ul>
-<h2>The solution</h2>
+<h2>The Solution</h2>
+<p><details>
+<summary>Click to see the solution</summary></p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/3.19.0/core.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@12.2.16/bundles/core.umd.js&quot;&gt;&lt;/script&gt;
@@ -515,149 +517,153 @@ source.next(&quot;2&quot;);  // logs 2
 &lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@12.2.16/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
 &lt;my-app&gt;&lt;/my-app&gt;
 &lt;script type=&quot;typescript&quot;&gt;
-// app.js
-const { Component, VERSION } = ng.core;
-const { BehaviorSubject } = rxjs;
-const { map } = rxjs.operators;
+  // app.js
+  const { Component, VERSION } = ng.core;
+  const { BehaviorSubject } = rxjs;
+  const { map } = rxjs.operators;
 
-const cleanCardNumber = map((card) =&gt; {
+  const cleanCardNumber = map((card) =&gt; {
     if (card) {
-        return card.replace(/[\s-]/g, &quot;&quot;);
+      return card.replace(/[\s-]/g, &quot;&quot;);
     }
-});
+  });
 
-@Component({
+  @Component({
     selector: 'my-app',
     template: `
-        &lt;form&gt;
+      &lt;form&gt;
+        &lt;div class=&quot;message&quot;&gt;&lt;/div&gt;
 
-            &lt;div class=&quot;message&quot;&gt;&lt;/div&gt;
+        &lt;input
+          type=&quot;text&quot;
+          name=&quot;cardNumber&quot;
+          placeholder=&quot;Card Number&quot;
+          (input)=&quot;userCardNumber.next($event.target.value)&quot;
+        /&gt;
 
-            &lt;input type=&quot;text&quot; name=&quot;cardNumber&quot; placeholder=&quot;Card Number&quot;
-                (input)=&quot;userCardNumber.next( $event.target.value )&quot;/&gt;
+        &lt;input type=&quot;text&quot; name=&quot;expiry&quot; placeholder=&quot;MM-YY&quot; /&gt;
 
-            &lt;input type=&quot;text&quot; name=&quot;expiry&quot; placeholder=&quot;MM-YY&quot;/&gt;
+        &lt;input type=&quot;text&quot; name=&quot;cvc&quot; placeholder=&quot;CVC&quot; /&gt;
 
-            &lt;input type=&quot;text&quot; name=&quot;cvc&quot; placeholder=&quot;CVC&quot;/&gt;
-
-            &lt;button&gt;
-                PAY
-            &lt;/button&gt;
-        &lt;/form&gt;
-        UserCardNumber: {{ (userCardNumber | async) }} &lt;br/&gt;
-        CardNumber: {{ (cardNumber | async) }} &lt;br/&gt;
+        &lt;button&gt;
+          PAY
+        &lt;/button&gt;
+      &lt;/form&gt;
+      UserCardNumber: {{ userCardNumber | async }} &lt;br /&gt;
+      CardNumber: {{ cardNumber | async }} &lt;br /&gt;
     `
-})
-class AppComponent {
+  })
+  class AppComponent {
     userCardNumber = new BehaviorSubject&lt;string&gt;();
 
     constructor() {
-        this.cardNumber = this.userCardNumber.pipe(cleanCardNumber);
+      this.cardNumber = this.userCardNumber.pipe(cleanCardNumber);
     }
-}
+  }
 
-// main.js
-const { BrowserModule } = ng.platformBrowser;
-const { NgModule } = ng.core;
-const { CommonModule } = ng.common;
+  // main.js
+  const { BrowserModule } = ng.platformBrowser;
+  const { NgModule } = ng.core;
+  const { CommonModule } = ng.common;
 
-@NgModule({
+  @NgModule({
     imports: [
-        BrowserModule,
-        CommonModule,
+      BrowserModule,
+      CommonModule,
     ],
     declarations: [AppComponent],
     bootstrap: [AppComponent],
     providers: []
-})
-class AppModule {}
+  })
+  class AppModule {}
 
-const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+  const { platformBrowserDynamic } = ng.platformBrowserDynamic;
 
-platformBrowserDynamic()
+  platformBrowserDynamic()
     .bootstrapModule(AppModule)
     .catch(err =&gt; console.error(err));
 &lt;/script&gt;
 &lt;style&gt;
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
-body {
-  background-color: rgba(8, 211, 67, 0.3);
-  padding: 2%;
-  font-family: 'Raleway', sans-serif;
-  font-size: 1em;
-}
-input {
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 1em;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 500;
-  padding: 12px;
-  border: 1px solid #ccc;
-  outline-color: white;
-  transition: background-color 0.5s ease;
-  transition: outline-color 0.5s ease;
-}
-input[name=cardNumber] {
-  border-bottom: 0;
-}
-input[name=expiry],
-input[name=cvc] {
-  width: 50%;
-}
-input[name=expiry] {
-  float: left;
-  border-right: 0;
-}
-input::placeholder {
-  color: #999;
-  font-weight: 400;
-}
-input:focus {
-  background-color: rgba(130, 245, 249, 0.1);
-  outline-color: #82f5f9;
-}
-input.is-error {
-  background-color: rgba(250, 55, 55, 0.1);
-}
-input.is-error:focus {
-  outline-color: #ffbdbd;
-}
-button {
-  font-size: 1em;
-  font-family: 'Raleway', sans-serif;
-  background-color: #08d343;
-  border: 0;
-  box-shadow: 0px 1px 3px 1px rgba(51, 51, 51, 0.16);
-  color: white;
-  font-weight: 500;
-  letter-spacing: 1px;
-  margin-top: 30px;
-  padding: 12px;
-  text-transform: uppercase;
-  width: 100%;
-}
-button:disabled {
-  opacity: 0.4;
-  background-color: #999999;
-}
-form {
-  background-color: white;
-  box-shadow: 0px 17px 22px 1px rgba(51, 51, 51, 0.16);
-  padding: 40px;
-  margin: 0 auto;
-  max-width: 500px;
-}
-.message {
-  margin-bottom: 20px;
-  color: #fa3737;
-}
+  @import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
+  body {
+    background-color: rgba(8, 211, 67, 0.3);
+    padding: 2%;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1em;
+  }
+  input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1em;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    padding: 12px;
+    border: 1px solid #ccc;
+    outline-color: white;
+    transition: background-color 0.5s ease;
+    transition: outline-color 0.5s ease;
+  }
+  input[name='cardNumber'] {
+    border-bottom: 0;
+  }
+  input[name='expiry'],
+  input[name='cvc'] {
+    width: 50%;
+  }
+  input[name='expiry'] {
+    float: left;
+    border-right: 0;
+  }
+  input::placeholder {
+    color: #999;
+    font-weight: 400;
+  }
+  input:focus {
+    background-color: rgba(130, 245, 249, 0.1);
+    outline-color: #82f5f9;
+  }
+  input.is-error {
+    background-color: rgba(250, 55, 55, 0.1);
+  }
+  input.is-error:focus {
+    outline-color: #ffbdbd;
+  }
+  button {
+    font-size: 1em;
+    font-family: 'Raleway', sans-serif;
+    background-color: #08d343;
+    border: 0;
+    box-shadow: 0px 1px 3px 1px rgba(51, 51, 51, 0.16);
+    color: white;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 30px;
+    padding: 12px;
+    text-transform: uppercase;
+    width: 100%;
+  }
+  button:disabled {
+    opacity: 0.4;
+    background-color: #999999;
+  }
+  form {
+    background-color: white;
+    box-shadow: 0px 17px 22px 1px rgba(51, 51, 51, 0.16);
+    padding: 40px;
+    margin: 0 auto;
+    max-width: 500px;
+  }
+  .message {
+    margin-bottom: 20px;
+    color: #fa3737;
+  }
 &lt;/style&gt;
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='14,16-20,41,48,only'></div>
+<div line-highlight='14,16-20,44,51,only'></div>
+</details>
 
 </section>
 

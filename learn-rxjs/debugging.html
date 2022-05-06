@@ -310,7 +310,7 @@
            						">
 						<a class="page"
 							href="show-paying.html"
-							title="Learn how to flatten an observable that emits observables.  Learn how to order observables.">
+							title="Learn how to flatten an observable that emits observables. Learn how to order observables.">
 							Show paying
 						</a>
 						
@@ -488,30 +488,30 @@ value.</p>
 that the <code>float</code> values do <strong>not</strong> match the <code>int</code> values!!</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
-const {Observable} = rxjs;
-const {map} = rxjs.operators;
+  const { Observable } = rxjs;
+  const { map } = rxjs.operators;
 
-let randomNumbers = Observable.create( (observer) =&gt; {
-    observer.next( Math.random() );
-    observer.next( Math.random() );
-    observer.next( Math.random() );
-});
+  const randomNumbers = new Observable((observer) =&gt; {
+    observer.next(Math.random());
+    observer.next(Math.random());
+    observer.next(Math.random());
+  });
 
-// Operators
-const toTimes100 = map( (value) =&gt; value * 100 );
-const toRound = map( Math.round );
+  // Operators
+  const toTimes100 = map((value) =&gt; value * 100);
+  const toRound = map(Math.round);
 
-let floats0to100 = randomNumbers.pipe( toTimes100 );
+  const floats0to100 = randomNumbers.pipe(toTimes100);
 
-//floats0to100.subscribe((value) =&gt; {
-//    console.log(&quot;float&quot;, value);
-//})
+  //floats0to100.subscribe((value) =&gt; {
+  //  console.log(&quot;float&quot;, value);
+  //});
 
-let ints0to100 = floats0to100.pipe( toRound );
+  const ints0to100 = floats0to100.pipe(toRound);
 
-ints0to100.subscribe((value) =&gt; {
-    console.log(&quot;int&quot;, value);
-})
+  ints0to100.subscribe((value) =&gt; {
+      console.log(&quot;int&quot;, value);
+  });
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
@@ -520,57 +520,57 @@ to perform a side-effect (such as logging) on every emission on a source observa
 <p>The following uses tap to log <code>floats0to100</code> values so they match:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
-const {Observable} = rxjs;
-const {map, tap} = rxjs.operators;
+  const { Observable } = rxjs;
+  const { map, tap } = rxjs.operators;
 
-let randomNumbers = Observable.create( (observer) =&gt; {
-    observer.next( Math.random() );
-    observer.next( Math.random() );
-    observer.next( Math.random() );
-});
+  const randomNumbers = new Observable((observer) =&gt; {
+    observer.next(Math.random());
+    observer.next(Math.random());
+    observer.next(Math.random());
+  });
 
-// Operators
-const toTimes100 = map( (value) =&gt; value * 100 );
-const toRound = map( Math.round );
+  // Operators
+  const toTimes100 = map((value) =&gt; value * 100);
+  const toRound = map(Math.round);
 
-const logFloats = tap( (value) =&gt; console.log(&quot;float&quot;, value) )
+  const logFloats = tap((value) =&gt; console.log(&quot;float&quot;, value));
 
-let floats0to100 = randomNumbers.pipe( toTimes100 )
-    .pipe( logFloats );
+  const floats0to100 = randomNumbers.pipe(toTimes100).pipe(logFloats);
 
-let ints0to100 = floats0to100.pipe( toRound );
+  const ints0to100 = floats0to100.pipe(toRound);
 
-ints0to100.subscribe((value) =&gt; {
+  ints0to100.subscribe((value) =&gt; {
     console.log(&quot;int&quot;, value);
-});
+  });
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='16,19'></div>
+<div line-highlight='16,18'></div>
 <p>We can generalize this pattern with a <code>log</code> operator like:</p>
-<pre><code class="language-js">const log = function(name) {
-    return tap(value =&gt; console.log(name, value))
-}
+<pre><code class="language-js">const log = (name) =&gt; {
+  return tap((value) =&gt; console.log(name, value));
+};
 </code></pre>
 <p><code>log</code> can be used as follows:</p>
-<pre><code class="language-typescript">const number = source
-    .pipe( mapToNumber )
-    .pipe( log(&quot;number&quot;) );
+<pre><code class="language-typescript">const number = source.pipe(mapToNumber).pipe(log('number'));
 </code></pre>
 <blockquote>
 <p><strong>NOTE 1:</strong> Notice that to log <code>number</code>, we call <code>.pipe( log(...) )</code>
 on the on what would be the <code>number</code> observable.</p>
 </blockquote>
 <blockquote>
-<p><strong>NOTE 2:</strong> The solution will log <code>cardNumber</code> twice.  That's expected because
+<p><strong>NOTE 2:</strong> The solution will log <code>cardNumber</code> twice. That's expected because
 there are two subscriptions on <code>cardNumber</code>:</p>
 <ul>
 <li>one directly from <code>cardNumber</code> in the template - <code>{{ (cardNumber | async) }}</code></li>
-<li>the other from <code>cardError</code> in the template - <code>{{ (cardError | async) }}</code> - <code>cardError</code>
-derives from <code>cardNumber</code>.</li>
+<li>the other from <code>cardError</code> in the template - <code>{{ (cardError | async) }}</code> - <code>cardError</code></li>
 </ul>
 </blockquote>
-<h2>The solution</h2>
+<pre><code>derives from `cardNumber`.
+</code></pre>
+<h2>The Solution</h2>
+<p><details>
+<summary>Click to see the solution</summary></p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/3.19.0/core.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@12.2.16/bundles/core.umd.js&quot;&gt;&lt;/script&gt;
@@ -581,164 +581,169 @@ derives from <code>cardNumber</code>.</li>
 &lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@12.2.16/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
 &lt;my-app&gt;&lt;/my-app&gt;
 &lt;script type=&quot;typescript&quot;&gt;
-// app.js
-const { Component, VERSION } = ng.core;
-const { BehaviorSubject } = rxjs;
-const { map, tap } = rxjs.operators;
+  // app.js
+  const { Component, VERSION } = ng.core;
+  const { BehaviorSubject } = rxjs;
+  const { map, tap } = rxjs.operators;
 
-const cleanCardNumber = map((card) =&gt; {
+  const cleanCardNumber = map((card) =&gt; {
     if (card) {
-        return card.replace(/[\s-]/g, &quot;&quot;);
+      return card.replace(/[\s-]/g, &quot;&quot;);
     }
-});
+  });
 
-const validateCard = map((card) =&gt; {
+  const validateCard = map((card) =&gt; {
     if (!card) {
-        return &quot;There is no card&quot;
+      return &quot;There is no card&quot;;
     }
     if (card.length !== 16) {
-        return &quot;There should be 16 characters in a card&quot;;
+      return &quot;There should be 16 characters in a card&quot;;
     }
-});
+  });
 
-const log = function(name) {
-    return tap(value =&gt; console.log(name, value))
-}
+  const log = (name) =&gt; {
+    return tap((value) =&gt; console.log(name, value));
+  };
 
-@Component({
+  @Component({
     selector: 'my-app',
     template: `
-        &lt;form&gt;
+      &lt;form&gt;
+        &lt;div class=&quot;message&quot;&gt;{{ cardError | async }}&lt;/div&gt;
 
-            &lt;div class=&quot;message&quot;&gt;{{ (cardError | async) }}&lt;/div&gt;
+        &lt;input
+          type=&quot;text&quot;
+          name=&quot;cardNumber&quot;
+          placeholder=&quot;Card Number&quot;
+          (input)=&quot;userCardNumber.next($event.target.value)&quot;
+        /&gt;
 
-            &lt;input type=&quot;text&quot; name=&quot;cardNumber&quot; placeholder=&quot;Card Number&quot;
-                (input)=&quot;userCardNumber.next( $event.target.value )&quot;/&gt;
+        &lt;input type=&quot;text&quot; name=&quot;expiry&quot; placeholder=&quot;MM-YY&quot; /&gt;
 
-            &lt;input type=&quot;text&quot; name=&quot;expiry&quot; placeholder=&quot;MM-YY&quot;/&gt;
+        &lt;input type=&quot;text&quot; name=&quot;cvc&quot; placeholder=&quot;CVC&quot; /&gt;
 
-            &lt;input type=&quot;text&quot; name=&quot;cvc&quot; placeholder=&quot;CVC&quot;/&gt;
-
-            &lt;button&gt;
-                PAY
-            &lt;/button&gt;
-        &lt;/form&gt;
-        UserCardNumber: {{ (userCardNumber | async) }} &lt;br/&gt;
-        CardNumber: {{ (cardNumber | async) }} &lt;br/&gt;
+        &lt;button&gt;
+          PAY
+        &lt;/button&gt;
+      &lt;/form&gt;
+      UserCardNumber: {{ userCardNumber | async }} &lt;br /&gt;
+      CardNumber: {{ cardNumber | async }} &lt;br /&gt;
     `
-})
-class AppComponent {
+  })
+  class AppComponent {
     userCardNumber = new BehaviorSubject&lt;string&gt;();
 
     constructor() {
-        this.cardNumber = this.userCardNumber.pipe(cleanCardNumber)
-            .pipe( log(&quot;cardNumber&quot;) );
-        this.cardError = this.cardNumber.pipe(validateCard);
+      this.cardNumber = this.userCardNumber
+        .pipe(cleanCardNumber)
+        .pipe(log(&quot;cardNumber&quot;));
+      this.cardError = this.cardNumber.pipe(validateCard);
     }
-}
+  }
 
-// main.js
-const { BrowserModule } = ng.platformBrowser;
-const { NgModule } = ng.core;
-const { CommonModule } = ng.common;
+  // main.js
+  const { BrowserModule } = ng.platformBrowser;
+  const { NgModule } = ng.core;
+  const { CommonModule } = ng.common;
 
-@NgModule({
+  @NgModule({
     imports: [
-        BrowserModule,
-        CommonModule,
+      BrowserModule,
+      CommonModule,
     ],
     declarations: [AppComponent],
     bootstrap: [AppComponent],
     providers: []
-})
-class AppModule {}
+  })
+  class AppModule {}
 
-const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+  const { platformBrowserDynamic } = ng.platformBrowserDynamic;
 
-platformBrowserDynamic()
+  platformBrowserDynamic()
     .bootstrapModule(AppModule)
     .catch(err =&gt; console.error(err));
 &lt;/script&gt;
 &lt;style&gt;
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
-body {
-  background-color: rgba(8, 211, 67, 0.3);
-  padding: 2%;
-  font-family: 'Raleway', sans-serif;
-  font-size: 1em;
-}
-input {
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 1em;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 500;
-  padding: 12px;
-  border: 1px solid #ccc;
-  outline-color: white;
-  transition: background-color 0.5s ease;
-  transition: outline-color 0.5s ease;
-}
-input[name=cardNumber] {
-  border-bottom: 0;
-}
-input[name=expiry],
-input[name=cvc] {
-  width: 50%;
-}
-input[name=expiry] {
-  float: left;
-  border-right: 0;
-}
-input::placeholder {
-  color: #999;
-  font-weight: 400;
-}
-input:focus {
-  background-color: rgba(130, 245, 249, 0.1);
-  outline-color: #82f5f9;
-}
-input.is-error {
-  background-color: rgba(250, 55, 55, 0.1);
-}
-input.is-error:focus {
-  outline-color: #ffbdbd;
-}
-button {
-  font-size: 1em;
-  font-family: 'Raleway', sans-serif;
-  background-color: #08d343;
-  border: 0;
-  box-shadow: 0px 1px 3px 1px rgba(51, 51, 51, 0.16);
-  color: white;
-  font-weight: 500;
-  letter-spacing: 1px;
-  margin-top: 30px;
-  padding: 12px;
-  text-transform: uppercase;
-  width: 100%;
-}
-button:disabled {
-  opacity: 0.4;
-  background-color: #999999;
-}
-form {
-  background-color: white;
-  box-shadow: 0px 17px 22px 1px rgba(51, 51, 51, 0.16);
-  padding: 40px;
-  margin: 0 auto;
-  max-width: 500px;
-}
-.message {
-  margin-bottom: 20px;
-  color: #fa3737;
-}
+  @import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
+  body {
+    background-color: rgba(8, 211, 67, 0.3);
+    padding: 2%;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1em;
+  }
+  input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1em;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    padding: 12px;
+    border: 1px solid #ccc;
+    outline-color: white;
+    transition: background-color 0.5s ease;
+    transition: outline-color 0.5s ease;
+  }
+  input[name='cardNumber'] {
+    border-bottom: 0;
+  }
+  input[name='expiry'],
+  input[name='cvc'] {
+    width: 50%;
+  }
+  input[name='expiry'] {
+    float: left;
+    border-right: 0;
+  }
+  input::placeholder {
+    color: #999;
+    font-weight: 400;
+  }
+  input:focus {
+    background-color: rgba(130, 245, 249, 0.1);
+    outline-color: #82f5f9;
+  }
+  input.is-error {
+    background-color: rgba(250, 55, 55, 0.1);
+  }
+  input.is-error:focus {
+    outline-color: #ffbdbd;
+  }
+  button {
+    font-size: 1em;
+    font-family: 'Raleway', sans-serif;
+    background-color: #08d343;
+    border: 0;
+    box-shadow: 0px 1px 3px 1px rgba(51, 51, 51, 0.16);
+    color: white;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 30px;
+    padding: 12px;
+    text-transform: uppercase;
+    width: 100%;
+  }
+  button:disabled {
+    opacity: 0.4;
+    background-color: #999999;
+  }
+  form {
+    background-color: white;
+    box-shadow: 0px 17px 22px 1px rgba(51, 51, 51, 0.16);
+    padding: 40px;
+    margin: 0 auto;
+    max-width: 500px;
+  }
+  .message {
+    margin-bottom: 20px;
+    color: #fa3737;
+  }
 &lt;/style&gt;
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='14,31-33,62,only'></div>
+<div line-highlight='14,31-33,66,only'></div>
+</details>
 
 </section>
 

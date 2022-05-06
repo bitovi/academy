@@ -310,7 +310,7 @@
            						">
 						<a class="page"
 							href="show-paying.html"
-							title="Learn how to flatten an observable that emits observables.  Learn how to order observables.">
+							title="Learn how to flatten an observable that emits observables. Learn how to order observables.">
 							Show paying
 						</a>
 						
@@ -461,72 +461,72 @@ covering CanJS core libraries.">
 <li>What is a Subject and how is it different from an observable.</li>
 </ul>
 <h2>Video</h2>
-<p>Who has time to read?  This video covers the content on this page. Watch fullscreen.</p>
+<p>Who has time to read? This video covers the content on this page. Watch fullscreen.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/vnEitL000PE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <h2>Observables</h2>
 <p>At its most simplistic, an observable is a publisher and
-enables the <a href="https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern">publish-subscribe pattern</a>.</p>
+enables the <a href="https://en.wikipedia.org/wiki/Observer_pattern">Observer pattern</a>.</p>
 <p>To subscribe to an RXJS observable, you call subscribe like:</p>
-<pre><code class="language-js">observable.subscribe(function(value){ ... });
+<pre><code class="language-js">observable.subscribe((value) =&gt; { ... });
 </code></pre>
 <p>When the observable publishes a value, the subscribe functions will
 be called with the value. The following creates an
-observable that emits 3 values.  The <code>subscriber</code> function
+observable that emits 3 values. The <code>subscriber</code> function
 will be called back each time:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
-const {Observable} = rxjs;
+  const { Observable } = rxjs;
 
-const observable = Observable.create(function (observer) {
-  observer.next(1);
-  observer.next(2);
-  observer.next(3);
-});
+  const observable = new Observable((observer) =&gt; {
+    observer.next(1);
+    observer.next(2);
+    observer.next(3);
+  });
 
-function subscriber( value ){
+  function subscriber(value) {
     console.log('got value ' + value);
     // Logs 1, 2, 3
-}
+  }
 
-observable.subscribe( subscriber );
+  observable.subscribe(subscriber);
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<p>One of the advantages of the publish-subscribe pattern is that it
+<p>One of the advantages of the Observer pattern is that it
 provides loose coupling. An observable can have many
 subscribers. The following adds two subscribers to an
 observable:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
-const {Observable} = rxjs;
+  const { Observable } = rxjs;
 
-const observable = Observable.create(function (observer) {
-  observer.next(1);
-  observer.next(2);
-  observer.next(3);
-});
+  const observable = new Observable((observer) =&gt; {
+    observer.next(1);
+    observer.next(2);
+    observer.next(3);
+  });
 
-function subscriberA( value ) {
-    console.log('A got value ' + value) // Logs 1, 2, 3
-}
+  function subscriberA(value) {
+    console.log('A got value ' + value); // Logs 1, 2, 3
+  }
 
-function subscriberB( value ) {
-    console.log('B got value ' + value) // Logs 1, 2, 3
-}
+  function subscriberB(value) {
+    console.log('B got value ' + value); // Logs 1, 2, 3
+  }
 
-observable.subscribe( subscriberA );
-observable.subscribe( subscriberB );
+  observable.subscribe(subscriberA);
+  observable.subscribe(subscriberB);
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
 <h3>Lifecycles</h3>
-<p>RxJS observables have a lifecycle.  They can publish values over
-time and complete. They can also publish errors.  You can listen
+<p>RxJS observables have a lifecycle. They can publish values over
+time and complete. They can also publish errors. You can listen
 to all three events with the following:</p>
 <pre><code class="language-js">observable.subscribe({
-  next: function(value){ ... },
-  error: function(error){ ... },
-  complete: function(){ ... },
+  next: (value) =&gt; { ... },
+  error: (error) =&gt; { ... },
+  complete: () =&gt; () { ... },
 });
 </code></pre>
 <p>The following creates an observable that immediately
@@ -534,29 +534,29 @@ publishes a <code>1</code>, then after a second it publishes a <code>2</code>
 and completes:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
-const {Observable} = rxjs;
+  const { Observable } = rxjs;
 
-const observable = Observable.create(function (observer) {
-  observer.next(1);
-  setTimeout(() =&gt; {
-    observer.next(2);
-    observer.complete();
-  }, 1000);
-});
+  const observable = new Observable((observer) =&gt; {
+    observer.next(1);
+    setTimeout(() =&gt; {
+      observer.next(2);
+      observer.complete();
+    }, 1000);
+  });
 
-console.log('just before subscribe');
-observable.subscribe({
-  next: x =&gt; console.log('got value ' + x),
-  complete: () =&gt; console.log('done')
-});
-console.log('just after subscribe');
+  console.log('just before subscribe');
+  observable.subscribe({
+    next: (x) =&gt; console.log('got value ' + x),
+    complete: () =&gt; console.log('done'),
+  });
+  console.log('just after subscribe');
 
-// The following is logged:
-//   just before subscribe
-//   got value 1
-//   just after subscribe
-//   got value 2
-//   done
+  // The following is logged:
+  //   just before subscribe
+  //   got value 1
+  //   just after subscribe
+  //   got value 2
+  //   done
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
@@ -571,35 +571,34 @@ the <code>1</code> value is published synchronously. Then
 <p>The <code>observable.subscribe()</code> method returns
 a <a href="https://rxjs.dev/api/index/class/Subscription">subscription</a> which can be used to cancel
 the subscription like:</p>
-<pre><code class="language-js">var subscription = observable.subscribe( ... );
+<pre><code class="language-js">const subscription = observable.subscribe( ... );
 subscription.unsubscribe();
 </code></pre>
 <p>Unsubscribing prevents receiving future notifications and avoids memory leaks.</p>
-<p>The following unsubscribes after the first published value. Notice that
+<p>The following unsubscribes before the second published value. Notice that
 the <code>subscriber</code> function is only called once.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
-const {Observable} = rxjs;
+  const { Observable } = rxjs;
 
-const observable = Observable.create(function (observer) {
-  observer.next(1);
-  observer.next(2);
-  observer.complete();
-});
+  const observable = new Observable((observer) =&gt; {
+    observer.next(1);
+    setTimeout(() =&gt; {
+      observer.next(2);
+      observer.complete();
+    }, 1000);
+  });
 
-var subscription = observable.subscribe(
-    function subscriber(value) {
-        console.log(&quot;got&quot;, value);
-        subscription.unsubscribe();
-    }
-);
+  const subscription = observable.subscribe((value) =&gt; console.log('got', value));
+
+  subscription.unsubscribe();
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
 <h3>Transforming observables to other observables</h3>
 <p>Observable libraries like RxJS have many operators that transform
 published values on one observable to published observables
-on another observable.  In fact, using these operators is
+on another observable. In fact, using these operators is
 a majority of what you will do with RxJS.</p>
 <p>But for now, lets see how to transform<br />
 ... the numbers published on the <code>numberMaker</code> observable ...<br />
@@ -608,48 +607,48 @@ into<br />
 <p>Read the inline comments below to see how this works.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
-const {Observable} = rxjs;
+  const { Observable } = rxjs;
 
-// numberMaker emits 1,2,3 waits a second then emits 4.
-const numberMaker = Observable.create(function (observer) {
+  // numberMaker emits 1,2,3 waits a second then emits 4.
+  const numberMaker = new Observable((observer) =&gt; {
     observer.next(1);
     observer.next(2);
     observer.next(3);
     setTimeout(() =&gt; {
-        observer.next(4);
-        observer.complete();
+      observer.next(4);
+      observer.complete();
     }, 1000);
-});
+  });
 
-const numberSummer = Observable.create(function (observer) {
+  const numberSummer = new Observable((observer) =&gt; {
     // When numberSummer is subscribed to, it subscribes to
-    // numberMaker.  
-    var sum = 0;
-    var subscription = numberMaker.subscribe({
-        // When numberMaker published values, we
-        // add to the sum and publish the new sum.
-        next: number =&gt; {
-            sum += number;
-            observer.next(sum);
-        },
-        error: err =&gt; observer.error(err),
-        complete: () =&gt; observer.complete(),
+    // numberMaker.
+    let sum = 0;
+    const subscription = numberMaker.subscribe({
+      // When numberMaker published values, we
+      // add to the sum and publish the new sum.
+      next: (number) =&gt; {
+        sum += number;
+        observer.next(sum);
+      },
+      error: (err) =&gt; observer.error(err),
+      complete: () =&gt; observer.complete(),
     });
 
     // This function gets called when numberSummer
     // is unsubscribed.
     return () =&gt; {
-        subscription.unsubscribe();
+      subscription.unsubscribe();
     };
-})
+  })
 
-console.log('just before subscribe');
-numberSummer.subscribe({
-    next: x =&gt; console.log('got value ' + x),
-    error: err =&gt; console.error('something wrong occurred: ' + err),
+  console.log('just before subscribe');
+  numberSummer.subscribe({
+    next: (x) =&gt; console.log('got value ' + x),
+    error: (err) =&gt; console.error('something wrong occurred: ' + err),
     complete: () =&gt; console.log('done'),
-});
-console.log('just after subscribe');
+  });
+  console.log('just after subscribe');
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
@@ -658,26 +657,26 @@ console.log('just after subscribe');
 and distinct execution context. This can be unexpected or
 even undesirable. Lets see what a distinct execution means.</p>
 <p>In the following example, the observable emits a random number
-after a second then completes.  Notice that each subscriber gets a different
+after a second then completes. Notice that each subscriber gets a different
 random value.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
-const {Observable} = rxjs;
+  const { Observable } = rxjs;
 
-const observable = Observable.create(function (observer) {
-  setTimeout(function(){
-    observer.next(Math.random());
-    observer.complete();
-  },1000);
-});
+  const observable = new Observable((observer) =&gt; {
+    setTimeout(() =&gt; {
+      observer.next(Math.random());
+      observer.complete();
+    }, 1000);
+  });
 
-var subscriptionA = observable.subscribe(
+  const subscriptionA = observable.subscribe(
     (value) =&gt; console.log(&quot;A got&quot;, value)
-);
+  );
 
-var subscriptionB = observable.subscribe(
+  const subscriptionB = observable.subscribe(
     (value) =&gt; console.log(&quot;B got&quot;, value)
-);
+  );
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
@@ -688,32 +687,32 @@ The example logs <em>'observable execution'</em> each time <code>observable.subs
 is called:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
-const {Observable} = rxjs;
+  const { Observable } = rxjs;
 
-const observable = Observable.create(function (observer) {
-  console.log(&quot;observable execution&quot;);
-  observer.next(1);
-  setTimeout(function(){
-    observer.next(2);
-    observer.complete();
+  const observable = new Observable((observer) =&gt; {
+    console.log(&quot;observable execution&quot;);
+    observer.next(1);
+    setTimeout(() =&gt; {
+      observer.next(2);
+      observer.complete();
+    });
   });
-});
 
-console.log('subscriptionA - start');
-var subscriptionA = observable.subscribe({
-  next: x =&gt; console.log('subscriptionA got value ' + x)
-});
-console.log('subscriptionA - end');
+  console.log('subscriptionA - start');
+  const subscriptionA = observable.subscribe({
+    next: (x) =&gt; console.log('subscriptionA got value ' + x),
+  });
+  console.log('subscriptionA - end');
 
-console.log('subscriptionB - start');
-var subscriptionB = observable.subscribe({
-  next: x =&gt; console.log('subscriptionB got value ' + x)
-});
-console.log('subscriptionB - end');
+  console.log('subscriptionB - start');
+  const subscriptionB = observable.subscribe({
+    next: (x) =&gt; console.log('subscriptionB got value ' + x),
+  });
+  console.log('subscriptionB - end');
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
-<p>Observables are <em>unicast</em> (each subscription owns an independent execution of the observable). This can often have undesirable results.  For example,
+<p>Observables are <em>unicast</em> (each subscription owns an independent execution of the observable). This can often have undesirable results. For example,
 you often want multiple subscribers receiving the same value.</p>
 <p><code>Subjects</code> are just like Observables except they publish values
 to many observables at once without creating new execution contexts.</p>
@@ -721,19 +720,19 @@ to many observables at once without creating new execution contexts.</p>
 the same random value:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
-const {Subject} = rxjs;
+  const { Subject } = rxjs;
 
-const subject = new Subject&lt;number&gt;();
+  const subject = new Subject&lt;number&gt;();
 
-subject.subscribe({
-  next: (v) =&gt; console.log(`observerA: ${v}`)
-});
-subject.subscribe({
-  next: (v) =&gt; console.log(`observerB: ${v}`)
-});
+  subject.subscribe({
+    next: (v) =&gt; console.log(`observerA: ${v}`),
+  });
+  subject.subscribe({
+    next: (v) =&gt; console.log(`observerB: ${v}`),
+  });
 
-subject.next(Math.random());
-subject.complete();
+  subject.next(Math.random());
+  subject.complete();
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
