@@ -124,8 +124,11 @@ UserCardNumber: {{ userCardNumber | async }} <br />
 
 Read more about this technique [here](https://blog.angular-academy.io/angular-reactive-templates/).
 
-## The solution
+## The Solution
 
+<details>
+<summary>Click to see the solution</summary>
 @sourceref ./1-angular-solution.html
 @codepen
 @highlight 13,17-37,40,only
+</details>

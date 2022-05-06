@@ -33,8 +33,11 @@ You know everything you need to know already.
 
 > HINT: Create a `validateCard` operator with `map`.
 
-## The solution
+## The Solution
 
+<details>
+<summary>Click to see the solution</summary>
 @sourceref ./3-card-error.html
 @codepen
 @highlight 22-29,35,61,only
+</details>

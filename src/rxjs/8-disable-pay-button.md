@@ -71,8 +71,11 @@ In this section, we will:
   <button [disabled]="value"></button>
   ```
 
-## The solution
+## The Solution
 
+<details>
+<summary>Click to see the solution</summary>
 @sourceref ./8-disable-pay-button.html
 @codepen
 @highlight 13,114-123,162,195,only
+</details>

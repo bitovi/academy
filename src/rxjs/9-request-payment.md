@@ -118,8 +118,11 @@ In this section, we will:
   });
   ```
 
-## The solution
+## The Solution
 
+<details>
+<summary>Click to see the solution</summary>
 @sourceref ./9-request-payment.html
 @codepen
 @highlight 14,125-146,151,203,222-230,233-236,only
+</details>

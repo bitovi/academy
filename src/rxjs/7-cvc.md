@@ -50,8 +50,11 @@ Finally:
 You already know everything you need to know. Apply what you learned from
 `cardNumber`, `cardError` and `showCardError` to `cvc`, `cvcError`, and `showCVCError`.
 
-## The solution
+## The Solution
 
+<details>
+<summary>Click to see the solution</summary>
 @sourceref ./7-cvc.html
 @codepen
 @highlight 102-112,122,142-149,166-167,180-182,only
+</details>

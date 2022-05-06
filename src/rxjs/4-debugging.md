@@ -139,8 +139,11 @@ const number = source.pipe(mapToNumber).pipe(log('number'));
 
     derives from `cardNumber`.
 
-## The solution
+## The Solution
 
+<details>
+<summary>Click to see the solution</summary>
 @sourceref ./4-debugging.html
 @codepen
 @highlight 14,31-33,66,only
+</details>
