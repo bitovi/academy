@@ -24,16 +24,16 @@ Second:
   to get the error from `userCVC`:
   ```typescript
   (cvc) => {
-      if (!cvc) {
-          return "There is no CVC code";
-      }
-      if (cvc.length !== 3) {
-          return "The CVC must be at least 3 numbers";
-      }
-      if (isNaN(parseInt(cvc))) {
-          return "The CVC must be numbers";
-      }
-  }
+    if (!cvc) {
+      return 'There is no CVC code';
+    }
+    if (cvc.length !== 3) {
+      return 'The CVC must be at least 3 numbers';
+    }
+    if (isNaN(parseInt(cvc))) {
+      return 'The CVC must be numbers';
+    }
+  };
   ```
 - `cvcError` should be displayed within the `<div class="message">` element.
 
@@ -47,11 +47,11 @@ Finally:
 
 ## What you need to know
 
-You already know everything you need to know.  Apply what you learned from
+You already know everything you need to know. Apply what you learned from
 `cardNumber`, `cardError` and `showCardError` to `cvc`, `cvcError`, and `showCVCError`.
 
 ## The solution
 
 @sourceref ./7-cvc.html
 @codepen
-@highlight 100-110,123-124,136-139,156-157,169-171,only
+@highlight 102-112,122,142-149,166-167,180-182,only

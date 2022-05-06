@@ -8,157 +8,161 @@
 <script src="https://unpkg.com/@angular/platform-browser-dynamic@12.2.16/bundles/platform-browser-dynamic.umd.js"></script>
 <my-app></my-app>
 <script type="typescript">
-// app.js
-const { Component, VERSION } = ng.core;
-const { BehaviorSubject } = rxjs;
-const { map, tap } = rxjs.operators;
+  // app.js
+  const { Component, VERSION } = ng.core;
+  const { BehaviorSubject } = rxjs;
+  const { map, tap } = rxjs.operators;
 
-const cleanCardNumber = map((card) => {
+  const cleanCardNumber = map((card) => {
     if (card) {
-        return card.replace(/[\s-]/g, "");
+      return card.replace(/[\s-]/g, "");
     }
-});
+  });
 
-const validateCard = map((card) => {
+  const validateCard = map((card) => {
     if (!card) {
-        return "There is no card"
+      return "There is no card";
     }
     if (card.length !== 16) {
-        return "There should be 16 characters in a card";
+      return "There should be 16 characters in a card";
     }
-});
+  });
 
-const log = function(name) {
-    return tap(value => console.log(name, value))
-}
+  const log = (name) => {
+    return tap((value) => console.log(name, value));
+  };
 
-@Component({
+  @Component({
     selector: 'my-app',
     template: `
-        <form>
+      <form>
+        <div class="message">{{ cardError | async }}</div>
 
-            <div class="message">{{ (cardError | async) }}</div>
+        <input
+          type="text"
+          name="cardNumber"
+          placeholder="Card Number"
+          (input)="userCardNumber.next($event.target.value)"
+        />
 
-            <input type="text" name="cardNumber" placeholder="Card Number"
-                (input)="userCardNumber.next( $event.target.value )"/>
+        <input type="text" name="expiry" placeholder="MM-YY" />
 
-            <input type="text" name="expiry" placeholder="MM-YY"/>
+        <input type="text" name="cvc" placeholder="CVC" />
 
-            <input type="text" name="cvc" placeholder="CVC"/>
-
-            <button>
-                PAY
-            </button>
-        </form>
-        UserCardNumber: {{ (userCardNumber | async) }} <br/>
-        CardNumber: {{ (cardNumber | async) }} <br/>
+        <button>
+          PAY
+        </button>
+      </form>
+      UserCardNumber: {{ userCardNumber | async }} <br />
+      CardNumber: {{ cardNumber | async }} <br />
     `
-})
-class AppComponent {
+  })
+  class AppComponent {
     userCardNumber = new BehaviorSubject<string>();
 
     constructor() {
-        this.cardNumber = this.userCardNumber.pipe(cleanCardNumber)
-            .pipe( log("cardNumber") );
-        this.cardError = this.cardNumber.pipe(validateCard);
+      this.cardNumber = this.userCardNumber
+        .pipe(cleanCardNumber)
+        .pipe(log("cardNumber"));
+      this.cardError = this.cardNumber.pipe(validateCard);
     }
-}
+  }
 
-// main.js
-const { BrowserModule } = ng.platformBrowser;
-const { NgModule } = ng.core;
-const { CommonModule } = ng.common;
+  // main.js
+  const { BrowserModule } = ng.platformBrowser;
+  const { NgModule } = ng.core;
+  const { CommonModule } = ng.common;
 
-@NgModule({
+  @NgModule({
     imports: [
-        BrowserModule,
-        CommonModule,
+      BrowserModule,
+      CommonModule,
     ],
     declarations: [AppComponent],
     bootstrap: [AppComponent],
     providers: []
-})
-class AppModule {}
+  })
+  class AppModule {}
 
-const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+  const { platformBrowserDynamic } = ng.platformBrowserDynamic;
 
-platformBrowserDynamic()
+  platformBrowserDynamic()
     .bootstrapModule(AppModule)
     .catch(err => console.error(err));
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
-body {
-  background-color: rgba(8, 211, 67, 0.3);
-  padding: 2%;
-  font-family: 'Raleway', sans-serif;
-  font-size: 1em;
-}
-input {
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 1em;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 500;
-  padding: 12px;
-  border: 1px solid #ccc;
-  outline-color: white;
-  transition: background-color 0.5s ease;
-  transition: outline-color 0.5s ease;
-}
-input[name=cardNumber] {
-  border-bottom: 0;
-}
-input[name=expiry],
-input[name=cvc] {
-  width: 50%;
-}
-input[name=expiry] {
-  float: left;
-  border-right: 0;
-}
-input::placeholder {
-  color: #999;
-  font-weight: 400;
-}
-input:focus {
-  background-color: rgba(130, 245, 249, 0.1);
-  outline-color: #82f5f9;
-}
-input.is-error {
-  background-color: rgba(250, 55, 55, 0.1);
-}
-input.is-error:focus {
-  outline-color: #ffbdbd;
-}
-button {
-  font-size: 1em;
-  font-family: 'Raleway', sans-serif;
-  background-color: #08d343;
-  border: 0;
-  box-shadow: 0px 1px 3px 1px rgba(51, 51, 51, 0.16);
-  color: white;
-  font-weight: 500;
-  letter-spacing: 1px;
-  margin-top: 30px;
-  padding: 12px;
-  text-transform: uppercase;
-  width: 100%;
-}
-button:disabled {
-  opacity: 0.4;
-  background-color: #999999;
-}
-form {
-  background-color: white;
-  box-shadow: 0px 17px 22px 1px rgba(51, 51, 51, 0.16);
-  padding: 40px;
-  margin: 0 auto;
-  max-width: 500px;
-}
-.message {
-  margin-bottom: 20px;
-  color: #fa3737;
-}
+  @import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
+  body {
+    background-color: rgba(8, 211, 67, 0.3);
+    padding: 2%;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1em;
+  }
+  input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1em;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    padding: 12px;
+    border: 1px solid #ccc;
+    outline-color: white;
+    transition: background-color 0.5s ease;
+    transition: outline-color 0.5s ease;
+  }
+  input[name='cardNumber'] {
+    border-bottom: 0;
+  }
+  input[name='expiry'],
+  input[name='cvc'] {
+    width: 50%;
+  }
+  input[name='expiry'] {
+    float: left;
+    border-right: 0;
+  }
+  input::placeholder {
+    color: #999;
+    font-weight: 400;
+  }
+  input:focus {
+    background-color: rgba(130, 245, 249, 0.1);
+    outline-color: #82f5f9;
+  }
+  input.is-error {
+    background-color: rgba(250, 55, 55, 0.1);
+  }
+  input.is-error:focus {
+    outline-color: #ffbdbd;
+  }
+  button {
+    font-size: 1em;
+    font-family: 'Raleway', sans-serif;
+    background-color: #08d343;
+    border: 0;
+    box-shadow: 0px 1px 3px 1px rgba(51, 51, 51, 0.16);
+    color: white;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 30px;
+    padding: 12px;
+    text-transform: uppercase;
+    width: 100%;
+  }
+  button:disabled {
+    opacity: 0.4;
+    background-color: #999999;
+  }
+  form {
+    background-color: white;
+    box-shadow: 0px 17px 22px 1px rgba(51, 51, 51, 0.16);
+    padding: 40px;
+    margin: 0 auto;
+    max-width: 500px;
+  }
+  .message {
+    margin-bottom: 20px;
+    color: #fa3737;
+  }
 </style>

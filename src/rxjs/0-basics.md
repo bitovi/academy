@@ -27,7 +27,7 @@ enables the [Observer pattern](https://en.wikipedia.org/wiki/Observer_pattern).
 To subscribe to an RXJS observable, you call subscribe like:
 
 ```js
-observable.subscribe(function(value){ ... });
+observable.subscribe((value) => { ... });
 ```
 
 When the observable publishes a value, the subscribe functions will
@@ -40,7 +40,7 @@ will be called back each time:
 <script type="typescript">
   const { Observable } = rxjs;
 
-  const observable = Observable.create(function (observer) {
+  const observable = new Observable((observer) => {
     observer.next(1);
     observer.next(2);
     observer.next(3);
@@ -67,7 +67,7 @@ observable:
 <script type="typescript">
   const { Observable } = rxjs;
 
-  const observable = Observable.create(function (observer) {
+  const observable = new Observable((observer) => {
     observer.next(1);
     observer.next(2);
     observer.next(3);
@@ -96,9 +96,9 @@ to all three events with the following:
 
 ```js
 observable.subscribe({
-  next: function (value) { ... },
-  error: function (error) { ... },
-  complete: function () { ... },
+  next: (value) => { ... },
+  error: (error) => { ... },
+  complete: () => () { ... },
 });
 ```
 
@@ -111,7 +111,7 @@ and completes:
 <script type="typescript">
   const { Observable } = rxjs;
 
-  const observable = Observable.create(function (observer) {
+  const observable = new Observable((observer) => {
     observer.next(1);
     setTimeout(() => {
       observer.next(2);
@@ -151,13 +151,13 @@ a [subscription](https://rxjs.dev/api/index/class/Subscription) which can be use
 the subscription like:
 
 ```js
-var subscription = observable.subscribe( ... );
+const subscription = observable.subscribe( ... );
 subscription.unsubscribe();
 ```
 
 Unsubscribing prevents receiving future notifications and avoids memory leaks.
 
-The following unsubscribes after the first published value. Notice that
+The following unsubscribes before the second published value. Notice that
 the `subscriber` function is only called once.
 
 ```html
@@ -165,18 +165,17 @@ the `subscriber` function is only called once.
 <script type="typescript">
   const { Observable } = rxjs;
 
-  const observable = Observable.create(function (observer) {
+  const observable = new Observable((observer) => {
     observer.next(1);
-    observer.next(2);
-    observer.complete();
+    setTimeout(() => {
+      observer.next(2);
+      observer.complete();
+    }, 1000);
   });
 
-  var subscription = observable.subscribe(
-    function subscriber(value) {
-      console.log("got", value);
-      subscription.unsubscribe();
-    }
-  );
+  const subscription = observable.subscribe((value) => console.log('got', value));
+
+  subscription.unsubscribe();
 </script>
 ```
 
@@ -202,7 +201,7 @@ Read the inline comments below to see how this works.
   const { Observable } = rxjs;
 
   // numberMaker emits 1,2,3 waits a second then emits 4.
-  const numberMaker = Observable.create(function (observer) {
+  const numberMaker = new Observable((observer) => {
     observer.next(1);
     observer.next(2);
     observer.next(3);
@@ -212,11 +211,11 @@ Read the inline comments below to see how this works.
     }, 1000);
   });
 
-  const numberSummer = Observable.create(function (observer) {
+  const numberSummer = new Observable((observer) => {
     // When numberSummer is subscribed to, it subscribes to
     // numberMaker.
-    var sum = 0;
-    var subscription = numberMaker.subscribe({
+    let sum = 0;
+    const subscription = numberMaker.subscribe({
       // When numberMaker published values, we
       // add to the sum and publish the new sum.
       next: (number) => {
@@ -261,18 +260,18 @@ random value.
 <script type="typescript">
   const { Observable } = rxjs;
 
-  const observable = Observable.create(function (observer) {
-    setTimeout(function () {
+  const observable = new Observable((observer) => {
+    setTimeout(() => {
       observer.next(Math.random());
       observer.complete();
     }, 1000);
   });
 
-  var subscriptionA = observable.subscribe(
+  const subscriptionA = observable.subscribe(
     (value) => console.log("A got", value)
   );
 
-  var subscriptionB = observable.subscribe(
+  const subscriptionB = observable.subscribe(
     (value) => console.log("B got", value)
   );
 </script>
@@ -291,23 +290,23 @@ is called:
 <script type="typescript">
   const { Observable } = rxjs;
 
-  const observable = Observable.create(function (observer) {
+  const observable = new Observable((observer) => {
     console.log("observable execution");
     observer.next(1);
-    setTimeout(function () {
+    setTimeout(() => {
       observer.next(2);
       observer.complete();
     });
   });
 
   console.log('subscriptionA - start');
-  var subscriptionA = observable.subscribe({
+  const subscriptionA = observable.subscribe({
     next: (x) => console.log('subscriptionA got value ' + x),
   });
   console.log('subscriptionA - end');
 
   console.log('subscriptionB - start');
-  var subscriptionB = observable.subscribe({
+  const subscriptionB = observable.subscribe({
     next: (x) => console.log('subscriptionB got value ' + x),
   });
   console.log('subscriptionB - end');
