@@ -90,10 +90,14 @@ ng test
 
 ## P2: What You Need to Know
 
-- You will need to look at the test code to determine
-  the method signatures on `OrderService`.
+- The method signatures for the methods you'll be adding to `OrderService`:
+  - `getOrders(): Observable<{data: Order[]}>` should make a `GET` request
+  - `createOrder(orderForm: OrderForm): Observable<Order>` should make a `POST` request
+  - `updateOrder(order: Order, status: string): Observable<Order>` should make a `PUT` request to `/orders/<order-id>`
+  - `deleteOrder(orderId: string): Observable<Order>` should make a `DELETE` request to `/orders/<order-id>`
 - You will need to make sure `HttpClient` is imported and
   added as a property in the `OrderService` constructor.
+- You can pass a request `body` using the second argument of `HttpClient` `post` and `put` methods.
 
 ## P2: Solution
 
