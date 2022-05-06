@@ -26,6 +26,7 @@ describe('OrderService', () => {
         {
           _id: 'adsfsdf',
           name: 'Jennifer',
+          restaurant: 'FoodLand',
           address: '123 main',
           phone: '555-555-5555',
           status: 'new',
@@ -52,7 +53,7 @@ describe('OrderService', () => {
     httpMock.verify();
   });
 
-  it('should make a get request to create an order', () => {
+  it('should make a post request to create an order', () => {
     const mockOrder = {
       _id: 'adsfsdf',
       restaurant: '12345',
