@@ -4,7 +4,6 @@
 
 @body
 
-
 ## The problem
 
 In this section, we will:
@@ -26,32 +25,33 @@ runs twice, once for every subscription on the `squares` observable.
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
 <script type="typescript">
-const {Subject} = rxjs;
-const {map} = rxjs.operators;
+  const { Subject } = rxjs;
+  const { map } = rxjs.operators;
 
-const numbers = new Subject<number>();
+  const numbers = new Subject<number>();
 
-const square = map( (x: number) => {
+  const square = map((x: number) => {
     console.log("mapping");
-    return x*x;
-} );
+    return x * x;
+  });
 
-var squares = numbers.pipe(square);
+  const squares = numbers.pipe(square);
 
-squares.subscribe( (value) => {
-    console.log("squares1",value);
-} );
-squares.subscribe( (value) => {
-    console.log("squares2",value);
-} );
+  squares.subscribe((value) => {
+    console.log("squares1", value);
+  });
+  squares.subscribe((value) => {
+    console.log("squares2", value);
+  });
 
-numbers.next(2);
-// Logs: mapping
-//       squares1 4
-//       mapping
-//       squares2 4
+  numbers.next(2);
+  // Logs: mapping
+  //       squares1 4
+  //       mapping
+  //       squares2 4
 </script>
 ```
+
 @codepen
 
 You can change this by converting the observable to a subject with:
@@ -63,43 +63,41 @@ You can change this by converting the observable to a subject with:
 The following shows this using this technique to run `square` only once
 for all subscribers of `squares`:
 
-
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
 <script type="typescript">
-const {Subject} = rxjs;
-const {map, share} = rxjs.operators;
+  const { Subject } = rxjs;
+  const { map, share } = rxjs.operators;
 
-const numbers = new Subject<number>();
+  const numbers = new Subject<number>();
 
-const square = map( (x: number) => {
+  const square = map((x: number) => {
     console.log("mapping");
-    return x*x;
-} );
+    return x * x;
+  });
 
-const squares = numbers.pipe(square)
-    .pipe(share({ connector: () => new Subject() }));
+  const squares = numbers.pipe(square).pipe(share({ connector: () => new Subject() }));
 
-squares.subscribe( (value) => {
-    console.log("squares1",value);
-} );
-squares.subscribe( (value) => {
-    console.log("squares2",value);
-} );
+  squares.subscribe((value) => {
+    console.log("squares1", value);
+  });
+  squares.subscribe((value) => {
+    console.log("squares2", value);
+  });
 
-numbers.next(2);
-// Logs: mapping
-//       squares1 4
-//       squares2 4
+  numbers.next(2);
+  // Logs: mapping
+  //       squares1 4
+  //       squares2 4
 </script>
 ```
+
 @codepen
 
 Read more about this technique on [RxJS's documentation](https://rxjs.dev/guide/subject#multicasted-observables). Note that the `multicast` and `refCount` operators are [deprecated](https://rxjs.dev/deprecations/multicasting#multicast) in RxJS 7, and the [`share`](https://rxjs.dev/api/operators/share) operator used above is analogous to the functionality formerly provided by `multicast(() => new Subject()), refCount()`.
-
 
 ## Solution
 
 @sourceref ./11-disable-while-pending.html
 @codepen
-@highlight 14,171-175,206,209-210,246-248,only
+@highlight 14,178-190,229,232-233,270-272,only

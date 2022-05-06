@@ -8,174 +8,189 @@
 <script src="https://unpkg.com/@angular/platform-browser-dynamic@12.2.16/bundles/platform-browser-dynamic.umd.js"></script>
 <my-app></my-app>
 <script type="typescript">
-// app.js
-const { Component, VERSION } = ng.core;
-const { BehaviorSubject, Subject, merge, combineLatest } = rxjs;
-const { map, tap, scan, withLatestFrom } = rxjs.operators;
+  // app.js
+  const { Component, VERSION } = ng.core;
+  const { BehaviorSubject, Subject, merge, combineLatest } = rxjs;
+  const { map, tap, scan, withLatestFrom } = rxjs.operators;
 
-const cleanCardNumber = map((card) => {
+  const cleanCardNumber = map((card) => {
     if (card) {
-        return card.replace(/[\s-]/g, "");
+      return card.replace(/[\s-]/g, "");
     }
-});
+  });
 
-const validateCard = map((card) => {
+  const validateCard = map((card) => {
     if (!card) {
-        return "There is no card"
+      return "There is no card";
     }
     if (card.length !== 16) {
-        return "There should be 16 characters in a card";
+      return "There should be 16 characters in a card";
     }
-});
+  });
 
-const log = function(name) {
-    return tap(value => console.log(name, value))
-}
+  const log = (name) => {
+    return tap((value) => console.log(name, value));
+  };
 
-function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
-
+  function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
     const errorEvents = errorObservable.pipe(
-        map((error) => {
-            return {type: error ? "invalid" : "valid"}
-        })
+      map((error) => {
+        return { type: error ? "invalid" : "valid" };
+      })
     );
 
     const focusEvents = blurredObservable.pipe(
-        map((isBlurred) => {
-            return {type: isBlurred ? "blurred" : "focused"};
-        })
+      map((isBlurred) => {
+        return { type: isBlurred ? "blurred" : "focused" };
+      })
     );
 
-    var events = merge(errorEvents, focusEvents);
+    const events = merge(errorEvents, focusEvents);
 
-    const eventsToState = scan((previous, event) => {
+    const eventsToState = scan(
+      (previous, event) => {
         switch (event.type) {
-            case "valid":
-                return {...previous,
-                    isValid: true,
-                    showCardError: false
-                };
-            case "invalid":
-                return {
-                    ...previous,
-                    isValid: false,
-                    showCardError: previous.hasBeenBlurred
-                };
-            case "blurred":
-                return {
-                    ...previous,
-                    hasBeenBlurred: true,
-                    showCardError: !previous.isValid
-                };
-            default:
-                return previous;
+          case "valid":
+            return { ...previous, isValid: true, showCardError: false };
+          case "invalid":
+            return {
+              ...previous,
+              isValid: false,
+              showCardError: previous.hasBeenBlurred,
+            };
+          case "blurred":
+            return {
+              ...previous,
+              hasBeenBlurred: true,
+              showCardError: !previous.isValid,
+            };
+          default:
+            return previous;
         }
-    }, {
+      },
+      {
         hasBeenBlurred: false,
         showCardError: false,
-        isValid: false
-    });
+        isValid: false,
+      }
+    );
 
-    var state = events.pipe(eventsToState);
+    const state = events.pipe(eventsToState);
 
-    return state.pipe( map(state => state.showCardError) );
+    return state.pipe(map((state) => state.showCardError));
+  }
 
-}
-
-const expiryParts = map((expiry) => {
+  const expiryParts = map((expiry) => {
     if (expiry) {
-        return expiry.split("-")
+      return expiry.split("-");
     }
-});
+  });
 
-const validateExpiry = map((expiry) => {
+  const validateExpiry = map((expiry) => {
     if (!expiry) {
-        return "There is no expiry. Format  MM-YY";
+      return "There is no expiry. Format  MM-YY";
     }
-    if (expiry.length !== 2 || expiry[0].length !== 2 || expiry[1].length !== 2) {
-        return "Expiry must be formatted like MM-YY";
+    if (
+      expiry.length !== 2 ||
+      expiry[0].length !== 2 ||
+      expiry[1].length !== 2
+    ) {
+      return "Expiry must be formatted like MM-YY";
     }
-});
+  });
 
-const validateCVC = map((cvc) => {
+  const validateCVC = map((cvc) => {
     if (!cvc) {
-        return "There is no CVC code";
+      return "There is no CVC code";
     }
     if (cvc.length !== 3) {
-        return "The CVC must be at least 3 numbers";
+      return "The CVC must be at least 3 numbers";
     }
     if (isNaN(parseInt(cvc))) {
-        return "The CVC must be numbers";
+      return "The CVC must be numbers";
     }
-});
+  });
 
-function isCardInvalid(cardError, expiryError, cvcError) {
-    return combineLatest(cardError, expiryError, cvcError, function(cardError, expiryError, cvcError) {
-        return !!(cardError || expiryError || cvcError)
-    })
-}
+  function isCardInvalid(cardError, expiryError, cvcError) {
+    return combineLatest(
+      cardError,
+      expiryError,
+      cvcError,
+      (cardError, expiryError, cvcError) => {
+        return !!(cardError || expiryError || cvcError);
+      }
+    );
+  }
 
-function combineCard(cardNumber, expiry, cvc) {
-    return combineLatest(cardNumber, expiry, cvc, function(cardNumber, expiry, cvc) {
-        return {
-            cardNumber,
-            expiry,
-            cvc
-        };
-    })
-}
+  function combineCard(cardNumber, expiry, cvc) {
+    return combineLatest(cardNumber, expiry, cvc, (cardNumber, expiry, cvc) => {
+      return {
+        cardNumber,
+        expiry,
+        cvc,
+      };
+    });
+  }
 
-function paymentPromises(paySubmitted, card) {
-    return paySubmitted.pipe( withLatestFrom(card) )
-        .pipe( map( ( [paySubmitted, card] ) => {
+  function paymentPromises(paySubmitted, card) {
+    return paySubmitted.pipe(withLatestFrom(card)).pipe(
+      map(([paySubmitted, card]) => {
+        console.log("Asking for token with", card);
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(1000);
+          }, 2000);
+        });
+      })
+    );
+  }
 
-            console.log("Asking for token with", card);
-            return new Promise(function(resolve) {
-                setTimeout(function() {
-                    resolve(1000);
-                }, 2000);
-            });
-        }) );
-}
-
-@Component({
+  @Component({
     selector: 'my-app',
     template: `
-        <form (submit)="pay($event)">
+      <form (submit)="pay($event)">
+        <div class="message" *ngIf="showCardError | async">{{ cardError | async }}</div>
 
-            <div class="message"
-                *ngIf="(showCardError | async)">{{ (cardError | async) }}</div>
+        <div class="message" *ngIf="showExpiryError | async">{{ expiryError | async }}</div>
 
-            <div class="message"
-                *ngIf="(showExpiryError | async)">{{ (expiryError | async) }}</div>
+        <div class="message" *ngIf="showCVCError | async">{{ cvcError | async }}</div>
 
-            <div class="message"
-                *ngIf="(showCVCError | async)">{{ (cvcError | async) }}</div>
+        <input
+          type="text"
+          name="cardNumber"
+          placeholder="Card Number"
+          (input)="userCardNumber.next($event.target.value)"
+          (blur)="userCardNumberBlurred.next(true)"
+          [class.is-error]="showCardError | async"
+        />
 
-            <input type="text" name="cardNumber" placeholder="Card Number"
-                (input)="userCardNumber.next( $event.target.value )"
-                (blur)="userCardNumberBlurred.next( true )"
-                [class.is-error]="showCardError | async"/>
+        <input
+          type="text"
+          name="expiry"
+          placeholder="MM-YY"
+          (input)="userExpiry.next($event.target.value)"
+          (blur)="userExpiryBlurred.next(true)"
+          [class.is-error]="showExpiryError | async"
+        />
 
-            <input type="text" name="expiry" placeholder="MM-YY"
-                (input)="userExpiry.next( $event.target.value )"
-                (blur)="userExpiryBlurred.next( true )"
-                [class.is-error]="showExpiryError | async"/>
+        <input
+          type="text"
+          name="cvc"
+          placeholder="CVC"
+          (input)="userCVC.next($event.target.value)"
+          (blur)="userCVCBlurred.next(true)"
+          [class.is-error]="showCVCError | async"
+        />
 
-            <input type="text" name="cvc" placeholder="CVC"
-                (input)="userCVC.next( $event.target.value )"
-                (blur)="userCVCBlurred.next( true )"
-                [class.is-error]="showCVCError | async"/>
-
-            <button [disabled]="isCardInvalid | async">
-                PAY
-            </button>
-        </form>
-        UserCardNumber: {{ (userCardNumber | async) }} <br/>
-        CardNumber: {{ (cardNumber | async) }} <br/>
+        <button [disabled]="isCardInvalid | async">
+          PAY
+        </button>
+      </form>
+      UserCardNumber: {{ userCardNumber | async }} <br />
+      CardNumber: {{ cardNumber | async }} <br />
     `
-})
-class AppComponent {
+  })
+  class AppComponent {
     userCardNumber = new BehaviorSubject<string>();
     userCardNumberBlurred = new Subject<boolean>();
 
@@ -188,132 +203,134 @@ class AppComponent {
     paySubmitted = new Subject();
 
     constructor() {
-        this.cardNumber = this.userCardNumber.pipe(cleanCardNumber)
-            .pipe( log("cardNumber") );
-        this.cardError = this.cardNumber.pipe(validateCard);
-        this.showCardError = showOnlyWhenBlurredOnce(this.cardError, this.userCardNumberBlurred);
+      this.cardNumber = this.userCardNumber
+        .pipe(cleanCardNumber)
+        .pipe(log("cardNumber"));
+      this.cardError = this.cardNumber.pipe(validateCard);
+      this.showCardError = showOnlyWhenBlurredOnce(this.cardError, this.userCardNumberBlurred);
 
-        this.expiry = this.userExpiry.pipe(expiryParts);
-        this.expiryError = this.expiry.pipe(validateExpiry);
-        this.showExpiryError = showOnlyWhenBlurredOnce(this.expiryError, this.userExpiryBlurred);
+      this.expiry = this.userExpiry.pipe(expiryParts);
+      this.expiryError = this.expiry.pipe(validateExpiry);
+      this.showExpiryError = showOnlyWhenBlurredOnce(this.expiryError, this.userExpiryBlurred);
 
-        this.cvc = this.userCVC;
-        this.cvcError = this.cvc.pipe(validateCVC);
-        this.showCVCError = showOnlyWhenBlurredOnce(this.cvcError, this.userCVCBlurred);
+      this.cvc = this.userCVC;
+      this.cvcError = this.cvc.pipe(validateCVC);
+      this.showCVCError = showOnlyWhenBlurredOnce(this.cvcError, this.userCVCBlurred);
 
-        this.isCardInvalid = isCardInvalid(this.cardError, this.expiryError, this.cvcError);
+      this.isCardInvalid = isCardInvalid(this.cardError, this.expiryError, this.cvcError);
 
-        const card = combineCard(this.cardNumber, this.expiry, this.cvc);
+      const card = combineCard(this.cardNumber, this.expiry, this.cvc);
 
-        const payments = paymentPromises(this.paySubmitted, card);
+      const payments = paymentPromises(this.paySubmitted, card);
 
-        payments.subscribe( (paymentPromise)=> {
-            paymentPromise.then(function(){
-                console.log("payment complete!");
-            });
+      payments.subscribe((paymentPromise) => {
+        paymentPromise.then(() => {
+          console.log("payment complete!");
         });
+      });
     }
+
     pay(event) {
-        event.preventDefault();
-        this.paySubmitted.next(true);
+      event.preventDefault();
+      this.paySubmitted.next(true);
     }
-}
+  }
 
-// main.js
-const { BrowserModule } = ng.platformBrowser;
-const { NgModule } = ng.core;
-const { CommonModule } = ng.common;
+  // main.js
+  const { BrowserModule } = ng.platformBrowser;
+  const { NgModule } = ng.core;
+  const { CommonModule } = ng.common;
 
-@NgModule({
+  @NgModule({
     imports: [
-        BrowserModule,
-        CommonModule,
+      BrowserModule,
+      CommonModule,
     ],
     declarations: [AppComponent],
     bootstrap: [AppComponent],
     providers: []
-})
-class AppModule {}
+  })
+  class AppModule {}
 
-const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+  const { platformBrowserDynamic } = ng.platformBrowserDynamic;
 
-platformBrowserDynamic()
+  platformBrowserDynamic()
     .bootstrapModule(AppModule)
     .catch(err => console.error(err));
 </script>
 <style>
-@import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
-body {
-  background-color: rgba(8, 211, 67, 0.3);
-  padding: 2%;
-  font-family: 'Raleway', sans-serif;
-  font-size: 1em;
-}
-input {
-  display: block;
-  width: 100%;
-  box-sizing: border-box;
-  font-size: 1em;
-  font-family: 'Raleway', sans-serif;
-  font-weight: 500;
-  padding: 12px;
-  border: 1px solid #ccc;
-  outline-color: white;
-  transition: background-color 0.5s ease;
-  transition: outline-color 0.5s ease;
-}
-input[name=cardNumber] {
-  border-bottom: 0;
-}
-input[name=expiry],
-input[name=cvc] {
-  width: 50%;
-}
-input[name=expiry] {
-  float: left;
-  border-right: 0;
-}
-input::placeholder {
-  color: #999;
-  font-weight: 400;
-}
-input:focus {
-  background-color: rgba(130, 245, 249, 0.1);
-  outline-color: #82f5f9;
-}
-input.is-error {
-  background-color: rgba(250, 55, 55, 0.1);
-}
-input.is-error:focus {
-  outline-color: #ffbdbd;
-}
-button {
-  font-size: 1em;
-  font-family: 'Raleway', sans-serif;
-  background-color: #08d343;
-  border: 0;
-  box-shadow: 0px 1px 3px 1px rgba(51, 51, 51, 0.16);
-  color: white;
-  font-weight: 500;
-  letter-spacing: 1px;
-  margin-top: 30px;
-  padding: 12px;
-  text-transform: uppercase;
-  width: 100%;
-}
-button:disabled {
-  opacity: 0.4;
-  background-color: #999999;
-}
-form {
-  background-color: white;
-  box-shadow: 0px 17px 22px 1px rgba(51, 51, 51, 0.16);
-  padding: 40px;
-  margin: 0 auto;
-  max-width: 500px;
-}
-.message {
-  margin-bottom: 20px;
-  color: #fa3737;
-}
+  @import url('https://fonts.googleapis.com/css?family=Raleway:400,500');
+  body {
+    background-color: rgba(8, 211, 67, 0.3);
+    padding: 2%;
+    font-family: 'Raleway', sans-serif;
+    font-size: 1em;
+  }
+  input {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 1em;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
+    padding: 12px;
+    border: 1px solid #ccc;
+    outline-color: white;
+    transition: background-color 0.5s ease;
+    transition: outline-color 0.5s ease;
+  }
+  input[name='cardNumber'] {
+    border-bottom: 0;
+  }
+  input[name='expiry'],
+  input[name='cvc'] {
+    width: 50%;
+  }
+  input[name='expiry'] {
+    float: left;
+    border-right: 0;
+  }
+  input::placeholder {
+    color: #999;
+    font-weight: 400;
+  }
+  input:focus {
+    background-color: rgba(130, 245, 249, 0.1);
+    outline-color: #82f5f9;
+  }
+  input.is-error {
+    background-color: rgba(250, 55, 55, 0.1);
+  }
+  input.is-error:focus {
+    outline-color: #ffbdbd;
+  }
+  button {
+    font-size: 1em;
+    font-family: 'Raleway', sans-serif;
+    background-color: #08d343;
+    border: 0;
+    box-shadow: 0px 1px 3px 1px rgba(51, 51, 51, 0.16);
+    color: white;
+    font-weight: 500;
+    letter-spacing: 1px;
+    margin-top: 30px;
+    padding: 12px;
+    text-transform: uppercase;
+    width: 100%;
+  }
+  button:disabled {
+    opacity: 0.4;
+    background-color: #999999;
+  }
+  form {
+    background-color: white;
+    box-shadow: 0px 17px 22px 1px rgba(51, 51, 51, 0.16);
+    padding: 40px;
+    margin: 0 auto;
+    max-width: 500px;
+  }
+  .message {
+    margin-bottom: 20px;
+    color: #fa3737;
+  }
 </style>

@@ -23,13 +23,17 @@ Second:
   to get the error from `userExpiry`:
   ```typescript
   (expiry) => {
-      if (!expiry) {
-          return "There is no expiry. Format  MM-YY";
-      }
-      if (expiry.length !== 2 || expiry[0].length !== 2 || expiry[1].length !== 2) {
-          return "Expiry must be formatted like MM-YY";
-      }
-  }
+    if (!expiry) {
+      return 'There is no expiry. Format  MM-YY';
+    }
+    if (
+      expiry.length !== 2 ||
+      expiry[0].length !== 2 ||
+      expiry[1].length !== 2
+    ) {
+      return 'Expiry must be formatted like MM-YY';
+    }
+  };
   ```
 - `expiryError` should be displayed within the `<div class="message">` element.
 
@@ -43,12 +47,11 @@ Finally:
 
 ## What you need to know
 
-You already know everything you need to know.  Apply what you learned from
+You already know everything you need to know. Apply what you learned from
 `cardNumber`, `cardError` and `showCardError` to `expiry`, `expiryError`, and `showExpiryError`.
-
 
 ## The solution
 
 @sourceref ./6-expiry.html
 @codepen
-@highlight 85-98,108-109,116-119,135-136,144-146,only
+@highlight 83-100,108,119-126,142-143,152-154,only

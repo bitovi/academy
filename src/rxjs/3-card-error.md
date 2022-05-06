@@ -5,9 +5,9 @@
 
 @body
 
-## Video  
+## Video
 
-Who has time to read?  This video covers the content on this page. Watch fullscreen.
+Who has time to read? This video covers the content on this page. Watch fullscreen.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/tjMaxHnrYxw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -19,7 +19,6 @@ In this section, we will:
   16 digits.
 
 ## How to solve this problem
-
 
 - Create a `cardError` observable that represents this error.
 - `cardError` should emit:
@@ -38,4 +37,4 @@ You know everything you need to know already.
 
 @sourceref ./3-card-error.html
 @codepen
-@highlight 22-29,36,58,only
+@highlight 22-29,35,61,only

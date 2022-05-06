@@ -6,7 +6,6 @@ RxJS observables with the combineLatest operator.
 
 @body
 
-
 ## Video
 
 Who has time to read? This video covers the content on this page. Watch fullscreen.
@@ -27,7 +26,6 @@ In this section, we will:
   `this.cardError` `this.expiryError`, or `this.cvcError` observables
   and returns the `this.isCardInvalid` observable.
 
-
 ## What you need to know
 
 - The [combineLatest](https://rxjs.dev/api/index/function/combineLatest) static method combines several values into a single value:
@@ -35,41 +33,46 @@ In this section, we will:
   ```html
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
   <script type="typescript">
-  const {of, zip, timer, from, combineLatest} = rxjs;
+    const { of, zip, timer, from, combineLatest } = rxjs;
 
-  function sequentially(value, dueTime, period){
-      return zip( from(value), timer(dueTime, period),
-          value => value
-      )
-  }
+    function sequentially(value, dueTime, period) {
+      return zip(
+        from(value),
+        timer(dueTime, period),
+        value => value
+      );
+    }
 
-  const first = sequentially(["Justin", "Ramiya"], 0, 1000);
-  const last = sequentially(["Shah", "Meyer"], 500, 1000);
+    const first = sequentially(["Justin", "Ramiya"], 0, 1000);
+    const last = sequentially(["Shah", "Meyer"], 500, 1000);
 
-  // first: ---Justin---RamiyaX
-  // last:  ------Shah__---Meyer_X
-  const fullName = combineLatest(first, last,
-      (first, last) => { return first +" "+ last; }
-  );
+    // first: ---Justin---RamiyaX
+    // last:  ------Shah__---Meyer_X
+    const fullName = combineLatest(
+      first,
+      last,
+      (first, last) => { return first + " " + last; }
+    );
 
-  fullName.subscribe(console.log);
-  // fullName: ---Justin Shah
-  //             -Ramiya Shah
-  //             -Ramiya MeyerX
+    fullName.subscribe(console.log);
+    // fullName: ---Justin Shah
+    //             -Ramiya Shah
+    //             -Ramiya MeyerX
   </script>
   ```
+
   @codepen
-  @highlight 3,16-18
+  @highlight 3,18-22
 
 - `[property]="value"` can set an element property or attribute
   from another value:
 
   ```html
-  <button [disabled]="value">
+  <button [disabled]="value"></button>
   ```
 
 ## The solution
 
 @sourceref ./8-disable-pay-button.html
 @codepen
-@highlight 13,112-116,147,179,only
+@highlight 13,114-123,162,195,only
