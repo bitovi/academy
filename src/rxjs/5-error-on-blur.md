@@ -21,13 +21,13 @@ In this section, we will:
 
 ## How to solve this problem
 
-- Create a `this.userCardNumberBlurred` `Subject` that emits when the `cardNumber` input is blurred.
-- Create a `this.showCardError` that emits true when the `cardNumber` error should be shown.
-- Create a `showOnlyWhenBlurredOnce(errorObservable, blurredObservable)` operator that returns
-  the `showCardError` observable from two source observables.  
+- Create a `this.userCardNumberBlurred$` `Subject` that emits when the `cardNumber` input is blurred.
+- Create a `this.showCardError$` that emits true when the `cardNumber` error should be shown.
+- Create a `showOnlyWhenBlurredOnce(error$, blurred$)` operator that returns
+  the `showCardError$` observable from two source observables.  
   `showOnlyWhenBlurredOnce` should use the **event-reducer** pattern to
-  promote the `errorObservable` and `blurredObservable` into events and
-  reduce those events into the `showCardError` observable.
+  promote the `error$` and `blurred$` into events and
+  reduce those events into the `showCardError$` observable.
 
 ## What you need to know
 

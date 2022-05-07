@@ -16,33 +16,33 @@ In this section, we will:
 
 ## How to solve this problem
 
-- Create a `this.paymentStatus` observable that emits **paymentStatus** objects:
+- Create a `this.paymentStatus$` observable that emits **paymentStatus** objects:
   - `{ status: "waiting" }` - when the form is waiting to be
     submitted.
   - `{ status: "pending" }` - when the promise is pending.
   - `{ status: "resolved", value }` - when the promise
     has resolved. Includes the resolved value.
-- To create `this.paymentStatus` we first will need to
-  create a `paymentStatusObservables` observable from payments like:
+- To create `this.paymentStatus$` we first will need to
+  create a `paymentStatusObservables$` observable from payments like:
 
   ```js
-  const paymentStatusObservables = payments.pipe(toPaymentStatusObservable);
+  const paymentStatusObservables$ = payments$.pipe(toPaymentStatusObservable);
   ```
 
   The `toPaymentStatusObservable` operator will convert the promises in
-  `payments` to Observables that publish **paymentStatus** objects. This means
-  that `paymentStatusObservables` is an Observable of Observables of
+  `payments$` to Observables that publish **paymentStatus** objects. This means
+  that `paymentStatusObservables$` is an Observable of Observables of
   **paymentStatus** objects like: `Observable<Observable<PaymentStatus>>`.
 
-  For example, when a payment promise is published from `payments`, `paymentStatusObservables` will publish an Observable that publishes:
+  For example, when a payment promise is published from `payments$`, `paymentStatusObservables$` will publish an Observable that publishes:
 
   1. `{ status: "pending" }`, and then
   2. `{ status: "resolved", value }`.
 
-  Then, when a new payment promise is published from `payments` again, `paymentStatusObservables` will publish an new Observable that publishes similar **paymentStatus** objects.
+  Then, when a new payment promise is published from `payments$` again, `paymentStatusObservables$` will publish a new Observable that publishes similar **paymentStatus** objects.
 
-  Finally, `this.paymentStatus` will be a result of merging (or flattening)
-  the observables emitted by `paymentStatusObservables`.
+  Finally, `this.paymentStatus$` will be a result of merging (or flattening)
+  the observables emitted by `paymentStatusObservables$`.
 
 ## What you need to know
 
@@ -75,7 +75,7 @@ observables and then _flatten_ that observable with `mergeAll`.
   @codepen
 
   > HINT: `from` and `map` can be used to convert the payment promises to
-  > an observable that emits `{status: "resolved", value}`.
+  > an observable that emits `{ status: "resolved", value }`.
 
 - [concat](https://rxjs.dev/api/index/function/concat) concatenates streams so events are produced in order.
 
@@ -106,7 +106,7 @@ observables and then _flatten_ that observable with `mergeAll`.
 
   @codepen
 
-  > HINT: `concat` can be used to make an observable emit a `{ status: "pending" }` > **paymentStatus** object before emitting the `{ status: "resolved", value }` **paymentStatus** object.
+  > HINT: `concat` can be used to make an observable emit a `{ status: "pending" }` **paymentStatus** object before emitting the `{ status: "resolved", value }` **paymentStatus** object.
 
 - [startWith](https://rxjs.dev/api/operators/startWith)
   returns an Observable that emits the items you specify as arguments before it begins to emit items emitted by the source Observable.
@@ -228,7 +228,7 @@ observables and then _flatten_ that observable with `mergeAll`.
 - Read a value from an observable's last emitted value with the
   conditional operator (`?.`) like:
   ```html
-  {{ (paymentStatus | async)?.status }}
+  {{ (paymentStatus$ | async)?.status }}
   ```
 - Use the ternary operator (` condition ? truthy : falsy`) in Angular like:
   ```html

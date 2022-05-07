@@ -13,8 +13,8 @@ In this section, we will:
 
 ## How to solve this problem
 
-- Create a `this.disablePaymentButton` observable that combines `isCardInvalid` and `paymentStatus` using a `disablePaymentButton(isCardInvalid, paymentStatus)` function.
-- Convert `this.paymentStatus` to a multicast `Subject`.
+- Create a `this.disablePaymentButton$` observable that combines `isCardInvalid$` and `paymentStatus$` using a `disablePaymentButton(isCardInvalid$, paymentStatus$)` function.
+- Convert `this.paymentStatus$` to a multicast `Subject`.
 
 ## What you need to know
 

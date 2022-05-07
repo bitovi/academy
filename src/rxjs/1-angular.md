@@ -21,8 +21,8 @@ In this section, we will:
 
 ## How to solve this problem
 
-- Create a `userCardNumber` `BehaviorSubject`.
-- Write the value of the `cardNumber` input to the `userCardNumber` `BehaviorSubject` on the `input` event.
+- Create a `userCardNumber$` `BehaviorSubject`. In Angular, Observables have a `$` suffix by convention.
+- Write the value of the `cardNumber` input to the `userCardNumber$` `BehaviorSubject` on the `input` event.
 - Write the value of `cardNumber` out in the template under the `</form>`
   element like:
   ```html
@@ -49,11 +49,11 @@ Initialize a [BehaviorSubject](https://rxjs.dev/api/index/class/BehaviorSubject)
   const { BehaviorSubject } = rxjs;
 
   class AppComponent {
-    userCardNumber = new BehaviorSubject<string>();
+    userCardNumber$ = new BehaviorSubject<string>();
   }
 
   const app = new AppComponent();
-  console.log(app.userCardNumber) // logs Observable
+  console.log(app.userCardNumber$) // logs Observable
 </script>
 ```
 
@@ -89,14 +89,14 @@ Emit a value on a Subject by calling `subject.next()`:
   const { BehaviorSubject } = rxjs;
 
   class AppComponent {
-    userCardNumber = new BehaviorSubject<string>();
+    userCardNumber$ = new BehaviorSubject<string>();
   }
 
   const app = new AppComponent();
 
-  app.userCardNumber.subscribe(console.log); // logs undefined
+  app.userCardNumber$.subscribe(console.log); // logs undefined
 
-  app.userCardNumber.next("1111-2222-3333-4444"); // logs "1111-2222-3333-4444"
+  app.userCardNumber$.next("1111-2222-3333-4444"); // logs "1111-2222-3333-4444"
 </script>
 ```
 
@@ -110,7 +110,7 @@ You can call `subject.next()` in the DOM as follows:
   type="text"
   name="cardNumber"
   placeholder="Card Number"
-  (input)="userCardNumber.next($event.target.value)"
+  (input)="userCardNumber$.next($event.target.value)"
 />
 ```
 
@@ -119,7 +119,7 @@ You can call `subject.next()` in the DOM as follows:
 Use `| async` to write out an observable's value in a template as follows:
 
 ```html
-UserCardNumber: {{ userCardNumber | async }} <br />
+UserCardNumber: {{ userCardNumber$ | async }} <br />
 ```
 
 Read more about this technique [here](https://angular.io/guide/observables-in-angular#async-pipe).

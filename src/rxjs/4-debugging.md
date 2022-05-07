@@ -16,12 +16,12 @@ Who has time to read? This video covers the content on this page. Watch fullscre
 In this section, we will:
 
 - Learn how to debug RxJS observables.
-- Log the value of the `this.cardNumber` observable everytime it changes.
+- Log the value of the `this.cardNumber$` observable everytime it changes.
 
 ## How to solve this problem
 
 - Create a `log` helper that `console.log`s emitted values without causing side-effects.
-- Use the `log` helper to log values emitted by `this.cardNumber`.
+- Use the `log` helper to log values emitted by `this.cardNumber$`.
 
 ## What you need to know
 
@@ -134,10 +134,8 @@ const number = source.pipe(mapToNumber).pipe(log('number'));
 > **NOTE 2:** The solution will log `cardNumber` twice. That's expected because
 > there are two subscriptions on `cardNumber`:
 >
-> - one directly from `cardNumber` in the template - `{{ (cardNumber | async) }}`
-> - the other from `cardError` in the template - `{{ (cardError | async) }}` - `cardError`
-
-    derives from `cardNumber`.
+> - one directly from `cardNumber$` in the template - `{{ cardNumber$ | async }}`
+> - the other from `cardError$` in the template - `{{ cardError$ | async }}` - `cardError` derives from `cardNumber`.
 
 ## The Solution
 

@@ -16,11 +16,11 @@ In this section, we will:
 ## How to solve the problem
 
 - Create a `appComponent.pay(event)` method that is called when the form is submitted.
-- Create a `appComponent.paySubmitted` `Subject` that emits `true` when
+- Create a `appComponent.paySubmitted$` `Subject` that emits `true` when
   `pay` is called.
-- Create a `card` observable like:
+- Create a `card$` observable like:
   ```js
-  const card = combineCard(this.cardNumber, this.expiry, this.cvc);
+  const card$ = combineCard(this.cardNumber$, this.expiry$, this.cvc$);
   ```
   `card` should publish objects with the `cardNumber`, `expiry`, and `cvc`:
   ```js
@@ -30,10 +30,10 @@ In this section, we will:
     cvc,
   };
   ```
-- Create a `payments` observable like:
+- Create a `payments$` observable like:
 
   ```js
-  const payments = paymentPromises(this.paySubmitted, card);
+  const payments$ = paymentPromises(this.paySubmitted$, card$);
   ```
 
   `payments` publishes [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) when `this.paySubmitted` emits a value. Those
@@ -44,7 +44,7 @@ In this section, we will:
   subscribe to it as follows:
 
   ```js
-  payments.subscribe((paymentPromise) => {
+  payments$.subscribe((paymentPromise) => {
     paymentPromise.then(() => {
       console.log('payment complete!');
     });
