@@ -267,7 +267,7 @@
 
       const paymentStatusObservables$ = payments$.pipe(toPaymentStatusObservable);
 
-      this.paymentStatus$ = paymentStatusObservables$.pipe(mergeAll()).pipe(share({ connector: () => new Subject() }));;
+      this.paymentStatus$ = paymentStatusObservables$.pipe(mergeAll()).pipe(share());
 
       this.disablePaymentButton$ = disablePaymentButton(this.isCardInvalid$, this.paymentStatus$);
     }
