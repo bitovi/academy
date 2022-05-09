@@ -274,13 +274,11 @@ Write interfaces to tell TypeScript what we expect restaurant and other related 
 let restaurant = {
   name: '', //string
   slug: '', //string
-  images: [
-    {
-      thumbnail: '', //string
-      owner: '', //string
-      banner: '', //string
-    },
-  ],
+  images: {
+    thumbnail: '', //string
+    owner: '', //string
+    banner: '', //string
+  },
   menu: {
     lunch: [
       {
