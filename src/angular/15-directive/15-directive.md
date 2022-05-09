@@ -135,6 +135,10 @@ ng g directive onlyNumbers
 
 ## Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/only-numbers.directive.ts** to:
 
 @sourceref ./only-numbers.directive.ts
+
+</details>

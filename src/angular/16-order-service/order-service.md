@@ -63,10 +63,14 @@ const order = {
 
 ## P1: Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/order/order.service.ts**
 
 @sourceref ./order.service-interfaces.ts
 @highlight 3-6, 8-14, 16-24
+
+</details>
 
 ## Problem 2: Finish the Order Service
 
@@ -101,8 +105,12 @@ ng test
 
 ## P2: Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/order/order.service.ts**
 @diff ./order.service-interfaces.ts ./order-2.service.ts only
+
+</details>
 
 ## Problem 3: Use the OrderService in the OrderComponent to Create an Order
 
@@ -156,5 +164,9 @@ If you've implemented everything correctly, you should now be able to create an 
 
 ## P3: Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/order/order.component.ts**
 @diff ./order.component.ts ./order.component-solution.ts only
+
+</details>

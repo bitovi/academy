@@ -139,7 +139,11 @@ In our index.html file, the angular cli included `<base href="/>`. This isn't an
 
 ## Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/app-routing.module.ts** to:
 
 @sourceref ./app-routing.module.ts
 @highlight 3,4,6-15
+
+</details>

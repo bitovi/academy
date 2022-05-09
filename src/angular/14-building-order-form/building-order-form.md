@@ -45,9 +45,13 @@ When you navigate to the `/order` path from a restaurant detail page you should 
 
 ## P1: Solution
 
-**src/app/app-routing.module.ts**
+<details>
+<summary>Click to see the solution</summary>
+✏️ Update **src/app/app-routing.module.ts**
 
 @diff ../13-nested-routes/app-routing.module.ts ./app-routing.module.ts only
+
+</details>
 
 ## Problem 2: Build Out the Order Component
 
@@ -103,9 +107,13 @@ The order form component needs to get the restaurant from the route slug, and ne
 
 ## P2: Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/order/order.component.ts**
 
 @diff ./order.component-starter.ts ./order.component-solution.ts only
+
+</details>
 
 ## Importing 3rd Party Plugins
 
@@ -201,6 +209,8 @@ Components in Angular can pass data back and forth to each other through the use
 
 ## P3: Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/order/menu-items.component.html**
 
 @sourceref ./child-component/menu-items.component-props.html
@@ -212,6 +222,8 @@ Components in Angular can pass data back and forth to each other through the use
 ✏️ Update **src/app/order/order.component.html**
 
 @diff ./child-component/order.component-childcomponent.html ./child-component/order.component-props.html only
+
+</details>
 
 ## Problem 4: Attaching Event Handlers to Item Checkboxes
 
@@ -248,6 +260,8 @@ Event binding in Angular follows a simple pattern - the event name in parenthesi
 
 ## P4: Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/order/menu-items/menu-items.component.html**
 
 @diff ./child-component/menu-items.component-props.html ./child-component/menu-items-1.component.html only
@@ -255,6 +269,8 @@ Event binding in Angular follows a simple pattern - the event name in parenthesi
 ✏️ Update **src/app/order/menu-items/menu-items.component.ts**
 
 @diff ./child-component/menu-items.component-props.ts ./child-component/menu-items-1.component.ts only
+
+</details>
 
 ## Problem 5: Update OrderFormComponent with selectedItems Array from MenuItemsComponent
 
@@ -295,6 +311,8 @@ When we have a formControl we need to update programmatically with a value we ca
 
 ## P5: Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/order/menu-items.component.ts**
 
 @diff ./child-component/menu-items-1.component.ts ./child-component/menu-items-2.component.ts only
@@ -306,6 +324,8 @@ When we have a formControl we need to update programmatically with a value we ca
 ✏️ Update **src/app/order/order.component.ts**
 
 @diff ./order.component-solution.ts ./child-component/order-2.component.ts only
+
+</details>
 
 ## Control Value Accessor
 

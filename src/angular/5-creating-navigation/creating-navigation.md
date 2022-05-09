@@ -112,6 +112,10 @@ RouterLinkActive can also be used to set <a href="https://angular.io/api/router/
 
 ## Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/app.component.html** to:
 
 @diff ../4-adding-routing/app.component.html ./app.component.html
+
+</details>

@@ -46,6 +46,8 @@ If you've implemented the solution correctly, when you use the select boxes to c
 
 ## Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/restaurant/restaurant.service.ts**
 
 @diff ../9-form-value-changes/restaurant.service-generics.ts ./restaurant.service-httpparams.ts only
@@ -53,3 +55,5 @@ If you've implemented the solution correctly, when you use the select boxes to c
 ✏️ Update **src/app/restaurant/restaurant.component.ts**
 
 @diff ../9-form-value-changes/restaurant.component-citystate.ts ./restaurant.component-httpparams.ts
+
+</details>

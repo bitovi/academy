@@ -45,6 +45,8 @@ You got this already, but just in case, here's some hints:
 
 ## P1: solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ First, run:
 
 ```bash
@@ -57,6 +59,8 @@ Then route to the component:
 
 @sourceref ./app-routing.module.ts
 @highlight 4, 26-29, only
+
+</details>
 
 ## Problem 2: Add `HistoryComponent` to navigation
 
@@ -78,9 +82,13 @@ If you've implemented the solution correctly you should now be able to navigate 
 
 ## P2: Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/app.component.html**
 
 @diff ../5-creating-navigation/app.component.html ./app.component.html
+
+</details>
 
 ## Problem 3: List All Orders
 
@@ -128,6 +136,8 @@ For this step, you'll need to know how to add multiple class names. You can do t
 
 ## P3: Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/order/history.component.ts**
 
 @diff ./history.component.ts ./history.component-solution.ts only
@@ -135,6 +145,8 @@ For this step, you'll need to know how to add multiple class names. You can do t
 ✏️ Update **src/app/order/history.component.html**
 
 @diff ./0-history.component.html ./history.component-1.html
+
+</details>
 
 ## Problem 4: Creating a Child Component to Handle Order States
 
@@ -212,7 +224,11 @@ ng g component order/list
 
 ## P4: Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/order/list.component.ts**
 
 @sourceref ./list.component.ts
 @highlight 2,11-17,19,23-39
+
+</details>

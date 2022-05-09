@@ -235,6 +235,8 @@ Forms API:
 
 ## Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./restaurant.component.ts
@@ -244,6 +246,8 @@ Forms API:
 
 @sourceref ./restaurant.component.html
 @highlight 3, 6-9, 11, 17-21, 23, 29-31, only
+
+</details>
 
 ## Advanced Implementation
 

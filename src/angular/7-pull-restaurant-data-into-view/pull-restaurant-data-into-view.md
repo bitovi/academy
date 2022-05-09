@@ -90,9 +90,13 @@ observable.subscribe(function subscriber(value) {
 
 ## P1: Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/restaurant/restaurant.component.ts** as follows:
 
 @diff ../3-creating-components/restaurant.component.ts ./restaurant.component-service.ts
+
+</details>
 
 ## Problem 2: Show a Loading State while Restaurants are Being Requested
 
@@ -144,6 +148,8 @@ You should be able see a list of restaurants when you navigate to <a href="http:
 
 ## P2: Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/restaurant/restaurant.component.ts** to:
 
 @diff ./restaurant.component-service.ts ./restaurant.component.ts
@@ -151,6 +157,8 @@ You should be able see a list of restaurants when you navigate to <a href="http:
 ✏️ Update **src/app/restaurant/restaurant.component.html** to:
 
 @diff ../3a-pipes/restaurant.component.html ./restaurant.component.html
+
+</details>
 
 ## Did You Know?
 

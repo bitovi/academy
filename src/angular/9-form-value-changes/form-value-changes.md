@@ -80,10 +80,14 @@ When you interact with the dropdown menus, you should see their values logged to
 
 ## P1: Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/restaurant/restaurant.component.ts**
 
 @sourceref restaurant.component.ts
 @highlight 1,3,17,38,39,51-69
+
+</details>
 
 Now that we know how to get values from our dropdowns, let's populate them with real data. We can get our list of states immediately, but to get our cities, we'll want to make a GET request based on the state the user selected.
 
@@ -119,9 +123,13 @@ Method 2 - `getCities`, takes a string param called 'state' a makes a request to
 
 ## P2: Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/restaurant/restaurant.service.ts**
 
 @diff ../6-restaurant-service/restaurant.service.ts ./restaurant.service-citystate.ts
+
+</details>
 
 ## Problem 3: Use Generics to Modify ResponseData interface to Work with States and Cities Data
 
@@ -157,6 +165,8 @@ Convert the `ResponseData` interface to use generics so it can take a type of `R
 
 ## P3: Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/restaurant/restaurant.service.ts**
 
 @diff ./restaurant.service-setup-generics.ts ./restaurant.service-generics.ts
@@ -164,6 +174,8 @@ Convert the `ResponseData` interface to use generics so it can take a type of `R
 ✏️ Update **src/app/restaurant/restaurant.component.ts**
 
 @diff restaurant.component.ts ./restaurant-generics.component.ts only
+
+</details>
 
 ## Problem 4: Get Cities and States Based on Dropdown Values
 
@@ -193,6 +205,10 @@ Now that our service is in working order, let's populate our dropdowns with stat
 
 ## P4: Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/restaurant/restaurant.component.ts**
 
 @diff ./restaurant-generics.component.ts ./restaurant.component-citystate.ts only
+
+</details>

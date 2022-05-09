@@ -30,6 +30,8 @@ In the next section we're going to be creating a restaurant detail view. We'll n
 
 ## Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/restaurant/restaurant.service.ts**
 
 @diff ../10-updating-service-params/restaurant.service-httpparams.ts ./restaurant.service.ts only
@@ -37,3 +39,5 @@ In the next section we're going to be creating a restaurant detail view. We'll n
 ✏️ Update **src/app/restaurant/restaurant.service.spec.ts**
 
 @diff ../10-updating-service-params/restaurant.service-httpparams.spec.ts ./restaurant.service.spec-withrestaurant.ts only
+
+</details>

@@ -73,6 +73,8 @@ The example below shows how to provide a Pipe globally in Angular. The Pipe bein
 
 ## Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/item-total.pipe.ts** to:
 
 @sourceref ./item-total.pipe.ts
@@ -84,6 +86,8 @@ The example below shows how to provide a Pipe globally in Angular. The Pipe bein
 ✏️ Update **src/app/order/list/list.component.html** to use the item total Pipe:
 
 @diff ../17-order-history-component/list.component.html ./list.component.html only
+
+</details>
 
 ## Using Currency Pipe
 
