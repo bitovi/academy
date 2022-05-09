@@ -73,6 +73,8 @@ When you click the detail button on a restaurant from the restaurant list view y
 
 ## Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/app-routing.module.ts**
 
 @diff ../4-adding-routing/app-routing.module.ts ./app-routing.module.ts
@@ -80,3 +82,5 @@ When you click the detail button on a restaurant from the restaurant list view y
 ✏️ Update **src/app/restaurant/detail/detail.component.ts**
 
 @diff ./detail.component-starter.ts ./detail.component.ts
+
+</details>

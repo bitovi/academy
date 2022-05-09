@@ -278,6 +278,8 @@ We also included `schemas` metadata for our module. <a href="https://angular.io/
 
 ## Solution
 
+<details>
+<summary>Click to see the solution</summary>
 Let's change the markup to look like the home page of our place my order app.
 
 ✏️ Update **src/app/app.component.html** to:
@@ -290,3 +292,4 @@ Let's change the markup to look like the home page of our place my order app.
 @highlight 1-2
 
 When you save your changes, you should see the new h1 tag in your browser at <a href="http://localhost:4200" target="\_blank">localhost:4200</a>.
+</details>

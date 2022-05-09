@@ -132,6 +132,8 @@ This example shows the use of FormArray and using an `insert` method to dynamica
 
 ## The Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/restaurant/restaurant.component.ts** to:
 
 @sourceref ./restaurant.component.ts
@@ -141,3 +143,5 @@ This example shows the use of FormArray and using an `insert` method to dynamica
 
 @sourceref ./restaurant.component.html
 @highlight 6,10-12,18,22-24,only
+
+</details>

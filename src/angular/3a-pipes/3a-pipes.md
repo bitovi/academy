@@ -97,8 +97,12 @@ ng g pipe imageUrl
 
 ## Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/image-url.pipe.ts** to:
 
 @sourceref ./image-url.pipe.ts
 
 @highlight 7-9
+
+</details>

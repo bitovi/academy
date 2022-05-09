@@ -211,6 +211,8 @@ npm run test
 
 ## P1: Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/app.module.ts** to inject the `HttpClientModule`:
 
 @sourceref ./app.module.ts
@@ -220,6 +222,8 @@ npm run test
 
 @sourceref ./restaurant.service-1.ts
 @highlight 1,3,4,10,12-14
+
+</details>
 
 ## Problem 2: Write an Interface to Describe the Restaurant Object and Data Response
 
@@ -336,8 +340,12 @@ it within the `ResponseData` interface which is used by `httpClient.get`:
 
 ## P2: Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/restaurant/restaurant.ts** to:
 
 @diff ./restaurant-starter.ts ./restaurant.ts
 
 In the next step we'll call the `getRestaurants` method in our component to get the list of restaurants.
+
+</details>

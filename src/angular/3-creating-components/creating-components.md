@@ -187,6 +187,8 @@ Run `npm run start`, and your app should compile with no errors, and you'll be a
 
 ## P1: Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/home/home.component.html**
 
 ```html
@@ -212,10 +214,12 @@ Run `npm run start`, and your app should compile with no errors, and you'll be a
 
 @highlight 8
 
-**src/app/home/home.component.ts**
+✏️ Update **src/app/home/home.component.ts**
 
 @sourceref ./home.component.ts
 @highlight 9
+
+</details>
 
 ## Problem 2: Write Restaurant Component Markup that Displays a List of Restaurants
 
@@ -363,8 +367,12 @@ For now, we'll use fake data for a list of restaurants in the component, and put
 
 ## P2: Solution
 
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/restaurant/restaurant.component.html** to the following:
 
 @sourceref ./restaurant.component.html
 
 @highlight 3-23
+
+</details>
