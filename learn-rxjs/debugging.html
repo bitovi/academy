@@ -555,8 +555,8 @@ to perform a side-effect (such as logging) on every emission on a source observa
 <pre><code class="language-typescript">const number = source.pipe(mapToNumber).pipe(log('number'));
 </code></pre>
 <blockquote>
-<p><strong>NOTE 1:</strong> Notice that to log <code>number</code>, we call <code>.pipe( log(...) )</code>
-on the on what would be the <code>number</code> observable.</p>
+<p><strong>NOTE 1:</strong> Notice that to log <code>number</code>, we call <code>.pipe(log(...))</code>
+on what would be the <code>number</code> observable.</p>
 </blockquote>
 <blockquote>
 <p><strong>NOTE 2:</strong> The solution will log <code>cardNumber</code> twice. That's expected because
