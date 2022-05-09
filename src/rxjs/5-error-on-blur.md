@@ -204,7 +204,7 @@ In this section, we will:
 
 - For a blur event, we should not save the last publish value
   so a `Subject` will work better than a `BehaviorSubject`.
-- Use [a property binding](https://angular.io/guide/template-syntax#property-binding--property-) to set a property or attribute on an element.  
+- Use [a property binding](https://angular.io/guide/property-binding) to set a property or attribute on an element.  
   To add `my-class` to the `className` when `testValue` is truthy:
 
   ```html

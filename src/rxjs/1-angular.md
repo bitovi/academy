@@ -122,7 +122,7 @@ Use `| async` to write out an observable's value in a template as follows:
 UserCardNumber: {{ userCardNumber | async }} <br />
 ```
 
-Read more about this technique [here](https://blog.angular-academy.io/angular-reactive-templates/).
+Read more about this technique [here](https://angular.io/guide/observables-in-angular#async-pipe).
 
 ## The Solution
 
