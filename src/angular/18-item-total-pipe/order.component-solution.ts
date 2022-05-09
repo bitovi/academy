@@ -40,7 +40,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   completedOrder?: Order;
   orderComplete = false;
   orderProcessing = false;
-  private unSubscribe = new Subject<void>();
+  private onDestroy$ = new Subject<void>();
 
   constructor(
     private route: ActivatedRoute,
@@ -66,8 +66,8 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.unSubscribe.next();
-    this.unSubscribe.complete();
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 
   createOrderForm(): void {
@@ -99,7 +99,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
     this.orderForm
       ?.get('items')
-      ?.valueChanges.pipe(takeUntil(this.unSubscribe))
+      ?.valueChanges.pipe(takeUntil(this.onDestroy$))
       .subscribe((val) => {
         this.orderTotal = this.itemTotal.transform(val);
       });
