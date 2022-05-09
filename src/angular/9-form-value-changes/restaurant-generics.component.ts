@@ -46,6 +46,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
     this.restaurants.isPending = true;
     this.restaurantService
       .getRestaurants()
+      .pipe(takeUntil(this.onDestroy$))
       .subscribe((res: ResponseData<Restaurant>) => {
         this.restaurants.value = res.data;
         this.restaurants.isPending = false;

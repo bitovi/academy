@@ -104,17 +104,21 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   }
 
   getStates(): void {
-    this.restaurantService.getStates().subscribe((res: ResponseData<State>) => {
-      this.states.value = res.data;
-      this.states.isPending = false;
-      this.form.get('state')?.enable();
-    });
+    this.restaurantService
+      .getStates()
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((res: ResponseData<State>) => {
+        this.states.value = res.data;
+        this.states.isPending = false;
+        this.form.get('state')?.enable();
+      });
   }
 
   getCities(state: string): void {
     this.cities.isPending = true;
     this.restaurantService
       .getCities(state)
+      .pipe(takeUntil(this.onDestroy$))
       .subscribe((res: ResponseData<City>) => {
         this.cities.value = res.data;
         this.cities.isPending = false;
@@ -128,6 +132,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   getRestaurants(state: string, city: string): void {
     this.restaurantService
       .getRestaurants(state, city)
+      .pipe(takeUntil(this.onDestroy$))
       .subscribe((res: ResponseData<Restaurant>) => {
         this.restaurants.value = res.data;
         this.restaurants.isPending = false;

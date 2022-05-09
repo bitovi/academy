@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import * as io from 'socket.io-client';
 import { ResponseData } from 'src/app/restaurant/restaurant.service';
 import { environment } from 'src/environments/environment';
@@ -16,6 +17,7 @@ interface Data<T> {
 })
 export class HistoryComponent implements OnInit, OnDestroy {
   orders: Data<Order> = { value: [], isPending: true };
+  private onDestroy$ = new Subject<void>();
   socket: SocketIOClient.Socket;
 
   constructor(private orderService: OrderService) {
@@ -47,12 +49,17 @@ export class HistoryComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.socket.removeAllListeners();
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 
   getOrders(): void {
-    this.orderService.getOrders().subscribe((res: ResponseData<Order>) => {
-      this.orders.value = res.data;
-    });
+    this.orderService
+      .getOrders()
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((res: ResponseData<Order>) => {
+        this.orders.value = res.data;
+      });
   }
 
   get newOrders(): Order[] {

@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 import { Restaurant } from '../restaurant';
 import { RestaurantService } from '../restaurant.service';
 
@@ -8,9 +9,10 @@ import { RestaurantService } from '../restaurant.service';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.less'],
 })
-export class DetailComponent implements OnInit {
+export class DetailComponent implements OnInit, OnDestroy {
   restaurant?: Restaurant;
   isLoading: boolean = true;
+  private onDestroy$ = new Subject<void>();
 
   constructor(
     private route: ActivatedRoute,
@@ -23,11 +25,17 @@ export class DetailComponent implements OnInit {
     if (slug) {
       this.restaurantService
         .getRestaurant(slug)
+        .pipe(takeUntil(this.onDestroy$))
         .subscribe((data: Restaurant) => {
           this.restaurant = data;
           this.isLoading = false;
         });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 
   getUrl(image: string): string {

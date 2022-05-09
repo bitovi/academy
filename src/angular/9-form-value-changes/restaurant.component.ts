@@ -44,10 +44,13 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.restaurants.isPending = true;
-    this.restaurantService.getRestaurants().subscribe((res: ResponseData) => {
-      this.restaurants.value = res.data;
-      this.restaurants.isPending = false;
-    });
+    this.restaurantService
+      .getRestaurants()
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((res: ResponseData) => {
+        this.restaurants.value = res.data;
+        this.restaurants.isPending = false;
+      });
 
     this.form
       .get('state')

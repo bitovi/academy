@@ -53,6 +53,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     if (slug) {
       this.restaurantService
         .getRestaurant(slug)
+        .pipe(takeUntil(this.onDestroy$))
         .subscribe((data: Restaurant) => {
           this.restaurant = data;
           this.isLoading = false;
