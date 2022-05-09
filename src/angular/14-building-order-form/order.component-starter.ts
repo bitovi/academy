@@ -37,7 +37,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   completedOrder: any;
   orderComplete = false;
   orderProcessing = false;
-  private unSubscribe = new Subject<void>();
+  private onDestroy$ = new Subject<void>();
 
   constructor(
     private route: ActivatedRoute,
