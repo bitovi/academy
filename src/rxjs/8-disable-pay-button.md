@@ -20,11 +20,11 @@ In this section, we will:
 
 ## How to solve this problem
 
-- Create a `this.isCardInvalid` property publishes `true` if
-  either `this.cardError` `this.expiryError`, or `this.cvcError` are truthy.
-- Create an `isCardInvalid` that can be passed the
-  `this.cardError`, `this.expiryError` and `this.cvcError` observables
-  and returns the `this.isCardInvalid` observable.
+- Create a `this.isCardInvalid$` property that publishes `true` if
+  either `this.cardError$`, `this.expiryError$` or `this.cvcError$` are truthy.
+- Create an `isCardInvalid` function that can be passed the
+  `this.cardError$`, `this.expiryError$` and `this.cvcError$` observables
+  and returns the `this.isCardInvalid$` observable.
 
 ## What you need to know
 

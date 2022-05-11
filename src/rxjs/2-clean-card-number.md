@@ -21,12 +21,12 @@ In this section, we will:
 
 ## How to solve this problem
 
-- Create a `this.cardNumber` observable that contains the
+- Create a `this.cardNumber$` observable that contains the
   text of the `userCardNumber` input without spaces (`\s`) or dashes (`-`).
-- Create a `cleanCardNumber` operator that maps the `this.userCardNumber` to `this.cardNumber`.
-- Write out the value of the `this.cardNumber` observable like:
+- Create a `cleanCardNumber` operator that maps the `this.userCardNumber$` to `this.cardNumber$`.
+- Write out the value of the `this.cardNumber$` observable like:
   ```html
-  CardNumber: {{ cardNumber | async }} <br />
+  CardNumber: {{ cardNumber$ | async }} <br />
   ```
 
 ## What you need to know
@@ -60,10 +60,10 @@ In this section, we will:
 
   @codepen
 
-- Use `cardNumber.replace(/[\s-]/g, "")` to clean the card number.
-- Write out the `cardNumber` after the `userCardNumber` like:
+- Use `replace(/[\s-]/g, "")` method to clean the card number.
+- Write out the `cardNumber$` after the `userCardNumber` like:
   ```html
-  CardNumber: {{ cardNumber | async }} <br />
+  CardNumber: {{ cardNumber$ | async }} <br />
   ```
 
 ## The Solution

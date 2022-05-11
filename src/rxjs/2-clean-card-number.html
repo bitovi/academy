@@ -29,7 +29,7 @@
           type="text"
           name="cardNumber"
           placeholder="Card Number"
-          (input)="userCardNumber.next($event.target.value)"
+          (input)="userCardNumber$.next($event.target.value)"
         />
 
         <input type="text" name="expiry" placeholder="MM-YY" />
@@ -40,15 +40,15 @@
           PAY
         </button>
       </form>
-      UserCardNumber: {{ userCardNumber | async }} <br />
-      CardNumber: {{ cardNumber | async }} <br />
+      UserCardNumber: {{ userCardNumber$ | async }} <br />
+      CardNumber: {{ cardNumber$ | async }} <br />
     `
   })
   class AppComponent {
-    userCardNumber = new BehaviorSubject<string>();
+    userCardNumber$ = new BehaviorSubject<string>();
 
     constructor() {
-      this.cardNumber = this.userCardNumber.pipe(cleanCardNumber);
+      this.cardNumber$ = this.userCardNumber$.pipe(cleanCardNumber);
     }
   }
 

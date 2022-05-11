@@ -13,8 +13,8 @@ In this section, we will:
 
 ## How to solve this problem
 
-- Create a `this.disablePaymentButton` observable that combines `isCardInvalid` and `paymentStatus` using a `disablePaymentButton(isCardInvalid, paymentStatus)` function.
-- Convert `this.paymentStatus` to a multicast `Subject`.
+- Create a `this.disablePaymentButton$` observable that combines `isCardInvalid$` and `paymentStatus$` using a `disablePaymentButton(isCardInvalid$, paymentStatus$)` function.
+- Convert `this.paymentStatus$` to a multicast `Subject`.
 
 ## What you need to know
 
@@ -57,7 +57,7 @@ runs twice, once for every subscription on the `squares` observable.
 You can change this by converting the observable to a subject with:
 
 ```js
-.pipe(share({ connector: () => new Subject() }))
+.pipe(share())
 ```
 
 The following shows this using this technique to run `square` only once
@@ -76,7 +76,7 @@ for all subscribers of `squares`:
     return x * x;
   });
 
-  const squares = numbers.pipe(square).pipe(share({ connector: () => new Subject() }));
+  const squares = numbers.pipe(square).pipe(share());
 
   squares.subscribe((value) => {
     console.log("squares1", value);
