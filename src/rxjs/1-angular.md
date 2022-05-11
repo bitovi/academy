@@ -19,9 +19,15 @@ In this section, we will:
 - Write values to a [Subject](https://rxjs.dev/guide/subject)
   and write out the value of the subject in the template.
 
+## Observables and the $ suffix
+
+At Bitovi, we follow the [ts.dev Style Guide](https://ts.dev/style/#naming-style) and prefer to suffix Observables with `$`.
+
+Although [not enforced](https://angular.io/guide/rx-library#naming-conventions-for-observables), it is useful to visually differentiate between observable and non-observable values.
+
 ## How to solve this problem
 
-- Create a `userCardNumber$` `BehaviorSubject`. In Angular, Observables have a `$` suffix by convention.
+- Create a `userCardNumber$` `BehaviorSubject`.
 - Write the value of the `cardNumber` input to the `userCardNumber$` `BehaviorSubject` on the `input` event.
 - Write the value of `cardNumber` out in the template under the `</form>`
   element like:
