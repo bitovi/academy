@@ -57,6 +57,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     if (slug) {
       this.restaurantService
         .getRestaurant(slug)
+        .pipe(takeUntil(this.onDestroy$))
         .subscribe((data: Restaurant) => {
           this.restaurant = data;
           this.isLoading = false;
@@ -109,6 +110,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.orderProcessing = true;
     this.orderService
       .createOrder(this.orderForm?.value)
+      .pipe(takeUntil(this.onDestroy$))
       .subscribe((res: Order) => {
         this.completedOrder = res;
         this.orderComplete = true;

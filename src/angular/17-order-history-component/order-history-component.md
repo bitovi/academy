@@ -105,7 +105,7 @@ We want to be able to see a list of all created orders and their varying statuse
 `getOrders` method. The getters `newOrders`, `preparingOrders`, `deliveryOrders`, and `deliveredOrders` will be used later.
 
 @sourceref ./history.component.ts
-@highlight 18,22
+@highlight 18,22,26
 
 2\. ✏️ Copy the following into **src/app/order/history/history.component.html**. You will need to
 iterate through orders and add the right class names to the outer `<div>` for each order.
@@ -229,6 +229,6 @@ ng g component order/list
 ✏️ Update **src/app/order/list.component.ts**
 
 @sourceref ./list.component.ts
-@highlight 2,11-17,19,23-39
+@highlight 2-3,10-18,20,24-49
 
 </details>

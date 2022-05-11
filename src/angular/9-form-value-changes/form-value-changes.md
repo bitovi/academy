@@ -72,7 +72,7 @@ The ReactiveForms API makes it easy for us to change our FormControls as needed.
 ## P1: Technical Requirements
 
 1. Subscribe to the `state` and `city` formControl value changes and log the resulting value to the console.
-2. Unsubscribe from Subscription created in step 1 in the `ngOnDestroy` function
+2. Unsubscribe from Subscriptions within `restaurant.component` in the `ngOnDestroy` function
 
 ## P1: To Verify Your Solution is Correct
 
@@ -85,7 +85,7 @@ When you interact with the dropdown menus, you should see their values logged to
 ✏️ Update **src/app/restaurant/restaurant.component.ts**
 
 @sourceref restaurant.component.ts
-@highlight 1,3,17,38,39,51-69
+@highlight 1,3,17,38,39,47-72
 
 </details>
 

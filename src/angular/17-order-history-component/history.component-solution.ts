@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import { ResponseData } from 'src/app/restaurant/restaurant.service';
 import { Order, OrderService } from '../order.service';
 
@@ -12,8 +13,9 @@ interface Data<T> {
   templateUrl: './history.component.html',
   styleUrls: ['./history.component.less'],
 })
-export class HistoryComponent implements OnInit {
+export class HistoryComponent implements OnInit, OnDestroy {
   orders: Data<Order> = { value: [], isPending: true };
+  private onDestroy$ = new Subject<void>();
 
   constructor(private orderService: OrderService) {}
 
@@ -21,10 +23,18 @@ export class HistoryComponent implements OnInit {
     this.getOrders();
   }
 
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
+  }
+
   getOrders(): void {
-    this.orderService.getOrders().subscribe((res: ResponseData<Order>) => {
-      this.orders.value = res.data;
-    });
+    this.orderService
+      .getOrders()
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((res: ResponseData<Order>) => {
+        this.orders.value = res.data;
+      });
   }
 
   get newOrders(): Order[] {
