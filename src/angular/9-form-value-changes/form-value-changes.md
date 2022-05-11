@@ -72,7 +72,7 @@ The ReactiveForms API makes it easy for us to change our FormControls as needed.
 ## P1: Technical Requirements
 
 1. Subscribe to the `state` and `city` formControl value changes and log the resulting value to the console.
-2. Unsubscribe from Subscriptions at `restaurant.component` in the `ngOnDestroy` function
+2. Unsubscribe from Subscriptions within `restaurant.component` in the `ngOnDestroy` function
 
 ## P1: To Verify Your Solution is Correct
 
