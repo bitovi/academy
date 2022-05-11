@@ -1351,7 +1351,9 @@ observable.subscribe(function subscriber(value) {
 <div class='codepen'></div>
 <div line-highlight='11'></div>
 <h2>P1: Solution</h2>
-<p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong> as follows:</p>
+<p><details>
+<summary>Click to see the solution</summary>
+✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong> as follows:</p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 import { Restaurant } from './restaurant';
 import { ResponseData, RestaurantService } from './restaurant.service';
@@ -1366,7 +1368,7 @@ export class RestaurantComponent implements OnInit {
 
   constructor(private restaurantService: RestaurantService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.restaurantService.getRestaurants().subscribe((res: ResponseData) =&gt; {
       this.restaurants = res.data;
     });
@@ -1374,7 +1376,8 @@ export class RestaurantComponent implements OnInit {
 }
 
 </code></pre>
- <div line-highlight="2-3,11,13,15-18,"></div>
+ <div line-highlight="2-3,11,13,16-18,"></div>
+<p></details></p>
 <h2>Problem 2: Show a Loading State while Restaurants are Being Requested</h2>
 <p>Sometimes the server can take a long time to respond. It's a better experience for the user
 to show a loading icon to the user while data is loading:</p>
@@ -1703,7 +1706,9 @@ describe('RestaurantComponent', () =&gt; {
 <li>How to conditionally show html blocks (you learned this in a previous section! ✔️)</li>
 </ul>
 <h2>P2: Solution</h2>
-<p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong> to:</p>
+<p><details>
+<summary>Click to see the solution</summary>
+✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong> to:</p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 import { Restaurant } from './restaurant';
 import { ResponseData, RestaurantService } from './restaurant.service';
@@ -1736,7 +1741,7 @@ export class RestaurantComponent implements OnInit {
 }
 
 </code></pre>
- <div line-highlight="5-7,16-18,23-24,26-27,29-30,"></div>
+ <div line-highlight="5-7,16-18,24,26-27,29-30,"></div>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong> to:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
   &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
@@ -1771,6 +1776,7 @@ export class RestaurantComponent implements OnInit {
 
 </code></pre>
  <div line-highlight="3-5,"></div>
+<p></details></p>
 <h2>Did You Know?</h2>
 <p>You may have noticed in our markup there's another use of routerLink:</p>
 <pre><code class="language-html">&lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;

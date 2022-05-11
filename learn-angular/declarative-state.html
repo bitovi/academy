@@ -1500,7 +1500,9 @@ describe('RestaurantComponent', () =&gt; {
 <p>You've learnt all of the above as part of the earlier sections on this page! Completing the
 <a href="/learn-rxjs.html">Bitovi Academy's RxJS training</a> will help however.</p>
 <h2>Solution</h2>
-<p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>
+<p><details>
+<summary>Click to see the solution</summary>
+✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Observable, of, combineLatest, merge } from 'rxjs';
 import { startWith, map, flatMap, shareReplay } from 'rxjs/operators';
@@ -1645,6 +1647,7 @@ export class RestaurantComponent implements OnInit {
 
 </code></pre>
 <div line-highlight='3, 6-9, 11, 17-21, 23, 29-31, only'></div>
+<p></details></p>
 <h2>Advanced Implementation</h2>
 <p>Below is a more comprehensive approach to implementing the sort of features seen in the solution above. It takes things
 further by handling additional cases and abstracting the streams to aid in reuse of these patterns throughout an

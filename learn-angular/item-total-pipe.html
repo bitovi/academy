@@ -1704,7 +1704,9 @@ describe('ItemTotalPipe', () =&gt; {
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
 <h2>Solution</h2>
-<p>✏️ Update <strong>src/app/item-total.pipe.ts</strong> to:</p>
+<p><details>
+<summary>Click to see the solution</summary>
+✏️ Update <strong>src/app/item-total.pipe.ts</strong> to:</p>
 <pre><code class="language-ts">import { Pipe, PipeTransform } from '@angular/core';
 import { Item } from './order/order.service';
 
@@ -1768,7 +1770,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   completedOrder?: Order;
   orderComplete = false;
   orderProcessing = false;
-  private unSubscribe = new Subject&lt;void&gt;();
+  private onDestroy$ = new Subject&lt;void&gt;();
 
   constructor(
     private route: ActivatedRoute,
@@ -1794,8 +1796,8 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.unSubscribe.next();
-    this.unSubscribe.complete();
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 
   createOrderForm(): void {
@@ -1827,7 +1829,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
     this.orderForm
       ?.get('items')
-      ?.valueChanges.pipe(takeUntil(this.unSubscribe))
+      ?.valueChanges.pipe(takeUntil(this.onDestroy$))
       .subscribe((val) =&gt; {
         this.orderTotal = this.itemTotal.transform(val);
       });
@@ -1891,6 +1893,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
 </code></pre>
  <div line-highlight="14,only"></div>
+<p></details></p>
 <h2>Using Currency Pipe</h2>
 <p>Now that we have finished implementing our Item Total Pipe, this is a good time for us to talk about using Currency Pipe. You might have noticed that our prices are in USD, which is a currency, and is a perfect use for the Currency Pipe.
 Angular provides us with a <a href="https://angular.io/api/common/CurrencyPipe">Currency Pipe</a> that formats a number as currency using locale rules. Locale Rules refers to a user's country or region specific details like currency, language and more.</p>

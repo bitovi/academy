@@ -1107,7 +1107,9 @@ describe('RestaurantService', () =&gt; {
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
 <h2>P1: Solution</h2>
-<p>✏️ Update <strong>src/app/app.module.ts</strong> to inject the <code>HttpClientModule</code>:</p>
+<p><details>
+<summary>Click to see the solution</summary>
+✏️ Update <strong>src/app/app.module.ts</strong> to inject the <code>HttpClientModule</code>:</p>
 <pre><code class="language-ts">import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -1156,6 +1158,7 @@ export class RestaurantService {
 
 </code></pre>
 <div line-highlight='1,3,4,10,12-14'></div>
+<p></details></p>
 <h2>Problem 2: Write an Interface to Describe the Restaurant Object and Data Response</h2>
 <p>Currently, from TypeScript's perspective, <code>getRestaurants()</code> can return anything. This
 means if we use the data from <code>getRestaurants()</code>, TypeScript will not be able to notice
@@ -1555,7 +1558,9 @@ describe('RestaurantService', () =&gt; {
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass! If you haven't written the interfaces correctly, you'll see a compile error before the tests runs. You might need to restart the test script to see the compile error.</p>
 </blockquote>
 <h2>P2: Solution</h2>
-<p>✏️ Update <strong>src/app/restaurant/restaurant.ts</strong> to:</p>
+<p><details>
+<summary>Click to see the solution</summary>
+✏️ Update <strong>src/app/restaurant/restaurant.ts</strong> to:</p>
 <pre><code class="language-ts">interface Item {
   name: string;
   price: number;
@@ -1591,6 +1596,7 @@ export interface Restaurant {
 </code></pre>
  <div line-highlight="3,8,13-15,20-21,26-30,"></div>
 <p>In the next step we'll call the <code>getRestaurants</code> method in our component to get the list of restaurants.</p>
+<p></details></p>
 
 </section>
 

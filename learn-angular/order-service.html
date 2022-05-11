@@ -636,7 +636,9 @@ const order = {
 </code></pre></li>
 </ul>
 <h2>P1: Solution</h2>
-<p>✏️ Update <strong>src/app/order/order.service.ts</strong></p>
+<p><details>
+<summary>Click to see the solution</summary>
+✏️ Update <strong>src/app/order/order.service.ts</strong></p>
 <pre><code class="language-ts">import { Injectable } from '@angular/core';
 
 export interface Item {
@@ -672,6 +674,7 @@ export class OrderService {
 
 </code></pre>
 <div line-highlight='3-6, 8-14, 16-24'></div>
+<p></details></p>
 <h2>Problem 2: Finish the Order Service</h2>
 <p>With our order service we'll want to be able to create new orders, updating existing orders, delete orders, and view all orders.</p>
 <h2>P2: Setup</h2>
@@ -877,7 +880,9 @@ added as a property in the <code>OrderService</code> constructor.</li>
 <li>You can pass a request <code>body</code> using the second argument of <code>HttpClient</code> <code>post</code> and <code>put</code> methods.</li>
 </ul>
 <h2>P2: Solution</h2>
-<p>✏️ Update <strong>src/app/order/order.service.ts</strong></p>
+<p><details>
+<summary>Click to see the solution</summary>
+✏️ Update <strong>src/app/order/order.service.ts</strong></p>
 <pre><code class="language-ts">import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -947,6 +952,7 @@ export class OrderService {
 
 </code></pre>
  <div line-highlight="1,3-4,30,33,35-39,41-50,52-61,63-65,only"></div>
+<p></details></p>
 <h2>Problem 3: Use the OrderService in the OrderComponent to Create an Order</h2>
 <h2>P3: Technical Requirements</h2>
 <p>For this problem, we will:</p>
@@ -1116,7 +1122,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   completedOrder: any;
   orderComplete = false;
   orderProcessing = false;
-  private unSubscribe = new Subject&lt;void&gt;();
+  private onDestroy$ = new Subject&lt;void&gt;();
 
   constructor(
     private route: ActivatedRoute,
@@ -1140,8 +1146,8 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.unSubscribe.next();
-    this.unSubscribe.complete();
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 
   createOrderForm(): void {
@@ -1173,7 +1179,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
     this.orderForm
       ?.get('items')
-      ?.valueChanges.pipe(takeUntil(this.unSubscribe))
+      ?.valueChanges.pipe(takeUntil(this.onDestroy$))
       .subscribe((val) =&gt; {
         let total = 0.0;
         if (val.length) {
@@ -1518,7 +1524,9 @@ describe('OrderComponent', () =&gt; {
 <li>How to show/hide content using *ngIf</li>
 </ul>
 <h2>P3: Solution</h2>
-<p>✏️ Update <strong>src/app/order/order.component.ts</strong></p>
+<p><details>
+<summary>Click to see the solution</summary>
+✏️ Update <strong>src/app/order/order.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   AbstractControl,
@@ -1560,7 +1568,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   completedOrder?: Order;
   orderComplete = false;
   orderProcessing = false;
-  private unSubscribe = new Subject&lt;void&gt;();
+  private onDestroy$ = new Subject&lt;void&gt;();
 
   constructor(
     private route: ActivatedRoute,
@@ -1585,8 +1593,8 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.unSubscribe.next();
-    this.unSubscribe.complete();
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 
   createOrderForm(): void {
@@ -1618,7 +1626,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
     this.orderForm
       ?.get('items')
-      ?.valueChanges.pipe(takeUntil(this.unSubscribe))
+      ?.valueChanges.pipe(takeUntil(this.onDestroy$))
       .subscribe((val) =&gt; {
         let total = 0.0;
         if (val.length) {
@@ -1654,6 +1662,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
 </code></pre>
  <div line-highlight="16,39,47,116-122,128,only"></div>
+<p></details></p>
 
 </section>
 

@@ -935,7 +935,9 @@ describe('AppComponent', () =&gt; {
 <li>You've created routes before! You got this!</li>
 </ul>
 <h2>P1: Solution</h2>
-<p><strong>src/app/app-routing.module.ts</strong></p>
+<p><details>
+<summary>Click to see the solution</summary>
+✏️ Update <strong>src/app/app-routing.module.ts</strong></p>
 <pre><code class="language-ts">import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
@@ -970,6 +972,7 @@ export class AppRoutingModule {}
 
 </code></pre>
  <div line-highlight="4,21-24,only"></div>
+<p></details></p>
 <h2>Problem 2: Build Out the Order Component</h2>
 <p>We've covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes. Let's practice those concepts.</p>
 <p>We've provided some starting code to get through this section to help you get the restaurant based on the route slug, create a new reactive form to collect order information, and update the order total whenever the <code>items</code> FormControl value changes.</p>
@@ -1096,7 +1099,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   completedOrder: any;
   orderComplete = false;
   orderProcessing = false;
-  private unSubscribe = new Subject&lt;void&gt;();
+  private onDestroy$ = new Subject&lt;void&gt;();
 
   constructor(
     private route: ActivatedRoute,
@@ -1327,7 +1330,9 @@ describe('OrderComponent', () =&gt; {
 
 </code></pre>
 <h2>P2: Solution</h2>
-<p>✏️ Update <strong>src/app/order/order.component.ts</strong></p>
+<p><details>
+<summary>Click to see the solution</summary>
+✏️ Update <strong>src/app/order/order.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   AbstractControl,
@@ -1368,7 +1373,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   completedOrder: any;
   orderComplete = false;
   orderProcessing = false;
-  private unSubscribe = new Subject&lt;void&gt;();
+  private onDestroy$ = new Subject&lt;void&gt;();
 
   constructor(
     private route: ActivatedRoute,
@@ -1392,8 +1397,8 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.unSubscribe.next();
-    this.unSubscribe.complete();
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 
   createOrderForm(): void {
@@ -1412,7 +1417,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
     this.orderForm
       ?.get('items')
-      ?.valueChanges.pipe(takeUntil(this.unSubscribe))
+      ?.valueChanges.pipe(takeUntil(this.onDestroy$))
       .subscribe((val) =&gt; {
         let total = 0.0;
         if (val.length) {
@@ -1438,6 +1443,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
 </code></pre>
  <div line-highlight="9,50-51,53-61,64-66,70-77,82-96,106,only"></div>
+<p></details></p>
 <h2>Importing 3rd Party Plugins</h2>
 <p>In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let's import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started" target="\_blank">ngx-bootstrap</a>:</p>
 <p>✏️ Run:</p>
@@ -1943,7 +1949,9 @@ platformBrowserDynamic()
 <li>How to use @Input to pass properties (you learned this in the section above! ✔️)</li>
 </ul>
 <h2>P3: Solution</h2>
-<p>✏️ Update <strong>src/app/order/menu-items.component.html</strong></p>
+<p><details>
+<summary>Click to see the solution</summary>
+✏️ Update <strong>src/app/order/menu-items.component.html</strong></p>
 <pre><code class="language-html">&lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of items&quot;&gt;
   &lt;label&gt;
     &lt;input type=&quot;checkbox&quot; /&gt;
@@ -2039,6 +2047,7 @@ export class MenuItemsComponent implements OnInit {
 
 </code></pre>
  <div line-highlight="9,14,only"></div>
+<p></details></p>
 <h2>Problem 4: Attaching Event Handlers to Item Checkboxes</h2>
 <p>Next, we want to know when a checkbox has been checked or unchecked, and update an array called <code>selectedItems</code> containing all checked items.</p>
 <h2>P4: Technical Requirements</h2>
@@ -2186,7 +2195,9 @@ describe('MenuItemsComponent', () =&gt; {
 </code></pre>
  <div line-highlight="37-50,only"></div>
 <h2>P4: Solution</h2>
-<p>✏️ Update <strong>src/app/order/menu-items/menu-items.component.html</strong></p>
+<p><details>
+<summary>Click to see the solution</summary>
+✏️ Update <strong>src/app/order/menu-items/menu-items.component.html</strong></p>
 <pre><code class="language-html">&lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of items&quot;&gt;
   &lt;label&gt;
     &lt;input type=&quot;checkbox&quot; (change)=&quot;updateItems(item)&quot; /&gt;
@@ -2229,6 +2240,7 @@ export class MenuItemsComponent implements OnInit {
 
 </code></pre>
  <div line-highlight="15,21-28,only"></div>
+<p></details></p>
 <h2>Problem 5: Update OrderFormComponent with selectedItems Array from MenuItemsComponent</h2>
 <p>Now we want to let the form know what the selected items are as they change so we can update the order total accordingly.</p>
 <h2>P5: Technical Requirements</h2>
@@ -2652,7 +2664,9 @@ platformBrowserDynamic()
 <li>How to programmatically update a FormControl's value (you learned this in the section above! ✔️)</li>
 </ul>
 <h2>P5: Solution</h2>
-<p>✏️ Update <strong>src/app/order/menu-items.component.ts</strong></p>
+<p><details>
+<summary>Click to see the solution</summary>
+✏️ Update <strong>src/app/order/menu-items.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 interface Item {
@@ -2799,7 +2813,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   completedOrder: any;
   orderComplete = false;
   orderProcessing = false;
-  private unSubscribe = new Subject&lt;void&gt;();
+  private onDestroy$ = new Subject&lt;void&gt;();
 
   constructor(
     private route: ActivatedRoute,
@@ -2823,8 +2837,8 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.unSubscribe.next();
-    this.unSubscribe.complete();
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 
   createOrderForm(): void {
@@ -2856,7 +2870,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
     this.orderForm
       ?.get('items')
-      ?.valueChanges.pipe(takeUntil(this.unSubscribe))
+      ?.valueChanges.pipe(takeUntil(this.onDestroy$))
       .subscribe((val) =&gt; {
         let total = 0.0;
         if (val.length) {
@@ -2882,6 +2896,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
 </code></pre>
  <div line-highlight="81-82,84-91,119,only"></div>
+<p></details></p>
 <h2>Control Value Accessor</h2>
 <p>Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the <a href="https://angular.io/api/forms/ControlValueAccessor" target="_blank">Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.</p>
 <p>✏️ Update <strong>src/app/order/menu-items.component.ts</strong></p>

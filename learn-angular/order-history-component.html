@@ -947,7 +947,9 @@ describe('AppComponent', () =&gt; {
 <li>Update <code>app-routing.module.ts</code> to import the component you want and create a path to it.</li>
 </ul>
 <h2>P1: solution</h2>
-<p>✏️ First, run:</p>
+<p><details>
+<summary>Click to see the solution</summary>
+✏️ First, run:</p>
 <pre><code class="language-bash">ng g component order/history
 </code></pre>
 <p>Then route to the component:</p>
@@ -991,6 +993,7 @@ export class AppRoutingModule {}
 
 </code></pre>
 <div line-highlight='4, 26-29, only'></div>
+<p></details></p>
 <h2>Problem 2: Add <code>HistoryComponent</code> to navigation</h2>
 <p>We want a user to be able to navigate to the HistoryComponent via a link in the main navigation.</p>
 <h2>P2: Technical Requirements</h2>
@@ -1004,7 +1007,9 @@ export class AppRoutingModule {}
 <h2>P2: How to Verify Your Solution is Correct</h2>
 <p>If you've implemented the solution correctly you should now be able to navigate to <a href="http://localhost:4200/order-history" target="\_blank">http://localhost:4200/order-history</a> and see a list of all orders.</p>
 <h2>P2: Solution</h2>
-<p>✏️ Update <strong>src/app/app.component.html</strong></p>
+<p><details>
+<summary>Click to see the solution</summary>
+✏️ Update <strong>src/app/app.component.html</strong></p>
 <pre><code class="language-html">&lt;header&gt;
   &lt;nav&gt;
     &lt;h1&gt;place-my-order.com&lt;/h1&gt;
@@ -1027,6 +1032,7 @@ export class AppRoutingModule {}
 
 </code></pre>
  <div line-highlight="13-15,"></div>
+<p></details></p>
 <h2>Problem 3: List All Orders</h2>
 <p>We want to be able to see a list of all created orders and their varying statuses of &quot;new&quot;, &quot;preparing&quot;, &quot;delivery&quot;, and &quot;delivered&quot;.</p>
 <h2>P3: Technical Requirements</h2>
@@ -1314,7 +1320,9 @@ property in the constructor.</li>
 <pre><code class="language-html">&lt;div [ngClass]=&quot;['first','second']&quot;&gt;&lt;/div&gt;
 </code></pre>
 <h2>P3: Solution</h2>
-<p>✏️ Update <strong>src/app/order/history.component.ts</strong></p>
+<p><details>
+<summary>Click to see the solution</summary>
+✏️ Update <strong>src/app/order/history.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 import { ResponseData } from 'src/app/restaurant/restaurant.service';
 import { Order, OrderService } from '../order.service';
@@ -1415,6 +1423,7 @@ export class HistoryComponent implements OnInit {
 
 </code></pre>
  <div line-highlight="9-10,"></div>
+<p></details></p>
 <h2>Problem 4: Creating a Child Component to Handle Order States</h2>
 <p>We want to create a child component that will take a list of orders by status and display them, as well as actions a user can perform on an order.</p>
 <h2>P4: Technical Requirements</h2>
@@ -1852,7 +1861,9 @@ describe('ListComponent', () =&gt; {
 <li>How to call methods on a service that you get from the <code>constructor</code>.</li>
 </ul>
 <h2>P4: Solution</h2>
-<p>✏️ Update <strong>src/app/order/list.component.ts</strong></p>
+<p><details>
+<summary>Click to see the solution</summary>
+✏️ Update <strong>src/app/order/list.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, Input, OnInit } from '@angular/core';
 import { Item, Order, OrderService } from '../order.service';
 
@@ -1893,6 +1904,7 @@ export class ListComponent implements OnInit {
 
 </code></pre>
 <div line-highlight='2,11-17,19,23-39'></div>
+<p></details></p>
 
 </section>
 

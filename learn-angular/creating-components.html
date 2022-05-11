@@ -999,7 +999,9 @@ describe('HomeComponent', () =&gt; {
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
 <h2>P1: Solution</h2>
-<p>✏️ Update <strong>src/app/home/home.component.html</strong></p>
+<p><details>
+<summary>Click to see the solution</summary>
+✏️ Update <strong>src/app/home/home.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;homepage&quot;&gt;
   &lt;img
     src=&quot;./assets/images/homepage-hero.jpg&quot;
@@ -1020,7 +1022,7 @@ describe('HomeComponent', () =&gt; {
 &lt;/div&gt;
 </code></pre>
 <div line-highlight='8'></div>
-<p><strong>src/app/home/home.component.ts</strong></p>
+<p>✏️ Update <strong>src/app/home/home.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -1040,6 +1042,7 @@ export class HomeComponent implements OnInit {
 
 </code></pre>
 <div line-highlight='9'></div>
+<p></details></p>
 <h2>Problem 2: Write Restaurant Component Markup that Displays a List of Restaurants</h2>
 <p>We want to display a list of restaurants in our UI once the data has been set on the restaurants member. It will look like:</p>
 <p><img src="../static/img/angular/3-creating-components/restaurant-component.png"
@@ -1602,7 +1605,9 @@ describe('RestaurantComponent', () =&gt; {
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
 <h2>P2: Solution</h2>
-<p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong> to the following:</p>
+<p><details>
+<summary>Click to see the solution</summary>
+✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong> to the following:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
   &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
   &lt;ng-container *ngIf=&quot;restaurants.length&quot;&gt;
@@ -1631,6 +1636,7 @@ describe('RestaurantComponent', () =&gt; {
 
 </code></pre>
 <div line-highlight='3-23'></div>
+<p></details></p>
 
 </section>
 
