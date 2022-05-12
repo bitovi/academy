@@ -121,7 +121,7 @@ Add the Currency Pipe to the `order.component.html` , `menu-items.component.html
 
 ## Set Default Currency Code
 
-In our application we want to have a default currency regardless of what country or language the user is accessing our application from.
+In our application we want to use USD for currency regardless of what country or language the user is accessing our application from.
 To do this, simply provide the default currency you want use in the entire application (we previously discussed how to implement this).
 
 ✏️ Update **app.module.ts** to provide currency code:
