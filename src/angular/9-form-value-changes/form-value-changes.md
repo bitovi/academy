@@ -103,15 +103,15 @@ We want to be able to get lists of cities and states from our API to populate th
 
 @sourceref ./http-params.html
 @codepen
-@highlight 33-34,only
+@highlight 33-35,only
 
 ## P2: Technical Requirements
 
 Write two new methods in the `RestaurantsService` to get state and city lists.
 
-Method 1 - `getStates` takes no params and makes a request to `'/api/states'`
+Method 1 - `getStates` takes no params and makes a request to `'/states'`
 
-Method 2 - `getCities`, takes a string param called 'state' a makes a request to `'/api/cities?state="{state abbreviation here}"'`
+Method 2 - `getCities`, takes a string param called 'state' a makes a request to `'/cities?state="{state abbreviation here}"'`
 
 ## P2: How to Verify Your Solution is Correct
 
