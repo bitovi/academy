@@ -603,6 +603,7 @@ npm install --save-dev @types/socket.io-client@1
 <p>We'll use <code>apiUrl</code> for our Socket.io connection, and listen for <code>orders created</code>, <code>order updated</code>, and <code>orders deleted</code> events to change our list on:</p>
 <p>✏️ Update <strong>src/app/order/history.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
 import * as io from 'socket.io-client';
 import { ResponseData } from 'src/app/restaurant/restaurant.service';
 import { environment } from 'src/environments/environment';
@@ -620,6 +621,7 @@ interface Data&lt;T&gt; {
 })
 export class HistoryComponent implements OnInit, OnDestroy {
   orders: Data&lt;Order&gt; = { value: [], isPending: true };
+  private onDestroy$ = new Subject&lt;void&gt;();
   socket: SocketIOClient.Socket;
 
   constructor(private orderService: OrderService) {
@@ -651,12 +653,17 @@ export class HistoryComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.socket.removeAllListeners();
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 
   getOrders(): void {
-    this.orderService.getOrders().subscribe((res: ResponseData&lt;Order&gt;) =&gt; {
-      this.orders.value = res.data;
-    });
+    this.orderService
+      .getOrders()
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((res: ResponseData&lt;Order&gt;) =&gt; {
+        this.orders.value = res.data;
+      });
   }
 
   get newOrders(): Order[] {
@@ -689,7 +696,7 @@ export class HistoryComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="1-2,4,17,19,21-22,28-29,32-37,40-44,48-49,68,75,77,82,84,only"></div>
+ <div line-highlight="3,5,21,23-24,30-31,34-39,42-46,51,75,82,89,91,only"></div>
 <p>Now as we create, update, and delete orders we can see them updated in real time across different browser tab instances!</p>
 
 </section>

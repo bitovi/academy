@@ -465,13 +465,13 @@ we will update the displayed cardNumber error, if there is one, on every future 
 </ul>
 <h2>How to solve this problem</h2>
 <ul>
-<li>Create a <code>this.userCardNumberBlurred</code> <code>Subject</code> that emits when the <code>cardNumber</code> input is blurred.</li>
-<li>Create a <code>this.showCardError</code> that emits true when the <code>cardNumber</code> error should be shown.</li>
-<li>Create a <code>showOnlyWhenBlurredOnce(errorObservable, blurredObservable)</code> operator that returns
-the <code>showCardError</code> observable from two source observables.<br />
+<li>Create a <code>this.userCardNumberBlurred$</code> <code>Subject</code> that emits when the <code>cardNumber</code> input is blurred.</li>
+<li>Create a <code>this.showCardError$</code> that emits true when the <code>cardNumber</code> error should be shown.</li>
+<li>Create a <code>showOnlyWhenBlurredOnce(error$, blurred$)</code> operator that returns
+the <code>showCardError$</code> observable from two source observables.<br />
 <code>showOnlyWhenBlurredOnce</code> should use the <strong>event-reducer</strong> pattern to
-promote the <code>errorObservable</code> and <code>blurredObservable</code> into events and
-reduce those events into the <code>showCardError</code> observable.</li>
+promote the <code>error$</code> and <code>blurred$</code> into events and
+reduce those events into the <code>showCardError$</code> observable.</li>
 </ul>
 <h2>What you need to know</h2>
 <ul>
@@ -673,20 +673,20 @@ an element. The following will show the <code>div</code> if <code>expression</co
     return tap((value) =&gt; console.log(name, value));
   };
 
-  function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
-    const errorEvents = errorObservable.pipe(
+  function showOnlyWhenBlurredOnce(error$, blurred$) {
+    const errorEvents$ = error$.pipe(
       map((error) =&gt; {
         return { type: error ? &quot;invalid&quot; : &quot;valid&quot; };
       })
     );
 
-    const focusEvents = blurredObservable.pipe(
+    const focusEvents$ = blurred$.pipe(
       map((isBlurred) =&gt; {
         return { type: isBlurred ? &quot;blurred&quot; : &quot;focused&quot; };
       })
     );
 
-    const events = merge(errorEvents, focusEvents);
+    const events$ = merge(errorEvents$, focusEvents$);
 
     const eventsToState = scan(
       (previous, event) =&gt; {
@@ -716,24 +716,24 @@ an element. The following will show the <code>div</code> if <code>expression</co
       }
     );
 
-    const state = events.pipe(eventsToState);
+    const state$ = events$.pipe(eventsToState);
 
-    return state.pipe(map((state) =&gt; state.showCardError));
+    return state$.pipe(map((state) =&gt; state.showCardError));
   }
 
   @Component({
     selector: 'my-app',
     template: `
       &lt;form&gt;
-        &lt;div class=&quot;message&quot; *ngIf=&quot;showCardError | async&quot;&gt;{{ cardError | async }}&lt;/div&gt;
+        &lt;div class=&quot;message&quot; *ngIf=&quot;showCardError$ | async&quot;&gt;{{ cardError$ | async }}&lt;/div&gt;
 
         &lt;input
           type=&quot;text&quot;
           name=&quot;cardNumber&quot;
           placeholder=&quot;Card Number&quot;
-          (input)=&quot;userCardNumber.next($event.target.value)&quot;
-          (blur)=&quot;userCardNumberBlurred.next(true)&quot;
-          [class.is-error]=&quot;showCardError | async&quot;
+          (input)=&quot;userCardNumber$.next($event.target.value)&quot;
+          (blur)=&quot;userCardNumberBlurred$.next(true)&quot;
+          [class.is-error]=&quot;showCardError$ | async&quot;
         /&gt;
 
         &lt;input type=&quot;text&quot; name=&quot;expiry&quot; placeholder=&quot;MM-YY&quot; /&gt;
@@ -744,20 +744,20 @@ an element. The following will show the <code>div</code> if <code>expression</co
           PAY
         &lt;/button&gt;
       &lt;/form&gt;
-      UserCardNumber: {{ userCardNumber | async }} &lt;br /&gt;
-      CardNumber: {{ cardNumber | async }} &lt;br /&gt;
+      UserCardNumber: {{ userCardNumber$ | async }} &lt;br /&gt;
+      CardNumber: {{ cardNumber$ | async }} &lt;br /&gt;
     `
   })
   class AppComponent {
-    userCardNumber = new BehaviorSubject&lt;string&gt;();
-    userCardNumberBlurred = new Subject&lt;boolean&gt;();
+    userCardNumber$ = new BehaviorSubject&lt;string&gt;();
+    userCardNumberBlurred$ = new Subject&lt;boolean&gt;();
 
     constructor() {
-      this.cardNumber = this.userCardNumber
+      this.cardNumber$ = this.userCardNumber$
         .pipe(cleanCardNumber)
         .pipe(log(&quot;cardNumber&quot;));
-      this.cardError = this.cardNumber.pipe(validateCard);
-      this.showCardError = showOnlyWhenBlurredOnce(this.cardError, this.userCardNumberBlurred);
+      this.cardError$ = this.cardNumber$.pipe(validateCard);
+      this.showCardError$ = showOnlyWhenBlurredOnce(this.cardError$, this.userCardNumberBlurred$);
     }
   }
 

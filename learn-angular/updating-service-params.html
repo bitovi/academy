@@ -1408,17 +1408,21 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   }
 
   getStates(): void {
-    this.restaurantService.getStates().subscribe((res: ResponseData&lt;State&gt;) =&gt; {
-      this.states.value = res.data;
-      this.states.isPending = false;
-      this.form.get('state')?.enable();
-    });
+    this.restaurantService
+      .getStates()
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((res: ResponseData&lt;State&gt;) =&gt; {
+        this.states.value = res.data;
+        this.states.isPending = false;
+        this.form.get('state')?.enable();
+      });
   }
 
   getCities(state: string): void {
     this.cities.isPending = true;
     this.restaurantService
       .getCities(state)
+      .pipe(takeUntil(this.onDestroy$))
       .subscribe((res: ResponseData&lt;City&gt;) =&gt; {
         this.cities.value = res.data;
         this.cities.isPending = false;
@@ -1432,6 +1436,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   getRestaurants(state: string, city: string): void {
     this.restaurantService
       .getRestaurants(state, city)
+      .pipe(takeUntil(this.onDestroy$))
       .subscribe((res: ResponseData&lt;Restaurant&gt;) =&gt; {
         this.restaurants.value = res.data;
         this.restaurants.isPending = false;
@@ -1440,7 +1445,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="101,128,130,"></div>
+ <div line-highlight="101,132,134,"></div>
 <p></details></p>
 
 </section>

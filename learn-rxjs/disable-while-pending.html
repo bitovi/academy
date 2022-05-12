@@ -461,8 +461,8 @@ covering CanJS core libraries.">
 </ul>
 <h2>How to solve this problem</h2>
 <ul>
-<li>Create a <code>this.disablePaymentButton</code> observable that combines <code>isCardInvalid</code> and <code>paymentStatus</code> using a <code>disablePaymentButton(isCardInvalid, paymentStatus)</code> function.</li>
-<li>Convert <code>this.paymentStatus</code> to a multicast <code>Subject</code>.</li>
+<li>Create a <code>this.disablePaymentButton$</code> observable that combines <code>isCardInvalid$</code> and <code>paymentStatus$</code> using a <code>disablePaymentButton(isCardInvalid$, paymentStatus$)</code> function.</li>
+<li>Convert <code>this.paymentStatus$</code> to a multicast <code>Subject</code>.</li>
 </ul>
 <h2>What you need to know</h2>
 <p>Observables and their operators execute with every new subscription. This can cause problems
@@ -498,7 +498,7 @@ runs twice, once for every subscription on the <code>squares</code> observable.<
 </code></pre>
 <div class='codepen'></div>
 <p>You can change this by converting the observable to a subject with:</p>
-<pre><code class="language-js">.pipe(share({ connector: () =&gt; new Subject() }))
+<pre><code class="language-js">.pipe(share())
 </code></pre>
 <p>The following shows this using this technique to run <code>square</code> only once
 for all subscribers of <code>squares</code>:</p>
@@ -514,7 +514,7 @@ for all subscribers of <code>squares</code>:</p>
     return x * x;
   });
 
-  const squares = numbers.pipe(square).pipe(share({ connector: () =&gt; new Subject() }));
+  const squares = numbers.pipe(square).pipe(share());
 
   squares.subscribe((value) =&gt; {
     console.log(&quot;squares1&quot;, value);
@@ -568,20 +568,20 @@ for all subscribers of <code>squares</code>:</p>
     return tap((value) =&gt; console.log(name, value));
   };
 
-  function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
-    const errorEvents = errorObservable.pipe(
+  function showOnlyWhenBlurredOnce(error$, blurred$) {
+    const errorEvents$ = error$.pipe(
       map((error) =&gt; {
         return { type: error ? &quot;invalid&quot; : &quot;valid&quot; };
       })
     );
 
-    const focusEvents = blurredObservable.pipe(
+    const focusEvents$ = blurred$.pipe(
       map((isBlurred) =&gt; {
         return { type: isBlurred ? &quot;blurred&quot; : &quot;focused&quot; };
       })
     );
 
-    const events = merge(errorEvents, focusEvents);
+    const events$ = merge(errorEvents$, focusEvents$);
 
     const eventsToState = scan(
       (previous, event) =&gt; {
@@ -611,9 +611,9 @@ for all subscribers of <code>squares</code>:</p>
       }
     );
 
-    const state = events.pipe(eventsToState);
+    const state$ = events$.pipe(eventsToState);
 
-    return state.pipe(map((state) =&gt; state.showCardError));
+    return state$.pipe(map((state) =&gt; state.showCardError));
   }
 
   const expiryParts = map((expiry) =&gt; {
@@ -647,19 +647,19 @@ for all subscribers of <code>squares</code>:</p>
     }
   });
 
-  function isCardInvalid(cardError, expiryError, cvcError) {
+  function isCardInvalid(cardError$, expiryError$, cvcError$) {
     return combineLatest(
-      cardError,
-      expiryError,
-      cvcError,
+      cardError$,
+      expiryError$,
+      cvcError$,
       (cardError, expiryError, cvcError) =&gt; {
         return !!(cardError || expiryError || cvcError);
       }
     );
   }
 
-  function combineCard(cardNumber, expiry, cvc) {
-    return combineLatest(cardNumber, expiry, cvc, (cardNumber, expiry, cvc) =&gt; {
+  function combineCard(cardNumber$, expiry$, cvc$) {
+    return combineLatest(cardNumber$, expiry$, cvc$, (cardNumber, expiry, cvc) =&gt; {
       return {
         cardNumber,
         expiry,
@@ -668,8 +668,8 @@ for all subscribers of <code>squares</code>:</p>
     });
   }
 
-  function paymentPromises(paySubmitted, card) {
-    return paySubmitted.pipe(withLatestFrom(card)).pipe(
+  function paymentPromises(paySubmitted$, card$) {
+    return paySubmitted$.pipe(withLatestFrom(card$)).pipe(
       map(([paySubmitted, card]) =&gt; {
         console.log(&quot;Asking for token with&quot;, card);
         return new Promise((resolve) =&gt; {
@@ -711,10 +711,10 @@ for all subscribers of <code>squares</code>:</p>
     }))
   );
 
-  function disablePaymentButton(isCardInvalid, paymentStatus) {
+  function disablePaymentButton(isCardInvalid$, paymentStatus$) {
     return combineLatest(
-      isCardInvalid,
-      paymentStatus,
+      isCardInvalid$,
+      paymentStatus$,
       (isCardInvalid, paymentStatus) =&gt; {
         return (
           isCardInvalid === true ||
@@ -729,88 +729,88 @@ for all subscribers of <code>squares</code>:</p>
     selector: 'my-app',
     template: `
       &lt;form (submit)=&quot;pay($event)&quot;&gt;
-        &lt;div class=&quot;message&quot; *ngIf=&quot;showCardError | async&quot;&gt;{{ cardError | async }}&lt;/div&gt;
+        &lt;div class=&quot;message&quot; *ngIf=&quot;showCardError$ | async&quot;&gt;{{ cardError$ | async }}&lt;/div&gt;
 
-        &lt;div class=&quot;message&quot; *ngIf=&quot;showExpiryError | async&quot;&gt;{{ expiryError | async }}&lt;/div&gt;
+        &lt;div class=&quot;message&quot; *ngIf=&quot;showExpiryError$ | async&quot;&gt;{{ expiryError$ | async }}&lt;/div&gt;
 
-        &lt;div class=&quot;message&quot; *ngIf=&quot;showCVCError | async&quot;&gt;{{ cvcError | async }}&lt;/div&gt;
+        &lt;div class=&quot;message&quot; *ngIf=&quot;showCVCError$ | async&quot;&gt;{{ cvcError$ | async }}&lt;/div&gt;
 
         &lt;input
           type=&quot;text&quot;
           name=&quot;cardNumber&quot;
           placeholder=&quot;Card Number&quot;
-          (input)=&quot;userCardNumber.next($event.target.value)&quot;
-          (blur)=&quot;userCardNumberBlurred.next(true)&quot;
-          [class.is-error]=&quot;showCardError | async&quot;
+          (input)=&quot;userCardNumber$.next($event.target.value)&quot;
+          (blur)=&quot;userCardNumberBlurred$.next(true)&quot;
+          [class.is-error]=&quot;showCardError$ | async&quot;
         /&gt;
 
         &lt;input
           type=&quot;text&quot;
           name=&quot;expiry&quot;
           placeholder=&quot;MM-YY&quot;
-          (input)=&quot;userExpiry.next($event.target.value)&quot;
-          (blur)=&quot;userExpiryBlurred.next(true)&quot;
-          [class.is-error]=&quot;showExpiryError | async&quot;
+          (input)=&quot;userExpiry$.next($event.target.value)&quot;
+          (blur)=&quot;userExpiryBlurred$.next(true)&quot;
+          [class.is-error]=&quot;showExpiryError$ | async&quot;
         /&gt;
 
         &lt;input
           type=&quot;text&quot;
           name=&quot;cvc&quot;
           placeholder=&quot;CVC&quot;
-          (input)=&quot;userCVC.next($event.target.value)&quot;
-          (blur)=&quot;userCVCBlurred.next(true)&quot;
-          [class.is-error]=&quot;showCVCError | async&quot;
+          (input)=&quot;userCVC$.next($event.target.value)&quot;
+          (blur)=&quot;userCVCBlurred$.next(true)&quot;
+          [class.is-error]=&quot;showCVCError$ | async&quot;
         /&gt;
 
-        &lt;button [disabled]=&quot;disablePaymentButton | async&quot;&gt;
-          {{ ((paymentStatus | async)?.status === &quot;pending&quot;) ? &quot;Paying&quot; : &quot;Pay&quot; }}
+        &lt;button [disabled]=&quot;disablePaymentButton$ | async&quot;&gt;
+          {{ ((paymentStatus$ | async)?.status === &quot;pending&quot;) ? &quot;Paying&quot; : &quot;Pay&quot; }}
         &lt;/button&gt;
       &lt;/form&gt;
     `
   })
   class AppComponent {
-    userCardNumber = new BehaviorSubject&lt;string&gt;();
-    userCardNumberBlurred = new Subject&lt;boolean&gt;();
+    userCardNumber$ = new BehaviorSubject&lt;string&gt;();
+    userCardNumberBlurred$ = new Subject&lt;boolean&gt;();
 
-    userExpiry = new BehaviorSubject&lt;[]&gt;();
-    userExpiryBlurred = new Subject&lt;boolean&gt;();
+    userExpiry$ = new BehaviorSubject&lt;[]&gt;();
+    userExpiryBlurred$ = new Subject&lt;boolean&gt;();
 
-    userCVC = new BehaviorSubject&lt;string&gt;();
-    userCVCBlurred = new Subject&lt;boolean&gt;();
+    userCVC$ = new BehaviorSubject&lt;string&gt;();
+    userCVCBlurred$ = new Subject&lt;boolean&gt;();
 
-    paySubmitted = new Subject();
+    paySubmitted$ = new Subject();
 
     constructor() {
-      this.cardNumber = this.userCardNumber
+      this.cardNumber$ = this.userCardNumber$
         .pipe(cleanCardNumber)
         .pipe(log(&quot;cardNumber&quot;));
-      this.cardError = this.cardNumber.pipe(validateCard);
-      this.showCardError = showOnlyWhenBlurredOnce(this.cardError, this.userCardNumberBlurred);
+      this.cardError$ = this.cardNumber$.pipe(validateCard);
+      this.showCardError$ = showOnlyWhenBlurredOnce(this.cardError$, this.userCardNumberBlurred$);
 
-      this.expiry = this.userExpiry.pipe(expiryParts);
-      this.expiryError = this.expiry.pipe(validateExpiry);
-      this.showExpiryError = showOnlyWhenBlurredOnce(this.expiryError, this.userExpiryBlurred);
+      this.expiry$ = this.userExpiry$.pipe(expiryParts);
+      this.expiryError$ = this.expiry$.pipe(validateExpiry);
+      this.showExpiryError$ = showOnlyWhenBlurredOnce(this.expiryError$, this.userExpiryBlurred$);
 
-      this.cvc = this.userCVC;
-      this.cvcError = this.cvc.pipe(validateCVC);
-      this.showCVCError = showOnlyWhenBlurredOnce(this.cvcError, this.userCVCBlurred);
+      this.cvc$ = this.userCVC$;
+      this.cvcError$ = this.cvc$.pipe(validateCVC);
+      this.showCVCError$ = showOnlyWhenBlurredOnce(this.cvcError$, this.userCVCBlurred$);
 
-      this.isCardInvalid = isCardInvalid(this.cardError, this.expiryError, this.cvcError);
+      this.isCardInvalid$ = isCardInvalid(this.cardError$, this.expiryError$, this.cvcError$);
 
-      const card = combineCard(this.cardNumber, this.expiry, this.cvc);
+      const card$ = combineCard(this.cardNumber$, this.expiry$, this.cvc$);
 
-      const payments = paymentPromises(this.paySubmitted, card);
+      const payments$ = paymentPromises(this.paySubmitted$, card$);
 
-      const paymentStatusObservables = payments.pipe(toPaymentStatusObservable);
+      const paymentStatusObservables$ = payments$.pipe(toPaymentStatusObservable);
 
-      this.paymentStatus = paymentStatusObservables.pipe(mergeAll()).pipe(share({ connector: () =&gt; new Subject() }));
+      this.paymentStatus$ = paymentStatusObservables$.pipe(mergeAll()).pipe(share());
 
-      this.disablePaymentButton = disablePaymentButton(this.isCardInvalid, this.paymentStatus);
+      this.disablePaymentButton$ = disablePaymentButton(this.isCardInvalid$, this.paymentStatus$);
     }
 
     pay(event) {
       event.preventDefault();
-      this.paySubmitted.next(true);
+      this.paySubmitted$.next(true);
     }
   }
 

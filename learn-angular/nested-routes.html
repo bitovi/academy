@@ -1336,8 +1336,9 @@ export class AppRoutingModule {}
 </code></pre>
  <div line-highlight="4,16-19,"></div>
 <p>✏️ Update <strong>src/app/restaurant/detail/detail.component.ts</strong></p>
-<pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
+<pre><code class="language-ts">import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
 import { Restaurant } from '../restaurant';
 import { RestaurantService } from '../restaurant.service';
 
@@ -1346,9 +1347,10 @@ import { RestaurantService } from '../restaurant.service';
   templateUrl: './detail.component.html',
   styleUrls: ['./detail.component.less'],
 })
-export class DetailComponent implements OnInit {
+export class DetailComponent implements OnInit, OnDestroy {
   restaurant?: Restaurant;
   isLoading: boolean = true;
+  private onDestroy$ = new Subject&lt;void&gt;();
 
   constructor(
     private route: ActivatedRoute,
@@ -1361,11 +1363,17 @@ export class DetailComponent implements OnInit {
     if (slug) {
       this.restaurantService
         .getRestaurant(slug)
+        .pipe(takeUntil(this.onDestroy$))
         .subscribe((data: Restaurant) =&gt; {
           this.restaurant = data;
           this.isLoading = false;
         });
     }
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 
   getUrl(image: string): string {
@@ -1375,7 +1383,7 @@ export class DetailComponent implements OnInit {
 }
 
 </code></pre>
- <div line-highlight="2-4,9,12-13,15-18,21,23-30,"></div>
+ <div line-highlight="1-5,10,12-15,17-20,23,25-33,36-38,44,"></div>
 <p></details></p>
 
 </section>

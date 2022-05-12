@@ -465,11 +465,11 @@ spaces or dashes.</li>
 </ul>
 <h2>How to solve this problem</h2>
 <ul>
-<li>Create a <code>this.cardNumber</code> observable that contains the
+<li>Create a <code>this.cardNumber$</code> observable that contains the
 text of the <code>userCardNumber</code> input without spaces (<code>\s</code>) or dashes (<code>-</code>).</li>
-<li>Create a <code>cleanCardNumber</code> operator that maps the <code>this.userCardNumber</code> to <code>this.cardNumber</code>.</li>
-<li>Write out the value of the <code>this.cardNumber</code> observable like:
-<pre><code class="language-html">CardNumber: {{ cardNumber | async }} &lt;br /&gt;
+<li>Create a <code>cleanCardNumber</code> operator that maps the <code>this.userCardNumber$</code> to <code>this.cardNumber$</code>.</li>
+<li>Write out the value of the <code>this.cardNumber$</code> observable like:
+<pre><code class="language-html">CardNumber: {{ cardNumber$ | async }} &lt;br /&gt;
 </code></pre></li>
 </ul>
 <h2>What you need to know</h2>
@@ -499,9 +499,9 @@ by using operator generator functions like <a href="https://rxjs.dev/api/operato
 </ul>
 <div class='codepen' data-codepen=''></div>
 <ul>
-<li>Use <code>cardNumber.replace(/[\s-]/g, &quot;&quot;)</code> to clean the card number.</li>
-<li>Write out the <code>cardNumber</code> after the <code>userCardNumber</code> like:
-<pre><code class="language-html">CardNumber: {{ cardNumber | async }} &lt;br /&gt;
+<li>Use <code>replace(/[\s-]/g, &quot;&quot;)</code> method to clean the card number.</li>
+<li>Write out the <code>cardNumber$</code> after the <code>userCardNumber</code> like:
+<pre><code class="language-html">CardNumber: {{ cardNumber$ | async }} &lt;br /&gt;
 </code></pre></li>
 </ul>
 <h2>The Solution</h2>
@@ -538,7 +538,7 @@ by using operator generator functions like <a href="https://rxjs.dev/api/operato
           type=&quot;text&quot;
           name=&quot;cardNumber&quot;
           placeholder=&quot;Card Number&quot;
-          (input)=&quot;userCardNumber.next($event.target.value)&quot;
+          (input)=&quot;userCardNumber$.next($event.target.value)&quot;
         /&gt;
 
         &lt;input type=&quot;text&quot; name=&quot;expiry&quot; placeholder=&quot;MM-YY&quot; /&gt;
@@ -549,15 +549,15 @@ by using operator generator functions like <a href="https://rxjs.dev/api/operato
           PAY
         &lt;/button&gt;
       &lt;/form&gt;
-      UserCardNumber: {{ userCardNumber | async }} &lt;br /&gt;
-      CardNumber: {{ cardNumber | async }} &lt;br /&gt;
+      UserCardNumber: {{ userCardNumber$ | async }} &lt;br /&gt;
+      CardNumber: {{ cardNumber$ | async }} &lt;br /&gt;
     `
   })
   class AppComponent {
-    userCardNumber = new BehaviorSubject&lt;string&gt;();
+    userCardNumber$ = new BehaviorSubject&lt;string&gt;();
 
     constructor() {
-      this.cardNumber = this.userCardNumber.pipe(cleanCardNumber);
+      this.cardNumber$ = this.userCardNumber$.pipe(cleanCardNumber);
     }
   }
 

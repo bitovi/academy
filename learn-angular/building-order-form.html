@@ -1388,6 +1388,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     if (slug) {
       this.restaurantService
         .getRestaurant(slug)
+        .pipe(takeUntil(this.onDestroy$))
         .subscribe((data: Restaurant) =&gt; {
           this.restaurant = data;
           this.isLoading = false;
@@ -1442,7 +1443,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="9,50-51,53-61,64-66,70-77,82-96,106,only"></div>
+ <div line-highlight="9,50-51,53-62,65-67,71-78,83-97,107,only"></div>
 <p></details></p>
 <h2>Importing 3rd Party Plugins</h2>
 <p>In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let's import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started" target="\_blank">ngx-bootstrap</a>:</p>
@@ -2828,6 +2829,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     if (slug) {
       this.restaurantService
         .getRestaurant(slug)
+        .pipe(takeUntil(this.onDestroy$))
         .subscribe((data: Restaurant) =&gt; {
           this.restaurant = data;
           this.isLoading = false;
@@ -2895,7 +2897,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="81-82,84-91,119,only"></div>
+ <div line-highlight="82-83,85-92,120,only"></div>
 <p></details></p>
 <h2>Control Value Accessor</h2>
 <p>Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the <a href="https://angular.io/api/forms/ControlValueAccessor" target="_blank">Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.</p>

@@ -595,7 +595,8 @@ covering CanJS core libraries.">
 </ul>
 <h2>Problem</h2>
 <p>Now that our application is coming together nicely, you might have noticed we are repeating the same code to calculate the total prices of our items.
-We can simplify this by creating an Item Total Pipe which we will use in <code>order-component.ts</code> file and in the <code>order-history-component.html</code> file. The pipe will transform an array of items and return the total sum of the price of each item.</p>
+We can simplify this by creating an Item Total Pipe which we will use in the <code>list.component.html</code> template file and call directly using <code>transform</code> within <code>order.component.ts</code> file. The pipe will transform an array of items and return the total sum of the price of each item.</p>
+<p>After implementing this pipe, you should be able to remove the <code>total</code> method from <code>list.component.ts</code>.</p>
 <h1>What You Need to Know</h1>
 <p>How to:</p>
 <ul>
@@ -609,6 +610,7 @@ We can simplify this by creating an Item Total Pipe which we will use in <code>o
 <h2>Provide Pipe Globally</h2>
 <p>Unlike services, Pipes are not readily injectable into our components. In order to be able to use Pipes in a component, it has to be provided in the app module.
 To provide the <strong>Pipe</strong> just created in the app module, simply add the Pipe to the provider array in the <code>app.module.ts</code> file. <a href="https://angular.io/guide/providers">Learn More</a></p>
+<p>By including the pipe in a component's constructor, you gain the ability to run the pipe using its <code>transform</code> method.</p>
 <p>✏️ Update <strong>src/app/app.module.ts</strong></p>
 <pre><code class="language-ts">import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -1787,6 +1789,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     if (slug) {
       this.restaurantService
         .getRestaurant(slug)
+        .pipe(takeUntil(this.onDestroy$))
         .subscribe((data: Restaurant) =&gt; {
           this.restaurant = data;
           this.isLoading = false;
@@ -1839,6 +1842,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.orderProcessing = true;
     this.orderService
       .createOrder(this.orderForm?.value)
+      .pipe(takeUntil(this.onDestroy$))
       .subscribe((res: Order) =&gt; {
         this.completedOrder = res;
         this.orderComplete = true;
@@ -1856,7 +1860,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="14,49-50,104,only"></div>
+ <div line-highlight="14,49-50,105,only"></div>
 <p>✏️ Update <strong>src/app/order/list/list.component.html</strong> to use the item total Pipe:</p>
 <pre><code class="language-html">&lt;h4&gt;{{ listTitle }}&lt;/h4&gt;
 &lt;ng-container *ngFor=&quot;let order of orders&quot;&gt;
@@ -1920,13 +1924,13 @@ Add the Currency Pipe to the <code>order.component.html</code> , <code>menu-item
       &lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of completedOrder.items&quot;&gt;
         &lt;label&gt;
           {{ item.name }}
-          &lt;span class=&quot;badge&quot;&gt;${{ item.price | currency }}&lt;/span&gt;
+          &lt;span class=&quot;badge&quot;&gt;{{ item.price | currency }}&lt;/span&gt;
         &lt;/label&gt;
       &lt;/li&gt;
 
       &lt;li class=&quot;list-group-item&quot;&gt;
         &lt;label&gt;
-          Total &lt;span class=&quot;badge&quot;&gt;${{ orderTotal | currency }}&lt;/span&gt;
+          Total &lt;span class=&quot;badge&quot;&gt;{{ orderTotal | currency }}&lt;/span&gt;
         &lt;/label&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
@@ -2059,7 +2063,7 @@ Add the Currency Pipe to the <code>order.component.html</code> , <code>menu-item
 </code></pre>
  <div line-highlight="4,only"></div>
 <h2>Set Default Currency Code</h2>
-<p>In our application we want to have a default currency regardless of what country or language the user is accessing our application from.
+<p>In our application we want to use USD for currency regardless of what country or language the user is accessing our application from.
 To do this, simply provide the default currency you want use in the entire application (we previously discussed how to implement this).</p>
 <p>✏️ Update <strong>app.module.ts</strong> to provide currency code:</p>
 <pre><code class="language-ts">import { HttpClientModule } from '@angular/common/http';

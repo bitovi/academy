@@ -464,11 +464,11 @@ covering CanJS core libraries.">
 </ul>
 <h2>How to solve this problem</h2>
 <ul>
-<li>Create a <code>this.isCardInvalid</code> property publishes <code>true</code> if
-either <code>this.cardError</code> <code>this.expiryError</code>, or <code>this.cvcError</code> are truthy.</li>
-<li>Create an <code>isCardInvalid</code> that can be passed the
-<code>this.cardError</code>, <code>this.expiryError</code> and <code>this.cvcError</code> observables
-and returns the <code>this.isCardInvalid</code> observable.</li>
+<li>Create a <code>this.isCardInvalid$</code> property that publishes <code>true</code> if
+either <code>this.cardError$</code>, <code>this.expiryError$</code> or <code>this.cvcError$</code> are truthy.</li>
+<li>Create an <code>isCardInvalid</code> function that can be passed the
+<code>this.cardError$</code>, <code>this.expiryError$</code> and <code>this.cvcError$</code> observables
+and returns the <code>this.isCardInvalid$</code> observable.</li>
 </ul>
 <h2>What you need to know</h2>
 <ul>
@@ -548,20 +548,20 @@ from another value:</p>
     return tap((value) =&gt; console.log(name, value));
   };
 
-  function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
-    const errorEvents = errorObservable.pipe(
+  function showOnlyWhenBlurredOnce(error$, blurred$) {
+    const errorEvents$ = error$.pipe(
       map((error) =&gt; {
         return { type: error ? &quot;invalid&quot; : &quot;valid&quot; };
       })
     );
 
-    const focusEvents = blurredObservable.pipe(
+    const focusEvents$ = blurred$.pipe(
       map((isBlurred) =&gt; {
         return { type: isBlurred ? &quot;blurred&quot; : &quot;focused&quot; };
       })
     );
 
-    const events = merge(errorEvents, focusEvents);
+    const events$ = merge(errorEvents$, focusEvents$);
 
     const eventsToState = scan(
       (previous, event) =&gt; {
@@ -591,9 +591,9 @@ from another value:</p>
       }
     );
 
-    const state = events.pipe(eventsToState);
+    const state$ = events$.pipe(eventsToState);
 
-    return state.pipe(map((state) =&gt; state.showCardError));
+    return state$.pipe(map((state) =&gt; state.showCardError));
   }
 
   const expiryParts = map((expiry) =&gt; {
@@ -627,11 +627,11 @@ from another value:</p>
     }
   });
 
-  function isCardInvalid(cardError, expiryError, cvcError) {
+  function isCardInvalid(cardError$, expiryError$, cvcError$) {
     return combineLatest(
-      cardError,
-      expiryError,
-      cvcError,
+      cardError$,
+      expiryError$,
+      cvcError$,
       (cardError, expiryError, cvcError) =&gt; {
         return !!(cardError || expiryError || cvcError);
       }
@@ -642,73 +642,73 @@ from another value:</p>
     selector: 'my-app',
     template: `
       &lt;form&gt;
-        &lt;div class=&quot;message&quot; *ngIf=&quot;showCardError | async&quot;&gt;{{ cardError | async }}&lt;/div&gt;
+        &lt;div class=&quot;message&quot; *ngIf=&quot;showCardError$ | async&quot;&gt;{{ cardError$ | async }}&lt;/div&gt;
 
-        &lt;div class=&quot;message&quot; *ngIf=&quot;showExpiryError | async&quot;&gt;{{ expiryError | async }}&lt;/div&gt;
+        &lt;div class=&quot;message&quot; *ngIf=&quot;showExpiryError$ | async&quot;&gt;{{ expiryError$ | async }}&lt;/div&gt;
 
-        &lt;div class=&quot;message&quot; *ngIf=&quot;showCVCError | async&quot;&gt;{{ cvcError | async }}&lt;/div&gt;
+        &lt;div class=&quot;message&quot; *ngIf=&quot;showCVCError$ | async&quot;&gt;{{ cvcError$ | async }}&lt;/div&gt;
 
         &lt;input
           type=&quot;text&quot;
           name=&quot;cardNumber&quot;
           placeholder=&quot;Card Number&quot;
-          (input)=&quot;userCardNumber.next($event.target.value)&quot;
-          (blur)=&quot;userCardNumberBlurred.next(true)&quot;
-          [class.is-error]=&quot;showCardError | async&quot;
+          (input)=&quot;userCardNumber$.next($event.target.value)&quot;
+          (blur)=&quot;userCardNumberBlurred$.next(true)&quot;
+          [class.is-error]=&quot;showCardError$ | async&quot;
         /&gt;
 
         &lt;input
           type=&quot;text&quot;
           name=&quot;expiry&quot;
           placeholder=&quot;MM-YY&quot;
-          (input)=&quot;userExpiry.next($event.target.value)&quot;
-          (blur)=&quot;userExpiryBlurred.next(true)&quot;
-          [class.is-error]=&quot;showExpiryError | async&quot;
+          (input)=&quot;userExpiry$.next($event.target.value)&quot;
+          (blur)=&quot;userExpiryBlurred$.next(true)&quot;
+          [class.is-error]=&quot;showExpiryError$ | async&quot;
         /&gt;
 
         &lt;input
           type=&quot;text&quot;
           name=&quot;cvc&quot;
           placeholder=&quot;CVC&quot;
-          (input)=&quot;userCVC.next($event.target.value)&quot;
-          (blur)=&quot;userCVCBlurred.next(true)&quot;
-          [class.is-error]=&quot;showCVCError | async&quot;
+          (input)=&quot;userCVC$.next($event.target.value)&quot;
+          (blur)=&quot;userCVCBlurred$.next(true)&quot;
+          [class.is-error]=&quot;showCVCError$ | async&quot;
         /&gt;
 
-        &lt;button [disabled]=&quot;isCardInvalid | async&quot;&gt;
+        &lt;button [disabled]=&quot;isCardInvalid$ | async&quot;&gt;
           PAY
         &lt;/button&gt;
       &lt;/form&gt;
-      UserCardNumber: {{ userCardNumber | async }} &lt;br /&gt;
-      CardNumber: {{ cardNumber | async }} &lt;br /&gt;
+      UserCardNumber: {{ userCardNumber$ | async }} &lt;br /&gt;
+      CardNumber: {{ cardNumber$ | async }} &lt;br /&gt;
     `
   })
   class AppComponent {
-    userCardNumber = new BehaviorSubject&lt;string&gt;();
-    userCardNumberBlurred = new Subject&lt;boolean&gt;();
+    userCardNumber$ = new BehaviorSubject&lt;string&gt;();
+    userCardNumberBlurred$ = new Subject&lt;boolean&gt;();
 
-    userExpiry = new BehaviorSubject&lt;[]&gt;();
-    userExpiryBlurred = new Subject&lt;boolean&gt;();
+    userExpiry$ = new BehaviorSubject&lt;[]&gt;();
+    userExpiryBlurred$ = new Subject&lt;boolean&gt;();
 
-    userCVC = new BehaviorSubject&lt;string&gt;();
-    userCVCBlurred = new Subject&lt;boolean&gt;();
+    userCVC$ = new BehaviorSubject&lt;string&gt;();
+    userCVCBlurred$ = new Subject&lt;boolean&gt;();
 
     constructor() {
-      this.cardNumber = this.userCardNumber
+      this.cardNumber$ = this.userCardNumber$
         .pipe(cleanCardNumber)
         .pipe(log(&quot;cardNumber&quot;));
-      this.cardError = this.cardNumber.pipe(validateCard);
-      this.showCardError = showOnlyWhenBlurredOnce(this.cardError, this.userCardNumberBlurred);
+      this.cardError$ = this.cardNumber$.pipe(validateCard);
+      this.showCardError$ = showOnlyWhenBlurredOnce(this.cardError$, this.userCardNumberBlurred$);
 
-      this.expiry = this.userExpiry.pipe(expiryParts);
-      this.expiryError = this.expiry.pipe(validateExpiry);
-      this.showExpiryError = showOnlyWhenBlurredOnce(this.expiryError, this.userExpiryBlurred);
+      this.expiry$ = this.userExpiry$.pipe(expiryParts);
+      this.expiryError$ = this.expiry$.pipe(validateExpiry);
+      this.showExpiryError$ = showOnlyWhenBlurredOnce(this.expiryError$, this.userExpiryBlurred$);
 
-      this.cvc = this.userCVC;
-      this.cvcError = this.cvc.pipe(validateCVC);
-      this.showCVCError = showOnlyWhenBlurredOnce(this.cvcError, this.userCVCBlurred);
+      this.cvc$ = this.userCVC$;
+      this.cvcError$ = this.cvc$.pipe(validateCVC);
+      this.showCVCError$ = showOnlyWhenBlurredOnce(this.cvcError$, this.userCVCBlurred$);
 
-      this.isCardInvalid = isCardInvalid(this.cardError, this.expiryError, this.cvcError);
+      this.isCardInvalid$ = isCardInvalid(this.cardError$, this.expiryError$, this.cvcError$);
     }
   }
 

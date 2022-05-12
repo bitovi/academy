@@ -458,14 +458,14 @@ covering CanJS core libraries.">
 <h2>How to solve this problem</h2>
 <p>First:</p>
 <ul>
-<li>Write the <code>&lt;input name=&quot;expiry&quot;/&gt;</code> value to a <code>BehaviorSubject</code> called <code>this.userExpiry</code>.</li>
-<li>Create a <code>this.expiry</code> observable that is an array of two strings like <code>[&quot;10&quot;,&quot;20&quot;]</code>.</li>
+<li>Write the <code>&lt;input name=&quot;expiry&quot;/&gt;</code> value to a <code>BehaviorSubject</code> called <code>this.userExpiry$</code>.</li>
+<li>Create a <code>this.expiry$</code> observable that is an array of two strings like <code>[&quot;10&quot;,&quot;20&quot;]</code>.</li>
 </ul>
 <p>Second:</p>
 <ul>
 <li>Display an error message if the user has not entered the expiry correctly.</li>
-<li>Create a <code>expiryError</code> observable that represents this error. You can use this function
-to get the error from <code>userExpiry</code>:
+<li>Create a <code>expiryError$</code> observable that represents this error. You can use this function
+to get the error from <code>userExpiry$</code>:
 <pre><code class="language-typescript">(expiry) =&gt; {
   if (!expiry) {
     return 'There is no expiry. Format  MM-YY';
@@ -479,19 +479,19 @@ to get the error from <code>userExpiry</code>:
   }
 };
 </code></pre></li>
-<li><code>expiryError</code> should be displayed within the <code>&lt;div class=&quot;message&quot;&gt;</code> element.</li>
+<li><code>expiryError$</code> should be displayed within the <code>&lt;div class=&quot;message&quot;&gt;</code> element.</li>
 </ul>
 <p>Finally:</p>
 <ul>
-<li>Only show the <code>expiryError</code> error if the user blurs the expiry input. Once the input blurs,
+<li>Only show the <code>expiryError$</code> error if the user blurs the expiry input. Once the input blurs,
 we will update the displayed expiry error, if there is one, on every future keystroke.</li>
 <li>Add class=&quot;is-error&quot; to the input when it has an error.</li>
-<li>Create a <code>userExpiryBlurred</code> <code>Subject</code> that emits when the <code>expiry</code> input is blurred.</li>
-<li>Create a <code>showExpiryError</code> that emits true when the <code>expiry</code> error should be shown.</li>
+<li>Create a <code>userExpiryBlurred$</code> <code>Subject</code> that emits when the <code>expiry</code> input is blurred.</li>
+<li>Create a <code>showExpiryError$</code> that emits true when the <code>expiry</code> error should be shown.</li>
 </ul>
 <h2>What you need to know</h2>
 <p>You already know everything you need to know. Apply what you learned from
-<code>cardNumber</code>, <code>cardError</code> and <code>showCardError</code> to <code>expiry</code>, <code>expiryError</code>, and <code>showExpiryError</code>.</p>
+<code>cardNumber$</code>, <code>cardError$</code> and <code>showCardError$</code> to <code>expiry$</code>, <code>expiryError$</code>, and <code>showExpiryError$</code>.</p>
 <h2>The Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -529,20 +529,20 @@ we will update the displayed expiry error, if there is one, on every future keys
     return tap((value) =&gt; console.log(name, value));
   };
 
-  function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
-    const errorEvents = errorObservable.pipe(
+  function showOnlyWhenBlurredOnce(error$, blurred$) {
+    const errorEvents$ = error$.pipe(
       map((error) =&gt; {
         return { type: error ? &quot;invalid&quot; : &quot;valid&quot; };
       })
     );
 
-    const focusEvents = blurredObservable.pipe(
+    const focusEvents$ = blurred$.pipe(
       map((isBlurred) =&gt; {
         return { type: isBlurred ? &quot;blurred&quot; : &quot;focused&quot; };
       })
     );
 
-    const events = merge(errorEvents, focusEvents);
+    const events$ = merge(errorEvents$, focusEvents$);
 
     const eventsToState = scan(
       (previous, event) =&gt; {
@@ -572,9 +572,9 @@ we will update the displayed expiry error, if there is one, on every future keys
       }
     );
 
-    const state = events.pipe(eventsToState);
+    const state$ = events$.pipe(eventsToState);
 
-    return state.pipe(map((state) =&gt; state.showCardError));
+    return state$.pipe(map((state) =&gt; state.showCardError));
   }
 
   const expiryParts = map((expiry) =&gt; {
@@ -600,26 +600,26 @@ we will update the displayed expiry error, if there is one, on every future keys
     selector: 'my-app',
     template: `
       &lt;form&gt;
-        &lt;div class=&quot;message&quot; *ngIf=&quot;showCardError | async&quot;&gt;{{ cardError | async }}&lt;/div&gt;
+        &lt;div class=&quot;message&quot; *ngIf=&quot;showCardError$ | async&quot;&gt;{{ cardError$ | async }}&lt;/div&gt;
 
-        &lt;div class=&quot;message&quot; *ngIf=&quot;showExpiryError | async&quot;&gt;{{ expiryError | async }}&lt;/div&gt;
+        &lt;div class=&quot;message&quot; *ngIf=&quot;showExpiryError$ | async&quot;&gt;{{ expiryError$ | async }}&lt;/div&gt;
 
         &lt;input
           type=&quot;text&quot;
           name=&quot;cardNumber&quot;
           placeholder=&quot;Card Number&quot;
-          (input)=&quot;userCardNumber.next($event.target.value)&quot;
-          (blur)=&quot;userCardNumberBlurred.next(true)&quot;
-          [class.is-error]=&quot;showCardError | async&quot;
+          (input)=&quot;userCardNumber$.next($event.target.value)&quot;
+          (blur)=&quot;userCardNumberBlurred$.next(true)&quot;
+          [class.is-error]=&quot;showCardError$ | async&quot;
         /&gt;
 
         &lt;input
           type=&quot;text&quot;
           name=&quot;expiry&quot;
           placeholder=&quot;MM-YY&quot;
-          (input)=&quot;userExpiry.next($event.target.value)&quot;
-          (blur)=&quot;userExpiryBlurred.next(true)&quot;
-          [class.is-error]=&quot;showExpiryError | async&quot;
+          (input)=&quot;userExpiry$.next($event.target.value)&quot;
+          (blur)=&quot;userExpiryBlurred$.next(true)&quot;
+          [class.is-error]=&quot;showExpiryError$ | async&quot;
         /&gt;
 
         &lt;input type=&quot;text&quot; name=&quot;cvc&quot; placeholder=&quot;CVC&quot; /&gt;
@@ -628,27 +628,27 @@ we will update the displayed expiry error, if there is one, on every future keys
           PAY
         &lt;/button&gt;
       &lt;/form&gt;
-      UserCardNumber: {{ userCardNumber | async }} &lt;br /&gt;
-      CardNumber: {{ cardNumber | async }} &lt;br /&gt;
+      UserCardNumber: {{ userCardNumber$ | async }} &lt;br /&gt;
+      CardNumber: {{ cardNumber$ | async }} &lt;br /&gt;
     `
   })
   class AppComponent {
-    userCardNumber = new BehaviorSubject&lt;string&gt;();
-    userCardNumberBlurred = new Subject&lt;boolean&gt;();
+    userCardNumber$ = new BehaviorSubject&lt;string&gt;();
+    userCardNumberBlurred$ = new Subject&lt;boolean&gt;();
 
-    userExpiry = new BehaviorSubject&lt;[]&gt;();
-    userExpiryBlurred = new Subject&lt;boolean&gt;();
+    userExpiry$ = new BehaviorSubject&lt;[]&gt;();
+    userExpiryBlurred$ = new Subject&lt;boolean&gt;();
 
     constructor() {
-      this.cardNumber = this.userCardNumber
+      this.cardNumber$ = this.userCardNumber$
         .pipe(cleanCardNumber)
         .pipe(log(&quot;cardNumber&quot;));
-      this.cardError = this.cardNumber.pipe(validateCard);
-      this.showCardError = showOnlyWhenBlurredOnce(this.cardError, this.userCardNumberBlurred);
+      this.cardError$ = this.cardNumber$.pipe(validateCard);
+      this.showCardError$ = showOnlyWhenBlurredOnce(this.cardError$, this.userCardNumberBlurred$);
 
-      this.expiry = this.userExpiry.pipe(expiryParts);
-      this.expiryError = this.expiry.pipe(validateExpiry);
-      this.showExpiryError = showOnlyWhenBlurredOnce(this.expiryError, this.userExpiryBlurred);
+      this.expiry$ = this.userExpiry$.pipe(expiryParts);
+      this.expiryError$ = this.expiry$.pipe(validateExpiry);
+      this.showExpiryError$ = showOnlyWhenBlurredOnce(this.expiryError$, this.userExpiryBlurred$);
     }
   }
 

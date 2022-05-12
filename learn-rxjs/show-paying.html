@@ -463,7 +463,7 @@ waiting to pay or payment has completed.</li>
 </ul>
 <h2>How to solve this problem</h2>
 <ul>
-<li><p>Create a <code>this.paymentStatus</code> observable that emits <strong>paymentStatus</strong> objects:</p>
+<li><p>Create a <code>this.paymentStatus$</code> observable that emits <strong>paymentStatus</strong> objects:</p>
 <ul>
 <li><code>{ status: &quot;waiting&quot; }</code> - when the form is waiting to be
 submitted.</li>
@@ -471,22 +471,22 @@ submitted.</li>
 <li><code>{ status: &quot;resolved&quot;, value }</code> - when the promise
 has resolved. Includes the resolved value.</li>
 </ul></li>
-<li><p>To create <code>this.paymentStatus</code> we first will need to
-create a <code>paymentStatusObservables</code> observable from payments like:</p>
-<pre><code class="language-js">const paymentStatusObservables = payments.pipe(toPaymentStatusObservable);
+<li><p>To create <code>this.paymentStatus$</code> we first will need to
+create a <code>paymentStatusObservables$</code> observable from payments like:</p>
+<pre><code class="language-js">const paymentStatusObservables$ = payments$.pipe(toPaymentStatusObservable);
 </code></pre>
 <p>The <code>toPaymentStatusObservable</code> operator will convert the promises in
-<code>payments</code> to Observables that publish <strong>paymentStatus</strong> objects. This means
-that <code>paymentStatusObservables</code> is an Observable of Observables of
+<code>payments$</code> to Observables that publish <strong>paymentStatus</strong> objects. This means
+that <code>paymentStatusObservables$</code> is an Observable of Observables of
 <strong>paymentStatus</strong> objects like: <code>Observable&lt;Observable&lt;PaymentStatus&gt;&gt;</code>.</p>
-<p>For example, when a payment promise is published from <code>payments</code>, <code>paymentStatusObservables</code> will publish an Observable that publishes:</p>
+<p>For example, when a payment promise is published from <code>payments$</code>, <code>paymentStatusObservables$</code> will publish an Observable that publishes:</p>
 <ol>
 <li><code>{ status: &quot;pending&quot; }</code>, and then</li>
 <li><code>{ status: &quot;resolved&quot;, value }</code>.</li>
 </ol>
-<p>Then, when a new payment promise is published from <code>payments</code> again, <code>paymentStatusObservables</code> will publish an new Observable that publishes similar <strong>paymentStatus</strong> objects.</p>
-<p>Finally, <code>this.paymentStatus</code> will be a result of merging (or flattening)
-the observables emitted by <code>paymentStatusObservables</code>.</p></li>
+<p>Then, when a new payment promise is published from <code>payments$</code> again, <code>paymentStatusObservables$</code> will publish a new Observable that publishes similar <strong>paymentStatus</strong> objects.</p>
+<p>Finally, <code>this.paymentStatus$</code> will be a result of merging (or flattening)
+the observables emitted by <code>paymentStatusObservables$</code>.</p></li>
 </ul>
 <h2>What you need to know</h2>
 <p>This is a tricky problem. A promise has state (if it's pending or resolved). We need
@@ -516,7 +516,7 @@ observables and then <em>flatten</em> that observable with <code>mergeAll</code>
 <div class='codepen' data-codepen=''></div>
 <blockquote>
 <p>HINT: <code>from</code> and <code>map</code> can be used to convert the payment promises to
-an observable that emits <code>{status: &quot;resolved&quot;, value}</code>.</p>
+an observable that emits <code>{ status: &quot;resolved&quot;, value }</code>.</p>
 </blockquote>
 <ul>
 <li><p><a href="https://rxjs.dev/api/index/function/concat">concat</a> concatenates streams so events are produced in order.</p>
@@ -546,7 +546,7 @@ an observable that emits <code>{status: &quot;resolved&quot;, value}</code>.</p>
 </ul>
 <div class='codepen' data-codepen=''></div>
 <blockquote>
-<p>HINT: <code>concat</code> can be used to make an observable emit a <code>{ status: &quot;pending&quot; }</code> &gt; <strong>paymentStatus</strong> object before emitting the <code>{ status: &quot;resolved&quot;, value }</code> <strong>paymentStatus</strong> object.</p>
+<p>HINT: <code>concat</code> can be used to make an observable emit a <code>{ status: &quot;pending&quot; }</code> <strong>paymentStatus</strong> object before emitting the <code>{ status: &quot;resolved&quot;, value }</code> <strong>paymentStatus</strong> object.</p>
 </blockquote>
 <ul>
 <li><p><a href="https://rxjs.dev/api/operators/startWith">startWith</a>
@@ -661,7 +661,7 @@ the numbers and letters directly.</p>
 <ul>
 <li>Read a value from an observable's last emitted value with the
 conditional operator (<code>?.</code>) like:
-<pre><code class="language-html">{{ (paymentStatus | async)?.status }}
+<pre><code class="language-html">{{ (paymentStatus$ | async)?.status }}
 </code></pre></li>
 <li>Use the ternary operator (<code>condition ? truthy : falsy</code>) in Angular like:
 <pre><code class="language-html">{{ status === &quot;pending&quot; ? &quot;Paying&quot; : &quot;Pay&quot; }}
@@ -704,20 +704,20 @@ conditional operator (<code>?.</code>) like:
     return tap((value) =&gt; console.log(name, value));
   };
 
-  function showOnlyWhenBlurredOnce(errorObservable, blurredObservable) {
-    const errorEvents = errorObservable.pipe(
+  function showOnlyWhenBlurredOnce(error$, blurred$) {
+    const errorEvents$ = error$.pipe(
       map((error) =&gt; {
         return { type: error ? &quot;invalid&quot; : &quot;valid&quot; };
       })
     );
 
-    const focusEvents = blurredObservable.pipe(
+    const focusEvents$ = blurred$.pipe(
       map((isBlurred) =&gt; {
         return { type: isBlurred ? &quot;blurred&quot; : &quot;focused&quot; };
       })
     );
 
-    const events = merge(errorEvents, focusEvents);
+    const events$ = merge(errorEvents$, focusEvents$);
 
     const eventsToState = scan(
       (previous, event) =&gt; {
@@ -747,9 +747,9 @@ conditional operator (<code>?.</code>) like:
       }
     );
 
-    const state = events.pipe(eventsToState);
+    const state$ = events$.pipe(eventsToState);
 
-    return state.pipe(map((state) =&gt; state.showCardError));
+    return state$.pipe(map((state) =&gt; state.showCardError));
   }
 
   const expiryParts = map((expiry) =&gt; {
@@ -783,19 +783,19 @@ conditional operator (<code>?.</code>) like:
     }
   });
 
-  function isCardInvalid(cardError, expiryError, cvcError) {
+  function isCardInvalid(cardError$, expiryError$, cvcError$) {
     return combineLatest(
-      cardError,
-      expiryError,
-      cvcError,
+      cardError$,
+      expiryError$,
+      cvcError$,
       (cardError, expiryError, cvcError) =&gt; {
         return !!(cardError || expiryError || cvcError);
       }
     );
   }
 
-  function combineCard(cardNumber, expiry, cvc) {
-    return combineLatest(cardNumber, expiry, cvc, (cardNumber, expiry, cvc) =&gt; {
+  function combineCard(cardNumber$, expiry$, cvc$) {
+    return combineLatest(cardNumber$, expiry$, cvc$, (cardNumber, expiry, cvc) =&gt; {
       return {
         cardNumber,
         expiry,
@@ -804,8 +804,8 @@ conditional operator (<code>?.</code>) like:
     });
   }
 
-  function paymentPromises(paySubmitted, card) {
-    return paySubmitted.pipe(withLatestFrom(card)).pipe(
+  function paymentPromises(paySubmitted$, card$) {
+    return paySubmitted$.pipe(withLatestFrom(card$)).pipe(
       map(([paySubmitted, card]) =&gt; {
         console.log(&quot;Asking for token with&quot;, card);
         return new Promise((resolve) =&gt; {
@@ -851,88 +851,88 @@ conditional operator (<code>?.</code>) like:
     selector: 'my-app',
     template: `
       &lt;form (submit)=&quot;pay($event)&quot;&gt;
-        &lt;div class=&quot;message&quot; *ngIf=&quot;showCardError | async&quot;&gt;{{ cardError | async }}&lt;/div&gt;
+        &lt;div class=&quot;message&quot; *ngIf=&quot;showCardError$ | async&quot;&gt;{{ cardError$ | async }}&lt;/div&gt;
 
-        &lt;div class=&quot;message&quot; *ngIf=&quot;showExpiryError | async&quot;&gt;{{ expiryError | async }}&lt;/div&gt;
+        &lt;div class=&quot;message&quot; *ngIf=&quot;showExpiryError$ | async&quot;&gt;{{ expiryError$ | async }}&lt;/div&gt;
 
-        &lt;div class=&quot;message&quot; *ngIf=&quot;showCVCError | async&quot;&gt;{{ cvcError | async }}&lt;/div&gt;
+        &lt;div class=&quot;message&quot; *ngIf=&quot;showCVCError$ | async&quot;&gt;{{ cvcError$ | async }}&lt;/div&gt;
 
         &lt;input
           type=&quot;text&quot;
           name=&quot;cardNumber&quot;
           placeholder=&quot;Card Number&quot;
-          (input)=&quot;userCardNumber.next($event.target.value)&quot;
-          (blur)=&quot;userCardNumberBlurred.next(true)&quot;
-          [class.is-error]=&quot;showCardError | async&quot;
+          (input)=&quot;userCardNumber$.next($event.target.value)&quot;
+          (blur)=&quot;userCardNumberBlurred$.next(true)&quot;
+          [class.is-error]=&quot;showCardError$ | async&quot;
         /&gt;
 
         &lt;input
           type=&quot;text&quot;
           name=&quot;expiry&quot;
           placeholder=&quot;MM-YY&quot;
-          (input)=&quot;userExpiry.next($event.target.value)&quot;
-          (blur)=&quot;userExpiryBlurred.next(true)&quot;
-          [class.is-error]=&quot;showExpiryError | async&quot;
+          (input)=&quot;userExpiry$.next($event.target.value)&quot;
+          (blur)=&quot;userExpiryBlurred$.next(true)&quot;
+          [class.is-error]=&quot;showExpiryError$ | async&quot;
         /&gt;
 
         &lt;input
           type=&quot;text&quot;
           name=&quot;cvc&quot;
           placeholder=&quot;CVC&quot;
-          (input)=&quot;userCVC.next($event.target.value)&quot;
-          (blur)=&quot;userCVCBlurred.next(true)&quot;
-          [class.is-error]=&quot;showCVCError | async&quot;
+          (input)=&quot;userCVC$.next($event.target.value)&quot;
+          (blur)=&quot;userCVCBlurred$.next(true)&quot;
+          [class.is-error]=&quot;showCVCError$ | async&quot;
         /&gt;
 
-        &lt;button [disabled]=&quot;isCardInvalid | async&quot;&gt;
-          {{ ((paymentStatus | async)?.status === &quot;pending&quot;) ? &quot;Paying&quot; : &quot;Pay&quot; }}
+        &lt;button [disabled]=&quot;isCardInvalid$ | async&quot;&gt;
+          {{ ((paymentStatus$ | async)?.status === &quot;pending&quot;) ? &quot;Paying&quot; : &quot;Pay&quot; }}
         &lt;/button&gt;
       &lt;/form&gt;
-      UserCardNumber: {{ userCardNumber | async }} &lt;br /&gt;
-      CardNumber: {{ cardNumber | async }} &lt;br /&gt;
+      UserCardNumber: {{ userCardNumber$ | async }} &lt;br /&gt;
+      CardNumber: {{ cardNumber$ | async }} &lt;br /&gt;
     `
   })
   class AppComponent {
-    userCardNumber = new BehaviorSubject&lt;string&gt;();
-    userCardNumberBlurred = new Subject&lt;boolean&gt;();
+    userCardNumber$ = new BehaviorSubject&lt;string&gt;();
+    userCardNumberBlurred$ = new Subject&lt;boolean&gt;();
 
-    userExpiry = new BehaviorSubject&lt;[]&gt;();
-    userExpiryBlurred = new Subject&lt;boolean&gt;();
+    userExpiry$ = new BehaviorSubject&lt;[]&gt;();
+    userExpiryBlurred$ = new Subject&lt;boolean&gt;();
 
-    userCVC = new BehaviorSubject&lt;string&gt;();
-    userCVCBlurred = new Subject&lt;boolean&gt;();
+    userCVC$ = new BehaviorSubject&lt;string&gt;();
+    userCVCBlurred$ = new Subject&lt;boolean&gt;();
 
-    paySubmitted = new Subject();
+    paySubmitted$ = new Subject();
 
     constructor() {
-      this.cardNumber = this.userCardNumber
+      this.cardNumber$ = this.userCardNumber$
         .pipe(cleanCardNumber)
         .pipe(log(&quot;cardNumber&quot;));
-      this.cardError = this.cardNumber.pipe(validateCard);
-      this.showCardError = showOnlyWhenBlurredOnce(this.cardError, this.userCardNumberBlurred);
+      this.cardError$ = this.cardNumber$.pipe(validateCard);
+      this.showCardError$ = showOnlyWhenBlurredOnce(this.cardError$, this.userCardNumberBlurred$);
 
-      this.expiry = this.userExpiry.pipe(expiryParts);
-      this.expiryError = this.expiry.pipe(validateExpiry);
-      this.showExpiryError = showOnlyWhenBlurredOnce(this.expiryError, this.userExpiryBlurred);
+      this.expiry$ = this.userExpiry$.pipe(expiryParts);
+      this.expiryError$ = this.expiry$.pipe(validateExpiry);
+      this.showExpiryError$ = showOnlyWhenBlurredOnce(this.expiryError$, this.userExpiryBlurred$);
 
-      this.cvc = this.userCVC;
-      this.cvcError = this.cvc.pipe(validateCVC);
-      this.showCVCError = showOnlyWhenBlurredOnce(this.cvcError, this.userCVCBlurred);
+      this.cvc$ = this.userCVC$;
+      this.cvcError$ = this.cvc$.pipe(validateCVC);
+      this.showCVCError$ = showOnlyWhenBlurredOnce(this.cvcError$, this.userCVCBlurred$);
 
-      this.isCardInvalid = isCardInvalid(this.cardError, this.expiryError, this.cvcError);
+      this.isCardInvalid$ = isCardInvalid(this.cardError$, this.expiryError$, this.cvcError$);
 
-      const card = combineCard(this.cardNumber, this.expiry, this.cvc);
+      const card$ = combineCard(this.cardNumber$, this.expiry$, this.cvc$);
 
-      const payments = paymentPromises(this.paySubmitted, card);
+      const payments$ = paymentPromises(this.paySubmitted$, card$);
 
-      const paymentStatusObservables = payments.pipe(toPaymentStatusObservable);
+      const paymentStatusObservables$ = payments$.pipe(toPaymentStatusObservable);
 
-      this.paymentStatus = paymentStatusObservables.pipe(mergeAll());
+      this.paymentStatus$ = paymentStatusObservables$.pipe(mergeAll());
     }
 
     pay(event) {
       event.preventDefault();
-      this.paySubmitted.next(true);
+      this.paySubmitted$.next(true);
     }
   }
 

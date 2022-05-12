@@ -1181,7 +1181,7 @@ platformBrowserDynamic()
 <h2>P1: Technical Requirements</h2>
 <ol>
 <li>Subscribe to the <code>state</code> and <code>city</code> formControl value changes and log the resulting value to the console.</li>
-<li>Unsubscribe from Subscription created in step 1 in the <code>ngOnDestroy</code> function</li>
+<li>Unsubscribe from Subscriptions within <code>restaurant.component</code> in the <code>ngOnDestroy</code> function</li>
 </ol>
 <h2>P1: To Verify Your Solution is Correct</h2>
 <p>When you interact with the dropdown menus, you should see their values logged to the console as you change them.</p>
@@ -1235,10 +1235,13 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.restaurants.isPending = true;
-    this.restaurantService.getRestaurants().subscribe((res: ResponseData) =&gt; {
-      this.restaurants.value = res.data;
-      this.restaurants.isPending = false;
-    });
+    this.restaurantService
+      .getRestaurants()
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((res: ResponseData) =&gt; {
+        this.restaurants.value = res.data;
+        this.restaurants.isPending = false;
+      });
 
     this.form
       .get('state')
@@ -1269,7 +1272,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
-<div line-highlight='1,3,17,38,39,51-69'></div>
+<div line-highlight='1,3,17,38,39,47-72'></div>
 <p></details></p>
 <p>Now that we know how to get values from our dropdowns, let's populate them with real data. We can get our list of states immediately, but to get our cities, we'll want to make a GET request based on the state the user selected.</p>
 <h2>Problem 2: Write Service Methods to Get States and Cities from API</h2>
@@ -2023,6 +2026,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
     this.restaurants.isPending = true;
     this.restaurantService
       .getRestaurants()
+      .pipe(takeUntil(this.onDestroy$))
       .subscribe((res: ResponseData&lt;Restaurant&gt;) =&gt; {
         this.restaurants.value = res.data;
         this.restaurants.isPending = false;
@@ -2057,7 +2061,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="47-51,66,only"></div>
+ <div line-highlight="50,only"></div>
 <p></details></p>
 <h2>Problem 4: Get Cities and States Based on Dropdown Values</h2>
 <p>Now that our service is in working order, let's populate our dropdowns with state and city data. We will want our list of states to be available right away, but we will want to fetch our list of cities only after we have the state value selected by the user.</p>
@@ -2621,17 +2625,21 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   }
 
   getStates(): void {
-    this.restaurantService.getStates().subscribe((res: ResponseData&lt;State&gt;) =&gt; {
-      this.states.value = res.data;
-      this.states.isPending = false;
-      this.form.get('state')?.enable();
-    });
+    this.restaurantService
+      .getStates()
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((res: ResponseData&lt;State&gt;) =&gt; {
+        this.states.value = res.data;
+        this.states.isPending = false;
+        this.form.get('state')?.enable();
+      });
   }
 
   getCities(state: string): void {
     this.cities.isPending = true;
     this.restaurantService
       .getCities(state)
+      .pipe(takeUntil(this.onDestroy$))
       .subscribe((res: ResponseData&lt;City&gt;) =&gt; {
         this.cities.value = res.data;
         this.cities.isPending = false;
@@ -2645,6 +2653,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   getRestaurants(): void {
     this.restaurantService
       .getRestaurants()
+      .pipe(takeUntil(this.onDestroy$))
       .subscribe((res: ResponseData&lt;Restaurant&gt;) =&gt; {
         this.restaurants.value = res.data;
         this.restaurants.isPending = false;
@@ -2653,7 +2662,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="5-10,12-13,25,30,32,35,37,48-49,59-60,64-65,71-77,79-82,84-93,100-102,104,106-112,114-115,117-124,126,128-129,134-135,only"></div>
+ <div line-highlight="5-10,12-13,25,30,32,35,37,48-49,59-60,64-65,71-77,79-82,84-93,100-102,104,106,108,110-113,115,117-130,132-133,135,139-140,only"></div>
 <p></details></p>
 
 </section>

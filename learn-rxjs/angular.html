@@ -463,10 +463,13 @@ covering CanJS core libraries.">
 <li>Write values to a <a href="https://rxjs.dev/guide/subject">Subject</a>
 and write out the value of the subject in the template.</li>
 </ul>
+<h2>Observables and the $ suffix</h2>
+<p>At Bitovi, we follow the <a href="https://ts.dev/style/#naming-style">ts.dev Style Guide</a> and prefer to suffix Observables with <code>$</code>.</p>
+<p>Although <a href="https://angular.io/guide/rx-library#naming-conventions-for-observables">not enforced</a>, it is useful to visually differentiate between observable and non-observable values.</p>
 <h2>How to solve this problem</h2>
 <ul>
-<li>Create a <code>userCardNumber</code> <code>BehaviorSubject</code>.</li>
-<li>Write the value of the <code>cardNumber</code> input to the <code>userCardNumber</code> <code>BehaviorSubject</code> on the <code>input</code> event.</li>
+<li>Create a <code>userCardNumber$</code> <code>BehaviorSubject</code>.</li>
+<li>Write the value of the <code>cardNumber</code> input to the <code>userCardNumber$</code> <code>BehaviorSubject</code> on the <code>input</code> event.</li>
 <li>Write the value of <code>cardNumber</code> out in the template under the <code>&lt;/form&gt;</code>
 element like:
 <pre><code class="language-html">&lt;/form&gt;
@@ -624,11 +627,11 @@ remainder of this tutorial.</p>
   const { BehaviorSubject } = rxjs;
 
   class AppComponent {
-    userCardNumber = new BehaviorSubject&lt;string&gt;();
+    userCardNumber$ = new BehaviorSubject&lt;string&gt;();
   }
 
   const app = new AppComponent();
-  console.log(app.userCardNumber) // logs Observable
+  console.log(app.userCardNumber$) // logs Observable
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
@@ -656,14 +659,14 @@ be sent the last value.</p>
   const { BehaviorSubject } = rxjs;
 
   class AppComponent {
-    userCardNumber = new BehaviorSubject&lt;string&gt;();
+    userCardNumber$ = new BehaviorSubject&lt;string&gt;();
   }
 
   const app = new AppComponent();
 
-  app.userCardNumber.subscribe(console.log); // logs undefined
+  app.userCardNumber$.subscribe(console.log); // logs undefined
 
-  app.userCardNumber.next(&quot;1111-2222-3333-4444&quot;); // logs &quot;1111-2222-3333-4444&quot;
+  app.userCardNumber$.next(&quot;1111-2222-3333-4444&quot;); // logs &quot;1111-2222-3333-4444&quot;
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
@@ -673,12 +676,12 @@ be sent the last value.</p>
   type=&quot;text&quot;
   name=&quot;cardNumber&quot;
   placeholder=&quot;Card Number&quot;
-  (input)=&quot;userCardNumber.next($event.target.value)&quot;
+  (input)=&quot;userCardNumber$.next($event.target.value)&quot;
 /&gt;
 </code></pre>
 <div line-highlight='5'></div>
 <p>Use <code>| async</code> to write out an observable's value in a template as follows:</p>
-<pre><code class="language-html">UserCardNumber: {{ userCardNumber | async }} &lt;br /&gt;
+<pre><code class="language-html">UserCardNumber: {{ userCardNumber$ | async }} &lt;br /&gt;
 </code></pre>
 <p>Read more about this technique <a href="https://angular.io/guide/observables-in-angular#async-pipe">here</a>.</p>
 <h2>The Solution</h2>
@@ -708,7 +711,7 @@ be sent the last value.</p>
             type=&quot;text&quot;
             name=&quot;cardNumber&quot;
             placeholder=&quot;Card Number&quot;
-            (input)=&quot;userCardNumber.next($event.target.value)&quot;
+            (input)=&quot;userCardNumber$.next($event.target.value)&quot;
           /&gt;
 
           &lt;input type=&quot;text&quot; name=&quot;expiry&quot; placeholder=&quot;MM-YY&quot; /&gt;
@@ -719,11 +722,11 @@ be sent the last value.</p>
             PAY
           &lt;/button&gt;
       &lt;/form&gt;
-      UserCardNumber: {{ userCardNumber | async }} &lt;br /&gt;
+      UserCardNumber: {{ userCardNumber$ | async }} &lt;br /&gt;
     `
   })
   class AppComponent {
-    userCardNumber = new BehaviorSubject&lt;string&gt;();
+    userCardNumber$ = new BehaviorSubject&lt;string&gt;();
 
     constructor() {
 

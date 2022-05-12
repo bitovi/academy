@@ -1137,6 +1137,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     if (slug) {
       this.restaurantService
         .getRestaurant(slug)
+        .pipe(takeUntil(this.onDestroy$))
         .subscribe((data: Restaurant) =&gt; {
           this.restaurant = data;
           this.isLoading = false;
@@ -1207,7 +1208,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="112-114,122,only"></div>
+ <div line-highlight="113-115,123,only"></div>
 <h2>P3: How to Verify Your Solution is Correct</h2>
 <p>If you've implemented everything correctly, you should now be able to create an order from the UI and see a record of your completed order once it's created.</p>
 <p>✏️ Update the menu-items spec file <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
@@ -1584,6 +1585,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     if (slug) {
       this.restaurantService
         .getRestaurant(slug)
+        .pipe(takeUntil(this.onDestroy$))
         .subscribe((data: Restaurant) =&gt; {
           this.restaurant = data;
           this.isLoading = false;
@@ -1644,6 +1646,7 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.orderProcessing = true;
     this.orderService
       .createOrder(this.orderForm?.value)
+      .pipe(takeUntil(this.onDestroy$))
       .subscribe((res: Order) =&gt; {
         this.completedOrder = res;
         this.orderComplete = true;
@@ -1661,7 +1664,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="16,39,47,116-122,128,only"></div>
+ <div line-highlight="16,39,47,117-124,130,only"></div>
 <p></details></p>
 
 </section>
