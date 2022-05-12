@@ -14,7 +14,9 @@ In this part, we will:
 ## Problem
 
 Now that our application is coming together nicely, you might have noticed we are repeating the same code to calculate the total prices of our items.
-We can simplify this by creating an Item Total Pipe which we will use in `order-component.ts` file and in the `order-history-component.html` file. The pipe will transform an array of items and return the total sum of the price of each item.
+We can simplify this by creating an Item Total Pipe which we will use in the `list.component.html` template file and call directly using `transform` within `order.component.ts` file. The pipe will transform an array of items and return the total sum of the price of each item.
+
+After implementing this pipe, you should be able to remove the `total` method from `list.component.ts`.
 
 # What You Need to Know
 
@@ -35,6 +37,8 @@ ng g pipe itemTotal
 
 Unlike services, Pipes are not readily injectable into our components. In order to be able to use Pipes in a component, it has to be provided in the app module.
 To provide the **Pipe** just created in the app module, simply add the Pipe to the provider array in the `app.module.ts` file. [Learn More](https://angular.io/guide/providers)
+
+By including the pipe in a component's constructor, you gain the ability to run the pipe using its `transform` method.
 
 ✏️ Update **src/app/app.module.ts**
 
