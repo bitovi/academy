@@ -33,7 +33,7 @@ export class ListComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
-  delete(id: string): void {
+  deleteOrder(id: string): void {
     this.orderService
       .deleteOrder(id)
       .pipe(takeUntil(this.onDestroy$))
