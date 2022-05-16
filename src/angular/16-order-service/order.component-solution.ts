@@ -82,15 +82,6 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   getChange(newItems: []): void {
-    const currentItems = this.orderForm?.get('items')?.value;
-
-    for (let i = 0; i < newItems.length; i++) {
-      const item = newItems[i];
-      const idx = currentItems.indexOf(item);
-      if (idx === -1) {
-        currentItems.push(item);
-      }
-    }
     this.orderForm?.get('items')?.patchValue(newItems);
   }
 
