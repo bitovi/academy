@@ -102,7 +102,7 @@ let may = Month[5];
 
 Unknown describes a variable where we may not know the type. Variables defined with the `unknown` type can later be narrowed to more specific types using `typeof` checks or comparisons.
 
-Note variables of type `unknown` have no accessible properties or functions.
+Note that variables of type `unknown` have no accessible properties or functions.
 
 ```typescript
 let value: unknown = 5;
