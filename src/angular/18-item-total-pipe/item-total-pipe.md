@@ -11,41 +11,36 @@ In this part, we will:
 - Create a new Pipe called Item Totals
 - Use Angular Default Currency Pipe
 
-## Problem
+## Problem 1: Implementing and Using Item Total Pipe
 
 Now that our application is coming together nicely, you might have noticed we are repeating the same code to calculate the total prices of our items.
-We can simplify this by creating an Item Total Pipe which we will use in the `list.component.html` template file and call directly using `transform` within `order.component.ts` file. The pipe will transform an array of items and return the total sum of the price of each item.
+We can simplify this by creating an Item Total Pipe which we will use in the `list.component.html` template file and call directly using `transform` within `order.component.ts` file. The Pipe will transform an array of items and return the total sum of the price of each item.
 
-After implementing this pipe, you should be able to remove the `total` method from `list.component.ts`.
+After implementing this Pipe, you should be able to remove the `total` method from `list.component.ts`.
 
-# What You Need to Know
+## P1: What You Need to Know
 
 How to:
 
 - Generate a Pipe using Angular CLI (you previously learned this in the [learn-angular/creating-pipes Creating Pipes] section! ✔️)
+  ```bash
+  ng g pipe itemTotal
+  ```
 - Provide a Pipe globally to the entire application, so it can be used in any component
-
-## Generating Pipe
-
-✏️ Run the following to generate the **Pipe** and the test files:
-
-```bash
-ng g pipe itemTotal
-```
 
 ## Provide Pipe Globally
 
-Unlike services, Pipes are not readily injectable into our components. In order to be able to use Pipes in a component, it has to be provided in the app module.
-To provide the **Pipe** just created in the app module, simply add the Pipe to the provider array in the `app.module.ts` file. [Learn More](https://angular.io/guide/providers)
+Unlike services, Pipes are not readily injectable into our components. In order to be able to use a Pipe in a component's `.ts` file, the Pipe has to be provided by a module.
+To provide the **Pipe** just created in the app module, simply add the Pipe to the `providers` array in the `app.module.ts` file. [Learn More](https://angular.io/guide/providers).
 
-By including the pipe in a component's constructor, you gain the ability to run the pipe using its `transform` method.
+By including the Pipe in a component's constructor, you gain the ability to run the Pipe using its `transform` method.
 
 ✏️ Update **src/app/app.module.ts**
 
 @sourceref ./app.module.ts
 @highlight 42, only
 
-Now the Pipe is available to be used in components across the application <a href="https://angular.io/guide/providers" target="\_blank">Providers</a>.
+Now the Pipe is available to be used in components across the application.
 
 The example below shows how to provide a Pipe globally in Angular. The Pipe being created will transform two separate words into one compound word. It will take a string value, then a parameter, that is used as a prefix to the string value.
 
@@ -53,7 +48,7 @@ The example below shows how to provide a Pipe globally in Angular. The Pipe bein
 @codepen
 @highlight 14-22, 27, 29, 39, 50, 52, only
 
-## How to Verify Your Solution is Correct
+## P1: How to Verify Your Solution is Correct
 
 ✏️ Update the following spec files to include and provide the new Pipe:
 
@@ -75,7 +70,7 @@ The example below shows how to provide a Pipe globally in Angular. The Pipe bein
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
-## Solution
+## P1: Solution
 
 <details>
 <summary>Click to see the solution</summary>
@@ -93,21 +88,25 @@ The example below shows how to provide a Pipe globally in Angular. The Pipe bein
 
 </details>
 
-## Using Currency Pipe
+## Problem 2: Using Currency Pipe
 
 Now that we have finished implementing our Item Total Pipe, this is a good time for us to talk about using Currency Pipe. You might have noticed that our prices are in USD, which is a currency, and is a perfect use for the Currency Pipe.
 Angular provides us with a [Currency Pipe](https://angular.io/api/common/CurrencyPipe) that formats a number as currency using locale rules. Locale Rules refers to a user's country or region specific details like currency, language and more.
 
-# What You Need to Know
+Add the Currency Pipe to the `order.component.html` , `menu-items.component.html` and `list.component.html` template files:
+
+## P2: What You Need to Know
 
 How to:
 
 - Apply a Pipe (you previously learned this ✔️)
-- Set a default Currency Code
 
-Like all the other Pipe we have created, the Currency Pipe can be used the exact same way.
-Add the Currency Pipe to the `order.component.html` , `menu-items.component.html` and `list.component.html`:
+Like all the other Pipes we have created, the Currency Pipe can be used the exact same way.
 
+## P2: Solution
+
+<details>
+<summary>Click to see the solution</summary>
 ✏️ Update **src/app/order/order.component.html** to use the Currency Pipe:
 
 @diff ../16-order-service/order.component.html ./order.component.html only
@@ -119,10 +118,11 @@ Add the Currency Pipe to the `order.component.html` , `menu-items.component.html
 ✏️ Update **src/app/order/menu-items/menu-items.component.html** to use the Currency Pipe:
 @diff ../14-building-order-form/child-component/menu-items-1.component.html ./menu-items-1.component-currency.html only
 
+</details>
+
 ## Set Default Currency Code
 
-In our application we want to use USD for currency regardless of what country or language the user is accessing our application from.
-To do this, simply provide the default currency you want use in the entire application (we previously discussed how to implement this).
+If we want to display a different currency than the one provided by the application's locale, which defaults to `en-US` and therefore `USD`, we may override the locale's currency by providing `DEFAULT_CURRENCY_CODE` in `app.module.ts`.
 
 ✏️ Update **app.module.ts** to provide currency code:
 
