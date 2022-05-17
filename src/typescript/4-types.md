@@ -98,13 +98,38 @@ enum Month { January = 1, March = 3, May = 5};
 let may = Month[5];
 ```
 
+### Unknown
+
+Unknown describes a variable where we may not know the type. Variables defined with the `unknown` type can later be narrowed to more specific types using `typeof` checks or comparisons.
+
+Note that variables of type `unknown` have no accessible properties or functions.
+
+```typescript
+let value: unknown = 5;
+
+value = 'words';
+value.length; // Will give "Object is of type unknown" error
+
+// Will give "Type unknown is not assignable to type string" error
+const value2: string = value;
+
+// Check type using typeof
+if(typeof value === 'string') {
+	// Can successfully narrow
+	const stringValue: string = value;
+	console.log("Length is", stringValue.length);
+}
+```
+
 ### Any
 
-Any describes a variable where we may not know the type.
+Any is useful when you want to opt-out of type checking. Using `any` will disable all compile-time checks including access to properties and functions. This is mostly useful for 3rd party data structures that you do not know the shape of, or when incrementally opting in to types.
 
 ```typescript
 let my3rdPartyData: any = 5;
 my3rdPartyData = 'five';
+
+my3rdPartyData.invalidFunction(3); // Will not error until runtime
 ```
 
 ### Void
