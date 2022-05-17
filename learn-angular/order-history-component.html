@@ -1563,7 +1563,9 @@ of orders and other values like:
       &lt;/p&gt;
 
       &lt;p class=&quot;action&quot;&gt;
-        &lt;button class=&quot;btn-link&quot; (click)=&quot;delete(order._id)&quot;&gt;Delete&lt;/button&gt;
+        &lt;button class=&quot;btn-link&quot; (click)=&quot;deleteOrder(order._id)&quot;&gt;
+          Delete
+        &lt;/button&gt;
       &lt;/p&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -1913,7 +1915,7 @@ export class ListComponent implements OnInit, OnDestroy {
       .subscribe();
   }
 
-  delete(id: string): void {
+  deleteOrder(id: string): void {
     this.orderService
       .deleteOrder(id)
       .pipe(takeUntil(this.onDestroy$))

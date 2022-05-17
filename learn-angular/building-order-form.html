@@ -2856,15 +2856,6 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   getChange(newItems: []): void {
-    const currentItems = this.orderForm?.get('items')?.value;
-
-    for (let i = 0; i &lt; newItems.length; i++) {
-      const item = newItems[i];
-      const idx = currentItems.indexOf(item);
-      if (idx === -1) {
-        currentItems.push(item);
-      }
-    }
     this.orderForm?.get('items')?.patchValue(newItems);
   }
 
@@ -2897,7 +2888,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="82-83,85-92,120,only"></div>
+ <div line-highlight="82-83,111,only"></div>
 <p></details></p>
 <h2>Control Value Accessor</h2>
 <p>Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the <a href="https://angular.io/api/forms/ControlValueAccessor" target="_blank">Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.</p>

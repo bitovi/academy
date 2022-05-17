@@ -473,10 +473,30 @@ let feb = Month[2];
 enum Month { January = 1, March = 3, May = 5};
 let may = Month[5];
 </code></pre>
+<h3>Unknown</h3>
+<p>Unknown describes a variable where we may not know the type. Variables defined with the <code>unknown</code> type can later be narrowed to more specific types using <code>typeof</code> checks or comparisons.</p>
+<p>Note that variables of type <code>unknown</code> have no accessible properties or functions.</p>
+<pre><code class="language-typescript">let value: unknown = 5;
+
+value = 'words';
+value.length; // Will give &quot;Object is of type unknown&quot; error
+
+// Will give &quot;Type unknown is not assignable to type string&quot; error
+const value2: string = value;
+
+// Check type using typeof
+if(typeof value === 'string') {
+    // Can successfully narrow
+    const stringValue: string = value;
+    console.log(&quot;Length is&quot;, stringValue.length);
+}
+</code></pre>
 <h3>Any</h3>
-<p>Any describes a variable where we may not know the type.</p>
+<p>Any is useful when you want to opt-out of type checking. Using <code>any</code> will disable all compile-time checks including access to properties and functions. This is mostly useful for 3rd party data structures that you do not know the shape of, or when incrementally opting in to types.</p>
 <pre><code class="language-typescript">let my3rdPartyData: any = 5;
 my3rdPartyData = 'five';
+
+my3rdPartyData.invalidFunction(3); // Will not error until runtime
 </code></pre>
 <h3>Void</h3>
 <p>No type at all - commonly used with functions that don't return a value.</p>

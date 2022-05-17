@@ -1312,8 +1312,9 @@ class UsersService {
   constructor(private httpClient: HttpClient) {}
 
   getUsers() {
-    const params = new HttpParams();
-    params.set('_page', &quot;1&quot;).set('_limit', &quot;1&quot;);
+    const params = new HttpParams()
+      .set('_page', &quot;1&quot;)
+      .set('_limit', &quot;1&quot;);
     return this.httpClient.get&lt;any&gt;('/api/users', {params});
   }
 
@@ -1369,11 +1370,11 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='33-34,only'></div>
+<div line-highlight='33-35,only'></div>
 <h2>P2: Technical Requirements</h2>
 <p>Write two new methods in the <code>RestaurantsService</code> to get state and city lists.</p>
-<p>Method 1 - <code>getStates</code> takes no params and makes a request to <code>'/api/states'</code></p>
-<p>Method 2 - <code>getCities</code>, takes a string param called 'state' a makes a request to <code>'/api/cities?state=&quot;{state abbreviation here}&quot;'</code></p>
+<p>Method 1 - <code>getStates</code> takes no params and makes a request to <code>'/states'</code></p>
+<p>Method 2 - <code>getCities</code>, takes a string param called 'state' a makes a request to <code>'/cities?state=&quot;{state abbreviation here}&quot;'</code></p>
 <h2>P2: How to Verify Your Solution is Correct</h2>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {

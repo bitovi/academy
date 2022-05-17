@@ -1816,15 +1816,6 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   getChange(newItems: []): void {
-    const currentItems = this.orderForm?.get('items')?.value;
-
-    for (let i = 0; i &lt; newItems.length; i++) {
-      const item = newItems[i];
-      const idx = currentItems.indexOf(item);
-      if (idx === -1) {
-        currentItems.push(item);
-      }
-    }
     this.orderForm?.get('items')?.patchValue(newItems);
   }
 
@@ -1860,7 +1851,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="14,49-50,105,only"></div>
+ <div line-highlight="14,49-50,96,only"></div>
 <p>✏️ Update <strong>src/app/order/list/list.component.html</strong> to use the item total Pipe:</p>
 <pre><code class="language-html">&lt;h4&gt;{{ listTitle }}&lt;/h4&gt;
 &lt;ng-container *ngFor=&quot;let order of orders&quot;&gt;
@@ -1887,7 +1878,9 @@ export class OrderComponent implements OnInit, OnDestroy {
       &lt;/p&gt;
 
       &lt;p class=&quot;action&quot;&gt;
-        &lt;button class=&quot;btn-link&quot; (click)=&quot;delete(order._id)&quot;&gt;Delete&lt;/button&gt;
+        &lt;button class=&quot;btn-link&quot; (click)=&quot;deleteOrder(order._id)&quot;&gt;
+          Delete
+        &lt;/button&gt;
       &lt;/p&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -2042,7 +2035,9 @@ Add the Currency Pipe to the <code>order.component.html</code> , <code>menu-item
       &lt;/p&gt;
 
       &lt;p class=&quot;action&quot;&gt;
-        &lt;button class=&quot;btn-link&quot; (click)=&quot;delete(order._id)&quot;&gt;Delete&lt;/button&gt;
+        &lt;button class=&quot;btn-link&quot; (click)=&quot;deleteOrder(order._id)&quot;&gt;
+          Delete
+        &lt;/button&gt;
       &lt;/p&gt;
     &lt;/div&gt;
   &lt;/div&gt;
