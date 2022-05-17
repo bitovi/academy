@@ -52,7 +52,7 @@ In this guide we will teach you about TypeScript concepts and have an environmen
 
 When we give you a command to run to verify your work it will look for a file named respectively. If you run into issues you can look at the package.json file to see which file the command listed is looking for.
 
-## Exercise: `1-helloworld.ts`
+## Exercise: `0-why-hello-world.ts`
 
 ### The Problem
 
