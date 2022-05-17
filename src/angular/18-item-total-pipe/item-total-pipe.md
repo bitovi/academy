@@ -93,7 +93,7 @@ The example below shows how to provide a Pipe globally in Angular. The Pipe bein
 Now that we have finished implementing our Item Total Pipe, this is a good time for us to talk about using Currency Pipe. You might have noticed that our prices are in USD, which is a currency, and is a perfect use for the Currency Pipe.
 Angular provides us with a [Currency Pipe](https://angular.io/api/common/CurrencyPipe) that formats a number as currency using locale rules. Locale Rules refers to a user's country or region specific details like currency, language and more.
 
-Add the Currency Pipe to the `order.component.html` , `menu-items.component.html` and `list.component.html`:
+Add the Currency Pipe to the `order.component.html` , `menu-items.component.html` and `list.component.html` template files:
 
 ## P2: What You Need to Know
 
