@@ -2071,8 +2071,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 <li>Rewrite the <code>Data</code> interface to be a generic to work with State and City types as well</li>
 <li>Mark state and city dropdowns as disabled until they are populated with data</li>
 <li>Fetch the states list when the component first loads (<code>ngOnInit</code>) and populate the dropdown options with the values</li>
-<li>When the State FormControl value changes, fetch the list of cities with the selected state as the parameter</li>
-<li>If the state value changes, fetch the new list of cities, and reset the list of restaurants to an empty array</li>
+<li>When the State FormControl value changes, fetch the list of cities for the newly selected state and reset the list of restaurants to an empty array</li>
 <li>When a City is selected, fetch the list of restaurants</li>
 </ol>
 <blockquote>

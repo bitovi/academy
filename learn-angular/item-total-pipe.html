@@ -593,24 +593,22 @@ covering CanJS core libraries.">
 <li>Create a new Pipe called Item Totals</li>
 <li>Use Angular Default Currency Pipe</li>
 </ul>
-<h2>Problem</h2>
+<h2>Problem 1: Implementing and Using Item Total Pipe</h2>
 <p>Now that our application is coming together nicely, you might have noticed we are repeating the same code to calculate the total prices of our items.
-We can simplify this by creating an Item Total Pipe which we will use in the <code>list.component.html</code> template file and call directly using <code>transform</code> within <code>order.component.ts</code> file. The pipe will transform an array of items and return the total sum of the price of each item.</p>
-<p>After implementing this pipe, you should be able to remove the <code>total</code> method from <code>list.component.ts</code>.</p>
-<h1>What You Need to Know</h1>
+We can simplify this by creating an Item Total Pipe which we will use in the <code>list.component.html</code> template file and call directly using <code>transform</code> within <code>order.component.ts</code> file. The Pipe will transform an array of items and return the total sum of the price of each item.</p>
+<p>After implementing this Pipe, you should be able to remove the <code>total</code> method from <code>list.component.ts</code>.</p>
+<h2>P1: What You Need to Know</h2>
 <p>How to:</p>
 <ul>
-<li>Generate a Pipe using Angular CLI (you previously learned this in the <a href="creating-pipes.html" title="Learn how to create a custom pipe in Angular that returns a modified version of a string.">Creating Pipes</a> section! ✔️)</li>
+<li>Generate a Pipe using Angular CLI (you previously learned this in the <a href="creating-pipes.html" title="Learn how to create a custom pipe in Angular that returns a modified version of a string.">Creating Pipes</a> section! ✔️)
+<pre><code class="language-bash">ng g pipe itemTotal
+</code></pre></li>
 <li>Provide a Pipe globally to the entire application, so it can be used in any component</li>
 </ul>
-<h2>Generating Pipe</h2>
-<p>✏️ Run the following to generate the <strong>Pipe</strong> and the test files:</p>
-<pre><code class="language-bash">ng g pipe itemTotal
-</code></pre>
 <h2>Provide Pipe Globally</h2>
-<p>Unlike services, Pipes are not readily injectable into our components. In order to be able to use Pipes in a component, it has to be provided in the app module.
-To provide the <strong>Pipe</strong> just created in the app module, simply add the Pipe to the provider array in the <code>app.module.ts</code> file. <a href="https://angular.io/guide/providers">Learn More</a></p>
-<p>By including the pipe in a component's constructor, you gain the ability to run the pipe using its <code>transform</code> method.</p>
+<p>Unlike services, Pipes are not readily injectable into our components. In order to be able to use a Pipe in a component's <code>.ts</code> file, the Pipe has to be provided by a module.
+To provide the <strong>Pipe</strong> just created in the app module, simply add the Pipe to the <code>providers</code> array in the <code>app.module.ts</code> file. <a href="https://angular.io/guide/providers">Learn More</a>.</p>
+<p>By including the Pipe in a component's constructor, you gain the ability to run the Pipe using its <code>transform</code> method.</p>
 <p>✏️ Update <strong>src/app/app.module.ts</strong></p>
 <pre><code class="language-ts">import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -660,7 +658,7 @@ export class AppModule { }
 
 </code></pre>
 <div line-highlight='42, only'></div>
-<p>Now the Pipe is available to be used in components across the application <a href="https://angular.io/guide/providers" target="\_blank">Providers</a>.</p>
+<p>Now the Pipe is available to be used in components across the application.</p>
 <p>The example below shows how to provide a Pipe globally in Angular. The Pipe being created will transform two separate words into one compound word. It will take a string value, then a parameter, that is used as a prefix to the string value.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -728,7 +726,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='14-22, 27, 29, 39, 50, 52, only'></div>
-<h2>How to Verify Your Solution is Correct</h2>
+<h2>P1: How to Verify Your Solution is Correct</h2>
 <p>✏️ Update the following spec files to include and provide the new Pipe:</p>
 <ul>
 <li><strong>src/app/order/order.component.spec.ts</strong></li>
@@ -1705,7 +1703,7 @@ describe('ItemTotalPipe', () =&gt; {
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h2>Solution</h2>
+<h2>P1: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/item-total.pipe.ts</strong> to:</p>
@@ -1891,18 +1889,20 @@ export class OrderComponent implements OnInit, OnDestroy {
 </code></pre>
  <div line-highlight="14,only"></div>
 <p></details></p>
-<h2>Using Currency Pipe</h2>
+<h2>Problem 2: Using Currency Pipe</h2>
 <p>Now that we have finished implementing our Item Total Pipe, this is a good time for us to talk about using Currency Pipe. You might have noticed that our prices are in USD, which is a currency, and is a perfect use for the Currency Pipe.
 Angular provides us with a <a href="https://angular.io/api/common/CurrencyPipe">Currency Pipe</a> that formats a number as currency using locale rules. Locale Rules refers to a user's country or region specific details like currency, language and more.</p>
-<h1>What You Need to Know</h1>
+<p>Add the Currency Pipe to the <code>order.component.html</code> , <code>menu-items.component.html</code> and <code>list.component.html</code> template files:</p>
+<h2>P2: What You Need to Know</h2>
 <p>How to:</p>
 <ul>
 <li>Apply a Pipe (you previously learned this ✔️)</li>
-<li>Set a default Currency Code</li>
 </ul>
-<p>Like all the other Pipe we have created, the Currency Pipe can be used the exact same way.
-Add the Currency Pipe to the <code>order.component.html</code> , <code>menu-items.component.html</code> and <code>list.component.html</code>:</p>
-<p>✏️ Update <strong>src/app/order/order.component.html</strong> to use the Currency Pipe:</p>
+<p>Like all the other Pipes we have created, the Currency Pipe can be used the exact same way.</p>
+<h2>P2: Solution</h2>
+<p><details>
+<summary>Click to see the solution</summary>
+✏️ Update <strong>src/app/order/order.component.html</strong> to use the Currency Pipe:</p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
   &lt;ng-container *ngIf=&quot;orderComplete &amp;&amp; completedOrder; else showOrderForm&quot;&gt;
     &lt;h3&gt;Thanks for your order {{ completedOrder.name }}!&lt;/h3&gt;
@@ -2057,9 +2057,9 @@ Add the Currency Pipe to the <code>order.component.html</code> , <code>menu-item
 
 </code></pre>
  <div line-highlight="4,only"></div>
+<p></details></p>
 <h2>Set Default Currency Code</h2>
-<p>In our application we want to use USD for currency regardless of what country or language the user is accessing our application from.
-To do this, simply provide the default currency you want use in the entire application (we previously discussed how to implement this).</p>
+<p>If we want to display a different currency than the one provided by the application's locale, which defaults to <code>en-US</code> and therefore <code>USD</code>, we may override the locale's currency by providing <code>DEFAULT_CURRENCY_CODE</code> in <code>app.module.ts</code>.</p>
 <p>✏️ Update <strong>app.module.ts</strong> to provide currency code:</p>
 <pre><code class="language-ts">import { HttpClientModule } from '@angular/common/http';
 import { DEFAULT_CURRENCY_CODE, NgModule } from '@angular/core';
