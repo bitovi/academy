@@ -241,5 +241,5 @@ observables and then _flatten_ that observable with `mergeAll`.
 <summary>Click to see the solution</summary>
 @sourceref ./10-show-paying.html
 @codepen
-@highlight 148-176,216,256-258,only
+@highlight 147-175,215,255-257,only
 </details>

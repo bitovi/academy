@@ -112,13 +112,10 @@
   });
 
   function isCardInvalid(cardError$, expiryError$, cvcError$) {
-    return combineLatest(
-      cardError$,
-      expiryError$,
-      cvcError$,
-      (cardError, expiryError, cvcError) => {
+    return combineLatest([cardError$, expiryError$, cvcError$]).pipe(
+      map(([cardError, expiryError, cvcError]) => {
         return !!(cardError || expiryError || cvcError);
-      }
+      })
     );
   }
 

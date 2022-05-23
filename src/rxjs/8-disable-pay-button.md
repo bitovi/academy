@@ -28,12 +28,12 @@ In this section, we will:
 
 ## What you need to know
 
-- The [combineLatest](https://rxjs.dev/api/index/function/combineLatest) static method combines several values into a single value:
+- The [combineLatest](https://rxjs.dev/api/index/function/combineLatest) static method combines the values from several observables into a single array that emits whenever any of the input observables emits:
 
   ```html
   <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
   <script type="typescript">
-    const { of, zip, timer, from, combineLatest } = rxjs;
+    const { of, zip, timer, from, combineLatest, map } = rxjs;
 
     function sequentially(value, dueTime, period) {
       return zip(
@@ -48,10 +48,10 @@ In this section, we will:
 
     // first: ---Justin---RamiyaX
     // last:  ------Shah__---Meyer_X
-    const fullName = combineLatest(
-      first,
-      last,
-      (first, last) => { return first + " " + last; }
+    const fullName = combineLatest([first, last]).pipe(
+      map(([first, last]) => {
+        return first + " " + last;
+      })
     );
 
     fullName.subscribe(console.log);
@@ -77,5 +77,5 @@ In this section, we will:
 <summary>Click to see the solution</summary>
 @sourceref ./8-disable-pay-button.html
 @codepen
-@highlight 13,114-123,162,195,only
+@highlight 13,114-120,159,192,only
 </details>
