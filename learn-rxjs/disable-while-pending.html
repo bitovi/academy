@@ -648,24 +648,23 @@ for all subscribers of <code>squares</code>:</p>
   });
 
   function isCardInvalid(cardError$, expiryError$, cvcError$) {
-    return combineLatest(
-      cardError$,
-      expiryError$,
-      cvcError$,
-      (cardError, expiryError, cvcError) =&gt; {
+    return combineLatest([cardError$, expiryError$, cvcError$]).pipe(
+      map(([cardError, expiryError, cvcError]) =&gt; {
         return !!(cardError || expiryError || cvcError);
-      }
+      })
     );
   }
 
   function combineCard(cardNumber$, expiry$, cvc$) {
-    return combineLatest(cardNumber$, expiry$, cvc$, (cardNumber, expiry, cvc) =&gt; {
-      return {
-        cardNumber,
-        expiry,
-        cvc,
-      };
-    });
+    return combineLatest([cardNumber$, expiry$, cvc$]).pipe(
+      map(([cardNumber, expiry, cvc]) =&gt; {
+        return {
+          cardNumber,
+          expiry,
+          cvc,
+        };
+      })
+    );
   }
 
   function paymentPromises(paySubmitted$, card$) {
@@ -712,16 +711,14 @@ for all subscribers of <code>squares</code>:</p>
   );
 
   function disablePaymentButton(isCardInvalid$, paymentStatus$) {
-    return combineLatest(
-      isCardInvalid$,
-      paymentStatus$,
-      (isCardInvalid, paymentStatus) =&gt; {
+    return combineLatest([isCardInvalid$, paymentStatus$]).pipe(
+      map(([isCardInvalid, paymentStatus]) =&gt; {
         return (
           isCardInvalid === true ||
           !paymentStatus ||
           paymentStatus.status === &quot;pending&quot;
         );
-      }
+      })
     );
   }
 
@@ -915,7 +912,7 @@ for all subscribers of <code>squares</code>:</p>
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='14,178-190,229,232-233,270-272,only'></div>
+<div line-highlight='14,177-187,226,229-230,267-269,only'></div>
 </details>
 
 </section>

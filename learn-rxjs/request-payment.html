@@ -659,24 +659,23 @@ the page is clicked:</p>
   });
 
   function isCardInvalid(cardError$, expiryError$, cvcError$) {
-    return combineLatest(
-      cardError$,
-      expiryError$,
-      cvcError$,
-      (cardError, expiryError, cvcError) =&gt; {
+    return combineLatest([cardError$, expiryError$, cvcError$]).pipe(
+      map(([cardError, expiryError, cvcError]) =&gt; {
         return !!(cardError || expiryError || cvcError);
-      }
+      })
     );
   }
 
   function combineCard(cardNumber$, expiry$, cvc$) {
-    return combineLatest(cardNumber$, expiry$, cvc$, (cardNumber, expiry, cvc) =&gt; {
-      return {
-        cardNumber,
-        expiry,
-        cvc,
-      };
-    });
+    return combineLatest([cardNumber$, expiry$, cvc$]).pipe(
+      map(([cardNumber, expiry, cvc]) =&gt; {
+        return {
+          cardNumber,
+          expiry,
+          cvc,
+        };
+      })
+    );
   }
 
   function paymentPromises(paySubmitted$, card$) {
@@ -884,7 +883,7 @@ the page is clicked:</p>
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='14,125-146,151,203,222-230,233-236,only'></div>
+<div line-highlight='14,122-145,150,202,221-229,232-235,only'></div>
 </details>
 
 </section>

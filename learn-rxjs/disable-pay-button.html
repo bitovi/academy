@@ -472,10 +472,10 @@ and returns the <code>this.isCardInvalid$</code> observable.</li>
 </ul>
 <h2>What you need to know</h2>
 <ul>
-<li><p>The <a href="https://rxjs.dev/api/index/function/combineLatest">combineLatest</a> static method combines several values into a single value:</p>
+<li><p>The <a href="https://rxjs.dev/api/index/function/combineLatest">combineLatest</a> static method combines the values from several observables into a single array that emits whenever any of the input observables emits:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
-  const { of, zip, timer, from, combineLatest } = rxjs;
+  const { of, zip, timer, from, combineLatest, map } = rxjs;
 
   function sequentially(value, dueTime, period) {
     return zip(
@@ -490,10 +490,10 @@ and returns the <code>this.isCardInvalid$</code> observable.</li>
 
   // first: ---Justin---RamiyaX
   // last:  ------Shah__---Meyer_X
-  const fullName = combineLatest(
-    first,
-    last,
-    (first, last) =&gt; { return first + &quot; &quot; + last; }
+  const fullName = combineLatest([first, last]).pipe(
+    map(([first, last]) =&gt; {
+      return first + &quot; &quot; + last;
+    })
   );
 
   fullName.subscribe(console.log);
@@ -628,13 +628,10 @@ from another value:</p>
   });
 
   function isCardInvalid(cardError$, expiryError$, cvcError$) {
-    return combineLatest(
-      cardError$,
-      expiryError$,
-      cvcError$,
-      (cardError, expiryError, cvcError) =&gt; {
+    return combineLatest([cardError$, expiryError$, cvcError$]).pipe(
+      map(([cardError, expiryError, cvcError]) =&gt; {
         return !!(cardError || expiryError || cvcError);
-      }
+      })
     );
   }
 
@@ -813,7 +810,7 @@ from another value:</p>
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='13,114-123,162,195,only'></div>
+<div line-highlight='13,114-120,159,192,only'></div>
 </details>
 
 </section>
