@@ -124,5 +124,5 @@ In this section, we will:
 <summary>Click to see the solution</summary>
 @sourceref ./9-request-payment.html
 @codepen
-@highlight 14,125-146,151,203,222-230,233-236,only
+@highlight 14,122-145,150,202,221-229,232-235,only
 </details>

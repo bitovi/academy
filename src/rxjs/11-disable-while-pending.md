@@ -102,5 +102,5 @@ Read more about this technique on [RxJS's documentation](https://rxjs.dev/guide/
 <summary>Click to see the solution</summary>
 @sourceref ./11-disable-while-pending.html
 @codepen
-@highlight 14,178-190,229,232-233,270-272,only
+@highlight 14,177-187,226,229-230,267-269,only
 </details>
