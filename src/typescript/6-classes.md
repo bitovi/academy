@@ -44,7 +44,7 @@ For more information on JavaScript classes, checkout the
 Classes in TypeScript look just like classes in JavaScript; however, there are additional features
 that add type safety.
 
-In the following TypeScript class example, the `name` member is defined on line 4. We'll look at setting the name via the constructor next.
+In the following TypeScript class example, the `name` member is defined on line 3. We'll look at setting the name via the constructor next.
 
 @sourceref ./6-2-typescript-class.ts
 @codepen
