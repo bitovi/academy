@@ -668,7 +668,7 @@ we will update the displayed cvc error, if there is one, on every future keystro
         .pipe(cleanCardNumber)
         .pipe(log(&quot;cardNumber&quot;));
       this.cardError$ = this.cardNumber$.pipe(validateCard);
-      this.showCardError$ = showOnlyWhenBlurredOnce(this.cardError$, this.userCardNumberBlurred$;
+      this.showCardError$ = showOnlyWhenBlurredOnce(this.cardError$, this.userCardNumberBlurred$);
 
       this.expiry$ = this.userExpiry$.pipe(expiryParts);
       this.expiryError$ = this.expiry$.pipe(validateExpiry);
