@@ -171,7 +171,7 @@
         .pipe(cleanCardNumber)
         .pipe(log("cardNumber"));
       this.cardError$ = this.cardNumber$.pipe(validateCard);
-      this.showCardError$ = showOnlyWhenBlurredOnce(this.cardError$, this.userCardNumberBlurred$;
+      this.showCardError$ = showOnlyWhenBlurredOnce(this.cardError$, this.userCardNumberBlurred$);
 
       this.expiry$ = this.userExpiry$.pipe(expiryParts);
       this.expiryError$ = this.expiry$.pipe(validateExpiry);
