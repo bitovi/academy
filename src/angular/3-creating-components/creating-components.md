@@ -25,7 +25,7 @@ and restaurant list view in the next exercise.
 ## P1: What You Need to Know
 
 - How to generate a new Angular component
-- How to bind data in a component to it's template
+- How to bind data in a component to its template
 
 ## Generate Components
 
