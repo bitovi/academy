@@ -229,7 +229,7 @@
     userCVC$ = new BehaviorSubject<string>();
     userCVCBlurred$ = new Subject<boolean>();
 
-    paySubmitted$ = new Subject();
+    paySubmitted$ = new Subject<void>();
 
     constructor() {
       this.cardNumber$ = this.userCardNumber$
@@ -259,7 +259,7 @@
 
     pay(event) {
       event.preventDefault();
-      this.paySubmitted$.next(true);
+      this.paySubmitted$.next();
     }
   }
 
