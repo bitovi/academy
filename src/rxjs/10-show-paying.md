@@ -99,7 +99,7 @@ observables and then _flatten_ that observable with `mergeAll`.
     // second:  ---x---y_X
     const letters = concat(first, second);
 
-    fullName.subscribe(console.log);
+    letters.subscribe(console.log);
     // letters: -A---B-x-yX
   </script>
   ```
