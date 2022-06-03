@@ -173,7 +173,7 @@ observables and then _flatten_ that observable with `mergeAll`.
       map(x => x * x)
     );
 
-    const number = new Subject();
+    const number = new Subject<number>();
 
     const square = number.pipe(squareStartingWith2);
 

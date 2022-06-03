@@ -16,7 +16,7 @@ In this section, we will:
 ## How to solve the problem
 
 - Create a `appComponent.pay(event)` method that is called when the form is submitted.
-- Create a `appComponent.paySubmitted$` `Subject` that emits `true` when
+- Create a `appComponent.paySubmitted$` `Subject` that emits when
   `pay` is called.
 - Create a `card$` observable like:
   ```js
@@ -36,7 +36,7 @@ In this section, we will:
   const payments$ = paymentPromises(this.paySubmitted$, card$);
   ```
 
-  `payments` publishes [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) when `this.paySubmitted` emits a value. Those
+  `payments` publishes [promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) when `this.paySubmitted` emits. Those
   promises resolve when the payment is complete.
 
   The `payments` observable
