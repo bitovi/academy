@@ -109,11 +109,11 @@ This example shows one route redirecting to another:
 
 ## Setting Paths to Modules
 
-As our applications grow, it doesn't make sense to load all the code at once. Thanks to <a href="https://angular.io/guide/lazy-loading-ngmodules" target="\_blank">lazyloading</a>, we can wait to render modules until a specific route requiring them is hit. (This demo does not work in Codepen unfortunately)
+As our applications grow, it doesn't make sense to load all the code at once. Thanks to <a href="https://angular.io/guide/lazy-loading-ngmodules" target="\_blank">lazyloading</a>, we can wait to render modules until a specific route requiring them is hit.
 
 @sourceref ./lazyload-route.html
 @codepen
-@highlight 114, only
+@highlight 120, only
 
 ## <base-href>
 
