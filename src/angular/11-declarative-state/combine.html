@@ -4,13 +4,22 @@
   const { map } = rxjs.operators;
 
   // emits the values every 750ms in order
-  const selectedHatStream = zip(of('Bowler', 'Top', 'Baseball'), interval(750)).pipe(map(([val, num]) => val));
-  // emits the values every 2000ms in order
-  const selectedJacketStream = zip(of('Trenchcoat', 'Tuxedo', 'Bomber'), interval(2000)).pipe(map(([val, num]) => val));
+  const selectedHatStream$ = zip(
+    of('Bowler', 'Top', 'Baseball'),
+    interval(750)
+  ).pipe(map(([val, num]) => val));
 
-  combineLatest(selectedHatStream, selectedJacketStream).subscribe(([hat, jacket]) => {
-    console.log(`selected outfit: ${hat} hat & ${jacket} jacket`);
-  })
+  // emits the values every 2000ms in order
+  const selectedJacketStream$ = zip(
+    of('Trenchcoat', 'Tuxedo', 'Bomber'),
+    interval(2000)
+  ).pipe(map(([val, num]) => val));
+
+  combineLatest(selectedHatStream$, selectedJacketStream$).subscribe(
+    ([hat, jacket]) => {
+      console.log(`selected outfit: ${hat} hat & ${jacket} jacket`);
+    }
+  );
 
   // logs:
   // (... 2 seconds pass)

@@ -1,0 +1,24 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.3.3/rxjs.umd.min.js"></script>
+<script type="module">
+  const { of, interval, zip } = rxjs;
+  const { map, pairwise } = rxjs.operators;
+
+  // emits the values every 2 seconds in order
+  const cars$ = zip(
+    of('beetle', 'mustang', 'camaro', 'tesla model s'),
+    interval(2000)
+  ).pipe(map(([val, num]) => val));
+
+  cars$.pipe(pairwise()).subscribe(([previous, current]) => {
+    console.log('Previous: ' + previous, 'Current: ' + current);
+  });
+
+  // logs:
+  // (... 2 seconds pass), "beetle" is emitted by cars$
+  // (... 2 seconds pass), "mustang" is emitted by cars$
+  // "Previous: beetle" "Current: mustang"
+  // (... 2 seconds pass), "camaro" is emitted by cars$
+  // "Previous: mustang" "Current: camaro"
+  // (... 2 seconds pass), "tesla model s" is emitted by cars$
+  // "Previous: camaro" "Current: tesla model s"
+</script>
