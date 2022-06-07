@@ -8,9 +8,14 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { delay, of } from 'rxjs';
 import { ImageUrlPipe } from '../image-url.pipe';
+<<<<<<< HEAD
 import { Restaurant } from './restaurant';
 import { Data, RestaurantComponent } from './restaurant.component';
 import { City, RestaurantService, State } from './restaurant.service';
+=======
+import { RestaurantComponent } from './restaurant.component';
+import { RestaurantService } from './restaurant.service';
+>>>>>>> 2f8ad5b5 (Angular: declarative-state updates)
 
 const restaurantAPIResponse = {
   data: [
@@ -196,7 +201,11 @@ describe('RestaurantComponent', () => {
     fixture.detectChanges();
     tick();
 
+<<<<<<< HEAD
     let restaurantOutput!: Data<Restaurant>;
+=======
+    let restaurantOutput: any;
+>>>>>>> 2f8ad5b5 (Angular: declarative-state updates)
 
     fixture.componentInstance.restaurants$.subscribe(
       (restaurants) => (restaurantOutput = restaurants)
@@ -320,10 +329,17 @@ describe('RestaurantComponent', () => {
   });
 
   it('should not show a loading div if isPending is false', () => {
+<<<<<<< HEAD
     fixture.detectChanges();
     fixture.componentInstance.form.get('state')!.patchValue('CA');
     fixture.componentInstance.form.get('city')!.patchValue('Sacramento');
     fixture.detectChanges();
+=======
+    fixture.detectChanges();
+    fixture.componentInstance.form.get('state')!.patchValue('CA');
+    fixture.componentInstance.form.get('city')!.patchValue('Sacramento');
+    fixture.detectChanges();
+>>>>>>> 2f8ad5b5 (Angular: declarative-state updates)
     const compiled = fixture.nativeElement as HTMLElement;
     const loadingDiv = compiled.querySelector('.loading');
     expect(loadingDiv).toBe(null);
@@ -355,7 +371,11 @@ describe('RestaurantComponent', () => {
     fixture.detectChanges();
     tick();
 
+<<<<<<< HEAD
     let stateOutput!: Data<State>;
+=======
+    let stateOutput: any;
+>>>>>>> 2f8ad5b5 (Angular: declarative-state updates)
 
     fixture.componentInstance.states$.subscribe(
       (states) => (stateOutput = states)
@@ -388,7 +408,11 @@ describe('RestaurantComponent', () => {
     fixture.detectChanges();
     tick();
 
+<<<<<<< HEAD
     let cityOutput!: Data<City>;
+=======
+    let cityOutput: any;
+>>>>>>> 2f8ad5b5 (Angular: declarative-state updates)
 
     fixture.componentInstance.cities$.subscribe(
       (cities) => (cityOutput = cities)
