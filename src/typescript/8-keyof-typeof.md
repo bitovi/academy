@@ -212,7 +212,7 @@ export type Keys = keyof typeof dinosaur;
 
 ### Exercise 2
 
-Update the `ColorsAsEasyReadName` type so that it represents the keys of the enum (eg 'red', 'blue', and 'green')and then add all the necessary types to the `getColorValue` function signature.
+Update the `ColorsAsEasyReadName` type so that it represents the keys of the enum (eg `'red'`, `'blue'`, and `'green'`)and then add all the necessary types to the `getColorValue` function signature.
 
 The `getColorValue` function should take a one of the easily readable names and return the hex string equivalent
 
