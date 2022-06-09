@@ -8,8 +8,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { delay, of } from 'rxjs';
 import { ImageUrlPipe } from '../image-url.pipe';
-import { RestaurantComponent } from './restaurant.component';
-import { RestaurantService } from './restaurant.service';
+import { Restaurant } from './restaurant';
+import { Data, RestaurantComponent } from './restaurant.component';
+import { City, RestaurantService, State } from './restaurant.service';
 
 const restaurantAPIResponse = {
   data: [
@@ -195,7 +196,7 @@ describe('RestaurantComponent', () => {
     fixture.detectChanges();
     tick();
 
-    let restaurantOutput: any;
+    let restaurantOutput!: Data<Restaurant>;
 
     fixture.componentInstance.restaurants$.subscribe(
       (restaurants) => (restaurantOutput = restaurants)
@@ -354,7 +355,7 @@ describe('RestaurantComponent', () => {
     fixture.detectChanges();
     tick();
 
-    let stateOutput: any;
+    let stateOutput!: Data<State>;
 
     fixture.componentInstance.states$.subscribe(
       (states) => (stateOutput = states)
@@ -387,7 +388,7 @@ describe('RestaurantComponent', () => {
     fixture.detectChanges();
     tick();
 
-    let cityOutput: any;
+    let cityOutput!: Data<City>;
 
     fixture.componentInstance.cities$.subscribe(
       (cities) => (cityOutput = cities)
@@ -439,7 +440,7 @@ describe('RestaurantComponent', () => {
   it('should reset list of cities when new state is selected', fakeAsync((): void => {
     fixture.detectChanges(); // detecting changes for createForm func to be called
 
-    let restaurantOutput: any;
+    let restaurantOutput!: Data<Restaurant>;
     fixture.componentInstance.restaurants$.subscribe((restaurants) => {
       restaurantOutput = restaurants;
     });

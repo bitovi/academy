@@ -200,7 +200,7 @@ You'll also add new single-responsibility streams:
 ✏️ Update the spec file **src/app/restaurant/restaurant.component.spec.ts** to be:
 
 @sourceref ./restaurant.component.spec.ts
-@highlight 9, 197-202, 305, 310-313, 318, 323-324, 356-361, 371, 389-394, 404, 420-426, 441-445, 449, 452, only
+@highlight 9, 11-13, 198-203, 306, 311-314, 319, 324-325, 357-362, 372, 390-395, 405, 421-427, 442-446, 450, 453, only
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
