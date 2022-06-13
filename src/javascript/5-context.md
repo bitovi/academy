@@ -111,6 +111,7 @@ QUnit.test("DOT works", function(){
   console.log( Object.getPrototypeOf(date) === Date.prototype ) //logs: true
   ```
   @codepen
+
 - Recursive functions call themselves to answer a sub-problem:
   ```js
   function factorial(number){
