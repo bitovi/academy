@@ -482,12 +482,13 @@ console.log( obj.hasOwnProperty(&quot;foo&quot;) ) //logs: true
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
-- [Object.getPrototypeOf(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf) returns the `__proto__` value of the passed obj.  This is the
-  recommended way of reading the `__proto__` property.
-  ```js
-  var date = new Date()
-  console.log( Object.getPrototypeOf(date) === Date.prototype ) //logs: true
-  ```
+<ul>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf">Object.getPrototypeOf(obj)</a> returns the <code>__proto__</code> value of the passed obj.  This is the
+recommended way of reading the <code>__proto__</code> property.
+<pre><code class="language-js">var date = new Date()
+console.log( Object.getPrototypeOf(date) === Date.prototype ) //logs: true
+</code></pre></li>
+</ul>
 <div class='codepen' data-codepen=''></div>
 - Recursive functions call themselves to answer a sub-problem:
   ```js

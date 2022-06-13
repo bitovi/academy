@@ -1099,7 +1099,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='71, only'></div>
 <h2>Setting Paths to Modules</h2>
-<p>As our applications grow, it doesn't make sense to load all the code at once. Thanks to <a href="https://angular.io/guide/lazy-loading-ngmodules" target="\_blank">lazyloading</a>, we can wait to render modules until a specific route requiring them is hit. (This demo does not work in Codepen unfortunately)</p>
+<p>As our applications grow, it doesn't make sense to load all the code at once. Thanks to <a href="https://angular.io/guide/lazy-loading-ngmodules" target="\_blank">lazyloading</a>, we can wait to render modules until a specific route requiring them is hit.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1187,14 +1187,15 @@ platformBrowserDynamic()
   ];
   
   @NgModule({
-    imports: [RouterModule.forChild(childRoutes)]
+    imports: [RouterModule.forChild(childRoutes)],
+    exports: [RouterModule]
   })
   class ChildRoutingModule { }
   
   @NgModule({
     imports: [
-      BrowserModule,
-      CommonModule
+      CommonModule,
+      ChildRoutingModule
     ],
     declarations: [ChildComponent],
     bootstrap: [ChildComponent],
@@ -1213,7 +1214,12 @@ platformBrowserDynamic()
   const routes: Routes = [
     { path: 'about', component: AboutComponent },
     { path: 'boop',  redirectTo: '/about', pathMatch: 'full' },
-    { path: 'mymodule', loadChildren: ChildModule},
+    /*
+      loadChildren would normally be a result of an import Promise,
+      but we used a function for demonstration purposes and to enable it to work on codepen
+      Correct: { path: 'mymodule', loadChildren: () =&gt; import('./child/child.module').then(m =&gt; m.ChildModule) },
+    */
+    { path: 'mymodule', loadChildren: () =&gt; ChildModule},
     { path: '**', component: PageNotFoundComponent }
   ];
   
@@ -1243,7 +1249,7 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='114, only'></div>
+<div line-highlight='120, only'></div>
 <h2>&lt;base-href&gt;</h2>
 <p>In our index.html file, the angular cli included <code>&lt;base href=&quot;/&gt;</code>. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base" target="\_blank">here</a>, but it's important to know this is how the Angular router will know how to compose URLs - the value in the <code>href</code> attribute specifies the base URL for all relative URLs contained in the app. If you'd like to serve your app from a different directory (wherever the index.html will be served from) or have a specific hosting URL that your app will be deployed at, you will need to change the <code>base href</code> to match.</p>
 <pre><code class="language-html">&lt;!doctype html&gt;

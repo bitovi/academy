@@ -775,7 +775,7 @@ for all subscribers of <code>squares</code>:</p>
     userCVC$ = new BehaviorSubject&lt;string&gt;();
     userCVCBlurred$ = new Subject&lt;boolean&gt;();
 
-    paySubmitted$ = new Subject();
+    paySubmitted$ = new Subject&lt;void&gt;();
 
     constructor() {
       this.cardNumber$ = this.userCardNumber$
@@ -807,7 +807,7 @@ for all subscribers of <code>squares</code>:</p>
 
     pay(event) {
       event.preventDefault();
-      this.paySubmitted$.next(true);
+      this.paySubmitted$.next();
     }
   }
 

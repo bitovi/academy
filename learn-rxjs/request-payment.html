@@ -462,7 +462,7 @@ covering CanJS core libraries.">
 <h2>How to solve the problem</h2>
 <ul>
 <li><p>Create a <code>appComponent.pay(event)</code> method that is called when the form is submitted.</p></li>
-<li><p>Create a <code>appComponent.paySubmitted$</code> <code>Subject</code> that emits <code>true</code> when
+<li><p>Create a <code>appComponent.paySubmitted$</code> <code>Subject</code> that emits when
 <code>pay</code> is called.</p></li>
 <li><p>Create a <code>card$</code> observable like:</p>
 <pre><code class="language-js">const card$ = combineCard(this.cardNumber$, this.expiry$, this.cvc$);
@@ -477,7 +477,7 @@ covering CanJS core libraries.">
 <li><p>Create a <code>payments$</code> observable like:</p>
 <pre><code class="language-js">const payments$ = paymentPromises(this.paySubmitted$, card$);
 </code></pre>
-<p><code>payments</code> publishes <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promises</a> when <code>this.paySubmitted</code> emits a value. Those
+<p><code>payments</code> publishes <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">promises</a> when <code>this.paySubmitted</code> emits. Those
 promises resolve when the payment is complete.</p>
 <p>The <code>payments</code> observable
 will not be used in the template so we will need to
@@ -746,7 +746,7 @@ the page is clicked:</p>
     userCVC$ = new BehaviorSubject&lt;string&gt;();
     userCVCBlurred$ = new Subject&lt;boolean&gt;();
 
-    paySubmitted$ = new Subject();
+    paySubmitted$ = new Subject&lt;void&gt;();
 
     constructor() {
       this.cardNumber$ = this.userCardNumber$
@@ -778,7 +778,7 @@ the page is clicked:</p>
 
     pay(event) {
       event.preventDefault();
-      this.paySubmitted$.next(true);
+      this.paySubmitted$.next();
     }
   }
 
