@@ -1,34 +1,50 @@
 /**
- * EX 1: Update the `Creature` and `Keys` type to gain type safety on the `getCreatureProperty`
- * function. The function should, given a create and property key, return the property of that creature.
+ * EX 1: Update the `DinosaurFactObject` and `Dinosaur` type to gain type safety on the `getDinoFact`
+ * function. The function should, given a dinosaurs name (`velociraptor` or `t-rex`) and the `dinosaurFacts` object
+ * return the correct facts about the dinosaur.
  */
-const dinosaur = {
-  latinName: "Tyrannosaurus rex",
-  nickName: "T-rex",
-  habitat: "forest",
-  attributes: {
-    weight: { amount: 15_500, units: "lbs" },
-    height: { amount: 12, units: "ft" },
-    length: { amount: 40, units: "ft" },
+const dinosaurFacts = {
+  "t-rex": {
+    latinName: "Tyrannosaurus rex",
+    nickName: "T-rex",
+    habitat: "forest",
+    attributes: {
+      weight: { amount: 15_500, units: "lbs" },
+      height: { amount: 12, units: "ft" },
+      length: { amount: 40, units: "ft" },
+    },
+  },
+  velociraptor: {
+    latinName: "velociraptor",
+    nickName: "raptor",
+    habitat: "desert",
+    attributes: {
+      weight: { amount: 100, units: "lbs" },
+      height: { amount: 1.6, units: "ft" },
+      length: { amount: 6, units: "ft" },
+    },
   },
 };
 
 /**
- * Replace `any` with a type that represents the `dinosaur` object above
+ * Replace `any` with a type that represents the `dinosaurFacts` object above
  */
-export type Creature = typeof dinosaur;
+type DinosaurFactObject = typeof dinosaurFacts;
 
 /**
- * Replace `any` with a type that allows for any of the keys in the dinosaur object
+ * Replace `any` with a type that allows for any of the keys in the dinosaur fact object
  */
-export type Keys = keyof Creature;
+type Dinosaur = keyof DinosaurFactObject;
 
 /**
- * This function should, given a create and property key, return the property of that creature.
+ * This function should, given a facts object and dinosaur name, return the facts for that creature.
+ *
+ * > NOTE: Don't worry about the `DinosaurFactObject[Dinosaur]` type in the return of the function signature. That's called
+ * an index-signature which we will get into later on.
  */
-export const getCreatureProperty = (
-  creature: Creature,
-  key: Keys
-): Creature[Keys] => {
-  return creature[key];
+export const getDinoFact = (
+  facts: DinosaurFactObject,
+  dino: Dinosaur
+): DinosaurFactObject[Dinosaur] => {
+  return facts[dino];
 };

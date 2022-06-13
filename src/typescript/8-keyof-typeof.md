@@ -176,9 +176,9 @@ type DinosaurColorsKeys = keyof typeof DinosaurColors; // “blue” | “green�
 
 ### Exercise 1
 
-Update the `Creature` and `Keys` type to gain type safety on the `getCreatureProperty` function. The function should, given a create and property key, return the property of that creature.
+Update the `DinosaurFactObject` and `Dinosaur` type to gain type safety on the `getDinoFact` function. The function should, given a dinosaurs name (`velociraptor` or `t-rex`) and the `dinosaurFacts` object return the correct facts about the dinosaur.
 
-> **NOTE:** Don't worry about the `Creature[Keys]` type in the return of the function signature. That's called and index-signature which we will get into later on.
+> **NOTE:** Don't worry about the `DinosaurFactObject[Dinosaur]` type in the return of the function signature. That's called an index-signature which we will get into later on.
 
 @sourceref ./8-exercise-1.ts
 @codepen
@@ -188,7 +188,7 @@ Update the `Creature` and `Keys` type to gain type safety on the `getCreaturePro
 ✏️ Run the following to verify your solution:
 
 ```shell
-npm run TBD
+npm run 5a-keyof-typeof-ex1
 ```
 
 ### The Solution
@@ -196,16 +196,16 @@ npm run TBD
 <details>
 <summary>Click to see the solution</summary>
 
-Update the `Creature` and `Keys` type to gain type safety on the `getCreatureProperty` function
+Update the `DinosaurFactObject` and `Dinosaur` type to gain type safety on the `getDinoFact` function
 
 @sourceref ./8-solution-exercise-1.ts
 
 Another way to achieve the same solution.
 
 ```ts
-export type Creature = typeof dinosaur;
+export type DinosaurFactObject = typeof dinosaurFacts;
 
-export type Keys = keyof typeof dinosaur;
+export type Dinosaur = keyof typeof dinosaurFacts;
 ```
 
 </details>
@@ -224,7 +224,7 @@ The `getColorValue` function should take a one of the easily readable names and 
 ✏️ Run the following to verify your solution:
 
 ```shell
-npm run TBD
+npm run 5a-keyof-typeof-ex2
 ```
 
 ### The Solution
