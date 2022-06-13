@@ -103,6 +103,7 @@ QUnit.test("DOT works", function(){
   console.log( obj.hasOwnProperty("foo") ) //logs: true
   ```
   @codepen
+
 - [Object.getPrototypeOf(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf) returns the `__proto__` value of the passed obj.  This is the
   recommended way of reading the `__proto__` property.
   ```js
