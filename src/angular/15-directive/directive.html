@@ -9,23 +9,25 @@
 <my-app></my-app>
 <script type="typescript">
 // app.js
-const { Component, VERSION, Directive, ElementRef, HostListener} = ng.core;
+const { Component, VERSION, Directive, ElementRef, HostListener } = ng.core;
 
-@Directive({ selector: '[pmoOnlyLetters]'})
+@Directive({
+  selector: '[pmoOnlyLetters]',
+})
 class OnlyLettersDirective {
+  allowedKeys: string[] = ['Backspace', 'ArrowLeft', 'ArrowRight'];
+  regExp: RegExp = new RegExp(/^[A-Za-z]*$/g);
 
- allowedKeys: string[] = ['Backspace', 'ArrowLeft', 'ArrowRight'];
- regExp =  new RegExp(/^[A-Za-z]*$/g);
+  constructor(private elementRef: ElementRef) {}
 
- constructor(private elementRef: ElementRef) { }
   @HostListener('keydown', ['$event'])
   onKeyDown(keyboardEvent: KeyboardEvent) {
-   if(this.allowedKeys.indexOf(keyboardEvent.key) !== -1) {
+    if (this.allowedKeys.indexOf(keyboardEvent.key) !== -1) {
       return;
     }
     const inputNativeElementValue = this.elementRef.nativeElement.value;
     const next = `${inputNativeElementValue}${keyboardEvent.key}`;
-    if(next && !next.match(this.regExp)) {
+    if (next && !next.match(this.regExp)) {
       keyboardEvent.preventDefault();
     }
   }
@@ -35,7 +37,7 @@ class OnlyLettersDirective {
   selector: 'my-app',
   template: `
   <h2>Allow Only Letters Directive</h2>
-    <input name="phone" type="text" pmoOnlyLetters>
+  <input name="phone" type="text" pmoOnlyLetters>
   `
 })
 class AppComponent {

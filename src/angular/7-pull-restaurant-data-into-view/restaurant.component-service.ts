@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
+import { ResponseData, RestaurantService } from './restaurant.service';
 
 @Component({
   selector: 'pmo-restaurant',
   templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less']
+  styleUrls: ['./restaurant.component.less'],
 })
 export class RestaurantComponent implements OnInit {
-  public restaurants: Restaurant[] = [];
+  restaurants: Restaurant[] = [];
 
-  constructor(private restaurantService: RestaurantService) { }
+  constructor(private restaurantService: RestaurantService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.restaurantService.getRestaurants().subscribe((res: ResponseData) => {
       this.restaurants = res.data;
     });

@@ -68,7 +68,7 @@ class AboutComponent {
 })
 class HomeComponent implements OnInit, OnDestroy {
   myQuickForm: FormGroup;
-  private unSubscribe = new Subject<void>();
+  private onDestroy$ = new Subject<void>();
 
   constructor(private fb:FormBuilder) {
   
@@ -81,15 +81,15 @@ class HomeComponent implements OnInit, OnDestroy {
       email: {value: '', disabled: false}
     });
 
-    this.myQuickForm.valueChanges.pipe(takeUntil(this.unSubscribe)).subscribe((val) => {
+    this.myQuickForm.valueChanges.pipe(takeUntil(this.onDestroy$)).subscribe((val) => {
       console.log(val);
     });
 
   }
 
   ngOnDestroy() {
-    this.unSubscribe.next();
-    this.unSubscribe.complete();
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 }
 //THIS IS A HACK JUST FOR CODEPEN TO WORK

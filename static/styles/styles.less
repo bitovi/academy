@@ -510,6 +510,15 @@ a {
   margin-left: 0;
   padding-left: 25px;
 }
+.main-content .footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2em;
+
+  & > *:only-child {
+    margin: 0 auto 0 0;
+  }
+}
 
 // Utility
 
@@ -680,4 +689,9 @@ td, th {
 
 tr:nth-child(even) {
   background-color: #dddddd;
+}
+
+/* temporary fix for line-highlight not showing up */
+.line-highlight {
+  z-index: 1;
 }

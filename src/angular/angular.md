@@ -3,7 +3,6 @@
 
 @description Learn how to build a moderately complex application with Angular.
 
-
 @body
 
 ## Before You Begin
@@ -41,8 +40,8 @@ the features that are present across almost all single page apps:
 
 As for the application itself, it:
 
-- Is written in Angular 7
-- Is a single page application (SPA) that uses pushstate to simulate routing between several pages.
+- Is written in Angular 13
+- Is a single page application (SPA) that uses [pushState](https://developer.mozilla.org/en-US/docs/Web/API/History/pushState) to simulate routing between several pages.
   - A `home` page
   - A `restaurant list` page that lets the user filter restaurants by state and city
   - A `restaurant details` page that provides more information about a particular restaurant
@@ -51,9 +50,9 @@ As for the application itself, it:
     delivered, and deleted
 - Will make requests to a local API server that provides the following APIs:
   - `/api/states` - Returns a list of US states.
-  - `api/cities` - Returns a list of US cities for a state.
-  - `api/restaurants` - Returns a list of Restaurants in a city.
-  - `api/order` - Creates, Returns, Updates, or Deletes orders for a restaurant.
+  - `/api/cities` - Returns a list of US cities for a state.
+  - `/api/restaurants` - Returns a list of Restaurants in a city.
+  - `/api/order` - Creates, Returns, Updates, or Deletes orders for a restaurant.
 
 ## Outline
 
@@ -85,4 +84,4 @@ production and deploying it for others to see ([learn-angular/deploy-app]).
 ## Requirements
 
 In order to complete this guide, you need to have [NodeJS](https://nodejs.org/en/) version
-8  or later installed.
+12 or later installed.

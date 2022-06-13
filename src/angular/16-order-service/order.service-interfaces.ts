@@ -5,8 +5,17 @@ export interface Item {
   price: number;
 }
 
+export interface OrderForm {
+  restaurant: string;
+  name: string;
+  address: string;
+  phone: string;
+  items: Item[];
+}
+
 export interface Order {
   _id: string;
+  restaurant: string;
   name: string;
   address: string;
   phone: string;
@@ -20,5 +29,4 @@ export interface Order {
 export class OrderService {
 
   constructor() { }
-
 }

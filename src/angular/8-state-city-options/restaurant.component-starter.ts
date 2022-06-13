@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-
-import { RestaurantService, ResponseData } from './restaurant.service';
 import { Restaurant } from './restaurant';
+import { ResponseData, RestaurantService } from './restaurant.service';
 
 export interface Data {
   value: Restaurant[];
@@ -12,44 +11,43 @@ export interface Data {
 @Component({
   selector: 'pmo-restaurant',
   templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less']
+  styleUrls: ['./restaurant.component.less'],
 })
 export class RestaurantComponent implements OnInit {
-  form: FormGroup;
+  form: FormGroup = this.createForm();
 
   restaurants: Data = {
     value: [],
-    isPending: false
-  }
+    isPending: false,
+  };
 
   states = {
     isPending: false,
-    value: [{name: "Illinois", short: "IL"}, {name: "Wisconsin", short: "WI"}]
+    value: [
+      { name: 'Illinois', short: 'IL' },
+      { name: 'Wisconsin', short: 'WI' },
+    ],
   };
 
   cities = {
     isPending: false,
-    value: [{name: "Springfield"},{name: "Madison"}]
-  }
+    value: [{ name: 'Springfield' }, { name: 'Madison' }],
+  };
 
   constructor(
     private restaurantService: RestaurantService,
     private fb: FormBuilder
-    ) {
-  }
+  ) {}
 
-  ngOnInit() {
-    this.createForm();
+  ngOnInit(): void {
     this.restaurants.isPending = true;
-
     this.restaurantService.getRestaurants().subscribe((res: ResponseData) => {
       this.restaurants.value = res.data;
       this.restaurants.isPending = false;
     });
   }
 
-  createForm() {
-    
-  }
+  createForm(): FormGroup {
 
+  }
 }

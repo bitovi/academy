@@ -13,9 +13,8 @@ In this part, we will:
 - Update `npm start` script
 - Create an environment variable for API URL
 - Generate a new service via the CLI
-- Write a method to make an http request
+- Write a method to make an HTTP request
 - Write interfaces to describe response object and restaurant object
-
 
 ## Problem 1: Write a Restaurant Service to Fetch a List of Restaurants
 
@@ -28,7 +27,7 @@ To complete this problem, you'll need to know:
 - The basics of Angular Services.
 - How to generate a service.
 - How to inject `HttpClientModule` into your app.
-- How to use `HTTPClient` to make a request in a service.
+- How to use `HttpClient` to make an HTTP request in a service.
 
 ## Angular Service Basics
 
@@ -63,20 +62,20 @@ Angular uses the injector to create dependencies using providers - which know ho
 
 For making HTTP requests to interact with an API, Angular provides <a href="https://angular.io/api/common/http/HttpClientModule" target="\_blank">HttpClient Module</a>. To use it we'll need to import it in the root module of our app and include it the imports array.
 
-__src/app/app.module.ts__
+**src/app/app.module.ts**
 
 @sourceref ./app.module.ts
-@highlight 3,21
+@highlight 1,21
 
-## Using HTTPClient to Make a Request
+## Using HttpClient to Make a Request
 
-<a href="https://angular.io/api/common/http/HttpClient" target="\_blank">HTTPClient</a> is a class with methods for making HTTP requests. Methods will return <a href="https://angular.io/guide/observables" target="\_blank">RxJS Observables</a>.
+<a href="https://angular.io/api/common/http/HttpClient" target="\_blank">HttpClient</a> is a class with methods for making HTTP requests. Methods will return <a href="https://angular.io/guide/observables" target="\_blank">RxJS Observables</a>.
 
 @sourceref ./http.html
 @codepen
 @highlight 23,25-27,29-31, only
 
-This tutorial won't cover RxJS in depth, but it's worth being aware of Angulars
+This tutorial won't cover RxJS in depth, but it's worth being aware of Angular's
 heavy use of it. Checkout our [learn-rxjs] tutorial for more information.
 
 ## P1: Technical Requirements
@@ -85,16 +84,17 @@ Write a `RestaurantService` with a method `getRestaurants` that uses `httpClient
 
 ```typescript
 const httpClient = new HttpClient();
-const restaurantService = new RestaurantService( httpClient );
+const restaurantService = new RestaurantService(httpClient);
 
-restaurantService.getRestaurants() //-> Observable<Array<Object>>
+restaurantService.getRestaurants(); //-> Observable<Array<Object>>
 ```
+
 @highlight 4
 
 Note:
 
 - `getRestaurants` will return an RxJS observable that emits an array of
-  restaurants.  
+  restaurants.
 - Typically, services and `HttpClient` are injected into components and not created
   as shown above.
 - We want to create `RestaurantService` in `src/app/restaurant/restaurant.service.ts`.
@@ -116,22 +116,22 @@ We've done some work to create a Place My Order API for use in this app by creat
 npm install place-my-order-api --save
 ```
 
-✏️ Next make add an api script to your `package.json`
+✏️ Next add an API script to your `package.json`
 
 ```js
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e",
     "api": "place-my-order-api --port 7070"
-  }
+  },
 ```
-@highlight 8
 
-✏️ In __new__ terminal window, start the API server by running:
+@highlight 7
+
+✏️ In **new** terminal window, start the API server by running:
 
 ```bash
 npm run api
@@ -141,13 +141,13 @@ Double check the api by navigating to <a href="http://localhost:7070/restaurants
 
 ### Create an Environment Variable
 
-The way we're accessing our locally run API during development may be different than how we access it in production. To prepare for this, we'll set an environment variable to do what we need. Angular already generated an `environments` folder for us with two files: 
+The way we're accessing our locally run API during development may be different than how we access it in production. To prepare for this, we'll set an environment variable to do what we need. Angular already generated an `environments` folder for us with two files:
 
 `src/environments/environment.ts`
 
 ```typescript
- // This file can be replaced during build by using the `fileReplacements` array.
-// `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
+// This file can be replaced during build by using the `fileReplacements` array.
+// `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
@@ -161,7 +161,7 @@ export const environment = {
  * This import should be commented out in production mode because it will have a negative impact
  * on performance if an error is thrown.
  */
-// import 'zone.js/dist/zone-error';  // Included with Angular CLI.
+// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
 
 ```
 
@@ -171,18 +171,21 @@ export const environment = {
 export const environment = {
   production: true
 };
+
 ```
 
 When developing locally Angular will use the `environment.ts` file, but when we create a production build the `environment.prod.ts` file will be used. We'll update the production file when we get ready to deploy, but for now, update the `environment.ts` file to include an `apiUrl` key with the value of where our API is being served from: `http://localhost:7070`.
 
-✏️  Update `src/environments/environment.ts`:
+✏️ Update `src/environments/environment.ts`:
 
 ```typescript
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:7070'
+  apiUrl: 'http://localhost:7070',
 };
 ```
+
+@highlight 3
 
 Now generate the restaurant service:
 
@@ -194,7 +197,7 @@ ng g service restaurant/restaurant
 
 ## P1: How to Verify Your Solution is Correct
 
-✏️ Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
+✏️ Update the spec file **src/app/restaurant/restaurant.service.spec.ts** to be:
 
 @sourceref ./restaurant.service.spec.ts
 
@@ -208,20 +211,25 @@ npm run test
 
 ## P1: Solution
 
-✏️ Update __src/app/app.module.ts__ to inject the `HttpClientModule`:
+<details>
+<summary>Click to see the solution</summary>
+✏️ Update **src/app/app.module.ts** to inject the `HttpClientModule`:
 
 @sourceref ./app.module.ts
-@highlight 3,21
+@highlight 1,21
 
-✏️ Update __src/app/restaurant/restaurant.service.ts__ to make a request to the API server `/restaurants`:
+✏️ Update **src/app/restaurant/restaurant.service.ts** to make a request to the API server `/restaurants`:
 
 @sourceref ./restaurant.service-1.ts
+@highlight 1,3,4,10,12-14
+
+</details>
 
 ## Problem 2: Write an Interface to Describe the Restaurant Object and Data Response
 
 Currently, from TypeScript's perspective, `getRestaurants()` can return anything. This
 means if we use the data from `getRestaurants()`, TypeScript will not be able to notice
-any mistakes.  This undermines the whole point of TypeScript!
+any mistakes. This undermines the whole point of TypeScript!
 
 ## P2: What You Need to Know
 
@@ -259,6 +267,7 @@ This will generate:
 ```typescript
 export interface User {
 }
+
 ```
 
 ## P2: Technical Requirements
@@ -269,42 +278,40 @@ Write interfaces to tell TypeScript what we expect restaurant and other related 
 let restaurant = {
   name: '', //string
   slug: '', //string
-  images: [{
+  images: {
     thumbnail: '', //string
     owner: '', //string
-    banner: '' //string
-  }],
+    banner: '', //string
+  },
   menu: {
-    lunch: [{
-      name: '', //string
-      price: '' //number
-    }],
-    dinner: [{
-      name: '', //string
-      price: '' //number
-    }]
+    lunch: [
+      {
+        name: '', //string
+        price: '', //number
+      },
+    ],
+    dinner: [
+      {
+        name: '', //string
+        price: '', //number
+      },
+    ],
   },
   address: {
     street: '', //string
     city: '', //string
     state: '', //string
-    zip: '' //string
+    zip: '', //string
   },
-  _id: '' //string
-}
+  _id: '', //string
+};
 ```
 
-This interface should be written in the __src/app/restaurant/restaurant.service.ts__ file.
+This interface should be written in the **src/app/restaurant/restaurant.service.ts** file.
 
 ## P2: Setup
 
 We've already written a `ResponseData` interface that will take an array of restaurants for you. Here's the code to get you started:
-
-✏️ Update __src/app/restaurant/restaurant.service.ts__ to import the `Restaurant` interface, use
-it within the `ResponseData` interface which is used by `httpClient.get`:
-
-@diff ./restaurant.service-1.ts ./restaurant.service.ts
-
 
 ✏️ Generate the restaurant interface:
 
@@ -312,25 +319,33 @@ it within the `ResponseData` interface which is used by `httpClient.get`:
 ng g interface restaurant/restaurant
 ```
 
-✏️ Update __src/app/restaurant/restaurant.ts__ with some starter code that includes
+✏️ Update **src/app/restaurant/restaurant.ts** with some starter code that includes
 some scaffolding for some of the sub-interfaces within the `Restaurant` interfaces:
 
 @sourceref ./restaurant-starter.ts
+@highlight 1-16,18
+
+✏️ Update **src/app/restaurant/restaurant.service.ts** to import the `Restaurant` interface, use
+it within the `ResponseData` interface which is used by `httpClient.get`:
+
+@diff ./restaurant.service-1.ts ./restaurant.service.ts
 
 ## P2: How to Verify Your Solution is Correct
 
-✏️ Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
+✏️ Update the spec file **src/app/restaurant/restaurant.service.spec.ts** to be:
 
 @diff ./restaurant.service.spec.ts ./restaurant.service-with-interface.spec.ts
-
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass! If you haven't written the interfaces correctly, you'll see a compile error before the tests runs. You might need to restart the test script to see the compile error.
 
 ## P2: Solution
 
-✏️  Update __src/app/restaurant/restaurant.ts__ to:
+<details>
+<summary>Click to see the solution</summary>
+✏️ Update **src/app/restaurant/restaurant.ts** to:
 
 @diff ./restaurant-starter.ts ./restaurant.ts
 
-
 In the next step we'll call the `getRestaurants` method in our component to get the list of restaurants.
+
+</details>

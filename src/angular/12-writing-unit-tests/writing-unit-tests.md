@@ -14,7 +14,7 @@ In this part, we will:
 
 ## Problem
 
-In the next section we're going to be creating a restaurant detail view. We'll need to have a method on our service that returns one restaurant from the list. Write this method and call it `getRestaurant`. It should take a string param "slug" and make a get request to the path `'/api/restaurants/slug-here'`. Then write a unit test for this method ensuring it makes the correct request and returns an object type of `Restaurant`.
+In the next section we're going to be creating a restaurant detail view. We'll need to have a method on our service that returns one restaurant from the list. Write this method and call it `getRestaurant`. It should take a string param "slug" and make a get request to the path `'/restaurants/slug-here'`. Then write a unit test for this method ensuring it makes the correct request and returns an object type of `Restaurant`.
 
 ## What You Need to Know
 
@@ -22,17 +22,22 @@ In the next section we're going to be creating a restaurant detail view. We'll n
 - How to write a unit test. Here's a codeblock to get you started:
 
   ```typescript
-    it('should make a get request to get a restaurant based on its slug', () => {
-    });
+  it('should make a get request to get a restaurant based on its slug', () => {
+    
+  });
   ```
+- Refer to the existing tests on the service to see how to use `HttpMock` to test `HttpClient` calls.
 
 ## Solution
 
-✏️ Update __src/app/restaurant/restaurant.service.ts__
+<details>
+<summary>Click to see the solution</summary>
+✏️ Update **src/app/restaurant/restaurant.service.ts**
 
 @diff ../10-updating-service-params/restaurant.service-httpparams.ts ./restaurant.service.ts only
 
-
-✏️ Update __src/app/restaurant/restaurant.service.spec.ts__
+✏️ Update **src/app/restaurant/restaurant.service.spec.ts**
 
 @diff ../10-updating-service-params/restaurant.service-httpparams.spec.ts ./restaurant.service.spec-withrestaurant.ts only
+
+</details>

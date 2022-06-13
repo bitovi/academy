@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { OrderService, Order } from '../order.service';
-import { ResponseData } from '../../restaurant/restaurant.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subject, takeUntil } from 'rxjs';
+import { ResponseData } from 'src/app/restaurant/restaurant.service';
+import { Order, OrderService } from '../order.service';
 
 interface Data<T> {
   value: T[];
@@ -10,56 +11,57 @@ interface Data<T> {
 @Component({
   selector: 'pmo-history',
   templateUrl: './history.component.html',
-  styleUrls: ['./history.component.less']
+  styleUrls: ['./history.component.less'],
 })
-export class HistoryComponent implements OnInit {
-  orders: Data<Order> = {
-    value: [],
-    isPending: true
-  }
+export class HistoryComponent implements OnInit, OnDestroy {
+  orders: Data<Order> = { value: [], isPending: true };
+  private onDestroy$ = new Subject<void>();
 
-  constructor(
-    private orderService: OrderService
-    ) {
-    }
+  constructor(private orderService: OrderService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getOrders();
-
   }
 
-  getOrders() {
-    this.orderService.getOrders().subscribe((res: ResponseData<Order>) => {
-      this.orders.value = res.data;
-    });
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 
-  get newOrders() {
-    const orders =  this.orders.value.filter((order) => {
-      return order.status === "new";
+  getOrders(): void {
+    this.orderService
+      .getOrders()
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((res: ResponseData<Order>) => {
+        this.orders.value = res.data;
+      });
+  }
+
+  get newOrders(): Order[] {
+    const orders = this.orders.value.filter((order) => {
+      return order.status === 'new';
     });
     return orders;
   }
 
-   get preparingOrders() {
-    const orders =  this.orders.value.filter((order) => {
-      return order.status === "preparing";
+  get preparingOrders(): Order[] {
+    const orders = this.orders.value.filter((order) => {
+      return order.status === 'preparing';
     });
     return orders;
-   }
+  }
 
-   get deliveryOrders() {
-    const orders =  this.orders.value.filter((order) => {
-      return order.status === "delivery";
+  get deliveryOrders(): Order[] {
+    const orders = this.orders.value.filter((order) => {
+      return order.status === 'delivery';
     });
     return orders;
-   }
+  }
 
-   get deliveredOrders() {
-    const orders =  this.orders.value.filter((order) => {
-      return order.status === "delivered";
+  get deliveredOrders(): Order[] {
+    const orders = this.orders.value.filter((order) => {
+      return order.status === 'delivered';
     });
     return orders;
-   }
-
+  }
 }

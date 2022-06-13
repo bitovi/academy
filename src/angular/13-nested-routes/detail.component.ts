@@ -1,32 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
-import { RestaurantService } from '../restaurant.service';
+import { Subject, takeUntil } from 'rxjs';
 import { Restaurant } from '../restaurant';
+import { RestaurantService } from '../restaurant.service';
 
 @Component({
   selector: 'pmo-detail',
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.less']
+  styleUrls: ['./detail.component.less'],
 })
-export class DetailComponent implements OnInit {
-  restaurant: Restaurant;
+export class DetailComponent implements OnInit, OnDestroy {
+  restaurant?: Restaurant;
   isLoading: boolean = true;
+  private onDestroy$ = new Subject<void>();
 
-  constructor(private route: ActivatedRoute, private restaurantService: RestaurantService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private restaurantService: RestaurantService
+  ) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     const slug = this.route.snapshot.paramMap.get('slug');
-    this.restaurantService.getRestaurant(slug)
-     .subscribe((data:Restaurant) => {
-       this.restaurant = data;
-       this.isLoading = false;
-      });
+
+    if (slug) {
+      this.restaurantService
+        .getRestaurant(slug)
+        .pipe(takeUntil(this.onDestroy$))
+        .subscribe((data: Restaurant) => {
+          this.restaurant = data;
+          this.isLoading = false;
+        });
+    }
   }
 
-  getUrl(image:string): string {
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
+  }
+
+  getUrl(image: string): string {
     // THIS IS A DIFFERENT WAY TO HANDLE THE IMAGE PATH
-    return image.replace('node_modules/place-my-order-assets', './assets')
+    return image.replace('node_modules/place-my-order-assets', './assets');
   }
-
 }

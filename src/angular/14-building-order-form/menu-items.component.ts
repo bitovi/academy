@@ -1,4 +1,4 @@
-import { Component, Input, forwardRef } from '@angular/core';
+import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 
 interface Item {
@@ -14,19 +14,18 @@ interface Item {
     {
       provide: NG_VALUE_ACCESSOR,
       useExisting: forwardRef(() => MenuItemsComponent),
-      multi: true
-    }
-  ]
+      multi: true,
+    },
+  ],
 })
 export class MenuItemsComponent implements ControlValueAccessor {
-  @Input() items: Item[];
+  @Input() items?: Item[];
+  @Input('value') _value: Item[] = [];
 
-  constructor() { }
+  constructor() {}
 
-  @Input('value') _value: Item[];
-
-  onChange: any = () => { };
-  onTouched: any = () => { };
+  onChange: any = () => {};
+  onTouched: any = () => {};
 
   get value() {
     return this._value;
@@ -38,27 +37,25 @@ export class MenuItemsComponent implements ControlValueAccessor {
     this.onTouched();
   }
 
-  registerOnChange( fn : any ) : void {
+  registerOnChange(fn: any): void {
     this.onChange = fn;
   }
 
-  registerOnTouched( fn : any ) : void {
+  registerOnTouched(fn: any): void {
     this.onTouched = fn;
   }
 
-  writeValue(value:Item[]) {
+  writeValue(value: Item[]) {
     this.value = value;
   }
 
-  updateItems(item: Item) {
-    let index = this._value.indexOf(item);
-    if(index !== -1) {
-      this._value.splice(index, 1)
-    }
-    else {
-      this._value.push(item);
+  updateItems(item: Item): void {
+    const index = this._value?.indexOf(item) ?? -1;
+    if (index !== -1) {
+      this._value?.splice(index, 1);
+    } else {
+      this._value?.push(item);
     }
     this.writeValue(this._value);
   }
-
 }
