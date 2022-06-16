@@ -50,13 +50,6 @@ ng g component restaurant/detail
 
 @sourceref ./detail.component.html
 
-We've also added a method called by the html that will return a proper url path for our restaurant image.
-
-✏️ Update **src/app/restaurant/detail/detail.component.ts**:
-
-@sourceref ./detail.component-starter.ts
-@highlight 15-18
-
 ## How to Verify Your Solution is Correct
 
 When you click the detail button on a restaurant from the restaurant list view you'll see the detail view of that restaurant.
