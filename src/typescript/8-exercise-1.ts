@@ -3,7 +3,7 @@
  * function. The function should, given a dinosaurs name (`velociraptor` or `t-rex`) and the `dinosaurFacts` object
  * return the correct facts about the dinosaur.
  */
-const dinosaurFacts = {
+export const dinosaurFacts = {
   "t-rex": {
     latinName: "Tyrannosaurus rex",
     nickName: "T-rex",

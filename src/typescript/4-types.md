@@ -50,7 +50,7 @@ let hex: number = 0xf00d;
 
 ### String
 
-`string` is used for string values.
+`string` is used for a collection of characters like words.
 
 ```typescript
 let name: string = "Leoplurodon";

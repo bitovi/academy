@@ -188,7 +188,7 @@ Update the `DinosaurFactObject` and `Dinosaur` type to gain type safety on the `
 ✏️ Run the following to verify your solution:
 
 ```shell
-npm run 5a-keyof-typeof-ex1
+npm run 5c-keyof-typeof-ex1
 ```
 
 ### The Solution
@@ -224,7 +224,7 @@ The `getColorValue` function should take a one of the easily readable names and 
 ✏️ Run the following to verify your solution:
 
 ```shell
-npm run 5a-keyof-typeof-ex2
+npm run 5d-keyof-typeof-ex2
 ```
 
 ### The Solution
