@@ -11,7 +11,7 @@ In the last lesson we saw how powerful generics can be allowing us to create res
 
 ## Quick Recap on Generics
 
-> For more information on generics, see generics in the TypeScript course
+> For more information on generics, see [generics](../learn-typescript/generics) in the TypeScript course
 
 Generics are a way to pass types into other types, much like how parameters are ways to pass values into functions. Like parameters, there can be any number of generics passed into new types and they can only be used in the context of the type they are passed into. To define a generic, angle brackets are used (`<>`). The order of the generics in the type declaration is what determines which type is assigned to the generic.
 
