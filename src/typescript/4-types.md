@@ -18,54 +18,88 @@ The exercises will teach you how to:
 - Spot and correct basic type mistakes
 - Create a typed variable
 
-
-
 ## Basic Types
 
-Types are what determine how much memory is allocated to save a value. Types also determine what operations or methods can be performed on a value. Types like strings can't have mathematical operations performed on them, but methods like ``.length`` can be used.
+Types explain what you can and can’t do with a value, take for example numbers and strings. In JavaScript, on strings, you have access to `.length`, on a number you do not. Types also determine what will happen when you apply operators to values. For example, the `+` operator, what does the following do?
+
+```javascript
+console.log(a + b);
+```
+
+Some might say it adds `a` and `b` together, others that it concatenates `a` and `b`. Both are potentially right. To come to the correct answer, we need to know what `a` and `b` are. If `a` and `b` are numbers, the `+` will perform addition, if they are strings - concatenation. The difference between the two is their underlying types.
+
+> **Note:** If you are familiar with JavaScript’s primitive types you may recognize some of the names coming up. The types `string` `boolean` and `number` should feel familiar. These types are the same in TypeScript as they are in JavaScript and are at times referred to as primitive types.
 
 ### Boolean
 
+`boolean` is a type that can only be `true` or `false`.
+
 ```typescript
 let isCarnivore: boolean = true;
+let isHerbivore: boolean = false;
 ```
 
 ### Number
 
+`number` is used for numbers. If you are familiar with other typed languages, like `c++` you may be familiar with specific number types like `unsigned int` and `float`. In JavaScript and TypeScript, there is only `number`.
+
 ```typescript
 let teeth: number = 100;
-let hex: number = 0xF00D;
+let hex: number = 0xf00d;
 ```
 
 ### String
 
+`string` is used for a collection of characters like words.
+
 ```typescript
-let name: string = 'Leoplurodon';
+let name: string = "Leoplurodon";
 ```
 
-> __QUICK TIP:__ Template strings have embedded expressions.
->
-> ```typescript
-> let myTemplateString: string = `I think ${ name }'s are pretty cool.
->
-> They have ${ teeth } teeth.`;
-> ```
+### Literals
+
+In Typescript, there is a subset within string, number, and boolean which allow you to refine the specificity of the type. These are called type literals. A string literal is a single string for example:
+
+```typescript
+type StringLiteralExample = "hello";
+```
+
+If we were to assign a variable to this `StringLiteralExample` type we just declared, we would see the only value it can be is `"hello"`.
+
+```typescript
+let invalid: StringLiteralExample = "a"; // ERROR
+let valid: StringLiteralExample = "hello"; // No issues
+```
+
+What we have done is restricted the string type to be only the single string `"hello"`. The same can be done with `number`s, and less helpfully, `boolean`s. Literals like this are very powerful when used in conjunction with type unions. Allowing us to expand our subset to include multiple values.
+
+```typescript
+type Dinos = "Stegosaurus" | "Triceratops" | "Velociraptor"; //|… any additional dinos
+```
+
+<div style='text-align:center'>
+	<img src="../../static/img/typescript/type-union-dino-example.png" />
+</div>
+
+> **Note:** In TypeScript projects and applications using unions like the one above is often used as a low-overhead version of [enums](#enum).
+
+While we spent the time going over what a literal is. For the remainder of this section (and sections to come), we will not make the distinction between type literals and types since literals are just types.
 
 ### Array
 
 ```typescript
 let list: number[] = [1, 2, 3];
 
-let raptors: Array<string> = ['Blue','Charlie','Delta'];
+let raptors: Array<string> = ["Blue", "Charlie", "Delta"];
 ```
 
 ### Object
 
 ```typescript
-let user: {name: string, age: number} = {name: "Justin", age: 36};
+let user: { name: string; age: number } = { name: "Justin", age: 36 };
 ```
 
-> __Note:__ Later we will learn about [learn-typescript/interfaces], which are
+> **Note:** Later we will learn about [learn-typescript/interfaces], which are
 > a better way of describing objects because the description
 > can be reused.
 
@@ -84,17 +118,32 @@ sillyList = ["boop", 5]; //will error
 Enums allow the aliasing of names to a list of numeric values. Like most indexing, enums start their first member at 0.
 
 ```typescript
-enum Color { Red, Green, Blue };
+enum Color {
+  Red,
+  Green,
+  Blue,
+}
 let greenColor: Color = Color.Green;
 ```
 
 Enums can have their first value manually set, or manually set all values
 
 ```typescript
-enum Month { January = 1, February, March, April, May, June };
+enum Month {
+  January = 1,
+  February,
+  March,
+  April,
+  May,
+  June,
+}
 let feb = Month[2];
 
-enum Month { January = 1, March = 3, May = 5};
+enum Month {
+  January = 1,
+  March = 3,
+  May = 5,
+}
 let may = Month[5];
 ```
 
@@ -107,17 +156,17 @@ Note that variables of type `unknown` have no accessible properties or functions
 ```typescript
 let value: unknown = 5;
 
-value = 'words';
+value = "words";
 value.length; // Will give "Object is of type unknown" error
 
 // Will give "Type unknown is not assignable to type string" error
 const value2: string = value;
 
 // Check type using typeof
-if(typeof value === 'string') {
-	// Can successfully narrow
-	const stringValue: string = value;
-	console.log("Length is", stringValue.length);
+if (typeof value === "string") {
+  // Can successfully narrow
+  const stringValue: string = value;
+  console.log("Length is", stringValue.length);
 }
 ```
 
@@ -127,7 +176,7 @@ Any is useful when you want to opt-out of type checking. Using `any` will disabl
 
 ```typescript
 let my3rdPartyData: any = 5;
-my3rdPartyData = 'five';
+my3rdPartyData = "five";
 
 my3rdPartyData.invalidFunction(3); // Will not error until runtime
 ```
@@ -138,7 +187,7 @@ No type at all - commonly used with functions that don't return a value.
 
 ```typescript
 function buttonClick(): void {
-  console.log('I clicked a button that returns nothing');
+  console.log("I clicked a button that returns nothing");
 }
 ```
 
@@ -161,7 +210,7 @@ function error(message: string): never {
 When we don't provide explicit types for our variables, TypeScript will do its best to infer the types, and it's very good at it. The following code will not compile due to type inference.
 
 ```typescript
-let name = 'Sally';
+let name = "Sally";
 let height = 6;
 name = height;
 //Type 'number' is not assignable to type 'string'
@@ -171,18 +220,18 @@ Type can also be inferred from complex objects.
 
 ```typescript
 let person = {
-  name: 'Sally',
+  name: "Sally",
   height: 6,
   address: {
     number: 555,
-    street: 'Rodeo Drive'
-  }
+    street: "Rodeo Drive",
+  },
 };
-person.name = 'Cecilia';
+person.name = "Cecilia";
 //works
 person.name = 6;
 //Type '6' is not assignable to type 'string'.
-person.address.number = 'five fifty-five';
+person.address.number = "five fifty-five";
 //Type '"five fifty-five"' is not assignable to type 'number'.
 ```
 
@@ -190,13 +239,13 @@ TypeScript will infer the return value of a function as well.
 
 ```typescript
 function multiplier(a: number, b: number) {
-  return a*b;
+  return a * b;
 }
-var multiplied: number = multiplier(2,3);
+var multiplied: number = multiplier(2, 3);
 //works
 
 var str: string;
-str = multiplier(10,20);
+str = multiplier(10, 20);
 //Type 'number' is not assignable to type 'string'.
 ```
 
@@ -216,7 +265,7 @@ let otherValue: any = "this is a string";
 let otherLength: number = (otherValue as string).length;
 ```
 
-The ``as`` syntax is usually preferred because the `<type>` conflicts with JSX syntax.
+The `as` syntax is usually preferred because the `<type>` conflicts with JSX syntax.
 
 ## Exercise: Fix Type Errors
 
@@ -228,21 +277,21 @@ fixing the type errors in `2a-fix-errors.ts`:
 ```typescript
 let isLoading: boolean;
 isLoading = true;
-isLoading = 'false';
+isLoading = "false";
 
 let inventory: Array<number> = [];
 
-inventory.push('tacos', 'hamburgers');
+inventory.push("tacos", "hamburgers");
 
 function greet(name: string, age: number): string {
   return `${name} is ${age} years young.`;
 }
 
-export const jessica = greet(30, 'Jessica')
+export const jessica = greet(30, "Jessica");
 
-export const tom = greet('Tom', 42, 'software');
+export const tom = greet("Tom", 42, "software");
 
-export {isLoading, inventory};
+export { isLoading, inventory };
 ```
 
 ### What You Need to Know
@@ -250,22 +299,14 @@ export {isLoading, inventory};
 The exports of `2a-fix-errors.ts` should look like:
 
 ```typescript
-it("exports are correct", function(){
-	assert.equal(isLoading, false,
-		"isLoading");
+it("exports are correct", function () {
+  assert.equal(isLoading, false, "isLoading");
 
-	assert.deepEqual(
-		inventory,
-		['tacos', 'hamburgers'],
-		"inventory");
+  assert.deepEqual(inventory, ["tacos", "hamburgers"], "inventory");
 
-	assert.equal(jessica,
-		`Jessica is 30 years young.`,
-		"jessica");
+  assert.equal(jessica, `Jessica is 30 years young.`, "jessica");
 
-	assert.equal(tom,
-		`Tom is 42 years young.`,
-		"Tom");
+  assert.equal(tom, `Tom is 42 years young.`, "Tom");
 });
 ```
 
@@ -277,9 +318,7 @@ it("exports are correct", function(){
 npm run 2a-types
 ```
 
-
 ### The Solution
-
 
 <details>
 <summary>Click to see the solution</summary>
@@ -293,18 +332,17 @@ isLoading = false;
 
 let inventory: Array<string> = [];
 
-inventory.push('tacos', 'hamburgers');
+inventory.push("tacos", "hamburgers");
 
 function greet(name: string, age: number): string {
   return `${name} is ${age} years young.`;
 }
 
-export const jessica = greet('Jessica', 30)
+export const jessica = greet("Jessica", 30);
 
-export const tom = greet('Tom', 42);
+export const tom = greet("Tom", 42);
 
-export {isLoading, inventory};
-
+export { isLoading, inventory };
 ```
 
 </details>
