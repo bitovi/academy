@@ -478,7 +478,7 @@ type Dinosaur = typeof tRex; // {name: string; type: string; weightInKilograms: 
   weightInKilograms: number | &quot;unknown&quot;;
 }
 </code></pre>
-<p><code>typeof</code> is often used in conjunction with <code>ReturnType</code>, a utility type (<a href="utility-types.html" title="Learn About the Utility Types provided by TypeScript">Utility Types</a>) provided by TypeScript, as a way to type out the return of a function. Say for example we have a function defined somewhere and we need to give a type for a value that is returned from the function. We could achieve this using <code>ReturnType</code></p>
+<p><code>typeof</code> is often used in conjunction with <code>ReturnType</code>, a utility type (learn more about utility types: <a href="utility-types.html" title="Learn About the Utility Types provided by TypeScript">Utility Types</a>) provided by TypeScript, as a way to type out the return of a function. Say for example we have a function defined somewhere and we need to give a type for a value that is returned from the function. We could achieve this using <code>ReturnType</code></p>
 <pre><code class="language-ts">// Some function in a module
 const createDinosaur = (): Carnivore | Herbivore =&gt; {
   // implementation details
