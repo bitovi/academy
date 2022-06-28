@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/typescript/8-keyof-typeof.md
+	@page learn-typescript/keyof-typeof
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <meta name="description" content="Learn how to use &#x60;keyof&#x60; and &#x60;typeof&#x60; to create new types from types and objects! 
+">
+  <title>Bitovi Academy - Keyof and Typeof</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="why-typescript.html"
+							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript.">
+							Why TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="ide-support.html"
+							title="Learn about good IDEs for TypeScript Development.">
+							IDE Support
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="configuration.html"
+							title="Learn about TypeScript Configurations and Linting">
+							Configuration
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="types.html"
+							title="Learn how to declare types in TypeScript.">
+							Types
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="functions.html"
+							title="Learn how to annotate functions parameters and return values, use different parameter types available.">
+							Functions
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="classes.html"
+							title="Learn to use classes and inheritance in TypeScript, about the constructor method, and how to use public, private, protected, and readonly modifiers.">
+							Classes
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="interfaces.html"
+							title="Learn how to write Interfaces, set optional properties, and about the power of using interfaces in classes and functions">
+							Interfaces
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="keyof-typeof.html"
+							title="Learn how to use keyof and typeof to create new types from types and objects!">
+							Keyof and Typeof
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="generics.html"
+							title="Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript.">
+							Generics
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="utility-types.html"
+							title="Learn About the Utility Types provided by TypeScript">
+							Utility Types
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-react.html"
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will have mastered functional components, hooks, and component optimization.">
+							Learn React
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-web-components.html"
+							title="">
+							Learn Web Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-technology-consulting.html"
+							title="Learn how to perform technology consulting.">
+							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn how to build a moderately complex application with Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border">
+      <a href="..#courses">View More Courses</a>
+      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
+  </p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Keyof and Typeof <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>Learn how to use <code>keyof</code> and <code>typeof</code> to create new types from types and objects!</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <h2>Overview</h2>
+<p>In this part, we will:</p>
+<ul>
+<li>Learn how <code>keyof</code> works</li>
+<li>Learn how <code>typeof</code> works</li>
+<li>See how they can be used together</li>
+</ul>
+<h2>Keyof</h2>
+<p>The <code>keyof</code> operators takes an object type and produces a union of its keys. Take for example the following type:</p>
+<pre><code class="language-ts">type Dino = {
+  name: string;
+  type: &quot;herbivore&quot; | &quot;carnivore&quot;;
+  age: number;
+};
+</code></pre>
+<p>If we were to create a new type called <code>Dino</code> using <code>keyof</code> we would see <code>&quot;name&quot; | &quot;type&quot; | &quot;age&quot;</code></p>
+<pre><code class="language-ts">type DinoKeys = keyof Dino; // &quot;name&quot; | &quot;type&quot; | &quot;age&quot;
+</code></pre>
+<p>If the type is declared using an index signature, the type of the index will be used</p>
+<pre><code class="language-ts">type ArraylikeDinos = { [index: number]: Dino };
+
+type Keys = keyof ArraylikeDinos; // number
+</code></pre>
+<blockquote>
+<p><strong>Note</strong>: As you may remember from previously, TypeScript is a superset of JavaScript and has to conform to its rules. This can cause keyof to behave in a non-intuitive way in certain situations. Take the following:</p>
+<pre><code class="language-ts">type VisitedParkMapping = { [parkName: string]: boolean };
+type M = keyof VisitedParkMapping;
+</code></pre>
+<p>What is type <code>M</code>? Based on the previous, you may think <code>M</code> is <code>string</code>; however, its <code>string | number</code>. Huh? Where did that <code>number</code> come from? In JavaScript all object keys are turned into strings. This means that if we have the following object</p>
+<pre><code class="language-js">const a = { 0: &quot;hello&quot;, 1: &quot;world&quot; };
+</code></pre>
+<p>Both <code>a[1]</code> and <code>a[&quot;1&quot;]</code> evaluate to the same thing (<code>&quot;world&quot;</code>).</p>
+</blockquote>
+<p>By itself, <code>keyof</code> may not seem all too interesting. However, it becomes powerful when used in tandem with other TypeScript features like Mapped Types and Generics which we will see in the future.</p>
+<h2>Typeof</h2>
+<p><code>typeof</code> is a way to create a type from a value. It can be used on values and properties of those values. <code>typeof</code> is useful for creating type queries and capturing types that aren't strictly defined.</p>
+<pre><code class="language-ts">const tRex = {
+  name: &quot;tyrannosaurus rex&quot;,
+  type: &quot;carnivore&quot;,
+  weightInKilograms: 7_000,
+};
+
+let stegosaurus: typeof tRex; // {name: string; type: string; weightInKilograms: number;}
+
+type Dinosaur = typeof tRex; // {name: string; type: string; weightInKilograms: number;}
+</code></pre>
+<p>There are some shortcomings to this approach since its looking at a single value, and the type returned isn’t as specific as it could be. Take for example <code>type</code> and <code>weightInKilograms</code> if we were to define the <code>Dinosaur</code> type ourselves we would want to restrict and expand those properties into something like this:</p>
+<pre><code class="language-ts">interface Dinosaur {
+  name: string;
+  side: &quot;carnivore&quot; | &quot;herbivore&quot;;
+  weightInKilograms: number | &quot;unknown&quot;;
+}
+</code></pre>
+<p><code>typeof</code> is often used in conjunction with <code>ReturnType</code>, a <a href="./utility-types">utility type</a> provided by TypeScript, as a way to type out the return of a function. Say for example we have a function defined somewhere and we need to give a type for a value that is returned from the function. We could achieve this using <code>ReturnType</code></p>
+<pre><code class="language-ts">// Some function in a module
+const createDinosaur = (): Carnivore | Herbivore =&gt; {
+  // implementation details
+  return dino;
+};
+
+// Some other module
+type Dinosaur = ReturnType&lt;typeof createDinosaur&gt;;
+
+const dinoFight = (dino1: Dinosaur, dino2: Dinosaur): Dinosaur =&gt; {
+  /** implementation details */
+};
+</code></pre>
+<blockquote>
+<p>Don’t worry about the angle brackets right now (<code>&lt;&gt;</code>) those are how <a href="./generics">generics</a> are declared in TypeScript, we will go more indepth on those later. For now just think of it as us telling TypeScript that we want the return type of the thing in the brackets.</p>
+</blockquote>
+<p>You might be thinking using <code>typeof</code> for something like this is overkill, instead, you could just jump into the module find the types and import them. While that might be true for this simple example, with more complex and generic return types it becomes more of a hassle. Additionally, the return type of a function may not be defined, opting to leverage TypeScript’s type inference like below.</p>
+<pre><code class="language-ts">const getDinoFacts = () =&gt; {
+  return {
+    name: &quot;tyrannosaurus rex&quot;,
+    size: { weight: { amount: 7_000, unit: &quot;kg&quot; } },
+    info: [
+      &quot;Tyrannosaurus Rex means 'Tyrant Lizard'&quot;,
+      &quot;The largest T. Rex tooth found is 12 inches (30 cm) long&quot;,
+    ],
+  };
+};
+
+/**
+ *{name: string, size: {weight: {amount: number; unit: string;}}, facts: string[]}
+ */
+type DinoFacts = ReturnType&lt;typeof getDinoFacts&gt;;
+</code></pre>
+<p>There are two <code>typeof</code>s to be aware of in TypeScript – the JavaScript one and the TypeScript one. The difference between them is the context in which they are used. If it is being used in an expression context, (used as a part of your code) it is the JavaScript <code>typeof</code> and will return a string with one of nine JavaScript types. And if it's used in a type context (as part of your type declarations) it's the TypeScript <code>typeof</code> and will refer to the type of whatever values follow it.</p>
+<p><code>typeof</code> cannot be called on everything; there are some restrictions. <code>typeof</code> can only be called on identifiers and any of their properties.</p>
+<pre><code class="language-ts">const dinosaur = { name: &quot;velociraptor&quot;, type: &quot;carnivore&quot; };
+
+type Dinosaur = typeof dinosaur; // {name: string; type: string;}
+type DinotName = typeof dinosaur.name; // string
+
+type DinoFacts = typeof getHothFacts(); // ERROR: Expression expected
+</code></pre>
+<p>Like <code>keyof</code>, <code>typeof</code> by itself may not seem interesting, but its utility lies when used in conjunction with other TypeScript features like <code>ReturnType</code> and even <code>keyof</code>.</p>
+<h2>Keyof Typeof</h2>
+<p><code>typeof</code> and <code>keyof</code> can be used together when you want to use <code>keyof</code> but only have a value to use rather than a concrete type.</p>
+<pre><code class="language-ts">const carnivore = {
+  name: &quot;velociraptor&quot;,
+  type: &quot;carnivore&quot;,
+  weightInKilograms: 7_000,
+};
+
+type CarnivoreKeys = keyof typeof carnivore;
+
+let carnivoreKey: CarnivoreKeys;
+
+carnivoreKey = &quot;name&quot;;
+carnivoreKey = &quot;Some value&quot;; // ERROR: Type '&quot;Some value&quot;' is not assignable to type '&quot;name&quot; | &quot;type&quot; | &quot;weightInKilograms&quot;'
+carnivoreKey = &quot;type&quot;;
+</code></pre>
+<p>A strange, but the common occurrence of this is an <a href="./types">enum</a>. Enums in TypeScript are types before the code is compiled and an object during execution. If we run into a situation where we want to get the keys of an enum, the only way to do so is to use <code>keyof</code> and <code>typeof</code> together</p>
+<pre><code class="language-ts">enum DinosaurColors {
+  blue = &quot;0x0000FF&quot;,
+  green = &quot;0x00FF00&quot;,
+  red = &quot;0xFF0000&quot;,
+  purple = &quot;0xA020F0&quot;,
+  yellow = &quot;0xFFFF00&quot;,
+  white = &quot;0xFFFFFF&quot;,
+  black = &quot;0x000000&quot;,
+}
+
+type DinosaurColorsKeys = keyof typeof DinosaurColors; // “blue” | “green” | “red” …
+</code></pre>
+<h2>Exercises</h2>
+<h3>Exercise 1</h3>
+<p>Update the <code>DinosaurFactObject</code> and <code>Dinosaur</code> type to gain type safety on the <code>getDinoFact</code> function. The function should, given a dinosaurs name (<code>velociraptor</code> or <code>t-rex</code>) and the <code>dinosaurFacts</code> object return the correct facts about the dinosaur.</p>
+<blockquote>
+<p><strong>NOTE:</strong> Don't worry about the <code>DinosaurFactObject[Dinosaur]</code> type in the return of the function signature. That's called an index-signature which we will get into later on.</p>
+</blockquote>
+<pre><code class="language-ts">/**
+ * EX 1: Update the `DinosaurFactObject` and `Dinosaur` type to gain type safety on the `getDinoFact`
+ * function. The function should, given a dinosaurs name (`velociraptor` or `t-rex`) and the `dinosaurFacts` object
+ * return the correct facts about the dinosaur.
+ */
+export const dinosaurFacts = {
+  &quot;t-rex&quot;: {
+    latinName: &quot;Tyrannosaurus rex&quot;,
+    nickName: &quot;T-rex&quot;,
+    habitat: &quot;forest&quot;,
+    attributes: {
+      weight: { amount: 15_500, units: &quot;lbs&quot; },
+      height: { amount: 12, units: &quot;ft&quot; },
+      length: { amount: 40, units: &quot;ft&quot; },
+    },
+  },
+  velociraptor: {
+    latinName: &quot;velociraptor&quot;,
+    nickName: &quot;raptor&quot;,
+    habitat: &quot;desert&quot;,
+    attributes: {
+      weight: { amount: 100, units: &quot;lbs&quot; },
+      height: { amount: 1.6, units: &quot;ft&quot; },
+      length: { amount: 6, units: &quot;ft&quot; },
+    },
+  },
+};
+
+/**
+ * Replace `any` with a type that represents the `dinosaurFacts` object above
+ */
+type DinosaurFactObject = any;
+
+/**
+ * Replace `any` with a type that allows for any of the keys in the dinosaur fact object
+ */
+type Dinosaur = any;
+
+/**
+ * This function should, given a facts object and dinosaur name, return the facts for that creature.
+ *
+ * &gt;NOTE: Don't worry about the `DinosaurFactObject[Dinosaur]` type in the return of the function signature. That's called
+ * and index-signature which we will get into later on.
+ */
+export const getDinoFact = (
+  facts: DinosaurFactObject,
+  dino: Dinosaur
+): DinosaurFactObject[Dinosaur] =&gt; {
+  return facts[dino];
+};
+
+</code></pre>
+<div class='codepen'></div>
+<h3>Verify Your Solution</h3>
+<p>✏️ Run the following to verify your solution:</p>
+<pre><code class="language-shell">npm run 5c-keyof-typeof-ex1
+</code></pre>
+<h3>The Solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>Update the <code>DinosaurFactObject</code> and <code>Dinosaur</code> type to gain type safety on the <code>getDinoFact</code> function</p>
+<pre><code class="language-ts">/**
+ * EX 1: Update the `DinosaurFactObject` and `Dinosaur` type to gain type safety on the `getDinoFact`
+ * function. The function should, given a dinosaurs name (`velociraptor` or `t-rex`) and the `dinosaurFacts` object
+ * return the correct facts about the dinosaur.
+ */
+const dinosaurFacts = {
+  &quot;t-rex&quot;: {
+    latinName: &quot;Tyrannosaurus rex&quot;,
+    nickName: &quot;T-rex&quot;,
+    habitat: &quot;forest&quot;,
+    attributes: {
+      weight: { amount: 15_500, units: &quot;lbs&quot; },
+      height: { amount: 12, units: &quot;ft&quot; },
+      length: { amount: 40, units: &quot;ft&quot; },
+    },
+  },
+  velociraptor: {
+    latinName: &quot;velociraptor&quot;,
+    nickName: &quot;raptor&quot;,
+    habitat: &quot;desert&quot;,
+    attributes: {
+      weight: { amount: 100, units: &quot;lbs&quot; },
+      height: { amount: 1.6, units: &quot;ft&quot; },
+      length: { amount: 6, units: &quot;ft&quot; },
+    },
+  },
+};
+
+/**
+ * Replace `any` with a type that represents the `dinosaurFacts` object above
+ */
+type DinosaurFactObject = typeof dinosaurFacts;
+
+/**
+ * Replace `any` with a type that allows for any of the keys in the dinosaur fact object
+ */
+type Dinosaur = keyof DinosaurFactObject;
+
+/**
+ * This function should, given a facts object and dinosaur name, return the facts for that creature.
+ *
+ * &gt; NOTE: Don't worry about the `DinosaurFactObject[Dinosaur]` type in the return of the function signature. That's called
+ * an index-signature which we will get into later on.
+ */
+export const getDinoFact = (
+  facts: DinosaurFactObject,
+  dino: Dinosaur
+): DinosaurFactObject[Dinosaur] =&gt; {
+  return facts[dino];
+};
+
+</code></pre>
+<p>Another way to achieve the same solution.</p>
+<pre><code class="language-ts">export type DinosaurFactObject = typeof dinosaurFacts;
+
+export type Dinosaur = keyof typeof dinosaurFacts;
+</code></pre>
+<p></details></p>
+<h3>Exercise 2</h3>
+<p>Update the <code>ColorsAsEasyReadName</code> type so that it represents the keys of the enum (eg <code>'red'</code>, <code>'blue'</code>, and <code>'green'</code>)and then add all the necessary types to the <code>getColorValue</code> function signature.</p>
+<p>The <code>getColorValue</code> function should take a one of the easily readable names and return the hex string equivalent</p>
+<pre><code class="language-ts">/**
+ * EX 2: Update the `ColorsAsEasyReadName` type so that it represents the keys of the enum (eg 'red', 'blue', and 'green')
+ * and then add all the necessary types to the `getColorValue` function signature.
+ *
+ * The `getColorValue` function should take a one of the easily readable names and return the hex string equivalent
+ */
+export enum ColorsToHex {
+  red = &quot;0xFF0000&quot;,
+  green = &quot;0x00FF00&quot;,
+  blue = &quot;0x0000FF&quot;,
+}
+
+/**
+ * Replace `any` with a type so that it represents the keys of the enum (eg 'red', 'blue', and 'green')
+ */
+type ColorsAsEasyReadName = any;
+
+/**
+ * Fix the ts errors by updating the type above and replace the `any` with the proper type
+ */
+export const getColorValue = (color: ColorsAsEasyReadName): any =&gt; {
+  return ColorsToHex[color];
+};
+
+</code></pre>
+<div class='codepen'></div>
+<h3>Verify Your Solution</h3>
+<p>✏️ Run the following to verify your solution:</p>
+<pre><code class="language-shell">npm run 5d-keyof-typeof-ex2
+</code></pre>
+<h3>The Solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>Update the <code>ColorsAsEasyReadName</code> type so that it represents the keys of the enum (eg 'red', 'blue', and 'green')and then add all the necessary types to the <code>getColorValue</code> function signature.</p>
+<pre><code class="language-ts">/**
+ * EX 2: Update the `ColorsAsEasyReadName` type so that it represents the keys of the enum (eg 'red', 'blue', and 'green')
+ * and then add all the necessary types to the `getColorValue` function signature.
+ *
+ * The `getColorValue` function should take a one of the easily readable names and return the hex string equivalent
+ */
+export enum ColorsToHex {
+  red = &quot;0xFF0000&quot;,
+  green = &quot;0x00FF00&quot;,
+  blue = &quot;0x0000FF&quot;,
+}
+
+/**
+ * Replace `any` with a type so that it represents the keys of the enum (eg 'red', 'blue', and 'green')
+ */
+type ColorsAsEasyReadName = keyof typeof ColorsToHex;
+
+/**
+ * Fix the ts errors by updating the type above and replace the `any` with the proper type
+ */
+export const getColorValue = (color: ColorsAsEasyReadName): string =&gt; {
+  return ColorsToHex[color];
+};
+
+</code></pre>
+<p></details></p>
+
+</section>
+
+  			
+  			<bit-prev-next class="footer" list-selector=".sidebar-left ul li.parent.expanded ul"></bit-prev-next>
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout slack">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://www.bitovi.com/community/slack">help</a> with an exercise, please reach out to us on
+             <a href="https://www.bitovi.com/community/slack">Slack</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/typescript/8-keyof-typeof.md"},"description":"Learn how to use `keyof` and `typeof` to create new types from types and objects! \n","name":"learn-typescript/keyof-typeof","title":"Keyof and Typeof","type":"page","parent":"learn-typescript","order":8,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+</body>
+</html>

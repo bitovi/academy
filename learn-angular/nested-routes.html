@@ -768,7 +768,7 @@ platformBrowserDynamic()
   &lt;div
     class=&quot;restaurant-header&quot;
     [ngStyle]=&quot;{
-      'background-image': 'url(' + getUrl(restaurant.images.banner) + ')'
+      'background-image': 'url(' + (restaurant.images.banner | imageUrl) + ')'
     }&quot;
   &gt;
     &lt;div class=&quot;background&quot;&gt;
@@ -805,30 +805,6 @@ platformBrowserDynamic()
 &lt;/ng-container&gt;
 
 </code></pre>
-<p>We've also added a method called by the html that will return a proper url path for our restaurant image.</p>
-<p>✏️ Update <strong>src/app/restaurant/detail/detail.component.ts</strong>:</p>
-<pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'pmo-detail',
-  templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.less']
-})
-export class DetailComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
-  getUrl(image: string): string {
-    // THIS IS A DIFFERENT WAY TO HANDLE THE IMAGE PATH
-    return image.replace('node_modules/place-my-order-assets', './assets');
-  }
-}
-
-</code></pre>
-<div line-highlight='15-18'></div>
 <h2>How to Verify Your Solution is Correct</h2>
 <p>When you click the detail button on a restaurant from the restaurant list view you'll see the detail view of that restaurant.</p>
 <p>✏️ Update the spec file <strong>src/app/restaurant/detail.component.spec.ts</strong> to be:</p>
@@ -1375,15 +1351,10 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.onDestroy$.next();
     this.onDestroy$.complete();
   }
-
-  getUrl(image: string): string {
-    // THIS IS A DIFFERENT WAY TO HANDLE THE IMAGE PATH
-    return image.replace('node_modules/place-my-order-assets', './assets');
-  }
 }
 
 </code></pre>
- <div line-highlight="1-5,10,12-15,17-20,23,25-33,36-38,44,"></div>
+ <div line-highlight="1-5,10,12-15,17-20,23,25-33,36-39,"></div>
 <p></details></p>
 
 </section>

@@ -3,7 +3,7 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/typescript/9-utility-types.md
+	source: src/typescript/10-utility-types.md
 	@page learn-typescript/utility-types
 ######################################################################## -->
 <html lang="en">
@@ -216,6 +216,21 @@
            						
            						">
 						<a class="page"
+							href="keyof-typeof.html"
+							title="Learn how to use keyof and typeof to create new types from types and objects!">
+							Keyof and Typeof
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="generics.html"
 							title="Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript.">
 							Generics
@@ -415,9 +430,9 @@ covering CanJS core libraries.">
 <p>In this section you will see a small description for the most used Utility Types.</p>
 <p>We are going to repeat the interface Dinosaur below throughout the examples.</p>
 <pre><code class="language-typescript">enum Diet {
-  'Carnivore',
-  'Herbivore',
-  'Omnivore',
+  &quot;Carnivore&quot;,
+  &quot;Herbivore&quot;,
+  &quot;Omnivore&quot;,
 }
 
 interface Dinosaur {
@@ -447,7 +462,7 @@ function updateDinosaur(
 }
 
 const oldDino: Dinosaur = {
-  species: 'Tyrannosaurus rex',
+  species: &quot;Tyrannosaurus rex&quot;,
   diet: Diet.Carnivore,
 };
 const newDino: Dinosaur = updateDinosaur(dino1, {
@@ -464,7 +479,7 @@ interface YetAnotherDinosaur extends Dinosaur {
 }
 
 const trex: AnotherDinosaur = {
-  species: 'Tyrannosaurus rex',
+  species: &quot;Tyrannosaurus rex&quot;,
   diet: Diet.Carnivore,
   age: 30,
 };
@@ -480,9 +495,9 @@ type AnotherDinosaur = Readonly&lt;NamableDinosaur&gt;;
 
 // Meet Bruno, another dinosaur
 let dino: AnotherDinosaur = {
-  name: 'Bruno',
+  name: &quot;Bruno&quot;,
   age: 27,
-  species: 'Tyrannosaurus rex',
+  species: &quot;Tyrannosaurus rex&quot;,
   diet: Diet.Carnivore,
 };
 dino.age = 0;
@@ -498,21 +513,21 @@ dino.age += 1;
   // Record&lt;string, Dinosaur&gt; is equivalent to { [key: string]: Dinosaur }
   // Could also be written as Record&lt;'trex' | 'triceratops', Dinosaur&gt;
   trex: {
-    species: 'Tyrannosaurus rex',
+    species: &quot;Tyrannosaurus rex&quot;,
     diet: Diet.Carnivore,
   },
   triceratops: {
-    species: 'Triceratops horridus',
+    species: &quot;Triceratops horridus&quot;,
     diet: Diet.Herbivore,
   },
 };
 </code></pre>
 <h2>Pick&lt;Type, Keys&gt;</h2>
 <p>Selects only the properties defined in Keys. Useful if you want a subset of <code>Type</code></p>
-<pre><code class="language-typescript">type LesserDinosaur = Pick&lt;Dinosaur, 'species' | 'age'&gt;;
+<pre><code class="language-typescript">type LesserDinosaur = Pick&lt;Dinosaur, &quot;species&quot; | &quot;age&quot;&gt;;
 
 let lesserDino: LesserDinosaur = {
-  species: 'Tyrannosaurus rex',
+  species: &quot;Tyrannosaurus rex&quot;,
   age: 27,
   // diet: Diet.Carnivore, &lt;- if this line was present, then the error below would be thrown by typescript
   // Type '{ species: string; age: number; diet: Diet; }' is not assignable to type 'LesserDinosaur'.
@@ -521,33 +536,33 @@ let lesserDino: LesserDinosaur = {
 </code></pre>
 <h2>Omit&lt;Type, Keys&gt;</h2>
 <p>Selects all properties but the ones defined in Keys. Useful if you want a subset of <code>Type</code></p>
-<pre><code class="language-typescript">type LesserDinosaur = Omit&lt;Dinosaur, 'species' | 'age'&gt;;
+<pre><code class="language-typescript">type LesserDinosaur = Omit&lt;Dinosaur, &quot;species&quot; | &quot;age&quot;&gt;;
 
 const lesserDino: LesserDinosaur = {
   diet: Diet.Carnivore,
 };
 
-lesserDino.species = 'Tyrannosaurus rex';
+lesserDino.species = &quot;Tyrannosaurus rex&quot;;
 // Property 'species' does not exist on type 'LesserDinosaur'.
 // species and age properties are gone!
 </code></pre>
 <h2>Exclude&lt;Type, ExcludedUnion&gt;</h2>
 <p>Removes from <code>Type</code> if is assignable to <code>Union</code>. Useful if you want a subset of <code>Type</code></p>
-<pre><code class="language-typescript">type Species = 'Tyrannosaurus rex' | 'Triceratops horridus';
+<pre><code class="language-typescript">type Species = &quot;Tyrannosaurus rex&quot; | &quot;Triceratops horridus&quot;;
 
-type SpeciesGone = Exclude&lt;Species, 'Triceratops horridus'&gt;; // SpeciesGone is Species minus Triceratops horridus
+type SpeciesGone = Exclude&lt;Species, &quot;Triceratops horridus&quot;&gt;; // SpeciesGone is Species minus Triceratops horridus
 
-const dino: SpeciesGone = 'Triceratops horridus';
+const dino: SpeciesGone = &quot;Triceratops horridus&quot;;
 // Type '&quot;Triceratops horridus&quot;' is not assignable to type '&quot;Tyrannosaurus rex&quot;'.
 // Only rex remains now!
 </code></pre>
 <h2>Extract&lt;Type, Union&gt;</h2>
 <p>Extracts from <code>Type</code> if is assignable to <code>Union</code></p>
-<pre><code class="language-typescript">type Species = 'Tyrannosaurus rex' | 'Triceratops horridus';
+<pre><code class="language-typescript">type Species = &quot;Tyrannosaurus rex&quot; | &quot;Triceratops horridus&quot;;
 
-type SpeciesGone = Extract&lt;Species, 'Triceratops horridus'&gt;; // in this case, equivalent to type SpeciesGone = 'Triceratops horridus'
+type SpeciesGone = Extract&lt;Species, &quot;Triceratops horridus&quot;&gt;; // in this case, equivalent to type SpeciesGone = 'Triceratops horridus'
 
-const dino: SpeciesGone = 'Triceratops horridus';
+const dino: SpeciesGone = &quot;Triceratops horridus&quot;;
 // Only triceratops remains now!
 
 // we can also extract common keys between 2 Types
@@ -565,7 +580,7 @@ type CommonKeys = Extract&lt;keyof Mammal, keyof Dinosaur&gt;;
 </code></pre>
 <h2>NonNullable&lt;Type&gt;</h2>
 <p>Excludes <code>null</code> and <code>undefined</code> from <code>Type</code>. Prevent any runtime errors from occurring because we forgot to assign to a property.</p>
-<pre><code class="language-typescript">type Species = 'Tyrannosaurus rex' | 'Triceratops horridus' | null | undefined;
+<pre><code class="language-typescript">type Species = &quot;Tyrannosaurus rex&quot; | &quot;Triceratops horridus&quot; | null | undefined;
 
 type NNSpecies = NonNullable&lt;Species&gt;;
 // equivalent to type NNSpecies = 'Tyrannosaurus rex' | 'Triceratops horridus'
@@ -608,9 +623,9 @@ type D2 = ReturnType&lt;() =&gt; Dinosaur&gt;;
 }
 
 enum Diet {
-  'Carnivore',
-  'Herbivore',
-  'Omnivore',
+  &quot;Carnivore&quot;,
+  &quot;Herbivore&quot;,
+  &quot;Omnivore&quot;,
 }
 
 type Tyrannosaurus = Dinosaur;
@@ -632,9 +647,9 @@ export { Diet, Tyrannosaurus };
 }
 
 enum Diet {
-  'Carnivore',
-  'Herbivore',
-  'Omnivore',
+  &quot;Carnivore&quot;,
+  &quot;Herbivore&quot;,
+  &quot;Omnivore&quot;,
 }
 
 type Tyrannosaurus = Required&lt;Dinosaur &amp; { diet: Diet.Carnivore }&gt;;
@@ -680,7 +695,7 @@ export { Diet, Tyrannosaurus };
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/typescript/9-utility-types.md"},"description":"Learn About the Utility Types provided by TypeScript \n","name":"learn-typescript/utility-types","title":"Utility Types","type":"page","parent":"learn-typescript","order":9,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/typescript/10-utility-types.md"},"description":"Learn About the Utility Types provided by TypeScript \n","name":"learn-typescript/utility-types","title":"Utility Types","type":"page","parent":"learn-typescript","order":10,"comment":" ","pathToRoot":"../.."};
     </script>
 
     

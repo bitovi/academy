@@ -219,6 +219,21 @@
            						
            						">
 						<a class="page"
+							href="keyof-typeof.html"
+							title="Learn how to use keyof and typeof to create new types from types and objects!">
+							Keyof and Typeof
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="generics.html"
 							title="Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript.">
 							Generics
@@ -423,31 +438,52 @@ covering CanJS core libraries.">
 <li>Create a typed variable</li>
 </ul>
 <h2>Basic Types</h2>
-<p>Types are what determine how much memory is allocated to save a value. Types also determine what operations or methods can be performed on a value. Types like strings can't have mathematical operations performed on them, but methods like <code>.length</code> can be used.</p>
+<p>Types explain what you can and can’t do with a value, take for example numbers and strings. In JavaScript, on strings, you have access to <code>.length</code>, on a number you do not. Types also determine what will happen when you apply operators to values. For example, the <code>+</code> operator, what does the following do?</p>
+<pre><code class="language-javascript">console.log(a + b);
+</code></pre>
+<p>Some might say it adds <code>a</code> and <code>b</code> together, others that it concatenates <code>a</code> and <code>b</code>. Both are potentially right. To come to the correct answer, we need to know what <code>a</code> and <code>b</code> are. If <code>a</code> and <code>b</code> are numbers, the <code>+</code> will perform addition, if they are strings - concatenation. The difference between the two is their underlying types.</p>
+<blockquote>
+<p><strong>Note:</strong> If you are familiar with JavaScript’s primitive types you may recognize some of the names coming up. The types <code>string</code> <code>boolean</code> and <code>number</code> should feel familiar. These types are the same in TypeScript as they are in JavaScript and are at times referred to as primitive types.</p>
+</blockquote>
 <h3>Boolean</h3>
+<p><code>boolean</code> is a type that can only be <code>true</code> or <code>false</code>.</p>
 <pre><code class="language-typescript">let isCarnivore: boolean = true;
+let isHerbivore: boolean = false;
 </code></pre>
 <h3>Number</h3>
+<p><code>number</code> is used for numbers. If you are familiar with other typed languages, like <code>c++</code> you may be familiar with specific number types like <code>unsigned int</code> and <code>float</code>. In JavaScript and TypeScript, there is only <code>number</code>.</p>
 <pre><code class="language-typescript">let teeth: number = 100;
-let hex: number = 0xF00D;
+let hex: number = 0xf00d;
 </code></pre>
 <h3>String</h3>
-<pre><code class="language-typescript">let name: string = 'Leoplurodon';
+<p><code>string</code> is used for a collection of characters like words.</p>
+<pre><code class="language-typescript">let name: string = &quot;Leoplurodon&quot;;
 </code></pre>
+<h3>Literals</h3>
+<p>In Typescript, there is a subset within string, number, and boolean which allow you to refine the specificity of the type. These are called type literals. A string literal is a single string for example:</p>
+<pre><code class="language-typescript">type StringLiteralExample = &quot;hello&quot;;
+</code></pre>
+<p>If we were to assign a variable to this <code>StringLiteralExample</code> type we just declared, we would see the only value it can be is <code>&quot;hello&quot;</code>.</p>
+<pre><code class="language-typescript">let invalid: StringLiteralExample = &quot;a&quot;; // ERROR
+let valid: StringLiteralExample = &quot;hello&quot;; // No issues
+</code></pre>
+<p>What we have done is restricted the string type to be only the single string <code>&quot;hello&quot;</code>. The same can be done with <code>number</code>s, and less helpfully, <code>boolean</code>s. Literals like this are very powerful when used in conjunction with type unions. Allowing us to expand our subset to include multiple values.</p>
+<pre><code class="language-typescript">type Dinos = &quot;Stegosaurus&quot; | &quot;Triceratops&quot; | &quot;Velociraptor&quot;; //|… any additional dinos
+</code></pre>
+<div style='text-align:center'>
+    <img src="../../static/img/typescript/type-union-dino-example.png" />
+</div>
 <blockquote>
-<p><strong>QUICK TIP:</strong> Template strings have embedded expressions.</p>
-<pre><code class="language-typescript">let myTemplateString: string = `I think ${ name }'s are pretty cool.
-
-They have ${ teeth } teeth.`;
-</code></pre>
+<p><strong>Note:</strong> In TypeScript projects and applications using unions like the one above is often used as a low-overhead version of <a href="#enum">enums</a>.</p>
 </blockquote>
+<p>While we spent the time going over what a literal is. For the remainder of this section (and sections to come), we will not make the distinction between type literals and types since literals are just types.</p>
 <h3>Array</h3>
 <pre><code class="language-typescript">let list: number[] = [1, 2, 3];
 
-let raptors: Array&lt;string&gt; = ['Blue','Charlie','Delta'];
+let raptors: Array&lt;string&gt; = [&quot;Blue&quot;, &quot;Charlie&quot;, &quot;Delta&quot;];
 </code></pre>
 <h3>Object</h3>
-<pre><code class="language-typescript">let user: {name: string, age: number} = {name: &quot;Justin&quot;, age: 36};
+<pre><code class="language-typescript">let user: { name: string; age: number } = { name: &quot;Justin&quot;, age: 36 };
 </code></pre>
 <blockquote>
 <p><strong>Note:</strong> Later we will learn about <a href="interfaces.html" title="Learn how to write Interfaces, set optional properties, and about the power of using interfaces in classes and functions">Interfaces</a>, which are
@@ -463,14 +499,29 @@ sillyList = [&quot;boop&quot;, 5]; //will error
 </code></pre>
 <h3>Enum</h3>
 <p>Enums allow the aliasing of names to a list of numeric values. Like most indexing, enums start their first member at 0.</p>
-<pre><code class="language-typescript">enum Color { Red, Green, Blue };
+<pre><code class="language-typescript">enum Color {
+  Red,
+  Green,
+  Blue,
+}
 let greenColor: Color = Color.Green;
 </code></pre>
 <p>Enums can have their first value manually set, or manually set all values</p>
-<pre><code class="language-typescript">enum Month { January = 1, February, March, April, May, June };
+<pre><code class="language-typescript">enum Month {
+  January = 1,
+  February,
+  March,
+  April,
+  May,
+  June,
+}
 let feb = Month[2];
 
-enum Month { January = 1, March = 3, May = 5};
+enum Month {
+  January = 1,
+  March = 3,
+  May = 5,
+}
 let may = Month[5];
 </code></pre>
 <h3>Unknown</h3>
@@ -478,30 +529,30 @@ let may = Month[5];
 <p>Note that variables of type <code>unknown</code> have no accessible properties or functions.</p>
 <pre><code class="language-typescript">let value: unknown = 5;
 
-value = 'words';
+value = &quot;words&quot;;
 value.length; // Will give &quot;Object is of type unknown&quot; error
 
 // Will give &quot;Type unknown is not assignable to type string&quot; error
 const value2: string = value;
 
 // Check type using typeof
-if(typeof value === 'string') {
-    // Can successfully narrow
-    const stringValue: string = value;
-    console.log(&quot;Length is&quot;, stringValue.length);
+if (typeof value === &quot;string&quot;) {
+  // Can successfully narrow
+  const stringValue: string = value;
+  console.log(&quot;Length is&quot;, stringValue.length);
 }
 </code></pre>
 <h3>Any</h3>
 <p>Any is useful when you want to opt-out of type checking. Using <code>any</code> will disable all compile-time checks including access to properties and functions. This is mostly useful for 3rd party data structures that you do not know the shape of, or when incrementally opting in to types.</p>
 <pre><code class="language-typescript">let my3rdPartyData: any = 5;
-my3rdPartyData = 'five';
+my3rdPartyData = &quot;five&quot;;
 
 my3rdPartyData.invalidFunction(3); // Will not error until runtime
 </code></pre>
 <h3>Void</h3>
 <p>No type at all - commonly used with functions that don't return a value.</p>
 <pre><code class="language-typescript">function buttonClick(): void {
-  console.log('I clicked a button that returns nothing');
+  console.log(&quot;I clicked a button that returns nothing&quot;);
 }
 </code></pre>
 <h3>Null &amp; Undefined</h3>
@@ -514,36 +565,36 @@ my3rdPartyData.invalidFunction(3); // Will not error until runtime
 </code></pre>
 <h2>Type Inference</h2>
 <p>When we don't provide explicit types for our variables, TypeScript will do its best to infer the types, and it's very good at it. The following code will not compile due to type inference.</p>
-<pre><code class="language-typescript">let name = 'Sally';
+<pre><code class="language-typescript">let name = &quot;Sally&quot;;
 let height = 6;
 name = height;
 //Type 'number' is not assignable to type 'string'
 </code></pre>
 <p>Type can also be inferred from complex objects.</p>
 <pre><code class="language-typescript">let person = {
-  name: 'Sally',
+  name: &quot;Sally&quot;,
   height: 6,
   address: {
     number: 555,
-    street: 'Rodeo Drive'
-  }
+    street: &quot;Rodeo Drive&quot;,
+  },
 };
-person.name = 'Cecilia';
+person.name = &quot;Cecilia&quot;;
 //works
 person.name = 6;
 //Type '6' is not assignable to type 'string'.
-person.address.number = 'five fifty-five';
+person.address.number = &quot;five fifty-five&quot;;
 //Type '&quot;five fifty-five&quot;' is not assignable to type 'number'.
 </code></pre>
 <p>TypeScript will infer the return value of a function as well.</p>
 <pre><code class="language-typescript">function multiplier(a: number, b: number) {
-  return a*b;
+  return a * b;
 }
-var multiplied: number = multiplier(2,3);
+var multiplied: number = multiplier(2, 3);
 //works
 
 var str: string;
-str = multiplier(10,20);
+str = multiplier(10, 20);
 //Type 'number' is not assignable to type 'string'.
 </code></pre>
 <p>Type inference can be a very helpful tool in refactoring code and helping better document expectations for our code.</p>
@@ -564,40 +615,32 @@ let otherLength: number = (otherValue as string).length;
 fixing the type errors in <code>2a-fix-errors.ts</code>:</p>
 <pre><code class="language-typescript">let isLoading: boolean;
 isLoading = true;
-isLoading = 'false';
+isLoading = &quot;false&quot;;
 
 let inventory: Array&lt;number&gt; = [];
 
-inventory.push('tacos', 'hamburgers');
+inventory.push(&quot;tacos&quot;, &quot;hamburgers&quot;);
 
 function greet(name: string, age: number): string {
   return `${name} is ${age} years young.`;
 }
 
-export const jessica = greet(30, 'Jessica')
+export const jessica = greet(30, &quot;Jessica&quot;);
 
-export const tom = greet('Tom', 42, 'software');
+export const tom = greet(&quot;Tom&quot;, 42, &quot;software&quot;);
 
-export {isLoading, inventory};
+export { isLoading, inventory };
 </code></pre>
 <h3>What You Need to Know</h3>
 <p>The exports of <code>2a-fix-errors.ts</code> should look like:</p>
-<pre><code class="language-typescript">it(&quot;exports are correct&quot;, function(){
-    assert.equal(isLoading, false,
-        &quot;isLoading&quot;);
+<pre><code class="language-typescript">it(&quot;exports are correct&quot;, function () {
+  assert.equal(isLoading, false, &quot;isLoading&quot;);
 
-    assert.deepEqual(
-        inventory,
-        ['tacos', 'hamburgers'],
-        &quot;inventory&quot;);
+  assert.deepEqual(inventory, [&quot;tacos&quot;, &quot;hamburgers&quot;], &quot;inventory&quot;);
 
-    assert.equal(jessica,
-        `Jessica is 30 years young.`,
-        &quot;jessica&quot;);
+  assert.equal(jessica, `Jessica is 30 years young.`, &quot;jessica&quot;);
 
-    assert.equal(tom,
-        `Tom is 42 years young.`,
-        &quot;Tom&quot;);
+  assert.equal(tom, `Tom is 42 years young.`, &quot;Tom&quot;);
 });
 </code></pre>
 <h3>Verify Your Solution</h3>
@@ -614,18 +657,17 @@ isLoading = false;
 
 let inventory: Array&lt;string&gt; = [];
 
-inventory.push('tacos', 'hamburgers');
+inventory.push(&quot;tacos&quot;, &quot;hamburgers&quot;);
 
 function greet(name: string, age: number): string {
   return `${name} is ${age} years young.`;
 }
 
-export const jessica = greet('Jessica', 30)
+export const jessica = greet(&quot;Jessica&quot;, 30);
 
-export const tom = greet('Tom', 42);
+export const tom = greet(&quot;Tom&quot;, 42);
 
-export {isLoading, inventory};
-
+export { isLoading, inventory };
 </code></pre>
 <p></details></p>
 <h2>Exercise: Date It</h2>

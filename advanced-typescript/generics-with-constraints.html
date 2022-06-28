@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/advanced-typescript/01-generics-with-constraints/01-generics-with-constraints.md
+	@page advanced-typescript/generics-with-constraints
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <meta name="description" content="Learn how to constrain generics to be able to reuse even more logic! 
+">
+  <title>Bitovi Academy - Generics With Constraints</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-react.html"
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will have mastered functional components, hooks, and component optimization.">
+							Learn React
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-web-components.html"
+							title="">
+							Learn Web Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-technology-consulting.html"
+							title="Learn how to perform technology consulting.">
+							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn how to build a moderately complex application with Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../advanced-typescript.html"
+							title="This course covers advanced features of TypeScript.">
+							Advanced TypeScript
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="generics-with-constraints.html"
+							title="Learn how to constrain generics to be able to reuse even more logic!">
+							Generics With Constraints
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border">
+      <a href="..#courses">View More Courses</a>
+      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
+  </p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Generics With Constraints <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>Learn how to constrain generics to be able to reuse even more logic!</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <h2>Overview</h2>
+<p>In the last lesson we saw how powerful generics can be allowing us to create resuable logic across multiple types. However, that’s just the beginning. TypeScript has all sorts of powerful feature we can leverage to make our logic more typesafe and more reusable. In this lesson we will take a look at constraining generics and how they can assist us in forcing our reusable logic to have certain characteristics while maintaining the typed flexibility of generics.</p>
+<h2>Quick Recap on Generics</h2>
+<blockquote>
+<p>For more information on generics, see <a href="../learn-typescript/generics">generics</a> in the TypeScript course</p>
+</blockquote>
+<p>Generics are a way to pass types into other types, much like how parameters are ways to pass values into functions. Like parameters, there can be any number of generics passed into new types and they can only be used in the context of the type they are passed into. To define a generic, angle brackets are used (<code>&lt;&gt;</code>). The order of the generics in the type declaration is what determines which type is assigned to the generic.</p>
+<blockquote>
+<p><strong>Note:</strong> Generics can be named anything and often single letters <code>T</code> (short for Type), <code>U</code>, <code>V</code> … are used. For most generics <code>T</code>, <code>U</code>, <code>V</code> is often sufficient, however, to improve developer experiences, it is helpful to name the generics something semantically relevant like below.</p>
+</blockquote>
+<pre><code class="language-ts">type Response&lt;ResponseData, ErrorType&gt; = {
+    success: boolean;
+    code: number;
+    data: ResponseData;
+    error: ErrorType;
+}
+
+type CustomError = { /** Implementation Detail \*/}
+type User = { /** Implementation Detail \*/}
+
+type UserResponse&lt;User, CustomError&gt;
+</code></pre>
+<p>Generics are a great way to reuse strongly typed code and create powerful abstractions in your libraries and applications.</p>
+<h2>With Constraints</h2>
+<p>Generics by themselves are a great way to encapsulate logic when we don’t really care what shape that type has. Take for example <code>Array</code>. Arrays are a list of things. It doesn’t matter what things are in it since when we do interact with items in an array we provide the logic to handle those items, making the array indifferent to what’s inside. Sometimes though, we do care about the shape of the thing being passed in or at least part of it. Take a <code>greeter</code> function, say we want it to greet something by name whether it be a bird, dog, person, cat, or pokemon. Reuse of logic across types screams generics. So what happens if we try to implement <code>greeter</code> using plain generics? Well, let's try.</p>
+<pre><code class="language-ts">function greeter&lt;T&gt;(thingToGreet: T): void {
+  // Error: Property 'name' does not exist on type 'T'.
+  console.log(&quot;Hello &quot; + thingToGreet.name);
+}
+</code></pre>
+<p>We get an error mentioning that <code>name</code> does not exist on type <code>T</code>. Which makes sense. <code>T</code> could be anything. It could be <code>number</code>, <code>string</code>, or an <code>Array&lt;Array&lt;Array&lt;number&gt;&gt;&gt;</code> all of which do not have a <code>name</code> property. In this case, we know we want whatever is being passed in to have a name property, but our declaration doesn’t allow for it. To remedy this we can add a constraint to the generic using the <code>extends</code> keyword in TypeScript.</p>
+<pre><code class="language-ts">type WithName = { name: string };
+
+function greeter&lt;T extends WithName&gt;(thingToGreet: T): void {
+  console.log(&quot;Hello, &quot; + thingToGreet.name);
+}
+
+type Bird = {
+  name: string;
+  milesFlown: number;
+};
+
+type Pokemon = {
+  name: string;
+  moves: string[];
+  level: number;
+};
+
+const bird: Bird = {
+  name: &quot;bird&quot;,
+  milesFlow: 178,
+};
+
+const pikachu: Pokemon = {
+  name: &quot;Pikachu&quot;,
+  level: 22,
+  moves: [&quot;tackle&quot;, &quot;thunder&quot;, &quot;quick attack&quot;],
+};
+
+greeter(bird); // Hello bird
+greeter(pikachu); // Hello Pikachu
+greeter({ name: &quot;world&quot; }); // Hello world
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> In this example we have extended a previously defined type. However, you can also declare the type inline to achieve the same effect.</p>
+<pre><code class="language-ts">function greeter&lt;T extends { name: string }&gt;(thingToGreet: T): void {
+  console.log(&quot;Hello, &quot; + thingToGreet.name);
+}
+</code></pre>
+</blockquote>
+<p>Since Generics themselves are types, you can also constrain your generics based on other generics. Imagine we have a bunch of different types of Pokedex from all the different regions, each of these can be represented by a type that resembles the following shape.</p>
+<pre><code class="language-ts">type KantoPokedex = {
+  bulbasaur: PokedexEntry;
+  ivysaur: PokedexEntry;
+  venusauar: PokedexEntry;
+  // etc...
+};
+
+type JohtoPokedex = {
+  chikorita: PokedexEntry;
+  bayleef: PokedexEntry;
+  meganium: PokedexEntry;
+  // etc...
+};
+
+// rest of regions...
+</code></pre>
+<p>We are tasked with building a function that gets the <code>PokedexEntry</code> for any Pokemon given the Pokedex and the Pokemon’s name. If we break it down we need two types, the first is the <code>Pokedex</code> type and the second is some type that ensures we pass a key from that <code>Pokedex</code>. We can achieve this by constraining the second generic in the function to extend the keys of the first.</p>
+<pre><code class="language-ts">function getPokemonEntry&lt;Pokedex, PokemonName extends keyof Pokedex&gt;(
+  pokedex: Pokedex,
+  pokemon: PokemonName
+) {
+  return pokedex[pokemon];
+}
+</code></pre>
+<p>Moving into the upcoming lessons, constraining generics will be a common tool we reach for to leverage more of TypeScript’s powerful features.</p>
+<h2>Exercises</h2>
+<h3>Exercise 1</h3>
+<p>Update the <code>Keys</code> type to act as a type alias for <code>keyof</code>. With this type, we don't want to allow <code>string</code>s, <code>number</code>s and <code>boolean</code>s to be passed
+into the <code>Keys</code> type (<code>Keys&lt;string&gt;</code>, <code>Keys&lt;number&gt;</code>, etc. should not be allowed). So that the following is true</p>
+<pre><code class="language-ts">type LeafStarterPokemon = {
+  bulbasaur: PokedexEntry;
+  ivysaur: PokedexEntry;
+  venusauar: PokedexEntry;
+};
+
+type LeafKeys = Keys&lt;LeafStarters&gt;; // is `'bulbasaur' | 'ivysaur' | 'venusauar'` and
+</code></pre>
+<p>and</p>
+<pre><code class="language-ts">type FireStarterPokemon = {
+  charmander: PokedexEntry;
+  charmeleon: PokedexEntry;
+  charizard: PokedexEntry;
+};
+
+type FireKeys = Keys&lt;FireStarterPokemon&gt;; // `'charmander' | 'charmeleon' | 'charizard'
+</code></pre>
+<p>and</p>
+<pre><code class="language-ts">const randomAttacks = {
+  quickAttack: {
+    /** */
+  },
+  thunder: {
+    /** */
+  },
+};
+
+type RandomAttacks = Keys&lt;typeof randomAttacks&gt;; // 'quickAttack' | 'thunder'
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> The above are examples of its use. The <code>Key</code> type should work for any similiarly structured type</p>
+</blockquote>
+<p><details>
+<summary>Hint for Exercise 1 (click to reveal)</summary> <code>keyof</code> should mainly be used on <code>object</code>s is there a way we can incorporate that into the type.
+</details></p>
+<blockquote>
+<p>Be sure to check your answers to Exercise 1 <strong>Before</strong> continuing on to Exercise 2</p>
+</blockquote>
+<pre><code class="language-ts">/**
+ * Exercise 1
+ *
+ * Update the `Keys` type to act as a type alias for `keyof`. With this type,
+ * we don't want to allow `string`s, `number`s and `boolean`s to be passed
+ * into the `Keys` type  (`Keys&lt;string&gt;`, `Keys&lt;number&gt;`, etc. should not be allowed). So that given
+ * the following types...
+ *
+ * ```ts
+ * type LeafStarterPokemon = {
+ *  bulbasaur: PokedexEntry;
+ *  ivysaur: PokedexEntry;
+ *  venusauar: PokedexEntry;
+ * };
+ * ```
+ *
+ * `Keys&lt;LeafStarters&gt;` is `'bulbasaur' | 'ivysaur' | 'venusauar'` and
+ *
+ * ```ts
+ * type FireStarterPokemon = {
+ *  charmander: PokedexEntry;
+ *  charmeleon: PokedexEntry;
+ *  charizard: PokedexEntry;
+ * };
+ * ```
+ *
+ * `Keys&lt;FireStarterPokemon&gt;` is `'charmander' | 'charmeleon' | 'charizard'`.
+ *
+ * Hint: `keyof` should mainly be used on `object`s is there a way we can incorporate that into the type.
+ *
+ * &gt; Be sure to check your answers to `1a` **Before** continuing on to Exercise 1b
+ */
+
+export type Keys&lt;T&gt; = any;
+
+</code></pre>
+<h3>Verify Your Solution</h3>
+<p>✏️ Run the following to verify your solution:</p>
+<pre><code class="language-sh">npm run 01-generics-with-constraints-ex-1
+</code></pre>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-ts">export type Keys&lt;T extends object&gt; = keyof T;
+
+</code></pre>
+<p></details></p>
+<h3>Exercise 2</h3>
+<p>Now that we have a <code>Keys</code> type let's put it to work. Imagine we have the following types:</p>
+<pre><code class="language-ts">type PokedexEntry = string;
+
+type LeafStarterPokemon = {
+  bulbasaur: PokedexEntry;
+  ivysaur: PokedexEntry;
+  venusauar: PokedexEntry;
+};
+
+type FireStarterPokemon = {
+  charmander: PokedexEntry;
+  charmeleon: PokedexEntry;
+  charizard: PokedexEntry;
+};
+
+type WaterStartPokemon = {
+  squirtle: PokedexEntry;
+  wartortle: PokedexEntry;
+  blastoise: PokedexEntry;
+};
+
+</code></pre>
+<p>Below is a function called <code>getStarterPokemonInfomation</code> that
+takes two generics. We would like to be able to pass in any of our three starters objects and a starter's name to get the
+data for that pokemon. Update the types in the function to acheive this.</p>
+<pre><code class="language-ts">type FireStarterPokemon = {
+  charmander: PokedexEntry;
+  charmeleon: PokedexEntry;
+  charizard: PokedexEntry;
+};
+
+const fireStarters: FireStarterPokemon = {
+  charmander:
+    &quot;From the time it is born, a flame burns at the tip of its tail. Its life would end if the flame were to go out&quot;,
+  charmeleon:
+    &quot;Charmeleon, the Flame Pokémon and the evolved form of Charmander. Charmeleon knocks down opponents with its tail, then defeats them using razor-sharp claws.&quot;,
+  charizard:
+    &quot;Its wings can carry this POKéMON close to an altitude of 4,600 feet. It blows out fire at very high temperatures.&quot;,
+};
+
+const entry = getStarterPokemonInfomation(fireStarters, &quot;charizard&quot;);
+
+console.log(entry);
+// 'Its wings can carry this POKéMON close to an altitude of 4,600 feet. It blows out fire at very high temperatures.'
+</code></pre>
+<p><details>
+<summary>Hint for Exercise 2 (click to reveal)</summary>
+our <code>Keys</code> type has a constraint to be satisfied, we need to make sure anything passed into <code>Keys</code> satisfies those constraints as well...
+</details></p>
+<pre><code class="language-ts">import type { Keys } from &quot;../exercise-01/ex-01&quot;;
+
+/* Exercise 2
+ *
+ * Now that we have a `Keys` type let's put it to work. Below is a function called `getStarterPokemonInfomation` that
+ * takes two generics. We would like to be able to pass in any of our three starters objects and a starter's name to get the
+ * data for that pokemon. Update the types in the function to acheive this.
+ *
+ * ```ts
+ * type FireStarterPokemon = {
+ *  charmander: PokedexEntry;
+ *  charmeleon: PokedexEntry;
+ *  charizard: PokedexEntry;
+ * };
+ *
+ * const fireStarters: FireStarterPokemon = {
+ *  charmander: 'From the time it is born, a flame burns at the tip of its tail. Its life would end if the flame were to go out',
+ *  charmeleon: 'Charmeleon, the Flame Pokémon and the evolved form of Charmander. Charmeleon knocks down opponents with its tail, then defeats them using razor-sharp claws.',
+ *  charizard: 'Its wings can carry this POKéMON close to an altitude of 4,600 feet. It blows out fire at very high temperatures.',
+ * }
+ *
+ * const entry = getgetStarterPokemonInfomation(fireStarters, 'charizard')
+ * console.log(entry) // 'Its wings can carry this POKéMON close to an altitude of 4,600 feet. It blows out fire at very high temperatures.'
+ * ```
+ *
+ * Hint: our `Keys` type has a constraint to be satisfied, we need to make sure anything passed into `Keys` satisfies those constraints as well...
+ */
+export function getStarterPokemonInfomation&lt;Starters, Name&gt;(
+  starter: Starters,
+  name: Name
+) {
+  return starter[name];
+}
+
+</code></pre>
+<h3>Verify Your Solution</h3>
+<p>✏️ Run the following to verify your solution:</p>
+<pre><code class="language-sh">npm run 01-generics-with-constraints-ex-2
+</code></pre>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-ts">import type { Keys } from &quot;../exercise-01/soln-01&quot;;
+
+export function getStarterPokemonInfomation&lt;
+  Starters extends object,
+  Name extends Keys&lt;Starters&gt;
+&gt;(starter: Starters, name: Name) {
+  return starter[name];
+}
+
+</code></pre>
+<p></details></p>
+
+</section>
+
+  			
+  			<bit-prev-next class="footer" list-selector=".sidebar-left ul li.parent.expanded ul"></bit-prev-next>
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout slack">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://www.bitovi.com/community/slack">help</a> with an exercise, please reach out to us on
+             <a href="https://www.bitovi.com/community/slack">Slack</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/advanced-typescript/01-generics-with-constraints/01-generics-with-constraints.md"},"description":"Learn how to constrain generics to be able to reuse even more logic! \n","name":"advanced-typescript/generics-with-constraints","title":"Generics With Constraints","type":"page","parent":"advanced-typescript","order":1,"comment":" ","pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+</body>
+</html>
