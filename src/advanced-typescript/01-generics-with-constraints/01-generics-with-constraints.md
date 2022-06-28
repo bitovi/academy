@@ -40,11 +40,11 @@ Generics by themselves are a great way to encapsulate logic when we don’t real
 ```ts
 function greeter<T>(thingToGreet: T): void {
   // Error: Property 'name' does not exist on type 'T'.
-  console.log("Hello, " + thingToGreet.name);
+  console.log("Hello " + thingToGreet.name);
 }
 ```
 
-We get an error mentioning that name does not exist on type `T`. Which makes sense. `T` could be anything. It could be `number`, `string`, or an `Array<Array<Array<number>>>` all of which do not have a name property. In this case, we know we want whatever is being passed in to have a name property, but our declaration doesn’t allow for it. To remedy this we can add a constraint to the generic using the `extends` keyword in TypeScript.
+We get an error mentioning that `name` does not exist on type `T`. Which makes sense. `T` could be anything. It could be `number`, `string`, or an `Array<Array<Array<number>>>` all of which do not have a `name` property. In this case, we know we want whatever is being passed in to have a name property, but our declaration doesn’t allow for it. To remedy this we can add a constraint to the generic using the `extends` keyword in TypeScript.
 
 ```ts
 type WithName = { name: string };
@@ -88,15 +88,38 @@ greeter({ name: "world" }); // Hello world
 > }
 > ```
 
-Since Generics themselves are types, you can also constrain your generics based on other generics. A small (and admittedly contrived) example of this would be for a `getData` function, this would take some data object and a key and return the value of that key. Much like `data[dataKey]` which is actually what our function will return, the trick comes when getting type safety around a function to do this. If we break it down we need two types, the first is the data’s type and the second is some type that ensures we pass a key from that data. We can achieve this by constraining the second generic in the function to extend the keys of the first.
+Since Generics themselves are types, you can also constrain your generics based on other generics. Imagine we have a bunch of different types of Pokedex from all the different regions, each of these can be represented by a type that resembles the following shape.
 
 ```ts
-function getData<Data, DataKey extends keyof Data>(data: Data, key: DataKey) {
-  return data[key];
+type KantoPokedex = {
+  bulbasaur: PokedexEntry;
+  ivysaur: PokedexEntry;
+  venusauar: PokedexEntry;
+  // etc...
+};
+
+type JohtoPokedex = {
+  chikorita: PokedexEntry;
+  bayleef: PokedexEntry;
+  meganium: PokedexEntry;
+  // etc...
+};
+
+// rest of regions...
+```
+
+We are tasked with building a function that gets the `PokedexEntry` for any Pokemon given the Pokedex and the Pokemon’s name. If we break it down we need two types, the first is the `Pokedex` type and the second is some type that ensures we pass a key from that `Pokedex`. We can achieve this by constraining the second generic in the function to extend the keys of the first.
+
+```ts
+function getPokemonEntry<Pokedex, PokemonName extends keyof Pokedex>(
+  pokedex: Pokedex,
+  pokemon: PokemonName
+) {
+  return pokedex[pokemon];
 }
 ```
 
-Moving into the upcoming lessons, constraining generics will be common tool we reach for to leverage more of TypeScript’s powerful features
+Moving into the upcoming lessons, constraining generics will be a common tool we reach for to leverage more of TypeScript’s powerful features.
 
 ## Exercises
 
@@ -198,6 +221,6 @@ npm run 01-generics-with-constraints-ex-2
 <details>
 <summary>Click to see the solution</summary>
 
-@sourceref ./exercise-01/soln-01.ts
+@sourceref ./exercise-02/soln-02.ts
 
 </details>

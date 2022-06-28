@@ -28,6 +28,6 @@ import type { Keys } from "../exercise-01/ex-01";
 export function getStarterPokemonInfomation<Starters, Name>(
   starter: Starters,
   name: Name
-): Starters[Name] {
+) {
   return starter[name];
 }
