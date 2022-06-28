@@ -478,7 +478,7 @@ type Dinosaur = typeof tRex; // {name: string; type: string; weightInKilograms: 
   weightInKilograms: number | &quot;unknown&quot;;
 }
 </code></pre>
-<p><code>typeof</code> is often used in conjunction with <code>ReturnType</code>, a <a href="./utility-types">utility type</a> provided by TypeScript, as a way to type out the return of a function. Say for example we have a function defined somewhere and we need to give a type for a value that is returned from the function. We could achieve this using <code>ReturnType</code></p>
+<p><code>typeof</code> is often used in conjunction with <code>ReturnType</code>, a <a href="utility-types">learn-typescript/utility-types</a> provided by TypeScript, as a way to type out the return of a function. Say for example we have a function defined somewhere and we need to give a type for a value that is returned from the function. We could achieve this using <code>ReturnType</code></p>
 <pre><code class="language-ts">// Some function in a module
 const createDinosaur = (): Carnivore | Herbivore =&gt; {
   // implementation details
@@ -493,7 +493,7 @@ const dinoFight = (dino1: Dinosaur, dino2: Dinosaur): Dinosaur =&gt; {
 };
 </code></pre>
 <blockquote>
-<p>Don’t worry about the angle brackets right now (<code>&lt;&gt;</code>) those are how <a href="./generics">generics</a> are declared in TypeScript, we will go more indepth on those later. For now just think of it as us telling TypeScript that we want the return type of the thing in the brackets.</p>
+<p>Don’t worry about the angle brackets right now (<code>&lt;&gt;</code>) those are how <a href="generics">learn-typescript/generics</a> are declared in TypeScript, we will go more indepth on those later. For now just think of it as us telling TypeScript that we want the return type of the thing in the brackets.</p>
 </blockquote>
 <p>You might be thinking using <code>typeof</code> for something like this is overkill, instead, you could just jump into the module find the types and import them. While that might be true for this simple example, with more complex and generic return types it becomes more of a hassle. Additionally, the return type of a function may not be defined, opting to leverage TypeScript’s type inference like below.</p>
 <pre><code class="language-ts">const getDinoFacts = () =&gt; {
@@ -538,7 +538,7 @@ carnivoreKey = &quot;name&quot;;
 carnivoreKey = &quot;Some value&quot;; // ERROR: Type '&quot;Some value&quot;' is not assignable to type '&quot;name&quot; | &quot;type&quot; | &quot;weightInKilograms&quot;'
 carnivoreKey = &quot;type&quot;;
 </code></pre>
-<p>A strange, but the common occurrence of this is an <a href="./types">enum</a>. Enums in TypeScript are types before the code is compiled and an object during execution. If we run into a situation where we want to get the keys of an enum, the only way to do so is to use <code>keyof</code> and <code>typeof</code> together</p>
+<p>A strange, but the common occurrence of this is an <a href="enum">learn-typescript/enum</a>. Enums in TypeScript are types before the code is compiled and an object during execution. If we run into a situation where we want to get the keys of an enum, the only way to do so is to use <code>keyof</code> and <code>typeof</code> together</p>
 <pre><code class="language-ts">enum DinosaurColors {
   blue = &quot;0x0000FF&quot;,
   green = &quot;0x00FF00&quot;,
