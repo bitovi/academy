@@ -134,9 +134,11 @@ type LeafStarterPokemon = {
   ivysaur: PokedexEntry;
   venusauar: PokedexEntry;
 };
+
+type LeafKeys = Keys<LeafStarters>; // is `'bulbasaur' | 'ivysaur' | 'venusauar'` and
 ```
 
-`Keys<LeafStarters>` is `'bulbasaur' | 'ivysaur' | 'venusauar'` and
+and
 
 ```ts
 type FireStarterPokemon = {
@@ -144,9 +146,26 @@ type FireStarterPokemon = {
   charmeleon: PokedexEntry;
   charizard: PokedexEntry;
 };
+
+type FireKeys = Keys<FireStarterPokemon>; // `'charmander' | 'charmeleon' | 'charizard'
 ```
 
-`Keys<FireStarterPokemon>` is `'charmander' | 'charmeleon' | 'charizard'`.
+and
+
+```ts
+const randomAttacks = {
+  quickAttack: {
+    /** */
+  },
+  thunder: {
+    /** */
+  },
+};
+
+type RandomAttacks = Keys<typeof randomAttacks>; // 'quickAttack' | 'thunder'
+```
+
+> **Note:** The above are examples of its use. The `Key` type should work for any similiarly structured type
 
 <details>
 <summary>Hint for Exercise 1 (click to reveal)</summary> `keyof` should mainly be used on `object`s is there a way we can incorporate that into the type.
@@ -179,7 +198,7 @@ Now that we have a `Keys` type let's put it to work. Imagine we have the followi
 
 Below is a function called `getStarterPokemonInfomation` that
 takes two generics. We would like to be able to pass in any of our three starters objects and a starter's name to get the
-data for that pokemon.
+data for that pokemon. Update the types in the function to acheive this.
 
 ```ts
 type FireStarterPokemon = {
@@ -191,7 +210,7 @@ type FireStarterPokemon = {
 const fireStarters: FireStarterPokemon = {
   charmander:
     "From the time it is born, a flame burns at the tip of its tail. Its life would end if the flame were to go out",
-  charmeleoon:
+  charmeleon:
     "Charmeleon, the Flame Pokémon and the evolved form of Charmander. Charmeleon knocks down opponents with its tail, then defeats them using razor-sharp claws.",
   charizard:
     "Its wings can carry this POKéMON close to an altitude of 4,600 feet. It blows out fire at very high temperatures.",

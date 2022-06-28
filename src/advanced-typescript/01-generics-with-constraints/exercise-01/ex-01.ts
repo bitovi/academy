@@ -12,9 +12,11 @@
  *  ivysaur: PokedexEntry;
  *  venusauar: PokedexEntry;
  * };
+ *
+ * type LeafKeys = Keys<LeafStarters> // 'bulbasaur' | 'ivysaur' | 'venusauar'
  * ```
  *
- * `Keys<LeafStarters>` is `'bulbasaur' | 'ivysaur' | 'venusauar'` and
+ * and
  *
  * ```ts
  * type FireStarterPokemon = {
@@ -22,9 +24,19 @@
  *  charmeleon: PokedexEntry;
  *  charizard: PokedexEntry;
  * };
+ *
+ * type FireKeys = Keys<FireStarterPokemon> // 'charmander' | 'charmeleon' | 'charizard'
  * ```
  *
- * `Keys<FireStarterPokemon>` is `'charmander' | 'charmeleon' | 'charizard'`.
+ * and
+ *
+ * ```ts
+ * const randomAttacks = {quickAttack: {}, thunder: {}};
+ *
+ * type RandomAttacks = Keys<typeof randomAttacks>; // 'quickAttack' | 'thunder'
+ * ```
+ *
+ * > **Note:** The above are examples of its use. The `Key` type should work for any similiarly structured type
  *
  * Hint: `keyof` should mainly be used on `object`s is there a way we can incorporate that into the type.
  *
