@@ -103,6 +103,94 @@ let user: { name: string; age: number } = { name: "Justin", age: 36 };
 > a better way of describing objects because the description
 > can be reused.
 
+### Intersections
+
+There are many different ways to create new types from existing types in TypeScript. Type intersections allow us to create a type with all the types of one type with all the types of another type. Let's imagine we have the following types.
+
+```ts
+type Person = {
+  name: string;
+  age: number;
+};
+
+type AnimalTrainer = {
+  level: "rookie" | "intermediate" | "advanced";
+  animals: Array<Animals>;
+};
+```
+
+However, we also need a `DinosaurCareTaker`. A Dinosaur caretaker is a `Person` and an `AnimalTrainer`. Intersections allow us to create a type from `Person` and `DinosaurCareTaker` using the `&`symbol.
+
+```ts
+/**
+ * {
+ *   name: string;
+ *   age: number;
+ *   level: "rookie" | "intermediate" | "advanced";
+ *   animals: Array<Animals>;
+ * }
+ */
+type DinosaurCareTaker = Person & AnimalTrainer;
+```
+
+`DinosaurCareTaker` looks good but there is more to being a dinosaur caretaker than just being a `Person` and an `AnimalTrainer`. Luckily, there can be more than one intersection in a type declaration and we can add the specifics of `DinosaurCareTaker` in another intersection.
+
+```ts
+/**
+ * {
+ *   name: string;
+ *   age: number;
+ *   level: "rookie" | "intermediate" | "advanced";
+ *   animals: Array<Animals>;
+ *   dinosaurName: string;
+ *   dinosaurType: "carnivore" | "herbivore";
+ * }
+ */
+type DinosaurCareTaker = Person &
+  PokemonTrainer & {
+    dinosaurName: string;
+    dinosaurType: "carnivore" | "herbivore";
+  };
+```
+
+There are a couple of things to be aware of when using type intersections. One is that order doesn’t matter since the intersection operator (`&`) is associative. This means the following two types (`A` and `B`) are the same.
+
+```ts
+type A = A1 & A2;
+type B = A2 & A1;
+```
+
+Another common thing to happen with intersections is to give the intersection something that is unsatisfiable. For example, creating a type from the intersection of two string unions
+
+```ts
+type Union1 = "hello" | "world";
+type Union2 = "foo" | "bar";
+
+type Intersection = Union1 & Union2;
+```
+
+…or trying to create a type from the intersection of two types that share a key name but the type of the key is different in both types
+
+```ts
+type Object1 = {
+  name: string;
+  age: number;
+};
+
+type Object2 = {
+  description: string;
+  age: string;
+};
+
+type Intersection = Object1 & Object2;
+```
+
+Both of these will appear to work, however, when used, the type of `Intersection` is never and an error reading something along the lines of
+
+> Type 'X' is not assignable to type 'never'.ts(2322)
+
+will appear.
+
 ### Tuple
 
 ```typescript
