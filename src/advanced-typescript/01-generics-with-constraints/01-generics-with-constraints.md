@@ -198,7 +198,10 @@ Now that we have a `Keys` type let's put it to work. Imagine we have the followi
 
 Below is a function called `getStarterPokemonInfomation` that
 takes two generics. We would like to be able to pass in any of our three starters objects and a starter's name to get the
-data for that pokemon. Update the types in the function to acheive this.
+data for that pokemon. Update the generics definition in the function to allow for this to happen.
+
+> **Before you Start**
+> Don't worry about adding a return type to the function, focus only on the definition of the generics/
 
 ```ts
 type FireStarterPokemon = {
@@ -241,5 +244,14 @@ npm run 01-generics-with-constraints-ex-2
 <summary>Click to see the solution</summary>
 
 @sourceref ./exercise-02/soln-02.ts
+
+This type of problem in practice would probably not take two generics, it was set up this way to illustrate some of the ideas in the lesson. Can you think of some other ways to accomplish the same thing without a second generic?
+
+<details>
+<summary>One Example</summary>
+
+@sourceref ./exercise-02/soln-02-with-one-generic.ts
+
+</details>
 
 </details>
