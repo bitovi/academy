@@ -4,7 +4,10 @@ import type { Keys } from "../exercise-01/ex-01";
  *
  * Now that we have a `Keys` type let's put it to work. Below is a function called `getStarterPokemonInfomation` that
  * takes two generics. We would like to be able to pass in any of our three starters objects and a starter's name to get the
- * data for that pokemon. Update the types in the function to acheive this.
+ * data for that pokemon. Update the generics definition in the function to allow for this to happen.
+ *
+ * > **Before you Start**
+ * > Don't worry about adding a return type to the function, focus only on the definition of the generics
  *
  * ```ts
  * type FireStarterPokemon = {

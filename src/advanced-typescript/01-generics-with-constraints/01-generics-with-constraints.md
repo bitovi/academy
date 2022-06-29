@@ -201,7 +201,7 @@ takes two generics. We would like to be able to pass in any of our three starter
 data for that pokemon. Update the generics definition in the function to allow for this to happen.
 
 > **Before you Start**
-> Don't worry about adding a return type to the function, focus only on the definition of the generics/
+> Don't worry about adding a return type to the function, focus only on the definition of the generics
 
 ```ts
 type FireStarterPokemon = {
