@@ -78,7 +78,7 @@ type Dinos = "Stegosaurus" | "Triceratops" | "Velociraptor"; //|… any addition
 ```
 
 <div style='text-align:center'>
-	<img src="../../static/img/typescript/type-union-dino-example.png" />
+	<img src="../static/img/typescript/type-union-dino-example.png" />
 </div>
 
 > **Note:** In TypeScript projects and applications using unions like the one above is often used as a low-overhead version of [enums](#enum).

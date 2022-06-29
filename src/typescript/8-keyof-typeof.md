@@ -82,7 +82,7 @@ interface Dinosaur {
 }
 ```
 
-`typeof` is often used in conjunction with `ReturnType`, a [utility type](./utility-types) provided by TypeScript, as a way to type out the return of a function. Say for example we have a function defined somewhere and we need to give a type for a value that is returned from the function. We could achieve this using `ReturnType`
+`typeof` is often used in conjunction with `ReturnType`, a utility type (learn more about utility types: [learn-typescript/utility-types]) provided by TypeScript, as a way to type out the return of a function. Say for example we have a function defined somewhere and we need to give a type for a value that is returned from the function. We could achieve this using `ReturnType`
 
 ```ts
 // Some function in a module
@@ -99,7 +99,7 @@ const dinoFight = (dino1: Dinosaur, dino2: Dinosaur): Dinosaur => {
 };
 ```
 
-> Don’t worry about the angle brackets right now (`<>`) those are how [generics](./generics) are declared in TypeScript, we will go more indepth on those later. For now just think of it as us telling TypeScript that we want the return type of the thing in the brackets.
+> Don’t worry about the angle brackets right now (`<>`) those are how [learn-typescript/generics] are declared in TypeScript, we will go more indepth on those later. For now just think of it as us telling TypeScript that we want the return type of the thing in the brackets.
 
 You might be thinking using `typeof` for something like this is overkill, instead, you could just jump into the module find the types and import them. While that might be true for this simple example, with more complex and generic return types it becomes more of a hassle. Additionally, the return type of a function may not be defined, opting to leverage TypeScript’s type inference like below.
 
@@ -156,7 +156,7 @@ carnivoreKey = "Some value"; // ERROR: Type '"Some value"' is not assignable to 
 carnivoreKey = "type";
 ```
 
-A strange, but the common occurrence of this is an [enum](./types). Enums in TypeScript are types before the code is compiled and an object during execution. If we run into a situation where we want to get the keys of an enum, the only way to do so is to use `keyof` and `typeof` together
+A strange, but the common occurrence of this is an enum (learn more about enums: [learn-typescript/types]). Enums in TypeScript are types before the code is compiled and an object during execution. If we run into a situation where we want to get the keys of an enum, the only way to do so is to use `keyof` and `typeof` together
 
 ```ts
 enum DinosaurColors {
