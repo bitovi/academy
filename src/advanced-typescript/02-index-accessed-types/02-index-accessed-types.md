@@ -1,13 +1,13 @@
 @page advanced-typescript/index-accessed-types Index Accessed Types
 @parent advanced-typescript 2
 
-@description TODO
+@description Learn how to look up types of properties with index accessed types!
 
 @body
 
 ## Overview
 
-TODO
+There are many times we would like to forego defining a type and rather use some other type as a reference instead. Index accessed types is a TypeScript feature that allows us to do just that! In this section, we will look at index accessed types, how they work, how their defined, and towards the end, we will see a practical application of them!
 
 ## Index Accessed Types
 
@@ -180,3 +180,35 @@ type Requests<T extends Entity> = {
 ```
 
 Using index accessed types we have resolved this issue and any future issue like it down the road.
+
+As we've seen, indexed access types are a powerful feature from TypeScript which helps our typing become more flexible and dynamic. Like generics, they will become a staple in our types as we progress through other TypeScript features.
+
+## Exercises
+
+### Exercise 1
+
+Below is an array of Pokemon trainers and a `FavoritePokemon` type currently assigned to any.
+Using the `pokemonTrainers` array replace the `any` with a type that has the same shape as `favoritePokemon` on the
+trainers in the array.
+
+<details>
+<summary> Hint for Exercise 1 (click to reveal)</summary>
+An array is just an object indexed with a number
+</details>
+
+@sourceref ./exercise-01/ex-01.ts
+
+### Verify Your Solution
+
+✏️ Run the following to verify your solution:
+
+```sh
+npm run 02-index-accessed-types-ex-1
+```
+
+<details>
+<summary>Click to see the solution</summary>
+
+@sourceref ./exercise-01/soln-01.ts
+
+</details>
