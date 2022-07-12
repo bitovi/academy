@@ -114,7 +114,9 @@ It is possible to have more than one indexer and have different value types for 
 
 > **Tip:** For objects to be keyed with a union or something besides these three try the Record utlity type!
 
-TODO ADD PHOTO
+<div style='text-align:center'>
+	<img src="../../static/img/advanced-typescript/string-number-symbol.png" />
+</div>
 
 These three types have a strange relationship
 
