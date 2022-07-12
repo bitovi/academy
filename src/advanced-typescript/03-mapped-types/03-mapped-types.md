@@ -7,13 +7,13 @@
 
 ## Overview
 
-Since their syntaxes are similar, before talking about mapped types we first will do a quick dive into using index signatures to define object types. Then we will look at what mapped types are and how to define a mapped type. Then we will explore some practical applications of mapped types and finally, we will take a look at some exercises where you will have the opportunity to build out some commonly used mapped types.
+Since their syntaxes are similar, before talking about mapped types we first will do a quick recap on using index signatures to define object types. Then we will look at what mapped types are and how to define them. Then we will explore some practical applications of mapped types and finally, we will take a look at some exercises where you will have the opportunity to build out some commonly used mapped types.
 
 ## Index Signatures
 
 Index signatures are a way to define object types when you know the general shape of any object but nothing more specific than the key type and the value type. Let's imagine we have an object that looks something like this.
 
-```ts
+```js
 const bag = {
   maxPotion: 2,
   maxRevive: 23,
@@ -35,10 +35,11 @@ An index signature consists of two parts:
 
 1. The indexer – `[itemName: string]`
 
-   - Defines the type the keys are allowed to be
+- Defines the type the keys are allowed to be
 
 2. The property’s value type – `number`
-   - Defines the type of the property
+
+- Defines the type of the property
 
 One thing to be aware of with defining types using index signature is the value may or may **not** be there, but typescript makes it seem as though it's always present.
 
@@ -51,7 +52,7 @@ bag.maxPotion; // Ts says its a number
 bag.maxRevive; // Ts says its a number... but its not there...
 ```
 
-With interfaces and other type definitions, you can add a `?` to delineate the property is optional. This is not the case with types defined using index signatures. To achieve the optional type-safety with index signature type you can create a union with the value type and `undefined`.
+With interfaces and other type definitions, you can add a ? to delineate the property is optional. This is not the case with types defined using index signatures. To achieve the optional type-safety with index signature type you can create a union with the value type and `undefined`.
 
 ```ts
 type BagWithUndefinedUnion = {
@@ -111,17 +112,17 @@ type BagWithRequiredValue = {
 
 It is possible to have more than one indexer and have different value types for indexes. To understand these mechanics, we first have to talk about what can and can’t be the type inside an indexer. TypeScript does not allow us to index with anything; it only lets us index with three types `string`, `number`, and `symbol`.
 
-> **Tip:** For objects to be keyed with a union or something besides these three try the `Record` utlity type!
+> **Tip:** For objects to be keyed with a union or something besides these three try the Record utlity type!
 
-IMAGE GOES HERE
+TODO ADD PHOTO
 
 These three types have a strange relationship
 
-- `number` is a proper subset of string
-- `symbol` is a proper subset of string
-- `number` and `symbol` are mutually exclusive
+- `number` is a proper subset of `string`
+- `symbol` is a proper subset of `string`
+- `number` and symbol are mutually exclusive
 
-In order for TypeScript to provide type safety, it has to be able to differentiate between the keys passed ing. If the indexer's values have the same types, it doesn’t matter.
+In order for TypeScript to provide type safety, it has to be able to differentiate between the keys passed in. If the indexer's values have the same types, it doesn’t matter.
 
 ```ts
 type IndexerDifferentSameValue = {
@@ -144,7 +145,7 @@ type MutuallyExclusive = {
 };
 ```
 
-The idea of mutual exclusion extends to individual properties, in the type above we have a shape for all `number` and all `symbol` and if we tried to throw in all `string` we’d get errors. But, if we only define certain `string`s (like we did with required properties), TypeScript would be able to make the delineation and provide type safety.
+The idea of mutual exclusion extends to individual properties, in the type above we have a shape for all `number` and all `symbol` and if we tried to throw in all string we’d get errors. But, if we only define certain strings (like we did with required properties), TypeScript would be able to make the delineation and provide type safety.
 
 ```ts
 type AllThree = {
@@ -157,11 +158,9 @@ type AllThree = {
 
 ### JavaScript Makes an Appearance
 
-> **Note:** You may rememeber this came up when talking about `keyof`!
-
 TypeScript is a superset of JavaScript and has to conform to its rules. This can cause some unexpected behavior when indexing with a `number`. An example of this is arrays. In JavaScript arrays are just objects indexed with `number`s; however, in JavaScript, all object keys are coerced to `string`s.
 
-```ts
+```js
 const firstThreePokemon = ["Bulbasaur", "Ivysaur", "Venusaur"];
 
 // Both are allowed
@@ -198,7 +197,7 @@ const bulbasaurWithString = firstThreePokemon["0"];
 
 ### Readonly Property Modifier
 
-While the optional syntax (`?`) isn't supported on index signature types, the index signature syntax does allow for the `readonly` modifier. The `readonly` modifier marks a property as immutable on an object meaning it cannot be re-assigned once set. If we wanted to make our PokemonNameList type above unchangeable we could do it by putting the `readonly` modifier at the beginning of the declaration.
+While the optional syntax (`?`) isn't supported on index signature types, the index signature syntax does allow for the `readonly` modifier. The `readonly` modifier marks a property as immutable on an object meaning it cannot be re-assigned once set. If we wanted to make our `PokemonNameList` type above unchangeable we could do it by putting the `readonly` modifier at the beginning of the declaration.
 
 ```ts
 type ReadonlyPokemonNameList = {
@@ -217,7 +216,7 @@ firstThreePokemon[0] = "Pikachu";
 
 This extends to any required property added to the type as well.
 
-> **Note:** required propteries have acces to all the syntaxes you are familiar with when defining object types with type and interface.
+> **Note:** required propteries have access to all the syntaxes you are familiar with when defining object types with type and interface.
 
 Sticking with our `PokemonNameList` example type, although it looks like an array and even uses the array syntax, it doesn’t have some of the more fundamental properties of an array, like `.length`.
 
@@ -250,7 +249,7 @@ const firstThreePokemonObject: ReadonlyPokemonNameList = {
 console.log(firstThreePokemon.length); // 3
 ```
 
-> **Note:** In JavaScript the `firstThreePokemon` variable does have a `.length` property since it is an Array. TypeScript however, isn’t aware that its an array, instead it thinks its a `ReadOnlyPokemonList` which is why generally speaking you should avoid defining your arrays using an index signature. Instead you should use `Array<T>` or the shorthand `[]`.
+> **Note:** In JavaScript the `firstThreePokemon` variable does have a `.length` property since it is an `Array`. TypeScript however, isn’t aware that its an array, instead it thinks its a `ReadOnlyPokemonList` which is why generally speaking you should avoid defining your arrays using an index signature. Instead you should use `Array<T>` or the shorthand `[]`.
 
 ## Mapped Types
 
@@ -292,7 +291,7 @@ type PartialPokemon = {
 };
 ```
 
-since we know what `keyof Pokemon` evaluates too, let's substitute that out.
+Since we know what `keyof Pokemon` evaluates too, let's substitute that out.
 
 ```ts
 type PartialPokemon = {
@@ -339,7 +338,7 @@ type Readonly<T> = {
 };
 ```
 
-Additionally, we can remove a readonly modifier in a mapped type. To accomplish this we need a small tweak in our mapped syntax. Instead of readonly, we add `-readonly`, essentially subtracting off the `readonly` modifier.
+Additionally, we can remove a `readonly` modifier in a mapped type. To accomplish this we need a small tweak in our mapped syntax. Instead of `readonly`, we add `-readonly`, essentially subtracting off the `readonly` modifier.
 
 ```ts
 type Changeable<T> = {
@@ -360,9 +359,52 @@ type Required<T> = {
 
 > **Note:** you can also add `+readonly` and `+?` to your types. They are default though so they are often omitted for brevity.
 
+### Remapped Keys
+
+TypeScript allows us to map over more than just the keys of the object. We can do this using a syntax very similar to type assertion (`as`). To illustrate this look at the following types.
+
+```ts
+type PokeballItem = {
+  item: "pokeballs";
+  type: "great" | "normal" | "ultra" | "master";
+  amount: number;
+};
+
+type BerryItem = {
+  item: "berries";
+  type: "oran" | "sitrus" | "pecha";
+  amount: number;
+};
+
+type TMItem = {
+  item: "tms";
+  name: string;
+  amount: number;
+};
+
+type Items = PokeballItem | BerryItem | TMItem;
+```
+
+We’d like to make a bag type with properties on it matching the name of the item property on each of the `Items` and having that be a function to return the amount (so `bag.berries` is a function with this shape `() => number`). To do this we must do two things -- constrain the generic and remap via `as`.
+
+```ts
+type MakeBag<T extends { item: string; amount: number }> = {
+  [Item in keyof T as T["item"]]: () => T["amount"];
+};
+
+/**
+ * {
+ *  berries: () => number;
+ *  tms: () => number;
+ *  pokeballs: () => number;
+ * }
+ */
+type Bag = MakeBag<Items>;
+```
+
 ### Let's Make our own!
 
-So far we’ve seen some mapped types that TypeScript provides for us in its utility types, so let's walk through making our own. In this case, let’s look at creating a `Pokemon` class whose constructor takes the types of the pokemon. So far in the examples leading up to this, the type property of a pokemon has been defined as a union `"Normal" | "Fire" | ...`, but Pokemon can have more than one type, in fact, they can have up to two, like, in the case of Charizard – `Fire` and `Flying`. To create our class we want a single pokemon type (either a `PokemonType` or a `[PokemonType]`) or tuple that provides these options.
+So far we’ve seen some mapped types that TypeScript provides for us in its utility types, so let's walk through making our own. In this case, let’s look at creating a `Pokemon` class whose constructor takes the types of the Pokemon. So far in the examples leading up to this, the type property of a Pokemon has been defined as a union `"Normal" | "Fire" | ...`, but Pokemon can have more than one type, in fact, they can have up to two, like, in the case of Charizard – Fire and Flying. To create our class we want a single pokemon type (either a `PokemonType` or a `[PokemonType]`) or tuple that provides these options.
 
 ```ts
 const pikachu = new Pokemon("Electric");
@@ -414,11 +456,12 @@ What this gives us is a type that has either a single pokemon type or a tuple wi
 type PokemonTypes = {
   Normal: ["Normal"] | ["Normal", "Fire" | "Water" | "Grass" | "Electric" | "Ice"  | "Fighting" | "Poison" | "Ground" | "Flying" | "Psychic" | "Bug" | "Rock" | "Ghost" | "Dark" | "Dragon" | "Steel" | "Fairy"]
   Fire: ["Fire"] | ["Fire", "Normal" | "Water" | "Grass" | "Electric" | "Ice"  | "Fighting" | "Poison" | "Ground" | "Flying" | "Psychic" | "Bug" | "Rock" | "Ghost" | "Dark" | "Dragon" | "Steel" | "Fairy"]]
-  /// rest of types
+  /// rest of pokemon types
 }
+
 ```
 
-Now we can use them in our class. Like we said above, we want to be able to pass any of the following
+Now we can use them in our class. Like we said above, we want to be able to pass any of the following.
 
 ```ts
 const pikachu = new Pokemon("Electric");
@@ -437,3 +480,5 @@ const pikachu = new Pokemon("Electric");
 const charizard = new Pokemon(["Fire", "Flying"]);
 const gyarados = new Pokemon(["Flying", "Water"]);
 ```
+
+As we’ve seen mapped types can do much of the heavy lifting when it comes to creating types from types. They power many utility types leveraged in applications. Moving forward, we will only see them more frequently, especially as we move into our next section – conditional types.
