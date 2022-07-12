@@ -93,7 +93,7 @@ type PokemonMoveName = Pokemon["firstMove"]["name"]; // string
 
 ### With Generics
 
-Index accessed types also work with generics, lets's take a look at an example they may seem familiar if you did the exercises from the last section
+Index accessed types also work with generics, let's take a look at an example they may seem familiar if you did the exercises from the last section.
 
 ```ts
 function getStarterPokemonInfomation<Starters, Name extends keyof Starters>(
