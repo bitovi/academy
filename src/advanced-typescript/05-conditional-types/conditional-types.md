@@ -196,15 +196,11 @@ type StringOrNumber =
 From here we can remove the generics and each of the `NonNullable` can be rewritten as a conditional.
 
 ```ts
-type StringOrNumber = string extends null | undefined
-  ? never
-  : string | number extends null | undefined
-  ? never
-  : number | undefined extends null | undefined
-  ? never
-  : undefined | null extends null | undefined
-  ? never
-  : null;
+type StringOrNumber =
+  | (string extends null | undefined ? never : string)
+  | (number extends null | undefined ? never : number)
+  | (undefined extends null | undefined ? never : undefined)
+  | (null extends null | undefined ? never : null);
 ```
 
 Each of these conditionals can then be evaluated.
