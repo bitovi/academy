@@ -175,14 +175,6 @@ type RandomAttacks = Keys<typeof randomAttacks>; // 'quickAttack' | 'thunder'
 
 @sourceref ./exercise-01/ex-01.ts
 
-### Verify Your Solution
-
-✏️ Run the following to verify your solution:
-
-```sh
-npm run 01-generics-with-constraints-ex-1
-```
-
 <details>
 <summary>Click to see the solution</summary>
 
@@ -231,14 +223,6 @@ our `Keys` type has a constraint to be satisfied, we need to make sure anything 
 </details>
 
 @sourceref ./exercise-02/ex-02.ts
-
-### Verify Your Solution
-
-✏️ Run the following to verify your solution:
-
-```sh
-npm run 01-generics-with-constraints-ex-2
-```
 
 <details>
 <summary>Click to see the solution</summary>

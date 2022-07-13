@@ -198,14 +198,6 @@ An array is just an object indexed with a number
 
 @sourceref ./exercise-01/ex-01.ts
 
-### Verify Your Solution
-
-✏️ Run the following to verify your solution:
-
-```sh
-npm run 02-index-accessed-types-ex-1
-```
-
 <details>
 <summary>Click to see the solution</summary>
 
