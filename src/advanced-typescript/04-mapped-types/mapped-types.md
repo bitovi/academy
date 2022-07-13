@@ -110,9 +110,9 @@ type BagWithRequiredValue = {
 
 ### Multiple Indexers
 
-It is possible to have more than one indexer and have different value types for indexes. To understand these mechanics, we first have to talk about what can and can’t be the type inside an indexer. TypeScript does not allow us to index with anything; it only lets us index with three types `string`, `number`, and `symbol`.
+It is possible to have more than one indexer and have different value types for indices. To understand these mechanics, we first have to talk about what can and can’t be the type inside an indexer. TypeScript does not allow us to index with anything; it only lets us index with three types `string`, `number`, and `symbol`.
 
-> **Tip:** For objects to be keyed with a union or something besides these three try the Record utlity type!
+> **Tip:** For objects to be keyed with a union or something besides these three try the `Record` utlity type!
 
 <div style='text-align:center'>
 	<img src="../../static/img/advanced-typescript/string-number-symbol.png" />
@@ -489,7 +489,7 @@ As we’ve seen mapped types can do much of the heavy lifting when it comes to c
 
 ### Exercise 1
 
-Below is a generic type called `To<T,K>` that is currently set to `any`. Update the type to change all of the properties on `T` **To** whatever is passed into `K`. Take the following `ToNumber` type for example, it serves as an alias for `To` where `K` is `number`.
+Below is a generic type called `To<T,K>` that is currently set to `any`. Update the type to change all of the properties on `T` **to** whatever is passed into `K`. Take the following `ToNumber` type for example, it serves as an alias for `To` where `K` is `number`.
 
 ```ts
 type ToNumber<T> = To<T, number>;
@@ -513,7 +513,7 @@ Let's recreate the `Pick` utility type. `_Pick` should take two generics, some o
 some subset of keys from `T` as `K`.
 
 ```ts
-type Picked = Pick<{ name: string; age: number }, "age">; // {age: number}
+type Picked = _Pick<{ name: string; age: number }, "age">; // {age: number}
 ```
 
 <details>

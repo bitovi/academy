@@ -3,7 +3,7 @@
  *
  * Let's build out an example similar to `ArrayElement` provided by the TypeScript documentation (No cheating by looking it up!)
  *
- * `Flatten` should createa a new type that unnests arrays by one level.
+ * `Flatten` should create a new type that unnests arrays by one level.
  *
  * ```ts
  * type FlattenedStringArray = Flatten<string[]> // string

@@ -1,7 +1,7 @@
 /**
  * Exercise 1
  * Below is a generic type called `To<T,K>` that is currently set to `any`. Update the type to change all of the properties
- * on `T` **To** whatever is passed into `K`. Take the following `ToNumber` type for example, it serves as an alias for `To` where
+ * on `T` **to** whatever is passed into `K`. Take the following `ToNumber` type for example, it serves as an alias for `To` where
  * `K` is `number`.
  *
  * ```ts

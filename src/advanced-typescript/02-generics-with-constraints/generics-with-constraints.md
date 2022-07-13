@@ -88,7 +88,9 @@ greeter({ name: "world" }); // Hello world
 > }
 > ```
 
-Since Generics themselves are types, you can also constrain your generics based on other generics. Imagine we have a bunch of different types of Pokedex from all the different regions, each of these can be represented by a type that resembles the following shape.
+Going back to thinking of types as sets, we constrained the generic from the superset any to the subset `WithName`.
+
+Since Generics themselves are types, you can also constrain your generics based on other generics. Imagine we have a bunch of different types of `Pokedex` from all the different regions, each of these can be represented by a type that resembles the following shape.
 
 ```ts
 type KantoPokedex = {
