@@ -1,1 +1,1 @@
-type Flatten<T> = T extends Array<infer R> ? R : T;
+export type Flatten<T> = T extends Array<infer R> ? R : T;
