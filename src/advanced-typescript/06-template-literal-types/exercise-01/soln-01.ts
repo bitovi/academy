@@ -1,4 +1,4 @@
-type Direction = "top" | "left" | "bottom" | "right";
+export type Direction = "top" | "left" | "bottom" | "right";
 
-type Padding = `padding-${Direction}`;
-type Margin = `margin-${Direction}`;
+export type Padding = `padding-${Direction}`;
+export type Margin = `margin-${Direction}`;

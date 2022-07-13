@@ -144,3 +144,41 @@ type StatefulPokemon = Stateful<Pokemon>;
 ```
 
 Template literal types allow us to do a number of useful string literal manipulations. Being able to share string templates across different types keeps code clean and DRY. Remapping key names allows for intuitive type-based abstractions to help speed up the development process.
+
+## Exercises
+
+### Exercise 1
+
+Given the following `Direction` type, use template literal types to create `Padding` and `Margin`, which should be a string literal union for all the diffent paddings and margins.
+
+```ts
+type Padding = "padding-top" | "padding-left"; // ...
+type Margin = "margin-top" | "margin-left"; // ...
+```
+
+@sourceref ./exercise-01/ex-01.ts
+
+<details>
+<summary>Click to see the solution</summary>
+
+@sourceref ./exercise-01/soln-01.ts
+
+</details>
+
+Let's create a type that reverses `Getter<T>`. `FromGetter<T>` should take an object type and create a new type from all keys starting
+with `get`. The new type should have the key name be camel-cased and the type of the property should resolve to the `ReturnType` of
+the getter if its a function. If its not a function, it should resolve to whatever it was.
+
+```ts
+type WithName = FromGetter<{ getName: () => string }>; // {name: string;}
+type NonFunction = FromGetter<{ getObject: object }>; // {object: object;}
+```
+
+@sourceref ./exercise-02/ex-02.ts
+
+<details>
+<summary>Click to see the solution</summary>
+
+@sourceref ./exercise-02/soln-02.ts
+
+</details>
