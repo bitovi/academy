@@ -484,3 +484,48 @@ const gyarados = new Pokemon(["Flying", "Water"]);
 ```
 
 As we’ve seen mapped types can do much of the heavy lifting when it comes to creating types from types. They power many utility types leveraged in applications. Moving forward, we will only see them more frequently, especially as we move into our next section – conditional types.
+
+## Exercises
+
+### Exercise 1
+
+Below is a generic type called `To<T,K>` that is currently set to `any`. Update the type to change all of the properties on `T` **To** whatever is passed into `K`. Take the following `ToNumber` type for example, it serves as an alias for `To` where `K` is `number`.
+
+```ts
+type ToNumber<T> = To<T, number>;
+type Numberfied = ToNumber<{ name: string; age: string }>; // {name: number; age: number}
+```
+
+@sourceref ./exercise-01/ex-01.ts
+
+<details>
+<summary>Click to see the solution</summary>
+
+@sourceref ./exercise-01/soln-01.ts
+
+</details>
+
+### Exercise 2
+
+Exercise 2:
+
+Let's recreate the `Pick` utility type. `_Pick` should take two generics, some object `T` and a string literal union that is
+some subset of keys from `T` as `K`.
+
+```ts
+type Picked = Pick<{ name: string; age: number }, "age">; // {age: number}
+```
+
+<details>
+<summary> Hint for Exercise 2 (click to reveal)</summary>
+You may need to update the definition of `K` to get this type to work properly
+</details>
+
+@sourceref ./exercise-02/ex-02.ts
+
+<details>
+<summary>Click to see the solution</summary>
+
+@sourceref ./exercise-02/soln-02.ts
+
+</details>
