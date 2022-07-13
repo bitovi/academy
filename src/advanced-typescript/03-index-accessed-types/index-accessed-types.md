@@ -1,5 +1,5 @@
 @page advanced-typescript/index-accessed-types Index Accessed Types
-@parent advanced-typescript 2
+@parent advanced-typescript 3
 
 @description Learn how to look up types of properties with index accessed types!
 
@@ -93,7 +93,7 @@ type PokemonMoveName = Pokemon["firstMove"]["name"]; // string
 
 ### With Generics
 
-Index accessed types also work with generics, let's take a look at an example they may seem familiar if you did the exercises from the last section.
+Index accessed types also work with generics, lets's take a look at an example they may seem familiar if you did the exercises from the last section
 
 ```ts
 function getStarterPokemonInfomation<Starters, Name extends keyof Starters>(

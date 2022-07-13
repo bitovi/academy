@@ -1,5 +1,5 @@
 @page advanced-typescript/mapped-types Mapped Types
-@parent advanced-typescript 3
+@parent advanced-typescript 4
 
 @description Learn how to create new types with mapped types!
 

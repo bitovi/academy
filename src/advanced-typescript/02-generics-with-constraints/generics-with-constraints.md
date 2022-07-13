@@ -1,5 +1,5 @@
 @page advanced-typescript/generics-with-constraints Generics With Constraints
-@parent advanced-typescript 1
+@parent advanced-typescript 2
 
 @description Learn how to constrain generics to be able to reuse even more logic!
 
@@ -7,7 +7,7 @@
 
 ## Overview
 
-In the last lesson we saw how powerful generics can be allowing us to create resuable logic across multiple types. However, that’s just the beginning. TypeScript has all sorts of powerful features we can leverage to make our logic more typesafe and more reusable. In this lesson we will take a look at constraining generics and how they can assist us in forcing our reusable logic to have certain characteristics while maintaining the typed flexibility of generics.
+In the last lesson we saw how powerful generics can be allowing us to create resuable logic across multiple types. However, that’s just the beginning. TypeScript has all sorts of powerful feature we can leverage to make our logic more typesafe and more reusable. In this lesson we will take a look at constraining generics and how they can assist us in forcing our reusable logic to have certain characteristics while maintaining the typed flexibility of generics.
 
 ## Quick Recap on Generics
 
@@ -33,9 +33,9 @@ type UserResponse<User, CustomError>
 
 Generics are a great way to reuse strongly typed code and create powerful abstractions in your libraries and applications.
 
-## Generics With Constraints
+## With Constraints
 
-Generics by themselves are a great way to encapsulate logic when we don’t really care what shape that type has. Take for example `Array`. Arrays are a list of things. It doesn’t matter what things are in it since when we do interact with items in an array we provide the logic to handle those items, making the array indifferent to what’s inside. Sometimes though, we do care about the shape of the thing being passed in. Take a `greeter` function, say we want it to greet something by name whether it be a bird, dog, person, cat, or pokemon. Reuse of logic across types screams generics. So what happens if we try to implement `greeter` using plain generics? Well, let's try.
+Generics by themselves are a great way to encapsulate logic when we don’t really care what shape that type has. Take for example `Array`. Arrays are a list of things. It doesn’t matter what things are in it since when we do interact with items in an array we provide the logic to handle those items, making the array indifferent to what’s inside. Sometimes though, we do care about the shape of the thing being passed in or at least part of it. Take a `greeter` function, say we want it to greet something by name whether it be a bird, dog, person, cat, or pokemon. Reuse of logic across types screams generics. So what happens if we try to implement `greeter` using plain generics? Well, let's try.
 
 ```ts
 function greeter<T>(thingToGreet: T): void {
@@ -66,7 +66,7 @@ type Pokemon = {
 
 const bird: Bird = {
   name: "bird",
-  milesFlown: 178,
+  milesFlow: 178,
 };
 
 const pikachu: Pokemon = {
@@ -87,8 +87,6 @@ greeter({ name: "world" }); // Hello world
 >   console.log("Hello, " + thingToGreet.name);
 > }
 > ```
-
-Going back to thinking of types as sets, we constrained the generic from the superset `any` to the subset `WithName`.
 
 Since Generics themselves are types, you can also constrain your generics based on other generics. Imagine we have a bunch of different types of Pokedex from all the different regions, each of these can be represented by a type that resembles the following shape.
 
