@@ -22,24 +22,35 @@ type ExampleTypeTwo = {
 And we know that if we have variables of those different types, they aren’t assignable to each other.
 
 ```ts
-let a: ExampleType = {/** */}
-let b: ExampleTypeTwo = {/** */}
+let a: ExampleType = {
+  /** */
+};
+let b: ExampleTypeTwo = {
+  /** */
+};
 
-a = b // Error
+a = b; // Error
+```
+
 However, what would happen if we have types with the same structure?
 
+```ts
 type First = {
   name: string;
-}
+};
 
 type Second = {
   name: string;
-}
+};
 
-let first: First = {/** */}
-let second: Second = {/** */}
+let first: First = {
+  /** */
+};
+let second: Second = {
+  /** */
+};
 
-first = second // ... is ok?!
+first = second; // ... is ok?!
 ```
 
 Turns out, that TypeScript allows this. To understand why we need to look at how TypeScript evaluates and compares types.
@@ -58,7 +69,7 @@ class Cat {
 };
 ```
 
-In this case, both Cat and Dog have only a name property of type string, but their names are different. Within a nominal typing system, a variable of type Dog could not be set to an instance of Cat.
+In this case, both `Cat` and `Dog` have only a `name` property of type `string`, but their names are different. Within a nominal typing system, a variable of type `Dog` could not be set to an instance of `Cat`.
 
 ```swift
 var a = Dog(name: 'fido')
@@ -131,7 +142,7 @@ withName = dog;
 withName = differentName;
 ```
 
-Anything that has a name property of type string is in that set.
+Anything that has a `name` property of type `string` is in that set.
 
 ## Trying to get the Best of Both Worlds
 
