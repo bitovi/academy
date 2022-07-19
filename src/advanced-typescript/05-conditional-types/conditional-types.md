@@ -422,6 +422,8 @@ type WildPokemonBattleNoBattleType = Exclude<
 >; // "challengingPokemon"
 ```
 
+<a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwBWALQ1yLCLQgU0UbYOHaYAD23qAjAVoJkIPfUZIQAegBUvgB1yAAJfYIBRaxhRHjgYYPsg0KSwgHV4gFc4lmCbDCgMtmCIEIp40jBg2gALeJs0AFsUWDhikJr49wZaYIqq6ohWuIwjCgIU4IAZGFoAclbaNCx4tGCG0gbuqtJgsRg5eI6qoXKM0TioADd4AgjrAqLF5YWAdx38cmiIDDgJgAMACp_YJofTBP4AVWBoJyohg62uC1qa3hMAARtFWiVwVDgmBRBtwUDxiFAqTwX8_s4JhZ4qloCwAAqkZbrcgAITktFgwQAvMFgBNgsE0VzYACTohggEQC8GdoUCz4RRtKLaNyYDKANxC3bVUywci4Eq4ZmsihShTiI068mKW3Jcm04L0qBMpVsznq2AAOVIXo1Eo4fLu-UKMAAPMsBH1Xe7zRyxTAVNKQGrAycZQA-LXBbzeVMYfVQQ3Go1m5XkGX_SkpbxBZ0AfUiYbYEYBKYhWZDoIEtpAykUQA" target="_blank">Open in CodeSandbox</a>
+
 @sourceref ./exercise-01/ex-01.ts
 
 <details>
@@ -443,6 +445,8 @@ type FlatString = Flatten<string>; // string
 
 type NestedNumberArray = Flatten<Array<Array<number>>>; // number []
 ```
+
+<a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwBWALQ1yLCLQgU0UbYOHaYAD23qATAVoJkIPfUZIQAegBUvgB1yAAJfYIBRaxhRHjgYYPsg0KSwgBkYWgByOGCAIwBXaBZg0nzaYLQQmzQAWxRYYLgIGug0UWDaUmCAAwBBUVE0AXDYGoZabuCUUVIANwg2YtyBDoALeIAVIRgAZTEJcpZSDHyxxjljEIAKADkujHWL8lw8lahSUiwIZ-DDYPyUABCACUKRSPQAYrJaB5JnBVqUoMUxDA5PE0MFyDAAO4dbZrOT_chYhQ5NqDAQ5ZYlLHBWCzGBQAhgkJhbrs5zgizxKFyDwwFg7WjiZ79CnBAC8wV5MIYAB4FCLcABtAC6AD5gt5vI1hd9cFz8TKhUrJdLoR4FXrnprtbqlSzQniOMEbvB6CwbqdctExUMzTLLX6BHLg3LyN7ouro1qdRGaj72mrwezuilvEFuea-fKNpqpZUBABuIIgZSKIA" target="_blank">Open in CodeSandbox</a>
 
 @sourceref ./exercise-02/ex-02.ts
 

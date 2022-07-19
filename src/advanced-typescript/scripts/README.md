@@ -21,6 +21,8 @@ node ./
 
 By default, the script will log the object containing the CodeSandbox link, If you wish to have the links outputted to a folder use `--output`. If the folder is not there, the script will create it. The result will be written to a file called `generated.codesandbox-links.json`
 
+> Note: Currently the script does not check if the file already exists, if it does it will be overwritten
+
 ```sh
 node ./ --output="example"
 ```

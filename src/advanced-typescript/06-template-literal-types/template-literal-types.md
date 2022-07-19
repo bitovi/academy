@@ -156,6 +156,8 @@ type Padding = "padding-top" | "padding-left"; // ...
 type Margin = "margin-top" | "margin-left"; // ...
 ```
 
+<a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwA2ALT0Atiln1tUCPVFoouofG0wAHtvUBGArQTIQNRgykgA9ABUgQA65AAEgeEAovYwojxwMOHOYZHhAOIQAG4M4bQAFslgpFBQpADuEOS44QAGACIQojAYtBAUdfk2KuEArkn5MAZGyabmlt3C-aThYjByyXUACmgsLNW4XWjkLPUAsmiiuNV1vRUFEBgF4XAFpH1QewBGMGlRaLe04jXh4_GTPrkDoREqicKWKD5IrhDZgMC-cLodabOAQ3bhPRHE7kOAEd7vep1OruQmCDjhVYo34AXnCIRAyI2NV0pBQDPCAB96Yy1szcCYYGBaBz_P5wgRJWSbOFDsdquE6QysfLyKz2SAuTyVTjBcLReLJfiIlFiXV3v4wuTkk0Wm0QYqebQ2RzuQzYPrNW6QM9SLRnXpXTzxLgCiKQABuMJWmVU_mOnYCKOMGVynEJ8hJsIgZSKIA" target="_blank">Open in CodeSandbox</a>
+
 @sourceref ./exercise-01/ex-01.ts
 
 <details>
@@ -173,6 +175,8 @@ the getter if its a function. If its not a function, it should resolve to whatev
 type WithName = FromGetter<{ getName: () => string }>; // {name: string;}
 type NonFunction = FromGetter<{ getObject: object }>; // {object: object;}
 ```
+
+<a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwA2ALT0Atiln1tUCPVFoouofG0wAHtvUAmArQTIQNRgykgA9ABUgQA65AAEgeEAovYwojxwMOHOYZFpUQAyMLQA5HDhYjByyWjhghzlABZy4aIwAG7xSQUABgDiOeYAPAAqAHytBOGtAGKipHqdtD0DreFwVaQArlAs5WhYpRGkAEZEMBi05TbhaOTrRSVn4eQwAO4nlWATemdQUOFbAgUKaKK0CDkXAZcL3MxVEb4WhDcK9KrJO6PCrJRYrNbhGpNarJb63NB6ZK7ZIYAkwKykpLrc7rWgIp7JUhgHHhFATDgAgQLJardb1MhQbG0Ugs1oAJRyy1E5F6NnmTNBdOS0PM4QgzLMBTKYGW3EBFGGAEkNe5bqRjtrdUcIBQVGrjmjeXV4KRBclhWCavQmqJ7WC0HACBlQa1Q-5FacAOoQgByZPCAF5wuNJtMesBoXHCYhwgAKACUif6C1o4mBAG5FMX_P5wsByGScwoy7hK8GIlEUeEYxRRlb9REkympl14t0MzkAPL7Q60HN7A5HSvV2vABez-czpeKEOhjL-MIOFCkAEM5OvNNjgaJs7kATlsIgZSKIA" target="_blank">Open in CodeSandbox</a>
 
 @sourceref ./exercise-02/ex-02.ts
 

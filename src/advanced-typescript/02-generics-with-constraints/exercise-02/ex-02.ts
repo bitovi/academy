@@ -1,4 +1,4 @@
-import type { Keys } from "../exercise-01/ex-01";
+type Keys<T extends object> = keyof T;
 
 /* Exercise 2
  *

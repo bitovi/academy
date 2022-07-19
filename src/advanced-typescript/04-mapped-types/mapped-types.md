@@ -496,6 +496,8 @@ type ToNumber<T> = To<T, number>;
 type Numberfied = ToNumber<{ name: string; age: string }>; // {name: number; age: number}
 ```
 
+<a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwAWALQBbNCg4ttg4dpgAPbeoCMBWgmQgajBlJAB6AFReAOuQACLwCAUQsYUR44GACbfyCAgCEYKFIAdwCIOAC0APxyCIgMANMYjDQoWBYAgAMAFVIAHjqVAGkAPhqSgAs5TOyMAFdRUTcoAQDo2hLSWrRyARqCAIBVFBY5GNpuraEt2Yxe8nwcyoDSMB6YlFFSDlFaXjh44Ipauq6fWlIfALTe-gANwi_QC6Dg0WqEEYsxqrSWATqaCwWx2ATApEq6WhuHepAAcoNdAAjCJdUro0iiAKWNC6FCwFSZabRUTA7JoDmBCoQTmU6n1Uhdf4RGAvWrw0E1chE0miJYvcU1ZUOcUUhqEkkRZrtAIAXkRTRaARlWtE7QA3Gq9gFNXLIDBqgaNbLtcByHSYIhJrRxMcLTl8N6FH7cBbFLqPB4Au7Pd7TXKA3gvSbXaJFErlS8PP51UamR19TkFlbKMpFEA" target="_blank">Open in CodeSandbox</a>
+
 @sourceref ./exercise-01/ex-01.ts
 
 <details>
@@ -520,6 +522,8 @@ type Picked = _Pick<{ name: string; age: number }, "age">; // {age: number}
 <summary> Hint for Exercise 2 (click to reveal)</summary>
 You may need to update the definition of `K` to get this type to work properly
 </details>
+
+<a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwAWALQBbNCg4ttg4dpgAPbeoBMBWgmQgajBlJAB6AFReAOuQACLwCAUQsYUR44GACbRH8ghOCAGRhaAHI4ANEYMRg5GNoACxiAAwAFCGxSgIBXWmgIQQDTQgDSgH1K6oC4ItJaqBYWtCxCgHdSAPxyCKq4FV7SXRjSACMiXNp2gBUatHJhtF7acXJcAKgmiLQoOvIIChaiuQCIOCSlld7atejt0hgAJjARZMCiZa7fZZUoAaVKBCSn1KKIcn1aAW6Y2GAF4Al0qlgADzAALkNArRAnM64ADcATwMCp5FqujWEQCikWvhAjJ5AD56R4PAFgIzmaz2aJFMiUUjAsF-QEABIQRjxBUBJUATQGAX0AjJMBgw1oU1qKBYBWeMTYkAeDSegPa8JaU3w22K7xaQkKU0moiwARQEI4oigAiSHn8GIJ2CJO0WsKVeIOAlp_hAykUQA" target="_blank">Open in CodeSandbox</a>
 
 @sourceref ./exercise-02/ex-02.ts
 
