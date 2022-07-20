@@ -12,13 +12,13 @@ This course is the second course in the TypeScript series. At the end of this co
 To get the most out of this course, join the Bitovi community on Slack! Bitovi has a large community with developers who are happy to help with problems and answer questions about this course, TypeScript, and development in general! For questions specific to this course, please use the TypeScript chat room. <a href="https://www.bitovi.com/community/slack">
 Click here to Join </a>
 
-At the end of most sections, there will optional exercises to help solidify the content covered. To run the exercises…<INSERT-RESULT-OF-TICKET>. There are other ways besides the presented solution. Find one you think is cool and want to share? Drop it in slack!
+At the end of most sections, there will optional exercises to help solidify the content covered. There are a couple of different ways you can do the exercises; if you have an IDE, you prefer to use the source code for the exercise, along with the prompt, which will be there so you can copy it over. Prefer a more hands-off approach? Each exercise will have a link that will open it in CodeSandbox. The solutions to the exercises are posted below each exercise and hidden by an accordion. There are other ways besides the presented solution. Find one you think is cool and want to share? Drop it in slack!
 
 If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/academy/issues) or email `contact@bitovi.com`.
 
 ## Introduction
 
-Advanced TypeScript can be generally stated as finding ways to create types from other types. To do this, TypeScript has a lot of powerful features we can work with from looking up types off of other types to conditionally choosing a type based on another. The course outline goes into further detail about each of the sections.
+Advanced TypeScript can be generally stated as finding ways to create types from other types. To do this, TypeScript has many powerful features we can work with from looking up types off of other types to conditionally choosing a type based on another. The course outline goes into further detail about each of the sections.
 
 ## Outline
 
@@ -31,6 +31,6 @@ Advanced TypeScript can be generally stated as finding ways to create types from
 - Mapped Types
   - Learn how to iterate through each key of an object type to create new types for those keys.
 - Conditional Types
-  - Learn how to conditionally choose a type base on a passed-in type.
+  - Learn how to choose a type base on a passed-in type conditionally.
 - Template Literal Types
   - Learn how to make string literals even more powerful.
