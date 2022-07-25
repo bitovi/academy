@@ -22,7 +22,7 @@ type Keys<T extends object> = keyof T;
  *  charizard: 'Its wings can carry this POKéMON close to an altitude of 4,600 feet. It blows out fire at very high temperatures.',
  * }
  *
- * const entry = getgetStarterPokemonInfomation(fireStarters, 'charizard')
+ * const entry = getStarterPokemonInfomation(fireStarters, 'charizard')
  * console.log(entry) // 'Its wings can carry this POKéMON close to an altitude of 4,600 feet. It blows out fire at very high temperatures.'
  * ```
  *

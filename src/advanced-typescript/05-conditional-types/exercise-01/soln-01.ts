@@ -1,1 +1,1 @@
-export type _Exclude<T, U> = T extends U ? T : never;
+type _Exclude<T, U> = T extends U ? never : T;

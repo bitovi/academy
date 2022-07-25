@@ -5,6 +5,8 @@
  * some subset of keys from `T` as `K`.
  *
  * ```ts
+ * type _Pick<T, K> = any; // TODO
+ *
  * type Picked = _Pick<{ name: string; age: number }, "age">; // {age: number}
  * ```
  *

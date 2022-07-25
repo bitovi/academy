@@ -25,8 +25,8 @@ type Response<ResponseData, ErrorType> = {
     error: ErrorType;
 }
 
-type CustomError = { /** Implementation Detail \*/}
-type User = { /** Implementation Detail \*/}
+type CustomError = { /** Implementation Detail */ }
+type User = { /** Implementation Detail */ }
 
 type UserResponse<User, CustomError>
 ```
@@ -137,7 +137,7 @@ type LeafStarterPokemon = {
   venusauar: PokedexEntry;
 };
 
-type LeafKeys = Keys<LeafStarters>; // is `'bulbasaur' | 'ivysaur' | 'venusauar'` and
+type LeafKeys = Keys<LeafStarters>; // is 'bulbasaur' | 'ivysaur' | 'venusauar' and
 ```
 
 and
@@ -149,7 +149,7 @@ type FireStarterPokemon = {
   charizard: PokedexEntry;
 };
 
-type FireKeys = Keys<FireStarterPokemon>; // `'charmander' | 'charmeleon' | 'charizard'
+type FireKeys = Keys<FireStarterPokemon>; // 'charmander' | 'charmeleon' | 'charizard'
 ```
 
 and
@@ -167,7 +167,7 @@ const randomAttacks = {
 type RandomAttacks = Keys<typeof randomAttacks>; // 'quickAttack' | 'thunder'
 ```
 
-> **Note:** The above are examples of its use. The `Key` type should work for any similiarly structured type
+> **Note:** The above are examples using your Key type and should work for any similarly structured type
 
 <details>
 <summary>Hint for Exercise 1 (click to reveal)</summary> `keyof` should mainly be used on `object`s is there a way we can incorporate that into the type.
