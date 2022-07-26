@@ -11,7 +11,7 @@
  *   challengingPokemon: string;
  * };
  *
- * type WildPokemonBattleNoBattleType = Exclude<keyof WildPokemonBattle, "battleType">; // "challengingPokemon"
+ * type WildPokemonBattleNoBattleType = _Exclude<keyof WildPokemonBattle, "battleType">; // "challengingPokemon"
  * ```
  */
 type _Exclude<T, U> = any;
