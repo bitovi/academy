@@ -19,24 +19,15 @@ type TemplateLiteralTypes = "Template Literal Types";
 type ExampleOf = `Example of ${TemplateLiteralTypes}`; // "Example of Template Literal Types"
 ```
 
-In its most basic form, it may not feel all that useful. That changes as we introduce unions into template literal types. When unions are passed into a template literal type TypeScript will create a new union which applies the logic of the template literal type to each member of the original union. This feature allows us to create similar types with little overhead.
+In its most basic form, it may not feel all that useful. That changes as we introduce unions into template literal types. When unions are passed into a template literal type, TypeScript will create a new union which applies the logic of the template literal type to each member of the original union. This feature allows us to create similar types with little overhead.
 
 ```ts
-type PokemonNames =
-  | "bulbasaur"
-  | "ivysaur"
-  | "venusaur"
-  | "charmander"
-  | "charmeleon"
-  | "charizard"
-  | "squirtle"
-  | "wartortle"
-  | "blastoise";
+type PokemonNames = "bulbasaur" | "charmander" | "squirtle";
 
-type PokemonEgg = `${PokemonNames}-egg`; // "bulbasaur-egg" | "ivysaur-egg" | ...
+type PokemonEgg = `${PokemonNames}-egg`; // "bulbasaur-egg" | "charmander-egg" | ...
 ```
 
-Just like template literals in JavaScript, more than one type may be used as well.
+Like template literals in JavaScript, more than one type may also be used.
 
 ```ts
 type ItemTypes = "regular" | "max";
