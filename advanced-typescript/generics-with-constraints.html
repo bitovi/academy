@@ -3,7 +3,7 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/advanced-typescript/01-generics-with-constraints/01-generics-with-constraints.md
+	source: src/advanced-typescript/02-generics-with-constraints/generics-with-constraints.md
 	@page advanced-typescript/generics-with-constraints
 ######################################################################## -->
 <html lang="en">
@@ -243,6 +243,21 @@ covering CanJS core libraries.">
 		
 			
 				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="typing-systems.html"
+							title="">
+							Typing Systems
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
 					<li class="current
            						parent
            						expanded">
@@ -254,6 +269,66 @@ covering CanJS core libraries.">
 						
 							
 
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="index-accessed-types.html"
+							title="Learn how to look up types of properties with index accessed types!">
+							Index Accessed Types
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="mapped-types.html"
+							title="Learn how to create new types with mapped types!">
+							Mapped Types
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="conditional-types.html"
+							title="Learn how to create new types with conditional types!">
+							Conditional Types
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="template-literal-types.html"
+							title="Learn how to create new types with template literal types!">
+							Template Literal Types
+						</a>
 						
 					</li>
 				
@@ -320,8 +395,8 @@ covering CanJS core libraries.">
     error: ErrorType;
 }
 
-type CustomError = { /** Implementation Detail \*/}
-type User = { /** Implementation Detail \*/}
+type CustomError = { /** Implementation Detail */ }
+type User = { /** Implementation Detail */ }
 
 type UserResponse&lt;User, CustomError&gt;
 </code></pre>
@@ -373,7 +448,8 @@ greeter({ name: &quot;world&quot; }); // Hello world
 }
 </code></pre>
 </blockquote>
-<p>Since Generics themselves are types, you can also constrain your generics based on other generics. Imagine we have a bunch of different types of Pokedex from all the different regions, each of these can be represented by a type that resembles the following shape.</p>
+<p>Going back to thinking of types as sets, we constrained the generic from the superset any to the subset <code>WithName</code>.</p>
+<p>Since Generics themselves are types, you can also constrain your generics based on other generics. Imagine we have a bunch of different types of <code>Pokedex</code> from all the different regions, each of these can be represented by a type that resembles the following shape.</p>
 <pre><code class="language-ts">type KantoPokedex = {
   bulbasaur: PokedexEntry;
   ivysaur: PokedexEntry;
@@ -409,7 +485,7 @@ into the <code>Keys</code> type (<code>Keys&lt;string&gt;</code>, <code>Keys&lt;
   venusauar: PokedexEntry;
 };
 
-type LeafKeys = Keys&lt;LeafStarters&gt;; // is `'bulbasaur' | 'ivysaur' | 'venusauar'` and
+type LeafKeys = Keys&lt;LeafStarters&gt;; // is 'bulbasaur' | 'ivysaur' | 'venusauar' and
 </code></pre>
 <p>and</p>
 <pre><code class="language-ts">type FireStarterPokemon = {
@@ -418,7 +494,7 @@ type LeafKeys = Keys&lt;LeafStarters&gt;; // is `'bulbasaur' | 'ivysaur' | 'venu
   charizard: PokedexEntry;
 };
 
-type FireKeys = Keys&lt;FireStarterPokemon&gt;; // `'charmander' | 'charmeleon' | 'charizard'
+type FireKeys = Keys&lt;FireStarterPokemon&gt;; // 'charmander' | 'charmeleon' | 'charizard'
 </code></pre>
 <p>and</p>
 <pre><code class="language-ts">const randomAttacks = {
@@ -433,7 +509,7 @@ type FireKeys = Keys&lt;FireStarterPokemon&gt;; // `'charmander' | 'charmeleon' 
 type RandomAttacks = Keys&lt;typeof randomAttacks&gt;; // 'quickAttack' | 'thunder'
 </code></pre>
 <blockquote>
-<p><strong>Note:</strong> The above are examples of its use. The <code>Key</code> type should work for any similiarly structured type</p>
+<p><strong>Note:</strong> The above are examples using your Key type and should work for any similarly structured type</p>
 </blockquote>
 <p><details>
 <summary>Hint for Exercise 1 (click to reveal)</summary> <code>keyof</code> should mainly be used on <code>object</code>s is there a way we can incorporate that into the type.
@@ -441,6 +517,7 @@ type RandomAttacks = Keys&lt;typeof randomAttacks&gt;; // 'quickAttack' | 'thund
 <blockquote>
 <p>Be sure to check your answers to Exercise 1 <strong>Before</strong> continuing on to Exercise 2</p>
 </blockquote>
+<p><a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwAmALT5yMcRjjaA7hFoALbTXILRaCI2MwAHtvUBGArQTIQN-kYkEAB6ACowgB1yAAIwmIBRFwMeOBgYj2i4rPiAVRQWOXTLdIADAGkYAThSmMEOOtIYzFpmuGa6oXS0KAg0drBSURjSrCrSMFKCGIB1cws6iwh2-pgVHJiTdJYKAHJWkzRGRuaoKFITEbtHXFK4FRHyAFcAWwAjAzvm8hYRt9JSLAjl9aE0PjF0HA0iwNo5QYsypVqrVVjEYgAKCpVOAAHmu5FwAD5Sg8sdUcc93gZiQ8YLQMNM4BZSE8oL9yKRWuCeuctiwAJTTADKTUschiuAgADcGBsSjFBmcLjdOsICOqchtStqfHKujEADIwNBgIW0NCieiiAAKpDGLwoMQAvDFgBsYm9WW9-mgnqJEDFbWM2C4EoxRAIANzu6XVX3-wN2mAhsO0CPR2LxGIy55wX0WgNB5OuVPpjaKDPZTOq9JGk1I9ouhs4uum82WgxwQkxEIhGK7T1Qb15v27GIAH37sZHojHk92OaeI4tuy12s11aOMMza9KuurqIAYhBRDAzRarUWHbEXW7qzEMBYLS8twZC0mU-Go-7H8-YLAKHfYMSy_Sss1_cQAC8LRYIDi1DUDyzAvUGmPU8G2dGJmzQs920vJNr27Xt-wgl8fgMOcSKfUQXn_GA9gnKiLQgaDRBYVdq21UoNzib5tyrXiuP3XibAUGJ7B-UgXgAQVoc1sEbV0AEcnggbBZPkrAA2ARQHksJ5yITHSKx4-JUQAJS3KSNMwLBFObVYJnEqyZLk2yu0jHs-12FS1KwGzsEo_YLAMthZ13UyYm7CIADlORgRAIhiAAVCxun-GVmlPGJXDQF4UFgdonPMdol0IFK0pGJEUX1JkWTZTYhiwBUhm-AQYjgCAXmgPpRCgdq7CeDBaD9ZMa0igAJOEA1GcZJg65lWV-F9HH6j10jK35HVKUg3iIGBhq-ZYEWytBNjQdqtgfI4YkcGhRBQIYikWcU4VFSrVgISLuwAIXSOBRpOR8DuagQWWGI44C2UQViaUoPDQWoIj-wZTySgJHFUgkYkdeEkhSZZ0g8N4chCaJolcR7LRrLDsRxZLuxdI5v0oZRFCAA" target="_blank">Open in CodeSandbox</a></p>
 <pre><code class="language-ts">/**
  * Exercise 1
  *
@@ -455,9 +532,11 @@ type RandomAttacks = Keys&lt;typeof randomAttacks&gt;; // 'quickAttack' | 'thund
  *  ivysaur: PokedexEntry;
  *  venusauar: PokedexEntry;
  * };
+ *
+ * type LeafKeys = Keys&lt;LeafStarters&gt; // 'bulbasaur' | 'ivysaur' | 'venusauar'
  * ```
  *
- * `Keys&lt;LeafStarters&gt;` is `'bulbasaur' | 'ivysaur' | 'venusauar'` and
+ * and
  *
  * ```ts
  * type FireStarterPokemon = {
@@ -465,9 +544,19 @@ type RandomAttacks = Keys&lt;typeof randomAttacks&gt;; // 'quickAttack' | 'thund
  *  charmeleon: PokedexEntry;
  *  charizard: PokedexEntry;
  * };
+ *
+ * type FireKeys = Keys&lt;FireStarterPokemon&gt; // 'charmander' | 'charmeleon' | 'charizard'
  * ```
  *
- * `Keys&lt;FireStarterPokemon&gt;` is `'charmander' | 'charmeleon' | 'charizard'`.
+ * and
+ *
+ * ```ts
+ * const randomAttacks = {quickAttack: {}, thunder: {}};
+ *
+ * type RandomAttacks = Keys&lt;typeof randomAttacks&gt;; // 'quickAttack' | 'thunder'
+ * ```
+ *
+ * &gt; **Note:** The above are examples of its use. The `Key` type should work for any similiarly structured type
  *
  * Hint: `keyof` should mainly be used on `object`s is there a way we can incorporate that into the type.
  *
@@ -476,10 +565,6 @@ type RandomAttacks = Keys&lt;typeof randomAttacks&gt;; // 'quickAttack' | 'thund
 
 export type Keys&lt;T&gt; = any;
 
-</code></pre>
-<h3>Verify Your Solution</h3>
-<p>✏️ Run the following to verify your solution:</p>
-<pre><code class="language-sh">npm run 01-generics-with-constraints-ex-1
 </code></pre>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -512,7 +597,11 @@ type WaterStartPokemon = {
 </code></pre>
 <p>Below is a function called <code>getStarterPokemonInfomation</code> that
 takes two generics. We would like to be able to pass in any of our three starters objects and a starter's name to get the
-data for that pokemon. Update the types in the function to acheive this.</p>
+data for that pokemon. Update the generics definition in the function to allow for this to happen.</p>
+<blockquote>
+<p><strong>Before you Start</strong>
+Don't worry about adding a return type to the function, focus only on the definition of the generics</p>
+</blockquote>
 <pre><code class="language-ts">type FireStarterPokemon = {
   charmander: PokedexEntry;
   charmeleon: PokedexEntry;
@@ -537,13 +626,17 @@ console.log(entry);
 <summary>Hint for Exercise 2 (click to reveal)</summary>
 our <code>Keys</code> type has a constraint to be satisfied, we need to make sure anything passed into <code>Keys</code> satisfies those constraints as well...
 </details></p>
-<pre><code class="language-ts">import type { Keys } from &quot;../exercise-01/ex-01&quot;;
+<p><a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwAmALT5yMcRjjaA7hFoALbTXILRaCI2MwAHtq0FaCZCBv1GSCCCHAAEANIwAnAAPAAqIa7-LHAhpABGRDAYtAB8IQC8IViRpGAhsQDcADrkNQD0AFQhAKIuBjxwMCGaNSENvU0AcqQmIZZyISZdFmgAbl1oIQAGEVFLY0JdsLQA5CkoAK60IeZjpJOkolgEIQBCMFAjJymLYAfctBAUIRhoULAsZb4WgAZVoaFE9FEAAVSMUALYUACS5DApHhci-5HW41oAzGaGKKVoJnOegMECMNwA6l1SQcoICoBBimcQmkFmlYGz0HAUo4QmhyAJUmVSAdRGMLKIYF0FBCoSl0plsi9yIDFvLIQY9iFyGh4V1aGSYMdLDB8Sw5K9LlKJig4TBEeQbgBVFBW-hSrrkwwpNiQcjmLEncjekJvD4h42C_5PNGSywQYnnGYoDgugb4vINBr3BNdATikJghW57MhAAiFB2x1JolEIrQaXFxzQLBYjlwgpCMtoErDwSN53NEfe2SxKgjpAwByV5CgIu-o4DjmD31K4d9lLgWbDTSWh68-KHIQAYhAZaXtTDHc6CiFgPifjNRBj1QZECFYcU2C5mowjbVPuIQvhChqwBQX4_jAf4AbQQHPhgr4QAAXhCLDQY6cGAQIwF9CEij4f0IE2AoEaXjA16Kl-F5XuCN4wfehRPiBYFvkKbCiF-OxnqI6Lhp8honMcybspc5BTq8sjCWkA4vGaFhGhIooicSDhQDcSJeCEzJgHS4qMgk6onGUo5gDJdIGMOIS4OcrY7CoSGvhBMBQSEOwAMIuQ8bmSeGZ6Wd-cIAJf3px4YwLMpBQPMgIJvCqneeBnEGDcyVvr53xYOQM5YP6IxhqQ6YUAwOlmJYakEtAU7mmGAYwHIxJKYlc5dr2aCoZc2hwK-KA_LIJhwAQjnORCaEYTx2kpGY5C4Ckvxhr8DYikmKTQgA8mEIUALIbYMA2kJ0bJCrGnz9mwqkACwqAAbOo6gRrKtBaccXIjEqRwUTKgrHPMjYhBYEC4BYYxOhw9j9jKw2jSBih7gRZHHGVAOFMC1EGExyKouimIUAAFJA9EKgYcBTjsyHjehogsDsACU-JkTFhCPLg-MowIdMhHUdQedNkxdgtp3LQDa3fltu37Ydx0xqdfznQcl2bjd92PfppqveyjxDakX1Ewsf0GCKQMg2D8IQ3IErwCN-KHksCNNAAEo4tBfuKkorJEcA4psgNoC8PwUHYDiMGyHIhHAmJwJAsFTlMeqyoCMYYqycBW4KwpJnNIS8p0gIu-cntrBHUcx81R1dEj9guy8M0PJpBAEAMdQ1K4DqQmOUbfOjDFQlj5AomiGKfBQ0QY6IZMhIMBowDk-O9BHvefiWS8T05YZ6jPX7T4aNRc6xoF9gOi8k6IADa-qGgAusB8OUMoihAA" target="_blank">Open in CodeSandbox</a></p>
+<pre><code class="language-ts">type Keys&lt;T extends object&gt; = keyof T;
 
 /* Exercise 2
  *
  * Now that we have a `Keys` type let's put it to work. Below is a function called `getStarterPokemonInfomation` that
  * takes two generics. We would like to be able to pass in any of our three starters objects and a starter's name to get the
- * data for that pokemon. Update the types in the function to acheive this.
+ * data for that pokemon. Update the generics definition in the function to allow for this to happen.
+ *
+ * &gt; **Before you Start**
+ * &gt; Don't worry about adding a return type to the function, focus only on the definition of the generics
  *
  * ```ts
  * type FireStarterPokemon = {
@@ -558,7 +651,7 @@ our <code>Keys</code> type has a constraint to be satisfied, we need to make sur
  *  charizard: 'Its wings can carry this POKéMON close to an altitude of 4,600 feet. It blows out fire at very high temperatures.',
  * }
  *
- * const entry = getgetStarterPokemonInfomation(fireStarters, 'charizard')
+ * const entry = getStarterPokemonInfomation(fireStarters, 'charizard')
  * console.log(entry) // 'Its wings can carry this POKéMON close to an altitude of 4,600 feet. It blows out fire at very high temperatures.'
  * ```
  *
@@ -572,10 +665,6 @@ export function getStarterPokemonInfomation&lt;Starters, Name&gt;(
 }
 
 </code></pre>
-<h3>Verify Your Solution</h3>
-<p>✏️ Run the following to verify your solution:</p>
-<pre><code class="language-sh">npm run 01-generics-with-constraints-ex-2
-</code></pre>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-ts">import type { Keys } from &quot;../exercise-01/soln-01&quot;;
@@ -588,6 +677,18 @@ export function getStarterPokemonInfomation&lt;
 }
 
 </code></pre>
+<p>This type of problem in practice would probably not take two generics, it was set up this way to illustrate some of the ideas in the lesson. Can you think of some other ways to accomplish the same thing without a second generic?</p>
+<p><details>
+<summary>One Example</summary></p>
+<pre><code class="language-ts">export function getStarterPokemonInfomation&lt;Starters&gt;(
+  starter: Starters,
+  name: keyof Starters
+) {
+  return starter[name];
+}
+
+</code></pre>
+<p></details></p>
 <p></details></p>
 
 </section>
@@ -627,7 +728,7 @@ export function getStarterPokemonInfomation&lt;
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/advanced-typescript/01-generics-with-constraints/01-generics-with-constraints.md"},"description":"Learn how to constrain generics to be able to reuse even more logic! \n","name":"advanced-typescript/generics-with-constraints","title":"Generics With Constraints","type":"page","parent":"advanced-typescript","order":1,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/advanced-typescript/02-generics-with-constraints/generics-with-constraints.md"},"description":"Learn how to constrain generics to be able to reuse even more logic! \n","name":"advanced-typescript/generics-with-constraints","title":"Generics With Constraints","type":"page","parent":"advanced-typescript","order":2,"comment":" ","pathToRoot":"../.."};
     </script>
 
     
