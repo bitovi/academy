@@ -58,3 +58,63 @@ window.PACKAGES = packages;
 		});
 	}
 })();
+
+(function () {
+	/* Bitovi Academy Soft Lock - Join Mailing List to Continue */
+
+	var academyContactEmailSubmitted = function () {
+		var cname = "academyemailprovided"
+		var cvalue = "true"
+		var exdays = 730
+
+		document.getElementById("email-modal").style.display = "none"
+
+		// set cookie to not prompt again
+		const d = new Date()
+		d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000))
+		let expires = "expires="+ d.toUTCString()
+		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/"
+	}
+
+	var openModal = function () {
+		console.log("You're deleing the Subscription Modal, aren't you?")
+		console.log("That's okay; Looking for a job? Once you finish the course, head over to https://www.bitovi.com/jobs")
+
+		document.getElementById("email-modal").style.display = "block"
+
+		hbspt.forms.create({
+			region: "na1",
+			portalId: "2171535",
+			formId: "822ba57d-1707-4eb0-9b1b-ef5815f33506",
+			target: "#academy-hubspot-form-embed",
+			onFormSubmitted: academyContactEmailSubmitted
+		})
+	}
+
+	var checkScrollDepth = function () {
+		var main = document.querySelector(".content > .main")
+
+		function amountScrolled () {
+			var mainHeight = Math.max(main.scrollHeight, main.offsetHeight, main.clientHeight)
+			var trackLength = mainHeight - (
+				window.innerHeight || (document.documentElement || document.body).clientHeight
+			)
+			var pageScrolled = Math.floor(main.scrollTop / trackLength * 100)
+
+			if (pageScrolled >= 20) {
+				main.removeEventListener("scroll", amountScrolled)
+				openModal()
+			}
+		}
+
+		main.addEventListener("scroll", amountScrolled)
+	}
+
+	if (document.querySelector && document.querySelector(".sidebar-left > ul > li.expanded > ul > li.current")) {
+		// ^ if we're on an internal page of the current academy lesson
+		if (!(/(^|;)\s*academyemailprovided=true(;|$)/g.test(decodeURIComponent(document.cookie)))) {
+			// ^ if the email-already-entered cookie doesn't exist
+			setTimeout(checkScrollDepth, 1 * 1000) // after 1 min, if/as soon as scrolled 20% of page, open the modal 
+		}
+	}
+})();
