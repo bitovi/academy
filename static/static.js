@@ -114,7 +114,7 @@ window.PACKAGES = packages;
 		// ^ if we're on an internal page of the current academy lesson
 		if (!(/(^|;)\s*academyemailprovided=true(;|$)/g.test(decodeURIComponent(document.cookie)))) {
 			// ^ if the email-already-entered cookie doesn't exist
-			setTimeout(checkScrollDepth, 1 * 1000) // after 1 min, if/as soon as scrolled 20% of page, open the modal 
+			setTimeout(checkScrollDepth, 30 * 1000) // after 30 sec, if/as soon as scrolled 20% of page, open the modal 
 		}
 	}
 })();
