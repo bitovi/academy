@@ -695,3 +695,71 @@ tr:nth-child(even) {
 .line-highlight {
   z-index: 1;
 }
+
+#email-modal,
+.email-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+}
+
+.email-modal-backdrop {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+.email-modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  width: 750px;
+  max-width: 100%;
+  z-index: 10;
+  padding: 1rem;
+  border: 1px solid #eee;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 10%), 0 10px 10px -5px rgba(0, 0, 0, 4%);
+  border-radius: 8px;
+}
+
+#email-modal-email {
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 0.5rem;
+  width: 250px;
+  max-width: 60%;
+}
+
+.email-modal-content form {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#email-modal-button {
+  background-color: #cb3036;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-family: Lato, Arial, sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 3px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  margin-left: 0.5rem;
+}
+
+#email-modal h2 {
+  margin-top: 0;
+}
