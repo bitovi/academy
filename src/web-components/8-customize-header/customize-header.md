@@ -78,10 +78,11 @@ bus-tracker {
 
 ✏️ Add a `bus-tracker { }` section to the CSS and set `--header-background` and `--header-text-transform` CSS properties. Using `var()`, apply these styles in the appropriate place within the Shadow DOM CSS.
 
+<details>
+<summary>Click to see the solution</summary>
+
 @sourceref ./index.html
 @highlight 13-16,49,61,only
 @codepen
 
-<p style="font-weight: bold; text-align: center;">
-[learn-web-components/slotted-content 👉 Slotted content]
-</p>
+</details>
