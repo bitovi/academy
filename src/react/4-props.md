@@ -245,7 +245,11 @@ ReactDOM.render(<Game />, document.getElementById('root'));
 
 You can run the code above by hovering over the code block and hitting Run, which is in the upper right hand corner. Only check the solution below once you've taken a pass yourself.
 
-### The solution
+## Solution
+<details>
+<summary>
+Click to see the solution
+</summary>
 
 ```jsx
 const squareStyling = {
@@ -298,7 +302,7 @@ const blankBoard = ['', '', '', '', '', '', '', '', ''];
 
 function Game() {
   const handleSquareClick = () => {
-    console.log('You clicked a square');
+    console.log('Clicked');
   };
 
   return (
@@ -312,7 +316,9 @@ function Game() {
 ReactDOM.render(<Game />, document.getElementById('root'));
 ```
 
+@highlight 27,28,35-42, 50-52, 56
 @codepen react
+</details>
 
 ## Next Steps
 

@@ -262,7 +262,12 @@ ReactDOM.render(<Board />, document.getElementById('root'));
 
 @codepen react
 
-### The solution
+## Solution
+
+<details>
+<summary>
+Click to see the solution
+</summary>
 
 ```jsx
 const squareStyling = {
@@ -343,6 +348,7 @@ ReactDOM.render(<Board />, document.getElementById('root'));
 
 @codepen react
 @highlight 46,58,only
+</details>
 
 ## Next Steps
 

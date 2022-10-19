@@ -263,7 +263,7 @@ ReactDOM.render(<WrapperContainer />, document.getElementById('root'));
 
 There is no "right" answer for what data should be stored in state. Applications with simple API requirements may keep everything in state objects. Other apps may opt to store nearly everything in a separate global state management library such as Redux or Apollo.
 
-For a purely React method of maintaining and exposing state accross your application, check out the [next lesson on Context.](context-hooks.html)
+The next lesson will discuss a a purely React method of maintaining and exposing state accross your application.
 
 ## Next Steps
 

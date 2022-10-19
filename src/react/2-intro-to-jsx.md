@@ -398,9 +398,8 @@ So if a person rendered that component, they would see
 
 _✏️ Note: Centering content inside of a div is easy with flexbox. Simply add `"display: flex; justify-content: center; align-items: center;"` to the parent div which holds the content you wish to be centered. Remember the differences between normal CSS, and inline styles with React though._
 
-Here's an empty codepen with React preloaded to get you started.
 
-#### Hover over the code below and select the run button in the upper right hand corner.
+#### To get you started, hover over the code below and select the run button in the upper right hand corner. It links to an empty codepen with React. 
 
 ```jsx
 function Square() {
@@ -416,6 +415,10 @@ ReactDOM.render(
 @codepen react
 
 ## Solution
+<details>
+<summary>
+Click to see the solution
+</summary>
 
 ```jsx
 function Square(props) {
@@ -441,7 +444,11 @@ ReactDOM.render(
 );
 ```
 
+@highlight 4-11,13
 @codepen react
+
+</details>
+
 
 > Note: You'll see `ReactDOM.render` in all of the code samples in this tutorial. `ReactDOM.render` injects a component (first argument) into a DOM element (second argument).
 

@@ -7,7 +7,7 @@
 
 ## The Prop Drilling Problem
 
-A single component can take as many props as you want to give it, but just like arguments in functions, it's a good idea to [limit this number](https://stackoverflow.com/questions/37695557/react-are-there-respectable-limits-to-number-of-props-on-react-components), as more props makes for [a more confusing component](https://martinfowler.com/bliki/CodeSmell.html).
+A single component can take as many props as you want to give it, but just like arguments in functions, it's a good idea to limit this number, as more props makes for a more confusing and harder to test component. [This discussion here](https://stackoverflow.com/questions/37695557/react-are-there-respectable-limits-to-number-of-props-on-react-components), perfectly summarizes why it's a bad idea and considered a ["code smell"](https://martinfowler.com/bliki/CodeSmell.html).
 
 However, this can be difficult to do when you have a lot of data to pass through your component tree. Consider the following hierarchy with a few "drilled props". Lets imagine that the `Theme`, `Domain` and `RootUrl` are decided within the `App` component, but are **only** needed within the `ButtonText` component. That is to say, `Dashboard` and `Button` have no business related to any of those props.
 
@@ -500,7 +500,11 @@ ReactDOM.render(<Game />, document.getElementById('root'));
 
 @codepen react
 
-### The solution
+## Solution
+<details>
+<summary>
+Click to see the solution
+</summary>
 
 #### Game
 
@@ -641,6 +645,7 @@ function Game() {
 
 ReactDOM.render(<Game />, document.getElementById('root'));
 ```
+</detail>
 
 @codepen react
 @highlight 46-55,56,58-60,63,98,117-119,127,131 only

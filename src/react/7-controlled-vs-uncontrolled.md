@@ -159,7 +159,11 @@ ReactDOM.render(<Search />, document.getElementById('root'));
 
 @codepen react
 
-### The solution
+## Solution
+<details>
+<summary>
+Click to see the solution
+</summary>
 
 #### Search
 
@@ -212,6 +216,7 @@ ReactDOM.render(<Search />, document.getElementById('root'));
 
 @codepen react
 @highlight 26,32,33,35,36,only
+</details>
 
 > A quick note on syntax like
 >
