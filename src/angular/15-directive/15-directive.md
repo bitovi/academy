@@ -44,9 +44,9 @@ and they consist of three types:
 
 # Components Directives
 
-In this training, we previously talked about [learn-angular/creating-components].
+In this training, we previously talked about [learn-angular/creating-components Components].
 Components are a type of Directive. Components use the `@Component` decorator function along with a template, style, and other logic needed for the view.
-This was discussed in detail [learn-angular/creating-components#p2-what-you-need-to-know, here]. The official <a href="https://angular.io/guide/built-in-directives#:~:text=Components%E2%80%94-,directives,-with%20a%20template" target="\_blank">Angular documentation</a> has more information on this as well.
+This was previously discussed in detail [learn-angular/creating-components#p2-what-you-need-to-know here]. The official <a href="https://angular.io/guide/built-in-directives#:~:text=Components%E2%80%94-,directives,-with%20a%20template" target="\_blank">Angular documentation</a> has more information on this as well.
 
 # Attribute Directives
 
