@@ -252,7 +252,7 @@ This example shows content blocks based on the value of boolean `showMyContent`.
 
 ## \*ngFor
 
-<a href="https://angular.io/api/common/NgForOf" target="\_blank">ngFor</a> is a structural directive that allows to iteratively create content in our templates.
+<a href="https://angular.io/api/common/NgFor" target="\_blank">ngFor</a> is a structural directive that allows to iteratively create content in our templates.
 
 This example displays each name in the `myList` array in an `li` tag.
 
@@ -262,7 +262,7 @@ This example displays each name in the `myList` array in an `li` tag.
 
 ## ng-container
 
-<a href="https://angular.io/guide/structural-directives#ngcontainer" target="\_blank">ng-container</a> is an element that allows us to create template bindings without creating a DOM element. Only one structural directive is allowed per host element (to avoid confusion around which directive would take precedence) making this directive handy for when we have several logic directives to apply to content.
+<a href="https://angular.io/api/core/ng-container" target="\_blank">ng-container</a> is an element that allows us to create template bindings without creating a DOM element. Only one structural directive is allowed per host element (to avoid confusion around which directive would take precedence) making this directive handy for when we have several logic directives to apply to content.
 
 This example shows using logic directives to display data without creating additional DOM elements.
 

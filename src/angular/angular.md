@@ -57,7 +57,7 @@ As for the application itself, it:
 ## Outline
 
 The guide begins ([learn-angular/why-angular]) with a discussion of Angular's
-strengths. We will install Angular ([learn-angular/building-our-first-app]) and use it to generate a new project. Then we will set out creating some _components_ ([learn-angular/creating-components]) that will be shown when
+strengths. We will install Angular ([learn-angular/building-our-first-app]) and use it to generate a new project. Then we will set out creating some _components_ ([learn-angular/creating-components]) and ([learn-angular/creating-pipes]) to manipulate their data, the component will be shown when
 the right url is present ([learn-angular/adding-routing]) and adding navigation links ([learn-angular/creating-navigation]) to route to those _components_.
 
 With that complete, we will explore how to get data from the server ([learn-angular/restaurant-service]) and write that data out to the page ([learn-angular/pull-restaurant-data-into-view]).
@@ -74,9 +74,10 @@ has tests to verify your solutions, we will turn the tables and have you write a
 retrieving a single restaurant from the service layer ([learn-angular/writing-unit-tests]). This will prepare us to create a nested route for the restaurant details page ([learn-angular/nested-routes]).
 
 Now we are ready to turn our attention to learning about creating, updating, and deleting
-data. We will start by building an Order Form ([learn-angular/building-order-form]) that
-allows us to create orders on the server ([learn-angular/order-service]). We'll then
-create a page that lets us update an order's status or delete an order ([learn-angular/order-history-component]). We will even make the order page update when someone else updates an order ([learn-angular/real-time-connection]).
+data. We will start by building an Order Form ([learn-angular/building-order-form]), which will utilize directives 
+([learn-angular/creating-directive]), together this will allow us to create orders on the server ([learn-angular/order-service]). We'll then create a page that lets us update an order's status or delete an order ([learn-angular/order-history-component]). 
+We will utilize pipes to create an item total calculation across the application ([learn-angular/item-total-pipe])
+and will even make the order page update when someone else updates an order ([learn-angular/real-time-connection]).
 
 At this point, we will have completed the app. The final step will be building it to
 production and deploying it for others to see ([learn-angular/deploy-app]).
