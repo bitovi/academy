@@ -221,7 +221,11 @@ Let's use our styling knowledge to make our Tic-Tac-Toe game look amazing!
 
 ### [starter code](https://codesandbox.io/s/ecstatic-easley-ipt6o?fontsize=14&hidenavigation=1&theme=dark)
 
-### The solution
+## Solution
+<details>
+<summary>
+Click to see the solution
+</summary>
 
 #### Inline Styles
 
@@ -406,6 +410,7 @@ export default App;
 ```
 
 @highlight 4,15,39-49,only
+</details>
 
 ## Next Steps
 

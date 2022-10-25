@@ -71,7 +71,8 @@ This process is similar no matter what component you're building. The basic patt
 >
 > ReactDOM.render(<Hello />, document.getElementById('root'));
 > ```
->
+@highlight 9
+
 > ### Right
 >
 > ```jsx
@@ -90,7 +91,7 @@ This process is similar no matter what component you're building. The basic patt
 >
 > ReactDOM.render(<Hello />, document.getElementById('root'));
 > ```
-
+@highlight 7
 ## useRef
 
 Just like `useState`, `useRef` is a data store, keeping track of values the component is interested in. In this case however, `useRef` helps store DOM references instead of state data.
@@ -198,7 +199,11 @@ ReactDOM.render(<Board />, document.getElementById('root'));
 
 @codepen react
 
-### The solution
+## Solution
+<details>
+<summary>
+Click to see the solution
+</summary>
 
 ```jsx
 const squareStyling = {
@@ -273,9 +278,9 @@ function Board() {
 
 ReactDOM.render(<Board />, document.getElementById('root'));
 ```
-
 @codepen react
 @highlight 33,44,46-56,only
+</details>
 
 ## Next Steps
 
