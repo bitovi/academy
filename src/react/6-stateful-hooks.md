@@ -82,7 +82,7 @@ This process is similar no matter what component you're building. The basic patt
 >   return (
 >     <>
 >       {values}
->       <button onChange={(e) => ()setValues(values.concat('click'))}>
+>       <button onChange={(e) => setValues(values.concat('click'))}>
 >         Click me
 >       </button>
 >     </>
