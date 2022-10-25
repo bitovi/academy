@@ -101,7 +101,7 @@ For the remainder of this training, we will be using functional components exclu
 
 ## Multiples of the same component
 
-It's important to note that when you have more than one of the same component, you will need a unique way to identify them. This helps React know to only re-render the component with that key, otherwise React will not know which component to update and will have to update them all, or in some cases it may even update the wrong component!
+It's important to note that when you have more than one of the same component, you will need a unique way to identify them. This helps React know to only re-render the component with that key. Otherwise, React will not know which component to update and will have to update them all, or in some cases, it may even update the wrong component!
 An example of this is:
 ```jsx
 function App() {
