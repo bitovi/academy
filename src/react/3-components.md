@@ -101,7 +101,7 @@ For the remainder of this training, we will be using functional components exclu
 
 ## Multiples of the same component
 
-It's important to note that when you have more than one of the same component, you will need a unique way to identify them. This is so that each component has a unique and stable identity, which helps React know to only re-render the component with that key, otherwise React will not know which component to update and will have to update them all.
+It's important to note that when you have more than one of the same component, you will need a unique way to identify them. This helps React know to only re-render the component with that key, otherwise React will not know which component to update and will have to update them all, or in some cases it may even update the wrong component!
 An example of this is:
 ```jsx
 function App() {
@@ -117,7 +117,7 @@ function App() {
   );
 }
 ```
->Note how we use a unique id instead of an interator value from the map function. This is important so that the key will remain the same despite the list changing. [https://reactjs.org/docs/lists-and-keys.html For more information on lists and keys in react click here to visit the official docs.]
+>Note how we use a unique id instead of an iterator value from the map function. This is important so that the key will remain the same despite the list changing. [https://reactjs.org/docs/lists-and-keys.html For more information on lists and keys in react click here to visit the official docs.]
 
 ## Exercise
 
