@@ -156,7 +156,7 @@ carnivoreKey = "Some value"; // ERROR: Type '"Some value"' is not assignable to 
 carnivoreKey = "type";
 ```
 
-A strange, but the common occurrence of this is an enum (learn more about enums: [learn-typescript/types]). Enums in TypeScript are types before the code is compiled and an object during execution. If we run into a situation where we want to get the keys of an enum, the only way to do so is to use `keyof` and `typeof` together
+A strange, but the common occurrence of this is an enum (learn more about enums: [learn-typescript/types#enum]). Enums in TypeScript are types before the code is compiled and an object during execution. If we run into a situation where we want to get the keys of an enum, the only way to do so is to use `keyof` and `typeof` together
 
 ```ts
 enum DinosaurColors {
@@ -202,11 +202,17 @@ Update the `DinosaurFactObject` and `Dinosaur` type to gain type safety on the `
 
 Another way to achieve the same solution.
 
+@highlight 6-27,32,37
+
 ```ts
 export type DinosaurFactObject = typeof dinosaurFacts;
 
 export type Dinosaur = keyof typeof dinosaurFacts;
 ```
+
+@highlight 1,3
+
+
 
 </details>
 
@@ -237,3 +243,5 @@ Update the `ColorsAsEasyReadName` type so that it represents the keys of the enu
 @sourceref ./8-solution-exercise-2.ts
 
 </details>
+
+@highlight 16, 21

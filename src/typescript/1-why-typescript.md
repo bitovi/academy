@@ -44,7 +44,7 @@ document.body.innerHTML = greeter(user);
 
 If there's a bug in the code related to falsely assuming a type, it won't throw an error until we're already running our code.
 
-TypeScript uses static typing, which allows us to specify what type a variable should hold, and types are checked when the code compiles alerting us of any incorrect usages of a variable assignment. The concept of "static" comes from the idea of variables being static, meaning once you set a variable to a type it can't (shouldn't) be changed.
+TypeScript uses static typing, which allows us to specify what type a variable should hold, and types are checked when the code compiles alerting us of any incorrect usages of a variable assignment. The concept of "static" comes from the idea of variables being static, meaning once you set a variable to a type it can't (shouldn't) be changed. For a deeper dive into how typechecking works, the creators of typescript have a <a href="https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html" target="\_blank">typechecking handbook</a> of more specific cases as well as their inspiration for the way these features were designed.
 
 ## Using this Guide
 

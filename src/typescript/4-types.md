@@ -112,6 +112,7 @@ sillyList = [5, "boop"]; //typescript is happy
 
 sillyList = ["boop", 5]; //will error
 ```
+<a id="enum"></a>
 
 ### Enum
 
@@ -309,7 +310,6 @@ it("exports are correct", function () {
   assert.equal(tom, `Tom is 42 years young.`, "Tom");
 });
 ```
-
 ### Verify Your Solution
 
 ✏️ Run the following to verify your solution:
@@ -344,6 +344,8 @@ export const tom = greet("Tom", 42);
 
 export { isLoading, inventory };
 ```
+
+@highlight 3,5,13, 15
 
 </details>
 
@@ -381,5 +383,7 @@ let me: Date;
 me = new Date("6-11-1993");
 export default me;
 ```
+
+@highlight 1-3
 
 </details>

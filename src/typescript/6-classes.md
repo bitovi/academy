@@ -336,4 +336,6 @@ class Specialist extends DinoKeeper {
 export default Specialist;
 ```
 
+@highlight 3-6, 8-11
+
 </details>

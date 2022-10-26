@@ -37,13 +37,13 @@ The following is just example config code. **Don't add this to your project or t
 }
 ```
 
-Full configuration options are available here: <a href="http://json.schemastore.org/tsconfig" target="\_blank">http://json.schemastore.org/tsconfig</a>
+To learn more about all of the options tsconfig has, check out the <a href="https://www.typescriptlang.org/tsconfig" target="\_blank">TypeScript TSConfig Reference</a>. The Schema can also be found <a href="http://json.schemastore.org/tsconfig" target="\_blank">here</a>.
 
-### Linting
+## Linting
 
 We can also configure linting options to catch bugs and help enforce uniform styling. The following options will warn on unused local variables and parameters, and expressions or declarations implying 'any'.
 
-Besides linting with the TypeScript compiler, `tsc`, it is recommended to use a specialized linter like TSLint (now deprecated) or `ESLint`.
+Besides linting with the TypeScript compiler, `tsc`, it is recommended to use a specialized linter like `ESLint`.
 
 ```javascript
 {
@@ -57,9 +57,7 @@ Besides linting with the TypeScript compiler, `tsc`, it is recommended to use a 
 }
 ```
 
-## ESLint
-
-### What is ESLint?
+### ESLint
 
 ESLint is a static code analysis tool. It helps us find and fix problematic patterns with our code, enforce style guidelines and is highly customizable - you can code and plug in your own rules.
 
@@ -75,7 +73,7 @@ ESLint is a static code analysis tool. It helps us find and fix problematic patt
 
 ### Before Starting
 
-It should be fairly painless to migrate to ESLint, but we do recommended checking if there are any TSLint rules that are considered essential to your project, and comparing those with ESLint to see if there are mismatches regarding your project's requirements. This [Migration Guide](https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/ROADMAP.md) is a great source for comparing ESLint and TSLint rules.
+It should be fairly painless to migrate to ESLint, but we do recommended checking if there are any TSLint rules that are considered essential to your project, and comparing those with ESLint to see if there are mismatches regarding your project's requirements. This [Migration Guide](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/TSLINT_RULE_ALTERNATIVES.md) is a great source for comparing ESLint and TSLint rules.
 
 ### Migration
 
