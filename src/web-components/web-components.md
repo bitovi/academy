@@ -20,6 +20,20 @@ If you find bugs in this training or have suggestions, create an [issue](https:/
 
 ## Overview
 
+This guide begins with [Why Web Components](learn-web-components/why-wc.html) might be a good choice for building your next widget. Following lessons will cover:
+- Building [our first component](learn-web-components/first-component.html) to learn the APIs & display a greeting.
+- [Writing a template](learn-web-components/templates.html) to create reusable DOM for use within your components.
+- Creating a component to hold our Google [Map View](learn-web-components/map-view.html).
+- Building a more complex [bus-tracker component](learn-web-components/bus-tracker-component.html) that combines the usage of `<template>` and customElements, and sets up event listeners.
+- Fetching and [listing routes](learn-web-components/listing-routes.html) from the CTA bus tracker API.
+- Using event listeners with a custom element to handle a user [selecting a route](learn-web-components/select-a-route.html).
+- Listen to changes in properties on custom elements and properly reflect back property values to [display markers for vehicles](learn-web-components/display-markers.html).
+- Use CSS properties to [customize header styles](learn-web-components/customize-header.html) within Shadow DOM.
+- Use [slotted content](learn-web-components/slotted-content.html) to allow more control over non-critical parts of your component.
+- And finally, [dispatching events](learn-web-components/dispatching-events.html) to provide information on the state of your component to parent elements.
+
+
+
 The end result of this training will be a [CTA Bus tracker](http://www.ctabustracker.com) widget that can be embedded in any website with just a script tag and an element like so:
 
 ```html
@@ -30,4 +44,4 @@ The end result of this training will be a [CTA Bus tracker](http://www.ctabustra
 
 ## Next Steps
 
-✏️ Head over to the [first lesson](learn-web-components/why-wc.html) and learn more about Wev Components.
+✏️ Head over to the [first lesson](learn-web-components/why-wc.html) and learn more about Web Components.
