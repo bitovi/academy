@@ -74,8 +74,8 @@ has tests to verify your solutions, we will turn the tables and have you write a
 retrieving a single restaurant from the service layer ([learn-angular/writing-unit-tests]). This will prepare us to create a nested route for the restaurant details page ([learn-angular/nested-routes]).
 
 Now we are ready to turn our attention to learning about creating, updating, and deleting
-data. We will start by building an Order Form ([learn-angular/building-order-form]), which will utilize directives 
-([learn-angular/creating-directive]), together this will allow us to create orders on the server ([learn-angular/order-service]). We'll then create a page that lets us update an order's status or delete an order ([learn-angular/order-history-component]). 
+data. We will start by building an Order Form ([learn-angular/building-order-form]) and then update it to utilize directives
+([learn-angular/creating-directive]), which in turn allows us to create orders on the server ([learn-angular/order-service]). We'll then create a page that lets us update an order's status or delete an order ([learn-angular/order-history-component]). 
 We will utilize pipes to create an item total calculation across the application ([learn-angular/item-total-pipe])
 and will even make the order page update when someone else updates an order ([learn-angular/real-time-connection]).
 
