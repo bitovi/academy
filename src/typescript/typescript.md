@@ -15,7 +15,7 @@ ready to develop projects in TypeScript.
 Join Bitovi's Slack Community to get help on Bitovi Academy courses or other
 Angular, React, CanJS and JavaScript problems.
 
-Please ask questions related to TypeScript in the [Angular chat room](https://bitovi-community.slack.com/messages/CFD2J3HT3).
+Please ask questions related to TypeScript in the [TypeScript chat room](https://bitovi-community.slack.com/archives/CJ4K07T7F).
 
 If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/academy/issues) or email `contact@bitovi.com`.
 
