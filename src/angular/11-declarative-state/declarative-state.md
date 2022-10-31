@@ -14,7 +14,7 @@ In this part, we will:
 - Update the restaurant component so states, cities & restaurants are RxJS streams
 - Remove use of the Reactive Forms API and add several additional streams to completely avoid the use of imperative logic
 
-**Note:** You should complete [Bitovi Academy's RxJS training](/learn-rxjs.html) before attempting
+**Note:** You should complete [Bitovi Academy's RxJS training](../learn-rxjs.html) before attempting
 the following exercise. Although even if you haven't, read on if you're interested why you might want to use declarative
 state. 
 
@@ -61,7 +61,7 @@ state, one will control the selected value of a control, and others will be emit
 ## Creating Streams Of Form Control Values
 The [`Subject`](https://rxjs-dev.firebaseapp.com/api/index/class/Subject) class in RxJS is both an 
 [`Observer`](https://rxjs-dev.firebaseapp.com/api/index/interface/Observer) and 
-[`Observable`](https://rxjs-dev.firebaseapp.com/api/index/interface/Observable). This has several implications but the 
+[`Observable`](https://rxjs-dev.firebaseapp.com/api/index/class/Observable). This has several implications but the 
 relevant one for this exercise is that it both consumes and produces values. That means we can pass values into a 
 [`Subject`](https://rxjs-dev.firebaseapp.com/api/index/class/Subject) (via it's `next` method) and have them emitted 
 as part of a stream. Perfect for turning values from a form control into a stream.
@@ -116,7 +116,7 @@ when all input streams have emitted a value.
 A common situation is working with streams that only produce a value after an event, for example when an HTTP request
 completes or when a value changes in a form control. When using a stream like this in your components, you'll likely
 want to have an initial "base state" that your view can use during the initial render. In RxJS this is handled by the 
-[`startWith`](https://rxjs-dev.firebaseapp.com/api/index/operators/startWith) operator, which emits a value when the 
+[`startWith`](https://rxjs-dev.firebaseapp.com/api/operators/startWith) operator, which emits a value when the 
 stream is first subscribed to.
 
 @sourceref ./startWith.html
@@ -124,7 +124,7 @@ stream is first subscribed to.
 
 ### Transforming The Values Of A Stream
 When values are emitted from a stream it's common to transform them in some way before they're used by your application. 
-One operator used for this is the [`map`](https://rxjs-dev.firebaseapp.com/api/index/operators/map) operator, which 
+One operator used for this is the [`map`](https://rxjs-dev.firebaseapp.com/api/operators/map) operator, which 
 takes an emitted value and returns a modified value that will be passed to the subsequent operators in the stream.
 
 @sourceref ./map.html
@@ -231,7 +231,7 @@ Forms API:
     - multicasting emissions of a "cold" observable and handle late subscribers
  
  You've learnt all of the above as part of the earlier sections on this page! Completing the 
- [Bitovi Academy's RxJS training](/learn-rxjs.html) will help however. 
+ [Bitovi Academy's RxJS training](../learn-rxjs.html) will help however. 
 
 ## Solution
 
@@ -250,6 +250,8 @@ Forms API:
 </details>
 
 ## Advanced Implementation
+<details>
+<summary>Click to see the advanced implementation solution</summary>
 
 Below is a more comprehensive approach to implementing the sort of features seen in the solution above. It takes things 
 further by handling additional cases and abstracting the streams to aid in reuse of these patterns throughout an 
@@ -259,3 +261,5 @@ solution and RxJS in general is recommended in order to infer the reasoning behi
 @sourceref ./ideal.component.ts
 
 @sourceref ./ideal.component.html
+
+</details>

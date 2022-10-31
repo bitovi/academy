@@ -38,7 +38,7 @@ To complete this exercise, you are going to want:
 
 ## Selecting a code editor
 
-If you're looking for a code editor (aka IDE) to improve your Angular development - VS Code is widely used by the community but editors like Atom and Webstorm are fine as well. Plugins can go a long way in aiding the development process.
+If you're looking for a code editor (aka IDE) to improve your Angular development - VS Code is widely used by the community but other editors like Webstorm are fine as well. Plugins can go a long way in aiding the development process.
 
 ### Visual Studio Code
 
@@ -50,19 +50,6 @@ Helpful Plugins:
 
 - <a href="https://marketplace.visualstudio.com/items?itemName=Angular.ng-template" target="\_blank">Angular Language Service</a>
 - <a href="https://marketplace.visualstudio.com/items?itemName=johnpapa.Angular2" target="\_blank">Angular Snippets</a>
-
-### Atom
-
-Atom is another good modern IDE that easily supports and aids in TypeScript development with the installation of the <a href="https://atom.io/packages/atom-typeScript" target="\_blank"> atom-typeScript plugin</a>.
-
-<a href="../static/img/atom-screenshot.png" target="\_blank"><img src="../static/img/atom-screenshot.png" width="100%" alt="Atom screenshot" /></a>
-
-Helpful Plugins:
-
-- <a href="https://atom.io/packages/atom-typescript" target="\_blank">atom-typescript</a>
-- <a href="https://atom.io/packages/emmet" target="\_blank">emmmet</a>
-- <a href="https://atom.io/packages/autocomplete-modules" target="\_blank">autocomplete-modules</a>
-- <a href="https://atom.io/packages/angular2-snippets-atom" target="\_blank">angular2-snippets</a>
 
 ### Webstorm
 

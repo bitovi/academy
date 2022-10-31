@@ -106,7 +106,7 @@ class. It's worth getting familiar with the methods available in this class (lik
 
 ## FormGroup
 
-A FormGroup is a way of grouping FormControls and tracking the state of the entire group. For instance, if you want to get the values of all of your FormControls to submit as an object of those values, you'd use `formGroupName.value`. Notice the way we connect our input in the markup is slightly different - we can use the `formControlName` directive to bind to the name value of a FormControl in our FormGroup. Groups can be nested within other groups or arrays.
+A <a href="https://angular.io/api/forms/FormGroup" target="\_blank">FormGroup</a> is a way of grouping FormControls and tracking the state of the entire group. For instance, if you want to get the values of all of your FormControls to submit as an object of those values, you'd use `formGroupName.value`. Notice the way we connect our input in the markup is slightly different - we can use the `formControlName` directive to bind to the name value of a FormControl in our FormGroup. Groups can be nested within other groups or arrays.
 
 @sourceref ./form-group.html
 @codepen
@@ -114,7 +114,7 @@ A FormGroup is a way of grouping FormControls and tracking the state of the enti
 
 ## FormArray
 
-FormArray aggregates FormControls into an array. It's different than FormGroup in that the controls inside are serialized as an array. FormArrays are very useful when dealing with repeated FormControls or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.
+A <a href="https://angular.io/api/forms/FormArray" target="\_blank">FormArray</a> aggregates FormControls into an array. It's different than FormGroup in that the controls inside are serialized as an array. FormArrays are very useful when dealing with repeated FormControls or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.
 
 This example shows the use of FormArray and using an `insert` method to dynamically add more FormGroups to the `users` FormArray.
 
