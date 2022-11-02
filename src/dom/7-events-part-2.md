@@ -18,7 +18,6 @@ In this part, we will:
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/qoW-EYuESZA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-
 ## Propagation Demo
 
 The following listens to `click` on a nested body, div, and
@@ -29,7 +28,6 @@ See what happens:
 
 - when different propagation methods are called
 - when the DOM is modified during event dispatching
-
 
 @sourceref ./propagation.html
 @codepen
@@ -45,7 +43,7 @@ when any anchor is clicked in the page.
 @highlight 15-19,only
 
 Notice that when the `<span>` within the `<a>` is is clicked,
-nothing is logged.  This is because the `event.target`
+nothing is logged. This is because the `event.target`
 was the `<span>` and not an `<a>`.
 
 @sourceref ./delegation-2.html
@@ -62,8 +60,7 @@ Run the following example in CodePen:
 
 Each exercise builds on the previous exercise. There is a completed solution at the end of this page.
 
-
-## Bonus Exercise: `collection.is(selector) -> boolean`
+## Exercise: `collection.is(selector) -> boolean`
 
 ### The problem
 
@@ -73,31 +70,33 @@ Each exercise builds on the previous exercise. There is a completed solution at 
 import "https://unpkg.com/jquery@3/dist/jquery.js";
 
 var elements = $([
-	document.createElement("div"),
-	document.createElement("span")
+  document.createElement("div"),
+  document.createElement("span"),
 ]);
 
-console.log( elements.is("div") ) //-> true
+console.log(elements.is("div")); //-> true
 ```
+
 @codepen
 
 <details>
 <summary>Click to see test code</summary>
+
 ```js
-QUnit.test('$.fn.is', function(){
+QUnit.test("$.fn.is", function () {
+  expect(3);
 
-	expect(3);
+  var elements = $([
+    document.createElement("div"),
+    document.createElement("span"),
+  ]);
 
-	var elements = $([
-		document.createElement("div"),
-		document.createElement("span")
-	]);
-
-	ok(elements.is("div"), "is div");
-	ok(elements.is("span"), "is span");
-	ok(!elements.is("a"), "is a");
+  ok(elements.is("div"), "is div");
+  ok(elements.is("span"), "is span");
+  ok(!elements.is("a"), "is a");
 });
 ```
+
 </details>
 
 ### What you need to know
@@ -108,15 +107,17 @@ QUnit.test('$.fn.is', function(){
   ```html
   <div id="hello">Hello World</div>
   <script type="module">
-  console.log( hello.matches("div") ) //-> true
-  </script>  
+    console.log(hello.matches("div")); //-> true
+  </script>
   ```
-  @codepen
+
+@codepen
 
 ### The solution
 
 <details>
 <summary>Click to see the solution</summary>
+
 ```js
     is: function(selector){
       var matched = false;
@@ -128,40 +129,43 @@ QUnit.test('$.fn.is', function(){
       return matched;
     },
 ```
+
+@highlight 2-8
+
 </details>
 
-
-## Bonus Exercise: `collection.data(key [, value])`
+## Exercise: `collection.data(key [, value])`
 
 ### The problem
 
 [collection.data](https://api.jquery.com/data/) stores arbitrary data associated with the matched elements or return the value at the named data store for the first element in the set of matched elements.
 
-
 ```html
 <div id="hello">Hello World</div>
 <script type="module">
-import "https://unpkg.com/jquery@3/dist/jquery.js";
+  import "https://unpkg.com/jquery@3/dist/jquery.js";
 
-$("#hello").data("foo", "bar");
+  $("#hello").data("foo", "bar");
 
-console.log( $("#hello").data("foo") ) //-> "bar"
-</script>  
+  console.log($("#hello").data("foo")); //-> "bar"
+</script>
 ```
+
 @codepen
 
 <details>
 <summary>Click to see test code</summary>
+
 ```js
-QUnit.test('$.fn.data', function(){
+QUnit.test("$.fn.data", function () {
+  $("#qunit-fixture").html('<div id="el">text</div>');
 
-	$('#qunit-fixture').html('<div id="el">text</div>');
+  $("#el").data("foo", "bar");
 
-	$('#el').data('foo', 'bar');
-
-	equal( $('#el').data('foo'), 'bar' ,'got back bar' );
+  equal($("#el").data("foo"), "bar", "got back bar");
 });
 ```
+
 </details>
 
 ### What you need to know
@@ -173,23 +177,25 @@ QUnit.test('$.fn.data', function(){
   ```js
   var map = new WeakMap();
 
-  (function(){
-    var key = {name: "key"};
-    var value = {name: "value"};
+  (function () {
+    var key = { name: "key" };
+    var value = { name: "value" };
     map.set(key, value);
   })();
-  setTimeout(function(){
-    console.log( map );
+  setTimeout(function () {
+    console.log(map);
     // In chrome, you can see the contents of the weakmap
     // and it will not have the key and value.
-  },500);
+  }, 500);
   ```
-  @codepen
+
+@codepen
 
 ### The solution
 
 <details>
 <summary>Click to see the solution</summary>
+
 ```js
     data: (function(){
       var data = new WeakMap();
@@ -212,9 +218,12 @@ QUnit.test('$.fn.data', function(){
       };
     })(),
 ```
+
+@highlight 1-20
+
 </details>
 
-## Bonus Exercise: `collection.on(eventType, selector, handler)`
+## Exercise: `collection.on(eventType, selector, handler)`
 
 ### The problem
 
@@ -222,45 +231,51 @@ QUnit.test('$.fn.data', function(){
 
 ```html
 <ul id="root">
-	<li>First</li>
-	<li>Second</li>
+  <li>First</li>
+  <li>Second</li>
 </ul>
 <script type="module">
-import "https://unpkg.com/jquery@3/dist/jquery.js";
+  import "https://unpkg.com/jquery@3/dist/jquery.js";
 
-$("#root").on("click","li", function(){
-	console.log("clicked an li");
-});
-</script>  
+  $("#root").on("click", "li", function () {
+    console.log("clicked an li");
+  });
+</script>
 ```
+
 @codepen
 
 <details>
 <summary>Click to see test code</summary>
+
 ```js
-QUnit.test('$.fn.on', function(){
-	expect(3);
+QUnit.test("$.fn.on", function () {
+  expect(3);
 
-	var handler = function(){
-		equal(this.nodeName.toLowerCase(), 'li', 'called back with an LI')
-	}
+  var handler = function () {
+    equal(this.nodeName.toLowerCase(), "li", "called back with an LI");
+  };
 
-	var $ul = $('#qunit-fixture').html(`
-		<ul>
-			<li><span id="one"/></li>
-			<li><span id="two"/></li>
-		</ul>`)
-		.children()
+  var $ul = $("#qunit-fixture")
+    .html(
+      `
+    	<ul>
+    		<li><span id="one"/></li>
+    		<li><span id="two"/></li>
+    	</ul>`
+    )
+    .children();
 
-	$ul.on('click', 'li', handler);
+  $ul.on("click", "li", handler);
 
-	clickIt( $('#one')[0] );
-	clickIt( $('#two')[0] );
+  clickIt($("#one")[0]);
+  clickIt($("#two")[0]);
 
-	$ul.html('<li><span id="three"></span></li>');
-	clickIt( $('#three')[0] );
+  $ul.html('<li><span id="three"></span></li>');
+  clickIt($("#three")[0]);
 });
 ```
+
 </details>
 
 ### What you need to know
@@ -268,11 +283,11 @@ QUnit.test('$.fn.on', function(){
 - Instead of binding the `handler`, you'll need to bind a `delegator` that
   will conditionally call the `handler`.
 - Use `.data` to store the `delegator` and `handler` in an object
-  like `{delegator, handler}`.  That object should be stored in a data structure that
+  like `{delegator, handler}`. That object should be stored in a data structure that
   looks like:
   ```js
-  $([element]).data("events") //-> {
-  //   click: { li: [ {delegator, handler} ] }   
+  $([element]).data("events"); //-> {
+  //   click: { li: [ {delegator, handler} ] }
   // }
   ```
 
@@ -280,6 +295,7 @@ QUnit.test('$.fn.on', function(){
 
 <details>
 <summary>Click to see the solution</summary>
+
 ```js
     on: function(eventType, selector, handler) {
       // Create delegator function
@@ -313,10 +329,14 @@ QUnit.test('$.fn.on', function(){
         element.addEventListener(eventType, delegator, false);
       });
     },
+
 ```
+
+@highlight 2-31
+
 </details>
 
-## Bonus Exercise: `collection.off(eventType, selector, handler)`
+## Exercise: `collection.off(eventType, selector, handler)`
 
 ### The problem
 
@@ -324,27 +344,32 @@ QUnit.test('$.fn.on', function(){
 
 <details>
 <summary>Click to see test code</summary>
+
 ```js
-QUnit.test('$.fn.off', function(){
-	expect(0);
+QUnit.test("$.fn.off", function () {
+  expect(0);
 
-	var handler = function(){
-		equal(this.nodeName.toLowerCase(), 'li', 'called back with an LI')
-	}
+  var handler = function () {
+    equal(this.nodeName.toLowerCase(), "li", "called back with an LI");
+  };
 
-	var $ul = $('#qunit-fixture').html(`
-		<ul>
-			<li><span id="one"/></li>
-			<li><span id="two"/></li>
-		</ul>`)
-		.children();
+  var $ul = $("#qunit-fixture")
+    .html(
+      `
+    	<ul>
+    		<li><span id="one"/></li>
+    		<li><span id="two"/></li>
+    	</ul>`
+    )
+    .children();
 
-	$ul.on('click', 'li', handler);
-	$ul.off('click', 'li', handler);
+  $ul.on("click", "li", handler);
+  $ul.off("click", "li", handler);
 
-	clickIt( $('#three')[0] );
+  clickIt($("#three")[0]);
 });
 ```
+
 </details>
 
 ### What you need to know
@@ -356,6 +381,7 @@ QUnit.test('$.fn.off', function(){
 
 <details>
 <summary>Click to see the solution</summary>
+
 ```js
     off: function(eventType, selector, handler) {
       return $.each(this, function(i, element) {
@@ -376,11 +402,21 @@ QUnit.test('$.fn.off', function(){
       });
     }
 ```
-</details>
 
+@highlight 2-17
+
+</details>
 
 ## Complete solution
 
 @sourceref ./7-events-part-2-end.html
 @codepen
-@highlight 196-272,only
+@highlight 197-203,205-222,224-253,256-272,only
+
+```
+
+```
+
+```
+
+```

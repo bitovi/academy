@@ -14,7 +14,6 @@ We will learn about:
 
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQQSSVUteY_8gHdxcxuVeGXX548wxO_i_BfxGiohaYTuR_lskKGFIg9rCc-zfP-KIvckvqn2UvAOJ0O/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
-
 ## Setup
 
 Run the following example in CodePen:
@@ -23,7 +22,7 @@ Run the following example in CodePen:
 @codepen
 @highlight 138-141,only
 
-Each exercise builds on the previous exercise.  There is a completed solution
+Each exercise builds on the previous exercise. There is a completed solution
 at the end of this page.
 
 ## Exercise: `collection.attr( attrName [,value] )`
@@ -38,11 +37,12 @@ at the end of this page.
 ```html
 <a id="link-less">Bitovi</a>
 <script type="module">
-import "https://unpkg.com/jquery@3/dist/jquery.js";
+  import "https://unpkg.com/jquery@3/dist/jquery.js";
 
-$( "a" ).attr("href","https://bitovi.com");
+  $("a").attr("href", "https://bitovi.com");
 </script>
 ```
+
 @codepen
 
 <details>
@@ -51,18 +51,20 @@ $( "a" ).attr("href","https://bitovi.com");
 QUnit.test('$.fn.attr', function(){
 	equal( $('#qunit-fixture').attr('id'), 'qunit-fixture' ,'can read id' );
 
-	$('#qunit-fixture').html('<span></span><span></span>');
+    $('#qunit-fixture').html('<span></span><span></span>');
 
-	$('#qunit-fixture span').attr('foo','bar');
+    $('#qunit-fixture span').attr('foo','bar');
 
-	equal($('#qunit-fixture span')[0].getAttribute('foo'), 'bar', 'attribute set successfully');
-	equal($('#qunit-fixture span')[1].getAttribute('foo'), 'bar', 'attribute set successfully');
+    equal($('#qunit-fixture span')[0].getAttribute('foo'), 'bar', 'attribute set successfully');
+    equal($('#qunit-fixture span')[1].getAttribute('foo'), 'bar', 'attribute set successfully');
 
-	$('#qunit-fixture span')[0].setAttribute('foo','BAR');
+    $('#qunit-fixture span')[0].setAttribute('foo','BAR');
 
-	equal($('#qunit-fixture span').attr('foo'), 'BAR', 'read the first item in the collection\'s attr');
+    equal($('#qunit-fixture span').attr('foo'), 'BAR', 'read the first item in the collection\'s attr');
+
 });
-```
+
+````
 </details>
 
 ### What you need to know
@@ -84,9 +86,11 @@ QUnit.test('$.fn.attr', function(){
         return this[0] && this[0].getAttribute(attrName);
       }
     },
-```
-</details>
+````
 
+@highlight 2-8
+
+</details>
 
 ## Exercise: `collection.css( propertyName [,value] )`
 
@@ -100,11 +104,12 @@ QUnit.test('$.fn.attr', function(){
 ```html
 <div>Foo Bar</div>
 <script type="module">
-import "https://unpkg.com/jquery@3/dist/jquery.js";
+  import "https://unpkg.com/jquery@3/dist/jquery.js";
 
-$( "div" ).css("backgroundColor", "green");
+  $("div").css("backgroundColor", "green");
 </script>
 ```
+
 @codepen
 
 <details>
@@ -114,23 +119,25 @@ QUnit.test('$.fn.css', function(){
 	$('#qunit-fixture')
 		.html('<span>Content</span><span>Second</span>');
 
-	equal(
-		$('#qunit-fixture span').css('padding-left'),
-		'20px');
+    equal(
+    	$('#qunit-fixture span').css('padding-left'),
+    	'20px');
 
-	$('#qunit-fixture span').css('paddingLeft', '40px');
+    $('#qunit-fixture span').css('paddingLeft', '40px');
 
-	equal(
-		$('#qunit-fixture span').css('padding-left'),
-		'40px',
-		'first span set to 40px');
-	equal(
-		$('#qunit-fixture span:nth-child(2)')
-			.css('padding-left'),
-		'40px',
-		'second span set to 40px');
+    equal(
+    	$('#qunit-fixture span').css('padding-left'),
+    	'40px',
+    	'first span set to 40px');
+    equal(
+    	$('#qunit-fixture span:nth-child(2)')
+    		.css('padding-left'),
+    	'40px',
+    	'second span set to 40px');
+
 });
-```
+
+````
 </details>
 
 ### What you need to know
@@ -146,22 +153,23 @@ QUnit.test('$.fn.css', function(){
   console.log(theDiv.outerHTML)
   //logs "<div id="theDiv" style="color: red;">theDiv</div>"
   </script>
-  ```
-  @codepen
+````
+
+@codepen
 
 - The [window.getComputedStyle](https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle)
   returns an object containing the values of all CSS properties of an element.
   ```html
   <p id="theP">Hello</p>
   <style>
-  p {
-    color: green;
-  }
+    p {
+      color: green;
+    }
   </style>
   <script type="module">
-  let computedStyles = window.getComputedStyle(theP);
-  console.log( computedStyles.getPropertyValue('color') )
-  // logs "rgb(0, 128, 0)"
+    let computedStyles = window.getComputedStyle(theP);
+    console.log(computedStyles.getPropertyValue("color"));
+    // logs "rgb(0, 128, 0)"
   </script>
   ```
   @codepen
@@ -183,8 +191,10 @@ QUnit.test('$.fn.css', function(){
       }
     },
 ```
-</details>
 
+@highlight 2-10
+
+</details>
 
 ## Bonus Exercise: `collection.addClass(className)` and `collection.removeClass(className)`
 
@@ -197,18 +207,23 @@ The following changes the `<div>` from green to red after one second.
 
 ```html
 <style>
-.red {background-color: red}
-.green {background-color: green}
+  .red {
+    background-color: red;
+  }
+  .green {
+    background-color: green;
+  }
 </style>
 <div class="red" id="hi">Hello</div>
 <script type="module">
-import "https://unpkg.com/jquery@3/dist/jquery.js";
+  import "https://unpkg.com/jquery@3/dist/jquery.js";
 
-setTimeout(function(){
-	$("#hi").addClass("green").removeClass("red");
-},1000);
+  setTimeout(function () {
+    $("#hi").addClass("green").removeClass("red");
+  }, 1000);
 </script>
 ```
+
 @codepen
 
 <details>
@@ -223,29 +238,31 @@ QUnit.test('$.fn.addClass and $.fn.removeClass', function(){
 		return c;
 	};
 
-	var $divs = $('#qunit-fixture').html('<div class="foo"></div><div class="foob"></div>')
-		.children();
+    var $divs = $('#qunit-fixture').html('<div class="foo"></div><div class="foob"></div>')
+    	.children();
 
-	$divs.addClass('foo');
+    $divs.addClass('foo');
 
-	equal( 1, count( /foo/,$divs[0].className ), 'only one foo' );
-	equal( 1, count( /foo/,$divs[1].className ), 'only one foo' );
+    equal( 1, count( /foo/,$divs[0].className ), 'only one foo' );
+    equal( 1, count( /foo/,$divs[1].className ), 'only one foo' );
 
 
-	$divs.addClass('foob');
+    $divs.addClass('foob');
 
-	equal( 1, count( /foob/,$divs[0].className ), 'only one foo' );
-	equal( 1, count( /foob/,$divs[1].className ), 'only one foo' );
+    equal( 1, count( /foob/,$divs[0].className ), 'only one foo' );
+    equal( 1, count( /foob/,$divs[1].className ), 'only one foo' );
 
-	$divs.removeClass('foob');
-	equal( 0, count( /foob/,$divs[0].className ), 'only one foo' );
-	equal( 0, count( /foob/,$divs[1].className ), 'only one foo' );
+    $divs.removeClass('foob');
+    equal( 0, count( /foob/,$divs[0].className ), 'only one foo' );
+    equal( 0, count( /foob/,$divs[1].className ), 'only one foo' );
 
-	$divs.removeClass('foo');
-	equal( 0, count( /foo/,$divs[0].className ), 'only one foo' );
-	equal( 0, count( /foo/,$divs[1].className ), 'only one foo' );
+    $divs.removeClass('foo');
+    equal( 0, count( /foo/,$divs[0].className ), 'only one foo' );
+    equal( 0, count( /foo/,$divs[1].className ), 'only one foo' );
+
 });
-```
+
+````
 </details>
 
 ### What you need to know
@@ -264,8 +281,9 @@ QUnit.test('$.fn.addClass and $.fn.removeClass', function(){
     hi.classList.remove("red");
   },1000);
   </script>
-  ```
-  @codepen
+````
+
+@codepen
 
 ### The solution
 
@@ -283,12 +301,13 @@ QUnit.test('$.fn.addClass and $.fn.removeClass', function(){
         });
       }
 ```
+
+@highlight 2-9
+
 </details>
-
-
 
 ## Complete Solution
 
 @sourceref ./4-attributes-and-properties-end.html
 @codepen
-@highlight 138-167,only
+@highlight 139-145,148-156,159-167,only
