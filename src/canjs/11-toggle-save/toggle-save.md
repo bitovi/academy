@@ -30,9 +30,14 @@ changes. Also, disable the checkbox while the update is happening.
   ```
 
 
-## The solution
+## The Solution
+
+<details>
+<summary>Click to see the solution</summary>
 
 Update _index.stache_ to the following:
 
 @sourceref ./index.html
 @highlight 16-17,only
+
+</details>

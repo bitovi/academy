@@ -43,7 +43,10 @@
 - Use [https://canjs.com/doc/can-stache.helpers.if.html {{#if(value)}}] to do `if/else` branching in `can-stache`.
 - Use [https://canjs.com/doc/can-stache.helpers.for-of.html {{#for(of)}}] to do looping in `can-stache`.
 
-## The solution
+## The Solution
+
+<details>
+<summary>Click to see the solution</summary>
 
 Update _index.js_ to the following:
 
@@ -54,3 +57,5 @@ Update _index.stache_ to the following:
 
 @sourceref ./index.html
 @highlight 11-21,26,40,only
+
+</details>

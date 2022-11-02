@@ -21,9 +21,14 @@
    <div on:click="doSomething()"> ... </div>
    ```
 
-## The solution
+## The Solution
+
+<details>
+<summary>Click to see the solution</summary>
 
 Update _index.stache_ to the following:
 
 @sourceref ./index.html
 @highlight 14-16,only
+
+</details>

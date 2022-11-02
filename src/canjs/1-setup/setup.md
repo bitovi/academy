@@ -138,8 +138,10 @@
   ```
 
 
+## The Solution
 
-## The solution
+<details>
+<summary>Click to see the solution</summary>
 
 Create a folder:
 
@@ -198,3 +200,6 @@ npm install can-todomvc-test@5 --save-dev
 Create the main app
 
 @sourceref ./index.js
+
+
+</details>

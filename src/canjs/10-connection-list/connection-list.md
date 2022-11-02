@@ -15,12 +15,12 @@ Get all `todos` from the service layer using the "connected" `Todo` type.
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRrAKhe4VezwxYfJ1FJYPNPLNcrE8iu6xQPlxv3tzQbjIHaBmsUUmz-N3f2PFEmSjI4Z0lHPQWa5p3J/embed?start=false&loop=false&delayms=3000#slide=45" frameborder="0" width="640" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 - [The can-connect Presentation](https://docs.google.com/presentation/d/1ZuxUR9HXKyGqqG9HUQBqwqSJRFG5PJsRMdzZ1-TGAos/edit?usp=sharing#slide=45) up to and including _Important Interfaces_.
-- [https://canjs.com/doc/can-connect/can/map/map.getList.html Type.getList] gets data using the
+- [https://canjs.com/doc/can-connect/can/map/map.getList.html Map.getList] gets data using the
   [https://canjs.com/doc/can-connect/connection.getList.html connection’s getList] and returns a
-  promise that resolves to the `Type.List` of instances:
+  promise that resolves to the list of instances:
 
   ```js
-  Type.getList({}).then(function(list) {
+  Map.getList({}).then(function(list) {
 
   })
   ```
@@ -37,9 +37,14 @@ Get all `todos` from the service layer using the "connected" `Todo` type.
   }
   ```
 
-## The solution
+## The Solution
+
+<details>
+<summary>Click to see the solution</summary>
 
 Update _index.js_ to the following:
 
 @sourceref ./index.js
 @highlight 5,13-17,only
+
+</details>

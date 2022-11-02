@@ -26,7 +26,7 @@ is the list of todos that will be managed by the custom element.
 
 - [The can-stache-bindings presentation](https://docs.google.com/presentation/d/1xiu2fe_mIi37lNcAfTUnNXs-nSvLUDm8BADl_KJIC0g/edit?usp=sharing#slide=10) on _data bindings_.
 
-- The [https://canjs.com/doc/can-util/dom/attr/attr.special.focused.html focused] custom attribute can be used to specify when an element should be focused:
+- The [https://canjs.com/doc/can-attribute-observable.html#SpecialKeys focused] custom attribute can be used to specify when an element should be focused:
 
   ```html
   focused:from="shouldBeFocused()"
@@ -44,7 +44,10 @@ is the list of todos that will be managed by the custom element.
   <div on:click="doSomethingWith(this)" />
   ```
 
-## The solution
+## The Solution
+
+<details>
+<summary>Click to see the solution</summary>
 
 Create _components/todo-list/todo-list.stache_ as follows:
 
@@ -58,3 +61,5 @@ Update _index.stache_ to the following:
 
 @sourceref ./index.html
 @highlight 3,12,only
+
+</details>
