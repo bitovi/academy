@@ -137,7 +137,7 @@ We can call generic functions in two ways:
 
 ## Generic Classes ##
 
-Generic classes are quite common.  For example, [learn-rxjs RxJS] subjects are a generic class that can publish values of a particular type:
+Generic classes are quite common.  For example, [learn-rxjs/basics#observables-vs-subjects RxJS] subjects are a generic class that can publish values of a particular type:
 
 ```typescript
 const cardNumber = new Subject<string>();
@@ -424,5 +424,7 @@ class TreeNode<T> {
 
 export default TreeNode;
 ```
+
+@highlight 7-10,12, 17
 
 </details>

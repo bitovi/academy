@@ -100,7 +100,7 @@ Hint: the interface should have properties and types:
 ### The Solution
 
 <details>
-<summary>Solution</summary>
+<summary>Click to see the solution</summary>
 
 ✏️ Update `5a-dino-park.ts` to the following:
 
@@ -116,6 +116,8 @@ interface DinoPark {
 export default DinoPark;
 ```
 
+@highlight 3-7
+
 ✏️ Update `5a-address.ts` to the following:
 
 ```typescript
@@ -128,6 +130,8 @@ interface Address {
 
 export default Address;
 ```
+
+@highlight 2-5
 
 </details>
 
@@ -151,7 +155,7 @@ npm run 5-interfaces
 
 
 <details>
-<summary>Solution</summary>
+<summary>Click to see the solution</summary>
 
 ✏️ Update `5b-create-park-slug.ts` to the following:
 
@@ -162,5 +166,7 @@ export function createParkSlug(dinoPark: DinoPark) {
   return dinoPark.name.replace(/ /g, '-');
 }
 ```
+
+@highlight 3-4
 
 </details>

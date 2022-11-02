@@ -297,4 +297,6 @@ type Tyrannosaurus = Required<Dinosaur & { diet: Diet.Carnivore }>;
 export { Diet, Tyrannosaurus };
 ```
 
+@highlight 13
+
 </details>

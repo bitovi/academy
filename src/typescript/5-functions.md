@@ -166,6 +166,8 @@ because TypeScript can infer the return value from the arguments.
 The following is another
 valid solution:
 
+@highlight 1-4
+
 ```ts
 export function dnaCost(baseCost: number, ...sequences: string[]) {
   let sum = baseCost;
@@ -173,5 +175,7 @@ export function dnaCost(baseCost: number, ...sequences: string[]) {
   return sum
 }
 ```
+
+@highlight 1-4
 
 </details>
