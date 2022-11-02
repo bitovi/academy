@@ -82,4 +82,4 @@ __Success!__ You’ve completed this guide. Have questions or comments?
 [Join our Slack](https://www.bitovi.com/community/slack) and let us know in the [#canjs channel](https://bitovi-community.slack.com/messages/CFC22NZ8A)
 or our [forums](https://forums.bitovi.com/c/canjs)!
 
-</solution>
+</details>

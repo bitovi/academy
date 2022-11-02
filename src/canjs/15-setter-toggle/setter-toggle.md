@@ -60,4 +60,4 @@ Update _index.stache_ to the following:
 @sourceref ./index.html
 @highlight 10-12,only
 
-</solution>
+</details>

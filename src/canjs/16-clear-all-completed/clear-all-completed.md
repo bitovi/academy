@@ -35,4 +35,4 @@ Update _index.stache_ to the following:
 @sourceref ./index.html
 @highlight 31-32,only
 
-</solution>
+</details>
