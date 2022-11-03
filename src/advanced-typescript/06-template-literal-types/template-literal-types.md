@@ -1,17 +1,17 @@
 @page advanced-typescript/template-literal-types Template Literal Types
 @parent advanced-typescript 6
 
-@description Learn how to create new types with template literal types!
+@description Learn what template literal types are and how to empower them with unions, generics, conditional types, and `infer`!
 
 @body
 
 ## Overview
 
-Template literal types give us new ways to create types from string literals and string literal unions. in this section, we will see what they are, how to write them, and how they can be used to create new types with renamed keys.
+Template literal types give us new ways to create types from string literals and string literal unions. In this section, we will see what they are, how to write them, and how they can be used to create new types with renamed keys.
 
 ## Template Literal Types
 
-Template literal types allow us to combine string literals, just like how template literals in JavaScript allow us to combine strings. Like conditional types, the syntax for template literal types is identical to JavaScript’s and uses back ticks (\`) and `${}`.
+Template literal types allow us to combine string literals, just like how template literals in JavaScript allow us to combine strings. Like conditional types, the syntax for template literal types is identical to JavaScript’s and uses back ticks `` ` `` and `${}`.
 
 ```ts
 type TemplateLiteralTypes = "Template Literal Types";
@@ -147,7 +147,7 @@ type Padding = "padding-top" | "padding-left"; // ...
 type Margin = "margin-top" | "margin-left"; // ...
 ```
 
-<a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwA2ALT0Atiln1tUCPVFoouofG0wAHtvUBGArQTIQNRgykgA9ABUgQA65AAEgeEAovYwojxwMOHOYZHhAOIQAG4M4bQAFslgpFBQpADuEOS44QAGACIQojAYtBAUdfk2KuEArkn5MAZGyabmlt3C-aThYjByyXUACmgsLNW4XWjkLPUAsmiiuNV1vRUFEBgF4XAFpH1QewBGMGlRaLe04jXh4_GTPrkDoREqicKWKD5IrhDZgMC-cLodabOAQ3bhPRHE7kOAEd7vep1OruQmCDjhVYo34AXnCIRAyI2NV0pBQDPCAB96Yy1szcCYYGBaBz_P5wgRJWSbOFDsdquE6QysfLyKz2SAuTyVTjBcLReLJfiIlFiXV3v4wuTkk0Wm0QYqebQ2RzuQzYPrNW6QM9SLRnXpXTzxLgCiKQABuMJWmVU_mOnYCKOMGVynEJ8hJsIgZSKIA" target="_blank">Open in CodeSandbox</a>
+<a href="https://codesandbox.io/s/72i9li?file=/06-template-literal-types-ex-01.ts" target="_blank">Open in CodeSandbox</a>
 
 @sourceref ./exercise-01/ex-01.ts
 
@@ -155,19 +155,22 @@ type Margin = "margin-top" | "margin-left"; // ...
 <summary>Click to see the solution</summary>
 
 @sourceref ./exercise-01/soln-01.ts
+@highlight 1, 3-4
 
 </details>
 
+### Exercise 2
+
 Let's create a type that reverses `Getter<T>`. `FromGetter<T>` should take an object type and create a new type from all keys starting
 with `get`. The new type should have the key name be camel-cased and the type of the property should resolve to the `ReturnType` of
-the getter if its a function. If its not a function, it should resolve to whatever it was.
+the getter if it is a function. If it is not a function, it should resolve to whatever it was.
 
 ```ts
 type WithName = FromGetter<{ getName: () => string }>; // {name: string;}
 type NonFunction = FromGetter<{ getObject: object }>; // {object: object;}
 ```
 
-<a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwA2ALT0Atiln1tUCPVFoouofG0wAHtvUAmArQTIQNRgykgA9ABUgQA65AAEgeEAovYwojxwMOHOYZFpUQAyMLQA5HDhYjByyWjhghzlABZy4aIwAG7xSQUABgDiOeYAPAAqAHytBOGtAGKipHqdtD0DreFwVaQArlAs5WhYpRGkAEZEMBi05TbhaOTrRSVn4eQwAO4nlWATemdQUOFbAgUKaKK0CDkXAZcL3MxVEb4WhDcK9KrJO6PCrJRYrNbhGpNarJb63NB6ZK7ZIYAkwKykpLrc7rWgIp7JUhgHHhFATDgAgQLJardb1MhQbG0Ugs1oAJRyy1E5F6NnmTNBdOS0PM4QgzLMBTKYGW3EBFGGAEkNe5bqRjtrdUcIBQVGrjmjeXV4KRBclhWCavQmqJ7WC0HACBlQa1Q-5FacAOoQgByZPCAF5wuNJtMesBoXHCYhwgAKACUif6C1o4mBAG5FMX_P5wsByGScwoy7hK8GIlEUeEYxRRlb9REkympl14t0MzkAPL7Q60HN7A5HSvV2vABez-czpeKEOhjL-MIOFCkAEM5OvNNjgaJs7kATlsIgZSKIA" target="_blank">Open in CodeSandbox</a>
+<a href="https://codesandbox.io/s/iy9vq9?file=/06-template-literal-types-ex-02.ts" target="_blank">Open in CodeSandbox</a>
 
 @sourceref ./exercise-02/ex-02.ts
 
@@ -175,5 +178,6 @@ type NonFunction = FromGetter<{ getObject: object }>; // {object: object;}
 <summary>Click to see the solution</summary>
 
 @sourceref ./exercise-02/soln-02.ts
+@highlight 1-7
 
 </details>

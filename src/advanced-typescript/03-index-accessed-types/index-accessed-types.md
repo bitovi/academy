@@ -7,11 +7,11 @@
 
 ## Overview
 
-There are many times we would like to forego defining a type and rather use some other type as a reference instead. Index accessed types is a TypeScript feature that allows us to do just that! In this section, we will look at index accessed types, how they work, how their defined, and towards the end, we will see a practical application of them!
+There are many times we would like to forego defining a type and rather use some other type as a reference instead. Index Accessed Types is a TypeScript feature that allows us to do just that! In this section, we will look at index accessed types, how they work, and how they are defined. Towards the end we will see a practical application!
 
 ## Index Accessed Types
 
-Index accessed types are a way to look up types on other types. TypeScript uses square bracket notation (`[]`) to grab the desired type off of object types, much like how you can access a specific property from a JavaScript object using square brackets as well (`someObject["someKey"]`).
+Index accessed types are a way to look up types on other types. TypeScript uses square bracket notation (`[]`) to grab the desired type off of object types, much like how you can access a specific property from a JavaScript object using square brackets (`someObject["someKey"]`).
 
 ```ts
 type Pokemon = {
@@ -37,7 +37,7 @@ type Name = "name";
 type PokemonNameWithLiteralType = Pokemon[Name]; // string
 ```
 
-If a type provided is not able to index a particular type TypeScript will provide an error.
+If the type provided is not able to index a particular type, TypeScript will provide an error.
 
 ```ts
 type Pokemon = {
@@ -196,7 +196,7 @@ trainers in the array.
 An array is just an object indexed with a number
 </details>
 
-<a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwBmALQRybAB7bMGeHBgttg4dphH1ARgK0EyEDUYMpIAPQAqPwAdcgACPxCAIRgoUgB3EIg4ELRQtFFRNAEQ0jAQgAVSLBgAWwoQ2gy9GFEklJZkkIADADE0ADdScXoCotLyRvKhGBCMAFd0rygstDg4CFxyC3LSZPIBAmCwkIBVOfJccoALYcaUQpKKABVKxZqBtIys0XZZUyOTlIEB2IhaQ4brMM_nIQocZu8QnA0MVhnAwRxkklGmB2p1fjAehd-tlQn8YJtwhU0FUaglccdkulMhtQkFaSEAHwhAASeloiAJjJCAEFUlSsokQkRRgpVtkAEZEGAYWhkwxLH5_BrkUbFcXVAk-YJ2M6iWUeUVnXpXG7VJIAXhCAG1NiFgLaQiFyNCYIgQoEQNy4R6VA6QiiOl0Mec-m77aFHZHnTC3R68hAcBhDqMfX7HUaLHYAHKq9WiN0AJgArL6I5HBhw3TaQABRWAy8QYD0AXVL5cdclomCwcCracjwHKv1gsZAAEVRhBsDzaF3sD6K673SAs51imgoAuzrFqm6ACzqFTJDBjDIYARuhzqdQhRRt9uOwe0YdLj2XZP6DUgI-A0d16UVFOW5xLuIQOFeR4mOMmAXiEADsN53v2j5DrQI7LgAaqQUCygAyoqSYLr-y7_g2QHfiE26gQhkEntB56Xtet73uWrZ-khEYcY-frRq-IARKIpDzt-foBmi3QhhQYb9rxo4APLkBABipmWkYZoYOZqqBACcJb9sR1YAEpCVgC4egA4oJoz6C2LGRp23a9tayF2qh6Fvt2sBEUMo6rqI66bhRVH5iEB60aeMGMYhdnlk-L6jgAkoJoSXMSgU_j5y64fQ0TATuIVXoex4RQx8FFsxLlxWhfHGdOuFQBAbDeZWy61aZQUgSFcElsV9Gwdp0X9mxqlcRV5DNgA3MEwSAiErSBuimJ9CElqfFNlDKIoQA" target="_blank">Open in CodeSandbox</a>
+<a href="https://codesandbox.io/s/6syglj?file=/03-index-accessed-types-ex-01.ts" target="_blank">Open in CodeSandbox</a>
 
 @sourceref ./exercise-01/ex-01.ts
 
@@ -204,5 +204,6 @@ An array is just an object indexed with a number
 <summary>Click to see the solution</summary>
 
 @sourceref ./exercise-01/soln-01.ts
+@highlight 1, 3
 
 </details>
