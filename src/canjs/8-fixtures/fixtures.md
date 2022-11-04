@@ -81,7 +81,7 @@ __DELETE /api/todos/{id}__
   })
   ```
 
-- [https://canjs.com/doc/can-fixture.store.html can-fixture.store] - can be used to automatically filter records if given a [https://canjs.com/doc/can-set.Algebra.html schema].
+- [https://canjs.com/doc/can-fixture.store.html can-fixture.store] - can be used to automatically filter records if given a [https://canjs.com/doc/can-set-legacy.Algebra.html schema].
 
   ```js
   const entities = [ .... ];
@@ -89,9 +89,14 @@ __DELETE /api/todos/{id}__
   fixture("/api/entities/{id}", entitiesStore);
   ```
 
-## The solution
+## The Solution
+
+<details>
+<summary>Click to see the solution</summary>
 
 
 Create _models/todos-fixture.js_ as follows:
 
 @sourceref ./todos-fixture.js
+
+</details>

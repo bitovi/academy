@@ -28,9 +28,14 @@ attribute.
   map.isDestroying()
   ```
 
-## The solution
+## The Solution
+
+<details>
+<summary>Click to see the solution</summary>
 
 Update _index.stache_ to the following:
 
 @sourceref ./index.html
 @highlight 13,20,only
+
+</details>

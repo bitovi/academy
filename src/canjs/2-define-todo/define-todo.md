@@ -84,8 +84,13 @@ QUnit.equal(todo.complete, true, "toggleComplete works");
   ```
   @codepen
 
-## The solution
+## The Solution
+
+<details>
+<summary>Click to see the solution</summary>
 
 Create _models/todo.js_ as follows:
 
 @sourceref ./todo.js
+
+</details>
