@@ -77,7 +77,7 @@ window.PACKAGES = packages;
 	}
 
 	var openModal = function () {
-		console.log("You're deleing the Subscription Modal, aren't you?")
+		console.log("You're deleting the Subscription Modal, aren't you?")
 		console.log("That's okay; Looking for a job? Once you finish the course, head over to https://www.bitovi.com/jobs")
 
 		document.getElementById("email-modal").style.display = "block"
@@ -91,30 +91,12 @@ window.PACKAGES = packages;
 		})
 	}
 
-	var checkScrollDepth = function () {
-		var main = document.querySelector(".content > .main")
-
-		function amountScrolled () {
-			var mainHeight = Math.max(main.scrollHeight, main.offsetHeight, main.clientHeight)
-			var trackLength = mainHeight - (
-				window.innerHeight || (document.documentElement || document.body).clientHeight
-			)
-			var pageScrolled = Math.floor(main.scrollTop / trackLength * 100)
-
-			if (pageScrolled >= 20) {
-				main.removeEventListener("scroll", amountScrolled)
-				openModal()
-			}
-		}
-
-		main.addEventListener("scroll", amountScrolled)
-	}
-
 	if (document.querySelector && document.querySelector(".sidebar-left > ul > li.expanded > ul > li.current")) {
 		// ^ if we're on an internal page of the current academy lesson
-		if (!(/(^|;)\s*academyemailprovided=true(;|$)/g.test(decodeURIComponent(document.cookie)))) {
+		if (!(/(^|;)\s*academyemailprovided=true(;|$)/g.test(decodeURIComponent(document.cookie)))
+			&& (location.hostname !== "localhost" && location.hostname !== "127.0.0.1")) {
 			// ^ if the email-already-entered cookie doesn't exist
-			setTimeout(checkScrollDepth, 30 * 1000) // after 30 sec, if/as soon as scrolled 20% of page, open the modal 
+			setTimeout(openModal, 2 * 1000) // after 2 sec, open the modal 
 		}
 	}
 })();
