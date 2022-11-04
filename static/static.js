@@ -96,7 +96,7 @@ window.PACKAGES = packages;
 		if (!(/(^|;)\s*academyemailprovided=true(;|$)/g.test(decodeURIComponent(document.cookie)))
 			&& (location.hostname !== "localhost" && location.hostname !== "127.0.0.1")) {
 			// ^ if the email-already-entered cookie doesn't exist
-			setTimeout(openModal, 2 * 1000) // after 30 sec, if/as soon as scrolled 20% of page, open the modal 
+			setTimeout(openModal, 2 * 1000) // after 2 sec, open the modal 
 		}
 	}
 })();
