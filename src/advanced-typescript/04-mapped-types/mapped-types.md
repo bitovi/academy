@@ -7,11 +7,11 @@
 
 ## Overview
 
-Since their syntaxes are similar, before talking about mapped types we first will do a quick recap on using index signatures to define object types. Then we will look at what mapped types are and how to define them. Then we will explore some practical applications of mapped types and finally, we will take a look at some exercises where you will have the opportunity to build out some commonly used mapped types.
+Due to syntax similarity, let's do a quick recap on using index signatures to define object types. Then we will dive into what mapped types are and how to define them, followed by practical applciations of mapped types. Finally, we will work through exercises building out some commonly used mapped types.
 
 ## Index Signatures
 
-Index signatures are a way to define object types when you know the general shape of any object but nothing more specific than the key type and the value type. Let's imagine we have an object that looks something like this.
+Index signatures are a way to define object types when you know the general shape of any object but nothing more specific than the key type and the value type. Let's imagine we have an object that looks something like this:
 
 ```js
 const bag = {
@@ -48,11 +48,11 @@ const bag: Bag = {
   maxPotion: 2,
 };
 
-bag.maxPotion; // Ts says its a number
-bag.maxRevive; // Ts says its a number... but its not there...
+bag.maxPotion; // Ts says it's a number
+bag.maxRevive; // Ts says it's a number... but it's not there...
 ```
 
-With interfaces and other type definitions, you can add a ? to delineate the property is optional. This is not the case with types defined using index signatures. To achieve the optional type-safety with index signature type you can create a union with the value type and `undefined`.
+With interfaces and other type definitions, you can add a `?` to delineate the property is optional. This is not the case with types defined using index signatures. To achieve the optional type-safety with index signature type you can create a **union** with the value type and `undefined`.
 
 ```ts
 type BagWithUndefinedUnion = {
@@ -63,8 +63,8 @@ const bag: BagWithUndefinedUnion = {
   maxPotion: 2,
 };
 
-bag.maxPotion; // Ts says its a number | undefined
-bag.maxRevive; // Ts says its a number | undefined
+bag.maxPotion; // Ts says it's a number | undefined
+bag.maxRevive; // Ts says it's a number | undefined
 ```
 
 ### Requiring Certain Properties
@@ -115,7 +115,7 @@ It is possible to have more than one indexer and have different value types for 
 > **Tip:** For objects to be keyed with a union or something besides these three try the `Record` utlity type!
 
 <div style='text-align:center'>
-	<img src="../../static/img/advanced-typescript/string-number-symbol.png" />
+	<img src="./static/img/advanced-typescript/string-number-symbol.png" />
 </div>
 
 These three types have a strange relationship
@@ -218,7 +218,7 @@ firstThreePokemon[0] = "Pikachu";
 
 This extends to any required property added to the type as well.
 
-> **Note:** required propteries have access to all the syntaxes you are familiar with when defining object types with type and interface.
+> **Note:** required properties have access to all the syntaxes you are familiar with when defining object types with type and interface.
 
 Sticking with our `PokemonNameList` example type, although it looks like an array and even uses the array syntax, it doesn’t have some of the more fundamental properties of an array, like `.length`.
 
@@ -227,7 +227,7 @@ Sticking with our `PokemonNameList` example type, although it looks like an arra
 firstThreePokemon.length;
 ```
 
-Often times in development we need to know the length of a list, but it's not something we want to allow developers to overwrite. To accomplish this we can tweak our definition to include a `readonly` required length property.
+Often times in development we need to know the length of a list, but it is not something we want to allow developers to overwrite. To accomplish this we can tweak our definition to include a `readonly` required length property.
 
 ```ts
 type ReadonlyPokemonNameList = {
@@ -251,7 +251,7 @@ const firstThreePokemonObject: ReadonlyPokemonNameList = {
 console.log(firstThreePokemon.length); // 3
 ```
 
-> **Note:** In JavaScript the `firstThreePokemon` variable does have a `.length` property since it is an `Array`. TypeScript however, isn’t aware that its an array, instead it thinks its a `ReadOnlyPokemonList` which is why generally speaking you should avoid defining your arrays using an index signature. Instead you should use `Array<T>` or the shorthand `[]`.
+> **Note:** In JavaScript the `firstThreePokemon` variable does have a `.length` property since it is an `Array`. TypeScript however, is not aware that it is an array, instead it thinks it is a `ReadOnlyPokemonList` which is why generally speaking you should avoid defining your arrays using an index signature. Instead you should use `Array<T>` or the shorthand `[]`.
 
 ## Mapped Types
 
@@ -329,7 +329,7 @@ type ParitalPokemon = {
 
 ### Property Modifiers
 
-We saw it a little bit when looking at `Partial` but mapped types give us the opportunity to change two things about the properties of the type we are creating – whether or not it's optional and whether or not it's immutable. Like types defined with an index signature, the properties of a mapped type can be made immutable by applying the `readonly` modifier. Using the `readonly` modifier in a mapped type is exactly how the `Readonly` utility type in typescript works.
+We saw it a little bit when looking at `Partial` but mapped types give us the opportunity to change two things about the properties of the type we are creating – whether or not it's optional and whether or not it's immutable. Like types defined with an index signature, the properties of a mapped type can be made immutable by applying the `readonly` modifier. Using the `readonly` modifier in a mapped type is exactly how the `Readonly` utility type in Typescript works.
 
 ```ts
 /**
@@ -444,7 +444,7 @@ class Pokemon<T extends PokemonType> {
 }
 ```
 
-However, this has a flaw, it allows us to have duplicate types such as `["Fire", "Fire"]`. In this case, we need a type that has the original pokemon type and the list of the rest of the pokemon types. To create this we can use a mapped type that uses `Exclude` within its iteration.
+However, this has a flaw: it allows us to have duplicate types such as `["Fire", "Fire"]`. In this case, we need a type that has the original pokemon type and the list of the rest of the pokemon types. To create this we can use a mapped type that uses `Exclude` within its iteration.
 
 ```ts
 type PokemonTypes = {
@@ -496,7 +496,11 @@ type ToNumber<T> = To<T, number>;
 type Numberfied = ToNumber<{ level: string; age: string }>; // {level: number; age: number}
 ```
 
+<<<<<<< HEAD
 <a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwAWALQBbNCg4ttg4dpgAPbeoCMBWgmQgajBlJAB6AFReAOuQACLwCAUQsYUR44GACbfyCAgCEYKFIAdwCIOAC0APxyCIgMANMYjDQoWBYAgAMAFVIAHjqVAGkAPhqSgAs5TOyMAFdRUTcoAQDo2hLSWrRyARqCAIBVFBY5GNpuraEt2Yxe8nwcyoDSMB6YlFFSDlFaXjh44Ipauq6fWlIfALTe-gANwi_QC6Dg0WqEEYsxqrSWATqaCwWx2ATApEq6WhuHepAAcoNdAAjCJdUro0iiAKWNC6FCwFSZabRUTA7JoDmBCoQTmU6n1Uhdf4RGAvWrw0E1chE0miJYvcU1ZUOcUUhqEkkRZrtAIAXkRTRaARlWtE7QA3Gq9gFNXLIDBqgaNbLtcBYMCoIhJrRxMcLTl8N6FH7cBbFLqPB4Au6YJ7vaa5QG8DAE67RIolcqXh5_OqjUyOvqcgsA1HEQB5AAiFe9LAoAHJpoNoiWBP5_C4FJlyBBHhUAMq0TbF4DxE101MBXwgGcqccwfTQACCLBYowh3pnc_HKe96nn5EUVvIeZtQ5HBtKFx7fd5UAv9BPFMfMAAajyNo83s6mq-mcSpCYjA8yWh23AUN2CibB-UAQF-EAUAOaBgFOr6wfBciIYEBpjoEE66FOYAVNEh4BDSS5QKu67wHA3q-oMMBkYGREkUx_jHuB5Z1N0WSTN0pCDFA1TEdAmSXNsuwcKCNAjDAGC0J2kHTAAYsuACSAAyKwAEohAA-tB9AYQhFB1HsIQjFS3roZ-WE_jG47kJO3oAJyuUy3E2g2iYRA2oLkKQ0ycnAEC4M5xKwDMJTeYBwHzA29hwAAFAATAAzKlqUAJQLpR1EbnR04gIBxJzgEXnSQ2IY4v5fGBcFEJhRFUXfDFVVxbACVJWlmU5buQa2mg-KedG5lVb5oh1dkDU5E14VoJF-ztTEDadSB5CJQ4vVZblR4niAyiKEAA" >Open in CodeSandbox</a>
+=======
+<a href="https://codesandbox.io/s/sgfq7m?file=/04-mapped-types-ex-01.ts" target="_blank">Open in CodeSandbox</a>
+>>>>>>> origin/master
 
 @sourceref ./exercise-01/ex-01.ts
 
@@ -504,6 +508,7 @@ type Numberfied = ToNumber<{ level: string; age: string }>; // {level: number; a
 <summary>Click to see the solution</summary>
 
 @sourceref ./exercise-01/soln-01.ts
+@highlight 1-3
 
 </details>
 
@@ -525,7 +530,7 @@ type Picked = _Pick<{ name: string; age: number }, "age">; // {age: number}
 You may need to update the definition of `K` to get this type to work properly
 </details>
 
-<a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwAWALQBbNCg4ttg4dpgAPbeoBMBWgmQgajBlJAB6AFReAOuQACLwCAUQsYUR44GACbRH8ghOCAGRhaAHI4ANEYMRg5GNoACxiAAwAFCGxSgIBXWmgIQQDTQgDSgH1K6oC4ItJaqBYWtCxCgHdSAPxyCKq4FV7SXRjSACMiXNp2gBUatHJhtF7acXJcAKgmiLQoOvIIChaiuQCIOCSlld7atejt0hgAJjARZMCiZa7fZZUoAaVKBCSn1KKIcn1aAS6VSwAB4dotYQA-AIAXgCBwEAG4Ah4PAEdgB5AAiDKRgWCGO6Y2GZKx2BxwAC5DQK0QJzOuGpeBgYvItV0awiAUUi18IGlasJ1NpAWA0tl8sVokUyJRbKCAWJAAkIIx4uzLQEAJoDAL6ARCmAwYa0Ka1FAsArPGJsSAPBpPQHteEtKb4bbFd4tISFKaTURYAIoCEcURQARJDz-DF83H4gJE0nk8hU_wgZSKIA" >Open in CodeSandbox</a>
+<a href="https://codesandbox.io/s/pxg3i3?file=/04-mapped-types-ex-02.ts">Open in CodeSandbox</a>
 
 @sourceref ./exercise-02/ex-02.ts
 
@@ -533,5 +538,6 @@ You may need to update the definition of `K` to get this type to work properly
 <summary>Click to see the solution</summary>
 
 @sourceref ./exercise-02/soln-02.ts
+@highlight 4-6
 
 </details>

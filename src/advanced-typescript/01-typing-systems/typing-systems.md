@@ -5,7 +5,9 @@
 
 ## Overview
 
-Before jumping into some powerful TypeScript features, let’s step back for a second and look at types again. There will be no exercises in this section allowing us to focus on updating our mental model of how TypeScript perceives types which will be important in the coming sections. Previously we discussed what types are, they explain what you can and can’t do with a value. Given an object of the following type, we know what properties lie on it.
+Before jumping into some powerful TypeScript features, let’s step back for a second and look at types again. There will be no exercises in this section - allowing us to focus on updating our mental model of how TypeScript perceives types.
+
+As previously discussed, types explain what you can and can’t do with a value. Given an object of the following type, we know what properties lie on it.
 
 ```ts
 type ExampleType = {

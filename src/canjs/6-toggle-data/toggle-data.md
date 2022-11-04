@@ -22,9 +22,14 @@
    <input  value:bind="todo.name" />
    ```
 
-## The solution
+## The Solution
+
+<details>
+<summary>Click to see the solution</summary>
 
 Update _index.stache_ to the following:
 
 @sourceref ./index.html
 @highlight 14-15,only
+
+</details>

@@ -1,19 +1,19 @@
 @page advanced-typescript/conditional-types Conditional Types
 @parent advanced-typescript 5
 
-@description Learn how to create new types with conditional types!
+@description Learn how to create new types to simplify functions and enforce type safety with conditional types!
 
 @body
 
 ## Overview
 
-In this section, we will take a look at any and never again and the roles they play within TypeScript’s type system along with their impact when mixed in with other types. We will also look at conditional types, what they are, how they behave, and how they can make our function signatures simpler with little overhead by defining complex types. Finally, we will discuss another use of conditional types and introduce a new syntax – `infer` – which makes conditional types even more powerful.
+In this section, we will take a look at `any` and `never` again, the roles they play within TypeScript’s type system, along with their impact when mixed in with other types. We will also look at conditional types, what they are, how they behave, and how they can make our function signatures simpler with little overhead by defining complex types. Finally, we will discuss another use of conditional types and introduce a new syntax – `infer` – which makes conditional types even more powerful.
 
 ## Top and Bottom Types
 
-Within type systems there exists a top type and a bottom type. A top type is a type that contains all types, meaning any other type is assignable to it and a bottom type is a type that is assignable to nothing. Going back to thinking of types in TypeScript as sets, the top type would be a superset containing all the other types and the bottom type would be the empty set containing nothing. TypeScript has two top types – `any` and `unknown` and a single bottom type `never`.
+Within type systems there exists a top type and a bottom type. A top type contains all types, meaning any other type is assignable to it. A bottom type is assignable to nothing. Going back to thinking of types in TypeScript as sets, the top type would be a superset containing all the other types; the bottom type would be the empty set containing nothing. TypeScript has two top types – `any` and `unknown` and a single bottom type `never`.
 
-We briefly touched on any and `never` in the introductory course. As a quick recap, `any` variable assigned type any essentially opts out of typing, as it can be anything. `unknown` is just like any but the only thing assignable to it is any.
+We briefly touched on `any` and `never` in the introductory course. As a quick recap, any variable assigned type `any` essentially opts out of typing, as it can be anything. `unknown` is just like any but the only thing assignable to it is `any`.
 
 ```ts
 let anything: any = 1;
@@ -32,7 +32,7 @@ function throwError(message: string): never {
 }
 ```
 
-…and when TypeScript has exhausted all possible cases and determines a block of code won't run.
+…and when TypeScript has exhausted all possible cases and determines a block of code won't run:
 
 ```ts
 function primaryColorsToHexMessage(primaryColor: "red" | "blue" | "yellow") {
@@ -56,7 +56,7 @@ type UnionWithAny = string | any; // any
 type UnionWithNever = string | never; // string
 ```
 
-Type intersections with any behave in a similar way – a type intersected with `any` is `any`. never has a different behavior though and a type intersected with `never` is `never`.
+Type intersections with `any` behave in a similar way – a type intersected with `any` is `any`. `never` has a different behavior though and a type intersected with `never` is `never`.
 
 ```ts
 type IntersectionWithAny = string & any; // any
@@ -69,8 +69,8 @@ Unions with bottom types will be especially important for us moving forward as w
 
 Conditional types act exactly as conditional statements do in programming – the output is based on whether or not an input satisfies a given condition. Conditional types allow us to define different types based on the type passed in as an input. The syntax for conditional types mimics that of a JavaScript ternary and the condition is specified just like a constraint on a generic.
 
-```
-Type extends OtherThing ? TypeIfConditionIsMet : TypeIfConditionIsNotMet
+```ts
+type extends OtherThing ? TypeIfConditionIsMet : TypeIfConditionIsNotMet
 ```
 
 One of the best ways to illustrate the utility of conditional typing is to see how it can help simplify overloaded functions. Take the `createBattle` function shown below.
@@ -101,7 +101,7 @@ const trainer = createBattle("trainer-battle"); // Type is TrainerBattle
 const wild = createBattle("wild-pokemon-battle"); // Type is WildPokemonBattle
 ```
 
-The function overloads show we want the outputted type for the function to be based on the type put in, in this case, if `"trainer-battle"` is input, `TrainerBattle` should be outputted and if `"wild-pokemon-battle"` is input, `WildPokemonBattle` should be output. We can use generics and conditional types to simplify this function signature.
+The function overloads show we want the output type for the function to be based on the type put in. In this case, if `"trainer-battle"` is input, `TrainerBattle` should be the output; if `"wild-pokemon-battle"` is input, `WildPokemonBattle` should be output. We can use generics and conditional types to simplify this function signature.
 
 ```ts
 type BattleTypes = "trainer-battle" | "wild-pokemon-battle";
@@ -302,7 +302,7 @@ type BattleInformation<BattleType, Battle> = Battle extends {
 Next, we need a way to get rid of the `battleType` key from this new type. Luckily for us, TypeScript provides a utility type that does just that – `Exclude`. Exclude takes two unions and **excludes** the members of the second union from the first. As you might have guessed, `Exclude` uses conditional types under the hood to provide this functionality. For our case, we want to exclude `battleType` from the keys of the battle.
 
 ```ts
-Exclude<keyof Battle, "battleType">
+Exclude<keyof Battle, "battleType">;
 ```
 
 Our final step is to map over these and reconstruct the type. To do this, let's define a `FormatBattle` type that does this for us and pass our refined `Battle` type into it.
@@ -364,7 +364,7 @@ function emitBattleStart<BattleType extends PokemonBattles["battleType"]>(
 }
 ```
 
-## A new and Powerful Syntax
+## A New and Powerful Syntax
 
 Another use case of conditional types is to give us access to types we wouldn’t normally have access to by allowing us to unwrap types. A greater example of this is an `ArrayElement` type which checks if the type is an array and if it is, uses index accessed types to grab the shape inside.
 
@@ -400,7 +400,7 @@ type ReturnType<T extends (...args: any) => any> = T extends (
   : any;
 ```
 
-Conditional type’s refinement makes it a powerful utility. We’ve seen how conditional types can be used to simplify function signatures and create robust types for complex functions. Conditional types and `infer` will play a big role in our last section: template literal types.
+Conditional type's refinement makes it a powerful utility. We’ve seen how conditional types can be used to simplify function signatures and create robust types for complex functions. Conditional types and `infer` will play a big role in our last section: template literal types.
 
 ## Exercises
 
@@ -422,7 +422,11 @@ type WildPokemonBattleNoBattleType = _Exclude<
 >; // "challengingPokemon"
 ```
 
+<<<<<<< HEAD
 <a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwBWALQ1yLCLQgU0UbYOHaYAD23qAjAVoJkIPfUZIQAegBUvgB1yAAJfYIBRaxhRHjgYYPsg0KSwgHV4gFc4lmCbDCgMtmCIEIp40jBg2gALeJs0AFsUWDhikJr49wZaYIqq6ohWuIwjCgIU4IAZGFoAclbaNCx4tGCG0gbuqtJgsRg5eI6qoXKM0TioADd4AgjrAqLF5YWAdx38cmiIDDgJgAMACp_YJofTBP4AVWBoJyohg62uC1qa3hMAARtFWiVwVDgmBRBtwUDxiFAqTwX8_s4JhZ4qloCwAAqkZbrcgAITktFgwQAvMFgBNgsE0VzYACTohggEQC8GdoUCz4RRtKLaNyYDKANxC3bVUywci4Eq4ZmsihShTiI068mKW3Jcm04L0qBMpVsznq2AAOVIXo1Eo4fOCAH1IvlCjAADzLAR9V3u80csUwFTSkBqwMnGUAPi1wW83gzGH1UENxqNZuV5Bl_0pKW8QWd4eskbY0YB6YhuZDoIEtpAykUQA" >Open in CodeSandbox</a>
+=======
+<a href="https://codesandbox.io/s/1gvoo5?file=/05-conditional-types-ex-01.ts" target="_blank">Open in CodeSandbox</a>
+>>>>>>> origin/master
 
 @sourceref ./exercise-01/ex-01.ts
 
@@ -430,6 +434,7 @@ type WildPokemonBattleNoBattleType = _Exclude<
 <summary>Click to see the solution</summary>
 
 @sourceref ./exercise-01/soln-01.ts
+@highlight 1
 
 </details>
 
@@ -446,7 +451,7 @@ type FlatString = Flatten<string>; // string
 type NestedNumberArray = Flatten<Array<Array<number>>>; // number []
 ```
 
-<a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwBWALQ1yLCLQgU0UbYOHaYAD23qATAVoJkIPfUZIQAegBUvgB1yAAIAUWsYUR44GGD7IODAkN9ggBkYWgByOGCAIwBXaBZg0nzaYLQQmzQAWxRYYLgIGug0UWDaUmCAAwBBUVE0AVDYGoZabuCUUVIANwg2YtyBDoALWIAVIRgAZTEJcpZSDHyxxjljEIAKADkujHWL8lw8lahSUiwIZ-DDYPyUABCACUCSSiR6ADFZLQPJM4KtSlBimIYHJYmhguQYAB3DrbNZyf7kbEKHJtQYCHLLErY4KwWYwKAEMFgnrdbrONkWWLQuQeGAsHa0cTPfqU4IAXmCfNhDAAPApRbgANoAXQAfMFvN5GiLvrhuQTZcLlVKZTCPIr9c8tTq9crWcl8Rxgjd4PQWDdTrlIuKhubZVb_QJ5SH5eQfZENTHtbrIzVfe11WyOd0wd4gjyLfyFRstdLKgIANxBLPGy0MQWmg0hwOV8jW5XqjXFuMOg3l10mm0vaVBhVKg2t9tD55d2LuhSC72Jv0DAP9hthheh8MJpMxkf2jeRYIpyjKRRAA" >Open in CodeSandbox</a>
+<a href="https://codesandbox.io/s/r5ch7w?file=/05-conditional-types-ex-02.ts">Open in CodeSandbox</a>
 
 @sourceref ./exercise-02/ex-02.ts
 
@@ -454,5 +459,6 @@ type NestedNumberArray = Flatten<Array<Array<number>>>; // number []
 <summary>Click to see the solution</summary>
 
 @sourceref ./exercise-02/soln-02.ts
+@highlight 1
 
 </details>

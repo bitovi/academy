@@ -20,7 +20,10 @@ Make the "Clear completed" button work. When the button is clicked, It should de
    <div on:click="doSomething()"> ... </div>
    ```
 
-## The solution
+## The Solution
+
+<details>
+<summary>Click to see the solution</summary>
 
 Update _models/todo.js_ to the following:
 
@@ -31,3 +34,5 @@ Update _index.stache_ to the following:
 
 @sourceref ./index.html
 @highlight 31-32,only
+
+</details>
