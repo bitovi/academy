@@ -13,7 +13,7 @@ In this part, we will:
 
 ## P1: How to Verify Your Solution is Correct
 
-If you've implemented the solution correctly you should now be able to navigate to <a href="http://localhost:4200/order-history" target="\_blank">http://localhost:4200/order-history</a> and see orders be created, updated or removed without refreshing the page!
+If you've implemented the solution correctly you should now be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see orders be created, updated or removed without refreshing the page!
 
 ## Install Socket.io Client and Types
 

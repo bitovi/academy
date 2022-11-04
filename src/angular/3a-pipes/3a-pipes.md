@@ -43,7 +43,7 @@ This will generate a pipe file: `image-url.pipe.ts`
 
 ## How to Build a Pipe
 
-<a href="https://angular.io/guide/pipes" target="\_blank">Angular Pipes</a> come in handy to transform content in our templates. Pipes allow us to transform data to display to the user in our HTML without modifying the original source.
+<a href="https://angular.io/guide/pipes">Angular Pipes</a> come in handy to transform content in our templates. Pipes allow us to transform data to display to the user in our HTML without modifying the original source.
 
 Angular comes with several built-it pipes like DatePipe, UpperCasePipe, LowerCasePipe, CurrencyPipe, and PercentPipe. These pipes can be used in templates to modify the way data displays. We can build custom pipes as well. Pipes require one parameter - the value we want to change, but can take an additional parameters as well.
 

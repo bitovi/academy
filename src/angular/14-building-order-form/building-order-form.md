@@ -80,7 +80,7 @@ The order form component needs to get the restaurant from the route slug, and ne
 - Listen to form value changes (you learned this in previous sections! ✔️)
 - Add validation:
 
-  This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation" target="\_blank">validation</a>. Here's an example of a form with form controls with different validation, and one that's value is set to an array.
+  This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation" >validation</a>. Here's an example of a form with form controls with different validation, and one that's value is set to an array.
 
   ```typescript
   function coolKidsChecker(isACoolKid: string): ValidatorFn {
@@ -117,7 +117,7 @@ The order form component needs to get the restaurant from the route slug, and ne
 
 ## Importing 3rd Party Plugins
 
-In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let's import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started" target="\_blank">ngx-bootstrap</a>:
+In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let's import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started" >ngx-bootstrap</a>:
 
 ✏️ Run:
 
@@ -198,7 +198,7 @@ Go ahead and put your new component in the order history component.
 
 ## Component Interaction
 
-Components in Angular can pass data back and forth to each other through the use of <a href="https://angular.io/api/core/Input" target="_blank">@Input</a> and <a href="https://angular.io/api/core/Output" target="_blank">@Output</a> decorations.
+Components in Angular can pass data back and forth to each other through the use of <a href="https://angular.io/api/core/Input" >@Input</a> and <a href="https://angular.io/api/core/Output" >@Output</a> decorations.
 
 @sourceref ./component-interaction.html
 @codepen
@@ -290,7 +290,7 @@ Create an `itemsChanged` EventEmitter property that emits the `selectedItems` va
 
 ## Emitting Data to Parent Components
 
-To pass data to parent components in Angular, the <a href="https://angular.io/api/core/EventEmitter" target="_blank">EventEmitter</a> class is used in combination with the <a href="https://angular.io/api/core/Output" target="_blank">Output decorator</a>. The Output decorator marks a property to be listened to during change detection, and we call the `emit` method to broadcast the property's new value.
+To pass data to parent components in Angular, the <a href="https://angular.io/api/core/EventEmitter" >EventEmitter</a> class is used in combination with the <a href="https://angular.io/api/core/Output" >Output decorator</a>. The Output decorator marks a property to be listened to during change detection, and we call the `emit` method to broadcast the property's new value.
 
 The parent component is listening for a change on the child component's property and calls a function on that change that takes a parameter of the updated value.
 
@@ -300,7 +300,7 @@ The parent component is listening for a change on the child component's property
 
 ## Programmatically Updating FormControl Values
 
-When we have a formControl we need to update programmatically with a value we can use the <a href="https://angular.io/api/forms/FormControl#patchvalue" target="_blank">`patchValue`</a> method on the `FormControl` class. This method must be called on a FormControl instance and with a parameter of the new value.
+When we have a formControl we need to update programmatically with a value we can use the <a href="https://angular.io/api/forms/FormControl#patchvalue" >`patchValue`</a> method on the `FormControl` class. This method must be called on a FormControl instance and with a parameter of the new value.
 
 @sourceref ./form-patch-value.html
 @codepen
@@ -329,7 +329,7 @@ When we have a formControl we need to update programmatically with a value we ca
 
 ## Control Value Accessor
 
-Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the <a href="https://angular.io/api/forms/ControlValueAccessor" target="_blank">Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.
+Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the <a href="https://angular.io/api/forms/ControlValueAccessor" >Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.
 
 ✏️ Update **src/app/order/menu-items.component.ts**
 
@@ -339,11 +339,11 @@ Other concepts used here:
 
 ### forwardRef
 
-<a href="https://angular.io/api/core/forwardRef" target="\_blank">https://angular.io/api/core/forwardRef</a> Used to reference a token that may not be defined when we need it.
+<a href="https://angular.io/api/core/forwardRef">https://angular.io/api/core/forwardRef</a> Used to reference a token that may not be defined when we need it.
 
 ### NG_VALUE_ACCESSOR
 
-<a href="https://angular.io/api/forms/NG_VALUE_ACCESSOR" target="\_blank">https://angular.io/api/forms/NG_VALUE_ACCESSOR</a> Used to provide the control value accessor for a form control.
+<a href="https://angular.io/api/forms/NG_VALUE_ACCESSOR">https://angular.io/api/forms/NG_VALUE_ACCESSOR</a> Used to provide the control value accessor for a form control.
 
 ### Use New Menu Items Component in Order Form
 
