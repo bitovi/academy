@@ -52,8 +52,8 @@ Each section of the guide is broken down into the following sections:
 - [learn-rxjs/basics] - Learn how to create observables
 - [learn-rxjs/angular] - Read and write to observables in Angular
 - [learn-rxjs/clean-card-number] - How to use `map`
-- [learn-rxjs/debugging] - How to debug observables without messing up state
 - [learn-rxjs/card-error] - Use `map` again
+- [learn-rxjs/debugging] - How to debug observables without messing up state
 - [learn-rxjs/error-on-blur] - Only show the card error when blurred - `merge`, `scan`
 - [learn-rxjs/expiry] - Read, validate, and show the error of the expiry
 - [learn-rxjs/cvc] - Read, validate, and show the error of the CVC
@@ -91,3 +91,8 @@ be a useful reference for understanding how the tutorial works:
   background.
 - This guide uses Angular. However, most of the Angular parts are explained. Angular experience is
   not required; however, experience in some other modern web framework **is** required.
+
+## Next Steps
+
+Head over to the [first lesson](learn-rxjs/basics) and learn about observables.
+
