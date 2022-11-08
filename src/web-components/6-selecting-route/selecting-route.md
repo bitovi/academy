@@ -104,10 +104,11 @@ element.classList.add('some-new-class');
 
 Add a reference to the `#selected-route` element in the constructor. When the API call completes update this element as needed and add the `route-selected` class so that it will be highlighted.
 
+<details>
+<summary>Click to see the solution</summary>
+
 @sourceref ./index.html
 @highlight 169-173,227,238,256-258,266-294,only
 @codepen
 
-<p style="font-weight: bold; text-align: center;">
-[learn-web-components/display-markers 👉 Display markers for vehicles]
-</p>
+</details>

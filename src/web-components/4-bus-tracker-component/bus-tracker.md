@@ -35,6 +35,7 @@ We want to build a component that displays the CTA bus tracker routes and displa
 The styles for our `bus-tracker` component should be contained within Shadow DOM. The CSS needed for the rest of the guide is:
 
 ```css
+/* CSS to copy */
 :host {
   display: flex;
   flex-direction: column;
@@ -169,6 +170,7 @@ p {
   font-size: 14px;
 }
 ```
+@highlight 1,only
 
 The minimal markup needed for this component is:
 
@@ -269,10 +271,11 @@ customElements.define('parent-element', ParentElement);
 
 ✏️ Create a new component called `bus-tracker`. Use the CSS and markup provided and place them in a `<template>` with the id of `#bt-template`. Create a shadowRoot for this element and append a clone of the template.
 
+<details>
+<summary>Click to see the solution</summary>
+
 @sourceref ./index.html
 @highlight 16,18-168,205-217,only
 @codepen
 
-<p style="font-weight: bold; text-align: center;">
-[learn-web-components/listing-routes 👉 Listing routes]
-</p>
+</details>

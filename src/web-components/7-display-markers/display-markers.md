@@ -83,6 +83,7 @@ kid.age = 4;
 console.log(kid.age);
 ```
 @codepen
+@highlight 2-10
 
 We can use getters/setters within custom element classes as well.
 
@@ -121,6 +122,7 @@ setTimeout(() => counter.count--, 15000);
 </script>
 ```
 @codepen
+@highlight 15-22
 
 ### Default values
 
@@ -145,10 +147,11 @@ class DogElement extends HTMLElement {
 
 ✏️ Add default values for `markers` and `vehicles` in the constructor (use an underscore property for vehicles). Add a getter/setter pair for `vehicles`, where the setter creates new markers on the map with `new google.maps.Marker`.
 
+<details>
+<summary>Click to see the solution</summary>
+
 @sourceref ./index.html
 @highlight 204-205,219-242,267,306,309,only
 @codepen
 
-<p style="font-weight: bold; text-align: center;">
-[learn-web-components/customize-header 👉 Customize header styles]
-</p>
+</details>
