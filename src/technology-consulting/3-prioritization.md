@@ -19,28 +19,27 @@ prioritize what should be done.
 
 Developing a viable product is one of the most difficult challenges
 anyone will undertake. However, there are some processes that
-__must__ be followed to achieve success.
+**must** be followed to achieve success.
 
+**No matter what stage of the product delivery cycle you are in, you should:**
 
-No matter what stage of the product delivery cycle you are in, you should:
+<input type="checkbox"/> Have clearly articulated and measurable [learn-technology-consulting/goals goals].
 
-- <input type="checkbox"/> Have clearly articulated and measurable [learn-technology-consulting/goals goals].
-- <input type="checkbox"/> Document what needs to be done in a prioritized backlog. ([Backlogs](#backlog)).
+<input type="checkbox"/> Document what needs to be done in a prioritized backlog. ([Backlogs](#backlogs)).
 
+**Before starting a new product, your team should:**
 
-Before starting a new product, your team should:
+<input type="checkbox"/> Demonstrate product viability. ([Product Validation](#product-validation))
 
-- <input type="checkbox"/> Demonstrate product viability. ([Product Validation](#product-validation))
+**In ongoing product development, a product team should:**
 
-In ongoing product development, a product team should:
+<input type="checkbox"/> Ingest customer feedback regularly and use it to update the backlog ([Continuous Exploration](#continuous-exploration))
 
-- <input type="checkbox"/> Ingest customer feedback regularly and use it to update the backlog ([Continuous Exploration](#continuous-exploration))
-
-The course goes over how to perform these processes.
+This lesson goes over how to implement these processes.
 
 ## Backlogs
 
-A [backlog](https://en.wikipedia.org/wiki/Scrum_(software_development)#Product_backlog) is an ordered list of things that need to be done within a project. This is the output of the [Continuous Exploration](#continuous-exploration)
+A [backlog](<https://en.wikipedia.org/wiki/Scrum_(software_development)#Product_backlog>) is an ordered list of things that need to be done within a project. This is the output of the [Continuous Exploration](#continuous-exploration)
 process. Backlogs come in many shapes and sizes:
 
 - Sometimes there is a single backlog, and other times there are multiple.
@@ -55,7 +54,6 @@ The following are some generally accepted best practices:
 
 For how to allocate backlog work, read the next page: [learn-technology-consulting/development].
 
-
 Further reading:
 
 - [Product Backlog](https://www.scrum-institute.org/The_Scrum_Product_Backlog.php) - All things that need to be done within a project.
@@ -63,14 +61,14 @@ Further reading:
 - SAFe [Program and Solution Backlogs](https://www.scaledagileframework.com/program-and-solution-backlogs/):
   - Solution Backlog - A [capability](https://www.scaledagileframework.com/solution/) backlog.
   - Program Backlog - A feature backlog.
-- Safe [Team Backlog](https://www.scaledagileframework.com/team-backlog/) - A user story backlog.
+- SAFe [Team Backlog](https://www.scaledagileframework.com/team-backlog/) - A user story backlog.
 
 ## Product Validation
 
 [Product Validation](https://svpg.com/product-validation/) is the process of
 making sure the product will be successful without actually building the
 product. While many of the [Continuous Exploration](#continuous-exploration) section's techniques (like prototyping) should also be used to validate your product,
-the following list of techniques useful at the start of a new product or major
+the following list of techniques can be useful at the start of a new product or major
 feature:
 
 - [Customer Letter](https://svpg.com/the-customer-letter/) - Write up an imagined press release or letter to a customer advocating for the product or feature's benefits.
@@ -78,15 +76,13 @@ feature:
 - [Concierge method](http://ibuildmvps.com/blog/the-concierge-minimum-viable-product-maximizes-customer-learning) - Manually do the work your app would do.
 - [Reference customers](https://svpg.com/the-power-of-reference-customers/) - Find 6 reference customers before you launch in the marketplace.
 
-
 ## Continuous Exploration
 
 [Continuous Exploration](https://www.scaledagileframework.com/continuous-exploration/)
-is the process for determining what should be in the [product backlog](https://en.wikipedia.org/wiki/Scrum_(software_development)#Product_backlog). At its most basic, this process consists of:
+is the process for determining what should be in the [product backlog](<https://en.wikipedia.org/wiki/Scrum_(software_development)#Product_backlog>). At its most basic, this process consists of:
 
-1. Collecting qualitative and quantitative data from the products stakeholders and users. ([Collecting research data](#collecting-research-data))
+1. Collecting qualitative and quantitative data from the products stakeholders and users. ([Collecting research data](#collecting-data))
 2. Analyzing that data and determining what should be done. ([Prioritization Techniques](#prioritization-techniques))
-
 
 ### Collecting data
 
@@ -101,7 +97,7 @@ helps inform which features get added to the backlog. This data should be
 reviewed and discussed periodically (every 1-3 sprints).
 The following list several techniques:
 
-__Passive__
+**Passive**
 
 - Analytics - See how your users are using the site.
 - Customer feedback - Prompt users to submit features, rate pages, give feedback.
@@ -111,7 +107,7 @@ __Passive__
 - Public APIs - Allow the community to build new ideas on top of your platform.
 - Customer Support - Capture customer support requests.
 
-__Active__
+**Active**
 
 - Surveys
   - Feature Poll - Poll your users on what features they would like to see.
@@ -127,7 +123,6 @@ __Active__
 Once you have some data, it's time to prioritize features for the backlog. The
 following are a number of different prioritization techniques:
 
-
 - [User Story Mapping](https://manifesto.co.uk/user-story-mapping/) -
   Complete the most essential workflow first.
 - [Rice](https://www.intercom.com/blog/rice-simple-prioritization-for-product-managers/) - `SCORE = Reach * Impact * Confidence / Effort`
@@ -140,14 +135,12 @@ following are a number of different prioritization techniques:
 
 Additional Reading:
 
-- [7 product prioritization frameworks for product managers](https://roadmunk.com/guides/product-prioritization-techniques-product-managers/)
+- [9 product prioritization frameworks for product managers](https://roadmunk.com/guides/product-prioritization-techniques-product-managers/)
 - [7 Strategies to Choose the Best Features for Your Product](https://www.productplan.com/strategies-prioritize-product-features/)
 
 ## Roles
 
-
 ### Product Management
-
 
 From [Product Manager vs Product Owner](https://medium.com/@melissaperri/product-manager-vs-product-owner-57ff829aa74d), a good Product Manager is taught how to prioritize work against clear outcome oriented goals, how to discover and validate real customer and business value, and what processes are needed to reduce the uncertainty that the product will succeed in market.
 
@@ -165,16 +158,16 @@ From [Product Manager vs Product Owner](https://medium.com/@melissaperri/product
 
 - Accept the completed user stories to make sure the work fulfills the criteria.
 
-
 Definitions:
 
 - [SAFe Product Owner](https://www.scaledagileframework.com/product-owner/)
-- [Scrum Guide Product Owner](https://www.scrumguides.org/scrum-guide.html#team-po)
+- [Scrum Guide Product Owner](https://scrumguides.org/scrum-guide.html#product-owner)
 
-## Introducing these concepts
+<!-- TODO: Requires Content Creation -->
+<!-- ## Introducing these concepts -->
 
-_TODO_
+<!-- _TODO_ -->
 
-- Understand why these things are important.
-- Ask why an entry in the backlog was added.
-- Review the checklist.
+<!-- - Understand why these things are important. -->
+<!-- - Ask why an entry in the backlog was added. -->
+<!-- - Review the checklist. -->

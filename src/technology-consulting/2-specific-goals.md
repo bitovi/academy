@@ -5,14 +5,14 @@
 
 @body
 
-## Overview
+## What is the Goal?
 
 The primary goal of a technology consultant is to add value to your client.
 
 The primary goal of your client _should_ be to add value to
-their customers. Therefore, [learn-technology-consulting/prioritization prioritization] techniques and methodologies must also be designed to add value to customers.
+their customers. Which is why the next lesson is on [learn-technology-consulting/prioritization prioritization] techniques and methodologies that must also be designed to add value to customers.
 
-But the first step in managing a project is to establish clear goals
+But before that can be accomplished, a consultant's first step in managing a project is to establish clear goals
 that are well understood by everyone throughout
 the organization. When everyone understands the goals of the product or company, they
 are more likely to make decisions, large or small, that contribute effectively to the product or company.
@@ -23,13 +23,13 @@ These goals are usually encapsulated by the:
 - Performance Indicators
 - Strategy statement
 
-
 ## Mission Statement
 
-A [Mission statement](https://en.wikipedia.org/wiki/Mission_statement) is a
+A [Mission Statement](https://en.wikipedia.org/wiki/Mission_statement) is a
 single sentence that describes what the project aspires to be. It should include
 a description of how value is added to customers.
 
+Write the product or company's Mission Statement here:
 <textarea placeholder="What is the product or company's mission statement?" style="width: 640px"></textarea>
 
 Examples:
@@ -40,12 +40,13 @@ Examples:
 ## Performance Indicators
 
 A [performance indicator](https://en.wikipedia.org/wiki/Performance_indicator) (PI) is
-a quantitative measurement that indicates the project has been successful. __Key__
+a quantitative measurement that indicates the project has been successful. **Key**
 performance indicators (KPIs) tend to be those that most affect the bottom line
 directly. Often, it can be worth having additional performance indicators that,
-if accomplished, strongly suggest the __key__ performance indicators will
+if accomplished, strongly suggest the **key** performance indicators will
 be achieved.
 
+Write at least one Key Performance Indicator and one Performance Indicator here:
 <textarea placeholder="How will the project measure success?" style="width: 640px"></textarea>
 
 Example:
@@ -62,18 +63,18 @@ A strategy statement outlines how you will achieve the
 project's goals (performance indicators). It should describe the competitive
 advantage the project is looking to create.
 
+Write an example strategy statement here:
 <textarea placeholder="What is the strategy for accomplishing the project's goals?" style="width: 640px"></textarea>
 
 Example:
 
 - _Combine the desktop and mobile sites for an improved user experience, site parity, and centralized ownership._
 
-## Introducing These Concepts
+<!-- TODO: NEEDS CONTENT CREATION -->
+<!-- Implementation -->
 
-_Todo_:
-
-- Read this content
-- Ask for the mission and goals at the start of every project.
+<!-- - Read this content -->
+<!-- - Ask for the mission and goals at the start of every project. -->
 
 ## Further reading
 
