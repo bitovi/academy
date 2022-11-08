@@ -559,6 +559,9 @@ QUnit.test("$.proxy", function () {
 
 ## Completed Solution
 
+<details>
+<summary>Click to see completed solution</summary>
+
 ```html
 <div id="qunit"></div>
 <div id="qunit-fixture"></div>
@@ -638,3 +641,5 @@ QUnit.test("$.proxy", function () {
 @codepen
 
 @highlight 11-16, 22, 25-32, 35-50, 53-60, 63-66
+
+</details>

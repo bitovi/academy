@@ -120,6 +120,11 @@ QUnit.test("$.fn.bind and $.fn.unbind", function () {
 
 ## Complete solution
 
+<details>
+<summary>Click to see completed solution</summary>
+
 @sourceref ./6-events-part-1-end.html
 @codepen
 @highlight 187-189,192-195,only
+
+</details>

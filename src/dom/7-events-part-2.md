@@ -407,16 +407,13 @@ QUnit.test("$.fn.off", function () {
 
 </details>
 
-## Complete solution
+## Completed solution
+
+<details>
+<summary>Click to see completed solution</summary>
 
 @sourceref ./7-events-part-2-end.html
 @codepen
-@highlight 197-203,205-222,224-253,256-272,only
+@highlight 197-203,205-222,224-253,256-272,only\
 
-```
-
-```
-
-```
-
-```
+</details>

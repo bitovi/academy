@@ -178,36 +178,36 @@ QUnit.test('$.fn.show and $.fn.hide', function(){
 
 <details>
 <summary>Click to see test code</summary>
+
 ```js
-QUnit.test('$.fn.offset', function(){
-	var bigWidth = document.createElement('div'),
-	row1 = document.createElement('div'),
-	row2 = document.createElement('div'),
-	pos = document.createElement('div');
+QUnit.test("$.fn.offset", function () {
+  var bigWidth = document.createElement("div"),
+    row1 = document.createElement("div"),
+    row2 = document.createElement("div"),
+    pos = document.createElement("div");
 
-    bigWidth.className = 'big-width';
-    row1.className = 'row';
-    row2.className = 'row';
-    pos.id = 'pos';
+  bigWidth.className = "big-width";
+  row1.className = "row";
+  row2.className = "row";
+  pos.id = "pos";
 
-    bigWidth.appendChild(row1);
-    bigWidth.appendChild(row2);
-    row2.appendChild(pos);
+  bigWidth.appendChild(row1);
+  bigWidth.appendChild(row2);
+  row2.appendChild(pos);
 
-    document.body.appendChild(bigWidth);
+  document.body.appendChild(bigWidth);
 
-    var offset = $('#pos').offset();
+  var offset = $("#pos").offset();
 
-    equal( offset.top, 120, 'top' );
-    equal( offset.left, -990, 'left');
+  equal(offset.top, 120, "top");
+  equal(offset.left, -990, "left");
 
-    //cleaning up after our test
-    var node = $('.big-width')[0];
-    node.parentNode.removeChild(node);
-
+  //cleaning up after our test
+  var node = $(".big-width")[0];
+  node.parentNode.removeChild(node);
 });
+```
 
-````
 </details>
 
 ### What you need to know
@@ -222,6 +222,7 @@ QUnit.test('$.fn.offset', function(){
 
 <details>
 <summary>Click to see the solution</summary>
+
 ```js
     offset: function() {
       var offset = this[0].getBoundingClientRect();
@@ -230,7 +231,7 @@ QUnit.test('$.fn.offset', function(){
         left: offset.left + window.pageXOffset
       };
     }
-````
+```
 
 @highlight 2-6
 
@@ -238,6 +239,11 @@ QUnit.test('$.fn.offset', function(){
 
 ## Complete solution
 
+<details>
+<summary>Click to see completed solution</summary>
+
 @sourceref ./5-layout-end.html
 @codepen
 @highlight 169-171,174,177,180-185,only
+
+</details>

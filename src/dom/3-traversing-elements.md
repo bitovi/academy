@@ -517,6 +517,11 @@ function makeTraverser(traverser) {
 
 ## Completed Solution
 
+<details>
+<summary>Click to see completed solution</summary>
+
 @sourceref ./3-traversing-elements-end.html
 @codepen
 @highlight 79-92, 122-136, only
+
+</details>

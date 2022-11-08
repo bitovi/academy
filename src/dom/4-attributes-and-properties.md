@@ -47,24 +47,36 @@ at the end of this page.
 
 <details>
 <summary>Click to see test code</summary>
+
 ```js
-QUnit.test('$.fn.attr', function(){
-	equal( $('#qunit-fixture').attr('id'), 'qunit-fixture' ,'can read id' );
+QUnit.test("$.fn.attr", function () {
+  equal($("#qunit-fixture").attr("id"), "qunit-fixture", "can read id");
 
-    $('#qunit-fixture').html('<span></span><span></span>');
+  $("#qunit-fixture").html("<span></span><span></span>");
 
-    $('#qunit-fixture span').attr('foo','bar');
+  $("#qunit-fixture span").attr("foo", "bar");
 
-    equal($('#qunit-fixture span')[0].getAttribute('foo'), 'bar', 'attribute set successfully');
-    equal($('#qunit-fixture span')[1].getAttribute('foo'), 'bar', 'attribute set successfully');
+  equal(
+    $("#qunit-fixture span")[0].getAttribute("foo"),
+    "bar",
+    "attribute set successfully"
+  );
+  equal(
+    $("#qunit-fixture span")[1].getAttribute("foo"),
+    "bar",
+    "attribute set successfully"
+  );
 
-    $('#qunit-fixture span')[0].setAttribute('foo','BAR');
+  $("#qunit-fixture span")[0].setAttribute("foo", "BAR");
 
-    equal($('#qunit-fixture span').attr('foo'), 'BAR', 'read the first item in the collection\'s attr');
-
+  equal(
+    $("#qunit-fixture span").attr("foo"),
+    "BAR",
+    "read the first item in the collection's attr"
+  );
 });
+```
 
-````
 </details>
 
 ### What you need to know
@@ -76,6 +88,7 @@ QUnit.test('$.fn.attr', function(){
 
 <details>
 <summary>Click to see the solution</summary>
+
 ```js
     attr: function(attrName, value) {
       if (arguments.length == 2) {
@@ -86,7 +99,8 @@ QUnit.test('$.fn.attr', function(){
         return this[0] && this[0].getAttribute(attrName);
       }
     },
-````
+
+```
 
 @highlight 2-8
 
@@ -114,30 +128,28 @@ QUnit.test('$.fn.attr', function(){
 
 <details>
 <summary>Click to see test code</summary>
+
 ```js
-QUnit.test('$.fn.css', function(){
-	$('#qunit-fixture')
-		.html('<span>Content</span><span>Second</span>');
+QUnit.test("$.fn.css", function () {
+  $("#qunit-fixture").html("<span>Content</span><span>Second</span>");
 
-    equal(
-    	$('#qunit-fixture span').css('padding-left'),
-    	'20px');
+  equal($("#qunit-fixture span").css("padding-left"), "20px");
 
-    $('#qunit-fixture span').css('paddingLeft', '40px');
+  $("#qunit-fixture span").css("paddingLeft", "40px");
 
-    equal(
-    	$('#qunit-fixture span').css('padding-left'),
-    	'40px',
-    	'first span set to 40px');
-    equal(
-    	$('#qunit-fixture span:nth-child(2)')
-    		.css('padding-left'),
-    	'40px',
-    	'second span set to 40px');
-
+  equal(
+    $("#qunit-fixture span").css("padding-left"),
+    "40px",
+    "first span set to 40px"
+  );
+  equal(
+    $("#qunit-fixture span:nth-child(2)").css("padding-left"),
+    "40px",
+    "second span set to 40px"
+  );
 });
+```
 
-````
 </details>
 
 ### What you need to know
@@ -148,17 +160,18 @@ QUnit.test('$.fn.css', function(){
   ```html
   <div id="theDiv">theDiv</div>
   <script type="module">
-  theDiv.style.color = "red";
+    theDiv.style.color = "red";
 
-  console.log(theDiv.outerHTML)
-  //logs "<div id="theDiv" style="color: red;">theDiv</div>"
+    console.log(theDiv.outerHTML);
+    //logs "<div id="theDiv" style="color: red;">theDiv</div>"
   </script>
-````
+  ```
 
 @codepen
 
 - The [window.getComputedStyle](https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle)
   returns an object containing the values of all CSS properties of an element.
+
   ```html
   <p id="theP">Hello</p>
   <style>
@@ -172,12 +185,14 @@ QUnit.test('$.fn.css', function(){
     // logs "rgb(0, 128, 0)"
   </script>
   ```
+
   @codepen
 
 ### The solution
 
 <details>
 <summary>Click to see the solution</summary>
+
 ```js
     css: function(cssPropName, value) {
       if (arguments.length == 2) {
@@ -228,60 +243,65 @@ The following changes the `<div>` from green to red after one second.
 
 <details>
 <summary>Click to see test code</summary>
+
 ```js
-QUnit.test('$.fn.addClass and $.fn.removeClass', function(){
-	var count = function(reg, str){
-		var c = 0;
-		str.replace(reg, function(){
-			c++;
-		});
-		return c;
-	};
+QUnit.test("$.fn.addClass and $.fn.removeClass", function () {
+  var count = function (reg, str) {
+    var c = 0;
+    str.replace(reg, function () {
+      c++;
+    });
+    return c;
+  };
 
-    var $divs = $('#qunit-fixture').html('<div class="foo"></div><div class="foob"></div>')
-    	.children();
+  var $divs = $("#qunit-fixture")
+    .html('<div class="foo"></div><div class="foob"></div>')
+    .children();
 
-    $divs.addClass('foo');
+  $divs.addClass("foo");
 
-    equal( 1, count( /foo/,$divs[0].className ), 'only one foo' );
-    equal( 1, count( /foo/,$divs[1].className ), 'only one foo' );
+  equal(1, count(/foo/, $divs[0].className), "only one foo");
+  equal(1, count(/foo/, $divs[1].className), "only one foo");
 
+  $divs.addClass("foob");
 
-    $divs.addClass('foob');
+  equal(1, count(/foob/, $divs[0].className), "only one foo");
+  equal(1, count(/foob/, $divs[1].className), "only one foo");
 
-    equal( 1, count( /foob/,$divs[0].className ), 'only one foo' );
-    equal( 1, count( /foob/,$divs[1].className ), 'only one foo' );
+  $divs.removeClass("foob");
+  equal(0, count(/foob/, $divs[0].className), "only one foo");
+  equal(0, count(/foob/, $divs[1].className), "only one foo");
 
-    $divs.removeClass('foob');
-    equal( 0, count( /foob/,$divs[0].className ), 'only one foo' );
-    equal( 0, count( /foob/,$divs[1].className ), 'only one foo' );
-
-    $divs.removeClass('foo');
-    equal( 0, count( /foo/,$divs[0].className ), 'only one foo' );
-    equal( 0, count( /foo/,$divs[1].className ), 'only one foo' );
-
+  $divs.removeClass("foo");
+  equal(0, count(/foo/, $divs[0].className), "only one foo");
+  equal(0, count(/foo/, $divs[1].className), "only one foo");
 });
+```
 
-````
 </details>
 
 ### What you need to know
 
 - An element's [classList](https://developer.mozilla.org/en-US/docs/Web/API/Element/classList)
   lets you add and remove class names on it.
+
   ```html
   <style>
-  .red {background-color: red}
-  .green {background-color: green}
+    .red {
+      background-color: red;
+    }
+    .green {
+      background-color: green;
+    }
   </style>
   <div class="red" id="hi">Hello</div>
   <script type="module">
-  setTimeout(function(){
-    hi.classList.add("green");
-    hi.classList.remove("red");
-  },1000);
+    setTimeout(function () {
+      hi.classList.add("green");
+      hi.classList.remove("red");
+    }, 1000);
   </script>
-````
+  ```
 
 @codepen
 
@@ -289,6 +309,7 @@ QUnit.test('$.fn.addClass and $.fn.removeClass', function(){
 
 <details>
 <summary>Click to see the solution</summary>
+
 ```js
       addClass: function(className) {
         return $.each(this, function(i, element) {
@@ -308,6 +329,11 @@ QUnit.test('$.fn.addClass and $.fn.removeClass', function(){
 
 ## Complete Solution
 
+<details>
+<summary>Click to see completed solution</summary>
+
 @sourceref ./4-attributes-and-properties-end.html
 @codepen
 @highlight 139-145,148-156,159-167,only
+
+</details>

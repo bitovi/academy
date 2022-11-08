@@ -781,6 +781,9 @@ function makeSimpleGetterSetter(prop) {
 
 ## Complete Solution
 
+<details>
+<summary>Click to see completed solution</summary>
+
 ```html
 <div id="qunit"></div>
 <div id="qunit-fixture"></div>
@@ -905,3 +908,5 @@ function makeSimpleGetterSetter(prop) {
 
 @codepen
 @highlight 9-18,82-88, 91-97,100-106,109-116,only
+
+</details>
