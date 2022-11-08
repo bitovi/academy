@@ -41,5 +41,6 @@ Afterwards, we will look at orchestrating multiple docker images to form a full 
 - ✏️ This guide uses NodeJS. However, the code is all explained. If you want to run the code without Docker, you will need to [install NodeJS](https://nodejs.org/en/download/). This is optional.
 
 
+## Next Steps
 
-Head over to the [first lesson](learn-docker/what-is-docker.html) where we will explore Docker concepts and architecture.
+✏️ Head over to the [first lesson](learn-docker/what-is-docker.html) where we will explore Docker concepts and architecture.
