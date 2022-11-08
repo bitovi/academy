@@ -30,5 +30,3 @@ A Docker container is a running instance of a Docker image.
 
 ## Review
 Docker images combine source code with the dependencies required to run an application. Images are built from Dockerfiles and are more lightweight and portable than traditional VMs making them great for both developers and operators.
-
-Next we are going to build a simple NodeJS app before containerizing it.            
