@@ -22,15 +22,17 @@ These are so important they have their own trainings!
 
 ### Remember that you share common goals
 
-When consultants are added to a project, it's common for an "us vs them" mentality to develop. This can lead to conflict and reduced trust, especially amongst client peers that may not understand why you're there. It's important to communicate early and often to the team that you share common goals. Refer back to the [learn-technology-consulting/transitioning-to-delivery#engagement-summary-document Engagement Summary Document] to refresh on the product's goals.
+When consultants are added to a project, it's common for an "us vs them" mentality to develop. This can lead to conflict and reduced trust, especially amongst client peers that may not understand why you're there. It's important to communicate early and often to the team that you share common goals. Refer to the [learn-technology-consulting/transitioning-to-delivery#engagement-summary-document Engagement Summary Document] that was created at the start of the project to refresh on the product's goals.
 
 ### Speak up about things that employees are silent about
 
-Employees are often operating in fear. Fear of stepping on someone’s toes, getting reprimanded or fired, saying the wrong thing and feeling embarrassed, etc. Bitovi will never fire an employee for speaking truth to power, so take advantage of it!
+Employees are often operating in fear. Fear of stepping on someone’s toes, getting reprimanded or fired, saying the wrong thing and feeling embarrassed, etc.
 
 Be courageous and speak out openly about the problems you see that stand in the way of success. Organizational problems, dogmatic process, bad UX, etc. Of course be polite and respectful, but don’t be afraid to say what’s wrong.
 
 In the process of speaking honestly, clients tend to develop more and more trust in you, since you’re providing rare insights.
+
+For the Bitovians refreshing their consulting skills: Bitovi will never fire an employee for speaking truth to power, so take advantage of it!
 
 ## Rapport
 
@@ -55,7 +57,7 @@ It takes a lot of work build and maintain a healthy working relationship. The fi
 
 ### Be playful to get what you want
 
-When bureaucratic red tape stands in the way of progress, don’t take no for an answer. Humor can often be a way to be persistent without being annoying. For example, Justin loves to talk about the time he jokingly told a manager who claimed it would take 4 weeks to get a dev server that he would send an email to Steve Jobs asking him if he thought 4 weeks was an appropriate amount of time. Soon after, he got his  devserver.
+When bureaucratic red tape stands in the way of progress, don’t take no for an answer. Humor can often be a way to be persistent without being annoying. For example, Justin loves to talk about the time he jokingly told a manager (who claimed it would take 4 weeks to get a dev server) that he would send an email to Steve Jobs asking him if he thought 4 weeks was an appropriate amount of time. Soon after, he got his dev server.
 
 Using humor in situations where you’re feeling frustrated and incredulous is often an effective way to get what you want while not making people hate you.
 

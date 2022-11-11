@@ -1,7 +1,7 @@
 @page learn-technology-consulting Learn Technology Consulting
 @parent bit-academy 10
 
-@description Learn how to perform technology consulting.
+@description Learn how to move beyond writing code to be an excellent technology consultant!
 
 @body
 
@@ -14,24 +14,30 @@ consulting. This guide is for:
 - Bitovi clients looking to understand how we operate.
 - Bitovi community members wanting to learn technology consulting.
 
-At it's core, this course walks through the 5 most important steps
-in creating successful products:
+The **5 core concepts** for effective technology consulting are the most important steps
+to create successful products:
 
-1. [learn-technology-consulting/values] - Aligning your team
-  to value outcome more than effort.
-1. [learn-technology-consulting/goals] - Establishing clear, measurable goals that
-  are well understood by your team.
-1. [learn-technology-consulting/prioritization] - Using qualitative and
+1. [learn-technology-consulting/values] - Align your team
+   to value outcome more than effort.
+1. [learn-technology-consulting/goals] - Establish clear, measurable goals that
+   are well understood by your team.
+1. [learn-technology-consulting/prioritization] - Use qualitative and
    quantitative data to prioritize what should be built.
-1. [learn-technology-consulting/development] - Developing quickly and
+1. [learn-technology-consulting/development] - Develop both quickly and
    sustainably.
-1. [learn-technology-consulting/communication] - Communicating precisely
+1. [learn-technology-consulting/communication] - Communicate precisely
    while being easily consumable.
 
-This course also includes other trainings important for consulting:
+Additional skills important for consulting are included after the core curriculum:
 
 - [learn-technology-consulting/building-rapport]
 - [learn-technology-consulting/setting-expectations]
-- [learn-technology-consulting/transitioning-to-delivery] - How to take on
-  a new project while a sales team is in the process of closing the project.
+- [learn-technology-consulting/transitioning-to-delivery]
+
+  <!-- How to take on a new project while a sales team is in the process of closing the project. -->
+
 - [learn-technology-consulting/ending-a-project]
+
+## Next Steps
+
+✏️ Head over to the [first lesson](learn-technology-consulting/values.html) to learn how to prioritize your effort.
