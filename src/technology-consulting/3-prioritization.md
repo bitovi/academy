@@ -25,7 +25,7 @@ anyone will undertake. However, there are some processes that
 
 <input type="checkbox"/> Have clearly articulated and measurable [learn-technology-consulting/goals goals].
 
-<input type="checkbox"/> Document what needs to be done in a prioritized backlog. ([Backlogs](#backlogs)).
+<input type="checkbox"/> Document what needs to be done in a prioritized backlog ([Backlogs](#backlogs)).
 
 **Before starting a new product, your team should:**
 
