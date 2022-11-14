@@ -175,11 +175,7 @@ type RandomAttacks = Keys<typeof randomAttacks>; // 'quickAttack' | 'thunder'
 
 > Be sure to check your answers to Exercise 1 **Before** continuing on to Exercise 2
 
-<<<<<<< HEAD
-<a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwAmALT5yMcRjjaA7hFoALbTXILRaCI2MwAHtvUBGArQTIQN-kYkEAB6ACowgB1yAAIwmIBRFwMeOBgYj2i4rPiAVRQWOXTLdIADAGkYAThSmMEOOtIYzFpmuGa6oXS0KAg0drBSURjSrCrSMFKCGIB1cws6iwh2-pgVHJiTdJYKAHJWkzRGRuaoKFITEbtHXFK4FRHyAFcAWwAjAzvm8hYRt9JSLAjl9aE0PjF0HA0iwNo5QYsypVqrVVjEYgAKCpVOAAHmu5FwAD5Sg8sdUcc93gZiQ8YLQMNM4BZSE8oL9yKRWuCeuctiwAJTTADKTUschiuAgADcGBsSjFBmcLjdOsICOqchtStqfHKujEADIwNBgIW0NCieiiAAKpDGLwoMQAvDFgBsYm9WW9-mgnqJEDFbWM2C4EoxRAIANzu6XVX3-wN2mAhsO0CPR2LxGIy55wX0WgNB5OuVPpjaKDPZTOq9JGk1I9ouhs4uum82WgxwQkxEIhGK7T1Qb15v27GIAH37sZHojHk92OaeI4tuy12s11aOMMza9KuurqIAYhBRDAzRarUWHbEXW7qzEMBYLS8twZC0mU-Go-7H8-YLAKHfYMSy_Sss1_cQAC8LRYIDi1DUDyzAvUGmPU8G2dGJmzQs920vJNr27Xt-wgl8fgMOcSKfUQXn_GA9gnKiLQgaDRBYVdq21UoNzib5tyrXiuP3XibAUGJ7B-UgXgAQVoc1sEbV0AEcnggbBZPkrAA2ARQHksJ5yITHSKx4-JUQAJS3KSNMwLBFObVYJnEqyZLk2yu0jHs-12FS1KwGzsEo_YLAMthZ13UyYm7CIADlORgRAIhiAAVCxun-GVmlPGJXDQF4UFgdonPMdol0IFK0pGJEUX1JkWTZTYhiwBUhm-AQYjgCAXmgPpRCgdq7CeDBaD9ZMa0igAJOEA1GcZJg65lWV-F9HH6j10jK35HVKUg3iIGBhq-ZYEWytBNjQdqtgfI4YkcGhRBQIYikWcU4VFSrVgISLuwAIXSOBRpOR8DuagQWWGI44C2UQViaUoPDQWoIj-wZTySgJHFUgkYkdeEkhSZZ0g8N4chCaJolcR7LRrLDsRxZLuxdI5v0oZRFCAA" >Open in CodeSandbox</a>
-=======
-<a href="https://codesandbox.io/s/rbwpiq?file=/02-generics-with-constraints-ex-01.ts" target="_blank">Open in CodeSandbox</a>
->>>>>>> origin/master
+<a href="https://codesandbox.io/s/rbwpiq?file=/02-generics-with-constraints-ex-01.ts">Open in CodeSandbox</a>
 
 @sourceref ./exercise-01/ex-01.ts
 

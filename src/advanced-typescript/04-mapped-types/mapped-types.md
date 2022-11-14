@@ -496,11 +496,7 @@ type ToNumber<T> = To<T, number>;
 type Numberfied = ToNumber<{ level: string; age: string }>; // {level: number; age: number}
 ```
 
-<<<<<<< HEAD
-<a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwAWALQBbNCg4ttg4dpgAPbeoCMBWgmQgajBlJAB6AFReAOuQACLwCAUQsYUR44GACbfyCAgCEYKFIAdwCIOAC0APxyCIgMANMYjDQoWBYAgAMAFVIAHjqVAGkAPhqSgAs5TOyMAFdRUTcoAQDo2hLSWrRyARqCAIBVFBY5GNpuraEt2Yxe8nwcyoDSMB6YlFFSDlFaXjh44Ipauq6fWlIfALTe-gANwi_QC6Dg0WqEEYsxqrSWATqaCwWx2ATApEq6WhuHepAAcoNdAAjCJdUro0iiAKWNC6FCwFSZabRUTA7JoDmBCoQTmU6n1Uhdf4RGAvWrw0E1chE0miJYvcU1ZUOcUUhqEkkRZrtAIAXkRTRaARlWtE7QA3Gq9gFNXLIDBqgaNbLtcBYMCoIhJrRxMcLTl8N6FH7cBbFLqPB4Au6YJ7vaa5QG8DAE67RIolcqXh5_OqjUyOvqcgsA1HEQB5AAiFe9LAoAHJpoNoiWBP5_C4FJlyBBHhUAMq0TbF4DxE101MBXwgGcqccwfTQACCLBYowh3pnc_HKe96nn5EUVvIeZtQ5HBtKFx7fd5UAv9BPFMfMAAajyNo83s6mq-mcSpCYjA8yWh23AUN2CibB-UAQF-EAUAOaBgFOr6wfBciIYEBpjoEE66FOYAVNEh4BDSS5QKu67wHA3q-oMMBkYGREkUx_jHuB5Z1N0WSTN0pCDFA1TEdAmSXNsuwcKCNAjDAGC0J2kHTAAYsuACSAAyKwAEohAA-tB9AYQhFB1HsIQjFS3roZ-WE_jG47kJO3oAJyuUy3E2g2iYRA2oLkKQ0ycnAEC4M5xKwDMJTeYBwHzA29hwAAFAATAAzKlqUAJQLpR1EbnR04gIBxJzgEXnSQ2IY4v5fGBcFEJhRFUXfDFVVxbACVJWlmU5buQa2mg-KedG5lVb5oh1dkDU5E14VoJF-ztTEDadSB5CJQ4vVZblR4niAyiKEAA" >Open in CodeSandbox</a>
-=======
-<a href="https://codesandbox.io/s/sgfq7m?file=/04-mapped-types-ex-01.ts" target="_blank">Open in CodeSandbox</a>
->>>>>>> origin/master
+<a href="https://codesandbox.io/s/sgfq7m?file=/04-mapped-types-ex-01.ts">Open in CodeSandbox</a>
 
 @sourceref ./exercise-01/ex-01.ts
 

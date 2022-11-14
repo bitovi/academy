@@ -422,11 +422,7 @@ type WildPokemonBattleNoBattleType = _Exclude<
 >; // "challengingPokemon"
 ```
 
-<<<<<<< HEAD
-<a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwBWALQ1yLCLQgU0UbYOHaYAD23qAjAVoJkIPfUZIQAegBUvgB1yAAJfYIBRaxhRHjgYYPsg0KSwgHV4gFc4lmCbDCgMtmCIEIp40jBg2gALeJs0AFsUWDhikJr49wZaYIqq6ohWuIwjCgIU4IAZGFoAclbaNCx4tGCG0gbuqtJgsRg5eI6qoXKM0TioADd4AgjrAqLF5YWAdx38cmiIDDgJgAMACp_YJofTBP4AVWBoJyohg62uC1qa3hMAARtFWiVwVDgmBRBtwUDxiFAqTwX8_s4JhZ4qloCwAAqkZbrcgAITktFgwQAvMFgBNgsE0VzYACTohggEQC8GdoUCz4RRtKLaNyYDKANxC3bVUywci4Eq4ZmsihShTiI068mKW3Jcm04L0qBMpVsznq2AAOVIXo1Eo4fOCAH1IvlCjAADzLAR9V3u80csUwFTSkBqwMnGUAPi1wW83gzGH1UENxqNZuV5Bl_0pKW8QWd4eskbY0YB6YhuZDoIEtpAykUQA" >Open in CodeSandbox</a>
-=======
-<a href="https://codesandbox.io/s/1gvoo5?file=/05-conditional-types-ex-01.ts" target="_blank">Open in CodeSandbox</a>
->>>>>>> origin/master
+<a href="https://codesandbox.io/s/1gvoo5?file=/05-conditional-types-ex-01.ts">Open in CodeSandbox</a>
 
 @sourceref ./exercise-01/ex-01.ts
 

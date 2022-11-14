@@ -147,11 +147,7 @@ type Padding = "padding-top" | "padding-left"; // ...
 type Margin = "margin-top" | "margin-left"; // ...
 ```
 
-<<<<<<< HEAD
-<a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwA2ALT0Atiln1tUCPVFoouofG0wAHtvUBGArQTIQNRgykgA9ABUgQA65AAEgeEAovYwojxwMOHOYZHhAOIQAG4M4bQAFslgpFBQpADuEOS44QAGACIQojAYtBAUdfk2KuEArkn5MAZGyabmlt3C-aThYjByyXUACmgsLNW4XWjkLPUAsmiiuNV1vRUFEBgF4XAFpH1QewBGMGlRaLe04jXh4_GTPrkDoREqicKWKD5IrhDZgMC-cLodabOAQ3bhPRHE7kOAEd7vep1OruQmCDjhVYo34AXnCIRAyI2NV0pBQDPCAB96Yy1szcCYYGBaBz_P5wgRJWSbOFDsdquE6QysfLyKz2SAuTyVTjBcLReLJfiIlFiXV3v4wuTkk0Wm0QYqebQ2RzuQzYPrNW6QM9SLRnXpXTzxLgCiKQABuMJWmVU_mOnYCKOMGVynEJ8hJsIgZSKIA" >Open in CodeSandbox</a>
-=======
-<a href="https://codesandbox.io/s/72i9li?file=/06-template-literal-types-ex-01.ts" target="_blank">Open in CodeSandbox</a>
->>>>>>> origin/master
+<a href="https://codesandbox.io/s/72i9li?file=/06-template-literal-types-ex-01.ts">Open in CodeSandbox</a>
 
 @sourceref ./exercise-01/ex-01.ts
 
