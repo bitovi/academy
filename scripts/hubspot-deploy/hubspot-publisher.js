@@ -6,9 +6,17 @@ const { confirmDeleteFile, promptDeleteFiles } = require("./user-prompts");
 require('dotenv').config()
 
 class HubSpotPublisher {
-  constructor(folder='academy'){
+  constructor(folder = 'academy'){
+    if (!process.env.HUBSPOT_API_KEY) {
+      throw new Error("You must provide the environment variable HUBSPOT_API_KEY.")
+    }
+
+    if (!process.env.HUBSPOT_CAMPAIGN_ID) {
+      throw new Error("You must provide the environment variable HUBSPOT_CAMPAIGN_ID.")
+    }
+
     this.folder = folder;
-    this.hubSpotApi = new HubSpotApi(process.env.HUBSPOT_API_KEY);
+    this.hubSpotApi = new HubSpotApi(process.env.HUBSPOT_API_KEY, process.env.HUBSPOT_CAMPAIGN_ID);
   }
 
   async getPagesToUpload() {
