@@ -2,40 +2,15 @@
   "name": "bit-academy",
   "version": "1.0.0",
   "description": "Everything worth knowing from bitovi",
-  "main": "index.js",
-  "scripts": {
-    "document": "bit-docs -d",
-    "document-build": "bit-docs -df",
-    "document-watch": "bit-docs -dw",
-    "publish": "npm run document-build && node scripts/hubspot-publish/"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bitovi/academy.git"
-  },
-  "keywords": [
-    "JavaScript"
-  ],
+  "homepage": "https://github.com/bitovi/academy#readme",
   "author": "Bitovi",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/bitovi/academy/issues"
-  },
-  "homepage": "https://github.com/bitovi/academy#readme",
-  "devDependencies": {
-    "axios": "^0.18.0",
-    "bit-docs": "0.2.0",
-    "bottleneck": "^2.17.1",
-    "cheerio": "^1.0.0-rc.3",
-    "colors": "^1.3.3",
-    "detect-browser": "^4.2.0",
-    "dotenv": "^7.0.0",
-    "gh-pages": "^2.0.1",
-    "glob": "^8.0.3",
-    "html2canvas": "^1.0.0-alpha.12",
-    "lz-string": "^1.4.4",
-    "recursive-readdir": "^2.2.2",
-    "steal-qunit": "^1.0.2"
+  "scripts": {
+    "depcheck": "depcheck .",
+    "dev": "bit-docs -dw",
+    "build": "bit-docs -df",
+    "clean": "rm -rf academy",
+    "publish": "node scripts/hubspot-publish"
   },
   "bit-docs": {
     "dependencies": {
@@ -73,11 +48,17 @@
       ]
     ]
   },
-  "dependencies": {
-    "@bitovi/snapshot-test": "<2.0.0",
-    "@types/jasmine": "^3.6.0",
-    "can-define-lazy-value": "^1.1.0",
+  "devDependencies": {
+    "axios": "^0.18.0",
+    "bit-docs": "0.2.0",
+    "bottleneck": "^2.17.1",
+    "cheerio": "^1.0.0-rc.3",
+    "colors": "^1.3.3",
     "commander": "^9.4.0",
-    "steal": "^2.2.0"
+    "depcheck": "^1.4.3",
+    "dotenv": "^7.0.0",
+    "glob": "^8.0.3",
+    "lz-string": "^1.4.4",
+    "recursive-readdir": "^2.2.2"
   }
 }
