@@ -1,6 +1,9 @@
-name: Verify
+name: Verify/Build/Deploy
 
-on: [push]
+on:
+  push:
+    branches: [main]
+  pull_request:
 
 jobs:
   build:
@@ -23,3 +26,7 @@ jobs:
 
       - name: Build
         run: npm run build
+
+      - name: Deploy
+        if: ${{ github.ref == 'refs/heads/main' }}
+        run: npm run deploy

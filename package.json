@@ -10,7 +10,7 @@
     "dev": "bit-docs -dw",
     "build": "bit-docs -df",
     "clean": "rm -rf academy",
-    "publish": "node scripts/hubspot-publish"
+    "deploy": "node scripts/hubspot-publish"
   },
   "bit-docs": {
     "dependencies": {
