@@ -13,6 +13,15 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Learn how to look up types of properties with index accessed types! 
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Index Accessed Types</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -20,6 +29,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -66,7 +80,7 @@
            						">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -188,7 +202,7 @@
            						">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -234,7 +248,7 @@ covering CanJS core libraries.">
            						expanded">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -311,7 +325,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="conditional-types.html"
-							title="Learn how to create new types with conditional types!">
+							title="Learn how to create new types to simplify functions and enforce type safety with conditional types!">
 							Conditional Types
 						</a>
 						
@@ -326,7 +340,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="template-literal-types.html"
-							title="Learn how to create new types with template literal types!">
+							title="Learn what template literal types are and how to empower them with unions, generics, conditional types, and infer!">
 							Template Literal Types
 						</a>
 						
@@ -379,9 +393,9 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
-<p>There are many times we would like to forego defining a type and rather use some other type as a reference instead. Index accessed types is a TypeScript feature that allows us to do just that! In this section, we will look at index accessed types, how they work, how their defined, and towards the end, we will see a practical application of them!</p>
+<p>There are many times we would like to forego defining a type and rather use some other type as a reference instead. Index Accessed Types is a TypeScript feature that allows us to do just that! In this section, we will look at index accessed types, how they work, and how they are defined. Towards the end we will see a practical application!</p>
 <h2>Index Accessed Types</h2>
-<p>Index accessed types are a way to look up types on other types. TypeScript uses square bracket notation (<code>[]</code>) to grab the desired type off of object types, much like how you can access a specific property from a JavaScript object using square brackets as well (<code>someObject[&quot;someKey&quot;]</code>).</p>
+<p>Index accessed types are a way to look up types on other types. TypeScript uses square bracket notation (<code>[]</code>) to grab the desired type off of object types, much like how you can access a specific property from a JavaScript object using square brackets (<code>someObject[&quot;someKey&quot;]</code>).</p>
 <pre><code class="language-ts">type Pokemon = {
   power: number;
   name: string;
@@ -401,7 +415,7 @@ type PokemonNameWithTypeOf = Pokemon[typeof name]; // string;
 type Name = &quot;name&quot;;
 type PokemonNameWithLiteralType = Pokemon[Name]; // string
 </code></pre>
-<p>If a type provided is not able to index a particular type TypeScript will provide an error.</p>
+<p>If the type provided is not able to index a particular type, TypeScript will provide an error.</p>
 <pre><code class="language-ts">type Pokemon = {
   power: number;
   name: string;
@@ -531,7 +545,7 @@ trainers in the array.</p>
 <summary> Hint for Exercise 1 (click to reveal)</summary>
 An array is just an object indexed with a number
 </details></p>
-<p><a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwBmALQRybAB7bMGeHBgttg4dphH1ARgK0EyEDUYMpIAPQAqPwAdcgACPxCAIRgoUgB3EIg4ELRQtFFRNAEQ0jAQgAVSLBgAWwoQ2gy9GFEklJZkkIADADE0ADdScXoCotLyRvKhGBCMAFd0rygstDg4CFxyC3LSZPIBAmCwkIBVOfJccoALYcaUQpKKABVKxZqBtIys0XZZUyOTlIEB2IhaQ4brMM_nIQocZu8QnA0MVhnAwRxkklGmB2p1fjAehd-tlQn8YJtwhU0FUaglccdkulMhtQkFaSEAHwhAASeloiAJjJCAEFUlSsokQkRRgpVtkAEZEGAYWhkwxLH5_BrkUbFcXVAk-YJ2M6iWUeUVnXpXG7VJIAXhCAG1NiFgLaQiFyNCYIgQoEQNy4R6VA6QiiOl0Mec-m77aFHZHnTC3R68hAcBhDqMfX7HUaLHYAHKq9WiN0AJgArL6I5HBhw3TaQABRWAy8QYD0AXVL5cdclomCwcCracjwHKv1gsZAAEVRhBsDzaF3sD6K673SAs51imgoAuzrFqm6ACzqFTJDBjDIYARuhzqdQhRRt9uOwe0YdLj2XZP6DUgI-A0d16UVFOW5xLuIQOFeR4mOMmAXiEADsN53v2j5DrQI7LgAaqQUCygAyoqSYLr-y7_g2QHfiE26gQhkEntB56Xtet73uWrZ-khEYcY-frRq-IARKIpDzt-foBmi3QhhQYb9rxo4APLkBABipmWkYZoYOZqqBACcJb9sR1YAEpCVgC4egA4oJoz6C2LGRp23a9tayF2qh6Fvt2sBEUMo6rqI66bhRVH5iEB60aeMGMYhdnlk-L6jgAkoJoSXMSgU_j5y64fQ0TATuIVXoex4RQx8FFsxLlxWhfHGdOuFQBAbDeZWy61aZQUgSFcElsV9Gwdp0X9mxqlcRV5DNgA3MEwSAiErSBuimJ9CElqfFNlDKIoQA" target="_blank">Open in CodeSandbox</a></p>
+<p><a href="https://codesandbox.io/s/6syglj?file=/03-index-accessed-types-ex-01.ts" target="_blank">Open in CodeSandbox</a></p>
 <pre><code class="language-ts">/**
  * Below is an array of Pokemon trainers and a `FavoritePokemon` type currently assigned to any.
  * Using the `pokemonTrainers` array replace the `any` with a type that has the same shape as `favoritePokemon` on the
@@ -579,6 +593,7 @@ type FavoritePokemon = any;
 export type Pokemon = typeof pokemonTrainers[number][&quot;favoritePokemon&quot;];
 
 </code></pre>
+<div line-highlight='1, 3'></div>
 <p></details></p>
 
 </section>

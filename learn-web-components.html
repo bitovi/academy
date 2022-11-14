@@ -13,6 +13,15 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Learn Web Components</title>
   
   <link rel="stylesheet" type="text/css" href="./static/bundles/bit-docs-site/static.css">
@@ -20,6 +29,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -66,7 +80,7 @@
            						">
 						<a class="page"
 							href="learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -360,7 +374,7 @@
            						">
 						<a class="page"
 							href="learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -406,7 +420,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -459,13 +473,25 @@ Angular, React, CanJS and JavaScript problems.</p>
 <p>Please ask questions related to Web Components in the <a href="https://bitovi-community.slack.com/messages/CFMMNSV5X">JS and DOM chat room</a>.</p>
 <p>If you find bugs in this training or have suggestions, create an <a href="https://github.com/bitovi/academy/issues">issue</a> or email <code>contact@bitovi.com</code>.</p>
 <h2>Overview</h2>
+<p>This guide begins with <a href="learn-web-components/why-wc.html">Why Web Components</a> might be a good choice for building your next widget. Following lessons will cover:</p>
+<ul>
+<li>Building <a href="learn-web-components/first-component.html">our first component</a> to learn the APIs &amp; display a greeting.</li>
+<li><a href="learn-web-components/templates.html">Writing a template</a> to create reusable DOM for use within your components.</li>
+<li>Creating a component to hold our Google <a href="learn-web-components/map-view.html">Map View</a>.</li>
+<li>Building a more complex <a href="learn-web-components/bus-tracker-component.html">bus-tracker component</a> that combines the usage of <code>&lt;template&gt;</code> and customElements, and sets up event listeners.</li>
+<li>Fetching and <a href="learn-web-components/listing-routes.html">listing routes</a> from the CTA bus tracker API.</li>
+<li>Using event listeners with a custom element to handle a user <a href="learn-web-components/select-a-route.html">selecting a route</a>.</li>
+<li>Listen to changes in properties on custom elements and properly reflect back property values to <a href="learn-web-components/display-markers.html">display markers for vehicles</a>.</li>
+<li>Use CSS properties to <a href="learn-web-components/customize-header.html">customize header styles</a> within Shadow DOM.</li>
+<li>Use <a href="learn-web-components/slotted-content.html">slotted content</a> to allow more control over non-critical parts of your component.</li>
+<li>And finally, <a href="learn-web-components/dispatching-events.html">dispatching events</a> to provide information on the state of your component to parent elements.</li>
+</ul>
 <p>The end result of this training will be a <a href="http://www.ctabustracker.com">CTA Bus tracker</a> widget that can be embedded in any website with just a script tag and an element like so:</p>
 <pre><code class="language-html">&lt;cta-bus-tracker&gt;&lt;/cta-bus-tracker&gt;
 </code></pre>
 <p><img width="746" alt="CTA bus tracker web component" src="https://user-images.githubusercontent.com/361671/58019488-a36c9080-7ad3-11e9-84cc-e60cced008af.png"></p>
-<p style="font-weight: bold; text-align: center;">
-<a href="learn-web-components/why-wc.html" title="Learn why web components might be a good choice for building your next widget.">👉 Why Web Components</a>
-</p>
+<h2>Next Steps</h2>
+<p>✏️ Head over to the <a href="learn-web-components/why-wc.html">first lesson</a> and learn more about Web Components.</p>
 
 </section>
 

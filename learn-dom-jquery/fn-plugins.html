@@ -13,6 +13,15 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Learn how &#x60;$.fn&#x60; supports creating plugins. 
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Fn Plugins</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -20,6 +29,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -66,7 +80,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -333,7 +347,7 @@
            						">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -379,7 +393,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -437,9 +451,9 @@ functions on jQuery collections.</li>
 jQuery collections.</p>
 <p>For example, you should
 make it so if someone adds <code>myPlugin</code> as follows:</p>
-<pre><code class="language-js">$.fn.myPlugin = function(){
-    this //-&gt; $[&lt;li&gt;,&lt;li&gt;]
-}
+<pre><code class="language-js">$.fn.myPlugin = function () {
+  this; //-&gt; $[&lt;li&gt;,&lt;li&gt;]
+};
 </code></pre>
 <p><code>myPlugin</code> will now be available on collections:</p>
 <pre><code class="language-js">$(&quot;li&quot;).myPlugin();
@@ -447,18 +461,17 @@ make it so if someone adds <code>myPlugin</code> as follows:</p>
 <p>Adding a method to <code>$.fn</code></p>
 <p><details>
 <summary>Click to see test code</summary></p>
-<pre><code class="language-js">QUnit.test(&quot;$.fn&quot;, function(){
-    expect(2);
+<pre><code class="language-js">QUnit.test(&quot;$.fn&quot;, function () {
+  expect(2);
 
-    var div = document.createElement(&quot;div&quot;);
+  var div = document.createElement(&quot;div&quot;);
 
-    $.fn.myPlugin = function(){
-        QUnit.equal(this.length, 1);
-        QUnit.equal(this[0], div);
-    };
+  $.fn.myPlugin = function () {
+    QUnit.equal(this.length, 1);
+    QUnit.equal(this[0], div);
+  };
 
-    $([div]).myPlugin();
-
+  $([div]).myPlugin();
 });
 </code></pre>
 <p></details></p>
@@ -748,6 +761,8 @@ make it so if someone adds <code>myPlugin</code> as follows:</p>
 <li><code>$.fn</code> is an alias for the collection's constructor's prototype.</li>
 </ul>
 <h3>The solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
 &lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
 &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
@@ -1029,6 +1044,7 @@ make it so if someone adds <code>myPlugin</code> as follows:</p>
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='78,only'></div>
+<p></details></p>
 
 </section>
 

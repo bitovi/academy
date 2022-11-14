@@ -13,6 +13,15 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Learn how to use custom events to provide information on the *state* of your component to parent elements. 
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Dispatching events</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -20,6 +29,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -66,7 +80,7 @@
            						">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -363,7 +377,7 @@
            						">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -409,7 +423,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -597,7 +611,7 @@ el.dispatchEvent(ev);
 <pre><code class="language-js">this.button.addEventListener('click', ev =&gt; this.handleButtonClick(ev));
 </code></pre>
 <p>However this creates a <em>new function</em>. To tear this down in <code>disconnectedCallback</code> you'll have to keep a reference to it.</p>
-<p>A way to avoid this is to use <code>handleEvent</code>. <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventListener/handleEvent">handleEvent</a> is a special method you can add to any object (not just elements) that makes that object an <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget">EventTarget</a>. You use it like this:</p>
+<p>A way to avoid this is to use <code>handleEvent</code>. <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#the_event_listener_callback">handleEvent</a> is a special method you can add to any object (not just elements) that makes that object an <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget">EventTarget</a>. You use it like this:</p>
 <pre><code class="language-js">let eventTarget = {
   handleEvent(ev) {
     // My `this` is correct!
@@ -633,6 +647,8 @@ window.addEventListener('scroll', eventTarget);
 <h2>Solution</h2>
 <p>✏️ Add <code>&lt;span id=&quot;selected-vehicle&quot;&gt;&lt;/span&gt;</code> inside of the <code>footer</code> element below the button. In the <code>google-map-view</code> when creating markers add an event listeners to the markers click.</p>
 <p>Using <code>CustomEvent</code>, display a <code>vehicle-selected</code> event with a <code>detail</code> of the vehicle. Now in the <code>bus-tracker</code> component, listen to event and set the vehicle destination on the <code>#selected-vehicle</code> element.</p>
+<p><details>
+<summary>Click to see the solution</summary></p>
 <pre><code class="language-html">&lt;style&gt;
   html,
   body {
@@ -1029,6 +1045,7 @@ customElements.define(&quot;bus-tracker&quot;, BusTracker);
 </code></pre>
 <div line-highlight='102-123,202,270,279-283,288-293,319,325,328-330,332-336,only'></div>
 <div class='codepen'></div>
+<p></details></p>
 
 </section>
 

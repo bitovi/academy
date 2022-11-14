@@ -13,6 +13,15 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Build a &#x60;&lt;my-greeting&gt;&#x60; component to learn the APIs. It will be able to display a greeting, and receive a &#x60;name&#x60; parameter either from an attribute or a JavaScript property. 
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Our first component</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -20,6 +29,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -66,7 +80,7 @@
            						">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -363,7 +377,7 @@
            						">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -409,7 +423,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -508,7 +522,7 @@ document.body.appendChild(element);
 <p>Click the &quot;Run in your browser&quot; button above and notice that... nothing happens. In order to do anything useful, we have to register our element.</p>
 <h3>Registering our tag</h3>
 <p>The <a href="https://html.spec.whatwg.org/multipage/custom-elements.html">custom elements API</a> provides a way to hook into the browser's HTML parser and receive callbacks whenever a certain tag is encountered. Think about that; your code can run before the page has even finished loading (provided your script has run). That's a lot of power.</p>
-<p>Custom elements are classes that extend <a href="https://html.spec.whatwg.org/multipage/dom.html">HTMLElement</a>. This is the base class from which all elements, both built-in and custom, derive. For example the <code>&lt;progress&gt;</code> element is an instance of <code>HTMLProgressElement</code>.</p>
+<p>Custom elements are classes that extend <a href="https://html.spec.whatwg.org/multipage/dom.html#elements-in-the-dom">HTMLElement</a>. This is the base class from which all elements, both built-in and custom, derive. For example the <code>&lt;progress&gt;</code> element is an instance of <code>HTMLProgressElement</code>.</p>
 <p>To register our own tag we first extend HTMLElement like so:</p>
 <pre><code class="language-js">class MyGreeting extends HTMLElement {
 
@@ -575,6 +589,8 @@ customElements.define('my-greeting', MyGreeting);
 <p>This mirrors the way most built-in elements work; changing a property does <strong>not</strong> reflect in the attribute; but changing an attribute does change the value of the property.</p>
 <h2>Solution</h2>
 <p>✏️ The following is a full greeting element that accepts <code>name</code> attribute and property, rendering when either changed.</p>
+<p><details>
+<summary>Click to see the solution</summary></p>
 <pre><code class="language-html">&lt;my-greeting name=&quot;world&quot;&gt;&lt;/my-greeting&gt;
 &lt;script type=&quot;module&quot;&gt;
 class MyGreeting extends HTMLElement {
@@ -621,10 +637,9 @@ setTimeout(() =&gt; {
 &lt;/script&gt;
 
 </code></pre>
+<div line-highlight='1-44'></div>
 <div class='codepen'></div>
-<p style="font-weight: bold; text-align: center;">
-<a href="templates.html" title="Learn how &lt;template&gt; can be used to create reusable DOM that can be cloned and used within your components.">👉 Writing a template</a>
-</p>
+<p></details></p>
 
 </section>
 

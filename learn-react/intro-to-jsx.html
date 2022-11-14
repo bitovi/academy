@@ -13,6 +13,15 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Learn how to use React&#x27;s preferred markup syntax JSX, and combine HTML with JavaScript. 
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Introduction to JSX</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -20,6 +29,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -66,7 +80,7 @@
            						">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -348,7 +362,7 @@
            						">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -394,7 +408,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -700,8 +714,7 @@ const page = React.createElement('div', null, [header, body]);
 <p>So if a person rendered that component, they would see</p>
 <p><img src="../static/img/react/redQ.png" ></p>
 <p><em>✏️ Note: Centering content inside of a div is easy with flexbox. Simply add <code>&quot;display: flex; justify-content: center; align-items: center;&quot;</code> to the parent div which holds the content you wish to be centered. Remember the differences between normal CSS, and inline styles with React though.</em></p>
-<p>Here's an empty codepen with React preloaded to get you started.</p>
-<h4>Hover over the code below and select the run button in the upper right hand corner.</h4>
+<h4>To get you started, hover over the code below and select the run button in the upper right hand corner. It links to an empty codepen with React.</h4>
 <pre><code class="language-jsx">function Square() {
   return &lt;div&gt;Placeholder for your code&lt;/div&gt;;
 }
@@ -713,6 +726,10 @@ ReactDOM.render(
 </code></pre>
 <div class='codepen' data-codepen='react'></div>
 <h2>Solution</h2>
+<p><details>
+<summary>
+Click to see the solution
+</summary></p>
 <pre><code class="language-jsx">function Square(props) {
   return (
     &lt;div
@@ -735,7 +752,9 @@ ReactDOM.render(
   document.getElementById('root'),
 );
 </code></pre>
+<div line-highlight='4-11,13'></div>
 <div class='codepen' data-codepen='react'></div>
+<p></details></p>
 <blockquote>
 <p>Note: You'll see <code>ReactDOM.render</code> in all of the code samples in this tutorial. <code>ReactDOM.render</code> injects a component (first argument) into a DOM element (second argument).</p>
 </blockquote>

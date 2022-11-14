@@ -13,6 +13,15 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Learn how to create new types with mapped types! 
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Mapped Types</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -20,6 +29,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -66,7 +80,7 @@
            						">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -188,7 +202,7 @@
            						">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -234,7 +248,7 @@ covering CanJS core libraries.">
            						expanded">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -311,7 +325,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="conditional-types.html"
-							title="Learn how to create new types with conditional types!">
+							title="Learn how to create new types to simplify functions and enforce type safety with conditional types!">
 							Conditional Types
 						</a>
 						
@@ -326,7 +340,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="template-literal-types.html"
-							title="Learn how to create new types with template literal types!">
+							title="Learn what template literal types are and how to empower them with unions, generics, conditional types, and infer!">
 							Template Literal Types
 						</a>
 						
@@ -379,9 +393,9 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
-<p>Since their syntaxes are similar, before talking about mapped types we first will do a quick recap on using index signatures to define object types. Then we will look at what mapped types are and how to define them. Then we will explore some practical applications of mapped types and finally, we will take a look at some exercises where you will have the opportunity to build out some commonly used mapped types.</p>
+<p>Due to syntax similarity, let's do a quick recap on using index signatures to define object types. Then we will dive into what mapped types are and how to define them, followed by practical applciations of mapped types. Finally, we will work through exercises building out some commonly used mapped types.</p>
 <h2>Index Signatures</h2>
-<p>Index signatures are a way to define object types when you know the general shape of any object but nothing more specific than the key type and the value type. Let's imagine we have an object that looks something like this.</p>
+<p>Index signatures are a way to define object types when you know the general shape of any object but nothing more specific than the key type and the value type. Let's imagine we have an object that looks something like this:</p>
 <pre><code class="language-js">const bag = {
   maxPotion: 2,
   maxRevive: 23,
@@ -413,10 +427,10 @@ covering CanJS core libraries.">
   maxPotion: 2,
 };
 
-bag.maxPotion; // Ts says its a number
-bag.maxRevive; // Ts says its a number... but its not there...
+bag.maxPotion; // Ts says it's a number
+bag.maxRevive; // Ts says it's a number... but it's not there...
 </code></pre>
-<p>With interfaces and other type definitions, you can add a ? to delineate the property is optional. This is not the case with types defined using index signatures. To achieve the optional type-safety with index signature type you can create a union with the value type and <code>undefined</code>.</p>
+<p>With interfaces and other type definitions, you can add a <code>?</code> to delineate the property is optional. This is not the case with types defined using index signatures. To achieve the optional type-safety with index signature type you can create a <strong>union</strong> with the value type and <code>undefined</code>.</p>
 <pre><code class="language-ts">type BagWithUndefinedUnion = {
   [itemName: string]: number | undefined;
 };
@@ -425,8 +439,8 @@ const bag: BagWithUndefinedUnion = {
   maxPotion: 2,
 };
 
-bag.maxPotion; // Ts says its a number | undefined
-bag.maxRevive; // Ts says its a number | undefined
+bag.maxPotion; // Ts says it's a number | undefined
+bag.maxRevive; // Ts says it's a number | undefined
 </code></pre>
 <h3>Requiring Certain Properties</h3>
 <p>Types defined using index signatures are great since they provide a lot of flexibility in what can be associated with the type but what if we wanted to require something to be there? In these situations, you can add those properties after the general key definition.</p>
@@ -465,7 +479,7 @@ const bagWithPokeball: BagWithRequiredValue = {
 <p><strong>Tip:</strong> For objects to be keyed with a union or something besides these three try the <code>Record</code> utlity type!</p>
 </blockquote>
 <div style='text-align:center'>
-    <img src="../../static/img/advanced-typescript/string-number-symbol.png" />
+    <img src="./static/img/advanced-typescript/string-number-symbol.png" />
 </div>
 <p>These three types have a strange relationship</p>
 <ul>
@@ -547,13 +561,13 @@ firstThreePokemon[0] = &quot;Pikachu&quot;;
 </code></pre>
 <p>This extends to any required property added to the type as well.</p>
 <blockquote>
-<p><strong>Note:</strong> required propteries have access to all the syntaxes you are familiar with when defining object types with type and interface.</p>
+<p><strong>Note:</strong> required properties have access to all the syntaxes you are familiar with when defining object types with type and interface.</p>
 </blockquote>
 <p>Sticking with our <code>PokemonNameList</code> example type, although it looks like an array and even uses the array syntax, it doesn’t have some of the more fundamental properties of an array, like <code>.length</code>.</p>
 <pre><code class="language-ts">// ERROR: Property 'length' does not exist on type 'ReadonlyPokemonNameList'
 firstThreePokemon.length;
 </code></pre>
-<p>Often times in development we need to know the length of a list, but it's not something we want to allow developers to overwrite. To accomplish this we can tweak our definition to include a <code>readonly</code> required length property.</p>
+<p>Often times in development we need to know the length of a list, but it is not something we want to allow developers to overwrite. To accomplish this we can tweak our definition to include a <code>readonly</code> required length property.</p>
 <pre><code class="language-ts">type ReadonlyPokemonNameList = {
   readonly [index: number]: string;
   readonly length: number;
@@ -575,7 +589,7 @@ const firstThreePokemonObject: ReadonlyPokemonNameList = {
 console.log(firstThreePokemon.length); // 3
 </code></pre>
 <blockquote>
-<p><strong>Note:</strong> In JavaScript the <code>firstThreePokemon</code> variable does have a <code>.length</code> property since it is an <code>Array</code>. TypeScript however, isn’t aware that its an array, instead it thinks its a <code>ReadOnlyPokemonList</code> which is why generally speaking you should avoid defining your arrays using an index signature. Instead you should use <code>Array&lt;T&gt;</code> or the shorthand <code>[]</code>.</p>
+<p><strong>Note:</strong> In JavaScript the <code>firstThreePokemon</code> variable does have a <code>.length</code> property since it is an <code>Array</code>. TypeScript however, is not aware that it is an array, instead it thinks it is a <code>ReadOnlyPokemonList</code> which is why generally speaking you should avoid defining your arrays using an index signature. Instead you should use <code>Array&lt;T&gt;</code> or the shorthand <code>[]</code>.</p>
 </blockquote>
 <h2>Mapped Types</h2>
 <p>Mapped types are another way to generate types in TypeScript. Mapped types are a way to iterate through each key of an object type to create new types for those keys. Mapped types are generic types that extend upon the index signature syntax. The best way to understand it is to see it in action. Let's take a look at a utility type that uses mapped types – <code>Partial&lt;T&gt;</code>.</p>
@@ -629,7 +643,7 @@ type Partial&lt;T&gt; = {
 };
 </code></pre>
 <h3>Property Modifiers</h3>
-<p>We saw it a little bit when looking at <code>Partial</code> but mapped types give us the opportunity to change two things about the properties of the type we are creating – whether or not it's optional and whether or not it's immutable. Like types defined with an index signature, the properties of a mapped type can be made immutable by applying the <code>readonly</code> modifier. Using the <code>readonly</code> modifier in a mapped type is exactly how the <code>Readonly</code> utility type in typescript works.</p>
+<p>We saw it a little bit when looking at <code>Partial</code> but mapped types give us the opportunity to change two things about the properties of the type we are creating – whether or not it's optional and whether or not it's immutable. Like types defined with an index signature, the properties of a mapped type can be made immutable by applying the <code>readonly</code> modifier. Using the <code>readonly</code> modifier in a mapped type is exactly how the <code>Readonly</code> utility type in Typescript works.</p>
 <pre><code class="language-ts">/**
  * Make all properties in T readonly
  */
@@ -722,7 +736,7 @@ class Pokemon&lt;T extends PokemonType&gt; {
   constructor(public types: T | PokemonTypes[T]) {}
 }
 </code></pre>
-<p>However, this has a flaw, it allows us to have duplicate types such as <code>[&quot;Fire&quot;, &quot;Fire&quot;]</code>. In this case, we need a type that has the original pokemon type and the list of the rest of the pokemon types. To create this we can use a mapped type that uses <code>Exclude</code> within its iteration.</p>
+<p>However, this has a flaw: it allows us to have duplicate types such as <code>[&quot;Fire&quot;, &quot;Fire&quot;]</code>. In this case, we need a type that has the original pokemon type and the list of the rest of the pokemon types. To create this we can use a mapped type that uses <code>Exclude</code> within its iteration.</p>
 <pre><code class="language-ts">type PokemonTypes = {
   [T in PokemonType]: [T] | [T, Exclude&lt;PokemonType, T&gt;];
 };
@@ -756,7 +770,7 @@ const gyarados = new Pokemon([&quot;Flying&quot;, &quot;Water&quot;]);
 <pre><code class="language-ts">type ToNumber&lt;T&gt; = To&lt;T, number&gt;;
 type Numberfied = ToNumber&lt;{ level: string; age: string }&gt;; // {level: number; age: number}
 </code></pre>
-<p><a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwAWALQBbNCg4ttg4dpgAPbeoCMBWgmQgajBlJAB6AFReAOuQACLwCAUQsYUR44GACbfyCAgCEYKFIAdwCIOAC0APxyCIgMANMYjDQoWBYAgAMAFVIAHjqVAGkAPhqSgAs5TOyMAFdRUTcoAQDo2hLSWrRyARqCAIBVFBY5GNpuraEt2Yxe8nwcyoDSMB6YlFFSDlFaXjh44Ipauq6fWlIfALTe-gANwi_QC6Dg0WqEEYsxqrSWATqaCwWx2ATApEq6WhuHepAAcoNdAAjCJdUro0iiAKWNC6FCwFSZabRUTA7JoDmBCoQTmU6n1Uhdf4RGAvWrw0E1chE0miJYvcU1ZUOcUUhqEkkRZrtAIAXkRTRaARlWtE7QA3Gq9gFNXLIDBqgaNbLtcBYMCoIhJrRxMcLTl8N6FH7cBbFLqPB4Au6YJ7vaa5QG8DAE67RIolcqXh5_OqjUyOvqcgsA1HEQB5AAiFe9LAoAHJpoNoiWBP5_C4FJlyBBHhUAMq0TbF4DxE101MBXwgGcqccwfTQACCLBYowh3pnc_HKe96nn5EUVvIeZtQ5HBtKFx7fd5UAv9BPFMfMAAajyNo83s6mq-mcSpCYjA8yWh23AUN2CibB-UAQF-EAUAOaBgFOr6wfBciIYEBpjoEE66FOYAVNEh4BDSS5QKu67wHA3q-oMMBkYGREkUx_jHuB5Z1N0WSTN0pCDFA1TEdAmSXNsuwcKCNAjDAGC0J2kHTAAYsuACSAAyKwAEohAA-tB9AYQhFB1HsIQjFS3roZ-WE_jG47kJO3oAJyuUy3E2g2iYRA2oLkKQ0ycnAEC4M5xKwDMJTeYBwHzA29hwAAFAATAAzKlqUAJQLpR1EbnR04gIBxJzgEXnSQ2IY4v5fGBcFEJhRFUXfDFVVxbACVJWlmU5buQa2mg-KedG5lVb5oh1dkDU5E14VoJF-ztTEDadSB5CJQ4vVZblR4niAyiKEAA" target="_blank">Open in CodeSandbox</a></p>
+<p><a href="https://codesandbox.io/s/sgfq7m?file=/04-mapped-types-ex-01.ts" target="_blank">Open in CodeSandbox</a></p>
 <pre><code class="language-ts">/**
  * Exercise 1
  * Below is a generic type called `To&lt;T,K&gt;` that is currently set to `any`. Update the type to change all of the properties
@@ -800,6 +814,7 @@ const FAILURE_stateValidationTypeError: StateValidation = {
 };
 
 </code></pre>
+<div line-highlight='1-3'></div>
 <p></details></p>
 <h3>Exercise 2</h3>
 <p>Exercise 2:</p>
@@ -813,7 +828,7 @@ type Picked = _Pick&lt;{ name: string; age: number }, &quot;age&quot;&gt;; // {a
 <summary> Hint for Exercise 2 (click to reveal)</summary>
 You may need to update the definition of <code>K</code> to get this type to work properly
 </details></p>
-<p><a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwAWALQBbNCg4ttg4dpgAPbeoBMBWgmQgajBlJAB6AFReAOuQACLwCAUQsYUR44GACbRH8ghOCAGRhaAHI4ANEYMRg5GNoACxiAAwAFCGxSgIBXWmgIQQDTQgDSgH1K6oC4ItJaqBYWtCxCgHdSAPxyCKq4FV7SXRjSACMiXNp2gBUatHJhtF7acXJcAKgmiLQoOvIIChaiuQCIOCSlld7atejt0hgAJjARZMCiZa7fZZUoAaVKBCSn1KKIcn1aAS6VSwAB4dotYQA-AIAXgCBwEAG4Ah4PAEdgB5AAiDKRgWCGO6Y2GZKx2BxwAC5DQK0QJzOuGpeBgYvItV0awiAUUi18IGlasJ1NpAWA0tl8sVokUyJRbKCAWJAAkIIx4uzLQEAJoDAL6ARCmAwYa0Ka1FAsArPGJsSAPBpPQHteEtKb4bbFd4tISFKaTURYAIoCEcURQARJDz-DF83H4gJE0nk8hU_wgZSKIA" target="_blank">Open in CodeSandbox</a></p>
+<p><a href="https://codesandbox.io/s/pxg3i3?file=/04-mapped-types-ex-02.ts" target="_blank">Open in CodeSandbox</a></p>
 <pre><code class="language-ts">/**
  * Exercise 2:
  *
@@ -842,6 +857,7 @@ export type _Pick&lt;T, K extends keyof T&gt; = {
 };
 
 </code></pre>
+<div line-highlight='4-6'></div>
 <p></details></p>
 
 </section>

@@ -14,6 +14,15 @@
   <meta name="description" content="Learn how the browser lays out elements in the page and how to get an elements dimensions and location.
 
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Layout</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -21,6 +30,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -67,7 +81,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -334,7 +348,7 @@
            						">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -380,7 +394,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -753,13 +767,18 @@ Component.extend({
 <p><a href="http://api.jquery.com/width/">collection.width</a> gets the current computed width for the first element in the set of matched elements.</p>
 <pre><code class="language-html">&lt;div class=&quot;outer&quot;&gt;&lt;div class=&quot;inner&quot;&gt;Hi&lt;/div&gt;&lt;/div&gt;
 &lt;style&gt;
-.outer {width: 100px;}
-.inner { border: solid 5px green; padding: 10px }
+  .outer {
+    width: 100px;
+  }
+  .inner {
+    border: solid 5px green;
+    padding: 10px;
+  }
 &lt;/style&gt;
 &lt;script type=&quot;module&quot;&gt;
-import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+  import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
 
-console.log( $(&quot;.inner&quot;).width() ) //logs 70
+  console.log($(&quot;.inner&quot;).width()); //logs 70
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
@@ -784,9 +803,9 @@ property returns the width of the element including the padding.</li>
 <li>You can read the computed <code>padding-left</code> and <code>padding-right</code> style properties.</li>
 <li>Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt">parseInt</a> to convert a string to a number. Make sure to include
 a radix argument!
-<pre><code class="language-js">console.log( parseInt(&quot;011&quot;) ) //-&gt; 11 or 9 depending on the browser!
-console.log( parseInt(&quot;011&quot;, 10) )   //-&gt; 11
-console.log( parseInt(&quot;011px&quot;, 10) ) //-&gt; 11
+<pre><code class="language-js">console.log(parseInt(&quot;011&quot;)); //-&gt; 11 or 9 depending on the browser!
+console.log(parseInt(&quot;011&quot;, 10)); //-&gt; 11
+console.log(parseInt(&quot;011px&quot;, 10)); //-&gt; 11
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
@@ -799,6 +818,7 @@ console.log( parseInt(&quot;011px&quot;, 10) ) //-&gt; 11
       return this[0].clientWidth - paddingLeft - paddingRight;
     },
 </code></pre>
+<div line-highlight='2-4'></div>
 <p></details></p>
 <h2>Exercise: <code>collection.show()</code> and <code>collection.hide()</code></h2>
 <h3>The problem</h3>
@@ -812,7 +832,9 @@ in the collection.</p>
 
     equal( $('#el').hide()[0].style.display, 'none');
     equal( $('#el').show()[0].style.display, '');
+
 });
+
 </code></pre>
 <p></details></p>
 <h3>What you need to know</h3>
@@ -830,57 +852,61 @@ in the collection.</p>
       return this.css(&quot;display&quot;, &quot;&quot;);
     },
 </code></pre>
+<div line-highlight='2,5'></div>
 <p></details></p>
 <h2>Bonus Exercise: <code>collection.offset()</code></h2>
 <h3>The problem</h3>
 <p><a href="http://api.jquery.com/offset/">collection.offset()</a> returns the current coordinates of the first element relative to the document.</p>
 <pre><code class="language-html">&lt;div class=&quot;outer&quot;&gt;&lt;div class=&quot;inner&quot;&gt;Hi&lt;/div&gt;&lt;/div&gt;
 &lt;style&gt;
-.outer {
+  .outer {
     position: absolute;
-    left: 20px; top: 30px;
-}
-.inner {
-    border: solid 1px green; padding: 10px;
+    left: 20px;
+    top: 30px;
+  }
+  .inner {
+    border: solid 1px green;
+    padding: 10px;
     position: relative;
-    left: 10px; top: 10px;
-}
+    left: 10px;
+    top: 10px;
+  }
 &lt;/style&gt;
 &lt;script type=&quot;module&quot;&gt;
-import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+  import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
 
-console.log( $(&quot;.inner&quot;).offset() )
-//logs { left: 30, top: 40 }
+  console.log($(&quot;.inner&quot;).offset());
+  //logs { left: 30, top: 40 }
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
 <p><details>
 <summary>Click to see test code</summary></p>
-<pre><code class="language-js">QUnit.test('$.fn.offset', function(){
-    var bigWidth = document.createElement('div'),
-    row1 = document.createElement('div'),
-    row2 = document.createElement('div'),
-    pos = document.createElement('div');
+<pre><code class="language-js">QUnit.test(&quot;$.fn.offset&quot;, function () {
+  var bigWidth = document.createElement(&quot;div&quot;),
+    row1 = document.createElement(&quot;div&quot;),
+    row2 = document.createElement(&quot;div&quot;),
+    pos = document.createElement(&quot;div&quot;);
 
-    bigWidth.className = 'big-width';
-    row1.className = 'row';
-    row2.className = 'row';
-    pos.id = 'pos';
+  bigWidth.className = &quot;big-width&quot;;
+  row1.className = &quot;row&quot;;
+  row2.className = &quot;row&quot;;
+  pos.id = &quot;pos&quot;;
 
-    bigWidth.appendChild(row1);
-    bigWidth.appendChild(row2);
-    row2.appendChild(pos);
+  bigWidth.appendChild(row1);
+  bigWidth.appendChild(row2);
+  row2.appendChild(pos);
 
-    document.body.appendChild(bigWidth);
+  document.body.appendChild(bigWidth);
 
-    var offset = $('#pos').offset();
+  var offset = $(&quot;#pos&quot;).offset();
 
-    equal( offset.top, 120, 'top' );
-    equal( offset.left, -990, 'left');
+  equal(offset.top, 120, &quot;top&quot;);
+  equal(offset.left, -990, &quot;left&quot;);
 
-    //cleaning up after our test
-    var node = $('.big-width')[0];
-    node.parentNode.removeChild(node);
+  //cleaning up after our test
+  var node = $(&quot;.big-width&quot;)[0];
+  node.parentNode.removeChild(node);
 });
 </code></pre>
 <p></details></p>
@@ -889,7 +915,7 @@ console.log( $(&quot;.inner&quot;).offset() )
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect">getBoundingClientRect</a>
 gives an element's position relative to the window.</li>
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/pageXOffset">pageXOffset</a> and
-<a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/pageXOffset">pageYOffset</a> give how far
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/pageYOffset">pageYOffset</a> give how far
 the window has been scrolled.</li>
 </ul>
 <h3>The solution</h3>
@@ -903,8 +929,11 @@ the window has been scrolled.</li>
       };
     }
 </code></pre>
+<div line-highlight='2-6'></div>
 <p></details></p>
 <h2>Complete solution</h2>
+<p><details>
+<summary>Click to see completed solution</summary></p>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
 &lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
 &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
@@ -1097,7 +1126,8 @@ the window has been scrolled.</li>
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='168-185,only'></div>
+<div line-highlight='169-171,174,177,180-185,only'></div>
+<p></details></p>
 
 </section>
 

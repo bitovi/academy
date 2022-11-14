@@ -12,6 +12,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Learn about the attributes and properties on an element. ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Attributes and Properties</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -19,6 +28,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -65,7 +79,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -332,7 +346,7 @@
            						">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -378,7 +392,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -581,7 +595,7 @@ covering CanJS core libraries.">
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='138-141,only'></div>
-<p>Each exercise builds on the previous exercise.  There is a completed solution
+<p>Each exercise builds on the previous exercise. There is a completed solution
 at the end of this page.</p>
 <h2>Exercise: <code>collection.attr( attrName [,value] )</code></h2>
 <h3>The problem</h3>
@@ -592,27 +606,39 @@ at the end of this page.</p>
 </ul>
 <pre><code class="language-html">&lt;a id=&quot;link-less&quot;&gt;Bitovi&lt;/a&gt;
 &lt;script type=&quot;module&quot;&gt;
-import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+  import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
 
-$( &quot;a&quot; ).attr(&quot;href&quot;,&quot;https://bitovi.com&quot;);
+  $(&quot;a&quot;).attr(&quot;href&quot;, &quot;https://bitovi.com&quot;);
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
 <p><details>
 <summary>Click to see test code</summary></p>
-<pre><code class="language-js">QUnit.test('$.fn.attr', function(){
-    equal( $('#qunit-fixture').attr('id'), 'qunit-fixture' ,'can read id' );
+<pre><code class="language-js">QUnit.test(&quot;$.fn.attr&quot;, function () {
+  equal($(&quot;#qunit-fixture&quot;).attr(&quot;id&quot;), &quot;qunit-fixture&quot;, &quot;can read id&quot;);
 
-    $('#qunit-fixture').html('&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;');
+  $(&quot;#qunit-fixture&quot;).html(&quot;&lt;span&gt;&lt;/span&gt;&lt;span&gt;&lt;/span&gt;&quot;);
 
-    $('#qunit-fixture span').attr('foo','bar');
+  $(&quot;#qunit-fixture span&quot;).attr(&quot;foo&quot;, &quot;bar&quot;);
 
-    equal($('#qunit-fixture span')[0].getAttribute('foo'), 'bar', 'attribute set successfully');
-    equal($('#qunit-fixture span')[1].getAttribute('foo'), 'bar', 'attribute set successfully');
+  equal(
+    $(&quot;#qunit-fixture span&quot;)[0].getAttribute(&quot;foo&quot;),
+    &quot;bar&quot;,
+    &quot;attribute set successfully&quot;
+  );
+  equal(
+    $(&quot;#qunit-fixture span&quot;)[1].getAttribute(&quot;foo&quot;),
+    &quot;bar&quot;,
+    &quot;attribute set successfully&quot;
+  );
 
-    $('#qunit-fixture span')[0].setAttribute('foo','BAR');
+  $(&quot;#qunit-fixture span&quot;)[0].setAttribute(&quot;foo&quot;, &quot;BAR&quot;);
 
-    equal($('#qunit-fixture span').attr('foo'), 'BAR', 'read the first item in the collection\'s attr');
+  equal(
+    $(&quot;#qunit-fixture span&quot;).attr(&quot;foo&quot;),
+    &quot;BAR&quot;,
+    &quot;read the first item in the collection's attr&quot;
+  );
 });
 </code></pre>
 <p></details></p>
@@ -633,7 +659,9 @@ $( &quot;a&quot; ).attr(&quot;href&quot;,&quot;https://bitovi.com&quot;);
         return this[0] &amp;&amp; this[0].getAttribute(attrName);
       }
     },
+
 </code></pre>
+<div line-highlight='2-8'></div>
 <p></details></p>
 <h2>Exercise: <code>collection.css( propertyName [,value] )</code></h2>
 <h3>The problem</h3>
@@ -644,33 +672,31 @@ $( &quot;a&quot; ).attr(&quot;href&quot;,&quot;https://bitovi.com&quot;);
 </ul>
 <pre><code class="language-html">&lt;div&gt;Foo Bar&lt;/div&gt;
 &lt;script type=&quot;module&quot;&gt;
-import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+  import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
 
-$( &quot;div&quot; ).css(&quot;backgroundColor&quot;, &quot;green&quot;);
+  $(&quot;div&quot;).css(&quot;backgroundColor&quot;, &quot;green&quot;);
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
 <p><details>
 <summary>Click to see test code</summary></p>
-<pre><code class="language-js">QUnit.test('$.fn.css', function(){
-    $('#qunit-fixture')
-        .html('&lt;span&gt;Content&lt;/span&gt;&lt;span&gt;Second&lt;/span&gt;');
+<pre><code class="language-js">QUnit.test(&quot;$.fn.css&quot;, function () {
+  $(&quot;#qunit-fixture&quot;).html(&quot;&lt;span&gt;Content&lt;/span&gt;&lt;span&gt;Second&lt;/span&gt;&quot;);
 
-    equal(
-        $('#qunit-fixture span').css('padding-left'),
-        '20px');
+  equal($(&quot;#qunit-fixture span&quot;).css(&quot;padding-left&quot;), &quot;20px&quot;);
 
-    $('#qunit-fixture span').css('paddingLeft', '40px');
+  $(&quot;#qunit-fixture span&quot;).css(&quot;paddingLeft&quot;, &quot;40px&quot;);
 
-    equal(
-        $('#qunit-fixture span').css('padding-left'),
-        '40px',
-        'first span set to 40px');
-    equal(
-        $('#qunit-fixture span:nth-child(2)')
-            .css('padding-left'),
-        '40px',
-        'second span set to 40px');
+  equal(
+    $(&quot;#qunit-fixture span&quot;).css(&quot;padding-left&quot;),
+    &quot;40px&quot;,
+    &quot;first span set to 40px&quot;
+  );
+  equal(
+    $(&quot;#qunit-fixture span:nth-child(2)&quot;).css(&quot;padding-left&quot;),
+    &quot;40px&quot;,
+    &quot;second span set to 40px&quot;
+  );
 });
 </code></pre>
 <p></details></p>
@@ -680,27 +706,27 @@ $( &quot;div&quot; ).css(&quot;backgroundColor&quot;, &quot;green&quot;);
 is used to set and get the inline style of an element.</p>
 <pre><code class="language-html">&lt;div id=&quot;theDiv&quot;&gt;theDiv&lt;/div&gt;
 &lt;script type=&quot;module&quot;&gt;
-theDiv.style.color = &quot;red&quot;;
+  theDiv.style.color = &quot;red&quot;;
 
-console.log(theDiv.outerHTML)
-//logs &quot;&lt;div id=&quot;theDiv&quot; style=&quot;color: red;&quot;&gt;theDiv&lt;/div&gt;&quot;
+  console.log(theDiv.outerHTML);
+  //logs &quot;&lt;div id=&quot;theDiv&quot; style=&quot;color: red;&quot;&gt;theDiv&lt;/div&gt;&quot;
 &lt;/script&gt;
 </code></pre></li>
 </ul>
-<div class='codepen' data-codepen=''></div>
+<div class='codepen'></div>
 <ul>
-<li>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle">window.getComputedStyle</a>
-returns an object containing the values of all CSS properties of an element.
+<li><p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/getComputedStyle">window.getComputedStyle</a>
+returns an object containing the values of all CSS properties of an element.</p>
 <pre><code class="language-html">&lt;p id=&quot;theP&quot;&gt;Hello&lt;/p&gt;
 &lt;style&gt;
-p {
-  color: green;
-}
+  p {
+    color: green;
+  }
 &lt;/style&gt;
 &lt;script type=&quot;module&quot;&gt;
-let computedStyles = window.getComputedStyle(theP);
-console.log( computedStyles.getPropertyValue('color') )
-// logs &quot;rgb(0, 128, 0)&quot;
+  let computedStyles = window.getComputedStyle(theP);
+  console.log(computedStyles.getPropertyValue(&quot;color&quot;));
+  // logs &quot;rgb(0, 128, 0)&quot;
 &lt;/script&gt;
 </code></pre></li>
 </ul>
@@ -720,6 +746,7 @@ console.log( computedStyles.getPropertyValue('color') )
       }
     },
 </code></pre>
+<div line-highlight='2-10'></div>
 <p></details></p>
 <h2>Bonus Exercise: <code>collection.addClass(className)</code> and <code>collection.removeClass(className)</code></h2>
 <h3>The problem</h3>
@@ -727,72 +754,80 @@ console.log( computedStyles.getPropertyValue('color') )
 <a href="https://api.jquery.com/removeclass/">collection.removeClass</a> removes a class to each element's <code>className</code>.</p>
 <p>The following changes the <code>&lt;div&gt;</code> from green to red after one second.</p>
 <pre><code class="language-html">&lt;style&gt;
-.red {background-color: red}
-.green {background-color: green}
+  .red {
+    background-color: red;
+  }
+  .green {
+    background-color: green;
+  }
 &lt;/style&gt;
 &lt;div class=&quot;red&quot; id=&quot;hi&quot;&gt;Hello&lt;/div&gt;
 &lt;script type=&quot;module&quot;&gt;
-import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+  import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
 
-setTimeout(function(){
+  setTimeout(function () {
     $(&quot;#hi&quot;).addClass(&quot;green&quot;).removeClass(&quot;red&quot;);
-},1000);
+  }, 1000);
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
 <p><details>
 <summary>Click to see test code</summary></p>
-<pre><code class="language-js">QUnit.test('$.fn.addClass and $.fn.removeClass', function(){
-    var count = function(reg, str){
-        var c = 0;
-        str.replace(reg, function(){
-            c++;
-        });
-        return c;
-    };
+<pre><code class="language-js">QUnit.test(&quot;$.fn.addClass and $.fn.removeClass&quot;, function () {
+  var count = function (reg, str) {
+    var c = 0;
+    str.replace(reg, function () {
+      c++;
+    });
+    return c;
+  };
 
-    var $divs = $('#qunit-fixture').html('&lt;div class=&quot;foo&quot;&gt;&lt;/div&gt;&lt;div class=&quot;foob&quot;&gt;&lt;/div&gt;')
-        .children();
+  var $divs = $(&quot;#qunit-fixture&quot;)
+    .html('&lt;div class=&quot;foo&quot;&gt;&lt;/div&gt;&lt;div class=&quot;foob&quot;&gt;&lt;/div&gt;')
+    .children();
 
-    $divs.addClass('foo');
+  $divs.addClass(&quot;foo&quot;);
 
-    equal( 1, count( /foo/,$divs[0].className ), 'only one foo' );
-    equal( 1, count( /foo/,$divs[1].className ), 'only one foo' );
+  equal(1, count(/foo/, $divs[0].className), &quot;only one foo&quot;);
+  equal(1, count(/foo/, $divs[1].className), &quot;only one foo&quot;);
 
+  $divs.addClass(&quot;foob&quot;);
 
-    $divs.addClass('foob');
+  equal(1, count(/foob/, $divs[0].className), &quot;only one foo&quot;);
+  equal(1, count(/foob/, $divs[1].className), &quot;only one foo&quot;);
 
-    equal( 1, count( /foob/,$divs[0].className ), 'only one foo' );
-    equal( 1, count( /foob/,$divs[1].className ), 'only one foo' );
+  $divs.removeClass(&quot;foob&quot;);
+  equal(0, count(/foob/, $divs[0].className), &quot;only one foo&quot;);
+  equal(0, count(/foob/, $divs[1].className), &quot;only one foo&quot;);
 
-    $divs.removeClass('foob');
-    equal( 0, count( /foob/,$divs[0].className ), 'only one foo' );
-    equal( 0, count( /foob/,$divs[1].className ), 'only one foo' );
-
-    $divs.removeClass('foo');
-    equal( 0, count( /foo/,$divs[0].className ), 'only one foo' );
-    equal( 0, count( /foo/,$divs[1].className ), 'only one foo' );
+  $divs.removeClass(&quot;foo&quot;);
+  equal(0, count(/foo/, $divs[0].className), &quot;only one foo&quot;);
+  equal(0, count(/foo/, $divs[1].className), &quot;only one foo&quot;);
 });
 </code></pre>
 <p></details></p>
 <h3>What you need to know</h3>
 <ul>
-<li>An element's <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/classList">classList</a>
-lets you add and remove class names on it.
+<li><p>An element's <a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/classList">classList</a>
+lets you add and remove class names on it.</p>
 <pre><code class="language-html">&lt;style&gt;
-.red {background-color: red}
-.green {background-color: green}
+  .red {
+    background-color: red;
+  }
+  .green {
+    background-color: green;
+  }
 &lt;/style&gt;
 &lt;div class=&quot;red&quot; id=&quot;hi&quot;&gt;Hello&lt;/div&gt;
 &lt;script type=&quot;module&quot;&gt;
-setTimeout(function(){
-  hi.classList.add(&quot;green&quot;);
-  hi.classList.remove(&quot;red&quot;);
-},1000);
+  setTimeout(function () {
+    hi.classList.add(&quot;green&quot;);
+    hi.classList.remove(&quot;red&quot;);
+  }, 1000);
 &lt;/script&gt;
 </code></pre></li>
 </ul>
-<div class='codepen' data-codepen=''></div>
+<div class='codepen'></div>
 <h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -807,8 +842,11 @@ setTimeout(function(){
         });
       }
 </code></pre>
+<div line-highlight='2-9'></div>
 <p></details></p>
 <h2>Complete Solution</h2>
+<p><details>
+<summary>Click to see completed solution</summary></p>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
 &lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
 &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
@@ -983,7 +1021,8 @@ setTimeout(function(){
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='138-167,only'></div>
+<div line-highlight='139-145,148-156,159-167,only'></div>
+<p></details></p>
 
 </section>
 

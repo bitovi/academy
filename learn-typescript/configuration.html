@@ -13,6 +13,15 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Learn about TypeScript Configurations and Linting 
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Configuration</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -20,6 +29,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -66,7 +80,7 @@
            						">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -350,7 +364,7 @@
            						">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -396,7 +410,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -463,10 +477,10 @@ covering CanJS core libraries.">
     }
 }
 </code></pre>
-<p>Full configuration options are available here: <a href="http://json.schemastore.org/tsconfig" target="\_blank">http://json.schemastore.org/tsconfig</a></p>
-<h3>Linting</h3>
+<p>To learn more about all of the options tsconfig has, check out the <a href="https://www.typescriptlang.org/tsconfig" target="\_blank">TypeScript TSConfig Reference</a>. The Schema can also be found <a href="http://json.schemastore.org/tsconfig" target="\_blank">here</a>.</p>
+<h2>Linting</h2>
 <p>We can also configure linting options to catch bugs and help enforce uniform styling. The following options will warn on unused local variables and parameters, and expressions or declarations implying 'any'.</p>
-<p>Besides linting with the TypeScript compiler, <code>tsc</code>, it is recommended to use a specialized linter like TSLint (now deprecated) or <code>ESLint</code>.</p>
+<p>Besides linting with the TypeScript compiler, <code>tsc</code>, it is recommended to use a specialized linter like <code>ESLint</code>.</p>
 <pre><code class="language-javascript">{
     &quot;compilerOptions&quot;: {
         ...
@@ -477,8 +491,7 @@ covering CanJS core libraries.">
     }
 }
 </code></pre>
-<h2>ESLint</h2>
-<h3>What is ESLint?</h3>
+<h3>ESLint</h3>
 <p>ESLint is a static code analysis tool. It helps us find and fix problematic patterns with our code, enforce style guidelines and is highly customizable - you can code and plug in your own rules.</p>
 <h3>Why Migrate to ESLint?</h3>
 <blockquote>
@@ -490,7 +503,7 @@ covering CanJS core libraries.">
 <li><p>Performance improvements <a href="https://blog.palantir.com/tslint-in-2019-1a144c2317a9" title="TSLint in 2019">have been listed</a> as one of the reasons by the TSLint creators and maintainers for its deprecation.</p></li>
 </ul>
 <h3>Before Starting</h3>
-<p>It should be fairly painless to migrate to ESLint, but we do recommended checking if there are any TSLint rules that are considered essential to your project, and comparing those with ESLint to see if there are mismatches regarding your project's requirements. This <a href="https://github.com/typescript-eslint/typescript-eslint/blob/master/packages/eslint-plugin/ROADMAP.md">Migration Guide</a> is a great source for comparing ESLint and TSLint rules.</p>
+<p>It should be fairly painless to migrate to ESLint, but we do recommended checking if there are any TSLint rules that are considered essential to your project, and comparing those with ESLint to see if there are mismatches regarding your project's requirements. This <a href="https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/TSLINT_RULE_ALTERNATIVES.md">Migration Guide</a> is a great source for comparing ESLint and TSLint rules.</p>
 <h3>Migration</h3>
 <p>The <a href="https://github.com/typescript-eslint/tslint-to-eslint-config">tslint-to-eslint-config repository</a> aims to convert the TSLint configuration to &quot;the closest possible ESLint equivalent&quot;.</p>
 <ol>

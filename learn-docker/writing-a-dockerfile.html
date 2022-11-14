@@ -13,6 +13,15 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Write a Dockerfile to containerize the NodeJS app. 
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Writing a Dockerfile</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -20,6 +29,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -66,7 +80,7 @@
            						">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -303,7 +317,7 @@
            						">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -349,7 +363,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -420,11 +434,11 @@ CMD npm start
 <p>to the provider of the base image.</p>
 <p>In our case, We are using <code>node:15</code>. <code>node</code> specifies the name of the base image and <code>15</code> is a tag specifying the version of the image. This base image has the latest version of NodeJS 15 pre-installed, allowing the rest of the <code>Dockerfile</code> to focus on logic specific to our application. The <code>node:15</code> image also has a <code>Dockerfile</code> which means it also has a <code>FROM</code> instruction. <code>node:15</code> uses <a href="https://hub.docker.com/_/debian">Debian</a> as its base image. This layering of Docker images repeats until a Dockerfile uses <code>FROM scratch</code> as its base image.</p>
 <p>By default, Docker will look for images  on <a href="https://hub.docker.com/">Dockerhub</a>. For example, the <code>node</code> image we are using is pulled from <a href="https://hub.docker.com/_/node">here</a>, but you can create your own base images and share them publicly or privately to Dockerhub or other package registries.</p>
-<p><a href="https://docs.docker.com/engine/reference/builder/#from">Official Docs</a></p>
+<p>Keep reading about the <a href="https://docs.docker.com/engine/reference/builder/#from">FROM instruction</a></p>
 <h2>ARG instruction</h2>
 <p>The <code>ARG</code> instruction is used to define variables that are only available during the image build process. The instruction follows the syntax <code>ARG &lt;name&gt; [=&lt;default value&gt;]</code>.</p>
 <p>In our case, <code>ARG PORT=8000</code> is defining an argument called <code>PORT</code> with a default value of <code>8000</code>. It can be accessed in later instructions in the <code>Dockerfile</code> like a standard environment variable (<code>$PORT</code>) and overwritten during the build process with the <code>--build-arg</code> cli argument (<a href="https://docs.docker.com/engine/reference/commandline/build/#set-build-time-variables---build-arg">Docs</a>).</p>
-<p><a href="https://docs.docker.com/engine/reference/builder/#arg">Official Docs</a></p>
+<p>Keep reading about the <a href="https://docs.docker.com/engine/reference/builder/#arg">ARG instruction</a></p>
 <h2>ENV instruction</h2>
 <p>The <code>ENV</code> instruction is used to define environment variables. Like <code>ARG</code>, it follows the syntax <code>ENV &lt;name&gt; [=&lt;default value&gt;]</code>. The difference between <code>ARG</code> and <code>ENV</code> is that variables defined with the <code>ENV</code> instruction can be used during the image build process and also when the container is running as standard environment variables. However, only <code>ARG</code> defined variables can be actually overwritten during the build process with the <code>--build-arg</code> cli argument. <code>ENV</code> can be overwritten at run time with the <code>-e</code> cli argument or an env file (<a href="https://docs.docker.com/engine/reference/run/#env-environment-variables">Docs</a>).</p>
 <p>To give us the flexibility to set and use variables at build time and run time, we use both <code>ARG</code> and <code>ENV</code> instructions together:</p>
@@ -460,7 +474,7 @@ ENV PORT=$PORT
    </tr>
    </table>
 </table>
-<p><a href="https://docs.docker.com/engine/reference/builder/#env">Official Docs</a></p>
+<p>Keep reading about <a href="https://docs.docker.com/engine/reference/builder/#env">ENV</a></p>
 <h2>WORKDIR instruction</h2>
 <p>The <code>WORKDIR</code> instruction sets the working directory for any subsequent instructions. If the directory does not exist, it will be automatically created.</p>
 <p>The <code>WORKDIR</code> instruction can be used multiple times.</p>
@@ -471,7 +485,7 @@ RUN pwd
 </code></pre>
 <p>Will result in <code>RUN pwd</code> and any later instruction being run in the <code>/x/y/z/</code> directory.</p>
 <p>In our case, <code>WORKDIR app</code> will create the <code>/app/</code> directory for us to copy our source code in to.</p>
-<p><a href="https://docs.docker.com/engine/reference/builder/#workdir">Official Docs</a></p>
+<p>Keep reading about the <a href="https://docs.docker.com/engine/reference/builder/#workdir">WORKDIR instruction</a></p>
 <h2>COPY instruction</h2>
 <p>The <code>COPY</code> instruction follows the syntax <code>COPY [--chown=&lt;user&gt;:&lt;group&gt;] &lt;src&gt;... &lt;dest&gt;</code>.</p>
 <ul>
@@ -494,7 +508,7 @@ COPY package.json .
 <h2>RUN instruction</h2>
 <p>The <code>RUN</code> instruction allows arbitrary commands to be run during build time.</p>
 <p>In our case, we are using <code>RUN npm install</code> to install dependencies from the <code>package.json</code> file copied in to our image. As a reminder, <code>npm</code> is pre-installed as a part of our <code>node:15</code> base image.</p>
-<p><a href="https://docs.docker.com/engine/reference/builder/#run">Official Docs</a></p>
+<p>Keep reading about the <a href="https://docs.docker.com/engine/reference/builder/#run">RUN instruction</a></p>
 <h2>EXPOSE instruction</h2>
 <p><code>EXPOSE</code> specifies which ports the when running the container. Each port is separated by a space (<code></code>). By default the container listens using TCP, but UDP can be used by adding <code>/udp</code> after the port.</p>
 <p>For example:</p>
@@ -507,11 +521,11 @@ ENV PORT=$PORT
 EXPOSE $PORT
 </code></pre>
 <p><code>EXPOSE</code> does not actually publish the port. When running the container with <code>docker run</code>, the <code>-p</code> flag needs to be used to access the port from your host machine. More on this in the next section.
-<a href="https://docs.docker.com/engine/reference/builder/#expose">Official Docs</a></p>
+Learn more about <a href="https://docs.docker.com/engine/reference/builder/#expose">EXPOSE</a></p>
 <h2>CMD instruction</h2>
 <p><code>CMD</code> is a special instruction. It is not run during build time like a <code>RUN</code> instruction. Instead, it is run at runtime. When the <code>CMD</code> instruction finishes, the docker container will be destroyed.</p>
 <p>In our case, we are running our express server with <code>CMD npm start</code>. This will cause our container to run until a fatal error occurs or it is manually killed.</p>
-<p><a href="https://docs.docker.com/engine/reference/builder/#cmd">Official Docs</a></p>
+<p>More information about <a href="https://docs.docker.com/engine/reference/builder/#cmd">CMD</a></p>
 <h2>What's next</h2>
 <p>That was a lot on Dockerfiles. Next we'll be looking at actually building and running our image!</p>
 

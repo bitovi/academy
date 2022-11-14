@@ -12,6 +12,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Learn about event propagation and event delegation. ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Events Part 2</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -19,6 +28,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -65,7 +79,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -332,7 +346,7 @@
            						">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -378,7 +392,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -524,7 +538,7 @@ document.body.addEventListener(&quot;click&quot;, function(ev){
 <div class='codepen'></div>
 <div line-highlight='15-19,only'></div>
 <p>Notice that when the <code>&lt;span&gt;</code> within the <code>&lt;a&gt;</code> is is clicked,
-nothing is logged.  This is because the <code>event.target</code>
+nothing is logged. This is because the <code>event.target</code>
 was the <code>&lt;span&gt;</code> and not an <code>&lt;a&gt;</code>.</p>
 <pre><code class="language-html">&lt;style&gt;
     * {font-family: Consolas, Monaco, Menlo, monospace; font-size: 1.2em}
@@ -764,33 +778,32 @@ document.body.addEventListener(&quot;click&quot;, function(ev){
 <div class='codepen'></div>
 <div line-highlight='196-199,only'></div>
 <p>Each exercise builds on the previous exercise. There is a completed solution at the end of this page.</p>
-<h2>Bonus Exercise: <code>collection.is(selector) -&gt; boolean</code></h2>
+<h2>Exercise: <code>collection.is(selector) -&gt; boolean</code></h2>
 <h3>The problem</h3>
 <p><a href="https://api.jquery.com/is/">collection.is</a> checks the current matched set of elements against a selector.</p>
 <pre><code class="language-js">import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
 
 var elements = $([
-    document.createElement(&quot;div&quot;),
-    document.createElement(&quot;span&quot;)
+  document.createElement(&quot;div&quot;),
+  document.createElement(&quot;span&quot;),
 ]);
 
-console.log( elements.is(&quot;div&quot;) ) //-&gt; true
+console.log(elements.is(&quot;div&quot;)); //-&gt; true
 </code></pre>
 <div class='codepen'></div>
 <p><details>
 <summary>Click to see test code</summary></p>
-<pre><code class="language-js">QUnit.test('$.fn.is', function(){
+<pre><code class="language-js">QUnit.test(&quot;$.fn.is&quot;, function () {
+  expect(3);
 
-    expect(3);
+  var elements = $([
+    document.createElement(&quot;div&quot;),
+    document.createElement(&quot;span&quot;),
+  ]);
 
-    var elements = $([
-        document.createElement(&quot;div&quot;),
-        document.createElement(&quot;span&quot;)
-    ]);
-
-    ok(elements.is(&quot;div&quot;), &quot;is div&quot;);
-    ok(elements.is(&quot;span&quot;), &quot;is span&quot;);
-    ok(!elements.is(&quot;a&quot;), &quot;is a&quot;);
+  ok(elements.is(&quot;div&quot;), &quot;is div&quot;);
+  ok(elements.is(&quot;span&quot;), &quot;is span&quot;);
+  ok(!elements.is(&quot;a&quot;), &quot;is a&quot;);
 });
 </code></pre>
 <p></details></p>
@@ -800,11 +813,11 @@ console.log( elements.is(&quot;div&quot;) ) //-&gt; true
 element matches a selector:</p>
 <pre><code class="language-html">&lt;div id=&quot;hello&quot;&gt;Hello World&lt;/div&gt;
 &lt;script type=&quot;module&quot;&gt;
-console.log( hello.matches(&quot;div&quot;) ) //-&gt; true
-&lt;/script&gt;  
+  console.log(hello.matches(&quot;div&quot;)); //-&gt; true
+&lt;/script&gt;
 </code></pre></li>
 </ul>
-<div class='codepen' data-codepen=''></div>
+<div class='codepen'></div>
 <h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -818,29 +831,29 @@ console.log( hello.matches(&quot;div&quot;) ) //-&gt; true
       return matched;
     },
 </code></pre>
+<div line-highlight='2-8'></div>
 <p></details></p>
-<h2>Bonus Exercise: <code>collection.data(key [, value])</code></h2>
+<h2>Exercise: <code>collection.data(key [, value])</code></h2>
 <h3>The problem</h3>
 <p><a href="https://api.jquery.com/data/">collection.data</a> stores arbitrary data associated with the matched elements or return the value at the named data store for the first element in the set of matched elements.</p>
 <pre><code class="language-html">&lt;div id=&quot;hello&quot;&gt;Hello World&lt;/div&gt;
 &lt;script type=&quot;module&quot;&gt;
-import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+  import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
 
-$(&quot;#hello&quot;).data(&quot;foo&quot;, &quot;bar&quot;);
+  $(&quot;#hello&quot;).data(&quot;foo&quot;, &quot;bar&quot;);
 
-console.log( $(&quot;#hello&quot;).data(&quot;foo&quot;) ) //-&gt; &quot;bar&quot;
-&lt;/script&gt;  
+  console.log($(&quot;#hello&quot;).data(&quot;foo&quot;)); //-&gt; &quot;bar&quot;
+&lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
 <p><details>
 <summary>Click to see test code</summary></p>
-<pre><code class="language-js">QUnit.test('$.fn.data', function(){
+<pre><code class="language-js">QUnit.test(&quot;$.fn.data&quot;, function () {
+  $(&quot;#qunit-fixture&quot;).html('&lt;div id=&quot;el&quot;&gt;text&lt;/div&gt;');
 
-    $('#qunit-fixture').html('&lt;div id=&quot;el&quot;&gt;text&lt;/div&gt;');
+  $(&quot;#el&quot;).data(&quot;foo&quot;, &quot;bar&quot;);
 
-    $('#el').data('foo', 'bar');
-
-    equal( $('#el').data('foo'), 'bar' ,'got back bar' );
+  equal($(&quot;#el&quot;).data(&quot;foo&quot;), &quot;bar&quot;, &quot;got back bar&quot;);
 });
 </code></pre>
 <p></details></p>
@@ -851,19 +864,19 @@ to store data associated with an object in such a way that when the object is re
 will be also be removed from the <code>WeakMap</code> and available for garbage collection.</p>
 <pre><code class="language-js">var map = new WeakMap();
 
-(function(){
-  var key = {name: &quot;key&quot;};
-  var value = {name: &quot;value&quot;};
+(function () {
+  var key = { name: &quot;key&quot; };
+  var value = { name: &quot;value&quot; };
   map.set(key, value);
 })();
-setTimeout(function(){
-  console.log( map );
+setTimeout(function () {
+  console.log(map);
   // In chrome, you can see the contents of the weakmap
   // and it will not have the key and value.
-},500);
+}, 500);
 </code></pre></li>
 </ul>
-<div class='codepen' data-codepen=''></div>
+<div class='codepen'></div>
 <h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -888,46 +901,50 @@ setTimeout(function(){
       };
     })(),
 </code></pre>
+<div line-highlight='1-20'></div>
 <p></details></p>
-<h2>Bonus Exercise: <code>collection.on(eventType, selector, handler)</code></h2>
+<h2>Exercise: <code>collection.on(eventType, selector, handler)</code></h2>
 <h3>The problem</h3>
 <p><a href="https://api.jquery.com/on/">collection.on</a> attaches a delegate event listener.</p>
 <pre><code class="language-html">&lt;ul id=&quot;root&quot;&gt;
-    &lt;li&gt;First&lt;/li&gt;
-    &lt;li&gt;Second&lt;/li&gt;
+  &lt;li&gt;First&lt;/li&gt;
+  &lt;li&gt;Second&lt;/li&gt;
 &lt;/ul&gt;
 &lt;script type=&quot;module&quot;&gt;
-import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+  import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
 
-$(&quot;#root&quot;).on(&quot;click&quot;,&quot;li&quot;, function(){
+  $(&quot;#root&quot;).on(&quot;click&quot;, &quot;li&quot;, function () {
     console.log(&quot;clicked an li&quot;);
-});
-&lt;/script&gt;  
+  });
+&lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
 <p><details>
 <summary>Click to see test code</summary></p>
-<pre><code class="language-js">QUnit.test('$.fn.on', function(){
-    expect(3);
+<pre><code class="language-js">QUnit.test(&quot;$.fn.on&quot;, function () {
+  expect(3);
 
-    var handler = function(){
-        equal(this.nodeName.toLowerCase(), 'li', 'called back with an LI')
-    }
+  var handler = function () {
+    equal(this.nodeName.toLowerCase(), &quot;li&quot;, &quot;called back with an LI&quot;);
+  };
 
-    var $ul = $('#qunit-fixture').html(`
+  var $ul = $(&quot;#qunit-fixture&quot;)
+    .html(
+      `
         &lt;ul&gt;
             &lt;li&gt;&lt;span id=&quot;one&quot;/&gt;&lt;/li&gt;
             &lt;li&gt;&lt;span id=&quot;two&quot;/&gt;&lt;/li&gt;
-        &lt;/ul&gt;`)
-        .children()
+        &lt;/ul&gt;`
+    )
+    .children();
 
-    $ul.on('click', 'li', handler);
+  $ul.on(&quot;click&quot;, &quot;li&quot;, handler);
 
-    clickIt( $('#one')[0] );
-    clickIt( $('#two')[0] );
+  clickIt($(&quot;#one&quot;)[0]);
+  clickIt($(&quot;#two&quot;)[0]);
 
-    $ul.html('&lt;li&gt;&lt;span id=&quot;three&quot;&gt;&lt;/span&gt;&lt;/li&gt;');
-    clickIt( $('#three')[0] );
+  $ul.html('&lt;li&gt;&lt;span id=&quot;three&quot;&gt;&lt;/span&gt;&lt;/li&gt;');
+  clickIt($(&quot;#three&quot;)[0]);
 });
 </code></pre>
 <p></details></p>
@@ -936,10 +953,10 @@ $(&quot;#root&quot;).on(&quot;click&quot;,&quot;li&quot;, function(){
 <li>Instead of binding the <code>handler</code>, you'll need to bind a <code>delegator</code> that
 will conditionally call the <code>handler</code>.</li>
 <li>Use <code>.data</code> to store the <code>delegator</code> and <code>handler</code> in an object
-like <code>{delegator, handler}</code>.  That object should be stored in a data structure that
+like <code>{delegator, handler}</code>. That object should be stored in a data structure that
 looks like:
-<pre><code class="language-js">$([element]).data(&quot;events&quot;) //-&gt; {
-//   click: { li: [ {delegator, handler} ] }   
+<pre><code class="language-js">$([element]).data(&quot;events&quot;); //-&gt; {
+//   click: { li: [ {delegator, handler} ] }
 // }
 </code></pre></li>
 </ul>
@@ -978,31 +995,36 @@ looks like:
         element.addEventListener(eventType, delegator, false);
       });
     },
+
 </code></pre>
+<div line-highlight='2-31'></div>
 <p></details></p>
-<h2>Bonus Exercise: <code>collection.off(eventType, selector, handler)</code></h2>
+<h2>Exercise: <code>collection.off(eventType, selector, handler)</code></h2>
 <h3>The problem</h3>
 <p><a href="https://api.jquery.com/off/">collection.off</a> stops listening for a delegate listener.</p>
 <p><details>
 <summary>Click to see test code</summary></p>
-<pre><code class="language-js">QUnit.test('$.fn.off', function(){
-    expect(0);
+<pre><code class="language-js">QUnit.test(&quot;$.fn.off&quot;, function () {
+  expect(0);
 
-    var handler = function(){
-        equal(this.nodeName.toLowerCase(), 'li', 'called back with an LI')
-    }
+  var handler = function () {
+    equal(this.nodeName.toLowerCase(), &quot;li&quot;, &quot;called back with an LI&quot;);
+  };
 
-    var $ul = $('#qunit-fixture').html(`
+  var $ul = $(&quot;#qunit-fixture&quot;)
+    .html(
+      `
         &lt;ul&gt;
             &lt;li&gt;&lt;span id=&quot;one&quot;/&gt;&lt;/li&gt;
             &lt;li&gt;&lt;span id=&quot;two&quot;/&gt;&lt;/li&gt;
-        &lt;/ul&gt;`)
-        .children();
+        &lt;/ul&gt;`
+    )
+    .children();
 
-    $ul.on('click', 'li', handler);
-    $ul.off('click', 'li', handler);
+  $ul.on(&quot;click&quot;, &quot;li&quot;, handler);
+  $ul.off(&quot;click&quot;, &quot;li&quot;, handler);
 
-    clickIt( $('#three')[0] );
+  clickIt($(&quot;#three&quot;)[0]);
 });
 </code></pre>
 <p></details></p>
@@ -1033,8 +1055,11 @@ call <code>.removeEventListener</code>.</li>
       });
     }
 </code></pre>
+<div line-highlight='2-17'></div>
 <p></details></p>
-<h2>Complete solution</h2>
+<h2>Completed solution</h2>
+<p><details>
+<summary>Click to see completed solution</summary></p>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
 &lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
 &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
@@ -1314,7 +1339,8 @@ call <code>.removeEventListener</code>.</li>
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='196-272,only'></div>
+<div line-highlight='197-203,205-222,224-253,256-272,only\'></div>
+<p></details></p>
 
 </section>
 

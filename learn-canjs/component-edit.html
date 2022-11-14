@@ -13,6 +13,15 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Edit todo names (can-stache-bindings) 
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Component Edit</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -20,6 +29,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -66,7 +80,7 @@
            						">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -188,7 +202,7 @@
            						">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -499,7 +513,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -557,7 +571,7 @@ is the list of todos that will be managed by the custom element.</p>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTF0-60TwgAwVzRGMKxYnjWtb2dIr1t-x2w2nDmvbc82PU_TxuGD3D2b7FA2cbZ0hmMUZEol3oG7-89/embed?start=false&loop=false&delayms=3000#slide=10" frameborder="0" width="640" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 <ul>
 <li><p><a href="https://docs.google.com/presentation/d/1xiu2fe_mIi37lNcAfTUnNXs-nSvLUDm8BADl_KJIC0g/edit?usp=sharing#slide=10">The can-stache-bindings presentation</a> on <em>data bindings</em>.</p></li>
-<li><p>The <a href="https://canjs.com/doc/can-util/dom/attr/attr.special.focused.html" title="focused">focused</a> custom attribute can be used to specify when an element should be focused:</p>
+<li><p>The <a href="https://canjs.com/doc/can-attribute-observable.html" title="focused">focused</a> custom attribute can be used to specify when an element should be focused:</p>
 <pre><code class="language-html">focused:from=&quot;shouldBeFocused()&quot;
 </code></pre></li>
 <li><p>Use <a href="https://canjs.com/doc/can-stache-bindings.toChild.html" title="key:from">key:from</a> to pass a value from the scope to a component:</p>
@@ -567,7 +581,9 @@ is the list of todos that will be managed by the custom element.</p>
 <pre><code class="language-html">&lt;div on:click=&quot;doSomethingWith(this)&quot; /&gt;
 </code></pre></li>
 </ul>
-<h2>The solution</h2>
+<h2>The Solution</h2>
+<p><details>
+<summary>Click to see the solution</summary></p>
 <p>Create <em>components/todo-list/todo-list.stache</em> as follows:</p>
 <pre><code class="language-html">&lt;!-- components/todo-list/todo-list.stache --&gt;
 &lt;ul id=&quot;todo-list&quot;&gt;
@@ -664,6 +680,7 @@ export default Component.extend({
 
 </code></pre>
 <div line-highlight='3,12,only'></div>
+<p></details></p>
 
 </section>
 

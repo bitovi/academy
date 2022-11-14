@@ -13,6 +13,15 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Learn the basics of DOM events. 
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Events Part 1</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -20,6 +29,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -66,7 +80,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -333,7 +347,7 @@
            						">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -379,7 +393,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -434,8 +448,206 @@ covering CanJS core libraries.">
 <iframe width="560" height="315" src="https://www.youtube.com/embed/qoW-EYuESZA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <h2>Slides</h2>
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQGzElV5YC_q8hOcumq38Xi4IeRDnK94gABK_KvFRGWSbdgeTMGtefBWUu1dfqiiKGY-_jejqONDiYe/embed?start=false&loop=false&delayms=3000" frameborder="0" width="480" height="389" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<h2>Setup</h2>
+<p>Run the following example in CodePen:</p>
+<pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
+&lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
+&lt;script src=&quot;//code.jquery.com/qunit/qunit-1.12.0.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;//bitovi.github.io/academy/static/scripts/jquery-test.js&quot;&gt;&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//bitovi.github.io/academy/static/scripts/jquery-test.css&quot;&gt;
+&lt;script type=&quot;module&quot;&gt;
+(function() {
+  $ = function(selector) {
+    if ( !(this instanceof $) ) {
+      return new $(selector);
+    }
+    var elements;
+    if (typeof selector === &quot;string&quot;) {
+      elements = document.querySelectorAll(selector);
+    } else if ($.isArrayLike(selector)) {
+      elements = selector;
+    }
+    [].push.apply(this, elements);
+  };
+
+  $.extend = function(target, object) {
+    for (var prop in object) {
+      if (object.hasOwnProperty(prop)) {
+        target[prop] = object[prop];
+      }
+    }
+    return target;
+  };
+
+  // Static methods
+  $.extend($, {
+    isArray: function(obj) {
+      return Object.prototype.toString.call(obj) === &quot;[object Array]&quot;;
+    },
+    isArrayLike: function(obj) {
+      return obj &amp;&amp;
+        typeof obj === &quot;object&quot; &amp;&amp;
+        (   obj.length === 0 ||
+            typeof obj.length === &quot;number&quot; &amp;&amp;
+            obj.length &gt; 0 &amp;&amp;
+            obj.length - 1 in obj );
+
+    },
+    each: function(collection, cb) {
+      if ($.isArrayLike(collection)) {
+        for (var i = 0; i &lt; collection.length; i++) {
+          if (cb.call(this, i, collection[i]) === false) {
+            break;
+          }
+        }
+      } else {
+        for (var prop in collection) {
+          if (collection.hasOwnProperty(prop)) {
+            if (cb.call(this, prop, collection[prop]) === false) {
+              break;
+            }
+          }
+        }
+      }
+      return collection;
+    },
+    makeArray: function(arr) {
+      if ($.isArray(arr)) {
+        return arr;
+      }
+      var array = [];
+      $.each(arr, function(i, item) {
+        array[i] = item;
+      });
+      return array;
+    },
+    proxy: function(fn, context) {
+      return function() {
+        return fn.apply(context, arguments);
+      };
+    }
+  });
+
+  function makeTraverser(traverser) {
+    return function() {
+      var elements = [], args = arguments;
+      $.each(this, function(i, element) {
+        var els = traverser.apply(element, args);
+        if ($.isArrayLike(els)) {
+          elements.push.apply(elements, els);
+        } else if (els) {
+          elements.push(els);
+        }
+      });
+      return $(elements);
+    };
+  }
+
+  $.extend($.prototype, {
+    html: function(newHtml) {
+      if(arguments.length) {
+        return $.each(this, function(i, element) {
+          element.innerHTML = newHtml;
+        });
+      } else {
+        return this[0].innerHTML;
+      }
+    },
+    val: function(newVal) {
+      if(arguments.length) {
+        return $.each(this, function(i, element) {
+          element.value = newVal;
+        });
+      } else {
+        return this[0].value;
+      }
+    },
+    text: function(newText) {
+      if (arguments.length) {
+        return $.each(this, function(i, element) {
+          element.textContent = newText;
+        });
+      } else {
+        return this[0].textContent;
+      }
+    },
+    find: makeTraverser(function(selector) {
+      return this.querySelectorAll(selector);
+    }),
+    parent: makeTraverser(function() {
+      return this.parentNode;
+    }),
+    next: makeTraverser(function() {
+      return this.nextElementSibling;
+    }),
+    prev: makeTraverser(function() {
+      return this.previousElementSibling;
+    }),
+    children: makeTraverser(function() {
+      return this.children;
+    }),
+    attr: function(attrName, value) {
+      if (arguments.length == 2) {
+        return $.each(this, function(i, element) {
+          element.setAttribute(attrName, value);
+        });
+      } else {
+        return this[0] &amp;&amp; this[0].getAttribute(attrName);
+      }
+    },
+    css: function(cssPropName, value) {
+      if (arguments.length == 2) {
+        return $.each(this, function(i, element) {
+          element.style[cssPropName] = value;
+        });
+      } else {
+        return this[0] &amp;&amp;
+          window.getComputedStyle(this[0])
+            .getPropertyValue(cssPropName);
+      }
+    },
+    addClass: function(className) {
+      return $.each(this, function(i, element) {
+        element.classList.add(className);
+      });
+    },
+    removeClass: function(className) {
+      return $.each(this, function(i, element) {
+        element.classList.remove(className);
+      });
+    },
+    width: function() {
+      var paddingLeft = parseInt(this.css(&quot;padding-left&quot;), 10),
+      paddingRight = parseInt(this.css(&quot;padding-right&quot;), 10);
+      return this[0].clientWidth - paddingLeft - paddingRight;
+    },
+    hide: function() {
+      return this.css(&quot;display&quot;, &quot;none&quot;);
+    },
+    show: function() {
+      return this.css(&quot;display&quot;, &quot;&quot;);
+    },
+    offset: function() {
+      var offset = this[0].getBoundingClientRect();
+      return {
+        top: offset.top + window.pageYOffset,
+        left: offset.left + window.pageXOffset
+      };
+    },
+    bind: function(eventName, handler){},
+    unbind: function(eventName, handler){}
+  });
+
+})();
+&lt;/script&gt;
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='186-187,only'></div>
+<p>Each exercise builds on the previous exercise. There is a completed solution at the end of this page.</p>
 <h2>Events List</h2>
-<p>The following lists most of the DOM's events and lets you see how they work:</p>
+<p>The following lists most of the DOM's events and lets you see how they work - Be sure to run in Codepen for a demonstration!</p>
 <pre><code class="language-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css&quot;&gt;
 &lt;link href=&quot;https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.css&quot; rel=&quot;stylesheet&quot;/&gt;
 &lt;style&gt;
@@ -912,7 +1124,7 @@ document.addEventListener(&quot;fullscreenchange&quot;, function( event ) {
 <div class='codepen'></div>
 <div line-highlight='25,only'></div>
 <h2>mouseenter vs mouseout</h2>
-<p>The following shows why mouseenter is usually prefered over mouseover:</p>
+<p>The following shows why mouseenter is usually prefered over mouseover - Be sure to run in Codepen for a demonstration!</p>
 <pre><code class="language-html">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css&quot;&gt;
 &lt;style&gt;
 .vis-mouseenter {
@@ -968,224 +1180,25 @@ $.each(['mouseenter', 'mouseleave', 'mouseover', 'mouseout'], function(i, evName
 <p><a href="http://api.jquery.com/bind/">collection.bind</a> adds an event handler to elements in the
 collection. <a href="http://api.jquery.com/unbind/">collection.unbind</a> removes an event handler to elements in the
 collection.</p>
-<p>Run the following code in your browser to complete the exercise:</p>
-<pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
-&lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
-&lt;script src=&quot;//code.jquery.com/qunit/qunit-1.12.0.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;//bitovi.github.io/academy/static/scripts/jquery-test.js&quot;&gt;&lt;/script&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;//bitovi.github.io/academy/static/scripts/jquery-test.css&quot;&gt;
-&lt;script type=&quot;module&quot;&gt;
-(function() {
-  $ = function(selector) {
-    if ( !(this instanceof $) ) {
-      return new $(selector);
-    }
-    var elements;
-    if (typeof selector === &quot;string&quot;) {
-      elements = document.querySelectorAll(selector);
-    } else if ($.isArrayLike(selector)) {
-      elements = selector;
-    }
-    [].push.apply(this, elements);
-  };
-
-  $.extend = function(target, object) {
-    for (var prop in object) {
-      if (object.hasOwnProperty(prop)) {
-        target[prop] = object[prop];
-      }
-    }
-    return target;
-  };
-
-  // Static methods
-  $.extend($, {
-    isArray: function(obj) {
-      return Object.prototype.toString.call(obj) === &quot;[object Array]&quot;;
-    },
-    isArrayLike: function(obj) {
-      return obj &amp;&amp;
-        typeof obj === &quot;object&quot; &amp;&amp;
-        (   obj.length === 0 ||
-            typeof obj.length === &quot;number&quot; &amp;&amp;
-            obj.length &gt; 0 &amp;&amp;
-            obj.length - 1 in obj );
-
-    },
-    each: function(collection, cb) {
-      if ($.isArrayLike(collection)) {
-        for (var i = 0; i &lt; collection.length; i++) {
-          if (cb.call(this, i, collection[i]) === false) {
-            break;
-          }
-        }
-      } else {
-        for (var prop in collection) {
-          if (collection.hasOwnProperty(prop)) {
-            if (cb.call(this, prop, collection[prop]) === false) {
-              break;
-            }
-          }
-        }
-      }
-      return collection;
-    },
-    makeArray: function(arr) {
-      if ($.isArray(arr)) {
-        return arr;
-      }
-      var array = [];
-      $.each(arr, function(i, item) {
-        array[i] = item;
-      });
-      return array;
-    },
-    proxy: function(fn, context) {
-      return function() {
-        return fn.apply(context, arguments);
-      };
-    }
-  });
-
-  function makeTraverser(traverser) {
-    return function() {
-      var elements = [], args = arguments;
-      $.each(this, function(i, element) {
-        var els = traverser.apply(element, args);
-        if ($.isArrayLike(els)) {
-          elements.push.apply(elements, els);
-        } else if (els) {
-          elements.push(els);
-        }
-      });
-      return $(elements);
-    };
-  }
-
-  $.extend($.prototype, {
-    html: function(newHtml) {
-      if(arguments.length) {
-        return $.each(this, function(i, element) {
-          element.innerHTML = newHtml;
-        });
-      } else {
-        return this[0].innerHTML;
-      }
-    },
-    val: function(newVal) {
-      if(arguments.length) {
-        return $.each(this, function(i, element) {
-          element.value = newVal;
-        });
-      } else {
-        return this[0].value;
-      }
-    },
-    text: function(newText) {
-      if (arguments.length) {
-        return $.each(this, function(i, element) {
-          element.textContent = newText;
-        });
-      } else {
-        return this[0].textContent;
-      }
-    },
-    find: makeTraverser(function(selector) {
-      return this.querySelectorAll(selector);
-    }),
-    parent: makeTraverser(function() {
-      return this.parentNode;
-    }),
-    next: makeTraverser(function() {
-      return this.nextElementSibling;
-    }),
-    prev: makeTraverser(function() {
-      return this.previousElementSibling;
-    }),
-    children: makeTraverser(function() {
-      return this.children;
-    }),
-    attr: function(attrName, value) {
-      if (arguments.length == 2) {
-        return $.each(this, function(i, element) {
-          element.setAttribute(attrName, value);
-        });
-      } else {
-        return this[0] &amp;&amp; this[0].getAttribute(attrName);
-      }
-    },
-    css: function(cssPropName, value) {
-      if (arguments.length == 2) {
-        return $.each(this, function(i, element) {
-          element.style[cssPropName] = value;
-        });
-      } else {
-        return this[0] &amp;&amp;
-          window.getComputedStyle(this[0])
-            .getPropertyValue(cssPropName);
-      }
-    },
-    addClass: function(className) {
-      return $.each(this, function(i, element) {
-        element.classList.add(className);
-      });
-    },
-    removeClass: function(className) {
-      return $.each(this, function(i, element) {
-        element.classList.remove(className);
-      });
-    },
-    width: function() {
-      var paddingLeft = parseInt(this.css(&quot;padding-left&quot;), 10),
-      paddingRight = parseInt(this.css(&quot;padding-right&quot;), 10);
-      return this[0].clientWidth - paddingLeft - paddingRight;
-    },
-    hide: function() {
-      return this.css(&quot;display&quot;, &quot;none&quot;);
-    },
-    show: function() {
-      return this.css(&quot;display&quot;, &quot;&quot;);
-    },
-    offset: function() {
-      var offset = this[0].getBoundingClientRect();
-      return {
-        top: offset.top + window.pageYOffset,
-        left: offset.left + window.pageXOffset
-      };
-    },
-    bind: function(eventName, handler){},
-    unbind: function(eventName, handler){}
-  });
-
-})();
-&lt;/script&gt;
-
-</code></pre>
-<div class='codepen'></div>
-<div line-highlight='186-187,only'></div>
 <p><details>
 <summary>Click to see test code</summary></p>
-<pre><code class="language-js">QUnit.test('$.fn.bind and $.fn.unbind', function(){
+<pre><code class="language-js">QUnit.test(&quot;$.fn.bind and $.fn.unbind&quot;, function () {
+  expect(2);
 
-    expect(2);
+  $(&quot;#qunit-fixture&quot;).html('&lt;div id=&quot;el&quot;&gt;text&lt;/div&gt;');
 
-    $('#qunit-fixture').html('&lt;div id=&quot;el&quot;&gt;text&lt;/div&gt;');
+  var handler = function (ev) {
+    equal(this.nodeName.toLowerCase(), &quot;div&quot;, &quot;event called on div&quot;);
+    equal(ev.type, &quot;click&quot;, &quot;click event&quot;);
+  };
 
-    var handler = function(ev){
-        equal(this.nodeName.toLowerCase(), 'div', 'event called on div');
-        equal(ev.type, 'click', 'click event');
-    }
+  $(&quot;#el&quot;).bind(&quot;click&quot;, handler);
 
-    $('#el').bind('click',handler);
+  clickIt($(&quot;#el&quot;)[0]);
 
+  $(&quot;#el&quot;).unbind(&quot;click&quot;, handler);
 
-    clickIt( $('#el')[0] );
-
-
-    $('#el').unbind('click',handler);
-
-    clickIt( $('#el')[0] );
+  clickIt($(&quot;#el&quot;)[0]);
 });
 </code></pre>
 <p></details></p>
@@ -1193,31 +1206,37 @@ collection.</p>
 <ul>
 <li><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener">addEventListener</a>
 adds an event listener to a target element:</p>
-<pre><code class="language-html">&lt;div&gt; click me &lt;/div&gt;
+<pre><code class="language-html">&lt;div&gt;click me&lt;/div&gt;
 &lt;script type=&quot;module&quot;&gt;
-document.body.addEventListener(&quot;click&quot;, function(event){
-  console.log(event.target, &quot;clicked&quot;);
-}, false);
+  document.body.addEventListener(
+    &quot;click&quot;,
+    function (event) {
+      console.log(event.target, &quot;clicked&quot;);
+    },
+    false
+  );
 &lt;/script&gt;
 </code></pre></li>
 </ul>
-<div class='codepen' data-codepen=''></div>
+<div class='codepen'></div>
 <ul>
 <li><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/removeEventListener">removeEventListener</a>
-removes an event listener to a target element.  The following removes the <code>handler</code> event
+removes an event listener to a target element. The following removes the <code>handler</code> event
 handler after the first click.</p>
-<pre><code class="language-html">&lt;div&gt; click me and I log only once &lt;/div&gt;
+<pre><code class="language-html">&lt;div&gt;click me and I log only once&lt;/div&gt;
 &lt;script type=&quot;module&quot;&gt;
-function handler(event) {
-  console.log(event.target, &quot;clicked&quot;);
-  document.body.removeEventListener(&quot;click&quot;, handler, false);
-}
-document.body.addEventListener(&quot;click&quot;, handler, false);
+  function handler(event) {
+    console.log(event.target, &quot;clicked&quot;);
+    document.body.removeEventListener(&quot;click&quot;, handler, false);
+  }
+  document.body.addEventListener(&quot;click&quot;, handler, false);
 &lt;/script&gt;
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
-<h3>The solution</h3>
+<h2>Complete solution</h2>
+<p><details>
+<summary>Click to see completed solution</summary></p>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
 &lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
 &lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
@@ -1420,7 +1439,8 @@ document.body.addEventListener(&quot;click&quot;, handler, false);
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='186-195,only'></div>
+<div line-highlight='187-189,192-195,only'></div>
+<p></details></p>
 
 </section>
 

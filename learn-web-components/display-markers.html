@@ -13,6 +13,15 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Learn how to listen to changes in __properties__ on your custom elements and how to properly reflect back the property values to the outside world. 
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Display markers for vehicles</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -20,6 +29,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -66,7 +80,7 @@
            						">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -363,7 +377,7 @@
            						">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -409,7 +423,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -514,6 +528,7 @@ kid.age = 4;
 console.log(kid.age);
 </code></pre>
 <div class='codepen'></div>
+<div line-highlight='2-10'></div>
 <p>We can use getters/setters within custom element classes as well.</p>
 <pre><code class="language-html">&lt;my-counter&gt;&lt;/my-counter&gt;
 
@@ -549,6 +564,7 @@ setTimeout(() =&gt; counter.count--, 15000);
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
+<div line-highlight='15-22'></div>
 <h3>Default values</h3>
 <p>Most properties supported by builtin elements have some sort of default value. For example the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress">&lt;progress&gt;</a> element has a <code>max</code> property that defaults to <code>1</code>: <code>document.createElement('progress').max; // 1</code>. <strong>All</strong> elements have an <code>onclick</code> property whose default value is <code>null</code>. It's good practice to provide default values for your supported public properties, and these can be set in the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor">constructor</a>. Combining getters, setters and default values for properties makes your component more robust.</p>
 <pre><code class="language-js">class DogElement extends HTMLElement {
@@ -566,6 +582,8 @@ setTimeout(() =&gt; counter.count--, 15000);
 </code></pre>
 <h2>Solution</h2>
 <p>✏️ Add default values for <code>markers</code> and <code>vehicles</code> in the constructor (use an underscore property for vehicles). Add a getter/setter pair for <code>vehicles</code>, where the setter creates new markers on the map with <code>new google.maps.Marker</code>.</p>
+<p><details>
+<summary>Click to see the solution</summary></p>
 <pre><code class="language-html">&lt;style&gt;
   html,
   body {
@@ -898,9 +916,7 @@ customElements.define(&quot;bus-tracker&quot;, BusTracker);
 </code></pre>
 <div line-highlight='204-205,219-242,267,306,309,only'></div>
 <div class='codepen'></div>
-<p style="font-weight: bold; text-align: center;">
-<a href="customize-header.html" title="Learn how to use CSS properties to customize the appearance within Shadow DOM.">👉 Customize header styles</a>
-</p>
+<p></details></p>
 
 </section>
 

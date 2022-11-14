@@ -13,6 +13,15 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Learn how to manage global app state with context hooks. 
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Context Hooks</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -20,6 +29,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -66,7 +80,7 @@
            						">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -348,7 +362,7 @@
            						">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -394,7 +408,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -439,7 +453,7 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>The Prop Drilling Problem</h2>
-<p>A single component can take as many props as you want to give it, but just like arguments in functions, it's a good idea to <a href="https://stackoverflow.com/questions/37695557/react-are-there-respectable-limits-to-number-of-props-on-react-components">limit this number</a>, as more props makes for <a href="https://martinfowler.com/bliki/CodeSmell.html">a more confusing component</a>.</p>
+<p>A single component can take as many props as you want to give it, but just like arguments in functions, it's a good idea to limit this number, as more props makes for a more confusing and harder to test component. <a href="https://stackoverflow.com/questions/37695557/react-are-there-respectable-limits-to-number-of-props-on-react-components">This discussion here</a>, perfectly summarizes why it's a bad idea and considered a <a href="https://martinfowler.com/bliki/CodeSmell.html">&quot;code smell&quot;</a>.</p>
 <p>However, this can be difficult to do when you have a lot of data to pass through your component tree. Consider the following hierarchy with a few &quot;drilled props&quot;. Lets imagine that the <code>Theme</code>, <code>Domain</code> and <code>RootUrl</code> are decided within the <code>App</code> component, but are <strong>only</strong> needed within the <code>ButtonText</code> component. That is to say, <code>Dashboard</code> and <code>Button</code> have no business related to any of those props.</p>
 <pre><code class="language-code">──┬ App(Theme, Domain, RootUrl)
   └─┬ Dashboard(Theme, Domain, RootUrl)
@@ -858,7 +872,11 @@ function Game() {
 ReactDOM.render(&lt;Game /&gt;, document.getElementById('root'));
 </code></pre>
 <div class='codepen' data-codepen='react'></div>
-<h3>The solution</h3>
+<h2>Solution</h2>
+<p><details>
+<summary>
+Click to see the solution
+</summary></p>
 <h4>Game</h4>
 <pre><code class="language-jsx">const squareStyling = {
   width: '200px',
@@ -996,6 +1014,7 @@ function Game() {
 
 ReactDOM.render(&lt;Game /&gt;, document.getElementById('root'));
 </code></pre>
+<p></detail></p>
 <div class='codepen' data-codepen='react'></div>
 <div line-highlight='46-55,56,58-60,63,98,117-119,127,131 only'></div>
 

@@ -14,6 +14,15 @@
   <meta name="description" content="Learn how to create a basic jQuery constructor function that can find elements in the page and manipulate them.
 
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Finding Elements</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -21,6 +30,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -67,7 +81,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -334,7 +348,7 @@
            						">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -380,7 +394,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -441,175 +455,176 @@ covering CanJS core libraries.">
 <p>Run the following example in CodePen:</p>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
 &lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot; /&gt;
 &lt;script src=&quot;//code.jquery.com/qunit/qunit-1.12.0.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;//bitovi.github.io/academy/static/scripts/jquery-test.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;module&quot;&gt;
-(function() {
-  $ = function(selector) {
+  (function () {
+    $ = function (selector) {};
 
-  };
-
-  $.extend = function(target, object) {
-    for (var prop in object) {
-      if (object.hasOwnProperty(prop)) {
-        target[prop] = object[prop];
-      }
-    }
-    return target;
-  };
-
-  // Static methods
-  $.extend($, {
-    isArray: function(obj) {
-      return Object.prototype.toString.call(obj) === &quot;[object Array]&quot;;
-    },
-    isArrayLike: function(obj) {
-      return obj &amp;&amp;
-        typeof obj === &quot;object&quot; &amp;&amp;
-        (   obj.length === 0 ||
-            typeof obj.length === &quot;number&quot; &amp;&amp;
-            obj.length &gt; 0 &amp;&amp;
-            obj.length - 1 in obj );
-
-    },
-    each: function(collection, cb) {
-      if ($.isArrayLike(collection)) {
-        for (var i = 0; i &lt; collection.length; i++) {
-          if (cb.call(this, i, collection[i]) === false) {
-            break;
-          }
+    $.extend = function (target, object) {
+      for (var prop in object) {
+        if (object.hasOwnProperty(prop)) {
+          target[prop] = object[prop];
         }
-      } else {
-        for (var prop in collection) {
-          if (collection.hasOwnProperty(prop)) {
-            if (cb.call(this, prop, collection[prop]) === false) {
+      }
+      return target;
+    };
+
+    // Static methods
+    $.extend($, {
+      isArray: function (obj) {
+        return Object.prototype.toString.call(obj) === &quot;[object Array]&quot;;
+      },
+      isArrayLike: function (obj) {
+        return (
+          obj &amp;&amp;
+          typeof obj === &quot;object&quot; &amp;&amp;
+          (obj.length === 0 ||
+            (typeof obj.length === &quot;number&quot; &amp;&amp;
+              obj.length &gt; 0 &amp;&amp;
+              obj.length - 1 in obj))
+        );
+      },
+      each: function (collection, cb) {
+        if ($.isArrayLike(collection)) {
+          for (var i = 0; i &lt; collection.length; i++) {
+            if (cb.call(this, i, collection[i]) === false) {
               break;
             }
           }
+        } else {
+          for (var prop in collection) {
+            if (collection.hasOwnProperty(prop)) {
+              if (cb.call(this, prop, collection[prop]) === false) {
+                break;
+              }
+            }
+          }
         }
-      }
-      return collection;
-    },
-    makeArray: function(arr) {
-      if ($.isArray(arr)) {
-        return arr;
-      }
-      var array = [];
-      $.each(arr, function(i, item) {
-        array[i] = item;
-      });
-      return array;
-    },
-    proxy: function(fn, context) {
-      return function() {
-        return fn.apply(context, arguments);
-      };
-    }
-  });
+        return collection;
+      },
+      makeArray: function (arr) {
+        if ($.isArray(arr)) {
+          return arr;
+        }
+        var array = [];
+        $.each(arr, function (i, item) {
+          array[i] = item;
+        });
+        return array;
+      },
+      proxy: function (fn, context) {
+        return function () {
+          return fn.apply(context, arguments);
+        };
+      },
+    });
 
-  $.extend($.prototype, {
-      html: function(newHtml) { },
-      val: function(newVal) { },
-      text: function(newText) { },
-      find: function(selector) { }
-  });
-
-})();
+    $.extend($.prototype, {
+      html: function (newHtml) {},
+      val: function (newVal) {},
+      text: function (newText) {},
+      find: function (selector) {},
+    });
+  })();
 &lt;/script&gt;
-
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='9,71-74,only'></div>
-<p>Each exercise builds on the previous exercise.  There is a completed solution
+<p>Each exercise builds on the previous exercise. There is a completed solution
 at the end of this page.</p>
 <h2>Exercise: <code>new $(selector) -&gt; collection</code></h2>
 <h3>The problem</h3>
 <p>The <code>$</code> function creates instances of a jQuery collection of elements. We will change <code>$()</code>
-to be able to work without <code>new</code> later.  But for now, <code>$</code> will be treated as a
-constructor function.  It should return an instance of <code>$</code> with:</p>
+to be able to work without <code>new</code> later. But for now, <code>$</code> will be treated as a
+constructor function. It should return an instance of <code>$</code> with:</p>
 <ul>
 <li>A <code>length</code> property equaling the number of elements matched by the <code>selector</code>.</li>
 <li>Enumerated properties (ex: <code>&quot;0&quot;</code>, <code>&quot;1&quot;</code>, <code>&quot;2&quot;</code>, etc) whose value is a matched element.</li>
 </ul>
 <p><details>
 <summary>Click to see test code</summary></p>
-<pre><code class="language-js">QUnit.test('new $(selector)', function(){
-    document.getElementById('qunit-fixture').innerHTML = `
+<pre><code class="language-js">QUnit.test(&quot;new $(selector)&quot;, function () {
+  document.getElementById(&quot;qunit-fixture&quot;).innerHTML = `
         &lt;ul id=&quot;contacts&quot;&gt;
             &lt;li class=&quot;contact&quot;/&gt;
             &lt;li class=&quot;contact&quot;/&gt;
         &lt;/ul&gt;`;
 
-    var $contacts = new $('#contacts li.contact');
-    equal( $contacts.length,  2, 'There are 2 contacts');
+  var $contacts = new $(&quot;#contacts li.contact&quot;);
+  equal($contacts.length, 2, &quot;There are 2 contacts&quot;);
 
-    equal( $contacts[0].nodeName.toLowerCase(), 'li', 'got an li');
-    equal( $contacts[1].className, 'contact', 'got a .contact');
+  equal($contacts[0].nodeName.toLowerCase(), &quot;li&quot;, &quot;got an li&quot;);
+  equal($contacts[1].className, &quot;contact&quot;, &quot;got a .contact&quot;);
 
-    ok($contacts instanceof $, '$ is an instance of my_jquery');
+  ok($contacts instanceof $, &quot;$ is an instance of my_jquery&quot;);
 });
 </code></pre>
 <p></details></p>
 <h3>What you need to know</h3>
 <ul>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll">document.querySelectorAll</a> returns a NodeList of elements matching the selector.
-<pre><code class="language-html">&lt;ul class='dogs'&gt;
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll">document.querySelectorAll</a> returns a NodeList of elements matching the selector.</p>
+<pre><code class="language-html">&lt;ul class=&quot;dogs&quot;&gt;
   &lt;li&gt;fido&lt;/li&gt;
   &lt;li&gt;rover&lt;/li&gt;
 &lt;/ul&gt;
-&lt;ul class='cats'&gt;
+&lt;ul class=&quot;cats&quot;&gt;
   &lt;li&gt;sparkles&lt;/li&gt;
 &lt;/ul&gt;
 &lt;script type=&quot;module&quot;&gt;
-var elements = document.querySelectorAll(&quot;.dogs li&quot;);
-console.log(elements) // logs [&lt;li&gt;, &lt;li&gt;]
+  var elements = document.querySelectorAll(&quot;.dogs li&quot;);
+  console.log(elements); // logs [&lt;li&gt;, &lt;li&gt;]
 &lt;/script&gt;
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
-- The `[]` member operator can create enumerated properties:
-  ```js
-  var obj = {};
-  obj["0"] = "x";
-  obj["1"] = "y";
-  ```
+<ul>
+<li><p>The <code>[]</code> member operator can create enumerated properties:</p>
+<pre><code class="language-js">var obj = {};
+obj[&quot;0&quot;] = &quot;x&quot;;
+obj[&quot;1&quot;] = &quot;y&quot;;
+</code></pre></li>
+</ul>
 <div class='codepen' data-codepen=''></div>
-- `Array.prototype.push` implementation looks like:
-  ```js
-  Array.prototype.push = function(){
-    var length = this.length || 0;
-    for(var i = 0; i < arguments.length; i++) {
-        this[length + i] = arguments[i]
-    }
-    this.length = length + arguments.length;
+<ul>
+<li><p><code>Array.prototype.push</code> implementation looks like:</p>
+<pre><code class="language-js">Array.prototype.push = function () {
+  var length = this.length || 0;
+  for (var i = 0; i &lt; arguments.length; i++) {
+    this[length + i] = arguments[i];
   }
-  ```
+  this.length = length + arguments.length;
+};
+</code></pre></li>
+</ul>
+<div class='codepen' data-codepen=''></div>
 <h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<pre><code class="language-js">  $ = function(selector) {
-    var elements = document.querySelectorAll(selector);
-    [].push.apply(this, elements);
-  };
+<pre><code class="language-js">$ = function (selector) {
+  var elements = document.querySelectorAll(selector);
+  [].push.apply(this, elements);
+};
 </code></pre>
+<div line-highlight='2-3'></div>
 <p></details></p>
 <h2>Exercise: <code>collection.html( [newHtml] )</code></h2>
 <h3>The problem</h3>
 <p><a href="http://api.jquery.com/html/">collection.html</a> either:</p>
 <ul>
-<li>gets the HTML contents of the first element in the set of matched elements.
-<pre><code class="language-html">&lt;ul class='dogs'&gt;
+<li><p>gets the HTML contents of the first element in the set of matched elements.</p>
+<pre><code class="language-html">&lt;ul class=&quot;dogs&quot;&gt;
   &lt;li&gt;&lt;b&gt;f&lt;/b&gt;ido&lt;/li&gt;
   &lt;li&gt;rover&lt;/li&gt;
 &lt;/ul&gt;
-&lt;ul class='cats'&gt;
+&lt;ul class=&quot;cats&quot;&gt;
   &lt;li&gt;sparkles&lt;/li&gt;
 &lt;/ul&gt;
 &lt;script type=&quot;module&quot;&gt;
-import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
-var dogs = $('.dogs li');
-console.log( dogs.html() ) //logs &quot;&lt;b&gt;f&lt;/b&gt;ido&quot;
+  import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+  var dogs = $(&quot;.dogs li&quot;);
+  console.log(dogs.html()); //logs &quot;&lt;b&gt;f&lt;/b&gt;ido&quot;
 &lt;/script&gt;
 </code></pre></li>
 </ul>
@@ -617,17 +632,17 @@ console.log( dogs.html() ) //logs &quot;&lt;b&gt;f&lt;/b&gt;ido&quot;
 <ul>
 <li>sets the HTML contents of each element in the set of matched elements
 and returns the collection.
-<pre><code class="language-html">&lt;ul class='dogs'&gt;
+<pre><code class="language-html">&lt;ul class=&quot;dogs&quot;&gt;
   &lt;li&gt;fido&lt;/li&gt;
   &lt;li&gt;rover&lt;/li&gt;
 &lt;/ul&gt;
-&lt;ul class='cats'&gt;
+&lt;ul class=&quot;cats&quot;&gt;
   &lt;li&gt;sparkles&lt;/li&gt;
 &lt;/ul&gt;
 &lt;script type=&quot;module&quot;&gt;
-import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
-var dogs = $('.dogs li');
-dogs.html('&lt;b&gt;rover&lt;/b&gt;') //-&gt; dogs
+  import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+  var dogs = $(&quot;.dogs li&quot;);
+  dogs.html(&quot;&lt;b&gt;rover&lt;/b&gt;&quot;); //-&gt; dogs
 &lt;/script&gt;
 </code></pre></li>
 </ul>
@@ -635,18 +650,24 @@ dogs.html('&lt;b&gt;rover&lt;/b&gt;') //-&gt; dogs
 <p>Many of jQuery's methods either get or set depending on the number of arguments.</p>
 <p><details>
 <summary>Click to see test code</summary></p>
-<pre><code class="language-js">QUnit.test('$.fn.html', function(){
-    new $('#qunit-fixture').html(`
+<pre><code class="language-js">QUnit.test(&quot;$.fn.html&quot;, function () {
+  new $(&quot;#qunit-fixture&quot;).html(`
         &lt;ul id=&quot;contacts&quot;&gt;
             &lt;li class=&quot;contact&quot;&gt;&lt;/li&gt;
             &lt;li class=&quot;contact&quot;&gt;&lt;/li&gt;
         &lt;/ul&gt;`);
-    new $('.contact').html('Hi There');
+  new $(&quot;.contact&quot;).html(&quot;Hi There&quot;);
 
-    equal(new $('.contact').html(), 'Hi There',
-        'First contact html set correctly');
-    equal(new $('.contact:nth-child(2)').html(), 'Hi There',
-        'Second contact html set correctly');
+  equal(
+    new $(&quot;.contact&quot;).html(),
+    &quot;Hi There&quot;,
+    &quot;First contact html set correctly&quot;
+  );
+  equal(
+    new $(&quot;.contact:nth-child(2)&quot;).html(),
+    &quot;Hi There&quot;,
+    &quot;Second contact html set correctly&quot;
+  );
 });
 </code></pre>
 <p></details></p>
@@ -669,39 +690,39 @@ to set the html contents of an element.</li>
         }
       },
 </code></pre>
+<div line-highlight='2-8'></div>
 <p></details></p>
 <h2>Exercise: <code>collection.val( [newValue] )</code></h2>
 <h3>The problem</h3>
 <p><a href="http://api.jquery.com/val/">collection.val</a> gets the current value of the first element in the set of matched elements or sets the value of every matched element.</p>
-<pre><code class="language-html">&lt;input type=&quot;text&quot; class=&quot;first&quot; value=&quot;first&quot;/&gt;
-&lt;input type=&quot;text&quot; class=&quot;second&quot; value=&quot;second&quot;/&gt;
+<pre><code class="language-html">&lt;input type=&quot;text&quot; class=&quot;first&quot; value=&quot;first&quot; /&gt;
+&lt;input type=&quot;text&quot; class=&quot;second&quot; value=&quot;second&quot; /&gt;
 &lt;script type=&quot;module&quot;&gt;
-import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+  import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
 
-console.log( $(&quot;.first&quot;).val() ) //log &quot;first&quot;
-$(&quot;.second&quot;).val( &quot;SECOND&quot; );
+  console.log($(&quot;.first&quot;).val()); //log &quot;first&quot;
+  $(&quot;.second&quot;).val(&quot;SECOND&quot;);
 &lt;/script&gt;
 </code></pre>
-<div class='codepen' data-codepen=''></div>
+<div class='codepen'></div>
 <p><details>
 <summary>Click to see test code</summary></p>
-<pre><code class="language-js">QUnit.test('$.fn.val', function(){
-
-    new $('#qunit-fixture').html(`
+<pre><code class="language-js">QUnit.test(&quot;$.fn.val&quot;, function () {
+  new $(&quot;#qunit-fixture&quot;).html(`
         &lt;input type=&quot;text&quot; class=&quot;age&quot;/&gt;
         &lt;input type=&quot;text&quot; class=&quot;age&quot;/&gt;`);
 
+  equal(new $(&quot;.age&quot;).val(), &quot;&quot;, &quot;Input is initially empty&quot;);
 
-    equal( new $('.age').val(), '',
-        'Input is initially empty');
+  new $(&quot;.age&quot;).val(&quot;Hi There&quot;);
 
-    new $('.age').val('Hi There');
+  equal(new $(&quot;.age&quot;).val(), &quot;Hi There&quot;, &quot;First .age value set correctly&quot;);
 
-    equal( new $('.age').val(), 'Hi There',
-        'First .age value set correctly');
-
-    equal( new $('.age:nth-child(2)').val(), 'Hi There',
-        'Second .age value set correctly');
+  equal(
+    new $(&quot;.age:nth-child(2)&quot;).val(),
+    &quot;Hi There&quot;,
+    &quot;Second .age value set correctly&quot;
+  );
 });
 </code></pre>
 <p></details></p>
@@ -722,26 +743,27 @@ $(&quot;.second&quot;).val( &quot;SECOND&quot; );
         }
       },
 </code></pre>
+<div line-highlight='2-8'></div>
 <p></details></p>
 <h2>Exercise: <code>$(selector)</code></h2>
 <h3>The problem</h3>
 <p>Lets remove the need to use <code>new</code> when using <code>$</code>.</p>
 <p><details>
 <summary>Click to see test code</summary></p>
-<pre><code class="language-js">QUnit.test('$(selector)', function(){
-    document.getElementById('qunit-fixture').innerHTML = `
+<pre><code class="language-js">QUnit.test(&quot;$(selector)&quot;, function () {
+  document.getElementById(&quot;qunit-fixture&quot;).innerHTML = `
         &lt;ul id=&quot;contacts&quot;&gt;
             &lt;li class=&quot;contact&quot;/&gt;
             &lt;li class=&quot;contact&quot;/&gt;
         &lt;/ul&gt;`;
 
-    var $contacts = $('#contacts li.contact');
-    equal( $contacts.length,  2, 'There are 2 contacts');
+  var $contacts = $(&quot;#contacts li.contact&quot;);
+  equal($contacts.length, 2, &quot;There are 2 contacts&quot;);
 
-    equal( $contacts[0].nodeName.toLowerCase(), 'li', 'got an li');
-    equal( $contacts[1].className, 'contact', 'got a .contact');
+  equal($contacts[0].nodeName.toLowerCase(), &quot;li&quot;, &quot;got an li&quot;);
+  equal($contacts[1].className, &quot;contact&quot;, &quot;got a .contact&quot;);
 
-    ok($contacts instanceof $, 'instanceof $ without new');
+  ok($contacts instanceof $, &quot;instanceof $ without new&quot;);
 });
 </code></pre>
 <p></details></p>
@@ -749,59 +771,60 @@ $(&quot;.second&quot;).val( &quot;SECOND&quot; );
 <ul>
 <li><p>Use <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof">instanceof</a>
 to tell if something is an instance of something else:</p>
-<pre><code class="language-js">const Animal = function(name){
+<pre><code class="language-js">const Animal = function (name) {
   this.name = name;
-}
-const sponge = new Animal(&quot;bob&quot;)
-console.log( sponge instanceof Animal ) //-&gt; true
+};
+const sponge = new Animal(&quot;bob&quot;);
+console.log(sponge instanceof Animal); //-&gt; true
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
 <h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<pre><code class="language-js">  $ = function(selector) {
-    if ( !(this instanceof $) ) {
-      return new $(selector);
-    }
-    var elements = document.querySelectorAll(selector);
-    [].push.apply(this, elements);
-  };
+<pre><code class="language-js">$ = function (selector) {
+  if (!(this instanceof $)) {
+    return new $(selector);
+  }
+  var elements = document.querySelectorAll(selector);
+  [].push.apply(this, elements);
+};
 </code></pre>
+<div line-highlight='2-4'></div>
 <p></details></p>
 <h2>Exercise: <code>collection.text( [newText] )</code></h2>
 <h3>The problem</h3>
 <p><a href="http://api.jquery.com/text/">collection.text</a> get the combined text contents of each element in the set of matched elements, including their descendants, or sets the text contents of the matched elements.</p>
-<pre><code class="language-html">&lt;ul class='dogs'&gt;
-    &lt;li&gt;fido&lt;/li&gt;
-    &lt;li&gt;rover&lt;/li&gt;
+<pre><code class="language-html">&lt;ul class=&quot;dogs&quot;&gt;
+  &lt;li&gt;fido&lt;/li&gt;
+  &lt;li&gt;rover&lt;/li&gt;
 &lt;/ul&gt;
 &lt;script type=&quot;module&quot;&gt;
-import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
-var $ul = $(&quot;.dogs&quot;);
-console.log($ul.text()) //logs &quot;\n\tfido\n\trover\n&quot;
+  import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+  var $ul = $(&quot;.dogs&quot;);
+  console.log($ul.text()); //logs &quot;\n\tfido\n\trover\n&quot;
 
-var dogs = $('.dogs li');
-dogs.text('&lt;b&gt;rover&lt;/b&gt;') //-&gt; dogs
+  var dogs = $(&quot;.dogs li&quot;);
+  dogs.text(&quot;&lt;b&gt;rover&lt;/b&gt;&quot;); //-&gt; dogs
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
 <p><details>
 <summary>Click to see test code</summary></p>
-<pre><code class="language-js">QUnit.test('$.fn.text', function(){
+<pre><code class="language-js">QUnit.test(&quot;$.fn.text&quot;, function () {
+  $(&quot;#qunit-fixture&quot;).html(&quot;Hi &lt;span&gt;there&lt;/span&gt;.&quot;);
 
-    $('#qunit-fixture').html('Hi &lt;span&gt;there&lt;/span&gt;.');
+  equal($(&quot;#qunit-fixture&quot;).text(), &quot;Hi there.&quot;, &quot;The text is right&quot;);
 
-    equal( $('#qunit-fixture').text(), 'Hi there.',
-        'The text is right');
+  $(&quot;#qunit-fixture span&quot;).text(&quot;&lt;input/&gt;&quot;);
 
-    $('#qunit-fixture span').text('&lt;input/&gt;');
+  equal($(&quot;#qunit-fixture input&quot;).length, 0, &quot;there's no input&quot;);
 
-    equal( $('#qunit-fixture input').length, 0,
-        'there\'s no input');
-
-    equal( $('#qunit-fixture span').text(), '&lt;input/&gt;',
-        'The text is what we sent' );
+  equal(
+    $(&quot;#qunit-fixture span&quot;).text(),
+    &quot;&lt;input/&gt;&quot;,
+    &quot;The text is what we sent&quot;
+  );
 });
 </code></pre>
 <p></details></p>
@@ -811,22 +834,21 @@ dogs.text('&lt;b&gt;rover&lt;/b&gt;') //-&gt; dogs
 can get and set the text content of an element.</li>
 </ul>
 <p>For an <em>extra challenge</em>, don't use <code>textContent</code> and recursively collect
-the <code>textContent</code>.  For that, you'll need to know:</p>
+the <code>textContent</code>. For that, you'll need to know:</p>
 <ul>
 <li><p>Use <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createTextNode">document.createTextNode</a>
 to create a text node.</p></li>
 <li><p>Text nodes have a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeType">nodeType</a> of
-<code>3</code>.  You can use <code>Node.TEXT_NODE</code> to get this value.</p></li>
+<code>3</code>. You can use <code>Node.TEXT_NODE</code> to get this value.</p></li>
 <li><p>Read <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/nodeValue">nodeValue</a>
 to get the value of a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Text">Text</a> node.</p></li>
-<li><p>Use <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild">appendChid</a> to add a text node to another element.</p>
-<pre><code class="language-js">var textNode = document.createTextNode(
-  &quot;My favorite element is &lt;script&gt;&quot;);
+<li><p>Use <a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/appendChild">appendChild</a> to add a text node to another element.</p>
+<pre><code class="language-js">var textNode = document.createTextNode(&quot;My favorite element is &lt;script&gt;&quot;);
 
-console.log(textNode.nodeType === Node.TEXT_NODE)
+console.log(textNode.nodeType === Node.TEXT_NODE);
 // logs true
 
-console.log(textNode.nodeValue)
+console.log(textNode.nodeValue);
 // logs &quot;My favorite element is &lt;script&gt;&quot;
 
 document.body.appendChild(textNode);
@@ -846,21 +868,23 @@ document.body.appendChild(textNode);
         }
       },
 </code></pre>
+<div line-highlight='2-8'></div>
 <p></details></p>
 <p><details>
 <summary>Click to see the <i>extra challenge</i> solution</summary></p>
-<pre><code class="language-js">  var getText = function(childNodes) {
-    var text = &quot;&quot;;
-    $.each(childNodes, function(i, child) {
-      if (child.nodeType === 3) {
-        text += child.nodeValue;
-      } else {
-        text += getText(child.childNodes);
-      }
-    });
-    return text;
-  };
+<pre><code class="language-js">var getText = function (childNodes) {
+  var text = &quot;&quot;;
+  $.each(childNodes, function (i, child) {
+    if (child.nodeType === 3) {
+      text += child.nodeValue;
+    } else {
+      text += getText(child.childNodes);
+    }
+  });
+  return text;
+};
 </code></pre>
+<div line-highlight='1-11'></div>
 <pre><code class="language-js">      text: function(newText) {
         if (arguments.length) {
           this.html(&quot;&quot;);
@@ -873,16 +897,19 @@ document.body.appendChild(textNode);
         }
       },
 </code></pre>
+<div line-highlight='2-10'></div>
 <p></details></p>
 <h2>Exercise: <code>collection.find( selector )</code></h2>
 <h3>The problem</h3>
 <p><a href="https://api.jquery.com/find/">collection.find</a> gets the descendants of each element in the current set of matched elements filtered by a selector.</p>
 <pre><code class="language-html">&lt;ul class=&quot;level-1&quot;&gt;
   &lt;li class=&quot;item-i&quot;&gt;I&lt;/li&gt;
-  &lt;li class=&quot;item-ii&quot;&gt;II
+  &lt;li class=&quot;item-ii&quot;&gt;
+    II
     &lt;ul class=&quot;level-2&quot;&gt;
       &lt;li class=&quot;item-a&quot;&gt;A&lt;/li&gt;
-      &lt;li class=&quot;item-b&quot;&gt;B
+      &lt;li class=&quot;item-b&quot;&gt;
+        B
         &lt;ul class=&quot;level-3&quot;&gt;
           &lt;li class=&quot;item-1&quot;&gt;1&lt;/li&gt;
           &lt;li class=&quot;item-2&quot;&gt;2&lt;/li&gt;
@@ -895,36 +922,34 @@ document.body.appendChild(textNode);
   &lt;li class=&quot;item-iii&quot;&gt;III&lt;/li&gt;
 &lt;/ul&gt;
 &lt;script type=&quot;module&quot;&gt;
-import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
+  import &quot;https://unpkg.com/jquery@3/dist/jquery.js&quot;;
 
-$( &quot;li.item-ii&quot; )
-    .find( &quot;li&quot; )
-    .css( &quot;border&quot;, &quot;solid 1px red&quot; );
+  $(&quot;li.item-ii&quot;).find(&quot;li&quot;).css(&quot;border&quot;, &quot;solid 1px red&quot;);
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
 <p><details>
 <summary>Click to see test code</summary></p>
-<pre><code class="language-js">QUnit.test('$.fn.find', function(){
-    var $ul = $('#qunit-fixture')
-        .html('&lt;ul&gt;&lt;li/&gt;&lt;li/&gt;&lt;/ul&gt;&lt;ul&gt;&lt;li/&gt;&lt;li/&gt;&lt;/ul&gt;')
-        .find('ul');
+<pre><code class="language-js">QUnit.test(&quot;$.fn.find&quot;, function () {
+  var $ul = $(&quot;#qunit-fixture&quot;)
+    .html(&quot;&lt;ul&gt;&lt;li/&gt;&lt;li/&gt;&lt;/ul&gt;&lt;ul&gt;&lt;li/&gt;&lt;li/&gt;&lt;/ul&gt;&quot;)
+    .find(&quot;ul&quot;);
 
-    equal($ul.length, 2, 'got 2 uls');
-    equal($ul.find('li').length, 4, 'got four lis');
+  equal($ul.length, 2, &quot;got 2 uls&quot;);
+  equal($ul.find(&quot;li&quot;).length, 4, &quot;got four lis&quot;);
 });
 </code></pre>
 <p></details></p>
 <h3>What you need to know</h3>
 <ul>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/ParentNode/querySelectorAll">parentNode.querySelectorAll</a> can be used to find all elements that match a selector who are
-descendants of the <code>parentNode</code> element.</li>
-<li>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax">spread syntax</a> can be used to push multiple items to an array.
-<pre><code class="language-js">const letters = [&quot;a&quot;,&quot;b&quot;];
-const lettersToAdd = [&quot;x&quot;,&quot;y&quot;];
+<li><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/querySelectorAll">Element.querySelectorAll</a> can be used to find all elements that match a selector who are
+descendants of the element on which it was called</p></li>
+<li><p>The <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax">spread syntax</a> can be used to push multiple items to an array.</p>
+<pre><code class="language-js">const letters = [&quot;a&quot;, &quot;b&quot;];
+const lettersToAdd = [&quot;x&quot;, &quot;y&quot;];
 letters.push(...lettersToAdd);
 
-console.log(letters)
+console.log(letters);
 // logs [&quot;a&quot;,&quot;b&quot;,&quot;c&quot;,&quot;d&quot;]
 </code></pre></li>
 </ul>
@@ -946,18 +971,18 @@ $([first, second])
 <h3>The solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<pre><code class="language-js">  $ = function(selector) {
-    if ( !(this instanceof $) ) {
-      return new $(selector);
-    }
-    var elements;
-    if (typeof selector === &quot;string&quot;) {
-      elements = document.querySelectorAll(selector);
-    } else if ($.isArrayLike(selector)) {
-      elements = selector;
-    }
-    [].push.apply(this, elements);
-  };
+<pre><code class="language-js">$ = function (selector) {
+  if (!(this instanceof $)) {
+    return new $(selector);
+  }
+  var elements;
+  if (typeof selector === &quot;string&quot;) {
+    elements = document.querySelectorAll(selector);
+  } else if ($.isArrayLike(selector)) {
+    elements = selector;
+  }
+  [].push.apply(this, elements);
+};
 </code></pre>
 <div line-highlight='5-10'></div>
 <pre><code class="language-js">      find: function(selector) {
@@ -970,6 +995,7 @@ $([first, second])
         return new $(elements);
       }
 </code></pre>
+<div line-highlight='2-8'></div>
 <p></details></p>
 <h2>Bonus Exercise: Eliminate duplicate code in <code>.html</code>, <code>.val</code>, and <code>.text</code></h2>
 <h3>The problem</h3>
@@ -1006,13 +1032,13 @@ $([first, second])
 <h3>What you need to know</h3>
 <ul>
 <li>You can call a function that returns a function.
-<pre><code class="language-js">var makeLogger = function(text) {
-  return function(){
+<pre><code class="language-js">var makeLogger = function (text) {
+  return function () {
     console.log(text);
-  }
-}
+  };
+};
 var logMe = makeLogger(&quot;me&quot;);
-logMe() //logs &quot;me&quot;
+logMe(); //logs &quot;me&quot;
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
@@ -1020,146 +1046,150 @@ logMe() //logs &quot;me&quot;
 <p><details>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-js">function makeSimpleGetterSetter(prop) {
-    return function(value){
-        if(arguments.length) {
-            return $.each(this, function(i, element) {
-                element[prop] = value;
-            });
-        } else {
-            return this[0][prop];
-        }
+  return function (value) {
+    if (arguments.length) {
+      return $.each(this, function (i, element) {
+        element[prop] = value;
+      });
+    } else {
+      return this[0][prop];
     }
+  };
 }
 </code></pre>
+<div line-highlight='1-11'></div>
 <pre><code class="language-js">      html: makeSimpleGetterSetter(&quot;innerHTML&quot;),
       val: makeSimpleGetterSetter(&quot;value&quot;),
       text: makeSimpleGetterSetter(&quot;textContent&quot;),
 </code></pre>
+<div line-highlight='1-3'></div>
 <p></details></p>
 <h2>Complete Solution</h2>
+<p><details>
+<summary>Click to see completed solution</summary></p>
 <pre><code class="language-html">&lt;div id=&quot;qunit&quot;&gt;&lt;/div&gt;
 &lt;div id=&quot;qunit-fixture&quot;&gt;&lt;/div&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;//code.jquery.com/qunit/qunit-1.12.0.css&quot; /&gt;
 &lt;script src=&quot;//code.jquery.com/qunit/qunit-1.12.0.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;//bitovi.github.io/academy/static/scripts/jquery-test.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;module&quot;&gt;
-(function() {
-  $ = function(selector) {
-    if ( !(this instanceof $) ) {
-      return new $(selector);
-    }
-    var elements;
-    if (typeof selector === &quot;string&quot;) {
-      elements = document.querySelectorAll(selector);
-    } else if ($.isArrayLike(selector)) {
-      elements = selector;
-    }
-    [].push.apply(this, elements);
-  };
-
-  $.extend = function(target, object) {
-    for (var prop in object) {
-      if (object.hasOwnProperty(prop)) {
-        target[prop] = object[prop];
+  (function () {
+    $ = function (selector) {
+      if (!(this instanceof $)) {
+        return new $(selector);
       }
-    }
-    return target;
-  };
+      var elements;
+      if (typeof selector === &quot;string&quot;) {
+        elements = document.querySelectorAll(selector);
+      } else if ($.isArrayLike(selector)) {
+        elements = selector;
+      }
+      [].push.apply(this, elements);
+    };
 
-  // Static methods
-  $.extend($, {
-    isArray: function(obj) {
-      return Object.prototype.toString.call(obj) === &quot;[object Array]&quot;;
-    },
-    isArrayLike: function(obj) {
-      return obj &amp;&amp;
-        typeof obj === &quot;object&quot; &amp;&amp;
-        (   obj.length === 0 ||
-            typeof obj.length === &quot;number&quot; &amp;&amp;
-            obj.length &gt; 0 &amp;&amp;
-            obj.length - 1 in obj );
-
-    },
-    each: function(collection, cb) {
-      if ($.isArrayLike(collection)) {
-        for (var i = 0; i &lt; collection.length; i++) {
-          if (cb.call(this, i, collection[i]) === false) {
-            break;
-          }
+    $.extend = function (target, object) {
+      for (var prop in object) {
+        if (object.hasOwnProperty(prop)) {
+          target[prop] = object[prop];
         }
-      } else {
-        for (var prop in collection) {
-          if (collection.hasOwnProperty(prop)) {
-            if (cb.call(this, prop, collection[prop]) === false) {
+      }
+      return target;
+    };
+
+    // Static methods
+    $.extend($, {
+      isArray: function (obj) {
+        return Object.prototype.toString.call(obj) === &quot;[object Array]&quot;;
+      },
+      isArrayLike: function (obj) {
+        return (
+          obj &amp;&amp;
+          typeof obj === &quot;object&quot; &amp;&amp;
+          (obj.length === 0 ||
+            (typeof obj.length === &quot;number&quot; &amp;&amp;
+              obj.length &gt; 0 &amp;&amp;
+              obj.length - 1 in obj))
+        );
+      },
+      each: function (collection, cb) {
+        if ($.isArrayLike(collection)) {
+          for (var i = 0; i &lt; collection.length; i++) {
+            if (cb.call(this, i, collection[i]) === false) {
               break;
             }
           }
+        } else {
+          for (var prop in collection) {
+            if (collection.hasOwnProperty(prop)) {
+              if (cb.call(this, prop, collection[prop]) === false) {
+                break;
+              }
+            }
+          }
         }
-      }
-      return collection;
-    },
-    makeArray: function(arr) {
-      if ($.isArray(arr)) {
-        return arr;
-      }
-      var array = [];
-      $.each(arr, function(i, item) {
-        array[i] = item;
-      });
-      return array;
-    },
-    proxy: function(fn, context) {
-      return function() {
-        return fn.apply(context, arguments);
-      };
-    }
-  });
+        return collection;
+      },
+      makeArray: function (arr) {
+        if ($.isArray(arr)) {
+          return arr;
+        }
+        var array = [];
+        $.each(arr, function (i, item) {
+          array[i] = item;
+        });
+        return array;
+      },
+      proxy: function (fn, context) {
+        return function () {
+          return fn.apply(context, arguments);
+        };
+      },
+    });
 
-  $.extend($.prototype, {
-      html: function(newHtml) {
-        if(arguments.length) {
-          return $.each(this, function(i, element) {
+    $.extend($.prototype, {
+      html: function (newHtml) {
+        if (arguments.length) {
+          return $.each(this, function (i, element) {
             element.innerHTML = newHtml;
           });
         } else {
           return this[0].innerHTML;
         }
       },
-      val: function(newVal) {
-        if(arguments.length) {
-          return $.each(this, function(i, element) {
+      val: function (newVal) {
+        if (arguments.length) {
+          return $.each(this, function (i, element) {
             element.value = newVal;
           });
         } else {
           return this[0].value;
         }
       },
-      text: function(newText) {
+      text: function (newText) {
         if (arguments.length) {
-          return $.each(this, function(i, element) {
+          return $.each(this, function (i, element) {
             element.textContent = newText;
           });
         } else {
           return this[0].textContent;
         }
       },
-      find: function(selector) {
+      find: function (selector) {
         var elements = [];
-        $.each(this, function(i, element){
-            var result = element.querySelectorAll(selector);
-            elements.push(...result);
-            // Or elements.push.apply(elements, result);
-        })
+        $.each(this, function (i, element) {
+          var result = element.querySelectorAll(selector);
+          elements.push(...result);
+          // Or elements.push.apply(elements, result);
+        });
         return new $(elements);
-      }
-  });
-
-})();
+      },
+    });
+  })();
 &lt;/script&gt;
-
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='8-19,80-115,only'></div>
+<div line-highlight='9-18,82-88, 91-97,100-106,109-116,only'></div>
+<p></details></p>
 
 </section>
 

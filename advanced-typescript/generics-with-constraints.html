@@ -13,6 +13,15 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Learn how to constrain generics to be able to reuse even more logic! 
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Generics With Constraints</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -20,6 +29,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -66,7 +80,7 @@
            						">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -188,7 +202,7 @@
            						">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -234,7 +248,7 @@ covering CanJS core libraries.">
            						expanded">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -311,7 +325,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="conditional-types.html"
-							title="Learn how to create new types with conditional types!">
+							title="Learn how to create new types to simplify functions and enforce type safety with conditional types!">
 							Conditional Types
 						</a>
 						
@@ -326,7 +340,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="template-literal-types.html"
-							title="Learn how to create new types with template literal types!">
+							title="Learn what template literal types are and how to empower them with unions, generics, conditional types, and infer!">
 							Template Literal Types
 						</a>
 						
@@ -382,7 +396,7 @@ covering CanJS core libraries.">
 <p>In the last lesson we saw how powerful generics can be allowing us to create resuable logic across multiple types. However, that’s just the beginning. TypeScript has all sorts of powerful feature we can leverage to make our logic more typesafe and more reusable. In this lesson we will take a look at constraining generics and how they can assist us in forcing our reusable logic to have certain characteristics while maintaining the typed flexibility of generics.</p>
 <h2>Quick Recap on Generics</h2>
 <blockquote>
-<p>For more information on generics, see <a href="../learn-typescript/generics">generics</a> in the TypeScript course</p>
+<p>For more information on generics, see <a href="learn-typescript/generics">generics</a> in the TypeScript course</p>
 </blockquote>
 <p>Generics are a way to pass types into other types, much like how parameters are ways to pass values into functions. Like parameters, there can be any number of generics passed into new types and they can only be used in the context of the type they are passed into. To define a generic, angle brackets are used (<code>&lt;&gt;</code>). The order of the generics in the type declaration is what determines which type is assigned to the generic.</p>
 <blockquote>
@@ -517,7 +531,7 @@ type RandomAttacks = Keys&lt;typeof randomAttacks&gt;; // 'quickAttack' | 'thund
 <blockquote>
 <p>Be sure to check your answers to Exercise 1 <strong>Before</strong> continuing on to Exercise 2</p>
 </blockquote>
-<p><a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwAmALT5yMcRjjaA7hFoALbTXILRaCI2MwAHtvUBGArQTIQN-kYkEAB6ACowgB1yAAIwmIBRFwMeOBgYj2i4rPiAVRQWOXTLdIADAGkYAThSmMEOOtIYzFpmuGa6oXS0KAg0drBSURjSrCrSMFKCGIB1cws6iwh2-pgVHJiTdJYKAHJWkzRGRuaoKFITEbtHXFK4FRHyAFcAWwAjAzvm8hYRt9JSLAjl9aE0PjF0HA0iwNo5QYsypVqrVVjEYgAKCpVOAAHmu5FwAD5Sg8sdUcc93gZiQ8YLQMNM4BZSE8oL9yKRWuCeuctiwAJTTADKTUschiuAgADcGBsSjFBmcLjdOsICOqchtStqfHKujEADIwNBgIW0NCieiiAAKpDGLwoMQAvDFgBsYm9WW9-mgnqJEDFbWM2C4EoxRAIANzu6XVX3-wN2mAhsO0CPR2LxGIy55wX0WgNB5OuVPpjaKDPZTOq9JGk1I9ouhs4uum82WgxwQkxEIhGK7T1Qb15v27GIAH37sZHojHk92OaeI4tuy12s11aOMMza9KuurqIAYhBRDAzRarUWHbEXW7qzEMBYLS8twZC0mU-Go-7H8-YLAKHfYMSy_Sss1_cQAC8LRYIDi1DUDyzAvUGmPU8G2dGJmzQs920vJNr27Xt-wgl8fgMOcSKfUQXn_GA9gnKiLQgaDRBYVdq21UoNzib5tyrXiuP3XibAUGJ7B-UgXgAQVoc1sEbV0AEcnggbBZPkrAA2ARQHksJ5yITHSKx4-JUQAJS3KSNMwLBFObVYJnEqyZLk2yu0jHs-12FS1KwGzsEo_YLAMthZ13UyYm7CIADlORgRAIhiAAVCxun-GVmlPGJXDQF4UFgdonPMdol0IFK0pGJEUX1JkWTZTYhiwBUhm-AQYjgCAXmgPpRCgdq7CeDBaD9ZMa0igAJOEA1GcZJg65lWV-F9HH6j10jK35HVKUg3iIGBhq-ZYEWytBNjQdqtgfI4YkcGhRBQIYikWcU4VFSrVgISLuwAIXSOBRpOR8DuagQWWGI44C2UQViaUoPDQWoIj-wZTySgJHFUgkYkdeEkhSZZ0g8N4chCaJolcR7LRrLDsRxZLuxdI5v0oZRFCAA" target="_blank">Open in CodeSandbox</a></p>
+<p><a href="https://codesandbox.io/s/rbwpiq?file=/02-generics-with-constraints-ex-01.ts" target="_blank">Open in CodeSandbox</a></p>
 <pre><code class="language-ts">/**
  * Exercise 1
  *
@@ -571,6 +585,7 @@ export type Keys&lt;T&gt; = any;
 <pre><code class="language-ts">export type Keys&lt;T extends object&gt; = keyof T;
 
 </code></pre>
+<div line-highlight='1'></div>
 <p></details></p>
 <h3>Exercise 2</h3>
 <p>Now that we have a <code>Keys</code> type let's put it to work. Imagine we have the following types:</p>
@@ -626,7 +641,7 @@ console.log(entry);
 <summary>Hint for Exercise 2 (click to reveal)</summary>
 our <code>Keys</code> type has a constraint to be satisfied, we need to make sure anything passed into <code>Keys</code> satisfies those constraints as well...
 </details></p>
-<p><a href="https://codesandbox.io/api/v1/sandboxes/define?parameters=N4IgZglgNgpgziAXKADgQwMYGs0HMYB0AVnAPYB2SoGFALjObVSACYwoNvkYTzO0BPDnAwAnCCiaIQUNPThMAvsoA0IAAwAmALT5yMcRjjaA7hFoALbTXILRaCI2MwAHtq0FaCZCBv1GSCCCHAAEANIwAnAAPAAqIa7-LHAhpABGRDAYtAB8IQC8IViRpGAhsQDcADrkNQD0AFQhAKIuBjxwMCGaNSENvU0AcqQmIZZyISZdFmgAbl1oIQAGEVFLY0JdsLQA5CkoAK60IeZjpJOkolgEIQBCMFAjJymLYAfctBAUIRhoULAsZb4WgAZVoaFE9FEAAVSMUALYUACS5DApHhci-5HW41oAzGaGKKVoJnOegMECMNwA6l1SQcoICoBBimcQmkFmlYGz0HAUo4QmhyAJUmVSAdRGMLKIYF0FBCoSl0plsi9yIDFvLIQY9iFyGh4V1aGSYMdLDB8Sw5K9LlKJig4TBEeQbgBVFBW-hSrrkwwpNiQcjmLEncjekJvD4h42C_5PNGSywQYnnGYoDgugb4vINBr3BNdATikJghW57MhAAiFB2x1JolEIrQaXFxzQLBYjlwgpCMtoErDwSN53NEfe2SxKgjpAwByV5CgIu-o4DjmD31K4d9lLgWbDTSWh68-KHIQAYhAZaXtTDHc6CiFgPifjNRBj1QZECFYcU2C5mowjbVPuIQvhChqwBQX4_jAf4AbQQHPhgr4QAAXhCLDQY6cGAQIwF9CEij4f0IE2AoEaXjA16Kl-F5XuCN4wfehRPiBYFvkKbCiF-OxnqI6Lhp8honMcybspc5BTq8sjCWkA4vGaFhGhIooicSDhQDcSJeCEzJgHS4qMgk6onGUo5gDJdIGMOIS4OcrY7CoSGvhBMBQSEOwAMIuQ8bmSeGZ6Wd-cIAJf3px4YwLMpBQPMgIJvCqneeBnEGDcyVvr53xYOQM5YP6IxhqQ6YUAwOlmJYakEtAU7mmGAYwHIxJKYlc5dr2aCoZc2hwK-KA_LIJhwAQjnORCaEYTx2kpGY5C4Ckvxhr8DYikmKTQgA8mEIUALIbYMA2kJ0bJCrGnz9mwqkACwqAAbOo6gRrKtBaccXIjEqRwUTKgrHPMjYhBYEC4BYYxOhw9j9jKw2jSBih7gRZHHGVAOFMC1EGExyKouimIUAAFJA9EKgYcBTjsyHjehogsDsACU-JkTFhCPLg-MowIdMhHUdQedNkxdgtp3LQDa3fltu37Ydx0xqdfznQcl2bjd92PfppqveyjxDakX1Ewsf0GCKQMg2D8IQ3IErwCN-KHksCNNAAEo4tBfuKkorJEcA4psgNoC8PwUHYDiMGyHIhHAmJwJAsFTlMeqyoCMYYqycBW4KwpJnNIS8p0gIu-cntrBHUcx81R1dEj9guy8M0PJpBAEAMdQ1K4DqQmOUbfOjDFQlj5AomiGKfBQ0QY6IZMhIMBowDk-O9BHvefiWS8T05YZ6jPX7T4aNRc6xoF9gOi8k6IADa-qGgAusB8OUMoihAA" target="_blank">Open in CodeSandbox</a></p>
+<p><a href="https://codesandbox.io/s/bg398m?file=/02-generics-with-constraints-ex-02.ts" target="_blank">Open in CodeSandbox</a></p>
 <pre><code class="language-ts">type Keys&lt;T extends object&gt; = keyof T;
 
 /* Exercise 2
@@ -677,6 +692,7 @@ export function getStarterPokemonInfomation&lt;
 }
 
 </code></pre>
+<div line-highlight='1, 3-6'></div>
 <p>This type of problem in practice would probably not take two generics, it was set up this way to illustrate some of the ideas in the lesson. Can you think of some other ways to accomplish the same thing without a second generic?</p>
 <p><details>
 <summary>One Example</summary></p>
@@ -688,6 +704,7 @@ export function getStarterPokemonInfomation&lt;
 }
 
 </code></pre>
+<div line-highlight='1, 3'></div>
 <p></details></p>
 <p></details></p>
 

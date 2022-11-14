@@ -13,6 +13,15 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Create a tabs widget using your own version of jQuery. 
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Tabs Widget</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -20,6 +29,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -66,7 +80,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -333,7 +347,7 @@
            						">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -379,7 +393,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -433,36 +447,36 @@ covering CanJS core libraries.">
 <h2>Exercise: <code>$.fn.tabs</code></h2>
 <h3>The problem</h3>
 <p>Create a <a href="https://en.wikipedia.org/wiki/Progressive_enhancement">progressively enhanced</a> tabs
-widget.  It will be called like:</p>
+widget. It will be called like:</p>
 <pre><code class="language-js">$(&quot;#breeds, #tech&quot;).tabs();
 </code></pre>
 <p>Notice that <code>.tabs()</code> can be called on multiple elements. An independent tabs widget should be created
-on each element in the collection.  The elements in the collection should be <code>&lt;ul&gt;</code> elements with the
+on each element in the collection. The elements in the collection should be <code>&lt;ul&gt;</code> elements with the
 following structure:</p>
-<pre><code class="language-html">&lt;ul id='tech'&gt;
-    &lt;li&gt;&lt;a href=&quot;#canjs&quot;&gt;CanJS&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#stealjs&quot;&gt;StealJS&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;#donejs&quot;&gt;DoneJS&lt;/a&gt;&lt;/li&gt;
+<pre><code class="language-html">&lt;ul id=&quot;tech&quot;&gt;
+  &lt;li&gt;&lt;a href=&quot;#canjs&quot;&gt;CanJS&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#stealjs&quot;&gt;StealJS&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#donejs&quot;&gt;DoneJS&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div id='canjs'&gt;
+&lt;div id=&quot;canjs&quot;&gt;
   &lt;a href=&quot;https://canjs.com&quot;&gt;CanJS&lt;/a&gt;
 &lt;/div&gt;
-&lt;div id='stealjs'&gt;
+&lt;div id=&quot;stealjs&quot;&gt;
   &lt;a href=&quot;https://stealjs.com&quot;&gt;StealJS&lt;/a&gt;
 &lt;/div&gt;
-&lt;div id='donejs'&gt;
+&lt;div id=&quot;donejs&quot;&gt;
   &lt;a href=&quot;https://donejs.com&quot;&gt;DoneJS&lt;/a&gt;
 &lt;/div&gt;
 </code></pre>
 <p>The <code>&lt;ul&gt;</code> elements will have <code>&lt;li&gt;</code> children which serve as the <strong>buttons</strong>. Each <code>&lt;li&gt;</code>
-must contain an <code>&lt;a&gt;</code> element.  The <code>&lt;a&gt;</code> element's <code>href</code> attributes reference the
+must contain an <code>&lt;a&gt;</code> element. The <code>&lt;a&gt;</code> element's <code>href</code> attributes reference the
 <code>id</code> of a <strong>tab</strong> element to show when the corresponding <code>&lt;li&gt;</code> <strong>button</strong> element is
 clicked.</p>
 <p>For example when this <code>&lt;li&gt;</code> is clicked:</p>
 <pre><code class="language-html">&lt;li&gt;&lt;a href=&quot;#stealjs&quot;&gt;StealJS&lt;/a&gt;&lt;/li&gt;
 </code></pre>
 <p>The following <strong>tab</strong> element should be shown:</p>
-<pre><code class="language-html">&lt;div id='stealjs'&gt;
+<pre><code class="language-html">&lt;div id=&quot;stealjs&quot;&gt;
   &lt;a href=&quot;https://stealjs.com&quot;&gt;StealJS&lt;/a&gt;
 &lt;/div&gt;
 </code></pre>
@@ -598,24 +612,24 @@ $(&quot;#breeds, #tech&quot;).tabs()
 <div line-highlight='113-117,only'></div>
 <h3>What you need to know</h3>
 <ul>
-<li>An <a href="https://developer.mozilla.org/en-US/docs/Glossary/IIFE">Immediately Invoked Function Expression</a> (IFFE)
-can be used to prevent variables and functions from being added to the global scope:
-<pre><code class="language-js">(function(){
+<li><p>An <a href="https://developer.mozilla.org/en-US/docs/Glossary/IIFE">Immediately Invoked Function Expression</a> (IFFE)
+can be used to prevent variables and functions from being added to the global scope:</p>
+<pre><code class="language-js">(function () {
   function activate(li) {
     // DO STUFF
     return li;
   }
 
-  $.fn.tabs = function(){
+  $.fn.tabs = function () {
     // can use activate
-    activate()
-  }
+    activate();
+  };
 })();
 
 // can NOT use activate
-activate() //-&gt; throws an error
+activate(); //-&gt; throws an error
 </code></pre></li>
-<li>The following jQuery functions will be useful:
+<li><p>The following jQuery functions will be useful:</p>
 <ul>
 <li><code>$(&quot;#selector&quot;)</code> - Get a collection of elements using a CSS selector.</li>
 <li><code>$([element])</code> - Create a jQuery collection from an array of elements.</li>
@@ -630,7 +644,9 @@ activate() //-&gt; throws an error
 of elements.</li>
 </ul></li>
 </ul>
-<h3>The solution</h3>
+<h2>Completed Solution</h2>
+<p><details>
+<summary>Click to see completed solution</summary></p>
 <pre><code class="language-html">&lt;style&gt;
 /* adapted from https://codepen.io/talleyran/pen/XoPLvy */
 body {
@@ -794,6 +810,7 @@ $(&quot;#breeds, #tech&quot;).tabs()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='113-158,only'></div>
+<p></details></p>
 
 </section>
 

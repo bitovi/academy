@@ -13,6 +13,15 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Learn the tools and technology commonly used within a project. 
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Efficient Development</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -20,6 +29,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -66,7 +80,7 @@
            						">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -188,7 +202,7 @@
            						expanded">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -202,7 +216,7 @@
            						">
 						<a class="page"
 							href="values.html"
-							title="Learn what activities to prioritize in technology consulting. Hint: It&#x27;s not technology.">
+							title="Learn what activities to prioritize in technology consulting. Hint: It is not technology.">
 							Outcome Focused Effort
 						</a>
 						
@@ -379,7 +393,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -431,7 +445,7 @@ development. Limited to a technical perspective (given
 the right features), a
 good product is <strong>error free</strong> and <strong>high-performance</strong>.</p>
 <p>Time and budget are always constraints on achieving this <em>goal</em>. So a good development process <strong>quickly</strong>
-and <strong>sustainably</strong> adds  features. This is
+and <strong>sustainably</strong> adds features. This is
 what we mean by <strong>efficient development</strong>.</p>
 <p>The key/secret to efficient development is <strong>maintainability</strong>. Maintainability is how easily a codebase can respond to change. A highly maintainable app enables the most efficient development, which allows you to quickly improve the application, resulting in something that is error free, fast, has a better user experience,
 and adds more customer value.</p>
@@ -441,118 +455,102 @@ application and team.</p>
 <h3>Tools and environment (ops)</h3>
 <p><details>
 <summary>Required</summary></p>
-<p>Source control is:</p>
+<p><strong>Source control is:</strong></p>
 <p><input type="checkbox"/> Used</p>
 <p><input type="checkbox"/> Git</p>
 <p><input type="checkbox"/> Used with a branch and merge strategy.</p>
-<p>An issue tracker is:</p>
+<p><strong>An issue tracker is:</strong></p>
 <p><input type="checkbox"/> Used</p>
 <p><input type="checkbox"/> Integrated with source control.</p>
 <p><input type="checkbox"/> Used by non developers.</p>
-<p>The following environments exist</p>
+<p><strong>The following environments exist</strong></p>
 <p><input type="checkbox"/> Development</p>
 <p><input type="checkbox"/> Test</p>
 <p><input type="checkbox"/> Staging</p>
 <p><input type="checkbox"/> Production</p>
-<p>A 1-3 step process for the following exist:</p>
+<p><strong>A 1-3 step process for the following exist:</strong></p>
 <p><input type="checkbox"/> Setting up a development environment</p>
 <p><input type="checkbox"/> Testing the application.</p>
 <p><input type="checkbox"/> Building the application into a production distributable.</p>
-<p><input type="checkbox"/> Deploy to test and staging.- <input type="checkbox"/></p>
-<p>Continuous Integration:</p>
+<p><input type="checkbox"/> Deploy to test and staging.</p>
+<p><strong>Continuous Integration:</strong></p>
 <p><input type="checkbox"/> Exists</p>
 <p><input type="checkbox"/> Runs on all commits / pushes</p>
-<p>Continuous Integration:</p>
-<p><input type="checkbox"/> Exists</p>
 <p></details></p>
 <p><details>
 <summary>Recommended</summary></p>
-<p>Portability:</p>
-<p><input type="checkbox"/> <strong>Containerized microservices</strong> - The application self-documents the environment in which it runs. That documentation is widely known (Example: docker files)</p>
-<p>Cloud Deployment:</p>
+<p><strong>Portability:</strong></p>
+<p><input type="checkbox"/> Containerized microservices</p>
+<ul>
+<li>The application self-documents the environment in which it runs. That documentation is widely known (Example: docker files)</li>
+</ul>
+<p><strong>Cloud Deployment:</strong></p>
 <p><input type="checkbox"/> The application is able to be started and stopped on new machines easily.</p>
 <p><input type="checkbox"/> New machines are able to be created easily.</p>
 <p><input type="checkbox"/> New machines are able to be created across multiple platforms.</p>
-<p>Monitoring:</p>
+<p><strong>Monitoring:</strong></p>
 <p><input type="checkbox"/> Vital app performance characteristics are measured (errors, CPU, Memory)</p>
 <p><input type="checkbox"/> Errors (client and server side) are automatically emailed to team</p>
-<p>Reporting:</p>
+<p><strong>Reporting:</strong></p>
 <p><input type="checkbox"/> Vital app performance characteristics are reported and analyzed every 1-6 weeks</p>
 <p></details></p>
 <h3>Code quality</h3>
-<p>Is the high level architecture documented and followed?</p>
-<ul>
-<li><input type="checkbox"/> Yes</li>
-<li><input type="checkbox"/> No</li>
-</ul>
-<p>Are there unit tests?</p>
-<ul>
-<li><input type="checkbox"/> Yes</li>
-<li><input type="checkbox"/> No</li>
-</ul>
-<p>Is there documentation for the code?</p>
-<ul>
-<li><input type="checkbox"/> Yes</li>
-<li><input type="checkbox"/> No</li>
-</ul>
-<p>All modules include:</p>
-<ul>
-<li><input type="checkbox"/> High level documentation.</li>
-<li><input type="checkbox"/> Tests</li>
-<li><input type="checkbox"/> Inline documentation</li>
-<li><input type="checkbox"/> A demo</li>
-</ul>
-<p>Are there performance tests?</p>
-<ul>
-<li><input type="checkbox"/> Yes</li>
-<li><input type="checkbox"/> No</li>
-</ul>
-<p>The service layer is:</p>
-<ul>
-<li><input type="checkbox"/> RESTful</li>
-<li><input type="checkbox"/> Documented</li>
-<li><input type="checkbox"/> Tested</li>
-<li><input type="checkbox"/> Built / working</li>
-</ul>
-<p>Is technical debt measured? <em>Is some value (often in days / weeks) of technical debt calculated?</em></p>
-<ul>
-<li><input type="checkbox"/> Yes</li>
-<li><input type="checkbox"/> No</li>
-</ul>
-<p>Is technical debt factored into estimates? <em>Do estimations of time, or points, or effort include discussions of technical debt?</em></p>
-<ul>
-<li><input type="radio"/> Yes</li>
-<li><input type="radio"/> No</li>
-</ul>
+<p><details>
+<summary>Required</summary></p>
+<p><strong>Is the high level architecture documented and followed?</strong></p>
+<p><input type="radio"/> Yes
+<input type="radio"/> No</p>
+<p><strong>Are there unit tests?</strong></p>
+<p><input type="radio"/> Yes
+<input type="radio"/> No</p>
+<p><strong>Is there documentation for the code?</strong></p>
+<p><input type="radio"/> Yes
+<input type="radio"/> No</p>
+<p><strong>All modules include:</strong></p>
+<p><input type="checkbox"/> High level documentation.</p>
+<p><input type="checkbox"/> Tests</p>
+<p><input type="checkbox"/> Inline documentation</p>
+<p><input type="checkbox"/> A demo</p>
+<p><strong>Are there performance tests?</strong></p>
+<p><input type="radio"/> Yes
+<input type="radio"/> No</p>
+<p><strong>The service layer is:</strong></p>
+<p><input type="checkbox"/> RESTful</p>
+<p><input type="checkbox"/> Documented</p>
+<p><input type="checkbox"/> Tested</p>
+<p><input type="checkbox"/> Built / working</p>
+<p></details></p>
+<p><details>
+<summary>Recommended</summary></p>
+<p><strong>Is technical debt measured?</strong> <em>Is some value (often in days / weeks) of technical debt calculated?</em></p>
+<p><input type="radio"/> Yes
+<input type="radio"/> No</p>
+<p><strong>Is technical debt factored into estimates?</strong> <em>Do estimations of time, or points, or effort include discussions of technical debt?</em></p>
+<p><input type="radio"/> Yes
+<input type="radio"/> No</p>
+<p></details></p>
 <h3>Team</h3>
-<p>Is there a QA team or resource?</p>
-<ul>
-<li><input type="radio"/> Yes</li>
-<li><input type="radio"/> No</li>
-</ul>
-<p>Are teams grouped by specialty? <em>Example: client vs server</em></p>
-<ul>
-<li><input type="radio"/> Yes</li>
-<li><input type="radio"/> No</li>
-</ul>
-<p>Do you work alongside the client's developers?</p>
-<ul>
-<li><input type="radio"/> Yes</li>
-<li><input type="radio"/> No</li>
-</ul>
-<p>Is every piece of code known to at least two people? <em>No piece of code should be &quot;workable&quot; by only one person.</em></p>
-<ul>
-<li><input type="radio"/> Yes</li>
-<li><input type="radio"/> No</li>
-</ul>
-<p>There are code reviews</p>
-<ul>
-<li><input type="radio"/> Every commit</li>
-<li><input type="radio"/> Every week</li>
-<li><input type="radio"/> Every month</li>
-<li><input type="radio"/> Of new people's code</li>
-<li><input type="radio"/> Never</li>
-</ul>
+<p><details>
+<summary>Recommended</summary>
+<strong>Is there a QA team or resource?</strong></p>
+<p><input type="radio"/> Yes
+<input type="radio"/> No</p>
+<p><strong>Are teams grouped by specialty?</strong> <em>Example: client vs server</em></p>
+<p><input type="radio"/> Yes
+<input type="radio"/> No</p>
+<p><strong>Do you work alongside the client's developers?</strong></p>
+<p><input type="radio"/> Yes
+<input type="radio"/> No</p>
+<p><strong>Is every piece of code known to at least two people?</strong> <em>No piece of code should be &quot;workable&quot; by only one person.</em></p>
+<p><input type="radio"/> Yes
+<input type="radio"/> No</p>
+<p><strong>There are code reviews:</strong></p>
+<p><input type="radio"/> Every commit</p>
+<p><input type="radio"/> Every week</p>
+<p><input type="radio"/> Every month</p>
+<p><input type="radio"/> Of new people's code</p>
+<p><input type="radio"/> Never</p>
+<p></details></p>
 <h2>Methodologies</h2>
 <p>The following are some common project management methodologies.</p>
 <h3>Scrum</h3>
@@ -562,8 +560,8 @@ application and team.</p>
 </ul>
 <p>Guides:</p>
 <ul>
-<li><a href="https://www.atlassian.com/agile/scrum">Atlassian</a></li>
-<li><a href="https://www.scrumguides.org/scrum-guide.html">Scrum Guide</a></li>
+<li><a href="https://www.atlassian.com/agile/scrum">Atlassian - What is Scrum?</a></li>
+<li><a href="https://www.scrumguides.org/scrum-guide.html">The Scrum Guide</a></li>
 </ul>
 <h3>Kanban</h3>
 <p>Summary:</p>
@@ -574,7 +572,7 @@ and complete it.</li>
 </ul>
 <p>Guides:</p>
 <ul>
-<li><a href="https://www.atlassian.com/agile/kanban">Atlassian</a></li>
+<li><a href="https://www.atlassian.com/agile/kanban">Atlassian - What is Kanban?</a></li>
 </ul>
 <h3>Extreme Programming</h3>
 <ul>
@@ -603,22 +601,19 @@ new features or test their code in a near production environment.</li>
 <li>Branches
 <ul>
 <li>master - Represents the features that will go onto staging.</li>
-<li><code>{ISSUE_NUM}_FEATURE</code> - A feature branch that is forked from <code>master</code>.  When ready, it is merged into <code>master</code></li>
-<li><code>RELEASE-pre.X</code> - A tagged version of master that will be pushed to <em>Staging</em> for testing.  If successful, it will be tagged without <code>-pre.X</code> for released.</li>
+<li><code>{ISSUE_NUM}_FEATURE</code> - A feature branch that is forked from <code>master</code>. When ready, it is merged into <code>master</code></li>
+<li><code>RELEASE-pre.X</code> - A tagged version of master that will be pushed to <em>Staging</em> for testing. If successful, it will be tagged without <code>-pre.X</code> for released.</li>
 <li><code>RELEASE</code> - A release that will be pushed to <em>Production</em>.</li>
 </ul></li>
 </ul>
-<h2>Ops</h2>
-<ul>
-<li>Continuous Integration</li>
-<li>Continuous Deployment</li>
-<li>Monitoring</li>
-</ul>
-<h2>Roles</h2>
-<h3>Service Owner</h3>
-<ul>
-<li><a href="https://www.atlassian.com/agile/devops">How it relates to devOps</a></li>
-</ul>
+<!-- TODO: Requires Content Creation -->
+<!-- ## Ops -->
+<!-- - Continuous Integration -->
+<!-- - Continuous Deployment -->
+<!-- - Monitoring -->
+<!-- ## Roles -->
+<!-- ### Service Owner -->
+<!-- - [How it relates to devOps](https://www.atlassian.com/agile/devops) -->
 
 </section>
 

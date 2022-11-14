@@ -13,6 +13,15 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Learn about the two ways of writing React components and their differences. 
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - What are React Components</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -20,6 +29,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -66,7 +80,7 @@
            						">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -348,7 +362,7 @@
            						">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -394,7 +408,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -503,6 +517,25 @@ ReactDOM.render(&lt;MyClassComponent /&gt;, document.getElementById('root'));
 <p>Originally, class components were the most popular because they could keep track of state and respond to specific component lifecycle events. This wasn't possible in functional components until the release of the <a href="https://reactjs.org/docs/hooks-reference.html">React Hooks API</a> in v16. Up until then, functional components were commonly referred to as <em>stateless components</em>.</p>
 <p>Now both class and functional components are used commonly in codebases around the world, but there has been a shift to using only functional components, as the syntax for them is more readable and cleaner.</p>
 <p>For the remainder of this training, we will be using functional components exclusively.</p>
+<h2>Multiples of the same component</h2>
+<p>It's important to note that when you have more than one of the same component, you will need a unique way to identify them. This helps React know to only re-render the component with that key. Otherwise, React will not know which component to update and will have to update them all, or in some cases, it may even update the wrong component!
+An example of this is:</p>
+<pre><code class="language-jsx">function App() {
+  return (
+    &lt;div&gt;
+      {
+        [
+          { title: &quot;Lorem ipsum dolor sit amet.&quot; id: &quot;18976a7c&quot; },
+          { title: &quot;Lorem ipsum dolor sit amet.&quot; id: &quot;20dd5af2&quot; }
+        ].map(elem)=&gt;(&lt;MyFuncComponent key={elem.id} /&gt;)
+      }
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<blockquote>
+<p>Note how we use a unique id instead of an iterator value from the map function. This is important so that the key will remain the same despite the list changing. <a href="https://reactjs.org/docs/lists-and-keys.html" title="For more information on lists and keys in react click here to visit the official docs.">For more information on lists and keys in react click here to visit the official docs.</a></p>
+</blockquote>
 <h2>Exercise</h2>
 <p>In this exercise, we supply you with a single Tic-Tac-Toe cell component. And your job is to make a Board component that renders those Tic-Tac-Toe cells into a nice 3x3 grid. Bonus points if you update the cell component such that whenever a single cell is clicked, we <code>console.log</code> the string &quot;Clicked&quot;, hint: take a look <a href="intro-to-jsx.html#event-handling">here</a> for a refresher on event handling.</p>
 <pre><code class="language-jsx">const squareStyling = {
@@ -530,6 +563,10 @@ ReactDOM.render(&lt;Board /&gt;, document.getElementById('root'));
 <h4>Hover over the code above and select the run button in the upper right hand corner.</h4>
 <p>Go ahead and hover over the code above. You should see a run button in the top right hand corner. Once that is clicked you can change, and edit the code in Codepen. Give it a try!</p>
 <h2>Solution</h2>
+<p><details>
+<summary>
+Click to see the solution
+</summary></p>
 <pre><code class="language-jsx">const squareStyling = {
   width: '200px',
   height: '200px',
@@ -561,6 +598,7 @@ ReactDOM.render(&lt;Board /&gt;, document.getElementById('root'));
 </code></pre>
 <div class='codepen' data-codepen='react'></div>
 <div line-highlight='14, 20-24'></div>
+</details>
 <h2>Next Steps</h2>
 <p>✏️ Head over to the <a href="props.html">next lesson</a> to get a more detailed understanding of props.</p>
 

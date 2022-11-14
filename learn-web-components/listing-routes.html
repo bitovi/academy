@@ -13,6 +13,15 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Fetch a list of bus routes from the CTA bus tracker API and add them to the &#x60;.routes-list&#x60; element. 
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Listing routes</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -20,6 +29,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -66,7 +80,7 @@
            						">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -363,7 +377,7 @@
            						">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -409,7 +423,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -497,7 +511,7 @@ const getVehiclesEndpoint = apiRoot + &quot;getvehicles&quot; + token;
 </ul>
 <h3>Fetch</h3>
 <p><code>fetch</code> is a function on the <code>window</code> object that is used to make network requests. In its simplest form it only needs a string URL, which will be used to make a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET">GET</a> request.</p>
-<p>fetch differs slightly from the older <a href="XMLHttpRequest">XMLHttpRequest</a> in a variety of ways; for example fetch does not include cookies by default. It's easier to use, however, because it uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promises</a>. If you don't need to support Internet Explorer you'll probably want to use fetch in your applications.</p>
+<p>fetch differs slightly from the older <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XMLHttpRequest</a> in a variety of ways; for example fetch does not include cookies by default. It's easier to use, however, because it uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promises</a>. If you don't need to support Internet Explorer you'll probably want to use fetch in your applications.</p>
 <p><code>fetch()</code> returns a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Response">Response</a> object. To get a JSON object from this use <code>response.json()</code> like so:</p>
 <pre><code class="language-js">async function listFoods() {
   let response = await fetch('/api/food');
@@ -522,6 +536,7 @@ document.body.append(el);
 el.textContent = 'Hello from .textContent';
 </code></pre>
 <div class='codepen'></div>
+<div line-highlight='4'></div>
 <p>This is equivalent to creating <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createTextNode">Text</a> nodes:</p>
 <pre><code class="language-js">let el = document.createElement('h1');
 document.body.append(el);
@@ -534,12 +549,15 @@ setTimeout(() =&gt; {
 }, 3000);
 </code></pre>
 <div class='codepen'></div>
+<div line-highlight='4-9'></div>
 <p>Usually you will use <code>.textContent</code> unless building a library where performance is critical. textContent is the most convenient way to change an element's text.</p>
 <h2>Solution</h2>
 <p>✏️ Use the markup provided above and create another template with the id of <code>route-template</code>. Keep a reference to this template in your JavaScript along with the other template. Copy the URL snippet from above and paste that so that it can be used within the component.</p>
 <p>Create a method on the component, we're calling it <code>getRoutes</code> here that is called in the <code>connectedCallback</code> method. It's an async method that uses <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">fetch</a> to retrieve the list of routes which we can get with <code>data[&quot;bustime-response&quot;].routes</code>.</p>
 <p>Loop over the routes and clone an instance of the template filling in the route number with <code>route.rt</code> and the route name with <code>route.rtnm</code>.</p>
 <p>At the end of the <code>getRoutes</code> method remove the <code>#loading-routes</code> element.</p>
+<p><details>
+<summary>Click to see the solution</summary></p>
 <pre><code class="language-html">&lt;style&gt;
   html,
   body {
@@ -801,9 +819,7 @@ customElements.define(&quot;bus-tracker&quot;, BusTracker);
 </code></pre>
 <div line-highlight='179-187,214-218,221,231,234-253,only'></div>
 <div class='codepen'></div>
-<p style="font-weight: bold; text-align: center;">
-<a href="select-a-route.html" title="Learn how to use event listeners with a custom element to handle user interaction and update the DOM.">👉 Selecting a route</a>
-</p>
+<p></details></p>
 
 </section>
 

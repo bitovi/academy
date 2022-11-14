@@ -13,6 +13,15 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Modify Restaurants component to derive state via RxJS streams 
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Optional: Declarative State</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -20,6 +29,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -66,7 +80,7 @@
            						">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -188,7 +202,7 @@
            						">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -559,7 +573,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -611,7 +625,7 @@ covering CanJS core libraries.">
 <li>Update the restaurant component so states, cities &amp; restaurants are RxJS streams</li>
 <li>Remove use of the Reactive Forms API and add several additional streams to completely avoid the use of imperative logic</li>
 </ul>
-<p><strong>Note:</strong> You should complete <a href="/learn-rxjs.html">Bitovi Academy's RxJS training</a> before attempting
+<p><strong>Note:</strong> You should complete <a href="../learn-rxjs.html">Bitovi Academy's RxJS training</a> before attempting
 the following exercise. Although even if you haven't, read on if you're interested why you might want to use declarative
 state.</p>
 <h2>Imperative vs Declarative state</h2>
@@ -683,7 +697,7 @@ state, one will control the selected value of a control, and others will be emit
 <h2>Creating Streams Of Form Control Values</h2>
 <p>The <a href="https://rxjs-dev.firebaseapp.com/api/index/class/Subject"><code>Subject</code></a> class in RxJS is both an
 <a href="https://rxjs-dev.firebaseapp.com/api/index/interface/Observer"><code>Observer</code></a> and
-<a href="https://rxjs-dev.firebaseapp.com/api/index/interface/Observable"><code>Observable</code></a>. This has several implications but the
+<a href="https://rxjs-dev.firebaseapp.com/api/index/class/Observable"><code>Observable</code></a>. This has several implications but the
 relevant one for this exercise is that it both consumes and produces values. That means we can pass values into a
 <a href="https://rxjs-dev.firebaseapp.com/api/index/class/Subject"><code>Subject</code></a> (via it's <code>next</code> method) and have them emitted
 as part of a stream. Perfect for turning values from a form control into a stream.</p>
@@ -806,7 +820,7 @@ when all input streams have emitted a value.</p>
 <p>A common situation is working with streams that only produce a value after an event, for example when an HTTP request
 completes or when a value changes in a form control. When using a stream like this in your components, you'll likely
 want to have an initial &quot;base state&quot; that your view can use during the initial render. In RxJS this is handled by the
-<a href="https://rxjs-dev.firebaseapp.com/api/index/operators/startWith"><code>startWith</code></a> operator, which emits a value when the
+<a href="https://rxjs-dev.firebaseapp.com/api/operators/startWith"><code>startWith</code></a> operator, which emits a value when the
 stream is first subscribed to.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.3.3/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;module&quot;&gt;
@@ -831,7 +845,7 @@ stream is first subscribed to.</p>
 <div class='codepen'></div>
 <h3>Transforming The Values Of A Stream</h3>
 <p>When values are emitted from a stream it's common to transform them in some way before they're used by your application.
-One operator used for this is the <a href="https://rxjs-dev.firebaseapp.com/api/index/operators/map"><code>map</code></a> operator, which
+One operator used for this is the <a href="https://rxjs-dev.firebaseapp.com/api/operators/map"><code>map</code></a> operator, which
 takes an emitted value and returns a modified value that will be passed to the subsequent operators in the stream.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.3.3/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;module&quot;&gt;
@@ -1513,7 +1527,7 @@ describe('RestaurantComponent', () =&gt; {
 </ul></li>
 </ul>
 <p>You've learnt all of the above as part of the earlier sections on this page! Completing the
-<a href="/learn-rxjs.html">Bitovi Academy's RxJS training</a> will help however.</p>
+<a href="../learn-rxjs.html">Bitovi Academy's RxJS training</a> will help however.</p>
 <h2>Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
@@ -1664,6 +1678,8 @@ export class RestaurantComponent implements OnInit {
 <div line-highlight='3, 6-9, 11, 17-21, 23, 29-31, only'></div>
 <p></details></p>
 <h2>Advanced Implementation</h2>
+<p><details>
+<summary>Click to see the advanced implementation solution</summary></p>
 <p>Below is a more comprehensive approach to implementing the sort of features seen in the solution above. It takes things
 further by handling additional cases and abstracting the streams to aid in reuse of these patterns throughout an
 application. Since we won't be going over the details of this implementation, a very solid understanding of the above
@@ -1869,6 +1885,7 @@ export class RestaurantComponent implements OnInit {
 &lt;/div&gt;
 
 </code></pre>
+<p></details></p>
 
 </section>
 

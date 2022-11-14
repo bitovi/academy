@@ -11,10 +11,18 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.
-
+  <meta name="description" content="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing [learn-advanced-javascript] prior to starting this course.
 
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - DOM and jQuery</title>
   
   <link rel="stylesheet" type="text/css" href="./static/bundles/bit-docs-site/static.css">
@@ -22,6 +30,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -68,7 +81,7 @@
            						expanded">
 						<a class="page"
 							href="learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -332,7 +345,7 @@
            						">
 						<a class="page"
 							href="learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -378,7 +391,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -409,7 +422,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.</p>
+    <p>Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing <a href="learn-advanced-javascript.html" title="This course covers all the hard but important stuff you should know when learning JavaScript.">Advanced JavaScript</a> prior to starting this course.</p>
 
 </section>
 
@@ -423,42 +436,74 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Before You Begin</h2>
-<p><a href="https://www.bitovi.com/community/slack">
+<p><a href="https://www.bitovi.com/community/slack" style="display:flex;align-items:center">
 <img src="https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.png?width=200"
-style="float:left"/> <span style="margin-top: 10px;display: inline-block;">Click here to join<br/>Bitovi's Slack Community</span></a></p>
+style="float:left"/> <span style="display: inline-block;">Click here to join<br/>Bitovi's Slack Community</span></a></p>
 <p>Join Bitovi's Slack Community to get help on Bitovi Academy courses or other
 Angular, React, CanJS and JavaScript problems.</p>
 <p>Please ask questions related to jQuery and the DOM in the <a href="https://bitovi-community.slack.com/messages/CFMMNSV5X">JS and DOM chat room</a>.</p>
 <p>If you find bugs in this training or have suggestions, create an <a href="https://github.com/bitovi/academy/issues">issue</a> or email <code>contact@bitovi.com</code>.</p>
 <h2>Overview</h2>
-<p>The end result of this training is to build a basic, <a href="https://en.wikipedia.org/wiki/Progressive_enhancement">progressively enhanced</a>, tabs widget that looks like:</p>
+<p>The end result of this training is to build a basic, <a href="https://en.wikipedia.org/wiki/Progressive_enhancement">progressively enhanced</a> tabs widget that looks like:</p>
 <p><img src="./static/img/dog-tabs.png" width="50%"/></p>
 <p>We will be creating simple versions of many of jQuery's most useful methods:</p>
-<pre><code class="language-js">$ = function(selector) { /*...*/ };
+<pre><code class="language-js">$ = function (selector) {
+  /*...*/
+};
 
 $.extend($.prototype, {
-    html: function(string) {    /*...*/ },
-    val: function(value) {      /*...*/ },
-    text: function(string) {    /*...*/ },
-    find: function(el) {        /*...*/ },
-    next: function() {          /*...*/ },
-    prev: function() {          /*...*/ },
-    parent: function() {        /*...*/ },
-    children: function() {      /*...*/ },
-    attr: function(attr, val) { /*...*/ },
-    css: function(style, val) { /*...*/ },
-    width: function() {         /*...*/ },
-    hide: function() {          /*...*/ },
-    show: function() {          /*...*/ }
+  html: function (string) {
+    /*...*/
+  },
+  val: function (value) {
+    /*...*/
+  },
+  text: function (string) {
+    /*...*/
+  },
+  find: function (el) {
+    /*...*/
+  },
+  next: function () {
+    /*...*/
+  },
+  prev: function () {
+    /*...*/
+  },
+  parent: function () {
+    /*...*/
+  },
+  children: function () {
+    /*...*/
+  },
+  attr: function (attr, val) {
+    /*...*/
+  },
+  css: function (style, val) {
+    /*...*/
+  },
+  width: function () {
+    /*...*/
+  },
+  hide: function () {
+    /*...*/
+  },
+  show: function () {
+    /*...*/
+  },
 });
 </code></pre>
 <p>Then we will write a tabs widget:</p>
-<pre><code class="language-js">$.fn.tabs = function(){ /*...*/ }
+<pre><code class="language-js">$.fn.tabs = function () {
+  /*...*/
+};
 </code></pre>
 <h2>Prerequisites</h2>
 <p>Creating jQuery requires meta programming
-(functions that take functions that return functions).  We encourage participants to
+(functions that take functions that return functions). We encourage participants to
 finish the <a href="learn-advanced-javascript.html" title="This course covers all the hard but important stuff you should know when learning JavaScript.">Advanced JavaScript</a> course before beginning this training.</p>
+<h2>Next Steps</h2>
+<p>✏️ Head over to the <a href="learn-dom-jquery/functional-utilities.html">first lesson</a> to get set up and start learning about functional utilities.</p>
 
 </section>
 
@@ -497,7 +542,7 @@ finish the <a href="learn-advanced-javascript.html" title="This course covers al
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/dom/dom.md"},"description":"Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.\n\n\n","name":"learn-dom-jquery","title":"DOM and jQuery","type":"page","parent":"bit-academy","order":2,"comment":" ","pathToRoot":".."};
+      var docObject = {"src":{"path":"src/dom/dom.md"},"description":"Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing [learn-advanced-javascript] prior to starting this course.\n\n","name":"learn-dom-jquery","title":"DOM and jQuery","type":"page","parent":"bit-academy","order":2,"comment":" ","pathToRoot":".."};
     </script>
 
     

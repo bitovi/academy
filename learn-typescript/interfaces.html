@@ -13,6 +13,15 @@
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="Learn how to write Interfaces, set optional properties, and about the power of using interfaces in classes and functions 
 ">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>Bitovi Academy - Interfaces</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
@@ -20,6 +29,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -66,7 +80,7 @@
            						">
 						<a class="page"
 							href="../learn-dom-jquery.html"
-							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget.">
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
 							DOM and jQuery
 						</a>
 						
@@ -350,7 +364,7 @@
            						">
 						<a class="page"
 							href="../learn-technology-consulting.html"
-							title="Learn how to perform technology consulting.">
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
 						</a>
 						
@@ -396,7 +410,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="../advanced-typescript.html"
-							title="This course covers advanced features of TypeScript.">
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
 							Advanced TypeScript
 						</a>
 						
@@ -622,7 +636,7 @@ myObj.height = 6;
 </ul>
 <h3>The Solution</h3>
 <p><details>
-<summary>Solution</summary></p>
+<summary>Click to see the solution</summary></p>
 <p>✏️ Update <code>5a-dino-park.ts</code> to the following:</p>
 <pre><code class="language-typescript">import Address from &quot;./5a-address&quot;;
 
@@ -634,6 +648,7 @@ interface DinoPark {
 
 export default DinoPark;
 </code></pre>
+<div line-highlight='3-7'></div>
 <p>✏️ Update <code>5a-address.ts</code> to the following:</p>
 <pre><code class="language-typescript">interface Address {
   street: string;
@@ -644,6 +659,7 @@ export default DinoPark;
 
 export default Address;
 </code></pre>
+<div line-highlight='2-5'></div>
 <p></details></p>
 <p>Make sure you have this solution implemented correctly before moving on to the next exercise.</p>
 <h2>Exercise 2: Write a Function With a Parameter Described by Interface</h2>
@@ -655,7 +671,7 @@ export default Address;
 </code></pre>
 <h3>The Solution</h3>
 <p><details>
-<summary>Solution</summary></p>
+<summary>Click to see the solution</summary></p>
 <p>✏️ Update <code>5b-create-park-slug.ts</code> to the following:</p>
 <pre><code class="language-typescript">import DinoPark from &quot;./5a-dino-park&quot;;
 
@@ -663,6 +679,7 @@ export function createParkSlug(dinoPark: DinoPark) {
   return dinoPark.name.replace(/ /g, '-');
 }
 </code></pre>
+<div line-highlight='3-4'></div>
 <p></details></p>
 
 </section>
