@@ -566,7 +566,7 @@ setTimeout(() =&gt; counter.count--, 15000);
 <div class='codepen'></div>
 <div line-highlight='15-22'></div>
 <h3>Default values</h3>
-<p>Most properties supported by builtin elements have some sort of default value. For example the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress">&lt;progress&gt;</a> element has a <code>max</code> property that defaults to <code>1</code>: <code>document.createElement('progress').max; // 1</code>. <strong>All</strong> elements have an <code>onclick</code> property whose default value is <code>null</code>. It's good practice to provide default values for your supported public properties, and these can be set in the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor">constructor</a>. Combining getters, setters and default values for properties makes your component more robust.</p>
+<p>Most properties supported by built-in elements have some sort of default value. For example the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress">&lt;progress&gt;</a> element has a <code>max</code> property that defaults to <code>1</code>: <code>document.createElement('progress').max; // 1</code>. <strong>All</strong> elements have an <code>onclick</code> property whose default value is <code>null</code>. It's good practice to provide default values for your supported public properties, and these can be set in the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor">constructor</a>. Combining getters, setters and default values for properties makes your component more robust.</p>
 <pre><code class="language-js">class DogElement extends HTMLElement {
   constructor() {
     super();
