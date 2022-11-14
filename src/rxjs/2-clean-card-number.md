@@ -66,6 +66,8 @@ In this section, we will:
   CardNumber: {{ cardNumber$ | async }} <br />
   ```
 
+The debugging section will show how to verify the results in details.
+
 ## The Solution
 
 <details>

@@ -188,7 +188,7 @@ this.button.addEventListener('click', ev => this.handleButtonClick(ev));
 
 However this creates a *new function*. To tear this down in `disconnectedCallback` you'll have to keep a reference to it.
 
-A way to avoid this is to use `handleEvent`. [handleEvent](https://developer.mozilla.org/en-US/docs/Web/API/EventListener/handleEvent) is a special method you can add to any object (not just elements) that makes that object an [EventTarget](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget). You use it like this:
+A way to avoid this is to use `handleEvent`. [handleEvent](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#the_event_listener_callback) is a special method you can add to any object (not just elements) that makes that object an [EventTarget](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget). You use it like this:
 
 ```js
 let eventTarget = {
@@ -234,6 +234,11 @@ class MyElement extends HTMLElement {
 
 Using `CustomEvent`, display a `vehicle-selected` event with a `detail` of the vehicle. Now in the `bus-tracker` component, listen to event and set the vehicle destination on the `#selected-vehicle` element.
 
+<details>
+<summary>Click to see the solution</summary>
+
 @sourceref ./index.html
 @highlight 102-123,202,270,279-283,288-293,319,325,328-330,332-336,only
 @codepen
+
+</details>

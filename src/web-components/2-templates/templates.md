@@ -106,11 +106,13 @@ document.body.append(fragment);
 
 ✏️ Start by creating the template. Give it an `id` so that we can more easily query it to use it in our component.
 
+<details>
+<summary>Click to see the solution</summary>
+
 @sourceref ./index.html
+@highlight 1-29
 @codepen
 
-Running this code should show you a 250px tall grey square.
+</details>
 
-<p style="font-weight: bold; text-align: center;">
-[learn-web-components/map-view 👉 Map View]
-</p>
+Running this code should show you a 250px tall grey square.

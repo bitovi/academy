@@ -78,7 +78,7 @@ Click the "Run in your browser" button above and notice that... nothing happens.
 
 The [custom elements API](https://html.spec.whatwg.org/multipage/custom-elements.html) provides a way to hook into the browser's HTML parser and receive callbacks whenever a certain tag is encountered. Think about that; your code can run before the page has even finished loading (provided your script has run). That's a lot of power.
 
-Custom elements are classes that extend [HTMLElement](https://html.spec.whatwg.org/multipage/dom.html). This is the base class from which all elements, both built-in and custom, derive. For example the `<progress>` element is an instance of `HTMLProgressElement`.
+Custom elements are classes that extend [HTMLElement](https://html.spec.whatwg.org/multipage/dom.html#elements-in-the-dom). This is the base class from which all elements, both built-in and custom, derive. For example the `<progress>` element is an instance of `HTMLProgressElement`.
 
 To register our own tag we first extend HTMLElement like so:
 
@@ -172,9 +172,12 @@ This mirrors the way most built-in elements work; changing a property does __not
 
 ✏️ The following is a full greeting element that accepts `name` attribute and property, rendering when either changed.
 
+
+<details>
+<summary>Click to see the solution</summary>
+
 @sourceref ./index.html
+@highlight 1-44
 @codepen
 
-<p style="font-weight: bold; text-align: center;">
-[learn-web-components/templates 👉 Writing a template]
-</p>
+</details>
