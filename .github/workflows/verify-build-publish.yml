@@ -28,5 +28,5 @@ jobs:
         run: npm run build
 
       - name: Deploy
-        if: ${{ github.ref == 'refs/heads/main' }}
+        # if: ${{ github.ref == 'refs/heads/main' }}
         run: npm run deploy

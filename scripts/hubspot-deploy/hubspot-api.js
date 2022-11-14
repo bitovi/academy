@@ -17,12 +17,14 @@ class HubSpotApi {
     return this.limiter.schedule(() => axios({ method, url, data })
       .catch(error => {
         console.error(`Error on page ${data.name}: ${error}`);
+        throw error;
       }));
   }
 
   async getPages(){
     const url = `${this.baseUrl}?hapikey=${this.apiKey}&campaign=${ACADEMY_CAMPAIGN_ID}&limit=1000000`;
     const response = await this.makeRequest('GET', url, {});
+
     return response.data.objects.map(page => ({
       campaign: page.campaign,
       id: page.id,
