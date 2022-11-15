@@ -22,8 +22,7 @@ class HubSpotApi {
         console.error(`Error ${error.response.status}: ${error.response.statusText}`);
         console.error(error.response.data);
 
-        throw new Error()
-        // throw error;
+        throw error;
       }));
   }
 

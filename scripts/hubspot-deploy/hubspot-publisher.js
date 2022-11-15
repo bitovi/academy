@@ -65,31 +65,39 @@ class HubSpotPublisher {
   async publish(){
     const pagesCurrentlyOnHubSpot = await this.hubSpotApi.getPages();
     const pagesForHubSpotUpload = (await this.getPagesToUpload());
-    const pagesToBeDeleted = pagesCurrentlyOnHubSpot.filter(pageCurrentlyOnHubSpot =>
-      !pagesForHubSpotUpload.find(pageForHubSpotUpload => pageCurrentlyOnHubSpot.slug === pageForHubSpotUpload.slug)
-    );
 
     pagesForHubSpotUpload.forEach(page => {
       const localPageOnHubSpot = pagesCurrentlyOnHubSpot.find(pageCurrentlyOnHubSpot =>
         pageCurrentlyOnHubSpot.slug === page.slug
       );
+
       if(localPageOnHubSpot){
         page.hubSpotId = localPageOnHubSpot.id;
       }
+
       this.uploadPage(page)
     });
-    promptDeleteFiles(pagesToBeDeleted,
-      () => {
-        // delete all
-        pagesToBeDeleted.forEach(pageToBeDeleted => this.hubSpotApi.deletePage(pageToBeDeleted.id))
-      },
-      async () => {
-        // choose which to delete
-        for(let pageToBeDeleted of pagesToBeDeleted){
-          await confirmDeleteFile(pageToBeDeleted.slug, () => this.hubSpotApi.deletePage(pageToBeDeleted.id))
+
+    const pagesToBeDeleted = pagesCurrentlyOnHubSpot.filter(pageCurrentlyOnHubSpot =>
+      !pagesForHubSpotUpload.find(pageForHubSpotUpload => pageCurrentlyOnHubSpot.slug === pageForHubSpotUpload.slug)
+    );
+
+    if (process.env.CI === 'true') {
+      console.warn(`Note: There were ${pagesToBeDeleted.length} on Bitovi.com that are not in the local project that were left in place.`);
+    } else {
+      promptDeleteFiles(pagesToBeDeleted,
+        () => {
+          // delete all
+          pagesToBeDeleted.forEach(pageToBeDeleted => this.hubSpotApi.deletePage(pageToBeDeleted.id))
+        },
+        async () => {
+          // choose which to delete
+          for(let pageToBeDeleted of pagesToBeDeleted){
+            await confirmDeleteFile(pageToBeDeleted.slug, () => this.hubSpotApi.deletePage(pageToBeDeleted.id))
+          }
         }
-      }
-    )
+      )
+    }
   }
 }
 
