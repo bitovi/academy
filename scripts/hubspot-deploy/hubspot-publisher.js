@@ -28,7 +28,6 @@ class HubSpotPublisher {
     }
     const filePathsToUpload = (await recursive(this.folder))
       .filter(shouldBeUploaded);
-    console.log(filePathsToUpload)
     const pagesToUpload = [];
     for(const filePathToUpload of filePathsToUpload){
       const html = await fs.readFile(filePathToUpload, 'utf8');
@@ -38,31 +37,26 @@ class HubSpotPublisher {
   }
 
   async uploadPage(academyPage) {
-    return
-    return fs.readFile(academyPage.fileLocation, 'utf8').then(html => {
-      academyPage.setHtml(html);
-
-      if(academyPage.hubSpotId) {
-        return this.hubSpotApi.updatePage(
-          academyPage.hubSpotId,
-          {
-              title: academyPage.getTitle(),
-              headHtml: academyPage.getCSSLinks(),
-              bodyHtml: academyPage.getPageContents(),
-              metaDescription: academyPage.getMetaDescription()
-          }
-        );
-      }
-      else {
-        return this.hubSpotApi.createPage({
+    if(academyPage.hubSpotId) {
+      return this.hubSpotApi.updatePage(
+        academyPage.hubSpotId,
+        {
             title: academyPage.getTitle(),
             headHtml: academyPage.getCSSLinks(),
             bodyHtml: academyPage.getPageContents(),
-            slug: academyPage.slug,
             metaDescription: academyPage.getMetaDescription()
-        });
-      }
-    });
+        }
+      );
+    }
+    else {
+      return this.hubSpotApi.createPage({
+          title: academyPage.getTitle(),
+          headHtml: academyPage.getCSSLinks(),
+          bodyHtml: academyPage.getPageContents(),
+          slug: academyPage.slug,
+          metaDescription: academyPage.getMetaDescription()
+      });
+    }
   }
 
   async publish(){
@@ -85,7 +79,7 @@ class HubSpotPublisher {
       !pagesForHubSpotUpload.find(pageForHubSpotUpload => pageCurrentlyOnHubSpot.slug === pageForHubSpotUpload.slug)
     );
 
-    console.warn(`Note: There were ${pagesToBeDeleted.length} pages on Bitovi.com that are not in the local project that were left in place.`);
+    console.warn(`Note: There were ${pagesToBeDeleted.length} pages on Bitovi.com that are not in the local project and were left in place.`);
 
     // promptDeleteFiles(pagesToBeDeleted,
     //   () => {

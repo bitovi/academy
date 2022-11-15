@@ -2,6 +2,7 @@ const cheerio = require('cheerio')
 
 class AcademyPage {
   constructor(html, fileLocation) {
+    this.html = html
     this.$ = cheerio.load(html, {decodeEntities: true});
     this.fileLocation = fileLocation;
     if(this.fileLocation.split('/')[1] === 'index.html'){
