@@ -28,6 +28,7 @@ class HubSpotPublisher {
     }
     const filePathsToUpload = (await recursive(this.folder))
       .filter(shouldBeUploaded);
+    console.log(filePathsToUpload)
     const pagesToUpload = [];
     for(const filePathToUpload of filePathsToUpload){
       const html = await fs.readFile(filePathToUpload, 'utf8');
@@ -37,7 +38,7 @@ class HubSpotPublisher {
   }
 
   async uploadPage(academyPage) {
-    console.log(academyPage.fileLocation)
+    return
     return fs.readFile(academyPage.fileLocation, 'utf8').then(html => {
       academyPage.setHtml(html);
 
