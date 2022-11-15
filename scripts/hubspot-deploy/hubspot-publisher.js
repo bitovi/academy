@@ -2,7 +2,6 @@ const fs = require('fs').promises;
 const recursive = require("recursive-readdir");
 const HubSpotApi = require("./hubspot-api");
 const AcademyPage = require("./academy-page");
-// const { confirmDeleteFile, promptDeleteFiles } = require("./user-prompts");
 
 require('dotenv').config()
 
@@ -79,20 +78,8 @@ class HubSpotPublisher {
       !pagesForHubSpotUpload.find(pageForHubSpotUpload => pageCurrentlyOnHubSpot.slug === pageForHubSpotUpload.slug)
     );
 
+    // TODO: Remove extra files from the /academy directory
     console.warn(`Note: There were ${pagesToBeDeleted.length} pages on Bitovi.com that are not in the local project and were left in place.`);
-
-    // promptDeleteFiles(pagesToBeDeleted,
-    //   () => {
-    //     // delete all
-    //     pagesToBeDeleted.forEach(pageToBeDeleted => this.hubSpotApi.deletePage(pageToBeDeleted.id))
-    //   },
-    //   async () => {
-    //     // choose which to delete
-    //     for(let pageToBeDeleted of pagesToBeDeleted){
-    //       await confirmDeleteFile(pageToBeDeleted.slug, () => this.hubSpotApi.deletePage(pageToBeDeleted.id))
-    //     }
-    //   }
-    // )
   }
 }
 
