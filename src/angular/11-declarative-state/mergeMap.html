@@ -1,7 +1,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.3.3/rxjs.umd.min.js"></script>
 <script type="module">
     const { of, interval, zip } = rxjs;
-    const { map, flatMap, delay } = rxjs.operators;
+    const { map, mergeMap, delay } = rxjs.operators;
 
     // returns a stream that emits the price of a given car after a 500ms delay. this is how a request might operate
     function pseudoPriceRequest(carName) {
@@ -16,7 +16,7 @@
     const pseudoFormValueStream = zip(of('', 'mustang', 'camaro', ''), interval(2000)).pipe(map(([val, num]) => val));
 
     // stream that makes a "request" if provided a car name or returns "No Car Selected"
-    const pseudoPriceStream = pseudoFormValueStream.pipe(flatMap((selectedCar) => {
+    const pseudoPriceStream = pseudoFormValueStream.pipe(mergeMap((selectedCar) => {
         if (selectedCar) {
             return pseudoPriceRequest(selectedCar).pipe(map(price => '$' + price));
         } else {

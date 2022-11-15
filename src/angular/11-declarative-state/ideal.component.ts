@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, UnaryFunction, of, combineLatest, merge, pipe } from 'rxjs';
-import { startWith, map, flatMap, shareReplay, catchError, tap } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, merge, Observable, of, pipe, UnaryFunction } from 'rxjs';
+import { catchError, map, mergeMap, shareReplay, startWith, tap } from 'rxjs/operators';
 
-import { RestaurantService, ResponseData, State, City } from './restaurant.service';
 import { Restaurant } from './restaurant.interface';
+import { City, ResponseData, RestaurantService, State } from './restaurant.service';
 
 // represent all the possible states of a request
 export interface RequestStatus<T> {
@@ -37,7 +37,7 @@ const responseToRequestStatus = map(function<T>(response: ResponseData<T>): Requ
 function makeRequest<T>(requestFunction: (args:any) => Observable<ResponseData<T>>)
     :UnaryFunction<Observable<any>, Observable<RequestStatus<T>>> {
   return pipe(
-      flatMap(requestArguments => {
+    mergeMap(requestArguments => {
         const responseStream = requestFunction(requestArguments);
 
         // awaiting input case where the requestFunction hasn't made a request yet
