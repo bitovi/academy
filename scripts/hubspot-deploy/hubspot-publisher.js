@@ -66,7 +66,7 @@ class HubSpotPublisher {
     const pagesCurrentlyOnHubSpot = await this.hubSpotApi.getPages();
     const pagesForHubSpotUpload = (await this.getPagesToUpload());
 
-    pagesForHubSpotUpload.forEach(page => {
+    await Promise.all(pagesForHubSpotUpload.map(page => {
       const localPageOnHubSpot = pagesCurrentlyOnHubSpot.find(pageCurrentlyOnHubSpot =>
         pageCurrentlyOnHubSpot.slug === page.slug
       );
@@ -75,15 +75,15 @@ class HubSpotPublisher {
         page.hubSpotId = localPageOnHubSpot.id;
       }
 
-      this.uploadPage(page)
-    });
+      return this.uploadPage(page)
+    }));
 
     const pagesToBeDeleted = pagesCurrentlyOnHubSpot.filter(pageCurrentlyOnHubSpot =>
       !pagesForHubSpotUpload.find(pageForHubSpotUpload => pageCurrentlyOnHubSpot.slug === pageForHubSpotUpload.slug)
     );
 
     if (process.env.CI === 'true') {
-      console.warn(`Note: There were ${pagesToBeDeleted.length} on Bitovi.com that are not in the local project that were left in place.`);
+      console.warn(`Note: There were ${pagesToBeDeleted.length} pages on Bitovi.com that are not in the local project that were left in place.`);
     } else {
       promptDeleteFiles(pagesToBeDeleted,
         () => {
