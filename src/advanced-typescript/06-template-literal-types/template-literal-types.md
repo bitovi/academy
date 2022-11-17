@@ -147,7 +147,7 @@ type Padding = "padding-top" | "padding-left"; // ...
 type Margin = "margin-top" | "margin-left"; // ...
 ```
 
-<a href="https://codesandbox.io/s/72i9li?file=/06-template-literal-types-ex-01.ts" target="_blank">Open in CodeSandbox</a>
+<a href="https://codesandbox.io/s/72i9li?file=/06-template-literal-types-ex-01.ts">Open in CodeSandbox</a>
 
 @sourceref ./exercise-01/ex-01.ts
 
@@ -170,7 +170,7 @@ type WithName = FromGetter<{ getName: () => string }>; // {name: string;}
 type NonFunction = FromGetter<{ getObject: object }>; // {object: object;}
 ```
 
-<a href="https://codesandbox.io/s/iy9vq9?file=/06-template-literal-types-ex-02.ts" target="_blank">Open in CodeSandbox</a>
+<a href="https://codesandbox.io/s/iy9vq9?file=/06-template-literal-types-ex-02.ts">Open in CodeSandbox</a>
 
 @sourceref ./exercise-02/ex-02.ts
 

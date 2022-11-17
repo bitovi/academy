@@ -37,7 +37,7 @@ The following is just example config code. **Don't add this to your project or t
 }
 ```
 
-To learn more about all of the options tsconfig has, check out the <a href="https://www.typescriptlang.org/tsconfig" target="\_blank">TypeScript TSConfig Reference</a>. The Schema can also be found <a href="http://json.schemastore.org/tsconfig" target="\_blank">here</a>.
+To learn more about all of the options tsconfig has, check out the <a href="https://www.typescriptlang.org/tsconfig">TypeScript TSConfig Reference</a>. The Schema can also be found <a href="http://json.schemastore.org/tsconfig">here</a>.
 
 ## Linting
 

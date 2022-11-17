@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, of, combineLatest, merge } from 'rxjs';
-import { startWith, map, flatMap, shareReplay } from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, merge, Observable, of } from 'rxjs';
+import { map, mergeMap, shareReplay, startWith } from 'rxjs/operators';
 
-import { RestaurantService, ResponseData, State, City } from './restaurant.service';
 import { Restaurant } from './restaurant';
+import { City, ResponseData, RestaurantService, State } from './restaurant.service';
 
 export interface Data<T> {
   value: T[];
@@ -48,7 +48,7 @@ export class RestaurantComponent implements OnInit {
     );
 
     this.cities = this.selectedState.pipe(
-        flatMap((state) => {
+      mergeMap((state) => {
           if (state) {
             return this.restaurantService.getCities(state).pipe(
               toData,
@@ -69,7 +69,7 @@ export class RestaurantComponent implements OnInit {
     );
 
     this.restaurants = combineLatest(this.displayedCity, this.selectedState).pipe(
-      flatMap(([city, state]) => {
+      mergeMap(([city, state]) => {
         if (city && state) {
           return this.restaurantService.getRestaurants(state, city).pipe(
             toData,

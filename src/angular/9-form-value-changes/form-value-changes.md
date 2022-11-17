@@ -33,7 +33,7 @@ Our end goal is to be able to show restaurants based on state, then city. As we 
 
 For a more robust understanding of Observables, Subscriptions, and other RxJS core tenants check out our [RxJS guide](../learn-rxjs.html). For the following exercises, Observables are lazy collections of multiple values over time. We can subscribe to Observables to get any new data, or create and add to Subscriptions of Observables.
 
-This example shows creating a Subscription to an Observable, saving it's value to a member on the component and displaying it in the template. This is useful for when we want to capture an Observable's values and make changes based on them, but Subscriptions do need to be cleaned up to avoid memory leaks. Whenever a component is destroyed an <a href="https://angular.io/api/core/OnDestroy" target="\_blank">ngOnDestroy</a> method is called. This is a good place to put our cleanup code, like unsubscribing from Observables.
+This example shows creating a Subscription to an Observable, saving it's value to a member on the component and displaying it in the template. This is useful for when we want to capture an Observable's values and make changes based on them, but Subscriptions do need to be cleaned up to avoid memory leaks. Whenever a component is destroyed an <a href="https://angular.io/api/core/OnDestroy" >ngOnDestroy</a> method is called. This is a good place to put our cleanup code, like unsubscribing from Observables.
 
 In this example, click the button to start subscribing to the Observables - you'll see two variables logged: the new Observable value and the Subscription value. Then click the "remove component" button to see what happens when a component is destroyed. Next delete lines 90 and 91, follow the same process and see what happens!
 
@@ -41,7 +41,7 @@ In this example, click the button to start subscribing to the Observables - you'
 @codepen
 @highlight 48,49,54,58-60,67,73,78-85,89-91,only
 
-This example shows creating a Subscription to an Observable, and using an <a href="https://angular.io/api/common/AsyncPipe" target="\_blank">async pipe</a> to display the value. This is useful for displaying Observable values in templates without the need to unsubscribe as that's handled by the pipe when the component is destroyed .
+This example shows creating a Subscription to an Observable, and using an <a href="https://angular.io/api/common/AsyncPipe" >async pipe</a> to display the value. This is useful for displaying Observable values in templates without the need to unsubscribe as that's handled by the pipe when the component is destroyed .
 
 @sourceref ./observables-subscriptions-async.html
 @codepen
@@ -99,7 +99,7 @@ We want to be able to get lists of cities and states from our API to populate th
 
 ## How to use HttpParams
 
-<a href="https://angular.io/api/common/http/HttpParams" target="\_blank">HttpParams</a> are part of Angulars HttpClient API and help us create parameters for our requests.
+<a href="https://angular.io/api/common/http/HttpParams">HttpParams</a> are part of Angulars HttpClient API and help us create parameters for our requests.
 
 @sourceref ./http-params.html
 @codepen

@@ -196,7 +196,7 @@ trainers in the array.
 An array is just an object indexed with a number
 </details>
 
-<a href="https://codesandbox.io/s/6syglj?file=/03-index-accessed-types-ex-01.ts" target="_blank">Open in CodeSandbox</a>
+<a href="https://codesandbox.io/s/6syglj?file=/03-index-accessed-types-ex-01.ts">Open in CodeSandbox</a>
 
 @sourceref ./exercise-01/ex-01.ts
 

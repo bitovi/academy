@@ -78,7 +78,7 @@ You've seen this before. Checkout how the **Home** link works in
 
 ## P2: How to Verify Your Solution is Correct
 
-If you've implemented the solution correctly you should now be able to navigate to <a href="http://localhost:4200/order-history" target="\_blank">http://localhost:4200/order-history</a> and see a list of all orders.
+If you've implemented the solution correctly you should now be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see a list of all orders.
 
 ## P2: Solution
 

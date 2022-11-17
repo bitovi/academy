@@ -31,7 +31,7 @@ and restaurant list view in the next exercise.
 
 In Angular, Components are the basic building blocks that help us craft the UI. They are classes that handle views, allow management of user interaction, and displaying information via data binding. Data binding is the term for connecting data or information to the UI. An example would be an input field that a user enters a value into.
 
-Recommended reading: <a href="https://angular.io/guide/lifecycle-hooks" target="\_blank" >Angular Lifecyle Hooks</a>
+Recommended reading: <a href="https://angular.io/guide/lifecycle-hooks"  >Angular Lifecyle Hooks</a>
 
 The best way to create a new component is by using the Angular CLI:
 
@@ -242,7 +242,7 @@ template directives. Template directives in Angular help us iterate through and 
 
 ## \*ngIf
 
-<a href="https://angular.io/api/common/NgIf" target="\_blank">ngIf</a> is a structural directive that allows us to conditionally render content. It can be paired with <a href="https://angular.io/guide/structural-directives#creating-template-fragments-with-ng-template" target="\_blank">ng-template</a> to render an `else` block.
+<a href="https://angular.io/api/common/NgIf" >ngIf</a> is a structural directive that allows us to conditionally render content. It can be paired with <a href="https://angular.io/guide/structural-directives#creating-template-fragments-with-ng-template" >ng-template</a> to render an `else` block.
 
 This example shows content blocks based on the value of boolean `showMyContent`.
 
@@ -252,7 +252,7 @@ This example shows content blocks based on the value of boolean `showMyContent`.
 
 ## \*ngFor
 
-<a href="https://angular.io/api/common/NgFor" target="\_blank">ngFor</a> is a structural directive that allows to iteratively create content in our templates.
+<a href="https://angular.io/api/common/NgFor" >ngFor</a> is a structural directive that allows to iteratively create content in our templates.
 
 This example displays each name in the `myList` array in an `li` tag.
 
@@ -262,7 +262,7 @@ This example displays each name in the `myList` array in an `li` tag.
 
 ## ng-container
 
-<a href="https://angular.io/api/core/ng-container" target="\_blank">ng-container</a> is an element that allows us to create template bindings without creating a DOM element. Only one structural directive is allowed per host element (to avoid confusion around which directive would take precedence) making this directive handy for when we have several logic directives to apply to content.
+<a href="https://angular.io/api/core/ng-container" >ng-container</a> is an element that allows us to create template bindings without creating a DOM element. Only one structural directive is allowed per host element (to avoid confusion around which directive would take precedence) making this directive handy for when we have several logic directives to apply to content.
 
 This example shows using logic directives to display data without creating additional DOM elements.
 
@@ -272,7 +272,7 @@ This example shows using logic directives to display data without creating addit
 
 ## ng-class
 
-The <a href="https://angular.io/api/common/NgClass" target="\_blank">ng-class</a> directive is a way to set classes on elements based on boolean logic. ng-class can take a single class, an array of classes, key value pairs with boolean values, or regexes.
+The <a href="https://angular.io/api/common/NgClass">ng-class</a> directive is a way to set classes on elements based on boolean logic. ng-class can take a single class, an array of classes, key value pairs with boolean values, or regexes.
 
 This example shows various ways classes can be added to elements.
 
@@ -280,7 +280,7 @@ This example shows various ways classes can be added to elements.
 @codepen
 @highlight 17, 19, 21, 23,25, 27-30, 34, only
 
-Notice in the above example our `ng-class` is surrounded by `[ ]`. This signals that we're passing in an object, instead of just a string. When using <a href="https://angular.io/guide/property-binding" target="\_blank">property binding</a>, `ngClass="value"` will evaluate the value as a string of _"value"_ and `[ngClass]="value"` as whatever the component property value is.
+Notice in the above example our `ng-class` is surrounded by `[ ]`. This signals that we're passing in an object, instead of just a string. When using <a href="https://angular.io/guide/property-binding" >property binding</a>, `ngClass="value"` will evaluate the value as a string of _"value"_ and `[ngClass]="value"` as whatever the component property value is.
 
 @sourceref ./ng-class-property.html
 @codepen

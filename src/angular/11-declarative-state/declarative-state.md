@@ -93,8 +93,8 @@ demo streams or composing streams.
 @codepen  
 
 In the solution of this exercise we'll use [`of`](https://rxjs-dev.firebaseapp.com/api/index/function/of) to return a 
-stream during [`flatMap`](https://rxjs-dev.firebaseapp.com/api/operators/flatMap). Look at the 
-[`flatMap`](https://rxjs-dev.firebaseapp.com/api/operators/flatMap) example below to see that in action.
+stream during [`mergeMap`](https://rxjs-dev.firebaseapp.com/api/operators/mergeMap). Look at the 
+[`mergeMap`](https://rxjs-dev.firebaseapp.com/api/operators/mergeMap) example below to see that in action.
 
 ### Combining Streams
 In the solution to this exercise we'll have to use two RxJS functions to combine streams. The first is 
@@ -133,11 +133,11 @@ takes an emitted value and returns a modified value that will be passed to the s
 ### Emitting Values From Another Stream
 When using a stream you may want to emit values from another stream as part of the original stream. RxJS offers a 
 variety of ways to do this, but the one we'll demonstrate is the 
-[`flatMap`](https://rxjs-dev.firebaseapp.com/api/operators/flatMap) operator. Like the map operator it takes an 
+[`mergeMap`](https://rxjs-dev.firebaseapp.com/api/operators/mergeMap) operator. Like the map operator it takes an 
 emitted value from a stream, but instead of returning a modified value it returns another stream whose emitted values
 will be passed to the subsequent operators.
 
-@sourceref ./flatMap.html
+@sourceref ./mergeMap.html
 @codepen  
 
 ### Handling Multiple Subscribers To A Stream 

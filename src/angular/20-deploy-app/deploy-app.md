@@ -25,7 +25,7 @@ For our production app, we won't be running a local server, instead we'll point 
 
 ## Create Firebase account
 
-Go to <a href="https://console.firebase.google.com" target="\_blank">https://console.firebase.google.com</a> and sign in or create new account.
+Go to <a href="https://console.firebase.google.com">https://console.firebase.google.com</a> and sign in or create new account.
 
 ## Create new project
 

@@ -194,7 +194,7 @@ function buttonClick(): void {
 
 ### Null & Undefined
 
-Null and Undefined are two separate types, and subtypes of all other types, meaning they can be assigned to another type like string or number unless the <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html" target="\_blank">--strictNullChecks</a> flag is used.
+Null and Undefined are two separate types, and subtypes of all other types, meaning they can be assigned to another type like string or number unless the <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html">--strictNullChecks</a> flag is used.
 
 ### Never
 
