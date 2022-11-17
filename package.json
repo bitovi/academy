@@ -9,6 +9,7 @@
     "depcheck": "depcheck .",
     "dev": "bit-docs -dw",
     "build": "bit-docs -df",
+    "rebuild-assets": "bit-docs -dfs",
     "clean": "rm -rf academy",
     "deploy": "node scripts/hubspot-deploy"
   },

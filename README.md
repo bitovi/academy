@@ -10,9 +10,9 @@ The following sections detail how to make various improvements to the site. Make
 npm install
 ```
 
-### Developing
+### Watch mode
 
-Run:
+When actively working on the content, the most useful option is the watch mode. Run:
 
 ```
 npm run dev
@@ -20,9 +20,19 @@ npm run dev
 
 This will take a while the first time. The site will be created in the `academy` folder. Use `http-server` or something similar to view.
 
-### Adding styles or images
+### Changing styles or images
 
 Change `academy/static/styles/styles.less` or add images to `academy/img`, then run:
+
+```
+npm run rebuild-assets
+```
+
+This should take about 5 seconds.
+
+### Building
+
+If you want to do a full production build from scratch, run:
 
 ```
 npm run build
