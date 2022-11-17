@@ -1,14 +1,13 @@
 const axios = require('axios');
 const Bottleneck = require("bottleneck");
 
-const ACADEMY_CAMPAIGN_ID = '5f0d7917-50ea-4ed4-84c8-85e6965c18db';
-
 var rawStart = "{% raw %}",
     rawEnd = "{% endraw %}";
 
 class HubSpotApi {
-  constructor(apiKey){
+  constructor(apiKey, campaignId){
     this.apiKey = apiKey;
+    this.campaignId = campaignId;
     this.baseUrl = 'https://api.hubapi.com/content/api/v2/pages';
     this.limiter = new Bottleneck({minTime: 150})
   }
@@ -16,18 +15,26 @@ class HubSpotApi {
   makeRequest(method, url, data){
     return this.limiter.schedule(() => axios({ method, url, data })
       .catch(error => {
-        console.error(`Error on page ${data.name}: ${error}`);
+        if (data.name) {
+          console.error(`Error on page ${data.name}`);
+        }
+
+        console.error(`Error ${error.response.status}: ${error.response.statusText}`);
+        console.error(error.response.data);
+
+        throw error;
       }));
   }
 
   async getPages(){
-    const url = `${this.baseUrl}?hapikey=${this.apiKey}&campaign=${ACADEMY_CAMPAIGN_ID}&limit=1000000`;
+    const url = `${this.baseUrl}?hapikey=${this.apiKey}&campaign=${this.campaignId}&limit=1000000`;
     const response = await this.makeRequest('GET', url, {});
+
     return response.data.objects.map(page => ({
       campaign: page.campaign,
       id: page.id,
       slug: page.slug
-    })).filter(page => page.campaign === ACADEMY_CAMPAIGN_ID && page.slug.includes('academy'));
+    })).filter(page => page.campaign === this.campaignId && page.slug.includes('academy'));
   }
 
   async createPage( {title, headHtml, bodyHtml, slug, metaDescription } ){
@@ -41,7 +48,7 @@ class HubSpotApi {
       publish_immediately: true,
       footer_html: rawStart+ bodyHtml + rawEnd,
       head_html: headHtml,
-      campaign: ACADEMY_CAMPAIGN_ID,
+      campaign: this.campaignId,
       subcategory: 'site_page',
       meta_description: metaDescription || ""
     };
