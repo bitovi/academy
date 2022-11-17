@@ -496,7 +496,7 @@ type ToNumber<T> = To<T, number>;
 type Numberfied = ToNumber<{ level: string; age: string }>; // {level: number; age: number}
 ```
 
-<a href="https://codesandbox.io/s/sgfq7m?file=/04-mapped-types-ex-01.ts" target="_blank">Open in CodeSandbox</a>
+<a href="https://codesandbox.io/s/sgfq7m?file=/04-mapped-types-ex-01.ts">Open in CodeSandbox</a>
 
 @sourceref ./exercise-01/ex-01.ts
 
@@ -526,7 +526,7 @@ type Picked = _Pick<{ name: string; age: number }, "age">; // {age: number}
 You may need to update the definition of `K` to get this type to work properly
 </details>
 
-<a href="https://codesandbox.io/s/pxg3i3?file=/04-mapped-types-ex-02.ts" target="_blank">Open in CodeSandbox</a>
+<a href="https://codesandbox.io/s/pxg3i3?file=/04-mapped-types-ex-02.ts">Open in CodeSandbox</a>
 
 @sourceref ./exercise-02/ex-02.ts
 

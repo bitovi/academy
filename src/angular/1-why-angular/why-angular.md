@@ -31,4 +31,4 @@ Angular streamlines the build process by masking Webpack config complexity with 
 Having a heavy hitting tech titan backing a library can make it a very sustainable choice to use.
 
 
-For more information see the <a href="https://docs.angularjs.org/guide/introduction" target="_blank">Angular Docs</a>
+For more information see the <a href="https://docs.angularjs.org/guide/introduction" >Angular Docs</a>

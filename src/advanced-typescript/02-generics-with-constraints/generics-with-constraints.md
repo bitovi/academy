@@ -175,7 +175,7 @@ type RandomAttacks = Keys<typeof randomAttacks>; // 'quickAttack' | 'thunder'
 
 > Be sure to check your answers to Exercise 1 **Before** continuing on to Exercise 2
 
-<a href="https://codesandbox.io/s/rbwpiq?file=/02-generics-with-constraints-ex-01.ts" target="_blank">Open in CodeSandbox</a>
+<a href="https://codesandbox.io/s/rbwpiq?file=/02-generics-with-constraints-ex-01.ts">Open in CodeSandbox</a>
 
 @sourceref ./exercise-01/ex-01.ts
 
@@ -227,7 +227,7 @@ console.log(entry);
 our `Keys` type has a constraint to be satisfied, we need to make sure anything passed into `Keys` satisfies those constraints as well...
 </details>
 
-<a href="https://codesandbox.io/s/bg398m?file=/02-generics-with-constraints-ex-02.ts" target="_blank">Open in CodeSandbox</a>
+<a href="https://codesandbox.io/s/bg398m?file=/02-generics-with-constraints-ex-02.ts">Open in CodeSandbox</a>
 
 @sourceref ./exercise-02/ex-02.ts
 

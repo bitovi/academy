@@ -422,7 +422,7 @@ type WildPokemonBattleNoBattleType = _Exclude<
 >; // "challengingPokemon"
 ```
 
-<a href="https://codesandbox.io/s/1gvoo5?file=/05-conditional-types-ex-01.ts" target="_blank">Open in CodeSandbox</a>
+<a href="https://codesandbox.io/s/1gvoo5?file=/05-conditional-types-ex-01.ts">Open in CodeSandbox</a>
 
 @sourceref ./exercise-01/ex-01.ts
 
@@ -447,7 +447,7 @@ type FlatString = Flatten<string>; // string
 type NestedNumberArray = Flatten<Array<Array<number>>>; // number []
 ```
 
-<a href="https://codesandbox.io/s/r5ch7w?file=/05-conditional-types-ex-02.ts" target="_blank">Open in CodeSandbox</a>
+<a href="https://codesandbox.io/s/r5ch7w?file=/05-conditional-types-ex-02.ts">Open in CodeSandbox</a>
 
 @sourceref ./exercise-02/ex-02.ts
 

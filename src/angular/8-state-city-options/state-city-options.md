@@ -56,7 +56,7 @@ some boilerplate for the state and city `<select>` controls:
 
 ## How to Verify Your Solution is Correct
 
-When you visit <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>, there will now be state and city dropdown options populated with fake data.
+When you visit <a href="http://localhost:4200/restaurants" >localhost:4200/restaurants</a>, there will now be state and city dropdown options populated with fake data.
 
 ![Place My Order App city and state dropdowns](../static/img/angular/pmo-dropdowns.gif 'Place My Order App city and state dropdowns')
 
@@ -83,7 +83,7 @@ To solve this, you will need to know:
 
 ## Reactive Forms
 
-We're eventually going to use select boxes to handle our user's input. Angular's <a href="https://angular.io/guide/reactive-forms" target="\_blank">Reactive Forms</a> API provides a clean way to get data from user input and do work based on it.
+We're eventually going to use select boxes to handle our user's input. Angular's <a href="https://angular.io/guide/reactive-forms" >Reactive Forms</a> API provides a clean way to get data from user input and do work based on it.
 
 > From the docs: Reactive forms use an explicit and immutable approach to managing the state of a form at a given point in time. Each change to the form state returns a new state, which maintains the integrity of the model between changes. Reactive forms are built around observable streams, where form inputs and values are provided as streams of input values, which can be accessed synchronously.
 
@@ -97,7 +97,7 @@ To use reactive forms we must import our ReactiveFormsModule into the root app.
 
 ## FormControl
 
-The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl" target="\_blank">FormControl</a>. This class manages the form input model and connection to it's input element in the DOM and inherits from the <a href="https://angular.io/api/forms/AbstractControl" target="\_blank">AbstractControl</a>
+The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl" >FormControl</a>. This class manages the form input model and connection to it's input element in the DOM and inherits from the <a href="https://angular.io/api/forms/AbstractControl" >AbstractControl</a>
 class. It's worth getting familiar with the methods available in this class (like setValidators and patchValue), as they're used quite often in reactive form development. The formControl is bound to it's element in the DOM using the `[formControl]` directive.
 
 @sourceref ./form-control.html
@@ -106,7 +106,7 @@ class. It's worth getting familiar with the methods available in this class (lik
 
 ## FormGroup
 
-A <a href="https://angular.io/api/forms/FormGroup" target="\_blank">FormGroup</a> is a way of grouping FormControls and tracking the state of the entire group. For instance, if you want to get the values of all of your FormControls to submit as an object of those values, you'd use `formGroupName.value`. Notice the way we connect our input in the markup is slightly different - we can use the `formControlName` directive to bind to the name value of a FormControl in our FormGroup. Groups can be nested within other groups or arrays.
+A <a href="https://angular.io/api/forms/FormGroup" >FormGroup</a> is a way of grouping FormControls and tracking the state of the entire group. For instance, if you want to get the values of all of your FormControls to submit as an object of those values, you'd use `formGroupName.value`. Notice the way we connect our input in the markup is slightly different - we can use the `formControlName` directive to bind to the name value of a FormControl in our FormGroup. Groups can be nested within other groups or arrays.
 
 @sourceref ./form-group.html
 @codepen
@@ -114,7 +114,7 @@ A <a href="https://angular.io/api/forms/FormGroup" target="\_blank">FormGroup</a
 
 ## FormArray
 
-A <a href="https://angular.io/api/forms/FormArray" target="\_blank">FormArray</a> aggregates FormControls into an array. It's different than FormGroup in that the controls inside are serialized as an array. FormArrays are very useful when dealing with repeated FormControls or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.
+A <a href="https://angular.io/api/forms/FormArray" >FormArray</a> aggregates FormControls into an array. It's different than FormGroup in that the controls inside are serialized as an array. FormArrays are very useful when dealing with repeated FormControls or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.
 
 This example shows the use of FormArray and using an `insert` method to dynamically add more FormGroups to the `users` FormArray.
 
@@ -124,7 +124,7 @@ This example shows the use of FormArray and using an `insert` method to dynamica
 
 ## FormBuilder
 
-<a href="https://angular.io/api/forms/FormBuilder" target="\_blank">FormBuilder</a> is a shorthand way to quickly write forms by reducing boilerplate code of manually having to write `new FormControl`, `new FormGroup`, `new FormArray` repeatedly.
+<a href="https://angular.io/api/forms/FormBuilder">FormBuilder</a> is a shorthand way to quickly write forms by reducing boilerplate code of manually having to write `new FormControl`, `new FormGroup`, `new FormArray` repeatedly.
 
 @sourceref ./form-builder.html
 @codepen

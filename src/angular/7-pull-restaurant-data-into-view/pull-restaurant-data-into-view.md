@@ -35,7 +35,7 @@ restaurants: any[] = [];
 
 ## P1: How to Verify Your Solution is Correct
 
-You should be able see a list of all restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>, instead of the two that were previously hard-coded.
+You should be able see a list of all restaurants when you navigate to <a href="http://localhost:4200/restaurants" >localhost:4200/restaurants</a>, instead of the two that were previously hard-coded.
 
 ✏️ Update the spec file **src/app/restaurant/restaurant.component.spec.ts** to be:
 
@@ -133,7 +133,7 @@ This icon will be shown with the following HTML:
 
 ## P2: To Verify Solution
 
-You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>!
+You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants">localhost:4200/restaurants</a>!
 
 ✏️ Update the spec file **src/app/restaurant/restaurant.component.spec.ts** to be:
 

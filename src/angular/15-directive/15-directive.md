@@ -35,7 +35,7 @@ In order to fix this, we will create an Attribute Directive that will change the
 
 ## What are Directives
 
-Directives are classes that tell Angular to change the appearance or behavior of DOM Elements. Angular comes with a set of <a href="https://angular.io/guide/built-in-directives" target="\_blank" >Built-in</a> Directives,
+Directives are classes that tell Angular to change the appearance or behavior of DOM Elements. Angular comes with a set of <a href="https://angular.io/guide/built-in-directives"  >Built-in</a> Directives,
 and they consist of three types:
 
 - Components Directives
@@ -46,24 +46,24 @@ and they consist of three types:
 
 In this training, we previously talked about [learn-angular/creating-components Components].
 Components are a type of Directive. Components use the `@Component` decorator function along with a template, style, and other logic needed for the view.
-This was previously discussed in detail [learn-angular/creating-components#p2-what-you-need-to-know here]. The official <a href="https://angular.io/guide/built-in-directives#:~:text=Components%E2%80%94-,directives,-with%20a%20template" target="\_blank">Angular documentation</a> has more information on this as well.
+This was previously discussed in detail [learn-angular/creating-components#p2-what-you-need-to-know here]. The official <a href="https://angular.io/guide/built-in-directives#:~:text=Components%E2%80%94-,directives,-with%20a%20template" >Angular documentation</a> has more information on this as well.
 
 # Attribute Directives
 
 Attribute Directives are a type of directive that are mainly used to listen or change the behavior or appearance of DOM Elements,
 Attributes and Components.
-<a href="https://angular.io/guide/attribute-directives" target="\_blank">Read more</a>.
+<a href="https://angular.io/guide/attribute-directives" >Read more</a>.
 
 # Structural Directives
 
 Structural Directives are types of Directives that are used to change HTML DOM layout by adding, removing or manipulating Elements.
-<a href="https://angular.io/guide/structural-directives" target="\_blank" >Read more</a>
+<a href="https://angular.io/guide/structural-directives"  >Read more</a>
 
 ## ElementRef
 
 ElementRef (Element Reference) is a wrapper around a native DOM Element inside of a View.
 The ElementRef class contains a property `nativeElement`, which references the underlying DOM object that we can use to manipulate the DOM.
-<a href="https://angular.io/api/core/ElementRef" target="\_blank" >Read more</a>.
+<a href="https://angular.io/api/core/ElementRef">Read more</a>.
 
 When creating a Directive, we use ElementRef to gain reference to the native HTML Element, which the Directive will be used on, and perform any manipulation we need to.
 
@@ -71,7 +71,7 @@ When creating a Directive, we use ElementRef to gain reference to the native HTM
 
 HostListener is a function decorator that allows you to listen and handle DOM events from the host element.
 Some examples of events include `keyboard` and `mouse` events.
-<a href="https://angular.io/api/core/HostListener" target="\_blank" >Read more</a>.
+<a href="https://angular.io/api/core/HostListener">Read more</a>.
 
 When creating a Directive, we use the @HostListener decorator in the Directive Class to listen for host events. Based on the event, we can perform any action needed.
 
