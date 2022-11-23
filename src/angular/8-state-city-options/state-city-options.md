@@ -52,7 +52,7 @@ some boilerplate for the state and city `<select>` controls:
 
 ✏️ Update **src/app/app.module.ts** to import reactiveForms in the root app module:
 
-@diff ../6-restaurant-service/app.module.ts ./app.module.ts
+@diff ../6-restaurant-service/app.module.ts ./app.module.ts only
 
 ## How to Verify Your Solution is Correct
 
@@ -67,7 +67,7 @@ When you visit <a href="http://localhost:4200/restaurants" >localhost:4200/resta
 
 ✏️ Update the spec file **src/app/app.component.spec.ts** to be:
 
-@diff ../7-pull-restaurant-data-into-view/app.component.spec.ts ./app.component.spec.ts
+@diff ../7-pull-restaurant-data-into-view/app.component.spec.ts ./app.component.spec.ts only
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 

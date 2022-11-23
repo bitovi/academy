@@ -54,6 +54,6 @@ If you've implemented the solution correctly, when you use the select boxes to c
 
 ✏️ Update **src/app/restaurant/restaurant.component.ts**
 
-@diff ../9-form-value-changes/restaurant.component-citystate.ts ./restaurant.component-httpparams.ts
+@diff ../9-form-value-changes/restaurant.component-citystate.ts ./restaurant.component-httpparams.ts only
 
 </details>

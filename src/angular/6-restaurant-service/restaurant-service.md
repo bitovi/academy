@@ -216,7 +216,7 @@ npm run test
 ✏️ Update **src/app/app.module.ts** to inject the `HttpClientModule`:
 
 @sourceref ./app.module.ts
-@highlight 1,21
+@highlight 1,21, only
 
 ✏️ Update **src/app/restaurant/restaurant.service.ts** to make a request to the API server `/restaurants`:
 

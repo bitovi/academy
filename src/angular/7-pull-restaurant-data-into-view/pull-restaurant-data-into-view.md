@@ -156,7 +156,7 @@ You should be able see a list of restaurants when you navigate to <a href="http:
 
 ✏️ Update **src/app/restaurant/restaurant.component.html** to:
 
-@diff ../3a-pipes/restaurant.component.html ./restaurant.component.html
+@diff ../3a-pipes/restaurant.component.html ./restaurant.component.html only
 
 </details>
 

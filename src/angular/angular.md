@@ -86,3 +86,7 @@ production and deploying it for others to see ([learn-angular/deploy-app]).
 
 In order to complete this guide, you need to have [NodeJS](https://nodejs.org/en/) version
 12 or later installed.
+
+## Next Steps
+
+✏️ Head over to the [first lesson](learn-angular/why-angular.html) and get your environment setup.

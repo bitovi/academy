@@ -181,7 +181,7 @@ Run `npm run start`, and your app should compile with no errors, and you'll be a
 ✏️ Update the spec file **src/app/home/home.component.spec.ts** to be:
 
 @sourceref ./home.component.spec.ts
-@highlight 25-41
+@highlight 25-41, only
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 

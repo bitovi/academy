@@ -58,3 +58,19 @@ HUBSPOT_CAMPAIGN_ID=<campaign id>
 ```
 
 If you do not have access to 1Password, please reach out to one of the maintainers of the project.
+
+## Bit docs tips
+### Highlighting
+```
+@sourceref <relative file path for code>
+@highlight <lines>, only
+```
+* adding the `only` keyword will collapse non-highlighted code. It is always optional.
+
+To automatically highlight differences between code blocks use the following instead of above:
+
+```
+@diff <initial version of file> <current, displayed file with changes> only
+```
+* note: use relative file paths like first example
+* Especially useful for highlighting changes in solution codes
