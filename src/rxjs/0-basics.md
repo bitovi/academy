@@ -87,6 +87,7 @@ observable:
 ```
 
 @codepen
+@highlight 11-20
 
 ### Lifecycles
 
@@ -180,6 +181,7 @@ the `subscriber` function is only called once.
 ```
 
 @codepen
+@highlight 13, 15
 
 ### Transforming observables to other observables
 
@@ -244,6 +246,7 @@ Read the inline comments below to see how this works.
 ```
 
 @codepen
+@highlight 16-33, 35-44
 
 ## Observables vs Subjects
 
@@ -278,6 +281,7 @@ random value.
 ```
 
 @codepen
+@highlight 7, 12-18
 
 Each subscription gets a different random value because
 every subscription creates a new observable execution. The following
@@ -314,6 +318,7 @@ is called:
 ```
 
 @codepen
+@highlight 6-7, 9-11, 14-24
 
 Observables are _unicast_ (each subscription owns an independent execution of the observable). This can often have undesirable results. For example,
 you often want multiple subscribers receiving the same value.

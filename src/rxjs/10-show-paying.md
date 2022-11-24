@@ -144,7 +144,7 @@ observables and then _flatten_ that observable with `mergeAll`.
   > HINT: `startWith` is used by `toPaymentStatusObservable` to make sure
   > a payment status of "waiting" is published first.
 
-- [of](hhttps://rxjs.dev/api/index/function/of) converts a value (or values)
+- [of](https://rxjs.dev/api/index/function/of) converts a value (or values)
   to a observable.
 
   ```typescript
@@ -155,8 +155,8 @@ observables and then _flatten_ that observable with `mergeAll`.
   // 'next: 30'
   ```
 
-  > HINT: `of` can be used to convert plain **paymentStatus** objects into an observable
-  > that emits the **paymentStatus** object.
+> HINT: `of` can be used to convert plain **paymentStatus** objects into an observable
+> that emits the **paymentStatus** object.
 
 - The static [pipe](https://rxjs.dev/api/index/function/pipe) function can be used
   to combine operators. The following makes a `squareStartingWith2` operator that ensures
