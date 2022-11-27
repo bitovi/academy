@@ -55,6 +55,7 @@ QUnit.equal(todo.complete, true, "toggleComplete works");
   console.log( new Person({age: "3"}).age ) //logs 3
   ```
   @codepen
+  @highlight 3-5, 7
 
 - The [https://canjs.com/doc/can-define.types.default.html default] behavior defines a property’s initial value like:
 
@@ -67,6 +68,8 @@ QUnit.equal(todo.complete, true, "toggleComplete works");
 
   console.log( new Person().age ) //logs 3
   ```
+  @codepen
+  @highlight 4, 7
 
 - Methods can be defined directly on the prototype like:
 
@@ -83,6 +86,7 @@ QUnit.equal(todo.complete, true, "toggleComplete works");
   instance.methodName() //logs "run method"
   ```
   @codepen
+  @highlight 3-10
 
 ## The Solution
 
@@ -92,5 +96,6 @@ QUnit.equal(todo.complete, true, "toggleComplete works");
 Create _models/todo.js_ as follows:
 
 @sourceref ./todo.js
+@highlight 2-16
 
 </details>

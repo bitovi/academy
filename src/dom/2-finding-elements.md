@@ -637,7 +637,7 @@ QUnit.test("$.fn.find", function () {
   letters.push(...lettersToAdd);
 
   console.log(letters);
-  // logs ["a","b","c","d"]
+  // logs ["a","b","x","y"]
   ```
 
   @codepen
