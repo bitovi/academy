@@ -43,7 +43,7 @@ Note also that the input box always displays the `uppercase` value of the text. 
 
 This process is similar no matter what component you're building. The basic pattern is:
 
-1. Get the value and setter from [`useState`](https://reactjs.org/docs/hooks-state.html)).
+1. Get the value and setter from [`useState`](https://reactjs.org/docs/hooks-state.html).
 2. Use the value as needed
 3. Call the setter to change the value and trigger an update
 
