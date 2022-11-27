@@ -99,6 +99,7 @@ type Getters<T> = {
   >}`]: () => T[OriginalKey];
 };
 ```
+@highlight 2, 4
 
 We can do something similar for `Setters`.
 

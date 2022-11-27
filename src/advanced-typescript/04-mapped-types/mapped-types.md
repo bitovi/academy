@@ -51,6 +51,7 @@ const bag: Bag = {
 bag.maxPotion; // Ts says it's a number
 bag.maxRevive; // Ts says it's a number... but it's not there...
 ```
+@highlight 5-6
 
 With interfaces and other type definitions, you can add a `?` to delineate the property is optional. This is not the case with types defined using index signatures. To achieve the optional type-safety with index signature type you can create a **union** with the value type and `undefined`.
 
@@ -66,6 +67,7 @@ const bag: BagWithUndefinedUnion = {
 bag.maxPotion; // Ts says it's a number | undefined
 bag.maxRevive; // Ts says it's a number | undefined
 ```
+@highlight 2, 5-7
 
 ### Requiring Certain Properties
 
@@ -87,6 +89,7 @@ const bagWithPokeball: BagWithRequiredValue = {
   pokeBall: 1,
 };
 ```
+@highlight 6-9, 11-14
 
 When defining required properties, the required properties cannot violate the index signature types. In the example above `pokeball: number` conforms to `[itemName: string]: number`; however, if we change pokeball to be of type `string` TypeScript doesn’t allow it, since it's a `string` indexing another `string`.
 
@@ -98,6 +101,7 @@ type BagWithRequiredValue = {
   pokeBall: string;
 };
 ```
+@highlight 4-5
 
 The error above can be remedied by expanding the type for the value with a union.
 
@@ -107,6 +111,7 @@ type BagWithRequiredValue = {
   pokeBall: string; // All good!
 };
 ```
+@highlight 2
 
 ### Multiple Indexers
 
@@ -146,6 +151,7 @@ type MutuallyExclusive = {
   [keySymbol: symbol]: string;
 };
 ```
+@highlight 3, 6-9
 
 The idea of mutual exclusion extends to individual properties, in the type above we have a shape for all `number` and all `symbol` and if we tried to throw in all string we’d get errors. But, if we only define certain strings (like we did with required properties), TypeScript would be able to make the delineation and provide type safety.
 
@@ -196,6 +202,7 @@ const firstThreePokemonObjectStringKeys: PokemonNameList = {
 const bulbasaurWithNumber = firstThreePokemon[0];
 const bulbasaurWithString = firstThreePokemon["0"];
 ```
+@highlight 1-3, 6, 8-12, 14-18
 
 ### Readonly Property Modifier
 
@@ -250,6 +257,7 @@ const firstThreePokemonObject: ReadonlyPokemonNameList = {
 
 console.log(firstThreePokemon.length); // 3
 ```
+@highlight 3, 12-17, 19
 
 > **Note:** In JavaScript the `firstThreePokemon` variable does have a `.length` property since it is an `Array`. TypeScript however, is not aware that it is an array, instead it thinks it is a `ReadOnlyPokemonList` which is why generally speaking you should avoid defining your arrays using an index signature. Instead you should use `Array<T>` or the shorthand `[]`.
 
@@ -300,6 +308,7 @@ type PartialPokemon = {
   [P in "name" | "moves"]?: Pokemon[P];
 };
 ```
+@highlight 2
 
 `P` serves as a variable for mapping and can be named anything, let's name it something more semantically relevant.
 
@@ -308,6 +317,7 @@ type PartialPokemon = {
   [KeyName in "name" | "moves"]?: Pokemon[KeyName];
 };
 ```
+@highlight 2
 
 If we iterate through the key names we get something that looks like this.
 
@@ -317,6 +327,7 @@ type ParitalPokemon = {
   moves?: Pokemon["moves"];
 };
 ```
+@highlight 2-3
 
 Evaluating the index accessed types then leaves us with our final type.
 
@@ -326,6 +337,7 @@ type ParitalPokemon = {
   moves?: string[];
 };
 ```
+@highlight 2-3
 
 ### Property Modifiers
 
@@ -347,6 +359,7 @@ type Changeable<T> = {
   -readonly [P in keyof T]: T[P];
 };
 ```
+@highlight 1-2
 
 In `Partial` we saw how we can create an optional property by adding the `?`. We can remove optionality the same way we remove the `readonly` modifier – with a `-?`. This is best illustrated by the `Required` utility type.
 
@@ -358,6 +371,7 @@ type Required<T> = {
   [P in keyof T]-?: T[P];
 };
 ```
+@highlight 4-5
 
 > **Note:** you can also add `+readonly` and `+?` to your types. They are default though so they are often omitted for brevity.
 
@@ -451,6 +465,7 @@ type PokemonTypes = {
   [T in PokemonType]: [T] | [T, Exclude<PokemonType, T>];
 };
 ```
+@highlight 2
 
 What this gives us is a type that has either a single pokemon type or a tuple with a single pokemon type and the rest of the pokemon types with the original pokemon type excluded.
 
@@ -462,6 +477,7 @@ type PokemonTypes = {
 }
 
 ```
+@highlight 2-4
 
 Now we can use them in our class. Like we said above, we want to be able to pass any of the following.
 

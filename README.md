@@ -59,8 +59,11 @@ HUBSPOT_CAMPAIGN_ID=<campaign id>
 
 If you do not have access to 1Password, please reach out to one of the maintainers of the project.
 
+---
+
 ## Bit docs tips
 ### Highlighting
+
 ```
 @sourceref <relative file path for code>
 @highlight <lines>, only
@@ -74,3 +77,35 @@ To automatically highlight differences between code blocks use the following ins
 ```
 * note: use relative file paths like first example
 * Especially useful for highlighting changes in solution codes
+
+### Internal links
+
+using the following:
+```
+[learn-typescript/generics TypeScript guide]
+```
+will dynamically generate an inline link to the `generics` page in the `learn-typescript` course. `Typescript guide` will the the displayed/linked phrase
+
+Markdown formatted links also work:
+```
+[Bitovi Academy's RxJS training](../learn-rxjs.html)
+```
+
+### External links
+
+```
+<a href="https://angular.io/api/common/AsyncPipe" >async pipe</a>
+```
+
+Note: external links can be created with the standard markdown format:
+```
+[`mergeMap`](https://rxjs-dev.firebaseapp.com/api/operators/mergeMap)
+```
+
+
+## Style Guidelines
+- Add highlights to changed lines of code.
+- Manually add a "Next Steps" section and link at end of the landing page for each course (due to bitdocs, these pages don't dynamically generate links like the other pages in the course)
+- Highlight all changed lines, including in solution code
+- If possible highlight and use `only` on all long codeblocks to display only relevant code
+- Collapse solution codeblocks
