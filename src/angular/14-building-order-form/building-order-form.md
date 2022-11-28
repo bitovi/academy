@@ -188,7 +188,7 @@ Go ahead and put your new component in the order history component.
 
 ✏️ Update the order spec file **src/app/order/order.component.spec.ts** to be:
 
-@diff ./order.component.spec-starter.ts ./order.component.spec-childcomponent.ts
+@diff ./order.component.spec-starter.ts ./order.component.spec-childcomponent.ts only
 
 ✏️ Update the menu-items spec file **src/app/order/menu-items/menu-items.component.spec.ts** to be:
 

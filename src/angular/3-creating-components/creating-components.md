@@ -173,6 +173,7 @@ ng g component home
   </p>
 </div>
 ```
+@highlight only
 
 Run `npm run start`, and your app should compile with no errors, and you'll be able to see the home component. Later we'll move the home component to it's own page with a unique route.
 
