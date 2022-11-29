@@ -117,6 +117,7 @@ function createBattle<T extends BattleTypes>(battle: T): Battle<T> {
 const trainer = createBattle("trainer-battle"); // Type is TrainerBattle
 const wild = createBattle("wild-pokemon-battle"); // Type is WildPokemonBattle
 ```
+@highlight 1,3-5,7-8, 
 
 The magic here happens in the `Battle` conditional type. In `Battle` we look for whichever `BattleType` is passed in. If it's `"wild-pokemon-battle"` we resolve to `WildPokemonBattle`, otherwise we resolve to `TrainerBattle`. Another cool feature of conditional types is that they are nestable. To demonstrate this, let’s take this battle situation a step further and make a couple of adjustments. Let’s add a third battle type.
 
@@ -149,6 +150,7 @@ type Battle<T extends _BattleTypes> = T extends "trainer-battle"
   ? WildPokemonBattle
   : GymLeaderBattle;
 ```
+@highlight 2-5
 
 And just like that, we’ve added another possible battle without having to touch the createBattle function signature.
 
@@ -182,6 +184,7 @@ The definition may look complicated, but as we did with mapped types, let’s re
 ```ts
 type StringOrNumber = NonNullable<string | number | undefined | null>;
 ```
+@highlight 1
 
 Since we passed in a union, TypeScript will distribute the `NonNullable` to each member of the union.
 
@@ -192,6 +195,7 @@ type StringOrNumber =
   | NonNullable<undefined>
   | NonNullable<null>;
 ```
+@highlight 2-5
 
 From here we can remove the generics and each of the `NonNullable` can be rewritten as a conditional.
 
@@ -202,18 +206,21 @@ type StringOrNumber =
   | (undefined extends null | undefined ? never : undefined)
   | (null extends null | undefined ? never : null);
 ```
+@highlight 2-5
 
 Each of these conditionals can then be evaluated.
 
 ```ts
 type StringOrNumber = string | number | never | never;
 ```
+@highlight 1
 
 As we discovered in the first section, `never` doesn’t impact the results of the union and can be removed. Removing the `never`s from the union leaves us with our final result.
 
 ```ts
 type StringOrNumber = string | number;
 ```
+@highlight 1
 
 The refinement aspects of conditional types become even stronger when used in conjunction with other TypeScript features we’ve seen so far. Let’s do a little more tweaking to our types from the `createBattle` example above and define a function called `emitBattleStart` that can take a battle name and a payload that corresponds to the properties in the named typed.
 
@@ -259,6 +266,7 @@ type PokemonBattles = TrainerBattle | WildPokemonBattle | GymLeaderBattle;
 >   // Implementation detail
 > }
 > ```
+@highlight 1, 8
 
 To create our `emitBattleStart` function let’s first start by getting the first parameter in place.
 
@@ -318,6 +326,7 @@ type BattleInformation<BattleType, Battle> = Battle extends {
   ? FormatBattle<Battle>
   : never;
 ```
+@highlight 1-3, 8
 
 With that, we have finished up our typing issues! Our function now has type-safety and we can use it as we desire.
 
@@ -337,6 +346,7 @@ emitBattleStart(
   }
 )
 ```
+@highlight 3, 7-13
 
 That said, we can take it a little bit further and add an alias and default to help make the typing a bit more semantic. It feels a little weird needing to pass in `PokemonBattles`, and the functionality of the type and how it's used seem to differ a bit. One extra type we can resolve this. Let’s update `BattleInformation` to alias our conditional mapping and give a more semantically relevant name like `GetBattleInformation`.
 
@@ -363,6 +373,7 @@ function emitBattleStart<BattleType extends PokemonBattles["battleType"]>(
   //
 }
 ```
+@highlight 5-9, 13-14, 18 
 
 ## A New and Powerful Syntax
 
@@ -377,6 +388,7 @@ This type of usage is so common that TypeScript added an `infer` keyword that al
 ```ts
 type ArrayElement<T> = T extends Array<infer ElementType> ? ElementType : never;
 ```
+@highlight 1
 
 `infer` powers many utility types in TypeScript like `ReturnType` and `Parameters`.
 

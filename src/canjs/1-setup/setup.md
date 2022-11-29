@@ -186,10 +186,12 @@ Create the starting HTML page:
 <todo-mvc></todo-mvc>
 <script src="./node_modules/steal/steal.js" main></script>
 ```
+@highlight 2-3
 
 Create the application template:
 
 @sourceref ./index.stache.html
+@highlight 1-56
 
 Install the test harness:
 
@@ -200,6 +202,6 @@ npm install can-todomvc-test@5 --save-dev
 Create the main app
 
 @sourceref ./index.js
-
+@highlight 1-17
 
 </details>

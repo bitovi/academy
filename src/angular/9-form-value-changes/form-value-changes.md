@@ -117,7 +117,7 @@ Method 2 - `getCities`, takes a string param called 'state' a makes a request to
 
 ✏️ Update the spec file **src/app/restaurant/restaurant.service.spec.ts** to be:
 
-@diff ../6-restaurant-service/restaurant.service-with-interface.spec.ts ./restaurant.service-citystate.spec.ts
+@diff ../6-restaurant-service/restaurant.service-with-interface.spec.ts ./restaurant.service-citystate.spec.ts only
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
@@ -161,7 +161,7 @@ Convert the `ResponseData` interface to use generics so it can take a type of `R
 
 ✏️ Update the spec file **src/app/restaurant/restaurant.service.spec.ts** to be:
 
-@diff ./restaurant.service-citystate.spec.ts ./restaurant.service-generics.spec.ts
+@diff ./restaurant.service-citystate.spec.ts ./restaurant.service-generics.spec.ts only
 
 ## P3: Solution
 
@@ -195,7 +195,7 @@ Now that our service is in working order, let's populate our dropdowns with stat
 
 ✏️ Update the spec file **src/app/restaurant/restaurant.component.spec.ts** to be:
 
-@diff ../8-state-city-options/restaurant.component.spec.ts ./restaurant.component-citystate.spec.ts
+@diff ../8-state-city-options/restaurant.component.spec.ts ./restaurant.component-citystate.spec.ts only
 
 ## P4: What You Need to Know
 

@@ -274,6 +274,7 @@ export default DinoKeeper;
 ```
 
 </details>
+@highlight 1-2, 4, 8-9,11, 16
 
 ## Exercise: Extend a Class
 

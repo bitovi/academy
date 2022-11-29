@@ -17,10 +17,10 @@ Integrated Development Environments have come a long way in supporting modern we
 
 <a href="https://code.visualstudio.com/" >VS Code</a> is Microsoft's modern take on an IDE for app development (P.S. TypeScript is a Microsoft Open Source project).  VS Code has built in TypeScript support for syntax highlighting, IntelliSense code completion, and linting.
 
-<a href="../static/img/vs-code-screenshot.png" ><img src="../static/img/vs-code-screenshot.png" width="100%" alt="Visual Studio Code screenshot" /></a>
+<img src="../static/img/vs-code-screenshot.png" width="100%" alt="Visual Studio Code screenshot" />
 
 ### Webstorm
 
 <a href="https://www.jetbrains.com/webstorm/download/" >Webstorm</a> is a platform by JetBrains that is loved for its great code refactoring assistance and version control integration, but it does require a paid subscription.
 
-<a href="../static/img/webstorm-screenshot.png" ><img src="../static/img/webstorm-screenshot.png" width="100%" alt="Webstorm screenshot" /></a>
+<img src="../static/img/webstorm-screenshot.png" width="100%" alt="Webstorm screenshot" />

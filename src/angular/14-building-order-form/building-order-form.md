@@ -188,7 +188,7 @@ Go ahead and put your new component in the order history component.
 
 ✏️ Update the order spec file **src/app/order/order.component.spec.ts** to be:
 
-@diff ./order.component.spec-starter.ts ./order.component.spec-childcomponent.ts
+@diff ./order.component.spec-starter.ts ./order.component.spec-childcomponent.ts only
 
 ✏️ Update the menu-items spec file **src/app/order/menu-items/menu-items.component.spec.ts** to be:
 
@@ -339,11 +339,11 @@ Other concepts used here:
 
 ### forwardRef
 
-<a href="https://angular.io/api/core/forwardRef">https://angular.io/api/core/forwardRef</a> Used to reference a token that may not be defined when we need it.
+<a href="https://angular.io/api/core/forwardRef">forwardRef</a> is used to reference a token that may not be defined when we need it.
 
 ### NG_VALUE_ACCESSOR
 
-<a href="https://angular.io/api/forms/NG_VALUE_ACCESSOR">https://angular.io/api/forms/NG_VALUE_ACCESSOR</a> Used to provide the control value accessor for a form control.
+<a href="https://angular.io/api/forms/NG_VALUE_ACCESSOR">NG_VALUE_ACCESSOR</a> is used to provide the control value accessor for a form control.
 
 ### Use New Menu Items Component in Order Form
 

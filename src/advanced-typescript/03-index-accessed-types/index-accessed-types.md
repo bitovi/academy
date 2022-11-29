@@ -59,6 +59,7 @@ type GymLeader = {
 // ERROR: Type 'GymLeader' cannot be used as an index type.
 type InvalidExample2 = Pokemon[GymLeader];
 ```
+@highlight 8-18
 
 ### Multiple Types as Indices
 
@@ -178,6 +179,7 @@ type Requests<T extends Entity> = {
   delete: (id: T["id"]) => Promise<void>;
 };
 ```
+@highlight 2, 5-6
 
 Using index accessed types we have resolved this issue and any future issue like it down the road.
 

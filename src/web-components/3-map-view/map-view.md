@@ -97,6 +97,7 @@ document.body.append(el);
 </script>
 ```
 @codepen
+@highlight 2, 9-13
 
 ### connectedCallback
 

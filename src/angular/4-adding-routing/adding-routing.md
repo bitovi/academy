@@ -24,9 +24,7 @@ Create routes for the `HomeComponent` and `RestaurantComponent`. When the route 
 Notice that you will be able to click the **Choose a Restaurant** button
 at the end of this tutorial:
 
-<img src="../../static/img/angular/4-adding-routing/after.gif"
-  style="border: solid 1px black; "
-  title="Choose a restaurant routing"/>
+![Choose a restaurant routing](../static/img/angular/4-adding-routing/after.gif 'Choose a restaurant routing')
 
 ## Setup
 

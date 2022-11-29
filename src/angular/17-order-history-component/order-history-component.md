@@ -105,13 +105,13 @@ We want to be able to see a list of all created orders and their varying statuse
 `getOrders` method. The getters `newOrders`, `preparingOrders`, `deliveryOrders`, and `deliveredOrders` will be used later.
 
 @sourceref ./history.component.ts
-@highlight 18,22,26
+@highlight 18,22,26, only
 
 2\. ✏️ Copy the following into **src/app/order/history/history.component.html**. You will need to
 iterate through orders and add the right class names to the outer `<div>` for each order.
 
 @sourceref ./0-history.component.html
-@highlight 9,10
+@highlight 9,10, only
 
 ## P3: How to Verify Your Solution is Correct
 
@@ -144,7 +144,7 @@ For this step, you'll need to know how to add multiple class names. You can do t
 
 ✏️ Update **src/app/order/history.component.html**
 
-@diff ./0-history.component.html ./history.component-1.html
+@diff ./0-history.component.html ./history.component-1.html only
 
 </details>
 

@@ -94,5 +94,5 @@ be a useful reference for understanding how the tutorial works:
 
 ## Next Steps
 
-Head over to the [first lesson](learn-rxjs/basics) and learn about observables.
+Head over to the [first lesson](learn-rxjs/basics.html) and learn about observables.
 

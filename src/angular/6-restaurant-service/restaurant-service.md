@@ -216,7 +216,7 @@ npm run test
 ✏️ Update **src/app/app.module.ts** to inject the `HttpClientModule`:
 
 @sourceref ./app.module.ts
-@highlight 1,21
+@highlight 1,21, only
 
 ✏️ Update **src/app/restaurant/restaurant.service.ts** to make a request to the API server `/restaurants`:
 
@@ -334,7 +334,7 @@ it within the `ResponseData` interface which is used by `httpClient.get`:
 
 ✏️ Update the spec file **src/app/restaurant/restaurant.service.spec.ts** to be:
 
-@diff ./restaurant.service.spec.ts ./restaurant.service-with-interface.spec.ts
+@diff ./restaurant.service.spec.ts ./restaurant.service-with-interface.spec.ts only
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass! If you haven't written the interfaces correctly, you'll see a compile error before the tests runs. You might need to restart the test script to see the compile error.
 
