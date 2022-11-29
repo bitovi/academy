@@ -18,7 +18,7 @@ When actively working on the content, the most useful option is the watch mode. 
 npm run dev
 ```
 
-This will take a while the first time. The site will be created in the `academy` folder. Use `http-server` or something similar to view.
+This will take a while the first time. The site will be created in the `academy` folder. Use `http-server` or something similar to view. (In your browser you may need to open the academy folder if running from root.) HTML will usually auto-update as you save files.
 
 ### Changing styles or images
 
@@ -61,51 +61,121 @@ If you do not have access to 1Password, please reach out to one of the maintaine
 
 ---
 
-## Bit docs tips
-### Highlighting
+## Adding a Course
+
+> (This section may have errors and missing information)
+
+Create your course in the `src` folder. For best results, follow the organization and formatting of the Angular course. Course is available by typing in the appropriate url. Update `bit-u.md` to make it appear on the `/academy` page.
+
+- The first page in your course should use the following template at the top of the file:
 
 ```
-@sourceref <relative file path for code>
-@highlight <lines>, only
+@page <subdirectory-url> <Page Title>
+@parent bit-academy 4
+
+@description <This will be displayed at the top of the page>
+
+@body
 ```
-* adding the `only` keyword will collapse non-highlighted code. It is always optional.
+
+> In the first page, please include an overview of what the course will cover as well as a links for all subsequent pages in the course.
+
+Pages other than the first, introductory page should change the header to this format:
+
+```
+@page <subdirectory-url>/<specific-page-url> <Page Title>
+@parent <subdirectory-url> <page order number>
+
+@description <This will be displayed at the top of the page>
+
+@body
+```
+
+- Navigation links at bottom of pages will automatically be generated for all pages that have the subdirectory as their parent (ie: those after the intro page). The first page, however, will require adding a link at the end of the markdown. See the bottom of `react.md` for an example.
+
+---
+
+## General Style Guidelines for all courses
+
+> (This section may need more content)
+
+- At the bottom of every initial introductory page, there should be a "Next Steps" section like in React course ([Bitovi Academy - Learn React](https://www.bitovi.com/academy/learn-react.html)) to guide user navigation
+- Highlight all changed lines whenever possible.
+- If possible, highlight and use `only` on all long codeblocks to display only relevant code sections.
+- Solution codeblocks should be inside collapsed summary elements and have all changed lines highlighted.
+- Code blocks benefit from introduction as demonstrated before every code block at Angular Course's [Filter Cities by State](https://www.bitovi.com/academy/learn-angular/form-value-changes.html)
+
+---
+
+## Formatting Tips
+
+- Empty lines matter after certain elements. If something isn't displaying properly it could be missing a blank like before or after it.
+- More sample elements can be viewed in training/style-guide.md
+
+### Collapsing Summary Elements
+
+To create collapsing summary elements like those around "Solution" code, use the following:
+
+<!-- ```js -->
+<details open>
+<summary>This is a summary element</summary>
+This is hidden until the summary is opened.
+
+</details>
+<!-- ``` -->
+
+> note: All solution codes should be hidden inside a collapsed element. 
+
+### Code blocks
+
+#### Separating code from .md files
+
+Code blocks can be written directly in the markdown files or written in separate files. 
+
+The use of separate files for code is entirely optional, but allows the use of `@sourceref` to easily reference it and `@diff` to automatically highlight changes between codeblocks.
+
+#### Highlighting & Minimizing
+
+* Including the `only` keyword will minimize non-highlighted code. Using it is always optional and can be left off.
+
+#### Manual highlighting
+
+```js
+@sourceref <relative file path for code>
+@highlight <line numbers>, only
+```
+
+* `@sourceref` line is interchangable with code blocks.
+* Sections of highlighted lines can be separated with commas. Ex: `@highlight 1-3, 7-24`
+
+#### Automatic Highlighting
 
 To automatically highlight differences between code blocks use the following instead of above:
 
 ```
 @diff <initial version of file> <current, displayed file with changes> only
 ```
-* note: use relative file paths like first example
+
+* Use relative file paths like first example
+* Requires code be in separate files and the use of `@sourceref`
 * Especially useful for highlighting changes in solution codes
 
-### Internal links
+### Links
 
-using the following:
-```
-[learn-typescript/generics TypeScript guide]
-```
-will dynamically generate an inline link to the `generics` page in the `learn-typescript` course. `Typescript guide` will the the displayed/linked phrase
+Internal and external links can be created with Markdown syntax:
 
-Markdown formatted links also work:
 ```
+<!-- Internal link -->
 [Bitovi Academy's RxJS training](../learn-rxjs.html)
-```
 
-### External links
-
-```
-<a href="https://angular.io/api/common/AsyncPipe" >async pipe</a>
-```
-
-Note: external links can be created with the standard markdown format:
-```
+<!-- External link: -->
 [`mergeMap`](https://rxjs-dev.firebaseapp.com/api/operators/mergeMap)
 ```
 
+Internal links can also be created with the following format:
 
-## Style Guidelines
-- Add highlights to changed lines of code.
-- Manually add a "Next Steps" section and link at end of the landing page for each course (due to bitdocs, these pages don't dynamically generate links like the other pages in the course)
-- Highlight all changed lines, including in solution code
-- If possible highlight and use `only` on all long codeblocks to display only relevant code
-- Collapse solution codeblocks
+```
+[learn-typescript/generics TypeScript guide]
+```
+
+- anchor links will also work
