@@ -18,7 +18,7 @@ When actively working on the content, the most useful option is the watch mode. 
 npm run dev
 ```
 
-This will take a while the first time. The site will be created in the `academy` folder. Use `http-server` or something similar to view. (In your browser you may need to open the academy folder if running from root.) HTML will usually auto-update as you save files.
+This will take a while the first time. The site will be created in the `academy` folder. Use `http-server` or something similar to view site with automatic refreshing on file-save. (In your browser you may need to open the academy folder if running from root.) If you don't use something like `http-server`, you will need to refresh after changes.
 
 ### Changing styles or images
 
@@ -65,7 +65,7 @@ If you do not have access to 1Password, please reach out to one of the maintaine
 
 > (This section may have errors and missing information)
 
-Create your course in the `src` folder. For best results, follow the organization and formatting of the Angular course. Course is available by typing in the appropriate url. Update `bit-u.md` to make it appear on the `/academy` page.
+Create your course in the `src` folder. For best results, follow the organization and formatting of the [Angular course](/src/angular/). Course is available by typing in the appropriate url. Update `bit-u.md` to make it appear on the `/academy` page.
 
 - The first page in your course should use the following template at the top of the file:
 
