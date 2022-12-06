@@ -30,9 +30,9 @@ Our application will be making use of a Global State (`@ngrx/store`) to manage u
 
 ## Outline
 
-This guide begins ([learn-ngrx/why-ngrx]) with a discussion of NgRx's strengths and an overview of its main concepts. We will also checkout the application starting point repository and install the necessary NgRx dependencies ([learn-ngrx/ngrx-init]).
+This guide begins ([learn-ngrx/why-ngrx]) with a discussion of NgRx's strengths and an overview of its main concepts. We will also checkout the application starting point repository ([learn-ngrx/getting-started]) and install the necessary NgRx dependencies ([learn-ngrx/ngrx-init]).
 
-Then we will learn how to create _actions_ for our login store to handle login success and failures. Next, we'll learn how to _dispatch_ actions ([learn-ngrx/dispatch-actions]) from within components.
+Then we will learn how to create _actions_ ([learn-ngrx/create-actions]) for our login store to handle login success and failures. Next, we'll learn how to _dispatch_ actions ([learn-ngrx/dispatch-actions]) from within components.
 
 With our actions complete, we'll learn how to unit test NgRx actions ([learn-ngrx/test-actions]) and update our component spec files. 
 
@@ -44,11 +44,11 @@ With our actions and effects in place, we'll create a _reducer_ ([learn-ngrx/cre
 
 Next, we'll create ([learn-ngrx/create-selectors]) and test ([learn-ngrx/test-selectors]) _selectors_ so we can access the data stored within our NgRx store.
 
-With the logic for our store in place, we'll then learn how to use NgRx selectors within our components to display, and how to test these selectors within component spec files.
+With the logic for our store in place, we'll then learn how to use NgRx selectors within our components to display data ([learn-ngrx/use-selectors]), and how to test these selectors within component spec files ([learn-ngrx/test-used-selectors]).
 
 ## Requirements
 
-In order to complete this guide, you need to have [NodeJS](https://nodejs.org/en/) version
+In order to complete this guide, you need to have git and [NodeJS](https://nodejs.org/en/) version
 14 or later installed.
 
 We'll be using Angular 14.
