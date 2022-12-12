@@ -63,7 +63,6 @@ Reducers functions must be `pure`:
 
 A Dispatch is a Store method that will provide an action to the Reducer function. You can see the Dispatch method as the API to update the state.
 
-
 #### Selectors
 
 Selectors are functions that extract data from the state. Selectors can return derived data or pieces of the state.
