@@ -38,6 +38,7 @@ Redux is known for its boilerplate code. At first, it might seem like a lot of e
 #### Store
 
 A Store is an object that wraps the state. The Store also provides methods to update the state and listen to state changes.
+
 #### Actions
 
 Actions are objects that represent individual events in your application.
