@@ -53,7 +53,7 @@ As for the `initialState`, members should start with `null` values.
 
 ## P2: What You Need to Know
 
-NgRx Schematics generated an empty State interface and an initialState variable of type State.
+NgRx Schematics generated an empty State interface and an `initialState` variable of type `State`.
 
 --Show login.reducer.ts here--
 
