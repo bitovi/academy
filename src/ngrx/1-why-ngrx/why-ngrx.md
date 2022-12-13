@@ -73,7 +73,7 @@ To help you understand how Redux pieces work together, let’s take a look at th
 
 <figure>
     <img src="../static/img/ngrx/1-why-ngrx/ngrx-one-way-data-flow.png" alt="One-way data flow" style="width: 640px">
-    <figcaption>One-way Data Flow (<a href="https://redux.js.org/tutorials/essentials/part-1-overview-concepts">Source</a>)</figcaption>
+    <figcaption style="text-align: center; width: 640px">One-way Data Flow (<a href="https://redux.js.org/tutorials/essentials/part-1-overview-concepts">Source</a>)</figcaption>
 </figure>
 
 Data goes through the following steps:
@@ -88,7 +88,7 @@ NgRx abstracts away from _one-way data flow_ to represent its own Store implemen
 
 <figure>
     <img src="../static/img/ngrx/1-why-ngrx/state-management-lifecycle.png" alt="NgRx State Management Lifecycle diagram" style="width: 640px">
-    <figcaption>NgRx State Management Lifecycle (<a href="https://ngrx.io/guide/store">Source</a>)</figcaption>
+    <figcaption style="text-align: center; width: 640px">NgRx State Management Lifecycle (<a href="https://ngrx.io/guide/store">Source</a>)</figcaption>
 </figure>
 
 #### Effects
