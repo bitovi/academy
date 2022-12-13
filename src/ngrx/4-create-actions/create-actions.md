@@ -23,7 +23,7 @@ Our goal is to have a different set of Action instead:
     - type: `[Login API] Login Failure`
     - props: `{ errorMsg: string }`
 - `logout` - dispatched when user clicks on a logout button
-    - type: `[Login Page] Logout`
+    - type: `[Dashboard Page] Logout`
 - `logoutSuccess` - dispatched by an Effect when the user has successfully logged out
     - type: `[Login API] Logout Success`
 - `logoutFailure` - dispatched by an Effect when user logout attempt fails
