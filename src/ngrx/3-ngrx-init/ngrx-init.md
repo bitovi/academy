@@ -5,6 +5,8 @@
 
 @body
 
+> **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/vip) to get your codebase ready to work on this part.
+
 ## NgRx Dependencies
 
 Since we are going to use multiple NgRx tools, let’s install everything we need:
@@ -46,3 +48,5 @@ TODO
 ### Generate Login Feature
 
 TODO
+
+> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/ngrx-init).You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/vip...ngrx-init) on GitHub.
