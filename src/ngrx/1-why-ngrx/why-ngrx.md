@@ -9,7 +9,7 @@
 
     NgRx is [actively maintained](https://github.com/ngrx/platform) and keeps evolving with Angular.
 
-2. Great documentation
+2. Great Documentation
 
     [NgRx documentation](https://ngrx.io/docs) is great and @ngrx/eslint-plugin can help you follow NgRx’s best practices.
 
