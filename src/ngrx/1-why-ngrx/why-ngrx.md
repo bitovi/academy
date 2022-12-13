@@ -33,7 +33,7 @@ The Redux pattern manages the global state of an application and aims at code te
 
 Redux is known for its boilerplate code. At first, it might seem like a lot of effort to implement Redux, but in fact it is a tradeoff. Redux adds a layer of indirection in order to improve maintainability, testability and predictability of your application. The tradeoff pays off more often than not particularly if your application is complex, large and maintained by a large team.
 
-[Redux expects updates to the state to be done immutably](https://redux.js.org/tutorials/essentials/part-1-overview-concepts#immutability). Not only Immutability helps Redux implement patterns that help testability and predictability, it also improves performance, as change detection is achieved with less effort.
+[Redux expects updates to the state to be done immutably](https://redux.js.org/tutorials/essentials/part-1-overview-concepts#immutability). Not only does Immutability help Redux implement patterns that increase testability and predictability, it also improves performance, as change detection is achieved with less effort.
 
 #### Store
 
@@ -45,19 +45,19 @@ Actions are objects that represent individual events in your application.
 
 Actions have two properties:
 
-- `type` describes the event;
-- `payload` (optional) holds additional information.
+1. `type` describes the event.
+2. `payload` (optional) holds additional information.
 
 Actions are necessary to update the state.
 
 #### Reducers
 
-To put it simply, reducers are functions that take the state and an action as arguments, and return a new state. In other words, Reducers are functions that, given an action, know how to update the state.
+To put it simply, reducers are pure functions that take the state and an action as arguments, and return a new state. In other words, Reducers are functions that, given an action, know how to update the state.
 
 Reducers functions must be `pure`:
 
 - do not depend on any information other than the action and current state;
-- do not perform side-effects, like mutating the current state.
+- do not perform side-effects, like mutating the current state. (side-effects are done through effects)
 
 #### Dispatch
 
