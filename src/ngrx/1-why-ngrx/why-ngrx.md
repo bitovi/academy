@@ -57,7 +57,7 @@ To put it simply, reducers are pure functions that take the state and an action 
 Reducers functions must be `pure`:
 
 - do not depend on any information other than the action and current state;
-- do not perform side-effects, like mutating the current state. (side-effects are done through effects)
+- do not perform side-effects, like mutating the current state. (in NgRx, side-effects are done through Effects)
 
 #### Dispatch
 
