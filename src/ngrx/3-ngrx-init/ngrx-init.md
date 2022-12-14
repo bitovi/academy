@@ -7,6 +7,10 @@
 
 > **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/vip) to get your codebase ready to work on this part.
 
+## Overview
+
+TODO
+
 ## NgRx Dependencies
 
 Since we are going to use multiple NgRx tools, let’s install everything we need:
