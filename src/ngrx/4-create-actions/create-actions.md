@@ -9,11 +9,9 @@
 
 ## Overview
 
-1. Remove generated Actions
+1. Replace generated Actions with login and logout Actions
 
-2. Clean up code involving removed Actions
-
-3. Create login and logout Actions
+2. Clean up code involving replaced Actions
 
 ## Problem 1: Create Login Actions to Represent Login Events
 
@@ -50,9 +48,16 @@ The code example below shows the usage of the createAction function as generated
 
 ## P1: Solution
 
-TODO
+<details>
+<summary>src/app/store/login/login.actions.ts</summary>
+
+@diff ../3-ngrx-init/login.actions.ts ./login.actions.ts only
+
+</details>
 
 ## Problem 2: Create Auth State Interface and Initial State
+
+TODO: this has been moved to create-reducer step
 
 Now that our Actions are defined, we need to set up the Auth State and its Initial State to enable to perform updates to the state later.
 
@@ -75,5 +80,23 @@ Update the `State` interface and the `initialState` variable to match requiremen
 ## P2: Solution
 
 --Show result of login.reducer.ts here--
+
+## Clean Up
+
+TODO
+
+<details open>
+<summary>src/app/store/login/login.effects.ts</summary>
+
+@diff ../3-ngrx-init/login.effects.ts ./login.effects.ts only
+
+</details>
+
+<details open>
+<summary>src/app/store/login/login.reducer.ts</summary>
+
+@diff ../3-ngrx-init/login.reducer.ts ./login.reducer.ts only
+
+</details>
 
 > **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-actions).You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/ngrx-init...create-actions) on GitHub.
