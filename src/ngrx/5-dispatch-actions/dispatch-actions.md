@@ -9,7 +9,9 @@
 
 ## Overview
 
-TODO
+1. Update `LoginComponent` to dispatch `LoginActions.login`
+
+2. Update `DashboardComponent` to dispatch `LoginActions.logout`
 
 ## Problem 1: TODO
 

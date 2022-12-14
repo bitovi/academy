@@ -9,7 +9,9 @@
 
 ## Overview
 
-TODO
+1. Add `loginSuccess$` Effect to `LoginEffects` to navigate to dashboard page
+
+2. Add `logoutSuccess$` Effect to `LoginEffects` to navigate to login page
 
 ## Problem 1: TODO
 

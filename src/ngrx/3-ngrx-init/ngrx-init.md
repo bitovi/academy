@@ -9,7 +9,13 @@
 
 ## Overview
 
-TODO
+1. Add NgRx schematics
+
+2. Add NgRx dependencies
+
+3. Generate global store using NgRx schematics
+
+4. Generate Login feature store using NgRx schematics
 
 ## NgRx Dependencies
 

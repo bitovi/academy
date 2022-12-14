@@ -9,7 +9,17 @@
 
 ## Overview
 
-TODO
+1. Add `login$` Effect to `LoginEffects`
+
+2. Dispatch `LoginActions.loginSuccess` when API request is successful
+
+3. Dispatch `LoginActions.loginFailure` when API request fails
+
+1. Add `logout$` Effect to `LoginEffects`
+
+2. Dispatch `LoginActions.logoutSuccess` when API request is successful
+
+3. Dispatch `LoginActions.logoutFailure` when API request fails
 
 ## Problem 1: TODO
 

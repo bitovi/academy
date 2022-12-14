@@ -9,7 +9,9 @@
 
 ## Overview
 
-TODO
+1. Update `DashboardComponent`'s `username$` and `userId$` members to use Login Selectors
+
+2. Update `AuthenticationGuard`'s `canActivate` method to use Login Selector
 
 ## Problem 1: TODO
 

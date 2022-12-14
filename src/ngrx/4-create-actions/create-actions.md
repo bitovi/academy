@@ -9,7 +9,11 @@
 
 ## Overview
 
-TODO
+1. Remove generated actions
+
+2. Clean up code using previous actions
+
+3. Add login and logout actions
 
 ## Problem 1: Create Login Actions to Represent Login Events
 

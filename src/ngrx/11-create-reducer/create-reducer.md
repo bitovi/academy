@@ -9,7 +9,13 @@
 
 ## Overview
 
-TODO
+1. Define Login state shape
+
+2. Set Login initial state
+
+3. Update Reducer function to include handler for `LoginActions.loginSuccess` to update Login state
+
+4. Update Reducer function to include handler for `LoginActions.logoutSuccess` to reset Login state
 
 ## Problem 1: Create Auth Reducers to Update Auth State
 
