@@ -22,6 +22,7 @@ The `--watch` switch will rerun your tests whenever a code file changes. You can
 ## Test Code
 
 You'll need to copy the contents of the test file to run tests for your Effects.
+
 ### Update `login.effects.spec.ts` 
 
 Copy the following code to replace the contents of `src/app/store/login/login.effects.spec.ts`:
