@@ -9,11 +9,11 @@
 
 ## Overview
 
-1. Add NgRx schematics
+1. Add NgRx Schematics
 
 2. Add NgRx dependencies
 
-3. Generate global store using NgRx schematics
+3. Generate Global store using NgRx schematics
 
 4. Generate Login feature store using NgRx schematics
 

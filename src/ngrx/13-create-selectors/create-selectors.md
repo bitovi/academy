@@ -9,11 +9,11 @@
 
 ## Overview
 
-1. Create selector for `userId`
+1. Create Selector for `userId`
 
-1. Create selector for `username`
+1. Create Selector for `username`
 
-1. Create selector for `token`
+1. Create Selector for `token`
 
 ## Problem 1: TODO
 

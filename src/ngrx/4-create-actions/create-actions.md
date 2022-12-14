@@ -9,11 +9,11 @@
 
 ## Overview
 
-1. Remove generated actions
+1. Remove generated Actions
 
-2. Clean up code using previous actions
+2. Clean up code involving removed Actions
 
-3. Add login and logout actions
+3. Create login and logout Actions
 
 ## Problem 1: Create Login Actions to Represent Login Events
 
