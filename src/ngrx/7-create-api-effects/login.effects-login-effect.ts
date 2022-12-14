@@ -5,7 +5,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { catchError, map, exhaustMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import * as LoginActions from './login.actions';
-import { LoginService } from 'src/app/services/login.service';
+import { LoginService } from 'ngx-learn-ngrx';
 
 @Injectable()
 export class LoginEffects {

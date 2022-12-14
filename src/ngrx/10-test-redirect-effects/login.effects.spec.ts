@@ -7,7 +7,7 @@ import { LoginEffects } from './login.effects';
 import { Action } from '@ngrx/store';
 import { provideMockStore } from '@ngrx/store/testing';
 import * as LoginActions from './login.actions';
-import { LoginService } from '../../services/login.service';
+import { Credentials, LoginService } from 'ngx-learn-ngrx';
 import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Component } from '@angular/core';
@@ -18,8 +18,8 @@ import { Component } from '@angular/core';
 class MockComponent {}
 
 const mockLoginService = {
-  login: (credentials: { username: string; password: string }) => {
-    credentials;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  login: (credentials: Credentials) => {
     return of({ userId: 'some-user-id', token: 'some-token' });
   },
   logout: () => of(null),
