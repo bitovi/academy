@@ -1,19 +1,19 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.3.3/rxjs.umd.min.js"></script>
 <script type="module">
-    const { of } = rxjs;
-    const { delay, startWith } = rxjs.operators;
+  const { of } = rxjs;
+  const { delay, startWith } = rxjs.operators;
 
-    // emits an array of 3 values after a 1000ms delay, like a request returning results
-    const pseudoRequest = of([1,2,3]).pipe(delay(1000));
-    // immediately emits an empty array followed 1 second later by the array from pseudoRequest
-    const baseCaseAdded = pseudoRequest.pipe(startWith([]));
+  // emits an array of 3 values after a 1000ms delay, like a request returning results
+  const pseudoRequest$ = of([1, 2, 3]).pipe(delay(1000));
+  // immediately emits an empty array followed 1 second later by the array from pseudoRequest
+  const baseCaseAdded$ = pseudoRequest$.pipe(startWith([]));
 
-    baseCaseAdded.subscribe((arr) => {
-        console.log('Contents: ' + JSON.stringify(arr));
-    })
+  baseCaseAdded$.subscribe((arr) => {
+    console.log('Contents: ' + JSON.stringify(arr));
+  });
 
-    // logs:
-    // Contents: []
-    // (... 1 second passes)
-    // Contents: [1,2,3]
+  // logs:
+  // Contents: []
+  // (... 1 second passes)
+  // Contents: [1,2,3]
 </script>
