@@ -9,7 +9,7 @@
 
 ## Overview
 
-1. Add NgRx Schematics
+1. Add NgRx schematics
 
 2. Add NgRx dependencies
 
@@ -21,7 +21,7 @@
 
 Since we are going to use multiple NgRx tools, let’s install everything we need:
 
-First, run `ng add @ngrx/schematics` to install NgRx Schematics, a tool that will enable us to quickly generate code.
+First, run `ng add @ngrx/schematics` to install NgRx schematics, a tool that will enable us to quickly generate code.
 
 Then, let’s install NgRx dependencies: `npm install @ngrx/{store,effects,entity,store-devtools}@14 --save.`
 
@@ -35,11 +35,11 @@ npm install @ngrx/{store,effects,entity,store-devtools}@14 --save
 The Login State in our application will be responsible for holding information about authentication and the authenticated user.
 
 ### Store Setup
-We’ll take advantage of NgRx Schematics to quickly generate an Authentication Feature State: `run ng generate feature store/auth/Auth -m app.module.ts`.
+We’ll take advantage of NgRx schematics to quickly generate an Authentication Feature State: `run ng generate feature store/auth/Auth -m app.module.ts`.
 
 The `store/auth/` part is the path that we want the feature to be located, and `Auth` is the feature state name. We're also passing a `-m option`, short for `--module`, in which we tell NgRx where to import the feature state.
 
-NgRx Schematics will prompt us with a few questions:
+NgRx schematics will prompt us with a few questions:
 
 - `Should we generate and wire success and failure actions?` **Yes**. We will modify the actions a little bit, but this is enough to get started.
 - `What should be the prefix of the action, effect and reducer?` **load**. The default value. We will change the names for actions, effects and reducers, so don’t worry about the prefix right now.
