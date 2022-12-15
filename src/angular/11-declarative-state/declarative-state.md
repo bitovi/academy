@@ -217,7 +217,7 @@ You'll also add new single-responsibility streams:
   - multicasting emissions of a "cold" observable and handle late subscribers
 
     You've learnt all of the above as part of the earlier sections on this page! Completing the
-    [Bitovi Academy's RxJS training](/learn-rxjs.html) will help however.
+    [Bitovi Academy's RxJS training](../learn-rxjs.html) will help however.
 
 ## Solution
 
