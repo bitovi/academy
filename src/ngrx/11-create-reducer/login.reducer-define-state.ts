@@ -1,7 +1,6 @@
 // src/app/store/login/login.reducer.ts
 
-import { createReducer, on } from '@ngrx/store';
-import * as LoginActions from './login.actions';
+import { createReducer } from '@ngrx/store';
 
 export const loginFeatureKey = 'login';
 

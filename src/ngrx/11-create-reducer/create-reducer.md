@@ -30,7 +30,7 @@ TODO
 <details>
 <summary>src/app/store/login/login.reducer.ts</summary>
 
-@diff ../10-test-redirect-effects/login.reducer.ts ./login.reducer-define-state.ts only
+@diff ../4-create-actions/login.reducer.ts ./login.reducer-define-state.ts only
 
 </details>
 
