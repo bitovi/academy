@@ -1,3 +1,5 @@
+// src/app/store/login/login.actions.ts
+
 import { createAction, props } from '@ngrx/store';
 
 export const loadLogins = createAction(
