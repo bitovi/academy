@@ -64,7 +64,7 @@ To use a service in a component, we use dependency injection to pass the service
 
 ## Subscribe to an Observable
 
-The result of `getRestaurants()` is an observable. Use [subscribe](https://rxjs-dev.firebaseapp.com/guide/subscription) to listen to when
+The result of `getRestaurants()` is an observable. Use [subscribe](https://rxjs.dev/guide/subscription) to listen to when
 an RxJS observable changes:
 
 ```html
