@@ -19,3 +19,12 @@ git checkout starting-point
 ```
 
 Next install the project's node dependencies using `npm install`
+
+You now have the project starting point checked out, which includes:
+
+1. An Angular 14 application
+2. ESLint and the `@bitovi/eslint-config` package
+3. Karma + Jasmine
+4. Login and Dashboard UI Components
+5. TODO's for needed functionality
+
