@@ -15,6 +15,7 @@ To clone the project repository and check out the `starting-point` branch using 
 
 ```bash
 git clone https://github.com/bitovi/angular-ngrx-chat.git
+cd angular-ngrx-chat
 git checkout starting-point
 ```
 
