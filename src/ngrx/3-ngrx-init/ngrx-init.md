@@ -42,17 +42,21 @@ This command will install the NgRx dependencies and update `package.json` and `p
 npm install @ngrx/{store,effects,entity,store-devtools}@14 --save
 ```
 
-## Global Store
+## Generating Global Store
 
-We'll take advantage of NgRx schematics to [generate our initial state management files](https://ngrx.io/guide/schematics/store#command), and register the root of our Global Store within `app.module.ts`.
+We'll take advantage of NgRx schematics to [generate our initial state management files](https://ngrx.io/guide/schematics/store#command), and register the root of our Global Store within `app.module.ts`. 
 
 ```bash
 ng generate store State --root --state-path store --module app.module.ts
 ```
 
-## Login Feature Store
+We are now setup to be able to generate NgRx Features.
 
-The Login State in our application will be responsible for holding information about authentication and the authenticated user.
+## Generating Login Feature Set
+
+The Login Feature Set in our application will be responsible for holding information about authentication and the authenticated user.
+
+---
 
 ### Store Setup
 We’ll take advantage of NgRx schematics to quickly generate an Authentication Feature State: `run ng generate feature store/auth/Auth -m app.module.ts`.
