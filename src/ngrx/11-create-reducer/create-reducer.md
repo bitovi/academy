@@ -36,11 +36,27 @@ TODO
 
 ## Problem 2: TODO
 
-TODO
+TODO: refactor this since this is just copy and paste from the draft
+
+Now that our Actions are defined, we need to set up the Auth State and its Initial State to enable to perform updates to the state later.
+
+We’ll define the following members of the Auth’s State interface:
+
+- `userId: string | null`;
+- `username: string | null`;
+- `token: string | null`;
+
+As for the `initialState`, members should start with `null` values.
 
 ## P2: What You Need to Know
 
-TODO
+TODO: refactor this since this is just copy and paste from the draft
+
+NgRx schematics generated an empty State interface and an `initialState` variable of type `State`.
+
+--Show login.reducer.ts here--
+
+Update the `State` interface and the `initialState` variable to match requirements.
 
 ## P2: Solution
 

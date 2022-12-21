@@ -16,12 +16,3 @@ export const loginFailure = createAction(
   '[Login API] Login Failure',
   props<{ errorMsg: string }>()
 );
-
-export const logout = createAction('[Dashboard Page] Logout');
-
-export const logoutSuccess = createAction('[Login API] Logout Success');
-
-export const logoutFailure = createAction(
-  '[Login API] Logout Failure',
-  props<{ errorMsg: string }>()
-);

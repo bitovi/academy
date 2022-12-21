@@ -43,7 +43,7 @@ A Store is an object that wraps the state. The Store also provides methods to up
 
 Actions are objects that represent individual events in your application.
 
-Actions have two properties:
+Actions are created using two properties:
 
 1. `type` describes the event.
 2. `payload` (optional) holds additional information.
@@ -61,7 +61,7 @@ Reducers functions must be `pure`:
 
 #### Dispatch
 
-A Dispatch is a Store method that will provide an action to the Reducer function. You can see the Dispatch method as the API to update the state.
+A Dispatch is a Store method that will provide an Action to the Reducer function. You can see the Dispatch method as the API to update the state. Effects also listen for every Action dispatched from the Store to handle _side-effects_.
 
 #### Selectors
 
