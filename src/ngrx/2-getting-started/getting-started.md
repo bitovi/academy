@@ -31,7 +31,7 @@ node -v # v14.20.0
 npm -v # 6.14.13
 ```
 
-If you have the wrong versions, I suggest using [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) (for mac) or [volta](https://docs.volta.sh/guide/getting-started) (for windows) for node version management.
+If you have the wrong versions, we suggest using [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) (for mac) or [volta](https://docs.volta.sh/guide/getting-started) (for windows) for node version management.
 
 Next install the project's node dependencies using `npm install`.
 
