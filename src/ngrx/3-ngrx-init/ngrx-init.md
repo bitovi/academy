@@ -56,8 +56,6 @@ We are now setup to be able to generate NgRx Features.
 
 The Login Feature Set in our application will be responsible for holding information about authentication and the authenticated user.
 
----
-
 ### Store Setup
 We’ll take advantage of NgRx schematics to quickly generate an Authentication Feature State: 
 
