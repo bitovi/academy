@@ -32,5 +32,5 @@ export const reducer = createReducer(
       token,
     })
   ),
-  on(LoginActions.logoutSuccess, (): State => initialState)
+  on(LoginActions.logoutSuccess, (): State => ({ ...initialState }))
 );
