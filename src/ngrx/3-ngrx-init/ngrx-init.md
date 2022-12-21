@@ -21,13 +21,24 @@
 
 Since we are going to use multiple NgRx tools, let’s install everything we need:
 
-First, run `ng add @ngrx/schematics` to install NgRx schematics, a tool that will enable us to quickly generate code.
+### NgRx Schematics
 
-Then, let’s install NgRx dependencies: `npm install @ngrx/{store,effects,entity,store-devtools}@14 --save.`
+First, install [NgRx schematics](https://ngrx.io/guide/schematics/install#installing-with-ng-add), a tool that will allow us to run schematics from the CLI to quickly generate code. 
 
+This command will install NgRx schematics and update `angular.json`:
 
 ```bash
 ng add @ngrx/schematics@14
+```
+
+
+### NgRx Libraries
+
+Next, let’s install the [NgRx dependencies](https://ngrx.io/guide/schematics#dependencies).
+
+This command will install the NgRx dependencies and update `package.json` and `package-lock.json`:
+
+```bash
 npm install @ngrx/{store,effects,entity,store-devtools}@14 --save
 ```
 
