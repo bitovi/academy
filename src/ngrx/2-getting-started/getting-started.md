@@ -19,7 +19,18 @@ cd angular-ngrx-chat
 git checkout starting-point
 ```
 
-Next install the project's node dependencies using `npm install`
+Make sure to use the expected node/npm versions.
+
+```
+node -v # v14.20.0
+npm -v # 6.14.13
+```
+
+If you have the wrong versions, I suggest using [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) (for mac) or [volta](https://docs.volta.sh/guide/getting-started) (for windows) for node version management.
+
+
+Next install the project's node dependencies using `npm install`.
+
 
 You now have the project starting point checked out, which includes:
 
