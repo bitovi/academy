@@ -59,7 +59,11 @@ The Login Feature Set in our application will be responsible for holding informa
 ---
 
 ### Store Setup
-We’ll take advantage of NgRx schematics to quickly generate an Authentication Feature State: `run ng generate feature store/auth/Auth -m app.module.ts`.
+We’ll take advantage of NgRx schematics to quickly generate an Authentication Feature State: 
+
+```bash
+ng generate feature store/login/Login -m app.module.ts --reducers ../../store/index.ts
+```
 
 The `store/auth/` part is the path that we want the feature to be located, and `Auth` is the feature state name. We're also passing a `-m option`, short for `--module`, in which we tell NgRx where to import the feature state.
 
