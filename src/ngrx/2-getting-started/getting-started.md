@@ -11,10 +11,15 @@ For the sake of convenience, we've prepared a git repository for you to checkout
 
 ## Setting up your Project
 
-To clone the project repository and check out the `starting-point` branch using the git CLI, run the following in your terminal:
+First, clone the `angular-ngrx-chat` repo using the git CLI by running the following in your terminal:
 
 ```bash
 git clone https://github.com/bitovi/angular-ngrx-chat.git
+```
+
+Next, `cd` into the repo directory and checkout the `starting-point` branch.
+
+```bash
 cd angular-ngrx-chat
 git checkout starting-point
 ```
@@ -28,9 +33,7 @@ npm -v # 6.14.13
 
 If you have the wrong versions, I suggest using [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) (for mac) or [volta](https://docs.volta.sh/guide/getting-started) (for windows) for node version management.
 
-
 Next install the project's node dependencies using `npm install`.
-
 
 You now have the project starting point checked out, which includes:
 
@@ -39,4 +42,4 @@ You now have the project starting point checked out, which includes:
 3. Karma + Jasmine
 4. Login and Dashboard UI Components
 5. TODO's for needed functionality
-
+∂
