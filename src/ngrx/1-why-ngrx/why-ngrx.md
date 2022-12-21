@@ -97,10 +97,10 @@ We’ve mentioned _side-effects_ before: reducer functions must be pure and not 
 
 In NgRx, Effects will:
 
-- listen to an action observable and filter the action(s) relevant to the Effects;
-- perform side-effects and return a new action. If there’s no need to update the state or trigger other effects, an Effect may not return a new action (Non-dispatching Effect).
+- listen to an `action$` Observable and filter the Action(s) relevant to the Effects;
+- perform side-effects and return a new Action. If there’s no need to update the state or trigger other Effects, an Effect may not return a new Action (Non-dispatching Effect).
 
-> Note that, for a given action, Effects will always happen after the state has been updated by the reducer.
+> Note that, for a given Action, Effects will always happen after the state has been updated by the Reducer.
 
 ## Next Steps
 
