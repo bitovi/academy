@@ -80,7 +80,7 @@ This command accomplishes the following:
 
 ### Register Root EffectsModule in AppModule
 
-We need to manually update our `app.module.ts` to register NgRx global Effects. To accomplish this, we need to add `EffectsModuloe.forRoot([])` to our `AppModule` imports, as shown below:
+We need to manually update our `app.module.ts` to [register NgRx global Effects](https://ngrx.io/guide/schematics#initial-effects-setup). To accomplish this, we need to add `EffectsModuloe.forRoot([])` to our `AppModule` imports, as shown below:
 
 <details open>
 <summary>src/app/app.module.ts</summary>
@@ -89,6 +89,14 @@ We need to manually update our `app.module.ts` to register NgRx global Effects. 
 
 ### Generate Login Feature
 
-TODO
+Lastly, we need to update `src/app/store/login/login.reducer.ts` to include a `LoginPartialState` interface, which is easier to import when:
+
+1. Writing tests for `Components` using NgRx selectors
+2. Writing tests for selectors themselves
+
+<details open>
+<summary>src/app/store/login/login.reducer.ts</summary>
+@diff ./login.reducer.before-generate-login.ts ./login.reducer.after-generate-login.ts only
+</details>
 
 > **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/ngrx-init).You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/starting-point...ngrx-init) on GitHub.
