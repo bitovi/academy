@@ -57,29 +57,35 @@ We are now setup to be able to generate NgRx Features.
 The Login Feature Set in our application will be responsible for holding information about authentication and the authenticated user.
 
 ### Setup
-We’ll take advantage of NgRx schematics to quickly generate an Authentication Feature State: 
+
+We’ll take advantage of NgRx schematics to quickly [generate a Feature Set](https://ngrx.io/guide/schematics/feature#command): 
 
 ```bash
-ng generate feature store/login/Login -m app.module.ts --reducers ../../store/index.ts
+ng generate feature store/login/Login --module app.module.ts --reducers ../../store/index.ts
 ```
-
-The `store/auth/` part is the path that we want the feature to be located, and `Auth` is the feature state name. We're also passing a `-m option`, short for `--module`, in which we tell NgRx where to import the feature state.
 
 NgRx schematics will prompt us with a few questions:
 
 - `Should we generate and wire success and failure actions?` **Yes**. We will modify the actions a little bit, but this is enough to get started.
 - `What should be the prefix of the action, effect and reducer?` **load**. The default value. We will change the names for actions, effects and reducers, so don’t worry about the prefix right now.
 
-Besides setting up a Store with the Auth Feature State and Effects for us in app.module, the schematics will create the following files:
 
-- `auth.actions.ts`
-- `auth.effects.ts`, `auth.effects.spec.ts`
-- `auth.reducer.ts`, `auth.reducer.spec.ts`
-- `auth.selectors.ts`, `auth.selectors.spec.ts`
+This command accomplishes the following:
 
-### Add EffectsModule to AppComponent
+1. Creates a `src/app/store/login` directory containing `login.actions.ts`, `login.effects.ts`, `login.reducer.ts`, and `login.selecors.ts`, as well as associated spec files
+2. Updates `app.module.ts` to initialize the Login Feature Store and Feature Effects
+3. Updates `src/app/store/index.ts` to:
+    a. Add Login Feature Reducers map
+    b. Add the Login Feature state type to the global `State` interface
 
-TODO
+### Register Root EffectsModule in AppModule
+
+We need to manually update our `app.module.ts` to register NgRx global Effects. To accomplish this, we need to add `EffectsModuloe.forRoot([])` to our `AppModule` imports, as shown below:
+
+<details open>
+<summary>src/app/app.module.ts</summary>
+@diff ./app.module.before-add-effects-module.ts ./app.module.ts only
+</details>
 
 ### Generate Login Feature
 
