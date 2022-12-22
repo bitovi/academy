@@ -4,7 +4,7 @@ import * as ContactActions from './contact.actions';
 
 @Injectable()
 export class ContactEffects {
-  submit$ = createEffect(() => {// Create effect
+  submit$ = createEffect(() => {// Create Effect
     return this.actions$.pipe(// Listen for all dispatched Actions
       ofType(ContactActions.submit),// Filter for submit Action
       // ...
