@@ -96,4 +96,4 @@ Now that we've removed the generated Actions, we will need to update a couple of
 
 </details>
 
-> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-actions).You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/ngrx-init...create-actions) on GitHub.
+> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-actions). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/ngrx-init...create-actions) on GitHub.

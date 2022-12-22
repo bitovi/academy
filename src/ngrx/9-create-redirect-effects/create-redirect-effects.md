@@ -76,6 +76,18 @@ By default, the `dispatch` option is set to `true`, but if we set it to `false`,
 
 ## Verify Implementation
 
-At this point, you should be able to login on the login page. Note that the `username` and `password`
+At this point, you should be able to login on the login page:
 
-> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-redirect-effects).You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/test-api-effects...create-redirect-effects) on GitHub.
+> Note that authenication **DOES NOT** persist after a **page refresh**. This means that after you make code changes while serving the application, you will be signed out and will need to login again. Remember that the login page is located at `/`.
+
+The `LoginService.login()` method will throw an error if any of these cases are not met:
+
+1. `password` must be at least 6 characters
+
+2. `username` must be at least 3 characters
+
+3. `username` must be alphanumeric including hyphens or underscores
+
+_When one of these requirements aren't met, an error is thrown and an error is logged in the console in red text._
+
+> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-redirect-effects). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/test-api-effects...create-redirect-effects) on GitHub.

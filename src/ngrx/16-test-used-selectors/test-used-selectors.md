@@ -32,4 +32,4 @@ Copy the following code to replace the contents of `src/app/dashboard/dashboard.
 @sourceref ./dashboard.component.spec.ts
 </details>
 
-> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/test-used-selectors).You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/use-selectors...test-used-selectors) on GitHub.
+> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/test-used-selectors). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/use-selectors...test-used-selectors) on GitHub.

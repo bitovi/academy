@@ -100,7 +100,7 @@ In NgRx, Effects will:
 - listen to an `action$` Observable and filter the Action(s) relevant to the Effects;
 - perform side-effects and return a new Action. If there’s no need to update the state or trigger other Effects, an Effect may not return a new Action (Non-dispatching Effect).
 
-> Note that, for a given Action, Effects will always happen after the state has been updated by the Reducer.
+> Note that for a given Action, Effects will always happen after the state has been updated by the Reducer.
 
 ## Next Steps
 
