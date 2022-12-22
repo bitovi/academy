@@ -33,4 +33,4 @@ Copy the following code to replace the contents of `src/app/store/login/login.ef
 @sourceref ./login.effects.spec.ts
 </details>
 
-> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/test-redirect-effects).You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/create-redirect-effects...test-redirect-effects) on GitHub.
+> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/test-redirect-effects). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/create-redirect-effects...test-redirect-effects) on GitHub.

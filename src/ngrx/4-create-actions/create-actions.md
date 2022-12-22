@@ -35,7 +35,7 @@ Our goal is to have a different set of Action instead:
 
 Action Types in NgRx follow a string pattern: `[Source] Event`. Since Actions represent a unique event, an Action Type should be a unique identifier for that event. NgRx encourages Actions to be unique in order to help with application debugging, traceability and maintainability. [Here’s a great presentation about Action Best Practices](https://www.youtube.com/watch?v=JmnsEvoy-gY) from Mike Ryan, co-creator of NgRx.
 
-`createAction` can take up to two arguments: the string `type` and a `config` function that represents additional metadata, usually referred as `props` in Redux Pattern:
+`createAction()` can take up to two arguments: the string `type` and a `config` function that represents additional metadata, usually referred as `props` in Redux Pattern:
 
 ```ts
 import { createAction, props } from '@ngrx/store';
@@ -96,4 +96,4 @@ Now that we've removed the generated Actions, we will need to update a couple of
 
 </details>
 
-> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-actions).You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/ngrx-init...create-actions) on GitHub.
+> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-actions). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/ngrx-init...create-actions) on GitHub.
