@@ -23,7 +23,6 @@ Although it's common for Effects to dispatch another Action after handling a sid
 
 To understand this better, let's take a deeper dive into the `createEffect()` [helper function](https://ngrx.io/api/effects/createEffect):
 
-
 `createEffect()` takes two arguments:
 
 1. `source` - A function which returns an `Observable`.
@@ -33,7 +32,7 @@ And if we look a little deeper, here is the type definition of the `EffectConfig
 
 ```ts
 /**
- * Configures an effect created by `createEffect`.
+ * Configures an effect created by `createEffect()`.
  */
 export interface EffectConfig {
   /**
@@ -74,5 +73,9 @@ By default, the `dispatch` option is set to `true`, but if we set it to `false`,
 @diff ./login.effects-login-success-effect.ts ./login.effects.ts only
 
 </details>
+
+## Verify Implementation
+
+At this point, you should be able to login on the login page. Note that the `username` and `password`
 
 > **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-redirect-effects).You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/test-api-effects...create-redirect-effects) on GitHub.

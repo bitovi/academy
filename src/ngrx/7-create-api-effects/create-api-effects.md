@@ -23,7 +23,7 @@
 
 ## Problem 1: Create login$ Effect to Handle API Requests
 
-1. `LoginEffects` should create a login API request whenever the `LoginActions.login` Action is dispatched using an Effect called `login$`.
+1. `LoginEffects` should create a login API request using `ngx-learn-ngrx`'s `LoginService.login()` method whenever the `LoginActions.login` Action is dispatched using an Effect called `login$`.
 
 2. If the API request is successful, a `LoginActions.loginSuccess` Action should be dispatched using the API response.
 
@@ -61,6 +61,24 @@ We can also perform error handling and dispatch a new Action when an error occur
 @sourceref ./contact.effects.ts
 @highlight 16, 17, 18, 19, 20, 21, 22, 23, only
 
+And last, you will need to use `ngx-learn-ngrx`'s `LoginService` to perform authentication for course:
+
+@diff ./login.effects-error-message-helper.ts ./login.effects-login-service.ts only
+
+`LoginService` has 2 methods `login()` and `logout()` that will be needed to management authentication for this course.
+
+> Note that authenication **DOES NOT** persist after a **page refresh**. This means that after you make code changes while serving the application, you will be signed out and will need to login again. Remember that the login page is located at `/`.
+
+The `login()` method will throw an error if any of these cases are not met:
+
+1. `password` must be at least 6 characters
+
+2. `username` must be at least 3 characters
+
+3. `username` must be alphanumeric including hyphens or underscores
+
+When one of these requirements aren't met, an error is thrown and an error is logged in the console in red text.
+
 ## P1: Solution
 
 <details>
@@ -72,7 +90,7 @@ We can also perform error handling and dispatch a new Action when an error occur
 
 ## Problem 2: Create logout$ Effect to Handle API Requests
 
-1. `LoginEffects` should create a logout API request whenever the `LoginActions.logout` Action is dispatched using an Effect called `logout$`.
+1. `LoginEffects` should create a logout API request  using `ngx-learn-ngrx`'s `LoginService.logout()` method whenever the `LoginActions.logout` Action is dispatched using an Effect called `logout$`.
 
 2. If the API request is successful, a `LoginActions.logoutSuccess` Action should be dispatched using the API response. 
 

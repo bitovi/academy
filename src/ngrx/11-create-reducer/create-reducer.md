@@ -67,17 +67,17 @@ Now that we have updated the Login feature state's shape by updating the `State`
 
 ## Problem 3: Update Login Feature State With Login Information On Login
 
-Login Reducer should include `on` handler that updates Login feature state with `userId`, `username` and `token` whenever `LoginActions.loginSuccess` Action is dispatched.
+Login Reducer should include an `on()` handler that updates Login feature state with `userId`, `username` and `token` whenever `LoginActions.loginSuccess` Action is dispatched.
 
 ## P3: What You Need to Know
 
-We can [create NgRx Reducers](https://ngrx.io/guide/store/reducers#creating-the-reducer-function) using the [`createReducer`](https://ngrx.io/api/store/createReducer#description) helper function.
+We can [create NgRx Reducers](https://ngrx.io/guide/store/reducers#creating-the-reducer-function) using the [`createReducer()`](https://ngrx.io/api/store/createReducer#description) helper function.
 
-The first argument for `createReducer` sets the initial value of your feature state. Then every argument after should be an [`on` handler function calls](https://ngrx.io/api/store/on).
+The first argument for `createReducer()` sets the initial value of your feature state. Then every argument after should be an [`on()` handler function calls](https://ngrx.io/api/store/on).
 
-When writing an `on` handler, there are 2 arguments that we need to provide:
+When writing an `on()` handler, there are 2 arguments that we need to provide:
 
-1. The Action that this `on` handler is reacting to
+1. The Action that this `on()` handler is reacting to
 
 2. A [**pure function**](https://en.wikipedia.org/wiki/Pure_function) that takes in 2 arguments: `state` and `action`. This function should always return a new state that will replace the previous feature state
 
@@ -95,7 +95,7 @@ When writing an `on` handler, there are 2 arguments that we need to provide:
 
 ## Problem 4: Reset Login Feature State On Logout
 
-Login Reducer should include `on` handler that resets Login feature state back to `initialState` whenever `LoginActions.logoutSuccess` Action is dispatched.
+Login Reducer should include an `on()` handler that resets Login feature state back to `initialState` whenever `LoginActions.logoutSuccess` Action is dispatched.
 
 ## P4: What You Need to Know
 
