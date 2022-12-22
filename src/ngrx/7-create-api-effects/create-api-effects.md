@@ -23,7 +23,7 @@
 
 ## Problem 1: Create login$ Effect to Handle API Requests
 
-1. `LoginEffects` should create a login API request whenever the `LoginActions.login` Action is dispatched.
+1. `LoginEffects` should create a login API request whenever the `LoginActions.login` Action is dispatched using an Effect called `login$`.
 
 2. If the API request is successful, a `LoginActions.loginSuccess` Action should be dispatched using the API response.
 
@@ -44,8 +44,8 @@
 
 NgRx provides a couple of helpful functions and the `Actions` class to create Effects:
 
-1. `createEffect` [helper function](https://ngrx.io/api/effects/createEffect) to create Effects
-2. `ofType` [helper function](https://ngrx.io/api/effects/ofType) to filter Actions by `type`
+1. `createEffect()` [helper function](https://ngrx.io/api/effects/createEffect) to create Effects
+2. `ofType()` [helper function](https://ngrx.io/api/effects/ofType) to filter Actions by `type`
 3. `Actions` [class](https://ngrx.io/api/effects/Actions) that extends the RxJs Observable to listen to every dispatched Action
 
 @sourceref ./contact.effects-initial-setup.ts
@@ -72,7 +72,7 @@ We can also perform error handling and dispatch a new Action when an error occur
 
 ## Problem 2: Create logout$ Effect to Handle API Requests
 
-1. `LoginEffects` should create a logout API request whenever the `LoginActions.logout` Action is dispatched.
+1. `LoginEffects` should create a logout API request whenever the `LoginActions.logout` Action is dispatched using an Effect called `logout$`.
 
 2. If the API request is successful, a `LoginActions.logoutSuccess` Action should be dispatched using the API response. 
 

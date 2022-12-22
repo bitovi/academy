@@ -13,13 +13,45 @@
 
 2. Add `logoutSuccess$` Effect to `LoginEffects` to navigate to login page
 
-## Problem 1: TODO
+## Problem 1: Create loginSuccess$ Effect to Handle Navigating to Dashboard Page
 
-TODO
+`LoginEffects` should use `Router` to navigate to the dashboard page at path `/dashboard` using an Effect called `loginSuccess$`.
 
 ## P1: What You Need to Know
 
-TODO
+Although it's common for Effects to dispatch another Action after handling a side-effect, there is a way to update the configuration for an Effect to never dispatch an Action instead. This is useful when a side-effect resolves and there's no need to trigger another side-effect or update state.
+
+To understand this better, let's take a deeper dive into the `createEffect()` [helper function](https://ngrx.io/api/effects/createEffect):
+
+
+`createEffect()` takes two arguments:
+
+1. `source` - A function which returns an `Observable`.
+2. `config` (optional) - A `Partial<EffectConfig>` to configure the effect. By default, `dispatch` is true and `useEffectsErrorHandler` is true.
+
+And if we look a little deeper, here is the type definition of the `EffectConfig` interface:
+
+```ts
+/**
+ * Configures an effect created by `createEffect`.
+ */
+export interface EffectConfig {
+  /**
+   * Determines if the action emitted by the effect is dispatched to the store.
+   * If false, effect does not need to return type `Observable<Action>`.
+   */
+  dispatch?: boolean;
+  /**
+   * Determines if the effect will be resubscribed to if an error occurs in the main actions stream.
+   */
+  useEffectsErrorHandler?: boolean;
+}
+```
+
+By default, the `dispatch` option is set to `true`, but if we set it to `false`, the Effect doesn't have to end with an Action being dispatched:
+
+@sourceref ./contact.effects.ts
+@highlight 12, 13, 16
 
 ## P1: Solution
 
@@ -30,13 +62,9 @@ TODO
 
 </details>
 
-## Problem 2: TODO
+## Problem 2: Create logoutSuccess$ Effect to Handle Navigating to Login Page
 
-TODO
-
-## P2: What You Need to Know
-
-TODO
+`LoginEffects` should use `Router` to navigate to the dashboard page at path `/` using an Effect called `loginSuccess$`.
 
 ## P2: Solution
 
