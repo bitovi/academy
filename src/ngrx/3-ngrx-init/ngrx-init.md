@@ -91,12 +91,12 @@ We need to manually update our `app.module.ts` to [register NgRx global Effects]
 
 Lastly, we need to update `src/app/store/login/login.reducer.ts` to include a `LoginPartialState` interface, which is easier to import when:
 
-1. Writing tests for `Components` using NgRx selectors
-2. Writing tests for selectors themselves
+1. Writing tests for `Components` using NgRx Selectors
+2. Writing tests for NgRx Selectors themselves
 
 <details open>
 <summary>src/app/store/login/login.reducer.ts</summary>
-@diff ./login.reducer.before-generate-login.ts ./login.reducer.after-generate-login.ts only
+@diff ./login.reducer.before-generate-login.ts ./login.reducer.ts only
 </details>
 
 > **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/ngrx-init). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/starting-point...ngrx-init) on GitHub.
