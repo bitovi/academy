@@ -10,23 +10,23 @@
 
 ## Overview
 
-1. Define Login Feature State shape.
+1. Define Login State shape.
 
 2. Set Login initial state.
 
-3. Update Reducer function to include handler for `LoginActions.loginSuccess` Action to update Login Feature State.
+3. Update Reducer function to include handler for `LoginActions.loginSuccess` Action to update Login State.
 
-4. Update Reducer function to include handler for `LoginActions.logoutSuccess` Action to reset Login Feature State.
+4. Update Reducer function to include handler for `LoginActions.logoutSuccess` Action to reset Login State.
 
 
-## Problem 1: Define Login Feature State Shape
+## Problem 1: Define Login State Shape
 
-Update the Login Feature State shape by adding `userId`, `username`, and `token` properties to its interface definition. Each property should have type `string | null`.
+Update the Login State shape by adding `userId`, `username`, and `token` properties to its interface definition. Each property should have type `string | null`.
 
 
 ## P1: What You Need to Know
 
-Now that we have all of our Actions prepared to dispatch whenever we need, we will update the Login Feature State. Updating the Reducer for your Feature State has 3 steps:
+Now that we have all of our Actions prepared to dispatch whenever we need, we will update the Login State. Typically a Reducer is updated with 3 steps:
 
 1. Define or update `Store` interface to have an [expected shape](https://ngrx.io/guide/store/reducers#defining-the-state-shape) after Reducer updates state.
 
@@ -50,14 +50,14 @@ To prepare this, we need to update the Login Feature `State` interface found at 
 </details>
 
 
-## Problem 2: Set Initial Value For Login Feature State
+## Problem 2: Set Initial Value For Login State
 
-Set initial state for Login Feature State. Each member of the Login Feature State should start with `null` as its value.
+Set initial state for Login State. Each member of the Login State should start with `null` as its value.
 
 
 ## P2: What You Need to Know
 
-Now that we have updated the Login Feature State's shape by updating the `State` interface, we need to update its initial shape. By default, we will set each member to `null`. Here is an example of doing that:
+Now that we have updated the Login State's shape by updating the `State` interface, we need to update its initial shape. By default, we will set each member to `null`. Here is an example of doing that:
 
 @sourceref ./initial-value.ts
 @highlight 2, 3
@@ -73,22 +73,22 @@ Now that we have updated the Login Feature State's shape by updating the `State`
 </details>
 
 
-## Problem 3: Update Login Feature State With Login Information On Login
+## Problem 3: Update Login State With Login Information On Login
 
-Login Reducer should include an `on()` handler that updates Login Feature State with `userId`, `username` and `token` whenever `LoginActions.loginSuccess` Action is dispatched.
+Login Reducer should include an `on()` handler that updates Login State with `userId`, `username` and `token` whenever `LoginActions.loginSuccess` Action is dispatched.
 
 
 ## P3: What You Need to Know
 
 We can [create NgRx Reducers](https://ngrx.io/guide/store/reducers#creating-the-reducer-function) using the [`createReducer()`](https://ngrx.io/api/store/createReducer#description) helper function.
 
-The first argument for `createReducer()` sets the initial value of your Feature State. Then every argument after should be an [`on()` handler function calls](https://ngrx.io/api/store/on).
+The first argument for `createReducer()` sets the initial value of your State. Then every argument after should be an [`on()` handler function calls](https://ngrx.io/api/store/on).
 
 When writing an `on()` handler, there are 2 arguments that we need to provide:
 
 1. The Action that this `on()` handler is reacting to.
 
-2. A [**pure function**](https://en.wikipedia.org/wiki/Pure_function) that takes in 2 arguments: `state` and `action`. This function should always return a new state that will replace the previous Feature State.
+2. A [**pure function**](https://en.wikipedia.org/wiki/Pure_function) that takes in 2 arguments: `state` and `action`. This function should always return a new state that will replace the previous state.
 
 @sourceref ./counter.reducer.ts
 @highlight 5, 6, 7
@@ -104,14 +104,14 @@ When writing an `on()` handler, there are 2 arguments that we need to provide:
 </details>
 
 
-## Problem 4: Reset Login Feature State On Logout
+## Problem 4: Reset Login State On Logout
 
-Login Reducer should include an `on()` handler that resets Login Feature State back to `initialState` whenever `LoginActions.logoutSuccess` Action is dispatched.
+Login Reducer should include an `on()` handler that resets Login State back to `initialState` whenever `LoginActions.logoutSuccess` Action is dispatched.
 
 
 ## P4: What You Need to Know
 
-A common requirement is to reset a Feature State. One approach might look like this:
+A common requirement is to reset state. One approach might look like this:
 
 @diff ./counter.reducer.ts ./counter.reducer-with-set-zero.ts
 

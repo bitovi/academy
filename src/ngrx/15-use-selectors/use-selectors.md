@@ -12,17 +12,22 @@
 
 1. Update `DashboardComponent`'s `username$` and `userId$` members to use Login Selectors.
 
-2. Update `AuthenticationGuard`'s `canActivate` method to use Login Selector.
+2. Update `AuthenticationGuard`'s `canActivate()` method to use Login Selector.
 
 
-## Problem 1: TODO
+## Problem 1: Update `username$` and `userId$` to use Login Selectors on `DashboardComponent`
 
-TODO
+`DashboardComponent` should use the `LoginSelectors.selectUsername` and `LoginSelectors.selectUserId` Selectors for its `username$` and `userId$` members.
 
 
 ## P1: What You Need to Know
 
-TODO
+Now that we have our Selectors defined, we can inject `Store` into our `Components` and use the `select()` method to obtain slices of state using our Selectors:
+
+@sourceref ./contact.component.ts
+@highlight 2, 3, 11, 13
+
+In the `DashboardComponent`, there is are `TODO`'s where the Login Selectors should be used.
 
 
 ## P1: Solution
@@ -35,13 +40,13 @@ TODO
 </details>
 
 
-## Problem 2: TODO
+## Problem 2: Update `canActivate()` to use Login Selector on `AuthenticationGuard`
 
-TODO
+`AuthenticationGuard`'s `canActivate()` method should use the `LoginSelectors.selectToken` Selector.
 
 ## P2: What You Need to Know
 
-TODO
+In the `AuthenticationGuard`, there is a `TODO` where the Login Selector should be used.
 
 
 ## P2: Solution

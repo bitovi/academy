@@ -56,7 +56,7 @@ Reducers functions must be `pure`:
 
 #### Dispatch
 
-A Dispatch is a Store method that will provide an Action to the Reducer function. You can see the Dispatch method as the API to update the state. Effects also listen for every Action dispatched from the Store to handle _side-effects_.
+A Dispatch is a `Store` method that will provide an Action to the Reducer function. You can see the `dispatch()` method as the API to update the state. Effects also listen for every Action dispatched from the Store to handle _side-effects_.
 
 
 #### Selectors

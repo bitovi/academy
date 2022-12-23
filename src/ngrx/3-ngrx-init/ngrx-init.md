@@ -79,10 +79,10 @@ This command accomplishes the following:
 2. Updates `app.module.ts` to initialize the Login Feature Store and Feature Effects
 3. Updates `src/app/store/index.ts` to:
     a. Add Login Feature Reducers map
-    b. Add the Login Feature State type to the Global `State` interface
+    b. Add the Login State type to the Global `State` interface
 
 
-### Register Root EffectsModule in AppModule
+### Register Root `EffectsModule` in `AppModule`
 
 We need to manually update our `app.module.ts` to [register NgRx Global Effects](https://ngrx.io/guide/schematics#initial-effects-setup). To accomplish this, we need to add `EffectsModuloe.forRoot([])` to our `AppModule` imports, as shown below:
 

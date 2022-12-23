@@ -15,7 +15,7 @@
 2. Add `logoutSuccess$` Effect to `LoginEffects` to navigate to login page.
 
 
-## Problem 1: Create loginSuccess$ Effect to Handle Navigating to Dashboard Page
+## Problem 1: Create `loginSuccess$` Effect to Handle Navigating to Dashboard Page
 
 `LoginEffects` should use `Router` to navigate to the dashboard page at path `/dashboard` using an Effect called `loginSuccess$`.
 
@@ -67,7 +67,7 @@ By default, the `dispatch` option is set to `true`, but if we set it to `false`,
 </details>
 
 
-## Problem 2: Create logoutSuccess$ Effect to Handle Navigating to Login Page
+## Problem 2: Create `logoutSuccess$` Effect to Handle Navigating to Login Page
 
 `LoginEffects` should use `Router` to navigate to the dashboard page at path `/` using an Effect called `loginSuccess$`.
 
