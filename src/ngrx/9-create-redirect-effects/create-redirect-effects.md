@@ -30,7 +30,7 @@ To understand this better, let's take a deeper dive into the `createEffect()` [h
 
 1. `source` - A function which returns an `Observable`.
 
-2. `config` (optional) - A `Partial<EffectConfig>` to configure the Effect. By default, `dispatch` is true and `useEffectsErrorHandler` is true.
+2. `config` (optional) - A `Partial<EffectConfig>` to configure the Effect. By default, `dispatch` option is true and `useEffectsErrorHandler` is true.
 
 And if we look a little deeper, here is the type definition of the `EffectConfig` interface:
 

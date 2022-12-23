@@ -36,9 +36,9 @@ Actions are objects that represent individual events in your application.
 
 Actions are created using two properties:
 
-1. `type` describes the event.
+1. `type` - Describes the event.
 
-2. `payload` (optional) holds additional information.
+2. `payload` (optional) - Holds additional information.
 
 Actions are necessary to update the state by triggering Reducers.
 

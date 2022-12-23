@@ -23,15 +23,15 @@ NgRx schematics generated Actions with the following Action Types: `[Login] Load
 
 Our goal is to have a different set of Action instead:
 
-1. `login` - dispatched when user submits username and password:
+1. `login` - Dispatched when user submits username and password:
     - type: `[Login Page] Login`
     - props: `{ username: string, password: string }`
 
-2. `loginSuccess` - dispatched by an Effect when user has successfully logged in:
+2. `loginSuccess` - Dispatched by an Effect when user has successfully logged in:
     - type: `[Login API] Login Success`
     - props: `{ userId: string; username: string; token: string }`
     
-3. `loginFailure` - dispatched by an Effect when user login attempt fails:
+3. `loginFailure` - Dispatched by an Effect when user login attempt fails:
     - type: `[Login API] Login Failure`
     - props: `{ errorMsg: string }`
 
@@ -66,11 +66,11 @@ export const submit = createAction(
 
 Next, our goal is to create 3 more Actions for logout:
 
-1. `logout` - dispatched when user clicks on a logout button
+1. `logout` - Dispatched when user clicks on a logout button
     - type: `[Dashboard Page] Logout`
-2. `logoutSuccess` - dispatched by an Effect when the user has successfully logged out
+2. `logoutSuccess` - Dispatched by an Effect when the user has successfully logged out
     - type: `[Login API] Logout Success`
-3. `logoutFailure` - dispatched by an Effect when user logout attempt fails
+3. `logoutFailure` - Dispatched by an Effect when user logout attempt fails
     - type: `[Login API] Logout Failure`
     - props: `{ errorMsg: string }`
 
