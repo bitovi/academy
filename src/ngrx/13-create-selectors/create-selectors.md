@@ -15,13 +15,37 @@
 
 1. Create Selector for `token`
 
-## Problem 1: TODO
+## Problem 1: Creating a Feature Selector For `userId`
 
-TODO
+There should be a selector that obtains the `userId` from the Login feature state.
 
 ## P1: What You Need to Know
 
-TODO
+NgRx Selectors are pure functions used for [obtaining slices of state](https://ngrx.io/guide/store/selectors#using-a-selector-for-one-piece-of-state).
+
+NgRx provide 2 helper functions when creating selectors:
+
+1. [createFeatureSelector](https://ngrx.io/api/store/createFeatureSelector) - Used to obtain the entire feature state from the global state by looking up the Login feature key.
+
+2. [createSelector](https://ngrx.io/api/store/createSelector) - Uses other selectors to obtain slices of state. The first arguments are any other Selectors used for this new Selector. The last argument of this function is a _pure function_ commonly referred to as a **projector**.
+
+The NgRx schematics take care of creating our Login feature Selector, and it's up to us to create additional selectors using that generated feature Selector to obtain slices of that feature state:
+
+```ts
+import { createFeatureSelector, createSelector } from '@ngrx/store';
+import * as fromContact from './contact.reducer';
+
+// Generated feature Selector
+export const selectContactState = createFeatureSelector<fromContact.State>(
+  fromContact.contactFeatureKey
+);
+
+// Selector that obtains email address from feature state
+export const selectContactEmailAddress = createSelector(
+  selectContactState,
+  state => state.emailAddress
+);
+```
 
 ## P1: Solution
 
@@ -32,13 +56,9 @@ TODO
 
 </details>
 
-## Problem 2: TODO
+## Problem 2: Creating a Feature Selector For `username` and `token`
 
-TODO
-
-## P2: What You Need to Know
-
-TODO: (remove?)
+There should be a selector that obtains the `username` and another selector for `token`. Both should obtain values from the Login feature state.
 
 ## P2: Solution
 
