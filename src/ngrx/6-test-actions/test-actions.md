@@ -1,11 +1,12 @@
 @page learn-ngrx/test-actions Testing Actions
 @parent learn-ngrx 6
 
-@description Learn how to write unit tests for NgRx actions.
+@description Learn how to write unit tests for NgRx Actions.
 
 @body
 
 > **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/dispatch-actions) to get your codebase ready to work on this part.
+
 
 ## Running Tests
 
@@ -33,6 +34,7 @@ Copy the following code to replace the contents of `src/app/dashboard/dashboard.
 @sourceref ./dashboard.component.spec.ts
 </details>
 
+
 ### Update `login.component.spec.ts`
 
 Copy the following code to replace the contents of `src/app/dashboard/dashboard.component.spec.ts`:
@@ -41,5 +43,6 @@ Copy the following code to replace the contents of `src/app/dashboard/dashboard.
 <summary>src/app/login/login.component.spec.ts</summary>
 @sourceref ./login.component.spec.ts
 </details>
+
 
 > **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/test-actions). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/dispatch-actions...test-actions) on GitHub.

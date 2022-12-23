@@ -7,15 +7,18 @@
 
 > **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/test-api-effects) to get your codebase ready to work on this part.
 
+
 ## Overview
 
-1. Add `loginSuccess$` Effect to `LoginEffects` to navigate to dashboard page
+1. Add `loginSuccess$` Effect to `LoginEffects` to navigate to dashboard page.
 
-2. Add `logoutSuccess$` Effect to `LoginEffects` to navigate to login page
+2. Add `logoutSuccess$` Effect to `LoginEffects` to navigate to login page.
+
 
 ## Problem 1: Create loginSuccess$ Effect to Handle Navigating to Dashboard Page
 
 `LoginEffects` should use `Router` to navigate to the dashboard page at path `/dashboard` using an Effect called `loginSuccess$`.
+
 
 ## P1: What You Need to Know
 
@@ -26,22 +29,23 @@ To understand this better, let's take a deeper dive into the `createEffect()` [h
 `createEffect()` takes two arguments:
 
 1. `source` - A function which returns an `Observable`.
-2. `config` (optional) - A `Partial<EffectConfig>` to configure the effect. By default, `dispatch` is true and `useEffectsErrorHandler` is true.
+
+2. `config` (optional) - A `Partial<EffectConfig>` to configure the Effect. By default, `dispatch` is true and `useEffectsErrorHandler` is true.
 
 And if we look a little deeper, here is the type definition of the `EffectConfig` interface:
 
 ```ts
 /**
- * Configures an effect created by `createEffect()`.
+ * Configures an Effect created by `createEffect()`.
  */
 export interface EffectConfig {
   /**
-   * Determines if the action emitted by the effect is dispatched to the store.
-   * If false, effect does not need to return type `Observable<Action>`.
+   * Determines if the Action emitted by the Effect is dispatched to the store.
+   * If false, Effect does not need to return type `Observable<Action>`.
    */
   dispatch?: boolean;
   /**
-   * Determines if the effect will be resubscribed to if an error occurs in the main actions stream.
+   * Determines if the Effect will be resubscribed to if an error occurs in the main Actions stream.
    */
   useEffectsErrorHandler?: boolean;
 }
@@ -52,6 +56,7 @@ By default, the `dispatch` option is set to `true`, but if we set it to `false`,
 @sourceref ./contact.effects.ts
 @highlight 12, 13, 16
 
+
 ## P1: Solution
 
 <details>
@@ -61,9 +66,11 @@ By default, the `dispatch` option is set to `true`, but if we set it to `false`,
 
 </details>
 
+
 ## Problem 2: Create logoutSuccess$ Effect to Handle Navigating to Login Page
 
 `LoginEffects` should use `Router` to navigate to the dashboard page at path `/` using an Effect called `loginSuccess$`.
+
 
 ## P2: Solution
 
@@ -74,6 +81,7 @@ By default, the `dispatch` option is set to `true`, but if we set it to `false`,
 
 </details>
 
+
 ## Verify Implementation
 
 At this point, you should be able to login on the login page:
@@ -82,12 +90,13 @@ At this point, you should be able to login on the login page:
 
 The `LoginService.login()` method will throw an error if any of these cases are not met:
 
-1. `password` must be at least 6 characters
+1. `password` must be at least 6 characters.
 
-2. `username` must be at least 3 characters
+2. `username` must be at least 3 characters.
 
-3. `username` must be alphanumeric including hyphens or underscores
+3. `username` must be alphanumeric including hyphens or underscores.
 
 _When one of these requirements aren't met, an error is thrown and an error is logged in the console in red text._
+
 
 > **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-redirect-effects). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/test-api-effects...create-redirect-effects) on GitHub.
