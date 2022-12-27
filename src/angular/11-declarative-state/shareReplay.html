@@ -5,7 +5,7 @@
 
   // emits the values every 2 seconds in order
   const pseudoFormValueStream$ = zip(
-    of('mustang', 'camaro', 'corvette'),
+    of('Truffle Noodles', 'Charred Octopus', 'Gunthorp Chicken'),
     interval(2000)
   ).pipe(map(([val, num]) => val));
 
@@ -13,36 +13,36 @@
   const sharedFormValues$ = pseudoFormValueStream$.pipe(shareReplay(1));
 
   // subscriber 1, will subscribe to stream, starting values to be emitted
-  sharedFormValues$.subscribe((carName) => {
-    console.log('s1: ' + carName);
+  sharedFormValues$.subscribe((menuItem) => {
+    console.log('s1: ' + menuItem);
   });
 
-  // subscriber 2, subscribes late, but still emits 'mustang' because the stream replays it.
+  // subscriber 2, subscribes late, but still emits 'Truffle Noodles' because the stream replays it.
   // afterwards works like subscriber 1, logging at the same time since they're both listening to same hot observable.
   setTimeout(() => {
-    sharedFormValues$.subscribe((carName) => {
-      console.log('s2: ' + carName);
+    sharedFormValues$.subscribe((menuItem) => {
+      console.log('s2: ' + menuItem);
     });
   }, 2500);
 
-  // subscriber 3, subscribes after the stream completes, but still emits 'corvette' because the stream replays it.
+  // subscriber 3, subscribes after the stream completes, but still emits 'Gunthorp Chicken' because the stream replays it.
   setTimeout(() => {
-    sharedFormValues$.subscribe((carName) => {
-      console.log('s3: ' + carName);
+    sharedFormValues$.subscribe((menuItem) => {
+      console.log('s3: ' + menuItem);
     });
   }, 6500);
 
   // logs:
   // (... 2 seconds pass)
-  // s1: mustang
+  // s1: Truffle Noodles
   // (... .5 seconds pass)
-  // s2: mustang
+  // s2: Truffle Noodles
   // (... 1.5 seconds pass)
-  // s1: camaro
-  // s2: camaro
+  // s1: Charred Octopus
+  // s2: Charred Octopus
   // (... 2 seconds pass)
-  // s1: corvette
-  // s2: corvette
+  // s1: Gunthorp Chicken
+  // s2: Gunthorp Chicken
   // (... .5 seconds pass)
-  // s3: corvette
+  // s3: Gunthorp Chicken
 </script>
