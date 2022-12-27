@@ -19,7 +19,6 @@ In order to fix this, we will create an Attribute Directive that will change the
   name="phone"
   type="text"
   pmoOnlyNumbers
-  class="form-control"
   formControlName="phone"
 />
 ```
@@ -100,7 +99,6 @@ As we have discussed above, Directives are very useful tools in Angular that can
   name="phone"
   type="text"
   pmoOnlyNumbers
-  class="form-control"
   formControlName="phone"
 />
 ```
