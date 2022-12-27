@@ -4,21 +4,21 @@
   const { map, pairwise } = rxjs.operators;
 
   // emits the values every 2 seconds in order
-  const cars$ = zip(
-    of('beetle', 'mustang', 'camaro', 'tesla model s'),
+  const menuItems$ = zip(
+    of('Steamed Mussels', 'Truffle Noodles', 'Charred Octopus', 'Onion fries'),
     interval(2000)
   ).pipe(map(([val, num]) => val));
 
-  cars$.pipe(pairwise()).subscribe(([previous, current]) => {
+  menuItems$.pipe(pairwise()).subscribe(([previous, current]) => {
     console.log('Previous: ' + previous, 'Current: ' + current);
   });
 
   // logs:
-  // (... 2 seconds pass), "beetle" is emitted by cars$
-  // (... 2 seconds pass), "mustang" is emitted by cars$
-  // "Previous: beetle" "Current: mustang"
-  // (... 2 seconds pass), "camaro" is emitted by cars$
-  // "Previous: mustang" "Current: camaro"
-  // (... 2 seconds pass), "tesla model s" is emitted by cars$
-  // "Previous: camaro" "Current: tesla model s"
+  // (... 2 seconds pass), "Steamed Mussels" is emitted by menuItems$
+  // (... 2 seconds pass), "Truffle Noodles" is emitted by menuItems$
+  // "Previous: Steamed Mussels" "Current: Truffle Noodles"
+  // (... 2 seconds pass), "Charred Octopus" is emitted by menuItems$
+  // "Previous: Truffle Noodles" "Current: Charred Octopus"
+  // (... 2 seconds pass), "Onion fries" is emitted by menuItems$
+  // "Previous: Charred Octopus" "Current: Onion fries"
 </script>
