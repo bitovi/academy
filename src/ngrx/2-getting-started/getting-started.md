@@ -9,6 +9,7 @@
 
 For the sake of convenience, we've prepared a git repository for you to checkout as a starting point for the upcoming exercises. Each page in this training will contain a link to branches representing the starting point and solution for that part along with a link to a diff showing changes made.
 
+
 ## Setting up your Project
 
 First, clone the `angular-ngrx-chat` repo using the git CLI by running the following in your terminal:
@@ -26,7 +27,7 @@ git checkout starting-point
 
 Make sure to use the expected node/npm versions.
 
-```
+```bash
 node -v # v14.20.0
 npm -v # 6.14.13
 ```
@@ -38,8 +39,11 @@ Next install the project's node dependencies using `npm install`.
 You now have the project starting point checked out, which includes:
 
 1. An Angular 14 application
+
 2. ESLint and the `@bitovi/eslint-config` package
+
 3. Karma + Jasmine
+
 4. Login and Dashboard UI Components
+
 5. `TODO`'s for needed functionality
-∂

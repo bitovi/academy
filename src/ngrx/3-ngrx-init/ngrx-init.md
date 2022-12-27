@@ -7,15 +7,17 @@
 
 > **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/starting-point) to get your codebase ready to work on this part.
 
+
 ## Overview
 
-1. Add NgRx schematics
+1. Add NgRx schematics.
 
-2. Add NgRx dependencies
+2. Add NgRx dependencies.
 
-3. Generate Global store using NgRx schematics
+3. Generate Global Store using NgRx schematics.
 
-4. Generate Login feature store using NgRx schematics
+4. Generate Login Feature Store using NgRx schematics.
+
 
 ## NgRx Dependencies
 
@@ -42,6 +44,7 @@ This command will install the NgRx dependencies and update `package.json` and `p
 npm install @ngrx/{store,effects,entity,store-devtools}@14 --save
 ```
 
+
 ## Generating Global Store
 
 We'll take advantage of NgRx schematics to [generate our initial state management files](https://ngrx.io/guide/schematics/store#command), and register the root of our Global Store within `app.module.ts`. 
@@ -51,6 +54,7 @@ ng generate store State --root --state-path store --module app.module.ts
 ```
 
 We are now setup to be able to generate NgRx Features.
+
 
 ## Generating Login Feature Set
 
@@ -66,9 +70,8 @@ ng generate feature store/login/Login --module app.module.ts --reducers ../../st
 
 NgRx schematics will prompt us with a few questions:
 
-- `Should we generate and wire success and failure actions?` **Yes**. We will modify the actions a little bit, but this is enough to get started.
-- `What should be the prefix of the action, effect and reducer?` **load**. The default value. We will change the names for actions, effects and reducers, so don’t worry about the prefix right now.
-
+- `Should we generate and wire success and failure actions?` **Yes**. We will modify the Actions a little bit, but this is enough to get started.
+- `What should be the prefix of the action, effect and reducer?` **load**. The default value. We will change the names for Actions, Effects and Reducers, so don’t worry about the prefix right now.
 
 This command accomplishes the following:
 
@@ -76,16 +79,18 @@ This command accomplishes the following:
 2. Updates `app.module.ts` to initialize the Login Feature Store and Feature Effects
 3. Updates `src/app/store/index.ts` to:
     a. Add Login Feature Reducers map
-    b. Add the Login Feature state type to the global `State` interface
+    b. Add the Login State type to the Global `State` interface
 
-### Register Root EffectsModule in AppModule
 
-We need to manually update our `app.module.ts` to [register NgRx global Effects](https://ngrx.io/guide/schematics#initial-effects-setup). To accomplish this, we need to add `EffectsModuloe.forRoot([])` to our `AppModule` imports, as shown below:
+### Register Root `EffectsModule` in `AppModule`
+
+We need to manually update our `app.module.ts` to [register NgRx Global Effects](https://ngrx.io/guide/schematics#initial-effects-setup). To accomplish this, we need to add `EffectsModuloe.forRoot([])` to our `AppModule` imports, as shown below:
 
 <details open>
 <summary>src/app/app.module.ts</summary>
 @diff ./app.module.before-add-effects-module.ts ./app.module.ts only
 </details>
+
 
 ### Generate Login Feature
 
@@ -98,5 +103,6 @@ Lastly, we need to update `src/app/store/login/login.reducer.ts` to include a `L
 <summary>src/app/store/login/login.reducer.ts</summary>
 @diff ./login.reducer.before-generate-login.ts ./login.reducer.ts only
 </details>
+
 
 > **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/ngrx-init). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/starting-point...ngrx-init) on GitHub.

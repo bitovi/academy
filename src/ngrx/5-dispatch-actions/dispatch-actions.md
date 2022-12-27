@@ -1,21 +1,24 @@
 @page learn-ngrx/dispatch-actions Dispatching Actions
 @parent learn-ngrx 5
 
-@description Learn how to dispatch NgRx actions from within Angular components.
+@description Learn how to dispatch NgRx Actions from within Angular Components.
 
 @body
 
 > **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-actions) to get your codebase ready to work on this part.
 
+
 ## Overview
 
-1. Update `LoginComponent` to dispatch `LoginActions.login`
+1. Update `LoginComponent` to dispatch `LoginActions.login` Action.
 
-2. Update `DashboardComponent` to dispatch `LoginActions.logout`
+2. Update `DashboardComponent` to dispatch `LoginActions.logout` Action.
 
-## Problem 1: Disptch Login Action on LoginComponent
 
-Now that we have our Actions, let's use them. The LoginComponent should have the Login Action be dispatched when the submit button is clicked.
+## Problem 1: Disptch Login Action on `LoginComponent`
+
+Now that we have our Actions, let's use them. The `LoginComponent` should have the Login Action be dispatched when the submit button is clicked.
+
 
 ## P1: What You Need to Know
 
@@ -28,6 +31,7 @@ In upcoming sections, we will discuss how dispatched Actions can trigger Reducer
 
 In the `LoginComponent`, there is a `TODO` where the Login Action should be dispatched.
 
+
 ## P1: Solution
 
 <details>
@@ -37,13 +41,16 @@ In the `LoginComponent`, there is a `TODO` where the Login Action should be disp
 
 </details>
 
-## Problem 2: Disptch Logout Action on DashboardComponent
 
-And the DashboardComponent should have the Logout Action be dispatched when the logout button is clicked.
+## Problem 2: Disptch Logout Action on `DashboardComponent`
+
+And the `DashboardComponent` should have the Logout Action be dispatched when the logout button is clicked.
+
 
 ## P2: What You Need to Know
 
 In the `DashboardComponent`, there is a `TODO` where the Logout Action should be dispatched.
+
 
 ## P2: Solution
 
@@ -53,5 +60,6 @@ In the `DashboardComponent`, there is a `TODO` where the Logout Action should be
 @diff ../4-create-actions/dashboard.component.ts ./dashboard.component.ts only
 
 </details>
+
 
 > **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/dispatch-actions). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/create-actions...dispatch-actions) on GitHub.

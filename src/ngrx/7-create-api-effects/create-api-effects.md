@@ -1,25 +1,27 @@
 @page learn-ngrx/create-api-effects Create an API Effect
 @parent learn-ngrx 7
 
-@description Create an NgRx effect to connect the login Store to a mock API.
+@description Create an NgRx Effect to connect the Login Store to an authentication API.
 
 @body
 
 > **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/test-actions) to get your codebase ready to work on this part.
 
+
 ## Overview
 
-1. Add `login$` Effect to `LoginEffects`
+1. Add `login$` Effect to `LoginEffects`.
 
-2. Dispatch `LoginActions.loginSuccess` when API request is successful
+2. Dispatch `LoginActions.loginSuccess` Action when API request is successful.
 
-3. Dispatch `LoginActions.loginFailure` when API request fails
+3. Dispatch `LoginActions.loginFailure` Action when API request fails.
 
-1. Add `logout$` Effect to `LoginEffects`
+4. Add `logout$` Effect to `LoginEffects`.
 
-2. Dispatch `LoginActions.logoutSuccess` when API request is successful
+5. Dispatch `LoginActions.logoutSuccess` Action when API request is successful.
 
-3. Dispatch `LoginActions.logoutFailure` when API request fails
+6. Dispatch `LoginActions.logoutFailure` Action when API request fails.
+
 
 ## Problem 1: Create `login$` Effect to Handle API Requests
 
@@ -44,9 +46,11 @@
 
 NgRx provides a couple of helpful functions and the `Actions` class to create Effects:
 
-1. `createEffect()` [helper function](https://ngrx.io/api/effects/createEffect) to create Effects
-2. `ofType()` [helper function](https://ngrx.io/api/effects/ofType) to filter Actions by `type`
-3. `Actions` [class](https://ngrx.io/api/effects/Actions) that extends the RxJS Observable to listen to every dispatched Action
+1. `createEffect()` [helper function](https://ngrx.io/api/effects/createEffect) to create Effects.
+
+2. `ofType()` [helper function](https://ngrx.io/api/effects/ofType) to filter Actions by `type`.
+
+3. `Actions` [class](https://ngrx.io/api/effects/Actions) that extends the RxJS Observable to listen to every dispatched Action.
 
 @sourceref ./contact.effects-initial-setup.ts
 @highlight 2, 3, 7, 8, 9, 14
@@ -71,13 +75,14 @@ And last, you will need to use `ngx-learn-ngrx`'s `LoginService` to perform auth
 
 The `login()` method will throw an error if any of these cases are not met:
 
-1. `password` must be at least 6 characters
+1. `password` must be at least 6 characters.
 
-2. `username` must be at least 3 characters
+2. `username` must be at least 3 characters.
 
-3. `username` must be alphanumeric including hyphens or underscores
+3. `username` must be alphanumeric including hyphens or underscores.
 
 When one of these requirements aren't met, an error is thrown and an error is logged in the console in red text.
+
 
 ## P1: Solution
 
@@ -88,6 +93,7 @@ When one of these requirements aren't met, an error is thrown and an error is lo
 
 </details>
 
+
 ## Problem 2: Create `logout$` Effect to Handle API Requests
 
 1. `LoginEffects` should create a logout API request  using `ngx-learn-ngrx`'s `LoginService.logout()` method whenever the `LoginActions.logout` Action is dispatched using an Effect called `logout$`.
@@ -95,6 +101,7 @@ When one of these requirements aren't met, an error is thrown and an error is lo
 2. If the API request is successful, a `LoginActions.logoutSuccess` Action should be dispatched using the API response. 
 
 3. If the API request is unsuccessful, a `LoginActions.logoutFailure` Action should be dispatched using the same `getErrorMessage()` method to parse the error to a message.
+
 
 ## P2: Solution
 
@@ -104,5 +111,6 @@ When one of these requirements aren't met, an error is thrown and an error is lo
 @diff ./login.effects-login-effect.ts ./login.effects.ts only
 
 </details>
+
 
 > **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-api-effects). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/test-actions...create-api-effects) on GitHub.
