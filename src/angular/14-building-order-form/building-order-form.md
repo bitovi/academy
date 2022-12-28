@@ -231,7 +231,7 @@ Next, we want to know when a checkbox has been checked or unchecked, and update 
 
 ## P4: Technical Requirements
 
-Create a function in the MenuItemsComponent called `updateItems` that fires whenever a checkbox is checked and takes a parameter of the item that has been checked. In the `updateItems` function use the following code to update the `selectedItems` array:
+Create a function in the `MenuItemsComponent` called `updateItems` that fires whenever a checkbox is checked and takes a parameter of the item that has been checked. In the `updateItems` function use the following code to update the `selectedItems` array:
 
 ```typescript
 let index = this.selectedItems.indexOf(item);
@@ -300,14 +300,14 @@ The parent component is listening for a change on the child component's property
 
 ## Programmatically Updating FormControl Values
 
-When we have a formControl we need to update programmatically with a value we can use the <a href="https://angular.io/api/forms/FormControl#patchvalue" >`patchValue`</a> method on the `FormControl` class. This method must be called on a FormControl instance and with a parameter of the new value.
+When we have a formControl we need to update programmatically with a value we can use the <a href="https://angular.io/api/forms/FormControl#patchvalue" >`patchValue`</a> method on the `FormControl` class. This method must be called on a `FormControl` instance and with a parameter of the new value.
 
 @sourceref ./form-patch-value.html
 @codepen
 @highlight 25,57-61,only
 
 - How to emit a value to a parent component (you learned this in the section above! ✔️)
-- How to programmatically update a FormControl's value (you learned this in the section above! ✔️)
+- How to programmatically update a `FormControl`'s value (you learned this in the section above! ✔️)
 
 ## P5: Solution
 
@@ -329,7 +329,7 @@ When we have a formControl we need to update programmatically with a value we ca
 
 ## Control Value Accessor
 
-Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the <a href="https://angular.io/api/forms/ControlValueAccessor" >Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.
+Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the <a href="https://angular.io/api/forms/ControlValueAccessor" >Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - `onChange`, `onTouched`, `setValue`. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.
 
 ✏️ Update **src/app/order/menu-items.component.ts**
 

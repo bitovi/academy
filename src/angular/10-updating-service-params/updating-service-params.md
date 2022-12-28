@@ -9,7 +9,7 @@
 
 In this part, we will:
 
-- Update getRestaurants service method to take params
+- Update `getRestaurants` service method to take params
 - Update component to pass state and city params to service method
 
 ## Problem

@@ -9,8 +9,8 @@
 
 In this part, we will:
 
-- Write a new getRestaurant method on our RestaurantsService
-- Write a unit test for the getRestaurant method
+- Write a new `getRestaurant` method on our `RestaurantsService`
+- Write a unit test for the `getRestaurant` method
 
 ## Problem
 

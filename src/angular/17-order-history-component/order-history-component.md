@@ -64,7 +64,7 @@ Then route to the component:
 
 ## Problem 2: Add `HistoryComponent` to navigation
 
-We want a user to be able to navigate to the HistoryComponent via a link in the main navigation.
+We want a user to be able to navigate to the `HistoryComponent` via a link in the main navigation.
 
 ## P2: Technical Requirements
 

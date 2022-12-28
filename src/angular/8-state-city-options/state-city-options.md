@@ -43,7 +43,7 @@ Here's some code to get you started. Notice that:
 @diff ../7-pull-restaurant-data-into-view/restaurant.component.ts ./restaurant.component-starter.ts only
 
 Make sure to use the `formControl` directive to tie the selects to
-their FormControls in the component.
+their `FormControl`s in the component.
 
 ✏️ Update **src/app/restaurant/restaurant.component.html** to include
 some boilerplate for the state and city `<select>` controls:
@@ -106,7 +106,7 @@ class. It's worth getting familiar with the methods available in this class (lik
 
 ## FormGroup
 
-A <a href="https://angular.io/api/forms/FormGroup" >FormGroup</a> is a way of grouping FormControls and tracking the state of the entire group. For instance, if you want to get the values of all of your FormControls to submit as an object of those values, you'd use `formGroupName.value`. Notice the way we connect our input in the markup is slightly different - we can use the `formControlName` directive to bind to the name value of a FormControl in our FormGroup. Groups can be nested within other groups or arrays.
+A <a href="https://angular.io/api/forms/FormGroup" >FormGroup</a> is a way of grouping `FormControl`s and tracking the state of the entire group. For instance, if you want to get the values of all of your `FormControl`s to submit as an object of those values, you'd use `formGroupName.value`. Notice the way we connect our input in the markup is slightly different - we can use the `formControlName` directive to bind to the name value of a `FormControl` in our `FormGroup`. Groups can be nested within other groups or arrays.
 
 @sourceref ./form-group.html
 @codepen
@@ -114,9 +114,9 @@ A <a href="https://angular.io/api/forms/FormGroup" >FormGroup</a> is a way of gr
 
 ## FormArray
 
-A <a href="https://angular.io/api/forms/FormArray" >FormArray</a> aggregates FormControls into an array. It's different than FormGroup in that the controls inside are serialized as an array. FormArrays are very useful when dealing with repeated FormControls or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.
+A <a href="https://angular.io/api/forms/FormArray" >FormArray</a> aggregates `FormControl`s into an array. It's different than FormGroup in that the controls inside are serialized as an array. `FormArray`s are very useful when dealing with repeated `FormControl`s or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.
 
-This example shows the use of FormArray and using an `insert` method to dynamically add more FormGroups to the `users` FormArray.
+This example shows the use of `FormArray` and using an `insert` method to dynamically add more `FormGroup`s to the `users` FormArray.
 
 @sourceref ./form-array.html
 @codepen

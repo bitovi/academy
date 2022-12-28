@@ -61,8 +61,8 @@ see the UI change and see the active class on the current nav item.
 
 To solve this, you will need to know how to:
 
-- How to use the routerLink directive
-- How to use the routerLinkActive directive
+- How to use the `routerLink` directive
+- How to use the `routerLinkActive` directive
 
 ## RouterLink
 

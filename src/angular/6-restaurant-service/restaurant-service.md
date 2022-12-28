@@ -33,7 +33,7 @@ To complete this problem, you'll need to know:
 
 Angular <a href="https://angular.io/guide/architecture-services" >Services</a> are pieces of functionality that may not need to be tied to a view like components. A common example of a service is making an HTTP request to get data. Many components may require functionality to fetch data, and a Service can help abstract that logic into one place to be used across components.
 
-The following example shows a `UsersService` with methods on it that return a list of users and get a user by ID, and shows how the UsersService is injected into the `AppComponent` and calls the `getUsers` to get the list of users to display in the template.
+The following example shows a `UsersService` with methods on it that return a list of users and get a user by ID, and shows how the `UsersService` is injected into the `AppComponent` and calls the `getUsers` to get the list of users to display in the template.
 
 @sourceref ./service.html
 @codepen
