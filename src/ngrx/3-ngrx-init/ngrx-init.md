@@ -92,7 +92,14 @@ This command accomplishes the following:
 
 ### Register Root `EffectsModule` in `AppModule`
 
-We need to manually update our `app.module.ts` to [register NgRx Global Effects](https://ngrx.io/guide/schematics#initial-effects-setup). To accomplish this, we need to add `EffectsModuloe.forRoot([])` to our `AppModule` imports, as shown below:
+This project has [prettier](https://prettier.io/) installed, so you can format files throughout the course. Right now the `imports` for AppModule found at `src/app/app.module.ts` has a long imports array. To make this more readable, we will [format this file](https://code.visualstudio.com/docs/editor/codebasics#_formatting). To do this using [vscode](https://code.visualstudio.com/), we can open `src/app/app.module.ts` then press `Shift` + `Option` + `F` for Mac or press `Shift` + `Alt` + `F` for Windows:
+
+<details open>
+<summary>src/app/app.module.ts</summary>
+@diff ./app.module.before-formatting.ts ./app.module.before-add-effects-module.ts only
+</details>
+
+Next, we need to manually update our `app.module.ts` to [register NgRx Global Effects](https://ngrx.io/guide/schematics#initial-effects-setup). To accomplish this, we need to add `EffectsModuloe.forRoot([])` to our `AppModule` imports, as shown below:
 
 <details open>
 <summary>src/app/app.module.ts</summary>
@@ -107,9 +114,11 @@ Lastly, we need to update `src/app/store/login/login.reducer.ts` to include a `L
 1. Writing tests for `Components` using NgRx Selectors
 2. Writing tests for NgRx Selectors themselves
 
+<!-- Can't show code diff since it will result in misleading highlights: 12, 13, 18 -->
 <details open>
 <summary>src/app/store/login/login.reducer.ts</summary>
-@diff ./login.reducer.before-generate-login.ts ./login.reducer.ts only
+@sourceref ./login.reducer.ts
+@highlight 12, 13, 14, only
 </details>
 
 
