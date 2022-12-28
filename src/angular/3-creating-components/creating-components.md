@@ -281,7 +281,7 @@ This example shows various ways classes can be added to elements.
 @codepen
 @highlight 17, 19, 21, 23,25, 27-30, 34, only
 
-Notice in the above example our `ng-class` is surrounded by `[ ]`. This signals that we're passing in an object, instead of just a string. 
+Notice in the above example our `ng-class` is surrounded by `[ ]`. This signals that we're passing in an object, instead of just a string.
 
 When using <a href="https://angular.io/guide/property-binding" target="_blank">property binding</a>, `ngClass="value"` will evaluate the value as a string of _"value"_ and `[ngClass]="value"` as whatever the component property value is.
 
