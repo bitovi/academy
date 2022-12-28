@@ -18,6 +18,14 @@
 
 4. Generate Login Feature Store using NgRx schematics.
 
+## Installing Project Dependencies
+
+Before we can get started, we'll need to install the project's dependencies:
+
+```bash
+npm install
+```
+
 
 ## NgRx Dependencies
 
@@ -30,7 +38,7 @@ First, install [NgRx schematics](https://ngrx.io/guide/schematics/install#instal
 This command will install NgRx schematics and update `angular.json`:
 
 ```bash
-ng add @ngrx/schematics@14
+npx ng add @ngrx/schematics@14
 ```
 
 
@@ -50,7 +58,7 @@ npm install @ngrx/{store,effects,entity,store-devtools}@14 --save
 We'll take advantage of NgRx schematics to [generate our initial state management files](https://ngrx.io/guide/schematics/store#command), and register the root of our Global Store within `app.module.ts`. 
 
 ```bash
-ng generate store State --root --state-path store --module app.module.ts
+npx ng generate store State --root --state-path store --module app.module.ts
 ```
 
 We are now setup to be able to generate NgRx Features.
@@ -65,7 +73,7 @@ The Login Feature Set in our application will be responsible for holding informa
 We’ll take advantage of NgRx schematics to quickly [generate a Feature Set](https://ngrx.io/guide/schematics/feature#command): 
 
 ```bash
-ng generate feature store/login/Login --module app.module.ts --reducers ../../store/index.ts
+npx ng generate feature store/login/Login --module app.module.ts --reducers ../../store/index.ts
 ```
 
 NgRx schematics will prompt us with a few questions:
