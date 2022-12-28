@@ -1,0 +1,34 @@
+<h4>{{ listTitle }}</h4>
+<ng-container *ngFor="let order of orders">
+  <div [ngClass]="['order', order.status ? order.status : '']">
+    <address>
+      {{ order.name }} <br />{{ order.address }} <br />{{ order.phone }}
+    </address>
+
+    <div class="items">
+      <ul>
+        <li *ngFor="let item of order.items">{{ item.name }}</li>
+      </ul>
+    </div>
+
+    <div class="total">${{ total(order.items) }}</div>
+
+    <div class="actions">
+      <span class="badge">{{ statusTitle }}</span>
+      <p class="action" *ngIf="action">
+        Mark as:
+        <button class="btn-link" (click)="markAs(order, action)">
+          {{ actionTitle }}
+        </button>
+      </p>
+
+      <p class="action">
+        <button class="btn-link" (click)="deleteOrder(order._id)">
+          Delete
+        </button>
+      </p>
+    </div>
+  </div>
+</ng-container>
+
+<div class="order empty">{{ emptyMessage }}</div>

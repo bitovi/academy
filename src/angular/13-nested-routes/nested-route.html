@@ -1,0 +1,143 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js"/></script>
+<script src="https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js"/></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js"></script>
+<script src="https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js"></script>
+<script src="https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js"></script>
+<script src="https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js"></script>
+<script src="https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js"></script>
+<script src="https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js"></script>
+<script src="//unpkg.com/mock-url@^5.0.0" type="module"></script>
+<mock-url pushstate:from="true"></mock-url>
+<base href="/">
+<my-app></my-app>
+<script type="typescript">
+const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { Routes, RouterModule, ActivatedRoute } = ng.router;
+
+interface User {
+  name: string;
+  id: number;
+  role: string;
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+class UsersService {
+  private users: User[] = [
+  {
+    name: 'Jennifer',
+    id: 1,
+    role: 'admin'
+  },
+  {
+    name: 'Steve',
+    id: 2,
+    role: 'user'
+  },
+  {
+    name: 'Alice',
+    id: 3,
+    role: 'developer'
+  }]
+
+  constructor() { }
+
+  getUsers() {
+    return this.users;
+  }
+
+  getUser(id: string) {
+    return this.users.find(x => x.id === parseInt(id, 10))
+  }
+}
+
+@Component({
+  selector: 'my-app',
+  template: `
+  <ul class="nav">
+    <li routerLinkActive="active">
+      <a routerLink="/about" >About</a>
+    </li>
+    <li routerLinkActive="active">
+      <a [routerLink]="['/users', userId]">User 1</a>
+    </li>
+  </ul>
+  <router-outlet></router-outlet>
+  `
+})
+class AppComponent {
+  public userId: number = 1;
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'home-component',
+  template: `
+    <p>A home component!</p>
+  `
+})
+class HomeComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'user-component',
+  template: `
+    <p>A user component!</p>
+    <p *ngIf="user">
+      {{user.name}} is a {{user.role}}
+    </p>
+  `
+})
+class UserComponent implements OnInit {
+  public user: User;
+
+  constructor(private route: ActivatedRoute, private usersService: UsersService) {
+  }
+
+  ngOnInit() {
+    const id = this.route.snapshot.paramMap.get('id');
+
+    this.user = this.usersService.getUser(id);
+  }
+}
+//THIS IS A HACK JUST FOR CODEPEN TO WORK
+UserComponent.parameters = [ActivatedRoute, UsersService];
+
+const routes: Routes = [
+  { path: '', component: HomeComponent },
+  { path: 'users/:id', component: UserComponent },
+  { path: '**', component: HomeComponent }
+]
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+class AppRoutingModule { }
+
+                 
+@NgModule({
+  declarations: [AppComponent, HomeComponent, UserComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    AppRoutingModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err => console.error(err));
+</script>
+

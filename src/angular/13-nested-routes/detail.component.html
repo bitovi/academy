@@ -1,0 +1,42 @@
+<ng-container *ngIf="isLoading">
+  <div class="loading"></div>
+</ng-container>
+<ng-container *ngIf="!isLoading && restaurant">
+  <div
+    class="restaurant-header"
+    [ngStyle]="{
+      'background-image': 'url(' + (restaurant.images.banner | imageUrl) + ')'
+    }"
+  >
+    <div class="background">
+      <h2>{{ restaurant.name }}</h2>
+
+      <div class="address" *ngIf="restaurant.address">
+        {{ restaurant.address.street }}<br />{{ restaurant.address.city }},
+        {{ restaurant.address.state }} {{ restaurant.address.zip }}
+      </div>
+
+      <div class="hours-price">
+        $$$<br />
+        Hours: M-F 10am-11pm
+        <span class="open-now">Open Now</span>
+      </div>
+
+      <br />
+    </div>
+  </div>
+
+  <div class="restaurant-content">
+    <h3>The best food this side of the Mississippi</h3>
+
+    <p class="description">
+      <img src="{{ restaurant.images.owner | imageUrl }}" />
+      Description for {{ restaurant.name }}
+    </p>
+    <p class="order-link">
+      <a class="btn" [routerLink]="['/restaurants', restaurant.slug, 'order']">
+        Order from {{ restaurant.name }}
+      </a>
+    </p>
+  </div>
+</ng-container>

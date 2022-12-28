@@ -1,0 +1,5 @@
+TypeScript is a typed superset of JavaScript
+that compiles to plain JavaScript.
+
+- By typed, I mean that JavaScript is not a typed language.
+  A variable can be anything. 

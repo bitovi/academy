@@ -1,0 +1,20 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.3.3/rxjs.umd.min.js"></script>
+<script type="module">
+  const { timer } = rxjs;
+  const { map } = rxjs.operators;
+
+  // act on a number starting at 0 and incrementing every 1000ms afterwards
+  const x$ = timer(0, 1000).pipe(
+    // create a string of As the length of the incrementing number
+    map((length) => Array(length).fill('A').join(''))
+  );
+  x$.subscribe((value) => console.log('x: ' + value));
+
+  // logs:
+  // x:
+  // (... 1 second passes)
+  // x: A
+  // (... 1 second passes)
+  // x: AA
+  // (... an so on)
+</script>

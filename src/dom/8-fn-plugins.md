@@ -1,9 +1,8 @@
-@page dom-jquery-training/fn-plugins Fn Plugins
-@parent dom-jquery-training 8
+@page learn-dom-jquery/fn-plugins Fn Plugins
+@parent learn-dom-jquery 8
 @description Learn how `$.fn` supports creating plugins.
 
 @body
-
 
 ## Overview
 
@@ -18,20 +17,18 @@ In this section, we will:
 
 ## Exercise: `$.fn`
 
-
 ### The problem
 
 Make adding methods to `$.fn` add methods to
-jQuery collections.  
-
+jQuery collections.
 
 For example, you should
 make it so if someone adds `myPlugin` as follows:
 
 ```js
-$.fn.myPlugin = function(){
-    this //-> $[<li>,<li>]
-}
+$.fn.myPlugin = function () {
+  this; //-> $[<li>,<li>]
+};
 ```
 
 `myPlugin` will now be available on collections:
@@ -40,26 +37,26 @@ $.fn.myPlugin = function(){
 $("li").myPlugin();
 ```
 
-
 Adding a method to `$.fn`
 
 <details>
 <summary>Click to see test code</summary>
+
 ```js
-QUnit.test("$.fn", function(){
-	expect(2);
+QUnit.test("$.fn", function () {
+  expect(2);
 
-	var div = document.createElement("div");
+  var div = document.createElement("div");
 
-	$.fn.myPlugin = function(){
-		QUnit.equal(this.length, 1);
-		QUnit.equal(this[0], div);
-	};
+  $.fn.myPlugin = function () {
+    QUnit.equal(this.length, 1);
+    QUnit.equal(this[0], div);
+  };
 
-	$([div]).myPlugin();
-
+  $([div]).myPlugin();
 });
 ```
+
 </details>
 
 Use the following CodePen to complete this exercise:
@@ -68,14 +65,17 @@ Use the following CodePen to complete this exercise:
 @codepen
 @highlight 77-78,only
 
-
-
 ### What you need to know
 
 - `$.fn` is an alias for the collection's constructor's prototype.
 
 ### The solution
 
+<details>
+<summary>Click to see the solution</summary>
+
 @sourceref ./8-fn-plugins-end.html
 @codepen
 @highlight 78,only
+
+</details>

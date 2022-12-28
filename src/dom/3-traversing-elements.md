@@ -1,11 +1,10 @@
-@page dom-jquery-training/traversing-elements Traversing Elements
-@parent dom-jquery-training 3
+@page learn-dom-jquery/traversing-elements Traversing Elements
+@parent learn-dom-jquery 3
 @description Learn how to move from one element to the next and a bit of meta programming.
-
 
 @body
 
-## Overveiw
+## Overview
 
 We will learn about:
 
@@ -27,121 +26,121 @@ Run the following example in CodePen:
 ```html
 <div id="qunit"></div>
 <div id="qunit-fixture"></div>
-<link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.12.0.css">
+<link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.12.0.css" />
 <script src="//code.jquery.com/qunit/qunit-1.12.0.js"></script>
-<script src="//bitovi.github.io/university/static/scripts/jquery-test.js"></script>
+<script src="//bitovi.github.io/academy/static/scripts/jquery-test.js"></script>
 <script type="module">
-(function() {
-  $ = function(selector) {
-    if ( !(this instanceof $) ) {
-      return new $(selector);
-    }
-    var elements;
-    if (typeof selector === "string") {
-      elements = document.querySelectorAll(selector);
-    } else if ($.isArrayLike(selector)) {
-      elements = selector;
-    }
-    [].push.apply(this, elements);
-  };
-
-  $.extend = function(target, object) {
-    for (var prop in object) {
-      if (object.hasOwnProperty(prop)) {
-        target[prop] = object[prop];
+  (function () {
+    $ = function (selector) {
+      if (!(this instanceof $)) {
+        return new $(selector);
       }
-    }
-    return target;
-  };
+      var elements;
+      if (typeof selector === "string") {
+        elements = document.querySelectorAll(selector);
+      } else if ($.isArrayLike(selector)) {
+        elements = selector;
+      }
+      [].push.apply(this, elements);
+    };
 
-  // Static methods
-  $.extend($, {
-    isArray: function(obj) {
-      return Object.prototype.toString.call(obj) === "[object Array]";
-    },
-    isArrayLike: function(obj) {
-      return obj &&
-        typeof obj === "object" &&
-        (   obj.length === 0 ||
-            typeof obj.length === "number" &&
-            obj.length > 0 &&
-            obj.length - 1 in obj );
-
-    },
-    each: function(collection, cb) {
-      if ($.isArrayLike(collection)) {
-        for (var i = 0; i < collection.length; i++) {
-          if (cb.call(this, i, collection[i]) === false) {
-            break;
-          }
+    $.extend = function (target, object) {
+      for (var prop in object) {
+        if (object.hasOwnProperty(prop)) {
+          target[prop] = object[prop];
         }
-      } else {
-        for (var prop in collection) {
-          if (collection.hasOwnProperty(prop)) {
-            if (cb.call(this, prop, collection[prop]) === false) {
+      }
+      return target;
+    };
+
+    // Static methods
+    $.extend($, {
+      isArray: function (obj) {
+        return Object.prototype.toString.call(obj) === "[object Array]";
+      },
+      isArrayLike: function (obj) {
+        return (
+          obj &&
+          typeof obj === "object" &&
+          (obj.length === 0 ||
+            (typeof obj.length === "number" &&
+              obj.length > 0 &&
+              obj.length - 1 in obj))
+        );
+      },
+      each: function (collection, cb) {
+        if ($.isArrayLike(collection)) {
+          for (var i = 0; i < collection.length; i++) {
+            if (cb.call(this, i, collection[i]) === false) {
               break;
             }
           }
+        } else {
+          for (var prop in collection) {
+            if (collection.hasOwnProperty(prop)) {
+              if (cb.call(this, prop, collection[prop]) === false) {
+                break;
+              }
+            }
+          }
         }
-      }
-      return collection;
-    },
-    makeArray: function(arr) {
-      if ($.isArray(arr)) {
-        return arr;
-      }
-      var array = [];
-      $.each(arr, function(i, item) {
-        array[i] = item;
-      });
-      return array;
-    },
-    proxy: function(fn, context) {
-      return function() {
-        return fn.apply(context, arguments);
+        return collection;
+      },
+      makeArray: function (arr) {
+        if ($.isArray(arr)) {
+          return arr;
+        }
+        var array = [];
+        $.each(arr, function (i, item) {
+          array[i] = item;
+        });
+        return array;
+      },
+      proxy: function (fn, context) {
+        return function () {
+          return fn.apply(context, arguments);
+        };
+      },
+    });
+
+    function makeSimpleGetterSetter(prop) {
+      return function (value) {
+        if (arguments.length) {
+          return $.each(this, function (i, element) {
+            element[prop] = value;
+          });
+        } else {
+          return this[0][prop];
+        }
       };
     }
-  });
 
-  function makeSimpleGetterSetter(prop) {
-    return function(value){
-      if(arguments.length) {
-        return $.each(this, function(i, element) {
-          element[prop] = value;
-        });
-      } else {
-        return this[0][prop];
-      }
-    }
-  }
-
-  $.extend($.prototype, {
+    $.extend($.prototype, {
       html: makeSimpleGetterSetter("innerHTML"),
       val: makeSimpleGetterSetter("value"),
       text: makeSimpleGetterSetter("textContent"),
-      find: function(selector) {
+      find: function (selector) {
         var elements = [];
-        $.each(this, function(i, element){
-            var result = element.querySelectorAll(selector);
-            elements.push(...result);
-            // Or elements.push.apply(elements, result);
-        })
+        $.each(this, function (i, element) {
+          var result = element.querySelectorAll(selector);
+          elements.push(...result);
+          // Or elements.push.apply(elements, result);
+        });
         return new $(elements);
       },
-      parent: function() { },
-      next: function() { },
-      prev: function() { },
-      children: function() { }
-  });
-
-})();
+      parent: function () {},
+      next: function () {},
+      prev: function () {},
+      children: function () {},
+    });
+  })();
 </script>
-
 ```
+
 @codepen
 @highlight 104-107,only
 
-Each exercise builds on the previous exercise.  There is a completed solution
+Each exercise builds on the previous exercise. There is a completed solution
 at the end of this page.
 
 ## Exercise: `collection.parent() -> collection`
@@ -153,10 +152,12 @@ at the end of this page.
 ```html
 <ul class="level-1">
   <li class="item-i">I</li>
-  <li class="item-ii">II
+  <li class="item-ii">
+    II
     <ul class="level-2">
       <li class="item-a">A</li>
-      <li class="item-b">B
+      <li class="item-b">
+        B
         <ul class="level-3">
           <li class="item-1">1</li>
           <li class="item-2">2</li>
@@ -169,13 +170,13 @@ at the end of this page.
   <li class="item-iii">III</li>
 </ul>
 <script type="module">
-import "https://unpkg.com/jquery@3/dist/jquery.js";
+  import "https://unpkg.com/jquery@3/dist/jquery.js";
 
-$( "li.item-a" ).parent().css( "border", "solid 1px red" );
+  $("li.item-a").parent().css("border", "solid 1px red");
 </script>
 ```
-@codepen
 
+@codepen
 
 <details>
 <summary>Click to see test code</summary>
@@ -185,10 +186,12 @@ QUnit.test('$.fn.parent', function(){
 		.html('<ul><li/><li/></ul><ul><li/><li/></ul>')
 		.find('li:first-child');
 
-	equal($lis.length, 2, 'got 2 uls');
-	equal($lis.parent().length, 2, 'got 2 lis');
+    equal($lis.length, 2, 'got 2 uls');
+    equal($lis.parent().length, 2, 'got 2 lis');
+
 });
-```
+
+````
 </details>
 
 ### What you need to know
@@ -208,16 +211,17 @@ QUnit.test('$.fn.parent', function(){
         });
         return $(parents);
       },
-```
-</details>
+````
 
+@highlight 2-6
+
+</details>
 
 ## Exercise: `collection.next() -> collection`
 
 ### The problem
 
 [collection.next](https://api.jquery.com/next/) gets the immediately following sibling of each element in the set of matched elements.
-
 
 ```html
 <ul>
@@ -228,13 +232,13 @@ QUnit.test('$.fn.parent', function(){
   <li>list item 5</li>
 </ul>
 <script type="module">
-import "https://unpkg.com/jquery@3/dist/jquery.js";
+  import "https://unpkg.com/jquery@3/dist/jquery.js";
 
-$( "li.third-item" ).next().css( "border", "solid 1px red" );
+  $("li.third-item").next().css("border", "solid 1px red");
 </script>
 ```
-@codepen
 
+@codepen
 
 <details>
 <summary>Click to see test code</summary>
@@ -244,11 +248,13 @@ QUnit.test('$.fn.next', function(){
 		.html('<ul> <li></li> <li></li> </ul> <ul> <li></li> <li></li> </ul>')
 		.find('li:first-child');
 
-	equal($lis.length, 2, 'got 2 lis');
-	equal($lis.next().length, 2, 'got 2 lis');
-	equal($lis.next().next().length, 0, 'got 0 lis');
+    equal($lis.length, 2, 'got 2 lis');
+    equal($lis.next().length, 2, 'got 2 lis');
+    equal($lis.next().next().length, 0, 'got 0 lis');
+
 });
-```
+
+````
 </details>
 
 ### What you need to know
@@ -270,9 +276,11 @@ QUnit.test('$.fn.next', function(){
         });
         return $(nexts);
       },
-```
-</details>
+````
 
+@highlight 2-6
+
+</details>
 
 ## Exercise: `collection.prev() -> collection`
 
@@ -288,11 +296,13 @@ QUnit.test('$.fn.prev', function(){
 		.html('<ul><li/><li/></ul><ul><li/><li/></ul>')
 		.find('li:last-child');
 
-	equal($lis.length, 2, 'got 2 uls');
-	equal($lis.prev().length, 2, 'got 2 lis');
-	equal($lis.prev().prev().length, 0, 'got 2 lis');
+    equal($lis.length, 2, 'got 2 uls');
+    equal($lis.prev().length, 2, 'got 2 lis');
+    equal($lis.prev().prev().length, 0, 'got 2 lis');
+
 });
-```
+
+````
 </details>
 
 ### What you need to know
@@ -314,7 +324,10 @@ QUnit.test('$.fn.prev', function(){
         });
         return $(prevs);
       },
-```
+````
+
+@highlight 2-8
+
 </details>
 
 ## Exercise: `collection.children() -> collection`
@@ -326,10 +339,12 @@ QUnit.test('$.fn.prev', function(){
 ```html
 <ul class="level-1">
   <li class="item-i">I</li>
-  <li class="item-ii">II
+  <li class="item-ii">
+    II
     <ul class="level-2">
       <li class="item-a">A</li>
-      <li class="item-b">B
+      <li class="item-b">
+        B
         <ul class="level-3">
           <li class="item-1">1</li>
           <li class="item-2">2</li>
@@ -342,11 +357,12 @@ QUnit.test('$.fn.prev', function(){
   <li class="item-iii">III</li>
 </ul>
 <script type="module">
-import "https://unpkg.com/jquery@3/dist/jquery.js";
+  import "https://unpkg.com/jquery@3/dist/jquery.js";
 
-$( "ul.level-2" ).children().css( "border", "solid 1px red" );
+  $("ul.level-2").children().css("border", "solid 1px red");
 </script>
 ```
+
 @codepen
 
 <details>
@@ -357,10 +373,12 @@ QUnit.test('$.fn.children', function(){
 		.html('<ul><li/><li/></ul><ul><li/><li/></ul>')
 		.children();
 
-	equal($ul.length, 2, 'got 2 uls');
-	equal($ul.children().length, 4, 'got four lis');
+    equal($ul.length, 2, 'got 2 uls');
+    equal($ul.children().length, 4, 'got four lis');
+
 });
-```
+
+````
 </details>
 
 ### What you need to know
@@ -380,7 +398,10 @@ QUnit.test('$.fn.children', function(){
         });
         return $(children);
       },
-```
+````
+
+@highlight 2-6
+
 </details>
 
 ## Exercise: eliminate duplicate code in `.find`, `.parent`, `.next`, `.prev`, and `.children`.
@@ -435,10 +456,10 @@ functions.
 ```
 
 Make a `makeTraverser(traverse)` function that takes a `traverse` function and
-produces a function.  
+produces a function.
 
 The `traverse` function should be called for each element in
-the source collection. When calling `traverse`, it's `this` should be each element.
+the source collection. When calling `traverse`, its `this` should be each element.
 
 The `traverse` functions should be able to return `null` and `element` or an array-like
 object of `elements`.
@@ -453,21 +474,24 @@ You know everything you need to know. You can do it!
 <summary>Click to see the solution</summary>
 
 ```js
-  function makeTraverser(traverser) {
-    return function() {
-      var elements = [], args = arguments;
-      $.each(this, function(i, element) {
-        var els = traverser.apply(element, args);
-        if ($.isArrayLike(els)) {
-          elements.push.apply(elements, els);
-        } else if (els) {
-          elements.push(els);
-        }
-      });
-      return $(elements);
-    };
-  }
+function makeTraverser(traverser) {
+  return function () {
+    var elements = [],
+      args = arguments;
+    $.each(this, function (i, element) {
+      var els = traverser.apply(element, args);
+      if ($.isArrayLike(els)) {
+        elements.push.apply(elements, els);
+      } else if (els) {
+        elements.push(els);
+      }
+    });
+    return $(elements);
+  };
+}
 ```
+
+@highlight 1-15
 
 ```js
       find: makeTraverser(function(selector) {
@@ -486,10 +510,18 @@ You know everything you need to know. You can do it!
         return this.children;
       })
 ```
+
+@highlight 1-15
+
 </details>
 
 ## Completed Solution
 
+<details>
+<summary>Click to see completed solution</summary>
+
 @sourceref ./3-traversing-elements-end.html
 @codepen
-@highlight 122-136,only
+@highlight 79-92, 122-136, only
+
+</details>

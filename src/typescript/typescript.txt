@@ -1,0 +1,27 @@
+Hello and welcome to Bitovi Academy's Learn TypeScript training.
+
+This video is an overview of the entire TypeScript course.
+
+Before we start, it's important to make sure everyone knows about Bitovi's
+Community slack.  It's a great place to get help on these exercises, and
+talk tech with likeminded folks.
+
+So as I mentioned, this course is about TypeScript. TypeScript
+adds static typing to JavaScript. The course covers the basics of
+TypeScript and works through some examples.
+
+Specifically, we will:
+
+- Learn why you might want to use typescript and
+  show an example of compiling it.
+- See how to configure typescript and
+  what integrated IDE support looks like
+- Declare types on variables.
+- Define functions to specify their
+  arguments and return types.
+- Define classes
+- Use interfaces to get "loosely" coupled types.
+- Use generics to support types as arguments.
+
+Once you've completed this course, you will be able to
+start building apps in TypeScript.

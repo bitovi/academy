@@ -1,0 +1,33 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.3.3/rxjs.umd.min.js"></script>
+<script type="module">
+  const { of, combineLatest, zip, interval } = rxjs;
+  const { map } = rxjs.operators;
+
+  // emits the values every 750ms in order
+  const selectedHatStream$ = zip(
+    of('Bowler', 'Top', 'Baseball'),
+    interval(750)
+  ).pipe(map(([val, num]) => val));
+
+  // emits the values every 2000ms in order
+  const selectedJacketStream$ = zip(
+    of('Trenchcoat', 'Tuxedo', 'Bomber'),
+    interval(2000)
+  ).pipe(map(([val, num]) => val));
+
+  combineLatest(selectedHatStream$, selectedJacketStream$).subscribe(
+    ([hat, jacket]) => {
+      console.log(`selected outfit: ${hat} hat & ${jacket} jacket`);
+    }
+  );
+
+  // logs:
+  // (... 2 seconds pass)
+  // selected outfit: Top hat & Trenchcoat jacket
+  // (... 250 milliseconds pass)
+  // selected outfit: Baseball hat & Trenchcoat jacket
+  // (... 1.75 seconds pass)
+  // selected outfit: Baseball hat & Tuxedo jacket
+  // (... 2 seconds pass)
+  // selected outfit: Baseball hat & Bomber jacket
+</script>

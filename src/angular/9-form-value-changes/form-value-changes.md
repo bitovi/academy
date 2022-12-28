@@ -1,7 +1,7 @@
-@page angular/form-value-changes Listening to Form Value Changes
-@parent angular 9
+@page learn-angular/form-value-changes Filter Cities by State
+@parent learn-angular 9
 
-@description Listening to Form Value Changes
+@description Learn how to listen to form value changes with Angular.
 
 @body
 
@@ -10,165 +10,206 @@
 In this part, we will:
 
 - Learn about Observables and Subscriptions
-- Create subscription to form changes
+- Learn about listening to form value changes
+- Learn about AbstractControl properties and methods
+- Create Subscription to form changes
 - Use onDestroy to unsubscribe from form changes
 - Learn about `HttpParams`
 - Create new methods on our RestaurantService
 - Learn about Generics
 - Get state and city data in the Restaurant Component
 
+## Problem 1: Listen to Changes on the State and City formControls and log their value to the console
+
+Our end goal is to be able to show restaurants based on state, then city. As we move through getting each piece of information from the user we want to be able to update the next step - like getting a list of cities based on the state selected. We'll implement this form functionality in a few small steps.
+
+## P1: What You Need to Know
+
+- How Observables and Subscriptions work
+- How to subscribe to the valueChanges method on a FormGroup (or FormControl)
+- How to unsubscribe from Subscriptions
+
 ## Observables and Subscriptions
 
-For a more robust understanding of Observables, Subscriptions, and other RxJS core tenants check out our [RxJS RxJS guide]. For the following exercises, Observables are lazy collections of multiple values over time. We can subscribe to observables to get any new data, or create and add to Subscriptions of observables.
+For a more robust understanding of Observables, Subscriptions, and other RxJS core tenants check out our [RxJS guide](../learn-rxjs.html). For the following exercises, Observables are lazy collections of multiple values over time. We can subscribe to Observables to get any new data, or create and add to Subscriptions of Observables.
 
-This example shows creating a subscription to an observable, saving it's value to a member on the component and displaying it in the template. This is useful for when we want to capture any observable values and make changes based on them, but subscriptions do need to be cleaned up to avoid memory leaks. 
+This example shows creating a Subscription to an Observable, saving it's value to a member on the component and displaying it in the template. This is useful for when we want to capture an Observable's values and make changes based on them, but Subscriptions do need to be cleaned up to avoid memory leaks. 
 
-Whenever a component is destroyed an <a href="https://angular.io/api/core/OnDestroy" target="\_blank">ngOnDestroy</a> method is called. This is a good place to put our cleanup code, like unsubscribing from observables.
+Whenever a component is destroyed an <a href="https://angular.io/api/core/OnDestroy" target="\_blank">ngOnDestroy</a> method is called. This is a good place to put our cleanup code, like unsubscribing from Observables.
+
+In this example, click the button to start subscribing to the Observables - you'll see two variables logged: the new Observable value and the Subscription value. Then click the "remove component" button to see what happens when a component is destroyed. Next delete lines 90 and 91, follow the same process and see what happens!
 
 @sourceref ./observables-subscriptions.html
 @codepen
-@highlight 53,56,57,58,59,66-78,80-82,85-88,only
+@highlight 48,49,54,58-60,67,73,78-85,89-91,only
 
-This example shows creating a subscription to an observable, and using an <a href="https://angular.io/api/common/AsyncPipe" target="\_blank">async pipe</a> to display the value. This is useful for displaying observable values in templates without the need to unsubscribe as that's handled by the pipe.
+This example shows creating a Subscription to an Observable, and using an <a href="https://angular.io/api/common/AsyncPipe" >async pipe</a> to display the value. This is useful for displaying Observable values in templates without the need to unsubscribe as that's handled by the pipe when the component is destroyed .
 
 @sourceref ./observables-subscriptions-async.html
 @codepen
-@highlight 53,57,58,65-76,79,only
+@highlight 50-52,56,61-73,only
 
-This example creates a subscription, then adds to it.
+This example shows how to unsubscribe from multiple Observables.
 
 @sourceref ./multiple-subscriptions.html
 @codepen
-@highlight 102-104,108-110,only
+@highlight 58,95-99,101-105,109-110,only
 
 ## Listening to Form Changes
 
-We can listen to changes to values on `FormControl`s and `FormGroup`s using the `valueChanges` method, which emits an observable. The following example subscribes to any changes to the `FormGroup` (which must be unsubscribed on destroy to avoid memory leaks) and also subscribes to a single `FormControl` and displays the value using an async pipe.
+We can listen to changes to values on `FormControl`s and `FormGroup` using the valueChanges method, which emits an Observable. The following example subscribes to any changes to the `FormGroup` (which must be unsubscribed on destroy to avoid memory leaks).
 
 @sourceref ./form-listeners.html
 @codepen
-@highlight 82-84,only
+@highlight 51-53,only
 
-## Exercise: Listen to Changes on the State and City formControls and log their value to the console
+## Call Methods on FormControls
 
-### The problem
+The ReactiveForms API makes it easy for us to change our FormControls as needed. As a reminder, the FormControl class extends the <a href="https://angular.io/api/forms/AbstractControl">AbstractControl</a> class which has a lot of helpful properties and methods on it. The following example shows enabling and disabling controls via the `enable` and `disable` methods, and displaying the `enabled` FormControl property.
 
-Our end goal is to be able to show restaurants based on state, then city. As we move through getting each piece of information from the user we want to be able to update the next step - like getting a list of cities based on the state selected.
+@sourceref ./form-control.html
+@codepen
+@highlight 27-28,33-34,39-40,63-71,only
 
-To start doing this, subscribe to the value changes of the two controls `state` and `city` and log their values to the console.
+## P1: Technical Requirements
 
-### What you need to know
+1. Subscribe to the `state` and `city` formControl value changes and log the resulting value to the console.
+2. Unsubscribe from Subscriptions within `restaurant.component` in the `ngOnDestroy` function
 
-- how observables and subscriptions work (you learned this in the section above! ✔️)
-- how to subscribe to the `valueChanges` method on a `FormGroup` (or `FormControl`) (you learned this in the section above! ✔️)
-- how to unsubscribe (you learned this in the section above! ✔️)
-
-### To Verify Your Solution is Correct
+## P1: To Verify Your Solution is Correct
 
 When you interact with the dropdown menus, you should see their values logged to the console as you change them.
 
-### The Solution
+## P1: Solution
 
-__src/app/restaurant/restaurant.component.ts__
+<details>
+<summary>Click to see the solution</summary>
+✏️ Update **src/app/restaurant/restaurant.component.ts**
 
 @sourceref restaurant.component.ts
-@highlight 1,3,18,36,53-55,63,65-76
+@highlight 1,3,17,38,39,47-72
 
-Now that we know how to get values from our dropdowns, let's populate them with real data. We can get our list of states immediately, but to get our cities, we'll want to make an get request based on the state the user selected.
+</details>
 
-## Exercise: Write service methods to get states and cities
+Now that we know how to get values from our dropdowns, let's populate them with real data. We can get our list of states immediately, but to get our cities, we'll want to make a GET request based on the state the user selected.
 
-### The Problem
+## Problem 2: Write Service Methods to Get States and Cities from API
+
+We want to be able to get lists of cities and states from our API to populate the dropdown options.
+
+## P2: What You Need to Know
+
+## How to use HttpParams
+
+<a href="https://angular.io/api/common/http/HttpParams">HttpParams</a> are part of Angulars HttpClient API and help us create parameters for our requests.
+
+@sourceref ./http-params.html
+@codepen
+@highlight 33-35,only
+
+## P2: Technical Requirements
 
 Write two new methods in the `RestaurantsService` to get state and city lists.
 
-Method 1 - `getStates` takes no params and makes a request to `'/api/states'`
+Method 1 - `getStates` takes no params and makes a request to `'/states'`
 
-Method 2 - `getCities`, takes a string param called 'state' a makes a request to `'/api/cities?state="{state abbreviation here}"'`
+Method 2 - `getCities`, takes a string param called 'state' a makes a request to `'/cities?state="{state abbreviation here}"'`
 
-### What You Need to Know
+## P2: How to Verify Your Solution is Correct
 
-- how to use HttpParams:
+✏️ Update the spec file **src/app/restaurant/restaurant.service.spec.ts** to be:
 
-  <a href="https://angular.io/api/common/http/HttpParams" target="\_blank">HttpParams</a> are part of Angulars HTTPClient API and help us create parameters for our requests.
-
-  @sourceref ./http-params.html
-  @codepen
-  @highlight 28,only
-
-### To Verify Your Solution is Correct
-
-Update the spec file  __src/app/restaurant/restaurant.service.spec.ts__ to be:
-
-@sourceref ./restaurant.service-citystate.spec.ts
-@highlight 124-161
+@diff ../6-restaurant-service/restaurant.service-with-interface.spec.ts ./restaurant.service-citystate.spec.ts only
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
-### The Solution
+## P2: Solution
 
-@sourceref ./restaurant.service-citystate.ts
-@highlight 2,20-22,24-27
+<details>
+<summary>Click to see the solution</summary>
+✏️ Update **src/app/restaurant/restaurant.service.ts**
 
-## Exercise: Use Generics to modify ResponseData interface to work with states and cities
+@diff ../6-restaurant-service/restaurant.service.ts ./restaurant.service-citystate.ts
 
-### The Problem
+</details>
 
-We would like to use the `ResponseData` interface we wrote to describe the response for the state and city requests, but it only works with and array of type `Restaurant`. 
+## Problem 3: Use Generics to Modify ResponseData interface to Work with States and Cities Data
 
-Convert the `ResponseData` interface use generics so it can take a type of `Restaurant`, `State`, or `City`. We've written the state & city interfaces for you.
+We would like to use the `ResponseData` interface we wrote to describe the response for the state and city requests, but it only works with and array of type `Restaurant`.
 
-Update your __src/app/restaurant/restaurant.service.ts__ file to be:
+## P3: What You Need to Know
 
-@sourceref ./restaurant.service-setup-generics.ts
-@highlight 9-12, 14-17
+## How to write a generic
 
-### What You Need to Know
+For an in-depth understanding of generics in TypeScript, check out our [learn-typescript/generics TypeScript guide]. For now, generics are a way to abstract functions, interfaces, etc to use different types in different situations.
 
-- How to write a generic
+This example shows creating a generic for a list that can be used to create arrays of various types, including Dinosaurs. Codepen doesn't have a typescript compiler that will throw errors, but if you paste the code into your IDE you'll be able to see the TypeScript errors thrown.
 
-  For an in-depth understanding of generics in TypeScript, check out our [RxJS RxJS guide]. For now, generics are a way to abstract functions, interfaces, etc to use different types in different situations.
+@sourceref ./generics.html
+@codepen
+@highlight 18-23,25-29,36,41,46,47,51-55,57-61,63-67,68-71,only
 
-  @sourceref ./generics.html
-  @codepen
-  @highlight 47-52,54-58,68-71,73-81, only
+## P3: Technical Requirements
 
-### The Solution
+Convert the `ResponseData` interface to use generics so it can take a type of `Restaurant`, `State`, or `City`. We've written the state & city interfaces for you. Make sure to update the getRestaurants method in the RestaurantComponent as well.
 
-__src/app/restaurant/restaurant.service.ts__
+## P3: Setup
 
-@sourceref ./restaurant.service-generics.ts
-@highlight 5-7,27,31,36
+✏️ Update your **src/app/restaurant/restaurant.service.ts** file to be:
 
-## Exercise: Get cities and states based on dropdown values.
+@diff ./restaurant.service-citystate.ts ./restaurant.service-setup-generics.ts
 
-### The Problem
+## P3: How to Verify Your Solution is Correct
+
+✏️ Update the spec file **src/app/restaurant/restaurant.service.spec.ts** to be:
+
+@diff ./restaurant.service-citystate.spec.ts ./restaurant.service-generics.spec.ts only
+
+## P3: Solution
+
+<details>
+<summary>Click to see the solution</summary>
+✏️ Update **src/app/restaurant/restaurant.service.ts**
+
+@diff ./restaurant.service-setup-generics.ts ./restaurant.service-generics.ts
+
+✏️ Update **src/app/restaurant/restaurant.component.ts**
+
+@diff restaurant.component.ts ./restaurant-generics.component.ts only
+
+</details>
+
+## Problem 4: Get Cities and States Based on Dropdown Values
 
 Now that our service is in working order, let's populate our dropdowns with state and city data. We will want our list of states to be available right away, but we will want to fetch our list of cities only after we have the state value selected by the user.
 
-Requirements
+## P4: Technical Requirements
 
-1. Mark state and city dropdowns as disabled until they are populated with data
-2. Fetch the states list when the component first loads (`ngOnInit`) and populate the dropdown options with the values
-3. When the State `FormControl` value changes, fetch the list of cities with the selected state as the parameter
-4. If the state value changes, fetch the new list of cities, and reset the list of restaurants to an empty array
+1. Rewrite the `Data` interface to be a generic to work with State and City types as well
+2. Mark state and city dropdowns as disabled until they are populated with data
+3. Fetch the states list when the component first loads (`ngOnInit`) and populate the dropdown options with the values
+4. When the State `FormControl` value changes, fetch the list of cities for the newly selected state and reset the list of restaurants to an empty array
 5. When a City is selected, fetch the list of restaurants
 
 > Hint: You'll want to clear the fake data from the state and city value props, and move the call to get restaurants out of the `ngOnInit` function.
 
-### What You Need to Know
+## P4: How to Verify Your Solution is Correct
+
+✏️ Update the spec file **src/app/restaurant/restaurant.component.spec.ts** to be:
+
+@diff ../8-state-city-options/restaurant.component.spec.ts ./restaurant.component-citystate.spec.ts only
+
+## P4: What You Need to Know
 
 - How to call service methods in a component
+- How to write generics
 
-### To Verify Your Solution is Correct
+## P4: Solution
 
-We need to remove a few tests that are no longer relevant to our app's current state. Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
+<details>
+<summary>Click to see the solution</summary>
+✏️ Update **src/app/restaurant/restaurant.component.ts**
 
-@sourceref ./restaurant.component.spec.ts
+@diff ./restaurant-generics.component.ts ./restaurant.component-citystate.ts only
 
-### The Solution
-
-__src/app/restaurant/restaurant.component.ts__
-
-@sourceref ./restaurant.component-citystate.ts
-@highlight 5,28,33,44-48,63-99, 101-107, 109-119,121-126
+</details>

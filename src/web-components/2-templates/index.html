@@ -1,0 +1,29 @@
+<style>
+  html,
+  body {
+    height: 100%;
+  }
+  body {
+    font-family: "Catamaran", sans-serif;
+    background-color: #f2f2f2;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+</style>
+<template id="gmap-template">
+  <style>
+    .gmap {
+      width: 100%;
+      height: 250px;
+      background-color: grey;
+    }
+  </style>
+  <div class="gmap"></div>
+</template>
+<script type="module">
+const template = document.querySelector('#gmap-template');
+
+let fragment = document.importNode(template.content, true);
+document.body.append(fragment);
+</script>

@@ -125,24 +125,24 @@ You’re not limited to the topics we’ve already started working on. If you ha
 
 #### Two weeks before the meetup
 
-- [ ] Make sure you have been sent the swag you need for the meetup.
-- [ ] If you are giving swag, and haven't already, add this to the meetup comments. [Example](https://www.meetup.com/JavaScript-Workshops-LA/events/230773173/#event_comment-465934090)
+- <input type="checkbox"/> Make sure you have been sent the swag you need for the meetup.
+- <input type="checkbox"/> If you are giving swag, and haven't already, add this to the meetup comments. [Example](https://www.meetup.com/JavaScript-Workshops-LA/events/230773173/#event_comment-465934090)
 
 #### Day before the meetup
 
 > Open Source Evangelist should:
-> - [ ] Make sure to promote the event on our social media platforms: twitter, facebook, gitter and forums.
+> - <input type="checkbox"/> Make sure to promote the event on our social media platforms: twitter, facebook, gitter and forums.
 
 
 
 #### Day of the meetup
 
-- [ ] Practice your talk.
-- [ ] Make sure your presentation introduces yourself
-- [ ] Make sure your presentation has a [Continued Engagement](https://drive.google.com/open?id=0Bx-kNqf-wxZeeHVqX0M0akN6LUk) final slide.
-- [ ] Pack swag, laptop.
-- [ ] Bring business cards.
-- [ ] Hand out swag at the start of the meetup.  (Gets people more excited).
+- <input type="checkbox"/> Practice your talk.
+- <input type="checkbox"/> Make sure your presentation introduces yourself
+- <input type="checkbox"/> Make sure your presentation has a [Continued Engagement](https://drive.google.com/open?id=0Bx-kNqf-wxZeeHVqX0M0akN6LUk) final slide.
+- <input type="checkbox"/> Pack swag, laptop.
+- <input type="checkbox"/> Bring business cards.
+- <input type="checkbox"/> Hand out swag at the start of the meetup.  (Gets people more excited).
 
 ## Presenting
 
@@ -155,11 +155,11 @@ You’re not limited to the topics we’ve already started working on. If you ha
 
 ## After Presenting
 
-- [ ] In the meetup comments, thank everyone, post links to your talk and links
+- <input type="checkbox"/> In the meetup comments, thank everyone, post links to your talk and links
   on where they get more information. [Example](https://www.meetup.com/JavaScript-Workshops-LA/events/230773173/#event_comment-466078731)
-- [ ] Look for social media on your talk.  Save those.
-- [ ] Make a video (get that valuable content out)
-- [ ] Write a blog post (get that valuable content out)
+- <input type="checkbox"/> Look for social media on your talk.  Save those.
+- <input type="checkbox"/> Make a video (get that valuable content out)
+- <input type="checkbox"/> Write a blog post (get that valuable content out)
 
 
 ## Examples

@@ -1,0 +1,24 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.3.3/rxjs.umd.min.js"></script>
+<script type="module">
+  const { of, interval, zip } = rxjs;
+  const { map, pairwise } = rxjs.operators;
+
+  // emits the values every 2 seconds in order
+  const menuItems$ = zip(
+    of('Steamed Mussels', 'Truffle Noodles', 'Charred Octopus', 'Onion fries'),
+    interval(2000)
+  ).pipe(map(([val, num]) => val));
+
+  menuItems$.pipe(pairwise()).subscribe(([previous, current]) => {
+    console.log('Previous: ' + previous, 'Current: ' + current);
+  });
+
+  // logs:
+  // (... 2 seconds pass), "Steamed Mussels" is emitted by menuItems$
+  // (... 2 seconds pass), "Truffle Noodles" is emitted by menuItems$
+  // "Previous: Steamed Mussels" "Current: Truffle Noodles"
+  // (... 2 seconds pass), "Charred Octopus" is emitted by menuItems$
+  // "Previous: Truffle Noodles" "Current: Charred Octopus"
+  // (... 2 seconds pass), "Onion fries" is emitted by menuItems$
+  // "Previous: Charred Octopus" "Current: Onion fries"
+</script>

@@ -20,14 +20,14 @@ const { Routes, RouterModule } = ng.router;
 @Component({
   selector: 'my-app',
   template: `
-  <ul class="nav">
-    <li routerLinkActive="active">
-      <a routerLink="/about" >About</a>
-    </li>
-    <li routerLinkActive="active">
-        <a routerLink="" >Home</a>
+    <ul class="nav">
+      <li routerLinkActive="active">
+        <a routerLink="/about" >About</a>
       </li>
-  </ul>
+      <li routerLinkActive="active">
+          <a routerLink="" >Home</a>
+        </li>
+    </ul>
     <router-outlet></router-outlet>
   `
 })

@@ -1,0 +1,72 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js"/></script>
+<script src="https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js"/></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js"></script>
+<script src="https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js"></script>
+<script src="https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js"></script>
+<script src="https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js"></script>
+<script src="https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js"></script>
+<script src="https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js"></script>
+<script src="https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js"></script>
+<base href="/">
+<my-app></my-app>
+<script type="typescript">
+const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { ReactiveFormsModule, FormControl } = ng.forms;
+
+@Component({
+  selector: 'my-app',
+  template: `
+    <p>A home component!</p>
+
+    <button (click)="willCallOnClick()">Click me!</button>
+    {{ clickMessage }}
+    <button (click)="willCallWithParam(clickMessage)">log click message</button>
+    <p>
+      Value: {{ name.value }}
+    </p>
+    <label>
+      Name:
+      <input type="text" [formControl]="name" (change)="willCallOnBlur($event)">
+    </label>
+  `
+})
+class AppComponent {
+  public name = new FormControl('');
+
+  constructor() {}
+
+  willCallOnClick(): void {
+    this.clickMessage = 'You are my hero!';
+  }
+
+  willCallWithParam(message: string): void {
+    console.log(message + ' from my 1st click')
+  }
+
+  willCallOnBlur(event): void {
+    console.log('value', event.target.value);
+  }
+}
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    ReactiveFormsModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err => console.error(err));
+</script>
+

@@ -1,0 +1,6 @@
+<li class="list-group-item" *ngFor="let item of items">
+  <label>
+    <input type="checkbox" (change)="updateItems(item)" />
+    {{ item.name }} <span class="badge">{{ item.price | currency }}</span>
+  </label>
+</li>

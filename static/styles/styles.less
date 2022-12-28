@@ -17,6 +17,8 @@
 @import "locate://bit-docs-site/styles/variables.less";
 @import "locate://bit-docs-site/styles/mixins.less";
 
+@import "prism.less";
+
 /*
 Mobile:
 ┌─────────────────────────────────┐
@@ -159,8 +161,7 @@ Desktop:
     .flex-auto; // fill remaining height
     .flex-row;
 
-    // Note: Don't add border, padding or margin to a flex-row or flex-column,
-    // because IE 10-11 incorrectly assumes content-box sizing for flex-basis.
+    // Note: Don't add border, padding or margin to a flex-row or flex-column,    // because IE 10-11 incorrectly assumes content-box sizing for flex-basis.
 
     .sidebar {
       .flex-none; // fit to content width
@@ -200,10 +201,33 @@ html {
 h2 {
   margin-top: 4em;
 }
-
-@media (min-width: 700px) {
+@media (max-width: 900px) {
   body {
     font-size: 1.1rem;
+    .courses{
+      flex-direction: column;
+    }
+    .academy-cards-container{
+      flex-direction: column;
+    }
+    .academy-section .courses .course{
+      width: 100%;
+    }
+    .academy-card{
+      margin-right: 0;
+      margin-bottom: 30px;
+    }
+    .academy-section .courses .academy-card:last-of-type{
+      margin-bottom: 0;
+    }
+    .academy-section .academy-cards-container .academy-card:last-of-type{
+      margin-bottom: 0;
+    }
+    .academy-logos{
+      .academy-course-logo{
+        width: 30px;
+      }
+    }
   }
 }
 
@@ -243,6 +267,12 @@ article summary {
   cursor: pointer;
 }
 
+
+.code-toolbar .toolbar-item a {
+  color: #356fd1 !important;
+  text-decoration: none !important;
+}
+
 // Theme Styles
 
 @import url('https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700,700i,900,900i');
@@ -262,6 +292,7 @@ a {
   align-items: center;
   width: 100%;
   border-bottom: 1px solid #eee;
+  flex-shrink: 0;
   .logo {
     a {
       display: block;
@@ -338,34 +369,11 @@ a {
 
 // Homepage
 
-.main {
-  width: 100% !important;
-}
+// .main {
+//   width: 100% !important;
+// }
 
-.hero-banner {
-  background: url('../img/training-banner.jpg') no-repeat top center;
-  background-size: cover;
-  background-color: #000;
-  padding: 60px;
-  h1 {
-    color: #fff;
-    font-family: Lato, Arial, sans-serif;
-    line-height: 1.1;
-    font-size: 56px;
-    font-weight: 300;
-    text-align: center;
-    margin: 0 auto 15px auto;
-  }
-  h2 {
-    color: #fff;
-    font-size: 18px !important;
-    font-weight: normal;
-    line-height: 1.6;
-    width: 800px;
-    text-align: center;
-    margin: 15px auto !important;
-  }
-}
+
 
 .academy-intro {
   margin-bottom: 30px;
@@ -392,62 +400,26 @@ a {
   }
 }
 
-.courses-container {
-  margin: 30px;
-  .courses {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    .course {
-      > a {
-        text-decoration: none;
-        color: #3e4548;
-      }
-      width: 300px;
-      text-align: center;
-      margin: 0 auto 30px auto;
-      padding: 15px;
-      border: 1px solid #eee;
-      &:hover {
-        border: 1px solid #CCC;
-      }
-      .course-logo {
-        height: 120px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      h5 {
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 15px;
-        text-align: left;
-      }
-      p {
-        font-size: 16px;
-        text-align: left;
-      }
-    }
-  }
-}
+
+
+
 
 // Sidebar Left
 
 .sidebar-left {
-  padding: 30px;
+  padding: 15px;
   white-space: nowrap;
   overflow-y: auto;
+  flex-shrink: 0;
   @media (max-width: 768px) {
     padding-bottom: 0;
   }
   ul {
     list-style: none;
-    margin-right: 15px;
     margin-bottom: 0;
     margin-left: 0;
     padding-bottom: 0;
     padding-left: 0;
-    width: 100%;
     li {
       margin: 0;
       padding: 0;
@@ -497,21 +469,22 @@ a {
 // Course Content
 
 .main {
-  padding: 30px 30px;
-  // display: flex;
-  // flex-direction: row;
+  padding: 15px 30px;
   @media (max-width: 768px) {
     padding-top: 0;
   }
 }
-// .main-content {
-//   width: 70%;
-// }
+.main-content {
+  padding-right: 250px;
+  @media (max-width: 1200px) {
+    padding-right: 0;
+  }
+}
 .main-content .title h1 {
   font-size: 28px;
   margin-bottom: 30px;
   code {
-    font-size: .6em;
+    display: none;
   }
 }
 .main-content .description p {
@@ -526,11 +499,25 @@ a {
   margin-top: 2em;
 }
 .main-content .body ul {
-  margin-left: 45px;
+  margin-left: 15px;
 }
-.main-content .body ul li {
+.main-content .body ul li, .main-content .body ol li {
   margin-bottom: 15px;
-  list-style-type: disc;
+}
+.main-content .body ul li ul,
+.main-content .body ol li ol {
+  margin-top: 15px;
+  margin-left: 0;
+  padding-left: 25px;
+}
+.main-content .footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2em;
+
+  & > *:only-child {
+    margin: 0 auto 0 0;
+  }
 }
 
 // Utility
@@ -551,39 +538,35 @@ hr:first-of-type {
 // Sidebar Right
 
 .sidebar-right {
-  position: sticky;
-  top: 0;
-  right: 0;
-  width: 260px;
+  position: fixed;
+  top: 85px;
+  right: 30px;
+  bottom: 0px;
+  width: 240px;
   margin-left: 30px;
-  padding: 0 15px;
-  @media (max-width: 768px) {
+  padding: 0 10px;
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 1200px) {
     display: none;
   }
 }
 .sidebar-right .content-nav {
-  border-bottom: 1px solid #eee;
-  margin-top: 22px;
-  padding-bottom: 30px;
+  display: flex;
+  flex-direction: column;
 }
-.sidebar-right .content-nav h6 {
-  font-size: 15px;
-  font-weight: bold;
-  border-bottom: 1px solid #eee;
-  margin-top: 0;
-  margin-bottom: 15px;
-  padding-bottom: 15px;
-}
-.sidebar-right .content-nav ul {
-  padding-top: 10px;
-}
-.sidebar-right .content-nav li {
-  list-style: none;
+.content-nav .list-items {
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow: hidden;
 }
 .sidebar-right .pullout {
   border-bottom: 1px solid #eee;
   margin: 5px 0;
   padding: 15px 0 20px 0;
+}
+.sidebar-right .pullout:last-of-type {
+  border-bottom: 0;
 }
 .sidebar-right .pullout p {
   font-size: 14px;
@@ -600,13 +583,32 @@ hr:first-of-type {
 
 // Sidebar Right: Content Navigation
 
-.list-group.vertical-steps {
+.content-nav {
+  border-bottom: 1px solid #eee;
+  margin-top: 22px;
+  padding-bottom: 15px;
+  min-height: 45px;
+}
+.content-nav h6 {
+  font-size: 15px;
+  font-weight: bold;
+  margin: 0;
+  padding: 0;
+}
+.content-nav ul {
+  padding-inline-start: 20px;
+  padding-right: 15px;
+}
+.content-nav > ul {
   font-size: 14px;
   line-height: 1;
   margin: 0;
   padding-left: 10px;
 }
-.list-group.vertical-steps .list-group-item {
+.content-nav li {
+  list-style: none;
+  font-size: 14px;
+  line-height: 17px;
   border: none;
   border-left: 3px solid #ccc;
   box-sizing: border-box;
@@ -615,26 +617,25 @@ hr:first-of-type {
   margin: 0;
   padding: 0 0 20px 20px;
 }
-.list-group-item a {
+.content-nav a {
   padding: 0;
   text-decoration: none;
   &:visited {
     color: #333;
   }
 }
-
-.list-group.vertical-steps .list-group-item.active {
+.content-nav a.active {
   background-color: transparent;
   color: inherit;
 }
-.list-group.vertical-steps .list-group-item:last-child {
+.content-nav li:last-child {
   border-left: 3px solid transparent;
   padding-bottom: 0;
 }
-.list-group.vertical-steps .list-group-item::before {
+.content-nav li::before {
   border-radius: 50%;
   background-color: #ccc;
-  color: #ccc;
+  color: transparent;
   content: counter(step-counter);
   display: inline-block;
   float: left;
@@ -644,23 +645,121 @@ hr:first-of-type {
   text-align: center;
   width: 15px;
 }
-.list-group.vertical-steps .list-group-item span,
-.list-group.vertical-steps .list-group-item a {
+.content-nav li a {
   display: block;
   overflow: hidden;
   padding-top: 0;
 }
-.list-group.vertical-steps .list-group-item.active::before {
+.content-nav li.active::before {
   background-color: #3163A4;
-  color: #3163A4;
+  color: transparent;
 }
-.list-group.vertical-steps .list-group-item.completed {
+.content-nav li.completed {
   border-left: 3px solid #3163A4;
 }
-.list-group.vertical-steps .list-group-item.completed::before {
+.content-nav li.completed::before {
   background-color: #3163A4;
-  color: #3163A4;
+  color: transparent;
 }
-.list-group.vertical-steps .list-group-item.completed:last-child {
+.content-nav li.completed:last-child {
   border-left: 3px solid transparent;
+}
+
+.bit-academy-show-fullscreen {
+  .header, .sidebar-left, .sidebar-right {display: none;}
+  .body h2 {margin-top:4em;}
+}
+.sidebar-left .bit-academy-fullscreen {
+    font-size: 5px;
+    color: #cccccc;
+    float: right;
+    margin-top: 10px;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+/* temporary fix for line-highlight not showing up */
+.line-highlight {
+  z-index: 1;
+}
+
+#email-modal,
+.email-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+}
+
+.email-modal-backdrop {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+}
+
+.email-modal-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  width: 750px;
+  max-width: 100%;
+  z-index: 10;
+  padding: 1rem;
+  border: 1px solid #eee;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 10%), 0 10px 10px -5px rgba(0, 0, 0, 4%);
+  border-radius: 8px;
+}
+
+#email-modal-email {
+  border: 1px solid #eee;
+  border-radius: 4px;
+  padding: 0.5rem;
+  width: 250px;
+  max-width: 60%;
+}
+
+.email-modal-content form {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#email-modal-button {
+  background-color: #cb3036;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 4px 10px;
+  cursor: pointer;
+  font-family: Lato, Arial, sans-serif;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 3px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  margin-left: 0.5rem;
+}
+
+#email-modal h2 {
+  margin-top: 0;
 }

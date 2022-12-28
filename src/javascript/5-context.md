@@ -1,5 +1,5 @@
-@page advanced-javascript-training/context Context
-@parent advanced-javascript-training 5
+@page learn-advanced-javascript/context Context
+@parent learn-advanced-javascript 5
 @description What is "this"? Learn about context and build your very own `.` operator!
 
 @body
@@ -79,9 +79,13 @@ QUnit.test("DOT works", function(){
 
 	var person = new Person('Alexis');
 	var species = DOT(person, 'species');
+	var toString = DOT(person, 'toString');
 
 	QUnit.equal(species, 'Homo Sapien', 'property accessed');
+	QUnit.equal(toString, Object.prototype.toString,
+		'Object.prototype.toString accessed');
 	QUnit.equal(DOT(person, 'foobar'), undefined, 'property not found');
+
 });
 </script>
 
@@ -99,6 +103,7 @@ QUnit.test("DOT works", function(){
   console.log( obj.hasOwnProperty("foo") ) //logs: true
   ```
   @codepen
+
 - [Object.getPrototypeOf(obj)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf) returns the `__proto__` value of the passed obj.  This is the
   recommended way of reading the `__proto__` property.
   ```js
@@ -106,6 +111,7 @@ QUnit.test("DOT works", function(){
   console.log( Object.getPrototypeOf(date) === Date.prototype ) //logs: true
   ```
   @codepen
+
 - Recursive functions call themselves to answer a sub-problem:
   ```js
   function factorial(number){
@@ -192,12 +198,60 @@ DOTCALL(person,"speak",["Hi"])  //person.speak("Hi")
 
 To get started, click the __Run in your browser__ button at the bottom of the following code sample:
 
+```html
+<div id="qunit"></div>
+<link rel="stylesheet" href="//code.jquery.com/qunit/qunit-1.14.0.css">
+<script src="//code.jquery.com/qunit/qunit-1.14.0.js"></script>
+<script type="module">
+// The DOT operator will be useful
+function DOT(object, property) {
+    if( Object.prototype.hasOwnProperty.call(object, property) ) {
+        return object[property];
+    }
+    var proto = Object.getPrototypeOf(object);
+    if( proto ) {
+        return DOT(proto, property);
+    }
+}
+
+function DOTCALL(obj, prop, args){
+
+}
+</script>
+<script>
+QUnit.test('DOTCALL works', function() {
+
+	var Person = function(name){
+		this.name = name;
+	};
+	Person.prototype.species = 'Homo Sapien';
+	Person.prototype.speak = function(toWhom) {
+		return 'Hello ' + toWhom + '. My name is ' + this.name + '.';
+	};
+
+	var person = new Person('Alexis');
+	var speak = DOTCALL(person, 'speak', ['Justin']);
+
+	var greet = 'Hello Justin. My name is Alexis.';
+	equal(speak, greet, 'method called with argument');
+});
+</script>
+
+```
+@codepen
+@highlight 16-18,only
+
 
 ### What you need to know
 
 - Use [apply](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/apply) to
   call a function (also constructor functions) with a `this` value and an array of arguments.
-- If the call operator (`()`) is used on a value that is not a function, an error is thrown.
+- If the call operator (`()`) is used on a value that is not a function,
+  an error is thrown. For this example, throw:
+  ```js
+  throw new Error("${prop} is not a function");
+  ```
+  where `prop` is the name of the property that is being called.
 
 
 ### The solution
@@ -224,7 +278,7 @@ function DOTCALL(obj, prop, args){
 	if(typeof fn === "function") {
 		return fn.apply(obj, args);
 	} else {
-		throw prop+" is not a function";
+		throw new Error(prop+" is not a function");
 	}
 }
 </script>
@@ -249,4 +303,4 @@ QUnit.test('DOTCALL works', function() {
 
 ```
 @codepen
-@highlight 5-14,only
+@highlight 16-23,only

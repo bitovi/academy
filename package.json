@@ -1,32 +1,17 @@
 {
-  "name": "bit-u",
+  "name": "bit-academy",
   "version": "1.0.0",
   "description": "Everything worth knowing from bitovi",
-  "main": "index.js",
-  "scripts": {
-    "document": "bit-docs -d",
-    "document-build": "bit-docs -df",
-    "publish": "npm run document && node publish.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bitovi/university.git"
-  },
-  "keywords": [
-    "JavaScript"
-  ],
+  "homepage": "https://github.com/bitovi/academy#readme",
   "author": "Bitovi",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/bitovi/university/issues"
-  },
-  "homepage": "https://github.com/bitovi/university#readme",
-  "devDependencies": {
-    "bit-docs": "0.1.0",
-    "detect-browser": "^4.2.0",
-    "gh-pages": "^2.0.1",
-    "html2canvas": "^1.0.0-alpha.12",
-    "steal-qunit": "^1.0.2"
+  "scripts": {
+    "depcheck": "depcheck .",
+    "dev": "bit-docs -dw",
+    "build": "bit-docs -df",
+    "rebuild-assets": "bit-docs -dfs",
+    "clean": "rm -rf academy",
+    "deploy": "node scripts/hubspot-deploy"
   },
   "bit-docs": {
     "dependencies": {
@@ -34,23 +19,46 @@
       "bit-docs-dev": "^0.0.3",
       "bit-docs-js": "^0.0.6",
       "bit-docs-tag-sourceref": "^0.0.3",
-      "bit-docs-generate-html": "^0.13.3",
+      "bit-docs-generate-html": "^0.15.0",
       "bit-docs-prettify": "^0.4.1",
       "bit-docs-tag-demo": "^0.5.3",
-      "bit-docs-html-codepen-link": "^1.3.2",
-      "bit-docs-html-highlight-line": "^0.5.4"
+      "bit-docs-tag-diff": "^0.1.0",
+      "bit-docs-html-codepen-link": "^2.1.0",
+      "bit-docs-html-highlight-line": "^0.5.4",
+      "bit-docs-html-toc": "^1.1.1",
+      "bit-docs-html-prev-next": "0.0.1-rc1",
+      "@bitovi/calendar-events-component": "^0.0.11"
     },
     "glob": {
       "pattern": "src/**/*.{js,md}"
     },
-    "parent": "bit-u",
+    "parent": "bit-academy",
     "static": "static",
     "html": {
       "templates": "templates"
-    }
+    },
+    "dest": "./academy",
+    "codepen": [
+      [
+        "\"can\"",
+        "\"//unpkg.com/can@5/core.mjs\""
+      ],
+      [
+        "\"can/everything\"",
+        "\"//unpkg.com/can@5/everything.mjs\""
+      ]
+    ]
   },
-  "dependencies": {
-    "pixelmatch": "^4.0.2",
-    "steal": "^2.2.0"
+  "devDependencies": {
+    "axios": "^1.1.3",
+    "bit-docs": "0.2.0",
+    "bottleneck": "^2.17.1",
+    "cheerio": "^1.0.0-rc.3",
+    "commander": "^9.4.0",
+    "depcheck": "^1.4.3",
+    "dotenv": "^7.0.0",
+    "glob": "^8.0.3",
+    "lz-string": "^1.4.4",
+    "recursive-readdir": "^2.2.2"
   }
 }

@@ -1,0 +1,16 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.3.3/rxjs.umd.min.js"></script>
+<script type="module">
+  const { of } = rxjs;
+  const { map } = rxjs.operators;
+
+  of(1, 2, 3)
+    .pipe(map((v) => v * 2))
+    .subscribe((v) => {
+      console.log('Value: ' + v);
+    });
+
+  // logs:
+  // Value: 2
+  // Value: 4
+  // Value: 6
+</script>

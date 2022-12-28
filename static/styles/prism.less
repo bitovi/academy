@@ -1,0 +1,62 @@
+.main-content {
+  div.code-toolbar {
+    line-height: 0;
+    > .toolbar {
+      line-height: 0;
+      border-left: 1px solid #dfdfdf;
+      border-bottom: 1px solid #dfdfdf;
+      background: #eeeeee;
+      top: 0px;
+      right: 0;
+      > .toolbar-item {
+        line-height: 0;
+        &:not(:last-child) {
+          border-right: 1px solid #dfdfdf;
+        }
+      }
+    }
+    @media (hover: none) {
+      > .toolbar {
+        opacity: 1;
+      }
+    }
+
+  }
+  div.code-toolbar {
+    .toolbar a, 
+    .toolbar button, 
+    .toolbar span {
+      background: #eee;
+      background: rgba(238, 238, 238, 1);
+      color: #858585;
+      height: 24px;
+      padding: 0 2em;
+      box-shadow: none;
+      border-radius: 0;
+      cursor: pointer;
+      @media(hover: hover) {
+        &:hover {
+          background: rgba(238, 238, 238, .6);
+          color: #4078c0;
+        }
+      }
+    }
+  }
+
+  pre code .collapse.collapsed {
+    border-top-color: transparent;
+    border-bottom-color: #dfdfdf;
+    height: 25px;
+  }
+  .demo {
+    .tab-content {
+      div.code-toolbar {
+        >.toolbar{
+          top: 0px;
+          right: 1px;
+          border-top: 1px solid #dfdfdf;
+        }
+      }
+    }
+  }
+}

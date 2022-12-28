@@ -1,7 +1,7 @@
-@page angular/updating-service-params Filtering Cities & Restaurants
-@parent angular 10
+@page learn-angular/updating-service-params Filter Restaurants by City
+@parent learn-angular 10
 
-@description Updating Restaurant Service to use params
+@description Learn how to make a service take multiple parameters.
 
 @body
 
@@ -12,30 +12,48 @@ In this part, we will:
 - Update getRestaurants service method to take params
 - Update component to pass state and city params to service method
 
-## Exercise: Update getRestaurants method to take state and city params
+## Problem
 
-### The Problem
+<img src="../static/img/angular/10-updating-service-params/before.png"
+  style="border: solid 1px black; max-width: 400px;"/>
 
-Now that we are able to capture a user's state and city preferences, we want to only return restaurants in the selected city. Modify the `getRestaurants` method in the __src/app/restaurant/restaurant.service.ts__ file to take two string parameters, one for city, and one for state. The requested url with params should look like this: `'/api/restaurants?filter[address.state]=IL&filter[address.city]=Chicago'`
+Now that we are able to capture a user's state and city preferences, we want to only return restaurants in the selected city. Modify the `getRestaurants` method in the **src/app/restaurant/restaurant.service.ts** file to take two string parameters, one for city, and one for state. The requested url with params should look like this: `'/api/restaurants?filter[address.state]=IL&filter[address.city]=Chicago'`
 
-In the __src/app/restaurant/restaurant.component.ts__ file, update the call to the `getRestaurants` service method to use the city and state values capture from the user's form input.
+<img src="../static/img/angular/10-updating-service-params/after.png"
+  style="border: solid 1px black; max-width: 400px;"/>
 
-### What You Need to Know
+## Technical Requirements
 
-- How to use HttpParams (you learned this in the previous section! ✔️)
+In the **src/app/restaurant/restaurant.component.ts** file, update the call to the `getRestaurants` service method to use the city and state values capture from the user's form input.
 
-### To Verify Your Solution is Correct
+## How to Verify Your Solution is Correct
 
 If you've implemented the solution correctly, when you use the select boxes to choose state and city, you should see a list of just restaurants from the selected city returned.
 
-### Solution
+✏️ Update the spec file **src/app/restaurant/restaurant.component.spec.ts** to be:
 
-__src/app/restaurant/restaurant.service.ts__
+@diff ../9-form-value-changes/restaurant.component-citystate.spec.ts ./restaurant.component-httpparams.spec.ts only
 
-@sourceref ./restaurant.service-httpparams.ts
-@highlight 27,28
+✏️ Update the spec file **src/app/restaurant/restaurant.service.spec.ts**
 
-__src/app/restaurant/restaurant.component.ts__
+@diff ../9-form-value-changes/restaurant.service-generics.spec.ts ./restaurant.service-httpparams.spec.ts only
 
-@sourceref ./restaurant.component-httpparams.ts
-@highlight 95,121,122
+> If you've implemented the solution correctly, when you run `npm run test` the tests will pass!
+
+## What You Need to Know
+
+- How to use [learn-angular/form-value-changes#how-to-use-httpparams HttpParams] (you learned this in the previous section! ✔️)
+
+## Solution
+
+<details>
+<summary>Click to see the solution</summary>
+✏️ Update **src/app/restaurant/restaurant.service.ts**
+
+@diff ../9-form-value-changes/restaurant.service-generics.ts ./restaurant.service-httpparams.ts only
+
+✏️ Update **src/app/restaurant/restaurant.component.ts**
+
+@diff ../9-form-value-changes/restaurant.component-citystate.ts ./restaurant.component-httpparams.ts only
+
+</details>

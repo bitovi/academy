@@ -1,0 +1,108 @@
+OVERVIEW  =========
+
+This video is an overview of the entire course.
+
+Before we start, it's important to make sure everyone knows about Bitovi's
+Community slack.  It's a great place to get help on these exercises, and
+talk tech with likeminded folks.
+
+So as I mentioned, this course is about RxJS.  RxJS and other observable
+libraries are a GREAT way of managing complex state.
+
+To learn RxJS, we are going to build this Credit Card authoring
+tool.  Specifically, it:
+
+- Validates input as a user types, but only once a user blurs an input element.
+- Enables the PAY button once the credit card information is valid.
+- Disables the PAY button and changes its text to PAYING while payment is being processed.
+- Logs a success message when payment has completed.
+- Simulates a payment with a Promise that resolves in 2 seconds.
+
+This exercise will use a bit TypeScript, Angular for the view and component layer. RxJS
+can be used with any framework, but it's more or less built in to
+Angular, so using angular makes sense.
+
+If you are familiar with other frameworks, everything here should make sense.
+
+To complete this course, we will complete the following steps:
+
+- First we will learn the basics of RxJS and how to create observables.
+- Then we will set setting up basic validation.
+- We'll show how to debug RxJS … Handy if you are writing this without seeing
+  the answers!
+- Next we will make the error show up only when someone has blurred and
+  apply this to all the fields.
+- Finally, we will begin implementing the pay button.
+
+While doing ths process, we will be building observables.  This graph
+here shows the relationship.  While thinking about RxJS, it's important
+to understand the flow of one observable into another.  Observables here
+are color coded.
+
+	There are source or input observables in red.  These take some input from the user, for example, userCardNumber is what the user has entered into the card number input.
+
+	Next are the output observables.  These are used by the Angular view to update the DOM.
+
+	Finally, there are intermediate observables that are used to translate source observables into output observables.
+
+
+	We will build up this graph over time.
+
+
+Finally, some important notes on completing this training:
+
+- This training can be done in codepen, but it's useful to have the vertical view.
+
+- I recommend creating a codepen account so you can save your codepen.
+
+- If you get lost, you can take a difference from the solution to your code to see what's wrong.
+
+- This guide will use a bit of Promises, Angular, and TypeScript, however, it's minor and you can likely do this course without fully understanding them.
+
+
+BASICS =========
+
+Hello and welcome to Bitovi Academy's Learn RxJS training.
+
+This video covers the "basics" step where we introduce observables.
+Specifically, we will cover:
+
+- What observables are and how to listen to when they emit a value
+- How to transform an observable that emits one value into an
+  observable that emits a different value
+- What are Subjects and what their differences are from a subject.
+
+OBSERVABLES
+
+RxJS provides observables. There are many libraries that provide
+observables. They all center around objects that publish values
+over time.
+
+EX1
+
+This example shows how to create an observable that will emit 1,2,3.
+
+To listen / subscribe to those values, you call `.subscribe`.
+
+This will log 1,2,3.
+
+
+Twitter is sort of like observables. I have a twitter account
+
+twiter.com/justinbmeyer …
+
+And you and everyone else can/shoudl subscribe to it and see my
+clever, weird, and/or boring tweets.
+
+And like twitter, many people can listen to my tweets.
+
+EX2:
+
+In this next example, we see the observable, but now it has two
+subscribers.  These will both log 1,2,3.
+
+One of the biggest advantages of the publish-subscribe patter is that
+it provides loose coupling.  An observable can have many
+subscribers. This allows you to remove redundant logic.
+
+LIFECYCLES ==

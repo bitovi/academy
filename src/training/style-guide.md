@@ -43,6 +43,9 @@ Another paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed 
 - List element
   - nested
   - next
+    ```
+    code
+    ```
     - deep
       ```
       foo

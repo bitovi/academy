@@ -1,0 +1,84 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js"/></script>
+<script src="https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js"/></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js"></script>
+<script src="https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js"></script>
+<script src="https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js"></script>
+<script src="https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js"></script>
+<script src="https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js"></script>
+<script src="https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js"></script>
+<script src="https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js"></script>
+<base href="/">
+<my-app></my-app>
+<script type="typescript">
+const { Component, NgModule, VERSION, OnInit } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { ReactiveFormsModule, FormGroup, FormBuilder } = ng.forms;
+
+@Component({
+  selector: 'my-app',
+  template: `
+    <p>A home component!</p>
+    <label>
+      Custom input:
+      <input type="text" (change)="customChange($event)">
+    </label>
+    
+    <form [formGroup]="myQuickForm">
+      <label>
+        First name:
+        <input type="text" formControlName="firstName">
+      </label>
+      <label>
+        Last name:
+        <input type="text" formControlName="lastName">
+      </label>
+      <label>
+        Email:
+        <input type="text" formControlName="email">
+      </label>
+    </form>
+  `
+})
+class AppComponent implements OnInit {
+  myQuickForm: FormGroup;
+
+  constructor(private fb:FormBuilder) {}
+
+  ngOnInit(): void {
+    this.myQuickForm = this.fb.group({
+      firstName: {value: '', disabled: false},
+      lastName: {value: '', disabled: false},
+      email: {value: '', disabled: false}
+    });
+  }
+
+  customChange(ev): void {
+    const newVal = ev.currentTarget.value;
+    const formControl = this.myQuickForm.get('firstName');
+    formControl.patchValue(newVal);
+  }
+}
+//THIS IS A HACK JUST FOR CODEPEN TO WORK
+AppComponent.parameters = [FormBuilder];
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    ReactiveFormsModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err => console.error(err));
+</script>
+

@@ -1,19 +1,19 @@
 interface Item {
-    name: string;
+  name: string;
 }
 
 interface Menu {
-    lunch: Array<Item>;
+  lunch: Item[];
 }
 
 interface Address {
-    street: string;
+  street: string;
 }
 
 interface Images {
-    thumbnail: string;
+  thumbnail: string;
 }
 
 export interface Restaurant {
-    name: string;
+  name: string;
 }

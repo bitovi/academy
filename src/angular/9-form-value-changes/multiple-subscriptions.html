@@ -16,8 +16,8 @@ const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
 const { Routes, RouterModule } = ng.router;
 const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
-const { Observable, Subscription } = rxjs;
-
+const { Observable, Subject } = rxjs;
+const { takeUntil } = rxjs.operators;
 
 @Component({
   selector: 'my-app',
@@ -41,8 +41,7 @@ class AppComponent {
   `
 })
 class AboutComponent {
-  constructor() {
-  }
+  constructor() {}
 }
 
 @Component({
@@ -50,24 +49,22 @@ class AboutComponent {
   template: `
     <p>A home component!</p>
 
-    <p>{{myDisplayValue}}</p>
+    <p>{{ myDisplayValue }}</p>
 
-    <p>{{myOtherDisplayValue}}</p>
-    `
+    <p>{{ myOtherDisplayValue }}</p>
+  `
 })
-class HomeComponent implements OnInit{
-  $myObservable: Observable<string>;
-  $myOtherObservable: Observable<string>;
-  $mySubscription: Subscription;
+class HomeComponent implements OnInit, OnDestroy {
+  private onDestroy$ = new Subject<void>();
+  myObservable$: Observable<string>;
+  myOtherObservable$: Observable<string>;
   myDisplayValue: string;
   myOtherDisplayValue: string;
-  
-  constructor(private fb:FormBuilder) {
-  
-  }
 
-  ngOnInit() {
-    this.$myObservable = new Observable(observer => {
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.myObservable$ = new Observable(observer => {
       setTimeout(() => {
           observer.next('hello observable');
       }, 1000);
@@ -81,34 +78,39 @@ class HomeComponent implements OnInit{
       }, 3000);
     });
 
-    this.$myOtherObservable = new Observable(observer => {
+    this.myOtherObservable$ = new Observable(observer => {
       setTimeout(() => {
           observer.next('hello other observable');
       }, 1500);
 
       setTimeout(() => {
           observer.next('I am good');
-      }, 2500);
+      }, 9500);
 
       setTimeout(() => {
           observer.complete();
       }, 3500);
     });
 
-    this.$mySubscription = this.$myObservable.subscribe((val) => {
-      this.myDisplayValue = val;
-    });
+    this.myObservable$
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((val) => {
+        this.myDisplayValue = val;
+      });
 
-    this.$mySubscription.add(this.$myOtherObservable.subscribe((val) => {
-      this.myOtherDisplayValue = val;
-    }));
-   
+    this.myOtherObservable$
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((val) => {
+        this.myOtherDisplayValue = val;
+      });
   }
 
-  ngOnDestroy() {
-    this.$mySubscription.unsubscribe();
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 }
+
 //THIS IS A HACK JUST FOR CODEPEN TO WORK
 HomeComponent.parameters = [FormBuilder];
 
@@ -123,7 +125,6 @@ const routes: Routes = [
 })
 class AppRoutingModule { }
 
-                 
 @NgModule({
   declarations: [AppComponent, AboutComponent, HomeComponent],
   imports: [

@@ -1,0 +1,8 @@
+ignore-patterns:
+- /academy
+- /src/**/*.*
+- "!/src/**/scripts/*.*"
+
+ignores:
+- steal-tools
+- q

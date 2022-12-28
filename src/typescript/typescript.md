@@ -1,5 +1,5 @@
-@page typescript TypeScript
-@parent bit-u 4
+@page learn-typescript Learn TypeScript
+@parent bit-academy 4
 @description This course covers the basic essentials of TypeScript. At the end, you should be
 ready to develop projects in TypeScript.
 
@@ -8,19 +8,19 @@ ready to develop projects in TypeScript.
 
 ## Before You Begin
 
-<a href="https://join.slack.com/t/bitovi-community/shared_invite/enQtNTIzMTE5NzYxMjA3LWMwMzE4MjFkMTI5ZmZjNzllYjc2MzcxOWNmOTg3YjI4NjE0MGFkZGNkOTNlZjlkNDBhNTlmYTcwMzJlZDZjY2Y">
+<a href="https://www.bitovi.com/community/slack">
 <img src="https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.png?width=200"
   style="float:left"/> <span style="margin-top: 10px;display: inline-block;">Click here to join<br/>Bitovi's Slack Community</span></a>
 
-Join Bitovi's Slack Community to get help on Bitovi University courses or other
+Join Bitovi's Slack Community to get help on Bitovi Academy courses or other
 Angular, React, CanJS and JavaScript problems.
 
-Please ask questions related to TypeScript in the [Angular chat room](https://bitovi-community.slack.com/messages/CFD2J3HT3).
+Please ask questions related to TypeScript in the [TypeScript chat room](https://bitovi-community.slack.com/archives/CJ4K07T7F).
 
-If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/university/issues) or email `contact@bitovi.com`.
+If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/academy/issues) or email `contact@bitovi.com`.
 
 
-## <img src="./static/img/typescript/logo.svg" width="50%"/>
+<img src="./static/img/typescript/logo.svg" width="50%"/>
 
 TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
 
@@ -32,7 +32,7 @@ Angular and many other frameworks use TypeScript to take advantage of its typech
 - IDE Support - configure TypeScript and learn about different IDEs that help support TypeScript development.
 - Types - understand basic types and how to enforce them.
   ```typescript
-  let isCarnivore: boolean = true;
+  let isCarnivore: boolean;
   ```
 - Functions - how to annotate functions parameters and return values, different parameter types available, and how to bind `this`.
   ```typescript
@@ -42,11 +42,11 @@ Angular and many other frameworks use TypeScript to take advantage of its typech
   ```
 - Classes - using classes and inheritance in TypeScript, explaining the ``constructor`` method, and using public, private, protected, and readonly modifiers.
   ```typescript
-  class ParkEmployee {
-    name: string;
-    constructor(name) { this.name = name; }
-    sayHi() {
-      console.log(`Hi, my name is ${this.name}`);
+  class Human {
+    constructor(public firstName: string, public lastName: string) {}
+
+    getFullName(): string {
+      return `${this.firstName} ${this.lastName}`;
     }
   }
   ```
@@ -68,3 +68,7 @@ Angular and many other frameworks use TypeScript to take advantage of its typech
     }
   }
   ```
+
+## Next Steps
+
+✏️ Head over to the [first lesson](learn-typescript/why-typescript.html) and get your environment setup.

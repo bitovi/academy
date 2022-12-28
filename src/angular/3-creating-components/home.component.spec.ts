@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
 
@@ -6,12 +6,12 @@ describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       declarations: [ HomeComponent ]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HomeComponent);
@@ -27,13 +27,16 @@ describe('HomeComponent', () => {
     const fixture = TestBed.createComponent(HomeComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Ordering food has never been easier');
+    expect(compiled.querySelector('h1').textContent).toContain(
+      'Ordering food has never been easier'
+    );
   });
 
   it('should have a member "title" on the component', () => {
     const fixture = TestBed.createComponent(HomeComponent);
     fixture.detectChanges();
-    expect(fixture.componentInstance.title).toContain('Ordering food has never been easier');
+    expect((fixture.componentInstance as any).title).toContain(
+      'Ordering food has never been easier'
+    );
   });
-
 });

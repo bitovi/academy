@@ -1,0 +1,48 @@
+Welcome to part four of Bitovi academies learn doctor training in this video we're going to build a Docker file. if you recall from part two a Dr. file is a plain text file used to build an image.
+
+
+FROM node:15
+
+ARG PORT=8000
+ENV PORT=$PORT
+
+WORKDIR app
+COPY src src
+COPY package.json .
+
+RUN npm install
+EXPOSE $PORT
+CMD npm start
+
+### FROM node:15
+the first line of any docker file as a from instruction because we are looking to containerize a NodeJS app our from instruction will be from node:15. The node part specifies the name of the image we want to use the: 15 part is a tag and specifies the version of the image we want to use in this case nodes 15.
+
+The node 15 image contains NPM, node some other helpful packages for building and running a NodeJS app. Using a base image like this allows the rest of her docker file to focus explicitly on logic specific to our application.
+
+Because the node image is in itself a docker image it also has its own Docker file. Because it's a Docker file it has its own from statement this hierarchy of our Docker file depending on no JS that depends on another base image repeats all the way down until we reach a special base image called scratch scratch is just a base image that contains what's required for Docker to function at all.
+
+All of these images that we are pulling are hosted on Docker hub. Docker hub is an image registry for hosting and sharing public or private docker images.
+
+### ARG PORT=8000
+### ENV PORT=$PORT
+The aTG instruction is used to define variables that are only available and sellable during the image build process in our case we are defining an argument, port and setting its default value to 8000.
+
+The end instruction is used to define environment variables that can be used during container run time and set when it container is instantiated this is often combined with an ARC statement to cover all cases of been able to set or use a variable drain both build and run time.
+
+### WORKDIR app
+The WIRDIR instruction tells docker to create this directory if it does not already exist and then run all subsequent instructions within that directory. In our case, we want to bundle our source code and all of its dependencies in an app directory for that reason we specify the WIRDIR instruction with a value of app.
+
+### COPY src src
+### COPY package.json .
+
+
+### RUN npm install
+The run instruction allows us to run arbitrary commands during build time. In our case were using run to run NPM install to install the dependencies to find in our package.json file
+cd 
+### EXPOSE $PORT
+Honestly the expose instruction is mostly just documentation to whoever is reading the Docker file it doesn't actually do anything but it's suppose supposed to specify that we are looking to expose a port from that container in reality when we run the container with Docker run commands will need to specify the port mapping explicitly with a Dash P flag.
+
+### CMD npm start
+The CMD is our last instruction and it's a special one it's not run during build time like a regular run instruction instead it's run out run time is used to kick off the main process for a Docker container when the command specified in our CMD instruction finishes the darker container itself will be destroyed in our case we want to run our express server with NPM start this will cause our container to run into a fatal error occurs or it is manually killed.
+
+That's it. For more information on each instruction in this file, you can read the writeup for this section of the course check out the official docs. Now that we have our dockerfile, next chapter we'll be looking at actually building and running our image.

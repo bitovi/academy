@@ -1,0 +1,40 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.3.3/rxjs.umd.min.js"></script>
+<script type="module">
+    const { of, interval, zip } = rxjs;
+    const { map, mergeMap, delay } = rxjs.operators;
+
+    // returns a stream that emits the price of a given menu item after a 500ms delay. this is how a request might operate
+    function pseudoPriceRequest(menuItem) {
+        if (menuItem === 'Truffle Noodles') {
+            return of(14.99).pipe(delay(500))
+        } else if (menuItem === 'Charred Octopus') {
+            return of(25.99).pipe(delay(500))
+        }
+    }
+
+    // emits the values every 2 seconds in order
+    const pseudoFormValueStream = zip(of('', 'Truffle Noodles', 'Charred Octopus', ''), interval(2000)).pipe(map(([val, num]) => val));
+
+    // stream that makes a "request" if provided a menu item name or returns "No Item Selected"
+    const pseudoPriceStream = pseudoFormValueStream.pipe(mergeMap((selectedItem) => {
+        if (selectedItem) {
+            return pseudoPriceRequest(selectedItem).pipe(map(price => '$' + price));
+        } else {
+            return of('No Item Selected');
+        }
+    }));
+
+    pseudoPriceStream.subscribe((price) => {
+        console.log('Price Of Selected Item: ' + price);
+    })
+
+    // logs:
+    // (... 2 seconds pass)
+    // Price Of Selected Item: No Item Selected
+    // (... 2.5 seconds pass)
+    // Price Of Selected Item: $14.99
+    // (... 2 seconds pass)
+    // Price Of Selected Item: $25.99
+    // (... 2 seconds pass)
+    // Price Of Selected Item: No Item Selected
+</script>

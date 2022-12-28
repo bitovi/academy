@@ -14,101 +14,92 @@
 const { Component, NgModule, VERSION, OnInit, OnDestroy, Injectable } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
-const { Routes, RouterModule } = ng.router;
-const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
-const { Observable, Subscription } = rxjs;
+const { Observable, Subject } = rxjs;
+const { takeUntil } = rxjs.operators;
 
+@Injectable({
+  providedIn: 'root'
+})
+class ObsService {
+  constructor() {}
+
+  getObs(): Observable<number> {
+    return new Observable<number>(observer => {
+      console.log('New subscription created');
+      let count = 0;
+      
+      const interval = setInterval(() => {
+        count++;
+        console.log("incrementing", count); 
+        observer.next(count);
+      }, 1000);
+    
+      return () => {
+        clearInterval(interval);
+        console.log('unsubscribed');
+      }
+    })
+  }
+}
 
 @Component({
   selector: 'my-app',
   template: `
-    <ul class="nav">
-      <li routerLinkActive="active">
-        <a routerLink="/about" >About</a>
-      </li>
-    </ul>
-    <router-outlet></router-outlet>
+    <destroy-component *ngIf="yayComponent"></destroy-component>
+    <button (click)="removeComponent()" *ngIf="yayComponent">remove component</button>
+    <p *ngIf="!yayComponent">I am a very sad empty component now</p>
   `
 })
 class AppComponent {
+  yayComponent: boolean = true;
+  
   constructor() {}
-}
 
-@Component({
-  selector: 'about-component',
-  template: `
-    <p>An about component!</p>
-  `
-})
-class AboutComponent {
-  constructor() {
+  removeComponent(): void {
+    this.yayComponent = false;
   }
 }
 
 @Component({
-  selector: 'home-component',
+  selector: 'destroy-component',
   template: `
-    <p>A home component!</p>
+    <p>This component will be destroyed. Rawr.</p>
+    <button (click)="startObservable()">start observable</button>
 
-    <p>{{myDisplayValue}}</p>
+    <p>{{ myDisplayValue }}</p>
     `
 })
-class HomeComponent implements OnInit, OnDestroy {
-  $myObservable: Observable<string>;
-  $mySubscription: Subscription;
+class DestroyComponent implements OnDestroy {
+  private onDestroy$ = new Subject<void>();
   myDisplayValue: string;
-  
-  constructor(private fb:FormBuilder) {
-  
+
+  constructor(private obsService: ObsService) {}
+
+  startObservable(): void {
+    // subscribing to a service that emits observable values every second.
+    this.obsService.getObs()
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((val) => {
+        console.log('new value', val);
+        this.myDisplayValue = val;
+      });
   }
 
-  ngOnInit() {
-    this.$myObservable = new Observable(observer => {
-      setTimeout(() => {
-          observer.next('hello observable');
-      }, 1000);
-
-      setTimeout(() => {
-          observer.next('how are you');
-      }, 2000);
-
-      setTimeout(() => {
-          observer.complete();
-      }, 3000);
-  });
-
-   this.$mySubscription = this.$myObservable.subscribe((val) => {
-     this.myDisplayValue = val;
-   });
-
-  }
-
-  ngOnDestroy() {
-    this.$mySubscription.unsubscribe();
+  ngOnDestroy(): void {
+    console.log('destroying component');
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
 }
+
 //THIS IS A HACK JUST FOR CODEPEN TO WORK
-HomeComponent.parameters = [FormBuilder];
+DestroyComponent.parameters = [ObsService]; 
 
-
-const routes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: '**', component: HomeComponent }
-]
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-class AppRoutingModule { }
-
-                 
-@NgModule({
-  declarations: [AppComponent, AboutComponent, HomeComponent],
+  declarations: [AppComponent, DestroyComponent],
   imports: [
     BrowserModule,
-    CommonModule,
-    AppRoutingModule, 
-    ReactiveFormsModule
+    CommonModule
   ],
   bootstrap: [AppComponent],
   providers: []

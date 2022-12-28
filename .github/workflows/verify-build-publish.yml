@@ -1,0 +1,35 @@
+name: Verify/Build/Deploy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "16"
+
+      - name: "Install"
+        run: npm ci
+
+      - name: depcheck
+        run: npm run depcheck
+
+      - name: Build
+        run: npm run build
+
+      - name: Deploy
+        if: ${{ github.ref == 'refs/heads/main' }}
+        env:
+          HUBSPOT_API_KEY: ${{ secrets.HUBSPOT_API_KEY }}
+          HUBSPOT_CAMPAIGN_ID: ${{ secrets.HUBSPOT_CAMPAIGN_ID }}
+        run: npm run deploy

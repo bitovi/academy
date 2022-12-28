@@ -1,5 +1,5 @@
 @page training Giving a Training
-@parent bit-u 10
+@parent bit-academy 10
 @description Learn how to prepare and give a training.
 
 @body
@@ -26,12 +26,20 @@ have a successful training.
 - <input type="checkbox"/> Get email of attendees.
 - <input type="checkbox"/> Look on [bitovi/univerisy](https://github.com/bitovi/training/issues) for issues to fix.
 - <input type="checkbox"/> Share the [training outline](https://docs.google.com/document/d/1ehhhfqWTKJBsrvvnZXCd8BxH56gbdjFKd36-U8fLdlo/edit#) with the team.
+- <input type="checkbox"/> Make sure there is a projector and screen.
+- <input type="checkbox"/> Send an email to trainees, reminding them:
+  - When to be there
+  - Where it is
+  - What to bring
+  - What we will do for food
+
 
 ## Before you leave for the training
 
 
 - <input type="checkbox"/> Bring swag, snacks, or candy.
 - <input type="checkbox"/> Print out cheat sheets
+- <input type="checkbox"/> Bring the projector or screen if necessary.
 
 ## Introduction
 
@@ -59,7 +67,7 @@ have a successful training.
 3. Get introductions from the trainees.
 
    Go around and ask trainees name, what they want to learn,
-   where they are from, and something fun about them.
+   where they are from, and something fun about them. Write down their names.
 
 
 
@@ -72,11 +80,13 @@ have a successful training.
   - Pass out cups, have people flip them over when they complete an
     exercise.
 - Create issues when mistakes or improvements can be made.
-
+- Take pictures
 
 ## Finishing the training
 
+
 - Ask people to provide feedback `contact@bitovi.com` or issues.
 - Ask people if there are other trainings they would like.
+- Ask people for testimonials.
 - Ask people to recommend these trainings to other colleges if they
-  enjoyed the training. 
+  enjoyed the training.

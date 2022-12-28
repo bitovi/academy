@@ -1,5 +1,5 @@
-@page debugging-javascript-training/conditional Conditional
-@parent debugging-javascript-training 4
+@page learn-to-debug-javascript/conditional Conditional
+@parent learn-to-debug-javascript 4
 @description Learn how to set a conditional breakpoint.
 
 @body
@@ -8,7 +8,7 @@
 ## The problem
 
 ```html
-<script src="//bitovi.github.io/university/static/scripts/debugging/variables.js"></script>
+<script src="//bitovi.github.io/academy/static/scripts/debugging/variables.js"></script>
 <script type="module">
 function conditional(){
 	let sum = 0;

@@ -85,14 +85,15 @@
   ];
   
   @NgModule({
-    imports: [RouterModule.forChild(childRoutes)]
+    imports: [RouterModule.forChild(childRoutes)],
+    exports: [RouterModule]
   })
   class ChildRoutingModule { }
   
   @NgModule({
     imports: [
-      BrowserModule,
-      CommonModule
+      CommonModule,
+      ChildRoutingModule
     ],
     declarations: [ChildComponent],
     bootstrap: [ChildComponent],
@@ -111,7 +112,12 @@
   const routes: Routes = [
     { path: 'about', component: AboutComponent },
     { path: 'boop',  redirectTo: '/about', pathMatch: 'full' },
-    { path: 'mymodule', loadChildren: ChildModule},
+    /*
+      loadChildren would normally be a result of an import Promise,
+      but we used a function for demonstration purposes and to enable it to work on codepen
+      Correct: { path: 'mymodule', loadChildren: () => import('./child/child.module').then(m => m.ChildModule) },
+    */
+    { path: 'mymodule', loadChildren: () => ChildModule},
     { path: '**', component: PageNotFoundComponent }
   ];
   

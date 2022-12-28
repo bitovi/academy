@@ -1,14 +1,14 @@
-@page angular/why-angular Why Angular
-@parent angular 1
+@page learn-angular/why-angular Why Angular
+@parent learn-angular 1
 
-@description Why Angular is a great choice for modern web application development. 
+@description Why Angular is a great choice for modern web application development.
 
 @body
 
 ## Angular in the Modern Web Development Ecosphere
 
 Angular was first released in 2010 as a new framework in the MV* space alongside libraries like Backbone, Knockout, and Dojo.
-
+Some of the best things about Angular are that it is opinionated, has built-in testing, streamlines the Webpack build complexity with its own CLI, and is a Google-backed and supported product.
 ## The Pros
 
 ### 1. An Opinionated Framework
@@ -30,3 +30,5 @@ Angular streamlines the build process of these resources by masking Webpack conf
 
 Having a heavy hitting tech titan backing a library can make it a very sustainable and future-proof choice.
 
+
+For more information see the <a href="https://docs.angularjs.org/guide/introduction" >Angular Docs</a>

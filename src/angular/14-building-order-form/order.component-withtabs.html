@@ -1,0 +1,74 @@
+<div class="order-form">
+  <ng-container *ngIf="orderComplete; else showOrderForm"></ng-container>
+  <ng-template #showOrderForm>
+    <h2>Order here</h2>
+    <form *ngIf="orderForm" [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+      <tabset>
+        <tab heading="Lunch Menu" *ngIf="restaurant?.menu?.lunch">
+          <ul class="list-group">
+            <li
+              class="list-group-item"
+              *ngFor="let item of restaurant?.menu?.lunch"
+            >
+              <label>
+                <input type="checkbox" formControlName="items" />
+                {{ item.name }} <span class="badge">${{ item.price }}</span>
+              </label>
+            </li>
+          </ul>
+        </tab>
+        <tab heading="Dinner Menu" *ngIf="restaurant?.menu?.dinner">
+          <ul class="list-group">
+            <li
+              class="list-group-item"
+              *ngFor="let item of restaurant?.menu?.dinner"
+            >
+              <label>
+                <input type="checkbox" formControlName="items" />
+                {{ item.name }} <span class="badge">${{ item.price }}</span>
+              </label>
+            </li>
+          </ul>
+        </tab>
+      </tabset>
+      <div class="form-group">
+        <label class="control-label">Name:</label>
+        <input
+          name="name"
+          type="text"
+          formControlName="name"
+        />
+        <p>Please enter your name.</p>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Address:</label>
+        <input
+          name="address"
+          type="text"
+          formControlName="address"
+        />
+        <p class="help-text">Please enter your address.</p>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Phone:</label>
+        <input
+          name="phone"
+          type="text"
+          formControlName="phone"
+        />
+        <p class="help-text">Please enter your phone number.</p>
+      </div>
+      <div class="submit">
+        <h4>Total: ${{ orderTotal }}</h4>
+        <div class="loading" *ngIf="orderProcessing"></div>
+        <button
+          type="submit"
+          [disabled]="!orderForm.valid || orderProcessing"
+          class="btn"
+        >
+          Place My Order!
+        </button>
+      </div>
+    </form>
+  </ng-template>
+</div>

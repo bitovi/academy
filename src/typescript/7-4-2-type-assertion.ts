@@ -1,0 +1,8 @@
+interface Dinosaur {
+  name: string;
+  height: number;
+}
+
+var myObj = {} as Dinosaur;
+myObj.name = 'Blue';
+myObj.height = 6;
