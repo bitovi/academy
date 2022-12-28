@@ -15,7 +15,7 @@
 2. Update `DashboardComponent` to dispatch `LoginActions.logout` Action.
 
 
-## Problem 1: Disptch Login Action on `LoginComponent`
+## Problem 1: Dispatch Login Action on `LoginComponent`
 
 Now that we have our Actions, let's use them. The `LoginComponent` should have the Login Action be dispatched when the submit button is clicked.
 
@@ -42,7 +42,7 @@ In the `LoginComponent`, there is a `TODO` where the Login Action should be disp
 </details>
 
 
-## Problem 2: Disptch Logout Action on `DashboardComponent`
+## Problem 2: Dispatch Logout Action on `DashboardComponent`
 
 And the `DashboardComponent` should have the Logout Action be dispatched when the logout button is clicked.
 
