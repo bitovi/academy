@@ -45,4 +45,8 @@ Copy the following code to replace the contents of `src/app/dashboard/dashboard.
 </details>
 
 
-> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/test-actions). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/dispatch-actions...test-actions) on GitHub.
+> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/test-actions). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/dispatch-actions...test-actions) on GitHub or you can use the following command in your terminal:
+
+```bash
+git diff origin/test-actions
+```

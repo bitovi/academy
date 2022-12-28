@@ -99,4 +99,8 @@ The `LoginService.login()` method will throw an error if any of these cases are 
 _When one of these requirements aren't met, an error is thrown and an error is logged in the console in red text._
 
 
-> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-redirect-effects). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/test-api-effects...create-redirect-effects) on GitHub.
+> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-redirect-effects). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/test-api-effects...create-redirect-effects) on GitHub or you can use the following command in your terminal:
+
+```bash
+git diff origin/create-redirect-effects
+```

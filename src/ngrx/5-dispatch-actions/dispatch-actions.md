@@ -62,4 +62,8 @@ In the `DashboardComponent`, there is a `TODO` where the Logout Action should be
 </details>
 
 
-> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/dispatch-actions). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/create-actions...dispatch-actions) on GitHub.
+> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/dispatch-actions). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/create-actions...dispatch-actions) on GitHub or you can use the following command in your terminal:
+
+```bash
+git diff origin/dispatch-actions
+```
