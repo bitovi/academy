@@ -92,7 +92,7 @@ This command accomplishes the following:
 
 ### Register Root `EffectsModule` in `AppModule`
 
-This project has [prettier](https://prettier.io/) installed, so you can format files throughout the course. Right now the `imports` for AppModule found at `src/app/app.module.ts` has a long imports array. To make this more readable, we will [format this file](https://code.visualstudio.com/docs/editor/codebasics#_formatting). To do this using [vscode](https://code.visualstudio.com/), we can open `src/app/app.module.ts` then press `Shift` + `Option` + `F` for Mac or press `Shift` + `Alt` + `F` for Windows:
+This project has [prettier](https://prettier.io/) installed, so you can format files throughout the course. Right now the `imports` for `AppModule` found at `src/app/app.module.ts` has a long imports array. To make this more readable, we will [format this file](https://code.visualstudio.com/docs/editor/codebasics#_formatting). To do this using [vscode](https://code.visualstudio.com/), we can open `src/app/app.module.ts` then press `Shift` + `Option` + `F` for Mac or press `Shift` + `Alt` + `F` for Windows:
 
 <details open>
 <summary>src/app/app.module.ts</summary>
