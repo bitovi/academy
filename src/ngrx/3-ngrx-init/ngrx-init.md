@@ -20,7 +20,7 @@
 
 ## Installing Project Dependencies
 
-Before we can get started, we'll need to install the project's dependencies:
+We will need access to the Angular cli for this section, so if you haven't already installed the project's dependencies ([learn-ngrx/getting-started]), be sure to install them:
 
 ```bash
 npm install
