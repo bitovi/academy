@@ -66,7 +66,7 @@ To solve this, you will need to know how to:
 
 ## RouterLink
 
-You may have noticed the links in the routing examples to switch between views. They use the <a href="https://angular.io/api/router/RouterLink" target="\_blank">routerLink</a> directive. The `routerLink` takes a property of a path that can be static or built dynamically based on properties on the component.
+You may have noticed the links in the routing examples to switch between views. They use the <a href="https://angular.io/api/router/RouterLink">routerLink</a> directive. The `routerLink` takes a property of a path that can be static or built dynamically based on properties on the component.
 
 ### Static routerLink Segments
 
@@ -104,7 +104,7 @@ Using `{exact: true}` will only set the class if the path match is exactly equal
 
 ### Adding an Active Class with Template Variable
 
-`RouterLinkActive` can also be used to set <a href="https://angular.io/api/router/RouterLinkActive#template-variable-references" target="\_blank">template variables</a> to check the active status of the route. In this example we're creating a template variable `myroutervariable` to represent our route and it's active state for logic in our template.
+`RouterLinkActive` can also be used to set <a href="https://angular.io/api/router/RouterLinkActive#template-variable-references">template variables</a> to check the active status of the route. In this example we're creating a template variable `myroutervariable` to represent our route and it's active state for logic in our template.
 
 @sourceref ./router-link-active-template.html
 @codepen

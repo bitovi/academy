@@ -239,7 +239,7 @@ This is our root component, you saw it called in our index.html file as `<pmo-ro
 npm run start
 ```
 
-The `start` script command value is `ng serve` which starts a development server on port `4200` by default using <a href="https://github.com/webpack/webpack-dev-server" target="\_blank">webpack-dev-server</a>, and compiles a development version of the app. Any TypeScript errors will be caught by the compiler here, and once ready we can view our app at <a href="http://localhost:4200" target="\_blank">localhost:4200</a>. `ng serve` also has live-reload functionality, meaning the browser will automatically reload as changes are saved and compiled.
+The `start` script command value is `ng serve` which starts a development server on port `4200` by default using <a href="https://github.com/webpack/webpack-dev-server">webpack-dev-server</a>, and compiles a development version of the app. Any TypeScript errors will be caught by the compiler here, and once ready we can view our app at <a href="http://localhost:4200">localhost:4200</a>. `ng serve` also has live-reload functionality, meaning the browser will automatically reload as changes are saved and compiled.
 
 ## Running Tests
 

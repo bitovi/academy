@@ -35,7 +35,7 @@ For a more robust understanding of Observables, Subscriptions, and other RxJS co
 
 This example shows creating a Subscription to an Observable, saving it's value to a member on the component and displaying it in the template. This is useful for when we want to capture an Observable's values and make changes based on them, but Subscriptions do need to be cleaned up to avoid memory leaks.
 
-Whenever a component is destroyed an <a href="https://angular.io/api/core/OnDestroy" target="\_blank">ngOnDestroy</a> method is called. This is a good place to put our cleanup code, like unsubscribing from Observables.
+Whenever a component is destroyed an <a href="https://angular.io/api/core/OnDestroy">ngOnDestroy</a> method is called. This is a good place to put our cleanup code, like unsubscribing from Observables.
 
 In this example, click the button to start subscribing to the Observables - you'll see two variables logged: the new Observable value and the Subscription value. Then click the "remove component" button to see what happens when a component is destroyed. Next delete lines 90 and 91, follow the same process and see what happens!
 
