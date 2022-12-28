@@ -91,12 +91,16 @@ Now that we've removed the generated Actions, we will need to update a couple of
 
 >Also note that this clean up will be required for the upcoming unit tests to pass
 
+First, we'll remove the generated Effects. And we will remove the unused imports from `@ngrx/effects`, `rxjs/operators`, `rxjs`, and `./login.actions`:
+
 <details open>
 <summary>src/app/store/login/login.effects.ts</summary>
 
 @diff ../3-ngrx-init/login.effects.ts ./login.effects.ts only
 
 </details>
+
+Last, we'll remove the generated `on()` handlers in our Reducer function. And we will remove the unused imports from `@ngrx/store` and `./login.actions`:
 
 <details open>
 <summary>src/app/store/login/login.reducer.ts</summary>
@@ -106,4 +110,8 @@ Now that we've removed the generated Actions, we will need to update a couple of
 </details>
 
 
-> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-actions). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/ngrx-init...create-actions) on GitHub.
+> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-actions). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/ngrx-init...create-actions) on GitHub or you can use the following command in your terminal:
+
+```bash
+git diff origin/create-actions
+```

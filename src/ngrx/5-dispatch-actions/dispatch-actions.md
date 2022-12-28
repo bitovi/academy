@@ -15,7 +15,7 @@
 2. Update `DashboardComponent` to dispatch `LoginActions.logout` Action.
 
 
-## Problem 1: Disptch Login Action on `LoginComponent`
+## Problem 1: Dispatch Login Action on `LoginComponent`
 
 Now that we have our Actions, let's use them. The `LoginComponent` should have the Login Action be dispatched when the submit button is clicked.
 
@@ -42,7 +42,7 @@ In the `LoginComponent`, there is a `TODO` where the Login Action should be disp
 </details>
 
 
-## Problem 2: Disptch Logout Action on `DashboardComponent`
+## Problem 2: Dispatch Logout Action on `DashboardComponent`
 
 And the `DashboardComponent` should have the Logout Action be dispatched when the logout button is clicked.
 
@@ -62,4 +62,8 @@ In the `DashboardComponent`, there is a `TODO` where the Logout Action should be
 </details>
 
 
-> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/dispatch-actions). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/create-actions...dispatch-actions) on GitHub.
+> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/dispatch-actions). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/create-actions...dispatch-actions) on GitHub or you can use the following command in your terminal:
+
+```bash
+git diff origin/dispatch-actions
+```
