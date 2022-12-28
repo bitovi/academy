@@ -114,7 +114,7 @@ As our applications grow, it doesn't make sense to load all the code at once. Th
 
 ## <base-href>
 
-In our `index.html` file, the angular cli included `<base href="/>`. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base" target="_blank">here</a>, but it's important to know this is how the Angular router will know how to compose URLs - the value in the `href` attribute specifies the base URL for all relative URLs contained in the app. If you'd like to serve your app from a different directory (wherever the index.html will be served from) or have a specific hosting URL that your app will be deployed at, you will need to change the `base href` to match.
+In our `index.html` file, the angular cli included `<base href="/>`. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base">here</a>, but it's important to know this is how the Angular router will know how to compose URLs - the value in the `href` attribute specifies the base URL for all relative URLs contained in the app. If you'd like to serve your app from a different directory (wherever the index.html will be served from) or have a specific hosting URL that your app will be deployed at, you will need to change the `base href` to match.
 
 ```html
 <!doctype html>
