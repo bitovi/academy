@@ -29,7 +29,12 @@ jobs:
 
       - name: Deploy to GitHub Pages
 #         if: ${{ github.ref == 'refs/heads/main' }}
-        uses: actions/deploy-pages@v1
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./academy
+          user_name: "Workflow"
+          user_email: "workflow@github"
 
       - name: Deploy
         if: ${{ github.ref == 'refs/heads/main' }}
