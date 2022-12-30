@@ -494,10 +494,10 @@ a.quote-link:hover{
           <img src="./static/img/ngrx.png" height="70">
         </div>
         <h4>NgRx</h4>
-        <p>Learn about the architecture of an NgRx application through actions, reducers, effects, and selectors.</p>
+        <p> Build an NgRx feature store to manage login state through actions, reducers, effects, and selectors.</p>
         <div class="width100">
           <p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
-          <p class='detail'><strong>Goal:</strong> Build an NgRx feature store to manage login state</p>
+          <p class='detail'><strong>Goal:</strong> Learn about the architecture of an NgRx application</p>
           <p class='detail'><strong>Time:</strong> 3 hours</p>
         </div>
         <a href="./learn-ngrx.html" class="button button-grey full-width">Take this course</a>
