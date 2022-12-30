@@ -27,8 +27,9 @@ jobs:
       - name: Build
         run: npm run build
 
+      # main needs to deploy to github pages because images point to github.io
       - name: Deploy to GitHub Pages
-#         if: ${{ github.ref == 'refs/heads/main' }}
+        if: ${{ github.ref == 'refs/heads/main' }}
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
