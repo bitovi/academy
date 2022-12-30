@@ -27,6 +27,16 @@ jobs:
       - name: Build
         run: npm run build
 
+      # main needs to deploy to github pages because images point to github.io
+      - name: Deploy to GitHub Pages
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./academy
+          user_name: "Workflow"
+          user_email: "workflow@github"
+
       - name: Deploy
         if: ${{ github.ref == 'refs/heads/main' }}
         env:
