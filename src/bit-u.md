@@ -494,7 +494,7 @@ a.quote-link:hover{
           <img src="./static/img/ngrx.png" height="70">
         </div>
         <h4>NgRx</h4>
-        <p>Learn the essentials of NgRx: actions, effects, reducers, and selectors.</p>
+        <p>Learn about the architecture of an NgRx application through actions, reducers, effects, and selectors.</p>
         <div class="width100">
           <p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
           <p class='detail'><strong>Goal:</strong> Build an NgRx feature store to manage login state</p>
