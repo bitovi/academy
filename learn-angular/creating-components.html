@@ -171,9 +171,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-docker.html"
-							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
-							Learn Docker
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
 						</a>
 						
 					</li>
@@ -204,6 +204,21 @@
 							href="../learn-technology-consulting.html"
 							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
 						</a>
 						
 					</li>
@@ -638,7 +653,7 @@ and restaurant list view in the next exercise.</p>
 </ul>
 <h2>Generate Components</h2>
 <p>In Angular, Components are the basic building blocks that help us craft the UI. They are classes that handle views, allow management of user interaction, and displaying information via data binding. Data binding is the term for connecting data or information to the UI. An example would be an input field that a user enters a value into.</p>
-<p>Recommended reading: <a href="https://angular.io/guide/lifecycle-hooks" target="\_blank" >Angular Lifecyle Hooks</a></p>
+<p>Recommended reading: <a href="https://angular.io/guide/lifecycle-hooks"  >Angular Lifecyle Hooks</a></p>
 <p>The best way to create a new component is by using the Angular CLI:</p>
 <pre><code class="language-shell">ng g component new-component-name
 </code></pre>
@@ -976,6 +991,7 @@ application. One of the ways components can be rendered is by putting them in ma
   &lt;/p&gt;
 &lt;/div&gt;
 </code></pre>
+<div line-highlight='only'></div>
 <p>Run <code>npm run start</code>, and your app should compile with no errors, and you'll be able to see the home component. Later we'll move the home component to it's own page with a unique route.</p>
 <h2>P1: How to Verify Your Solution is Correct</h2>
 <p>✏️ Update the spec file <strong>src/app/home/home.component.spec.ts</strong> to be:</p>
@@ -1023,7 +1039,7 @@ describe('HomeComponent', () =&gt; {
 });
 
 </code></pre>
-<div line-highlight='25-41'></div>
+<div line-highlight='25-41, only'></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
@@ -1089,7 +1105,7 @@ template directives. Template directives in Angular help us iterate through and 
 <li>ng-class - set classes on elements.</li>
 </ul>
 <h2>*ngIf</h2>
-<p><a href="https://angular.io/api/common/NgIf" target="\_blank">ngIf</a> is a structural directive that allows us to conditionally render content. It can be paired with <a href="https://angular.io/guide/structural-directives#creating-template-fragments-with-ng-template" target="\_blank">ng-template</a> to render an <code>else</code> block.</p>
+<p><a href="https://angular.io/api/common/NgIf" >ngIf</a> is a structural directive that allows us to conditionally render content. It can be paired with <a href="https://angular.io/guide/structural-directives#creating-template-fragments-with-ng-template" >ng-template</a> to render an <code>else</code> block.</p>
 <p>This example shows content blocks based on the value of boolean <code>showMyContent</code>.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1149,7 +1165,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='17-22, 26,only'></div>
 <h2>*ngFor</h2>
-<p><a href="https://angular.io/api/common/NgFor" target="\_blank">ngFor</a> is a structural directive that allows to iteratively create content in our templates.</p>
+<p><a href="https://angular.io/api/common/NgFor" >ngFor</a> is a structural directive that allows to iteratively create content in our templates.</p>
 <p>This example displays each name in the <code>myList</code> array in an <code>li</code> tag.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1206,7 +1222,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='14-26,only'></div>
 <h2>ng-container</h2>
-<p><a href="https://angular.io/api/core/ng-container" target="\_blank">ng-container</a> is an element that allows us to create template bindings without creating a DOM element. Only one structural directive is allowed per host element (to avoid confusion around which directive would take precedence) making this directive handy for when we have several logic directives to apply to content.</p>
+<p><a href="https://angular.io/api/core/ng-container" >ng-container</a> is an element that allows us to create template bindings without creating a DOM element. Only one structural directive is allowed per host element (to avoid confusion around which directive would take precedence) making this directive handy for when we have several logic directives to apply to content.</p>
 <p>This example shows using logic directives to display data without creating additional DOM elements.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1272,7 +1288,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='17-22,only'></div>
 <h2>ng-class</h2>
-<p>The <a href="https://angular.io/api/common/NgClass" target="\_blank">ng-class</a> directive is a way to set classes on elements based on boolean logic. ng-class can take a single class, an array of classes, key value pairs with boolean values, or regexes.</p>
+<p>The <a href="https://angular.io/api/common/NgClass">ng-class</a> directive is a way to set classes on elements based on boolean logic. ng-class can take a single class, an array of classes, key value pairs with boolean values, or regexes.</p>
 <p>This example shows various ways classes can be added to elements.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1344,7 +1360,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='17, 19, 21, 23,25, 27-30, 34, only'></div>
-<p>Notice in the above example our <code>ng-class</code> is surrounded by <code>[ ]</code>. This signals that we're passing in an object, instead of just a string. When using <a href="https://angular.io/guide/property-binding" target="\_blank">property binding</a>, <code>ngClass=&quot;value&quot;</code> will evaluate the value as a string of <em>&quot;value&quot;</em> and <code>[ngClass]=&quot;value&quot;</code> as whatever the component property value is.</p>
+<p>Notice in the above example our <code>ng-class</code> is surrounded by <code>[ ]</code>. This signals that we're passing in an object, instead of just a string. When using <a href="https://angular.io/guide/property-binding" >property binding</a>, <code>ngClass=&quot;value&quot;</code> will evaluate the value as a string of <em>&quot;value&quot;</em> and <code>[ngClass]=&quot;value&quot;</code> as whatever the component property value is.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;

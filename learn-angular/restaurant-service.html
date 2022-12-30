@@ -171,9 +171,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-docker.html"
-							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
-							Learn Docker
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
 						</a>
 						
 					</li>
@@ -204,6 +204,21 @@
 							href="../learn-technology-consulting.html"
 							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
 						</a>
 						
 					</li>
@@ -638,7 +653,7 @@ covering CanJS core libraries.">
 <li>How to use <code>HttpClient</code> to make an HTTP request in a service.</li>
 </ul>
 <h2>Angular Service Basics</h2>
-<p>Angular <a href="https://angular.io/guide/architecture-services" target="\_blank">Services</a> are pieces of functionality that may not need to be tied to a view like components. A common example of a service is making an HTTP request to get data. Many components may require functionality to fetch data, and a Service can help abstract that logic into one place to be used across components.</p>
+<p>Angular <a href="https://angular.io/guide/architecture-services" >Services</a> are pieces of functionality that may not need to be tied to a view like components. A common example of a service is making an HTTP request to get data. Many components may require functionality to fetch data, and a Service can help abstract that logic into one place to be used across components.</p>
 <p>The following example shows a <code>UsersService</code> with methods on it that return a list of users and get a user by ID, and shows how the UsersService is injected into the <code>AppComponent</code> and calls the <code>getUsers</code> to get the list of users to display in the template.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -784,10 +799,10 @@ test file.</p>
 <p>HINT: You can generate a service in a folder <code>ng g service folder/users</code></p>
 </blockquote>
 <h2>Injectable</h2>
-<p><a href="https://angular.io/api/core/Injectable" target="_blank"><code>Injectable</code></a> is an Angular decorator that makes the class it's decorating available to Angular's <a href="https://angular.io/api/core/Injector" target="_blank">Injector</a> for creation. In the case of creating service to get data to use in our application, we want those services to be able to be injected into the app components we need the services in.</p>
+<p><a href="https://angular.io/api/core/Injectable" ><code>Injectable</code></a> is an Angular decorator that makes the class it's decorating available to Angular's <a href="https://angular.io/api/core/Injector" >Injector</a> for creation. In the case of creating service to get data to use in our application, we want those services to be able to be injected into the app components we need the services in.</p>
 <p>Angular uses the injector to create dependencies using providers - which know how to create said dependencies. We can then inject our service into our components constructor to take advantage of Angular's dependency injection pattern.</p>
 <h2>Importing <code>HttpClientModule</code> into <em>app.module.ts</em></h2>
-<p>For making HTTP requests to interact with an API, Angular provides <a href="https://angular.io/api/common/http/HttpClientModule" target="\_blank">HttpClient Module</a>. To use it we'll need to import it in the root module of our app and include it the imports array.</p>
+<p>For making HTTP requests to interact with an API, Angular provides <a href="https://angular.io/api/common/http/HttpClientModule" >HttpClient Module</a>. To use it we'll need to import it in the root module of our app and include it the imports array.</p>
 <p><strong>src/app/app.module.ts</strong></p>
 <pre><code class="language-ts">import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -819,7 +834,7 @@ export class AppModule { }
 </code></pre>
 <div line-highlight='1,21'></div>
 <h2>Using HttpClient to Make a Request</h2>
-<p><a href="https://angular.io/api/common/http/HttpClient" target="\_blank">HttpClient</a> is a class with methods for making HTTP requests. Methods will return <a href="https://angular.io/guide/observables" target="\_blank">RxJS Observables</a>.</p>
+<p><a href="https://angular.io/api/common/http/HttpClient" >HttpClient</a> is a class with methods for making HTTP requests. Methods will return <a href="https://angular.io/guide/observables" >RxJS Observables</a>.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -982,7 +997,7 @@ as shown above.</li>
 <p>✏️ In <strong>new</strong> terminal window, start the API server by running:</p>
 <pre><code class="language-bash">npm run api
 </code></pre>
-<p>Double check the api by navigating to <a href="http://localhost:7070/restaurants" target="\_blank">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the api command from.</p>
+<p>Double check the api by navigating to <a href="http://localhost:7070/restaurants">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the api command from.</p>
 <h3>Create an Environment Variable</h3>
 <p>The way we're accessing our locally run API during development may be different than how we access it in production. To prepare for this, we'll set an environment variable to do what we need. Angular already generated an <code>environments</code> folder for us with two files:</p>
 <p><code>src/environments/environment.ts</code></p>
@@ -1167,7 +1182,7 @@ import { ImageUrlPipe } from './image-url.pipe';
 export class AppModule { }
 
 </code></pre>
-<div line-highlight='1,21'></div>
+<div line-highlight='1,21, only'></div>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.service.ts</strong> to make a request to the API server <code>/restaurants</code>:</p>
 <pre><code class="language-ts">import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -1582,7 +1597,7 @@ describe('RestaurantService', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="6-7,90,103-134,"></div>
+ <div line-highlight="6-7,90,103-134,only"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass! If you haven't written the interfaces correctly, you'll see a compile error before the tests runs. You might need to restart the test script to see the compile error.</p>
 </blockquote>

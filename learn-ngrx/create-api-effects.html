@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/ngrx/7-create-api-effects/create-api-effects.md
+	@page learn-ngrx/create-api-effects
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <meta name="description" content="Create an NgRx Effect to connect the Login Store to an authentication API. 
+">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
+  <title>Bitovi Academy - Create an API Effect</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-react.html"
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will have mastered functional components, hooks, and component optimization.">
+							Learn React
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-web-components.html"
+							title="">
+							Learn Web Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="why-ngrx.html"
+							title="Why NgRx is a great choice for State Management.">
+							Why NgRx
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="getting-started.html"
+							title="Checkout the course repository and get setup for upcoming lessons!">
+							Getting Started
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="ngrx-init.html"
+							title="Learn how to add NgRx to an Angular project.">
+							Installing NgRx
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="create-actions.html"
+							title="Learn how to create NgRx Actions.">
+							Creating Actions
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="dispatch-actions.html"
+							title="Learn how to dispatch NgRx Actions from within Angular Components.">
+							Dispatching Actions
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="test-actions.html"
+							title="Learn how to write unit tests for NgRx Actions.">
+							Testing Actions
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="create-api-effects.html"
+							title="Create an NgRx Effect to connect the Login Store to an authentication API.">
+							Create an API Effect
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="test-api-effects.html"
+							title="Learn how to write unit tests for NgRx Effects.">
+							Testing API Effects
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="create-redirect-effects.html"
+							title="Learn how to create NgRx Effects that redirect the user.">
+							Creating Redirect Effects
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="test-redirect-effects.html"
+							title="Learn how to write unit tests for NgRx Effects that redirect the user.">
+							Testing Redirect Effects
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="create-reducer.html"
+							title="Learn how to create an NgRx Reducer.">
+							Create a Reducer
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="test-reducer.html"
+							title="Learn how to write unit tests for NgRx Reducers.">
+							Testing Reducers
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="create-selectors.html"
+							title="Learn how to create NgRx Selectors to obtain data from States.">
+							Creating Selectors
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="test-selectors.html"
+							title="Learn how to write unit tests for NgRx Selectors.">
+							Testing Selectors
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="use-selectors.html"
+							title="Learn how to use NgRx Selectors in a Component to access data from a store.">
+							Using Selectors
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="test-used-selectors.html"
+							title="Learn how to write unit tests for a Component making use of NgRx Selectors.">
+							Testing Selector Use
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-technology-consulting.html"
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
+							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn how to build a moderately complex application with Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../advanced-typescript.html"
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
+							Advanced TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border">
+      <a href="..#courses">View More Courses</a>
+      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
+  </p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Create an API Effect <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>Create an NgRx Effect to connect the Login Store to an authentication API.</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <blockquote>
+<p><strong>Quick Start</strong>: You can checkout <a href="https://github.com/bitovi/angular-ngrx-chat/tree/test-actions">this branch</a> to get your codebase ready to work on this part.</p>
+</blockquote>
+<h2>Overview</h2>
+<ol>
+<li><p>Add <code>login$</code> Effect to <code>LoginEffects</code>.</p></li>
+<li><p>Dispatch <code>LoginActions.loginSuccess</code> Action when API request is successful.</p></li>
+<li><p>Dispatch <code>LoginActions.loginFailure</code> Action when API request fails.</p></li>
+<li><p>Add <code>logout$</code> Effect to <code>LoginEffects</code>.</p></li>
+<li><p>Dispatch <code>LoginActions.logoutSuccess</code> Action when API request is successful.</p></li>
+<li><p>Dispatch <code>LoginActions.logoutFailure</code> Action when API request fails.</p></li>
+</ol>
+<h2>Problem 1: Create <code>login$</code> Effect to Handle API Requests</h2>
+<ol>
+<li><p><code>LoginEffects</code> should create a login API request using <code>ngx-learn-ngrx</code>'s <code>LoginService.login()</code> method whenever the <code>LoginActions.login</code> Action is dispatched using an Effect called <code>login$</code>.</p></li>
+<li><p>If the API request is successful, a <code>LoginActions.loginSuccess</code> Action should be dispatched using the API response.</p></li>
+<li><p>If the API request is unsuccessful, a <code>LoginActions.loginFailure</code> Action should be dispatched using the following method to parse the error to a message:</p></li>
+</ol>
+<p><details open>
+<summary>src/app/store/login/login.effects.ts</summary></p>
+<pre><code class="language-ts">// src/app/store/login/login.effects.ts
+
+import { Injectable } from '@angular/core';
+import { Actions } from '@ngrx/effects';
+
+@Injectable()
+export class LoginEffects {
+  constructor(private actions$: Actions) {}
+
+  private getErrorMessage(error: unknown): string {
+    if (error instanceof Error) {
+      return error.message;
+    }
+    return String(error);
+  }
+}
+
+</code></pre>
+ <div line-highlight="10-15,only"></div>
+<p></details></p>
+<h2>P1: What You Need to Know</h2>
+<p><a href="https://ngrx.io/guide/effects">NgRx Effects</a> are a side-effect model that utilizes RxJS to react to Actions being dispatched to manage side-effects such as network requests, web socket messages and time-based events. One thing that Effects are not responsible for is updating state; this is a responsiblity for Reducers (<a href="create-reducer.html" title="Learn how to create an NgRx Reducer.">Create a Reducer</a>).</p>
+<blockquote>
+<p>Note that for a given Action, Effects will always happen after the state has been updated by the Reducer.</p>
+</blockquote>
+<p>NgRx provides a couple of helpful functions and the <code>Actions</code> class to create Effects:</p>
+<ol>
+<li><p><code>createEffect()</code> <a href="https://ngrx.io/api/effects/createEffect">helper function</a> to create Effects.</p></li>
+<li><p><code>ofType()</code> <a href="https://ngrx.io/api/effects/ofType">helper function</a> to filter Actions by <code>type</code>.</p></li>
+<li><p><code>Actions</code> <a href="https://ngrx.io/api/effects/Actions">class</a> that extends the RxJS Observable to listen to every dispatched Action.</p></li>
+</ol>
+<pre><code class="language-ts">import { Injectable } from '@angular/core';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import * as ContactActions from './contact.actions';
+
+@Injectable()
+export class ContactEffects {
+  submit$ = createEffect(() =&gt; {// Create Effect
+    return this.actions$.pipe(// Listen for all dispatched Actions
+      ofType(ContactActions.submit),// Filter for submit Action
+      // ...
+    );
+  });
+ 
+  constructor(private actions$: Actions) {}
+
+  private handleSubmit(emailAddress: string, fullName: string): Observable&lt;number&gt; {/* ... */}
+
+  private getErrorMessage(error: unknown): string {/* ... */}
+}
+
+</code></pre>
+<div line-highlight='2, 3, 7, 8, 9, 14'></div>
+<p>Taking advantage of these tools provided by NgRx, we can create API requests and dispatch a new Action using the API response:</p>
+<pre><code class="language-ts">import { Injectable } from '@angular/core';
+import { Observable, catchError, map, exhaustMap } from 'rxjs/operators';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import * as ContactActions from './contact.actions';
+
+@Injectable()
+export class ContactEffects {
+  submit$ = createEffect(() =&gt; {
+    return this.actions$.pipe(
+      ofType(ContactActions.submit),
+      exhaustMap(({ emailAddress, fullName }) =&gt;
+        this.handleSubmit(emailAddress, fullName).pipe(
+          map((confirmationNumber) =&gt;
+            // Return an Action on success
+            ContactActions.submitSuccess({ confirmationNumber })
+          )
+        )
+      )
+    );
+  });
+ 
+  constructor(private actions$: Actions) {}
+
+  private handleSubmit(emailAddress: string, fullName: string): Observable&lt;number&gt; {/* ... */}
+
+  private getErrorMessage(error: unknown): string {/* ... */}
+}
+
+</code></pre>
+<div line-highlight='2, 4, 11, 12, 13, 14, 15, 16, 17, 18, only'></div>
+<p>We can also perform error handling and dispatch a new Action when an error occurs:</p>
+<pre><code class="language-ts">import { Injectable } from '@angular/core';
+import { Observable, catchError, map, exhaustMap } from 'rxjs/operators';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import * as ContactActions from './contact.actions';
+
+@Injectable()
+export class ContactEffects {
+  submit$ = createEffect(() =&gt; {
+    return this.actions$.pipe(
+      ofType(ContactActions.submit),
+      exhaustMap(({ emailAddress, fullName }) =&gt;
+        this.handleSubmit(emailAddress, fullName).pipe(
+          map((confirmationNumber) =&gt;
+            ContactActions.submitSuccess({ confirmationNumber })
+          ),
+          catchError((error: unknown) =&gt;
+            of(
+              // Return an Action on failure
+              ContactActions.submitFailure({
+                errorMsg: this.getErrorMessage(error),
+              })
+            )
+          )
+        )
+      )
+    );
+  });
+ 
+  constructor(private actions$: Actions) {}
+
+  private handleSubmit(emailAddress: string, fullName: string): Observable&lt;number&gt; {/* ... */}
+
+  private getErrorMessage(error: unknown): string {/* ... */}
+}
+
+</code></pre>
+<div line-highlight='16, 17, 18, 19, 20, 21, 22, 23, only'></div>
+<p>And last, you will need to use <code>ngx-learn-ngrx</code>'s <code>LoginService</code> to perform authentication for course:</p>
+<pre><code class="language-ts">// src/app/store/login/login.effects.ts
+
+import { Injectable } from '@angular/core';
+import { Actions } from '@ngrx/effects';
+import { LoginService } from 'ngx-learn-ngrx';
+
+@Injectable()
+export class LoginEffects {
+  constructor(private actions$: Actions, private loginService: LoginService) {}
+
+  private getErrorMessage(error: unknown): string {
+    if (error instanceof Error) {
+      return error.message;
+    }
+    return String(error);
+  }
+}
+
+</code></pre>
+ <div line-highlight="5,9,only"></div>
+<p><code>LoginService</code> has 2 methods <code>login()</code> and <code>logout()</code> that will be needed to management authentication for this course.</p>
+<blockquote>
+<p>Note that authenication <strong>DOES NOT</strong> persist after a <strong>page refresh</strong>. This means that after you make code changes while serving the application, you will be signed out and will need to login again. Remember that the login page is located at <code>/</code>.</p>
+</blockquote>
+<p>The <code>login()</code> method will throw an error if any of these cases are not met:</p>
+<ol>
+<li><p><code>password</code> must be at least 6 characters.</p></li>
+<li><p><code>username</code> must be at least 3 characters.</p></li>
+<li><p><code>username</code> must be alphanumeric including hyphens or underscores.</p></li>
+</ol>
+<p>When one of these requirements aren't met, an error is thrown and an error is logged in the console in red text.</p>
+<h2>P1: Solution</h2>
+<p><details>
+<summary>src/app/store/login/login.effects.ts</summary></p>
+<pre><code class="language-ts">// src/app/store/login/login.effects.ts
+
+import { Injectable } from '@angular/core';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { catchError, map, exhaustMap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import * as LoginActions from './login.actions';
+import { LoginService } from 'ngx-learn-ngrx';
+
+@Injectable()
+export class LoginEffects {
+  login$ = createEffect(() =&gt; {
+    return this.actions$.pipe(
+      ofType(LoginActions.login),
+      exhaustMap(({ username, password }) =&gt;
+        this.loginService.login({ username, password }).pipe(
+          map(({ userId, token }) =&gt;
+            LoginActions.loginSuccess({ userId, username, token })
+          ),
+          catchError((error: unknown) =&gt;
+            of(
+              LoginActions.loginFailure({
+                errorMsg: this.getErrorMessage(error),
+              })
+            )
+          )
+        )
+      )
+    );
+  });
+
+  constructor(private actions$: Actions, private loginService: LoginService) {}
+
+  private getErrorMessage(error: unknown): string {
+    if (error instanceof Error) {
+      return error.message;
+    }
+    return String(error);
+  }
+}
+
+</code></pre>
+ <div line-highlight="4-8,12-30,32,only"></div>
+<p></details></p>
+<h2>Problem 2: Create <code>logout$</code> Effect to Handle API Requests</h2>
+<ol>
+<li><p><code>LoginEffects</code> should create a logout API request  using <code>ngx-learn-ngrx</code>'s <code>LoginService.logout()</code> method whenever the <code>LoginActions.logout</code> Action is dispatched using an Effect called <code>logout$</code>.</p></li>
+<li><p>If the API request is successful, a <code>LoginActions.logoutSuccess</code> Action should be dispatched using the API response.</p></li>
+<li><p>If the API request is unsuccessful, a <code>LoginActions.logoutFailure</code> Action should be dispatched using the same <code>getErrorMessage()</code> method to parse the error to a message.</p></li>
+</ol>
+<h2>P2: Solution</h2>
+<p><details>
+<summary>src/app/store/login/login.effects.ts</summary></p>
+<pre><code class="language-ts">// src/app/store/login/login.effects.ts
+
+import { Injectable } from '@angular/core';
+import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { catchError, map, exhaustMap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import * as LoginActions from './login.actions';
+import { LoginService } from 'ngx-learn-ngrx';
+
+@Injectable()
+export class LoginEffects {
+  login$ = createEffect(() =&gt; {
+    return this.actions$.pipe(
+      ofType(LoginActions.login),
+      exhaustMap(({ username, password }) =&gt;
+        this.loginService.login({ username, password }).pipe(
+          map(({ userId, token }) =&gt;
+            LoginActions.loginSuccess({ userId, username, token })
+          ),
+          catchError((error: unknown) =&gt;
+            of(
+              LoginActions.loginFailure({
+                errorMsg: this.getErrorMessage(error),
+              })
+            )
+          )
+        )
+      )
+    );
+  });
+
+  logout$ = createEffect(() =&gt; {
+    return this.actions$.pipe(
+      ofType(LoginActions.logout),
+      exhaustMap(() =&gt;
+        this.loginService.logout().pipe(
+          map(() =&gt; LoginActions.logoutSuccess()),
+          catchError((error: unknown) =&gt;
+            of(
+              LoginActions.logoutFailure({
+                errorMsg: this.getErrorMessage(error),
+              })
+            )
+          )
+        )
+      )
+    );
+  });
+
+  constructor(private actions$: Actions, private loginService: LoginService) {}
+
+  private getErrorMessage(error: unknown): string {
+    if (error instanceof Error) {
+      return error.message;
+    }
+    return String(error);
+  }
+}
+
+</code></pre>
+ <div line-highlight="32-48,only"></div>
+<p></details></p>
+<blockquote>
+<p><strong>Wrap-up</strong>: By the end of this part, your code should match <a href="https://github.com/bitovi/angular-ngrx-chat/tree/create-api-effects">this branch</a>. You can also compare the <a href="https://github.com/bitovi/angular-ngrx-chat/compare/test-actions...create-api-effects">code changes for our solution to this part</a> on GitHub or you can use the following command in your terminal:</p>
+</blockquote>
+<pre><code class="language-bash">git diff origin/create-api-effects
+</code></pre>
+
+</section>
+
+  			
+  			<bit-prev-next class="footer" list-selector=".sidebar-left ul li.parent.expanded ul"></bit-prev-next>
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout slack">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://www.bitovi.com/community/slack">help</a> with an exercise, please reach out to us on
+             <a href="https://www.bitovi.com/community/slack">Slack</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com</a></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/ngrx/7-create-api-effects/create-api-effects.md"},"description":"Create an NgRx Effect to connect the Login Store to an authentication API. \n","name":"learn-ngrx/create-api-effects","title":"Create an API Effect","type":"page","parent":"learn-ngrx","order":7,"comment":" ","pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+  <div id="email-modal" style="display: none;">
+    <div aria-hidden="true" class="email-modal-backdrop"></div>
+    <div role="region" class="email-modal-content">
+      <h2>Join the Bitovi Newsletter</h2>
+      <p>
+        To start the course, please provide an email.<br />
+        <i style="font-size: 0.8rem;">By providing your email you agree to receive communications from Bitovi</i>
+      </p>
+      <div id="academy-hubspot-form-embed"></div>
+      <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+    </div>
+  </div>
+</body>
+</html>

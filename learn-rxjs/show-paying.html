@@ -362,9 +362,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-docker.html"
-							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
-							Learn Docker
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
 						</a>
 						
 					</li>
@@ -395,6 +395,21 @@
 							href="../learn-technology-consulting.html"
 							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
 						</a>
 						
 					</li>
@@ -612,18 +627,20 @@ values are emitted.</p>
 a payment status of &quot;waiting&quot; is published first.</p>
 </blockquote>
 <ul>
-<li><p><a href="hhttps://rxjs.dev/api/index/function/of">of</a> converts a value (or values)
+<li><p><a href="https://rxjs.dev/api/index/function/of">of</a> converts a value (or values)
 to a observable.</p>
 <pre><code class="language-typescript">of(10, 20, 30).subscribe((next) =&gt; console.log('next:', next));
 // result:
 // 'next: 10'
 // 'next: 20'
 // 'next: 30'
-</code></pre>
+</code></pre></li>
+</ul>
 <blockquote>
 <p>HINT: <code>of</code> can be used to convert plain <strong>paymentStatus</strong> objects into an observable
 that emits the <strong>paymentStatus</strong> object.</p>
-</blockquote></li>
+</blockquote>
+<ul>
 <li><p>The static <a href="https://rxjs.dev/api/index/function/pipe">pipe</a> function can be used
 to combine operators. The following makes a <code>squareStartingWith2</code> operator that ensures
 a <code>2</code> will be the first number squared and a <code>4</code> the first value emitted:</p>

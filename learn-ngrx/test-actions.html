@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/ngrx/6-test-actions/test-actions.md
+	@page learn-ngrx/test-actions
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <meta name="description" content="Learn how to write unit tests for NgRx Actions. 
+">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
+  <title>Bitovi Academy - Testing Actions</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-react.html"
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will have mastered functional components, hooks, and component optimization.">
+							Learn React
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-web-components.html"
+							title="">
+							Learn Web Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="why-ngrx.html"
+							title="Why NgRx is a great choice for State Management.">
+							Why NgRx
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="getting-started.html"
+							title="Checkout the course repository and get setup for upcoming lessons!">
+							Getting Started
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="ngrx-init.html"
+							title="Learn how to add NgRx to an Angular project.">
+							Installing NgRx
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="create-actions.html"
+							title="Learn how to create NgRx Actions.">
+							Creating Actions
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="dispatch-actions.html"
+							title="Learn how to dispatch NgRx Actions from within Angular Components.">
+							Dispatching Actions
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="test-actions.html"
+							title="Learn how to write unit tests for NgRx Actions.">
+							Testing Actions
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="create-api-effects.html"
+							title="Create an NgRx Effect to connect the Login Store to an authentication API.">
+							Create an API Effect
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="test-api-effects.html"
+							title="Learn how to write unit tests for NgRx Effects.">
+							Testing API Effects
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="create-redirect-effects.html"
+							title="Learn how to create NgRx Effects that redirect the user.">
+							Creating Redirect Effects
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="test-redirect-effects.html"
+							title="Learn how to write unit tests for NgRx Effects that redirect the user.">
+							Testing Redirect Effects
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="create-reducer.html"
+							title="Learn how to create an NgRx Reducer.">
+							Create a Reducer
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="test-reducer.html"
+							title="Learn how to write unit tests for NgRx Reducers.">
+							Testing Reducers
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="create-selectors.html"
+							title="Learn how to create NgRx Selectors to obtain data from States.">
+							Creating Selectors
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="test-selectors.html"
+							title="Learn how to write unit tests for NgRx Selectors.">
+							Testing Selectors
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="use-selectors.html"
+							title="Learn how to use NgRx Selectors in a Component to access data from a store.">
+							Using Selectors
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="test-used-selectors.html"
+							title="Learn how to write unit tests for a Component making use of NgRx Selectors.">
+							Testing Selector Use
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-technology-consulting.html"
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
+							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn how to build a moderately complex application with Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../advanced-typescript.html"
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
+							Advanced TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border">
+      <a href="..#courses">View More Courses</a>
+      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
+  </p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Testing Actions <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>Learn how to write unit tests for NgRx Actions.</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <blockquote>
+<p><strong>Quick Start</strong>: You can checkout <a href="https://github.com/bitovi/angular-ngrx-chat/tree/dispatch-actions">this branch</a> to get your codebase ready to work on this part.</p>
+</blockquote>
+<h2>Running Tests</h2>
+<p>To run unit tests in your project, you can either use the <code>test</code> npm script, or the <code>ng test</code> command:</p>
+<pre><code class="language-bash">npm run test
+# or
+ng test --watch
+</code></pre>
+<p>The <code>--watch</code> switch will rerun your tests whenever a code file changes. You can skip it to just run all tests once.</p>
+<h2>Test Code</h2>
+<p>You'll need to copy the contents of two test files to run tests for your Actions. Note that we don't typically test Actions directly, we test their use (in Components, effects, reducers) but for the purposes of this lesson, we've included Action tests to make sure your code is in good shape!</p>
+<h3>Update <code>dashboard.component.spec.ts</code></h3>
+<p>Copy the following code to replace the contents of <code>src/app/dashboard/dashboard.component.spec.ts</code>:</p>
+<p><details>
+<summary>src/app/dashboard/dashboard.component.spec.ts</summary></p>
+<pre><code class="language-ts">// src/app/dashboard/dashboard.component.spec.ts
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DashboardComponent } from './dashboard.component';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import * as LoginActions from '../store/login/login.actions';
+import * as fromLogin from '../store/login/login.reducer';
+
+describe('DashboardComponent', () =&gt; {
+  let component: DashboardComponent;
+  let fixture: ComponentFixture&lt;DashboardComponent&gt;;
+  let store: MockStore&lt;fromLogin.LoginPartialState&gt;;
+
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      declarations: [DashboardComponent],
+      providers: [provideMockStore({})],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(DashboardComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    store = TestBed.inject(MockStore);
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  describe('logout()', () =&gt; {
+    it('should dispatch logout action', () =&gt; {
+      const spy = spyOn(store, 'dispatch');
+
+      component.logout();
+
+      expect(spy).toHaveBeenCalledOnceWith(LoginActions.logout());
+    });
+  });
+
+  describe('username$', () =&gt; {
+    it('should get username from login state', () =&gt; {
+      // TODO: Verify username comes from login state
+    });
+  });
+
+  describe('userId$', () =&gt; {
+    it('should get userId from login state', () =&gt; {
+      // TODO: Verify userId comes from login state
+    });
+  });
+});
+
+</code></pre>
+<p></details></p>
+<h3>Update <code>login.component.spec.ts</code></h3>
+<p>Copy the following code to replace the contents of <code>src/app/dashboard/dashboard.component.spec.ts</code>:</p>
+<p><details>
+<summary>src/app/login/login.component.spec.ts</summary></p>
+<pre><code class="language-ts">// src/app/login/login.component.spec.ts
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login.component';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import * as LoginActions from '../store/login/login.actions';
+import * as fromLogin from '../store/login/login.reducer';
+
+describe('LoginComponent', () =&gt; {
+  let component: LoginComponent;
+  let fixture: ComponentFixture&lt;LoginComponent&gt;;
+  let store: MockStore&lt;fromLogin.LoginPartialState&gt;;
+
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      declarations: [LoginComponent],
+      providers: [provideMockStore({}), FormBuilder],
+      imports: [ReactiveFormsModule],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(LoginComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    store = TestBed.inject(MockStore);
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  describe('submit()', () =&gt; {
+    it('should mark form as touched', () =&gt; {
+      expect(component['form'].touched).toBe(false);
+      component.submit();
+      expect(component['form'].touched).toBe(true);
+    });
+
+    describe('when form is valid', () =&gt; {
+      const mock = {
+        username: 'some-username',
+        password: 'some-password',
+      };
+
+      beforeEach(() =&gt; {
+        component['form'].setValue(mock);
+      });
+
+      it('should have a valid form', () =&gt; {
+        // Verify that form is truly valid for upcoming tests
+        expect(component['form'].valid).toBe(true);
+      });
+
+      it('should dispatch LoginActions.login', () =&gt; {
+        const spy = spyOn(store, 'dispatch');
+
+        component.submit();
+
+        expect(spy).toHaveBeenCalledOnceWith(LoginActions.login(mock));
+      });
+    });
+
+    describe('when form is NOT valid', () =&gt; {
+      const mock = {
+        username: 'some-username',
+        password: '', // password is required
+      };
+
+      beforeEach(() =&gt; {
+        component['form'].setValue(mock);
+      });
+
+      it('should NOT have a valid form', () =&gt; {
+        // Verify that form is truly invalid for upcoming tests
+        expect(component['form'].valid).toBe(false);
+      });
+
+      it('should NOT dispatch LoginActions.login', () =&gt; {
+        const spy = spyOn(store, 'dispatch');
+
+        component.submit();
+
+        expect(spy).not.toHaveBeenCalled();
+      });
+    });
+  });
+});
+
+</code></pre>
+<p></details></p>
+<blockquote>
+<p><strong>Wrap-up</strong>: By the end of this part, your code should match <a href="https://github.com/bitovi/angular-ngrx-chat/tree/test-actions">this branch</a>. You can also compare the <a href="https://github.com/bitovi/angular-ngrx-chat/compare/dispatch-actions...test-actions">code changes for our solution to this part</a> on GitHub or you can use the following command in your terminal:</p>
+</blockquote>
+<pre><code class="language-bash">git diff origin/test-actions
+</code></pre>
+
+</section>
+
+  			
+  			<bit-prev-next class="footer" list-selector=".sidebar-left ul li.parent.expanded ul"></bit-prev-next>
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout slack">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://www.bitovi.com/community/slack">help</a> with an exercise, please reach out to us on
+             <a href="https://www.bitovi.com/community/slack">Slack</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com</a></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/ngrx/6-test-actions/test-actions.md"},"description":"Learn how to write unit tests for NgRx Actions. \n","name":"learn-ngrx/test-actions","title":"Testing Actions","type":"page","parent":"learn-ngrx","order":6,"comment":" ","pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+  <div id="email-modal" style="display: none;">
+    <div aria-hidden="true" class="email-modal-backdrop"></div>
+    <div role="region" class="email-modal-content">
+      <h2>Join the Bitovi Newsletter</h2>
+      <p>
+        To start the course, please provide an email.<br />
+        <i style="font-size: 0.8rem;">By providing your email you agree to receive communications from Bitovi</i>
+      </p>
+      <div id="academy-hubspot-form-embed"></div>
+      <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+    </div>
+  </div>
+</body>
+</html>

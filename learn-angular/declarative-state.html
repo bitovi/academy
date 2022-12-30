@@ -171,9 +171,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-docker.html"
-							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
-							Learn Docker
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
 						</a>
 						
 					</li>
@@ -204,6 +204,21 @@
 							href="../learn-technology-consulting.html"
 							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
 						</a>
 						
 					</li>
@@ -623,7 +638,7 @@ covering CanJS core libraries.">
 <li>Learn the differences between imperative and declarative state</li>
 <li>Learn some essential RxJS operators and static functions</li>
 <li>Update the restaurant component so states, cities &amp; restaurants are RxJS streams</li>
-<li>Remove use of the Reactive Forms API and add several additional streams to completely avoid the use of imperative logic</li>
+<li>Add additional streams to avoid the use of imperative logic</li>
 </ul>
 <p><strong>Note:</strong> You should complete <a href="../learn-rxjs.html">Bitovi Academy's RxJS training</a> before attempting
 the following exercise. Although even if you haven't, read on if you're interested why you might want to use declarative
@@ -637,20 +652,20 @@ the state of the program accordingly. The state is determined by actions through
 state. This model of programming is very familiar, although it can become quite difficult to trace the modifications to
 the state as an application grows in complexity.</p>
 <pre><code class="language-html">&lt;script type=&quot;module&quot;&gt;
-    let x = '';
+  let x = '';
+  console.log('x: ' + x);
+  setInterval(() =&gt; {
+    x = x + 'A';
     console.log('x: ' + x);
-    setInterval(() =&gt; {
-        x = x + 'A';
-        console.log('x: ' + x);
-    }, 1000);
+  }, 1000);
 
-    // logs:
-    // x:
-    // (... 1 second passes)
-    // x: A
-    // (... 1 second passes)
-    // x: AA
-    // (... and so on)
+  // logs:
+  // x:
+  // (... 1 second passes)
+  // x: A
+  // (... 1 second passes)
+  // x: AA
+  // (... and so on)
 &lt;/script&gt;
 
 </code></pre>
@@ -660,24 +675,25 @@ specifies which events should be reacted to and what actions will occur to produ
 distinction has some very useful implications.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.3.3/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;module&quot;&gt;
-    const { timer } = rxjs;
-    const { map } = rxjs.operators;
+  const { timer } = rxjs;
+  const { map } = rxjs.operators;
 
-    // act on a number starting at 0 and incrementing every 1000ms afterwards
-    x = timer(0, 1000).pipe(
-        // create a string of As the length of the incrementing number
-        map(length =&gt; Array(length).fill('A').join(''))
-    );
-    x.subscribe(value =&gt; console.log('x: ' + value));
+  // act on a number starting at 0 and incrementing every 1000ms afterwards
+  const x$ = timer(0, 1000).pipe(
+    // create a string of As the length of the incrementing number
+    map((length) =&gt; Array(length).fill('A').join(''))
+  );
+  x$.subscribe((value) =&gt; console.log('x: ' + value));
 
-    // logs:
-    // x:
-    // (... 1 second passes)
-    // x: A
-    // (... 1 second passes)
-    // x: AA
-    // (... an so on)
+  // logs:
+  // x:
+  // (... 1 second passes)
+  // x: A
+  // (... 1 second passes)
+  // x: AA
+  // (... an so on)
 &lt;/script&gt;
+
 </code></pre>
 <div class='codepen'></div>
 <p>Declarative state, once you're familiar with it, is typically easier to follow. Understanding how a piece of the program's
@@ -687,63 +703,24 @@ everything about how the state is created. In imperative code you'd need to read
 <p>Declarative state can be less error prone. It's typically more specific about how state is generated relative to
 imperative code, which may modify state under conditions which may at first seem correct, but end up having unintended
 consequences.</p>
-<p>An additional benefit of Angular + RxJS is that declarative state can be used directly in the template, removing the need
+<p>An additional benefit of Angular + RxJS is that declarative state can be used directly in the template with the async pipe, removing the need
 for most subscriptions in our component. Avoiding subscriptions eliminates the need to manage them in <code>onDestroy</code>.</p>
-<h2>Removing Reactive Forms</h2>
-<p>Though very convenient, Angular Reactive Forms use an imperative API for tasks like toggling if a form element is
-disabled. Since the goal of this exercise is to use declarative state as much as possible we'll be removing the use of
-Reactive Forms and replacing its functionality with streams we create. Some of those streams will control disabled
-state, one will control the selected value of a control, and others will be emitting the current value of form controls.</p>
-<h2>Creating Streams Of Form Control Values</h2>
-<p>The <a href="https://rxjs-dev.firebaseapp.com/api/index/class/Subject"><code>Subject</code></a> class in RxJS is both an
-<a href="https://rxjs-dev.firebaseapp.com/api/index/interface/Observer"><code>Observer</code></a> and
-<a href="https://rxjs-dev.firebaseapp.com/api/index/class/Observable"><code>Observable</code></a>. This has several implications but the
-relevant one for this exercise is that it both consumes and produces values. That means we can pass values into a
-<a href="https://rxjs-dev.firebaseapp.com/api/index/class/Subject"><code>Subject</code></a> (via it's <code>next</code> method) and have them emitted
-as part of a stream. Perfect for turning values from a form control into a stream.</p>
-<p>There are several implementations of <a href="https://rxjs-dev.firebaseapp.com/api/index/class/Subject"><code>Subject</code></a> in RxJS, but
-a convenient one for form control observation is the
-<a href="https://rxjs-dev.firebaseapp.com/api/index/class/BehaviorSubject"><code>BehaviorSubject</code></a>. This implementation takes an
-initial value and emits the current value whenever it's subscribed to. We'll initialize the
-<a href="https://rxjs-dev.firebaseapp.com/api/index/class/BehaviorSubject"><code>BehaviorSubject</code></a> with the same value as the form
-control, and update it via the <code>next</code> method whenever the control changes. Due to that an accurate form value will be
-emitted whenever a subscription is made.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.3.3/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;div&gt;Pet Type: &lt;span class=&quot;output&quot;&gt;&lt;/span&gt;&lt;/div&gt;
-&lt;select onchange=&quot;window.subject.next(this.value)&quot;&gt;
-  &lt;option value=&quot;cat&quot; selected&gt;Cat&lt;/option&gt;
-  &lt;option value=&quot;dog&quot;&gt;Dog&lt;/option&gt;
-  &lt;option value=&quot;bird&quot;&gt;Bird&lt;/option&gt;
-  &lt;option value=&quot;fish&quot;&gt;Fish&lt;/option&gt;
-&lt;/select&gt;
-
-&lt;script type=&quot;module&quot;&gt;
-  const { BehaviorSubject } = rxjs;
-  const outputEl = document.querySelector('.output');
-
-  window.subject = new BehaviorSubject('cat');
-  window.subject.subscribe((value) =&gt; {
-    outputEl.innerHTML = value;
-  });
-&lt;/script&gt;
-</code></pre>
-<div class='codepen'></div>
 <h2>Essential RxJS Operators &amp; Functions</h2>
 <p>RxJS operators are the actions that run to modify values in a stream. There are dozens of operators that do things
 like transform individual values, filter values, combine streams, and much more. We'll just be touching on a small
 selection of operators.</p>
-<p>We'll also demonstrate several important RxJS static functions used to create and combine streams.</p>
+<p>We'll also demonstrate important RxJS static functions used to create and combine streams.</p>
 <h3>Creating A Stream</h3>
-<p>The <a href="https://rxjs-dev.firebaseapp.com/api/index/function/of"><code>of</code></a> functions simply creates an observable that emits
-the values passed to <a href="https://rxjs-dev.firebaseapp.com/api/index/function/of"><code>of</code></a>. This is often used when creating
+<p>The <a href="https://rxjs.dev/api/index/function/of"><code>of</code></a> function simply creates an observable that emits
+the values passed to <a href="https://rxjs.dev/api/index/function/of"><code>of</code></a>. This is often used when creating
 demo streams or composing streams.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.3.3/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;module&quot;&gt;
   const { of } = rxjs;
 
-  of(1,2,3,4).subscribe((v) =&gt; {
-    console.log(v)
-  })
+  of(1, 2, 3, 4).subscribe((v) =&gt; {
+    console.log(v);
+  });
 
   // logs:
   // 1
@@ -751,44 +728,16 @@ demo streams or composing streams.</p>
   // 3
   // 4
 &lt;/script&gt;
+
 </code></pre>
 <div class='codepen'></div>
-<p>In the solution of this exercise we'll use <a href="https://rxjs-dev.firebaseapp.com/api/index/function/of"><code>of</code></a> to return a
-stream during <a href="https://rxjs-dev.firebaseapp.com/api/operators/flatMap"><code>flatMap</code></a>. Look at the
-<a href="https://rxjs-dev.firebaseapp.com/api/operators/flatMap"><code>flatMap</code></a> example below to see that in action.</p>
+<p>In the solution of this exercise we'll use <a href="https://rxjs.dev/api/index/function/of"><code>of</code></a> to return a
+stream during <a href="https://rxjs.dev/api/operators/mergeMap"><code>mergeMap</code></a>. Look at the
+<a href="https://rxjs.dev/api/operators/mergeMap"><code>mergeMap</code></a> example below to see that in action.</p>
 <h3>Combining Streams</h3>
-<p>In the solution to this exercise we'll have to use two RxJS functions to combine streams. The first is
-<a href="https://rxjs-dev.firebaseapp.com/api/index/function/merge"><code>merge</code></a> and it works by emitting the values coming from
-multiple streams as a single stream.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.3.3/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;module&quot;&gt;
-  const { of, merge, zip, interval } = rxjs;
-  const { map } = rxjs.operators;
-
-  // emits the values every 500ms in order
-  const oddNumberStream = zip(of(1,3,5), interval(500)).pipe(map(([val, num]) =&gt; val));
-  const evenNumberStream = zip(of(2,4,6), interval(500)).pipe(map(([val, num]) =&gt; val));
-
-  merge(oddNumberStream, evenNumberStream).subscribe((v) =&gt; {
-    console.log('merged stream: ' + v);
-  })
-
-  // logs:
-  // (... 500ms pass)
-  // merged stream: 1
-  // merged stream: 2
-  // (... 500ms pass)
-  // merged stream: 3
-  // merged stream: 4
-  // (... 500ms pass)
-  // merged stream: 5
-  // merged stream: 6
-&lt;/script&gt;
-</code></pre>
-<div class='codepen'></div>
-<p>The second is <a href="https://rxjs-dev.firebaseapp.com/api/index/function/combineLatest"><code>combineLatest</code></a> which returns a
+<p><a href="https://rxjs.dev/api/index/function/combineLatest"><code>combineLatest</code></a> returns a
 stream that emits arrays containing the most recent values of each stream. One caveat is that
-<a href="https://rxjs-dev.firebaseapp.com/api/index/function/combineLatest"><code>combineLatest</code></a> will only start emitting arrays
+<a href="https://rxjs.dev/api/index/function/combineLatest"><code>combineLatest</code></a> will only start emitting arrays
 when all input streams have emitted a value.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.3.3/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;module&quot;&gt;
@@ -796,13 +745,22 @@ when all input streams have emitted a value.</p>
   const { map } = rxjs.operators;
 
   // emits the values every 750ms in order
-  const selectedHatStream = zip(of('Bowler', 'Top', 'Baseball'), interval(750)).pipe(map(([val, num]) =&gt; val));
-  // emits the values every 2000ms in order
-  const selectedJacketStream = zip(of('Trenchcoat', 'Tuxedo', 'Bomber'), interval(2000)).pipe(map(([val, num]) =&gt; val));
+  const selectedHatStream$ = zip(
+    of('Bowler', 'Top', 'Baseball'),
+    interval(750)
+  ).pipe(map(([val, num]) =&gt; val));
 
-  combineLatest(selectedHatStream, selectedJacketStream).subscribe(([hat, jacket]) =&gt; {
-    console.log(`selected outfit: ${hat} hat &amp; ${jacket} jacket`);
-  })
+  // emits the values every 2000ms in order
+  const selectedJacketStream$ = zip(
+    of('Trenchcoat', 'Tuxedo', 'Bomber'),
+    interval(2000)
+  ).pipe(map(([val, num]) =&gt; val));
+
+  combineLatest(selectedHatStream$, selectedJacketStream$).subscribe(
+    ([hat, jacket]) =&gt; {
+      console.log(`selected outfit: ${hat} hat &amp; ${jacket} jacket`);
+    }
+  );
 
   // logs:
   // (... 2 seconds pass)
@@ -814,101 +772,135 @@ when all input streams have emitted a value.</p>
   // (... 2 seconds pass)
   // selected outfit: Baseball hat &amp; Bomber jacket
 &lt;/script&gt;
+
 </code></pre>
 <div class='codepen'></div>
 <h3>Initializing A Stream</h3>
 <p>A common situation is working with streams that only produce a value after an event, for example when an HTTP request
 completes or when a value changes in a form control. When using a stream like this in your components, you'll likely
 want to have an initial &quot;base state&quot; that your view can use during the initial render. In RxJS this is handled by the
-<a href="https://rxjs-dev.firebaseapp.com/api/operators/startWith"><code>startWith</code></a> operator, which emits a value when the
+<a href="https://rxjs.dev/api/operators/startWith"><code>startWith</code></a> operator, which emits a value when the
 stream is first subscribed to.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.3.3/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;module&quot;&gt;
-    const { of } = rxjs;
-    const { delay, startWith } = rxjs.operators;
+  const { of } = rxjs;
+  const { delay, startWith } = rxjs.operators;
 
-    // emits an array of 3 values after a 1000ms delay, like a request returning results
-    const pseudoRequest = of([1,2,3]).pipe(delay(1000));
-    // immediately emits an empty array followed 1 second later by the array from pseudoRequest
-    const baseCaseAdded = pseudoRequest.pipe(startWith([]));
+  // emits an array of 3 values after a 1000ms delay, like a request returning results
+  const pseudoRequest$ = of([1, 2, 3]).pipe(delay(1000));
+  // immediately emits an empty array followed 1 second later by the array from pseudoRequest
+  const baseCaseAdded$ = pseudoRequest$.pipe(startWith([]));
 
-    baseCaseAdded.subscribe((arr) =&gt; {
-        console.log('Contents: ' + JSON.stringify(arr));
-    })
+  baseCaseAdded$.subscribe((arr) =&gt; {
+    console.log('Contents: ' + JSON.stringify(arr));
+  });
 
-    // logs:
-    // Contents: []
-    // (... 1 second passes)
-    // Contents: [1,2,3]
+  // logs:
+  // Contents: []
+  // (... 1 second passes)
+  // Contents: [1,2,3]
 &lt;/script&gt;
+
 </code></pre>
 <div class='codepen'></div>
 <h3>Transforming The Values Of A Stream</h3>
 <p>When values are emitted from a stream it's common to transform them in some way before they're used by your application.
-One operator used for this is the <a href="https://rxjs-dev.firebaseapp.com/api/operators/map"><code>map</code></a> operator, which
+One operator used for this is the <a href="https://rxjs.dev/api/operators/map"><code>map</code></a> operator, which
 takes an emitted value and returns a modified value that will be passed to the subsequent operators in the stream.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.3.3/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;module&quot;&gt;
-    const { of } = rxjs;
-    const { map } = rxjs.operators;
+  const { of } = rxjs;
+  const { map } = rxjs.operators;
 
-    of(1,2,3).pipe(map(v =&gt; v * 2)).subscribe((v) =&gt; {
-        console.log('Value: ' + v);
-    })
+  of(1, 2, 3)
+    .pipe(map((v) =&gt; v * 2))
+    .subscribe((v) =&gt; {
+      console.log('Value: ' + v);
+    });
 
-    // logs:
-    // Value: 2
-    // Value: 4
-    // Value: 6
+  // logs:
+  // Value: 2
+  // Value: 4
+  // Value: 6
 &lt;/script&gt;
+
 </code></pre>
 <div class='codepen'></div>
 <h3>Emitting Values From Another Stream</h3>
 <p>When using a stream you may want to emit values from another stream as part of the original stream. RxJS offers a
 variety of ways to do this, but the one we'll demonstrate is the
-<a href="https://rxjs-dev.firebaseapp.com/api/operators/flatMap"><code>flatMap</code></a> operator. Like the map operator it takes an
+<a href="https://rxjs.dev/api/operators/mergeMap"><code>mergeMap</code></a> operator. Like the map operator it takes an
 emitted value from a stream, but instead of returning a modified value it returns another stream whose emitted values
 will be passed to the subsequent operators.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.3.3/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;module&quot;&gt;
     const { of, interval, zip } = rxjs;
-    const { map, flatMap, delay } = rxjs.operators;
+    const { map, mergeMap, delay } = rxjs.operators;
 
-    // returns a stream that emits the price of a given car after a 500ms delay. this is how a request might operate
-    function pseudoPriceRequest(carName) {
-        if (carName === 'mustang') {
-            return of(40000).pipe(delay(500))
-        } else if (carName === 'camaro') {
-            return of(38000).pipe(delay(500))
+    // returns a stream that emits the price of a given menu item after a 500ms delay. this is how a request might operate
+    function pseudoPriceRequest(menuItem) {
+        if (menuItem === 'Truffle Noodles') {
+            return of(14.99).pipe(delay(500))
+        } else if (menuItem === 'Charred Octopus') {
+            return of(25.99).pipe(delay(500))
         }
     }
 
     // emits the values every 2 seconds in order
-    const pseudoFormValueStream = zip(of('', 'mustang', 'camaro', ''), interval(2000)).pipe(map(([val, num]) =&gt; val));
+    const pseudoFormValueStream = zip(of('', 'Truffle Noodles', 'Charred Octopus', ''), interval(2000)).pipe(map(([val, num]) =&gt; val));
 
-    // stream that makes a &quot;request&quot; if provided a car name or returns &quot;No Car Selected&quot;
-    const pseudoPriceStream = pseudoFormValueStream.pipe(flatMap((selectedCar) =&gt; {
-        if (selectedCar) {
-            return pseudoPriceRequest(selectedCar).pipe(map(price =&gt; '$' + price));
+    // stream that makes a &quot;request&quot; if provided a menu item name or returns &quot;No Item Selected&quot;
+    const pseudoPriceStream = pseudoFormValueStream.pipe(mergeMap((selectedItem) =&gt; {
+        if (selectedItem) {
+            return pseudoPriceRequest(selectedItem).pipe(map(price =&gt; '$' + price));
         } else {
-            return of('No Car Selected');
+            return of('No Item Selected');
         }
     }));
 
     pseudoPriceStream.subscribe((price) =&gt; {
-        console.log('Price Of Selected Car: ' + price);
+        console.log('Price Of Selected Item: ' + price);
     })
 
     // logs:
     // (... 2 seconds pass)
-    // Price Of Selected Car: No Car Selected
+    // Price Of Selected Item: No Item Selected
     // (... 2.5 seconds pass)
-    // Price Of Selected Car: $40000
+    // Price Of Selected Item: $14.99
     // (... 2 seconds pass)
-    // Price Of Selected Car: $38000
+    // Price Of Selected Item: $25.99
     // (... 2 seconds pass)
-    // Price Of Selected Car: No Car Selected
+    // Price Of Selected Item: No Item Selected
 &lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<h3>Combining Previous And Current Emissions Of A Stream</h3>
+<p>If you need to compare the current (latest) emitted value with the previous value of a stream, you can use the <a href="https://rxjs.dev/api/operators/pairwise"><code>pairwise</code></a> operator. Once there are at least 2 emitted values, it starts emitting an array: <code>[previous, current]</code>.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.3.3/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;module&quot;&gt;
+  const { of, interval, zip } = rxjs;
+  const { map, pairwise } = rxjs.operators;
+
+  // emits the values every 2 seconds in order
+  const menuItems$ = zip(
+    of('Steamed Mussels', 'Truffle Noodles', 'Charred Octopus', 'Onion fries'),
+    interval(2000)
+  ).pipe(map(([val, num]) =&gt; val));
+
+  menuItems$.pipe(pairwise()).subscribe(([previous, current]) =&gt; {
+    console.log('Previous: ' + previous, 'Current: ' + current);
+  });
+
+  // logs:
+  // (... 2 seconds pass), &quot;Steamed Mussels&quot; is emitted by menuItems$
+  // (... 2 seconds pass), &quot;Truffle Noodles&quot; is emitted by menuItems$
+  // &quot;Previous: Steamed Mussels&quot; &quot;Current: Truffle Noodles&quot;
+  // (... 2 seconds pass), &quot;Charred Octopus&quot; is emitted by menuItems$
+  // &quot;Previous: Truffle Noodles&quot; &quot;Current: Charred Octopus&quot;
+  // (... 2 seconds pass), &quot;Onion fries&quot; is emitted by menuItems$
+  // &quot;Previous: Charred Octopus&quot; &quot;Current: Onion fries&quot;
+&lt;/script&gt;
+
 </code></pre>
 <div class='codepen'></div>
 <h3>Handling Multiple Subscribers To A Stream</h3>
@@ -922,20 +914,22 @@ among all the subscribers. An example of this could be an observable that listen
 WebSocket connection. Whenever there's a new subscriber to the observable, a new listener is added, but a new connection
 isn't opened, the connection is being shared between the subscribers.</p>
 <p>This distinction is clearly important, you wouldn't want to make separate requests for states in every place that
-you reference the states observable in the view. You need someway to make cold observables hot, to satisfy that
+you reference the states observable in the view. You need some way to make cold observables hot. To satisfy that
 requirement RxJS contains a variety of ways to share the stream between subscribers. This is a particularly complex
 topic so we'll only be reviewing a single way, the
-<a href="https://rxjs-dev.firebaseapp.com/api/operators/shareReplay"><code>shareReplay</code></a> operator.</p>
-<p>The <a href="https://rxjs-dev.firebaseapp.com/api/operators/shareReplay"><code>shareReplay</code></a> operator essentially works by
+<a href="https://rxjs.dev/api/operators/shareReplay"><code>shareReplay</code></a> operator.</p>
+<p>The <a href="https://rxjs.dev/api/operators/shareReplay"><code>shareReplay</code></a> operator essentially works by
 making the preceding portion of the stream hot. Once the stream is subscribed to,
-<a href="https://rxjs-dev.firebaseapp.com/api/operators/shareReplay"><code>shareReplay</code></a> will share the results produced,
+<a href="https://rxjs.dev/api/operators/shareReplay"><code>shareReplay</code></a> will share the results produced,
 preventing multiple instances of the stream from running. That's the &quot;sharing&quot; functionality of
-<a href="https://rxjs-dev.firebaseapp.com/api/operators/shareReplay"><code>shareReplay</code></a>, but it also performs the other
+<a href="https://rxjs.dev/api/operators/shareReplay"><code>shareReplay</code></a>, but it also performs the other
 important function of &quot;replaying&quot;.</p>
 <p>In our template we have code that looks like:</p>
 <pre><code class="language-html">&lt;ng-container *ngIf=&quot;!states.isPending&quot;&gt;
   &lt;option value=&quot;&quot;&gt;Choose a state&lt;/option&gt;
-  &lt;option *ngFor=&quot;let state of states.value&quot; value=&quot;{{state?.short}}&quot;&gt; {{state?.name}}&lt;/option&gt;
+  &lt;option *ngFor=&quot;let state of states.value&quot; value=&quot;{{state?.short}}&quot;&gt;
+    {{state?.name}}
+  &lt;/option&gt;
 &lt;/ng-container&gt;
 </code></pre>
 <p>This code poses a problem since the <code>ngFor</code> doesn't get rendered until after <code>states.isPending === false</code>. If states was a
@@ -947,49 +941,53 @@ will buffer the last emission of the preceding stream, and replay it for any lat
 rendered and subscribes, it will receive the successful HTTP request and render the list of state options.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.3.3/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;module&quot;&gt;
-    const { of, interval, zip } = rxjs;
-    const { map, shareReplay } = rxjs.operators;
+  const { of, interval, zip } = rxjs;
+  const { map, shareReplay } = rxjs.operators;
 
-    // emits the values every 2 seconds in order
-    const pseudoFormValueStream = zip(of('mustang', 'camaro', 'corvette'), interval(2000)).pipe(map(([val, num]) =&gt; val));
+  // emits the values every 2 seconds in order
+  const pseudoFormValueStream$ = zip(
+    of('Truffle Noodles', 'Charred Octopus', 'Gunthorp Chicken'),
+    interval(2000)
+  ).pipe(map(([val, num]) =&gt; val));
 
-    // prevents multiple instances of pseudoFormValueStream from being created for each subscriber
-    const sharedFormValues = pseudoFormValueStream.pipe(shareReplay(1));
+  // prevents multiple instances of pseudoFormValueStream$ from being created for each subscriber
+  const sharedFormValues$ = pseudoFormValueStream$.pipe(shareReplay(1));
 
-    // subscriber 1, will subscribe to stream, starting values to be emitted
-    sharedFormValues.subscribe((carName) =&gt; {
-        console.log('s1: ' + carName);
+  // subscriber 1, will subscribe to stream, starting values to be emitted
+  sharedFormValues$.subscribe((menuItem) =&gt; {
+    console.log('s1: ' + menuItem);
+  });
+
+  // subscriber 2, subscribes late, but still emits 'Truffle Noodles' because the stream replays it.
+  // afterwards works like subscriber 1, logging at the same time since they're both listening to same hot observable.
+  setTimeout(() =&gt; {
+    sharedFormValues$.subscribe((menuItem) =&gt; {
+      console.log('s2: ' + menuItem);
     });
+  }, 2500);
 
-    // subscriber 2, subscribes late, but still emits 'mustang' because the stream replays it.
-    // afterwards works like subscriber 1, logging at the same time since they're both listening to same hot observable.
-    setTimeout(() =&gt; {
-        sharedFormValues.subscribe((carName) =&gt; {
-            console.log('s2: ' + carName);
-        })
-    }, 2500);
+  // subscriber 3, subscribes after the stream completes, but still emits 'Gunthorp Chicken' because the stream replays it.
+  setTimeout(() =&gt; {
+    sharedFormValues$.subscribe((menuItem) =&gt; {
+      console.log('s3: ' + menuItem);
+    });
+  }, 6500);
 
-    // subscriber 3, subscribes after the stream completes, but still emits 'corvette' because the stream replays it.
-    setTimeout(() =&gt; {
-        sharedFormValues.subscribe((carName) =&gt; {
-            console.log('s3: ' + carName);
-        });
-    }, 6500);
-
-    // logs:
-    // (... 2 seconds pass)
-    // s1: mustang
-    // (... .5 seconds pass)
-    // s2: mustang
-    // (... 1.5 seconds pass)
-    // s1: camaro
-    // s2: camaro
-    // (... 2 seconds pass)
-    // s1: corvette
-    // s2: corvette
-    // (... .5 seconds pass)
-    // s3: corvette
+  // logs:
+  // (... 2 seconds pass)
+  // s1: Truffle Noodles
+  // (... .5 seconds pass)
+  // s2: Truffle Noodles
+  // (... 1.5 seconds pass)
+  // s1: Charred Octopus
+  // s2: Charred Octopus
+  // (... 2 seconds pass)
+  // s1: Gunthorp Chicken
+  // s2: Gunthorp Chicken
+  // (... .5 seconds pass)
+  // s3: Gunthorp Chicken
 &lt;/script&gt;
+
 </code></pre>
 <div class='codepen'></div>
 <p>To go more in depth about this topic check out these articles:</p>
@@ -1000,891 +998,741 @@ rendered and subscribes, it will receive the successful HTTP request and render 
 <h2>Problem</h2>
 <p>Convert the imperatively managed state in the restaurant component to declarative state.</p>
 <h2>Technical Requirements</h2>
-<p>When you're finished the component members <code>state</code>, <code>cities</code> &amp; <code>restaurants</code> will be of the types <code>Observable&lt;Data&lt;State&gt;&gt;</code>,
+<p>When you're finished the component members <code>states$</code>, <code>cities$</code> &amp; <code>restaurants$</code> will be of the types <code>Observable&lt;Data&lt;State&gt;&gt;</code>,
 <code>Observable&lt;Data&lt;City&gt;&gt;</code> and <code>Observable&lt;Data&lt;Restaurant&gt;&gt;</code> respectively. Each will be defined as a set of RxJS
 operators that either produce values from a response emitted by a service layer request, or produce values from changes
 in a form control (which in turn may make a request).</p>
-<p>To access form values as streams you'll use <code>BehaviorSubject</code> instances which have <code>.next($event.target.value)</code> called
-on them during control <code>change</code> events.</p>
-<p>You'll also add new streams to handle several functions that were previously handled by the imperative Reactive
-Forms API:</p>
+<p>You'll define <code>selectedState$</code> and <code>selectedCity$</code> members to be of Type <code>Observable&lt;string&gt;</code> to represent current form control values. To access form values as streams you'll use the <code>valueChanges</code> observable available in each FormControl.</p>
+<p>You'll also add new single-responsibility streams:</p>
 <ul>
-<li><code>displayedCity</code> which sets the city select control value to user input if there's been any, or clears it if the
-state select control has been changed</li>
-<li><code>stateSelectDisabled</code> which disables the state select control if loading is ongoing</li>
-<li><code>citySelectDisabled</code> which disables the city select control if loading is ongoing or no values are available</li>
+<li><code>enableStateSelect$</code> which enables the state select control once state values are available</li>
+<li><code>toggleCitySelect$</code> which enables/disables the city select control if loading is ongoing or no values are available</li>
+<li><code>clearCityWhenStateChanges$</code> which clears the city select control value if the state select control has been changed</li>
 </ul>
 <h2>How to Verify Your Solution is Correct</h2>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { waitForAsync, ComponentFixture, TestBed, tick, fakeAsync } from '@angular/core/testing';
+<pre><code class="language-ts">import {
+  ComponentFixture,
+  fakeAsync,
+  TestBed,
+  tick,
+} from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { of, timer } from 'rxjs';
-import {delay, mapTo} from &quot;rxjs/operators&quot;;
-
-import { RestaurantComponent } from './restaurant.component';
-import { RestaurantService } from './restaurant.service';
+import { delay, of } from 'rxjs';
 import { ImageUrlPipe } from '../image-url.pipe';
-import { FormsModule } from &quot;@angular/forms&quot;;
-import { Mock } from 'protractor/built/driverProviders';
+import { Restaurant } from './restaurant';
+import { Data, RestaurantComponent } from './restaurant.component';
+import { City, RestaurantService, State } from './restaurant.service';
 
 const restaurantAPIResponse = {
-  data: [{
-    &quot;name&quot;: &quot;Poutine Palace&quot;,
-    &quot;slug&quot;: &quot;poutine-palace&quot;,
-    &quot;images&quot;: {
-      &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-      &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-      &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
-    },
-    &quot;menu&quot;: {
-      &quot;lunch&quot;: [
-        {
-          &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-          &quot;price&quot;: 35.99
-        },
-        {
-          &quot;name&quot;: &quot;Steamed Mussels&quot;,
-          &quot;price&quot;: 21.99
-        },
-        {
-          &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-          &quot;price&quot;: 35.99
-        }
-      ],
-      &quot;dinner&quot;: [
-        {
-          &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-          &quot;price&quot;: 21.99
-        },
-        {
-          &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-          &quot;price&quot;: 45.99
-        },
-        {
-          &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-          &quot;price&quot;: 45.99
-        }
-      ]
-    },
-    &quot;address&quot;: {
-      &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-      &quot;city&quot;: &quot;Green Bay&quot;,
-      &quot;state&quot;: &quot;WI&quot;,
-      &quot;zip&quot;: &quot;53205&quot;
-    },
-    &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-  },
+  data: [
     {
-      &quot;name&quot;: &quot;Cheese Curd City&quot;,
-      &quot;slug&quot;: &quot;cheese-curd-city&quot;,
-      &quot;images&quot;: {
-        &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
-        &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-        &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+      name: 'Poutine Palace',
+      slug: 'poutine-palace',
+      images: {
+        thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+        owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+        banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
       },
-      &quot;menu&quot;: {
-        &quot;lunch&quot;: [
+      menu: {
+        lunch: [
           {
-            &quot;name&quot;: &quot;Ricotta Gnocchi&quot;,
-            &quot;price&quot;: 15.99
+            name: 'Crab Pancakes with Sorrel Syrup',
+            price: 35.99,
           },
           {
-            &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-            &quot;price&quot;: 21.99
+            name: 'Steamed Mussels',
+            price: 21.99,
           },
           {
-            &quot;name&quot;: &quot;Garlic Fries&quot;,
-            &quot;price&quot;: 15.99
-          }
+            name: 'Spinach Fennel Watercress Ravioli',
+            price: 35.99,
+          },
         ],
-        &quot;dinner&quot;: [
+        dinner: [
           {
-            &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-            &quot;price&quot;: 45.99
+            name: 'Gunthorp Chicken',
+            price: 21.99,
           },
           {
-            &quot;name&quot;: &quot;Truffle Noodles&quot;,
-            &quot;price&quot;: 14.99
+            name: 'Herring in Lavender Dill Reduction',
+            price: 45.99,
           },
           {
-            &quot;name&quot;: &quot;Charred Octopus&quot;,
-            &quot;price&quot;: 25.99
-          }
-        ]
+            name: 'Chicken with Tomato Carrot Chutney Sauce',
+            price: 45.99,
+          },
+        ],
       },
-      &quot;address&quot;: {
-        &quot;street&quot;: &quot;2451 W Washburne Ave&quot;,
-        &quot;city&quot;: &quot;Green Bay&quot;,
-        &quot;state&quot;: &quot;WI&quot;,
-        &quot;zip&quot;: &quot;53295&quot;
+      address: {
+        street: '230 W Kinzie Street',
+        city: 'Green Bay',
+        state: 'WI',
+        zip: '53205',
       },
-      &quot;_id&quot;: &quot;Ar0qBJHxM3ecOhcr&quot;
-    }]
+      _id: '3ZOZyTY1LH26LnVw',
+    },
+    {
+      name: 'Cheese Curd City',
+      slug: 'cheese-curd-city',
+      images: {
+        thumbnail: 'node_modules/place-my-order-assets/images/2-thumbnail.jpg',
+        owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+        banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+      },
+      menu: {
+        lunch: [
+          {
+            name: 'Ricotta Gnocchi',
+            price: 15.99,
+          },
+          {
+            name: 'Gunthorp Chicken',
+            price: 21.99,
+          },
+          {
+            name: 'Garlic Fries',
+            price: 15.99,
+          },
+        ],
+        dinner: [
+          {
+            name: 'Herring in Lavender Dill Reduction',
+            price: 45.99,
+          },
+          {
+            name: 'Truffle Noodles',
+            price: 14.99,
+          },
+          {
+            name: 'Charred Octopus',
+            price: 25.99,
+          },
+        ],
+      },
+      address: {
+        street: '2451 W Washburne Ave',
+        city: 'Green Bay',
+        state: 'WI',
+        zip: '53295',
+      },
+      _id: 'Ar0qBJHxM3ecOhcr',
+    },
+  ],
 };
 
 class MockRestaurantService {
-  getRestaurants(state, city) {
+  getRestaurants(state: string, city: string) {
     return of(restaurantAPIResponse);
   }
+
   getStates() {
     return of({
       data: [
-        {&quot;short&quot;:&quot;MO&quot;,&quot;name&quot;:&quot;Missouri&quot;},
-        {&quot;short&quot;:&quot;CA&quot;,&quot;name&quot;:&quot;California&quot;},
-        {&quot;short&quot;:&quot;MI&quot;,&quot;name&quot;:&quot;Michigan&quot;}]
+        { short: 'MO', name: 'Missouri' },
+        { short: 'CA  ', name: 'California' },
+        { short: 'MI', name: 'Michigan' },
+      ],
     });
   }
 
-  getCities(state:string) {
+  getCities(state: string) {
     return of({
-      data: [{&quot;name&quot;:&quot;Sacramento&quot;,&quot;state&quot;:&quot;CA&quot;},{&quot;name&quot;:&quot;Oakland&quot;,&quot;state&quot;:&quot;CA&quot;}]
+      data: [
+        { name: 'Sacramento', state: 'CA' },
+        { name: 'Oakland', state: 'CA' },
+      ],
     });
   }
 }
 
 describe('RestaurantComponent', () =&gt; {
-  let component: RestaurantComponent;
   let fixture: ComponentFixture&lt;RestaurantComponent&gt;;
-  let injectedService;
+  let service: RestaurantService;
 
-  beforeEach(waitForAsync(() =&gt; {
-    TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        FormsModule
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      imports: [RouterTestingModule, ReactiveFormsModule],
+      declarations: [RestaurantComponent, ImageUrlPipe],
+      providers: [
+        { provide: RestaurantService, useClass: MockRestaurantService },
       ],
-      providers: [{
-        provide: RestaurantService,
-        useClass: MockRestaurantService
-      }],
-      declarations: [ RestaurantComponent, ImageUrlPipe ]
-    })
-        .compileComponents();
-    injectedService = TestBed.inject(RestaurantService);
-  }));
+    }).compileComponents();
 
-  beforeEach(() =&gt; {
+    service = TestBed.inject(RestaurantService);
     fixture = TestBed.createComponent(RestaurantComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () =&gt; {
+    const component: RestaurantComponent = fixture.componentInstance;
     expect(component).toBeTruthy();
   });
 
   it('should render title in a h2 tag', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h2').textContent).toContain('Restaurants');
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h2')?.textContent).toContain('Restaurants');
   });
 
   it('should not show any restaurants markup if no restaurants', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    const compiled = fixture.debugElement.nativeElement;
+    const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('.restaurant')).toBe(null);
   });
 
-  it('should have two .restaurant divs',  &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
+  it('should have two .restaurant divs', fakeAsync((): void =&gt; {
     fixture.detectChanges();
     tick(501);
-    fixture.componentInstance.selectedState.next('CA');
-    fixture.componentInstance.selectedCity.next('Sacramento');
+    fixture.componentInstance.form.get('state')?.patchValue('CA');
+    fixture.componentInstance.form.get('city')?.patchValue('Sacramento');
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let restaurantDivs = compiled.getElementsByClassName('restaurant');
-    let hoursDivs = compiled.getElementsByClassName('hours-price');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const restaurantDivs = compiled.getElementsByClassName('restaurant');
+    const hoursDivs = compiled.getElementsByClassName('hours-price');
     expect(restaurantDivs.length).toEqual(2);
     expect(hoursDivs.length).toEqual(2);
   }));
 
-  it('should display restaurant information',  &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
+  it('should display restaurant information', fakeAsync((): void =&gt; {
     fixture.detectChanges();
     tick(501);
-    fixture.componentInstance.selectedState.next('CA');
-    fixture.componentInstance.selectedCity.next('Sacramento');
+    fixture.componentInstance.form.get('state')?.patchValue('CA');
+    fixture.componentInstance.form.get('city')?.patchValue('Sacramento');
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('.restaurant h3').textContent).toContain('Poutine Palace');
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('.restaurant h3')?.textContent).toContain(
+      'Poutine Palace'
+    );
   }));
 
-  it('should set restaurants value to restaurants response data and set isPending to false', &lt;any&gt;fakeAsync((): void =&gt; {
-    let restaurantOutput = null;
+  it('should set restaurants value to restaurants response data and set isPending to false when state and city form values are selected', fakeAsync((): void =&gt; {
     const fixture = TestBed.createComponent(RestaurantComponent);
     fixture.detectChanges();
     tick();
 
-    fixture.componentInstance.restaurants.subscribe((output) =&gt; {
-      restaurantOutput = output;
-    });
+    let restaurantOutput!: Data&lt;Restaurant&gt;;
 
-    fixture.componentInstance.selectedState.next('CA');
-    fixture.componentInstance.selectedCity.next('Sacramento');
+    fixture.componentInstance.restaurants$.subscribe(
+      (restaurants) =&gt; (restaurantOutput = restaurants)
+    );
+    fixture.componentInstance.form.get('state')?.patchValue('CA');
+    fixture.componentInstance.form.get('city')?.patchValue('Sacramento');
     fixture.detectChanges();
-    let expectedRestaurants = {
-      value: [{
-        &quot;name&quot;: &quot;Poutine Palace&quot;,
-        &quot;slug&quot;: &quot;poutine-palace&quot;,
-        &quot;images&quot;: {
-          &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;,
-          &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-          &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
-        },
-        &quot;menu&quot;: {
-          &quot;lunch&quot;: [
-            {
-              &quot;name&quot;: &quot;Crab Pancakes with Sorrel Syrup&quot;,
-              &quot;price&quot;: 35.99
-            },
-            {
-              &quot;name&quot;: &quot;Steamed Mussels&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Spinach Fennel Watercress Ravioli&quot;,
-              &quot;price&quot;: 35.99
-            }
-          ],
-          &quot;dinner&quot;: [
-            {
-              &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-              &quot;price&quot;: 21.99
-            },
-            {
-              &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-              &quot;price&quot;: 45.99
-            },
-            {
-              &quot;name&quot;: &quot;Chicken with Tomato Carrot Chutney Sauce&quot;,
-              &quot;price&quot;: 45.99
-            }
-          ]
-        },
-        &quot;address&quot;: {
-          &quot;street&quot;: &quot;230 W Kinzie Street&quot;,
-          &quot;city&quot;: &quot;Green Bay&quot;,
-          &quot;state&quot;: &quot;WI&quot;,
-          &quot;zip&quot;: &quot;53205&quot;
-        },
-        &quot;_id&quot;: &quot;3ZOZyTY1LH26LnVw&quot;
-      },
+    const expectedRestaurants = {
+      value: [
         {
-          &quot;name&quot;: &quot;Cheese Curd City&quot;,
-          &quot;slug&quot;: &quot;cheese-curd-city&quot;,
-          &quot;images&quot;: {
-            &quot;thumbnail&quot;: &quot;node_modules/place-my-order-assets/images/2-thumbnail.jpg&quot;,
-            &quot;owner&quot;: &quot;node_modules/place-my-order-assets/images/3-owner.jpg&quot;,
-            &quot;banner&quot;: &quot;node_modules/place-my-order-assets/images/2-banner.jpg&quot;
+          name: 'Poutine Palace',
+          slug: 'poutine-palace',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
           },
-          &quot;menu&quot;: {
-            &quot;lunch&quot;: [
+          menu: {
+            lunch: [
               {
-                &quot;name&quot;: &quot;Ricotta Gnocchi&quot;,
-                &quot;price&quot;: 15.99
+                name: 'Crab Pancakes with Sorrel Syrup',
+                price: 35.99,
               },
               {
-                &quot;name&quot;: &quot;Gunthorp Chicken&quot;,
-                &quot;price&quot;: 21.99
+                name: 'Steamed Mussels',
+                price: 21.99,
               },
               {
-                &quot;name&quot;: &quot;Garlic Fries&quot;,
-                &quot;price&quot;: 15.99
-              }
+                name: 'Spinach Fennel Watercress Ravioli',
+                price: 35.99,
+              },
             ],
-            &quot;dinner&quot;: [
+            dinner: [
               {
-                &quot;name&quot;: &quot;Herring in Lavender Dill Reduction&quot;,
-                &quot;price&quot;: 45.99
+                name: 'Gunthorp Chicken',
+                price: 21.99,
               },
               {
-                &quot;name&quot;: &quot;Truffle Noodles&quot;,
-                &quot;price&quot;: 14.99
+                name: 'Herring in Lavender Dill Reduction',
+                price: 45.99,
               },
               {
-                &quot;name&quot;: &quot;Charred Octopus&quot;,
-                &quot;price&quot;: 25.99
-              }
-            ]
+                name: 'Chicken with Tomato Carrot Chutney Sauce',
+                price: 45.99,
+              },
+            ],
           },
-          &quot;address&quot;: {
-            &quot;street&quot;: &quot;2451 W Washburne Ave&quot;,
-            &quot;city&quot;: &quot;Green Bay&quot;,
-            &quot;state&quot;: &quot;WI&quot;,
-            &quot;zip&quot;: &quot;53295&quot;
+          address: {
+            street: '230 W Kinzie Street',
+            city: 'Green Bay',
+            state: 'WI',
+            zip: '53205',
           },
-          &quot;_id&quot;: &quot;Ar0qBJHxM3ecOhcr&quot;
-        }],
-      isPending: false
-    }
+          _id: '3ZOZyTY1LH26LnVw',
+        },
+        {
+          name: 'Cheese Curd City',
+          slug: 'cheese-curd-city',
+          images: {
+            thumbnail:
+              'node_modules/place-my-order-assets/images/2-thumbnail.jpg',
+            owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+            banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+          },
+          menu: {
+            lunch: [
+              {
+                name: 'Ricotta Gnocchi',
+                price: 15.99,
+              },
+              {
+                name: 'Gunthorp Chicken',
+                price: 21.99,
+              },
+              {
+                name: 'Garlic Fries',
+                price: 15.99,
+              },
+            ],
+            dinner: [
+              {
+                name: 'Herring in Lavender Dill Reduction',
+                price: 45.99,
+              },
+              {
+                name: 'Truffle Noodles',
+                price: 14.99,
+              },
+              {
+                name: 'Charred Octopus',
+                price: 25.99,
+              },
+            ],
+          },
+          address: {
+            street: '2451 W Washburne Ave',
+            city: 'Green Bay',
+            state: 'WI',
+            zip: '53295',
+          },
+          _id: 'Ar0qBJHxM3ecOhcr',
+        },
+      ],
+      isPending: false,
+    };
     expect(restaurantOutput).toEqual(expectedRestaurants);
   }));
 
-  it('should show a loading div while restaurant request is waiting', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    const origGetRestaurants = injectedService.getRestaurants;
+  it('should show a loading div while isPending is true', () =&gt; {
     fixture.detectChanges();
-    injectedService.getRestaurants = () =&gt; of(restaurantAPIResponse).pipe(delay(500));
-    fixture.componentInstance.selectedState.next('CA');
-    fixture.componentInstance.selectedCity.next('Sacramento');
+    const originalGetRestaurants = service.getRestaurants;
+    service.getRestaurants = () =&gt; of(restaurantAPIResponse).pipe(delay(100));
+    fixture.componentInstance.form.get('state')!.patchValue('CA');
+    fixture.componentInstance.form.get('city')!.patchValue('Sacramento');
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let loadingDiv = compiled.querySelector('.loading');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const loadingDiv = compiled.querySelector('.loading');
     expect(loadingDiv).toBeTruthy();
-    injectedService.getRestaurants = origGetRestaurants;
+    service.getRestaurants = originalGetRestaurants;
   });
 
-  it('should not show a loading div while restaurant request is complete', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    const origGetRestaurants = injectedService.getRestaurants;
-    injectedService.getRestaurants = () =&gt; of(restaurantAPIResponse);
+  it('should not show a loading div if isPending is false', () =&gt; {
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let loadingDiv = compiled.querySelector('.loading');
+    fixture.componentInstance.form.get('state')!.patchValue('CA');
+    fixture.componentInstance.form.get('city')!.patchValue('Sacramento');
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    const loadingDiv = compiled.querySelector('.loading');
     expect(loadingDiv).toBe(null);
-    injectedService.getRestaurants = origGetRestaurants;
   });
 
-  it('should have a city and state selected subjects', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
+  it('should have a form property with city and state keys', () =&gt; {
     fixture.detectChanges();
-    expect(fixture.componentInstance.selectedState).toBeTruthy();
-    expect(fixture.componentInstance.selectedCity).toBeTruthy();
+    expect(fixture.componentInstance.form.controls['state']).toBeTruthy();
+    expect(fixture.componentInstance.form.controls['city']).toBeTruthy();
   });
 
   it('should show a state dropdown', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let stateSelect = compiled.querySelector('select.state');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const stateSelect = compiled.querySelector(
+      'select[formcontrolname=&quot;state&quot;]'
+    );
     expect(stateSelect).toBeTruthy();
   });
 
   it('should show a city dropdown', () =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let citySelect = compiled.querySelector('select.city');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const citySelect = compiled.querySelector('select[formcontrolname=&quot;city&quot;]');
     expect(citySelect).toBeTruthy();
   });
 
-  it('should set states value to states response data and set isPending to false', &lt;any&gt;fakeAsync((): void =&gt; {
-    let stateOutput = null;
-    const fixture = TestBed.createComponent(RestaurantComponent);
+  it('should set states value to states response data and set isPending to false', fakeAsync((): void =&gt; {
     fixture.detectChanges();
     tick();
 
-    fixture.componentInstance.states.subscribe((output) =&gt; {
-      stateOutput = output;
-    });
+    let stateOutput!: Data&lt;State&gt;;
 
+    fixture.componentInstance.states$.subscribe(
+      (states) =&gt; (stateOutput = states)
+    );
     fixture.detectChanges();
-    let expectedStates = {
+    const expectedStates = {
       value: [
-        {&quot;short&quot;:&quot;MO&quot;,&quot;name&quot;:&quot;Missouri&quot;},
-        {&quot;short&quot;:&quot;CA&quot;,&quot;name&quot;:&quot;California&quot;},
-        {&quot;short&quot;:&quot;MI&quot;,&quot;name&quot;:&quot;Michigan&quot;}
+        { short: 'MO', name: 'Missouri' },
+        { short: 'CA  ', name: 'California' },
+        { short: 'MI', name: 'Michigan' },
       ],
-      isPending: false
-    }
+      isPending: false,
+    };
     expect(stateOutput).toEqual(expectedStates);
   }));
 
-  it('should set state dropdown options to be values of states member', &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
+  it('should set state dropdown options to be values of states member', fakeAsync((): void =&gt; {
     fixture.detectChanges();
     tick();
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let stateOption = compiled.querySelector('select.state option:nth-child(2)');
-    expect(stateOption.textContent).toEqual('Missouri');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const stateOption = compiled.querySelector(
+      'select[formcontrolname=&quot;state&quot;] option:nth-child(2)'
+    ) as HTMLInputElement;
+    expect(stateOption.textContent).toEqual(' Missouri ');
     expect(stateOption.value).toEqual('MO');
   }));
 
-  it('should set cities value to cities response data and set isPending to false', &lt;any&gt;fakeAsync((): void =&gt; {
-    let citiesOutput = null;
-    const fixture = TestBed.createComponent(RestaurantComponent);
+  it('should set cities value to cities response data and set isPending to false', fakeAsync((): void =&gt; {
     fixture.detectChanges();
     tick();
 
-    fixture.componentInstance.cities.subscribe((output) =&gt; {
-      citiesOutput = output;
-    });
+    let cityOutput!: Data&lt;City&gt;;
 
-    fixture.componentInstance.selectedState.next('CA');
+    fixture.componentInstance.cities$.subscribe(
+      (cities) =&gt; (cityOutput = cities)
+    );
+    fixture.componentInstance.form.get('state')?.patchValue('CA');
     fixture.detectChanges();
-    let expectedCities = {
+    const expectedCities = {
       value: [
-        {&quot;name&quot;:&quot;Sacramento&quot;,&quot;state&quot;:&quot;CA&quot;},
-        {&quot;name&quot;:&quot;Oakland&quot;,&quot;state&quot;:&quot;CA&quot;}
+        { name: 'Sacramento', state: 'CA' },
+        { name: 'Oakland', state: 'CA' },
       ],
-      isPending: false
-    }
-    expect(citiesOutput).toEqual(expectedCities);
+      isPending: false,
+    };
+    expect(cityOutput).toEqual(expectedCities);
   }));
 
-  it('should set city dropdown options to be values of cities member when state value is selected', &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
+  it('should set city dropdown options to be values of cities member when state value is selected', fakeAsync((): void =&gt; {
     fixture.detectChanges();
     tick();
-    fixture.componentInstance.selectedState.next('CA');
+    fixture.componentInstance.form.get('state')?.patchValue('CA');
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    let cityOption = compiled.querySelector('select.city option:nth-child(2)');
-    expect(cityOption.textContent).toEqual('Sacramento');
+    const compiled = fixture.nativeElement as HTMLElement;
+    const cityOption = compiled.querySelector(
+      'select[formcontrolname=&quot;city&quot;] option:nth-child(2)'
+    ) as HTMLInputElement;
+    expect(cityOption.textContent).toEqual(' Sacramento ');
     expect(cityOption.value).toEqual('Sacramento');
   }));
 
-  it('state dropdown should be disabled until states are populated', &lt;any&gt;fakeAsync((): void =&gt; {
-    let stateOutput = null;
-    let stateDisabledOutput = null;
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    const originalGetStates = injectedService.getStates;
-
-    // returns populated data 100ms after subscription
-    injectedService.getStates = () =&gt; {
-      return timer(100).pipe(
-          mapTo({
-            data: [
-              {&quot;short&quot;: &quot;MO&quot;, &quot;name&quot;: &quot;Missouri&quot;},
-              {&quot;short&quot;: &quot;CA&quot;, &quot;name&quot;: &quot;California&quot;},
-              {&quot;short&quot;: &quot;MI&quot;, &quot;name&quot;: &quot;Michigan&quot;}]
-          }),
-      );
-    };
+  it('state dropdown should be disabled until states are populated', () =&gt; {
+    const stateFormControl = fixture.componentInstance.form.get('state')!;
+    expect(stateFormControl.enabled).toBe(false);
 
     fixture.detectChanges();
-    fixture.componentInstance.states.subscribe((output) =&gt; {
-      stateOutput = output;
-    });
-    fixture.componentInstance.stateSelectDisabled.subscribe((output) =&gt; {
-      stateDisabledOutput = output;
-    });
 
-    expect(stateDisabledOutput).toBe(true);
+    expect(stateFormControl.enabled).toBe(true);
+  });
 
-    tick(100);
+  it('city dropdown should be disabled until cities are populated', fakeAsync((): void =&gt; {
+    fixture.detectChanges(); // detecting changes for createForm func to be called
+    const cityFormControl1 = fixture.componentInstance.form.get('city');
+    expect(cityFormControl1?.enabled).toBe(false);
+    fixture.componentInstance.form.get('state')?.patchValue('CA');
     fixture.detectChanges();
-
-    expect(stateDisabledOutput).toBe(false);
-
-    injectedService.getStates = originalGetStates;
+    const cityFormControl2 = fixture.componentInstance.form.get('city');
+    expect(cityFormControl2?.enabled).toBe(true);
   }));
 
-  it('city dropdown should be disabled until cities are populated', &lt;any&gt;fakeAsync((): void =&gt; {
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    let cityDisabledOutput = null;
+  it('should reset list of cities when new state is selected', fakeAsync((): void =&gt; {
+    fixture.detectChanges(); // detecting changes for createForm func to be called
 
-    fixture.detectChanges(); //detecting changes for createForm func to be called
-    fixture.componentInstance.citySelectDisabled.subscribe((output) =&gt; {
-      cityDisabledOutput = output;
+    let restaurantOutput!: Data&lt;Restaurant&gt;;
+    fixture.componentInstance.restaurants$.subscribe((restaurants) =&gt; {
+      restaurantOutput = restaurants;
     });
-
-    expect(cityDisabledOutput).toBe(true);
-    fixture.componentInstance.selectedState.next('CA');
-    fixture.detectChanges();
-
-    expect(cityDisabledOutput).toBe(false);
-  }));
-
-  it('should reset list of cities when new state is selected', &lt;any&gt;fakeAsync((): void =&gt; {
-    let restaurantOutput = null;
-    const fixture = TestBed.createComponent(RestaurantComponent);
-    fixture.detectChanges(); //detecting changes for createForm func to be called
-
-    fixture.componentInstance.restaurants.subscribe((output) =&gt; {
-      restaurantOutput = output;
-    });
-
-    fixture.componentInstance.selectedState.next('CA');
-    fixture.componentInstance.selectedCity.next('Sacramento');
+    fixture.componentInstance.form.get('state')?.patchValue('CA');
+    fixture.componentInstance.form.get('city')?.patchValue('Sacramento');
     fixture.detectChanges();
     expect(restaurantOutput.value.length).toEqual(2);
-    fixture.componentInstance.selectedState.next('MO');
+    fixture.componentInstance.form.get('state')?.patchValue('MO');
     fixture.detectChanges();
     expect(restaurantOutput.value.length).toEqual(0);
+  }));
+
+  it('should call getRestaurants method with two string params', fakeAsync((): void =&gt; {
+    const getRestaurantsSpy = spyOn(service, 'getRestaurants').and.returnValue(
+      of(restaurantAPIResponse)
+    );
+    fixture.detectChanges();
+    fixture.componentInstance.form.get('state')?.patchValue('CA');
+    fixture.componentInstance.form.get('city')?.patchValue('Sacramento');
+    fixture.detectChanges();
+    tick();
+    expect(getRestaurantsSpy).toHaveBeenCalledWith('CA', 'Sacramento');
   }));
 });
 
 </code></pre>
-<div line-highlight='3-4, 9, 136, 175-176, 189-190, 197, 202-207, 304, 307, 309, 311-313, 318, 321, 323-324, 329, 332, 335-336, 343, 351, 356, 361-363, 374, 383, 389, 394-396, 398, 407, 414, 417-418, 423-424, 426, 428, 429-438, 441-446, 448, 450-451, 453, 455, 460, 463-468, 471, 479-481, 483-484, 486-487, 489, only'></div>
+<div line-highlight='9, 11-13, 198-203, 306, 311-314, 319, 324-325, 357-362, 372, 390-395, 405, 421-427, 442-446, 450, 453, only'></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
 <h2>What You Need to Know</h2>
 <ul>
-<li>How to perform common RxJS operations like:
+<li><p>Creating streams of Form Control values with <code>valueChanges</code> member (you previously learned this in the <a href="form-value-changes.html#listening-to-form-changes" title="Learn how to listen to form value changes with Angular.">Filter Cities by State</a> section! ✔️)</p></li>
+<li><p>How to perform common RxJS operations like:</p>
 <ul>
-<li>setting the initial value to be emitted</li>
-<li>transforming a value emitted</li>
-<li>conditionally emit values into a stream from another stream</li>
-<li>merge streams into a single stream of values</li>
-<li>merge streams into a stream of arrays with values from each input stream</li>
-<li>use a BehaviorSubject to capture the state of a form element</li>
-<li>multicasting emissions of a &quot;cold&quot; observable and handle late subscribers</li>
+<li><p>setting the initial value to be emitted</p></li>
+<li><p>transforming a value emitted</p></li>
+<li><p>combine previous and current values of a stream as an array</p></li>
+<li><p>conditionally emit values into a stream from another stream</p></li>
+<li><p>merge streams into a stream of arrays with values from each input stream</p></li>
+<li><p>multicasting emissions of a &quot;cold&quot; observable and handle late subscribers</p>
+<p>You've learnt all of the above as part of the earlier sections on this page! Completing the
+<a href="../learn-rxjs.html">Bitovi Academy's RxJS training</a> will help however.</p></li>
 </ul></li>
 </ul>
-<p>You've learnt all of the above as part of the earlier sections on this page! Completing the
-<a href="../learn-rxjs.html">Bitovi Academy's RxJS training</a> will help however.</p>
 <h2>Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>
-<pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, of, combineLatest, merge } from 'rxjs';
-import { startWith, map, flatMap, shareReplay } from 'rxjs/operators';
-
-import { RestaurantService, ResponseData, State, City } from './restaurant.service';
+<pre><code class="language-ts">import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import {
+  combineLatest,
+  map,
+  mergeMap,
+  Observable,
+  of,
+  pairwise,
+  shareReplay,
+  startWith,
+  Subject,
+  takeUntil,
+  tap,
+} from 'rxjs';
 import { Restaurant } from './restaurant';
+import {
+  City,
+  ResponseData,
+  RestaurantService,
+  State,
+} from './restaurant.service';
 
 export interface Data&lt;T&gt; {
   value: T[];
   isPending: boolean;
 }
 
-const toData = map(function&lt;T&gt;(response: ResponseData&lt;T&gt;) : Data&lt;T&gt; {
-  return {
+const toData = map(
+  &lt;T&gt;(response: ResponseData&lt;T&gt;): Data&lt;T&gt; =&gt; ({
     value: response.data,
-    isPending: false
-  }
-});
-
-@Component({
-  selector: 'pmo-restaurant',
-  templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less']
-})
-export class RestaurantComponent implements OnInit {
-  public restaurants: Observable&lt;Data&lt;Restaurant&gt;&gt;;
-  public states: Observable&lt;Data&lt;State&gt;&gt;;
-  public cities: Observable&lt;Data&lt;City&gt;&gt;;
-
-  public selectedState = new BehaviorSubject('');
-  public selectedCity = new BehaviorSubject('');
-  public displayedCity: Observable&lt;string&gt;;
-  public stateSelectDisabled: Observable&lt;boolean&gt;;
-  public citySelectDisabled: Observable&lt;boolean&gt;;
-
-  constructor(
-    private restaurantService: RestaurantService
-  ) {}
-
-  ngOnInit() {
-    this.states = this.restaurantService.getStates().pipe(
-      toData,
-      startWith({ isPending: true, value: [] }),
-      shareReplay(1),
-    );
-    this.stateSelectDisabled = this.states.pipe(
-        map(states =&gt; states.value.length === 0)
-    );
-
-    this.cities = this.selectedState.pipe(
-        flatMap((state) =&gt; {
-          if (state) {
-            return this.restaurantService.getCities(state).pipe(
-              toData,
-              startWith({ isPending: true, value: [] })
-            )
-          } else {
-            return of({ isPending: false, value: [] });
-          }
-        }),
-        shareReplay(1),
-    );
-    this.citySelectDisabled = this.cities.pipe(
-      map(cities =&gt; cities.value.length === 0)
-    );
-    this.displayedCity = merge(
-      this.selectedState.pipe(map(() =&gt; '')),
-      this.selectedCity
-    );
-
-    this.restaurants = combineLatest(this.displayedCity, this.selectedState).pipe(
-      flatMap(([city, state]) =&gt; {
-        if (city &amp;&amp; state) {
-          return this.restaurantService.getRestaurants(state, city).pipe(
-            toData,
-            startWith({ isPending: true, value: [] })
-          )
-        } else {
-          return of({ isPending: false, value: [] });
-        }
-      }),
-      shareReplay(1),
-    );
-  }
-}
-
-</code></pre>
-<div line-highlight='1-3, 13-18, 25-34, 37, 41-83, only'></div>
-<p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong></p>
-<pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
-  &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
-  &lt;form class=&quot;form&quot;&gt;
-    &lt;div class=&quot;form-group&quot;&gt;
-      &lt;label&gt;State&lt;/label&gt;
-      &lt;select class=&quot;formControl state&quot; (input)=&quot;selectedState.next($event.target.value)&quot;
-              [disabled]=&quot;stateSelectDisabled | async&quot;&gt;
-        &lt;option value=&quot;&quot; *ngIf=&quot;(states | async).isPending&quot;&gt;Loading...&lt;/option&gt;
-        &lt;ng-container *ngIf=&quot;!((states | async).isPending)&quot;&gt;
-          &lt;option value=&quot;&quot;&gt;Choose a state&lt;/option&gt;
-          &lt;option *ngFor=&quot;let state of (states | async).value&quot; value=&quot;{{state.short}}&quot;&gt;{{state.name}}&lt;/option&gt;
-        &lt;/ng-container&gt;
-      &lt;/select&gt;
-    &lt;/div&gt;
-    &lt;div class=&quot;form-group&quot;&gt;
-      &lt;label&gt;City&lt;/label&gt;
-      &lt;select class=&quot;formControl city&quot; (input)=&quot;selectedCity.next($event.target.value)&quot;
-              [disabled]=&quot;citySelectDisabled | async&quot;
-              [value]=&quot;displayedCity | async&quot;&gt;
-        &lt;option value=&quot;&quot; *ngIf=&quot;(cities | async).isPending&quot;&gt;Loading...&lt;/option&gt;
-        &lt;ng-container *ngIf=&quot;!((cities | async).isPending)&quot;&gt;
-          &lt;option value=&quot;&quot;&gt;Choose a city&lt;/option&gt;
-          &lt;option *ngFor=&quot;let city of (cities | async).value&quot; value=&quot;{{city.name}}&quot;&gt;{{city.name}}&lt;/option&gt;
-        &lt;/ng-container&gt;
-      &lt;/select&gt;
-    &lt;/div&gt;
-  &lt;/form&gt;
-
-  &lt;div class=&quot;restaurant loading&quot; *ngIf=&quot;(restaurants | async).isPending&quot;&gt;&lt;/div&gt;
-  &lt;ng-container *ngIf=&quot;(restaurants | async).value.length&quot;&gt;
-    &lt;div class=&quot;restaurant&quot; *ngFor=&quot;let restaurant of (restaurants | async).value&quot;&gt;
-
-      &lt;img src=&quot;{{restaurant.images.thumbnail | imageUrl}}&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
-      &lt;h3&gt;{{restaurant.name}}&lt;/h3&gt;
-
-      &lt;div class=&quot;address&quot; *ngIf=&quot;restaurant.address&quot;&gt;
-        {{restaurant.address.street}}&lt;br /&gt;{{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
-      &lt;/div&gt;
-
-      &lt;div class=&quot;hours-price&quot;&gt;
-        $$$&lt;br /&gt;
-        Hours: M-F 10am-11pm
-        &lt;span class=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
-      &lt;/div&gt;
-
-      &lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
-        Details
-      &lt;/a&gt;
-      &lt;br /&gt;
-    &lt;/div&gt;
-  &lt;/ng-container&gt;
-&lt;/div&gt;
-
-</code></pre>
-<div line-highlight='3, 6-9, 11, 17-21, 23, 29-31, only'></div>
-<p></details></p>
-<h2>Advanced Implementation</h2>
-<p><details>
-<summary>Click to see the advanced implementation solution</summary></p>
-<p>Below is a more comprehensive approach to implementing the sort of features seen in the solution above. It takes things
-further by handling additional cases and abstracting the streams to aid in reuse of these patterns throughout an
-application. Since we won't be going over the details of this implementation, a very solid understanding of the above
-solution and RxJS in general is recommended in order to infer the reasoning behind the design of solution below:</p>
-<pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
-import { BehaviorSubject, Observable, UnaryFunction, of, combineLatest, merge, pipe } from 'rxjs';
-import { startWith, map, flatMap, shareReplay, catchError, tap } from 'rxjs/operators';
-
-import { RestaurantService, ResponseData, State, City } from './restaurant.service';
-import { Restaurant } from './restaurant.interface';
-
-// represent all the possible states of a request
-export interface RequestStatus&lt;T&gt; {
-  data: Array&lt;T&gt;;
-  error: string,
-  // TODO: represent statuses as enum?
-  isPending: boolean;
-  isResolved: boolean;
-  isRejected: boolean;
-  isAwaitingInput: boolean;
-}
-
-// in a complete app this would be a function exported by some component that manages popup messages rather than the trivial implementation seen here
-function openErrorPopup(message) {
-  alert(message);
-}
-
-// transform ResponseData into successful RequestStatus
-const responseToRequestStatus = map(function&lt;T&gt;(response: ResponseData&lt;T&gt;): RequestStatus&lt;T&gt; {
-  return {
-    data: response.data,
-    error: null,
     isPending: false,
-    isResolved: true,
-    isRejected: false,
-    isAwaitingInput: false,
-  }
-});
-
-// an operator that takes input for a request, makes a request via a provided function, and provides an appropriate RequestStatus
-function makeRequest&lt;T&gt;(requestFunction: (args:any) =&gt; Observable&lt;ResponseData&lt;T&gt;&gt;)
-    :UnaryFunction&lt;Observable&lt;any&gt;, Observable&lt;RequestStatus&lt;T&gt;&gt;&gt; {
-  return pipe(
-      flatMap(requestArguments =&gt; {
-        const responseStream = requestFunction(requestArguments);
-
-        // awaiting input case where the requestFunction hasn't made a request yet
-        if (!responseStream) {
-          return of({
-            data: [],
-            error: null,
-            isPending: false,
-            isResolved: false,
-            isRejected: false,
-            isAwaitingInput: true
-          })
-        }
-
-        return responseStream.pipe(
-            responseToRequestStatus, // handle the successful case
-            startWith({ // handle the in-progress case
-              data: [],
-              error: null,
-              isPending: true,
-              isResolved: false,
-              isRejected: false,
-              isAwaitingInput: false,
-            }),
-            catchError((err) =&gt; { // handle the failed case
-              return of({
-                data: [],
-                error: err.message || JSON.stringify(err, null, 2),
-                isPending: false,
-                isResolved: false,
-                isRejected: true,
-                isAwaitingInput: false,
-              });
-            })
-        )
-      }),
-      shareReplay(1))
-}
-
-// operator that checks if the incoming requests haven't yet succeeded
-const isRequestIncomplete = pipe(map&lt;RequestStatus&lt;any&gt;, boolean&gt;((requestStatus) =&gt; !requestStatus.isResolved));
-
-// operator that shows failed RequestStatus emissions as popups, used when the isRejected case isn't handled in the view
-// TODO: rather than tap, provide a stream to some singleton component?
-//       would require a subscription though, possibly triggering requests early :/
-const showErrorsAsPopups = pipe(
-    tap&lt;RequestStatus&lt;any&gt;&gt;(request =&gt; {
-      if (request.isRejected) openErrorPopup(request.error)
-    }),
-    shareReplay(1)
+  })
 );
 
 @Component({
   selector: 'pmo-restaurant',
   templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less']
+  styleUrls: ['./restaurant.component.less'],
 })
-export class RestaurantComponent implements OnInit {
-  public restaurants: Observable&lt;RequestStatus&lt;Restaurant&gt;&gt;;
-  public states: Observable&lt;RequestStatus&lt;State&gt;&gt;;
-  public cities: Observable&lt;RequestStatus&lt;City&gt;&gt;;
+export class RestaurantComponent implements OnInit, OnDestroy {
+  form: FormGroup = this.createForm();
 
-  public selectedState = new BehaviorSubject('');
-  public selectedCity = new BehaviorSubject('');
-  public displayedCity: Observable&lt;string&gt;;
-  public stateSelectDisabled: Observable&lt;boolean&gt;;
-  public citySelectDisabled: Observable&lt;boolean&gt;;
+  states$: Observable&lt;Data&lt;State&gt;&gt;;
+  cities$: Observable&lt;Data&lt;City&gt;&gt;;
+  restaurants$: Observable&lt;Data&lt;Restaurant&gt;&gt;;
+  selectedState$: Observable&lt;string&gt;;
+  selectedCity$: Observable&lt;string&gt;;
+  enableStateSelect$: Observable&lt;Data&lt;State&gt;&gt;;
+  toggleCitySelect$: Observable&lt;Data&lt;City&gt;&gt;;
+  clearCityWhenStateChanges$: Observable&lt;[string, string]&gt;;
+
+  private onDestroy$ = new Subject&lt;void&gt;();
 
   constructor(
-      private restaurantService: RestaurantService
-  ) {}
+    private restaurantService: RestaurantService,
+    private fb: FormBuilder
+  ) {
+    this.selectedState$ = this.form
+      .get('state')!
+      .valueChanges.pipe(startWith(''));
 
-  ngOnInit() {
-    this.states = of(null).pipe(
-        makeRequest(() =&gt; this.restaurantService.getStates()),
-        showErrorsAsPopups
-    );
-    this.stateSelectDisabled = this.states.pipe(isRequestIncomplete);
+    this.selectedCity$ = this.form
+      .get('city')!
+      .valueChanges.pipe(startWith(''));
 
-    this.cities = this.selectedState.pipe(
-        makeRequest((state) =&gt; state ? this.restaurantService.getCities(state) : null),
-        showErrorsAsPopups
-    );
-    this.citySelectDisabled = this.cities.pipe(isRequestIncomplete);
-    this.displayedCity = merge(
-        this.selectedState.pipe(map(() =&gt; '')),
-        this.selectedCity
+    this.states$ = this.restaurantService
+      .getStates()
+      .pipe(
+        toData,
+        startWith({ isPending: true, value: [] }),
+        shareReplay({ bufferSize: 1, refCount: true })
+      );
+
+    this.enableStateSelect$ = this.states$.pipe(
+      takeUntil(this.onDestroy$),
+      tap((states) =&gt; {
+        if (states.value.length &gt; 0) {
+          this.form.get('state')!.enable();
+        }
+      })
     );
 
-    this.restaurants = combineLatest(this.displayedCity, this.selectedState).pipe(
-        makeRequest(([city, state]) =&gt; city &amp;&amp; state ? this.restaurantService.getRestaurants(state, city) : null)
-    )
+    this.cities$ = this.selectedState$.pipe(
+      mergeMap((state) =&gt; {
+        if (state) {
+          return this.restaurantService
+            .getCities(state)
+            .pipe(toData, startWith({ isPending: true, value: [] }));
+        } else {
+          return of({ isPending: false, value: [] });
+        }
+      }),
+      shareReplay({ bufferSize: 1, refCount: true })
+    );
+
+    this.toggleCitySelect$ = this.cities$.pipe(
+      takeUntil(this.onDestroy$),
+      tap((cities) =&gt; {
+        if (cities.value.length === 0) {
+          this.form.get('city')!.disable({
+            onlySelf: true,
+            emitEvent: false,
+          });
+        } else {
+          this.form.get('city')!.enable({
+            onlySelf: true,
+            emitEvent: false,
+          });
+        }
+      })
+    );
+
+    this.clearCityWhenStateChanges$ = this.selectedState$.pipe(
+      takeUntil(this.onDestroy$),
+      pairwise(),
+      tap(([previous, current]) =&gt; {
+        if (current &amp;&amp; current !== previous) {
+          this.form.get('city')!.patchValue('');
+        }
+      })
+    );
+
+    this.restaurants$ = combineLatest([
+      this.selectedCity$,
+      this.selectedState$,
+    ]).pipe(
+      mergeMap(([city, state]) =&gt; {
+        if (city &amp;&amp; state) {
+          return this.restaurantService
+            .getRestaurants(state, city)
+            .pipe(toData, startWith({ isPending: true, value: [] }));
+        } else {
+          return of({ isPending: false, value: [] });
+        }
+      })
+    );
+  }
+
+  ngOnInit(): void {
+    this.enableStateSelect$.subscribe();
+    this.toggleCitySelect$.subscribe();
+    this.clearCityWhenStateChanges$.subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
+  }
+
+  createForm(): FormGroup {
+    return this.fb.group({
+      state: { value: '', disabled: true },
+      city: { value: '', disabled: true },
+    });
   }
 }
 
 </code></pre>
+<div line-highlight='3-15, 29-34, 44-51, 59-137, 141-143'></div>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
   &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
-  &lt;form class=&quot;form&quot;&gt;
+  &lt;form class=&quot;form&quot; [formGroup]=&quot;form&quot;&gt;
     &lt;div class=&quot;form-group&quot;&gt;
       &lt;label&gt;State&lt;/label&gt;
-      &lt;select class=&quot;formControl state&quot; (input)=&quot;selectedState.next($event.target.value)&quot;
-              [disabled]=&quot;stateSelectDisabled | async&quot;&gt;
-        &lt;option value=&quot;&quot; *ngIf=&quot;(states | async).isPending&quot;&gt;Loading...&lt;/option&gt;
-        &lt;ng-container *ngIf=&quot;!((states | async).isPending)&quot;&gt;
+      &lt;select
+        *ngIf=&quot;states$ | async as states&quot;
+        class=&quot;formControl&quot;
+        formControlName=&quot;state&quot;
+      &gt;
+        &lt;option value=&quot;&quot; *ngIf=&quot;states.isPending&quot;&gt;Loading...&lt;/option&gt;
+        &lt;ng-container *ngIf=&quot;!states.isPending&quot;&gt;
           &lt;option value=&quot;&quot;&gt;Choose a state&lt;/option&gt;
-          &lt;option *ngFor=&quot;let state of (states | async).data&quot; value=&quot;{{state.short}}&quot;&gt;{{state.name}}&lt;/option&gt;
+          &lt;option *ngFor=&quot;let state of states.value&quot; [value]=&quot;state.short&quot;&gt;
+            {{ state.name }}
+          &lt;/option&gt;
         &lt;/ng-container&gt;
       &lt;/select&gt;
     &lt;/div&gt;
     &lt;div class=&quot;form-group&quot;&gt;
       &lt;label&gt;City&lt;/label&gt;
-      &lt;select class=&quot;formControl city&quot; (input)=&quot;selectedCity.next($event.target.value)&quot;
-              [disabled]=&quot;citySelectDisabled | async&quot;
-              [value]=&quot;displayedCity | async&quot;&gt;
-        &lt;option value=&quot;&quot; *ngIf=&quot;(cities | async).isPending&quot;&gt;Loading...&lt;/option&gt;
-        &lt;ng-container *ngIf=&quot;!((cities | async).isPending)&quot;&gt;
+      &lt;select
+        *ngIf=&quot;cities$ | async as cities&quot;
+        class=&quot;formControl&quot;
+        formControlName=&quot;city&quot;
+      &gt;
+        &lt;option value=&quot;&quot; *ngIf=&quot;cities.isPending&quot;&gt;Loading...&lt;/option&gt;
+        &lt;ng-container *ngIf=&quot;!cities.isPending&quot;&gt;
           &lt;option value=&quot;&quot;&gt;Choose a city&lt;/option&gt;
-          &lt;option *ngFor=&quot;let city of (cities | async).data&quot; value=&quot;{{city.name}}&quot;&gt;{{city.name}}&lt;/option&gt;
+          &lt;option *ngFor=&quot;let city of cities.value&quot; [value]=&quot;city.name&quot;&gt;
+            {{ city.name }}
+          &lt;/option&gt;
         &lt;/ng-container&gt;
       &lt;/select&gt;
     &lt;/div&gt;
   &lt;/form&gt;
+  &lt;ng-container *ngIf=&quot;restaurants$ | async as restaurants&quot;&gt;
+    &lt;div class=&quot;restaurant loading&quot; *ngIf=&quot;restaurants.isPending&quot;&gt;&lt;/div&gt;
+    &lt;ng-container *ngIf=&quot;restaurants.value.length&quot;&gt;
+      &lt;div class=&quot;restaurant&quot; *ngFor=&quot;let restaurant of restaurants.value&quot;&gt;
+        &lt;img
+          src=&quot;{{ restaurant.images.thumbnail | imageUrl }}&quot;
+          width=&quot;100&quot;
+          height=&quot;100&quot;
+        /&gt;
+        &lt;h3&gt;{{ restaurant.name }}&lt;/h3&gt;
 
-  &lt;div class=&quot;restaurant loading&quot; *ngIf=&quot;(restaurants | async).isPending&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;restaurant message&quot;  *ngIf=&quot;(restaurants | async).isAwaitingInput&quot;&gt;
-    Select a state &amp; city to load restaurants.
-  &lt;/div&gt;
-  &lt;div class=&quot;restaurant message&quot; *ngIf=&quot;(restaurants | async).isResolved &amp;&amp; (restaurants | async).data.length === 0&quot;&gt;
-    There are no restaurants available to order from in this city.
-  &lt;/div&gt;
-  &lt;div class=&quot;restaurant error message&quot; *ngIf=&quot;(restaurants | async).isRejected&quot;&gt;
-    An error has occurred while loading restaurants:
-    &lt;pre&gt;{{(restaurants | async).error}}&lt;/pre&gt;
-  &lt;/div&gt;
-  &lt;ng-container *ngIf=&quot;(restaurants | async).data.length&quot;&gt;
-    &lt;div class=&quot;restaurant&quot; *ngFor=&quot;let restaurant of (restaurants | async).data&quot;&gt;
+        &lt;div class=&quot;address&quot; *ngIf=&quot;restaurant.address&quot;&gt;
+          {{ restaurant.address.street }}&lt;br /&gt;{{ restaurant.address.city }},
+          {{ restaurant.address.state }} {{ restaurant.address.zip }}
+        &lt;/div&gt;
 
-      &lt;img src=&quot;{{restaurant.images.thumbnail | imageUrl}}&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
-      &lt;h3&gt;{{restaurant.name}}&lt;/h3&gt;
+        &lt;div class=&quot;hours-price&quot;&gt;
+          $$$&lt;br /&gt;
+          Hours: M-F 10am-11pm
+          &lt;span class=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
+        &lt;/div&gt;
 
-      &lt;div class=&quot;address&quot; *ngIf=&quot;restaurant.address&quot;&gt;
-        {{restaurant.address.street}}&lt;br /&gt;
-        {{restaurant.address.city}}, {{restaurant.address.state}} {{restaurant.address.zip}}
+        &lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
+          Details
+        &lt;/a&gt;
+        &lt;br /&gt;
       &lt;/div&gt;
-
-      &lt;div class=&quot;hours-price&quot;&gt;
-        $$$&lt;br /&gt;
-        Hours: M-F 10am-11pm
-        &lt;span class=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
-      &lt;/div&gt;
-
-      &lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
-        Details
-      &lt;/a&gt;
-      &lt;br /&gt;
-    &lt;/div&gt;
+    &lt;/ng-container&gt;
   &lt;/ng-container&gt;
 &lt;/div&gt;
 
 </code></pre>
+<div line-highlight='6-10, 22-26, 37, 64'></div>
 <p></details></p>
 
 </section>

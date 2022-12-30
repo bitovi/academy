@@ -171,9 +171,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-docker.html"
-							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
-							Learn Docker
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
 						</a>
 						
 					</li>
@@ -204,6 +204,21 @@
 							href="../learn-technology-consulting.html"
 							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
 						</a>
 						
 					</li>
@@ -641,7 +656,7 @@ style="border: solid 1px black; max-width: 640px;"/></p>
 set it on <code>RestaurantComponent</code>'s <em>restaurant</em> property.</li>
 </ol>
 <h2>P1: How to Verify Your Solution is Correct</h2>
-<p>You should be able see a list of all restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>, instead of the two that were previously hard-coded.</p>
+<p>You should be able see a list of all restaurants when you navigate to <a href="http://localhost:4200/restaurants" >localhost:4200/restaurants</a>, instead of the two that were previously hard-coded.</p>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
   ComponentFixture,
@@ -915,7 +930,7 @@ describe('RestaurantComponent', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="8,11,13-114,123-125,167-269,"></div>
+ <div line-highlight="8,11,13-114,123-125,167-269,only"></div>
 <p>✏️ Update the spec file <strong>src/app/app.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { Location } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -1359,7 +1374,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='90,only'></div>
 <h2>Subscribe to an Observable</h2>
-<p>The result of <code>getRestaurants()</code> is an observable. Use <a href="https://rxjs-dev.firebaseapp.com/guide/subscription">subscribe</a> to listen to when
+<p>The result of <code>getRestaurants()</code> is an observable. Use <a href="https://rxjs.dev/guide/subscription">subscribe</a> to listen to when
 an RxJS observable changes:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
 &lt;script type=&quot;typescript&quot;&gt;
@@ -1430,7 +1445,7 @@ to show a loading icon to the user while data is loading:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurant loading&quot;&gt;&lt;/div&gt;
 </code></pre>
 <h2>P2: To Verify Solution</h2>
-<p>You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>!</p>
+<p>You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants">localhost:4200/restaurants</a>!</p>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
   ComponentFixture,
@@ -1804,7 +1819,7 @@ export class RestaurantComponent implements OnInit {
 &lt;/div&gt;
 
 </code></pre>
- <div line-highlight="3-5,"></div>
+ <div line-highlight="3-5,only"></div>
 <p></details></p>
 <h2>Did You Know?</h2>
 <p>You may have noticed in our markup there's another use of routerLink:</p>

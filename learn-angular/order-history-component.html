@@ -170,9 +170,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-docker.html"
-							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
-							Learn Docker
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
 						</a>
 						
 					</li>
@@ -203,6 +203,21 @@
 							href="../learn-technology-consulting.html"
 							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
 						</a>
 						
 					</li>
@@ -1034,7 +1049,7 @@ export class AppRoutingModule {}
 <p>You've seen this before. Checkout how the <strong>Home</strong> link works in
 <code>app.component.html</code>.</p>
 <h2>P2: How to Verify Your Solution is Correct</h2>
-<p>If you've implemented the solution correctly you should now be able to navigate to <a href="http://localhost:4200/order-history" target="\_blank">http://localhost:4200/order-history</a> and see a list of all orders.</p>
+<p>If you've implemented the solution correctly you should now be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see a list of all orders.</p>
 <h2>P2: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
@@ -1130,7 +1145,7 @@ export class HistoryComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
-<div line-highlight='18,22,26'></div>
+<div line-highlight='18,22,26, only'></div>
 <p>2. ✏️ Copy the following into <strong>src/app/order/history/history.component.html</strong>. You will need to
 iterate through orders and add the right class names to the outer <code>&lt;div&gt;</code> for each order.</p>
 <pre><code class="language-html">&lt;div class=&quot;order-history&quot;&gt;
@@ -1171,7 +1186,7 @@ iterate through orders and add the right class names to the outer <code>&lt;div&
 &lt;/div&gt;
 
 </code></pre>
-<div line-highlight='9,10'></div>
+<div line-highlight='9,10, only'></div>
 <h2>P3: How to Verify Your Solution is Correct</h2>
 <p>✏️ Update the menu-items spec file <strong>src/app/order/history/history.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -1465,7 +1480,7 @@ export class HistoryComponent implements OnInit, OnDestroy {
 &lt;/div&gt;
 
 </code></pre>
- <div line-highlight="9-10,"></div>
+ <div line-highlight="9-10,only"></div>
 <p></details></p>
 <h2>Problem 4: Creating a Child Component to Handle Order States</h2>
 <p>We want to create a child component that will take a list of orders by status and display them, as well as actions a user can perform on an order.</p>

@@ -361,9 +361,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-docker.html"
-							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
-							Learn Docker
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
 						</a>
 						
 					</li>
@@ -394,6 +394,21 @@
 							href="../learn-technology-consulting.html"
 							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
 						</a>
 						
 					</li>
@@ -548,6 +563,7 @@ observable:</p>
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
+<div line-highlight='11-20'></div>
 <h3>Lifecycles</h3>
 <p>RxJS observables have a lifecycle. They can publish values over
 time and complete. They can also publish errors. You can listen
@@ -624,6 +640,7 @@ the <code>subscriber</code> function is only called once.</p>
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
+<div line-highlight='13, 15'></div>
 <h3>Transforming observables to other observables</h3>
 <p>Observable libraries like RxJS have many operators that transform
 published values on one observable to published observables
@@ -681,6 +698,7 @@ into<br />
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
+<div line-highlight='16-33, 35-44'></div>
 <h2>Observables vs Subjects</h2>
 <p>Each time an observable is subscribed to, it creates a new
 and distinct execution context. This can be unexpected or
@@ -709,6 +727,7 @@ random value.</p>
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
+<div line-highlight='7, 12-18'></div>
 <p>Each subscription gets a different random value because
 every subscription creates a new observable execution. The following
 example shows this more directly.
@@ -741,6 +760,7 @@ is called:</p>
 &lt;/script&gt;
 </code></pre>
 <div class='codepen'></div>
+<div line-highlight='6-7, 9-11, 14-24'></div>
 <p>Observables are <em>unicast</em> (each subscription owns an independent execution of the observable). This can often have undesirable results. For example,
 you often want multiple subscribers receiving the same value.</p>
 <p><code>Subjects</code> are just like Observables except they publish values

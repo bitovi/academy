@@ -171,9 +171,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-docker.html"
-							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
-							Learn Docker
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
 						</a>
 						
 					</li>
@@ -204,6 +204,21 @@
 							href="../learn-technology-consulting.html"
 							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
 						</a>
 						
 					</li>
@@ -618,7 +633,7 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>How to Use This Guide</h2>
-<p>This guide will walk you through building an application in Angular 13. Each page of the guide is based on building a new feature, and may have multiple &quot;problems&quot; to solve. Each problem will be explained and include requirements and any set-up steps needed. Most problems will also include unit tests to update to verify the solution has been implemented correctly. The ✏️ icon will be used to indicate when commands need to be run or when files need to be updated. If you have any issues or suggestions as you move through this training, we'd love you to submit a <a href="https://github.com/bitovi/academy/issues/new" target="_blank">GitHub issue</a> for it! 💖</p>
+<p>This guide will walk you through building an application in Angular 13. Each page of the guide is based on building a new feature, and may have multiple &quot;problems&quot; to solve. Each problem will be explained and include requirements and any set-up steps needed. Most problems will also include unit tests to update to verify the solution has been implemented correctly. The ✏️ icon will be used to indicate when commands need to be run or when files need to be updated. If you have any issues or suggestions as you move through this training, we'd love you to submit a <a href="https://github.com/bitovi/academy/issues/new" >GitHub issue</a> for it! 💖</p>
 <h2>Overview</h2>
 <p>In this part, we will:</p>
 <ul>
@@ -644,19 +659,19 @@ style="border: solid 1px black; max-width: 320px;"/></p>
 <h2>Selecting a code editor</h2>
 <p>If you're looking for a code editor (aka IDE) to improve your Angular development - VS Code is widely used by the community but other editors like Webstorm are fine as well. Plugins can go a long way in aiding the development process.</p>
 <h3>Visual Studio Code</h3>
-<p><a href="https://code.visualstudio.com/" target="\_blank">VS Code</a> is Microsoft's modern take on an IDE for app development (P.S. TypeScript is a Microsoft Open Source project). VS Code has built in TypeScript support for syntax highlighting, IntelliSense code completion, and linting.</p>
-<p><a href="../static/img/vs-code-screenshot.png" target="\_blank"><img src="../static/img/vs-code-screenshot.png" width="100%" alt="Visual Studio Code screenshot" /></a></p>
+<p><a href="https://code.visualstudio.com/" >VS Code</a> is Microsoft's modern take on an IDE for app development (P.S. TypeScript is a Microsoft Open Source project). VS Code has built in TypeScript support for syntax highlighting, IntelliSense code completion, and linting.</p>
+<p><a href="../static/img/vs-code-screenshot.png" ><img src="../static/img/vs-code-screenshot.png" width="100%" alt="Visual Studio Code screenshot" /></a></p>
 <p>Helpful Plugins:</p>
 <ul>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=Angular.ng-template" target="\_blank">Angular Language Service</a></li>
-<li><a href="https://marketplace.visualstudio.com/items?itemName=johnpapa.Angular2" target="\_blank">Angular Snippets</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=Angular.ng-template" >Angular Language Service</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=johnpapa.Angular2" >Angular Snippets</a></li>
 </ul>
 <h3>Webstorm</h3>
-<p><a href="https://www.jetbrains.com/webstorm/download/" target="\_blank">Webstorm</a> is a platform by JetBrains that is loved for its great code refactoring assistance and version control integration, but it does require a paid subscription.</p>
-<p><a href="../static/img/webstorm-screenshot.png" target="\_blank"><img src="../static/img/webstorm-screenshot.png" width="100%" alt="Webstorm screenshot" /></a></p>
+<p><a href="https://www.jetbrains.com/webstorm/download/" >Webstorm</a> is a platform by JetBrains that is loved for its great code refactoring assistance and version control integration, but it does require a paid subscription.</p>
+<p><a href="../static/img/webstorm-screenshot.png" ><img src="../static/img/webstorm-screenshot.png" width="100%" alt="Webstorm screenshot" /></a></p>
 <p>Helpful Plugins:</p>
 <ul>
-<li><a href="https://next.angular.io/guide/language-service" target="\_blank">Angular Language Service</a></li>
+<li><a href="https://next.angular.io/guide/language-service" >Angular Language Service</a></li>
 </ul>
 <h2>Installing the CLI</h2>
 <p>Angular has a command line interface or CLI that does a lot of the initial legwork in setting up a minimal app, as well as letting you easily create and include new components on the fly.</p>
@@ -786,14 +801,14 @@ cd place-my-order
 <li>providers [array]: where we include services that we want used at the module level</li>
 <li>bootstrap [array]: where we include the root AppModule - this is the main Application view that hosts all of our other app views.</li>
 </ul>
-<p>Further reading: <a href="https://angular.io/guide/architecture-services#dependency-injection-di" target="\_blank">Dependency Injection in Angular</a></p>
+<p>Further reading: <a href="https://angular.io/guide/architecture-services#dependency-injection-di" >Dependency Injection in Angular</a></p>
 <h3>src/app/app.component.ts</h3>
 <p>This is our root component, you saw it called in our index.html file as <code>&lt;pmo-root&gt;&lt;/pmo-root&gt;</code></p>
 <h2>Serving An Application</h2>
 <p>✏️ Serve the app with:</p>
 <pre><code class="language-shell">npm run start
 </code></pre>
-<p>The <code>start</code> script command value is <code>ng serve</code> which starts a development server on port 4200 by default using <a href="https://github.com/webpack/webpack-dev-server" target="\_blank">webpack-dev-server</a>, and compiles a development version of the app. Any TypeScript errors will be caught by the compiler here, and once ready we can view our app at <a href="http://localhost:4200" target="\_blank">localhost:4200</a>. <code>ng serve</code> also has live-reload functionality, meaning the browser will automatically reload as changes are saved and compiled.</p>
+<p>The <code>start</code> script command value is <code>ng serve</code> which starts a development server on port 4200 by default using <a href="https://github.com/webpack/webpack-dev-server" >webpack-dev-server</a>, and compiles a development version of the app. Any TypeScript errors will be caught by the compiler here, and once ready we can view our app at <a href="http://localhost:4200" >localhost:4200</a>. <code>ng serve</code> also has live-reload functionality, meaning the browser will automatically reload as changes are saved and compiled.</p>
 <h2>Running Tests</h2>
 <p>When we use the CLI to create modules, components, services, etc, it will create spec files
 for us.</p>
@@ -802,7 +817,7 @@ for us.</p>
 </code></pre>
 <h2>How to Verify Your Solution is Correct</h2>
 <p>The change we needed to make for our tests to pass is on the highlighted line 37.</p>
-<p>We also included <code>schemas</code> metadata for our module. <a href="https://angular.io/api/core/NO_ERRORS_SCHEMA">NO_ERRORS_SCHEMA</a> will keep the compiler from throwing errors when unknown components are included in the tested components. In unit tests we often only want to test the very small piece of code we're working on and don't care about deeply nested components <a href="https://medium.com/@fivedicephoto/why-you-shouldnt-use-no-errors-schema-in-angular-unit-tests-cdd478c30782" target="\_blank">unless we're testing the props in a parent/child component relationship</a>. For our purposes in this training, it's safe to use here.</p>
+<p>We also included <code>schemas</code> metadata for our module. <a href="https://angular.io/api/core/NO_ERRORS_SCHEMA">NO_ERRORS_SCHEMA</a> will keep the compiler from throwing errors when unknown components are included in the tested components. In unit tests we often only want to test the very small piece of code we're working on and don't care about deeply nested components <a href="https://medium.com/@fivedicephoto/why-you-shouldnt-use-no-errors-schema-in-angular-unit-tests-cdd478c30782" >unless we're testing the props in a parent/child component relationship</a>. For our purposes in this training, it's safe to use here.</p>
 <p>✏️ Update <strong>src/app.component.spec.ts</strong>:</p>
 <pre><code class="language-ts">import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
@@ -854,7 +869,7 @@ Let's change the markup to look like the home page of our place my order app.</p
 &lt;router-outlet&gt;&lt;/router-outlet&gt;
 </code></pre>
 <div line-highlight='1-2'></div>
-<p>When you save your changes, you should see the new h1 tag in your browser at <a href="http://localhost:4200" target="\_blank">localhost:4200</a>.
+<p>When you save your changes, you should see the new h1 tag in your browser at <a href="http://localhost:4200">localhost:4200</a>.
 </details></p>
 
 </section>

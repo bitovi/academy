@@ -171,9 +171,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-docker.html"
-							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
-							Learn Docker
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
 						</a>
 						
 					</li>
@@ -204,6 +204,21 @@
 							href="../learn-technology-consulting.html"
 							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
 						</a>
 						
 					</li>
@@ -396,7 +411,7 @@ covering CanJS core libraries.">
 <p>In the last lesson we saw how powerful generics can be allowing us to create resuable logic across multiple types. However, that’s just the beginning. TypeScript has all sorts of powerful feature we can leverage to make our logic more typesafe and more reusable. In this lesson we will take a look at constraining generics and how they can assist us in forcing our reusable logic to have certain characteristics while maintaining the typed flexibility of generics.</p>
 <h2>Quick Recap on Generics</h2>
 <blockquote>
-<p>For more information on generics, see <a href="learn-typescript/generics">generics</a> in the TypeScript course</p>
+<p>For more information on generics, see <a href="../learn-typescript/generics.html" title="Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript.">generics</a> in the TypeScript course.</p>
 </blockquote>
 <p>Generics are a way to pass types into other types, much like how parameters are ways to pass values into functions. Like parameters, there can be any number of generics passed into new types and they can only be used in the context of the type they are passed into. To define a generic, angle brackets are used (<code>&lt;&gt;</code>). The order of the generics in the type declaration is what determines which type is assigned to the generic.</p>
 <blockquote>
@@ -455,6 +470,7 @@ greeter(bird); // Hello bird
 greeter(pikachu); // Hello Pikachu
 greeter({ name: &quot;world&quot; }); // Hello world
 </code></pre>
+<div line-highlight='3'></div>
 <blockquote>
 <p><strong>Note:</strong> In this example we have extended a previously defined type. However, you can also declare the type inline to achieve the same effect.</p>
 <pre><code class="language-ts">function greeter&lt;T extends { name: string }&gt;(thingToGreet: T): void {
@@ -462,6 +478,7 @@ greeter({ name: &quot;world&quot; }); // Hello world
 }
 </code></pre>
 </blockquote>
+<div line-highlight='1'></div>
 <p>Going back to thinking of types as sets, we constrained the generic from the superset any to the subset <code>WithName</code>.</p>
 <p>Since Generics themselves are types, you can also constrain your generics based on other generics. Imagine we have a bunch of different types of <code>Pokedex</code> from all the different regions, each of these can be represented by a type that resembles the following shape.</p>
 <pre><code class="language-ts">type KantoPokedex = {
@@ -531,7 +548,7 @@ type RandomAttacks = Keys&lt;typeof randomAttacks&gt;; // 'quickAttack' | 'thund
 <blockquote>
 <p>Be sure to check your answers to Exercise 1 <strong>Before</strong> continuing on to Exercise 2</p>
 </blockquote>
-<p><a href="https://codesandbox.io/s/rbwpiq?file=/02-generics-with-constraints-ex-01.ts" target="_blank">Open in CodeSandbox</a></p>
+<p><a href="https://codesandbox.io/s/rbwpiq?file=/02-generics-with-constraints-ex-01.ts">Open in CodeSandbox</a></p>
 <pre><code class="language-ts">/**
  * Exercise 1
  *
@@ -641,7 +658,7 @@ console.log(entry);
 <summary>Hint for Exercise 2 (click to reveal)</summary>
 our <code>Keys</code> type has a constraint to be satisfied, we need to make sure anything passed into <code>Keys</code> satisfies those constraints as well...
 </details></p>
-<p><a href="https://codesandbox.io/s/bg398m?file=/02-generics-with-constraints-ex-02.ts" target="_blank">Open in CodeSandbox</a></p>
+<p><a href="https://codesandbox.io/s/bg398m?file=/02-generics-with-constraints-ex-02.ts">Open in CodeSandbox</a></p>
 <pre><code class="language-ts">type Keys&lt;T extends object&gt; = keyof T;
 
 /* Exercise 2

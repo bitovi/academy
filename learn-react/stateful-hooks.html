@@ -331,9 +331,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-docker.html"
-							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
-							Learn Docker
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
 						</a>
 						
 					</li>
@@ -364,6 +364,21 @@
 							href="../learn-technology-consulting.html"
 							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
 						</a>
 						
 					</li>
@@ -463,7 +478,10 @@ covering CanJS core libraries.">
   const [inputValue, setInputValue] = React.useState('');
 
   return (
-    &lt;input value={inputValue.toUpperCase()} onChange={(e) =&gt; setInputValue(e.target.value)} /&gt;
+    &lt;input
+      value={inputValue.toUpperCase()}
+      onChange={(e) =&gt; setInputValue(e.target.value)}
+    /&gt;
   );
 }
 
@@ -475,7 +493,7 @@ ReactDOM.render(&lt;Hello /&gt;, document.getElementById('root'));
 <p>Note also that the input box always displays the <code>uppercase</code> value of the text. This is because when we display the text value (when we pass the <code>value</code> prop to the <code>input</code>), we uppercase the string.</p>
 <p>This process is similar no matter what component you're building. The basic pattern is:</p>
 <ol>
-<li>Get the value and setter from <a href="https://reactjs.org/docs/hooks-state.html"><code>useState</code></a>).</li>
+<li>Get the value and setter from <a href="https://reactjs.org/docs/hooks-state.html"><code>useState</code></a>.</li>
 <li>Use the value as needed</li>
 <li>Call the setter to change the value and trigger an update</li>
 </ol>
@@ -503,8 +521,8 @@ ReactDOM.render(&lt;Hello /&gt;, document.getElementById('root'));
 
 ReactDOM.render(&lt;Hello /&gt;, document.getElementById('root'));
 </code></pre>
+<p>@highlight 9</p>
 </blockquote>
-<div line-highlight='9'></div>
 <blockquote>
 <h3>Right</h3>
 <pre><code class="language-jsx">function Hello() {
@@ -522,9 +540,9 @@ ReactDOM.render(&lt;Hello /&gt;, document.getElementById('root'));
 
 ReactDOM.render(&lt;Hello /&gt;, document.getElementById('root'));
 </code></pre>
+<p>@highlight 7</p>
 </blockquote>
-<div line-highlight='7'></div>
-## useRef
+<h2>useRef</h2>
 <p>Just like <code>useState</code>, <code>useRef</code> is a data store, keeping track of values the component is interested in. In this case however, <code>useRef</code> helps store DOM references instead of state data.</p>
 <p>DOM references give your component access to the underlying DOM elements that your JSX creates. These references can then be used to make more specific changes to the DOM or provide access to external libraries. To get to the value of a ref, it is always located in the <code>.current</code> property. It's important to note that updating refs does not cause updates like modifying the state does.</p>
 <p>Let's take a look at <code>useRef</code> in action:</p>
@@ -696,7 +714,7 @@ ReactDOM.render(&lt;Board /&gt;, document.getElementById('root'));
 </code></pre>
 <div class='codepen' data-codepen='react'></div>
 <div line-highlight='33,44,46-56,only'></div>
-</details>
+<p></details></p>
 <h2>Next Steps</h2>
 <p>✏️ Head over to the <a href="controlled-vs-uncontrolled.html">next lesson</a> to learn how React manages browser inputs.</p>
 

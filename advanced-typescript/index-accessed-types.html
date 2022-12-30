@@ -171,9 +171,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-docker.html"
-							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
-							Learn Docker
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
 						</a>
 						
 					</li>
@@ -204,6 +204,21 @@
 							href="../learn-technology-consulting.html"
 							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
 						</a>
 						
 					</li>
@@ -435,6 +450,7 @@ type GymLeader = {
 // ERROR: Type 'GymLeader' cannot be used as an index type.
 type InvalidExample2 = Pokemon[GymLeader];
 </code></pre>
+<div line-highlight='8-18'></div>
 <h3>Multiple Types as Indices</h3>
 <p>When TypeScript sees more than one type being passed in it will create a union of the property types -- <code>keyof</code> and string unions illustrate this.</p>
 <pre><code class="language-ts">type PokemonTypeOrPower = Pokemon[&quot;power&quot; | &quot;type&quot;]; // number | &quot;fire&quot; | &quot;water&quot; | &quot;grass&quot;
@@ -534,6 +550,7 @@ function factory&lt;T extends Entity&gt;(path: string): Requests&lt;T&gt; {
   delete: (id: T[&quot;id&quot;]) =&gt; Promise&lt;void&gt;;
 };
 </code></pre>
+<div line-highlight='2, 5-6'></div>
 <p>Using index accessed types we have resolved this issue and any future issue like it down the road.</p>
 <p>As we've seen, indexed access types are a powerful feature from TypeScript which helps our typing become more flexible and dynamic. Like generics, they will become a staple in our types as we progress through other TypeScript features.</p>
 <h2>Exercises</h2>
@@ -545,7 +562,7 @@ trainers in the array.</p>
 <summary> Hint for Exercise 1 (click to reveal)</summary>
 An array is just an object indexed with a number
 </details></p>
-<p><a href="https://codesandbox.io/s/6syglj?file=/03-index-accessed-types-ex-01.ts" target="_blank">Open in CodeSandbox</a></p>
+<p><a href="https://codesandbox.io/s/6syglj?file=/03-index-accessed-types-ex-01.ts">Open in CodeSandbox</a></p>
 <pre><code class="language-ts">/**
  * Below is an array of Pokemon trainers and a `FavoritePokemon` type currently assigned to any.
  * Using the `pokemonTrainers` array replace the `any` with a type that has the same shape as `favoritePokemon` on the

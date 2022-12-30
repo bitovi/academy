@@ -171,9 +171,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-docker.html"
-							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
-							Learn Docker
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
 						</a>
 						
 					</li>
@@ -204,6 +204,21 @@
 							href="../learn-technology-consulting.html"
 							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
 						</a>
 						
 					</li>
@@ -790,9 +805,9 @@ import { ImageUrlPipe } from './image-url.pipe';
 export class AppModule { }
 
 </code></pre>
- <div line-highlight="3,23,"></div>
+ <div line-highlight="3,23,only"></div>
 <h2>How to Verify Your Solution is Correct</h2>
-<p>When you visit <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>, there will now be state and city dropdown options populated with fake data.</p>
+<p>When you visit <a href="http://localhost:4200/restaurants" >localhost:4200/restaurants</a>, there will now be state and city dropdown options populated with fake data.</p>
 <p><img src="../static/img/angular/pmo-dropdowns.gif" alt="Place My Order App city and state dropdowns" title="Place My Order App city and state dropdowns" /></p>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
@@ -1411,7 +1426,7 @@ describe('AppComponent', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="11,199,211-214,252,277,291,"></div>
+ <div line-highlight="11,199,211-214,252,277,291,only"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
@@ -1425,7 +1440,7 @@ describe('AppComponent', () =&gt; {
 <li>How to use ngFor (you learned this in the Creating Components section! ✔️)</li>
 </ul>
 <h2>Reactive Forms</h2>
-<p>We're eventually going to use select boxes to handle our user's input. Angular's <a href="https://angular.io/guide/reactive-forms" target="\_blank">Reactive Forms</a> API provides a clean way to get data from user input and do work based on it.</p>
+<p>We're eventually going to use select boxes to handle our user's input. Angular's <a href="https://angular.io/guide/reactive-forms" >Reactive Forms</a> API provides a clean way to get data from user input and do work based on it.</p>
 <blockquote>
 <p>From the docs: Reactive forms use an explicit and immutable approach to managing the state of a form at a given point in time. Each change to the form state returns a new state, which maintains the integrity of the model between changes. Reactive forms are built around observable streams, where form inputs and values are provided as streams of input values, which can be accessed synchronously.</p>
 </blockquote>
@@ -1528,7 +1543,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='79,only'></div>
 <h2>FormControl</h2>
-<p>The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl" target="\_blank">FormControl</a>. This class manages the form input model and connection to it's input element in the DOM and inherits from the <a href="https://angular.io/api/forms/AbstractControl" target="\_blank">AbstractControl</a>
+<p>The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl" >FormControl</a>. This class manages the form input model and connection to it's input element in the DOM and inherits from the <a href="https://angular.io/api/forms/AbstractControl" >AbstractControl</a>
 class. It's worth getting familiar with the methods available in this class (like setValidators and patchValue), as they're used quite often in reactive form development. The formControl is bound to it's element in the DOM using the <code>[formControl]</code> directive.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1591,7 +1606,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='17,23-29,33,only'></div>
 <h2>FormGroup</h2>
-<p>A <a href="https://angular.io/api/forms/FormGroup" target="\_blank">FormGroup</a> is a way of grouping FormControls and tracking the state of the entire group. For instance, if you want to get the values of all of your FormControls to submit as an object of those values, you'd use <code>formGroupName.value</code>. Notice the way we connect our input in the markup is slightly different - we can use the <code>formControlName</code> directive to bind to the name value of a FormControl in our FormGroup. Groups can be nested within other groups or arrays.</p>
+<p>A <a href="https://angular.io/api/forms/FormGroup" >FormGroup</a> is a way of grouping FormControls and tracking the state of the entire group. For instance, if you want to get the values of all of your FormControls to submit as an object of those values, you'd use <code>formGroupName.value</code>. Notice the way we connect our input in the markup is slightly different - we can use the <code>formControlName</code> directive to bind to the name value of a FormControl in our FormGroup. Groups can be nested within other groups or arrays.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1673,7 +1688,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='17,23-37,39,43,45-49,53-55,only'></div>
 <h2>FormArray</h2>
-<p>A <a href="https://angular.io/api/forms/FormArray" target="\_blank">FormArray</a> aggregates FormControls into an array. It's different than FormGroup in that the controls inside are serialized as an array. FormArrays are very useful when dealing with repeated FormControls or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.</p>
+<p>A <a href="https://angular.io/api/forms/FormArray" >FormArray</a> aggregates FormControls into an array. It's different than FormGroup in that the controls inside are serialized as an array. FormArrays are very useful when dealing with repeated FormControls or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.</p>
 <p>This example shows the use of FormArray and using an <code>insert</code> method to dynamically add more FormGroups to the <code>users</code> FormArray.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1786,7 +1801,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='17,23-45,47,53-66,70-81,only'></div>
 <h2>FormBuilder</h2>
-<p><a href="https://angular.io/api/forms/FormBuilder" target="\_blank">FormBuilder</a> is a shorthand way to quickly write forms by reducing boilerplate code of manually having to write <code>new FormControl</code>, <code>new FormGroup</code>, <code>new FormArray</code> repeatedly.</p>
+<p><a href="https://angular.io/api/forms/FormBuilder">FormBuilder</a> is a shorthand way to quickly write forms by reducing boilerplate code of manually having to write <code>new FormControl</code>, <code>new FormGroup</code>, <code>new FormArray</code> repeatedly.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;

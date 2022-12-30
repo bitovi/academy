@@ -171,9 +171,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-docker.html"
-							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
-							Learn Docker
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
 						</a>
 						
 					</li>
@@ -204,6 +204,21 @@
 							href="../learn-technology-consulting.html"
 							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
 						</a>
 						
 					</li>
@@ -773,7 +788,7 @@ describe('AppComponent', () =&gt; {
 <li>How to use the routerLinkActive directive</li>
 </ul>
 <h2>RouterLink</h2>
-<p>You may have noticed the links in the routing examples to switch between views. They use the <a href="https://angular.io/api/router/RouterLink" target="\_blank">routerLink</a> directive. The routerLink takes a property of a path that can be static or built dynamically based on properties on the component.</p>
+<p>You may have noticed the links in the routing examples to switch between views. They use the <a href="https://angular.io/api/router/RouterLink" >routerLink</a> directive. The routerLink takes a property of a path that can be static or built dynamically based on properties on the component.</p>
 <h3>Static routerLink Segments</h3>
 <p>The following is an example of a hard coded path:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -979,7 +994,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='28,35, only'></div>
 <h2>RouterLinkActive</h2>
-<p>The <a href="https://angular.io/api/router/RouterLinkActive" target="\_blank">routerLinkActive</a> directive lets you add a CSS class to an element when the link's route becomes active. Angular looks at the path to determine if the route is active and will return true if any of the path matches, meaning when a path contains a &quot;child&quot; segment the route active status will still return true. If exact specificity is needed, <code>[routerLinkActiveOptions]=&quot;{exact: true}&quot;</code> can be used.</p>
+<p>The <a href="https://angular.io/api/router/RouterLinkActive" >routerLinkActive</a> directive lets you add a CSS class to an element when the link's route becomes active. Angular looks at the path to determine if the route is active and will return true if any of the path matches, meaning when a path contains a &quot;child&quot; segment the route active status will still return true. If exact specificity is needed, <code>[routerLinkActiveOptions]=&quot;{exact: true}&quot;</code> can be used.</p>
 <h3>Adding a Basic Active Class</h3>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1216,7 +1231,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='24-25,27-30, only'></div>
 <h3>Adding an Active Class with Template Variable</h3>
-<p>RouterLinkActive can also be used to set <a href="https://angular.io/api/router/RouterLinkActive#template-variable-references" target="\_blank">template variables</a> to check the active status of the route. In this example we're creating a template variable <code>myroutervariable</code> to represent our route and it's active state for logic in our template.</p>
+<p>RouterLinkActive can also be used to set <a href="https://angular.io/api/router/RouterLinkActive#template-variable-references">template variables</a> to check the active status of the route. In this example we're creating a template variable <code>myroutervariable</code> to represent our route and it's active state for logic in our template.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;

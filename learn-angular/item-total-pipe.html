@@ -170,9 +170,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-docker.html"
-							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
-							Learn Docker
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
 						</a>
 						
 					</li>
@@ -203,6 +203,21 @@
 							href="../learn-technology-consulting.html"
 							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
 						</a>
 						
 					</li>
@@ -1995,7 +2010,6 @@ Angular provides us with a <a href="https://angular.io/api/common/CurrencyPipe">
         &lt;input
           name=&quot;name&quot;
           type=&quot;text&quot;
-          class=&quot;form-control&quot;
           formControlName=&quot;name&quot;
         /&gt;
         &lt;p&gt;Please enter your name.&lt;/p&gt;
@@ -2005,7 +2019,6 @@ Angular provides us with a <a href="https://angular.io/api/common/CurrencyPipe">
         &lt;input
           name=&quot;address&quot;
           type=&quot;text&quot;
-          class=&quot;form-control&quot;
           formControlName=&quot;address&quot;
         /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
@@ -2016,7 +2029,6 @@ Angular provides us with a <a href="https://angular.io/api/common/CurrencyPipe">
           name=&quot;phone&quot;
           type=&quot;text&quot;
           pmoOnlyNumbers
-          class=&quot;form-control&quot;
           formControlName=&quot;phone&quot;
         /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
@@ -2037,7 +2049,7 @@ Angular provides us with a <a href="https://angular.io/api/common/CurrencyPipe">
 &lt;/div&gt;
 
 </code></pre>
- <div line-highlight="14-15,21,91,only"></div>
+ <div line-highlight="14-15,21,88,only"></div>
 <p>✏️ Update <strong>src/app/order/list/list.component.html</strong> to use the currency Pipe:</p>
 <pre><code class="language-html">&lt;h4&gt;{{ listTitle }}&lt;/h4&gt;
 &lt;ng-container *ngFor=&quot;let order of orders&quot;&gt;

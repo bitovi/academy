@@ -171,9 +171,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-docker.html"
-							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
-							Learn Docker
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
 						</a>
 						
 					</li>
@@ -204,6 +204,21 @@
 							href="../learn-technology-consulting.html"
 							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
 						</a>
 						
 					</li>
@@ -626,7 +641,6 @@ style="border: solid 1px black; max-width: 420px;"/></p>
   name=&quot;phone&quot;
   type=&quot;text&quot;
   pmoOnlyNumbers
-  class=&quot;form-control&quot;
   formControlName=&quot;phone&quot;
 /&gt;
 </code></pre>
@@ -639,7 +653,7 @@ style="border: solid 1px black; max-width: 420px;"/></p>
 <li>How to create a Directive</li>
 </ul>
 <h2>What are Directives</h2>
-<p>Directives are classes that tell Angular to change the appearance or behavior of DOM Elements. Angular comes with a set of <a href="https://angular.io/guide/built-in-directives" target="\_blank" >Built-in</a> Directives,
+<p>Directives are classes that tell Angular to change the appearance or behavior of DOM Elements. Angular comes with a set of <a href="https://angular.io/guide/built-in-directives"  >Built-in</a> Directives,
 and they consist of three types:</p>
 <ul>
 <li>Components Directives</li>
@@ -649,23 +663,23 @@ and they consist of three types:</p>
 <h1>Components Directives</h1>
 <p>In this training, we previously talked about <a href="creating-components.html" title="Learn how to create basic components in Angular and iterate through data using an Angular for loop.">Components</a>.
 Components are a type of Directive. Components use the <code>@Component</code> decorator function along with a template, style, and other logic needed for the view.
-This was previously discussed in detail <a href="creating-components.html#p2-what-you-need-to-know" title="Learn how to create basic components in Angular and iterate through data using an Angular for loop.">here</a>. The official <a href="https://angular.io/guide/built-in-directives#:~:text=Components%E2%80%94-,directives,-with%20a%20template" target="\_blank">Angular documentation</a> has more information on this as well.</p>
+This was previously discussed in detail <a href="creating-components.html#p2-what-you-need-to-know" title="Learn how to create basic components in Angular and iterate through data using an Angular for loop.">here</a>. The official <a href="https://angular.io/guide/built-in-directives#:~:text=Components%E2%80%94-,directives,-with%20a%20template" >Angular documentation</a> has more information on this as well.</p>
 <h1>Attribute Directives</h1>
 <p>Attribute Directives are a type of directive that are mainly used to listen or change the behavior or appearance of DOM Elements,
 Attributes and Components.
-<a href="https://angular.io/guide/attribute-directives" target="\_blank">Read more</a>.</p>
+<a href="https://angular.io/guide/attribute-directives" >Read more</a>.</p>
 <h1>Structural Directives</h1>
 <p>Structural Directives are types of Directives that are used to change HTML DOM layout by adding, removing or manipulating Elements.
-<a href="https://angular.io/guide/structural-directives" target="\_blank" >Read more</a></p>
+<a href="https://angular.io/guide/structural-directives"  >Read more</a></p>
 <h2>ElementRef</h2>
 <p>ElementRef (Element Reference) is a wrapper around a native DOM Element inside of a View.
 The ElementRef class contains a property <code>nativeElement</code>, which references the underlying DOM object that we can use to manipulate the DOM.
-<a href="https://angular.io/api/core/ElementRef" target="\_blank" >Read more</a>.</p>
+<a href="https://angular.io/api/core/ElementRef">Read more</a>.</p>
 <p>When creating a Directive, we use ElementRef to gain reference to the native HTML Element, which the Directive will be used on, and perform any manipulation we need to.</p>
 <h2>HostListener</h2>
 <p>HostListener is a function decorator that allows you to listen and handle DOM events from the host element.
 Some examples of events include <code>keyboard</code> and <code>mouse</code> events.
-<a href="https://angular.io/api/core/HostListener" target="\_blank" >Read more</a>.</p>
+<a href="https://angular.io/api/core/HostListener">Read more</a>.</p>
 <p>When creating a Directive, we use the @HostListener decorator in the Directive Class to listen for host events. Based on the event, we can perform any action needed.</p>
 <h2>How to Generate a Directive via the CLI</h2>
 <pre><code class="language-bash">ng generate directive onlyNumbers
@@ -752,7 +766,6 @@ platformBrowserDynamic()
   name=&quot;phone&quot;
   type=&quot;text&quot;
   pmoOnlyNumbers
-  class=&quot;form-control&quot;
   formControlName=&quot;phone&quot;
 /&gt;
 </code></pre>
@@ -794,7 +807,6 @@ platformBrowserDynamic()
         &lt;input
           name=&quot;name&quot;
           type=&quot;text&quot;
-          class=&quot;form-control&quot;
           formControlName=&quot;name&quot;
         /&gt;
         &lt;p&gt;Please enter your name.&lt;/p&gt;
@@ -804,7 +816,6 @@ platformBrowserDynamic()
         &lt;input
           name=&quot;address&quot;
           type=&quot;text&quot;
-          class=&quot;form-control&quot;
           formControlName=&quot;address&quot;
         /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
@@ -815,7 +826,6 @@ platformBrowserDynamic()
           name=&quot;phone&quot;
           type=&quot;text&quot;
           pmoOnlyNumbers
-          class=&quot;form-control&quot;
           formControlName=&quot;phone&quot;
         /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
@@ -836,7 +846,7 @@ platformBrowserDynamic()
 &lt;/div&gt;
 
 </code></pre>
- <div line-highlight="49,only"></div>
+ <div line-highlight="47,only"></div>
 <p>✏️ Run the following to generate the <strong>Directive</strong> and the directive's tests:</p>
 <pre><code class="language-bash">ng g directive onlyNumbers
 </code></pre>

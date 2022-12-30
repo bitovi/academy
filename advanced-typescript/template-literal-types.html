@@ -171,9 +171,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-docker.html"
-							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
-							Learn Docker
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
 						</a>
 						
 					</li>
@@ -204,6 +204,21 @@
 							href="../learn-technology-consulting.html"
 							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
 						</a>
 						
 					</li>
@@ -460,6 +475,7 @@ type PokemonGetters = Getters&lt;Pokemon&gt;;
   &gt;}`]: () =&gt; T[OriginalKey];
 };
 </code></pre>
+<div line-highlight='2, 4'></div>
 <p>We can do something similar for <code>Setters</code>.</p>
 <pre><code class="language-ts">type Setters&lt;T&gt; = {
   [OriginalKey in keyof T as `set${Capitalize&lt;string &amp; OriginalKey&gt;}`]: (
@@ -495,7 +511,7 @@ type StatefulPokemon = Stateful&lt;Pokemon&gt;;
 <pre><code class="language-ts">type Padding = &quot;padding-top&quot; | &quot;padding-left&quot;; // ...
 type Margin = &quot;margin-top&quot; | &quot;margin-left&quot;; // ...
 </code></pre>
-<p><a href="https://codesandbox.io/s/72i9li?file=/06-template-literal-types-ex-01.ts" target="_blank">Open in CodeSandbox</a></p>
+<p><a href="https://codesandbox.io/s/72i9li?file=/06-template-literal-types-ex-01.ts">Open in CodeSandbox</a></p>
 <pre><code class="language-ts">/**
  * Exercise 1
  * Given the following `Direction` type, use template literal types to create `Padding` and `Margin`, which should be
@@ -529,7 +545,7 @@ the getter if it is a function. If it is not a function, it should resolve to wh
 <pre><code class="language-ts">type WithName = FromGetter&lt;{ getName: () =&gt; string }&gt;; // {name: string;}
 type NonFunction = FromGetter&lt;{ getObject: object }&gt;; // {object: object;}
 </code></pre>
-<p><a href="https://codesandbox.io/s/iy9vq9?file=/06-template-literal-types-ex-02.ts" target="_blank">Open in CodeSandbox</a></p>
+<p><a href="https://codesandbox.io/s/iy9vq9?file=/06-template-literal-types-ex-02.ts">Open in CodeSandbox</a></p>
 <pre><code class="language-ts">/**
  * Exercise 2
  *

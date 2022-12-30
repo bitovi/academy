@@ -171,9 +171,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-docker.html"
-							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
-							Learn Docker
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
 						</a>
 						
 					</li>
@@ -204,6 +204,21 @@
 							href="../learn-technology-consulting.html"
 							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
 						</a>
 						
 					</li>
@@ -600,6 +615,7 @@ const Person = DefineMap.extend(&quot;Person&quot;,{
 console.log( new Person({age: &quot;3&quot;}).age ) //logs 3
 </code></pre>
 <div class='codepen' data-codepen=''></div>
+  <div line-highlight='3-5, 7'></div>
 <ul>
 <li><p>The <a href="https://canjs.com/doc/can-define.types.default.html" title="default">default</a> behavior defines a property’s initial value like:</p>
 <pre><code class="language-js">import {DefineMap} from &quot;can&quot;;
@@ -610,6 +626,10 @@ const Person = DefineMap.extend(&quot;Person&quot;,{
 
 console.log( new Person().age ) //logs 3
 </code></pre></li>
+</ul>
+<div class='codepen' data-codepen=''></div>
+  <div line-highlight='4, 7'></div>
+<ul>
 <li><p>Methods can be defined directly on the prototype like:</p>
 <pre><code class="language-js">import {DefineMap} from &quot;can&quot;;
 
@@ -624,6 +644,7 @@ instance.methodName() //logs &quot;run method&quot;
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
+  <div line-highlight='3-10'></div>
 <h2>The Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -646,6 +667,7 @@ const Todo = DefineMap.extend(&quot;Todo&quot;, {
 export default Todo;
 
 </code></pre>
+<div line-highlight='2-16'></div>
 <p></details></p>
 
 </section>

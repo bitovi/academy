@@ -171,9 +171,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-docker.html"
-							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
-							Learn Docker
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
 						</a>
 						
 					</li>
@@ -204,6 +204,21 @@
 							href="../learn-technology-consulting.html"
 							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
 						</a>
 						
 					</li>
@@ -630,9 +645,7 @@ covering CanJS core libraries.">
 <p>Create routes for the <code>HomeComponent</code> and <code>RestaurantComponent</code>. When the route is <code>''</code>, the <code>HomeComponent</code> should display, and when the route is <code>/restaurants</code> the <code>RestaurantComponent</code> should display. These changes should be made in <strong>src/app/app-routing.module.ts</strong>.</p>
 <p>Notice that you will be able to click the <strong>Choose a Restaurant</strong> button
 at the end of this tutorial:</p>
-<p><img src="../../static/img/angular/4-adding-routing/after.gif"
-style="border: solid 1px black; "
-title="Choose a restaurant routing"/></p>
+<p><img src="../static/img/angular/4-adding-routing/after.gif" alt="Choose a restaurant routing" title="Choose a restaurant routing" /></p>
 <h2>Setup</h2>
 <p><code>&lt;router-outlet&gt;</code>, which handles routing to a component based on a url, was added to our <strong>src/app/app.component.html</strong> file when we first generated our app and answered <code>yes</code> to the routing question. But since that time, we added components to that view. Let's remove those components because <code>&lt;router-outlet&gt;</code> will handle showing
 those components going forward.</p>
@@ -642,7 +655,7 @@ those components going forward.</p>
 </code></pre>
 <div line-highlight='1-2,only'></div>
 <h2>How to Verify Your Solution is Correct</h2>
-<p>If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>. You may have noticed the <code>routerLink</code> attribute on the <code>&lt;a&gt;</code> tag in our home component markup. This one of the ways we link to specific routes in our app. When you click that link, you should see the restaurants component.</p>
+<p>If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants" >localhost:4200/restaurants</a>. You may have noticed the <code>routerLink</code> attribute on the <code>&lt;a&gt;</code> tag in our home component markup. This one of the ways we link to specific routes in our app. When you click that link, you should see the restaurants component.</p>
 <pre><code class="language-html">&lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;&gt; Choose a Restaurant &lt;/a&gt;
 </code></pre>
 <p>✏️ Update the spec file <strong>src/app/app.component.spec.ts</strong> to be:</p>
@@ -714,7 +727,7 @@ describe('AppComponent', () =&gt; {
 </blockquote>
 <h2>What You Need to Know</h2>
 <h2>Router Outlet</h2>
-<p><a href="https://angular.io/api/router/RouterOutlet" target="\_blank"><code>RouterOutlet</code></a> is an Angular directive that is a placeholder for content that is filled when the route changes. In this example the <code>HomeComponent</code> template or the <code>AboutComponent</code> template are shown below the <code>&lt;router-outlet&gt;</code> element as the route changes.</p>
+<p><a href="https://angular.io/api/router/RouterOutlet" ><code>RouterOutlet</code></a> is an Angular directive that is a placeholder for content that is filled when the route changes. In this example the <code>HomeComponent</code> template or the <code>AboutComponent</code> template are shown below the <code>&lt;router-outlet&gt;</code> element as the route changes.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1127,7 +1140,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='71, only'></div>
 <h2>Setting Paths to Modules</h2>
-<p>As our applications grow, it doesn't make sense to load all the code at once. Thanks to <a href="https://angular.io/guide/lazy-loading-ngmodules" target="\_blank">lazyloading</a>, we can wait to render modules until a specific route requiring them is hit.</p>
+<p>As our applications grow, it doesn't make sense to load all the code at once. Thanks to <a href="https://angular.io/guide/lazy-loading-ngmodules" >lazyloading</a>, we can wait to render modules until a specific route requiring them is hit.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1279,7 +1292,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='120, only'></div>
 <h2>&lt;base-href&gt;</h2>
-<p>In our index.html file, the angular cli included <code>&lt;base href=&quot;/&gt;</code>. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base" target="\_blank">here</a>, but it's important to know this is how the Angular router will know how to compose URLs - the value in the <code>href</code> attribute specifies the base URL for all relative URLs contained in the app. If you'd like to serve your app from a different directory (wherever the index.html will be served from) or have a specific hosting URL that your app will be deployed at, you will need to change the <code>base href</code> to match.</p>
+<p>In our index.html file, the angular cli included <code>&lt;base href=&quot;/&gt;</code>. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base">here</a>, but it's important to know this is how the Angular router will know how to compose URLs - the value in the <code>href</code> attribute specifies the base URL for all relative URLs contained in the app. If you'd like to serve your app from a different directory (wherever the index.html will be served from) or have a specific hosting URL that your app will be deployed at, you will need to change the <code>base href</code> to match.</p>
 <pre><code class="language-html">&lt;!doctype html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;

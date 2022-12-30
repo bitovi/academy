@@ -171,9 +171,9 @@
            						
            						">
 						<a class="page"
-							href="../learn-docker.html"
-							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
-							Learn Docker
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
 						</a>
 						
 					</li>
@@ -204,6 +204,21 @@
 							href="../learn-technology-consulting.html"
 							title="Learn how to move beyond writing code to be an excellent technology consultant!">
 							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
 						</a>
 						
 					</li>
@@ -475,6 +490,7 @@ function createBattle&lt;T extends BattleTypes&gt;(battle: T): Battle&lt;T&gt; {
 const trainer = createBattle(&quot;trainer-battle&quot;); // Type is TrainerBattle
 const wild = createBattle(&quot;wild-pokemon-battle&quot;); // Type is WildPokemonBattle
 </code></pre>
+<div line-highlight='1,3-5,7-8,'></div>
 <p>The magic here happens in the <code>Battle</code> conditional type. In <code>Battle</code> we look for whichever <code>BattleType</code> is passed in. If it's <code>&quot;wild-pokemon-battle&quot;</code> we resolve to <code>WildPokemonBattle</code>, otherwise we resolve to <code>TrainerBattle</code>. Another cool feature of conditional types is that they are nestable. To demonstrate this, let’s take this battle situation a step further and make a couple of adjustments. Let’s add a third battle type.</p>
 <pre><code class="language-ts">type TrainerBattle = {
   challenger: string;
@@ -501,6 +517,7 @@ type BattleTypes =
   ? WildPokemonBattle
   : GymLeaderBattle;
 </code></pre>
+<div line-highlight='2-5'></div>
 <p>And just like that, we’ve added another possible battle without having to touch the createBattle function signature.</p>
 <pre><code class="language-ts">const trainer = createBattle(&quot;trainer-battle&quot;); // Type is TrainerBattle
 const wild = createBattle(&quot;wild-pokemon-battle&quot;); // Type is WildPokemonBattle
@@ -521,6 +538,7 @@ type NonNullable&lt;T&gt; = T extends null | undefined ? never : T;
 <p>The definition may look complicated, but as we did with mapped types, let’s remove some of the noise and break it down bit by bit to see how this works. Let's start by placing the union into <code>NonNullable</code> directly.</p>
 <pre><code class="language-ts">type StringOrNumber = NonNullable&lt;string | number | undefined | null&gt;;
 </code></pre>
+<div line-highlight='1'></div>
 <p>Since we passed in a union, TypeScript will distribute the <code>NonNullable</code> to each member of the union.</p>
 <pre><code class="language-ts">type StringOrNumber =
   | NonNullable&lt;string&gt;
@@ -528,6 +546,7 @@ type NonNullable&lt;T&gt; = T extends null | undefined ? never : T;
   | NonNullable&lt;undefined&gt;
   | NonNullable&lt;null&gt;;
 </code></pre>
+<div line-highlight='2-5'></div>
 <p>From here we can remove the generics and each of the <code>NonNullable</code> can be rewritten as a conditional.</p>
 <pre><code class="language-ts">type StringOrNumber =
   | (string extends null | undefined ? never : string)
@@ -535,12 +554,15 @@ type NonNullable&lt;T&gt; = T extends null | undefined ? never : T;
   | (undefined extends null | undefined ? never : undefined)
   | (null extends null | undefined ? never : null);
 </code></pre>
+<div line-highlight='2-5'></div>
 <p>Each of these conditionals can then be evaluated.</p>
 <pre><code class="language-ts">type StringOrNumber = string | number | never | never;
 </code></pre>
+<div line-highlight='1'></div>
 <p>As we discovered in the first section, <code>never</code> doesn’t impact the results of the union and can be removed. Removing the <code>never</code>s from the union leaves us with our final result.</p>
 <pre><code class="language-ts">type StringOrNumber = string | number;
 </code></pre>
+<div line-highlight='1'></div>
 <p>The refinement aspects of conditional types become even stronger when used in conjunction with other TypeScript features we’ve seen so far. Let’s do a little more tweaking to our types from the <code>createBattle</code> example above and define a function called <code>emitBattleStart</code> that can take a battle name and a payload that corresponds to the properties in the named typed.</p>
 <pre><code class="language-ts">emitBattleStart(&quot;wild-pokemon-battle&quot;, { challengingPokemon: &quot;onix&quot; });
 </code></pre>
@@ -579,6 +601,7 @@ function createBattle&lt;T extends PokemonBattles[&quot;battleType&quot;]&gt;(
 }
 </code></pre>
 </blockquote>
+<div line-highlight='1, 8'></div>
 <p>To create our <code>emitBattleStart</code> function let’s first start by getting the first parameter in place.</p>
 <pre><code class="language-ts">function emitBattleStart&lt;BattleType extends PokemonBattles[&quot;battleType&quot;]&gt;(
   battleType: BattleType,
@@ -621,6 +644,7 @@ type BattleInformation&lt;BattleType, Battle&gt; = Battle extends {
   ? FormatBattle&lt;Battle&gt;
   : never;
 </code></pre>
+<div line-highlight='1-3, 8'></div>
 <p>With that, we have finished up our typing issues! Our function now has type-safety and we can use it as we desire.</p>
 <pre><code class="language-ts">function emitBattleStart&lt;BattleType extends PokemonBattles[&quot;battleType&quot;]&gt;(
   battleType: BattleType,
@@ -637,6 +661,7 @@ emitBattleStart(
   }
 )
 </code></pre>
+<div line-highlight='3, 7-13'></div>
 <p>That said, we can take it a little bit further and add an alias and default to help make the typing a bit more semantic. It feels a little weird needing to pass in <code>PokemonBattles</code>, and the functionality of the type and how it's used seem to differ a bit. One extra type we can resolve this. Let’s update <code>BattleInformation</code> to alias our conditional mapping and give a more semantically relevant name like <code>GetBattleInformation</code>.</p>
 <pre><code class="language-ts">type FormatBattle&lt;Battle&gt; = {
   [FilterKey in Exclude&lt;keyof Battle, &quot;battleType&quot;&gt;]: Battle[FilterKey];
@@ -660,6 +685,7 @@ function emitBattleStart&lt;BattleType extends PokemonBattles[&quot;battleType&q
   //
 }
 </code></pre>
+<div line-highlight='5-9, 13-14, 18'></div>
 <h2>A New and Powerful Syntax</h2>
 <p>Another use case of conditional types is to give us access to types we wouldn’t normally have access to by allowing us to unwrap types. A greater example of this is an <code>ArrayElement</code> type which checks if the type is an array and if it is, uses index accessed types to grab the shape inside.</p>
 <pre><code class="language-ts">type ArrayElement&lt;T&gt; = T extends Array&lt;any&gt; ? T[number] : never;
@@ -667,6 +693,7 @@ function emitBattleStart&lt;BattleType extends PokemonBattles[&quot;battleType&q
 <p>This type of usage is so common that TypeScript added an <code>infer</code> keyword that allows us to define a new generic variable within the extends clause of a conditional type to be used in our different paths.</p>
 <pre><code class="language-ts">type ArrayElement&lt;T&gt; = T extends Array&lt;infer ElementType&gt; ? ElementType : never;
 </code></pre>
+<div line-highlight='1'></div>
 <p><code>infer</code> powers many utility types in TypeScript like <code>ReturnType</code> and <code>Parameters</code>.</p>
 <pre><code class="language-ts">/**
  * Obtain the parameters of a function type in a tuple
@@ -702,7 +729,7 @@ type WildPokemonBattleNoBattleType = _Exclude&lt;
   &quot;battleType&quot;
 &gt;; // &quot;challengingPokemon&quot;
 </code></pre>
-<p><a href="https://codesandbox.io/s/1gvoo5?file=/05-conditional-types-ex-01.ts" target="_blank">Open in CodeSandbox</a></p>
+<p><a href="https://codesandbox.io/s/1gvoo5?file=/05-conditional-types-ex-01.ts">Open in CodeSandbox</a></p>
 <pre><code class="language-ts">/**
  * Exercise 1
  *
@@ -737,7 +764,7 @@ type FlatString = Flatten&lt;string&gt;; // string
 
 type NestedNumberArray = Flatten&lt;Array&lt;Array&lt;number&gt;&gt;&gt;; // number []
 </code></pre>
-<p><a href="https://codesandbox.io/s/r5ch7w?file=/05-conditional-types-ex-02.ts" target="_blank">Open in CodeSandbox</a></p>
+<p><a href="https://codesandbox.io/s/r5ch7w?file=/05-conditional-types-ex-02.ts">Open in CodeSandbox</a></p>
 <pre><code class="language-ts">/**
  Exercise 2
  *
