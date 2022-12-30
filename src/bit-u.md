@@ -487,6 +487,23 @@ a.quote-link:hover{
         <a href="./learn-docker.html" class="button button-grey full-width">Take this course</a>
       </div>
     </div>
+    <div class="courses">
+      <div class="academy-card course" style="background: transparent; border: none;">&nbsp;</div>
+      <div class="academy-card course">
+        <div class="course-logo">
+          <img src="./static/img/ngrx.png" height="70">
+        </div>
+        <h4>NgRx</h4>
+        <p>Learn the essentials of NgRx: actions, effects, reducer, and selectors.</p>
+        <div class="width100">
+          <p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
+          <p class='detail'><strong>Goal:</strong> Build an NgRx feature store to manage login state</p>
+          <p class='detail'><strong>Time:</strong> 3 hours</p>
+        </div>
+        <a href="./learn-ngrx.html" class="button button-grey full-width">Take this course</a>
+      </div>
+      <div class="academy-card course" style="background: transparent; border: none;">&nbsp;</div>
+    </div>
   </div>
   <a name="live-events-section"></a>
   <div class="academy-section live-events">
