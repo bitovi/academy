@@ -42,7 +42,10 @@ Action Types in NgRx follow a string pattern: `[Source] Event`. Since Actions re
 
 `createAction()` can take up to two arguments: the string `type` and a `config` function that represents additional metadata, usually referred as `props` in Redux Pattern:
 
+> Note that many of the code examples in these sections are for instructional purposes only, and aren't part of our main application repo or solution
+
 ```ts
+// Note: This example code is not part of our application repo or solution
 import { createAction, props } from '@ngrx/store';
 
 export const submit = createAction(
