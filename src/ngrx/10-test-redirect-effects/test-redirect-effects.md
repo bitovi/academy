@@ -6,7 +6,7 @@
 @body
 
 
-> **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-redirect-effects) to get your codebase ready to work on this part.
+> **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-redirect-effects) to get your codebase ready to work on this section.
 
 
 ## Running Tests
@@ -36,7 +36,7 @@ Copy the following code to replace the contents of `src/app/store/login/login.ef
 </details>
 
 
-> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/test-redirect-effects). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/create-redirect-effects...test-redirect-effects) on GitHub or you can use the following command in your terminal:
+> **Wrap-up**: By the end of this section, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/test-redirect-effects). You can also compare the [code changes for our solution to this section](https://github.com/bitovi/angular-ngrx-chat/compare/create-redirect-effects...test-redirect-effects) on GitHub or you can use the following command in your terminal:
 
 ```bash
 git diff origin/test-redirect-effects

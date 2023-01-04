@@ -5,7 +5,7 @@
 
 @body
 
-> **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-actions) to get your codebase ready to work on this part.
+> **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-actions) to get your codebase ready to work on this section.
 
 
 ## Overview
@@ -62,7 +62,7 @@ In the `DashboardComponent`, there is a `TODO` where the Logout Action should be
 </details>
 
 
-> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/dispatch-actions). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/create-actions...dispatch-actions) on GitHub or you can use the following command in your terminal:
+> **Wrap-up**: By the end of this section, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/dispatch-actions). You can also compare the [code changes for our solution to this section](https://github.com/bitovi/angular-ngrx-chat/compare/create-actions...dispatch-actions) on GitHub or you can use the following command in your terminal:
 
 ```bash
 git diff origin/dispatch-actions

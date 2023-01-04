@@ -5,7 +5,7 @@
 
 @body
 
-> **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/test-selectors) to get your codebase ready to work on this part.
+> **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/test-selectors) to get your codebase ready to work on this section.
 
 
 ## Overview
@@ -59,7 +59,7 @@ In the `AuthenticationGuard`, there is a `TODO` where the Login Selector should 
 </details>
 
 
-> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/use-selectors). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/test-selectors...use-selectors) on GitHub or you can use the following command in your terminal:
+> **Wrap-up**: By the end of this section, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/use-selectors). You can also compare the [code changes for our solution to this section](https://github.com/bitovi/angular-ngrx-chat/compare/test-selectors...use-selectors) on GitHub or you can use the following command in your terminal:
 
 ```bash
 git diff origin/use-selectors
