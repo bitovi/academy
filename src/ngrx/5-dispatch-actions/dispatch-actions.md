@@ -25,7 +25,7 @@ Now that we have our Actions, let's use them. The `LoginComponent` should have t
 We can import our Action creators from `src/app/store/login/login.actions.ts` to create Actions and then use the NgRx Store to dispatch them:
 
 @sourceref ./contact.component.ts
-@highlight 2, 3, 14
+@highlight 4, 5, 16
 
 In upcoming sections, we will discuss how dispatched Actions can trigger Reducer functions ([learn-ngrx/create-reducer]) and how Effects listen to Actions dispatched from the Store to handle _side-effects_ ([learn-ngrx/create-api-effects]). You can learn more about how to write Actions and how to dispatch them in the [NgRx documentation on Actions](https://ngrx.io/guide/store/actions#writing-actions).
 

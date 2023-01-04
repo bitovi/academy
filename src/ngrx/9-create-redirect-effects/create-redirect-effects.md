@@ -54,7 +54,7 @@ export interface EffectConfig {
 By default, the `dispatch` option is set to `true`, but if we set it to `false`, the Effect doesn't have to end with an Action being dispatched:
 
 @sourceref ./contact.effects.ts
-@highlight 12, 13, 16
+@highlight 14, 15, 18
 
 
 ## P1: Solution

@@ -91,7 +91,7 @@ When writing an `on()` handler, there are 2 arguments that we need to provide:
 2. A [**pure function**](https://en.wikipedia.org/wiki/Pure_function) that takes in 2 arguments: `state` and `action`. This function should always return a new state that will replace the previous state.
 
 @sourceref ./counter.reducer.ts
-@highlight 5, 6, 7
+@highlight 7, 8, 9
 
 
 ## P3: Solution

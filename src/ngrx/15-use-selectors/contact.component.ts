@@ -1,4 +1,5 @@
 // Note: This example code is not part of our application repo or solution
+
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as ContactSelectors from '../store/contact/contact.selectors';
