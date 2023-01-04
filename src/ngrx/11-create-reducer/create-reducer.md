@@ -5,7 +5,7 @@
 
 @body
 
-> **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/test-redirect-effects) to get your codebase ready to work on this part.
+> **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/test-redirect-effects) to get your codebase ready to work on this section.
 
 
 ## Overview
@@ -132,7 +132,7 @@ Both solutions are fine, but it is likely better to reuse `initialState` to futu
 </details>
 
 
-> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-reducer). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/test-redirect-effects...create-reducer) on GitHub or you can use the following command in your terminal:
+> **Wrap-up**: By the end of this section, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-reducer). You can also compare the [code changes for our solution to this section](https://github.com/bitovi/angular-ngrx-chat/compare/test-redirect-effects...create-reducer) on GitHub or you can use the following command in your terminal:
 
 ```bash
 git diff origin/create-reducer
