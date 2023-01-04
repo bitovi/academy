@@ -1,3 +1,4 @@
+// Note: This example code is not part of our application repo or solution
 import { createReducer, on } from '@ngrx/store';
 import * as CounterActions from './counter.actions';
 
