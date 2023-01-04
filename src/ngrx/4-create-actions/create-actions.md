@@ -46,6 +46,7 @@ Action Types in NgRx follow a string pattern: `[Source] Event`. Since Actions re
 
 ```ts
 // Note: This example code is not part of our application repo or solution
+
 import { createAction, props } from '@ngrx/store';
 
 export const submit = createAction(
