@@ -608,7 +608,9 @@ export class LoginEffects {
 <li><p><code>ofType()</code> <a href="https://ngrx.io/api/effects/ofType">helper function</a> to filter Actions by <code>type</code>.</p></li>
 <li><p><code>Actions</code> <a href="https://ngrx.io/api/effects/Actions">class</a> that extends the RxJS Observable to listen to every dispatched Action.</p></li>
 </ol>
-<pre><code class="language-ts">import { Injectable } from '@angular/core';
+<pre><code class="language-ts">// Note: This example code is not part of our application repo or solution
+
+import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as ContactActions from './contact.actions';
 
@@ -629,9 +631,11 @@ export class ContactEffects {
 }
 
 </code></pre>
-<div line-highlight='2, 3, 7, 8, 9, 14'></div>
+<div line-highlight='4, 5, 9, 10, 11, 16'></div>
 <p>Taking advantage of these tools provided by NgRx, we can create API requests and dispatch a new Action using the API response:</p>
-<pre><code class="language-ts">import { Injectable } from '@angular/core';
+<pre><code class="language-ts">// Note: This example code is not part of our application repo or solution
+
+import { Injectable } from '@angular/core';
 import { Observable, catchError, map, exhaustMap } from 'rxjs/operators';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as ContactActions from './contact.actions';
@@ -660,9 +664,11 @@ export class ContactEffects {
 }
 
 </code></pre>
-<div line-highlight='2, 4, 11, 12, 13, 14, 15, 16, 17, 18, only'></div>
+<div line-highlight='4, 6, 13, 14, 15, 16, 17, 18, 19, 20, only'></div>
 <p>We can also perform error handling and dispatch a new Action when an error occurs:</p>
-<pre><code class="language-ts">import { Injectable } from '@angular/core';
+<pre><code class="language-ts">// Note: This example code is not part of our application repo or solution
+
+import { Injectable } from '@angular/core';
 import { Observable, catchError, map, exhaustMap } from 'rxjs/operators';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as ContactActions from './contact.actions';
@@ -698,7 +704,7 @@ export class ContactEffects {
 }
 
 </code></pre>
-<div line-highlight='16, 17, 18, 19, 20, 21, 22, 23, only'></div>
+<div line-highlight='18, 19, 20, 21, 22, 23, 24, 25, only'></div>
 <p>And last, you will need to use <code>ngx-learn-ngrx</code>'s <code>LoginService</code> to perform authentication for course:</p>
 <pre><code class="language-ts">// src/app/store/login/login.effects.ts
 

@@ -592,7 +592,9 @@ export interface EffectConfig {
 }
 </code></pre>
 <p>By default, the <code>dispatch</code> option is set to <code>true</code>, but if we set it to <code>false</code>, the Effect doesn't have to end with an Action being dispatched:</p>
-<pre><code class="language-ts">import { Injectable } from '@angular/core';
+<pre><code class="language-ts">// Note: This example code is not part of our application repo or solution
+
+import { Injectable } from '@angular/core';
 import { Observable, exhaustMap } from 'rxjs/operators';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import * as ContactActions from './contact.actions';
@@ -615,7 +617,7 @@ export class ContactEffects {
 }
 
 </code></pre>
-<div line-highlight='12, 13, 16'></div>
+<div line-highlight='14, 15, 18'></div>
 <h2>P1: Solution</h2>
 <p><details>
 <summary>src/app/store/login/login.effects.ts</summary></p>

@@ -577,7 +577,9 @@ covering CanJS core libraries.">
 <li><p><a href="https://ngrx.io/guide/store/reducers#creating-the-reducer-function">Add or update handler(s)</a> used to define Reducer function.</p></li>
 </ol>
 <p>To prepare this, we need to update the Login Feature <code>State</code> interface found at <code>src/app/store/login/login.reducer.ts</code>. Here is an example of how to add properties to an interface:</p>
-<pre><code class="language-ts">export interface Contact {
+<pre><code class="language-ts">// Note: This example code is not part of our application repo or solution
+
+export interface Contact {
     emailAddress: string | null;
     fullName: string | null;
 }
@@ -667,7 +669,9 @@ export const reducer = createReducer(
 <li><p>The Action that this <code>on()</code> handler is reacting to.</p></li>
 <li><p>A <a href="https://en.wikipedia.org/wiki/Pure_function"><strong>pure function</strong></a> that takes in 2 arguments: <code>state</code> and <code>action</code>. This function should always return a new state that will replace the previous state.</p></li>
 </ol>
-<pre><code class="language-ts">import { createReducer, on } from '@ngrx/store';
+<pre><code class="language-ts">// Note: This example code is not part of our application repo or solution
+
+import { createReducer, on } from '@ngrx/store';
 import * as CounterActions from './counter.actions';
 
 export const scoreboardReducer = createReducer(
@@ -678,7 +682,7 @@ export const scoreboardReducer = createReducer(
 );
 
 </code></pre>
-<div line-highlight='5, 6, 7'></div>
+<div line-highlight='7, 8, 9'></div>
 <h2>P3: Solution</h2>
 <p><details>
 <summary>src/app/store/login/login.reducer.ts</summary></p>
@@ -725,7 +729,9 @@ export const reducer = createReducer(
 <p>Login Reducer should include an <code>on()</code> handler that resets Login State back to <code>initialState</code> whenever <code>LoginActions.logoutSuccess</code> Action is dispatched.</p>
 <h2>P4: What You Need to Know</h2>
 <p>A common requirement is to reset state. One approach might look like this:</p>
-<pre><code class="language-ts">import { createReducer, on } from '@ngrx/store';
+<pre><code class="language-ts">// Note: This example code is not part of our application repo or solution
+
+import { createReducer, on } from '@ngrx/store';
 import * as CounterActions from './counter.actions';
 
 export const scoreboardReducer = createReducer(
@@ -737,9 +743,11 @@ export const scoreboardReducer = createReducer(
 );
 
 </code></pre>
- <div line-highlight="8,"></div>
+ <div line-highlight="10,"></div>
 <p>But there is nothing wrong with reusing the <code>initialState</code> constant:</p>
-<pre><code class="language-ts">import { createReducer, on } from '@ngrx/store';
+<pre><code class="language-ts">// Note: This example code is not part of our application repo or solution
+
+import { createReducer, on } from '@ngrx/store';
 import * as CounterActions from './counter.actions';
 
 export const scoreboardReducer = createReducer(
@@ -751,7 +759,7 @@ export const scoreboardReducer = createReducer(
 );
 
 </code></pre>
- <div line-highlight="8,"></div>
+ <div line-highlight="10,"></div>
 <p>Both solutions are fine, but it is likely better to reuse <code>initialState</code> to future-proof the Reducer for future requirements.</p>
 <h2>P4: Solution</h2>
 <p><details>

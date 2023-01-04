@@ -569,7 +569,9 @@ covering CanJS core libraries.">
 <p>Now that we have our Actions, let's use them. The <code>LoginComponent</code> should have the Login Action be dispatched when the submit button is clicked.</p>
 <h2>P1: What You Need to Know</h2>
 <p>We can import our Action creators from <code>src/app/store/login/login.actions.ts</code> to create Actions and then use the NgRx Store to dispatch them:</p>
-<pre><code class="language-ts">import { Component } from '@angular/core';
+<pre><code class="language-ts">// Note: This example code is not part of our application repo or solution
+
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as ContactActions from '../store/contact/contact.actions';
 
@@ -587,7 +589,7 @@ export class ContactComponent {
 }
 
 </code></pre>
-<div line-highlight='2, 3, 14'></div>
+<div line-highlight='4, 5, 16'></div>
 <p>In upcoming sections, we will discuss how dispatched Actions can trigger Reducer functions (<a href="create-reducer.html" title="Learn how to create an NgRx Reducer.">Create a Reducer</a>) and how Effects listen to Actions dispatched from the Store to handle <em>side-effects</em> (<a href="create-api-effects.html" title="Create an NgRx Effect to connect the Login Store to an authentication API.">Create an API Effect</a>). You can learn more about how to write Actions and how to dispatch them in the <a href="https://ngrx.io/guide/store/actions#writing-actions">NgRx documentation on Actions</a>.</p>
 <p>In the <code>LoginComponent</code>, there is a <code>TODO</code> where the Login Action should be dispatched.</p>
 <h2>P1: Solution</h2>

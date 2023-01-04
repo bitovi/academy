@@ -569,7 +569,9 @@ covering CanJS core libraries.">
 <p><code>DashboardComponent</code> should use the <code>LoginSelectors.selectUsername</code> and <code>LoginSelectors.selectUserId</code> Selectors for its <code>username$</code> and <code>userId$</code> members.</p>
 <h2>P1: What You Need to Know</h2>
 <p>Now that we have our Selectors defined, we can inject <code>Store</code> into our <code>Components</code> and use the <code>select()</code> method to obtain slices of state using our Selectors:</p>
-<pre><code class="language-ts">import { Component } from '@angular/core';
+<pre><code class="language-ts">// Note: This example code is not part of our application repo or solution
+
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as ContactSelectors from '../store/contact/contact.selectors';
 
