@@ -5,7 +5,7 @@
 
 @body
 
-> **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/starting-point) to get your codebase ready to work on this part.
+> **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/starting-point) to get your codebase ready to work on this section.
 
 
 ## Overview
@@ -122,7 +122,7 @@ Lastly, we need to update `src/app/store/login/login.reducer.ts` to include a `L
 </details>
 
 
-> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/ngrx-init). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/starting-point...ngrx-init) on GitHub or you can use the following command in your terminal:
+> **Wrap-up**: By the end of this section, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/ngrx-init). You can also compare the [code changes for our solution to this section](https://github.com/bitovi/angular-ngrx-chat/compare/starting-point...ngrx-init) on GitHub or you can use the following command in your terminal:
 
 ```bash
 git diff origin/ngrx-init

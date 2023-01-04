@@ -7,7 +7,7 @@
 
 ## Git Repository
 
-For the sake of convenience, we've prepared a git repository for you to checkout as a starting point for the upcoming exercises. Each page in this training will contain a link to branches representing the starting point and solution for that part along with a link to a diff showing changes made.
+For the sake of convenience, we've prepared a git repository for you to checkout as a starting point for the upcoming exercises. Each page in this training will contain a link to branches representing the starting point and solution for that section along with a link to a diff showing changes made.
 
 
 ## Setting up your Project
