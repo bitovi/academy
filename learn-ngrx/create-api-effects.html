@@ -632,6 +632,44 @@ export class ContactEffects {
 
 </code></pre>
 <div line-highlight='4, 5, 9, 10, 11, 16'></div>
+<h3>Flattening RxJS Operators</h3>
+<p>&quot;Flattening&quot; operators are commonly used when creating Effects since we will likely use <code>Observables</code> or <code>Promises</code> to make API requests or perform some asynchronous task to produce some kind of side-effect.</p>
+<p>One way to subscribe to an &quot;inner&quot; <code>Observable</code> within an existing &quot;outer&quot; <code>Observable</code> stream is to use
+&quot;flattening&quot; operators such as <a href="https://rxjs.dev/api/operators/mergeMap"><code>mergeMap</code></a>, <a href="https://rxjs.dev/api/operators/switchMap"><code>switchMap</code></a>, or <a href="https://rxjs.dev/api/operators/exhaustMap"><code>exhaustMap</code></a>. These &quot;flattening&quot; operators can also allow us to use <code>Promises</code> within our <code>Observable</code> stream as well.</p>
+<p>Although we could use any of these &quot;flattening&quot; operators as a working solution, we will be using <code>exhaustMap</code>. Each of the &quot;flattening&quot; operators have a slightly different behavior when handling <strong>multiple</strong> &quot;inner&quot; <code>Subscriptions</code>. For <code>exhaustMap</code>, each new &quot;inner&quot; <code>Subscription</code> is ignored if there is an existing &quot;inner&quot; <code>Subscription</code> that hasn't completed yet:</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+
+&lt;script type=&quot;typescript&quot;&gt;
+  const { map, exhaustMap, interval, take } = rxjs;
+
+  const outerObservable = interval(1000).pipe(map((n) =&gt; `Outer: ${n}`));
+
+  outerObservable.pipe(
+    exhaustMap((outerValue) =&gt;
+      interval(1000).pipe(
+        map((innerValue) =&gt; `${outerValue} Inner: ${innerValue}`),
+        take(3)// Complete Inner Subscription after 3 values
+      )
+    )
+  ).subscribe((x) =&gt; console.log(x));
+&lt;/script&gt;
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='9, 15, only'></div>
+<p>As you can see by running above CodePen, only one active <code>Subscription</code> can exist at one time. A new <code>Subscription</code> can only be made once the active <code>Subscription</code> completes:</p>
+<pre><code>Expected Output:
+
+Outer: 0 Inner: 0 &lt;-- New &quot;inner&quot; Subscription
+Outer: 0 Inner: 1
+Outer: 0 Inner: 2
+Outer: 4 Inner: 0 &lt;-- New &quot;inner&quot; Subscription
+Outer: 4 Inner: 1
+Outer: 4 Inner: 2
+Outer: 8 Inner: 0 &lt;-- New &quot;inner&quot; Subscription
+Outer: 8 Inner: 1
+Outer: 8 Inner: 2
+</code></pre>
 <p>Taking advantage of these tools provided by NgRx, we can create API requests and dispatch a new Action using the API response:</p>
 <pre><code class="language-ts">// Note: This example code is not part of our application repo or solution
 
@@ -664,7 +702,7 @@ export class ContactEffects {
 }
 
 </code></pre>
-<div line-highlight='4, 6, 13, 14, 15, 16, 17, 18, 19, 20, only'></div>
+<div line-highlight='4, 6, 13-20, 26, only'></div>
 <p>We can also perform error handling and dispatch a new Action when an error occurs:</p>
 <pre><code class="language-ts">// Note: This example code is not part of our application repo or solution
 
@@ -704,7 +742,7 @@ export class ContactEffects {
 }
 
 </code></pre>
-<div line-highlight='18, 19, 20, 21, 22, 23, 24, 25, only'></div>
+<div line-highlight='18-25, 35, only'></div>
 <p>And last, you will need to use <code>ngx-learn-ngrx</code>'s <code>LoginService</code> to perform authentication for course:</p>
 <pre><code class="language-ts">// src/app/store/login/login.effects.ts
 
@@ -898,7 +936,7 @@ export class LoginEffects {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/ngrx/7-create-api-effects/create-api-effects.md"},"description":"Create an NgRx Effect to connect the Login Store to an authentication API. \n","name":"learn-ngrx/create-api-effects","title":"Create an API Effect","type":"page","parent":"learn-ngrx","order":7,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/ngrx/7-create-api-effects/create-api-effects.md"},"description":"Create an NgRx Effect to connect the Login Store to an authentication API. \n","name":"learn-ngrx/create-api-effects","title":"Create an API Effect","type":"page","parent":"learn-ngrx","order":7,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     
