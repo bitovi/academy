@@ -57,7 +57,7 @@ NgRx provides a couple of helpful functions and the `Actions` class to create Ef
 
 ### Flattening RxJS Operators
 
-"Flattening" operators are commonly used when creating Effects since we will likely use `Observables` or `Promises` to make API requests or perform some asynchronous task to perform some kind of side-effect.
+"Flattening" operators are commonly used when creating Effects since we will likely use `Observables` or `Promises` to make API requests or perform some asynchronous task to produce some kind of side-effect.
 
 One way to subscribe to an "inner" `Observable` within an existing "outer" `Observable` stream is to use 
 "flattening" operators such as [`mergeMap`](https://rxjs.dev/api/operators/mergeMap), [`switchMap`](https://rxjs.dev/api/operators/switchMap), or [`exhaustMap`](https://rxjs.dev/api/operators/exhaustMap). These "flattening" operators can also allow us to use `Promises` within our `Observable` stream as well.
