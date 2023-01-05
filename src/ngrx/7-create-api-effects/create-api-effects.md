@@ -62,14 +62,14 @@ NgRx provides a couple of helpful functions and the `Actions` class to create Ef
 One way to subscribe to an "inner" `Observable` within an existing "outer" `Observable` stream is to use 
 "flattening" operators such as [`mergeMap`](https://rxjs.dev/api/operators/mergeMap), [`switchMap`](https://rxjs.dev/api/operators/switchMap), or [`exhaustMap`](https://rxjs.dev/api/operators/exhaustMap). These "flattening" operators can also allow us to use `Promises` within our `Observable` stream as well.
 
-Although we could use any of these "flattening" operators as a working solution, we will be using `exhaustMap`. Each of the "flattening" operators behave the same if the "inner" `Subscription` completes after one value is emitted and have a slightly different behavior when handling __multiple__ "inner" `Subscriptions`. For `exhaustMap`, each new "inner" `Subscription` is ignored if there is an existing "inner" `Subscription` that hasn't completed yet:
+Although we could use any of these "flattening" operators as a working solution, we will be using `exhaustMap`. Each of the "flattening" operators have a slightly different behavior when handling __multiple__ "inner" `Subscriptions`. For `exhaustMap`, each new "inner" `Subscription` is ignored if there is an existing "inner" `Subscription` that hasn't completed yet:
 
 @sourceref ./exhaust-map-example.html
 @codepen
 @highlight 9, 15, only
 
 As you can see by running above CodePen, only one active `Subscription` can exist at one time. A new `Subscription` can only be made once the active `Subscription` completes:
-  
+
 ```
 Expected Output:
 
