@@ -1,0 +1,16 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js"></script>
+
+<script type="typescript">
+  const { map, exhaustMap, interval, take } = rxjs;
+
+  const outerObservable = interval(1000).pipe(map((n) => `Outer: ${n}`));
+
+  interval(1000).pipe(map((n) => `Outer: ${n}`)).pipe(
+    exhaustMap((outerValue) =>
+      interval(1000).pipe(
+        map((innerValue) => `${outerValue} Inner: ${innerValue}`),
+        take(3)// Complete Inner Subscription after 3 values
+      )
+    )
+  ).subscribe((x) => console.log(x));
+</script>

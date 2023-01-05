@@ -55,15 +55,44 @@ NgRx provides a couple of helpful functions and the `Actions` class to create Ef
 @sourceref ./contact.effects-initial-setup.ts
 @highlight 4, 5, 9, 10, 11, 16
 
+### Flattening RxJS Operators
+
+"Flattening" operators are commonly used when creating Effects since we will likely use `Observables` or `Promises` to make API requests or perform some asynchronous task to perform some kind of side-effect.
+
+One way to subscribe to an "inner" `Observable` within an existing "outer" `Observable` stream is to use 
+"flattening" operators such as [`mergeMap`](https://rxjs.dev/api/operators/mergeMap), [`switchMap`](https://rxjs.dev/api/operators/switchMap), or [`exhaustMap`](https://rxjs.dev/api/operators/exhaustMap). These "flattening" operators can also allow us to use `Promises` within our `Observable` stream as well.
+
+Although we could use any of these "flattening" operators as a working solution, we will be using `exhaustMap`. Each of the "flattening" operators behave the same if the "inner" `Subscription` completes after one value is emitted and have a slightly different behavior when handling __multiple__ "inner" `Subscriptions`. For `exhaustMap`, each new "inner" `Subscription` is ignored if there is an existing "inner" `Subscription` that hasn't completed yet:
+
+@sourceref ./exhaust-map-example.html
+@codepen
+@highlight 9, 15, only
+
+As you can see by running above CodePen, only one active `Subscription` can exist at one time. A new `Subscription` can only be made once the active `Subscription` completes:
+  
+```
+Expected Output:
+
+Outer: 0 Inner: 0 <-- New "inner" Subscription
+Outer: 0 Inner: 1
+Outer: 0 Inner: 2
+Outer: 4 Inner: 0 <-- New "inner" Subscription
+Outer: 4 Inner: 1
+Outer: 4 Inner: 2
+Outer: 8 Inner: 0 <-- New "inner" Subscription
+Outer: 8 Inner: 1
+Outer: 8 Inner: 2
+```
+
 Taking advantage of these tools provided by NgRx, we can create API requests and dispatch a new Action using the API response:
 
 @sourceref ./contact.effects-handle-success.ts
-@highlight 4, 6, 13, 14, 15, 16, 17, 18, 19, 20, only
+@highlight 4, 6, 13-20, 26, only
 
 We can also perform error handling and dispatch a new Action when an error occurs:
 
 @sourceref ./contact.effects.ts
-@highlight 18, 19, 20, 21, 22, 23, 24, 25, only
+@highlight 18-25, 35, only
 
 And last, you will need to use `ngx-learn-ngrx`'s `LoginService` to perform authentication for course:
 
