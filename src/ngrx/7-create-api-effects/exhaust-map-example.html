@@ -5,7 +5,7 @@
 
   const outerObservable = interval(1000).pipe(map((n) => `Outer: ${n}`));
 
-  interval(1000).pipe(map((n) => `Outer: ${n}`)).pipe(
+  outerObservable.pipe(
     exhaustMap((outerValue) =>
       interval(1000).pipe(
         map((innerValue) => `${outerValue} Inner: ${innerValue}`),
