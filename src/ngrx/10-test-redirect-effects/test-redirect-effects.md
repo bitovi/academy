@@ -31,6 +31,8 @@ The `--watch` switch will rerun your tests whenever a code file changes. You can
 
 ## Description
 
+TODO: remove or use parts of for an intro for the section
+
 You'll need to copy the contents of the test file to run tests for your Effects.
 
 

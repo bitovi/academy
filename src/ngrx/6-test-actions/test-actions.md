@@ -30,7 +30,7 @@ The `--watch` switch will rerun your tests whenever a code file changes. You can
 
 ## Description
 
-TODO: 
+TODO: remove or use parts of for an intro for the section
 
 You'll need to copy the contents of two test files to run tests for your Actions. Note that we don't typically test Actions directly, we test their use (in Components, effects, reducers) but for the purposes of this lesson, we've included Action tests to make sure your code is in good shape!
 
