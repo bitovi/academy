@@ -10,9 +10,11 @@
 
 ## Overview
 
-1. TODO: 
+1. Verify `selectUserId` returns `userId`.
 
-2. TODO: 
+1. Verify `selectUsername` returns `username`.
+
+1. Verify `selectToken` returns `token`.
 
 
 ## Running Tests

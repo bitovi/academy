@@ -10,9 +10,9 @@
 
 ## Overview
 
-1. TODO: 
+3. Verify Login State updates properly when `LoginActions.loginSuccess` Action dispatches.
 
-2. TODO: 
+4. Verify Login State resets properly when `LoginActions.logoutSuccess` Action dispatches.
 
 
 ## Running Tests

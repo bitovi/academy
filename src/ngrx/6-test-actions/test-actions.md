@@ -10,9 +10,9 @@
 
 ## Overview
 
-1. TODO: 
+1. Verify `LoginActions.logout` Action dispatches when calling `logout()`.
 
-2. TODO: 
+2. Verify `LoginActions.login` Action dispatches with form payload when calling `login()`.
 
 
 ## Running Tests

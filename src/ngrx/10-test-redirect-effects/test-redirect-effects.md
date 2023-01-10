@@ -11,9 +11,9 @@
 
 ## Overview
 
-1. TODO: 
+1. Verify navigate to dashboard page occurs when `LoginActions.loginSuccess` Action dispatches.
 
-2. TODO: 
+2. Verify navigate to login page occurs when `LoginActions.logoutSuccess` Action dispatches.
 
 
 ## Running Tests

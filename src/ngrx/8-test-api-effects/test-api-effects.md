@@ -10,9 +10,13 @@
 
 ## Overview
 
-1. TODO: 
+1. Verify `LoginActions.loginSuccess` Action dispatches when API request is successful.
 
-2. TODO: 
+2. Verify `LoginActions.loginFailure` Action dispatches when API request fails.
+
+3. Verify `LoginActions.logoutSuccess` Action dispatches when API request is successful.
+
+4. Verify `LoginActions.logoutFailure` Action dispatches when API request fails.
 
 
 ## Running Tests
