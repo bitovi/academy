@@ -34,9 +34,7 @@ In the `DashboardComponent`, there is are `TODO`'s where the Login Selectors sho
 
 <details>
 <summary>src/app/dashboard/dashboard.component.ts</summary>
-
 @diff ../5-dispatch-actions/dashboard.component.ts ./dashboard.component.ts only
-
 </details>
 
 
@@ -53,9 +51,7 @@ In the `AuthenticationGuard`, there is a `TODO` where the Login Selector should 
 
 <details>
 <summary>src/app/guards/authentication.guard.ts</summary>
-
 @diff ../14-test-selectors/authentication.guard.ts ./authentication.guard.ts only
-
 </details>
 
 

@@ -60,9 +60,7 @@ export const submit = createAction(
 
 <details>
 <summary>src/app/store/login/login.actions.ts</summary>
-
 @diff ../3-ngrx-init/login.actions.ts ./login.actions-login-actions.ts only
-
 </details>
 
 
@@ -83,9 +81,7 @@ Next, our goal is to create 3 more Actions for logout:
 
 <details>
 <summary>src/app/store/login/login.actions.ts</summary>
-
 @diff ./login.actions-login-actions.ts ./login.actions.ts only
-
 </details>
 
 
@@ -99,18 +95,14 @@ First, we'll remove the generated Effects. And we will remove the unused imports
 
 <details open>
 <summary>src/app/store/login/login.effects.ts</summary>
-
 @diff ../3-ngrx-init/login.effects.ts ./login.effects.ts only
-
 </details>
 
 Last, we'll remove the generated `on()` handlers in our Reducer function. And we will remove the unused imports from `@ngrx/store` and `./login.actions`:
 
 <details open>
 <summary>src/app/store/login/login.reducer.ts</summary>
-
 @diff ../3-ngrx-init/login.reducer.ts ./login.reducer.ts only
-
 </details>
 
 

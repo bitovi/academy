@@ -61,9 +61,7 @@ By default, the `dispatch` option is set to `true`, but if we set it to `false`,
 
 <details>
 <summary>src/app/store/login/login.effects.ts</summary>
-
 @diff ../7-create-api-effects/login.effects.ts ./login.effects-login-success-effect.ts only
-
 </details>
 
 
@@ -76,9 +74,7 @@ By default, the `dispatch` option is set to `true`, but if we set it to `false`,
 
 <details>
 <summary>src/app/store/login/login.effects.ts</summary>
-
 @diff ./login.effects-login-success-effect.ts ./login.effects.ts only
-
 </details>
 
 
