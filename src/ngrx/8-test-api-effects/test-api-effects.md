@@ -42,7 +42,7 @@ When testing Effects, we will verify that a specific Action gets dispatched depe
 We will walk through updating `src/app/store/login/login.effects.spec.ts` to run tests for your Effects.
 
 
-### Setting Up our TestBed
+### Setting Up our `TestBed`
 
 When testing Effects, we will need to mock the [`Actions` class](https://ngrx.io/api/effects/Actions) since it plays a major role on [how Effects work](https://ngrx.io/guide/effects#writing-effects). NgRx provides a convenient way to do this through [`provideMockActions()`](https://ngrx.io/api/effects/testing/provideMockActions):
 

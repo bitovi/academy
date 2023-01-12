@@ -30,15 +30,57 @@ The `--watch` switch will rerun your tests whenever a code file changes. You can
 
 ## Description
 
-When testing a Reducer, we will verify each of its `on()` handlers. This involves 2 main goals:
+When testing a Reducer, we will test each of its `on()` handlers by verifying each pure function returns the expected value given an Action and a Login State (typically the `initialState`). Unlike the previous testing sections, when testing the Reducer, we don't need a `TestBed` since there shouldn't be any dependencies when dealing with the Reducer.
 
-1. List out each Action involved for each `on()` handler.
 
-2. Right unit tests using pure functions per test case of each Action.
+## Update `login.selectors.spec.ts`
 
-In our case, we are working with Effects cause navigation. We can take advantage of the [RouterTestingModule](https://angular.io/api/router/testing/RouterTestingModule#usage-notes).
+Before we can test our Reducer, our tests involving our Selectors are failing. This is because we've changed the shape and initial value of our Login State. To continue, we need to update them. Copy the following code to replace the contents of `src/app/store/login/login.selectors.spec.ts`:
 
-You'll need to copy the contents of two test files to run tests for your Reducer. We're updating the test files for both the Login Reducer and Selectors.
+<details>
+<summary>src/app/store/login/login.selectors.spec.ts</summary>
+@sourceref ./login.selectors.spec.ts
+@diff ../11-create-reducer/login.selectors.spec.ts ./login.selectors.spec.ts only
+</details>
+
+We will go over these changes in the upcoming section where we go over testing Selectors ([learn-ngrx/test-selectors]). For now after you update `src/app/store/login/login.selectors.spec.ts`, all of your tests should pass.
+
+
+## Update `login.reducer.spec.ts`
+
+We will walk through updating `src/app/store/login/login.reducer.spec.ts` to run tests for your Reducer.
+
+
+### Verify Login State Updates Properly When `LoginActions.loginSuccess` Action Dispatches
+
+To test the `on()` handler associated with `LoginActions.loginSuccess`, we will define 3 values:
+
+1. Expected Login State after Reducer handles Action.
+
+2. The Action we are testing.
+
+3. The generated Login State after passing `initialState` and Action to `reducer()`.
+
+<details open>
+<summary>src/app/store/login/login.reducer.spec.ts</summary>
+@diff ../11-create-reducer/login.reducer.spec.ts ./login.reducer.spec-setup.ts only
+</details>
+
+Next we will add our expectations to verify that our expected Login State matches the generated Login State. When we do this, we will also verify that we do this in an immutable way to maintain an [immutable data structure](https://ngrx.io/guide/store/why#immutability-and-performance):
+
+<details open>
+<summary>src/app/store/login/login.reducer.spec.ts</summary>
+@diff ./login.reducer.spec-setup.ts ./login.reducer.spec-expects.ts only
+</details>
+
+### Verify Login State Resets Properly When `LoginActions.logoutSuccess` Action Dispatches
+
+We will do the same when testing the `on()` handler associated with `LoginActions.logoutSuccess`, but instead of defining an expected Login State, we will just use the `initialState` since it already is our expected Login State. And instead of passing our `initialState` to the `reducer()`, we will pass some updated Login State instead to ensure that all values are reset properly:
+
+<details open>
+<summary>src/app/store/login/login.reducer.spec.ts</summary>
+@diff ./login.reducer.spec-expects.ts ./login.reducer.spec.ts only
+</details>
 
 
 ## Final Result
