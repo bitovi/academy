@@ -575,59 +575,66 @@ ng test --watch
 <summary>src/app/store/login/login.reducer.spec.ts</summary></p>
 <pre><code class="language-ts">// src/app/store/login/login.reducer.spec.ts
 
-import * as fromLogin from './login.reducer';
-import {
-  selectLoginState,
-  selectToken,
-  selectUserId,
-  selectUsername,
-} from './login.selectors';
+import { reducer, initialState, State } from './login.reducer';
+import * as LoginActions from './login.actions';
 
-describe('Login Selectors', () =&gt; {
-  let state: fromLogin.LoginPartialState;
-
-  beforeEach(() =&gt; {
-    state = {
-      [fromLogin.loginFeatureKey]: {
-        ...fromLogin.initialState,
+describe('Login Reducer', () =&gt; {
+  describe('loginSuccess action', () =&gt; {
+    it('should update the state in an immutable way', () =&gt; {
+      // Expectation of new state
+      const expectedState: State = {
+        ...initialState,
         userId: 'some-user-id',
         username: 'some-username',
         token: 'some-token',
-      },
-    };
-  });
+      };
 
-  it('should select the feature state', () =&gt; {
-    const result = selectLoginState(state);
+      const action = LoginActions.loginSuccess({
+        userId: 'some-user-id',
+        username: 'some-username',
+        token: 'some-token',
+      });
 
-    expect(result).toEqual({
-      userId: 'some-user-id',
-      username: 'some-username',
-      token: 'some-token',
+      const state = reducer({ ...initialState }, action);
+
+      // Compare new state
+      expect(state).toEqual(expectedState);
+
+      // Check for immutability
+      expect(state).not.toBe(expectedState);
     });
   });
 
-  describe('selectUserId', () =&gt; {
-    it('should return userId from login state', () =&gt; {
-      const result = selectUserId(state);
+  describe('logoutSuccess action', () =&gt; {
+    it('should reset LoginState to initialState', () =&gt; {
+      const action = LoginActions.logoutSuccess();
 
-      expect(result).toBe('some-user-id');
+      const state = reducer(
+        {
+          ...initialState,
+          userId: 'some-user-id',
+          username: 'some-username',
+          token: 'some-token',
+        },
+        action
+      );
+
+      // Compare new state
+      expect(state).toEqual(initialState);
+
+      // Check for immutability
+      expect(state).not.toBe(initialState);
     });
   });
 
-  describe('selectUsername', () =&gt; {
-    it('should return username from login state', () =&gt; {
-      const result = selectUsername(state);
+  describe('an unknown action', () =&gt; {
+    it('should return the previous state', () =&gt; {
+      const action = {} as any;
 
-      expect(result).toBe('some-username');
-    });
-  });
+      const result = reducer(initialState, action);
 
-  describe('selectToken', () =&gt; {
-    it('should return token from login state', () =&gt; {
-      const result = selectToken(state);
-
-      expect(result).toBe('some-token');
+      // Shouldn't update state at all
+      expect(result).toBe(initialState);
     });
   });
 });
