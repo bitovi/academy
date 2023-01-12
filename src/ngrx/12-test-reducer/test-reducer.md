@@ -30,7 +30,13 @@ The `--watch` switch will rerun your tests whenever a code file changes. You can
 
 ## Description
 
-TODO: remove or use parts of for an intro for the section
+When testing a Reducer, we will verify each of its `on()` handlers. This involves 2 main goals:
+
+1. List out each Action involved for each `on()` handler.
+
+2. Right unit tests using pure functions per test case of each Action.
+
+In our case, we are working with Effects cause navigation. We can take advantage of the [RouterTestingModule](https://angular.io/api/router/testing/RouterTestingModule#usage-notes).
 
 You'll need to copy the contents of two test files to run tests for your Reducer. We're updating the test files for both the Login Reducer and Selectors.
 
