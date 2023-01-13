@@ -30,9 +30,29 @@ The `--watch` switch will rerun your tests whenever a code file changes. You can
 
 ## Description
 
-TODO:
+In this section will write unit tests involving Sections. Whenever we use Selectors in our Components, Services, etc. We can use `provideMockStore()` to mock the behavior of our Selectors.
 
-You'll need to copy the contents of the test file to run tests for the Selectors used within the `DashboardComponent`.
+
+## Update `dashboard.component.spec.ts`
+
+We will walk through updating `src/app/dashboard/dashboard.component.spec.ts` to run tests for your Sectors.
+
+
+### Updating our `TestBed`
+
+When testing our use of Selectors, we can specify a [configuration](https://ngrx.io/api/store/testing/MockStoreConfig) to our `MockStore`. It is possible to pass an `initialState` option which will influence our Selectors:
+
+<details open>
+<summary>src/app/dashboard/dashboard.component.spec.ts</summary>
+@diff ../6-test-actions/dashboard.component.spec.ts ./dashboard.component.spec-config.ts only
+</details>
+
+When our updated configuration, we can now update the remaining `TODO`s to verify the behavior of `DashboardComponent.username$` and `DashboardComponent.userId$`:
+
+<details open>
+<summary>src/app/dashboard/dashboard.component.spec.ts</summary>
+@diff ./dashboard.component.spec-config.ts ./dashboard.component.spec.ts only
+</details>
 
 
 ## Final Result
