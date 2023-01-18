@@ -76,7 +76,7 @@ Next we will verify that the expected Action was dispatched after `logout()` is 
 @diff ./dashboard.component.spec-spy-on-store.ts ./dashboard.component.spec.ts only
 </details>
 
-> Note that there are 2 more pending `TODO`s in `src/app/dashboard/dashboard.component.spec.ts` that will be resolved in upcoming sections. For now we'll only be testing our Actions
+> Note that there are 2 more pending `TODO`s in `src/app/dashboard/dashboard.component.spec.ts` that will be resolved in upcoming sections. For now we'll only be testing our Actions.
 
 
 ## Update `login.component.spec.ts`
