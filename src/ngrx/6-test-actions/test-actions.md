@@ -39,7 +39,7 @@ Each implementation section will be paired with a testing section. These testing
 
 ## Description
 
-In this section, we will write unit tests involving Actions. When testing Actions, we don't typically test Actions directly. Instead, we test their use in Components, Effects, Reducers.
+In this section, we will write unit tests involving Actions. When testing Actions, we don't typically test Actions directly. Instead, we test their use in Components, Effects, and Reducers.
 Throughout this course we will cover all these situations. For this section, we will verify that Actions are dispatched when expected by checking their use in Components.
 
 ## Update `dashboard.component.spec.ts`
