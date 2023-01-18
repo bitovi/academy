@@ -30,7 +30,7 @@ The `--watch` switch will rerun your tests whenever a code file changes. You can
 
 ## Description
 
-In this section will write unit tests involving Sections. Whenever we use Selectors in our Components, Services, etc. We can use `provideMockStore()` to mock the behavior of our Selectors.
+In this section, we will write unit tests involving Selectors. Whenever we use Selectors in our Components, Services, etc. we can use `provideMockStore()` to mock the behavior of our Selectors.
 
 
 ## Update `dashboard.component.spec.ts`
