@@ -10,9 +10,9 @@
 
 ## Overview
 
-3. Verify Login State updates properly when `LoginActions.loginSuccess` Action dispatches.
+1. Verify Login State updates properly when the `LoginActions.loginSuccess` Action dispatches.
 
-4. Verify Login State resets properly when `LoginActions.logoutSuccess` Action dispatches.
+2. Verify Login State resets properly when the `LoginActions.logoutSuccess` Action dispatches.
 
 
 ## Running Tests
