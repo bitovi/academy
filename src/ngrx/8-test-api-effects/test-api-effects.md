@@ -51,7 +51,7 @@ When testing Effects, we will need to mock the [`Actions` class](https://ngrx.io
 @diff ../7-create-api-effects/login.effects.spec.ts ./login.effects.spec-setup-test-bed.ts only
 </details>
 
-This will allow us to set `actions$` to be an `Observable` that emits whatever Action we want for our tests:
+One way to mock `Actions` is to set `actions$` to be an `Observable` that emits whatever Action we want for our tests:
 
 @sourceref ./actions-example.spec.ts
 @highlight 5-12, 16-19
