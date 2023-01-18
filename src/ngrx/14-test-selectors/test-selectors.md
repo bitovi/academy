@@ -55,7 +55,7 @@ The Feature State Selector is unique to all other Selectors for a Feature Store 
 
 ## Verify `selectUserId` Selector Returns `userId`
 
-To properly test Selectors in a way to ensures that each Selector does not rely on mutations on the Login State, we will use `beforeEach()` to create a fresh Login State per test:
+To properly test Selectors in a way that ensures that each Selector does not rely on mutations on the Login State, we will use `beforeEach()` to create a fresh Login State per test:
 
 <details open>
 <summary>src/app/store/login/login.selectors.spec.ts</summary>
@@ -90,7 +90,7 @@ Now we can write our tests for our Selectors. The first Selector we will test is
 
 At the end of this section, the following spec file(s) should be updated. After each spec file has been updated and all the tests have passed, this means that all the previous sections have been completed successfully:
 
-<details open>
+<details>
 <summary>src/app/store/login/login.selectors.spec.ts</summary>
 @diff ../12-test-reducer/login.selectors.spec.ts ./login.selectors.spec.ts only
 </details>
