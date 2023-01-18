@@ -10,9 +10,9 @@
 
 ## Overview
 
-3. Verify Login State updates properly when `LoginActions.loginSuccess` Action dispatches.
+1. Verify Login State updates properly when the `LoginActions.loginSuccess` Action dispatches.
 
-4. Verify Login State resets properly when `LoginActions.logoutSuccess` Action dispatches.
+2. Verify Login State resets properly when the `LoginActions.logoutSuccess` Action dispatches.
 
 
 ## Running Tests
@@ -51,7 +51,7 @@ We will go over these changes in the upcoming section where we go over testing S
 We will walk through updating `src/app/store/login/login.reducer.spec.ts` to run tests for your Reducer.
 
 
-### Verify Login State Updates Properly When `LoginActions.loginSuccess` Action Dispatches
+### Verify Login State Updates Properly When the `LoginActions.loginSuccess` Action Dispatches
 
 To test the `on()` handler associated with `LoginActions.loginSuccess`, we will define 3 values:
 
@@ -73,7 +73,7 @@ Next we will add our expectations to verify that our expected Login State matche
 @diff ./login.reducer.spec-setup.ts ./login.reducer.spec-expects.ts only
 </details>
 
-### Verify Login State Resets Properly When `LoginActions.logoutSuccess` Action Dispatches
+### Verify Login State Resets Properly When the `LoginActions.logoutSuccess` Action Dispatches
 
 We will do the same when testing the `on()` handler associated with `LoginActions.logoutSuccess`, but instead of defining an expected Login State, we will just use the `initialState` since it already is our expected Login State. And instead of passing our `initialState` to the `reducer()`, we will pass some updated Login State instead to ensure that all values are reset properly:
 
