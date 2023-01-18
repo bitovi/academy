@@ -33,9 +33,7 @@
 
 <details open>
 <summary>src/app/store/login/login.effects.ts</summary>
-
 @diff ../4-create-actions/login.effects.ts ./login.effects-error-message-helper.ts only
-
 </details>
 
 ## P1: What You Need to Know
@@ -117,9 +115,7 @@ When one of these requirements aren't met, an error is thrown and an error is lo
 
 <details>
 <summary>src/app/store/login/login.effects.ts</summary>
-
 @diff ./login.effects-error-message-helper.ts ./login.effects-login-effect.ts only
-
 </details>
 
 
@@ -136,9 +132,7 @@ When one of these requirements aren't met, an error is thrown and an error is lo
 
 <details>
 <summary>src/app/store/login/login.effects.ts</summary>
-
 @diff ./login.effects-login-effect.ts ./login.effects.ts only
-
 </details>
 
 
