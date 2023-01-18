@@ -31,7 +31,7 @@ The `--watch` switch will rerun your tests whenever a code file changes. You can
 
 ## Description
 
-When testing Effects, we will verify side-effects are executed properly depending when an appropriate Action is dispatched. In our case, we are working with Effects that cause navigation. We can take advantage of the [RouterTestingModule](https://angular.io/api/router/testing/RouterTestingModule#usage-notes).
+When testing Effects, we will verify side-effects are executed properly when an appropriate Action is dispatched. In our case, we are working with Effects that cause navigation. We can take advantage of the [RouterTestingModule](https://angular.io/api/router/testing/RouterTestingModule#usage-notes).
 
 
 ## Update `login.effects.spec.ts`
