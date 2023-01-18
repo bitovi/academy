@@ -39,8 +39,8 @@ Each implementation section will be paired with a testing section. These testing
 
 ## Description
 
-In this section will write unit tests involving Actions. When testing Actions, we don't typically test Actions directly. Instead, we test their use in Components, Effects, Reducers.
-Throughout this course we will cover all this situations. For this section, we will verify that Actions are dispatched when expected by checking their use in Components.
+In this section, we will write unit tests involving Actions. When testing Actions, we don't typically test Actions directly. Instead, we test their use in Components, Effects, Reducers.
+Throughout this course we will cover all these situations. For this section, we will verify that Actions are dispatched when expected by checking their use in Components.
 
 ## Update `dashboard.component.spec.ts`
 
@@ -48,7 +48,7 @@ We will walk through updating `src/app/dashboard/dashboard.component.spec.ts` to
 
 ### Setting Up our `TestBed`
 
-When unit testing in general, we should use stubs to isolate parts of our application. Lucky NgRx makes this process simple by providing a way to create a mock `Store`:
+When unit testing in general, we should use stubs to isolate parts of our application. Luckily NgRx makes this process simple by providing a way to create a mock `Store`:
 
 1. [MockStore](https://ngrx.io/api/store/testing/MockStore) - `MockStore` extends the `Store` class and [provides stubs for its methods](https://ngrx.io/guide/store/testing).
 
@@ -76,7 +76,7 @@ Next we will verify that the expected Action was dispatched after `logout()` is 
 @diff ./dashboard.component.spec-spy-on-store.ts ./dashboard.component.spec.ts only
 </details>
 
-> Note that there are 2 more pending `TODO`s in `src/app/dashboard/dashboard.component.spec.ts` that will be resolved in upcoming sections. For now we'll only be testing our Actions
+> Note that there are 2 more pending `TODO`s in `src/app/dashboard/dashboard.component.spec.ts` that will be resolved in upcoming sections. For now we'll only be testing our Actions.
 
 
 ## Update `login.component.spec.ts`
@@ -91,7 +91,7 @@ We will walk through updating `src/app/login/login.component.spec.ts` to run tes
 </details>
 
 
-### Verify `LoginActions.login` Action Dispatches With Form Payload Properly
+### Verify `LoginActions.login` Action Dispatches Properly With Form Payload
 
 Unlike the `LoginActions.logout` Action, `LoginActions.login` Action requires a payload when dispatched. In our test, we will pass the state of our form:
 
@@ -101,7 +101,7 @@ Unlike the `LoginActions.logout` Action, `LoginActions.login` Action requires a 
 </details>
 
 
-### Verify `LoginActions.login` Action Does NOT Dispatches When Necessary
+### Verify `LoginActions.login` Action Does NOT Dispatch When Necessary
 
 <details open>
 <summary>src/app/login/login.component.spec.ts</summary>

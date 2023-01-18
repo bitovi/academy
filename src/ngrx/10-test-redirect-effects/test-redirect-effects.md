@@ -11,9 +11,9 @@
 
 ## Overview
 
-1. Verify navigate to dashboard page occurs when `LoginActions.loginSuccess` Action dispatches.
+1. Verify navigation to the dashboard page occurs when `LoginActions.loginSuccess` Action dispatches.
 
-2. Verify navigate to login page occurs when `LoginActions.logoutSuccess` Action dispatches.
+2. Verify navigation to the login page occurs when `LoginActions.logoutSuccess` Action dispatches.
 
 
 ## Running Tests
@@ -31,7 +31,7 @@ The `--watch` switch will rerun your tests whenever a code file changes. You can
 
 ## Description
 
-When testing Effects, we will verify side-effects are executed properly depending when an appropriate Action is dispatched. In our case, we are working with Effects cause navigation. We can take advantage of the [RouterTestingModule](https://angular.io/api/router/testing/RouterTestingModule#usage-notes).
+When testing Effects, we will verify side-effects are executed properly depending when an appropriate Action is dispatched. In our case, we are working with Effects that cause navigation. We can take advantage of the [RouterTestingModule](https://angular.io/api/router/testing/RouterTestingModule#usage-notes).
 
 
 ## Update `login.effects.spec.ts`
@@ -49,7 +49,7 @@ When testing navigation in Angular, we can take advantage of the [RouterTestingM
 </details>
 
 
-### Verifying Navigate to Dashboard Page When `LoginActions.loginSuccess` Action Dispatches
+### Verifying Navigation to Dashboard Page When `LoginActions.loginSuccess` Action Dispatches
 
 Here we can use a [spy](https://jasmine.github.io/tutorials/your_first_suite#:~:text=%C2%B6-,Spies,-Jasmine%20has%20test) to verify `Router` is used to navigate to the dashboard page:
 
@@ -59,7 +59,7 @@ Here we can use a [spy](https://jasmine.github.io/tutorials/your_first_suite#:~:
 </details>
 
 
-### Verifying Navigate to Login Page When `LoginActions.logoutSuccess` Action Dispatches
+### Verifying Navigation to Login Page When `LoginActions.logoutSuccess` Action Dispatches
 
 Here we can use a [spy](https://jasmine.github.io/tutorials/your_first_suite#:~:text=%C2%B6-,Spies,-Jasmine%20has%20test) to verify `Router` is used to navigate to the login page:
 
