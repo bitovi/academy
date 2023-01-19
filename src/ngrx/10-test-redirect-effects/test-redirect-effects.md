@@ -11,9 +11,9 @@
 
 ## Overview
 
-1. Verify navigate to dashboard page occurs when `LoginActions.loginSuccess` Action dispatches.
+1. Verify navigation to the dashboard page occurs when `LoginActions.loginSuccess` Action dispatches.
 
-2. Verify navigate to login page occurs when `LoginActions.logoutSuccess` Action dispatches.
+2. Verify navigation to the login page occurs when `LoginActions.logoutSuccess` Action dispatches.
 
 
 ## Running Tests
@@ -31,9 +31,42 @@ The `--watch` switch will rerun your tests whenever a code file changes. You can
 
 ## Description
 
-TODO: remove or use parts of for an intro for the section
+When testing Effects, we will verify side-effects are executed properly when an appropriate Action is dispatched. In our case, we are working with Effects that cause navigation, so we can take advantage of the [RouterTestingModule](https://angular.io/api/router/testing/RouterTestingModule#usage-notes).
 
-You'll need to copy the contents of the test file to run tests for your Effects.
+
+## Update `login.effects.spec.ts`
+
+We will walk through updating `src/app/store/login/login.effects.spec.ts` to run tests for your Effects.
+
+
+### Updating our TestBed
+
+When testing navigation in Angular, we can take advantage of the [RouterTestingModule](https://angular.io/api/router/testing/RouterTestingModule#usage-notes). Using the static [`withRoutes()` method](https://angular.io/api/router/testing/RouterTestingModule#static-methods), we can prepare our tests to navigate to a mock login and dashboard page:
+
+<details open>
+<summary>src/app/store/login/login.effects.spec.ts</summary>
+@diff ../8-test-api-effects/login.effects.spec.ts ./login.effects.spec-router-testing-module.ts only
+</details>
+
+
+### Verifying Navigation to Dashboard Page When `LoginActions.loginSuccess` Action Dispatches
+
+Here we can use a [spy](https://jasmine.github.io/tutorials/your_first_suite#:~:text=%C2%B6-,Spies,-Jasmine%20has%20test) to verify `Router` is used to navigate to the dashboard page:
+
+<details open>
+<summary>src/app/store/login/login.effects.spec.ts</summary>
+@diff ./login.effects.spec-router-testing-module.ts ./login.effects.spec-navigate-to-dashboard.ts only
+</details>
+
+
+### Verifying Navigation to Login Page When `LoginActions.logoutSuccess` Action Dispatches
+
+Here we can use a [spy](https://jasmine.github.io/tutorials/your_first_suite#:~:text=%C2%B6-,Spies,-Jasmine%20has%20test) to verify `Router` is used to navigate to the login page:
+
+<details open>
+<summary>src/app/store/login/login.effects.spec.ts</summary>
+@diff ./login.effects.spec-navigate-to-dashboard.ts ./login.effects.spec.ts only
+</details>
 
 
 ## Final Result
