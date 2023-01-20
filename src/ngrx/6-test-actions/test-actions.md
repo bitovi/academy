@@ -46,7 +46,7 @@ Throughout this course we will cover all these situations. For this section, we 
 
 We will walk through updating `src/app/dashboard/dashboard.component.spec.ts` to run tests for your Actions.
 
-### Setting Up our TestBed
+### Setting Up our `TestBed`
 
 When unit testing in general, we should use stubs to isolate parts of our application. Luckily NgRx makes this process simple by providing a way to create a mock `Store`:
 
@@ -83,7 +83,7 @@ Next we will verify that the expected Action was dispatched after `logout()` is 
 
 We will walk through updating `src/app/login/login.component.spec.ts` to run tests for your Actions.
 
-### Setting Up our TestBed
+### Setting Up our `TestBed`
 
 <details open>
 <summary>src/app/login/login.component.spec.ts</summary>
