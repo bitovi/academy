@@ -55,9 +55,7 @@ export const selectContactEmailAddress = createSelector(
 
 <details>
 <summary>src/app/store/login/login.selectors.ts</summary>
-
 @diff ../12-test-reducer/login.selectors.ts ./login.selectors-user-id.ts only
-
 </details>
 
 
@@ -70,9 +68,7 @@ There should be a Selector that obtains the `username` and another Selector for 
 
 <details>
 <summary>src/app/store/login/login.selectors.ts</summary>
-
 @diff ./login.selectors-user-id.ts ./login.selectors.ts only
-
 </details>
 
 

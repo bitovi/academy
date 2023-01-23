@@ -36,9 +36,7 @@ In the `LoginComponent`, there is a `TODO` where the Login Action should be disp
 
 <details>
 <summary>src/app/login/login.component.ts</summary>
-
 @diff ../4-create-actions/login.component.ts ./login.component.ts only
-
 </details>
 
 
@@ -56,9 +54,7 @@ In the `DashboardComponent`, there is a `TODO` where the Logout Action should be
 
 <details>
 <summary>src/app/dashboard/dashboard.component.ts</summary>
-
 @diff ../4-create-actions/dashboard.component.ts ./dashboard.component.ts only
-
 </details>
 
 

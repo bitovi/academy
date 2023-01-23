@@ -44,9 +44,7 @@ To prepare this, we need to update the Login Feature `State` interface found at 
 
 <details>
 <summary>src/app/store/login/login.reducer.ts</summary>
-
 @diff ../4-create-actions/login.reducer.ts ./login.reducer-define-state.ts only
-
 </details>
 
 
@@ -67,9 +65,7 @@ Now that we have updated the Login State's shape by updating the `State` interfa
 
 <details>
 <summary>src/app/store/login/login.reducer.ts</summary>
-
 @diff ./login.reducer-define-state.ts ./login.reducer-initial-state.ts only
-
 </details>
 
 
@@ -98,9 +94,7 @@ When writing an `on()` handler, there are 2 arguments that we need to provide:
 
 <details>
 <summary>src/app/store/login/login.reducer.ts</summary>
-
 @diff ./login.reducer-initial-state.ts ./login.reducer-on-login-success.ts only
-
 </details>
 
 
@@ -126,9 +120,7 @@ Both solutions are fine, but it is likely better to reuse `initialState` to futu
 
 <details>
 <summary>src/app/store/login/login.reducer.ts</summary>
-
 @diff ./login.reducer-on-login-success.ts ./login.reducer.ts only
-
 </details>
 
 
