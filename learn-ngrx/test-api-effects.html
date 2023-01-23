@@ -560,6 +560,13 @@ covering CanJS core libraries.">
     <blockquote>
 <p><strong>Quick Start</strong>: You can checkout <a href="https://github.com/bitovi/angular-ngrx-chat/tree/create-api-effects">this branch</a> to get your codebase ready to work on this section.</p>
 </blockquote>
+<h2>Overview</h2>
+<ol>
+<li><p>Verify <code>LoginActions.loginSuccess</code> Action dispatches when API request is successful.</p></li>
+<li><p>Verify <code>LoginActions.loginFailure</code> Action dispatches when API request fails.</p></li>
+<li><p>Verify <code>LoginActions.logoutSuccess</code> Action dispatches when API request is successful.</p></li>
+<li><p>Verify <code>LoginActions.logoutFailure</code> Action dispatches when API request fails.</p></li>
+</ol>
 <h2>Running Tests</h2>
 <p>To run unit tests in your project, you can either use the <code>test</code> npm script, or the <code>ng test</code> command:</p>
 <pre><code class="language-bash">npm run test
@@ -567,10 +574,585 @@ covering CanJS core libraries.">
 ng test --watch
 </code></pre>
 <p>The <code>--watch</code> switch will rerun your tests whenever a code file changes. You can skip it to just run all tests once.</p>
-<h2>Test Code</h2>
-<p>You'll need to copy the contents of the test file to run tests for your Effects.</p>
-<h3>Update <code>login.effects.spec.ts</code></h3>
-<p>Copy the following code to replace the contents of <code>src/app/store/login/login.effects.spec.ts</code>:</p>
+<h2>Description</h2>
+<p>When testing Effects, we will verify that a specific Action gets dispatched depending on the circumstances when an Effect is triggered. In our case, we are working with Effects that depend on an API response. We can take advantage of spies to simulate different API responses.</p>
+<h2>Update <code>login.effects.spec.ts</code></h2>
+<p>We will walk through updating <code>src/app/store/login/login.effects.spec.ts</code> to run tests for your Effects.</p>
+<h3>Setting Up our <code>TestBed</code></h3>
+<p>When testing Effects, we will need to mock the <a href="https://ngrx.io/api/effects/Actions"><code>Actions</code> class</a> since it plays a major role on <a href="https://ngrx.io/guide/effects#writing-effects">how Effects work</a>. NgRx provides a convenient way to do this through <a href="https://ngrx.io/api/effects/testing/provideMockActions"><code>provideMockActions()</code></a>:</p>
+<p><details open>
+<summary>src/app/store/login/login.effects.spec.ts</summary></p>
+<pre><code class="language-ts">// src/app/store/login/login.effects.spec.ts
+
+import { TestBed } from '@angular/core/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { Observable, of } from 'rxjs';
+import { LoginEffects } from './login.effects';
+import { Action } from '@ngrx/store';
+import { provideMockStore } from '@ngrx/store/testing';
+import * as LoginActions from './login.actions';
+
+describe('LoginEffects', () =&gt; {
+  let actions$: Observable&lt;Action&gt;;
+  let effects: LoginEffects;
+
+  beforeEach(() =&gt; {
+    TestBed.configureTestingModule({
+      imports: [],
+      providers: [
+        LoginEffects,
+        provideMockActions(() =&gt; actions$),
+        provideMockStore(),
+      ],
+    });
+
+    effects = TestBed.inject(LoginEffects);
+  });
+
+  describe('login$', () =&gt; {
+    beforeEach(() =&gt; {
+      actions$ = of(
+        LoginActions.login({
+          username: 'some-username',
+          password: 'some-password',
+        })
+      );
+    });
+  });
+});
+
+</code></pre>
+ <div line-highlight="5,7-9,12,17,20-22,28-36,only"></div>
+</details>
+<p>One way to mock <code>Actions</code> is to set <code>actions$</code> to be an <code>Observable</code> that emits whatever Action we want for our tests:</p>
+<pre><code class="language-ts">// Note: This example code is not part of our application repo or solution
+
+describe('login$', () =&gt; {
+  beforeEach(() =&gt; {
+    // Mock `actions$` with `Observable` that emits an Action
+    // and its payload for upcoming tests
+    actions$ = of(
+      LoginActions.login({
+        username: 'some-username',
+        password: 'some-password',
+      })
+    );
+  });
+
+  it('should...', () =&gt; {
+    effects.login$.subscribe(action =&gt; {
+      // This `action` value will be whatever Action is dispatched
+      // based on our mocked value for `actions$`
+    });
+  });
+});
+
+</code></pre>
+<div line-highlight='5-12, 16-19'></div>
+<h3>Mocking <code>LoginService</code></h3>
+<p>Since our Effects use <code>LoginService</code> from <code>ngx-learn-ngrx</code>, we will need to also mock this <code>Service</code>:</p>
+<p><details open>
+<summary>src/app/store/login/login.effects.spec.ts</summary></p>
+<pre><code class="language-ts">// src/app/store/login/login.effects.spec.ts
+
+import { TestBed } from '@angular/core/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { Observable, of } from 'rxjs';
+import { LoginEffects } from './login.effects';
+import { Action } from '@ngrx/store';
+import { provideMockStore } from '@ngrx/store/testing';
+import * as LoginActions from './login.actions';
+import { Credentials, LoginService } from 'ngx-learn-ngrx';
+
+const mockLoginService = {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  login: (credentials: Credentials) =&gt; {
+    return of({ userId: 'some-user-id', token: 'some-token' });
+  },
+  logout: () =&gt; of(null),
+} as LoginService;
+
+describe('LoginEffects', () =&gt; {
+  let actions$: Observable&lt;Action&gt;;
+  let effects: LoginEffects;
+
+  let loginService: LoginService;
+
+  beforeEach(() =&gt; {
+    TestBed.configureTestingModule({
+      imports: [],
+      providers: [
+        LoginEffects,
+        provideMockActions(() =&gt; actions$),
+        provideMockStore(),
+        {
+          provide: LoginService,
+          useValue: mockLoginService,
+        },
+      ],
+    });
+
+    effects = TestBed.inject(LoginEffects);
+    loginService = TestBed.inject(LoginService);
+  });
+
+  describe('login$', () =&gt; {
+    beforeEach(() =&gt; {
+      actions$ = of(
+        LoginActions.login({
+          username: 'some-username',
+          password: 'some-password',
+        })
+      );
+    });
+  });
+});
+
+</code></pre>
+ <div line-highlight="10,12-18,24,33-36,41,only"></div>
+</details>
+<h3>Verifying <code>LoginEffects.login$</code> Effect Dispatches <code>LoginActions.loginSuccess</code> When API Request is Successful</h3>
+<p>We will create a <a href="https://jasmine.github.io/tutorials/your_first_suite#:~:text=%C2%B6-,Spies,-Jasmine%20has%20test">spy</a> to verify <code>LoginService.login()</code> is called with the expected arguments. Then we will verify that <code>LoginActions.loginSuccess</code> is dispatched with the proper payload:</p>
+<p><details open>
+<summary>src/app/store/login/login.effects.spec.ts</summary></p>
+<pre><code class="language-ts">// src/app/store/login/login.effects.spec.ts
+
+import { TestBed } from '@angular/core/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { Observable, of } from 'rxjs';
+import { LoginEffects } from './login.effects';
+import { Action } from '@ngrx/store';
+import { provideMockStore } from '@ngrx/store/testing';
+import * as LoginActions from './login.actions';
+import { Credentials, LoginService } from 'ngx-learn-ngrx';
+
+const mockLoginService = {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  login: (credentials: Credentials) =&gt; {
+    return of({ userId: 'some-user-id', token: 'some-token' });
+  },
+  logout: () =&gt; of(null),
+} as LoginService;
+
+describe('LoginEffects', () =&gt; {
+  let actions$: Observable&lt;Action&gt;;
+  let effects: LoginEffects;
+
+  let loginService: LoginService;
+
+  beforeEach(() =&gt; {
+    TestBed.configureTestingModule({
+      imports: [],
+      providers: [
+        LoginEffects,
+        provideMockActions(() =&gt; actions$),
+        provideMockStore(),
+        {
+          provide: LoginService,
+          useValue: mockLoginService,
+        },
+      ],
+    });
+
+    effects = TestBed.inject(LoginEffects);
+    loginService = TestBed.inject(LoginService);
+  });
+
+  describe('login$', () =&gt; {
+    beforeEach(() =&gt; {
+      actions$ = of(
+        LoginActions.login({
+          username: 'some-username',
+          password: 'some-password',
+        })
+      );
+    });
+
+    it('should get dispatch LoginActions.loginSuccess on api success', done =&gt; {
+      const spy = spyOn(loginService, 'login').and.callThrough();
+
+      effects.login$.subscribe(action =&gt; {
+        expect(spy).toHaveBeenCalledOnceWith({
+          username: 'some-username',
+          password: 'some-password',
+        });
+
+        expect(action).toEqual(
+          LoginActions.loginSuccess({
+            username: 'some-username',
+            userId: 'some-user-id',
+            token: 'some-token',
+          })
+        );
+
+        done();
+      });
+    });
+  });
+});
+
+</code></pre>
+ <div line-highlight="54-55,57-61,63-69,71-73,only"></div>
+</details>
+<blockquote>
+<p>Note that we are taking advantage of the <a href="https://jasmine.github.io/tutorials/async#callbacks"><code>done()</code> callback to write an asynchronous test</a>. This is common when writing tests where you subscribe to an <code>Observable</code> to perform a test.</p>
+</blockquote>
+<h3>Verifying <code>LoginEffects.login$</code> Effect Dispatches <code>LoginActions.loginFailure</code> When API Request is NOT Successful</h3>
+<p>To verify different behaviors for <code>LoginService</code>, we can take advantage of <a href="https://jasmine.github.io/tutorials/your_first_suite#:~:text=%C2%B6-,Spies,-Jasmine%20has%20test">spies</a> to return a different return value:</p>
+<p><details open>
+<summary>src/app/store/login/login.effects.spec.ts</summary></p>
+<pre><code class="language-ts">// src/app/store/login/login.effects.spec.ts
+
+import { TestBed } from '@angular/core/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { Observable, of, throwError } from 'rxjs';
+import { LoginEffects } from './login.effects';
+import { Action } from '@ngrx/store';
+import { provideMockStore } from '@ngrx/store/testing';
+import * as LoginActions from './login.actions';
+import { Credentials, LoginService } from 'ngx-learn-ngrx';
+
+const mockLoginService = {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  login: (credentials: Credentials) =&gt; {
+    return of({ userId: 'some-user-id', token: 'some-token' });
+  },
+  logout: () =&gt; of(null),
+} as LoginService;
+
+describe('LoginEffects', () =&gt; {
+  let actions$: Observable&lt;Action&gt;;
+  let effects: LoginEffects;
+
+  let loginService: LoginService;
+
+  beforeEach(() =&gt; {
+    TestBed.configureTestingModule({
+      imports: [],
+      providers: [
+        LoginEffects,
+        provideMockActions(() =&gt; actions$),
+        provideMockStore(),
+        {
+          provide: LoginService,
+          useValue: mockLoginService,
+        },
+      ],
+    });
+
+    effects = TestBed.inject(LoginEffects);
+    loginService = TestBed.inject(LoginService);
+  });
+
+  describe('login$', () =&gt; {
+    beforeEach(() =&gt; {
+      actions$ = of(
+        LoginActions.login({
+          username: 'some-username',
+          password: 'some-password',
+        })
+      );
+    });
+
+    it('should get dispatch LoginActions.loginSuccess on api success', done =&gt; {
+      const spy = spyOn(loginService, 'login').and.callThrough();
+
+      effects.login$.subscribe(action =&gt; {
+        expect(spy).toHaveBeenCalledOnceWith({
+          username: 'some-username',
+          password: 'some-password',
+        });
+
+        expect(action).toEqual(
+          LoginActions.loginSuccess({
+            username: 'some-username',
+            userId: 'some-user-id',
+            token: 'some-token',
+          })
+        );
+
+        done();
+      });
+    });
+
+    it('should get dispatch LoginActions.loginFailure on api error', done =&gt; {
+      const spy = spyOn(loginService, 'login').and.returnValue(
+        throwError(() =&gt; new Error('some error message'))
+      );
+
+      effects.login$.subscribe(action =&gt; {
+        expect(spy).toHaveBeenCalledOnceWith({
+          username: 'some-username',
+          password: 'some-password',
+        });
+
+        expect(action).toEqual(
+          LoginActions.loginFailure({
+            errorMsg: 'some error message',
+          })
+        );
+
+        done();
+      });
+    });
+  });
+});
+
+</code></pre>
+ <div line-highlight="5,75-78,80-84,86-90,92-94,only"></div>
+</details>
+<h3>Verifying <code>LoginEffects.logout$</code> Effect Dispatches <code>LoginActions.logoutSuccess</code> When API Request is Successful</h3>
+<p><details open>
+<summary>src/app/store/login/login.effects.spec.ts</summary></p>
+<pre><code class="language-ts">// src/app/store/login/login.effects.spec.ts
+
+import { TestBed } from '@angular/core/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { Observable, of, throwError } from 'rxjs';
+import { LoginEffects } from './login.effects';
+import { Action } from '@ngrx/store';
+import { provideMockStore } from '@ngrx/store/testing';
+import * as LoginActions from './login.actions';
+import { Credentials, LoginService } from 'ngx-learn-ngrx';
+
+const mockLoginService = {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  login: (credentials: Credentials) =&gt; {
+    return of({ userId: 'some-user-id', token: 'some-token' });
+  },
+  logout: () =&gt; of(null),
+} as LoginService;
+
+describe('LoginEffects', () =&gt; {
+  let actions$: Observable&lt;Action&gt;;
+  let effects: LoginEffects;
+
+  let loginService: LoginService;
+
+  beforeEach(() =&gt; {
+    TestBed.configureTestingModule({
+      imports: [],
+      providers: [
+        LoginEffects,
+        provideMockActions(() =&gt; actions$),
+        provideMockStore(),
+        {
+          provide: LoginService,
+          useValue: mockLoginService,
+        },
+      ],
+    });
+
+    effects = TestBed.inject(LoginEffects);
+    loginService = TestBed.inject(LoginService);
+  });
+
+  describe('login$', () =&gt; {
+    beforeEach(() =&gt; {
+      actions$ = of(
+        LoginActions.login({
+          username: 'some-username',
+          password: 'some-password',
+        })
+      );
+    });
+
+    it('should get dispatch LoginActions.loginSuccess on api success', done =&gt; {
+      const spy = spyOn(loginService, 'login').and.callThrough();
+
+      effects.login$.subscribe(action =&gt; {
+        expect(spy).toHaveBeenCalledOnceWith({
+          username: 'some-username',
+          password: 'some-password',
+        });
+
+        expect(action).toEqual(
+          LoginActions.loginSuccess({
+            username: 'some-username',
+            userId: 'some-user-id',
+            token: 'some-token',
+          })
+        );
+
+        done();
+      });
+    });
+
+    it('should get dispatch LoginActions.loginFailure on api error', done =&gt; {
+      const spy = spyOn(loginService, 'login').and.returnValue(
+        throwError(() =&gt; new Error('some error message'))
+      );
+
+      effects.login$.subscribe(action =&gt; {
+        expect(spy).toHaveBeenCalledOnceWith({
+          username: 'some-username',
+          password: 'some-password',
+        });
+
+        expect(action).toEqual(
+          LoginActions.loginFailure({
+            errorMsg: 'some error message',
+          })
+        );
+
+        done();
+      });
+    });
+  });
+
+  describe('logout$', () =&gt; {
+    beforeEach(() =&gt; {
+      actions$ = of(LoginActions.logout());
+    });
+
+    it('should get dispatch LoginActions.logoutSuccess on api success', done =&gt; {
+      effects.logout$.subscribe(action =&gt; {
+        expect(action).toEqual(LoginActions.logoutSuccess());
+        done();
+      });
+    });
+  });
+});
+
+</code></pre>
+ <div line-highlight="97-100,102-108,only"></div>
+</details>
+<h3>Verifying <code>LoginEffects.logout$</code> Effect Dispatches <code>LoginActions.logoutFailure</code> When API Request is NOT Successful</h3>
+<p><details open>
+<summary>src/app/store/login/login.effects.spec.ts</summary></p>
+<pre><code class="language-ts">// src/app/store/login/login.effects.spec.ts
+
+import { TestBed } from '@angular/core/testing';
+import { provideMockActions } from '@ngrx/effects/testing';
+import { Observable, of, throwError } from 'rxjs';
+import { LoginEffects } from './login.effects';
+import { Action } from '@ngrx/store';
+import { provideMockStore } from '@ngrx/store/testing';
+import * as LoginActions from './login.actions';
+import { Credentials, LoginService } from 'ngx-learn-ngrx';
+
+const mockLoginService = {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  login: (credentials: Credentials) =&gt; {
+    return of({ userId: 'some-user-id', token: 'some-token' });
+  },
+  logout: () =&gt; of(null),
+} as LoginService;
+
+describe('LoginEffects', () =&gt; {
+  let actions$: Observable&lt;Action&gt;;
+  let effects: LoginEffects;
+
+  let loginService: LoginService;
+
+  beforeEach(() =&gt; {
+    TestBed.configureTestingModule({
+      imports: [],
+      providers: [
+        LoginEffects,
+        provideMockActions(() =&gt; actions$),
+        provideMockStore(),
+        {
+          provide: LoginService,
+          useValue: mockLoginService,
+        },
+      ],
+    });
+
+    effects = TestBed.inject(LoginEffects);
+    loginService = TestBed.inject(LoginService);
+  });
+
+  describe('login$', () =&gt; {
+    beforeEach(() =&gt; {
+      actions$ = of(
+        LoginActions.login({
+          username: 'some-username',
+          password: 'some-password',
+        })
+      );
+    });
+
+    it('should get dispatch LoginActions.loginSuccess on api success', done =&gt; {
+      const spy = spyOn(loginService, 'login').and.callThrough();
+
+      effects.login$.subscribe(action =&gt; {
+        expect(spy).toHaveBeenCalledOnceWith({
+          username: 'some-username',
+          password: 'some-password',
+        });
+
+        expect(action).toEqual(
+          LoginActions.loginSuccess({
+            username: 'some-username',
+            userId: 'some-user-id',
+            token: 'some-token',
+          })
+        );
+
+        done();
+      });
+    });
+
+    it('should get dispatch LoginActions.loginFailure on api error', done =&gt; {
+      const spy = spyOn(loginService, 'login').and.returnValue(
+        throwError(() =&gt; new Error('some error message'))
+      );
+
+      effects.login$.subscribe(action =&gt; {
+        expect(spy).toHaveBeenCalledOnceWith({
+          username: 'some-username',
+          password: 'some-password',
+        });
+
+        expect(action).toEqual(
+          LoginActions.loginFailure({
+            errorMsg: 'some error message',
+          })
+        );
+
+        done();
+      });
+    });
+  });
+
+  describe('logout$', () =&gt; {
+    beforeEach(() =&gt; {
+      actions$ = of(LoginActions.logout());
+    });
+
+    it('should get dispatch LoginActions.logoutSuccess on api success', done =&gt; {
+      effects.logout$.subscribe(action =&gt; {
+        expect(action).toEqual(LoginActions.logoutSuccess());
+        done();
+      });
+    });
+
+    it('should get dispatch LoginActions.logoutFailure on api error', done =&gt; {
+      const spy = spyOn(loginService, 'logout').and.returnValue(
+        throwError(() =&gt; new Error('some error message'))
+      );
+
+      effects.logout$.subscribe(action =&gt; {
+        expect(spy).toHaveBeenCalledOnceWith();
+
+        expect(action).toEqual(
+          LoginActions.logoutFailure({
+            errorMsg: 'some error message',
+          })
+        );
+
+        done();
+      });
+    });
+  });
+});
+
+</code></pre>
+ <div line-highlight="109-112,114-115,117-121,123-125,only"></div>
+</details>
+<h2>Final Result</h2>
+<p>At the end of this section, the following spec file(s) should be updated. After each spec file has been updated and all the tests have passed, this means that all the previous sections have been completed successfully:</p>
 <p><details>
 <summary>src/app/store/login/login.effects.spec.ts</summary></p>
 <pre><code class="language-ts">// src/app/store/login/login.effects.spec.ts
@@ -702,7 +1284,8 @@ describe('LoginEffects', () =&gt; {
 });
 
 </code></pre>
-<p></details></p>
+ <div line-highlight="5,7-10,12-18,21,24,28,31-37,41,44-52,54-55,57-61,63-69,71-73,75-78,80-84,86-90,92-94,97-100,102-107,109-112,114-115,117-121,123-126,only"></div>
+</details>
 <blockquote>
 <p><strong>Wrap-up</strong>: By the end of this section, your code should match <a href="https://github.com/bitovi/angular-ngrx-chat/tree/test-api-effects">this branch</a>. You can also compare the <a href="https://github.com/bitovi/angular-ngrx-chat/compare/create-api-effects...test-api-effects">code changes for our solution to this section</a> on GitHub or you can use the following command in your terminal:</p>
 </blockquote>

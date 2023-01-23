@@ -625,7 +625,7 @@ export const loginFailure = createAction(
 
 </code></pre>
  <div line-highlight="5-7,10-12,15-17,only"></div>
-<p></details></p>
+</details>
 <h2>Problem 2: Create Logout Actions to Represent Logout Events</h2>
 <p>Next, our goal is to create 3 more Actions for logout:</p>
 <ol>
@@ -676,7 +676,7 @@ export const logoutFailure = createAction(
 
 </code></pre>
  <div line-highlight="20,22,24-27,only"></div>
-<p></details></p>
+</details>
 <h2>Cleaning Up Removed Actions</h2>
 <p>Now that we've removed the generated Actions, we will need to update a couple of files so that our application can run:</p>
 <blockquote>
@@ -697,7 +697,7 @@ export class LoginEffects {
 
 </code></pre>
  <div line-highlight="4,only"></div>
-<p></details></p>
+</details>
 <p>Last, we'll remove the generated <code>on()</code> handlers in our Reducer function. And we will remove the unused imports from <code>@ngrx/store</code> and <code>./login.actions</code>:</p>
 <p><details open>
 <summary>src/app/store/login/login.reducer.ts</summary></p>
@@ -725,7 +725,7 @@ export const reducer = createReducer(
 
 </code></pre>
  <div line-highlight="3,20,only"></div>
-<p></details></p>
+</details>
 <blockquote>
 <p><strong>Wrap-up</strong>: By the end of this section, your code should match <a href="https://github.com/bitovi/angular-ngrx-chat/tree/create-actions">this branch</a>. You can also compare the <a href="https://github.com/bitovi/angular-ngrx-chat/compare/ngrx-init...create-actions">code changes for our solution to this section</a> on GitHub or you can use the following command in your terminal:</p>
 </blockquote>

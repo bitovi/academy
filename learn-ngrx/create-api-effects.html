@@ -596,7 +596,7 @@ export class LoginEffects {
 
 </code></pre>
  <div line-highlight="10-15,only"></div>
-<p></details></p>
+</details>
 <h2>P1: What You Need to Know</h2>
 <p><a href="https://ngrx.io/guide/effects">NgRx Effects</a> are a side-effect model that utilizes RxJS to react to Actions being dispatched to manage side-effects such as network requests, web socket messages and time-based events. One thing that Effects are not responsible for is updating state; this is a responsiblity for Reducers (<a href="create-reducer.html" title="Learn how to create an NgRx Reducer.">Create a Reducer</a>).</p>
 <blockquote>
@@ -821,7 +821,7 @@ export class LoginEffects {
 
 </code></pre>
  <div line-highlight="4-8,12-30,32,only"></div>
-<p></details></p>
+</details>
 <h2>Problem 2: Create <code>logout$</code> Effect to Handle API Requests</h2>
 <ol>
 <li><p><code>LoginEffects</code> should create a logout API request  using <code>ngx-learn-ngrx</code>'s <code>LoginService.logout()</code> method whenever the <code>LoginActions.logout</code> Action is dispatched using an Effect called <code>logout$</code>.</p></li>
@@ -892,7 +892,7 @@ export class LoginEffects {
 
 </code></pre>
  <div line-highlight="32-48,only"></div>
-<p></details></p>
+</details>
 <blockquote>
 <p><strong>Wrap-up</strong>: By the end of this section, your code should match <a href="https://github.com/bitovi/angular-ngrx-chat/tree/create-api-effects">this branch</a>. You can also compare the <a href="https://github.com/bitovi/angular-ngrx-chat/compare/test-actions...create-api-effects">code changes for our solution to this section</a> on GitHub or you can use the following command in your terminal:</p>
 </blockquote>

@@ -560,6 +560,11 @@ covering CanJS core libraries.">
     <blockquote>
 <p><strong>Quick Start</strong>: You can checkout <a href="https://github.com/bitovi/angular-ngrx-chat/tree/dispatch-actions">this branch</a> to get your codebase ready to work on this section.</p>
 </blockquote>
+<h2>Overview</h2>
+<ol>
+<li><p>Verify <code>LoginActions.logout</code> Action dispatches when calling <code>DashboardComponent</code>'s <code>logout()</code>.</p></li>
+<li><p>Verify <code>LoginActions.login</code> Action dispatches with form payload when calling <code>LoginComponent</code>'s <code>login()</code>.</p></li>
+</ol>
 <h2>Running Tests</h2>
 <p>To run unit tests in your project, you can either use the <code>test</code> npm script, or the <code>ng test</code> command:</p>
 <pre><code class="language-bash">npm run test
@@ -567,10 +572,484 @@ covering CanJS core libraries.">
 ng test --watch
 </code></pre>
 <p>The <code>--watch</code> switch will rerun your tests whenever a code file changes. You can skip it to just run all tests once.</p>
-<h2>Test Code</h2>
-<p>You'll need to copy the contents of two test files to run tests for your Actions. Note that we don't typically test Actions directly, we test their use (in Components, effects, reducers) but for the purposes of this lesson, we've included Action tests to make sure your code is in good shape!</p>
-<h3>Update <code>dashboard.component.spec.ts</code></h3>
-<p>Copy the following code to replace the contents of <code>src/app/dashboard/dashboard.component.spec.ts</code>:</p>
+<h2>Introduction</h2>
+<p>Each implementation section will be paired with a testing section. These testing sections will go over the basics of how to test the implementation and use of NgRx. Before continuing, you should have an intermediate understanding of the following:</p>
+<ol>
+<li><p><a href="https://angular.io/guide/testing-utility-apis">Angular TestBeds</a> - Although <code>TestBeds</code> aren't required for testing Angular applications, and <a href="https://ngrx.io/guide/store/testing#testing-without-testbed">there are ways to test NgRx without a TestBed</a>, we use <code>TestBeds</code> throughout this course.</p></li>
+<li><p><a href="https://github.com/jasmine/jasmine#a-javascript-testing-framework">Jasmine Unit Tests</a> - Throughout this course, we will be using <a href="https://jasmine.github.io/tutorials/your_first_suite">Jasmine to test our application</a>. Although the syntax will differ slightly between different testing tools such as <a href="https://mochajs.org/">Mocha</a> and <a href="https://jestjs.io/">Jest</a>, the concepts used throughout this course will apply to whatever solution you use in your future projects.</p></li>
+</ol>
+<h2>Description</h2>
+<p>In this section, we will write unit tests involving Actions. When testing Actions, we don't typically test Actions directly. Instead, we test their use in Components, Effects, and Reducers.
+Throughout this course we will cover all these situations. For this section, we will verify that Actions are dispatched when expected by checking their use in Components.</p>
+<h2>Update <code>dashboard.component.spec.ts</code></h2>
+<p>We will walk through updating <code>src/app/dashboard/dashboard.component.spec.ts</code> to run tests for your Actions.</p>
+<h3>Setting Up our <code>TestBed</code></h3>
+<p>When unit testing in general, we should use stubs to isolate parts of our application. Luckily NgRx makes this process simple by providing a way to create a mock <code>Store</code>:</p>
+<ol>
+<li><p><a href="https://ngrx.io/api/store/testing/MockStore">MockStore</a> - <code>MockStore</code> extends the <code>Store</code> class and <a href="https://ngrx.io/guide/store/testing">provides stubs for its methods</a>.</p></li>
+<li><p><a href="https://ngrx.io/api/store/testing/provideMockStore">provideMockStore()</a> - Generates a <code>MockStore</code> instance given a <a href="https://ngrx.io/api/store/testing/MockStoreConfig">configuration</a>.</p></li>
+</ol>
+<p><details open>
+<summary>src/app/dashboard/dashboard.component.spec.ts</summary></p>
+<pre><code class="language-ts">// src/app/dashboard/dashboard.component.spec.ts
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DashboardComponent } from './dashboard.component';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import * as fromLogin from '../store/login/login.reducer';
+
+describe('DashboardComponent', () =&gt; {
+  let component: DashboardComponent;
+  let fixture: ComponentFixture&lt;DashboardComponent&gt;;
+  let store: MockStore&lt;fromLogin.LoginPartialState&gt;;
+
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      declarations: [DashboardComponent],
+      providers: [provideMockStore({})],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(DashboardComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    store = TestBed.inject(MockStore);
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  describe('logout()', () =&gt; {
+    it('should dispatch logout action', () =&gt; {
+      // TODO: Spy on dispatching action
+
+      component.logout();
+
+      // TODO: Verify that LoginActions.logout action was dispatched
+    });
+  });
+
+  describe('username$', () =&gt; {
+    it('should get username from login state', () =&gt; {
+      // TODO: Verify username comes from login state
+    });
+  });
+
+  describe('userId$', () =&gt; {
+    it('should get userId from login state', () =&gt; {
+      // TODO: Verify userId comes from login state
+    });
+  });
+});
+
+</code></pre>
+ <div line-highlight="5-6,11,16,22,only"></div>
+</details>
+<h3>Verify <code>LoginActions.logout</code> Action Dispatches Properly</h3>
+<p>In <code>src/app/dashboard/dashboard.component.spec.ts</code>, there is a <code>describe</code> block with a <code>TODO</code>: &quot;Spy on dispatching action&quot;. We will create a <a href="https://jasmine.github.io/tutorials/your_first_suite#:~:text=%C2%B6-,Spies,-Jasmine%20has%20test">spy</a> to track when our <code>MockStore</code> dispatches an Action:</p>
+<p><details open>
+<summary>src/app/dashboard/dashboard.component.spec.ts</summary></p>
+<pre><code class="language-ts">// src/app/dashboard/dashboard.component.spec.ts
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DashboardComponent } from './dashboard.component';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import * as fromLogin from '../store/login/login.reducer';
+
+describe('DashboardComponent', () =&gt; {
+  let component: DashboardComponent;
+  let fixture: ComponentFixture&lt;DashboardComponent&gt;;
+  let store: MockStore&lt;fromLogin.LoginPartialState&gt;;
+
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      declarations: [DashboardComponent],
+      providers: [provideMockStore({})],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(DashboardComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    store = TestBed.inject(MockStore);
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  describe('logout()', () =&gt; {
+    it('should dispatch logout action', () =&gt; {
+      const spy = spyOn(store, 'dispatch');
+
+      component.logout();
+
+      // TODO: Verify that LoginActions.logout action was dispatched
+    });
+  });
+
+  describe('username$', () =&gt; {
+    it('should get username from login state', () =&gt; {
+      // TODO: Verify username comes from login state
+    });
+  });
+
+  describe('userId$', () =&gt; {
+    it('should get userId from login state', () =&gt; {
+      // TODO: Verify userId comes from login state
+    });
+  });
+});
+
+</code></pre>
+ <div line-highlight="31,only"></div>
+</details>
+<p>Next we will verify that the expected Action was dispatched after <code>logout()</code> is called:</p>
+<p><details open>
+<summary>src/app/dashboard/dashboard.component.spec.ts</summary></p>
+<pre><code class="language-ts">// src/app/dashboard/dashboard.component.spec.ts
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { DashboardComponent } from './dashboard.component';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import * as LoginActions from '../store/login/login.actions';
+import * as fromLogin from '../store/login/login.reducer';
+
+describe('DashboardComponent', () =&gt; {
+  let component: DashboardComponent;
+  let fixture: ComponentFixture&lt;DashboardComponent&gt;;
+  let store: MockStore&lt;fromLogin.LoginPartialState&gt;;
+
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      declarations: [DashboardComponent],
+      providers: [provideMockStore({})],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(DashboardComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    store = TestBed.inject(MockStore);
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  describe('logout()', () =&gt; {
+    it('should dispatch logout action', () =&gt; {
+      const spy = spyOn(store, 'dispatch');
+
+      component.logout();
+
+      expect(spy).toHaveBeenCalledOnceWith(LoginActions.logout());
+    });
+  });
+
+  describe('username$', () =&gt; {
+    it('should get username from login state', () =&gt; {
+      // TODO: Verify username comes from login state
+    });
+  });
+
+  describe('userId$', () =&gt; {
+    it('should get userId from login state', () =&gt; {
+      // TODO: Verify userId comes from login state
+    });
+  });
+});
+
+</code></pre>
+ <div line-highlight="6,36,only"></div>
+</details>
+<blockquote>
+<p>Note that there are 2 more pending <code>TODO</code>s in <code>src/app/dashboard/dashboard.component.spec.ts</code> that will be resolved in upcoming sections. For now we'll only be testing our Actions.</p>
+</blockquote>
+<h2>Update <code>login.component.spec.ts</code></h2>
+<p>We will walk through updating <code>src/app/login/login.component.spec.ts</code> to run tests for your Actions.</p>
+<h3>Setting Up our <code>TestBed</code></h3>
+<p><details open>
+<summary>src/app/login/login.component.spec.ts</summary></p>
+<pre><code class="language-ts">// src/app/login/login.component.spec.ts
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login.component';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import * as fromLogin from '../store/login/login.reducer';
+
+describe('LoginComponent', () =&gt; {
+  let component: LoginComponent;
+  let fixture: ComponentFixture&lt;LoginComponent&gt;;
+  let store: MockStore&lt;fromLogin.LoginPartialState&gt;;
+
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      declarations: [LoginComponent],
+      providers: [provideMockStore({}), FormBuilder],
+      imports: [ReactiveFormsModule],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(LoginComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    store = TestBed.inject(MockStore);
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  describe('submit()', () =&gt; {
+    it('should mark form as touched', () =&gt; {
+      expect(component['form'].touched).toBe(false);
+      component.submit();
+      expect(component['form'].touched).toBe(true);
+    });
+
+    describe('when form is valid', () =&gt; {
+      const mock = {
+        username: 'some-username',
+        password: 'some-password',
+      };
+
+      beforeEach(() =&gt; {
+        component['form'].setValue(mock);
+      });
+
+      it('should have a valid form', () =&gt; {
+        // Verify that form is truly valid for upcoming tests
+        expect(component['form'].valid).toBe(true);
+      });
+
+      it('should dispatch LoginActions.login', () =&gt; {
+        // TODO: Spy on dispatching action
+
+        component.submit();
+
+        // TODO: Verify that LoginActions.login action was dispatched
+      });
+    });
+
+    describe('when form is NOT valid', () =&gt; {
+      const mock = {
+        username: 'some-username',
+        password: '', // password is required
+      };
+
+      beforeEach(() =&gt; {
+        component['form'].setValue(mock);
+      });
+
+      it('should NOT have a valid form', () =&gt; {
+        // Verify that form is truly invalid for upcoming tests
+        expect(component['form'].valid).toBe(false);
+      });
+
+      it('should NOT dispatch LoginActions.login', () =&gt; {
+        // TODO: Spy on dispatching action
+
+        component.submit();
+
+        // TODO: Verify that no action was dispatched
+      });
+    });
+  });
+});
+
+</code></pre>
+ <div line-highlight="6-7,12,17,24,only"></div>
+</details>
+<h3>Verify <code>LoginActions.login</code> Action Dispatches Properly With Form Payload</h3>
+<p>Unlike the <code>LoginActions.logout</code> Action, <code>LoginActions.login</code> Action requires a payload when dispatched. In our test, we will pass the state of our form:</p>
+<p><details open>
+<summary>src/app/login/login.component.spec.ts</summary></p>
+<pre><code class="language-ts">// src/app/login/login.component.spec.ts
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login.component';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import * as LoginActions from '../store/login/login.actions';
+import * as fromLogin from '../store/login/login.reducer';
+
+describe('LoginComponent', () =&gt; {
+  let component: LoginComponent;
+  let fixture: ComponentFixture&lt;LoginComponent&gt;;
+  let store: MockStore&lt;fromLogin.LoginPartialState&gt;;
+
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      declarations: [LoginComponent],
+      providers: [provideMockStore({}), FormBuilder],
+      imports: [ReactiveFormsModule],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(LoginComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    store = TestBed.inject(MockStore);
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  describe('submit()', () =&gt; {
+    it('should mark form as touched', () =&gt; {
+      expect(component['form'].touched).toBe(false);
+      component.submit();
+      expect(component['form'].touched).toBe(true);
+    });
+
+    describe('when form is valid', () =&gt; {
+      const mock = {
+        username: 'some-username',
+        password: 'some-password',
+      };
+
+      beforeEach(() =&gt; {
+        component['form'].setValue(mock);
+      });
+
+      it('should have a valid form', () =&gt; {
+        // Verify that form is truly valid for upcoming tests
+        expect(component['form'].valid).toBe(true);
+      });
+
+      it('should dispatch LoginActions.login', () =&gt; {
+        const spy = spyOn(store, 'dispatch');
+
+        component.submit();
+
+        expect(spy).toHaveBeenCalledOnceWith(LoginActions.login(mock));
+      });
+    });
+
+    describe('when form is NOT valid', () =&gt; {
+      const mock = {
+        username: 'some-username',
+        password: '', // password is required
+      };
+
+      beforeEach(() =&gt; {
+        component['form'].setValue(mock);
+      });
+
+      it('should NOT have a valid form', () =&gt; {
+        // Verify that form is truly invalid for upcoming tests
+        expect(component['form'].valid).toBe(false);
+      });
+
+      it('should NOT dispatch LoginActions.login', () =&gt; {
+        // TODO: Spy on dispatching action
+
+        component.submit();
+
+        // TODO: Verify that no action was dispatched
+      });
+    });
+  });
+});
+
+</code></pre>
+ <div line-highlight="7,55,59,only"></div>
+</details>
+<h3>Verify <code>LoginActions.login</code> Action Does NOT Dispatch When Necessary</h3>
+<p><details open>
+<summary>src/app/login/login.component.spec.ts</summary></p>
+<pre><code class="language-ts">// src/app/login/login.component.spec.ts
+
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login.component';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import * as LoginActions from '../store/login/login.actions';
+import * as fromLogin from '../store/login/login.reducer';
+
+describe('LoginComponent', () =&gt; {
+  let component: LoginComponent;
+  let fixture: ComponentFixture&lt;LoginComponent&gt;;
+  let store: MockStore&lt;fromLogin.LoginPartialState&gt;;
+
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      declarations: [LoginComponent],
+      providers: [provideMockStore({}), FormBuilder],
+      imports: [ReactiveFormsModule],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(LoginComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    store = TestBed.inject(MockStore);
+  });
+
+  it('should create', () =&gt; {
+    expect(component).toBeTruthy();
+  });
+
+  describe('submit()', () =&gt; {
+    it('should mark form as touched', () =&gt; {
+      expect(component['form'].touched).toBe(false);
+      component.submit();
+      expect(component['form'].touched).toBe(true);
+    });
+
+    describe('when form is valid', () =&gt; {
+      const mock = {
+        username: 'some-username',
+        password: 'some-password',
+      };
+
+      beforeEach(() =&gt; {
+        component['form'].setValue(mock);
+      });
+
+      it('should have a valid form', () =&gt; {
+        // Verify that form is truly valid for upcoming tests
+        expect(component['form'].valid).toBe(true);
+      });
+
+      it('should dispatch LoginActions.login', () =&gt; {
+        const spy = spyOn(store, 'dispatch');
+
+        component.submit();
+
+        expect(spy).toHaveBeenCalledOnceWith(LoginActions.login(mock));
+      });
+    });
+
+    describe('when form is NOT valid', () =&gt; {
+      const mock = {
+        username: 'some-username',
+        password: '', // password is required
+      };
+
+      beforeEach(() =&gt; {
+        component['form'].setValue(mock);
+      });
+
+      it('should NOT have a valid form', () =&gt; {
+        // Verify that form is truly invalid for upcoming tests
+        expect(component['form'].valid).toBe(false);
+      });
+
+      it('should NOT dispatch LoginActions.login', () =&gt; {
+        const spy = spyOn(store, 'dispatch');
+
+        component.submit();
+
+        expect(spy).not.toHaveBeenCalled();
+      });
+    });
+  });
+});
+
+</code></pre>
+ <div line-highlight="79,83,only"></div>
+</details>
+<h2>Final Result</h2>
+<p>At the end of this section, the following spec file(s) should be updated. After each spec file has been updated and all the tests have passed, this means that all the previous sections have been completed successfully:</p>
 <p><details>
 <summary>src/app/dashboard/dashboard.component.spec.ts</summary></p>
 <pre><code class="language-ts">// src/app/dashboard/dashboard.component.spec.ts
@@ -626,9 +1105,8 @@ describe('DashboardComponent', () =&gt; {
 });
 
 </code></pre>
-<p></details></p>
-<h3>Update <code>login.component.spec.ts</code></h3>
-<p>Copy the following code to replace the contents of <code>src/app/dashboard/dashboard.component.spec.ts</code>:</p>
+ <div line-highlight="5-7,12,17,23,32,36,only"></div>
+</details>
 <p><details>
 <summary>src/app/login/login.component.spec.ts</summary></p>
 <pre><code class="language-ts">// src/app/login/login.component.spec.ts
@@ -720,7 +1198,8 @@ describe('LoginComponent', () =&gt; {
 });
 
 </code></pre>
-<p></details></p>
+ <div line-highlight="6-8,13,18,25,55,59,79,83,only"></div>
+</details>
 <blockquote>
 <p><strong>Wrap-up</strong>: By the end of this section, your code should match <a href="https://github.com/bitovi/angular-ngrx-chat/tree/test-actions">this branch</a>. You can also compare the <a href="https://github.com/bitovi/angular-ngrx-chat/compare/dispatch-actions...test-actions">code changes for our solution to this section</a> on GitHub or you can use the following command in your terminal:</p>
 </blockquote>
