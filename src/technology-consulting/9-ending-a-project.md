@@ -11,7 +11,7 @@ Every project comes to an end, and hopefully yours is ending sucessfully if you'
 
 ## Client Feedback
 
-The most important task is collecting feedback on how the project went from the client's team and stakeholders. The big question here should be, "how did we do on goals?" While there should be no surprises here, it's important to listen to and document their feedback. These will provide critical learnings for how you can deliver more value on future projects. 
+The most important task is collecting feedback on how the project went from the client's team and stakeholders. The big question here should be, "how did we do on goals?" While there should be no surprises here, it's important to listen to and document their feedback. These will provide critical learnings for how you can deliver more value on future projects.
 
 ## Post-mortem
 
@@ -29,18 +29,18 @@ Share these notes with the entire company, and make them available for future de
 
 Use the success of your project to your advantage, and collect sales material for the future.
 
-### Testimonials
+### _Testimonials_
 
 Testimonials can be used on your website, shared on your social media, or used as references during future sales meetings. Ask client team members and stakeholders to write 3-4 sentences about a problem they had, and how you helped them solve it.
 
-### Referrals
+### _Referrals_
 
 If client stakeholders had a good experience working with you, they should be willing to refer you to friends and colleagues that may need similiar services. Don't be afraid to reach out and ask them for a referal!
 
-### Social Media
+### _Social Media_
 
 Ask the client to post a recommendation for your work on their social media. This will give you exposure to a new audience you previously weren't connected to.
 
-### Case studies
+### _Case studies_
 
 Adding a case study to your blog or website will allow you to showcase your work to future clients. Include any testimonials and social media recommendations you received. Highlight the unique problems you solved for this client, and how they benefitted from your work.

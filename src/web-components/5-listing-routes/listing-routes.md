@@ -63,7 +63,7 @@ To display the routes we want to create an `<li>` for each route and attach it t
 
 `fetch` is a function on the `window` object that is used to make network requests. In its simplest form it only needs a string URL, which will be used to make a [GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET) request.
 
-fetch differs slightly from the older [XMLHttpRequest](XMLHttpRequest) in a variety of ways; for example fetch does not include cookies by default. It's easier to use, however, because it uses [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). If you don't need to support Internet Explorer you'll probably want to use fetch in your applications.
+fetch differs slightly from the older [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) in a variety of ways; for example fetch does not include cookies by default. It's easier to use, however, because it uses [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). If you don't need to support Internet Explorer you'll probably want to use fetch in your applications.
 
 `fetch()` returns a [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response) object. To get a JSON object from this use `response.json()` like so:
 
@@ -95,6 +95,7 @@ document.body.append(el);
 el.textContent = 'Hello from .textContent';
 ```
 @codepen
+@highlight 4
 
 This is equivalent to creating [Text](https://developer.mozilla.org/en-US/docs/Web/API/Document/createTextNode) nodes:
 
@@ -110,6 +111,7 @@ setTimeout(() => {
 }, 3000);
 ```
 @codepen
+@highlight 4-9
 
 Usually you will use `.textContent` unless building a library where performance is critical. textContent is the most convenient way to change an element's text.
 
@@ -123,10 +125,11 @@ Loop over the routes and clone an instance of the template filling in the route 
 
 At the end of the `getRoutes` method remove the `#loading-routes` element.
 
+<details>
+<summary>Click to see the solution</summary>
+
 @sourceref ./index.html
 @highlight 179-187,214-218,221,231,234-253,only
 @codepen
 
-<p style="font-weight: bold; text-align: center;">
-[learn-web-components/select-a-route 👉 Selecting a route]
-</p>
+</details>

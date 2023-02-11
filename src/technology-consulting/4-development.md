@@ -11,22 +11,20 @@
 After creating [learn-technology-consulting/goals goals], and [learn-technology-consulting/prioritization prioritizing] the
 features that add the most value to your users, you _might_ be ready to actually build something.
 
-The _goal_ of development is to support a __product's__
+The _goal_ of development is to support a **product's**
 development. Limited to a technical perspective (given
 the right features), a
-good product is __error free__ and __high-performance__.
+good product is **error free** and **high-performance**.
 
-Time and budget are always constraints on achieving this _goal_. So a good development process __quickly__
-and __sustainably__ adds  features. This is
-what we mean by __efficient development__.
+Time and budget are always constraints on achieving this _goal_. So a good development process **quickly**
+and **sustainably** adds features. This is
+what we mean by **efficient development**.
 
-The key/secret to efficient development is __maintainability__. Maintainability is how easily a codebase can respond to change. A highly maintainable app enables the most efficient development, which allows you to quickly improve the application, resulting in something that is error free, fast, has a better user experience,
+The key/secret to efficient development is **maintainability**. Maintainability is how easily a codebase can respond to change. A highly maintainable app enables the most efficient development, which allows you to quickly improve the application, resulting in something that is error free, fast, has a better user experience,
 and adds more customer value.
 
 This page is a list of characteristics of a maintainable
 application and team.
-
-
 
 ## Checklist
 
@@ -35,7 +33,7 @@ application and team.
 <details>
 <summary>Required</summary>
 
-Source control is:
+**Source control is:**
 
 <input type="checkbox"/> Used
 
@@ -43,7 +41,7 @@ Source control is:
 
 <input type="checkbox"/> Used with a branch and merge strategy.
 
-An issue tracker is:
+**An issue tracker is:**
 
 <input type="checkbox"/> Used
 
@@ -51,7 +49,7 @@ An issue tracker is:
 
 <input type="checkbox"/> Used by non developers.
 
-The following environments exist
+**The following environments exist**
 
 <input type="checkbox"/> Development
 
@@ -61,7 +59,7 @@ The following environments exist
 
 <input type="checkbox"/> Production
 
-A 1-3 step process for the following exist:
+**A 1-3 step process for the following exist:**
 
 <input type="checkbox"/> Setting up a development environment
 
@@ -69,28 +67,26 @@ A 1-3 step process for the following exist:
 
 <input type="checkbox"/> Building the application into a production distributable.
 
-<input type="checkbox"/> Deploy to test and staging.- <input type="checkbox"/>
+<input type="checkbox"/> Deploy to test and staging.
 
-Continuous Integration:
+**Continuous Integration:**
 
 <input type="checkbox"/> Exists
 
 <input type="checkbox"/> Runs on all commits / pushes
-
-Continuous Integration:
-
-<input type="checkbox"/> Exists
 
 </details>
 
 <details>
 <summary>Recommended</summary>
 
-Portability:
+**Portability:**
 
-<input type="checkbox"/> __Containerized microservices__ - The application self-documents the environment in which it runs. That documentation is widely known (Example: docker files)
+<input type="checkbox"/> Containerized microservices
 
-Cloud Deployment:
+- The application self-documents the environment in which it runs. That documentation is widely known (Example: docker files)
+
+**Cloud Deployment:**
 
 <input type="checkbox"/> The application is able to be started and stopped on new machines easily.
 
@@ -98,13 +94,13 @@ Cloud Deployment:
 
 <input type="checkbox"/> New machines are able to be created across multiple platforms.
 
-Monitoring:
+**Monitoring:**
 
 <input type="checkbox"/> Vital app performance characteristics are measured (errors, CPU, Memory)
 
 <input type="checkbox"/> Errors (client and server side) are automatically emailed to team
 
-Reporting:
+**Reporting:**
 
 <input type="checkbox"/> Vital app performance characteristics are reported and analyzed every 1-6 weeks
 
@@ -112,82 +108,103 @@ Reporting:
 
 ### Code quality
 
-Is the high level architecture documented and followed?
+<details>
+<summary>Required</summary>
 
-- <input type="checkbox"/> Yes
-- <input type="checkbox"/> No
+**Is the high level architecture documented and followed?**
 
-Are there unit tests?
+<input type="radio"/> Yes
+<input type="radio"/> No
 
-- <input type="checkbox"/> Yes
-- <input type="checkbox"/> No
+**Are there unit tests?**
 
+<input type="radio"/> Yes
+<input type="radio"/> No
 
-Is there documentation for the code?
+**Is there documentation for the code?**
 
-- <input type="checkbox"/> Yes
-- <input type="checkbox"/> No
+<input type="radio"/> Yes
+<input type="radio"/> No
 
-All modules include:
+**All modules include:**
 
-- <input type="checkbox"/> High level documentation.
-- <input type="checkbox"/> Tests
-- <input type="checkbox"/> Inline documentation
-- <input type="checkbox"/> A demo
+<input type="checkbox"/> High level documentation.
 
-Are there performance tests?
+<input type="checkbox"/> Tests
 
-- <input type="checkbox"/> Yes
-- <input type="checkbox"/> No
+<input type="checkbox"/> Inline documentation
 
-The service layer is:
+<input type="checkbox"/> A demo
 
-- <input type="checkbox"/> RESTful
-- <input type="checkbox"/> Documented
-- <input type="checkbox"/> Tested
-- <input type="checkbox"/> Built / working
+**Are there performance tests?**
 
-Is technical debt measured? _Is some value (often in days / weeks) of technical debt calculated?_
+<input type="radio"/> Yes
+<input type="radio"/> No
 
-- <input type="checkbox"/> Yes
-- <input type="checkbox"/> No
+**The service layer is:**
 
-Is technical debt factored into estimates? _Do estimations of time, or points, or effort include discussions of technical debt?_
+<input type="checkbox"/> RESTful
 
-- <input type="radio"/> Yes
-- <input type="radio"/> No
+<input type="checkbox"/> Documented
+
+<input type="checkbox"/> Tested
+
+<input type="checkbox"/> Built / working
+
+</details>
+
+<details>
+<summary>Recommended</summary>
+
+**Is technical debt measured?** _Is some value (often in days / weeks) of technical debt calculated?_
+
+<input type="radio"/> Yes
+<input type="radio"/> No
+
+**Is technical debt factored into estimates?** _Do estimations of time, or points, or effort include discussions of technical debt?_
+
+<input type="radio"/> Yes
+<input type="radio"/> No
+
+</details>
 
 ### Team
 
+<details>
+<summary>Recommended</summary>
+**Is there a QA team or resource?**
 
-Is there a QA team or resource?
+<input type="radio"/> Yes
+<input type="radio"/> No
 
-- <input type="radio"/> Yes
-- <input type="radio"/> No
+**Are teams grouped by specialty?** _Example: client vs server_
 
-Are teams grouped by specialty? _Example: client vs server_
+<input type="radio"/> Yes
+<input type="radio"/> No
 
-- <input type="radio"/> Yes
-- <input type="radio"/> No
+**Do you work alongside the client's developers?**
 
-Do you work alongside the client's developers?
+<input type="radio"/> Yes
+<input type="radio"/> No
 
-- <input type="radio"/> Yes
-- <input type="radio"/> No
+**Is every piece of code known to at least two people?** _No piece of code should be "workable" by only one person._
 
-Is every piece of code known to at least two people? _No piece of code should be "workable" by only one person._
+<input type="radio"/> Yes
+<input type="radio"/> No
 
-- <input type="radio"/> Yes
-- <input type="radio"/> No
+**There are code reviews:**
 
-There are code reviews
+<input type="radio"/> Every commit
 
-- <input type="radio"/> Every commit
-- <input type="radio"/> Every week
-- <input type="radio"/> Every month
-- <input type="radio"/> Of new people's code
-- <input type="radio"/> Never
+<input type="radio"/> Every week
 
+<input type="radio"/> Every month
+
+<input type="radio"/> Of new people's code
+
+<input type="radio"/> Never
+
+</details>
 
 ## Methodologies
 
@@ -201,9 +218,8 @@ Summary:
 
 Guides:
 
-
-- [Atlassian](https://www.atlassian.com/agile/scrum)
-- [Scrum Guide](https://www.scrumguides.org/scrum-guide.html)
+- [Atlassian - What is Scrum?](https://www.atlassian.com/agile/scrum)
+- [The Scrum Guide](https://www.scrumguides.org/scrum-guide.html)
 
 ### Kanban
 
@@ -215,7 +231,7 @@ Summary:
 
 Guides:
 
-- [Atlassian](https://www.atlassian.com/agile/kanban)
+- [Atlassian - What is Kanban?](https://www.atlassian.com/agile/kanban)
 
 ### Extreme Programming
 
@@ -230,7 +246,7 @@ Guides:
 ## Versioning and Environment Workflows
 
 This document describes the process of development workflows with respect to versioning software and application environments (dev, test, staging, prod). The specifics on your project should be documented in the
-[learn-technology-consulting/transitioning-to-delivery#app-summary-document App Summary Document]
+[learn-technology-consulting/transitioning-to-delivery#engagement-summary-document Engagement Summary Document]
 
 - Versioning Software: GitHub
 - Continuous Integration: TravisCI
@@ -242,21 +258,19 @@ This document describes the process of development workflows with respect to ver
     new features or test their code in a near production environment.
 - Branches
   - master - Represents the features that will go onto staging.
-  - `{ISSUE_NUM}_FEATURE` - A feature branch that is forked from `master`.  When ready, it is merged into `master`
-  - `RELEASE-pre.X` - A tagged version of master that will be pushed to _Staging_ for testing.  If successful, it will be tagged without `-pre.X` for released.
-  - `RELEASE` - A release that will be pushed to _Production_.  
+  - `{ISSUE_NUM}_FEATURE` - A feature branch that is forked from `master`. When ready, it is merged into `master`
+  - `RELEASE-pre.X` - A tagged version of master that will be pushed to _Staging_ for testing. If successful, it will be tagged without `-pre.X` for released.
+  - `RELEASE` - A release that will be pushed to _Production_.
 
-## Ops
+<!-- TODO: Requires Content Creation -->
+<!-- ## Ops -->
 
-- Continuous Integration
-- Continuous Deployment
-- Monitoring
+<!-- - Continuous Integration -->
+<!-- - Continuous Deployment -->
+<!-- - Monitoring -->
 
+<!-- ## Roles -->
 
+<!-- ### Service Owner -->
 
-
-## Roles
-
-### Service Owner
-
-- [How it relates to devOps](https://www.atlassian.com/agile/devops)
+<!-- - [How it relates to devOps](https://www.atlassian.com/agile/devops) -->

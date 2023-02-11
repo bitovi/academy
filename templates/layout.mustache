@@ -6,6 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
   <meta name="description" content="{{description}}">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
   <title>{{getTitle}}</title>
   {{#unless (siteConfig "devBuild")}}
   <link rel="stylesheet" type="text/css" href="{{pathToDest}}/static/bundles/bit-docs-site/static.css">
@@ -13,6 +22,11 @@
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
   <div class="header">
     <div class="logo">
       <a href="https://www.bitovi.com/">Bitovi</a>
@@ -65,6 +79,18 @@
       gtag('config', 'UA-2302003-12');
     </script>
 
+  </div>
+  <div id="email-modal" style="display: none;">
+    <div aria-hidden="true" class="email-modal-backdrop"></div>
+    <div role="region" class="email-modal-content">
+      <h2>Join the Bitovi Newsletter</h2>
+      <p>
+        To start the course, please provide an email.<br />
+        <i style="font-size: 0.8rem;">By providing your email you agree to receive communications from Bitovi</i>
+      </p>
+      <div id="academy-hubspot-form-embed"></div>
+      <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+    </div>
   </div>
 </body>
 </html>

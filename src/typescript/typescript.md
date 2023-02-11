@@ -15,12 +15,12 @@ ready to develop projects in TypeScript.
 Join Bitovi's Slack Community to get help on Bitovi Academy courses or other
 Angular, React, CanJS and JavaScript problems.
 
-Please ask questions related to TypeScript in the [Angular chat room](https://bitovi-community.slack.com/messages/CFD2J3HT3).
+Please ask questions related to TypeScript in the [TypeScript chat room](https://bitovi-community.slack.com/archives/CJ4K07T7F).
 
 If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/academy/issues) or email `contact@bitovi.com`.
 
 
-## <img src="./static/img/typescript/logo.svg" width="50%"/>
+<img src="./static/img/typescript/logo.svg" width="50%"/>
 
 TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.
 
@@ -32,7 +32,7 @@ Angular and many other frameworks use TypeScript to take advantage of its typech
 - IDE Support - configure TypeScript and learn about different IDEs that help support TypeScript development.
 - Types - understand basic types and how to enforce them.
   ```typescript
-  let isCarnivore: boolean = true;
+  let isCarnivore: boolean;
   ```
 - Functions - how to annotate functions parameters and return values, different parameter types available, and how to bind `this`.
   ```typescript
@@ -42,11 +42,11 @@ Angular and many other frameworks use TypeScript to take advantage of its typech
   ```
 - Classes - using classes and inheritance in TypeScript, explaining the ``constructor`` method, and using public, private, protected, and readonly modifiers.
   ```typescript
-  class ParkEmployee {
-    name: string;
-    constructor(name) { this.name = name; }
-    sayHi() {
-      console.log(`Hi, my name is ${this.name}`);
+  class Human {
+    constructor(public firstName: string, public lastName: string) {}
+
+    getFullName(): string {
+      return `${this.firstName} ${this.lastName}`;
     }
   }
   ```
@@ -68,3 +68,7 @@ Angular and many other frameworks use TypeScript to take advantage of its typech
     }
   }
   ```
+
+## Next Steps
+
+✏️ Head over to the [first lesson](learn-typescript/why-typescript.html) and get your environment setup.

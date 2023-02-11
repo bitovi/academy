@@ -1,0 +1,100 @@
+<div class="order-form">
+  <ng-container *ngIf="orderComplete && completedOrder; else showOrderForm">
+    <h3>Thanks for your order {{ completedOrder.name }}!</h3>
+    <div>
+      <label class="control-label">
+        Confirmation Number: {{ completedOrder._id }}</label
+      >
+    </div>
+
+    <h4>Items ordered:</h4>
+    <ul class="list-group panel">
+      <li class="list-group-item" *ngFor="let item of completedOrder.items">
+        <label>
+          {{ item.name }}
+          <span class="badge">{{ item.price | currency }}</span>
+        </label>
+      </li>
+
+      <li class="list-group-item">
+        <label>
+          Total <span class="badge">{{ orderTotal | currency }}</span>
+        </label>
+      </li>
+    </ul>
+
+    <div>
+      <label class="control-label"> Phone: {{ completedOrder.phone }} </label>
+    </div>
+    <div>
+      <label class="control-label">
+        Address: {{ completedOrder.address }}
+      </label>
+    </div>
+    <p>
+      <button (click)="startNewOrder()">Place another order</button>
+    </p>
+  </ng-container>
+  <ng-template #showOrderForm>
+    <h2>Order here</h2>
+    <form *ngIf="orderForm" [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+      <tabset>
+        <tab heading="Lunch Menu" *ngIf="restaurant?.menu?.lunch">
+          <ul class="list-group">
+            <pmo-menu-items
+              [items]="restaurant?.menu?.lunch"
+              formControlName="items"
+            ></pmo-menu-items>
+          </ul>
+        </tab>
+        <tab heading="Dinner Menu" *ngIf="restaurant?.menu?.dinner">
+          <ul class="list-group">
+            <pmo-menu-items
+              [items]="restaurant?.menu?.dinner"
+              formControlName="items"
+            ></pmo-menu-items>
+          </ul>
+        </tab>
+      </tabset>
+      <div class="form-group">
+        <label class="control-label">Name:</label>
+        <input
+          name="name"
+          type="text"
+          formControlName="name"
+        />
+        <p>Please enter your name.</p>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Address:</label>
+        <input
+          name="address"
+          type="text"
+          formControlName="address"
+        />
+        <p class="help-text">Please enter your address.</p>
+      </div>
+      <div class="form-group">
+        <label class="control-label">Phone:</label>
+        <input
+          name="phone"
+          type="text"
+          pmoOnlyNumbers
+          formControlName="phone"
+        />
+        <p class="help-text">Please enter your phone number.</p>
+      </div>
+      <div class="submit">
+        <h4>Total: {{ orderTotal | currency }}</h4>
+        <div class="loading" *ngIf="orderProcessing"></div>
+        <button
+          type="submit"
+          [disabled]="!orderForm.valid || orderProcessing"
+          class="btn"
+        >
+          Place My Order!
+        </button>
+      </div>
+    </form>
+  </ng-template>
+</div>

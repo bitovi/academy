@@ -28,7 +28,7 @@ const { ReactiveFormsModule, FormControl } = ng.forms;
   ],
   template: `
     <p>Parent component!</p>
-    <p>Message from child: {{message}}</p>
+    <p>Message from child: {{ message }}</p>
     <child-component (sendMessage)="getMessage($event)"></child-component>
   `
 })
@@ -36,12 +36,12 @@ class ParentComponent implements OnInit {
   public message: string;
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
 
   }
 
-  getMessage(ev) {
-    this.message = ev;
+  getMessage(event): void {
+    this.message = event;
   }
 }
 
@@ -70,11 +70,11 @@ class ChildComponent implements OnInit {
  
   constructor() {}
 
-  ngOnInit() {
+  ngOnInit(): void {
 
   }
 
-  callToEmit() {
+  callToEmit(): void {
     this.sendMessage.emit(this.childMessage.value);
   }
 }

@@ -114,10 +114,11 @@ el.shadowRoot.append(frag);
 
 ✏️ Wrap the `<header>` within the bus-tracker component with a `<slot name="header">`. This will completely replace the header if a child element provides the `slot="header"` attribute value.
 
+<details>
+<summary>Click to see the solution</summary>
+
 @sourceref ./index.html
 @highlight 17-21,26-28,168-173,only
 @codepen
 
-<p style="font-weight: bold; text-align: center;">
-[learn-web-components/dispatching-events 👉 Dispatching events]
-</p>
+</details>

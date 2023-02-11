@@ -22,9 +22,9 @@ Currently, we are showing a list of all restaurants:
   style="border: solid 1px black; max-width: 320px;"/>
 
 We would like our user to be able to filter restaurants based on city and state. To accomplish this,
-we will need to implement a reactive form with two controls, `state` and `city`, that are dropdowns displaying a list of cities and states.  It will look like the following:
+we will need to implement a reactive form with two controls, `state` and `city`, that are dropdowns displaying a list of cities and states. It will look like the following:
 
-![Place My Order App city and state dropdowns](../static/img/angular/pmo-dropdowns.gif "Place My Order App city and state dropdowns")
+![Place My Order App city and state dropdowns](../static/img/angular/pmo-dropdowns.gif 'Place My Order App city and state dropdowns')
 
 ## Technical Requirements
 
@@ -32,46 +32,42 @@ Create a reactive form with two formControls, `state` and `city`, and use the `f
 
 ## Setup
 
-Here's some code to get you started.  Notice that:
+Here's some code to get you started. Notice that:
 
 - `cities` and `states` are hard coded (for this exercise).
 - A `FormBuilder` instance is injected as the `fb` property.
 - `createForm` is empty. Use it to initialize the form control.
 
-✏️ Update __src/app/restaurant/restaurant.component.ts__ to:
+✏️ Update **src/app/restaurant/restaurant.component.ts** to:
 
 @diff ../7-pull-restaurant-data-into-view/restaurant.component.ts ./restaurant.component-starter.ts only
-
 
 Make sure to use the `formControl` directive to tie the selects to
 their FormControls in the component.
 
-✏️ Update __src/app/restaurant/restaurant.component.html__ to include
+✏️ Update **src/app/restaurant/restaurant.component.html** to include
 some boilerplate for the state and city `<select>` controls:
 
 @diff ../7-pull-restaurant-data-into-view/restaurant.component.html ./restaurant.component-starter.html only
 
+✏️ Update **src/app/app.module.ts** to import reactiveForms in the root app module:
 
-✏️ Update __src/app/app.module.ts__ to import reactiveForms in the root app module:
-
-@diff ../6-restaurant-service/app.module.ts ./app.module.ts
-
+@diff ../6-restaurant-service/app.module.ts ./app.module.ts only
 
 ## How to Verify Your Solution is Correct
 
-When you visit <a href="http://localhost:4200/restaurants" target="\_blank">localhost:4200/restaurants</a>, there will now be state and city dropdown options populated with fake data.
+When you visit <a href="http://localhost:4200/restaurants" >localhost:4200/restaurants</a>, there will now be state and city dropdown options populated with fake data.
 
-![Place My Order App city and state dropdowns](../static/img/angular/pmo-dropdowns.gif "Place My Order App city and state dropdowns")
+![Place My Order App city and state dropdowns](../static/img/angular/pmo-dropdowns.gif 'Place My Order App city and state dropdowns')
 
-✏️ Update the spec file  __src/app/restaurant/restaurant.component.spec.ts__ to be:
+✏️ Update the spec file **src/app/restaurant/restaurant.component.spec.ts** to be:
 
 @sourceref ./restaurant.component.spec.ts
-@highlight 8,116,294-299,301-307,309-315, only
+@highlight 7,122,293-297,299-306,308-313, only
 
-✏️ Update the spec file  __src/app/app.component.spec.ts__ to be:
+✏️ Update the spec file **src/app/app.component.spec.ts** to be:
 
-@diff ../7-pull-restaurant-data-into-view/app.component.spec.ts ./app.component.spec.ts
-
+@diff ../7-pull-restaurant-data-into-view/app.component.spec.ts ./app.component.spec.ts only
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
@@ -80,14 +76,14 @@ When you visit <a href="http://localhost:4200/restaurants" target="\_blank">loca
 To solve this, you will need to know:
 
 - How to create a FormControl
-- How to use `formControl` directive in the dom
+- How to use `formControl` directive in the DOM
 - How to create a FormGroup
 - How to use FormBuilder
 - How to use ngFor (you learned this in the Creating Components section! ✔️)
 
 ## Reactive Forms
 
-We're eventually going to use select boxes to handle our user's input. Angular's <a href="https://angular.io/guide/reactive-forms" target="\_blank">Reactive Forms</a> API provides a clean way to get data from user input and do work based on it.
+We're eventually going to use select boxes to handle our user's input. Angular's <a href="https://angular.io/guide/reactive-forms" >Reactive Forms</a> API provides a clean way to get data from user input and do work based on it.
 
 > From the docs: Reactive forms use an explicit and immutable approach to managing the state of a form at a given point in time. Each change to the form state returns a new state, which maintains the integrity of the model between changes. Reactive forms are built around observable streams, where form inputs and values are provided as streams of input values, which can be accessed synchronously.
 
@@ -101,8 +97,8 @@ To use reactive forms we must import our ReactiveFormsModule into the root app.
 
 ## FormControl
 
-The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl" target="\_blank">FormControl</a>. This class manages the form input model and connection to it's input element in the dom and inherits from the <a href="https://angular.io/api/forms/AbstractControl" target="\_blank">AbstractControl</a>
-class. It's worth getting familiar with the methods available in this class (like setValidators and patchValue), as they're used quite often in reactive form development. The formControl is bound to it's element in the dom using the `[formControl]` directive.
+The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl" >FormControl</a>. This class manages the form input model and connection to it's input element in the DOM and inherits from the <a href="https://angular.io/api/forms/AbstractControl" >AbstractControl</a>
+class. It's worth getting familiar with the methods available in this class (like setValidators and patchValue), as they're used quite often in reactive form development. The formControl is bound to it's element in the DOM using the `[formControl]` directive.
 
 @sourceref ./form-control.html
 @codepen
@@ -110,7 +106,7 @@ class. It's worth getting familiar with the methods available in this class (lik
 
 ## FormGroup
 
-A FormGroup is a way of grouping FormControls and tracking the state of the entire group. For instance, if you want to get the values of all of your FormControls to submit as an object of those values, you'd use `formGroupname.value`. Notice the way we connect our input in the markup is slightly different - we use can use the `formControlName` directive to bind to the name value of a FormControl in our FormGroup. Groups can be nested within other groups or arrays.  
+A <a href="https://angular.io/api/forms/FormGroup" >FormGroup</a> is a way of grouping FormControls and tracking the state of the entire group. For instance, if you want to get the values of all of your FormControls to submit as an object of those values, you'd use `formGroupName.value`. Notice the way we connect our input in the markup is slightly different - we can use the `formControlName` directive to bind to the name value of a FormControl in our FormGroup. Groups can be nested within other groups or arrays.
 
 @sourceref ./form-group.html
 @codepen
@@ -118,7 +114,7 @@ A FormGroup is a way of grouping FormControls and tracking the state of the enti
 
 ## FormArray
 
-FormArray aggregates FormControls into an array. It's different than FormGroup in that the controls inside are serialized as an array. FormArrays are very useful when dealing with repeated FormControls or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.
+A <a href="https://angular.io/api/forms/FormArray" >FormArray</a> aggregates FormControls into an array. It's different than FormGroup in that the controls inside are serialized as an array. FormArrays are very useful when dealing with repeated FormControls or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.
 
 This example shows the use of FormArray and using an `insert` method to dynamically add more FormGroups to the `users` FormArray.
 
@@ -128,7 +124,7 @@ This example shows the use of FormArray and using an `insert` method to dynamica
 
 ## FormBuilder
 
-<a href="https://angular.io/api/forms/FormBuilder" target="\_blank">FormBuilder</a> is a shorthand way to quickly write forms by reducing boilerplate code of manually having to write `new FormControl`, `new FormGroup`, `new FormArray` repeatedly.
+<a href="https://angular.io/api/forms/FormBuilder">FormBuilder</a> is a shorthand way to quickly write forms by reducing boilerplate code of manually having to write `new FormControl`, `new FormGroup`, `new FormArray` repeatedly.
 
 @sourceref ./form-builder.html
 @codepen
@@ -136,12 +132,16 @@ This example shows the use of FormArray and using an `insert` method to dynamica
 
 ## The Solution
 
-✏️ Update __src/app/restaurant/restaurant.component.ts__ to:
+<details>
+<summary>Click to see the solution</summary>
+✏️ Update **src/app/restaurant/restaurant.component.ts** to:
 
 @sourceref ./restaurant.component.ts
-@highlight 2,18,25-39,42,50-55
+@highlight 2,17,18,23-35,49-55
 
-✏️ Update __src/app/restaurant/restaurant.component.html__ to:
+✏️ Update **src/app/restaurant/restaurant.component.html** to:
 
 @sourceref ./restaurant.component.html
-@highlight 6,10,16,20,only
+@highlight 6,10-12,18,22-24,only
+
+</details>

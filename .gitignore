@@ -1,6 +1,5 @@
-doc/
 node_modules/
 academy/
 .env
-
+.vscode/
 .DS_Store

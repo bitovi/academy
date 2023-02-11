@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-
 import { Restaurant } from './restaurant';
 
 export interface ResponseData {
@@ -9,13 +9,14 @@ export interface ResponseData {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RestaurantService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
-
-  getRestaurants() {
-    return this.httpClient.get<ResponseData>(environment.apiUrl + '/restaurants');
+  getRestaurants(): Observable<ResponseData> {
+    return this.httpClient.get<ResponseData>(
+      environment.apiUrl + '/restaurants'
+    );
   }
 }

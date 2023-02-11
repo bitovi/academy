@@ -32,8 +32,10 @@ If you find bugs in this training or have suggestions, create an [issue](https:/
 - [learn-advanced-javascript/closures] - How closures and functions work.
 - [learn-advanced-javascript/context] - How `this` works.
 - [learn-advanced-javascript/prototypes] - How prototypal inheritance works.
+- [learn-advanced-javascript/classes] - How Classes work.
+- [learn-advanced-javascript/promises] - How Promises work
 
-At the end, you should have a firm understanding the core features of JavaScript.  We will
+At the end, you should have a firm understanding of the core features of JavaScript.  We will
 be building the following mental model:
 
-<a href="./static/img/js-handout.png" target="\_blank"><img src="./static/img/js-handout.png" width="50%"/></a>
+<a href="./static/img/js-handout.png"><img src="./static/img/js-handout.png" width="50%"/></a>

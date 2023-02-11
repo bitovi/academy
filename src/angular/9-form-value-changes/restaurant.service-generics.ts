@@ -1,10 +1,11 @@
-import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Restaurant } from './restaurant';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
+import { Restaurant } from './restaurant';
 
-export interface ResponseData<dataType> {
-  data: Array<dataType>;
+export interface ResponseData<DataType> {
+  data: DataType[];
 }
 
 export interface State {
@@ -18,22 +19,28 @@ export interface City {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class RestaurantService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
-
-  getRestaurants() {
-    return this.httpClient.get<ResponseData<Restaurant>>(environment.apiUrl + '/restaurants');
+  getRestaurants(): Observable<ResponseData<Restaurant>> {
+    return this.httpClient.get<ResponseData<Restaurant>>(
+      environment.apiUrl + '/restaurants'
+    );
   }
 
-  getStates() {
-    return this.httpClient.get<ResponseData<State>>(environment.apiUrl + '/states');
+  getStates(): Observable<ResponseData<State>> {
+    return this.httpClient.get<ResponseData<State>>(
+      environment.apiUrl + '/states'
+    );
   }
 
-  getCities(state:string) {
+  getCities(state: string): Observable<ResponseData<City>> {
     const params = new HttpParams().set('state', state);
-    return this.httpClient.get<ResponseData<City>>(environment.apiUrl + '/cities', {params});
+    return this.httpClient.get<ResponseData<City>>(
+      environment.apiUrl + '/cities',
+      { params }
+    );
   }
 }

@@ -48,9 +48,9 @@ const { ReactiveFormsModule, FormControl, FormGroup, FormArray } = ng.forms;
   `
 })
 class AppComponent {
-  public formValue;
+  formValue;
 
-  public usersForm = new FormGroup({
+  usersForm = new FormGroup({
     users: new FormArray([
       new FormGroup({
         firstName: new FormControl(''),
@@ -68,10 +68,10 @@ class AppComponent {
   constructor() {}
 
   addGroup() {
-    let usersArray = this.usersForm.get('users') as FormArray;
-    let usersLen = usersArray.length;
+    const usersArray = this.usersForm.get('users') as FormArray;
+    const usersLen = usersArray.length;
 
-    let newUserGroup =  new FormGroup({
+    const newUserGroup =  new FormGroup({
       firstName: new FormControl(''),
       lastName: new FormControl(''),
       email: new FormControl('')

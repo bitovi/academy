@@ -27,6 +27,7 @@
   			{{#if body}}
   				{{> body.mustache}}
   			{{/if}}
+  			<bit-prev-next class="footer" list-selector=".sidebar-left ul li.parent.expanded ul"></bit-prev-next>
   		{{/unless}}
     </div>
 
@@ -46,7 +47,7 @@
         <div class="pullout bug">
           <p>If you find a bug, please
              <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
-             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com<a/></p>
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com</a></p>
         </div>
       </div>
     {{/unless}}

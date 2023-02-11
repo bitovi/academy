@@ -14,17 +14,16 @@
 const { Component, NgModule, VERSION, OnInit, OnDestroy, Injectable } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
-const { Observable, Subscription } = rxjs;
+const { Observable, Subject } = rxjs;
+const { takeUntil } = rxjs.operators;
 
 @Injectable({
   providedIn: 'root'
 })
 class ObsService {
+  constructor() {}
 
-  constructor() { }
-
-  getObs() {
-
+  getObs(): Observable<number> {
     return new Observable<number>(observer => {
       console.log('New subscription created');
       let count = 0;
@@ -51,15 +50,12 @@ class ObsService {
     <p *ngIf="!yayComponent">I am a very sad empty component now</p>
   `
 })
-class AppComponent implements OnInit{
-  public yayComponent: boolean = true;
-  constructor() {
-  }
+class AppComponent {
+  yayComponent: boolean = true;
   
-  ngOnInit() {
-  }
+  constructor() {}
 
-  removeComponent() {
+  removeComponent(): void {
     this.yayComponent = false;
   }
 }
@@ -70,34 +66,35 @@ class AppComponent implements OnInit{
     <p>This component will be destroyed. Rawr.</p>
     <button (click)="startObservable()">start observable</button>
 
-    <p>{{myDisplayValue}}</p>
+    <p>{{ myDisplayValue }}</p>
     `
 })
-class DestroyComponent implements OnInit, OnDestroy {
-  $mySubscription: Subscription;
+class DestroyComponent implements OnDestroy {
+  private onDestroy$ = new Subject<void>();
   myDisplayValue: string;
-  
+
   constructor(private obsService: ObsService) {}
 
-  ngOnInit() {}
-
-  startObservable() {
-    //subscribing to a service that emits observable values every second.
-    this.$mySubscription = this.obsService.getObs().subscribe((val) => {
-      console.log('new value', val);
-      this.myDisplayValue = val;
-    });
+  startObservable(): void {
+    // subscribing to a service that emits observable values every second.
+    this.obsService.getObs()
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((val) => {
+        console.log('new value', val);
+        this.myDisplayValue = val;
+      });
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     console.log('destroying component');
-    if(this.$mySubscription) {
-      this.$mySubscription.unsubscribe();
-    }
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
   }
-}   
+}
+
+//THIS IS A HACK JUST FOR CODEPEN TO WORK
 DestroyComponent.parameters = [ObsService]; 
-                 
+
 @NgModule({
   declarations: [AppComponent, DestroyComponent],
   imports: [

@@ -59,7 +59,10 @@ a `DefineMap` property is read for the first time.
 
 
 
-## The solution
+## The Solution
+
+<details>
+<summary>Click to see the solution</summary>
 
 Create _components/todo-create/todo-create.js_ as follows:
 
@@ -69,3 +72,5 @@ Update _index.stache_ to the following:
 
 @sourceref ./index.html
 @highlight 2,6,only
+
+</details>

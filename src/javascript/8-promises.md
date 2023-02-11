@@ -78,7 +78,7 @@ the `reason` will be an TypeError object.
 const request = fetch("http://foo.bar");
 
 request.catch( function(reason){
-  console.log(reason) /// TypeError: Failed to Fetch
+  console.log(`The request failed with message: ${reason.message}`) /// TypeError: Failed to Fetch
 });
 ```
 @codepen
@@ -328,7 +328,7 @@ countPromise.catch( (reason) => {
 
 Promises are returned by many APIs such as:
 
-- The `fetch()` API return a promise when a connection is
+- The `fetch()` API returns a promise when a connection is
   established.  You can also easily get a promise when the
   JSON response is complete:
 
@@ -381,7 +381,7 @@ JavaScript even has __special syntax__ for using promises:
 ## Timing
 
 
-Promises callback handlers are run in the
+Promises' callback handlers are run in the
 `microtask queue` which is called at the end of the JavaScript
 event loop. This means a few things.
 
@@ -507,7 +507,7 @@ if(options.debug) {
 promise = promise.then(writeHTML);
 ```
 
-One way to simplify this is use a promiseQueue
+One way to simplify this is to use a promiseQueue
 that wires up functions to be called one after another.
 
 
@@ -681,7 +681,7 @@ __Event stream negatives:__
   streams are not part of the JavaScript specification and are not present in
   every environment. Promises come for free for almost every user.
 
-__When to use callbacks instead of promises__
+__When to use streams instead of promises__
 
 If your system produces a single "event", returning a promise is generally better than
 returning an event stream.  Most event stream libraries have ways of converting a

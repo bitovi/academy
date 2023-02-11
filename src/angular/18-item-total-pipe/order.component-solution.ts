@@ -1,0 +1,119 @@
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  AbstractControl,
+  FormArray,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { ItemTotalPipe } from '../item-total.pipe';
+import { Restaurant } from '../restaurant/restaurant';
+import { RestaurantService } from '../restaurant/restaurant.service';
+import { Order, OrderService } from './order.service';
+
+// CUSTOM VALIDATION FUNCTION TO ENSURE THAT THE ITEMS FORM VALUE CONTAINS AT LEAST ONE ITEM.
+function minLengthArray(min: number): ValidatorFn {
+  return (c: AbstractControl): ValidationErrors | null => {
+    if (c.value.length >= min) {
+      return null;
+    }
+    return { minLengthArray: { valid: false } };
+  };
+}
+
+@Component({
+  selector: 'pmo-order',
+  templateUrl: './order.component.html',
+  styleUrls: ['./order.component.less'],
+})
+export class OrderComponent implements OnInit, OnDestroy {
+  orderForm?: FormGroup;
+  restaurant?: Restaurant;
+  isLoading = true;
+  items?: FormArray;
+  orderTotal = 0.0;
+  completedOrder?: Order;
+  orderComplete = false;
+  orderProcessing = false;
+  private onDestroy$ = new Subject<void>();
+
+  constructor(
+    private route: ActivatedRoute,
+    private restaurantService: RestaurantService,
+    private orderService: OrderService,
+    private formBuilder: FormBuilder,
+    private itemTotal: ItemTotalPipe
+  ) {}
+
+  ngOnInit(): void {
+    // GETTING THE RESTAURANT FROM THE ROUTE SLUG
+    const slug = this.route.snapshot.paramMap.get('slug');
+
+    if (slug) {
+      this.restaurantService
+        .getRestaurant(slug)
+        .pipe(takeUntil(this.onDestroy$))
+        .subscribe((data: Restaurant) => {
+          this.restaurant = data;
+          this.isLoading = false;
+          this.createOrderForm();
+        });
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
+  }
+
+  createOrderForm(): void {
+    this.orderForm = this.formBuilder.group({
+      restaurant: [this.restaurant?._id],
+      name: [null, Validators.required],
+      address: [null, Validators.required],
+      phone: [null, Validators.required],
+      // PASSING OUR CUSTOM VALIDATION FUNCTION TO THIS FORM CONTROL
+      items: [[], minLengthArray(1)],
+    });
+    this.onChanges();
+  }
+
+  getChange(newItems: []): void {
+    this.orderForm?.get('items')?.patchValue(newItems);
+  }
+
+  onChanges(): void {
+    // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
+    this.orderForm
+      ?.get('items')
+      ?.valueChanges.pipe(takeUntil(this.onDestroy$))
+      .subscribe((val) => {
+        this.orderTotal = this.itemTotal.transform(val);
+      });
+  }
+
+  onSubmit(): void {
+    this.orderProcessing = true;
+    this.orderService
+      .createOrder(this.orderForm?.value)
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((res: Order) => {
+        this.completedOrder = res;
+        this.orderComplete = true;
+        this.orderProcessing = false;
+      });
+  }
+
+  startNewOrder(): void {
+    this.orderComplete = false;
+    this.completedOrder = this.orderForm?.value;
+    this.orderTotal = 0.0;
+    // CLEAR THE ORDER FORM
+    this.createOrderForm();
+  }
+}

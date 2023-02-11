@@ -15,7 +15,6 @@ const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
 const { BrowserModule } = ng.platformBrowser;
 const { CommonModule } = ng.common;
 const { Routes, RouterModule } = ng.router;
-const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
 const { Observable, Subscription } = rxjs;
 
 
@@ -41,28 +40,25 @@ class AppComponent {
   `
 })
 class AboutComponent {
-  constructor() {
-  }
+  constructor() {}
 }
 
 @Component({
   selector: 'home-component',
   template: `
     <p>A home component!</p>
-
-    {{$mySubscription | async }}
+    <ng-container *ngIf="myObservable$ | async as latestObservableValue">
+        {{ latestObservableValue }}
+    </ng-container>
     `
 })
-class HomeComponent implements OnInit{
-  $myObservable: Observable<string>;
-  $mySubscription: Subscription;
-  
-  constructor(private fb:FormBuilder) {
-  
-  }
+class HomeComponent implements OnInit {
+  myObservable$: Observable<string>;
 
-  ngOnInit() {
-    this.$myObservable = new Observable(observer => {
+  constructor() {}
+
+  ngOnInit(): void {
+    this.myObservable$ = new Observable(observer => {
       setTimeout(() => {
           observer.next('hello observable');
       }, 1000);
@@ -74,15 +70,9 @@ class HomeComponent implements OnInit{
       setTimeout(() => {
           observer.complete();
       }, 3000);
-  });
-
-   this.$mySubscription = this.$myObservable;
-
+    });
   }
 }
-//THIS IS A HACK JUST FOR CODEPEN TO WORK
-HomeComponent.parameters = [FormBuilder];
-
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
@@ -92,16 +82,14 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-class AppRoutingModule { }
+class AppRoutingModule {}
 
-                 
 @NgModule({
   declarations: [AppComponent, AboutComponent, HomeComponent],
   imports: [
     BrowserModule,
     CommonModule,
-    AppRoutingModule, 
-    ReactiveFormsModule
+    AppRoutingModule,
   ],
   bootstrap: [AppComponent],
   providers: []

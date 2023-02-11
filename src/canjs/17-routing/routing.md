@@ -63,7 +63,10 @@ be added if they represent the current page.
   <a href="{{ routeUrl(page='login') }}">Login</a>
   ```
 
-## The solution
+## The Solution
+
+<details>
+<summary>Click to see the solution</summary>
 
 Update _index.js_ to the following:
 
@@ -78,3 +81,5 @@ Update _index.stache_ to the following:
 __Success!__ You’ve completed this guide. Have questions or comments?
 [Join our Slack](https://www.bitovi.com/community/slack) and let us know in the [#canjs channel](https://bitovi-community.slack.com/messages/CFC22NZ8A)
 or our [forums](https://forums.bitovi.com/c/canjs)!
+
+</details>

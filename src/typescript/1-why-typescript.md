@@ -13,7 +13,7 @@ JavaScript. Typing helps enhance code quality and readability, assists in self-d
 The following shows an IDE catching that `greeter` was expecting a `string`,
 but was passed a `number`:
 
-<a href="../static/img/typescript-error-compiling.png" target="\_blank"><img src="../static/img/typescript-error-compiling.png" width="100%"/></a>
+<a href="../static/img/typescript-error-compiling.png" ><img src="../static/img/typescript-error-compiling.png" width="100%"/></a>
 
 ### Typechecking
 
@@ -21,7 +21,7 @@ Typechecking is the process of verifying and enforcing the constraints of types.
 
 ### Static vs. Dynamic Typing
 
-JavaScript an "untyped" or "dynamically typed" language. Type is associated with a value instead of a variable.
+JavaScript is an "untyped" or "dynamically typed" language. Type is associated with a value instead of a variable.
 JavaScript can assign variables to values of different types:
 
 ```js
@@ -44,7 +44,7 @@ document.body.innerHTML = greeter(user);
 
 If there's a bug in the code related to falsely assuming a type, it won't throw an error until we're already running our code.
 
-TypeScript uses static typing, which allows us to specify what type a variable should hold, and types are checked when the code compiles alerting us of any incorrect usages of a variable assignment. The concept of "static" comes from the idea of variables being static, meaning once you set a variable to a type it can't (shouldn't) be changed.
+TypeScript uses static typing, which allows us to specify what type a variable should hold, and types are checked when the code compiles alerting us of any incorrect usages of a variable assignment. The concept of "static" comes from the idea of variables being static, meaning once you set a variable to a type it can't (shouldn't) be changed. For a deeper dive into how typechecking works, the creators of typescript have a <a href="https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html" >typechecking handbook</a> of more specific cases as well as their inspiration for the way these features were designed.
 
 ## Using this Guide
 
@@ -52,13 +52,13 @@ In this guide we will teach you about TypeScript concepts and have an environmen
 
 When we give you a command to run to verify your work it will look for a file named respectively. If you run into issues you can look at the package.json file to see which file the command listed is looking for.
 
-## Exercise: `1-helloworld.ts`
+## Exercise: `0-why-hello-world.ts`
 
 ### The Problem
 
-For this exercise, we will first clone the __learn-typescript__ exercise repo.
+For this exercise, we will first clone the __learn-typescript__ exercise repository.
 
-In that repo, there is a _0-why-hello-world.html_ page that looks like the following:
+In that repository, there is a _0-why-hello-world.html_ page that looks like the following:
 
 ```html
 <html>
@@ -68,12 +68,12 @@ In that repo, there is a _0-why-hello-world.html_ page that looks like the follo
 </html>
 ```
 
-After cloning and installing the repo, we will:
+After cloning and installing the repository, we will:
 
-1. Create a simple _0-why-hello-world.ts_ TypeScript file that writes out `"Hello Wold"`.
+1. Create a simple _0-why-hello-world.ts_ TypeScript file that writes out `"Hello World"`.
 2. Compile that code the _0-why-hello-world.ts_ JavaScript file.
 3. Open _0-why-hello-world.html_ and verify that we've written and compiled some TypeScript!
-4. Run the exercise repo's tests for this exercise.
+4. Run the exercise repository's tests for this exercise.
 
 
 
@@ -83,7 +83,7 @@ For this and following TypeScript exercises, we will be working in the
 [https://github.com/bitovi/learn-typescript](https://github.com/bitovi/learn-typescript)
 repository. To use it:
 
-1. ✏️ Clone the learn-typescript repository from github:
+1. ✏️ Clone the learn-typescript repository from GitHub:
    ```shell
    git clone https://github.com/bitovi/learn-typescript.git
    ```
@@ -103,7 +103,7 @@ repository. To use it:
 
 4. ✏️ Open the `learn-typescript` folder in your favorite editor:
   ```shell
-   code .
+   code . # if you are using VS Code
   ```
    > The '.' after the editor is a shorthand to refer to the folder you're currently in
 
@@ -185,5 +185,5 @@ You should see an error message.
 
 <details>
 <summary>Click to see the error message.</summary>
-<a href="../static/img/typescript-error-compiling.png" target="\_blank"><img src="../static/img/typescript-error-compiling.png" width="100%"/></a>
+<a href="../static/img/typescript-error-compiling.png" ><img src="../static/img/typescript-error-compiling.png" width="100%"/></a>
 </details>

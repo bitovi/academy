@@ -14,9 +14,14 @@
 
 
 
-## The solution
+## The Solution
+
+<details>
+<summary>Click to see the solution</summary>
 
 Update _models/todo.js_ to the following:
 
 @sourceref ./todo.js
 @highlight 5,only
+
+</details>

@@ -6,3 +6,7 @@ StealJS. It includes KeyNote presentations
 covering CanJS core libraries.
 
 @body
+
+## Next Steps
+
+✏️ Head over to the [first lesson](learn-canjs/setup-canjs.html) and get your environment setup.

@@ -97,6 +97,7 @@ document.body.append(el);
 </script>
 ```
 @codepen
+@highlight 2, 9-13
 
 ### connectedCallback
 
@@ -140,10 +141,11 @@ document.body.append(el);
 
 ✏️ Building off of the template we created in the previous section, now extend `HTMLElement` to create a custom element.
 
+<details>
+<summary>Click to see the solution</summary>
+
 @sourceref ./index.html
-@highlight 14-16,29-52,only
+@highlight 14-16,31-52,only
 @codepen
 
-<p style="font-weight: bold; text-align: center;">
-[learn-web-components/bus-tracker-component 👉 bus-tracker component]
-</p>
+</details>

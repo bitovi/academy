@@ -28,7 +28,7 @@ To solve this exercise you will need to know:
 
 ## Route Parameters & Child Views
 
-A common pattern in SPA architecture is to serve a view of an individual piece of data from a path with an identifying parameter. Previously we've defined static paths with Angulars <a href="https://angular.io/guide/router" target="_blank">router</a>. To create a nested route, we'll need the slug after the slash to be dynamic. We can set a token for the router parameter with `:`. To get the slug from the route in a component, we use the <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a> interface.
+A common pattern in SPA architecture is to serve a view of an individual piece of data from a path with an identifying parameter. Previously we've defined static paths with Angulars <a href="https://angular.io/guide/router" >router</a>. To create a nested route, we'll need the slug after the slash to be dynamic. We can set a token for the router parameter with `:`. To get the slug from the route in a component, we use the <a href="https://angular.io/api/router/ActivatedRoute" >ActivatedRoute</a> interface.
 
 @sourceref ./nested-route.html
 @codepen
@@ -36,7 +36,7 @@ A common pattern in SPA architecture is to serve a view of an individual piece o
 
 ## Technical Requirements
 
-Create a new component called `details` in the restaurant component folder that is a detail view for an individual restaurant that is served from the path `'/restaurants/restaurant-slug'`. Create the route as well, and use the `getRestaurant` method on the RestaurantService to fetch the restaurant based on the route snapshot. The detail component should have a member 'restaurant' that is a type of Restaurant and an 'isLoading' member set to true or false based on when the restaurant data has been fetched.
+Create a new component called `detail` in the restaurant component folder that is a detail view for an individual restaurant that is served from the path `'/restaurants/restaurant-slug'`. Create the route as well, and use the `getRestaurant` method on the RestaurantService to fetch the restaurant based on the route snapshot. The detail component should have a member 'restaurant' that is a type of Restaurant and an 'isLoading' member set to true or false based on when the restaurant data has been fetched.
 
 ## Setup
 
@@ -46,38 +46,34 @@ Create a new component called `details` in the restaurant component folder that 
 ng g component restaurant/detail
 ```
 
-✏️  Update __src/app/restaurant/detail/detail.component.html__:
+✏️ Update **src/app/restaurant/detail/detail.component.html**:
 
 @sourceref ./detail.component.html
-
-We've also added a method called by the html that will return a proper url path for our restaurant image.
-
-✏️  Update __src/app/restaurant/detail/detail.component.ts__:
-
-@sourceref ./detail.component-starter.ts
-@highlight 15-18
 
 ## How to Verify Your Solution is Correct
 
 When you click the detail button on a restaurant from the restaurant list view you'll see the detail view of that restaurant.
 
-✏️ Update the spec file  __src/app/restaurant/detail.component.spec.ts__ to be:
+✏️ Update the spec file **src/app/restaurant/detail.component.spec.ts** to be:
 
 @sourceref ./detail.component.spec.ts
 
-✏️ Update the spec file  __src/app/app.component.spec.ts__ to be:
+✏️ Update the spec file **src/app/app.component.spec.ts** to be:
 
 @diff ../8-state-city-options/app.component.spec.ts ./app.component.spec.ts only
-
 
 > If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## Solution
 
-✏️ Update __src/app/app-routing.module.ts__
+<details>
+<summary>Click to see the solution</summary>
+✏️ Update **src/app/app-routing.module.ts**
 
 @diff ../4-adding-routing/app-routing.module.ts ./app-routing.module.ts
 
-✏️ Update __src/app/restaurant/detail/detail.component.ts__
+✏️ Update **src/app/restaurant/detail/detail.component.ts**
 
 @diff ./detail.component-starter.ts ./detail.component.ts
+
+</details>
