@@ -9,11 +9,11 @@
 
 <p><a href="https://discord.gg/J7ejFsZnJ4">
 <img src="./static/img/discord.png"
-  style="float:left; margin:20px" width="57"/> <span style="margin-top: 10px;display: inline-block;">Click here to join<br/>Bitovi's Discord Community</span></a></p>
+  style="float:left; margin:20px" width="57"/> <span style="margin-top: 10px;display: inline-block;">Click here to join the<br/>Bitovi Community Discord</span></a></p>
 
 <br/>
 
-Join Bitovi's Discord Community to get help on Bitovi Academy courses or other
+Join the Bitovi Community Discord to get help on Bitovi Academy courses or other
 Angular, React, CanJS and JavaScript problems.
 
 Please ask questions related to Angular in the [Angular chat room](https://discord.gg/Qv26e4uq5z).

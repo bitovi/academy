@@ -328,7 +328,7 @@ a.quote-link:hover{
           <h4>Get help when you need it</h4>
           <p>Our team of expert front-end developers is only a Discord message away.</p>
         </div>
-       <a class="button discord-button full-width" href="https://discord.gg/J7ejFsZnJ4" ><img src="./static/img/discord-logo.svg" height="20">Join our Discord community</a>
+       <a class="button discord-button full-width" href="https://discord.gg/J7ejFsZnJ4" ><img src="./static/img/discord-logo.svg" height="20">Join our Community Discord</a>
       </div>
       <div class="academy-card">
         <div class="academy-card--top">
