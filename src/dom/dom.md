@@ -8,14 +8,14 @@ using it to make a basic tabs widget. We strongly suggest finishing [learn-advan
 
 ## Before You Begin
 
-<a href="https://www.bitovi.com/community/slack" style="display:flex;align-items:center">
-<img src="https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.png?width=200"
-  style="float:left"/> <span style="display: inline-block;">Click here to join<br/>Bitovi's Slack Community</span></a>
+<a href="https://discord.gg/J7ejFsZnJ4" style="display:flex;align-items:center">
+<img src="./static/img/discord.png"
+  style="float:left; margin:20px" width="57"/> <span style="display: inline-block;">Click here to join<br/>Bitovi's Discord Community</span></a>
 
-Join Bitovi's Slack Community to get help on Bitovi Academy courses or other
+Join Bitovi's Discord Community to get help on Bitovi Academy courses or other
 Angular, React, CanJS and JavaScript problems.
 
-Please ask questions related to jQuery and the DOM in the [JS and DOM chat room](https://bitovi-community.slack.com/messages/CFMMNSV5X).
+Please ask questions related to jQuery and the DOM in the [JS and DOM chat room](https://discord.gg/qxqgyGquk7).
 
 If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/academy/issues) or email `contact@bitovi.com`.
 
