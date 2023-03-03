@@ -50,10 +50,10 @@ Academy can be deployed manually by running the following command:
 npm run deploy
 ```
 
-Doing so requires access to the Bitovi Hubspot API key and Campaign Id, which can be found in Bitovi's 1Password `Academy` vault. Add them to a new `.env` file in this repos root directory:
+Doing so requires access to the Bitovi Hubspot Access Token and Campaign Id, which can be found in Bitovi's 1Password `Academy` vault. Add them to a new `.env` file in this repos root directory:
 
 ```
-HUBSPOT_API_KEY=<api key>
+HUBSPOT_TOKEN=<acccess token>
 HUBSPOT_CAMPAIGN_ID=<campaign id>
 ```
 
@@ -124,19 +124,19 @@ This is hidden until the summary is opened.
 </details>
 <!-- ``` -->
 
-> note: All solution codes should be hidden inside a collapsed element. 
+> note: All solution codes should be hidden inside a collapsed element.
 
 ### Code blocks
 
 #### Separating code from .md files
 
-Code blocks can be written directly in the markdown files or written in separate files. 
+Code blocks can be written directly in the markdown files or written in separate files.
 
 The use of separate files for code is entirely optional, but allows the use of `@sourceref` to easily reference it and `@diff` to automatically highlight changes between codeblocks.
 
 #### Highlighting & Minimizing
 
-* Including the `only` keyword will minimize non-highlighted code. Using it is always optional and can be left off.
+- Including the `only` keyword will minimize non-highlighted code. Using it is always optional and can be left off.
 
 #### Manual highlighting
 
@@ -145,8 +145,8 @@ The use of separate files for code is entirely optional, but allows the use of `
 @highlight <line numbers>, only
 ```
 
-* `@sourceref` line is interchangable with code blocks.
-* Sections of highlighted lines can be separated with commas. Ex: `@highlight 1-3, 7-24`
+- `@sourceref` line is interchangable with code blocks.
+- Sections of highlighted lines can be separated with commas. Ex: `@highlight 1-3, 7-24`
 
 #### Automatic Highlighting
 
@@ -156,9 +156,9 @@ To automatically highlight differences between code blocks use the following ins
 @diff <initial version of file> <current, displayed file with changes> only
 ```
 
-* Use relative file paths like first example
-* Requires code be in separate files and the use of `@sourceref`
-* Especially useful for highlighting changes in solution codes
+- Use relative file paths like first example
+- Requires code be in separate files and the use of `@sourceref`
+- Especially useful for highlighting changes in solution codes
 
 ### Links
 
