@@ -19,7 +19,6 @@ class HubSpotApi {
   }
 
   makeRequest(method, url, data){
-    if (method === 'GET') {
       return this.limiter.schedule(() => this.axios({ method, url, data })
       .catch(error => {
         if (data.name) {
@@ -30,14 +29,11 @@ class HubSpotApi {
         console.error(error.response.data);
 
         throw error;
-      }));
-    }
-    console.log("Making request:", method, url, data);
-    
+      }));  
   }
 
   async getPages(){
-    const url = `&campaign=${this.campaignId}&limit=1000000`;
+    const url = `?campaign=${this.campaignId}&limit=1000000`;
     const response = await this.makeRequest('GET', url, {});
 
     return response.data.objects.map(page => ({
