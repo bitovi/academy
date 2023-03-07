@@ -11,9 +11,9 @@
 
 <a href="https://discord.gg/J7ejFsZnJ4">
 <img src="./static/img/discord.png"
-  style="float:left; margin:20px" width="57"/> <span style="margin-top: 10px;display: inline-block;">Click here to join<br/>Bitovi's Discord Community</span></a>
+  style="float:left; margin:20px" width="57"/> <span style="margin-top: 10px;display: inline-block;">Click here to join the<br/>Bitovi Community Discord</span></a>
 
-Join Bitovi's Discord Community to get help on Bitovi Academy courses or JavaScript and DevOps problems.
+Join the Bitovi Community Discord to get help on Bitovi Academy courses or JavaScript and DevOps problems.
 
 Please ask questions related to DevOps in the [DevOps Chat Room](https://discord.gg/KQRU5NmBkz).
 

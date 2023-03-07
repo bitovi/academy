@@ -5,15 +5,22 @@ var rawStart = "{% raw %}",
     rawEnd = "{% endraw %}";
 
 class HubSpotApi {
-  constructor(apiKey, campaignId){
-    this.apiKey = apiKey;
+  constructor(accessToken, campaignId){
+    this.accessToken = accessToken;
     this.campaignId = campaignId;
     this.baseUrl = 'https://api.hubapi.com/content/api/v2/pages';
-    this.limiter = new Bottleneck({minTime: 150})
+    this.limiter = new Bottleneck({minTime: 150}),
+    this.axios = axios.create({
+      baseURL: this.baseUrl,
+      headers: {
+        Authorization: `Bearer ${this.accessToken}`,
+      },
+    });
   }
 
   makeRequest(method, url, data){
-    return this.limiter.schedule(() => axios({ method, url, data })
+    if (method === 'GET') {
+      return this.limiter.schedule(() => this.axios({ method, url, data })
       .catch(error => {
         if (data.name) {
           console.error(`Error on page ${data.name}`);
@@ -24,10 +31,13 @@ class HubSpotApi {
 
         throw error;
       }));
+    }
+    console.log("Making request:", method, url, data);
+    
   }
 
   async getPages(){
-    const url = `${this.baseUrl}?hapikey=${this.apiKey}&campaign=${this.campaignId}&limit=1000000`;
+    const url = `&campaign=${this.campaignId}&limit=1000000`;
     const response = await this.makeRequest('GET', url, {});
 
     return response.data.objects.map(page => ({
@@ -38,7 +48,6 @@ class HubSpotApi {
   }
 
   async createPage( {title, headHtml, bodyHtml, slug, metaDescription } ){
-    const url = `${this.baseUrl}?hapikey=${this.apiKey}`;
     const data = {
       name: title,
       template_path: 'Custom/Page/Bitovi_July_2016_Theme/Academy.html',
@@ -52,12 +61,12 @@ class HubSpotApi {
       subcategory: 'site_page',
       meta_description: metaDescription || ""
     };
-    const response = await this.makeRequest('POST', url, data)
+    const response = await this.makeRequest('POST', '', data)
     return this.publishPage(response.data.id);
   }
 
   async updatePage(pageId, {title, headHtml, bodyHtml, metaDescription }){
-    const url = `${this.baseUrl}/${pageId}?hapikey=${this.apiKey}`;
+    const url = `/${pageId}`;
     const data = {
       name: title,
       html_title: title,
@@ -76,7 +85,7 @@ class HubSpotApi {
   }
 
   async publishPage(pageId){
-    const url = `${this.baseUrl}/${pageId}/publish-action?hapikey=${this.apiKey}`;
+    const url = `/${pageId}/publish-action`;
     const data = {
       action: 'schedule-publish'
     }
@@ -86,7 +95,7 @@ class HubSpotApi {
   }
 
   async deletePage(pageId){
-    const url = `${this.baseUrl}/${pageId}?hapikey=${this.apiKey}`;
+    const url = `/${pageId}`;
     const response = await this.makeRequest('DELETE', url, {})
     console.log("Success! Deleted page:", response.id);
     return response;
