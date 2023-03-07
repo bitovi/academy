@@ -5,8 +5,8 @@ var rawStart = "{% raw %}",
     rawEnd = "{% endraw %}";
 
 class HubSpotApi {
-  constructor(apiKey, campaignId){
-    this.apiKey = apiKey;
+  constructor(accessToken, campaignId){
+    this.accessToken = accessToken;
     this.campaignId = campaignId;
     this.baseUrl = 'https://api.hubapi.com/content/api/v2/pages';
     this.limiter = new Bottleneck({minTime: 150}),
@@ -14,24 +14,26 @@ class HubSpotApi {
       baseURL: this.baseUrl,
       headers: {
         Authorization: `Bearer ${this.accessToken}`,
-        "Content-Type": "application/json",
       },
     });
   }
 
   makeRequest(method, url, data){
+    if (method === 'GET') {
+      return this.limiter.schedule(() => this.axios({ method, url, data })
+      .catch(error => {
+        if (data.name) {
+          console.error(`Error on page ${data.name}`);
+        }
+
+        console.error(`Error ${error.response.status}: ${error.response.statusText}`);
+        console.error(error.response.data);
+
+        throw error;
+      }));
+    }
     console.log("Making request:", method, url, data);
-    // return this.limiter.schedule(() => this.axios({ method, url, data })
-    //   .catch(error => {
-    //     if (data.name) {
-    //       console.error(`Error on page ${data.name}`);
-    //     }
-
-    //     console.error(`Error ${error.response.status}: ${error.response.statusText}`);
-    //     console.error(error.response.data);
-
-    //     throw error;
-    //   }));
+    
   }
 
   async getPages(){
