@@ -5,8 +5,8 @@ var rawStart = "{% raw %}",
     rawEnd = "{% endraw %}";
 
 class HubSpotApi {
-  constructor(apiKey, campaignId){
-    this.apiKey = apiKey;
+  constructor(accessToken, campaignId){
+    this.accessToken = accessToken;
     this.campaignId = campaignId;
     this.baseUrl = 'https://api.hubapi.com/content/api/v2/pages';
     this.limiter = new Bottleneck({minTime: 150}),
@@ -14,7 +14,6 @@ class HubSpotApi {
       baseURL: this.baseUrl,
       headers: {
         Authorization: `Bearer ${this.accessToken}`,
-        "Content-Type": "application/json",
       },
     });
   }
@@ -38,7 +37,7 @@ class HubSpotApi {
     const url = `&campaign=${this.campaignId}&limit=1000000`;
     const response = await this.makeRequest('GET', url, {});
 
-    return response.data.objects.map(page => ({
+    return response?.data?.objects?.map(page => ({
       campaign: page.campaign,
       id: page.id,
       slug: page.slug
