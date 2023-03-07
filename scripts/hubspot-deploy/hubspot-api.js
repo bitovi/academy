@@ -19,25 +19,28 @@ class HubSpotApi {
   }
 
   makeRequest(method, url, data){
+    if (method === 'GET') {
+      return this.limiter.schedule(() => this.axios({ method, url, data })
+      .catch(error => {
+        if (data.name) {
+          console.error(`Error on page ${data.name}`);
+        }
+
+        console.error(`Error ${error.response.status}: ${error.response.statusText}`);
+        console.error(error.response.data);
+
+        throw error;
+      }));
+    }
     console.log("Making request:", method, url, data);
-    // return this.limiter.schedule(() => this.axios({ method, url, data })
-    //   .catch(error => {
-    //     if (data.name) {
-    //       console.error(`Error on page ${data.name}`);
-    //     }
-
-    //     console.error(`Error ${error.response.status}: ${error.response.statusText}`);
-    //     console.error(error.response.data);
-
-    //     throw error;
-    //   }));
+    
   }
 
   async getPages(){
     const url = `&campaign=${this.campaignId}&limit=1000000`;
     const response = await this.makeRequest('GET', url, {});
 
-    return response?.data?.objects?.map(page => ({
+    return response.data.objects.map(page => ({
       campaign: page.campaign,
       id: page.id,
       slug: page.slug
