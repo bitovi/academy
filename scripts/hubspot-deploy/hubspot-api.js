@@ -36,7 +36,7 @@ class HubSpotApi {
   }
 
   async getPages(){
-    const url = `&campaign=${this.campaignId}&limit=1000000`;
+    const url = `?campaign=${this.campaignId}&limit=1000000`;
     const response = await this.makeRequest('GET', url, {});
 
     return response.data.objects.map(page => ({
