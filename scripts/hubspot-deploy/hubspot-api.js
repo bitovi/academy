@@ -32,7 +32,7 @@ class HubSpotApi {
         throw error;
       }));
     }
-    console.log("Making request:", method, url, data);
+    // console.log("Making request:", method, url, data);
     
   }
 
