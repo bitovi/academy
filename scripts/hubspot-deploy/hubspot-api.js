@@ -19,8 +19,6 @@ class HubSpotApi {
   }
 
   makeRequest(method, url, data){
-    console.log("Making request:", method, url, data);
-    if (method === 'GET') {
       return this.limiter.schedule(() => this.axios({ method, url, data })
       .catch(error => {
         if (data.name) {
@@ -31,8 +29,7 @@ class HubSpotApi {
         console.error(error.response.data);
 
         throw error;
-      }));
-    }
+      }));  
   }
 
   async getPages(){
