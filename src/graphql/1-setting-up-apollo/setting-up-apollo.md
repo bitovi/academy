@@ -733,7 +733,7 @@ const typeDefs = mergeTypeDefs([
 
 Now that we have baseline create/read methods for each of the entities we are going to go through how we will add an update mutation. First thing we will add is the **updateProperty** method to the schema and create a new input type **UpdatePropertyInput**. We will also be creating a **Union** type called **UpdatePropertyResult** which is a **Union** of either a **Property**, or a **PropertyNotFoundError**. In practice when we want to update a property, so far we will either be passed a valid id contained in our dataSource, or an invalid one, which means we will return this `PropertyNotFoundError`:
 
-```js
+```graphql
 input UpdatePropertyInput {
     id: ID!
     name: String
@@ -830,7 +830,7 @@ module.exports = {
 
 In order to test the endpoint you will need to use the `...on` for the potential return types for `updateProperty` which will look something like this:
 
-```js
+```graphql
 mutation UpdateProperty($updatePropertyInput: UpdatePropertyInput) {
   updateProperty(updatePropertyInput: $updatePropertyInput) {
      ...on PropertyNotFoundError {
@@ -858,7 +858,7 @@ As we grow our schema, especially when serving multiple customers or clients, we
 - Removing a field’s arguments
 
 One thing we can do is create a new field to an object and set the old field as deprecated, giving some time before making those breaking changes. This can be helpful to coordinate with front-end teams or other members that will use the endpoints you are creating, while keeping the endpoints stable for users that consume your API. The good news is that GraphQL has some built-in **directives** that can help us accomplish just that, in fact there is a `deprecated` directive that we can use! Let’s add the following lines to the `src/renters/schema.js` file:
-```js
+```graphql
 type Renter {
     ...
     deprecatedField: Boolean @deprecated(reason: "Use nonDeprecatedField.")
@@ -899,7 +899,7 @@ const server = new ApolloServer({
 
 Next we will have to define the `@cacheControl` directive; and since this is something we will use across multiple graphs, we will add it to our `src/common/schema.js` file:
 
-```js
+```graphql
 enum CacheControlScope {
     PUBLIC
     PRIVATE
@@ -918,7 +918,7 @@ The arguments for `@cacheControl` perform the following:
 - `inheritMaxAge`: If `true`, this field inherits the `maxAge` of its parent field instead of using the default `maxAge`. Not not provide `maxAge` if you provide this argument.
 
 We will keep things simple for now, and have a few fields that we would like cached for 60 seconds. Let’s navigate to `src/properties/schema.js` and change the following fields under `Property`:
-```js
+```graphql
 type Property {
     ...
     rating: Float @cacheControl(maxAge: 60)

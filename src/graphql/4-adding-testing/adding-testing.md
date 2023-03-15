@@ -220,7 +220,7 @@ To define a fragment, it has to be on an existing entity, and we have to use the
 While writing these testcases, an issue occurred within the codebase; there was no clear way to delete a Renter entity. Part of this problem is due to the `roommates` relationship each Renter has, and if you want to delete a Renter, you must first disconnect the relationship between it and other `roommates`. So we needed to create a new endpoint for Renters:
 
 First step is to add the definition to the src/renters/schema.js:
-```js
+```graphql
 type Mutation {
     ...
     deleteRenter(renterId: ID): Boolean
@@ -735,7 +735,7 @@ In order to create a property, we need to have created a `propertyOwner` first, 
 When testing the update method, a number of situations needed to be covered: namely ensuring that our `PropertyNotFoundError` would be thrown, we could update our non-relational fields, and finally being able to ensure `renters` and `propertyOwner` could be updated with new relationships. During this process we found some errors in the schema for `property` and how we updated the relationships for both `renters` and the `propertyOwner`.
 
 First thing to change was the `UpdatePropertyInput`, we simply want the ID rather than an entire object of a propertyOwner, so we should be making the input say that explicitly with `propertyOwnerId`:
-```js
+```graphql
 input UpdatePropertyInput {
     ...
     propertyOwnerId: ID

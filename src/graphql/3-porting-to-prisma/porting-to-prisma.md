@@ -501,7 +501,7 @@ async function getAllPropertyOwners(Prisma) {
 ## Transactions
 
 Let’s say you want to perform a query or mutation where you want to make sure that each independent query runs, but you want to ensure that you can roll it back if there is an error in between. This is where transactions come into play, and we will be creating a mutation to showcase an example, right now if you want to add a roommate to one Renter, it will not update the other Renter object saying they are both roommates. We will create a **makeRoommates** mutation in the Renter schema:
-```js
+```graphql
 type Mutation {
     createRenter(createRenterInput: CreateRenterInput): Renter
     makeRoommates(renterIds: [ID]): [Renter]
