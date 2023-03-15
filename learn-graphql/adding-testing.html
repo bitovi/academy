@@ -1,0 +1,1210 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/graphql/4-adding-testing/adding-testing.md
+	@page learn-graphql/adding-testing
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <meta name="description" content="At the start of this tutorial you should have a repository similar to [this](https://github.com/bitovi/node-graphql-tutorial-2023/tree/prisma). So far we created our endpoints for our three entities, we had added Mongoose, and ported our endpoints to use Prisma instead. At each point we had to manually test the endpoints in Apollo Sandbox, and while that is a useful tool, in a real project we would be working with a testing framework in order to make sure that our endpoints still work. Today we’ll be adding testcases to our project and leveraging executeOperation to emulate requests to our Apollo Server, giving us the capability to test code ranging from our resolvers, to our dataSources. The concept here would be an **integration** test since it will be testing our GraphQL resolvers and dataSources. Without further ado, let’s start! 
+">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
+  <title>Bitovi Academy - Testing NodeJs and GraphQL with Jest</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-react.html"
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will have mastered functional components, hooks, and component optimization.">
+							Learn React
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-web-components.html"
+							title="">
+							Learn Web Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-technology-consulting.html"
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
+							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-graphql.html"
+							title="Build a backend application for property rentals using Node JS, GraphQL and Apollo Server.         Learn about using ORMs like Mongoose and Prisma with a NoSQL Mongo database!
+Write testcases testing created endpoints.">
+							Learn Graphql
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="setting-up-apollo.html"
+							title="This GraphQL tutorial will take you through creating different entities, how to create a server using Apollo Server 4, and some of the plugins available to use. We will go through queries, mutations, dealing with the resolver chain (A.K.A entity resolution). We’ll talk a bit about growing our graph including update mutations and introduce some error handling. Then we’ll go over directives that are available for the maintenance of your graph, and then end with adding some cache control for some fields within an entity.">
+							Setting Up a GraphQL Server with Apollo
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="adding-mongodb.html"
+							title="In this guide we will be working off of a starting point project and will be removing the need for static data, while adding a connection to a live database!
+We’ll also go over some basic methods to perform CRUD operations, and how we will pull related entities from our database (what is known as joins in SQL) using the populate function in Mongoose. We’ll also create a small seed file in order to fill our database with some baseline information.">
+							Connecting Apollo Server with MongoDB
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="porting-to-prisma.html"
+							title="In this guide we will be working off of a starting point project and will be removing the need for Mongoose and instead we will be using Prisma to perform our queries and mutations!">
+							Converting Mongoose to Prisma
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="adding-testing.html"
+							title="At the start of this tutorial you should have a repository similar to this. So far we created our endpoints for our three entities, we had added Mongoose, and ported our endpoints to use Prisma instead. At each point we had to manually test the endpoints in Apollo Sandbox, and while that is a useful tool, in a real project we would be working with a testing framework in order to make sure that our endpoints still work. Today we’ll be adding testcases to our project and leveraging executeOperation to emulate requests to our Apollo Server, giving us the capability to test code ranging from our resolvers, to our dataSources. The concept here would be an integration test since it will be testing our GraphQL resolvers and dataSources. Without further ado, let’s start!">
+							Testing NodeJs and GraphQL with Jest
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn how to build a moderately complex application with Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../advanced-typescript.html"
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
+							Advanced TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border">
+      <a href="..#courses">View More Courses</a>
+      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
+  </p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Testing NodeJs and GraphQL with Jest <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>At the start of this tutorial you should have a repository similar to <a href="https://github.com/bitovi/node-graphql-tutorial-2023/tree/prisma">this</a>. So far we created our endpoints for our three entities, we had added Mongoose, and ported our endpoints to use Prisma instead. At each point we had to manually test the endpoints in Apollo Sandbox, and while that is a useful tool, in a real project we would be working with a testing framework in order to make sure that our endpoints still work. Today we’ll be adding testcases to our project and leveraging executeOperation to emulate requests to our Apollo Server, giving us the capability to test code ranging from our resolvers, to our dataSources. The concept here would be an <strong>integration</strong> test since it will be testing our GraphQL resolvers and dataSources. Without further ado, let’s start!</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <h2>Setting up the testing Framework</h2>
+<p>We will be using the jest library to do all of our testing:</p>
+<pre><code>npm i jest
+</code></pre>
+<p>Next we will be adding a file following the naming convention of <code>ENTITY_NAME.test.js</code> to each respective folder for each entity we have. First things first we will create our <code>renter.test.js</code> file within the renter folder.</p>
+<h2>Cleaning data in the database:</h2>
+<p>It’s important to note that if you’ve been following along in these tutorials your database now contains documents that were created by Mongoose, and then by Prisma. We will now remove all that previous data in the database so that we can ensure our database only contains documents created using Prisma endpoints. We are doing this since some of the previously created data with Mongoose will not have the information required in order to resolve our relationships between entities and this will end up breaking some of our queries when testing. Before we mentioned one of the features of Prisma was <strong>Prisma Migrate</strong> which is something that in our tutorials we haven’t needed to use, however the first step that it does is to drop the database we have connected to. It is important to note that there are a number of ways to drop the database for MongoDB, but deleting all the entries can become messy with some of the relationships we have defined so far.</p>
+<p>In our terminal we will run the following:</p>
+<pre><code>npx prisma migrate
+</code></pre>
+<p>You will see an error, but when checking the collection in Mongo Atlas you will see that all the data will be deleted. Now that our database is empty, we can continue writing testcases for our entities.</p>
+<p>Note: To re-add data just run the <code>seed.js</code> file we created in earlier tutorials.</p>
+<h2>Testing Renter entities:</h2>
+<p>To start we will be initializing our own <code>ApolloServer</code> and creating a context containing our Prisma Client in order to perform our queries. We do this because our methods that we use to call our Apollo Server uses a method called <code>executeOperation</code>, this method can take three main variables. The first is the query itself, which we can take from our testing within Apollo Sandbox. Next is <code>variables</code> for queries that require some sort of user input, but make sure that the name correlates to the one defined in your schema! Finally is the <code>contextValue</code> which in our case includes our Prisma Client; you may also end up passing your user authentication or other pieces of information here.</p>
+<p>You’ll note that there is a variable called <code>RenterFields</code> which are passed into the query and that the query itself has <code>...RenterFields</code>. This is an example of fragments, rather than continuously re-write each field we want to resolve from our queries, we created a <code>./test/helpers/fragments.js</code> file that contains the fragments we will re-use across different testcases and queries. A side-benefit is that we no longer have to update every query if this changes later on, we simply need to update our fragment and what are testcases expect respectively. You will need to include the <code>${NAME_OF_FRAGMENT}</code> before the query/mutation definition so that you can use it.</p>
+<pre><code>require('dotenv').config();
+const { ApolloServer } = require('@apollo/server');
+const omit = require('lodash.omit');
+const prisma = require('../prisma');
+const { typeDefs, resolvers } = require('../');
+const { RenterFields } = require('../../test/helpers/fragments');
+
+const testServer = new ApolloServer({
+    typeDefs,
+    resolvers
+});
+
+const contextValue = { prisma };
+
+async function createRenter(createRenterInput) {
+    return testServer.executeOperation({
+        query: `
+            ${RenterFields}
+            mutation CreateRenter($createRenterInput: CreateRenterInput) {
+                createRenter(createRenterInput: $createRenterInput) {
+                    ...RenterFields
+                    roommates {
+                        ...RenterFields
+                    }
+                }
+            }
+        `,
+        variables: { createRenterInput }
+    },
+    { contextValue });
+}
+
+async function makeRoommates(renterIds) {
+    return testServer.executeOperation({
+        query: `
+            ${RenterFields}
+            mutation Mutation($renterIds: [ID]) {
+                makeRoommates(renterIds: $renterIds) {
+                    ...RenterFields
+                    roommates {
+                        ...RenterFields
+                    }
+                }
+            }
+        `,
+        variables: { renterIds }
+    },
+    { contextValue });
+}
+
+async function renters() {
+    return testServer.executeOperation({
+        query: `
+            ${RenterFields}
+            query Renters {
+                renters {
+                    ...RenterFields
+                    roommates {
+                        ...RenterFields
+                    }
+                }
+            }
+        `},
+    { contextValue });
+}
+
+async function getRenterById(renterId) {
+    return testServer.executeOperation({
+        query: `
+            ${RenterFields}
+            query GetRenterById($renterId: ID!) {
+                getRenterById(renterId: $renterId) {
+                    ...RenterFields
+                    roommates {
+                        ...RenterFields
+                    }
+                }
+            }
+        `,
+        variables: {
+            renterId
+        }
+    },
+    { contextValue });
+}
+
+describe('Renter entity endpoints', () =&gt; {
+    const seedValue = Math.floor(Math.random() * 10000);
+
+    const createRenterInput = {
+        city: 'Test City' + seedValue,
+        name: 'Test renter name' + seedValue,
+        roommates: []
+    };
+
+    describe('Renter - Create', () =&gt; {
+        it('creates a renter and verifies it was created', async() =&gt; {
+            const response = await createRenter(createRenterInput);
+            expect(response.body.singleResult.errors).toBeUndefined();
+            expect(response.body.singleResult.data.createRenter).toEqual({
+                ...createRenterInput,
+                id: expect.any(String),
+                rating: 0
+            });
+        });
+    });
+
+    describe('Renter - Update', () =&gt; {
+        it('creates two users and checks both users all roommates with one another after calling makeRoommates', async() =&gt; {
+            const [renter1, renter2] = await Promise.all([
+                createRenter(createRenterInput),
+                createRenter(createRenterInput)
+            ]);
+
+            const createdRenterId1 = renter1.body.singleResult.data.createRenter.id;
+            const createdRenterId2 = renter2.body.singleResult.data.createRenter.id;
+            const { body } = await makeRoommates([createdRenterId1, createdRenterId2]);
+            expect(body.singleResult.errors).toBeUndefined();
+            expect(body.singleResult.data.makeRoommates).toEqual(
+                expect.arrayContaining([
+                    { 
+                        ...renter1.body.singleResult.data.createRenter,
+                        roommates: [{ ...omit(renter2.body.singleResult.data.createRenter, ['roommates']) }]
+                    },
+                    {
+                        ...renter2.body.singleResult.data.createRenter,
+                        roommates: [{ ...omit(renter1.body.singleResult.data.createRenter, ['roommates']) }]
+                    }
+                ])
+            )
+        });
+    });
+
+    describe('Renter - Read', () =&gt; {
+        it('queries to retrieve all renters', async() =&gt; {
+            const { body } = await renters();
+            expect(body.singleResult.errors).toBeUndefined();
+            expect(Array.isArray(body.singleResult.data.renters)).toBe(true);
+        });
+
+        it('queries for the renter created previously using getRenterById', async() =&gt; {
+            const createRenterResponse = await createRenter(createRenterInput);
+
+            const createdRenterId = createRenterResponse.body.singleResult.data.createRenter.id;
+            const { body } = await getRenterById(createdRenterId);
+
+            expect(body.singleResult.errors).toBeUndefined();
+            expect(body.singleResult.data.getRenterById).toEqual({
+                ...createRenterInput,
+                id: createdRenterId,
+                rating: 0
+            });
+        });
+    });
+});
+</code></pre>
+<h2>Testing Paradigms</h2>
+<p>In this code above, we wanted to make it somewhat explicit what we are testing, in these case our core CRUD endpoints, and wanted to have different describes in order to keep the separations of what we were testing clear. Because we would be adding lots of test data into the database, we added a <code>seedValue</code> so that the names would have a lower likely-hood of clashing, making testing easier.</p>
+<p>When expecting values that you aren’t sure exactly what the result will be, you can use <code>expect.any(String)</code>. In our testcases we use it for an id since that will get generated by the database, but we just want to ensure that it does get returned. Another useful method with Jest is <code>expect.ArrayContaining([])</code>, this is something we use when attempting to test an array of objects but we may not be sure what order they will be returned. This will test that an object is in that list that matches what you are looking for.</p>
+<p>We separate the functions we call within the testcases into their own separate functions for a number of reasons: one is because we may re-use them later within different testcases, the other is so that our testcases aren’t filled with logic just to query the Apollo Server. This is so that we have our testcases only focusing on what it needs to test, nothing more.</p>
+<h2>Renter Fragment</h2>
+<p>We will create the file <code>./test/helpers/fragments.js</code>:</p>
+<pre><code>module.exports = {
+    RenterFields: `
+        fragment RenterFields on Renter {
+            city
+            id
+            name
+            rating
+        }
+    `
+}
+</code></pre>
+<p>To define a fragment, it has to be on an existing entity, and we have to use the <code>fragment</code> keyword. In this case we define a fragment <code>RenterFields</code> on the entity <code>Renter</code> and define what fields it resolves. It does not have to include all of the fields on the entity, so you can use a fragment and still include other fields as well. As we test more entities we will add more to this file for our use.</p>
+<h2>Renter Deletion Problem</h2>
+<p>While writing these testcases, an issue occurred within the codebase; there was no clear way to delete a Renter entity. Part of this problem is due to the <code>roommates</code> relationship each Renter has, and if you want to delete a Renter, you must first disconnect the relationship between it and other <code>roommates</code>. So we needed to create a new endpoint for Renters:</p>
+<p>First step is to add the definition to the src/renters/schema.js:</p>
+<pre><code>type Mutation {
+    ...
+    deleteRenter(renterId: ID): Boolean
+}
+</code></pre>
+<p>Next is to add the resolver in <code>src/renters/resolvers.js</code>:</p>
+<pre><code>Mutation: {
+    ...
+    deleteRenter: async (_parent, args, { prisma }) =&gt; {
+        return deleteRenter(args.renterId, prisma);
+    }
+}
+</code></pre>
+<p>And finally to add the code in <code>src/renters/dataSource.js</code>:</p>
+<pre><code>async function deleteRenter(renterId, Prisma) {
+    // disconnect relationship between roommate and renter
+    await Prisma.renters.update({
+        where: {
+            id: renterId
+        },
+        data: {
+            roommates: {
+                set: []
+            }
+        }
+    });
+    // now delete renter
+    const deletedRenter = await Prisma.renters.delete({
+        where: {
+            id: renterId
+        }
+    });
+
+    return Boolean(deletedRenter.id);
+}
+</code></pre>
+<p>Now we need to actually test this new endpoint, so we will add a testcase to our <code>renter.test.js</code> file:</p>
+<pre><code>async function deleteRenter(renterId) {
+    return testServer.executeOperation({
+        query: `
+            mutation DeleteRenter($renterId: ID) {
+                deleteRenter(renterId: $renterId)
+            }
+        `,
+        variables: {
+            renterId
+        }
+    },
+    { contextValue });
+}
+...
+describe('Renter - Delete', () =&gt; {
+    it('creates a renter, and then deletes it', async() =&gt; {
+        const response = await createRenter(createRenterInput);
+        expect(response.body.singleResult.errors).toBeUndefined();
+        const deletedRenter = await deleteRenter(
+            response.body.singleResult.data.createRenter.id
+        );
+        expect(deletedRenter.body.singleResult.data.deleteRenter).toEqual(true);
+    });
+});
+</code></pre>
+<h2>Testing PropertyOwner entities:</h2>
+<p>These set of testcases are fairly simple, but follow the same idea in <code>./propertyOwners/propertyOwner.test.js</code>:</p>
+<pre><code>require('dotenv').config();
+const { ApolloServer } = require('@apollo/server');
+const prisma = require('../prisma');
+const { typeDefs, resolvers } = require('../');
+const { RenterFields, PropertyFields, PropertyOwnerFields } = require('../../test/helpers/fragments');
+
+const testServer = new ApolloServer({
+    typeDefs,
+    resolvers
+});
+
+const contextValue = { prisma };
+
+async function createPropertyOwner(createPropertyOwnerInput) {
+    return testServer.executeOperation({
+        query: `
+            ${RenterFields}
+            ${PropertyOwnerFields}
+            ${PropertyFields}
+            mutation CreatePropertyOwner($createPropertyOwnerInput: CreatePropertyOwnerInput) {
+                createPropertyOwner(createPropertyOwnerInput: $createPropertyOwnerInput) {
+                    ...PropertyOwnerFields
+                }
+              }
+        `,
+        variables: { createPropertyOwnerInput }
+    },
+    { contextValue });
+}
+
+async function propertyOwners() {
+    return testServer.executeOperation({
+        query: `
+            ${RenterFields}
+            ${PropertyOwnerFields}
+            ${PropertyFields}
+            query PropertyOwners {
+                propertyOwners {
+                    ...PropertyOwnerFields
+                }
+            }
+        `
+    },
+    { contextValue });
+}
+
+async function getPropertyOwnerById(propertyOwnerId) {
+    return testServer.executeOperation({
+        query: `
+            ${RenterFields}
+            ${PropertyOwnerFields}
+            ${PropertyFields}
+            query GetPropertyOwnerById($propertyOwnerId: ID!) {
+                getPropertyOwnerById(propertyOwnerId: $propertyOwnerId) {
+                    ...PropertyOwnerFields
+                }
+            }
+        `,
+        variables: {
+            propertyOwnerId
+        }
+    },
+    { contextValue });
+}
+
+describe('Property Owner entity endpoints', () =&gt; {
+    const seedValue = Math.floor(Math.random() * 10000);
+
+    const createPropertyOwnerInput = {
+        address: 'Test PO Address - ' + seedValue,
+        name: 'Test Landlord - ' + seedValue,
+        photo: 'some photo' + seedValue,
+        properties: []
+    };
+
+    describe('PropertyOwner - Read', () =&gt; {
+        it('Retrieves all propertyOwners', async() =&gt; {
+            const { body } = await propertyOwners();
+            expect(body.singleResult.errors).toBeUndefined();
+            expect(Array.isArray(body.singleResult.data.propertyOwners)).toBe(true);
+        });
+
+        it('Queries for the propertyOwner created previously using getPropertyOwnerById', async() =&gt; {
+            const result = await createPropertyOwner(createPropertyOwnerInput);
+
+            expect(result.body.singleResult.errors).toBeUndefined();
+            const createdPropertyOwner = result.body.singleResult.data.createPropertyOwner;
+
+            const { body } = await getPropertyOwnerById(createdPropertyOwner.id);
+            expect(body.singleResult.errors).toBeUndefined();
+            expect(body.singleResult.data.getPropertyOwnerById).toEqual(createdPropertyOwner);
+        });
+    });
+
+    describe('PropertyOwner - Create', () =&gt; {
+        it('Creates a propertyOwner', async() =&gt; {
+            const { body } = await createPropertyOwner(createPropertyOwnerInput);
+            expect(body.singleResult.errors).toBeUndefined();
+            expect(body.singleResult.data.createPropertyOwner).toEqual({
+                ...createPropertyOwnerInput,
+                id: expect.any(String),
+                rating: 0
+            });
+        });
+    });
+});
+</code></pre>
+<h2>Property and PropertyOwner Fragment</h2>
+<p>Now let’s add our fragments to our <code>./test/helpers/fragment.js</code> file:</p>
+<pre><code>module.exports = {
+    PropertyOwnerFields: `
+        fragment PropertyOwnerFields on PropertyOwner {
+            id
+            name
+            address
+            rating
+            photo
+            properties {
+                ...PropertyFields
+            }
+        }
+    `,
+    PropertyFields: `
+        fragment PropertyFields on Property {
+            available
+            id
+            name
+            city
+            description
+            photos
+            rating
+            renters {
+                ...RenterFields
+            }
+        }
+    `
+}
+</code></pre>
+<p>There is a particular reason in this case why we left out <code>propertyOwner</code> from <code>PropertyFields</code>. This is because eventually this would lead to a very nested resolution path and would complicate our testcases. Much of the information would be redundant if we attempt to make this resolve. In practicality, if you were to query a list of <code>properties</code> from a <code>propertyOwner</code>, you would not need to know the <code>propertyOwner</code> since that information would already be available at the top level. Meanwhile if you were to query a <code>property</code> and want to get the information of the <code>propertyOwner</code> you can simply add that information to your query after the fragment. You will see an example of this when we test the Properties entity.</p>
+<h2>Testing PropertyOwner entities</h2>
+<p>This entity becomes more interesting in order to test the update methods, and we even found an error in our schema when testing the endpoints in <code>./properties/properties.test.js</code>:</p>
+<pre><code>require('dotenv').config();
+const { ApolloServer } = require('@apollo/server');
+const omit = require('lodash.omit');
+const prisma = require('../prisma');
+const { typeDefs, resolvers } = require('../');
+const { RenterFields, PropertyFields } = require('../../test/helpers/fragments');
+const { createPropertyOwner } = require('../propertyOwners/dataSource')
+const { createRenter } = require('../renters/dataSource')
+
+
+const testServer = new ApolloServer({
+    typeDefs,
+    resolvers
+});
+
+const contextValue = { prisma };
+
+async function properties() {
+    return testServer.executeOperation({
+        query: `
+            ${RenterFields}
+            ${PropertyFields}
+            query Properties {
+                properties {
+                    ...PropertyFields
+                    propertyOwner {
+                        id
+                        name
+                        address
+                        rating
+                        photo
+                    }
+                }
+            }
+        `
+    },
+    { contextValue });
+}
+
+async function createProperty(createPropertyInput) {
+    return testServer.executeOperation({
+        query: `
+            ${RenterFields}
+            ${PropertyFields}
+            mutation Mutation($createPropertyInput: CreatePropertyInput) {
+                createProperty(createPropertyInput: $createPropertyInput) {
+                    ...PropertyFields
+                    propertyOwner {
+                        id
+                        name
+                        address
+                        rating
+                        photo
+                    }
+                }
+            }
+        `,
+        variables: { createPropertyInput }
+    },
+    { contextValue });
+}
+
+async function updateProperty(updatePropertyInput) {
+    return testServer.executeOperation({
+        query: `
+            ${RenterFields}
+            ${PropertyFields}
+            mutation UpdateProperty($updatePropertyInput: UpdatePropertyInput) {
+                updateProperty(updatePropertyInput: $updatePropertyInput) {
+                    ...on PropertyNotFoundError {
+                        message
+                        propertyId
+                    }
+                    ...on Property {
+                        ...PropertyFields
+                        propertyOwner {
+                            id
+                            name
+                            address
+                            rating
+                            photo
+                        }
+                    }
+                }
+            }
+        `,
+        variables: { updatePropertyInput }
+    },
+    { contextValue });
+}
+
+async function getPropertyById(propertyId) {
+    return testServer.executeOperation({
+        query: `
+            ${RenterFields}
+            ${PropertyFields}
+            query GetPropertyById($propertyId: ID!) {
+                getPropertyById(propertyId: $propertyId) {
+                    ...PropertyFields
+                    propertyOwner {
+                        id
+                        name
+                        address
+                        rating
+                        photo
+                    }
+                }
+            }
+        `,
+        variables: {
+            propertyId
+        }
+    },
+    { contextValue });
+}
+
+describe('Property entity endpoints', () =&gt; {
+    const seedValue = Math.floor(Math.random() * 10000);
+
+    const createPropertyInput = {
+        available: true,
+        city: 'Test Property City - ' + seedValue,
+        renters: [],
+        name: 'Test Property Name - ' + seedValue,
+        description: 'Test Property Decription - ' + seedValue
+    };
+
+    const createPropertyOwnerInput = {
+        address: 'Test PO Address - ' + seedValue,
+        name: 'Test Landlord - ' + seedValue,
+        photo: 'some photo' + seedValue,
+        properties: []
+    };
+
+    const createRenterInput = {
+        city: 'Test City' + seedValue,
+        name: 'Test renter name' + seedValue,
+        roommates: []
+    };
+
+    describe('Property - Read', () =&gt; {
+        let createdProperty;
+        beforeAll(async() =&gt; {
+            const propertyOwner = await createPropertyOwner(createPropertyOwnerInput, prisma)
+            
+            const renter = await createRenter(createRenterInput, prisma)
+
+            const { body } = await createProperty({
+                ...createPropertyInput,
+                propertyOwnerId: propertyOwner.id,
+                renters: [renter.id]
+            });
+
+            createdProperty = body.singleResult.data.createProperty;
+        });
+
+        it('Retrieves all properties', async() =&gt; {
+            const { body } = await properties();
+            expect(body.singleResult.errors).toBeUndefined();
+            expect(Array.isArray(body.singleResult.data.properties)).toBe(true);
+        });
+
+        it('Retrieves the created property with getPropertyById', async() =&gt; {
+            const { body } = await getPropertyById(createdProperty.id);
+            expect(body.singleResult.errors).toBeUndefined();
+            expect(body.singleResult.data.getPropertyById).toEqual(createdProperty)
+        });
+    });
+
+    describe('Property - Create', () =&gt; {
+        it('Create a propertyOwner and a renter to create a property and tests that relationships are connected', async() =&gt; {
+            const propertyOwner = await createPropertyOwner(createPropertyOwnerInput, prisma)
+            
+            const renter = await createRenter(createRenterInput, prisma)
+
+            const { body } = await createProperty({
+                ...createPropertyInput,
+                propertyOwnerId: propertyOwner.id,
+                renters: [renter.id]
+            });
+
+            expect(body.singleResult.errors).toBeUndefined();
+            expect(body.singleResult.data.createProperty).toEqual({
+                ...createPropertyInput,
+                rating: 0,
+                photos: [],
+                id: expect.any(String),
+                renters: [omit(renter, ['rentedPropertyId', 'roommateId', 'roommates', 'v'])],
+                propertyOwner: omit(propertyOwner, ['properties', 'v'])
+            });
+        });            
+    });
+
+    describe('Property - Update', () =&gt; {
+        let createdProperty;
+        beforeAll(async() =&gt; {
+            const propertyOwner = await createPropertyOwner(createPropertyOwnerInput, prisma)
+            
+            const renter = await createRenter(createRenterInput, prisma)
+
+            const { body } = await createProperty({
+                ...createPropertyInput,
+                propertyOwnerId: propertyOwner.id,
+                renters: [renter.id]
+            });
+
+            createdProperty = body.singleResult.data.createProperty;
+        });
+
+        it('Updates a property with an incorrect ID and returns PropertyNotFoundError', async() =&gt; {
+            const NON_EXISTANT_UUID = '63c19d15b3db1c7857b59a7c';
+            const { body } = await updateProperty({ id: NON_EXISTANT_UUID });
+
+            expect(body.singleResult.data.updateProperty).toEqual({
+                message: 'Unable to find property with associated id.',
+                propertyId: NON_EXISTANT_UUID
+            })
+        });
+
+        it('Updates previously created property and updates non-relational fields', async() =&gt; {
+            const updatesToProperty = {
+                id: createdProperty.id,
+                available: false,
+                city: 'New Test Property City - ' + seedValue,
+                name: 'New Test Property Name - ' + seedValue,
+                description: 'New Test Property Decription - ' + seedValue
+            };
+            const { body } = await updateProperty(updatesToProperty);
+
+            expect(body.singleResult.errors).toBeUndefined();
+            expect(body.singleResult.data.updateProperty).toEqual({
+                ...updatesToProperty,
+                photos: [],
+                propertyOwner: expect.any(Object),
+                rating: 0,
+                renters: expect.any(Array)
+            })
+        });
+
+        it('Updates previously created property and updates renters with newly created Renter', async() =&gt; {
+            const newCreatedRenterInput = {
+                city: 'New - Test City' + seedValue,
+                name: 'New - Test renter name' + seedValue,
+                roommates: []
+            };
+            const renter = await createRenter(newCreatedRenterInput, prisma)
+            const updatesToProperty = {
+                id: createdProperty.id,
+                renters: [renter.id]
+            };
+
+            const { body } = await updateProperty(updatesToProperty);
+
+            expect(body.singleResult.errors).toBeUndefined();
+            expect(body.singleResult.data.updateProperty.renters).toEqual(
+                [omit(renter, ['rentedPropertyId', 'roommateId', 'roommates', 'v'])]
+            )
+        });
+
+        it('Updates previously created property and updates propertyOwner with newly created propertyOwner', async() =&gt; {
+            const newCreatedPropertyOwnerInput = {
+                address: 'New - Test PO Address - ' + seedValue,
+                name: 'New - Test Landlord - ' + seedValue,
+                photo: 'New - some photo' + seedValue,
+                properties: []
+            };
+            const propertyOwner = await createPropertyOwner(newCreatedPropertyOwnerInput, prisma)
+            const updatesToProperty = {
+                id: createdProperty.id,
+                propertyOwnerId: propertyOwner.id
+            };
+            const { body } = await updateProperty(updatesToProperty);
+
+            expect(body.singleResult.errors).toBeUndefined();
+            expect(body.singleResult.data.updateProperty.propertyOwner).toEqual(
+                omit(propertyOwner, ['v', 'properties'])
+            )
+        });
+    });
+});
+</code></pre>
+<h3>Testing Paradigms</h3>
+<p>In this file, we use a <code>beforeAll</code> hook to setup some data that we want to reference later, in this case we want to create a Property before the test runs so we can simply call <code>getPropertyById</code> in our Read testcase.</p>
+<p>In order to create a property, we need to have created a <code>propertyOwner</code> first, and to test the resolution of <code>renters</code> as well we would need to create a <code>renter</code> entity as well. Rather than test Apollo Server for those two actions (which we already covered in our other testcases), we chose to call the dataSource methods directly. This became a little tricky when expecting what the return will be since we still have extra fields that get returned, in this case we use <code>omit</code> to make the massaging of data much easier so we can test that the relationships did get created.</p>
+<h2>Property Update Problem</h2>
+<p>When testing the update method, a number of situations needed to be covered: namely ensuring that our <code>PropertyNotFoundError</code> would be thrown, we could update our non-relational fields, and finally being able to ensure <code>renters</code> and <code>propertyOwner</code> could be updated with new relationships. During this process we found some errors in the schema for <code>property</code> and how we updated the relationships for both <code>renters</code> and the <code>propertyOwner</code>.</p>
+<p>First thing to change was the <code>UpdatePropertyInput</code>, we simply want the ID rather than an entire object of a propertyOwner, so we should be making the input say that explicitly with <code>propertyOwnerId</code>:</p>
+<pre><code>input UpdatePropertyInput {
+    ...
+    propertyOwnerId: ID
+}
+</code></pre>
+<p>Then we needed to update the object for propertyOwner since it was malformed when passed into the Prisma <code>update</code> method <code>properties/dataSource.js</code>:</p>
+<pre><code>const propertyOwner = updatedProperty.propertyOwnerId &amp;&amp; {
+    connect: { id: updatedProperty.propertyOwnerId }
+};
+</code></pre>
+<p>Next as an update, we want to include a list of renters that are currently renting that property, with the previous code not only was the object not formed correctly, when it was fixed it would actually only add the new list of renters to the existing list. What we wanted to do with this update was that if you passed in a list of renters, that list became the current list of renters on the property. To do that we used the option called <code>set</code> instead of <code>connect</code> which we were using before:</p>
+<pre><code>const renters = updatedProperty.renters &amp;&amp; {
+      set: updatedProperty?.renters.map((renterId) =&gt; ({ id: renterId }))
+  };
+</code></pre>
+<p>The new <code>updateProperty</code> method should contain the following new lines of code:</p>
+<pre><code>const renters = updatedProperty.renters &amp;&amp; {
+    set: updatedProperty?.renters.map((renterId) =&gt; ({ id: renterId }))
+};
+const propertyOwner = updatedProperty.propertyOwnerId &amp;&amp; {
+    connect: { id: updatedProperty.propertyOwnerId }
+};
+
+...
+const savedProperty = await Prisma.properties.update({
+    where: {
+        id: propertyId
+    },
+    data: {
+        ...nonConnectPropertyFields,
+        renters,
+        propertyOwner
+    },
+    include: {
+        renters: true,
+        propertyOwner: true
+    }
+});
+...
+</code></pre>
+<p>This means that during the update for properties, you pass the id of the new propertyOwner you want in <code>propertyOwnerId</code>.</p>
+<h2>Adding a test script:</h2>
+<p>The last step is to add a simple test script to <code>package.json</code> so that we can run our testcases from the command line:</p>
+<pre><code>&quot;scripts&quot;: {
+  ...
+  &quot;test&quot;: &quot;jest --coverage&quot;
+}
+</code></pre>
+<p>With this we can now type <code>npm run test</code> in our terminal in our project directory and have all our testcases run! With the <code>--coverage</code> flag we will see what lines of our code we haven’t tested, which is a good metric for a strong test suite.</p>
+<h2>Conclusion</h2>
+<p>Testing is very useful in many projects, even pointing out flaws in our current tutorial. Now if we need to change our ORM, entities, or add new features, each existing endpoint has a testcase to ensure their stability. We leveraged the power of fragments to keep our query strings smaller and consistent between different queries. This also means that if we have to update our fragments, we only need to change it in one spot rather than across many methods. We learned about <code>executeOperation</code> and how to setup our testcases in a way to test our resolvers and dataSources. At the end of this tutorial you should have a repository similar to <a href="https://github.com/bitovi/node-graphql-tutorial-2023/tree/fragments">this</a>. Now that we included testcases it will become much easier to ensure we don’t make breaking changes going forward!</p>
+
+</section>
+
+  			
+  			<bit-prev-next class="footer" list-selector=".sidebar-left ul li.parent.expanded ul"></bit-prev-next>
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout discord">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://discord.gg/J7ejFsZnJ4">help</a> with an exercise, please reach out to us on
+             <a href="https://discord.gg/J7ejFsZnJ4">Discord</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com</a></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/graphql/4-adding-testing/adding-testing.md"},"description":"At the start of this tutorial you should have a repository similar to [this](https://github.com/bitovi/node-graphql-tutorial-2023/tree/prisma). So far we created our endpoints for our three entities, we had added Mongoose, and ported our endpoints to use Prisma instead. At each point we had to manually test the endpoints in Apollo Sandbox, and while that is a useful tool, in a real project we would be working with a testing framework in order to make sure that our endpoints still work. Today we’ll be adding testcases to our project and leveraging executeOperation to emulate requests to our Apollo Server, giving us the capability to test code ranging from our resolvers, to our dataSources. The concept here would be an **integration** test since it will be testing our GraphQL resolvers and dataSources. Without further ado, let’s start! \n","name":"learn-graphql/adding-testing","title":"Testing NodeJs and GraphQL with Jest","type":"page","parent":"learn-graphql","order":4,"comment":" ","pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+  <div id="email-modal" style="display: none;">
+    <div aria-hidden="true" class="email-modal-backdrop"></div>
+    <div role="region" class="email-modal-content">
+      <h2>Join the Bitovi Newsletter</h2>
+      <p>
+        To start the course, please provide an email.<br />
+        <i style="font-size: 0.8rem;">By providing your email you agree to receive communications from Bitovi</i>
+      </p>
+      <div id="academy-hubspot-form-embed"></div>
+      <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+    </div>
+  </div>
+</body>
+</html>

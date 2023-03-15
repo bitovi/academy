@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/graphql/2-adding-mongodb/adding-mongodb.md
+	@page learn-graphql/adding-mongodb
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <meta name="description" content="In this guide we will be working off of a starting point [project](https://github.com/bitovi/node-graphql-tutorial-2023) and will be removing the need for static data, while adding a connection to a live database! 
+We’ll also go over some basic methods to perform CRUD operations, and how we will pull related entities from our database (what is known as joins in SQL) using the &#x60;populate&#x60; function in Mongoose. We’ll also create a small seed file in order to fill our database with some baseline information.
+
+">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
+  <title>Bitovi Academy - Connecting Apollo Server with MongoDB</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-react.html"
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will have mastered functional components, hooks, and component optimization.">
+							Learn React
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-web-components.html"
+							title="">
+							Learn Web Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-technology-consulting.html"
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
+							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-graphql.html"
+							title="Build a backend application for property rentals using Node JS, GraphQL and Apollo Server.         Learn about using ORMs like Mongoose and Prisma with a NoSQL Mongo database!
+Write testcases testing created endpoints.">
+							Learn Graphql
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="setting-up-apollo.html"
+							title="This GraphQL tutorial will take you through creating different entities, how to create a server using Apollo Server 4, and some of the plugins available to use. We will go through queries, mutations, dealing with the resolver chain (A.K.A entity resolution). We’ll talk a bit about growing our graph including update mutations and introduce some error handling. Then we’ll go over directives that are available for the maintenance of your graph, and then end with adding some cache control for some fields within an entity.">
+							Setting Up a GraphQL Server with Apollo
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="adding-mongodb.html"
+							title="In this guide we will be working off of a starting point project and will be removing the need for static data, while adding a connection to a live database!
+We’ll also go over some basic methods to perform CRUD operations, and how we will pull related entities from our database (what is known as joins in SQL) using the populate function in Mongoose. We’ll also create a small seed file in order to fill our database with some baseline information.">
+							Connecting Apollo Server with MongoDB
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="porting-to-prisma.html"
+							title="In this guide we will be working off of a starting point project and will be removing the need for Mongoose and instead we will be using Prisma to perform our queries and mutations!">
+							Converting Mongoose to Prisma
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="adding-testing.html"
+							title="At the start of this tutorial you should have a repository similar to this. So far we created our endpoints for our three entities, we had added Mongoose, and ported our endpoints to use Prisma instead. At each point we had to manually test the endpoints in Apollo Sandbox, and while that is a useful tool, in a real project we would be working with a testing framework in order to make sure that our endpoints still work. Today we’ll be adding testcases to our project and leveraging executeOperation to emulate requests to our Apollo Server, giving us the capability to test code ranging from our resolvers, to our dataSources. The concept here would be an integration test since it will be testing our GraphQL resolvers and dataSources. Without further ado, let’s start!">
+							Testing NodeJs and GraphQL with Jest
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn how to build a moderately complex application with Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../advanced-typescript.html"
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
+							Advanced TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border">
+      <a href="..#courses">View More Courses</a>
+      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
+  </p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Connecting Apollo Server with MongoDB <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>In this guide we will be working off of a starting point <a href="https://github.com/bitovi/node-graphql-tutorial-2023">project</a> and will be removing the need for static data, while adding a connection to a live database!
+We’ll also go over some basic methods to perform CRUD operations, and how we will pull related entities from our database (what is known as joins in SQL) using the <code>populate</code> function in Mongoose. We’ll also create a small seed file in order to fill our database with some baseline information.</p>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  				<section class="body">
+    <h2>Setting up MongoDB in the cloud</h2>
+<p>Rather than host a local instance of MongoDB, we can instead use <strong>MongoDB Atlas</strong> and leverage their free-tier option in order to setup a MongoDB instance. I would recommend to follow the first 5 minutes of the video to get your account and your <a href="https://www.youtube.com/watch?v=xrc7dIO_tXk&amp;ab_channel=MongoDB">cluster setup</a>. After this video I would suggest to keep your connection uri so that we can begin to use it in our project.</p>
+<h3>Dependencies</h3>
+<p>First things first, we’ll need to install some packages that we’ll be going to use:</p>
+<p><code>npm i mongodb mongoose dotenv</code></p>
+<p>We are deciding to use <code>dotenv</code> so that we can put our connection uri inside a file .env at the highest level of the directory. And this file won’t be committed to any repository so that we don’t share our precious connection uri! We’ll add the following line to the <code>.env</code> file:</p>
+<p><code>MONGODB_URL=&quot;mongodb+srv://&lt;your_connection_uri_here&gt;&quot;</code></p>
+<h2>Mongoose vs MongoDB Native Driver:</h2>
+<p>In this tutorial we’ll be going with Mongoose as our package of choice, but let’s quickly go over our options on why we might use one or the other. For us, Mongoose provides a nice way to create a Model of any entity we want to refer to, and when we want to create a new document using that Model, we get inherent model validation out of the box. Rather than having to include document validation ourselves within our resolvers or dataSource files, Mongoose will throw an error if an incorrect field is placed during a <code>save</code> operation. You can also create and manage relationships data relatively quickly by making the schema strict (in terms of validation), and using the <code>populate</code> method. Some drawbacks are that Mongoose can hide some complexity of what it is doing away from developers making it really difficult to understand complex concepts.</p>
+<p>The MongoDB native driver is definitely more performant than Mongoose and a lot of methods between the two are fairly similar in syntax. However you might have to create some boilerplate validation code since MongoDB will allow you store a document that doesn’t have to follow the same schema as other objects within the same collection. However depending on your use-case that may be better, for example where some sub-fields are not meant to be a consistent <strong>type</strong> between different documents. For this tutorial though, it keeps the GraphQL schema definition and the Mongoose definition fairly rigid to keep our entities consistent.</p>
+<h2>Adding the Mongoose connection to our server</h2>
+<p>Add this line to the top of the <code>/index.js</code> file:</p>
+<pre><code>require('dotenv').config();
+</code></pre>
+<p>And the following lines to setup the mongoose connection added to the database:</p>
+<pre><code>mongoose.set('strictQuery', false);
+mongoose.connect(process.env.MONGODB_URL);
+</code></pre>
+<p><strong>Note:</strong> We are adding this <code>strictQuery</code> to <code>false</code> because Mongoose has a deprecation warning around this being set to false by default in Mongoose 7.</p>
+<h3>Creating the Mongoose Models</h3>
+<p>In the <code>/src</code> folder we’ll create a <code>/models</code> folder and create three files: <code>property.js, propertyOwner.js, and renter.js</code>. We are keeping the model definitions separate from other parts of the code so we can keep our mongoose model definitions clean and concise.</p>
+<p>In our <code>/src/models/renter.js</code> file we’ll add the following lines of code:</p>
+<pre><code>const { Schema, model } = require('mongoose');
+
+const renterSchema = new Schema({
+    name: {
+        type: String,
+        required: true,
+        maxLength: 60
+    },
+    city: {
+        type: String,
+        required: true
+    },
+    rating: {
+        type: Number,
+        required: true
+    },
+    roommates: [{
+        type: Schema.Types.ObjectId,
+        ref: &quot;Renter&quot;
+    }],
+    deprecatedField: Boolean,
+    nonDeprecatedField: Boolean
+});
+
+const Renter = model(&quot;Renter&quot;, renterSchema);
+
+module.exports = {
+    Renter
+};
+</code></pre>
+<p>What is notable here is that with each field we are able to create specific types, add some level of verification and set whether the field is required or not. Another interesting portion is the <strong>roommates</strong> field having a <code>Schema.Types.ObjectId</code> type and a <code>ref: &quot;Renter&quot;</code>. This is Mongoose’s way to indicate that a field represents another object and will be referenced by the ID string we pass to that field. This is the first step in being able to take an ID, and eventually resolve a <code>Renter</code> object during the resolution process. Lastly we export our <code>Renter</code> so that we can use it in our resolvers going forward, this object will give us many helper functions around CRUD operations so that we can integrate MongoDB easily.</p>
+<p>In our <code>/src/models/propertyOwner.js</code> file we’ll add the following lines of code:</p>
+<pre><code>const { Schema, model } = require('mongoose');
+
+const propertyOwnerSchema = new Schema({
+    name: {
+        type: String,
+        required: true,
+        maxLength: 60
+    },
+    address: {
+        type: String,
+        required: true
+    },
+    rating: {
+        type: Number,
+        required: true
+    },
+    properties: [{
+        type: Schema.Types.ObjectId,
+        ref: &quot;Property&quot;
+    }],
+    photo: String
+});
+
+const PropertyOwner = model(&quot;PropertyOwner&quot;, propertyOwnerSchema);
+
+module.exports = {
+    PropertyOwner
+};
+</code></pre>
+<p>Nothing here is notable aside from being able to add a list of <code>Schema.Types.ObjectId</code>, and remember that we are creating our Mongoose models to match the GraphQL schemas we created earlier.</p>
+<p>In our <code>/src/models/property.js</code> file we’ll add the following lines of code:</p>
+<pre><code>const { Schema, model } = require('mongoose');
+
+const propertySchema = new Schema({
+    name: {
+        type: String,
+        required: true,
+        maxLength: 60
+    },
+    city: {
+        type: String,
+        required: true
+    },
+    available: Boolean,
+    description: {
+        type: String,
+        maxLength: 250
+    },
+    photos: [String],
+    rating: {
+        type: Number,
+        required: true
+    },
+    renters: [{
+        type: Schema.Types.ObjectId,
+        ref: &quot;Renter&quot;
+    }],
+    propertyOwner: {
+        type: Schema.Types.ObjectId,
+        ref: &quot;PropertyOwner&quot;
+    }
+});
+
+const Property = model(&quot;Property&quot;, propertySchema);
+
+module.exports = {
+    Property
+};
+</code></pre>
+<p>In this model, the only notable fields are ensuring the relationship between <code>renters</code> and <code>propertyOwner</code> fields are created correctly and are referencing the same name that we passed into the <code>model</code> method for both renters and propertyOwners.</p>
+<h2>Creating a seed script</h2>
+<p>At this point we have our models setup, but in order to start switching our resolvers to use Mongoose, we will need to create data within our database. That is where creating a seed file will come in handy, and we will learn some useful methods that we get from Mongoose. Create a <code>seed.js</code> file at the top-level of the project, we are going to use the static information we had before, and move it to the <code>seed.js</code> file with some adjustments:</p>
+<pre><code>require('dotenv').config();
+const mongoose = require('mongoose');
+const { Property, PropertyOwner, Renter } = require('./src/models');
+
+const renters = [
+    {
+        name: 'renter 1',
+        city: 'Toronto',
+        rating: 4,
+        roommates: []
+    },
+    {
+        name: 'renter 2',
+        city: 'Toronto',
+        rating: 3.5,
+        roommates: []
+    }
+];
+
+const propertyOwners = [
+    {
+        name: 'owner 1',
+        address: 'Toronto',
+        rating: 4.0,
+        properties: [],
+        photo: 'something'
+    },
+    {
+        name: 'owner 2',
+        address: 'Toronto',
+        rating: 4.0,
+        properties: [],
+        photo: 'something'
+    }
+];
+
+const properties = [
+    {
+        name: 'Deluxe suite 1',
+        city: 'Toronto',
+        rating: 5.0,
+        renters: [],
+        available: true,
+        description: 'amazing place 1',
+        photos: [],
+        propertyOwner: null
+    },
+    {
+        name: 'Deluxe suite 2',
+        city: 'Toronto',
+        rating: 5.0,
+        renters: [],
+        available: true,
+        description: 'amazing place 2',
+        photos: [],
+        propertyOwner: null
+    }
+];
+</code></pre>
+<p><strong>Note:</strong> We are removing the need for <code>id</code> fields in our objects. We are also setting some initial reference values as null before we give them values later on.</p>
+<p>Next we are going to run an <code>async runSeed()</code> function which will connect to our database, create the initial entities and then attach the relationships before creating the fields:</p>
+<pre><code>async function runSeed() {
+
+    mongoose.set('strictQuery', false);
+    mongoose.connect(process.env.MONGODB_URL);
+    try {
+        const newRenter = new Renter(renters[0]);
+        const newRenterTwo = new Renter(renters[1]);
+
+        // establish relationship
+        newRenter.set('roommates', [newRenterTwo._id]);
+        newRenterTwo.set('roommates', [newRenter._id]);
+        
+        await newRenter.save();
+        await newRenterTwo.save();
+
+        const newPropertyOwner = new PropertyOwner(propertyOwners[0]);
+        const newPropertyOwnerTwo = new PropertyOwner(propertyOwners[1]);
+
+        const newProperty = new Property(properties[0]);
+        const newPropertyTwo = new Property(properties[1]);
+
+        newProperty.set('renters', [newRenter._id]);
+        newPropertyTwo.set('renters', [newRenterTwo._id]);
+        newProperty.set('propertyOwner', [newPropertyOwner._id]);
+        newPropertyTwo.set('propertyOwner', [newPropertyOwnerTwo._id]);
+
+        newPropertyOwner.set('properties', [newProperty._id]);
+        newPropertyOwnerTwo.set('properties', [newPropertyTwo._id]);
+
+        await newPropertyOwner.save();
+        await newPropertyOwnerTwo.save();
+
+        await newProperty.save();
+        await newPropertyTwo.save();
+
+        console.log('done');
+    } catch (err) {
+        console.error('runSeed error', err);
+    } finally {
+        mongoose.connection.close();
+    }
+}
+
+runSeed();
+</code></pre>
+<p>We can use the <code>new Entity()</code> method which will return a MongoDB document for us to save later on. We still want to set up our relationships, our models contain a useful method called <code>set</code> that we can set any field we want in the MongoDB document. Once our objects are now in the shape we want them to be, we then save them to the database.</p>
+<p>We create our propertyOwners before our properties, so that we can set the <code>propertyOwner</code> field which is required by our model validation. Once we save our propertyOwners and our properties we have our console log print out <code>done</code> so we get a visual confirmation. We use the <code>finally</code> block during our <code>try/catch</code> in order to close our connection to Mongoose after our seeding is done.</p>
+<p>Next we go to our <code>package.json</code> and we add a <code>seed</code> field to our scripts parameter:</p>
+<pre><code>&quot;scripts&quot;: {
+    &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,
+    &quot;start&quot;: &quot;node --watch ./index.js&quot;,
+    &quot;seed&quot;: &quot;node ./seed.js&quot;
+}
+</code></pre>
+<p>Your <code>package.json</code> should look like above for the <code>scripts</code> field.</p>
+<h2>Adding Mongoose to our dataSources</h2>
+<p>Now that we have created the baseline models we want that match our entities, all we need to do to add values into the database is to run <code>npm run seed</code> from a console within the project directory. If the seed successfully ran, you will know that our models are correct by viewing them within the MongoDB Atlas webpage. The next step is to go into our dataSources and begin porting over our operations, go into <code>src/renters/dataSource.js</code>:</p>
+<pre><code>const { Renter } = require('../models');
+
+async function getRenterById(renterId) {
+    return Renter.findById(renterId)
+        .populate('roommates');
+}
+
+async function createRenter(renter) {
+    const newRenter = new Renter({
+        city: renter.city,
+        name: renter.name,
+        rating: 0,
+        roommates: renter.roommates || []
+    });
+
+    const savedRenter = await newRenter.save();
+    return savedRenter.populate('roommates');
+}
+
+async function getAllRenters() {
+    return Renter.find({})
+        .populate('roommates');
+}
+</code></pre>
+<p>Mongoose provides out-of-the-box methods for most operations we want to do here. Notice that at the top of the file we import our <code>Renter</code> model from our <code>src/models</code> directory. Another important thing to notice is the <code>populate</code> function. This is Mongoose's way of performing a join operation on the id we attached to the field <strong>roommates</strong>. This populate method will fetch the data we need related to that id, removing the need to have a custom resolution strategy in our <code>src/renters/resolvers.js</code>. In fact we can remove the need for the entire <code>Renter</code> field in the resolvers object (we will be doing similar things for the other two entities properties, and propertyOwners).</p>
+<p>When creating or updating an entity, we still want to have the <code>roommates</code> field populated. In this case we have to add a step where we <code>save</code> an entity first, and then return by calling the <code>.populate</code> function with the fields we want to return. If we return without calling <code>.populate</code> then it will return only the string value of those fields which will break our GraphQL query.</p>
+<p>Now let’s move over to the <code>src/propertyOwners/dataSource.js</code> and add Mongoose to the methods:</p>
+<pre><code>const { PropertyOwner } = require('../models');
+
+async function getPropertyOwnerById(propertyOwnerId) {
+    return PropertyOwner.findById(propertyOwnerId)
+        .populate('properties');
+}
+
+async function createPropertyOwner(propertyOwner) {
+    const newPropertyOwner = new PropertyOwner({
+        name: propertyOwner.name,
+        address: propertyOwner.address,
+        properties: propertyOwner.properties || [],
+        photo: propertyOwner.photo,
+        rating: 0
+    });
+
+    const savedPropertyOwner = await newPropertyOwner.save();
+
+    return savedPropertyOwner
+        .populate('properties');
+}
+
+async function getAllPropertyOwners() {
+    return PropertyOwner.find({})
+        .populate('properties');
+}
+</code></pre>
+<p><strong>Note:</strong> Do not forget to remove the PropertyOwner field from the resolvers in <code>src/propertyOwners/resolver.js</code>.</p>
+<p>Finally we head to our <code>src/properties/dataSource.js</code> file and we add the following lines:</p>
+<pre><code>const { Property } = require('../models');
+const { PropertyNotFoundError } = require('../../errors');
+
+async function getPropertyById(propertyId) {
+    return Property.findById(propertyId)
+        .populate('renters propertyOwner');
+}
+
+async function createProperty(property) {
+    const newProperty = new Property({
+        available: property.available,
+        city: property.city,
+        description: property.description,
+        name: property.name,
+        photos: property.photos || [],
+        propertyOwner: property.propertyOwnerId,
+        rating: 0,
+        renters: property.renters || []
+    });
+
+    const savedProperty = await newProperty.save();
+
+    return savedProperty
+        .populate('renters propertyOwner');
+}
+
+async function updateProperty(propertyId, updatedProperty) {
+    const savedProperty = await Property.findByIdAndUpdate(
+        propertyId,
+        updatedProperty,
+        { new: true }
+    ).populate('renters propertyOwner');
+
+    if (!savedProperty) {
+        return PropertyNotFoundError(propertyId);
+    }
+    return {
+        __typename: 'Property',
+        id: savedProperty.id,
+        available: savedProperty.available,
+        city: savedProperty.city,
+        description: savedProperty.description,
+        name: savedProperty.name,
+        photos: savedProperty.photos,
+        propertyOwner: savedProperty.propertyOwnerId,
+        rating: savedProperty.rating,
+        renters: savedProperty.renters
+    }
+}
+
+async function getAllProperties() {
+    return Property.find({})
+        .populate('renters propertyOwner');
+}
+</code></pre>
+<p>Now an interesting part here is that if we need to <code>populate</code> multiple fields on one entity, we don’t have to chain multiple <code>populate</code> methods. We simply need to pass in one space-separated string of the fields we need to populate (see line 6 for an example). If the field we wish to populate is a field on a nested entity, then we can follow this notation <code>ENTITY_NAME.FIELD_NAME</code> and Mongoose will populate it for us.</p>
+<p>The <code>updateProperty</code> function is also something to note since we are doing something a bit different, we are passing in a third input to <code>findIdAndUpdate</code>. By adding <code>{ new: true }</code>, it indicates that we should return a new document on update. If there is no returned document, then we can throw our <code>PropertyNotFoundError</code>. The other difference is how we return the updated document, because we cannot destructure the fields like so:</p>
+<pre><code>return {
+  __typename: 'Property',
+  ...savedProperty
+}
+</code></pre>
+<p>Doing this will make the return object have other MongoDB-related fields and will break the return type for this GraphQL mutation.</p>
+<h2>Conclusion</h2>
+<p>During this tutorial we covered how to get MongoDB setup in the cloud, how to use <code>dotenv</code> in order to hide our connection string, and had walked through some of the features of Mongoose’s Schema creation methods. Next we created a <code>seed.js</code> script in order to initialize data within our database. Finally we used those models defined to upgrade our dataSource methods. We talked about some of the features of populate and how it can make entity resolution easier.</p>
+<p>At the end of this tutorial you should have a repository similar to <a href="https://github.com/bitovi/node-graphql-tutorial-2023/tree/mongodb">this</a></p>
+<p>I hope you learned something new in this tutorial, and in the next tutorial in the series will we cover  porting over our endpoints from Mongoose to Prisma!</p>
+
+</section>
+
+  			
+  			<bit-prev-next class="footer" list-selector=".sidebar-left ul li.parent.expanded ul"></bit-prev-next>
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout discord">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://discord.gg/J7ejFsZnJ4">help</a> with an exercise, please reach out to us on
+             <a href="https://discord.gg/J7ejFsZnJ4">Discord</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com</a></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/graphql/2-adding-mongodb/adding-mongodb.md"},"description":"In this guide we will be working off of a starting point [project](https://github.com/bitovi/node-graphql-tutorial-2023) and will be removing the need for static data, while adding a connection to a live database! \nWe’ll also go over some basic methods to perform CRUD operations, and how we will pull related entities from our database (what is known as joins in SQL) using the `populate` function in Mongoose. We’ll also create a small seed file in order to fill our database with some baseline information.\n\n","name":"learn-graphql/adding-mongodb","title":"Connecting Apollo Server with MongoDB","type":"page","parent":"learn-graphql","order":2,"comment":" ","pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+  <div id="email-modal" style="display: none;">
+    <div aria-hidden="true" class="email-modal-backdrop"></div>
+    <div role="region" class="email-modal-content">
+      <h2>Join the Bitovi Newsletter</h2>
+      <p>
+        To start the course, please provide an email.<br />
+        <i style="font-size: 0.8rem;">By providing your email you agree to receive communications from Bitovi</i>
+      </p>
+      <div id="academy-hubspot-form-embed"></div>
+      <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+    </div>
+  </div>
+</body>
+</html>
