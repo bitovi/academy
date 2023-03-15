@@ -401,7 +401,8 @@ We’ll also go over some basic methods to perform CRUD operations, and how we w
 <p>Rather than host a local instance of MongoDB, we can instead use <strong>MongoDB Atlas</strong> and leverage their free-tier option in order to setup a MongoDB instance. I would recommend to follow the first 5 minutes of the video to get your account and your <a href="https://www.youtube.com/watch?v=xrc7dIO_tXk&amp;ab_channel=MongoDB">cluster setup</a>. After this video I would suggest to keep your connection uri so that we can begin to use it in our project.</p>
 <h3>Dependencies</h3>
 <p>First things first, we’ll need to install some packages that we’ll be going to use:</p>
-<p><code>npm i mongodb mongoose dotenv</code></p>
+<pre><code class="language-shell">npm i mongodb mongoose dotenv
+</code></pre>
 <p>We are deciding to use <code>dotenv</code> so that we can put our connection uri inside a file .env at the highest level of the directory. And this file won’t be committed to any repository so that we don’t share our precious connection uri! We’ll add the following line to the <code>.env</code> file:</p>
 <p><code>MONGODB_URL=&quot;mongodb+srv://&lt;your_connection_uri_here&gt;&quot;</code></p>
 <h2>Mongoose vs MongoDB Native Driver:</h2>

@@ -401,7 +401,7 @@ covering CanJS core libraries.">
 <h3>Install the Prisma CLI</h3>
 <p>There are a few things that we’ll need to do in order to port our Mongoose queries over to Prisma. After our last tutorial we should have a collection defined that contains entities created in the database (by running our <strong>seed.js</strong>).</p>
 <p>Let’s start by installing what packages we need:</p>
-<pre><code>npm i prisma -D
+<pre><code class="language-shell">npm i prisma -D
 npx prisma init --datasource-provider mongodb
 npm i @prisma/client
 </code></pre>
@@ -415,7 +415,7 @@ npm i @prisma/client
 <p>Make sure that your <code>.env</code> file contains a value called <strong>DATABASE_URL</strong>. This connection string has a slight difference in that it will contain the collection name of the database so it knows where to pull from, see an example below and note the <strong>collectionName</strong> portion:</p>
 <p><code>mongodb+srv://&lt;databaseName&gt;:&lt;password&gt;.mongodb.net/&lt;collectionName&gt;?retryWrites=true&amp;w=majority</code></p>
 <h3>Next we will run the following commands</h3>
-<pre><code>npx prisma db pull
+<pre><code class="language-shell">npx prisma db pull
 npx prisma generate
 </code></pre>
 <p>This will now update your <code>schema.prisma</code> file to reflect what was defined in MongoDB based on the information we put into our database. Unfortunately MongoDB doesn’t support relations between different collections. So we have to re-create the references between documents using the <code>ObjectId</code> field type from one document to another.</p>

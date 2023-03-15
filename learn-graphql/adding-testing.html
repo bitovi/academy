@@ -396,13 +396,13 @@ covering CanJS core libraries.">
   				<section class="body">
     <h2>Setting up the testing Framework</h2>
 <p>We will be using the jest library to do all of our testing:</p>
-<pre><code>npm i jest
+<pre><code class="language-shell">npm i jest
 </code></pre>
 <p>Next we will be adding a file following the naming convention of <code>ENTITY_NAME.test.js</code> to each respective folder for each entity we have. First things first we will create our <code>renter.test.js</code> file within the renter folder.</p>
 <h2>Cleaning data in the database:</h2>
 <p>It’s important to note that if you’ve been following along in these tutorials your database now contains documents that were created by Mongoose, and then by Prisma. We will now remove all that previous data in the database so that we can ensure our database only contains documents created using Prisma endpoints. We are doing this since some of the previously created data with Mongoose will not have the information required in order to resolve our relationships between entities and this will end up breaking some of our queries when testing. Before we mentioned one of the features of Prisma was <strong>Prisma Migrate</strong> which is something that in our tutorials we haven’t needed to use, however the first step that it does is to drop the database we have connected to. It is important to note that there are a number of ways to drop the database for MongoDB, but deleting all the entries can become messy with some of the relationships we have defined so far.</p>
 <p>In our terminal we will run the following:</p>
-<pre><code>npx prisma migrate
+<pre><code class="language-shell">npx prisma migrate
 </code></pre>
 <p>You will see an error, but when checking the collection in Mongo Atlas you will see that all the data will be deleted. Now that our database is empty, we can continue writing testcases for our entities.</p>
 <p>Note: To re-add data just run the <code>seed.js</code> file we created in earlier tutorials.</p>
@@ -648,7 +648,7 @@ describe('Renter - Delete', () =&gt; {
     });
 });
 </code></pre>
-<h2>Testing PropertyOwner entities:</h2>
+<h2>Testing PropertyOwner entities</h2>
 <p>These set of testcases are fairly simple, but follow the same idea in <code>./propertyOwners/propertyOwner.test.js</code>:</p>
 <pre><code class="language-js">require('dotenv').config();
 const { ApolloServer } = require('@apollo/server');
