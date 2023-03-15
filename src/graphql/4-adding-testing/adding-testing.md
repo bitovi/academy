@@ -8,7 +8,7 @@
 ## Setting up the testing Framework
 
 We will be using the jest library to do all of our testing:
-```
+```shell
 npm i jest
 ```
 Next we will be adding a file following the naming convention of `ENTITY_NAME.test.js` to each respective folder for each entity we have. First things first we will create our `renter.test.js` file within the renter folder.
@@ -18,7 +18,7 @@ Next we will be adding a file following the naming convention of `ENTITY_NAME.te
 It’s important to note that if you’ve been following along in these tutorials your database now contains documents that were created by Mongoose, and then by Prisma. We will now remove all that previous data in the database so that we can ensure our database only contains documents created using Prisma endpoints. We are doing this since some of the previously created data with Mongoose will not have the information required in order to resolve our relationships between entities and this will end up breaking some of our queries when testing. Before we mentioned one of the features of Prisma was **Prisma Migrate** which is something that in our tutorials we haven’t needed to use, however the first step that it does is to drop the database we have connected to. It is important to note that there are a number of ways to drop the database for MongoDB, but deleting all the entries can become messy with some of the relationships we have defined so far.
 
 In our terminal we will run the following:
-```
+```shell
 npx prisma migrate
 ```
 You will see an error, but when checking the collection in Mongo Atlas you will see that all the data will be deleted. Now that our database is empty, we can continue writing testcases for our entities.
@@ -288,7 +288,7 @@ describe('Renter - Delete', () => {
 });
 ```
 
-## Testing PropertyOwner entities:
+## Testing PropertyOwner entities
 
 These set of testcases are fairly simple, but follow the same idea in `./propertyOwners/propertyOwner.test.js`:
 

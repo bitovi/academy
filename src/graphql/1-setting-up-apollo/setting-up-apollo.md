@@ -13,7 +13,7 @@ We are going to create a baseline application that has three main entities: **re
 
 Open up a directory and let’s call it `node-graphql-2023`. From there run `npm init` and then run the following command to install the necessary packages:
 
-```
+```shell
 npm i @apollo/server body-parser cors express graphql
 ```
 

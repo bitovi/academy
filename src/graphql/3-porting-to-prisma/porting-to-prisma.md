@@ -19,7 +19,7 @@ There are a few things that we’ll need to do in order to port our Mongoose que
 
 Let’s start by installing what packages we need:
 
-```
+```shell
 npm i prisma -D
 npx prisma init --datasource-provider mongodb
 npm i @prisma/client
@@ -42,7 +42,7 @@ Make sure that your `.env` file contains a value called **DATABASE_URL**. This c
 
 ### Next we will run the following commands
 
-```
+```shell
 npx prisma db pull
 npx prisma generate
 ```
