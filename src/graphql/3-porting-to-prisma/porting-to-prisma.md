@@ -29,7 +29,7 @@ npm i @prisma/client
 
 We are going to run the following command in order to update our `schema.prisma` file with the collections already created in MongoDB. One thing to note is that your `schema.prisma` file should have this value present (this will be your connection string):
 
-```
+```js
 datasource db {
   provider = "mongodb"
   url      = env("DATABASE_URL")
@@ -53,7 +53,7 @@ This will now update your `schema.prisma` file to reflect what was defined in Mo
 
 In our previous definitions, every property has a propertyOwner, and a propertyOwner can have many properties. So now we need to setup that relationship in our **schema.prisma** file:
 
-```
+```js
 model PropertyOwners {
   id         String       @id @default(auto()) @map("_id") @db.ObjectId
   v          Int          @map("__v")
@@ -72,7 +72,7 @@ This part of the relationship is fairly simple: we change the type of `propertie
 **Note:** We can use the **@@map** keyword in order to rename the model. We can also use the **@map** keyword to rename a field to another name. Prisma has the following naming conventions: PascalCase for model names and camelCase for field names.
 
 Next we have to change the model **Properties** to have the other portion of the relationship:
-```
+```js
 model Properties {
   id              String         @id @default(auto()) @map("_id") @db.ObjectId
   v               Int            @map("__v")
@@ -94,7 +94,7 @@ In order to define the relationship, we have to define two fields: `propertyOwne
 ## Renter Many → Many Self-Relationship
 
 In the Renters model we need to define the other part of the relationship for properties, and the roommate relationship as well:
-```
+```js
 model Renters {
   id               String      @id @default(auto()) @map("_id") @db.ObjectId
   v                Int         @map("__v")
@@ -114,7 +114,7 @@ model Renters {
 To complete the Renter → Property relationship we do something similar for the Property → PropertyOwner relationship: we create `rentedPropertyId` with the `String` field being optional marked by the type ending with `?`. We then set it as a `@db.ObjectId` and use a `@relation` on the `rentedProperty` field referencing the optional id we created.
 
 Next is something that is a bit more complicated, we need to create three fields for the relationship between Renters and their roommates: 
-```
+```js
 roommates        Renters[]   @relation("RoommateRenters")
 roommateRenter   Renters?    @relation("RoommateRenters", fields: [roommateId], references: [id], onDelete: NoAction, onUpdate: NoAction)
 roommateId       String?     @db.ObjectId
@@ -124,7 +124,7 @@ The `roommates` field which is the `Renters[]` type contains the `@relation("Roo
 ## Putting Prisma Client into the project
 With that, we defined all the relationships we need, the next step is to add our Prisma Client into our project. In our `src` folder we’ll create a `prisma.js` file and add the following lines:
 
-```
+```js
 const { PrismaClient } = require('@prisma/client');
 
 const prisma = new PrismaClient();
@@ -134,7 +134,7 @@ module.exports = prisma;
 
 Then now if our `index.js` server file we can pass it through the GraphQL context so that are resolvers only use a single instance of our Prisma Client:
 
-```
+```js
 const prisma = require('./src/prisma');
 ...
 
@@ -154,7 +154,7 @@ app.use(
 
 Though the syntax might be a bit different, the concept will still be similar to what we had to do for Mongoose. Prisma uses a `connect` option that will set up the relation between two models, and in the return portion we use the `include` option that will work similar to the way `populate` did in Mongoose. First step is to change some of the initial seed data:
 
-```
+```js
 const Prisma = require('./src/prisma');
 
 const renters = [
@@ -212,7 +212,7 @@ const properties = [
 ```
 
 We’ll be needing the `v` field because it is a value present in the MongoDB store and tracks versioning. Next is we will  begin to create the relationships between Renters that are roommates:
-```
+```js
 // create two renters, one of which is roommates with the second nested renter
 const firstRenter = await Prisma.renters.create({
     data: {
@@ -237,7 +237,7 @@ const secondRenter = await Prisma.renters.update({
 
 We will be using a nested `create` which allows us to create both roommates together, and putting the id of the newly created renter in the `roommates` field. Next we can update the second renter created and use the `connect` option, which can take a **list** of objects containing an **id** value of the model we are going to connect. There are other methods like `connectOrCreate` but in this case we know its data we are initializing rather than connecting to data we’re not sure if it exists. Next we create the PropertyOwners:
 
-```
+```js
 // Create propertyOwners with connected properties
 // then connect renters to properties
 await Prisma.propertyOwners.create({
@@ -274,7 +274,7 @@ What is nice here is that we can immediately create the properties we wanted to 
 ## Updating our Renter resolvers and dataSources
 
 For each of our models, we will need to update the methods to include the `prisma` instance that is now passed through the context for our dataSources to use, first up we’ll update Renters:
-```
+```js
 Query: {
     getRenterById: async (_parent, args, { prisma }) => {
         return getRenterById(args.renterId, prisma);
@@ -293,7 +293,7 @@ Mutation: {
 **Note:** The Prisma instance will be passed through the `info` variable and we’ll destructure what we need for now from it.
 
 Next, we need to head to the `renters/dataSource.js`:
-```
+```js
 async function getRenterById(renterId, Prisma) {
     return Prisma.renters.findUnique({
         where: {
@@ -336,7 +336,7 @@ Other than the method name changes, the most notable portion is that we have the
 **Note:** As for the Prisma naming convention, you may not end up wanting to use `Prisma` but instead use `prismaClient` or lowercase `prisma` instead. This depends on your style and feel free to adjust accordingly.
 
 ## Updating our Property resolvers and dataSources
-```
+```js
 Query: {
     getPropertyById: async (_parent, args, { prisma }) => {
         return getPropertyById(args.propertyId, prisma);
@@ -353,7 +353,7 @@ Mutation: {
 }
 ```
 However things for the property will become more complicated for the update method we created before:
-```
+```js
 async function getPropertyById(propertyId, Prisma) {
     return Prisma.properties.findUnique({
         where: {
@@ -445,7 +445,7 @@ In this case you will see that we handle our errors by specifically looking for 
 ## Updating our PropertyOwner resolvers and dataSources
 
 This last entity is fairly simple in both porting over the resolver and the dataSource:
-```
+```js
 Query: {
     getPropertyOwnerById: (_parent, args, { prisma }) => {
         return getPropertyOwnerById(args.propertyOwnerId, prisma);
@@ -459,7 +459,7 @@ Mutation: {
 }
 ```
 
-```
+```js
 async function getPropertyOwnerById(propertyOwnerId, Prisma) {
     return Prisma.propertyOwners.findUnique({
         where: {
@@ -501,20 +501,20 @@ async function getAllPropertyOwners(Prisma) {
 ## Transactions
 
 Let’s say you want to perform a query or mutation where you want to make sure that each independent query runs, but you want to ensure that you can roll it back if there is an error in between. This is where transactions come into play, and we will be creating a mutation to showcase an example, right now if you want to add a roommate to one Renter, it will not update the other Renter object saying they are both roommates. We will create a **makeRoommates** mutation in the Renter schema:
-```
+```graphql
 type Mutation {
     createRenter(createRenterInput: CreateRenterInput): Renter
     makeRoommates(renterIds: [ID]): [Renter]
 }
 ```
 Then we will add the method to the renters/resolver.js:
-```
+```js
 makeRoommates: async (_parent, args, { prisma }) => {
     return makeRoommates(args.renterIds, prisma);
 }
 ```
 Finally we will add the code for the makeRoommates method:
-```
+```js
 // Takes a list of renterIds and ensures that each renter
 // contains a roommates field that has all the ids provided
 async function makeRoommates(renterIds, Prisma) {
@@ -538,7 +538,7 @@ async function makeRoommates(renterIds, Prisma) {
 
 We will take the given ids, and then loop through each renterId provided in the input of the function to create an update where each Renter is a roommate of all the other Renters. Some things to point out on the syntax here for **Prisma$.transaction**: namely that I would suggest to follow the format that your transaction always includes a list of updates/mutations/queries like so:
 
-```
+```js
 Prisma.$transaction([update1, update2, update3])
 ```
 

@@ -31,7 +31,7 @@ To start we will be initializing our own `ApolloServer` and creating a context c
 
 You’ll note that there is a variable called `RenterFields` which are passed into the query and that the query itself has `...RenterFields`. This is an example of fragments, rather than continuously re-write each field we want to resolve from our queries, we created a `./test/helpers/fragments.js` file that contains the fragments we will re-use across different testcases and queries. A side-benefit is that we no longer have to update every query if this changes later on, we simply need to update our fragment and what are testcases expect respectively. You will need to include the `${NAME_OF_FRAGMENT}` before the query/mutation definition so that you can use it.
 
-```
+```js
 require('dotenv').config();
 const { ApolloServer } = require('@apollo/server');
 const omit = require('lodash.omit');
@@ -200,7 +200,7 @@ We separate the functions we call within the testcases into their own separate f
 ## Renter Fragment
 
 We will create the file `./test/helpers/fragments.js`:
-```
+```js
 module.exports = {
     RenterFields: `
         fragment RenterFields on Renter {
@@ -220,14 +220,14 @@ To define a fragment, it has to be on an existing entity, and we have to use the
 While writing these testcases, an issue occurred within the codebase; there was no clear way to delete a Renter entity. Part of this problem is due to the `roommates` relationship each Renter has, and if you want to delete a Renter, you must first disconnect the relationship between it and other `roommates`. So we needed to create a new endpoint for Renters:
 
 First step is to add the definition to the src/renters/schema.js:
-```
+```graphql
 type Mutation {
     ...
     deleteRenter(renterId: ID): Boolean
 }
 ```
 Next is to add the resolver in `src/renters/resolvers.js`:
-```
+```js
 Mutation: {
     ...
     deleteRenter: async (_parent, args, { prisma }) => {
@@ -236,7 +236,7 @@ Mutation: {
 }
 ```
 And finally to add the code in `src/renters/dataSource.js`:
-```
+```js
 async function deleteRenter(renterId, Prisma) {
     // disconnect relationship between roommate and renter
     await Prisma.renters.update({
@@ -261,7 +261,7 @@ async function deleteRenter(renterId, Prisma) {
 ```
 
 Now we need to actually test this new endpoint, so we will add a testcase to our `renter.test.js` file:
-```
+```js
 async function deleteRenter(renterId) {
     return testServer.executeOperation({
         query: `
@@ -292,7 +292,7 @@ describe('Renter - Delete', () => {
 
 These set of testcases are fairly simple, but follow the same idea in `./propertyOwners/propertyOwner.test.js`:
 
-```
+```js
 require('dotenv').config();
 const { ApolloServer } = require('@apollo/server');
 const prisma = require('../prisma');
@@ -404,7 +404,7 @@ describe('Property Owner entity endpoints', () => {
 ## Property and PropertyOwner Fragment
 
 Now let’s add our fragments to our `./test/helpers/fragment.js` file:
-```
+```js
 module.exports = {
     PropertyOwnerFields: `
         fragment PropertyOwnerFields on PropertyOwner {
@@ -441,7 +441,7 @@ There is a particular reason in this case why we left out `propertyOwner` from `
 
 This entity becomes more interesting in order to test the update methods, and we even found an error in our schema when testing the endpoints in `./properties/properties.test.js`:
 
-```
+```js
 require('dotenv').config();
 const { ApolloServer } = require('@apollo/server');
 const omit = require('lodash.omit');
@@ -735,7 +735,7 @@ In order to create a property, we need to have created a `propertyOwner` first, 
 When testing the update method, a number of situations needed to be covered: namely ensuring that our `PropertyNotFoundError` would be thrown, we could update our non-relational fields, and finally being able to ensure `renters` and `propertyOwner` could be updated with new relationships. During this process we found some errors in the schema for `property` and how we updated the relationships for both `renters` and the `propertyOwner`.
 
 First thing to change was the `UpdatePropertyInput`, we simply want the ID rather than an entire object of a propertyOwner, so we should be making the input say that explicitly with `propertyOwnerId`:
-```
+```graphql
 input UpdatePropertyInput {
     ...
     propertyOwnerId: ID
@@ -743,20 +743,20 @@ input UpdatePropertyInput {
 ```
 
 Then we needed to update the object for propertyOwner since it was malformed when passed into the Prisma `update` method `properties/dataSource.js`:
-```
+```js
 const propertyOwner = updatedProperty.propertyOwnerId && {
     connect: { id: updatedProperty.propertyOwnerId }
 };
 ```
 Next as an update, we want to include a list of renters that are currently renting that property, with the previous code not only was the object not formed correctly, when it was fixed it would actually only add the new list of renters to the existing list. What we wanted to do with this update was that if you passed in a list of renters, that list became the current list of renters on the property. To do that we used the option called `set` instead of `connect` which we were using before:
-```
+```js
 const renters = updatedProperty.renters && {
       set: updatedProperty?.renters.map((renterId) => ({ id: renterId }))
   };
 ```
 
 The new `updateProperty` method should contain the following new lines of code:
-```
+```js
 const renters = updatedProperty.renters && {
     set: updatedProperty?.renters.map((renterId) => ({ id: renterId }))
 };
@@ -787,7 +787,7 @@ This means that during the update for properties, you pass the id of the new pro
 ## Adding a test script:
 
 The last step is to add a simple test script to `package.json` so that we can run our testcases from the command line:
-```
+```json
 "scripts": {
   ...
   "test": "jest --coverage"
