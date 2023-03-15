@@ -502,6 +502,7 @@ a.quote-link:hover{
         </div>
         <a href="./learn-ngrx.html" class="button button-grey full-width">Take this course</a>
       </div>
+      <div class="academy-card course" style="background: transparent; border: none;">&nbsp;</div>
     </div>
   </div>
   <a name="live-events-section"></a>
