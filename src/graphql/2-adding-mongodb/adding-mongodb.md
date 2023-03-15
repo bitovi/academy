@@ -31,13 +31,13 @@ The MongoDB native driver is definitely more performant than Mongoose and a lot 
 
 Add this line to the top of the `/index.js` file:
 
-```
+```js
 require('dotenv').config();
 ```
 
 And the following lines to setup the mongoose connection added to the database:
 
-```
+```js
 mongoose.set('strictQuery', false);
 mongoose.connect(process.env.MONGODB_URL);
 ```
@@ -48,7 +48,7 @@ mongoose.connect(process.env.MONGODB_URL);
 In the `/src` folder we’ll create a `/models` folder and create three files: `property.js, propertyOwner.js, and renter.js`. We are keeping the model definitions separate from other parts of the code so we can keep our mongoose model definitions clean and concise.
 
 In our `/src/models/renter.js` file we’ll add the following lines of code:
-```
+```js
 const { Schema, model } = require('mongoose');
 
 const renterSchema = new Schema({
@@ -84,7 +84,7 @@ What is notable here is that with each field we are able to create specific type
 
 In our `/src/models/propertyOwner.js` file we’ll add the following lines of code:
 
-```
+```js
 const { Schema, model } = require('mongoose');
 
 const propertyOwnerSchema = new Schema({
@@ -119,7 +119,7 @@ Nothing here is notable aside from being able to add a list of `Schema.Types.Obj
 
 In our `/src/models/property.js` file we’ll add the following lines of code:
 
-```
+```js
 const { Schema, model } = require('mongoose');
 
 const propertySchema = new Schema({
@@ -164,7 +164,7 @@ In this model, the only notable fields are ensuring the relationship between `re
 
 At this point we have our models setup, but in order to start switching our resolvers to use Mongoose, we will need to create data within our database. That is where creating a seed file will come in handy, and we will learn some useful methods that we get from Mongoose. Create a `seed.js` file at the top-level of the project, we are going to use the static information we had before, and move it to the `seed.js` file with some adjustments:
 
-```
+```js
 require('dotenv').config();
 const mongoose = require('mongoose');
 const { Property, PropertyOwner, Renter } = require('./src/models');
@@ -228,7 +228,7 @@ const properties = [
 
 Next we are going to run an `async runSeed()` function which will connect to our database, create the initial entities and then attach the relationships before creating the fields:
 
-```
+```js
 async function runSeed() {
 
     mongoose.set('strictQuery', false);
@@ -280,7 +280,7 @@ We can use the `new Entity()` method which will return a MongoDB document for us
 We create our propertyOwners before our properties, so that we can set the `propertyOwner` field which is required by our model validation. Once we save our propertyOwners and our properties we have our console log print out `done` so we get a visual confirmation. We use the `finally` block during our `try/catch` in order to close our connection to Mongoose after our seeding is done.
 
 Next we go to our `package.json` and we add a `seed` field to our scripts parameter:
-```
+```json
 "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node --watch ./index.js",
@@ -293,7 +293,7 @@ Your `package.json` should look like above for the `scripts` field.
 ## Adding Mongoose to our dataSources
 
 Now that we have created the baseline models we want that match our entities, all we need to do to add values into the database is to run `npm run seed` from a console within the project directory. If the seed successfully ran, you will know that our models are correct by viewing them within the MongoDB Atlas webpage. The next step is to go into our dataSources and begin porting over our operations, go into `src/renters/dataSource.js`:
-```
+```js
 const { Renter } = require('../models');
 
 async function getRenterById(renterId) {
@@ -324,7 +324,7 @@ Mongoose provides out-of-the-box methods for most operations we want to do here.
 When creating or updating an entity, we still want to have the `roommates` field populated. In this case we have to add a step where we `save` an entity first, and then return by calling the `.populate` function with the fields we want to return. If we return without calling `.populate` then it will return only the string value of those fields which will break our GraphQL query.
 
 Now let’s move over to the `src/propertyOwners/dataSource.js` and add Mongoose to the methods:
-```
+```js
 const { PropertyOwner } = require('../models');
 
 async function getPropertyOwnerById(propertyOwnerId) {
@@ -356,7 +356,7 @@ async function getAllPropertyOwners() {
 **Note:** Do not forget to remove the PropertyOwner field from the resolvers in `src/propertyOwners/resolver.js`.
 
 Finally we head to our `src/properties/dataSource.js` file and we add the following lines:
-```
+```js
 const { Property } = require('../models');
 const { PropertyNotFoundError } = require('../../errors');
 
@@ -416,7 +416,7 @@ async function getAllProperties() {
 Now an interesting part here is that if we need to `populate` multiple fields on one entity, we don’t have to chain multiple `populate` methods. We simply need to pass in one space-separated string of the fields we need to populate (see line 6 for an example). If the field we wish to populate is a field on a nested entity, then we can follow this notation `ENTITY_NAME.FIELD_NAME` and Mongoose will populate it for us.
 
 The `updateProperty` function is also something to note since we are doing something a bit different, we are passing in a third input to `findIdAndUpdate`. By adding `{ new: true }`, it indicates that we should return a new document on update. If there is no returned document, then we can throw our `PropertyNotFoundError`. The other difference is how we return the updated document, because we cannot destructure the fields like so:
-```
+```js
 return {
   __typename: 'Property',
   ...savedProperty

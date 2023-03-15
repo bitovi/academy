@@ -45,7 +45,7 @@ npm i @apollo/server body-parser cors express graphql
 
 Your package.json should look something like this:
 
-```
+```json
 {
   "name": "node-graphql-2023",
   "version": "1.0.0",
@@ -71,7 +71,8 @@ Your package.json should look something like this:
 **Note:** Notice that there is a lock on the engine for `node` and that is because we will be using some experimental features from `node@18.6.0` namely the `--watch` flag removing our need to install packages like `nodemon`.
 
 Next we will be creating our basic server, create an `index.js` with the following code:
-```
+
+```js
 const { ApolloServer } = require('@apollo/server');
 const { expressMiddleware } = require('@apollo/server/express4');
 const { ApolloServerPluginDrainHttpServer } = require('@apollo/server/plugin/drainHttpServer');
@@ -129,7 +130,7 @@ The first schema we are going to make is for the Renter entity. We are going to 
 
 The first thing we will do is define an entity called **Renter**, and create baseline Queries and Mutations to cover our application. We will include one `input` type as the input for the `createRenter` method signature:
 
-```
+```js
 const typeDefs = `#graphql
     type Renter {
         id: ID!
@@ -169,7 +170,7 @@ Another thing to note is that our input uses `roommates` as a list of **IDs** ra
 
 We are going to write the code that will deal with the resolution process of the Queries and Mutations we have written out above:
 
-```
+```js
 const {
     getRenterById,
     createRenter,
@@ -209,7 +210,7 @@ When we mentioned that we would have to include a method to resolve that list of
 ### Renter dataSource
 
 We will be using a global package called `crypto` that was added to Node that will help us to generate unique id’s for our `createRenter` mutation. Otherwise the other two Query methods are pretty self-explanatory: `getRenterById` will take an ID and return a found `Renter` entity, while `getAllRenters` will return all the renters in the system:
-```
+```js
 const crypto = require('crypto');
 let { renters } = require('../../data');
 
@@ -249,7 +250,7 @@ For the `createRenter` method we don’t need to pass in a `rating` as it will b
 
 We will also create an `index.js` file within the `renter` folder with the following code in order to export our schema and resolver so it can be stitched together:
 
-```
+```js
 const { resolvers } = require('./resolver');
 const { typeDefs } = require('./schema');
 
@@ -259,7 +260,7 @@ module.exports = {
 }
 ```
 Next we have to create an `index.js` file within `/src` so that we are able to start the schema stitching process and export one set of `resolvers` and `typeDefs` to our Apollo Server initialization:
-```
+```js
 const {
     mergeTypeDefs,
     mergeResolvers
@@ -291,7 +292,7 @@ As we create resolvers for **property** and **propertyOwner** we will be adding 
 ### Renter Data
 
 Go to the top level of the project and create a file called `data.js`. We populate the object to match the schema definition we defined earlier, and it will look like this:
-```
+```js
 const renters = [
     {
         id: 'fdbe21a8-3eb3-4a70-a3b9-357c2af5acec',
@@ -325,7 +326,7 @@ Overall we want some baseline fields that represent what sort of information we 
 
 
 ### PropertyOwner Schema
-```
+```js
 const typeDefs = `#graphql
     type PropertyOwner {
         id: ID!
@@ -363,7 +364,7 @@ module.exports = {
 ### PropertyOwner Resolver
 
 While most of the get/create methods are following the same sort of pattern, the interesting part of this is the **entity resolution** required for the `properties` field within **PropertyOwner**:
-```
+```js
 const {
     createPropertyOwner,
     getAllPropertyOwners,
@@ -404,7 +405,7 @@ Our resolver for the `properties` field will need to call the `getPropertyById` 
 ### PropertyOwner dataSource
 
 This will follow a similar paradigm to the renter dataSource:
-```
+```js
 const crypto = require('crypto');
 let { propertyOwners } = require('../../data');
 
@@ -446,7 +447,7 @@ module.exports = {
 ### PropertyOwner Schema Stitching
 
 Remember to add the following lines to your `/src/index.js` file in order to export the merged typeDefs and resolvers:
-```
+```js
 const {
     resolvers: propertyOwnerResolvers,
     typeDefs: propertyOwnerTypeDefs
@@ -466,7 +467,7 @@ const resolvers = mergeResolvers([
 ### PropertyOwner Data
 Now we need to create a list of property owners within our `data.js` file, and we’ll add the following lines:
 
-```
+```js
 const propertyOwners = [
     {
         id: 'c173abf2-648d-4df8-a839-b12c9117277e',
@@ -499,7 +500,7 @@ Each property will have some basic information about it, a unique id, and will h
 
 ### Property Schema
 
-```
+```js
 const typeDefs = `#graphql
     type Property {
         id: ID!
@@ -545,7 +546,7 @@ The only thing to note is that during the creation of a property entity, we are 
 ### Property Resolver
 
 This entity is interesting since we now need to define two resolver methods: one for the `renters` field and the other for the `propertyOwner` field. In this case we will have to import the methods from their respective dataSource files. It will look like the following:
-```
+```js
 const {
     getPropertyById,
     createProperty,
@@ -588,7 +589,7 @@ module.exports = {
 ### Property dataSource
 
 Creating the core methods `getEntityById, getAllEntities and createProperty` will be following the similar format to before:
-```
+```js
 const crypto = require('crypto');
 let { properties } = require('../../data');
 
@@ -635,7 +636,7 @@ module.exports = {
 
 Remember to add the following lines to your `/src/index.js` file in order to export the merged typeDefs and resolvers:
 
-```
+```js
 const {
     resolvers: propertyResolvers,
     typeDefs: propertyTypeDefs
@@ -657,7 +658,7 @@ const resolvers = mergeResolvers([
 ### PropertyData
 
 Now we need to create the data that will match our properties schema, so we will add the following lines to the `data.js` file:
-```
+```js
 const properties = [
     {
         id: '86d401bb-cc8a-40f6-b3fc-396e6ddabb1a',
@@ -699,7 +700,7 @@ module.exports = {
 ## Introducing Error Handling
 
 For all our endpoints so far we have always assumed the method would succeed, but what if it didn’t? That’s where having a generic **Error** type would help so that we can capture that error as part of its expected behavior. When throwing these errors, we want to ensure we have a human-readable error. But to start we are going to create a baseline `Error` interface in our schema. Since this is something that will be shared across schemas, we will add it to the `src/common` folder. Let’s create a `schema.js` within this folder and add the following:
-```
+```js
 const typeDefs = `#graphql
     interface Error {
         message: String!
@@ -715,7 +716,7 @@ module.exports = {
 
 We will also need to add the typeDefs we made to be included in the schema stitching. We will add the following lines of code to our `src/index.js`:
 
-```
+```js
 const {
     typeDefs: commonTypeDefs
 } = require('./common');
@@ -732,7 +733,7 @@ const typeDefs = mergeTypeDefs([
 
 Now that we have baseline create/read methods for each of the entities we are going to go through how we will add an update mutation. First thing we will add is the **updateProperty** method to the schema and create a new input type **UpdatePropertyInput**. We will also be creating a **Union** type called **UpdatePropertyResult** which is a **Union** of either a **Property**, or a **PropertyNotFoundError**. In practice when we want to update a property, so far we will either be passed a valid id contained in our dataSource, or an invalid one, which means we will return this `PropertyNotFoundError`:
 
-```
+```js
 input UpdatePropertyInput {
     id: ID!
     name: String
@@ -763,7 +764,7 @@ We have created a type **PropertyNotFoundError** which will extend our base erro
 
 Next we have to add the logic for the `updateProperty` within our resolver, so we will add the following lines to `src/properties/dataSource.js`:
 
-```
+```js
 const {
     ...,
     updateProperty
@@ -781,7 +782,7 @@ Mutation: {
 
 Now we need to define the core logic of the `updateProperty` method within our `dataSource` file, we will add the following lines to `dataSource.js`:
 
-```
+```js
 const { PropertyNotFoundError } = require('../../errors');
 
 function updateProperty(propertyId, updatedProperty) {
@@ -811,7 +812,7 @@ We’ll need to create an `/errors` folder and we’ll create a `PropertyNotFoun
 
 Our `PropertyNotFoundError.js` will look like this:
 
-```
+```js
 function PropertyNotFoundError(propertyId) {
     return {
         __typename: 'PropertyNotFoundError',
@@ -829,7 +830,7 @@ module.exports = {
 
 In order to test the endpoint you will need to use the `...on` for the potential return types for `updateProperty` which will look something like this:
 
-```
+```js
 mutation UpdateProperty($updatePropertyInput: UpdatePropertyInput) {
   updateProperty(updatePropertyInput: $updatePropertyInput) {
      ...on PropertyNotFoundError {
@@ -857,7 +858,7 @@ As we grow our schema, especially when serving multiple customers or clients, we
 - Removing a field’s arguments
 
 One thing we can do is create a new field to an object and set the old field as deprecated, giving some time before making those breaking changes. This can be helpful to coordinate with front-end teams or other members that will use the endpoints you are creating, while keeping the endpoints stable for users that consume your API. The good news is that GraphQL has some built-in **directives** that can help us accomplish just that, in fact there is a `deprecated` directive that we can use! Let’s add the following lines to the `src/renters/schema.js` file:
-```
+```js
 type Renter {
     ...
     deprecatedField: Boolean @deprecated(reason: "Use nonDeprecatedField.")
@@ -878,7 +879,7 @@ input CreateRenterInput {
 
 Since we are utilizing the power of directives when updating fields, we can also use it to start some ground work on caching some of our entities or fields within them. To do this we will be using a plugin offered by our `@apollo/server` library. We will add it to our `ApolloServer` initialization by passing it within the `plugins` field which you can see below (located in our top-level `index.js`):
 
-```
+```js
 const { ApolloServerPluginCacheControl } = require('@apollo/server/plugin/cacheControl');
 
 const server = new ApolloServer({
@@ -898,7 +899,7 @@ const server = new ApolloServer({
 
 Next we will have to define the `@cacheControl` directive; and since this is something we will use across multiple graphs, we will add it to our `src/common/schema.js` file:
 
-```
+```js
 enum CacheControlScope {
     PUBLIC
     PRIVATE
@@ -917,7 +918,7 @@ The arguments for `@cacheControl` perform the following:
 - `inheritMaxAge`: If `true`, this field inherits the `maxAge` of its parent field instead of using the default `maxAge`. Not not provide `maxAge` if you provide this argument.
 
 We will keep things simple for now, and have a few fields that we would like cached for 60 seconds. Let’s navigate to `src/properties/schema.js` and change the following fields under `Property`:
-```
+```js
 type Property {
     ...
     rating: Float @cacheControl(maxAge: 60)
