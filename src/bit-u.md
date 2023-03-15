@@ -502,22 +502,6 @@ a.quote-link:hover{
         </div>
         <a href="./learn-ngrx.html" class="button button-grey full-width">Take this course</a>
       </div>
-      <div class="academy-card course">
-        <div class="course-logo">
-          <img src="./static/img/graphql-logo.png" height="70">
-        </div>
-        <h4>Node JS and GraphQL</h4>
-        <p>Build a backend application for property rentals using Node JS, GraphQL and Apollo Server.
-          Learn about using ORMs like Mongoose and Prisma with a NoSQL Mongo database!
-          Write testcases testing created endpoints.</p>
-        <div class="width100">
-          <p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
-          <p class='detail'><strong>Goal:</strong> Learn the latest Node/GraphQL practices building a server as of early 2023.</p>
-          <p class='detail'><strong>Time:</strong> 12 hours</p>
-        </div>
-        <a href="./learn-graphql.html" class="button button-grey full-width">Take this course</a>
-        </div>
-      </div>
     </div>
   </div>
   <a name="live-events-section"></a>
