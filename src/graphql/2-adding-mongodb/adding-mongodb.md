@@ -15,7 +15,9 @@ Rather than host a local instance of MongoDB, we can instead use **MongoDB Atlas
 
 First things first, we’ll need to install some packages that we’ll be going to use:
 
-`npm i mongodb mongoose dotenv`
+```shell
+npm i mongodb mongoose dotenv
+```
 
 We are deciding to use `dotenv` so that we can put our connection uri inside a file .env at the highest level of the directory. And this file won’t be committed to any repository so that we don’t share our precious connection uri! We’ll add the following line to the `.env` file:
 
