@@ -409,7 +409,7 @@ covering CanJS core libraries.">
 <h2>Testing Renter entities:</h2>
 <p>To start we will be initializing our own <code>ApolloServer</code> and creating a context containing our Prisma Client in order to perform our queries. We do this because our methods that we use to call our Apollo Server uses a method called <code>executeOperation</code>, this method can take three main variables. The first is the query itself, which we can take from our testing within Apollo Sandbox. Next is <code>variables</code> for queries that require some sort of user input, but make sure that the name correlates to the one defined in your schema! Finally is the <code>contextValue</code> which in our case includes our Prisma Client; you may also end up passing your user authentication or other pieces of information here.</p>
 <p>You’ll note that there is a variable called <code>RenterFields</code> which are passed into the query and that the query itself has <code>...RenterFields</code>. This is an example of fragments, rather than continuously re-write each field we want to resolve from our queries, we created a <code>./test/helpers/fragments.js</code> file that contains the fragments we will re-use across different testcases and queries. A side-benefit is that we no longer have to update every query if this changes later on, we simply need to update our fragment and what are testcases expect respectively. You will need to include the <code>${NAME_OF_FRAGMENT}</code> before the query/mutation definition so that you can use it.</p>
-<pre><code>require('dotenv').config();
+<pre><code class="language-js">require('dotenv').config();
 const { ApolloServer } = require('@apollo/server');
 const omit = require('lodash.omit');
 const prisma = require('../prisma');
@@ -571,7 +571,7 @@ describe('Renter entity endpoints', () =&gt; {
 <p>We separate the functions we call within the testcases into their own separate functions for a number of reasons: one is because we may re-use them later within different testcases, the other is so that our testcases aren’t filled with logic just to query the Apollo Server. This is so that we have our testcases only focusing on what it needs to test, nothing more.</p>
 <h2>Renter Fragment</h2>
 <p>We will create the file <code>./test/helpers/fragments.js</code>:</p>
-<pre><code>module.exports = {
+<pre><code class="language-js">module.exports = {
     RenterFields: `
         fragment RenterFields on Renter {
             city
@@ -586,13 +586,13 @@ describe('Renter entity endpoints', () =&gt; {
 <h2>Renter Deletion Problem</h2>
 <p>While writing these testcases, an issue occurred within the codebase; there was no clear way to delete a Renter entity. Part of this problem is due to the <code>roommates</code> relationship each Renter has, and if you want to delete a Renter, you must first disconnect the relationship between it and other <code>roommates</code>. So we needed to create a new endpoint for Renters:</p>
 <p>First step is to add the definition to the src/renters/schema.js:</p>
-<pre><code>type Mutation {
+<pre><code class="language-graphql">type Mutation {
     ...
     deleteRenter(renterId: ID): Boolean
 }
 </code></pre>
 <p>Next is to add the resolver in <code>src/renters/resolvers.js</code>:</p>
-<pre><code>Mutation: {
+<pre><code class="language-js">Mutation: {
     ...
     deleteRenter: async (_parent, args, { prisma }) =&gt; {
         return deleteRenter(args.renterId, prisma);
@@ -600,7 +600,7 @@ describe('Renter entity endpoints', () =&gt; {
 }
 </code></pre>
 <p>And finally to add the code in <code>src/renters/dataSource.js</code>:</p>
-<pre><code>async function deleteRenter(renterId, Prisma) {
+<pre><code class="language-js">async function deleteRenter(renterId, Prisma) {
     // disconnect relationship between roommate and renter
     await Prisma.renters.update({
         where: {
@@ -623,7 +623,7 @@ describe('Renter entity endpoints', () =&gt; {
 }
 </code></pre>
 <p>Now we need to actually test this new endpoint, so we will add a testcase to our <code>renter.test.js</code> file:</p>
-<pre><code>async function deleteRenter(renterId) {
+<pre><code class="language-js">async function deleteRenter(renterId) {
     return testServer.executeOperation({
         query: `
             mutation DeleteRenter($renterId: ID) {
@@ -650,7 +650,7 @@ describe('Renter - Delete', () =&gt; {
 </code></pre>
 <h2>Testing PropertyOwner entities:</h2>
 <p>These set of testcases are fairly simple, but follow the same idea in <code>./propertyOwners/propertyOwner.test.js</code>:</p>
-<pre><code>require('dotenv').config();
+<pre><code class="language-js">require('dotenv').config();
 const { ApolloServer } = require('@apollo/server');
 const prisma = require('../prisma');
 const { typeDefs, resolvers } = require('../');
@@ -759,7 +759,7 @@ describe('Property Owner entity endpoints', () =&gt; {
 </code></pre>
 <h2>Property and PropertyOwner Fragment</h2>
 <p>Now let’s add our fragments to our <code>./test/helpers/fragment.js</code> file:</p>
-<pre><code>module.exports = {
+<pre><code class="language-js">module.exports = {
     PropertyOwnerFields: `
         fragment PropertyOwnerFields on PropertyOwner {
             id
@@ -791,7 +791,7 @@ describe('Property Owner entity endpoints', () =&gt; {
 <p>There is a particular reason in this case why we left out <code>propertyOwner</code> from <code>PropertyFields</code>. This is because eventually this would lead to a very nested resolution path and would complicate our testcases. Much of the information would be redundant if we attempt to make this resolve. In practicality, if you were to query a list of <code>properties</code> from a <code>propertyOwner</code>, you would not need to know the <code>propertyOwner</code> since that information would already be available at the top level. Meanwhile if you were to query a <code>property</code> and want to get the information of the <code>propertyOwner</code> you can simply add that information to your query after the fragment. You will see an example of this when we test the Properties entity.</p>
 <h2>Testing PropertyOwner entities</h2>
 <p>This entity becomes more interesting in order to test the update methods, and we even found an error in our schema when testing the endpoints in <code>./properties/properties.test.js</code>:</p>
-<pre><code>require('dotenv').config();
+<pre><code class="language-js">require('dotenv').config();
 const { ApolloServer } = require('@apollo/server');
 const omit = require('lodash.omit');
 const prisma = require('../prisma');
@@ -1078,23 +1078,23 @@ describe('Property entity endpoints', () =&gt; {
 <h2>Property Update Problem</h2>
 <p>When testing the update method, a number of situations needed to be covered: namely ensuring that our <code>PropertyNotFoundError</code> would be thrown, we could update our non-relational fields, and finally being able to ensure <code>renters</code> and <code>propertyOwner</code> could be updated with new relationships. During this process we found some errors in the schema for <code>property</code> and how we updated the relationships for both <code>renters</code> and the <code>propertyOwner</code>.</p>
 <p>First thing to change was the <code>UpdatePropertyInput</code>, we simply want the ID rather than an entire object of a propertyOwner, so we should be making the input say that explicitly with <code>propertyOwnerId</code>:</p>
-<pre><code>input UpdatePropertyInput {
+<pre><code class="language-graphql">input UpdatePropertyInput {
     ...
     propertyOwnerId: ID
 }
 </code></pre>
 <p>Then we needed to update the object for propertyOwner since it was malformed when passed into the Prisma <code>update</code> method <code>properties/dataSource.js</code>:</p>
-<pre><code>const propertyOwner = updatedProperty.propertyOwnerId &amp;&amp; {
+<pre><code class="language-js">const propertyOwner = updatedProperty.propertyOwnerId &amp;&amp; {
     connect: { id: updatedProperty.propertyOwnerId }
 };
 </code></pre>
 <p>Next as an update, we want to include a list of renters that are currently renting that property, with the previous code not only was the object not formed correctly, when it was fixed it would actually only add the new list of renters to the existing list. What we wanted to do with this update was that if you passed in a list of renters, that list became the current list of renters on the property. To do that we used the option called <code>set</code> instead of <code>connect</code> which we were using before:</p>
-<pre><code>const renters = updatedProperty.renters &amp;&amp; {
+<pre><code class="language-js">const renters = updatedProperty.renters &amp;&amp; {
       set: updatedProperty?.renters.map((renterId) =&gt; ({ id: renterId }))
   };
 </code></pre>
 <p>The new <code>updateProperty</code> method should contain the following new lines of code:</p>
-<pre><code>const renters = updatedProperty.renters &amp;&amp; {
+<pre><code class="language-js">const renters = updatedProperty.renters &amp;&amp; {
     set: updatedProperty?.renters.map((renterId) =&gt; ({ id: renterId }))
 };
 const propertyOwner = updatedProperty.propertyOwnerId &amp;&amp; {
@@ -1121,7 +1121,7 @@ const savedProperty = await Prisma.properties.update({
 <p>This means that during the update for properties, you pass the id of the new propertyOwner you want in <code>propertyOwnerId</code>.</p>
 <h2>Adding a test script:</h2>
 <p>The last step is to add a simple test script to <code>package.json</code> so that we can run our testcases from the command line:</p>
-<pre><code>&quot;scripts&quot;: {
+<pre><code class="language-json">&quot;scripts&quot;: {
   ...
   &quot;test&quot;: &quot;jest --coverage&quot;
 }
