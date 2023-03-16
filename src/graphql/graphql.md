@@ -67,4 +67,4 @@ In order to complete this guide, you need to have [NodeJS](https://nodejs.org/en
 
 ## Next Steps
 
-✏️ Head over to the [first lesson](learn-graphql/setting-up-apollo) and get the initial project created.
+✏️ Head over to the [first lesson](learn-graphql/setting-up-apollo.html) and get the initial project created.
