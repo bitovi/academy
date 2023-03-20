@@ -79,7 +79,7 @@ Update _index.stache_ to the following:
 @highlight 4,23-26,29-32,35-38,only
 
 __Success!__ You’ve completed this guide. Have questions or comments?
-[Join our Slack](https://www.bitovi.com/community/slack) and let us know in the [#canjs channel](https://bitovi-community.slack.com/messages/CFC22NZ8A)
+[Join our Discord](https://discord.gg/J7ejFsZnJ4) and let us know in the [#canjs channel](https://discord.gg/qxqgyGquk7)
 or our [forums](https://forums.bitovi.com/c/canjs)!
 
 </details>

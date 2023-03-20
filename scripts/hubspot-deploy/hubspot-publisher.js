@@ -7,8 +7,8 @@ require('dotenv').config()
 
 class HubSpotPublisher {
   constructor(folder = 'academy'){
-    if (!process.env.HUBSPOT_API_KEY) {
-      throw new Error("You must provide the environment variable HUBSPOT_API_KEY.")
+    if (!process.env.HUBSPOT_TOKEN) {
+      throw new Error("You must provide the environment variable HUBSPOT_TOKEN.")
     }
 
     if (!process.env.HUBSPOT_CAMPAIGN_ID) {
@@ -16,7 +16,7 @@ class HubSpotPublisher {
     }
 
     this.folder = folder;
-    this.hubSpotApi = new HubSpotApi(process.env.HUBSPOT_API_KEY, process.env.HUBSPOT_CAMPAIGN_ID);
+    this.hubSpotApi = new HubSpotApi(process.env.HUBSPOT_TOKEN, process.env.HUBSPOT_CAMPAIGN_ID);
   }
 
   async getPagesToUpload() {

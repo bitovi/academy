@@ -5,12 +5,13 @@
 
 ## Before You Begin
 
-<a href="https://www.bitovi.com/community/slack" style="display:flex;align-items:center">
-<img src="https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.png?width=200" style="float:left"/> <span style="display: inline-block;">Click here to join<br/>Bitovi's Slack Community</span></a>
+<a href="https://discord.gg/J7ejFsZnJ4" style="display:flex;align-items:center">
+<img src="./static/img/discord.png"
+  style="float:left; margin:20px" width="57"/> <span style="display: inline-block;">Click here to join the<br/>Bitovi Community Discord</span></a>
 
-To get the most out of this course, join the Bitovi community on Slack! Bitovi has a large community with developers who are happy to help with problems and answer questions about this course, TypeScript, and development in general! For questions specific to this course, please use the [TypeScript chat room](https://app.slack.com/client/TFDAQA9D4/CJ4K07T7F).
+To get the most out of this course, join the Bitovi Community Discord! Bitovi has a large community with developers who are happy to help with problems and answer questions about this course, TypeScript, and development in general! For questions specific to this course, please use the [TypeScript chat room](https://discord.gg/qxqgyGquk7).
 
-At the end of most sections, there will optional exercises to help solidify the content covered. There are a couple of different ways you can do the exercises! If you have an IDE and prefer to use the source code for the exercise - the prompt and code will be available to copy over. Prefer a more hands-off approach? Each exercise will have a link that will open it in CodeSandbox. The solutions to the exercises are posted below each exercise and hidden by an accordion. There are other ways besides the presented solution. Find one you think is cool and want to share? Drop it in slack!
+At the end of most sections, there will optional exercises to help solidify the content covered. There are a couple of different ways you can do the exercises! If you have an IDE and prefer to use the source code for the exercise - the prompt and code will be available to copy over. Prefer a more hands-off approach? Each exercise will have a link that will open it in CodeSandbox. The solutions to the exercises are posted below each exercise and hidden by an accordion. There are other ways besides the presented solution. Find one you think is cool and want to share? Drop it in Discord!
 
 If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/academy/issues) or email `contact@bitovi.com`.
 

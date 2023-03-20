@@ -50,10 +50,10 @@ Academy can be deployed manually by running the following command:
 npm run deploy
 ```
 
-Doing so requires access to the Bitovi Hubspot API key and Campaign Id, which can be found in Bitovi's 1Password `Academy` vault. Add them to a new `.env` file in this repos root directory:
+Doing so requires access to the Bitovi Hubspot Access token and Campaign Id, which can be found in Bitovi's 1Password `Academy` vault. Add them to a new `.env` file in this repos root directory:
 
 ```
-HUBSPOT_API_KEY=<api key>
+HUBSPOT_TOKEN=<access token>
 HUBSPOT_CAMPAIGN_ID=<campaign id>
 ```
 
