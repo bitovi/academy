@@ -92,10 +92,18 @@ window.PACKAGES = packages;
   var openModal = function () {
     console.log("You're deleting the Subscription Modal, aren't you?");
     console.log(
-      "That's okay; Looking for a job? Once you finish the course, head over to https://www.bitovi.com/jobs"
+      "That's okay; looking for a job? Once you finish the course, head over to https://www.bitovi.com/jobs"
     );
 
-    document.getElementById("email-modal").style.display = "block";
+    const modal = document.getElementById("email-modal");
+    // Close modal when clicking backdrop
+    modal.style.display = "block";
+    Array.from(modal.querySelectorAll('.email-modal-backdrop')).forEach(element => {
+      element.addEventListener("click", academyContactEmailSubmitted);
+    });
+    // Close modal when clicking close icon in upper right
+    document.getElementById("email-modal-close").addEventListener("click", academyContactEmailSubmitted);
+    modal.focus();
 
     hbspt.forms.create({
       region: "na1",
