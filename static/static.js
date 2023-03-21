@@ -96,8 +96,8 @@ window.PACKAGES = packages;
     );
 
     const modal = document.getElementById("email-modal");
-    // Close modal when clicking backdrop
     modal.style.display = "block";
+    // Close modal when clicking backdrop
     Array.from(modal.querySelectorAll('.email-modal-backdrop')).forEach(element => {
       element.addEventListener("click", academyContactEmailSubmitted);
     });
