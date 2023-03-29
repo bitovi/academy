@@ -532,8 +532,8 @@ a.quote-link:hover{
                   <span class='event-group'></span>
                 </p>
               </div>
-              <p class='event-body'></p>
-              <a class='event-url button button-grey full-width' >Register for event</a>
+              <p class='event-body' style="word-break: break-word"></p>
+              <a class='event-url button button-grey full-width'>Register for event</a>
           </div>
         </template>
       </calendar-events>
