@@ -23,10 +23,18 @@
 <img src="../static/img/program-management-with-jira/issue-hierarchy.png"
   style="border: solid 1px black; max-width: 400px;"/>
 
+
+[Rice](https://roadmunk.com/guides/rice-score-prioritization-framework-product-management/)
+
 - Create an initiative
   - Put it above epic
-	- Check that you can make it
-
+  - Check that you can make it
+  - Add custom fields
+    - Reach
+    - Impact
+    - Value Confidence 
+    - Effort
+    - Effort Confidence
 
 
 ## Create the exploration workflow

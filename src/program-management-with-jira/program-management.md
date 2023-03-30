@@ -12,7 +12,7 @@ In this training, you will learn how to build, maintain, and report on accurate 
 with Jira. Let's break each part of that down:
 
 - Build - How to take ideas, flesh them out, estimate them, and put them into future plans.
-- Maintain - How to keep a plan up to date as development complete and things change.
+- Maintain - How to keep a plan up to date as development completes and things change.
 - Report - How to summarize the plan in an easy-to-digest format for stakeholders and a wider team.
 - Accurate - We will use improved modeling of estimates to create more accurate plans.
 - Multi-team - How to build plans that coordinates multiple product-teams' work items.
@@ -65,13 +65,18 @@ a marketplace that’s a bit like etsy.
 You will learn more about the product in [learn-program-management-with-jira/product-overview].
 
 You are tasked with building an actionable plan based on
-features that management thinks are a good idea.
+features that management thinks are a good idea. This is the
+evaluation workflow of Bitovi's overall Continuous Exploration workflow.
+
+<img src="../static/img/program-management-with-jira/continuous-exploration-workflow.png"
+  style="border: solid 1px black; min-width: 400px; width: 100%; max-width: 800px"/>
 
 You are responsible for:
 
 - Exploring and prioritizing feature requests
 - Estimating feature requests
 - Coordinating the development of features across multiple product teams
+
 
 In this training, we will:
 
@@ -85,21 +90,12 @@ In this training, we will:
 8. Prioritize those ideas
 9. Plan those ideas into a roadmap
 10. Report on those ideas
-11. Discuss how to continuously repeate this process
+11. Discuss how to continuously manage this process
 
 
 ## Disclaimer
 
+This is just an example process. This is one primarily suited for products that
+have already been released. Please modify it to meet your needs.
 
-This is just an example process.  One that is more geared towards "stakeholder-driven"
-exploration processes.  
-
-Please modify it to meet your needs.
-
-
-
-<img src="../static/img/program-management-with-jira/continuous-exploration-workflow.png"
-  style="border: solid 1px black; min-width: 400px; width: 100%; max-width: 800px"/>
-
-
-This is really about the "evaluation" workflow.
+If you do have improvements, please let us know!
