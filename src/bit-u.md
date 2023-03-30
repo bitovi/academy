@@ -512,10 +512,8 @@ a.quote-link:hover{
     <a class="button" href="https://www.twitch.tv/bitovi/schedule"><img src="./static/img/calendar.svg" height="20"> View our Twitch Schedule</a>
     <p>Or as we host incredible speakers with Q&A at the monthly ChicagoJS Meetups.</p>
     <a class="button" href="https://www.meetup.com/js-chi/events/"><img src="./static/img/calendar.svg" height="20"> ChicagoJS Meetup Schedule</a>
-    <!-- Community calendar temporarily removed until the calendar is consistently updated again. -->
     <p>Join our community calendar for even more upcoming events.</p> 
     <a class="button" href="https://calendar.google.com/calendar/b/1?cid=anVwaXRlcmpzLmNvbV9nMjd2Y2szNm5pZmJucXJna2N0a29hbnFiNEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"><img src="./static/img/calendar.svg" height="20"> Subscribe to our calendar</a>
-    <!-- when running locally, must use http://localhost:5500/academy/ instead of ip address to see calendar events locally -->
     <h4>Next events from the community Calendar:</h4>
   <calendar-events api-key="AIzaSyBsNpdGbkTsqn1BCSPQrjO9OaMySjK5Sns" calendar-id="jupiterjs.com_g27vck36nifbnqrgkctkoanqb4@group.calendar.google.com" event-count="3" class="courses">
     <template>
