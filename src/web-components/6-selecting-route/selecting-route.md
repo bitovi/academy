@@ -62,7 +62,7 @@ To make the `#selected-route` button visible, add the `route-selected` class.
 To get the URL for this API request use:
 
 ```js
-proxyUrl + getVehiclesEndpoint + '&rt=' + NUMBER
+getVehiclesEndpoint + '?rt=' + NUMBER
 ```
 
 Where `NUMBER` is the route number, which again can be gotten from the route object.
