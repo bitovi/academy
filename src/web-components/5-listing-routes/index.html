@@ -211,11 +211,9 @@ class GoogleMapView extends HTMLElement {
 
 customElements.define('google-map-view', GoogleMapView);
 
-const proxyUrl = "https://can-cors.herokuapp.com/";
-const token = "?key=piRYHjJ5D2Am39C9MxduHgRZc&format=json";
-const apiRoot = "http://www.ctabustracker.com/bustime/api/v2/";
-const getRoutesEndpoint = apiRoot + "getroutes" + token;
-const getVehiclesEndpoint = apiRoot + "getvehicles" + token;
+const apiRoot = "https://cta-bustracker.vercel.app/api/";
+const getRoutesEndpoint = apiRoot + "routes";
+const getVehiclesEndpoint = apiRoot + "vehicles";
 
 const btTemplate = document.querySelector('#bt-template');
 const routeTemplate = document.querySelector('#route-template');
@@ -236,7 +234,7 @@ class BusTracker extends HTMLElement {
   }
 
   async getRoutes() {
-    let response = await fetch(proxyUrl + getRoutesEndpoint);
+    let response = await fetch(getRoutesEndpoint);
     let data = await response.json();
     let routes = data["bustime-response"].routes;
 

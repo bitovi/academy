@@ -35,11 +35,9 @@ Additionally we have text within the header that says __Loading routes…__ stat
 The following snippet of JavaScript will be useful for fetching data from the bus tracker API. Use the `getRoutesEndpoint` string to fetch the list of routes.
 
 ```js
-const proxyUrl = "https://can-cors.herokuapp.com/";
-const token = "?key=piRYHjJ5D2Am39C9MxduHgRZc&format=json";
-const apiRoot = "http://www.ctabustracker.com/bustime/api/v2/";
-const getRoutesEndpoint = apiRoot + "getroutes" + token;
-const getVehiclesEndpoint = apiRoot + "getvehicles" + token;
+const apiRoot = "https://cta-bustracker.vercel.app/api/";
+const getRoutesEndpoint = apiRoot + "routes";
+const getVehiclesEndpoint = apiRoot + "vehicles";
 ```
 
 To display the routes we want to create an `<li>` for each route and attach it to the `.routes-list` element. Use this markup to create that li. Inspect the results of the API request to figure out how to display the `.route-number` and `.route-name` appropriately.
