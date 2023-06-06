@@ -803,11 +803,9 @@ class GoogleMapView extends HTMLElement {
 
 customElements.define('google-map-view', GoogleMapView);
 
-const proxyUrl = &quot;https://can-cors.herokuapp.com/&quot;;
-const token = &quot;?key=piRYHjJ5D2Am39C9MxduHgRZc&amp;format=json&quot;;
-const apiRoot = &quot;http://www.ctabustracker.com/bustime/api/v2/&quot;;
-const getRoutesEndpoint = apiRoot + &quot;getroutes&quot; + token;
-const getVehiclesEndpoint = apiRoot + &quot;getvehicles&quot; + token;
+const apiRoot = &quot;https://cta-bustracker.vercel.app/api/&quot;;
+const getRoutesEndpoint = apiRoot + &quot;routes&quot;;
+const getVehiclesEndpoint = apiRoot + &quot;vehicles&quot;;
 
 const btTemplate = document.querySelector('#bt-template');
 const routeTemplate = document.querySelector('#route-template');
@@ -831,7 +829,7 @@ class BusTracker extends HTMLElement {
   }
 
   async getRoutes() {
-    let response = await fetch(proxyUrl + getRoutesEndpoint);
+    let response = await fetch(getRoutesEndpoint);
     let data = await response.json();
     let routes = data[&quot;bustime-response&quot;].routes;
 
@@ -852,7 +850,7 @@ class BusTracker extends HTMLElement {
   }
 
   async getVehicles(route) {
-    let response = await fetch(proxyUrl + getVehiclesEndpoint + '&amp;rt=' + route.rt);
+    let response = await fetch(getVehiclesEndpoint + '?rt=' + route.rt);
     let data = await response.json();
 
     this.selectedRouteBtn.innerHTML = `

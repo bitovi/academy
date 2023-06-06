@@ -520,11 +520,9 @@ title="A scrollable list of bus routes on top, a map on the bottom." /></p>
 </ol>
 <h2>Technical Requirements</h2>
 <p>The following snippet of JavaScript will be useful for fetching data from the bus tracker API. Use the <code>getRoutesEndpoint</code> string to fetch the list of routes.</p>
-<pre><code class="language-js">const proxyUrl = &quot;https://can-cors.herokuapp.com/&quot;;
-const token = &quot;?key=piRYHjJ5D2Am39C9MxduHgRZc&amp;format=json&quot;;
-const apiRoot = &quot;http://www.ctabustracker.com/bustime/api/v2/&quot;;
-const getRoutesEndpoint = apiRoot + &quot;getroutes&quot; + token;
-const getVehiclesEndpoint = apiRoot + &quot;getvehicles&quot; + token;
+<pre><code class="language-js">const apiRoot = &quot;https://cta-bustracker.vercel.app/api/&quot;;
+const getRoutesEndpoint = apiRoot + &quot;routes&quot;;
+const getVehiclesEndpoint = apiRoot + &quot;vehicles&quot;;
 </code></pre>
 <p>To display the routes we want to create an <code>&lt;li&gt;</code> for each route and attach it to the <code>.routes-list</code> element. Use this markup to create that li. Inspect the results of the API request to figure out how to display the <code>.route-number</code> and <code>.route-name</code> appropriately.</p>
 <pre><code class="language-html">&lt;li&gt;
@@ -802,11 +800,9 @@ class GoogleMapView extends HTMLElement {
 
 customElements.define('google-map-view', GoogleMapView);
 
-const proxyUrl = &quot;https://can-cors.herokuapp.com/&quot;;
-const token = &quot;?key=piRYHjJ5D2Am39C9MxduHgRZc&amp;format=json&quot;;
-const apiRoot = &quot;http://www.ctabustracker.com/bustime/api/v2/&quot;;
-const getRoutesEndpoint = apiRoot + &quot;getroutes&quot; + token;
-const getVehiclesEndpoint = apiRoot + &quot;getvehicles&quot; + token;
+const apiRoot = &quot;https://cta-bustracker.vercel.app/api/&quot;;
+const getRoutesEndpoint = apiRoot + &quot;routes&quot;;
+const getVehiclesEndpoint = apiRoot + &quot;vehicles&quot;;
 
 const btTemplate = document.querySelector('#bt-template');
 const routeTemplate = document.querySelector('#route-template');
@@ -827,7 +823,7 @@ class BusTracker extends HTMLElement {
   }
 
   async getRoutes() {
-    let response = await fetch(proxyUrl + getRoutesEndpoint);
+    let response = await fetch(getRoutesEndpoint);
     let data = await response.json();
     let routes = data[&quot;bustime-response&quot;].routes;
 
