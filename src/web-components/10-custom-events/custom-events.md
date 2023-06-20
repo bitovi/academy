@@ -238,7 +238,7 @@ Using `CustomEvent`, display a `vehicle-selected` event with a `detail` of the v
 <summary>Click to see the solution</summary>
 
 @sourceref ./index.html
-@highlight 102-123,202,270,279-283,288-293,319,325,328-330,332-336,only
+@highlight 102-123,202,271,279-283,288-293,317,323,326-328,330-334,only
 @codepen
 
 </details>
