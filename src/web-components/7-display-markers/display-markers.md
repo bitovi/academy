@@ -151,7 +151,7 @@ class DogElement extends HTMLElement {
 <summary>Click to see the solution</summary>
 
 @sourceref ./index.html
-@highlight 204-205,219-242,267,306,309,only
+@highlight 204-205,219-242,265,304,307,only
 @codepen
 
 </details>

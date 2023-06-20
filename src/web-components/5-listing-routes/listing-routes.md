@@ -127,7 +127,7 @@ At the end of the `getRoutes` method remove the `#loading-routes` element.
 <summary>Click to see the solution</summary>
 
 @sourceref ./index.html
-@highlight 179-187,214-218,221,231,234-253,only
+@highlight 179-187,214-216,219,233,236-251,only
 @codepen
 
 </details>
