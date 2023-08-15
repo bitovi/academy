@@ -3,7 +3,7 @@ Hello and welcome to Bitovi Academy's Learn TypeScript training.
 This video is an overview of the entire TypeScript course.
 
 Before we start, it's important to make sure everyone knows about Bitovi's
-Community slack.  It's a great place to get help on these exercises, and
+Community Discord.  It's a great place to get help on these exercises, and
 talk tech with likeminded folks.
 
 So as I mentioned, this course is about TypeScript. TypeScript

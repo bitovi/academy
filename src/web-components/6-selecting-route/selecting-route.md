@@ -62,7 +62,7 @@ To make the `#selected-route` button visible, add the `route-selected` class.
 To get the URL for this API request use:
 
 ```js
-proxyUrl + getVehiclesEndpoint + '&rt=' + NUMBER
+getVehiclesEndpoint + '?rt=' + NUMBER
 ```
 
 Where `NUMBER` is the route number, which again can be gotten from the route object.
@@ -108,7 +108,7 @@ Add a reference to the `#selected-route` element in the constructor. When the AP
 <summary>Click to see the solution</summary>
 
 @sourceref ./index.html
-@highlight 169-173,227,238,256-258,266-294,only
+@highlight 169-173,225,236,254-256,264-292,only
 @codepen
 
 </details>

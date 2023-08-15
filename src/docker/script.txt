@@ -1,6 +1,6 @@
 Hello and welcome to Bitovi academy's Learn Docker training. This video is an overview of the entire course.
 
-Before we start, its important that everyone knows about Bitovi's community slack. 
+Before we start, its important that everyone knows about the Bitovi Community Discord. 
 
 It's a great place to ask questions and talk tech with like-minded individuals.
 
