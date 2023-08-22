@@ -1,4 +1,4 @@
-@page learn-program-management-with-jira Agile Program Management With Jira
+@page learn-agile-program-management-with-jira Agile Program Management With Jira
 @parent bit-academy 8
 
 @description Learn how to build, maintain, and report on accurate multi-team plans
@@ -8,32 +8,26 @@ with Jira.
 
 ## Purpose
 
-In this training, you will learn how to build, maintain, and report on accurate multi-team plans
-with Jira. Let's break each part of that down:
+In this training, you will learn how to <span class="color-blue bold">build</span>, 
+<span class="color-green bold">maintain</span>, and 
+<span class="color-purple bold">report</span> <span class="color-teal bold">accurate</span> and 
+<span class="color-red bold italic">actionable</span> <span class="color-gray bold">multi-team</span> plans with Jira. Let's break each part of that down:
 
-- Build - How to take ideas, flesh them out, estimate them, and put them into future plans.
-- Maintain - How to keep a plan up to date as development completes and things change.
-- Report - How to summarize the plan in an easy-to-digest format for stakeholders and a wider team.
-- Accurate - We will use improved modeling of estimates to create more accurate plans.
-- Multi-team - How to build plans that coordinates multiple product-teams' work items.
+- <span class="color-blue bold">Build</span> - How to take ideas, flesh them out, estimate them, and put them into future plans.
+- <span class="color-green bold">Maintain</span> - How to keep a plan up to date as development completes and things change.
+- <span class="color-purple bold">Report</span> - How to summarize the plan in an easy-to-digest format for stakeholders and a wider team.
+- <span class="color-teal bold">Accurate</span> - How to use improved modeling of estimates to create more accurate plans.
+- <span class="color-gray bold">Multi-team</span> - How to build plans that coordinates the work items for multiple product teams at a program level.
 
-We will build a plan that looks something like the following:
-
-[TODO IMAGE OF ADVANCED PLAN]
-
-And reports that look like:
-
-[TODO IMAGE OF REPORT]
-
-But, the ultimate goal of this training is to teach you how to create __actionable plans__.
-
+This training will leave you with a decent understanding of Jira too. However, the ultimate goal of this training is to teach you how to create actionable plans.
 
 ## Actionable Plans
 
-_Know the future so that you can change it._
+> Know the future so that you can change it.
+> 
+> - Someone inspirational
 
-Actionable Plans are plans that have enough accuracy and forward visibility to enable
-teams to make changes that affect the plan. These changes might be:
+<span class="color-red bold italic">Actionable Plans</span> are plans that have enough accuracy and forward visibility to enable teams to make changes that actually improve outcomes. These changes might be:
 
 - Restructuring work to avoid blockers
 - Better coordinating handoff between teams
@@ -41,61 +35,82 @@ teams to make changes that affect the plan. These changes might be:
 - Exploring alternate solutions
 - Adding more resources
 
+We call this process “breaking the long poles”. First, you'll build a plan:
 
-Estimating and projecting work takes time. It's _only_ valuable if it actually
-has an affect on the project's success. It's important to make sure that your
-organization is receptive and responsive to the results of the planning work.
+<img src="../static/img/program-management-with-jira/home/identify-longpole.png"
+	class="content-400-800-shadow"/>
 
-## Before You Begin
+And then identify areas are the most likely bottleneck delivery times:
 
-You will need a Jira instance with Advanced Plans.  This comes as part of the
-premium plan. You can create a trial instance to use this training.
+<img src="../static/img/program-management-with-jira/home/identified-longpole.png"
+	class="content-400-800-shadow"/>
 
-<img src="../static/img/program-management-with-jira/jira-account.png"
-  style="border: solid 1px black; min-width: 400px; width: 100%; max-width: 800px"/>
+And be able to adjust plans to shorten the delivery time:
 
-We will setup Jira in [learn-program-management-with-jira/jira-setup].
+<img src="../static/img/program-management-with-jira/home/shortened.png"
+	class="content-400-800-shadow"/>
 
+In this way, program managers can dramatically help delivery performance. 
 
 ## Overview
 
-This training imagines you are managing “itsy bitsy marketplace”,
-a marketplace that’s a bit like etsy.
+This training imagines you are managing “Itsy Bitsy Marketplace”, a simple eCommerce website that sells clothing and other items made from spider silk.
 
-You will learn more about the product in [learn-program-management-with-jira/product-overview].
+<img src="../static/img/program-management-with-jira/home/itsy-homepage.png"
+	class="content-400-800"/>
 
-You are tasked with building an actionable plan based on
-features that management thinks are a good idea. This is the
-evaluation workflow of Bitovi's overall Continuous Exploration workflow.
+You will learn more about the product in Product Overview.
 
-<img src="../static/img/program-management-with-jira/continuous-exploration-workflow.png"
-  style="border: solid 1px black; min-width: 400px; width: 100%; max-width: 800px"/>
+You are tasked with taking one-sentence-long feature requests from Product Managers and turning feature requests into a fully developed product backlog, complete with actionable plans for successful delivery.  
 
-You are responsible for:
+To complete the journey, we will:
 
-- Exploring and prioritizing feature requests
-- Estimating feature requests
-- Coordinating the development of features across multiple product teams
+__Setup a continuous exploration process managed with a custom Jira board:__
 
+<img src="../static/img/program-management-with-jira/home/kanban-board.png"
+	class="content-400-800-shadow"/>
 
-In this training, we will:
+__Refine the feature requests into clearly defined Jira Initiatives:__
 
-1. Go over the CX workflow this training establishes.
-2. Setup Jira
-3. Learn about the product we will be working on
-4. Brainstorm new ideas for the product
-5. Refine those ideas
-6. Discus ways of validating those ideas
-7. Estimate those ideas with confidence
-8. Prioritize those ideas
-9. Plan those ideas into a roadmap
-10. Report on those ideas
-11. Discuss how to continuously manage this process
+<img src="../static/img/program-management-with-jira/home/refined-features.png"
+	class="content-400-800-shadow"/>
 
 
-## Disclaimer
+__Wireframe those features to add even more clarity:__
 
-This is just an example process. This is one primarily suited for products that
-have already been released. Please modify it to meet your needs.
+<img src="../static/img/program-management-with-jira/home/wireframe.png"
+	class="content-400-800-shadow"/>
 
-If you do have improvements, please let us know!
+__Break down the work and use statistical models to accurately estimate delivery times:__
+
+<img src="../static/img/program-management-with-jira/home/estimation.png"
+	class="content-400-800-shadow"/>
+
+
+__Build plans in Jira’s Advanced Roadmap Tool:__
+
+<img src="../static/img/program-management-with-jira/home/advanced-plan.png"
+	class="content-400-800-shadow"/>
+
+__Schedule work with Advanced Roadmap’s AutoScheduler:__
+
+<img src="../static/img/program-management-with-jira/home/autoscheduler.png"
+	class="content-400-800-shadow"/>
+
+__Maintain the roadmap and facilitate team communication with effective meetings:__
+
+<img src="../static/img/program-management-with-jira/home/program-planning.png"
+	class="content-400-800-shadow"/>
+
+__Generate easy-to-digest summaries of progress for stakeholders:__
+
+<img src="../static/img/program-management-with-jira/home/reporting.png"
+	class="content-400-800-shadow"/>
+
+Sounds good? Great. Let's get started!
+
+## A template, not a temple
+
+The processes and workflows discussed provided training have been used on multiple successful projects. However, this is just an example process and workflow. We always end up modifying the process and workflows to meet the needs of the teams and products. It’s a starter template for product teams to adapt to meet their needs. 
+
+If you have improvements, please let us know!

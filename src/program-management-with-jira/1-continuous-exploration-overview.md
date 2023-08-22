@@ -1,5 +1,5 @@
-@page learn-program-management-with-jira/continuous-evaluation Continuous Evaluation
-@parent learn-program-management-with-jira 0
+@page learn-agile-program-management-with-jira/continuous-exploration Continuous Exploration
+@parent learn-agile-program-management-with-jira 1
 
 @description Learn about the Continuous Evaluation workflow and Jira board we use
 to take feature ideas and turn them into actionable multi-team plans.

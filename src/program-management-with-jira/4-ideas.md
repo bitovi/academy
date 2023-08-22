@@ -1,5 +1,5 @@
-@page learn-program-management-with-jira/ideas Ideas
-@parent learn-program-management-with-jira 4
+@page learn-agile-program-management-with-jira/ideas Ideas
+@parent learn-agile-program-management-with-jira 4
 
 @description Learn how to add feature ideas to the ideas backlog.
 

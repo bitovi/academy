@@ -1,5 +1,5 @@
-@page learn-program-management-with-jira/refinement Refinement
-@parent learn-program-management-with-jira 4
+@page learn-agile-program-management-with-jira/refinement Refinement
+@parent learn-agile-program-management-with-jira 5
 
 @description Learn how to refine an idea into a useful form.
 

@@ -1,5 +1,5 @@
-@page learn-program-management-with-jira/product-overview Product Overview
-@parent learn-program-management-with-jira 3
+@page learn-agile-program-management-with-jira/product-overview Product Overview
+@parent learn-agile-program-management-with-jira 2
 
 @description Learn to add things in the ideas backlog
 

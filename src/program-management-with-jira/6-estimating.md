@@ -1,5 +1,5 @@
-@page learn-program-management-with-jira/estimating Estimating
-@parent learn-program-management-with-jira 6
+@page learn-agile-program-management-with-jira/estimating Estimating
+@parent learn-agile-program-management-with-jira 6
 
 @description Learn how to estimate.
 

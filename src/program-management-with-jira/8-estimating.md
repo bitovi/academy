@@ -1,5 +1,5 @@
-@page learn-program-management-with-jira/planning Planning
-@parent learn-program-management-with-jira 7
+@page learn-agile-program-management-with-jira/estimating Estimating
+@parent learn-agile-program-management-with-jira 8
 
 @description Learn how to build a plan
 
