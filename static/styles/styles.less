@@ -18,6 +18,7 @@
 @import "locate://bit-docs-site/styles/mixins.less";
 
 @import "prism.less";
+@import "content.less";
 
 /*
 Mobile:
@@ -191,6 +192,66 @@ Desktop:
 article .codepen:before {
   content: "Run in your browser";
 }
+article .jira-issue {
+	font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,'Fira Sans','Droid Sans','Helvetica Neue',sans-serif;
+	border: solid 1px gray;
+	padding: 32px;
+	margin: 32px;
+	box-shadow: 5px 5px 5px gray;
+
+	.jira-title {
+		font-size: 24px;
+		font-weight: 500;
+		line-height: 28px;
+	}
+	.jira-description {
+		font-size: 14px;
+	}
+	.jira-description::before {
+		font-size: 14px;
+		content: "Description";
+		display: block;
+		font-weight: 600;
+		line-height: 24px;
+		color: #172B4D;
+	}
+	.jira-details {
+		border: solid 1px #dfe1e6;
+		display: grid;
+		grid-template-columns: 170px 1fr;
+
+		.jira-label {
+			color: #42526e;
+			font-size: 12px;
+			font-weight: 600;
+			padding: 8px;
+		}
+		.jira-value {
+			font-size: 14px;
+			font-weight: 400;
+			color: #172B4D;
+			padding: 8px;
+		}
+		.jira-value-none {
+			font-size: 14px;
+			font-weight: 400;
+			color: #5e6c84;
+			padding: 8px;
+		}
+		.jira-value-none::before {
+			content: "None";
+		}
+	}
+	.jira-details::before {
+		display: block;
+		content: "Details";
+		padding: 12px;
+		border-bottom: solid 1px #dfe1e6;
+		grid-column-start: span 2;
+		font-size: 14px;
+	}
+}
+
 
 html {
   color: #404040;
