@@ -216,7 +216,8 @@
            						">
 						<a class="page"
 							href="continuous-exploration-board.html"
-							title="Learn to setup an exploration board in Jira">
+							title="Learn to set up a Continuous Exploration  exploration board in Jira. On the way, we will learn how to create
+custom issue types, custom workflows, and custom fields.">
 							Continuous Exploration Board
 						</a>
 						
@@ -249,7 +250,7 @@
            						">
 						<a class="page"
 							href="refinement.html"
-							title="Learn how to refine an idea into a useful form.">
+							title="Learn how to refine an initiative from an idea into something ready to be validated and estimated.">
 							Refinement
 						</a>
 						
@@ -264,7 +265,7 @@
            						">
 						<a class="page"
 							href="validating.html"
-							title="Learn how to validate.">
+							title="Learn how to increase the chances that initiatives will produce the value you expect.">
 							Validating
 						</a>
 						
@@ -279,7 +280,7 @@
            						">
 						<a class="page"
 							href="advanced-roadmap-setup.html"
-							title="Learn how to set up an advanced roadmap.">
+							title="Learn how to set up Jira&#x27;s Advanced Roadmap">
 							Advanced Roadmap Setup
 						</a>
 						
@@ -294,7 +295,7 @@
            						">
 						<a class="page"
 							href="estimating.html"
-							title="Learn how to build a plan">
+							title="Learn how to build a plan and estimate the delivery time of an initiaiative.">
 							Estimating
 						</a>
 						
@@ -308,8 +309,98 @@
            						
            						">
 						<a class="page"
+							href="breaking-long-poles.html"
+							title="Learn how to recognize which work will take the longest, and ways to break things up.
+Overview
+It barely needs to be said that finding ways to deliver a product faster is a key aspect of business success. There are costs associated with not having a feature customers want, an efficiency improvement that internal users need, a delay in being first to market with a disruptive offering. An obvious way to achieve a shorter cycle is to find the longest “pole” in the schedule and break it up, finding ways to deliver it quicker.
+Ways to Shorten the Long Pole
+Increase resources
+This option is the most obvious: if it takes a team of three developers 5 weeks to deliver a feature, shouldn’t it only take 3 weeks if you add two more developers? The improvement by adding people, however, is rarely linear in this way.
+The primary reason why involves Brooks’s Law, put forth by IBM software engineer Fred Brooks in his book “The Mythical Man-Month”. Brooks states that the increase in team size leads to an exponential growth in communications channels which need to be maintained in order for the team to continue operating. Even if the technical aspects of the work can be done interchangeably by all team members (which is a very big big “if”), the n(n-1)/2 expansion of communication channels hampers the linear expectations of improved velocity.
+
+There are also assumptions about how easy it is for new team members to onboard, learn about the work being done, and efficient adaptation to specific ways of working within the team.
+Adding team members will almost always help the team’s overall velocity, especially if the technical skills of the new developers match what the team needs. But it’s important for a TPO to understand, and communicate to stakeholders, the improvement likely will not match expectations.
+Technical Spikes to Improve Confidence
+As we saw in the Estimating section, the log-normal distribution of a confidence factor can cause a huge blowup in delivery times. In this example, a 2-week estimate with low confidence has a longer timeline in the schedule than the high-confidence 3-week epic preceding it.
+
+A short spike to investigate any open business or technical questions which are causing the 40% confidence in this example will shorten this total “pole” by several times the spike duration.
+
+As a TPO, understanding why the developers are having concerns and questioning their confidence will allow you to identify what the spike should involve, what answers the team needs to complete it and how to prioritize its completion over other feature work or technical debt which could be done.
+Remove Scope
+If you have the right-sized team and the best confidence in your estimates, and you still have an obvious long pole, the simplest way to shorten it is to remove scope.
+In this example, we have a circled long pole of functional dependency, going across multiple teams.
+
+The last epic in this flow has dependencies on two other epics from two other teams. Can we remove it from the current scope and shorten the delivery cycle? It can always be picked up later.
+
+The team’s ability to have this descoping discussion with stakeholders depends on a number of factors, notably time and risk sensitivity. Is a robust “what” more important to our application than an earlier “when”? Is the potential risk of an epic that relies on two other epics which come near the end of team delivery, both of which have their own dependence on an earlier epic, worth taking on?
+We may also look to move requirements and/or use cases out-of-scope to shrink the size of one or more epics. In the Promotion Code example, let’s say the original requirements were to allow a promotion code to be applied to one item in the shopping cart, but not an item which is already on sale. If the decision is made to change the scope such that the code is applied to an entire order, we simplify and reduce the size of multiple epics:
+
+Cart operation to add a promotion code (do not have to select an item in the cart)
+Check with store to see if an item is listed at a sale price
+Re-calculating the subtotal
+
+Splitting Epics to Unblock and Parallelize
+One of the best ways to address the long pole is to break epics up into smaller epics, and find ways to then split the work. Let’s go back to our original work plan, and pick a large epic with relatively low confidence, one that seems to be square in the middle of the key work dependencies.
+
+In our Promotion Code example, this highlighted epic could cover:
+
+Additional data related to a code for start &amp; end date ranges during which the code is valid
+A check in the shopping cart to see if the current date falls within that range
+
+The TPO and the team could choose to split those two features up into their own Epic.
+
+Now the work for the first part, the dates added as part of a promotion code, has its own estimate &amp; confidence. This could be done in parallel with the first two epics, because it does not have dependencies on that work. The timing of delivery of the other half of the epic can also shift to the left.
+
+The dependent epics also shift left, shortening the entire pole.
+
+Exercise
+
+Try to come up with ways to shorten your initiatives timeframes">
+							Breaking Long Poles
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="prioritizing.html"
+							title="Learn how to prioritize initiatives.">
+							Prioritizing
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="scheduling.html"
+							title="Learn how to schedule epics into sprints with Advanced Roadmaps&#x27; Auto-scheduler.">
+							Scheduling
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="reporting.html"
-							title="Learn how to report">
+							title="Learn how to report on high-level status using Jira as the source of truth.">
 							Reporting
 						</a>
 						
@@ -324,7 +415,7 @@
            						">
 						<a class="page"
 							href="managing.html"
-							title="Learn how to structure the work">
+							title="Learn how to manage a program&#x27;s active work.">
 							Managing
 						</a>
 						
@@ -516,12 +607,18 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>The ideas backlog is a collection of rough ideas sorted by expected product value.</p>
 <p><img src="../static/img/program-management-with-jira/exploration-backlog.png"
-style="border: solid 1px black; max-width: 1000px;"/></p>
-<h2>What is the <code>Ideas Backlog</code> list?</h2>
-<p>The <code>Ideas Backlog</code> is a list of initiative ideas that stakeholders and the TPO manage. The ideas are not fully refined, and therefore can not be estimated or accurately prioritized. However, this list should be prioritized by which ideas are anticipated to create the most value. The highest priority initiatives should be expected to be further developed and moved into <code>Refinement</code>.</p>
-<h2>What is the process for sourcing ideas?</h2>
-<p>Initiatives in the <code>Ideas Backlog</code> are just ideas. Anyone can add them at any time. However,
-they would ideally be sourced through a <strong>Discovery Workflow</strong>.</p>
+class="content-400-800-shadow"/></p>
+<p>We will discuss how to manage the <code>Ideas Backlog</code>, including:</p>
+<ul>
+<li><p>How to source ideas to add to the Ideas Backlog</p></li>
+<li><p>What to include when writing up an initiative for the Ideas Backlog</p></li>
+<li><p>How and when to prioritize the ideas backlog</p></li>
+</ul>
+<p>For the exercise, you will pick an idea, write it up, and add it to the ideas backlog.</p>
+<h2>What is the <code>Ideas Backlog</code>?</h2>
+<p>The <code>Ideas Backlog</code> is a list of initiatives with the <code>idea</code> status. The ideas are not fully refined, and therefore can not be estimated or accurately prioritized. However, this list should be prioritized by which ideas are anticipated to create the most value. The highest priority initiatives should be at the top and expected to be further developed and moved into <code>Refinement</code>.</p>
+<h2>Sourcing ideas</h2>
+<p>Initiatives in the <code>Ideas Backlog</code> are just ideas. Anyone can add them at any time. However, they would ideally be sourced in-part through a <strong>Discovery Workflow</strong>.</p>
 <p><img src="../static/img/program-management-with-jira/continuous-exploration-workflow.png"
 style="border: solid 1px black; min-width: 400px; width: 100%; max-width: 800px"/></p>
 <p>The discovery workflow is a process that looks at:</p>
@@ -531,74 +628,88 @@ style="border: solid 1px black; min-width: 400px; width: 100%; max-width: 800px"
 <li>Competitor research</li>
 <li>User studies</li>
 </ul>
-<p>... and synthesizes the quantitative and qualitative data into a picture for the team to think
-about and brainstorm.</p>
+<p>... and synthesizes the quantitative and qualitative data into a picture for the team to think about and brainstorm.</p>
 <p><img src="../static/img/program-management-with-jira/customer-reports.png"
 style="border: solid 1px black; min-width: 400px; width: 100%; max-width: 800px"/></p>
-<p>The discovery workflow is out of scope for this training.  If you'd like to learn more, please vote for
-the <a href="https://github.com/bitovi/academy/issues/386" title="Product Discovery Process">Product Discovery Process</a> training.</p>
-<h2>Creating ideas in Jira</h2>
-<p>While ideas can be created at anytime, by anyone.  In order to have a fruitful conversation
-around which ideas should prioritized and moved into <code>Refinement</code>, it's helpful to have
-the value proposition detailed in the initiative. The following is an example
-idea that includes RICE scoring.</p>
+<p>The discovery workflow is out-of-scope for this training. If you'd like to learn more, please vote for the <a href="https://github.com/bitovi/academy/issues/386">Product Discovery Process</a> training.</p>
+<p>While a discovery workflow ideally plays a part in sourcing ideas, we believe that anyone should be able to contribute initiative ideas at any time.</p>
+<h2>Writing Up Initiative Ideas</h2>
+<p>While ideas can be created at any time, by anyone. In order to have a fruitful conversation around which ideas should be prioritized and moved into <code>Refinement</code>, it's helpful to have the value proposition detailed in the initiative.</p>
+<p>For this training, we will be using a promotion initiative as an example. We will develop the promotion initiative from <code>idea</code> to <code>ready</code> for development.</p>
+<p>The following is a completed <code>idea</code> initiative:</p>
 <div class='jira-issue'>
 <p class='jira-title'>Promotions</p>
 <div class='jira-description'>
-<p>Promotions can have a <a href="https://www.inc.com/peter-roesler/new-study-shows-deals-promotions-affect-every-part-of-shopping-experience.html">large impact on customer purchasing decisions</a>. We should look
-to add some sort of promotional offer to increase sales.</p>
+<p>Promotions can have a <a href="https://www.inc.com/peter-roesler/new-study-shows-deals-promotions-affect-every-part-of-shopping-experience.html">large impact on customer purchasing decisions</a>. We should create a promotion that would help to increase sales and utilize a Marketing Campaign to advertise the offer.</p>
+<p><strong>Problem</strong></p>
+<p>We need to provide customers with an incentive to visit Itsy Bitsy and make purchases.</p>
 <p><strong>Impact</strong></p>
-<p>We can either target a new user promotion or
-existing customer promotion.  Lets assume it's a promotion for new customers
-to help them complete their cart.</p>
+<p>We hope to increase our revenue by 2x the amount spent on Marketing ads.</p>
 <ul>
-<li>Reach - We see about 1000 abandoned carts a month.</li>
-<li>Impact - Maybe we can convince 5% of those to convert.</li>
-<li>Value Confidence - Our customers have been asking for this. But we haven't done any research. 20% confidence.</li>
+<li>Value  - We expect to see an increase in revenue of $100K as a result of the promotion code Marketing Campaign.</li>
+<li>Value confidence - 50%</li>
 </ul>
 <form class='jira-details'>
-<div class='jira-label'>Reach</div><div class='jira-value'>1000</div>
-<div class='jira-label'>Impact</div><div class='jira-value'>2</div>
-<div class='jira-label'>Value Confidence</div><div class='jira-value'>10</div>
-<div class='jira-label'>Effort</div><div class='jira-value-none'></div>
-<div class='jira-label'>Effort Confidence</div><div class='jira-value-none'></div>
+<div class='jira-label'>Value</div><div class='jira-value'>100,000</div>
+<div class='jira-label'>Value Confidence</div><div class='jira-value'>50</div>
 </form>
 </div>
 </div>
-<h2>Prioritization with RICE Scoring</h2>
-<p>There are many prioritization schemes. For example, you might look into:</p>
+<p>Notice there are 4 parts:</p>
 <ul>
-<li>Projected Revenue Upside Score - How much more revenue a feature might generate?</li>
-<li><a href="https://www.scaledagileframework.com/wsjf/">Weighted Shortest Job First</a> - What is the cost of delay?</li>
+<li>A short description</li>
+<li>A problem statement</li>
+<li>An impact statement</li>
+<li>Detail around the desired value and value confidence</li>
 </ul>
-<p>We are using RICE scoring in this training because
-it's relatively simple for people to understand and we don't have real-world analytics and
-data for people to use. There are various interpretations of RICE scoring (examples:
-<a href="https://roadmunk.com/guides/rice-score-prioritization-framework-product-management/">Roadmunk's</a>,
-<a href="https://www.intercom.com/blog/rice-simple-prioritization-for-product-managers/">Intercom's</a>
-). For this training, we will provide the following values:</p>
-<ul>
-<li><code>Reach</code> - How many customers will this project impact over a single quarter?</li>
-<li><code>Impact</code> - How much of an impact will this feature have on users.  This takes on the following &quot;gut&quot; values:
-<ul>
-<li>0.5 - Minimal impact</li>
-<li>1 - Low Impact</li>
-<li>2 - Medium Impact</li>
-<li>5 - Large Impact</li>
-<li>10 - Massive Impact</li>
-</ul></li>
-<li><code>Value Confidence</code> - The confidence of the value estimate.  This is a value between 0 and 100%.</li>
-<li><code>Effort</code> - An estimate of engineering time in weeks to complete the feature.</li>
-<li><code>Effort Confidence</code> - The confidence of the effort estimate.</li>
-</ul>
-<h2>How to sort the unrefined list?</h2>
-<p>Once a sprint, this list should be reviewed and reprioritized.</p>
+<h3>Writing up the Description</h3>
+<p>A description should be a brief summary of what you are trying to do. Ideally, it wouldn’t provide too much in the way of a solution or details. Someone should be able to read it and quickly understand what this initiative is about.</p>
+<h3>Writing up the Problem</h3>
+<p>The problem statement should be written from the business’s or customer’s viewpoint. Are you trying to make their checkout experience faster or easier to understand, then write that.</p>
+<h3>Writing up the Impact</h3>
+<p>What would you like this initiative to achieve? Think outcomes, think KPIs! Do you want to improve conversions by some amount? Then write that.</p>
+<p>It’s important to avoid talking about specific features when writing up the impact.</p>
+<h3>Writing up the Value and Value Confidence</h3>
+<p>The <code>value</code> is how much value you think this initiative will produce after it's completed, per quarter. The <code>value confidence</code> is how confident you are about achieving this.</p>
+<p>Perhaps you think a one-click-checkout will improve conversions 3%. How much revenue will that create per quarter? How confident are you that the idea will achieve that conversion improvement?</p>
+<h2>Prioritizing the <code>ideas</code> backlog</h2>
+<p>The ideas backlog should be prioritized by the initiatives that have the highest expected value.</p>
+<p>This prioritization should ideally happen once a sprint with stakeholders, the product manager, and the program manager. Often, prioritization happens at the end of program sprint planning meetings. Program sprint meetings will be detailed in the Management part of the training.</p>
+<p>For now, refinement is as simple as sorting the “Backlog” below with the most valuable initiatives at the top.</p>
+<p><img src="../static/img/program-management-with-jira/exploration-backlog.png"
+class="content-400-800-shadow"/></p>
+<p>There are many prioritization schemes. We will discuss these more in the Prioritization page.</p>
+<h2>Moving initiatives into Refinement</h2>
+<p>If the team responsible for scoping initiatives has capacity, then initiatives can be moved into the <code>Refinement</code> status. Make sure to assign the person responsible for scoping the initiative.</p>
+<p>For a product that is already released, a product manager might take on one or two initiatives every sprint (assuming that sprints are used and sprints are 2 weeks). Often, a product manager might be working through several initiatives at once as initiatives might take anywhere from 1 to 6 weeks to get ready for development.</p>
+<p>We will go into more detail on how to manage the overall continuous exploration process in the Management part of the training.</p>
 <h2>Exercise</h2>
+<p>In this exercise, you will brainstorm ideas to enhance Itsy Bitsy, create initiatives, prioritize them, and then move them into refinement.</p>
+<h3>Step 1: Brainstorming</h3>
+<p>Think of a few enhancements for Itsy Bitsy that you think will result in more customer and business value. If you are having trouble coming up with some, you can see ideas in the list below:</p>
+<p><details>
+<summary>eCommerce initiative ideas</summary></p>
 <ul>
-<li>Come up with some of your own product ideas</li>
-<li>Sort them as a team</li>
-<li>Figure out the customers</li>
+<li><p>Personalized recommendations: Use data analysis and machine learning algorithms to suggest products to customers based on their past purchase history or browsing behavior.</p></li>
+<li><p>Social proof: Include customer reviews and ratings to build trust with potential customers and encourage them to make a purchase.</p></li>
+<li><p>Upselling and cross-selling: Offer complementary products or upgrade options to customers as they shop, to encourage them to spend more.</p></li>
+<li><p>Wishlist and save for later: Give customers the ability to save items for future purchases, which can help drive repeat visits and sales.</p></li>
+<li><p>Abandoned cart recovery: Send targeted emails to customers who leave items in their cart without completing their purchase, with incentives to encourage them to return and complete the transaction.</p></li>
+<li><p>Loyalty programs: Reward repeat customers with exclusive discounts, free shipping, or other incentives to encourage them to keep coming back.</p></li>
+<li><p>Live chat support: Provide real-time customer service and support to help customers with any questions or concerns they may have.</p></li>
+<li><p>Personalization: Use data to customize the shopping experience for each customer, such as showing products in their preferred size or color, or tailoring promotions based on their past behavior.</p></li>
+<li><p>Mobile optimization: Ensure that your site is mobile-friendly, with a responsive design that works well on all devices, to reach customers who prefer to shop on their smartphones or tablets.</p></li>
+<li><p>Easy checkout process: Streamline the checkout process as much as possible, with features like saved payment information and one-click checkout, to reduce the likelihood of customers abandoning their cart at checkout.</p></li>
 </ul>
+<p></details></p>
+<p>Before the team starts creating their initiatives, make sure to share your ideas to ensure there are no duplicates. If there are duplicates, try to have those people pick a new idea.</p>
+<h3>Step 2: Create Initiatives</h3>
+<p>The team should create their initiative in the “team” Jira instance. They should write it up like the promotion example above.</p>
+<h3>Step 3: Prioritize Initiatives</h3>
+<p>Once everyone is done with their initiatives, review them as a team. Make sure that each initiative’s customer problem and impact is clear. Decide as a group the value and value confidence.</p>
+<p>Once all initiatives have been valued as a group, sort by <code>VALUE * CONFIDENCE</code>.</p>
+<h3>Step 4: Move initiatives to Refined</h3>
+<p>The business is committing to your ideas. Move them into <code>Refined</code> and lets move on to the next step of the training!</p>
 
 </section>
 

@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn how to build a plan 
+  <meta name="description" content="Learn how to build a plan and estimate the delivery time of an initiaiative. 
 ">
 
   <!-- Google Tag Manager -->
@@ -216,7 +216,8 @@
            						">
 						<a class="page"
 							href="continuous-exploration-board.html"
-							title="Learn to setup an exploration board in Jira">
+							title="Learn to set up a Continuous Exploration  exploration board in Jira. On the way, we will learn how to create
+custom issue types, custom workflows, and custom fields.">
 							Continuous Exploration Board
 						</a>
 						
@@ -246,7 +247,7 @@
            						">
 						<a class="page"
 							href="refinement.html"
-							title="Learn how to refine an idea into a useful form.">
+							title="Learn how to refine an initiative from an idea into something ready to be validated and estimated.">
 							Refinement
 						</a>
 						
@@ -261,7 +262,7 @@
            						">
 						<a class="page"
 							href="validating.html"
-							title="Learn how to validate.">
+							title="Learn how to increase the chances that initiatives will produce the value you expect.">
 							Validating
 						</a>
 						
@@ -276,7 +277,7 @@
            						">
 						<a class="page"
 							href="advanced-roadmap-setup.html"
-							title="Learn how to set up an advanced roadmap.">
+							title="Learn how to set up Jira&#x27;s Advanced Roadmap">
 							Advanced Roadmap Setup
 						</a>
 						
@@ -291,7 +292,7 @@
            						expanded">
 						<a class="page"
 							href="estimating.html"
-							title="Learn how to build a plan">
+							title="Learn how to build a plan and estimate the delivery time of an initiaiative.">
 							Estimating
 						</a>
 						
@@ -308,8 +309,98 @@
            						
            						">
 						<a class="page"
+							href="breaking-long-poles.html"
+							title="Learn how to recognize which work will take the longest, and ways to break things up.
+Overview
+It barely needs to be said that finding ways to deliver a product faster is a key aspect of business success. There are costs associated with not having a feature customers want, an efficiency improvement that internal users need, a delay in being first to market with a disruptive offering. An obvious way to achieve a shorter cycle is to find the longest “pole” in the schedule and break it up, finding ways to deliver it quicker.
+Ways to Shorten the Long Pole
+Increase resources
+This option is the most obvious: if it takes a team of three developers 5 weeks to deliver a feature, shouldn’t it only take 3 weeks if you add two more developers? The improvement by adding people, however, is rarely linear in this way.
+The primary reason why involves Brooks’s Law, put forth by IBM software engineer Fred Brooks in his book “The Mythical Man-Month”. Brooks states that the increase in team size leads to an exponential growth in communications channels which need to be maintained in order for the team to continue operating. Even if the technical aspects of the work can be done interchangeably by all team members (which is a very big big “if”), the n(n-1)/2 expansion of communication channels hampers the linear expectations of improved velocity.
+
+There are also assumptions about how easy it is for new team members to onboard, learn about the work being done, and efficient adaptation to specific ways of working within the team.
+Adding team members will almost always help the team’s overall velocity, especially if the technical skills of the new developers match what the team needs. But it’s important for a TPO to understand, and communicate to stakeholders, the improvement likely will not match expectations.
+Technical Spikes to Improve Confidence
+As we saw in the Estimating section, the log-normal distribution of a confidence factor can cause a huge blowup in delivery times. In this example, a 2-week estimate with low confidence has a longer timeline in the schedule than the high-confidence 3-week epic preceding it.
+
+A short spike to investigate any open business or technical questions which are causing the 40% confidence in this example will shorten this total “pole” by several times the spike duration.
+
+As a TPO, understanding why the developers are having concerns and questioning their confidence will allow you to identify what the spike should involve, what answers the team needs to complete it and how to prioritize its completion over other feature work or technical debt which could be done.
+Remove Scope
+If you have the right-sized team and the best confidence in your estimates, and you still have an obvious long pole, the simplest way to shorten it is to remove scope.
+In this example, we have a circled long pole of functional dependency, going across multiple teams.
+
+The last epic in this flow has dependencies on two other epics from two other teams. Can we remove it from the current scope and shorten the delivery cycle? It can always be picked up later.
+
+The team’s ability to have this descoping discussion with stakeholders depends on a number of factors, notably time and risk sensitivity. Is a robust “what” more important to our application than an earlier “when”? Is the potential risk of an epic that relies on two other epics which come near the end of team delivery, both of which have their own dependence on an earlier epic, worth taking on?
+We may also look to move requirements and/or use cases out-of-scope to shrink the size of one or more epics. In the Promotion Code example, let’s say the original requirements were to allow a promotion code to be applied to one item in the shopping cart, but not an item which is already on sale. If the decision is made to change the scope such that the code is applied to an entire order, we simplify and reduce the size of multiple epics:
+
+Cart operation to add a promotion code (do not have to select an item in the cart)
+Check with store to see if an item is listed at a sale price
+Re-calculating the subtotal
+
+Splitting Epics to Unblock and Parallelize
+One of the best ways to address the long pole is to break epics up into smaller epics, and find ways to then split the work. Let’s go back to our original work plan, and pick a large epic with relatively low confidence, one that seems to be square in the middle of the key work dependencies.
+
+In our Promotion Code example, this highlighted epic could cover:
+
+Additional data related to a code for start &amp; end date ranges during which the code is valid
+A check in the shopping cart to see if the current date falls within that range
+
+The TPO and the team could choose to split those two features up into their own Epic.
+
+Now the work for the first part, the dates added as part of a promotion code, has its own estimate &amp; confidence. This could be done in parallel with the first two epics, because it does not have dependencies on that work. The timing of delivery of the other half of the epic can also shift to the left.
+
+The dependent epics also shift left, shortening the entire pole.
+
+Exercise
+
+Try to come up with ways to shorten your initiatives timeframes">
+							Breaking Long Poles
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="prioritizing.html"
+							title="Learn how to prioritize initiatives.">
+							Prioritizing
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="scheduling.html"
+							title="Learn how to schedule epics into sprints with Advanced Roadmaps&#x27; Auto-scheduler.">
+							Scheduling
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="reporting.html"
-							title="Learn how to report">
+							title="Learn how to report on high-level status using Jira as the source of truth.">
 							Reporting
 						</a>
 						
@@ -324,7 +415,7 @@
            						">
 						<a class="page"
 							href="managing.html"
-							title="Learn how to structure the work">
+							title="Learn how to manage a program&#x27;s active work.">
 							Managing
 						</a>
 						
@@ -500,7 +591,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn how to build a plan</p>
+    <p>Learn how to build a plan and estimate the delivery time of an initiaiative.</p>
 
 </section>
 
@@ -513,14 +604,343 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Using the AutoScheduler Tool</h2>
-<h2>Using the Advanced Plans Capacity helper</h2>
-<p>Find the thing carol found.</p>
-<h2>Using the epic capacity planner</h2>
-<h2>Grouping into Releases (or milestones)</h2>
-<p>You don't always have to do releases. Ideally, you wouldn't.</p>
-<p>But some software necessitates &quot;bunching&quot; features together.</p>
-<p>This helps with reporting which is next.</p>
+    <h2>Overview</h2>
+<p>The purpose of estimating is to gauge the costs associated with implementing an initiative. Understanding the costs of an initiative helps perform a cost/benefit assessment and ultimately prioritize the product backlog. You will learn:</p>
+<ul>
+<li><p>Why estimating is still valuable</p></li>
+<li><p>Bitovi’s preferred statistical approach to estimating</p>
+<p><img src="../static/img/program-management-with-jira/estimating/pdf-graph.png" class="content-400-800-shadow"/></p></li>
+<li><p>How to break down an initiative into epics that can be individually estimated</p>
+<p><img src="../static/img/program-management-with-jira/estimating/epics-estimated.png" class="content-400-800-shadow"/></p></li>
+<li><p>How to put those epics into an Advanced Roadmap plan in Jira</p>
+<p><img src="../static/img/program-management-with-jira/estimating/epics-planned.png" class="content-400-800-shadow"/></p></li>
+<li><p>How this course’s estimation approach differs from other approaches.</p></li>
+</ul>
+<p>For the exercise, you will break down your work into epics and work with the other trainees to estimate the work. Finally, you’ll make a plan for the work in Advanced Roadmaps that shows the work plan similar to the image above.</p>
+<h2>Why estimate</h2>
+<p>Estimating software is a notoriously fraught process, especially earlier in the process. Not only can estimates be off by orders of magnitude, but there’s sometimes career jeopardy. Providing an estimate and not delivering on it can be seen as a failure.</p>
+<p>Despite this, evaluating the cost and benefits of an initiative is exactly what a product team needs to do if it’s going to make wise decisions on what initiatives to pursue. Some form of cost estimate is needed.</p>
+<p>Furthermore, when organizations are not conditioned to building incremental plans and package too many features in an initiative, a lengthy estimate is often the only way to get agreement to split initiatives.</p>
+<p>For these reasons, estimating is still a powerful tool in the Program Manager’s toolkit. This training goes over a highly effective and accurate approach to estimating.</p>
+<blockquote>
+<p>ALT:<br />
+For these reasons, estimating is still a powerful tool in the Program Manager’s toolkit. Lets take a look at different approaches to estimating and then discuss this training’s approach.</p>
+</blockquote>
+<h2>Approaches to Estimating</h2>
+<p>There’s a wide variety of estimation approaches. For example, T-shirt sizes, story points, complexity, and days/weeks/months are common ways of estimating. There’s also a what and when component to estimating. For example, folks might estimate initiatives first, epics later, and stories right before the sprint. Some teams will mix and match. For example, teams might use t-shirt sizes for initiatives, weeks for epics, and story points for stories. Different estimation techniques can solve different problems.</p>
+<p>This training is focused on estimating for the purposes of prioritizing and eventually managing initiatives. Our goal is to create a highly accurate estimate and a plan that can be used to manage work in as short a time as possible. We believe a statistical approach to estimating epics provides the best “bang for your estimating buck”.</p>
+<p>We will review our approach, discuss other common approaches, and then share the benefits of the statistical approach.</p>
+<h2>A statistical approach to estimating</h2>
+<p>This training uses a statistical approach for estimating work. Instead of representing estimates with one value (examples: 2 weeks, or 34 story points), we represent the estimate with two values:</p>
+<ul>
+<li><p>A <strong>median</strong> time value. Example: <code>10 days</code>.</p></li>
+<li><p>A <strong>probability distribution</strong> value. Example: <code>80% confident</code>.</p></li>
+</ul>
+<p>This results in a probability density function that looks like the following:</p>
+<p><img src="../static/img/program-management-with-jira/estimating/pdf-graph.png" class="content-400-800-shadow"/></p>
+<p>The graph above shows how likely the work is to complete on any day.</p>
+<p>We can also graph how likely the work is to complete by that day or earlier as follows:</p>
+<p><img src="../static/img/program-management-with-jira/estimating/cpf-graph.png" class="content-400-800-shadow"/></p>
+<p>The shape of the graph and the probability distribution we use to model the likelihood of completion is log-normal. Log-normal distributions better model the likelihood that work “blows up.” When things go wrong, things can go very wrong. The log-normal distribution is more heavily weighted towards the chances that work will take longer than expected.</p>
+<p>There’s good evidence that this is how software project completion times behave. Read <a href="https://erikbern.com/2019/04/15/why-software-projects-take-longer-than-you-think-a-statistical-model.html">https://erikbern.com/2019/04/15/why-software-projects-take-longer-than-you-think-a-statistical-model.html</a> for more background.</p>
+<p>In this training, we break initiatives into epics. When estimating each epic, we ask teams to provide estimates in both <code>Story Points</code> and <code>Confidence</code>. We use “Confidence” to inflate the original story point estimate. For example, if an epic was estimated at <code>10</code> story points at <code>80%</code> confidence, we will inflate the <code>10</code> story points to <code>15</code> story points based on the log-normal statistical model.</p>
+<p>We do <strong>NOT</strong> have strong opinions on estimating time through story points or more direct approaches (like using days or weeks). We use “Story Points” in this training because it’s pre-configured in Jira.</p>
+<p>However, we <strong>are</strong> strong advocates for representing the probability distribution of when the work will complete.</p>
+<p>If this is confusing, don’t worry, we built an app to help teams understand how it works.</p>
+<p>🎬 Open the <a href="https://bitovi.github.io/statistical-software-estimator/">https://bitovi.github.io/statistical-software-estimator/</a> in your browser.</p>
+<p><img src="../static/img/program-management-with-jira/estimating/statistical-estimator.png" class="content-400-800-shadow"/></p>
+<p>By default, the tool uses “Days” instead of “Story Points” and “Velocity” to represent a median time estimate. We use days for now because it makes things more concrete than story points.</p>
+<p>Notice the tool defaults to an estimate of 10 days and a confidence of 60%. It uses these values to predict the work has a <code>90%</code> chance of being complete in <code>22 days</code>.</p>
+<p><img src="../static/img/program-management-with-jira/estimating/likelihood-selected.png" class="content-400-800-shadow"/></p>
+<p>This <code>90%</code> likelihood value of <code>22 days</code> is what we use in our projections of the timeline.</p>
+<p>Also, notice the graph below, this shows how the likelihood of completion gets higher with the number of days:</p>
+<p><img src="../static/img/program-management-with-jira/estimating/cdf-graph-90.png" class="content-400-800-shadow"/></p>
+<p>🎬 You can mouse over this graph, and it will show the probability of success at specific days.</p>
+<p>🎬 To see how the graph changes as your confidence changes, update the confidence slider. We suggest starting with 100% confidence and lowering from there.</p>
+<p><img src="../static/img/program-management-with-jira/estimating/cdf-graph-100.png" class="content-400-800-shadow"/></p>
+<p>Notice that we are using “Confidence,” not “Standard Deviation,” to shape the probability distribution. For most people, a confidence percentages is easier to think about than standard deviations. The tool lets you switch to using standard deviations.</p>
+<p><img src="../static/img/program-management-with-jira/estimating/configure-sds-days.png" class="content-400-800-shadow"/></p>
+<p>For stats nerds, the Statstical Estimator uses 10% confidence to represent a standard deviation of 1.3 and 100% confidence to represent a standard deviation of 0. These values are mostly arbitrary. A 10% confidence will more than 5x the original estimate. This mapping of confidences to standard deviations has worked well for Bitovi.</p>
+<p>In the next sections, we will walk through how to break down initiatives into epics, get estimates and confidences from the team, and use the statistical estimator tool to make plans in Jira.</p>
+<h2>Breaking down Initiatives into Epics</h2>
+<p>We suggest breaking down initiatives into epics in a very similar manner to how we suggest <a href="https://www.bitovi.com/blog/how-to-break-down-epics-into-user-stories">breaking down epics into stories</a> … with bullet points!</p>
+<p>On a high level, we suggest repeating for each step of each use case:</p>
+<ol>
+<li><p>Identify the “surface” work to be done and the team to do it. Create an epic for that team.</p></li>
+<li><p>Partially refine what is in and out of scope</p></li>
+<li><p>Identify any dependencies on other teams.</p></li>
+</ol>
+<p>This process is explained in the following Google Slides presentation: <a href="https://docs.google.com/presentation/d/17yP8rbcjkajw2gA7C1WHhCT1Iy3-AE2Qk9Y5-9v4czw/edit?usp=sharing">https://docs.google.com/presentation/d/17yP8rbcjkajw2gA7C1WHhCT1Iy3-AE2Qk9Y5-9v4czw/edit?usp=sharing</a>.</p>
+<p><img src="../static/img/program-management-with-jira/estimating/initiative-to-epics-video.png" class="content-400-800-shadow"/></p>
+<p>The presentation walks through breaking down the initiative into the following 8 epics:</p>
+<div class='jira-issue'>
+<p class='jira-title'>% Off Promotion Code and Marketing Campaign</p>
+<div class='jira-description'>
+<p>...</p>
+<p><strong>Epics</strong></p>
+<ul>
+<li><p><strong>Store - Create a Promotion</strong><br />
++ Code, Percent, Start / End</p></li>
+<li><p><strong>Marketing - Create and publish ad</strong></p>
+<ul>
+<li><strong>Marketing - Create promotion</strong></li>
+</ul></li>
+<li><p><strong>Order - Add a promotion to the cart</strong><br />
++ Update pricing<br />
++ Update checkout page with discount<br />
++ Update order data with promotion usage<br />
++ Show discount on receipt<br />
+- Add promotions on checkout page<br />
+- Remove promotion<br />
+- Handle errors<br />
+¿Are there custom taxes on discounts anywhere?</p>
+<ul>
+<li><strong>Store - Verify the promotion is available</strong></li>
+</ul></li>
+<li><p><strong>Order - Wrong promotion entered</strong><br />
++ Discount is not valid<br />
+- Any other error message</p></li>
+<li><p><strong>Order - Remove promotion from cart</strong></p></li>
+<li><p><strong>Order - Promotion end-date error handling</strong><br />
++ Show a nice error message</p></li>
+</ul>
+<p>...</p>
+<form class='jira-details'>
+<div class='jira-label'>Value</div><div class='jira-value'>118,750</div>
+<div class='jira-label'>Value Confidence</div><div class='jira-value'>80</div>
+</form>
+</div>
+</div>
+<h2>Estimating Epics</h2>
+<p>Once you have a list of epics, you should review with the team to ensure the plan makes sense. It’s also a good idea to talk through how to restructure the work to maximize early customer value and avoid risk. We will discuss this more in <a href="https://bitovi.atlassian.net/wiki/spaces/PM/pages/368476911/Breaking+Long+Poles">Breaking Long Poles [Rough Draft/In Progress]</a>.</p>
+<p>Once the plan makes sense, it’s time to estimate each epic. For this training, we are going to be using <code>Story Points</code> and <code>Confidence</code>. We go through each epic and write the <code>Story Points</code> and <code>Confidence</code> in square brackets next to the epic like <code>[15 50%]</code>.</p>
+<p>For example, after estimating the promotion initiative’s “shell” epics, the <strong>Epic</strong> section of the initiative looks like this:</p>
+<div class='jira-issue'>
+<p class='jira-title'>% Off Promotion Code and Marketing Campaign</p>
+<div class='jira-description'>
+<p>...</p>
+<p><strong>Epics</strong></p>
+<ul>
+<li><p><strong>Store - Create a Promotion</strong> <code>[10 70%]</code>
++ Code, Percent, Start / End</p></li>
+<li><p><strong>Marketing - Create and publish ad</strong> <code>[3 months from now]</code></p>
+<ul>
+<li><strong>Marketing - Create promotion</strong> <code>[1 day]</code></li>
+</ul></li>
+<li><p><strong>Order - Add a promotion to the cart</strong> <code>[30 50%]</code><br />
++ Update pricing<br />
++ Update checkout page with discount<br />
++ Update order data with promotion usage<br />
++ Show discount on receipt<br />
+- Add promotions on checkout page<br />
+- Remove promotion<br />
+- Handle errors<br />
+¿Are there custom taxes on discounts anywhere?</p>
+<ul>
+<li><strong>Store - Verify the promotion is available</strong> <code>[5 70%]</code></li>
+</ul></li>
+<li><p><strong>Order - Wrong promotion entered</strong> <code>[10 80%]</code><br />
++ Discount is not valid<br />
+- Any other error message</p></li>
+<li><p><strong>Order - Remove promotion from cart</strong> <code>[5 80%]</code></p></li>
+<li><p><strong>Order - Promotion end-date error handling</strong> <code>[5 50%]</code><br />
++ Show a nice error message</p></li>
+</ul>
+<p>...</p>
+<form class='jira-details'>
+<div class='jira-label'>Value</div><div class='jira-value'>118,750</div>
+<div class='jira-label'>Value Confidence</div><div class='jira-value'>80</div>
+</form>
+</div>
+</div>
+<blockquote>
+<p>Note: In this example, the marketing team doesn’t work like the rest of the product teams. They just said when they will be done creating the ad and how long they expect to take to create the promotion.</p>
+</blockquote>
+<h2>Building a Dependency Plan</h2>
+<p>After estimating the epics, the next step is to build a <em>dependency</em> plan in Advanced Roadmaps. It will look something like:</p>
+<p><img src="../static/img/program-management-with-jira/estimating/moved-all-epics.png" class="content-400-800-shadow"/></p>
+<p>A <em>dependency</em> plan has epics and blockers for each team. However, each epic
+is the same size. Visualizing epic dependencies, even without knowing timings, is
+a useful spot check to making sure you and the team understand the shape of the work. In the next section, we will build a <em>timed</em> plan that has the epic sizing right:</p>
+<p><img src="../static/img/program-management-with-jira/estimating/epics-planned.png" class="content-400-800-shadow"/></p>
+<p>In this section, we will:</p>
+<ol>
+<li>Create all the epics</li>
+<li>Add &quot;Story points median&quot; and &quot;Story points confidence&quot; to each epic</li>
+<li>Sort and space the epics by dependencies</li>
+</ol>
+<h3>Create all the epics</h3>
+<p>The next step is to create all the epics for your initiative.</p>
+<p><img src="../static/img/program-management-with-jira/estimating/create-epic.png" class="content-400-800-shadow"/></p>
+<p>Make sure to create each epic for the appropriate product team:</p>
+<p><img src="../static/img/program-management-with-jira/estimating/set-team.png" class="content-400-800-shadow"/></p>
+<p>When you are done, click “Review Changes” and Save your changes.</p>
+<p><img src="../static/img/program-management-with-jira/estimating/review-changes.png" class="content-400-800-shadow"/></p>
+<p><img src="../static/img/program-management-with-jira/estimating/save-selected.png" class="content-400-800-shadow"/></p>
+<h3>Add Story Points Median and Story Points Confidence to each epic</h3>
+<p>For each epic, we will set the <code>Story Points Median</code> and <code>Story Points Confidence</code> field to each epic. To show those fields in the plan, click “Fields”, search for the fields, and add them to the plan.</p>
+<p><img src="../static/img/program-management-with-jira/estimating/search-story.png" class="content-400-800-shadow"/></p>
+<p>You should be able to add all the values that are in the <em>Epics</em> section of your initiative. The promotion’s example looks as follows:</p>
+<p><img src="../static/img/program-management-with-jira/estimating/added-points.png" class="content-400-800-shadow"/></p>
+<h3>Roughly plan epics with blockers</h3>
+<p>In this step, we want to be able to see the sequence of work and blockers. In order to do this, we need to give each epic a <code>Start date</code> and a <code>Due date</code>. For now, we will:</p>
+<ul>
+<li><p>make each epic one week long</p></li>
+<li><p>start the first epic at least one month after our latest projected work (we will call this <code>Temporary start date</code>)</p></li>
+</ul>
+<p>The following is what it looks like to schedule the first epic’s start date. Notice how it’s being positioned a month after “Order Playback,” which is currently in development.</p>
+<p><img src="../static/img/program-management-with-jira/estimating/spacing-epics.png" class="content-400-800-shadow"/></p>
+<p>You can set the <code>Due date</code> by moving the right-hand edge of the epic:</p>
+<p><img src="../static/img/program-management-with-jira/estimating/spacing-one-epic.png" class="content-400-800-shadow"/></p>
+<p>Next, create blockers between epics. The indented epics in our initiative’s <em>Epics</em> section block other epics. The following makes “Store - Verify the promotion is available” block “Order - Add a promotion to cart”:</p>
+<p><img src="../static/img/program-management-with-jira/estimating/epics-aligned.png" class="content-400-800-shadow"/></p>
+<p>A red line shows that “Add a promotion to cart” should come after “Verify the promotion is available”.</p>
+<p>Adjust the timeline accordingly:</p>
+<p><img src="../static/img/program-management-with-jira/estimating/move-epic.png" class="content-400-800-shadow"/></p>
+<p>Also, we suggest sorting the epics, and putting earlier epics towards the top. You can drag and drop epics on the left:</p>
+<p><img src="../static/img/program-management-with-jira/estimating/moved-epics.png" class="content-400-800-shadow"/></p>
+<p>This updates the order as follows:</p>
+<p>We will repeat this process for all blockers. The following is the rough work plan:</p>
+<p><img src="../static/img/program-management-with-jira/estimating/moved-all-epics.png" class="content-400-800-shadow"/></p>
+<p>Note: We are ignoring Marketing’s “Create and publish ad” epic for now. They specified a timeframe they will have this complete by. They are not using story points and confidences.</p>
+<h2>Building a Timed Plan</h2>
+<p>The final step is to size each epic according to its adjusted story points. The
+result looks like:</p>
+<p><img src="../static/img/program-management-with-jira/estimating/epics-planned.png" class="content-400-800-shadow"/></p>
+<p>Visualizing a plan helps:</p>
+<ul>
+<li><p>Ensure the plan makes sense</p></li>
+<li><p>Helps <a href="breaking-long-poles.html" title="Learn how to recognize which work will take the longest, and ways to break things up.
+Overview
+It barely needs to be said that finding ways to deliver a product faster is a key aspect of business success. There are costs associated with not having a feature customers want, an efficiency improvement that internal users need, a delay in being first to market with a disruptive offering. An obvious way to achieve a shorter cycle is to find the longest “pole” in the schedule and break it up, finding ways to deliver it quicker.
+Ways to Shorten the Long Pole
+Increase resources
+This option is the most obvious: if it takes a team of three developers 5 weeks to deliver a feature, shouldn’t it only take 3 weeks if you add two more developers? The improvement by adding people, however, is rarely linear in this way.
+The primary reason why involves Brooks’s Law, put forth by IBM software engineer Fred Brooks in his book “The Mythical Man-Month”. Brooks states that the increase in team size leads to an exponential growth in communications channels which need to be maintained in order for the team to continue operating. Even if the technical aspects of the work can be done interchangeably by all team members (which is a very big big “if”), the n(n-1)/2 expansion of communication channels hampers the linear expectations of improved velocity.
+
+There are also assumptions about how easy it is for new team members to onboard, learn about the work being done, and efficient adaptation to specific ways of working within the team.
+Adding team members will almost always help the team’s overall velocity, especially if the technical skills of the new developers match what the team needs. But it’s important for a TPO to understand, and communicate to stakeholders, the improvement likely will not match expectations.
+Technical Spikes to Improve Confidence
+As we saw in the Estimating section, the log-normal distribution of a confidence factor can cause a huge blowup in delivery times. In this example, a 2-week estimate with low confidence has a longer timeline in the schedule than the high-confidence 3-week epic preceding it.
+
+A short spike to investigate any open business or technical questions which are causing the 40% confidence in this example will shorten this total “pole” by several times the spike duration.
+
+As a TPO, understanding why the developers are having concerns and questioning their confidence will allow you to identify what the spike should involve, what answers the team needs to complete it and how to prioritize its completion over other feature work or technical debt which could be done.
+Remove Scope
+If you have the right-sized team and the best confidence in your estimates, and you still have an obvious long pole, the simplest way to shorten it is to remove scope.
+In this example, we have a circled long pole of functional dependency, going across multiple teams.
+
+The last epic in this flow has dependencies on two other epics from two other teams. Can we remove it from the current scope and shorten the delivery cycle? It can always be picked up later.
+
+The team’s ability to have this descoping discussion with stakeholders depends on a number of factors, notably time and risk sensitivity. Is a robust “what” more important to our application than an earlier “when”? Is the potential risk of an epic that relies on two other epics which come near the end of team delivery, both of which have their own dependence on an earlier epic, worth taking on?
+We may also look to move requirements and/or use cases out-of-scope to shrink the size of one or more epics. In the Promotion Code example, let’s say the original requirements were to allow a promotion code to be applied to one item in the shopping cart, but not an item which is already on sale. If the decision is made to change the scope such that the code is applied to an entire order, we simplify and reduce the size of multiple epics:
+
+Cart operation to add a promotion code (do not have to select an item in the cart)
+Check with store to see if an item is listed at a sale price
+Re-calculating the subtotal
+
+Splitting Epics to Unblock and Parallelize
+One of the best ways to address the long pole is to break epics up into smaller epics, and find ways to then split the work. Let’s go back to our original work plan, and pick a large epic with relatively low confidence, one that seems to be square in the middle of the key work dependencies.
+
+In our Promotion Code example, this highlighted epic could cover:
+
+Additional data related to a code for start &amp; end date ranges during which the code is valid
+A check in the shopping cart to see if the current date falls within that range
+
+The TPO and the team could choose to split those two features up into their own Epic.
+
+Now the work for the first part, the dates added as part of a promotion code, has its own estimate &amp; confidence. This could be done in parallel with the first two epics, because it does not have dependencies on that work. The timing of delivery of the other half of the epic can also shift to the left.
+
+The dependent epics also shift left, shortening the entire pole.
+
+Exercise
+
+Try to come up with ways to shorten your initiatives timeframes">identify and break long poles</a>.</p></li>
+</ul>
+<p>We are building a <em>plan</em> for the work; however, we are not <em>scheduling</em> it until the <a href="scheduling.html" title="Learn how to schedule epics into sprints with Advanced Roadmaps' Auto-scheduler.">Scheduling</a> part of the training.</p>
+<p>Scheduling means putting work into specific upcoming sprints, taking into consideration existing work in progress. Planning means illustrating how the work will take place, including the timings of work, but ignoring existing work in progress.</p>
+<p>Unfortunately, Jira does not have a way to auto-plan work without moving epics into sprints, so we build a plan by scheduling the initiative’s epics to start several months in the future, beyond when any scheduled work is planned. Later we will use Jira’s auto-scheduling feature to place these epics to start after work in progress.</p>
+<p>The following video shows the steps to accomplishing this:</p>
+<ol>
+<li><code><a href="https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&amp;t=175">2:55</a></code> Determine Team Velocities</li>
+<li><code><a href="https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&amp;t=200">3:20</a></code> Enter adjusted &quot;Story points&quot;</li>
+<li><code><a href="https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&amp;t=258">4:19</a></code> Adjust epic timings</li>
+<li><code><a href="https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&amp;t=295">4:57</a></code> Repeat setting epic adjusted &quot;Story points&quot; and timing with the Bitovi auto-scheduler</li>
+</ol>
+<iframe class="block-16-by-9" src="https://www.youtube.com/embed/dFldN5ugf74" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<p>The following sub-sections detail the process in writing:</p>
+<h3>Determine Team Velocities</h3>
+<p>To size the epics, we first need to decide how much of the team’s velocity will be used for this initiative. You can look up a team’s velocity in the <a href="https://support.atlassian.com/jira-software-cloud/docs/view-and-understand-the-velocity-chart/">“Reports / Velocity Chart” report of Jira</a>. Click reports, then click velocity chart.</p>
+<p><img src="../static/img/program-management-with-jira/estimating/reports.png" class="content-400-800-shadow"/></p>
+<p>You can get past sprint velocities from the table below the velocity chart:</p>
+<p><img src="../static/img/program-management-with-jira/estimating/velocities-list.png" class="content-400-800-shadow"/></p>
+<p>We suggest using an average of past sprint velocities. Next, you need to determine how much of the velocity might be attributed towards your epics.</p>
+<p>The promotions example has story-pointed epics for the <em>order</em> and <em>store</em> product teams.</p>
+<p>Let's say that the <em>order</em> team’s velocity is 50 points per sprint, and they typically work on two epics at once. The velocity we will use for <em>order</em> is 25 points per sprint. The <em>store</em>’s velocity is 20, but they work on a single epic at once, so we will use 20 points per sprint for the <em>store</em> team.</p>
+<h3>Set Story Points and Scale the Epic</h3>
+<p>Now we will set the adjusted story points for each epic and set the time range of the epic based on team velocity.</p>
+<p>To do that, you’ll want to use the <a href="https://bitovi.github.io/statistical-software-estimator/?estimateUnit=story+points&amp;outputUnit=story+points">https://bitovi.github.io/statistical-software-estimator/?estimateUnit=story+points&amp;outputUnit=story+points</a>. First, let's configure for “Store - Create a promotion”.</p>
+<p>You will want to configure:</p>
+<ul>
+<li><p>Estimate Unit to <code>Story Points</code> - Estimates were provided in story points.</p></li>
+<li><p>Sprint length in working days to <code>10</code> - Store uses 2-week sprints.</p></li>
+<li><p>Sprint velocity to <code>25</code> - This was decided in the previous section.</p></li>
+<li><p>Spread Unit to <code>Confidence</code></p></li>
+<li><p>Output Unit to <code>Story Points</code></p></li>
+<li><p>Start Date to the <code>Temporary start date</code> - This is a day at least 1 month out from any existing work.</p></li>
+</ul>
+<p>The configuration will look as follows:</p>
+<p><img src="../static/img/program-management-with-jira/estimating/add-start-date.png" class="content-400-800-shadow"/></p>
+<p>Next, update the confidence and story points sliders in the app to match the <code>Story points median</code> and <code>Story points confidence</code> values of your epic.</p>
+<p><img src="../static/img/program-management-with-jira/estimating/sliders.png" class="content-400-800-shadow"/></p>
+<p>Finally, locate the 90% likelihood values:</p>
+<p><img src="../static/img/program-management-with-jira/estimating/points-and-due-date.png" class="content-400-800-shadow"/></p>
+<p>Enter the adjusted story points in the epic’s <code>Story points</code> field:</p>
+<p><img src="../static/img/program-management-with-jira/estimating/points-in-plan.png" class="content-400-800-shadow"/></p>
+<p>Set the epic’s <code>End date</code>:</p>
+<p><img src="../static/img/program-management-with-jira/estimating/set-end-date.png" class="content-400-800-shadow"/></p>
+<p>Next, adjust all the blocked epic’s start date to be after the <code>End date</code>:</p>
+<p><img src="../static/img/program-management-with-jira/estimating/moved-all-blocked-epics.png" class="content-400-800-shadow"/></p>
+<p>Finally, repeat this pattern with all of the epics. You will configure the Statistical Estimator’s <code>Start Date</code> to be after all blockers. Make sure to remember to update velocities too.</p>
+<ul>
+<li><p>Store Velocity: <code>20</code></p></li>
+<li><p>Order Velocity: <code>25</code></p></li>
+</ul>
+<p>After doing this for all of the Promotion example’s epics, it will result in the following:</p>
+<p><img src="../static/img/program-management-with-jira/estimating/final-epic-plan.png" class="content-400-800-shadow"/></p>
+<p>Yay!!!! Now we have our first glimpse at what it will take to get this work done. It looks like it will take about 2.5 months. If Marketing wants it done 3 months from now, with all the other work we have going on, we might have to make some adjustments. We will look to do that in <a href="https://bitovi.atlassian.net/wiki/spaces/PM/pages/368476911/Breaking+Long+Poles">Breaking Long Poles [Rough Draft/In Progress]</a> .</p>
+<h2>Benefits of a statistical approach</h2>
+<p>The statistical approach outlined above has several benefits when compared to taking a single “time” estimate:</p>
+<ul>
+<li><p>It makes getting estimates easier.</p>
+<p>Engineers often resist giving estimates. They will often hide a “fudge factor” within the estimate, but the degree to which they do can greatly depend on the engineer. Asking an engineer to estimate an epic, when they can also provide a very low confidence, often helps move conversations along more quickly.</p></li>
+<li><p>It highlights uncertainty.</p>
+<p>Often, it's the epics that have the lowest confidence that lengthen the end-to-end time of delivery. By identifying those epics, program managers can adjust plans to reign in uncertainty. We will see this in action in <a href="https://bitovi.atlassian.net/wiki/spaces/PM/pages/368476911/Breaking+Long+Poles">Breaking Long Poles [Rough Draft/In Progress]</a> .</p></li>
+<li><p>It’s more accurate.<br />
+This approach models work how work is actually done.</p></li>
+</ul>
+<h2>Comparison to other common methods</h2>
+<p>The two most common alternative approaches we see to estimating plans (besides not estimating) are:</p>
+<ul>
+<li><p>T-shirt sizing epics</p></li>
+<li><p>Attempting to write and point all stories before development starts</p></li>
+</ul>
+<p>The statistical approach above sits between these alternatives. Let’s discuss how all of these approaches compare.</p>
+<h3>T-shirt sizing</h3>
+<p>T-shirt sizing can be done very quickly, but it’s not as accurate. Furthermore, it doesn’t as easily “live” with the work as it’s being performed. T-shirt sizes are rarely re-evaluated.</p>
+<h3>Writing and Pointing Stories</h3>
+<p>This is not very agile. It will take a large upfront cost to write all the stories. And, stories are very likely to change as development starts.</p>
+<h2>Exercise</h2>
+<p>You will need to use the other people in the training and assign them to a project team (i.e Store, Order, etc.)</p>
+<p>In this exercise, you will be estimating your Epics Story point value based on Story point median and Story point Confidence. This can be done by utilizing the <a href="https://bitovi.github.io/statistical-software-estimator/">https://bitovi.github.io/statistical-software-estimator/</a>.</p>
+<h3>Step 1: Create Epics in Jira</h3>
+<p>Create the Epic work items in Jira, based on the Use Cases refined in your initiative. Use +/- to define which cases are in or out of scope for project delivery.</p>
+<h3>Step 2: Team assignment &amp; estimate</h3>
+<p>Assign each project team to the work that needs to be done. Meet with each project team and ask for a Story points median and Story point confidence value.</p>
+<h3>Step 3: Apply the confidence-based adjustment</h3>
+<p>Using the <a href="https://bitovi.github.io/statistical-software-estimator/">https://bitovi.github.io/statistical-software-estimator/</a> tool, find the Story point value and number of days it will take to complete the work. Lastly, plot each Epic timeline in the plan, starting at least two months out. Ensure that you assign each Epic a start date and end date.</p>
+<h3>Step 4: Share</h3>
+<p>When everyone is done, share the new estimates with the group.</p>
 
 </section>
 
@@ -559,7 +979,7 @@ covering CanJS core libraries.">
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/program-management-with-jira/8-estimating.md"},"description":"Learn how to build a plan \n","name":"learn-agile-program-management-with-jira/estimating","title":"Estimating","type":"page","parent":"learn-agile-program-management-with-jira","order":8,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/program-management-with-jira/8-estimating.md"},"description":"Learn how to build a plan and estimate the delivery time of an initiaiative. \n","name":"learn-agile-program-management-with-jira/estimating","title":"Estimating","type":"page","parent":"learn-agile-program-management-with-jira","order":8,"comment":" ","pathToRoot":"../.."};
     </script>
 
     

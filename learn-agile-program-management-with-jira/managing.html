@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn how to structure the work 
+  <meta name="description" content="Learn how to manage a program&#x27;s active work. 
 ">
 
   <!-- Google Tag Manager -->
@@ -216,7 +216,8 @@
            						">
 						<a class="page"
 							href="continuous-exploration-board.html"
-							title="Learn to setup an exploration board in Jira">
+							title="Learn to set up a Continuous Exploration  exploration board in Jira. On the way, we will learn how to create
+custom issue types, custom workflows, and custom fields.">
 							Continuous Exploration Board
 						</a>
 						
@@ -246,7 +247,7 @@
            						">
 						<a class="page"
 							href="refinement.html"
-							title="Learn how to refine an idea into a useful form.">
+							title="Learn how to refine an initiative from an idea into something ready to be validated and estimated.">
 							Refinement
 						</a>
 						
@@ -261,7 +262,7 @@
            						">
 						<a class="page"
 							href="validating.html"
-							title="Learn how to validate.">
+							title="Learn how to increase the chances that initiatives will produce the value you expect.">
 							Validating
 						</a>
 						
@@ -276,7 +277,7 @@
            						">
 						<a class="page"
 							href="advanced-roadmap-setup.html"
-							title="Learn how to set up an advanced roadmap.">
+							title="Learn how to set up Jira&#x27;s Advanced Roadmap">
 							Advanced Roadmap Setup
 						</a>
 						
@@ -291,7 +292,7 @@
            						">
 						<a class="page"
 							href="estimating.html"
-							title="Learn how to build a plan">
+							title="Learn how to build a plan and estimate the delivery time of an initiaiative.">
 							Estimating
 						</a>
 						
@@ -305,8 +306,98 @@
            						
            						">
 						<a class="page"
+							href="breaking-long-poles.html"
+							title="Learn how to recognize which work will take the longest, and ways to break things up.
+Overview
+It barely needs to be said that finding ways to deliver a product faster is a key aspect of business success. There are costs associated with not having a feature customers want, an efficiency improvement that internal users need, a delay in being first to market with a disruptive offering. An obvious way to achieve a shorter cycle is to find the longest “pole” in the schedule and break it up, finding ways to deliver it quicker.
+Ways to Shorten the Long Pole
+Increase resources
+This option is the most obvious: if it takes a team of three developers 5 weeks to deliver a feature, shouldn’t it only take 3 weeks if you add two more developers? The improvement by adding people, however, is rarely linear in this way.
+The primary reason why involves Brooks’s Law, put forth by IBM software engineer Fred Brooks in his book “The Mythical Man-Month”. Brooks states that the increase in team size leads to an exponential growth in communications channels which need to be maintained in order for the team to continue operating. Even if the technical aspects of the work can be done interchangeably by all team members (which is a very big big “if”), the n(n-1)/2 expansion of communication channels hampers the linear expectations of improved velocity.
+
+There are also assumptions about how easy it is for new team members to onboard, learn about the work being done, and efficient adaptation to specific ways of working within the team.
+Adding team members will almost always help the team’s overall velocity, especially if the technical skills of the new developers match what the team needs. But it’s important for a TPO to understand, and communicate to stakeholders, the improvement likely will not match expectations.
+Technical Spikes to Improve Confidence
+As we saw in the Estimating section, the log-normal distribution of a confidence factor can cause a huge blowup in delivery times. In this example, a 2-week estimate with low confidence has a longer timeline in the schedule than the high-confidence 3-week epic preceding it.
+
+A short spike to investigate any open business or technical questions which are causing the 40% confidence in this example will shorten this total “pole” by several times the spike duration.
+
+As a TPO, understanding why the developers are having concerns and questioning their confidence will allow you to identify what the spike should involve, what answers the team needs to complete it and how to prioritize its completion over other feature work or technical debt which could be done.
+Remove Scope
+If you have the right-sized team and the best confidence in your estimates, and you still have an obvious long pole, the simplest way to shorten it is to remove scope.
+In this example, we have a circled long pole of functional dependency, going across multiple teams.
+
+The last epic in this flow has dependencies on two other epics from two other teams. Can we remove it from the current scope and shorten the delivery cycle? It can always be picked up later.
+
+The team’s ability to have this descoping discussion with stakeholders depends on a number of factors, notably time and risk sensitivity. Is a robust “what” more important to our application than an earlier “when”? Is the potential risk of an epic that relies on two other epics which come near the end of team delivery, both of which have their own dependence on an earlier epic, worth taking on?
+We may also look to move requirements and/or use cases out-of-scope to shrink the size of one or more epics. In the Promotion Code example, let’s say the original requirements were to allow a promotion code to be applied to one item in the shopping cart, but not an item which is already on sale. If the decision is made to change the scope such that the code is applied to an entire order, we simplify and reduce the size of multiple epics:
+
+Cart operation to add a promotion code (do not have to select an item in the cart)
+Check with store to see if an item is listed at a sale price
+Re-calculating the subtotal
+
+Splitting Epics to Unblock and Parallelize
+One of the best ways to address the long pole is to break epics up into smaller epics, and find ways to then split the work. Let’s go back to our original work plan, and pick a large epic with relatively low confidence, one that seems to be square in the middle of the key work dependencies.
+
+In our Promotion Code example, this highlighted epic could cover:
+
+Additional data related to a code for start &amp; end date ranges during which the code is valid
+A check in the shopping cart to see if the current date falls within that range
+
+The TPO and the team could choose to split those two features up into their own Epic.
+
+Now the work for the first part, the dates added as part of a promotion code, has its own estimate &amp; confidence. This could be done in parallel with the first two epics, because it does not have dependencies on that work. The timing of delivery of the other half of the epic can also shift to the left.
+
+The dependent epics also shift left, shortening the entire pole.
+
+Exercise
+
+Try to come up with ways to shorten your initiatives timeframes">
+							Breaking Long Poles
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="prioritizing.html"
+							title="Learn how to prioritize initiatives.">
+							Prioritizing
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="scheduling.html"
+							title="Learn how to schedule epics into sprints with Advanced Roadmaps&#x27; Auto-scheduler.">
+							Scheduling
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
 							href="reporting.html"
-							title="Learn how to report">
+							title="Learn how to report on high-level status using Jira as the source of truth.">
 							Reporting
 						</a>
 						
@@ -321,7 +412,7 @@
            						expanded">
 						<a class="page"
 							href="managing.html"
-							title="Learn how to structure the work">
+							title="Learn how to manage a program&#x27;s active work.">
 							Managing
 						</a>
 						
@@ -500,7 +591,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn how to structure the work</p>
+    <p>Learn how to manage a program's active work.</p>
 
 </section>
 
@@ -514,9 +605,110 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
+<p>Once you have a plan, you must help coordinate and report on the plan. You will learn:</p>
 <ul>
-<li>program meetings</li>
+<li><p>When to schedule planning ceremonies to coordinate multiple product teams.</p></li>
+<li><p>How to run the planning ceremony.</p></li>
+<li><p>How to set up release reporting.</p></li>
 </ul>
+<h2>When to schedule team coordination meetings</h2>
+<p>We believe there are many different ways of managing product teams, not limited to two-week scrum-style sprints. That being said, two-week sprints are the baseline we will use for part of the training, as two-week sprints are the most common pattern we see.</p>
+<p>For two-week product scrum teams, we strongly suggest breaking up the Sprint Planning meeting into two meetings, separated by at least one day for grooming. A two-week sprint might look like:</p>
+<table>
+<thead>
+<tr><th></th><th><strong>M</strong></th><th><strong>Tu</strong></th><th><strong>W</strong></th><th><strong>Th</strong></th><th><strong>F</strong></th></tr>
+</thead>
+<tbody style="vertical-align: top"><tr><th><p><strong>Week 1</strong></p></th><td><p>Sprint Start</p></td><td><p></p></td><td><p></p></td><td><p></p></td><td><p></p></td></tr><tr><th><p><strong>Week 2</strong></p></th><td><p></p></td><td><p><strong>Sprint Prototyping</strong></p></td><td><p>Grooming</p></td><td><p>Grooming</p></td><td><p><strong>Sprint Planning</strong></p></td></tr></tbody></table>
+<p>The two meetings are:</p>
+<ul>
+<li><p>Sprint Prototyping - Product teams meet to roughly plan out their sprint.</p></li>
+<li><p>Sprint Planning - Product teams meet to commit to a sprint.</p></li>
+</ul>
+<p>We split out these meetings to enable more efficient sprint planning and give time for grooming. The reasons are beyond the scope of this training. If you would like to know more about how Bitovi manages a single team, please vote for “Agile Project Management with Jira”.</p>
+<p>When multiple teams use the calendar above, we suggest adding an additional meeting between Sprint Prototyping and Sprint Planning: <span class="color-purple bold">Program Sprint Planning</span>. For example, it might be scheduled the day after Sprint Prototyping as follows:</p>
+<table>
+<thead>
+<tr><th></th><th><strong>M</strong></th><th><strong>Tu</strong></th><th><strong>W</strong></th><th><strong>Th</strong></th><th><strong>F</strong></th></tr>
+</thead>
+<tbody style="vertical-align: top"><tr><th><p><strong>Week 1</strong></p></th><td><p>Sprint Start</p></td><td><p></p></td><td><p></p></td><td><p></p></td><td><p></p></td></tr><tr><th><p><strong>Week 2</strong></p></th><td><p></p></td><td><p>Sprint Prototyping</p></td><td><p><strong>Program Sprint Planning</strong><br>Grooming</p></td><td><p>Grooming</p></td><td><p>Sprint Planning</p></td></tr></tbody></table>
+<p>The Program Sprint Planning meeting is used to align multiple product teams on the delivery plan and make any adjustments necessary to the delivery plan.</p>
+<p>The sequence of:</p>
+<ol>
+<li><p>Individual product team Sprint Prototyping</p></li>
+<li><p>Combined <span class="color-purple bold">Program Sprint Planning</span></p></li>
+<li><p>Individual sprint planning</p></li>
+</ol>
+<p>… is an efficient and “product team-led” method for coordinating multiple teams. It established the following workflow:</p>
+<ol>
+<li><p>Individual teams connect and discuss their plans and need for the following sprint</p></li>
+<li><p>Teams meet and communicate plans, status and needs for the following sprints, enabling teams to make adjustments to their sprint plans.</p></li>
+<li><p>Individual teams commit to their work.</p></li>
+</ol>
+<p>This sequence is somewhat similar to a two-phased commit protocol. <a href="https://en.wikipedia.org/wiki/Two-phase_commit_protocol">https://en.wikipedia.org/wiki/Two-phase_commit_protocol</a></p>
+<h2>Structuring Program Sprint Planning Meetings</h2>
+<p>The goal of <span class="color-purple bold">Program Sprint Planning</span> is to:</p>
+<ol>
+<li><p>Ensure teams are effectively coordinating their work</p></li>
+<li><p>To update the roadmap for future coordination and reporting needs</p></li>
+</ol>
+<p>Furthermore, <span class="color-purple bold">Program Sprint Planning</span> meetings should have a high “signal to noise” ratio. This means that people should be discussing what’s important to the product and important to themselves. This is particularly challenging for <span class="color-purple bold">Program Sprint Planning</span> because there are often many topics to discuss, and the chances that every participant is necessary for every conversation are very low.</p>
+<p>For this reason, we strongly encourage two changes to how typical “scrum of scrum” meetings are held:</p>
+<ul>
+<li><p>Meetings should be organized around initiatives, not teams. Instead of each team giving its status (and the other teams potentially not paying attention), the meeting should discuss initiative by initiative.</p></li>
+<li><p>A time-boxed agenda should be created and shared beforehand, with specific people listed to specific time-slots.</p></li>
+</ul>
+<h2>Preparing for Program Sprint Planning</h2>
+<p>A few days before <span class="color-purple bold">Program Sprint Planning</span>, create a program sprint planning document and share it with the team leads. The document looks as follows:</p>
+<p><a href="../static/img/program-management-with-jira/managing/example-program-sprint-planning.pdf"></p>
+<p><img src="../static/img/program-management-with-jira/managing/example-program-sprint-planning.png"
+class="content-400-800-shadow"/>
+</a></p>
+<p>This document is sorted by initiatives release date and grouped by releases and/or milestones. For each initiative, specify the following:</p>
+<ul>
+<li><p><code>1:20</code> - a time when discussion on that initiative will take place</p></li>
+<li><p>👥 - the people who should attend a discussion on that initiative</p></li>
+<li><p>🛑 - blockers preventing or delaying the delivery of the initiative</p></li>
+<li><p>📝 - any other notes on timing or activity surrounding the initiative</p></li>
+</ul>
+<p>The document also includes:</p>
+<ul>
+<li><p>An <em>Action Items</em> section for listing important tasks people should follow up on.</p></li>
+<li><p>A <em>Continuous Exploration</em> section for sharing status and prioritizing the exploration board.</p></li>
+</ul>
+<p>After creating the document, you will need to:</p>
+<ul>
+<li><p>Share the document with attendees</p></li>
+<li><p>Remind attendees which parts of the meeting they should attend</p></li>
+</ul>
+<h2>Running Program Sprint Prototyping</h2>
+<ol>
+<li><p>Go through the initiatives, starting with the closest to delivery</p>
+<ol>
+<li><p>Go through each epic</p>
+<ol>
+<li><p>Get the status of the epic. Update the <code>status</code> and <code>startDate</code> and <code>endDate</code></p></li>
+<li><p>Update the document with any new info.</p></li>
+<li><p>Take action items</p>
+<ol>
+<li><p>Todos</p></li>
+<li><p>New stories that need to be created?</p></li>
+</ol></li>
+</ol></li>
+</ol></li>
+<li><p>Go through the CX board.</p>
+<ol>
+<li>Discuss how initiatives are progressing. Start with the “right”, work “left”</li>
+</ol></li>
+</ol>
+<h3>After the meeting</h3>
+<ol>
+<li>Share a summary of the meeting in slack</li>
+</ol>
+<h2>Exercise</h2>
+<h3>Step 1: Create the Program Sprint Planning Document</h3>
+<p>Using the template above, create a program sprint planning document. Create and share an agenda.</p>
+<h3>Step 2: Run Program Sprint Planning</h3>
+<p>Run a mock sprint planning, sharing status on each initiative.</p>
 
 </section>
 
@@ -555,7 +747,7 @@ covering CanJS core libraries.">
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/program-management-with-jira/13-manage.md"},"description":"Learn how to structure the work \n","name":"learn-agile-program-management-with-jira/managing","title":"Managing","type":"page","parent":"learn-agile-program-management-with-jira","order":13,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/program-management-with-jira/13-manage.md"},"description":"Learn how to manage a program's active work. \n","name":"learn-agile-program-management-with-jira/managing","title":"Managing","type":"page","parent":"learn-agile-program-management-with-jira","order":13,"comment":" ","pathToRoot":"../.."};
     </script>
 
     

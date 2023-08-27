@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<!--####################################################################
+	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
+
+	INSTEAD CHANGE:
+	source: src/program-management-with-jira/9-breaking-long-poles.md
+	@page learn-agile-program-management-with-jira/breaking-long-poles
+######################################################################## -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
+  <meta name="description" content="Learn how to recognize which work will take the longest, and ways to break things up. 
+
+Overview
+--------
+
+It barely needs to be said that finding ways to deliver a product faster is a key aspect of business success. There are costs associated with not having a feature customers want, an efficiency improvement that internal users need, a delay in being first to market with a disruptive offering. An obvious way to achieve a shorter cycle is to find the longest “pole” in the schedule and break it up, finding ways to deliver it quicker.
+
+Ways to Shorten the Long Pole
+-----------------------------
+
+### Increase resources
+
+This option is the most obvious: if it takes a team of three developers 5 weeks to deliver a feature, shouldn’t it only take 3 weeks if you add two more developers? The improvement by adding people, however, is rarely linear in this way.
+
+The primary reason why involves [Brooks’s Law](https://effectiviology.com/brooks-law/), put forth by IBM software engineer Fred Brooks in his book “The Mythical Man-Month”. Brooks states that the increase in team size leads to an exponential growth in communications channels which need to be maintained in order for the team to continue operating. Even if the technical aspects of the work can be done interchangeably by all team members (which is a very big big “if”), the &#x60;n(n-1)/2&#x60; expansion of communication channels hampers the linear expectations of improved velocity.
+
+&lt;img src=&quot;../static/img/program-management-with-jira/long-poles/handshakes.png&quot; class=&quot;content-400-800-shadow&quot;/&gt;
+
+There are also assumptions about how easy it is for new team members to onboard, learn about the work being done, and efficient adaptation to specific ways of working within the team.
+
+Adding team members will almost always help the team’s overall velocity, especially if the technical skills of the new developers match what the team needs. But it’s important for a TPO to understand, and communicate to stakeholders, the improvement likely will not match expectations.
+
+### Technical Spikes to Improve Confidence
+
+As we saw in the [Estimating](https://bitovi.atlassian.net/wiki/spaces/PM/pages/350486657/Estimating) section, the log-normal distribution of a confidence factor can cause a huge blowup in delivery times. In this example, a 2-week estimate with low confidence has a longer timeline in the schedule than the high-confidence 3-week epic preceding it.
+
+&lt;img src=&quot;../static/img/program-management-with-jira/long-poles/estimate-and-confidence.png&quot; class=&quot;content-400-800-shadow&quot;/&gt;
+
+
+A short spike to investigate any open business or technical questions which are causing the 40% confidence in this example will shorten this total “pole” by several times the spike duration.
+
+&lt;img src=&quot;../static/img/program-management-with-jira/long-poles/spike.png&quot; class=&quot;content-400-800-shadow&quot;/&gt;
+
+As a TPO, understanding why the developers are having concerns and questioning their confidence will allow you to identify what the spike should involve, what answers the team needs to complete it and how to prioritize its completion over other feature work or technical debt which could be done.
+
+### Remove Scope
+
+If you have the right-sized team and the best confidence in your estimates, and you still have an obvious long pole, the simplest way to shorten it is to remove scope.
+
+In this example, we have a circled long pole of functional dependency, going across multiple teams.
+
+&lt;img src=&quot;../static/img/program-management-with-jira/long-poles/long-pole.png&quot; class=&quot;content-400-800-shadow&quot;/&gt;
+
+The last epic in this flow has dependencies on two other epics from two other teams. Can we remove it from the current scope and shorten the delivery cycle? It can always be picked up later.
+
+&lt;img src=&quot;../static/img/program-management-with-jira/long-poles/shortened-long-pole.png&quot; class=&quot;content-400-800-shadow&quot;/&gt;
+
+The team’s ability to have this descoping discussion with stakeholders depends on a number of factors, notably time and risk sensitivity. Is a robust “what” more important to our application than an earlier “when”? Is the potential risk of an epic that relies on two other epics which come near the end of team delivery, both of which have their own dependence on an earlier epic, worth taking on?
+
+We may also look to move requirements and/or use cases out-of-scope to shrink the size of one or more epics. In the Promotion Code example, let’s say the original requirements were to allow a promotion code to be applied to one item in the shopping cart, but not an item which is already on sale. If the decision is made to change the scope such that the code is applied to an entire order, we simplify and reduce the size of multiple epics:
+
+*   Cart operation to add a promotion code (do not have to select an item in the cart)
+    
+*   Check with store to see if an item is listed at a sale price
+    
+*   Re-calculating the subtotal
+    
+
+### Splitting Epics to Unblock and Parallelize
+
+One of the best ways to address the long pole is to break epics up into smaller epics, and find ways to then split the work. Let’s go back to our original work plan, and pick a large epic with relatively low confidence, one that seems to be square in the middle of the key work dependencies.
+
+&lt;img src=&quot;../static/img/program-management-with-jira/long-poles/identify-long-pole.png&quot; class=&quot;content-400-800-shadow&quot;/&gt;
+
+
+In our Promotion Code example, this highlighted epic could cover:
+
+*   Additional data related to a code for start &amp; end date ranges during which the code is valid
+    
+*   A check in the shopping cart to see if the current date falls within that range
+    
+
+The TPO and the team could choose to split those two features up into their own Epic.
+
+&lt;img src=&quot;../static/img/program-management-with-jira/long-poles/split-long-pole.png&quot; class=&quot;content-400-800-shadow&quot;/&gt;
+
+Now the work for the first part, the dates added as part of a promotion code, has its own estimate &amp; confidence. This could be done in parallel with the first two epics, because it does not have dependencies on that work. The timing of delivery of the other half of the epic can also shift to the left.
+
+&lt;img src=&quot;../static/img/program-management-with-jira/long-poles/adjusted-after-split.png&quot; class=&quot;content-400-800-shadow&quot;/&gt;
+
+The dependent epics also shift left, shortening the entire pole.
+
+&lt;img src=&quot;../static/img/program-management-with-jira/long-poles/shortened-timing.png&quot; class=&quot;content-400-800-shadow&quot;/&gt;
+
+Exercise
+--------
+
+*   Try to come up with ways to shorten your initiatives timeframes
+
+">
+
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
+  <!-- End Google Tag Manager -->
+
+  <title>Bitovi Academy - Breaking Long Poles</title>
+  
+  <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
+  
+</head>
+
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-P9MQVJS"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <div class="header">
+    <div class="logo">
+      <a href="https://www.bitovi.com/">Bitovi</a>
+    </div>
+    <ul>
+      <li><a href="https://www.bitovi.com/services">Services</a></li>
+      <li><a href="https://www.bitovi.com/client-work">Client Work</a></li>
+      <li><a href="https://www.bitovi.com/about">Our Team</a></li>
+      <li><a href="https://www.bitovi.com/open-source">Open Source</a></li>
+      <li><a href="https://www.bitovi.com/blog">Blog</a></li>
+      <li><a href=".." class="active">Academy</a></li>
+     </ul>
+     <a class="contact-popup hs-button brand button-smallest" href="https://www.bitovi.com/contact">Contact Us</a>
+  </div>
+
+  <div class="content">
+	
+		<div class="sidebar-left">
+  
+    
+	<ul>
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-advanced-javascript.html"
+							title="This course covers all the hard but important stuff you should know when learning JavaScript.">
+							Advanced JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-dom-jquery.html"
+							title="Learn jQuery and the DOM APIs by building your own version of jQuery and using it to make a basic tabs widget. We strongly suggest finishing learn-advanced-javascript prior to starting this course.">
+							DOM and jQuery
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-to-debug-javascript.html"
+							title="This course covers the basics of JavaScript debugging.">
+							Debug JavaScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-typescript.html"
+							title="This course covers the basic essentials of TypeScript. At the end, you should be ready to develop projects in TypeScript.">
+							Learn TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-react.html"
+							title="Learn React by building a feature-rich Tic-Tac-Toe game in this beginner React guide. This hands-on course will introduce both fundamental and more advanced React concepts! By the end of this course, you will have mastered functional components, hooks, and component optimization.">
+							Learn React
+						</a>
+						
+					</li>
+				
+			
+		
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-web-components.html"
+							title="">
+							Learn Web Components
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						parent
+           						expanded">
+						<a class="page"
+							href="../learn-agile-program-management-with-jira.html"
+							title="Learn how to build, maintain, and report on accurate multi-team plans with Jira.">
+							Agile Program Management With Jira
+						</a>
+						
+							
+	<ul>
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="jira-acount-setup.html"
+							title="Learn how to set up a new Jira Account and create some initial projects.">
+							Jira Account Setup
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="continuous-exploration.html"
+							title="Learn about the Continuous Evaluation workflow and Jira board we use to take feature ideas and turn them into actionable multi-team plans.">
+							Continuous Exploration
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="product-overview.html"
+							title="Learn to add things in the ideas backlog">
+							Product Overview
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="continuous-exploration-board.html"
+							title="Learn to set up a Continuous Exploration  exploration board in Jira. On the way, we will learn how to create
+custom issue types, custom workflows, and custom fields.">
+							Continuous Exploration Board
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="ideas.html"
+							title="Learn how to add feature ideas to the ideas backlog.">
+							Ideas
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="refinement.html"
+							title="Learn how to refine an initiative from an idea into something ready to be validated and estimated.">
+							Refinement
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="validating.html"
+							title="Learn how to increase the chances that initiatives will produce the value you expect.">
+							Validating
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="advanced-roadmap-setup.html"
+							title="Learn how to set up Jira&#x27;s Advanced Roadmap">
+							Advanced Roadmap Setup
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="estimating.html"
+							title="Learn how to build a plan and estimate the delivery time of an initiaiative.">
+							Estimating
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="breaking-long-poles.html"
+							title="Learn how to recognize which work will take the longest, and ways to break things up.
+Overview
+It barely needs to be said that finding ways to deliver a product faster is a key aspect of business success. There are costs associated with not having a feature customers want, an efficiency improvement that internal users need, a delay in being first to market with a disruptive offering. An obvious way to achieve a shorter cycle is to find the longest “pole” in the schedule and break it up, finding ways to deliver it quicker.
+Ways to Shorten the Long Pole
+Increase resources
+This option is the most obvious: if it takes a team of three developers 5 weeks to deliver a feature, shouldn’t it only take 3 weeks if you add two more developers? The improvement by adding people, however, is rarely linear in this way.
+The primary reason why involves Brooks’s Law, put forth by IBM software engineer Fred Brooks in his book “The Mythical Man-Month”. Brooks states that the increase in team size leads to an exponential growth in communications channels which need to be maintained in order for the team to continue operating. Even if the technical aspects of the work can be done interchangeably by all team members (which is a very big big “if”), the n(n-1)/2 expansion of communication channels hampers the linear expectations of improved velocity.
+
+There are also assumptions about how easy it is for new team members to onboard, learn about the work being done, and efficient adaptation to specific ways of working within the team.
+Adding team members will almost always help the team’s overall velocity, especially if the technical skills of the new developers match what the team needs. But it’s important for a TPO to understand, and communicate to stakeholders, the improvement likely will not match expectations.
+Technical Spikes to Improve Confidence
+As we saw in the Estimating section, the log-normal distribution of a confidence factor can cause a huge blowup in delivery times. In this example, a 2-week estimate with low confidence has a longer timeline in the schedule than the high-confidence 3-week epic preceding it.
+
+A short spike to investigate any open business or technical questions which are causing the 40% confidence in this example will shorten this total “pole” by several times the spike duration.
+
+As a TPO, understanding why the developers are having concerns and questioning their confidence will allow you to identify what the spike should involve, what answers the team needs to complete it and how to prioritize its completion over other feature work or technical debt which could be done.
+Remove Scope
+If you have the right-sized team and the best confidence in your estimates, and you still have an obvious long pole, the simplest way to shorten it is to remove scope.
+In this example, we have a circled long pole of functional dependency, going across multiple teams.
+
+The last epic in this flow has dependencies on two other epics from two other teams. Can we remove it from the current scope and shorten the delivery cycle? It can always be picked up later.
+
+The team’s ability to have this descoping discussion with stakeholders depends on a number of factors, notably time and risk sensitivity. Is a robust “what” more important to our application than an earlier “when”? Is the potential risk of an epic that relies on two other epics which come near the end of team delivery, both of which have their own dependence on an earlier epic, worth taking on?
+We may also look to move requirements and/or use cases out-of-scope to shrink the size of one or more epics. In the Promotion Code example, let’s say the original requirements were to allow a promotion code to be applied to one item in the shopping cart, but not an item which is already on sale. If the decision is made to change the scope such that the code is applied to an entire order, we simplify and reduce the size of multiple epics:
+
+Cart operation to add a promotion code (do not have to select an item in the cart)
+Check with store to see if an item is listed at a sale price
+Re-calculating the subtotal
+
+Splitting Epics to Unblock and Parallelize
+One of the best ways to address the long pole is to break epics up into smaller epics, and find ways to then split the work. Let’s go back to our original work plan, and pick a large epic with relatively low confidence, one that seems to be square in the middle of the key work dependencies.
+
+In our Promotion Code example, this highlighted epic could cover:
+
+Additional data related to a code for start &amp; end date ranges during which the code is valid
+A check in the shopping cart to see if the current date falls within that range
+
+The TPO and the team could choose to split those two features up into their own Epic.
+
+Now the work for the first part, the dates added as part of a promotion code, has its own estimate &amp; confidence. This could be done in parallel with the first two epics, because it does not have dependencies on that work. The timing of delivery of the other half of the epic can also shift to the left.
+
+The dependent epics also shift left, shortening the entire pole.
+
+Exercise
+
+Try to come up with ways to shorten your initiatives timeframes">
+							Breaking Long Poles
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="prioritizing.html"
+							title="Learn how to prioritize initiatives.">
+							Prioritizing
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="scheduling.html"
+							title="Learn how to schedule epics into sprints with Advanced Roadmaps&#x27; Auto-scheduler.">
+							Scheduling
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="reporting.html"
+							title="Learn how to report on high-level status using Jira as the source of truth.">
+							Reporting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="managing.html"
+							title="Learn how to manage a program&#x27;s active work.">
+							Managing
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-rxjs.html"
+							title="Learn RxJS by creating a validating credit card form.">
+							Learn RxJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../training.html"
+							title="Learn how to prepare and give a training.">
+							Giving a Training
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-technology-consulting.html"
+							title="Learn how to move beyond writing code to be an excellent technology consultant!">
+							Learn Technology Consulting
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-ngrx.html"
+							title="Learn how to manage state in an Angular application using NgRx.">
+							Learn NgRx
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-graphql.html"
+							title="Build a backend application for property rentals using Node JS, GraphQL and Apollo Server.         Learn about using ORMs like Mongoose and Prisma with a NoSQL Mongo database!
+Write testcases testing created endpoints.">
+							Learn Graphql
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-docker.html"
+							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							Learn Docker
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-canjs.html"
+							title="This tutorial walks through building TodoMVC with StealJS. It includes KeyNote presentations
+covering CanJS core libraries.">
+							Learn CanJS
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../learn-angular.html"
+							title="Learn how to build a moderately complex application with Angular.">
+							Learn Angular
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="../advanced-typescript.html"
+							title="This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found here.">
+							Advanced TypeScript
+						</a>
+						
+					</li>
+				
+			
+		
+	</ul>
+
+
+  
+  <p class="border">
+      <a href="..#courses">View More Courses</a>
+      <a class='bit-academy-fullscreen' title='fullscreen' href="javascript://">[ ]</a>
+  </p>
+</div>
+
+	
+	<article class="main">
+    <div class="main-content">
+  		
+  			<section class="title">
+	<h1>Breaking Long Poles <code>page</code></h1>
+</section>
+
+  		
+
+  		
+  			
+  				<section class="description">
+    <p>Learn how to recognize which work will take the longest, and ways to break things up.</p>
+<h2>Overview</h2>
+<p>It barely needs to be said that finding ways to deliver a product faster is a key aspect of business success. There are costs associated with not having a feature customers want, an efficiency improvement that internal users need, a delay in being first to market with a disruptive offering. An obvious way to achieve a shorter cycle is to find the longest “pole” in the schedule and break it up, finding ways to deliver it quicker.</p>
+<h2>Ways to Shorten the Long Pole</h2>
+<h3>Increase resources</h3>
+<p>This option is the most obvious: if it takes a team of three developers 5 weeks to deliver a feature, shouldn’t it only take 3 weeks if you add two more developers? The improvement by adding people, however, is rarely linear in this way.</p>
+<p>The primary reason why involves <a href="https://effectiviology.com/brooks-law/">Brooks’s Law</a>, put forth by IBM software engineer Fred Brooks in his book “The Mythical Man-Month”. Brooks states that the increase in team size leads to an exponential growth in communications channels which need to be maintained in order for the team to continue operating. Even if the technical aspects of the work can be done interchangeably by all team members (which is a very big big “if”), the <code>n(n-1)/2</code> expansion of communication channels hampers the linear expectations of improved velocity.</p>
+<p><img src="../static/img/program-management-with-jira/long-poles/handshakes.png" class="content-400-800-shadow"/></p>
+<p>There are also assumptions about how easy it is for new team members to onboard, learn about the work being done, and efficient adaptation to specific ways of working within the team.</p>
+<p>Adding team members will almost always help the team’s overall velocity, especially if the technical skills of the new developers match what the team needs. But it’s important for a TPO to understand, and communicate to stakeholders, the improvement likely will not match expectations.</p>
+<h3>Technical Spikes to Improve Confidence</h3>
+<p>As we saw in the <a href="https://bitovi.atlassian.net/wiki/spaces/PM/pages/350486657/Estimating">Estimating</a> section, the log-normal distribution of a confidence factor can cause a huge blowup in delivery times. In this example, a 2-week estimate with low confidence has a longer timeline in the schedule than the high-confidence 3-week epic preceding it.</p>
+<p><img src="../static/img/program-management-with-jira/long-poles/estimate-and-confidence.png" class="content-400-800-shadow"/></p>
+<p>A short spike to investigate any open business or technical questions which are causing the 40% confidence in this example will shorten this total “pole” by several times the spike duration.</p>
+<p><img src="../static/img/program-management-with-jira/long-poles/spike.png" class="content-400-800-shadow"/></p>
+<p>As a TPO, understanding why the developers are having concerns and questioning their confidence will allow you to identify what the spike should involve, what answers the team needs to complete it and how to prioritize its completion over other feature work or technical debt which could be done.</p>
+<h3>Remove Scope</h3>
+<p>If you have the right-sized team and the best confidence in your estimates, and you still have an obvious long pole, the simplest way to shorten it is to remove scope.</p>
+<p>In this example, we have a circled long pole of functional dependency, going across multiple teams.</p>
+<p><img src="../static/img/program-management-with-jira/long-poles/long-pole.png" class="content-400-800-shadow"/></p>
+<p>The last epic in this flow has dependencies on two other epics from two other teams. Can we remove it from the current scope and shorten the delivery cycle? It can always be picked up later.</p>
+<p><img src="../static/img/program-management-with-jira/long-poles/shortened-long-pole.png" class="content-400-800-shadow"/></p>
+<p>The team’s ability to have this descoping discussion with stakeholders depends on a number of factors, notably time and risk sensitivity. Is a robust “what” more important to our application than an earlier “when”? Is the potential risk of an epic that relies on two other epics which come near the end of team delivery, both of which have their own dependence on an earlier epic, worth taking on?</p>
+<p>We may also look to move requirements and/or use cases out-of-scope to shrink the size of one or more epics. In the Promotion Code example, let’s say the original requirements were to allow a promotion code to be applied to one item in the shopping cart, but not an item which is already on sale. If the decision is made to change the scope such that the code is applied to an entire order, we simplify and reduce the size of multiple epics:</p>
+<ul>
+<li><p>Cart operation to add a promotion code (do not have to select an item in the cart)</p></li>
+<li><p>Check with store to see if an item is listed at a sale price</p></li>
+<li><p>Re-calculating the subtotal</p></li>
+</ul>
+<h3>Splitting Epics to Unblock and Parallelize</h3>
+<p>One of the best ways to address the long pole is to break epics up into smaller epics, and find ways to then split the work. Let’s go back to our original work plan, and pick a large epic with relatively low confidence, one that seems to be square in the middle of the key work dependencies.</p>
+<p><img src="../static/img/program-management-with-jira/long-poles/identify-long-pole.png" class="content-400-800-shadow"/></p>
+<p>In our Promotion Code example, this highlighted epic could cover:</p>
+<ul>
+<li><p>Additional data related to a code for start &amp; end date ranges during which the code is valid</p></li>
+<li><p>A check in the shopping cart to see if the current date falls within that range</p></li>
+</ul>
+<p>The TPO and the team could choose to split those two features up into their own Epic.</p>
+<p><img src="../static/img/program-management-with-jira/long-poles/split-long-pole.png" class="content-400-800-shadow"/></p>
+<p>Now the work for the first part, the dates added as part of a promotion code, has its own estimate &amp; confidence. This could be done in parallel with the first two epics, because it does not have dependencies on that work. The timing of delivery of the other half of the epic can also shift to the left.</p>
+<p><img src="../static/img/program-management-with-jira/long-poles/adjusted-after-split.png" class="content-400-800-shadow"/></p>
+<p>The dependent epics also shift left, shortening the entire pole.</p>
+<p><img src="../static/img/program-management-with-jira/long-poles/shortened-timing.png" class="content-400-800-shadow"/></p>
+<h2>Exercise</h2>
+<ul>
+<li>Try to come up with ways to shorten your initiatives timeframes</li>
+</ul>
+
+</section>
+
+  			
+  		
+
+  		
+  			
+  				
+  			
+  			
+  			<bit-prev-next class="footer" list-selector=".sidebar-left ul li.parent.expanded ul"></bit-prev-next>
+  		
+    </div>
+
+    
+      <div class="sidebar-right">
+        <div class="content-nav on-this-page-container">
+          <h6>On this page...</h6>
+          <div class="list-items" id="scroll-toc">
+            <bit-toc heading-container-selector="article.main" scroll-selector="#scroll-toc"></bit-toc>
+          </div>
+        </div>
+        <div class="pullout discord">
+          <h6>Get help</h6>
+          <p>If you need <a href="https://discord.gg/J7ejFsZnJ4">help</a> with an exercise, please reach out to us on
+             <a href="https://discord.gg/J7ejFsZnJ4">Discord</a></p>
+        </div>
+        <div class="pullout bug">
+          <p>If you find a bug, please
+             <a href="https://github.com/bitovi/academy/issues/new">create an issue</a> or email
+             <a href="mailto:contact@bitovi.com?Subject=Training%20Suggestion" target="_blank">contact@bitovi.com</a></p>
+        </div>
+      </div>
+    
+
+	</article>
+</div>
+
+
+
+  <footer></footer>
+
+  <div id="scripts">
+    <script type="text/javascript">
+      var docObject = {"src":{"path":"src/program-management-with-jira/9-breaking-long-poles.md"},"description":"Learn how to recognize which work will take the longest, and ways to break things up. \n\nOverview\n--------\n\nIt barely needs to be said that finding ways to deliver a product faster is a key aspect of business success. There are costs associated with not having a feature customers want, an efficiency improvement that internal users need, a delay in being first to market with a disruptive offering. An obvious way to achieve a shorter cycle is to find the longest “pole” in the schedule and break it up, finding ways to deliver it quicker.\n\nWays to Shorten the Long Pole\n-----------------------------\n\n### Increase resources\n\nThis option is the most obvious: if it takes a team of three developers 5 weeks to deliver a feature, shouldn’t it only take 3 weeks if you add two more developers? The improvement by adding people, however, is rarely linear in this way.\n\nThe primary reason why involves [Brooks’s Law](https://effectiviology.com/brooks-law/), put forth by IBM software engineer Fred Brooks in his book “The Mythical Man-Month”. Brooks states that the increase in team size leads to an exponential growth in communications channels which need to be maintained in order for the team to continue operating. Even if the technical aspects of the work can be done interchangeably by all team members (which is a very big big “if”), the `n(n-1)/2` expansion of communication channels hampers the linear expectations of improved velocity.\n\n<img src=\"../static/img/program-management-with-jira/long-poles/handshakes.png\" class=\"content-400-800-shadow\"/>\n\nThere are also assumptions about how easy it is for new team members to onboard, learn about the work being done, and efficient adaptation to specific ways of working within the team.\n\nAdding team members will almost always help the team’s overall velocity, especially if the technical skills of the new developers match what the team needs. But it’s important for a TPO to understand, and communicate to stakeholders, the improvement likely will not match expectations.\n\n### Technical Spikes to Improve Confidence\n\nAs we saw in the [Estimating](https://bitovi.atlassian.net/wiki/spaces/PM/pages/350486657/Estimating) section, the log-normal distribution of a confidence factor can cause a huge blowup in delivery times. In this example, a 2-week estimate with low confidence has a longer timeline in the schedule than the high-confidence 3-week epic preceding it.\n\n<img src=\"../static/img/program-management-with-jira/long-poles/estimate-and-confidence.png\" class=\"content-400-800-shadow\"/>\n\n\nA short spike to investigate any open business or technical questions which are causing the 40% confidence in this example will shorten this total “pole” by several times the spike duration.\n\n<img src=\"../static/img/program-management-with-jira/long-poles/spike.png\" class=\"content-400-800-shadow\"/>\n\nAs a TPO, understanding why the developers are having concerns and questioning their confidence will allow you to identify what the spike should involve, what answers the team needs to complete it and how to prioritize its completion over other feature work or technical debt which could be done.\n\n### Remove Scope\n\nIf you have the right-sized team and the best confidence in your estimates, and you still have an obvious long pole, the simplest way to shorten it is to remove scope.\n\nIn this example, we have a circled long pole of functional dependency, going across multiple teams.\n\n<img src=\"../static/img/program-management-with-jira/long-poles/long-pole.png\" class=\"content-400-800-shadow\"/>\n\nThe last epic in this flow has dependencies on two other epics from two other teams. Can we remove it from the current scope and shorten the delivery cycle? It can always be picked up later.\n\n<img src=\"../static/img/program-management-with-jira/long-poles/shortened-long-pole.png\" class=\"content-400-800-shadow\"/>\n\nThe team’s ability to have this descoping discussion with stakeholders depends on a number of factors, notably time and risk sensitivity. Is a robust “what” more important to our application than an earlier “when”? Is the potential risk of an epic that relies on two other epics which come near the end of team delivery, both of which have their own dependence on an earlier epic, worth taking on?\n\nWe may also look to move requirements and/or use cases out-of-scope to shrink the size of one or more epics. In the Promotion Code example, let’s say the original requirements were to allow a promotion code to be applied to one item in the shopping cart, but not an item which is already on sale. If the decision is made to change the scope such that the code is applied to an entire order, we simplify and reduce the size of multiple epics:\n\n*   Cart operation to add a promotion code (do not have to select an item in the cart)\n    \n*   Check with store to see if an item is listed at a sale price\n    \n*   Re-calculating the subtotal\n    \n\n### Splitting Epics to Unblock and Parallelize\n\nOne of the best ways to address the long pole is to break epics up into smaller epics, and find ways to then split the work. Let’s go back to our original work plan, and pick a large epic with relatively low confidence, one that seems to be square in the middle of the key work dependencies.\n\n<img src=\"../static/img/program-management-with-jira/long-poles/identify-long-pole.png\" class=\"content-400-800-shadow\"/>\n\n\nIn our Promotion Code example, this highlighted epic could cover:\n\n*   Additional data related to a code for start & end date ranges during which the code is valid\n    \n*   A check in the shopping cart to see if the current date falls within that range\n    \n\nThe TPO and the team could choose to split those two features up into their own Epic.\n\n<img src=\"../static/img/program-management-with-jira/long-poles/split-long-pole.png\" class=\"content-400-800-shadow\"/>\n\nNow the work for the first part, the dates added as part of a promotion code, has its own estimate & confidence. This could be done in parallel with the first two epics, because it does not have dependencies on that work. The timing of delivery of the other half of the epic can also shift to the left.\n\n<img src=\"../static/img/program-management-with-jira/long-poles/adjusted-after-split.png\" class=\"content-400-800-shadow\"/>\n\nThe dependent epics also shift left, shortening the entire pole.\n\n<img src=\"../static/img/program-management-with-jira/long-poles/shortened-timing.png\" class=\"content-400-800-shadow\"/>\n\nExercise\n--------\n\n*   Try to come up with ways to shorten your initiatives timeframes\n\n","name":"learn-agile-program-management-with-jira/breaking-long-poles","title":"Breaking Long Poles","type":"page","parent":"learn-agile-program-management-with-jira","order":9,"pathToRoot":"../.."};
+    </script>
+
+    
+      <script>
+        steal = {
+          instantiated: {
+            "bundles/bit-docs-site/static.css!$css" : null
+          }
+        }
+      </script>
+      <script type='text/javascript'
+          data-main="bit-docs-site/static"
+          src="../static/steal.production.js"></script>
+    
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-2302003-12"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-2302003-12');
+    </script>
+
+  </div>
+  <div id="email-modal" role="dialog" aria-modal="true" aria-labelledby="dialog_label" style="display: none;">
+    <div aria-hidden="true" class="email-modal-backdrop"></div>
+    <div role="region" class="email-modal-content">
+      <h2 id="dialog_label">Join the Bitovi Newsletter</h2>
+      <p>
+        Do you want to receive updates about new Bitovi Academy courses, Bitovi open source projects, and dev community news? If so, please provide your email. We won’t spam you or give it away for any reason!<br />
+        <i style="font-size: 0.8rem;">By providing your email you agree to receive communications from Bitovi</i>
+      </p>
+      <div id="academy-hubspot-form-embed"></div>
+      <script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+      <button id="email-modal-close" title="dismiss"><img src="../static/img/close.svg" height="24" width="24"></button>
+    </div>
+  </div>
+</body>
+</html>
