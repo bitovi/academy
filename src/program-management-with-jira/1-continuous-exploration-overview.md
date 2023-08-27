@@ -1,4 +1,4 @@
-@page learn-agile-program-management-with-jira/continuous-exploration Continuous Exploration x
+@page learn-agile-program-management-with-jira/continuous-exploration Continuous Exploration
 @parent learn-agile-program-management-with-jira 1
 
 @description Learn about the Continuous Evaluation workflow and Jira board we use

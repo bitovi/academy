@@ -1,4 +1,4 @@
-@page learn-agile-program-management-with-jira/jira-acount-setup Jira Account Setup x
+@page learn-agile-program-management-with-jira/jira-acount-setup Jira Account Setup
 @parent learn-agile-program-management-with-jira 0
 
 @description Learn how to set up a new Jira Account and create some initial projects.

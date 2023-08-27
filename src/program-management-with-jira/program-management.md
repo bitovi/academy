@@ -1,4 +1,4 @@
-@page learn-agile-program-management-with-jira Agile Program Management With Jira c
+@page learn-agile-program-management-with-jira Agile Program Management With Jira
 @parent bit-academy 8
 
 @description Learn how to build, maintain, and report on accurate multi-team plans
@@ -59,18 +59,18 @@ This training imagines you are managing “Itsy Bitsy Marketplace”, a simple e
 <img src="../static/img/program-management-with-jira/home/itsy-homepage.png"
 	class="content-400-800"/>
 
-You will learn more about the product in Product Overview.
+You will learn more about the product in [learn-agile-program-management-with-jira/product-overview].
 
 You are tasked with taking one-sentence-long feature requests from Product Managers and turning feature requests into a fully developed product backlog, complete with actionable plans for successful delivery.  
 
 To complete the journey, we will:
 
-__Setup a continuous exploration process managed with a custom Jira board:__
+__[learn-agile-program-management-with-jira/continuous-exploration-board  Set-up a continuous exploration process managed with a custom Jira board]:__
 
 <img src="../static/img/program-management-with-jira/home/kanban-board.png"
 	class="content-400-800-shadow"/>
 
-__Refine the feature requests into clearly defined Jira Initiatives:__
+__[learn-agile-program-management-with-jira/refinement Refine the feature requests into clearly defined Jira Initiatives]:__
 
 <img src="../static/img/program-management-with-jira/home/refined-features.png"
 	class="content-400-800-shadow"/>
@@ -81,28 +81,28 @@ __Wireframe those features to add even more clarity:__
 <img src="../static/img/program-management-with-jira/home/wireframe.png"
 	class="content-400-800-shadow"/>
 
-__Break down the work and use statistical models to accurately estimate delivery times:__
+__[learn-agile-program-management-with-jira/estimating Break down the work and use statistical models to accurately estimate delivery times]:__
 
 <img src="../static/img/program-management-with-jira/home/estimation.png"
 	class="content-400-800-shadow"/>
 
 
-__Build plans in Jira’s Advanced Roadmap Tool:__
+__[learn-agile-program-management-with-jira/advanced-roadmap-setup Build plans in Jira’s Advanced Roadmap Tool]:__
 
 <img src="../static/img/program-management-with-jira/home/advanced-plan.png"
 	class="content-400-800-shadow"/>
 
-__Schedule work with Advanced Roadmap’s AutoScheduler:__
+__[learn-agile-program-management-with-jira/scheduling Schedule work with Advanced Roadmap’s AutoScheduler]:__
 
 <img src="../static/img/program-management-with-jira/home/autoscheduler.png"
 	class="content-400-800-shadow"/>
 
-__Maintain the roadmap and facilitate team communication with effective meetings:__
+__[learn-agile-program-management-with-jira/managing Maintain the roadmap and facilitate team communication with effective meetings]:__
 
 <img src="../static/img/program-management-with-jira/home/program-planning.png"
-	class="content-400-800-shadow"/>
+	class="content-shadow"/>
 
-__Generate easy-to-digest summaries of progress for stakeholders:__
+__[learn-agile-program-management-with-jira/reporting Generate easy-to-digest summaries of progress for stakeholders]:__
 
 <img src="../static/img/program-management-with-jira/home/reporting.png"
 	class="content-400-800-shadow"/>

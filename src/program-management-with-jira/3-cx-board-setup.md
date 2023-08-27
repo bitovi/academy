@@ -1,7 +1,9 @@
 @page learn-agile-program-management-with-jira/continuous-exploration-board Continuous Exploration Board
 @parent learn-agile-program-management-with-jira 3
 
-@description Learn to setup an exploration board in Jira
+@description Learn to set up a Continuous Exploration 
+exploration board in Jira. On the way, we will learn how to create
+custom issue types, custom workflows, and custom fields.
 
 @body
 
@@ -19,17 +21,20 @@ And work through those ideas in a workflow:
 <img src="../static/img/program-management-with-jira/exploration-board.png"
   class="content-400-800-shadow"/>
 
-To do this, we will:
+To do create the Continuous Exploration board, we will:
 
-1. Create the Initiative issue type and add it to the issue type hierarchy.
-2. Add Custom Fields and assign them to issues
-3. Create the Exploration workflow
-4. Create and organize the Continuous Exploration Board
+1. Create the Initiative issue type and add it to the issue type hierarchy
+2. Create the Continuous Exploration workflow
+3. Create the Continuous Exploration Board
 
+Finally, to prepare for estimation and validation, we will:
+
+1. Add the `Value`, `Value confidence`, `Story points median` and `Story points confidence` Custom Fields
 
 
 
 ## Create the Initiative issue type
+
 
 The following video shows how to:
 
