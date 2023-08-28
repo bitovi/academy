@@ -36,24 +36,26 @@ class HubSpotPublisher {
   }
 
   async uploadPage(academyPage) {
+    const { title, headHtml, bodyHtml, slug, metaDescription } = academyPage.getPageData();
+
     if(academyPage.hubSpotId) {
       return this.hubSpotApi.updatePage(
         academyPage.hubSpotId,
         {
-            title: academyPage.getTitle(),
-            headHtml: academyPage.getCSSLinks(),
-            bodyHtml: academyPage.getPageContents(),
-            metaDescription: academyPage.getMetaDescription()
+          title,
+          headHtml,
+          bodyHtml,
+          metaDescription
         }
       );
     }
     else {
       return this.hubSpotApi.createPage({
-          title: academyPage.getTitle(),
-          headHtml: academyPage.getCSSLinks(),
-          bodyHtml: academyPage.getPageContents(),
-          slug: academyPage.slug,
-          metaDescription: academyPage.getMetaDescription()
+        title,
+        headHtml,
+        bodyHtml,
+        metaDescription,
+        slug
       });
     }
   }
@@ -71,7 +73,7 @@ class HubSpotPublisher {
         page.hubSpotId = localPageOnHubSpot.id;
       }
 
-      return this.uploadPage(page)
+      this.uploadPage(page)
     }));
 
     const pagesToBeDeleted = pagesCurrentlyOnHubSpot.filter(pageCurrentlyOnHubSpot =>
@@ -80,6 +82,7 @@ class HubSpotPublisher {
 
     // TODO: Remove extra files from the /academy directory
     console.warn(`Note: There were ${pagesToBeDeleted.length} pages on Bitovi.com that are not in the local project and were left in place.`);
+    pagesToBeDeleted.forEach(page => console.warn(page.slug))
   }
 }
 
