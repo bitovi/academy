@@ -4,7 +4,7 @@
 @hidedescription
 @hidecontentnav
 @description Welcome to Bitovi Academy. Learn front-end development, design,
-and management in these free courses!
+and management skills in these free courses!
 
 @body
 
@@ -302,7 +302,7 @@ a.quote-link:hover{
 <div class="container">
   <div class="hero-banner">
     <h1>Level up your front-end skills</h1>
-    <h2>Whether you're a beginner or a seasoned senior dev, Academy courses have something that will help you improve your JavaScript skills.</h2>
+    <h2>Whether you're a beginner or experienced professional, Academy courses have something to help you perfect your design, development, or management skills.</h2>
     <a class="button button-large button-red" href="#courses-section">Browse our courses</a>
   </div>
   <div class="academy-section academy-logos">
@@ -406,6 +406,74 @@ a.quote-link:hover{
     </div>
     <div class="courses">
       <div class="academy-card course">
+        <div class="course-logo">
+          <img src="./static/img/ngrx.png" height="70">
+        </div>
+        <h4>NgRx</h4>
+        <p> Build an NgRx feature store to manage login state through actions, reducers, effects, and selectors.</p>
+        <div class="width100">
+          <p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
+          <p class='detail'><strong>Goal:</strong> Learn about the architecture of an NgRx application</p>
+          <p class='detail'><strong>Time:</strong> 5 hours</p>
+        </div>
+        <a href="./learn-ngrx.html" class="button button-grey full-width">Take this course</a>
+      </div>
+      <div class="academy-card course">
+        <div class="course-logo">
+          <img src="./static/img/program-management-with-jira/jira-logo.png" height="70">
+        </div>
+        <h4>Agile Program Management with Jira</h4>
+        <p> Learn how to build, maintain, and report on accurate multi-team plans
+with Jira.</p>
+        <div class="width100">
+          <p class='detail'><strong>Audience:</strong> Program Managers</p>
+          <p class='detail'><strong>Goal:</strong> Coordinate large projects with multiple teams.</p>
+          <p class='detail'><strong>Time:</strong> 12 hours</p>
+        </div>
+        <a href="./learn-agile-program-management-with-jira.html" class="button button-grey full-width">Take this course</a>
+      </div>
+      <div class="academy-card course">
+        <div class="course-logo">
+          <img src="./static/img/docker/logo.png" height="70">
+        </div>
+        <h4>Docker</h4>
+        <p>Build and containerize a Node app then orchestrate a more complex example with docker-compose in this Docker guide.</p>
+        <div class="width100">
+          <p class='detail'><strong>Audience:</strong> Intermediate developers, new DevOps Engineers</p>
+            <p class='detail'><strong>Goal:</strong> Learn Docker fundamentals and container orchestration.</p>
+            <p class='detail'><strong>Time:</strong> 2 hours</p>
+        </div>
+        <a href="./learn-docker.html" class="button button-grey full-width">Take this course</a>
+      </div>
+    </div>
+    <div class="courses">
+      <div class="academy-card course">
+          <div class="course-logo">
+            <img src="./static/img/javascript.png" height="70">
+          </div>
+          <h4>Debug JavaScript</h4>
+          <p>Learn breakpoints and how to debug the scope, stack, prototypes, and property changes.</p>
+          <div class="width100">
+            <p class='detail'><strong>Audience:</strong> Beginner JS developers</p>
+            <p class='detail'><strong>Goal:</strong> Debug most problems with chrome developer tools.</p>
+            <p class='detail'><strong>Time:</strong> 1 hour</p>
+          </div>
+          <a href="./learn-to-debug-javascript.html" class="button button-grey full-width">Take this course</a>
+      </div>
+      <div class="academy-card course">
+          <div class="course-logo">
+            <img src="./static/img/web-components.png" height="70">
+          </div>
+          <h4>Web Components</h4>
+          <p>Build a bus tracker component that can be used anywhere with web components. Learn the core APIs.</p>
+          <div class="width100">
+            <p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
+            <p class='detail'><strong>Goal:</strong> Understand the web component APIs at the lowest level.</p>
+            <p class='detail'><strong>Time:</strong> 8 hours</p>
+          </div>
+          <a href="./learn-web-components.html" class="button button-grey full-width">Take this course</a>
+      </div>
+      <div class="academy-card course">
           <div class="course-logo">
             <img src="./static/img/typescript.png" width="140">
           </div>
@@ -418,6 +486,8 @@ a.quote-link:hover{
           </div>
           <a href="./learn-typescript.html" class="button button-grey full-width">Take this course</a>
       </div>
+    </div>
+    <div class="courses">
       <div class="academy-card course">
           <div class="course-logo">
             <img src="./static/img/javascript.png" height="70">
@@ -445,76 +515,13 @@ a.quote-link:hover{
           </div>
           <a href="./learn-dom-jquery.html" class="button button-grey full-width">Take this course</a>
       </div>
-    </div>
-    <div class="courses">
-      <div class="academy-card course">
-          <div class="course-logo">
-            <img src="./static/img/javascript.png" height="70">
-          </div>
-          <h4>Debug JavaScript</h4>
-          <p>Learn breakpoints and how to debug the scope, stack, prototypes, and property changes.</p>
-          <div class="width100">
-            <p class='detail'><strong>Audience:</strong> Beginner JS developers</p>
-            <p class='detail'><strong>Goal:</strong> Debug most problems with chrome developer tools.</p>
-            <p class='detail'><strong>Time:</strong> 1 hour</p>
-          </div>
-          <a href="./learn-to-debug-javascript.html" class="button button-grey full-width">Take this course</a>
-      </div>
-      <div class="academy-card course">
-          <div class="course-logo">
-            <img src="./static/img/web-components.png" height="100">
-          </div>
-          <h4>Web Components</h4>
-          <p>Build a bus tracker component that can be used anywhere with web components. Learn the core APIs.</p>
-          <div class="width100">
-            <p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
-            <p class='detail'><strong>Goal:</strong> Understand the web component APIs at the lowest level.</p>
-            <p class='detail'><strong>Time:</strong> 8 hours</p>
-          </div>
-          <a href="./learn-web-components.html" class="button button-grey full-width">Take this course</a>
-      </div>
-      <div class="academy-card course">
-        <div class="course-logo">
-          <img src="./static/img/docker/logo.png" height="70">
-        </div>
-        <h4>Docker</h4>
-        <p>Build and containerize a Node app then orchestrate a more complex example with docker-compose in this Docker guide.</p>
-        <div class="width100">
-          <p class='detail'><strong>Audience:</strong> Intermediate developers, new DevOps Engineers</p>
-            <p class='detail'><strong>Goal:</strong> Learn Docker fundamentals and container orchestration</p>
-            <p class='detail'><strong>Time:</strong> 2 hours</p>
-        </div>
-        <a href="./learn-docker.html" class="button button-grey full-width">Take this course</a>
-      </div>
-    </div>
-    <div class="courses">
-      <div class="academy-card course" style="background: transparent; border: none;">&nbsp;</div>
-      <div class="academy-card course">
-        <div class="course-logo">
-          <img src="./static/img/ngrx.png" height="70">
-        </div>
-        <h4>NgRx</h4>
-        <p> Build an NgRx feature store to manage login state through actions, reducers, effects, and selectors.</p>
-        <div class="width100">
-          <p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
-          <p class='detail'><strong>Goal:</strong> Learn about the architecture of an NgRx application</p>
-          <p class='detail'><strong>Time:</strong> 5 hours</p>
-        </div>
-        <a href="./learn-ngrx.html" class="button button-grey full-width">Take this course</a>
-      </div>
       <div class="academy-card course" style="background: transparent; border: none;">&nbsp;</div>
     </div>
+    
   </div>
   <a name="live-events-section"></a>
   <div class="academy-section live-events">
     <h3>Upcoming events</h3>
-    <p>Join us on Twitch as we live code and discuss special topics.</p>
-    <a class="button" href="https://www.twitch.tv/bitovi/schedule"><img src="./static/img/calendar.svg" height="20"> View our Twitch Schedule</a>
-    <p>Or as we host incredible speakers with Q&A at the monthly ChicagoJS Meetups.</p>
-    <a class="button" href="https://www.meetup.com/js-chi/events/"><img src="./static/img/calendar.svg" height="20"> ChicagoJS Meetup Schedule</a>
-    <p>Join our community calendar for even more upcoming events.</p> 
-    <a class="button" href="https://calendar.google.com/calendar/b/1?cid=anVwaXRlcmpzLmNvbV9nMjd2Y2szNm5pZmJucXJna2N0a29hbnFiNEBncm91cC5jYWxlbmRhci5nb29nbGUuY29t"><img src="./static/img/calendar.svg" height="20"> Subscribe to our calendar</a>
-    <h4>Next events from the community Calendar:</h4>
   <calendar-events api-key="AIzaSyBsNpdGbkTsqn1BCSPQrjO9OaMySjK5Sns" calendar-id="jupiterjs.com_g27vck36nifbnqrgkctkoanqb4@group.calendar.google.com" event-count="3" class="courses">
     <template>
           <div class="academy-card course">
@@ -555,20 +562,6 @@ a.quote-link:hover{
           <a href="./learn-technology-consulting.html" class="button button-grey full-width">Take this course</a>
       </div>
       <div class="academy-card course">
-          <div class="course-logo">
-            <img src="./static/img/canjs.png" height="70">
-          </div>
-          <h4>CanJS</h4>
-          <p>Build the TodoMVC application with CanJS 6. Learn how
-             to create, update, and delete records.</p>
-          <div class="width100">
-            <p class='detail'><strong>Audience:</strong> Technology consultants or clients</p>
-            <p class='detail'><strong>Goal:</strong> Learn the basics of CanJS </p>
-            <p class='detail'><strong>Time:</strong> 6 hours</p>
-          </div>
-          <a href="./learn-canjs.html" class="button button-grey full-width">Take this course</a>
-      </div>
-      <div class="academy-card course">
         <div class="course-logo">
           <img src="./static/img/javascript.png" width="60">
         </div>
@@ -576,9 +569,6 @@ a.quote-link:hover{
         <p>Got an idea for a course? Let us know by submitting an issue.</p>
         <a class="button full-width" style="color: white" href="https://github.com/bitovi/academy/issues/new" >Submit your idea</a>
       </div>
-    </div>
-    <div class="courses">
-      <div class="academy-card course" style="background: transparent; border: none;">&nbsp;</div>
       <div class="academy-card course">
         <div class="course-logo">
           <img src="./static/img/discord.png" width="90">
@@ -587,7 +577,6 @@ a.quote-link:hover{
         <p>Reach out to our team via Discord. We can help answer any questions you have about our courses.</p>
         <a class="button full-width" style="color: white" href="https://discord.gg/J7ejFsZnJ4">Chat with us on Discord</a>
       </div>
-      <div class="academy-card course" style="background: transparent; border: none;">&nbsp;</div>
     </div>
   </div>
 </div>
