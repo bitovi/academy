@@ -8,12 +8,14 @@ class HubSpotApi {
   constructor(accessToken, campaignId){
     this.accessToken = accessToken;
     this.campaignId = campaignId;
-    this.baseUrl = 'https://api.hubapi.com/content/api/v2/pages';
+    this.baseUrl = 'https://api.hubapi.com/cms/v3/pages/site-pages';
     this.limiter = new Bottleneck({minTime: 150}),
     this.axios = axios.create({
       baseURL: this.baseUrl,
       headers: {
-        Authorization: `Bearer ${this.accessToken}`,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        "Authorization": `Bearer ${this.accessToken}`,
       },
     });
   }
@@ -32,30 +34,46 @@ class HubSpotApi {
       }));  
   }
 
-  async getPages(){
-    const url = `?campaign=${this.campaignId}&limit=1000000`;
-    const response = await this.makeRequest('GET', url, {});
+  async getAllPaginatedResults(method, url, results = []) {
+    try {
+      const { data } = await this.makeRequest(method, url, {});
+      results = results.concat(data.results)
+      if (data.paging && data.paging.next) {
+        return this.getAllPaginatedResults(method, data.paging.next.link, results)
+      }
+      return results
+    } catch (error) {
+      throw new Error('There was an error while fetching all paginated results. See `getAllPaginatedResults` in `hubspot-api.js` for more details.')
+    }
+  }
 
-    return response.data.objects.map(page => ({
+  async getPages(){
+    const url = `?campaign=${this.campaignId}&limit=100`;
+    const results = await this.getAllPaginatedResults('GET', url, []);
+
+    const pageData = results.map(page => ({
       campaign: page.campaign,
       id: page.id,
       slug: page.slug
-    })).filter(page => page.campaign === this.campaignId && page.slug.includes('academy'));
+    }))
+    const pages = pageData.filter(page => page.campaign === this.campaignId && page.slug.includes('academy'));
+
+    return pages;
   }
 
   async createPage( {title, headHtml, bodyHtml, slug, metaDescription } ){
     const data = {
       name: title,
-      template_path: 'Custom/Page/Bitovi_July_2016_Theme/Academy.html',
+      templatePath: 'Custom/Page/Bitovi_July_2016_Theme/Academy.html',
       slug: `${slug}`,
-      html_title: title,
-      is_draft: false,
-      publish_immediately: true,
-      footer_html: rawStart+ bodyHtml + rawEnd,
-      head_html: headHtml,
+      htmlTitle: title,
+      currentState: 'PUBLISHED',
+      publishImmediately: true,
+      footerHtml: rawStart+ bodyHtml + rawEnd,
+      headHtml,
       campaign: this.campaignId,
       subcategory: 'site_page',
-      meta_description: metaDescription || ""
+      metaDescription: metaDescription || ""
     };
     const response = await this.makeRequest('POST', '', data)
     return this.publishPage(response.data.id);
@@ -65,17 +83,19 @@ class HubSpotApi {
     const url = `/${pageId}`;
     const data = {
       name: title,
-      html_title: title,
-      footer_html: rawStart+ bodyHtml + rawEnd,
-      head_html: headHtml,
-      meta_description: metaDescription || ""
+      htmlTitle: title,
+      footerHtml: rawStart+ bodyHtml + rawEnd,
+      headHtml,
+      currentState: 'PUBLISHED',
+      metaDescription: metaDescription || "",
+      campaign: this.campaignId
     }
     try {
-      const response =  await this.makeRequest('PUT', url, data);
-      console.log("Success! Updated page:", response.data.name);
+      const response =  await this.makeRequest('PATCH', url, data);
+      console.log("✅ Updated", response.data.slug);
       return response;
     } catch(error) {
-      console.error(error);
+      console.error('error during `updatePage` in `hubspot-api.js`');
       throw error;
     }
   }

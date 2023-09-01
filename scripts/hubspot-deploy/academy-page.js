@@ -17,6 +17,17 @@ class AcademyPage {
     this.$ = cheerio.load(html, {decodeEntities: true});
   }
 
+  // returns all page data at once for easier debugging
+  getPageData() {
+    return {
+      title: this.getTitle(),
+      headHtml: this.getCSSLinks(),
+      bodyHtml: this.getPageContents(),
+      slug: this.slug,
+      metaDescription: this.getMetaDescription()
+    }
+  }
+
   getTitle(){
     return this.$('title').html();
   }

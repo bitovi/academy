@@ -1,4 +1,5 @@
 const fs = require('fs').promises;
+const path = require('path');
 const recursive = require("recursive-readdir");
 const HubSpotApi = require("./hubspot-api");
 const AcademyPage = require("./academy-page");
@@ -36,24 +37,26 @@ class HubSpotPublisher {
   }
 
   async uploadPage(academyPage) {
+    const { title, headHtml, bodyHtml, slug, metaDescription } = academyPage.getPageData();
+
     if(academyPage.hubSpotId) {
       return this.hubSpotApi.updatePage(
         academyPage.hubSpotId,
         {
-            title: academyPage.getTitle(),
-            headHtml: academyPage.getCSSLinks(),
-            bodyHtml: academyPage.getPageContents(),
-            metaDescription: academyPage.getMetaDescription()
+          title,
+          headHtml,
+          bodyHtml,
+          metaDescription
         }
       );
     }
     else {
       return this.hubSpotApi.createPage({
-          title: academyPage.getTitle(),
-          headHtml: academyPage.getCSSLinks(),
-          bodyHtml: academyPage.getPageContents(),
-          slug: academyPage.slug,
-          metaDescription: academyPage.getMetaDescription()
+        title,
+        headHtml,
+        bodyHtml,
+        metaDescription,
+        slug
       });
     }
   }
@@ -74,12 +77,22 @@ class HubSpotPublisher {
       return this.uploadPage(page)
     }));
 
+    console.log(`\n🏁 Uploaded ${pagesForHubSpotUpload.length} pages to HubSpot.\n`);
+
     const pagesToBeDeleted = pagesCurrentlyOnHubSpot.filter(pageCurrentlyOnHubSpot =>
       !pagesForHubSpotUpload.find(pageForHubSpotUpload => pageCurrentlyOnHubSpot.slug === pageForHubSpotUpload.slug)
     );
 
-    // TODO: Remove extra files from the /academy directory
-    console.warn(`Note: There were ${pagesToBeDeleted.length} pages on Bitovi.com that are not in the local project and were left in place.`);
+    if (pagesToBeDeleted.length) {
+      // TODO: uncomment the below line to delete pages
+      // await this.deletePages(pagesToBeDeleted);
+      console.log(`Note: The following ${pagesToBeDeleted.length} pages were removed from Bitovi.com since they did not exist in the local project.`);
+      pagesToBeDeleted.forEach(page => console.log(`  - ${page.slug}`));
+    }
+  }
+
+  async deletePages(pagesToBeDeleted) {
+    await Promise.all(pagesToBeDeleted.map(page => this.hubSpotApi.deletePage(page.id)));
   }
 }
 
