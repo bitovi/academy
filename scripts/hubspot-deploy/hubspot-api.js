@@ -92,7 +92,7 @@ class HubSpotApi {
     }
     try {
       const response =  await this.makeRequest('PATCH', url, data);
-      console.log("Success! Updated page:", response.data.name);
+      console.log("✅ Updated", response.data.slug);
       return response;
     } catch(error) {
       console.error('error during `updatePage` in `hubspot-api.js`');
