@@ -78,9 +78,9 @@ A primary goal of the “Timeline Report” is to keep the timeline up to date, 
 Connecting the Timeline Report to your Jira instance
 ----------------------------------------------------
 
-The timeline report can be found at [https://bitovi-jira-timeline-report-main.bitovi-jira.com/](https://bitovi-jira-timeline-report-main.bitovi-jira.com/) . To use it:
+The timeline report can be found at [https://timeline-report.bitovi-jira.com/](https://timeline-report.bitovi-jira.com/) . To use it:
 
-1.  Go to [https://bitovi-jira-timeline-report-main.bitovi-jira.com/](https://bitovi-jira-timeline-report-main.bitovi-jira.com/) . The site will redirect to Jira to authenticate the app to read data.
+1.  Go to [https://timeline-report.bitovi-jira.com/](https://timeline-report.bitovi-jira.com/) . The site will redirect to Jira to authenticate the app to read data.
     
 2.  Select the Jira instance you would like the app to connect to:  
     
