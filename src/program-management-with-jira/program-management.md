@@ -26,6 +26,13 @@ huge teams for products millions of people use daily.
 </div>
 <img src="../static/img/program-management-with-jira/home/case-study-thumb.png"/>
 </a>
+<a href="https://www.youtube.com/watch?v=ipW1I74cDGo">
+<div>What Folks Are Saying</div>
+<div>
+Thanks again Justin Meyer & Paul Herzog! I'm excited to use the planning & estimating tools you all educated us on and continue to grow my Jira know-how.
+</div>
+<img src="../static/img/program-management-with-jira/home/joe-thumb.png"/>
+</a>
 </div>
 
 
