@@ -80,7 +80,12 @@ The following video shows how to:
 
 The following video shows how to:
 
-1. Create a Filter showing only Initiatives
+1. Create a Filter showing only Initiatives. The query should be:
+
+   ```
+   issueType = Initiative ORDER BY Rank ASC
+   ```
+
 2. <code>[1:21](https://youtu.be/KZGr3EB5bsA?t=81)</code> Create a Kanban Board sourced from the Filter
 3. <code>[2:05](https://youtu.be/KZGr3EB5bsA?t=125)</code> Create the Boards Columns with the following names:
    
@@ -100,7 +105,7 @@ The following video shows how to:
 
 5. <code>[4:00](https://youtu.be/KZGr3EB5bsA?t=240)</code> Fixing duplicate statuses
 
-<iframe class="block-16-by-9" src="https://www.youtube.com/embed/KZGr3EB5bsA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe class="block-16-by-9" src="https://www.youtube.com/embed/65C9f6OR4G0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 
 ## Adding Custom Fields
