@@ -39,10 +39,7 @@ Despite this, evaluating the cost and benefits of an initiative is exactly what 
 
 Furthermore, when organizations are not conditioned to building incremental plans and package too many features in an initiative, a lengthy estimate is often the only way to get agreement to split initiatives.
 
-For these reasons, estimating is still a powerful tool in the Program Manager’s toolkit. This training goes over a highly effective and accurate approach to estimating.
-
-> ALT:  
-> For these reasons, estimating is still a powerful tool in the Program Manager’s toolkit. Lets take a look at different approaches to estimating and then discuss this training’s approach.
+For these reasons, estimating is still a powerful tool in the Program Manager’s toolkit. Lets take a look at different approaches to estimating and then discuss this training’s approach.
 
 Approaches to Estimating
 ------------------------
