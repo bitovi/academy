@@ -6,6 +6,34 @@ with Jira.
 
 @body
 
+
+<div class="ads-red-border-300">
+<a href="https://www.bitovi.com/events/program-management-webinar">
+<div>Upcoming Event</div>
+<div>
+On Thursday, September 28 at 10AM CT, attend a free 4-hour overview 
+of the techniques in this training. <br/>
+<span>Register here.</span>
+</div>
+<img src="../static/img/program-management-with-jira/home/training-thumbnail.png"/>
+</a>
+<a href="https://www.youtube.com/watch?v=ipW1I74cDGo">
+<div>Real World Results</div>
+<div>
+See how these techniques have been used in the real world to manage
+huge teams for products millions of people use daily.
+<span>Click here to watch.</span>
+</div>
+<img src="../static/img/program-management-with-jira/home/case-study-thumb.png"/>
+</a>
+</div>
+
+
+
+
+
+
+
 ## Purpose
 
 In this training, you will learn how to <span class="color-blue bold">build</span>, 
@@ -19,9 +47,9 @@ In this training, you will learn how to <span class="color-blue bold">build</spa
 - <span class="color-teal bold">Accurate</span> - How to use improved modeling of estimates to create more accurate plans.
 - <span class="color-gray bold">Multi-team</span> - How to build plans that coordinates the work items for multiple product teams at a program level.
 
-This training will leave you with a decent understanding of Jira too. However, the ultimate goal of this training is to teach you how to create actionable plans.
+This training will leave you with a solid understanding of Jira too. However, the ultimate goal of this training is to teach you how to create <span class="color-red bold italic">actionable</span> plans.
 
-## Actionable Plans
+## <span class="color-red bold">Actionable</span> Plans
 
 > Know the future so that you can change it.
 > 
