@@ -1,6 +1,6 @@
 @page learn-agile-program-management-with-jira Agile Program Management With Jira
 @parent bit-academy 8
-@metaogimage ../static/image/program-management-with-jira/og-thumbnail.png
+@metaogimage ../static/img/program-management-with-jira/og-thumbnail.png
 @description Learn how to build, maintain, and report on accurate multi-team plans
 with Jira.
 
