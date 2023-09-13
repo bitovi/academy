@@ -126,9 +126,10 @@ On a high level, we suggest repeating for each step of each use case:
 3.  Identify any dependencies on other teams.
     
 
-This process is explained in the following Google Slides presentation: [https://docs.google.com/presentation/d/17yP8rbcjkajw2gA7C1WHhCT1Iy3-AE2Qk9Y5-9v4czw/edit?usp=sharing](https://docs.google.com/presentation/d/17yP8rbcjkajw2gA7C1WHhCT1Iy3-AE2Qk9Y5-9v4czw/edit?usp=sharing).
+This process is explained in the following: [Google Slides presentation](https://docs.google.com/presentation/d/17yP8rbcjkajw2gA7C1WHhCT1Iy3-AE2Qk9Y5-9v4czw/edit?usp=sharing):
 
-<img src="../static/img/program-management-with-jira/estimating/initiative-to-epics-video.png" class="content-400-800-shadow"/>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRoQkGBxqt4_OohuLDYaXRRKw2VGFoERtO_-eSjY-0UZ2U-h_Qjn-emjkiSCwAVHFV4LYAIsC5gkCNA/embed?start=false&loop=false&delayms=3000" frameborder="0" class="block-16-by-9" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
 
 The presentation walks through breaking down the initiative into the following 8 epics:
 
