@@ -20,7 +20,7 @@ The following video walks through:
 3. Creating the `Itsy Marketplace` that will serve as the program project. [1:09](https://youtu.be/Wcv92pAlryk?t=69)
 4. Creating the Order, Store, and Payment projects that will be used for individual product team projects. [1:53](https://youtu.be/Wcv92pAlryk?t=113)
 
-<iframe class="block-16-by-9" src="https://www.youtube.com/embed/Wcv92pAlryk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<iframe class="block-16-by-9 drop-shadow-center-black" src="https://www.youtube.com/embed/Wcv92pAlryk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Upgrading to Jira Premium
 
