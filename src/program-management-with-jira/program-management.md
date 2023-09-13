@@ -1,11 +1,10 @@
 @page learn-agile-program-management-with-jira Agile Program Management With Jira
 @parent bit-academy 8
-
+@metaogimage ../static/image/program-management-with-jira/og-thumbnail.png
 @description Learn how to build, maintain, and report on accurate multi-team plans
 with Jira.
 
 @body
-
 
 <div class="ads-red-border-300">
 <a href="https://www.bitovi.com/events/program-management-webinar">
