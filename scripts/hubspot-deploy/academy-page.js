@@ -21,7 +21,7 @@ class AcademyPage {
   getPageData() {
     return {
       title: this.getTitle(),
-      headHtml: this.getCSSLinks(),
+      headHtml: this.getHead(),
       bodyHtml: this.getPageContents(),
       slug: this.slug,
       metaDescription: this.getMetaDescription()
@@ -44,7 +44,16 @@ class AcademyPage {
     const pageContent = this.$('body').html();
     return updateStaticAssetLinks(pageContent);
   }
+  getHead() {
+    const socialMetas = this.getSocialMetas();
+    return this.getCSSLinks()+socialMetas;
 
+  }
+  getSocialMetas(){
+    const metas = this.$("meta[property^=og], meta[name^=twitter]").toArray();
+    return updateStaticAssetLinks( metas.map( element => this.$.html(element)).join('') );
+  }
+  
   getCSSLinks(){
     const cssLinks = this.$('link')
     .toArray()
@@ -64,6 +73,8 @@ const updateStaticAssetLinks = (html) => {
     .replace(/href='\.*\/static/g, `href='${assetBaseUrl}`)
     .replace(/url\(&apos;\.*\/static/g, `url(&apos;${assetBaseUrl}`)
     .replace(/url\('\.*\/static/g, `url('${assetBaseUrl}`)
+    .replace(/content='\.*\/static/g, `content='${assetBaseUrl}`)
+    .replace(/content="\.*\/static/g, `content="${assetBaseUrl}`)
 }
 
 module.exports = AcademyPage;

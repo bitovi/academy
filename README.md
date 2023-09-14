@@ -80,6 +80,14 @@ Create your course in the `src` folder. For best results, follow the organizatio
 @body
 ```
 
+Once you have a 1200x630 image, you can add a `@metaogimage` tag as follows
+
+```
+@metaogimage ../static/img/program-management-with-jira/og-thumbnail.png
+```
+
+
+
 > In the first page, please include an overview of what the course will cover as well as a links for all subsequent pages in the course.
 
 Pages other than the first, introductory page should change the header to this format:
