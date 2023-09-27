@@ -51,6 +51,14 @@ The following sections detail:
 
 Let’s learn how to use the “Timeline Report” and why!
 
+
+The following is the [Google Slides presentation](https://docs.google.com/presentation/d/1zvMxqCu7h_hDpCP-SM6cNXWUbzasTbVqoKq2cTpOErU/edit?usp=sharing)
+for this material:
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vRu7fc5Ak81pr_sia28FrLKPwY_0XsNEAOSU4M_2goUXuiSOw0MqnqUiRynodZfn4AmySWs63z0meXw/embed?start=false&loop=false&delayms=3000" frameborder="0" class="block-16-by-9" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+
+
 Keeping Jira the Source of Truth
 --------------------------------
 

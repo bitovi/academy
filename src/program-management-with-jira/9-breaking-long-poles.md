@@ -10,6 +10,12 @@ Overview
 
 It barely needs to be said that finding ways to deliver a product faster is a key aspect of business success. There are costs associated with not having a feature customers want, an efficiency improvement that internal users need, a delay in being first to market with a disruptive offering. An obvious way to achieve a shorter cycle is to find the longest “pole” in the schedule and break it up, finding ways to deliver it quicker.
 
+The following is the [Google Slides presentation](https://docs.google.com/presentation/d/1lj9gs_40FEG2vne63fLt3_Ym4-y9GyHuQTtZLeGaAwE/edit?usp=sharing)
+for this material:
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vStQ7Wo3f3WwIeHuMtxlLMp74BISqS-k7LTOe6fU26e0TgI2-Pr7lQHWylavHB1q0fCrPx2W2fQSa4B/embed?start=false&loop=false&delayms=3000" frameborder="0" class="block-16-by-9" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+
 Ways to Shorten the Long Pole
 -----------------------------
 

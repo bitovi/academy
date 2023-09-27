@@ -30,6 +30,14 @@ The purpose of estimating is to gauge the costs associated with implementing an 
   
 For the exercise, you will break down your work into epics and work with the other trainees to estimate the work. Finally, you’ll make a plan for the work in Advanced Roadmaps that shows the work plan similar to the image above.
 
+The following is the [Google Slides presentation](https://docs.google.com/presentation/d/1J-8iyn9GJ0nPA939_8OYQpgzjkpbWNogS8JWKohbkAY/edit?usp=sharing)
+for much of this material:
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQ_BzvFQiSnpNgTinUYBcGytCSBtmpearJhuSwySLlRQmJSYr-ZDb2CpA0KX35sLNMPYzp0wF4ittCC/embed?start=false&loop=false&delayms=3000" frameborder="0" class="block-16-by-9" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+Note, there is another presentation below!
+
+
 Why estimate
 ------------
 
@@ -354,10 +362,16 @@ Unfortunately, Jira does not have a way to auto-plan work without moving epics i
 
 The following video shows the steps to accomplishing this:
 
-1. <code>[2:55](https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&t=175)</code> Determine Team Velocities
-2. <code>[3:20](https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&t=200)</code> Enter adjusted "Story points"
-3. <code>[4:19](https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&t=258)</code> Adjust epic timings
-4. <code>[4:57](https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&t=295)</code> Repeat setting epic adjusted "Story points" and timing with the Bitovi auto-scheduler
+1. <code>[2:55](https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&t=175)</code> Determine Team Velocities.
+2. <code>[3:20](https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&t=200)</code> Enter adjusted "Story points".
+3. <code>[4:19](https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&t=258)</code> Adjust epic timings.
+4. <code>[4:57](https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&t=295)</code> Repeat setting epic adjusted "Story points" and timing with the Bitovi [auto-scheduler](https://auto-scheduler.bitovi-jira.com/) by loading just the 
+   initiative's epics with:
+
+   ```
+   issuekey in portfolioChildIssuesOf("KEY") and issueType = Epic
+   ```
+   
 
 
 <iframe class="block-16-by-9" src="https://www.youtube.com/embed/dFldN5ugf74" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
