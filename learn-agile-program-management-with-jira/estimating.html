@@ -572,6 +572,10 @@ covering CanJS core libraries.">
 <li><p>How this course’s estimation approach differs from other approaches.</p></li>
 </ul>
 <p>For the exercise, you will break down your work into epics and work with the other trainees to estimate the work. Finally, you’ll make a plan for the work in Advanced Roadmaps that shows the work plan similar to the image above.</p>
+<p>The following is the <a href="https://docs.google.com/presentation/d/1J-8iyn9GJ0nPA939_8OYQpgzjkpbWNogS8JWKohbkAY/edit?usp=sharing">Google Slides presentation</a>
+for much of this material:</p>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQ_BzvFQiSnpNgTinUYBcGytCSBtmpearJhuSwySLlRQmJSYr-ZDb2CpA0KX35sLNMPYzp0wF4ittCC/embed?start=false&loop=false&delayms=3000" frameborder="0" class="block-16-by-9" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<p>Note, there is another presentation below!</p>
 <h2>Why estimate</h2>
 <p>Estimating software is a notoriously fraught process, especially earlier in the process. Not only can estimates be off by orders of magnitude, but there’s sometimes career jeopardy. Providing an estimate and not delivering on it can be seen as a failure.</p>
 <p>Despite this, evaluating the cost and benefits of an initiative is exactly what a product team needs to do if it’s going to make wise decisions on what initiatives to pursue. Some form of cost estimate is needed.</p>
@@ -768,10 +772,13 @@ result looks like:</p>
 <p>Unfortunately, Jira does not have a way to auto-plan work without moving epics into sprints, so we build a plan by scheduling the initiative’s epics to start several months in the future, beyond when any scheduled work is planned. Later we will use Jira’s auto-scheduling feature to place these epics to start after work in progress.</p>
 <p>The following video shows the steps to accomplishing this:</p>
 <ol>
-<li><code><a href="https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&amp;t=175">2:55</a></code> Determine Team Velocities</li>
-<li><code><a href="https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&amp;t=200">3:20</a></code> Enter adjusted &quot;Story points&quot;</li>
-<li><code><a href="https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&amp;t=258">4:19</a></code> Adjust epic timings</li>
-<li><code><a href="https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&amp;t=295">4:57</a></code> Repeat setting epic adjusted &quot;Story points&quot; and timing with the Bitovi auto-scheduler</li>
+<li><p><code><a href="https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&amp;t=175">2:55</a></code> Determine Team Velocities.</p></li>
+<li><p><code><a href="https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&amp;t=200">3:20</a></code> Enter adjusted &quot;Story points&quot;.</p></li>
+<li><p><code><a href="https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&amp;t=258">4:19</a></code> Adjust epic timings.</p></li>
+<li><p><code><a href="https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&amp;t=295">4:57</a></code> Repeat setting epic adjusted &quot;Story points&quot; and timing with the Bitovi <a href="https://auto-scheduler.bitovi-jira.com/">auto-scheduler</a> by loading just the
+initiative's epics with:</p>
+<pre><code>issuekey in portfolioChildIssuesOf(&quot;KEY&quot;) and issueType = Epic
+</code></pre></li>
 </ol>
 <iframe class="block-16-by-9" src="https://www.youtube.com/embed/dFldN5ugf74" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 <p>The following sub-sections detail the process in writing:</p>
