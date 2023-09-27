@@ -1,7 +1,7 @@
 @page learn-agile-program-management-with-jira/estimating Estimating
 @parent learn-agile-program-management-with-jira 8
 
-@description Learn how to build a plan and estimate the delivery time of an initiaiative.
+@description Learn how to build a plan and estimate the delivery time of an initiative.
 
 @body
 
