@@ -22,6 +22,12 @@ Typically, prioritization is outside of a Program Manager’s responsibility. So
 
 For the exercise, you will prioritize the different initiatives with your training team and establish the official product backlog!
 
+The following is the [Google Slides presentation](https://docs.google.com/presentation/d/1JiUiEqWRHhvqKaIfkixBZQUffnNt6tbZlj-sc1cD798/edit?usp=sharing)
+for this material:
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQgQ0suP1xHN6JpkXwCsObHoz_-ttwK_whjjcU91lK1rIaa7rHvi0oL0-9Er5Kd6jvF61pg53YH1G7g/embed?start=false&loop=false&delayms=3000" frameborder="0" class="block-16-by-9" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+
 Prioritization Frameworks
 -------------------------
 

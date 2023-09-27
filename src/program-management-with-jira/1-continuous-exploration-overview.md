@@ -17,6 +17,14 @@ In this section, you will learn:
 
 For the exercise, you will download the Continuous Exploration process document so you can share it with your team.
 
+The following is the [Google Slides presentation](https://docs.google.com/presentation/d/1I5ePcX45_0au1DqdoDvwjH0J-EGkyASvyOFmEUoPXxk/edit?usp=sharing)
+for this material:
+
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vTdT9kQsnZRb4dqBmLKQ26GKqRjA3BtbYTm3UV4_vpbVQ_GjMefbIOGzJYp_mJVixRYEnTc1UPsi8bM/embed?start=false&loop=false&delayms=3000" frameborder="0" class="block-16-by-9" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+
+
+
+
 ## Continuous Exploration
 
 <img src="../static/img/program-management-with-jira/departments.png"
