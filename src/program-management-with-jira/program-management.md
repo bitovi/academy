@@ -10,8 +10,8 @@ with Jira.
 <a href="https://www.bitovi.com/events/program-management-webinar">
 <div>Upcoming Event</div>
 <div>
-On Thursday, September 28 at 10AM CT, attend a free 4-hour overview 
-of the techniques in this training. <br/>
+On Thursday, January 11 at 10AM CT, attend a free 4-hour hands-on 
+of some of the techniques in this training. <br/>
 <span>Register here.</span>
 </div>
 <img src="../static/img/program-management-with-jira/home/training-thumbnail.png"/>
@@ -32,7 +32,27 @@ Thanks again Justin & Paul! I'm excited to use the planning & estimating tools y
 </div>
 <img src="../static/img/program-management-with-jira/home/joe-thumb.png"/>
 </a>
+<a href="https://www.linkedin.com/feed/update/urn:li:activity:7103035457785008128?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7103035457785008128%2C7103106664626561025%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287103106664626561025%2Curn%3Ali%3Aactivity%3A7103035457785008128%29">
+<div>What Folks Are Saying</div>
+<div>
+Was a fantastic training day, so glad I joined. For those looking to level up your multi-team program management game, give this training a go!
 </div>
+<img src="../static/img/program-management-with-jira/home/efren-thumb.png"/>
+</a>
+<a href="https://www.linkedin.com/feed/update/urn:li:activity:7103035457785008128?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7103035457785008128%2C7103106664626561025%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287103106664626561025%2Curn%3Ali%3Aactivity%3A7103035457785008128%29">
+<div>What Folks Are Saying</div>
+<div>
+Thank you for this training. It was wonderful to learn new insights with your open source materials in agile program management!
+</div>
+<img src="../static/img/program-management-with-jira/home/jamesa-thumb.png"/>
+</a>
+<a href="https://www.linkedin.com/feed/update/urn:li:activity:7103035457785008128?commentUrn=urn%3Ali%3Acomment%3A%28activity%3A7103035457785008128%2C7103106664626561025%29&dashCommentUrn=urn%3Ali%3Afsd_comment%3A%287103106664626561025%2Curn%3Ali%3Aactivity%3A7103035457785008128%29">
+<div>What Folks Are Saying</div>
+<div>
+Thanks Justin and Paul for hosting. And big thanks for open sourcing your training materials. Looking forward to sharing with my team.
+</div>
+<img src="../static/img/program-management-with-jira/home/mattie-thumb.png"/>
+</a></div>
 
 
 
