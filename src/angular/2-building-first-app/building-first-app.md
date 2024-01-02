@@ -1,13 +1,13 @@
 @page learn-angular/building-our-first-app Generate an App
 @parent learn-angular 2
 
-@description Learn how to generate an Angular 13 application with it's command line interface (CLI).
+@description Learn how to generate an Angular 17 application with it's command line interface (CLI).
 
 @body
 
 ## How to Use This Guide
 
-This guide will walk you through building an application in Angular 13. Each page of the guide is based on building a new feature, and may have multiple "problems" to solve. Each problem will be explained and include requirements and any set-up steps needed. Most problems will also include unit tests to update to verify the solution has been implemented correctly. The ✏️ icon will be used to indicate when commands need to be run or when files need to be updated. If you have any issues or suggestions as you move through this training, we'd love you to submit a <a href="https://github.com/bitovi/academy/issues/new" >GitHub issue</a> for it! 💖
+This guide will walk you through building an application in Angular 17. Each page of the guide is based on building a new feature, and may have multiple "problems" to solve. Each problem will be explained and include requirements and any set-up steps needed. Most problems will also include unit tests to update to verify the solution has been implemented correctly. The ✏️ icon will be used to indicate when commands need to be run or when files need to be updated. If you have any issues or suggestions as you move through this training, we'd love you to submit a <a href="https://github.com/bitovi/academy/issues/new" >GitHub issue</a> for it! 💖
 
 ## Overview
 
@@ -70,28 +70,28 @@ We'll start by globally installing the Angular CLI.
 ✏️ Run the following:
 
 ```shell
-npm install -g @angular/cli@13
+npm install -g @angular/cli@17
 ```
 
 ## Generating a new app
 
 We're going to build a restaurant menu and ordering application. The final result will look like this:
 
-![Place My Order App screenshot](../static/img/place-my-order.png "Place My Order App screenshot")
+![Place My Order App screenshot](../static/img/place-my-order.png 'Place My Order App screenshot')
 
 (reminder: You can see a DoneJS implementation of this application at [www.place-my-order.com](http://www.place-my-order.com))
 
 ✏️ To create a new Angular Workspace, run the 'ng new' command:
 
 ```shell
-ng new place-my-order --prefix pmo
+ng new place-my-order --prefix pmo --standalone false
 cd place-my-order
 ```
 
 This will create a new Angular Workspace, generate an app module, needed config files, and test suite for your new Angular project. You'll be asked a series of set-up questions:
 
-1. Would you like to add Angular routing? (**yes**)
-2. Which stylesheet format would you like to use? (**Less**)
+1. Which stylesheet format would you like to use? (**Less**)
+2. Do you want to enable Server-Side Rendering (SSR) and Staatic Site Generation (SSG/Prerendering)? (**No**)
 
 Note that we used the prefix property to set our own default prefix. Angular's default is "app", but a good naming convention is to use a short prefix related to your company or application name to easily differentiate from 3rd party utilities.
 
@@ -124,17 +124,11 @@ Let's walk through some of the files that were generated.
 |   |   ├── app.component.ts
 |   |   ├── app.module.ts
 |   ├── assets/
-|   ├── environments/
-|   |   ├── environment.prod.ts
-|   |   ├── environment.ts
 |   ├── index.html
 |   ├── main.ts
-|   ├── polyfills.ts
 |   ├── styles.less
-|   ├── test.ts
-├── .browserslistrc
+├── .editorconfig
 ├── angular.json
-├── karma.conf.json
 ├── package-lock.json
 ├── package.json
 ├── README.md
@@ -145,7 +139,7 @@ Let's walk through some of the files that were generated.
 
 ### angular.json
 
-This file is the config schema for an Angular Workspace. By default Angular configures Webpack for it's build process, and uses the angular.json file for the build information.
+This file is the config schema for an Angular Workspace. By default Angular configures Webpack for its build process, and uses the angular.json file for the build information.
 
 (Note, prior to Angular v6, this file was .angular-cli.json. When migrating versions, having the wrong workspace config file name is a cause for problems.)
 
@@ -158,7 +152,6 @@ This file contains our TypeScript compiling options. Starting from Angular 12, "
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -166,16 +159,18 @@ This file contains our TypeScript compiling options. Starting from Angular 12, "
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
-    "downlevelIteration": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "importHelpers": true,
-    "target": "es2017",
-    "module": "es2020",
+    "target": "ES2022",
+    "module": "ES2022",
+    "useDefineForClassFields": false,
     "lib": [
-      "es2020",
+      "ES2022",
       "dom"
     ]
   },
@@ -186,10 +181,9 @@ This file contains our TypeScript compiling options. Starting from Angular 12, "
     "strictTemplates": true
   }
 }
-
 ```
 
-@highlight 8
+@highlight 7
 
 ### src/main.ts
 
