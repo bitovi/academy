@@ -1,7 +1,7 @@
 @page learn-angular/building-our-first-app Generate an App
 @parent learn-angular 2
 
-@description Learn how to generate an Angular 17 application with it's command line interface (CLI).
+@description Learn how to generate an Angular 17 application with its command line interface (CLI).
 
 @body
 
@@ -91,7 +91,7 @@ cd place-my-order
 This will create a new Angular Workspace, generate an app module, needed config files, and test suite for your new Angular project. You'll be asked a series of set-up questions:
 
 1. Which stylesheet format would you like to use? (**Less**)
-2. Do you want to enable Server-Side Rendering (SSR) and Staatic Site Generation (SSG/Prerendering)? (**No**)
+2. Do you want to enable Server-Side Rendering (SSR) and Static Site Generation (SSG/Prerendering)? (**No**)
 
 Note that we used the prefix property to set our own default prefix. Angular's default is "app", but a good naming convention is to use a short prefix related to your company or application name to easily differentiate from 3rd party utilities.
 
@@ -127,7 +127,6 @@ Let's walk through some of the files that were generated.
 |   ├── index.html
 |   ├── main.ts
 |   ├── styles.less
-├── .editorconfig
 ├── angular.json
 ├── package-lock.json
 ├── package.json
