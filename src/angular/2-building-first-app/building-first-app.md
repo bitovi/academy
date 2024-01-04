@@ -107,6 +107,11 @@ Note that we used the prefix property to set our own default prefix. Angular's d
 </tabset>
 ```
 
+We also set the standalone option to `false`.
+
+Standalone Angular apps drop modules in favor of <a href="https://angular.io/guide/standalone-components">Standalone Components</a> and have a slightly simpler architecture.
+While new Angular apps default to standalone `true`, for the purposes of this training we will still use <a href="https://angular.io/guide/architecture-modules">Angular Modules</a>.
+
 There are [several more helpful properties](https://angular.io/cli/new) that customize how a project is set up.
 
 ## Looking at Our Generated Workspace
@@ -138,7 +143,7 @@ Let's walk through some of the files that were generated.
 
 ### angular.json
 
-This file is the config schema for an Angular Workspace. By default Angular configures Webpack for its build process, and uses the angular.json file for the build information.
+This file is the config schema for an Angular Workspace. By default Angular configures esbuild (Webpack before v17) for its build process, and uses the angular.json file for the build information.
 
 (Note, prior to Angular v6, this file was .angular-cli.json. When migrating versions, having the wrong workspace config file name is a cause for problems.)
 
@@ -232,7 +237,7 @@ This is our root component, you saw it called in our index.html file as `<pmo-ro
 npm run start
 ```
 
-The `start` script command value is `ng serve` which starts a development server on port 4200 by default using <a href="https://github.com/webpack/webpack-dev-server" >webpack-dev-server</a>, and compiles a development version of the app. Any TypeScript errors will be caught by the compiler here, and once ready we can view our app at <a href="http://localhost:4200" >localhost:4200</a>. `ng serve` also has live-reload functionality, meaning the browser will automatically reload as changes are saved and compiled.
+The `start` script command value is `ng serve` which starts a development server on port 4200 by default using <a href="https://esbuild.github.io/" >esbuild</a> and <a href="https://vitejs.dev/">Vite</a> (<a href="https://github.com/webpack/webpack-dev-server">webpack-dev-server</a> before v17), to compile and serve a development version of the app. Any TypeScript errors will be caught by the compiler here, and once ready we can view our app at <a href="http://localhost:4200" >localhost:4200</a>. `ng serve` also has live-reload functionality, meaning the browser will automatically reload as changes are saved and compiled.
 
 ## Running Tests
 

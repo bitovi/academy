@@ -28,7 +28,7 @@ Angular streamlines the build process by masking bundler complexity with the Ang
 
 Up until Angular 16, Angular's build process used Webpack. Webpack is a module bundler that also handles transforming resources, like Less or Typescript.
 
-Starting on Angular 17, to keep up with latest technology and for its improved build times, Angular switched to ESBuild by default.
+Starting on Angular 17, to keep up with latest technology and for its improved build times, Angular switched to esbuild by default.
 
 ### 4. Google-Backed and Supported Product
 
