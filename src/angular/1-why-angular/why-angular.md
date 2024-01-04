@@ -22,10 +22,13 @@ The use of TypeScript to force type checking improves workflow by catching error
 
 Spinning up a new Angular Workspace automatically creates a test suite, with a working karma config, and new test spec files for any component generated.
 
-### 3. Harnesses the Power of Webpack
+### 3. Harnesses the Power of Modern Bundlers
 
-Webpack is a module bundler that also handles transforming resources, like Less or Typescript.
-Angular streamlines the build process by masking Webpack config complexity with the Angular CLI.
+Angular streamlines the build process by masking bundler complexity with the Angular CLI.
+
+Up until Angular 16, Angular's build process used Webpack. Webpack is a module bundler that also handles transforming resources, like Less or Typescript.
+
+Starting on Angular 17, to keep up with latest technology and for its improved build times, Angular switched to ESBuild by default.
 
 ### 4. Google-Backed and Supported Product
 
