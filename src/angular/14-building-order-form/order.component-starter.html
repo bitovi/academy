@@ -2,13 +2,17 @@
   <ng-container *ngIf="orderComplete; else showOrderForm"></ng-container>
   <ng-template #showOrderForm>
     <h2>Order here</h2>
-    <form *ngIf="orderForm" [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+    <form
+      *ngIf="orderForm && restaurant"
+      [formGroup]="orderForm"
+      (ngSubmit)="onSubmit()"
+    >
       <ng-container *ngIf="restaurant?.menu?.lunch">
         <h4>Lunch Menu</h4>
         <ul class="list-group">
           <li
             class="list-group-item"
-            *ngFor="let item of restaurant?.menu?.lunch"
+            *ngFor="let item of restaurant.menu.lunch"
           >
             <label>
               <input type="checkbox" formControlName="items" />
@@ -17,12 +21,12 @@
           </li>
         </ul>
       </ng-container>
-      <ng-container *ngIf="restaurant?.menu?.dinner">
+      <ng-container *ngIf="restaurant.menu.dinner">
         <h4>Dinner Menu</h4>
         <ul class="list-group">
           <li
             class="list-group-item"
-            *ngFor="let item of restaurant?.menu?.dinner"
+            *ngFor="let item of restaurant.menu.dinner"
           >
             <label>
               <input type="checkbox" formControlName="items" />
@@ -33,29 +37,17 @@
       </ng-container>
       <div class="form-group">
         <label class="control-label">Name:</label>
-        <input
-          name="name"
-          type="text"
-          formControlName="name"
-        />
+        <input name="name" type="text" formControlName="name" />
         <p>Please enter your name.</p>
       </div>
       <div class="form-group">
         <label class="control-label">Address:</label>
-        <input
-          name="address"
-          type="text"
-          formControlName="address"
-        />
+        <input name="address" type="text" formControlName="address" />
         <p class="help-text">Please enter your address.</p>
       </div>
       <div class="form-group">
         <label class="control-label">Phone:</label>
-        <input
-          name="phone"
-          type="text"
-          formControlName="phone"
-        />
+        <input name="phone" type="text" formControlName="phone" />
         <p class="help-text">Please enter your phone number.</p>
       </div>
       <div class="submit">
