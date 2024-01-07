@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
-import { ImageUrlPipe } from 'src/app/image-url.pipe';
+import { ImageUrlPipe } from '../../image-url.pipe';
 import { RestaurantService } from '../restaurant.service';
 import { DetailComponent } from './detail.component';
 
