@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import {
   combineLatest,
   map,
@@ -39,7 +39,10 @@ const toData = map(
   styleUrls: ['./restaurant.component.less'],
 })
 export class RestaurantComponent implements OnInit, OnDestroy {
-  form: FormGroup = this.createForm();
+  form: FormGroup<{
+    state: FormControl<string>;
+    city: FormControl<string>;
+  }> = this.createForm();
 
   states$: Observable<Data<State>>;
   cities$: Observable<Data<City>>;
@@ -56,13 +59,13 @@ export class RestaurantComponent implements OnInit, OnDestroy {
     private restaurantService: RestaurantService,
     private fb: FormBuilder
   ) {
-    this.selectedState$ = this.form
-      .get('state')!
-      .valueChanges.pipe(startWith(''));
+    this.selectedState$ = this.form.controls.state.valueChanges.pipe(
+      startWith('')
+    );
 
-    this.selectedCity$ = this.form
-      .get('city')!
-      .valueChanges.pipe(startWith(''));
+    this.selectedCity$ = this.form.controls.city.valueChanges.pipe(
+      startWith('')
+    );
 
     this.states$ = this.restaurantService
       .getStates()
@@ -76,7 +79,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
       takeUntil(this.onDestroy$),
       tap((states) => {
         if (states.value.length > 0) {
-          this.form.get('state')!.enable();
+          this.form.controls.state.enable();
         }
       })
     );
@@ -98,12 +101,12 @@ export class RestaurantComponent implements OnInit, OnDestroy {
       takeUntil(this.onDestroy$),
       tap((cities) => {
         if (cities.value.length === 0) {
-          this.form.get('city')!.disable({
+          this.form.controls.city.disable({
             onlySelf: true,
             emitEvent: false,
           });
         } else {
-          this.form.get('city')!.enable({
+          this.form.controls.city.enable({
             onlySelf: true,
             emitEvent: false,
           });
@@ -116,7 +119,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
       pairwise(),
       tap(([previous, current]) => {
         if (current && current !== previous) {
-          this.form.get('city')!.patchValue('');
+          this.form.controls.city.patchValue('');
         }
       })
     );
@@ -148,8 +151,11 @@ export class RestaurantComponent implements OnInit, OnDestroy {
     this.onDestroy$.complete();
   }
 
-  createForm(): FormGroup {
-    return this.fb.group({
+  createForm(): FormGroup<{
+    state: FormControl<string>;
+    city: FormControl<string>;
+  }> {
+    return this.fb.nonNullable.group({
       state: { value: '', disabled: true },
       city: { value: '', disabled: true },
     });
