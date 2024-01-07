@@ -85,7 +85,7 @@ When you interact with the dropdown menus, you should see their values logged to
 ✏️ Update **src/app/restaurant/restaurant.component.ts**
 
 @sourceref restaurant.component.ts
-@highlight 1,3,17,38,39,47-72
+@highlight 1,3,17,41,42,50-73
 
 </details>
 
