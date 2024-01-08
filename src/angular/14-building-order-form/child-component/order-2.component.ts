@@ -20,8 +20,8 @@ export interface Item {
   price: number;
 }
 
-interface OrderForm {
-  restaurant: FormControl<string | undefined>;
+export interface OrderForm {
+  restaurant: FormControl<string>;
   name: FormControl<string>;
   address: FormControl<string>;
   phone: FormControl<string>;
@@ -47,7 +47,6 @@ export class OrderComponent implements OnInit, OnDestroy {
   orderForm?: FormGroup<OrderForm>;
   restaurant?: Restaurant;
   isLoading = true;
-  items?: FormArray;
   orderTotal = 0.0;
   completedOrder: any;
   orderComplete = false;
@@ -83,7 +82,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   createOrderForm(): void {
     this.orderForm = this.formBuilder.nonNullable.group({
-      restaurant: [this.restaurant?._id],
+      restaurant: [this.restaurant?._id ?? '', Validators.required],
       name: ['', Validators.required],
       address: ['', Validators.required],
       phone: ['', Validators.required],
@@ -118,7 +117,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   startNewOrder(): void {
     this.orderComplete = false;
-    this.completedOrder = this.orderForm?.value;
+    this.completedOrder = undefined;
     // CLEAR THE ORDER FORM
     this.createOrderForm();
   }

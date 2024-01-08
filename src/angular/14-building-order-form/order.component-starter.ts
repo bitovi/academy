@@ -19,8 +19,8 @@ export interface Item {
   price: number;
 }
 
-interface OrderForm {
-  restaurant: FormControl<string | undefined>;
+export interface OrderForm {
+  restaurant: FormControl<string>;
   name: FormControl<string>;
   address: FormControl<string>;
   phone: FormControl<string>;
@@ -46,7 +46,6 @@ export class OrderComponent implements OnInit, OnDestroy {
   orderForm?: FormGroup<OrderForm>;
   restaurant?: Restaurant;
   isLoading = true;
-  items?: FormArray;
   orderTotal = 0.0;
   completedOrder: any;
   orderComplete = false;
@@ -80,7 +79,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   startNewOrder(): void {
     this.orderComplete = false;
-    this.completedOrder = this.orderForm?.value;
+    this.completedOrder = undefined;
     // CLEAR THE ORDER FORM
     this.createOrderForm();
   }

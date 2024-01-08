@@ -20,10 +20,10 @@ We need to create a new service to handle creating and updating orders. We'll ne
 
 ## P1: Technical Requirements
 
-Create a new service `order` in the order directory, and write and export `OrderForm`, `Order` and `Item` interfaces representing these objects in the new service:
+Create a new service `order` in the order directory, and write and export `CreateOrderDto`, `Order` and `Item` interfaces representing these objects in the new service:
 
 ```typescript
-const orderForm = {
+const createOrderDto = {
   restaurant: '12345',
   name: 'Jennifer',
   address: '123 Main st',
@@ -96,7 +96,7 @@ ng test
 
 - The method signatures for the methods you'll be adding to `OrderService`:
   - `getOrders(): Observable<{data: Order[]}>` should make a `GET` request
-  - `createOrder(orderForm: OrderForm): Observable<Order>` should make a `POST` request
+  - `createOrder(orderForm: CreateOrderDto): Observable<Order>` should make a `POST` request
   - `updateOrder(order: Order, status: string): Observable<Order>` should make a `PUT` request to `/orders/<order-id>`
   - `deleteOrder(orderId: string): Observable<Order>` should make a `DELETE` request to `/orders/<order-id>`
 - You will need to make sure `HttpClient` is imported and
@@ -132,6 +132,8 @@ How we will solve this:
 4. Once complete, `orderComplete` should be set to `true`
    and set back to `false` when `startNewOrder()` is called.
 5. We will save the completed order in `completedOrder`.
+
+> A FormGroup's `value` property is wrapped in `Partial` type because controls are removed from the form's value when disabled. For our case, we don't need to disable controls. We can use a FormGroup's `getRawValue()` method to access its value with the full type.
 
 ## P3: Setup
 
