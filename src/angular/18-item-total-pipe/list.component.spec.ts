@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
-import { ItemTotalPipe } from 'src/app/item-total.pipe';
+import { ItemTotalPipe } from '../../item-total.pipe';
 import { Order, OrderService } from '../order.service';
 
 import { ListComponent } from './list.component';
