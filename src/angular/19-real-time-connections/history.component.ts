@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import * as io from 'socket.io-client';
-import { ResponseData } from 'src/app/restaurant/restaurant.service';
-import { environment } from 'src/environments/environment';
+import io from 'socket.io-client';
+import { ResponseData } from '../../restaurant/restaurant.service';
+import { environment } from '../../../environments/environment';
 import { Order, OrderService } from '../order.service';
 
 interface Data<T> {
