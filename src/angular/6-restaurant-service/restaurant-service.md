@@ -149,7 +149,7 @@ The way we're accessing our locally run API during development may be different 
 ng generate environments
 ```
 
-> Before v17, Angular used to generate the environment files with `ng new` command.
+> Before v15, Angular used to generate the environment files with `ng new` command.
 
 The command will generate two files, `src/environments/environment.ts` and `src/environments/environment.development.ts`, with the following content:
 
@@ -259,9 +259,7 @@ ng g interface user
 This will generate:
 
 ```typescript
-export interface User {
-}
-
+export interface User {}
 ```
 
 ## P2: Technical Requirements
