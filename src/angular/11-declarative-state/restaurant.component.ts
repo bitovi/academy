@@ -119,7 +119,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
       pairwise(),
       tap(([previous, current]) => {
         if (current && current !== previous) {
-          this.form.controls.city.patchValue('');
+          this.form.controls.city.setValue('');
         }
       })
     );

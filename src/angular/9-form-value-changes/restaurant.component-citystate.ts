@@ -83,7 +83,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
           // if state has a value and has changed, clear previous city value
           if (state !== val) {
-            this.form.controls.city.patchValue('');
+            this.form.controls.city.setValue('');
           }
 
           // fetch cities based on state val

@@ -98,7 +98,7 @@ To use reactive forms we must import our ReactiveFormsModule into the root app.
 ## FormControl
 
 The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl" >FormControl</a>. This class manages the form input model and connection to it's input element in the DOM and inherits from the <a href="https://angular.io/api/forms/AbstractControl" >AbstractControl</a>
-class. It's worth getting familiar with the methods available in this class (like setValidators and patchValue), as they're used quite often in reactive form development. The formControl is bound to it's element in the DOM using the `[formControl]` directive.
+class. It's worth getting familiar with the methods available in this class (like setValidators and setValue), as they're used quite often in reactive form development. The formControl is bound to it's element in the DOM using the `[formControl]` directive.
 
 @sourceref ./form-control.html
 @codepen
