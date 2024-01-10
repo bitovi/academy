@@ -298,16 +298,18 @@ The parent component is listening for a change on the child component's property
 @codepen
 @highlight 31,32,43-45,69,77-79,only
 
-## Programmatically Updating FormControl Values
+## Programmatically Updating FormArray Values
 
-When we have a formControl we need to update programmatically with a value we can use the <a href="https://angular.io/api/forms/FormControl#patchvalue" >`patchValue`</a> method on the `FormControl` class. This method must be called on a FormControl instance and with a parameter of the new value.
+When we have a FormArray we need to update programmatically with a value we can use the <a href="https://angular.io/api/forms/FormArray#patchvalue" >`patchValue`</a> or <a href="https://angular.io/api/forms/FormArray#setvalue" >`setValue`</a> methods on the `FormArray` class.
+
+The difference between these two FormArray's methods is that `setValue` replaces the current array with the new value, and `patchValue` updates the array with the new values, trying to update values where possible.
 
 @sourceref ./form-patch-value.html
 @codepen
 @highlight 25,57-61,only
 
 - How to emit a value to a parent component (you learned this in the section above! ✔️)
-- How to programmatically update a FormControl's value (you learned this in the section above! ✔️)
+- How to programmatically update a FormArray's value (you learned this in the section above! ✔️)
 
 ## P5: Solution
 
