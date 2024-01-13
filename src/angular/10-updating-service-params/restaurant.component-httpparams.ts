@@ -108,6 +108,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   }
 
   getStates(): void {
+    this.states.isPending = true;
     this.restaurantService
       .getStates()
       .pipe(takeUntil(this.onDestroy$))
@@ -134,6 +135,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   }
 
   getRestaurants(state: string, city: string): void {
+    this.restaurants.isPending = true;
     this.restaurantService
       .getRestaurants(state, city)
       .pipe(takeUntil(this.onDestroy$))
