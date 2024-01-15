@@ -96,11 +96,11 @@ If this is confusing, don’t worry, we built an app to help teams understand ho
 
 By default, the tool uses “Days” instead of “Story Points” and “Velocity” to represent a median time estimate. We use days for now because it makes things more concrete than story points.
 
-Notice the tool defaults to an estimate of 10 days and a confidence of 60%. It uses these values to predict the work has a `90%` chance of being complete in `22 days`.
+Notice the tool defaults to an estimate of 10 days and a confidence of 50%. It uses these values to predict the work has a `90%` chance of being complete in `25 days`.
 
 <img src="../static/img/program-management-with-jira/estimating/likelihood-selected.png" class="content-400-800-shadow"/>
 
-This `90%` likelihood value of `22 days` is what we use in our projections of the timeline.
+This `90%` likelihood value of `25 days` is what we use in our projections of the timeline.
 
 Also, notice the graph below, this shows how the likelihood of completion gets higher with the number of days:
 
