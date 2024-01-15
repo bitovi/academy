@@ -10,7 +10,7 @@ with Jira.
 <a href="https://www.bitovi.com/events/program-management-webinar">
 <div>Upcoming Event</div>
 <div>
-On Thursday, January 11 at 10AM CT, attend a free 4-hour hands-on 
+On Thursday, January 24 at 11AM CT, attend a free 4-hour hands-on 
 of some of the techniques in this training. <br/>
 <span>Register here.</span>
 </div>
