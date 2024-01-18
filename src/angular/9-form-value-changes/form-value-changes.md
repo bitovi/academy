@@ -111,7 +111,7 @@ Write two new methods in the `RestaurantsService` to get state and city lists.
 
 Method 1 - `getStates` takes no params and makes a request to `'/states'`
 
-Method 2 - `getCities`, takes a string param called 'state' a makes a request to `'/cities?state="{state abbreviation here}"'`
+Method 2 - `getCities`, takes a string param called 'state' and makes a request to `'/cities?state="{state abbreviation here}"'`
 
 ## P2: How to Verify Your Solution is Correct
 
@@ -133,7 +133,7 @@ Method 2 - `getCities`, takes a string param called 'state' a makes a request to
 
 ## Problem 3: Use Generics to Modify ResponseData interface to Work with States and Cities Data
 
-We would like to use the `ResponseData` interface we wrote to describe the response for the state and city requests, but it only works with and array of type `Restaurant`.
+We would like to use the `ResponseData` interface we wrote to describe the response for the state and city requests, but it only works with an array of type `Restaurant`.
 
 ## P3: What You Need to Know
 

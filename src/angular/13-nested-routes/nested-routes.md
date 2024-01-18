@@ -54,7 +54,7 @@ ng g component restaurant/detail
 
 When you click the detail button on a restaurant from the restaurant list view you'll see the detail view of that restaurant.
 
-✏️ Update the spec file **src/app/restaurant/detail.component.spec.ts** to be:
+✏️ Update the spec file **src/app/restaurant/detail/detail.component.spec.ts** to be:
 
 @sourceref ./detail.component.spec.ts
 
