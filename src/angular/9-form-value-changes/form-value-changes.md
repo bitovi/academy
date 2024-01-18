@@ -99,7 +99,7 @@ We want to be able to get lists of cities and states from our API to populate th
 
 ## How to use HttpParams
 
-<a href="https://angular.io/api/common/http/HttpParams">HttpParams</a> are part of Angulars HttpClient API and help us create parameters for our requests.
+<a href="https://angular.io/api/common/http/HttpParams">HttpParams</a> are part of Angular's HttpClient API and help us create parameters for our requests.
 
 @sourceref ./http-params.html
 @codepen
