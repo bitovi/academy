@@ -23,6 +23,11 @@ Existing MVP
 
 The basic Itsy Bitsy site has been built with a simple product selection and ordering workflow. In addition to the home page shown above, we have:
 
+### User Profile page (when logged in)
+
+<img src="../static/img/program-management-with-jira/product-overview/user-profile.png"
+  class="content-400-800-shadow"/>
+
 ### Product Details page for each product
 
 <img src="../static/img/program-management-with-jira/product-overview/product-details.png"
