@@ -66,7 +66,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   createOrderForm(): void {
     // CREATE AN ORDER FORM TO COLLECT: RESTAURANT ID, NAME, ADDRESS, PHONE, AND ITEMS
     // ITEMS SHOULD USE THE CUSTOM MINLENGTH ARRAY VALIDATION
-    this.orderForm = this.formBuilder.group({});
+    this.orderForm = this.formBuilder.nonNullable.group({});
     this.onChanges();
   }
 

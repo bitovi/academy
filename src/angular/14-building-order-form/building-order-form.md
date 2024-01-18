@@ -65,7 +65,7 @@ The order form component needs to get the restaurant from the route slug, and ne
 
 ## P2: Setup
 
-✏️ Update the **src/order/order.component.html** file to be:
+✏️ Update the **src/app/order/order.component.html** file to be:
 
 @sourceref ./order.component-starter.html
 
