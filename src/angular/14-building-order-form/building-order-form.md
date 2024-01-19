@@ -178,7 +178,7 @@ Create the new menu-items component inside the order component folder
 ng g component order/menu-items
 ```
 
-Go ahead and put your new component in the order history component.
+Go ahead and put your new component in the order component.
 
 ✏️ Update **src/app/order/order.component.html**
 
