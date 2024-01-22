@@ -17,7 +17,7 @@ In this part, we will:
 
 ## Add Production API URL
 
-For our production app, we won't be running a local server, instead we'll point to `https://place-my-order-api.herokuapp.com`. All we need to do is add the apiUrl variable to our production environment file. When we do a production build by running `ng build --prod`, our production file will be used.
+For our production app, we won't be running a local server, instead we'll point to `https://place-my-order-api.herokuapp.com`. All we need to do is add the apiUrl variable to our production environment file. When we do a production build by running `ng build`, our production file will be used.
 
 ✏️ Update **src/environments/environment.prod.ts**:
 
@@ -66,10 +66,10 @@ firebase use --add
 
 ## Deploy App
 
-We need to get our app ready to deploy, so we'll create a build with the production flag.
+We need to get our app ready to deploy, so we'll create a build.
 
 ```shell
-ng build --prod
+ng build
 ```
 
 ```shell

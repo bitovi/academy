@@ -28,7 +28,7 @@ To solve this exercise you will need to know:
 
 ## Route Parameters & Child Views
 
-A common pattern in SPA architecture is to serve a view of an individual piece of data from a path with an identifying parameter. Previously we've defined static paths with Angulars <a href="https://angular.io/guide/router" >router</a>. To create a nested route, we'll need the slug after the slash to be dynamic. We can set a token for the router parameter with `:`. To get the slug from the route in a component, we use the <a href="https://angular.io/api/router/ActivatedRoute" >ActivatedRoute</a> interface.
+A common pattern in SPA architecture is to serve a view of an individual piece of data from a path with an identifying parameter. Previously we've defined static paths with Angular's <a href="https://angular.io/guide/router" >router</a>. To create a nested route, we'll need the slug after the slash to be dynamic. We can set a token for the router parameter with `:`. To get the slug from the route in a component, we use the <a href="https://angular.io/api/router/ActivatedRoute" >ActivatedRoute</a> interface.
 
 @sourceref ./nested-route.html
 @codepen
@@ -54,7 +54,7 @@ ng g component restaurant/detail
 
 When you click the detail button on a restaurant from the restaurant list view you'll see the detail view of that restaurant.
 
-✏️ Update the spec file **src/app/restaurant/detail.component.spec.ts** to be:
+✏️ Update the spec file **src/app/restaurant/detail/detail.component.spec.ts** to be:
 
 @sourceref ./detail.component.spec.ts
 

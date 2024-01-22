@@ -7,16 +7,16 @@
 
 ## Before You Begin
 
-<p><a href="https://www.bitovi.com/community/slack">
-<img src="https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.png?width=200"
-  style="float:left"/> <span style="margin-top: 10px;display: inline-block;">Click here to join<br/>Bitovi's Slack Community</span></a></p>
+<p><a href="https://discord.gg/J7ejFsZnJ4">
+<img src="./static/img/discord.png"
+  style="float:left; margin:20px" width="57"/> <span style="margin-top: 10px;display: inline-block;">Click here to join the<br/>Bitovi Community Discord</span></a></p>
 
 <br/>
 
-Join Bitovi's Slack Community to get help on Bitovi Academy courses or other
+Join the Bitovi Community Discord to get help on Bitovi Academy courses or other
 Angular, React, CanJS and JavaScript problems.
 
-Please ask questions related to Angular in the [Angular chat room](https://bitovi-community.slack.com/messages/CFD2J3HT3).
+Please ask questions related to Angular in the [Angular chat room](https://discord.gg/Qv26e4uq5z).
 
 If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/academy/issues) or email `contact@bitovi.com`.
 
@@ -40,7 +40,7 @@ the features that are present across almost all single page apps:
 
 As for the application itself, it:
 
-- Is written in Angular 13
+- Is written in Angular 17
 - Is a single page application (SPA) that uses [pushState](https://developer.mozilla.org/en-US/docs/Web/API/History/pushState) to simulate routing between several pages.
   - A `home` page
   - A `restaurant list` page that lets the user filter restaurants by state and city
@@ -85,7 +85,7 @@ production and deploying it for others to see ([learn-angular/deploy-app]).
 ## Requirements
 
 In order to complete this guide, you need to have [NodeJS](https://nodejs.org/en/) version
-12 or later installed.
+18.13 or later installed.
 
 ## Next Steps
 

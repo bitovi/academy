@@ -24,7 +24,7 @@ Now that we are able to capture a user's state and city preferences, we want to 
 
 ## Technical Requirements
 
-In the **src/app/restaurant/restaurant.component.ts** file, update the call to the `getRestaurants` service method to use the city and state values capture from the user's form input.
+In the **src/app/restaurant/restaurant.component.ts** file, update the call to the `getRestaurants` service method to use the city and state values captured from the user's form input.
 
 ## How to Verify Your Solution is Correct
 

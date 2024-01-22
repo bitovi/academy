@@ -5,7 +5,7 @@
 
 @body
 
-> **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/ngrx-init) to get your codebase ready to work on this part.
+> **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/ngrx-init) to get your codebase ready to work on this section.
 
 
 ## Overview
@@ -42,7 +42,11 @@ Action Types in NgRx follow a string pattern: `[Source] Event`. Since Actions re
 
 `createAction()` can take up to two arguments: the string `type` and a `config` function that represents additional metadata, usually referred as `props` in Redux Pattern:
 
+> Note that many of the code examples in these sections are for instructional purposes only, and aren't part of our main application repo or solution
+
 ```ts
+// Note: This example code is not part of our application repo or solution
+
 import { createAction, props } from '@ngrx/store';
 
 export const submit = createAction(
@@ -56,9 +60,7 @@ export const submit = createAction(
 
 <details>
 <summary>src/app/store/login/login.actions.ts</summary>
-
 @diff ../3-ngrx-init/login.actions.ts ./login.actions-login-actions.ts only
-
 </details>
 
 
@@ -79,9 +81,7 @@ Next, our goal is to create 3 more Actions for logout:
 
 <details>
 <summary>src/app/store/login/login.actions.ts</summary>
-
 @diff ./login.actions-login-actions.ts ./login.actions.ts only
-
 </details>
 
 
@@ -95,22 +95,18 @@ First, we'll remove the generated Effects. And we will remove the unused imports
 
 <details open>
 <summary>src/app/store/login/login.effects.ts</summary>
-
 @diff ../3-ngrx-init/login.effects.ts ./login.effects.ts only
-
 </details>
 
 Last, we'll remove the generated `on()` handlers in our Reducer function. And we will remove the unused imports from `@ngrx/store` and `./login.actions`:
 
 <details open>
 <summary>src/app/store/login/login.reducer.ts</summary>
-
 @diff ../3-ngrx-init/login.reducer.ts ./login.reducer.ts only
-
 </details>
 
 
-> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-actions). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/ngrx-init...create-actions) on GitHub or you can use the following command in your terminal:
+> **Wrap-up**: By the end of this section, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-actions). You can also compare the [code changes for our solution to this section](https://github.com/bitovi/angular-ngrx-chat/compare/ngrx-init...create-actions) on GitHub or you can use the following command in your terminal:
 
 ```bash
 git diff origin/create-actions

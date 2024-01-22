@@ -115,14 +115,14 @@ npm install place-my-order-assets --save
 
 Open the `angular.json` file, and make the following changes to include these files in our build process. This will copy the images into our assets directory for when we serve our application.
 
-> Pay close attention that you're making these changes under the "build" key and not the "test" key, as the code looks very similar. The build key should be close to line 20.
+> Pay close attention that you're making these changes under the "build" key and not the "test" key, as the code looks very similar. The build key should be close to line 24.
 
 <details open>
 <summary>section copied - angular.json</summary>
 ✏️ Update __angular.json__:
 
 @sourceref ./angular.json
-@highlight 29-41,only
+@highlight 35-47,only
 
 </details>
 

@@ -5,19 +5,19 @@
 
 @body
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/uu9bsgiBo40" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/BBpXqLUy05U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## Before You Begin
 
-<a href="https://www.bitovi.com/community/slack">
-<img src="https://cdn.brandfolder.io/5H442O3W/as/pl546j-7le8zk-5guop3/Slack_RGB.png?width=200"
-  style="float:left"/> <span style="margin-top: 10px;display: inline-block;">Click here to join<br/>Bitovi's Slack Community</span></a>
+<a href="https://discord.gg/J7ejFsZnJ4">
+<img src="./static/img/discord.png"
+  style="float:left; margin:20px" width="57"/> <span style="margin-top: 10px;display: inline-block;">Click here to join the<br/>Bitovi Community Discord</span></a>
 
-Join Bitovi's Slack Community to get help on Bitovi Academy courses or JavaScript and DevOps problems.
+Join the Bitovi Community Discord to get help on Bitovi Academy courses or other Angular, React, CanJS and JavaScript problems.
 
-Please ask questions related to DevOps in the [DevOps Chat Room](https://bitovi-community.slack.com/archives/CFNC1510S).
+Please ask questions related to DevOps and Docker in our [DevOps](https://discord.gg/KXjD2eGA) and [Docker](https://discord.gg/VpnGUmee) channels.
 
-If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/academy/issues) or email `contact@bitovi.com`.
+If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/academy/issues) or email <a href="mailto:contact@bitovi.com">contact@bitovi.com</a>.
 
 ## Overview
 

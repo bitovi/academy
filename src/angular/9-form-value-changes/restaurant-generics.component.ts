@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 import { Restaurant } from './restaurant';
 import { ResponseData, RestaurantService } from './restaurant.service';
@@ -15,7 +15,10 @@ export interface Data {
   styleUrls: ['./restaurant.component.less'],
 })
 export class RestaurantComponent implements OnInit, OnDestroy {
-  form: FormGroup = this.createForm();
+  form: FormGroup<{
+    state: FormControl<string>;
+    city: FormControl<string>;
+  }> = this.createForm();
 
   restaurants: Data = {
     value: [],
@@ -52,16 +55,14 @@ export class RestaurantComponent implements OnInit, OnDestroy {
         this.restaurants.isPending = false;
       });
 
-    this.form
-      .get('state')
-      ?.valueChanges.pipe(takeUntil(this.onDestroy$))
+    this.form.controls.state.valueChanges
+      .pipe(takeUntil(this.onDestroy$))
       .subscribe((val) => {
         console.log('state', val);
       });
 
-    this.form
-      .get('city')
-      ?.valueChanges.pipe(takeUntil(this.onDestroy$))
+    this.form.controls.city.valueChanges
+      .pipe(takeUntil(this.onDestroy$))
       .subscribe((val) => {
         console.log('city', val);
       });
@@ -72,8 +73,11 @@ export class RestaurantComponent implements OnInit, OnDestroy {
     this.onDestroy$.complete();
   }
 
-  createForm(): FormGroup {
-    return this.fb.group({
+  createForm(): FormGroup<{
+    state: FormControl<string>;
+    city: FormControl<string>;
+  }> {
+    return this.fb.nonNullable.group({
       state: { value: '', disabled: false },
       city: { value: '', disabled: false },
     });

@@ -5,7 +5,7 @@
 
 @body
 
-> **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/test-actions) to get your codebase ready to work on this part.
+> **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/test-actions) to get your codebase ready to work on this section.
 
 
 ## Overview
@@ -33,9 +33,7 @@
 
 <details open>
 <summary>src/app/store/login/login.effects.ts</summary>
-
 @diff ../4-create-actions/login.effects.ts ./login.effects-error-message-helper.ts only
-
 </details>
 
 ## P1: What You Need to Know
@@ -53,17 +51,46 @@ NgRx provides a couple of helpful functions and the `Actions` class to create Ef
 3. `Actions` [class](https://ngrx.io/api/effects/Actions) that extends the RxJS Observable to listen to every dispatched Action.
 
 @sourceref ./contact.effects-initial-setup.ts
-@highlight 2, 3, 7, 8, 9, 14
+@highlight 4, 5, 9, 10, 11, 16
+
+### Flattening RxJS Operators
+
+"Flattening" operators are commonly used when creating Effects since we will likely use `Observables` or `Promises` to make API requests or perform some asynchronous task to produce some kind of side-effect.
+
+One way to subscribe to an "inner" `Observable` within an existing "outer" `Observable` stream is to use 
+"flattening" operators such as [`mergeMap`](https://rxjs.dev/api/operators/mergeMap), [`switchMap`](https://rxjs.dev/api/operators/switchMap), or [`exhaustMap`](https://rxjs.dev/api/operators/exhaustMap). These "flattening" operators can also allow us to use `Promises` within our `Observable` stream as well.
+
+Although we could use any of these "flattening" operators as a working solution, we will be using `exhaustMap`. Each of the "flattening" operators have a slightly different behavior when handling __multiple__ "inner" `Subscriptions`. For `exhaustMap`, each new "inner" `Subscription` is ignored if there is an existing "inner" `Subscription` that hasn't completed yet:
+
+@sourceref ./exhaust-map-example.html
+@codepen
+@highlight 9, 15, only
+
+As you can see by running above CodePen, only one active `Subscription` can exist at one time. A new `Subscription` can only be made once the active `Subscription` completes:
+
+```
+Expected Output:
+
+Outer: 0 Inner: 0 <-- New "inner" Subscription
+Outer: 0 Inner: 1
+Outer: 0 Inner: 2
+Outer: 4 Inner: 0 <-- New "inner" Subscription
+Outer: 4 Inner: 1
+Outer: 4 Inner: 2
+Outer: 8 Inner: 0 <-- New "inner" Subscription
+Outer: 8 Inner: 1
+Outer: 8 Inner: 2
+```
 
 Taking advantage of these tools provided by NgRx, we can create API requests and dispatch a new Action using the API response:
 
 @sourceref ./contact.effects-handle-success.ts
-@highlight 2, 4, 11, 12, 13, 14, 15, 16, 17, 18, only
+@highlight 4, 6, 13-20, 26, only
 
 We can also perform error handling and dispatch a new Action when an error occurs:
 
 @sourceref ./contact.effects.ts
-@highlight 16, 17, 18, 19, 20, 21, 22, 23, only
+@highlight 18-25, 35, only
 
 And last, you will need to use `ngx-learn-ngrx`'s `LoginService` to perform authentication for course:
 
@@ -88,9 +115,7 @@ When one of these requirements aren't met, an error is thrown and an error is lo
 
 <details>
 <summary>src/app/store/login/login.effects.ts</summary>
-
 @diff ./login.effects-error-message-helper.ts ./login.effects-login-effect.ts only
-
 </details>
 
 
@@ -107,13 +132,11 @@ When one of these requirements aren't met, an error is thrown and an error is lo
 
 <details>
 <summary>src/app/store/login/login.effects.ts</summary>
-
 @diff ./login.effects-login-effect.ts ./login.effects.ts only
-
 </details>
 
 
-> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-api-effects). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/test-actions...create-api-effects) on GitHub or you can use the following command in your terminal:
+> **Wrap-up**: By the end of this section, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-api-effects). You can also compare the [code changes for our solution to this section](https://github.com/bitovi/angular-ngrx-chat/compare/test-actions...create-api-effects) on GitHub or you can use the following command in your terminal:
 
 ```bash
 git diff origin/create-api-effects

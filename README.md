@@ -20,6 +20,8 @@ npm run dev
 
 This will take a while the first time. The site will be created in the `academy` folder. Use `http-server` or something similar to view site with automatic refreshing on file-save. (In your browser you may need to open the academy folder if running from root.) If you don't use something like `http-server`, you will need to refresh after changes.
 
+If the upcoming calendar events section returns "Sorry, events can't load right now", it may be an issue with the ip address, so try http://localhost:5500/academy/
+
 ### Changing styles or images
 
 Change `academy/static/styles/styles.less` or add images to `academy/img`, then run:
@@ -50,10 +52,10 @@ Academy can be deployed manually by running the following command:
 npm run deploy
 ```
 
-Doing so requires access to the Bitovi Hubspot API key and Campaign Id, which can be found in Bitovi's 1Password `Academy` vault. Add them to a new `.env` file in this repos root directory:
+Doing so requires access to the Bitovi Hubspot Access token and Campaign Id, which can be found in Bitovi's 1Password `Academy` vault. Add them to a new `.env` file in this repos root directory:
 
 ```
-HUBSPOT_API_KEY=<api key>
+HUBSPOT_TOKEN=<access token>
 HUBSPOT_CAMPAIGN_ID=<campaign id>
 ```
 
@@ -77,6 +79,14 @@ Create your course in the `src` folder. For best results, follow the organizatio
 
 @body
 ```
+
+Once you have a 1200x630 image, you can add a `@metaogimage` tag as follows
+
+```
+@metaogimage ../static/img/program-management-with-jira/og-thumbnail.png
+```
+
+
 
 > In the first page, please include an overview of what the course will cover as well as a links for all subsequent pages in the course.
 
@@ -124,19 +134,19 @@ This is hidden until the summary is opened.
 </details>
 <!-- ``` -->
 
-> note: All solution codes should be hidden inside a collapsed element. 
+> note: All solution codes should be hidden inside a collapsed element.
 
 ### Code blocks
 
 #### Separating code from .md files
 
-Code blocks can be written directly in the markdown files or written in separate files. 
+Code blocks can be written directly in the markdown files or written in separate files.
 
 The use of separate files for code is entirely optional, but allows the use of `@sourceref` to easily reference it and `@diff` to automatically highlight changes between codeblocks.
 
 #### Highlighting & Minimizing
 
-* Including the `only` keyword will minimize non-highlighted code. Using it is always optional and can be left off.
+- Including the `only` keyword will minimize non-highlighted code. Using it is always optional and can be left off.
 
 #### Manual highlighting
 
@@ -145,8 +155,8 @@ The use of separate files for code is entirely optional, but allows the use of `
 @highlight <line numbers>, only
 ```
 
-* `@sourceref` line is interchangable with code blocks.
-* Sections of highlighted lines can be separated with commas. Ex: `@highlight 1-3, 7-24`
+- `@sourceref` line is interchangable with code blocks.
+- Sections of highlighted lines can be separated with commas. Ex: `@highlight 1-3, 7-24`
 
 #### Automatic Highlighting
 
@@ -156,9 +166,9 @@ To automatically highlight differences between code blocks use the following ins
 @diff <initial version of file> <current, displayed file with changes> only
 ```
 
-* Use relative file paths like first example
-* Requires code be in separate files and the use of `@sourceref`
-* Especially useful for highlighting changes in solution codes
+- Use relative file paths like first example
+- Requires code be in separate files and the use of `@sourceref`
+- Especially useful for highlighting changes in solution codes
 
 ### Links
 

@@ -28,7 +28,7 @@ at the end of this tutorial:
 
 ## Setup
 
-`<router-outlet>`, which handles routing to a component based on a url, was added to our **src/app/app.component.html** file when we first generated our app and answered `yes` to the routing question. But since that time, we added components to that view. Let's remove those components because `<router-outlet>` will handle showing
+`<router-outlet>`, which handles routing to a component based on a url, was added to our **src/app/app.component.html** file when we first generated our app. But since that time, we added components to that view. Let's remove those components because `<router-outlet>` will handle showing
 those components going forward.
 
 ✏️ Update **src/app/app.component.html** to:
@@ -62,7 +62,7 @@ If you have completed the exercise successfully you should be able to see the ho
 
 ## Router
 
-To be able to navigate between different views in our app, we can take advantage of Angular's built-in routing module. We already told Angular we'd like to set up routing, so it generated `src/app/app-routing.module.ts` for us and included it in our root module. `src/app/app-routing.module.ts` currently looks like:
+To be able to navigate between different views in our app, we can take advantage of Angular's built-in routing module. Angular generated `src/app/app-routing.module.ts` for us and included it in our root module. `src/app/app-routing.module.ts` currently looks like:
 
 ```typescript
 import { NgModule } from '@angular/core';

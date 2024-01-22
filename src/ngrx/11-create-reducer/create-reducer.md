@@ -5,7 +5,7 @@
 
 @body
 
-> **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/test-redirect-effects) to get your codebase ready to work on this part.
+> **Quick Start**: You can checkout [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/test-redirect-effects) to get your codebase ready to work on this section.
 
 
 ## Overview
@@ -44,9 +44,7 @@ To prepare this, we need to update the Login Feature `State` interface found at 
 
 <details>
 <summary>src/app/store/login/login.reducer.ts</summary>
-
 @diff ../4-create-actions/login.reducer.ts ./login.reducer-define-state.ts only
-
 </details>
 
 
@@ -67,9 +65,7 @@ Now that we have updated the Login State's shape by updating the `State` interfa
 
 <details>
 <summary>src/app/store/login/login.reducer.ts</summary>
-
 @diff ./login.reducer-define-state.ts ./login.reducer-initial-state.ts only
-
 </details>
 
 
@@ -91,16 +87,14 @@ When writing an `on()` handler, there are 2 arguments that we need to provide:
 2. A [**pure function**](https://en.wikipedia.org/wiki/Pure_function) that takes in 2 arguments: `state` and `action`. This function should always return a new state that will replace the previous state.
 
 @sourceref ./counter.reducer.ts
-@highlight 5, 6, 7
+@highlight 7, 8, 9
 
 
 ## P3: Solution
 
 <details>
 <summary>src/app/store/login/login.reducer.ts</summary>
-
 @diff ./login.reducer-initial-state.ts ./login.reducer-on-login-success.ts only
-
 </details>
 
 
@@ -126,13 +120,11 @@ Both solutions are fine, but it is likely better to reuse `initialState` to futu
 
 <details>
 <summary>src/app/store/login/login.reducer.ts</summary>
-
 @diff ./login.reducer-on-login-success.ts ./login.reducer.ts only
-
 </details>
 
 
-> **Wrap-up**: By the end of this part, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-reducer). You can also compare the [code changes for our solution to this part](https://github.com/bitovi/angular-ngrx-chat/compare/test-redirect-effects...create-reducer) on GitHub or you can use the following command in your terminal:
+> **Wrap-up**: By the end of this section, your code should match [this branch](https://github.com/bitovi/angular-ngrx-chat/tree/create-reducer). You can also compare the [code changes for our solution to this section](https://github.com/bitovi/angular-ngrx-chat/compare/test-redirect-effects...create-reducer) on GitHub or you can use the following command in your terminal:
 
 ```bash
 git diff origin/create-reducer

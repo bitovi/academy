@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { ResponseData } from 'src/app/restaurant/restaurant.service';
+import { ResponseData } from '../../restaurant/restaurant.service';
 import { Order, OrderService } from '../order.service';
 
 interface Data<T> {
