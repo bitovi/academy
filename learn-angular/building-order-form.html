@@ -2106,7 +2106,7 @@ export class MenuItemsComponent implements OnInit {
 <h2>Problem 4: Attaching Event Handlers to Item Checkboxes</h2>
 <p>Next, we want to know when a checkbox has been checked or unchecked, and update an array called <code>selectedItems</code> containing all checked items.</p>
 <h2>P4: Technical Requirements</h2>
-<p>Create a function in the MenuItemsComponent called <code>updateItems</code> that fires whenever a checkbox is checked and takes a parameter of the item that has been checked. In the <code>updateItems</code> function use the following code to update the <code>selectedItems</code> array:</p>
+<p>Create a function in the <code>MenuItemsComponent</code> called <code>updateItems</code> that fires whenever a checkbox is checked and takes a parameter of the item that has been checked. In the <code>updateItems</code> function use the following code to update the <code>selectedItems</code> array:</p>
 <pre><code class="language-typescript">let index = this.selectedItems.indexOf(item);
 if (index &gt; -1) {
   this.selectedItems.splice(index, 1);
@@ -2713,7 +2713,7 @@ platformBrowserDynamic()
 <div line-highlight='25,57-61,only'></div>
 <ul>
 <li>How to emit a value to a parent component (you learned this in the section above! ✔️)</li>
-<li>How to programmatically update a FormArray's value (you learned this in the section above! ✔️)</li>
+<li>How to programmatically update a <code>FormArray</code>'s value (you learned this in the section above! ✔️)</li>
 </ul>
 <h2>P5: Solution</h2>
 <p><details>
@@ -2938,7 +2938,7 @@ export class OrderComponent implements OnInit, OnDestroy {
  <div line-highlight="94-95,122,only"></div>
 <p></details></p>
 <h2>Control Value Accessor</h2>
-<p>Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the <a href="https://angular.io/api/forms/ControlValueAccessor" >Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.</p>
+<p>Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the <a href="https://angular.io/api/forms/ControlValueAccessor" >Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - <code>onChange</code>, <code>onTouched</code>, <code>setValue</code>. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.</p>
 <p>✏️ Update <strong>src/app/order/menu-items.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';

@@ -1033,7 +1033,7 @@ rendered and subscribes, it will receive the successful HTTP request and render 
 <code>Observable&lt;Data&lt;City&gt;&gt;</code> and <code>Observable&lt;Data&lt;Restaurant&gt;&gt;</code> respectively. Each will be defined as a set of RxJS
 operators that either produce values from a response emitted by a service layer request, or produce values from changes
 in a form control (which in turn may make a request).</p>
-<p>You'll define <code>selectedState$</code> and <code>selectedCity$</code> members to be of Type <code>Observable&lt;string&gt;</code> to represent current form control values. To access form values as streams you'll use the <code>valueChanges</code> observable available in each FormControl.</p>
+<p>You'll define <code>selectedState$</code> and <code>selectedCity$</code> members to be of Type <code>Observable&lt;string&gt;</code> to represent current form control values. To access form values as streams you'll use the <code>valueChanges</code> observable available in each <code>FormControl</code>.</p>
 <p>You'll also add new single-responsibility streams:</p>
 <ul>
 <li><code>enableStateSelect$</code> which enables the state select control once state values are available</li>

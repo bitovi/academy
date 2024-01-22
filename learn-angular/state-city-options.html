@@ -667,7 +667,7 @@ covering CanJS core libraries.">
 <p>In this part, we will:</p>
 <ul>
 <li>Learn About Reactive Forms</li>
-<li>Import ReactiveFormsModule into our root app</li>
+<li>Import <code>ReactiveFormsModule</code> into our root app</li>
 <li>Create a reactive form in our Restaurant Component</li>
 <li>Create a form in our markup and connect inputs to reactive form</li>
 </ul>
@@ -751,7 +751,7 @@ export class RestaurantComponent implements OnInit {
 </code></pre>
  <div line-highlight="2,17-20,27-32,35-38,40-43,51,53-56,58,only"></div>
 <p>Make sure to use the <code>formControl</code> directive to tie the selects to
-their FormControls in the component.</p>
+their <code>FormControl</code>s in the component.</p>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong> to include
 some boilerplate for the state and city <code>&lt;select&gt;</code> controls:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
@@ -1472,11 +1472,11 @@ describe('AppComponent', () =&gt; {
 <h2>What You Need to Know</h2>
 <p>To solve this, you will need to know:</p>
 <ul>
-<li>How to create a FormControl</li>
+<li>How to create a <code>FormControl</code></li>
 <li>How to use <code>formControl</code> directive in the DOM</li>
-<li>How to create a FormGroup</li>
-<li>How to use FormBuilder</li>
-<li>How to use ngFor (you learned this in the Creating Components section! ✔️)</li>
+<li>How to create a <code>FormGroup</code></li>
+<li>How to use <code>FormBuilder</code></li>
+<li>How to use <code>ngFor</code> (you learned this in the Creating Components section! ✔️)</li>
 </ul>
 <h2>Reactive Forms</h2>
 <p>We're eventually going to use select boxes to handle our user's input. Angular's <a href="https://angular.io/guide/reactive-forms" >Reactive Forms</a> API provides a clean way to get data from user input and do work based on it.</p>
@@ -1645,7 +1645,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='17,23-29,33,only'></div>
 <h2>FormGroup</h2>
-<p>A <a href="https://angular.io/api/forms/FormGroup" >FormGroup</a> is a way of grouping FormControls and tracking the state of the entire group. For instance, if you want to get the values of all of your FormControls to submit as an object of those values, you'd use <code>formGroupName.value</code>. Notice the way we connect our input in the markup is slightly different - we can use the <code>formControlName</code> directive to bind to the name value of a FormControl in our FormGroup. Groups can be nested within other groups or arrays.</p>
+<p>A <a href="https://angular.io/api/forms/FormGroup" >FormGroup</a> is a way of grouping <code>FormControl</code>s and tracking the state of the entire group. For instance, if you want to get the values of all of your <code>FormControl</code>s to submit as an object of those values, you'd use <code>formGroupName.value</code>. Notice the way we connect our input in the markup is slightly different - we can use the <code>formControlName</code> directive to bind to the name value of a <code>FormControl</code> in our <code>FormGroup</code>. Groups can be nested within other groups or arrays.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1727,8 +1727,8 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='17,23-37,39,43,45-49,53-55,only'></div>
 <h2>FormArray</h2>
-<p>A <a href="https://angular.io/api/forms/FormArray" >FormArray</a> aggregates FormControls into an array. It's different than FormGroup in that the controls inside are serialized as an array. FormArrays are very useful when dealing with repeated FormControls or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.</p>
-<p>This example shows the use of FormArray and using an <code>insert</code> method to dynamically add more FormGroups to the <code>users</code> FormArray.</p>
+<p>A <a href="https://angular.io/api/forms/FormArray" >FormArray</a> aggregates <code>FormControl</code>s into an array. It's different than FormGroup in that the controls inside are serialized as an array. <code>FormArray</code>s are very useful when dealing with repeated <code>FormControl</code>s or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.</p>
+<p>This example shows the use of <code>FormArray</code> and using an <code>insert</code> method to dynamically add more <code>FormGroup</code>s to the <code>users</code> FormArray.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;

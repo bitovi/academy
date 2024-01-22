@@ -706,15 +706,15 @@ style="border: solid 1px black; max-width: 320px;"/></p>
 </ul>
 <h2>Installing the CLI</h2>
 <p>Angular has a command line interface or CLI that does a lot of the initial legwork in setting up a minimal app, as well as letting you easily create and include new components on the fly.</p>
-<p>We'll start by globally installing the Angular CLI.</p>
+<p>We'll start by globally installing the Angular CLI using npm.</p>
 <p>✏️ Run the following:</p>
 <pre><code class="language-shell">npm install -g @angular/cli@17
 </code></pre>
 <h2>Generating a new app</h2>
-<p>We're going to build a restaurant menu and ordering application. The final result will look like this:</p>
+<p>Our final goal is to build a restaurant menu and ordering application, which should look something like this:</p>
 <p><img src="../static/img/place-my-order.png" alt="Place My Order App screenshot" title="Place My Order App screenshot" /></p>
 <p>(reminder: You can see a DoneJS implementation of this application at <a href="http://www.place-my-order.com">www.place-my-order.com</a>)</p>
-<p>✏️ To create a new Angular Workspace, run the 'ng new' command:</p>
+<p>✏️ To create a new Angular Workspace, run the <code>ng new</code> command:</p>
 <pre><code class="language-shell">ng new place-my-order --prefix pmo --standalone false
 cd place-my-order
 </code></pre>
@@ -723,7 +723,7 @@ cd place-my-order
 <li>Which stylesheet format would you like to use? (<strong>Less</strong>)</li>
 <li>Do you want to enable Server-Side Rendering (SSR) and Static Site Generation (SSG/Prerendering)? (<strong>No</strong>)</li>
 </ol>
-<p>Note that we used the prefix property to set our own default prefix. Angular's default is &quot;app&quot;, but a good naming convention is to use a short prefix related to your company or application name to easily differentiate from 3rd party utilities.</p>
+<p>Note that we used the <code>--prefix</code> property above to set our own default prefix. Angular's default prefix is <code>app</code>, but a good naming convention is to use a short prefix related to your company or application name, which helps to easily differentiate from 3rd party utilities.</p>
 <pre><code class="language-html">&lt;!-- this looks like it's one of our own app components --&gt;
 &lt;pmo-header&gt;&lt;/pmo-header&gt;
 
@@ -762,8 +762,8 @@ While new Angular apps default to standalone <code>true</code>, for the purposes
 ├── tsconfig.spec.json
 </code></pre>
 <h3>angular.json</h3>
-<p>This file is the config schema for an Angular Workspace. By default Angular configures esbuild (Webpack before v17) for its build process, and uses the angular.json file for the build information.</p>
-<p>(Note, prior to Angular v6, this file was .angular-cli.json. When migrating versions, having the wrong workspace config file name is a cause for problems.)</p>
+<p>This file is the config schema for an Angular Workspace. By default Angular configures esbuild (Webpack before v17) for its build process, and uses the <code>angular.json</code> file to store the build information.</p>
+<p>(Note, prior to Angular v6, this file was <code>.angular-cli.json</code>. When migrating versions, having the wrong workspace config file name is a common cause for problems.)</p>
 <h3>tsconfig.json</h3>
 <p>This file contains our TypeScript compiling options. Starting from Angular 12, &quot;strict mode&quot; is set to true by default. Angular's strict mode enforces the <a href="https://www.staging-typescript.org/tsconfig#strict">TypeScript strict flag</a> and a few additional TypeScript rules: <code>forceConsistentCasingInFileNames</code>, <code>noImplicitReturns</code>, <code>noFallthroughCasesInSwitch</code>. Additionally this mode turns on Angular-specific compiler flags <code>strictTemplates</code>, <code>strictInjectionParameters</code> and <code>strictInputAccessModifiers</code>. This Template type checking was made available with <a href="https://angular.io/guide/ivy">Angular Ivy</a> and will throw compiler errors for incorrect typings inside templates.</p>
 <pre><code class="language-json">/* To learn more about this file see: https://angular.io/config/tsconfig. */
@@ -823,10 +823,10 @@ While new Angular apps default to standalone <code>true</code>, for the purposes
 <h3>src/app/app.module.ts</h3>
 <p>This file is the root module for our app. Every Angular app has at least one module that determines how to compile and launch an app. It uses the @NgModule decorator with four properties:</p>
 <ul>
-<li>declarations [array]: where we include components, directives, and pipes that will be used by this module.</li>
-<li>imports [array]: where we include any other modules our app needs to use. This may include 3rd party modules like bootstrap datepickers, or modules we've created.</li>
-<li>providers [array]: where we include services that we want used at the module level</li>
-<li>bootstrap [array]: where we include the root AppModule - this is the main Application view that hosts all of our other app views.</li>
+<li><strong>declarations</strong> <code>[array]</code>: where we include components, directives, and pipes that will be used by this module.</li>
+<li><strong>imports</strong> <code>[array]</code>: where we include any other modules our app needs to use. This may include 3rd party modules like bootstrap datepickers, or modules we've created.</li>
+<li><strong>providers</strong> <code>[array]</code>: where we include services that we want used at the global app level</li>
+<li><strong>bootstrap</strong> <code>[array]</code>: where we include the root AppModule - this is the main Application view that hosts all of our other app views.</li>
 </ul>
 <p>Further reading: <a href="https://angular.io/guide/architecture-services#dependency-injection-di" >Dependency Injection in Angular</a></p>
 <h3>src/app/app.component.ts</h3>
@@ -835,7 +835,7 @@ While new Angular apps default to standalone <code>true</code>, for the purposes
 <p>✏️ Serve the app with:</p>
 <pre><code class="language-shell">npm run start
 </code></pre>
-<p>The <code>start</code> script command value is <code>ng serve</code> which starts a development server on port 4200 by default using <a href="https://esbuild.github.io/" >esbuild</a> and <a href="https://vitejs.dev/">Vite</a> (<a href="https://github.com/webpack/webpack-dev-server">webpack-dev-server</a> before v17), to compile and serve a development version of the app. Any TypeScript errors will be caught by the compiler here, and once ready we can view our app at <a href="http://localhost:4200" >localhost:4200</a>. <code>ng serve</code> also has live-reload functionality, meaning the browser will automatically reload as changes are saved and compiled.</p>
+<p>The <code>start</code> script command value is <code>ng serve</code> which starts a development server on port <code>4200</code> by default using <a href="https://esbuild.github.io/" >esbuild</a> and <a href="https://vitejs.dev/">Vite</a> (<a href="https://github.com/webpack/webpack-dev-server">webpack-dev-server</a> before v17), to compile and serve a development version of the app. Any TypeScript errors will be caught by the compiler here, and once ready we can view our app at <a href="http://localhost:4200">localhost:4200</a>. <code>ng serve</code> also has live-reload functionality, meaning the browser will automatically reload as changes are saved and compiled.</p>
 <h2>Running Tests</h2>
 <p>When we use the CLI to create modules, components, services, etc, it will create spec files
 for us.</p>

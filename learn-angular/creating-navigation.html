@@ -666,8 +666,8 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this part, we will:</p>
 <ul>
-<li>Use routerLink to create navigation links</li>
-<li>Use routerLinkActive to highlight current navigation</li>
+<li>Use <code>routerLink</code> to create navigation links</li>
+<li>Use <code>routerLinkActive</code> to highlight current navigation</li>
 </ul>
 <h2>Problem</h2>
 <p>We want to create <em>Home</em> and <em>Restaurant</em> links in our app navigation that can
@@ -817,11 +817,11 @@ describe('AppComponent', () =&gt; {
 <h2>What You Need to Know</h2>
 <p>To solve this, you will need to know how to:</p>
 <ul>
-<li>How to use the routerLink directive</li>
-<li>How to use the routerLinkActive directive</li>
+<li>How to use the <code>routerLink</code> directive</li>
+<li>How to use the <code>routerLinkActive</code> directive</li>
 </ul>
 <h2>RouterLink</h2>
-<p>You may have noticed the links in the routing examples to switch between views. They use the <a href="https://angular.io/api/router/RouterLink" >routerLink</a> directive. The routerLink takes a property of a path that can be static or built dynamically based on properties on the component.</p>
+<p>You may have noticed the links in the routing examples to switch between views. They use the <a href="https://angular.io/api/router/RouterLink">routerLink</a> directive. The <code>routerLink</code> takes a property of a path that can be static or built dynamically based on properties on the component.</p>
 <h3>Static routerLink Segments</h3>
 <p>The following is an example of a hard coded path:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -917,7 +917,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='25, only'></div>
 <h3>Dynamic routerLink Segments</h3>
-<p>The following is an example of a path being built from different pieces of data. In reusable components we'll often want to dynamically create paths based on a piece of datas unique property values.</p>
+<p>The following is an example of a path being built from different pieces of data. In reusable components we'll often want to dynamically create paths based on a piece of data's unique property values.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1143,7 +1143,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='25, only'></div>
 <h3>Adding an Active Class with Options</h3>
-<p>Using <code>{exact: true}</code> will only set the class if the path match is exactly equal. <code>{exact: true}</code> can also be applied to parents of routerlinks</p>
+<p>Using <code>{exact: true}</code> will only set the class if the path match is exactly equal. <code>{exact: true}</code> can also be applied to parents of <code>routerLink</code>s.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1264,7 +1264,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='24-25,27-30, only'></div>
 <h3>Adding an Active Class with Template Variable</h3>
-<p>RouterLinkActive can also be used to set <a href="https://angular.io/api/router/RouterLinkActive#template-variable-references">template variables</a> to check the active status of the route. In this example we're creating a template variable <code>myroutervariable</code> to represent our route and it's active state for logic in our template.</p>
+<p><code>RouterLinkActive</code> can also be used to set <a href="https://angular.io/api/router/RouterLinkActive#template-variable-references">template variables</a> to check the active status of the route. In this example we're creating a template variable <code>myroutervariable</code> to represent our route and it's active state for logic in our template.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;

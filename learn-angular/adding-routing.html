@@ -870,7 +870,7 @@ export class AppRoutingModule { }
 </code></pre>
 <p>The router module takes an array of routes we can generate in a few different ways that will render content in the <code>router-outlet</code> directive.</p>
 <h2>Setting Paths to Components</h2>
-<p>The following example will render the AboutComponent in the router-outlet when the path is <code>/about</code>:</p>
+<p>The following example will render the <code>AboutComponent</code> in the router-outlet when the path is <code>/about</code>:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -966,7 +966,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='62-63, only'></div>
 <h2>Using Wildcards</h2>
-<p>The next example uses the wildcard path, which will render the PageNotFoundComponent when any unregistered route is hit:</p>
+<p>The next example uses the wildcard path, which will render the <code>PageNotFoundComponent</code> when any unregistered route is hit:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1325,7 +1325,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='120, only'></div>
 <h2>&lt;base-href&gt;</h2>
-<p>In our index.html file, the angular cli included <code>&lt;base href=&quot;/&gt;</code>. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base">here</a>, but it's important to know this is how the Angular router will know how to compose URLs - the value in the <code>href</code> attribute specifies the base URL for all relative URLs contained in the app. If you'd like to serve your app from a different directory (wherever the index.html will be served from) or have a specific hosting URL that your app will be deployed at, you will need to change the <code>base href</code> to match.</p>
+<p>In our <code>index.html</code> file, the angular cli included <code>&lt;base href=&quot;/&gt;</code>. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base">here</a>, but it's important to know this is how the Angular router will know how to compose URLs - the value in the <code>href</code> attribute specifies the base URL for all relative URLs contained in the app. If you'd like to serve your app from a different directory (wherever the index.html will be served from) or have a specific hosting URL that your app will be deployed at, you will need to change the <code>base href</code> to match.</p>
 <pre><code class="language-html">&lt;!doctype html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
