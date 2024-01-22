@@ -307,7 +307,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular 13 application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 17 application with its command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -926,6 +926,7 @@ describe('AppComponent', () =&gt; {
   });
 
   it('should render the HomeComponent with router navigates to &quot;/&quot; path', fakeAsync(() =&gt; {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['']).then(() =&gt; {
       expect(location.path()).toBe('');
@@ -934,6 +935,7 @@ describe('AppComponent', () =&gt; {
   }));
 
   it('should render the RestaurantsComponent with router navigates to &quot;/restaurants&quot; path', fakeAsync(() =&gt; {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants']).then(() =&gt; {
       expect(location.path()).toBe('/restaurants');
@@ -942,6 +944,7 @@ describe('AppComponent', () =&gt; {
   }));
 
   it('should render the DetailComponent with router navigates to &quot;/restaurants/slug&quot; path', fakeAsync(() =&gt; {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants/crab-shack']).then(() =&gt; {
       expect(location.path()).toBe('/restaurants/crab-shack');
@@ -950,6 +953,7 @@ describe('AppComponent', () =&gt; {
   }));
 
   it('should render the OrderComponent with router navigates to &quot;/restaurants/slug/order&quot; path', fakeAsync(() =&gt; {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants/crab-shack/order']).then(() =&gt; {
       expect(location.path()).toBe('/restaurants/crab-shack/order');
@@ -958,6 +962,7 @@ describe('AppComponent', () =&gt; {
   }));
 
   it('should render the HistoryComponent with router navigates to &quot;/order-history&quot; path', fakeAsync(() =&gt; {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['order-history']).then(() =&gt; {
       expect(location.path()).toBe('/order-history');
@@ -1009,7 +1014,7 @@ describe('AppComponent', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="18,210,277,279-282,314,325,only"></div>
+ <div line-highlight="18,210,281,284-287,319,323,330,only"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
@@ -1404,7 +1409,7 @@ property in the constructor.</li>
 ✏️ Update <strong>src/app/order/history.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
-import { ResponseData } from 'src/app/restaurant/restaurant.service';
+import { ResponseData } from '../../restaurant/restaurant.service';
 import { Order, OrderService } from '../order.service';
 
 interface Data&lt;T&gt; {

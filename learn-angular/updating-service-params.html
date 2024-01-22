@@ -308,7 +308,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular 13 application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 17 application with its command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -676,7 +676,7 @@ style="border: solid 1px black; max-width: 400px;"/></p>
 <p><img src="../static/img/angular/10-updating-service-params/after.png"
 style="border: solid 1px black; max-width: 400px;"/></p>
 <h2>Technical Requirements</h2>
-<p>In the <strong>src/app/restaurant/restaurant.component.ts</strong> file, update the call to the <code>getRestaurants</code> service method to use the city and state values capture from the user's form input.</p>
+<p>In the <strong>src/app/restaurant/restaurant.component.ts</strong> file, update the call to the <code>getRestaurants</code> service method to use the city and state values captured from the user's form input.</p>
 <h2>How to Verify Your Solution is Correct</h2>
 <p>If you've implemented the solution correctly, when you use the select boxes to choose state and city, you should see a list of just restaurants from the selected city returned.</p>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
@@ -1378,7 +1378,7 @@ export class RestaurantService {
  <div line-highlight="27-33,35,50,only"></div>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Subject, takeUntil } from 'rxjs';
 import { Restaurant } from './restaurant';
 import {
@@ -1399,7 +1399,10 @@ export interface Data&lt;T&gt; {
   styleUrls: ['./restaurant.component.less'],
 })
 export class RestaurantComponent implements OnInit, OnDestroy {
-  form: FormGroup = this.createForm();
+  form: FormGroup&lt;{
+    state: FormControl&lt;string&gt;;
+    city: FormControl&lt;string&gt;;
+  }&gt; = this.createForm();
 
   restaurants: Data&lt;Restaurant&gt; = {
     value: [],
@@ -1433,38 +1436,40 @@ export class RestaurantComponent implements OnInit, OnDestroy {
     this.onDestroy$.complete();
   }
 
-  createForm(): FormGroup {
-    return this.fb.group({
+  createForm(): FormGroup&lt;{
+    state: FormControl&lt;string&gt;;
+    city: FormControl&lt;string&gt;;
+  }&gt; {
+    return this.fb.nonNullable.group({
       state: { value: '', disabled: true },
       city: { value: '', disabled: true },
     });
   }
 
   onChanges(): void {
-    let state: string = this.form.get('state')?.value;
+    let state: string = this.form.controls.state.value;
 
-    this.form
-      .get('state')
-      ?.valueChanges.pipe(takeUntil(this.onDestroy$))
+    this.form.controls.state.valueChanges
+      .pipe(takeUntil(this.onDestroy$))
       .subscribe((val) =&gt; {
         this.restaurants.value = [];
         if (val) {
           // only enable city if state has value
-          this.form.get('city')?.enable({
+          this.form.controls.city.enable({
             onlySelf: true,
             emitEvent: false,
           });
 
           // if state has a value and has changed, clear previous city value
           if (state !== val) {
-            this.form.get('city')?.patchValue('');
+            this.form.controls.city.setValue('');
           }
 
           // fetch cities based on state val
           this.getCities(val);
         } else {
           // disable city if no value
-          this.form.get('city')?.disable({
+          this.form.controls.city.disable({
             onlySelf: true,
             emitEvent: false,
           });
@@ -1472,9 +1477,8 @@ export class RestaurantComponent implements OnInit, OnDestroy {
         state = val;
       });
 
-    this.form
-      .get('city')
-      ?.valueChanges.pipe(takeUntil(this.onDestroy$))
+    this.form.controls.city.valueChanges
+      .pipe(takeUntil(this.onDestroy$))
       .subscribe((val) =&gt; {
         if (val) {
           this.getRestaurants(state, val);
@@ -1483,13 +1487,14 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   }
 
   getStates(): void {
+    this.states.isPending = true;
     this.restaurantService
       .getStates()
       .pipe(takeUntil(this.onDestroy$))
       .subscribe((res: ResponseData&lt;State&gt;) =&gt; {
         this.states.value = res.data;
         this.states.isPending = false;
-        this.form.get('state')?.enable();
+        this.form.controls.state.enable();
       });
   }
 
@@ -1501,7 +1506,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
       .subscribe((res: ResponseData&lt;City&gt;) =&gt; {
         this.cities.value = res.data;
         this.cities.isPending = false;
-        this.form.get('city')?.enable({
+        this.form.controls.city.enable({
           onlySelf: true,
           emitEvent: false,
         });
@@ -1509,6 +1514,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
   }
 
   getRestaurants(state: string, city: string): void {
+    this.restaurants.isPending = true;
     this.restaurantService
       .getRestaurants(state, city)
       .pipe(takeUntil(this.onDestroy$))
@@ -1520,7 +1526,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="101,132,134,only"></div>
+ <div line-highlight="105,137,140,only"></div>
 <p></details></p>
 
 </section>

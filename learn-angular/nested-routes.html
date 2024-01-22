@@ -308,7 +308,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular 13 application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 17 application with its command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -681,7 +681,7 @@ covering CanJS core libraries.">
 <li>How to get a route param using ActivatedRoute</li>
 </ul>
 <h2>Route Parameters &amp; Child Views</h2>
-<p>A common pattern in SPA architecture is to serve a view of an individual piece of data from a path with an identifying parameter. Previously we've defined static paths with Angulars <a href="https://angular.io/guide/router" >router</a>. To create a nested route, we'll need the slug after the slash to be dynamic. We can set a token for the router parameter with <code>:</code>. To get the slug from the route in a component, we use the <a href="https://angular.io/api/router/ActivatedRoute" >ActivatedRoute</a> interface.</p>
+<p>A common pattern in SPA architecture is to serve a view of an individual piece of data from a path with an identifying parameter. Previously we've defined static paths with Angular's <a href="https://angular.io/guide/router" >router</a>. To create a nested route, we'll need the slug after the slash to be dynamic. We can set a token for the router parameter with <code>:</code>. To get the slug from the route in a component, we use the <a href="https://angular.io/api/router/ActivatedRoute" >ActivatedRoute</a> interface.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -882,12 +882,12 @@ platformBrowserDynamic()
 </code></pre>
 <h2>How to Verify Your Solution is Correct</h2>
 <p>When you click the detail button on a restaurant from the restaurant list view you'll see the detail view of that restaurant.</p>
-<p>✏️ Update the spec file <strong>src/app/restaurant/detail.component.spec.ts</strong> to be:</p>
+<p>✏️ Update the spec file <strong>src/app/restaurant/detail/detail.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
-import { ImageUrlPipe } from 'src/app/image-url.pipe';
+import { ImageUrlPipe } from '../../image-url.pipe';
 import { RestaurantService } from '../restaurant.service';
 import { DetailComponent } from './detail.component';
 
@@ -1282,6 +1282,7 @@ describe('AppComponent', () =&gt; {
   });
 
   it('should render the HomeComponent with router navigates to &quot;/&quot; path', fakeAsync(() =&gt; {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['']).then(() =&gt; {
       expect(location.path()).toBe('');
@@ -1290,6 +1291,7 @@ describe('AppComponent', () =&gt; {
   }));
 
   it('should render the RestaurantsComponent with router navigates to &quot;/restaurants&quot; path', fakeAsync(() =&gt; {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants']).then(() =&gt; {
       expect(location.path()).toBe('/restaurants');
@@ -1298,6 +1300,7 @@ describe('AppComponent', () =&gt; {
   }));
 
   it('should render the DetailComponent with router navigates to &quot;/restaurants/slug&quot; path', fakeAsync(() =&gt; {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants/crab-shack']).then(() =&gt; {
       expect(location.path()).toBe('/restaurants/crab-shack');
@@ -1349,7 +1352,7 @@ describe('AppComponent', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="18,206,257,259-262,294,305,only"></div>
+ <div line-highlight="18,206,259,262-265,297,301,308,only"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>

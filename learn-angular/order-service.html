@@ -307,7 +307,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular 13 application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 17 application with its command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -674,8 +674,8 @@ covering CanJS core libraries.">
 <h2>Problem 1: Create Order Service and Export Items and Order interfaces</h2>
 <p>We need to create a new service to handle creating and updating orders. We'll need three interfaces - one to describe the order form data, one to describe the order, and one to describe items in the order.</p>
 <h2>P1: Technical Requirements</h2>
-<p>Create a new service <code>order</code> in the order directory, and write and export <code>OrderForm</code>, <code>Order</code> and <code>Item</code> interfaces representing these objects in the new service:</p>
-<pre><code class="language-typescript">const orderForm = {
+<p>Create a new service <code>order</code> in the order directory, and write and export <code>CreateOrderDto</code>, <code>Order</code> and <code>Item</code> interfaces representing these objects in the new service:</p>
+<pre><code class="language-typescript">const createOrderDto = {
   restaurant: '12345',
   name: 'Jennifer',
   address: '123 Main st',
@@ -721,7 +721,7 @@ export interface Item {
   price: number;
 }
 
-export interface OrderForm {
+export interface CreateOrderDto {
   restaurant: string;
   name: string;
   address: string;
@@ -946,7 +946,7 @@ get the tests to pass.</p>
 <li>The method signatures for the methods you'll be adding to <code>OrderService</code>:
 <ul>
 <li><code>getOrders(): Observable&lt;{data: Order[]}&gt;</code> should make a <code>GET</code> request</li>
-<li><code>createOrder(orderForm: OrderForm): Observable&lt;Order&gt;</code> should make a <code>POST</code> request</li>
+<li><code>createOrder(orderForm: CreateOrderDto): Observable&lt;Order&gt;</code> should make a <code>POST</code> request</li>
 <li><code>updateOrder(order: Order, status: string): Observable&lt;Order&gt;</code> should make a <code>PUT</code> request to <code>/orders/&lt;order-id&gt;</code></li>
 <li><code>deleteOrder(orderId: string): Observable&lt;Order&gt;</code> should make a <code>DELETE</code> request to <code>/orders/&lt;order-id&gt;</code></li>
 </ul></li>
@@ -961,14 +961,14 @@ added as a property in the <code>OrderService</code> constructor.</li>
 <pre><code class="language-ts">import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 
 export interface Item {
   name: string;
   price: number;
 }
 
-export interface OrderForm {
+export interface CreateOrderDto {
   restaurant: string;
   name: string;
   address: string;
@@ -998,7 +998,7 @@ export class OrderService {
     );
   }
 
-  createOrder(order: OrderForm): Observable&lt;Order&gt; {
+  createOrder(order: CreateOrderDto): Observable&lt;Order&gt; {
     const orderData = {
       ...order,
       status: 'new',
@@ -1047,6 +1047,9 @@ export class OrderService {
 and set back to <code>false</code> when <code>startNewOrder()</code> is called.</li>
 <li>We will save the completed order in <code>completedOrder</code>.</li>
 </ol>
+<blockquote>
+<p>A FormGroup's <code>value</code> property is wrapped in <code>Partial</code> type because controls are removed from the form's value when disabled. For our case, we don't need to disable controls. We can use a FormGroup's <code>getRawValue()</code> method to access its value with the full type.</p>
+</blockquote>
 <h2>P3: Setup</h2>
 <p>Before starting:</p>
 <p>1. ✏️ Update <strong>src/app/order/order.component.html</strong> to show the completed order:</p>
@@ -1088,20 +1091,24 @@ and set back to <code>false</code> when <code>startNewOrder()</code> is called.<
   &lt;/ng-container&gt;
   &lt;ng-template #showOrderForm&gt;
     &lt;h2&gt;Order here&lt;/h2&gt;
-    &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+    &lt;form
+      *ngIf=&quot;orderForm &amp;&amp; restaurant&quot;
+      [formGroup]=&quot;orderForm&quot;
+      (ngSubmit)=&quot;onSubmit()&quot;
+    &gt;
       &lt;tabset&gt;
-        &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
+        &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant.menu.lunch&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
             &lt;pmo-menu-items
-              [items]=&quot;restaurant?.menu?.lunch&quot;
+              [items]=&quot;restaurant.menu.lunch&quot;
               formControlName=&quot;items&quot;
             &gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
-        &lt;tab heading=&quot;Dinner Menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
+        &lt;tab heading=&quot;Dinner Menu&quot; *ngIf=&quot;restaurant.menu.dinner&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
             &lt;pmo-menu-items
-              [items]=&quot;restaurant?.menu?.dinner&quot;
+              [items]=&quot;restaurant.menu.dinner&quot;
               formControlName=&quot;items&quot;
             &gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
@@ -1109,20 +1116,12 @@ and set back to <code>false</code> when <code>startNewOrder()</code> is called.<
       &lt;/tabset&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-        &lt;input
-          name=&quot;name&quot;
-          type=&quot;text&quot;
-          formControlName=&quot;name&quot;
-        /&gt;
+        &lt;input name=&quot;name&quot; type=&quot;text&quot; formControlName=&quot;name&quot; /&gt;
         &lt;p&gt;Please enter your name.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-        &lt;input
-          name=&quot;address&quot;
-          type=&quot;text&quot;
-          formControlName=&quot;address&quot;
-        /&gt;
+        &lt;input name=&quot;address&quot; type=&quot;text&quot; formControlName=&quot;address&quot; /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
@@ -1157,8 +1156,8 @@ a <code>startNewOrder</code> that will start a new order.</p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   AbstractControl,
-  FormArray,
   FormBuilder,
+  FormControl,
   FormGroup,
   ValidationErrors,
   ValidatorFn,
@@ -1169,6 +1168,19 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Restaurant } from '../restaurant/restaurant';
 import { RestaurantService } from '../restaurant/restaurant.service';
+
+export interface Item {
+  name: string;
+  price: number;
+}
+
+export interface OrderForm {
+  restaurant: FormControl&lt;string&gt;;
+  name: FormControl&lt;string&gt;;
+  address: FormControl&lt;string&gt;;
+  phone: FormControl&lt;string&gt;;
+  items: FormControl&lt;Item[]&gt;;
+}
 
 // CUSTOM VALIDATION FUNCTION TO ENSURE THAT THE ITEMS FORM VALUE CONTAINS AT LEAST ONE ITEM.
 function minLengthArray(min: number): ValidatorFn {
@@ -1186,10 +1198,9 @@ function minLengthArray(min: number): ValidatorFn {
   styleUrls: ['./order.component.less'],
 })
 export class OrderComponent implements OnInit, OnDestroy {
-  orderForm?: FormGroup;
+  orderForm?: FormGroup&lt;OrderForm&gt;;
   restaurant?: Restaurant;
   isLoading = true;
-  items?: FormArray;
   orderTotal = 0.0;
   completedOrder: any;
   orderComplete = false;
@@ -1224,26 +1235,25 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   createOrderForm(): void {
-    this.orderForm = this.formBuilder.group({
-      restaurant: [this.restaurant?._id],
-      name: [null, Validators.required],
-      address: [null, Validators.required],
-      phone: [null, Validators.required],
+    this.orderForm = this.formBuilder.nonNullable.group({
+      restaurant: [this.restaurant?._id ?? '', Validators.required],
+      name: ['', Validators.required],
+      address: ['', Validators.required],
+      phone: ['', Validators.required],
       // PASSING OUR CUSTOM VALIDATION FUNCTION TO THIS FORM CONTROL
-      items: [[], minLengthArray(1)],
+      items: [[] as Item[], minLengthArray(1)],
     });
     this.onChanges();
   }
 
-  getChange(newItems: []): void {
-    this.orderForm?.get('items')?.patchValue(newItems);
+  getChange(newItems: Item[]): void {
+    this.orderForm?.controls.items.patchValue(newItems);
   }
 
   onChanges(): void {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
-    this.orderForm
-      ?.get('items')
-      ?.valueChanges.pipe(takeUntil(this.onDestroy$))
+    this.orderForm?.controls.items.valueChanges
+      .pipe(takeUntil(this.onDestroy$))
       .subscribe((val) =&gt; {
         let total = 0.0;
         if (val.length) {
@@ -1264,27 +1274,27 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   startNewOrder(): void {
     this.orderComplete = false;
-    this.completedOrder = this.orderForm?.value;
+    this.completedOrder = undefined;
     // CLEAR THE ORDER FORM
     this.createOrderForm();
   }
 }
 
 </code></pre>
- <div line-highlight="104-106,114,only"></div>
+ <div line-highlight="115-117,125,only"></div>
 <h2>P3: How to Verify Your Solution is Correct</h2>
 <p>If you've implemented everything correctly, you should now be able to create an order from the UI and see a record of your completed order once it's created.</p>
 <p>✏️ Update the menu-items spec file <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { RestaurantService } from '../restaurant/restaurant.service';
 import { MenuItemsComponent } from './menu-items/menu-items.component';
-import { OrderComponent } from './order.component';
-import { OrderForm, OrderService } from './order.service';
+import { OrderComponent, OrderForm } from './order.component';
+import { CreateOrderDto, OrderService } from './order.service';
 
 class MockRestaurantService {
   getRestaurant(slug: string) {
@@ -1338,7 +1348,7 @@ class MockRestaurantService {
 }
 
 class MockOrderService {
-  createOrder(order: OrderForm) {
+  createOrder(order: CreateOrderDto) {
     return of({
       address: null,
       items: [
@@ -1501,16 +1511,17 @@ describe('OrderComponent', () =&gt; {
 
   it('should call the orderService createOrder on form submit with form values', () =&gt; {
     const createOrderSpy = spyOn(orderService, 'createOrder').and.callThrough();
-    const expectedOrderValue: OrderForm = {
-      restaurant: '12345',
-      name: 'Jennifer Hungry',
-      address: '123 Main St',
-      phone: '555-555-5555',
-      items: [
-        { name: 'Onion fries', price: 15.99 },
-        { name: 'Roasted Salmon', price: 23.99 },
-      ],
-    };
+    const expectedOrderValue: ReturnType&lt;FormGroup&lt;OrderForm&gt;['getRawValue']&gt; =
+      {
+        restaurant: '12345',
+        name: 'Jennifer Hungry',
+        address: '123 Main St',
+        phone: '555-555-5555',
+        items: [
+          { name: 'Onion fries', price: 15.99 },
+          { name: 'Roasted Salmon', price: 23.99 },
+        ],
+      };
     const compiled = fixture.nativeElement as HTMLElement;
     fixture.componentInstance.orderForm?.setValue(expectedOrderValue);
     fixture.detectChanges();
@@ -1521,16 +1532,17 @@ describe('OrderComponent', () =&gt; {
   });
 
   it('should show completed order when order is complete', () =&gt; {
-    const expectedOrderValue: OrderForm = {
-      restaurant: '12345',
-      name: 'Jennifer Hungry',
-      address: '123 Main St',
-      phone: '555-555-5555',
-      items: [
-        { name: 'Onion fries', price: 15.99 },
-        { name: 'Roasted Salmon', price: 23.99 },
-      ],
-    };
+    const expectedOrderValue: ReturnType&lt;FormGroup&lt;OrderForm&gt;['getRawValue']&gt; =
+      {
+        restaurant: '12345',
+        name: 'Jennifer Hungry',
+        address: '123 Main St',
+        phone: '555-555-5555',
+        items: [
+          { name: 'Onion fries', price: 15.99 },
+          { name: 'Roasted Salmon', price: 23.99 },
+        ],
+      };
     const compiled = fixture.nativeElement as HTMLElement;
     fixture.componentInstance.orderForm?.setValue(expectedOrderValue);
     fixture.detectChanges();
@@ -1545,16 +1557,17 @@ describe('OrderComponent', () =&gt; {
   });
 
   it('should clear the form values when create new order is clicked', () =&gt; {
-    const expectedOrderValue: OrderForm = {
-      restaurant: '12345',
-      name: 'Jennifer Hungry',
-      address: '123 Main St',
-      phone: '555-555-5555',
-      items: [
-        { name: 'Onion fries', price: 15.99 },
-        { name: 'Roasted Salmon', price: 23.99 },
-      ],
-    };
+    const expectedOrderValue: ReturnType&lt;FormGroup&lt;OrderForm&gt;['getRawValue']&gt; =
+      {
+        restaurant: '12345',
+        name: 'Jennifer Hungry',
+        address: '123 Main St',
+        phone: '555-555-5555',
+        items: [
+          { name: 'Onion fries', price: 15.99 },
+          { name: 'Roasted Salmon', price: 23.99 },
+        ],
+      };
     const compiled = fixture.nativeElement as HTMLElement;
     fixture.componentInstance.orderForm?.setValue(expectedOrderValue);
     fixture.detectChanges();
@@ -1567,9 +1580,9 @@ describe('OrderComponent', () =&gt; {
     ).click();
     const emptyform = {
       restaurant: '3ZOZyTY1LH26LnVw',
-      name: null,
-      address: null,
-      phone: null,
+      name: '',
+      address: '',
+      phone: '',
       items: [],
     };
     expect(fixture.componentInstance.orderForm?.value).toEqual(emptyform);
@@ -1577,7 +1590,7 @@ describe('OrderComponent', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="10,63-69,71-77,88,93,108-112,115,225-244,246-268,270-299,only"></div>
+ <div line-highlight="3,9-10,63-69,71-77,88,93,108-112,115,225-245,247-270,272-302,only"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
@@ -1594,8 +1607,8 @@ describe('OrderComponent', () =&gt; {
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   AbstractControl,
-  FormArray,
   FormBuilder,
+  FormControl,
   FormGroup,
   ValidationErrors,
   ValidatorFn,
@@ -1607,6 +1620,19 @@ import { takeUntil } from 'rxjs/operators';
 import { Restaurant } from '../restaurant/restaurant';
 import { RestaurantService } from '../restaurant/restaurant.service';
 import { Order, OrderService } from './order.service';
+
+export interface Item {
+  name: string;
+  price: number;
+}
+
+export interface OrderForm {
+  restaurant: FormControl&lt;string&gt;;
+  name: FormControl&lt;string&gt;;
+  address: FormControl&lt;string&gt;;
+  phone: FormControl&lt;string&gt;;
+  items: FormControl&lt;Item[]&gt;;
+}
 
 // CUSTOM VALIDATION FUNCTION TO ENSURE THAT THE ITEMS FORM VALUE CONTAINS AT LEAST ONE ITEM.
 function minLengthArray(min: number): ValidatorFn {
@@ -1624,10 +1650,9 @@ function minLengthArray(min: number): ValidatorFn {
   styleUrls: ['./order.component.less'],
 })
 export class OrderComponent implements OnInit, OnDestroy {
-  orderForm?: FormGroup;
+  orderForm?: FormGroup&lt;OrderForm&gt;;
   restaurant?: Restaurant;
   isLoading = true;
-  items?: FormArray;
   orderTotal = 0.0;
   completedOrder?: Order;
   orderComplete = false;
@@ -1663,26 +1688,25 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   createOrderForm(): void {
-    this.orderForm = this.formBuilder.group({
-      restaurant: [this.restaurant?._id],
-      name: [null, Validators.required],
-      address: [null, Validators.required],
-      phone: [null, Validators.required],
+    this.orderForm = this.formBuilder.nonNullable.group({
+      restaurant: [this.restaurant?._id ?? '', Validators.required],
+      name: ['', Validators.required],
+      address: ['', Validators.required],
+      phone: ['', Validators.required],
       // PASSING OUR CUSTOM VALIDATION FUNCTION TO THIS FORM CONTROL
-      items: [[], minLengthArray(1)],
+      items: [[] as Item[], minLengthArray(1)],
     });
     this.onChanges();
   }
 
-  getChange(newItems: []): void {
-    this.orderForm?.get('items')?.patchValue(newItems);
+  getChange(newItems: Item[]): void {
+    this.orderForm?.controls.items.patchValue(newItems);
   }
 
   onChanges(): void {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
-    this.orderForm
-      ?.get('items')
-      ?.valueChanges.pipe(takeUntil(this.onDestroy$))
+    this.orderForm?.controls.items.valueChanges
+      .pipe(takeUntil(this.onDestroy$))
       .subscribe((val) =&gt; {
         let total = 0.0;
         if (val.length) {
@@ -1697,9 +1721,13 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
+    if (!this.orderForm?.valid) {
+      return;
+    }
+
     this.orderProcessing = true;
     this.orderService
-      .createOrder(this.orderForm?.value)
+      .createOrder(this.orderForm.getRawValue())
       .pipe(takeUntil(this.onDestroy$))
       .subscribe((res: Order) =&gt; {
         this.completedOrder = res;
@@ -1710,7 +1738,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   startNewOrder(): void {
     this.orderComplete = false;
-    this.completedOrder = this.orderForm?.value;
+    this.completedOrder = undefined;
     this.orderTotal = 0.0;
     // CLEAR THE ORDER FORM
     this.createOrderForm();
@@ -1718,7 +1746,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="16,39,47,108-115,121,only"></div>
+ <div line-highlight="16,51,59,118-120,123-130,136,only"></div>
 <p></details></p>
 
 </section>

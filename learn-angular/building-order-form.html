@@ -308,7 +308,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular 13 application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 17 application with its command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -923,6 +923,7 @@ describe('AppComponent', () =&gt; {
   });
 
   it('should render the HomeComponent with router navigates to &quot;/&quot; path', fakeAsync(() =&gt; {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['']).then(() =&gt; {
       expect(location.path()).toBe('');
@@ -931,6 +932,7 @@ describe('AppComponent', () =&gt; {
   }));
 
   it('should render the RestaurantsComponent with router navigates to &quot;/restaurants&quot; path', fakeAsync(() =&gt; {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants']).then(() =&gt; {
       expect(location.path()).toBe('/restaurants');
@@ -939,6 +941,7 @@ describe('AppComponent', () =&gt; {
   }));
 
   it('should render the DetailComponent with router navigates to &quot;/restaurants/slug&quot; path', fakeAsync(() =&gt; {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants/crab-shack']).then(() =&gt; {
       expect(location.path()).toBe('/restaurants/crab-shack');
@@ -947,6 +950,7 @@ describe('AppComponent', () =&gt; {
   }));
 
   it('should render the OrderComponent with router navigates to &quot;/restaurants/slug/order&quot; path', fakeAsync(() =&gt; {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants/crab-shack/order']).then(() =&gt; {
       expect(location.path()).toBe('/restaurants/crab-shack/order');
@@ -998,7 +1002,7 @@ describe('AppComponent', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="18,208,267,269-272,304,315,only"></div>
+ <div line-highlight="18,208,270,273-276,308,312,319,only"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
@@ -1054,18 +1058,22 @@ export class AppRoutingModule {}
 <h2>P2: Technical Requirements</h2>
 <p>The order form component needs to get the restaurant from the route slug, and needs a reactive form to collect <code>restaurant</code>, <code>name</code>, <code>address</code>, <code>phone</code>, and <code>items</code>, and a way to update the order total when the items form control changes.</p>
 <h2>P2: Setup</h2>
-<p>✏️ Update the <strong>src/order/order.component.html</strong> file to be:</p>
+<p>✏️ Update the <strong>src/app/order/order.component.html</strong> file to be:</p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
   &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;&lt;/ng-container&gt;
   &lt;ng-template #showOrderForm&gt;
     &lt;h2&gt;Order here&lt;/h2&gt;
-    &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+    &lt;form
+      *ngIf=&quot;orderForm &amp;&amp; restaurant&quot;
+      [formGroup]=&quot;orderForm&quot;
+      (ngSubmit)=&quot;onSubmit()&quot;
+    &gt;
       &lt;ng-container *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
         &lt;h4&gt;Lunch Menu&lt;/h4&gt;
         &lt;ul class=&quot;list-group&quot;&gt;
           &lt;li
             class=&quot;list-group-item&quot;
-            *ngFor=&quot;let item of restaurant?.menu?.lunch&quot;
+            *ngFor=&quot;let item of restaurant.menu.lunch&quot;
           &gt;
             &lt;label&gt;
               &lt;input type=&quot;checkbox&quot; formControlName=&quot;items&quot; /&gt;
@@ -1074,12 +1082,12 @@ export class AppRoutingModule {}
           &lt;/li&gt;
         &lt;/ul&gt;
       &lt;/ng-container&gt;
-      &lt;ng-container *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
+      &lt;ng-container *ngIf=&quot;restaurant.menu.dinner&quot;&gt;
         &lt;h4&gt;Dinner Menu&lt;/h4&gt;
         &lt;ul class=&quot;list-group&quot;&gt;
           &lt;li
             class=&quot;list-group-item&quot;
-            *ngFor=&quot;let item of restaurant?.menu?.dinner&quot;
+            *ngFor=&quot;let item of restaurant.menu.dinner&quot;
           &gt;
             &lt;label&gt;
               &lt;input type=&quot;checkbox&quot; formControlName=&quot;items&quot; /&gt;
@@ -1090,29 +1098,17 @@ export class AppRoutingModule {}
       &lt;/ng-container&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-        &lt;input
-          name=&quot;name&quot;
-          type=&quot;text&quot;
-          formControlName=&quot;name&quot;
-        /&gt;
+        &lt;input name=&quot;name&quot; type=&quot;text&quot; formControlName=&quot;name&quot; /&gt;
         &lt;p&gt;Please enter your name.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-        &lt;input
-          name=&quot;address&quot;
-          type=&quot;text&quot;
-          formControlName=&quot;address&quot;
-        /&gt;
+        &lt;input name=&quot;address&quot; type=&quot;text&quot; formControlName=&quot;address&quot; /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
-        &lt;input
-          name=&quot;phone&quot;
-          type=&quot;text&quot;
-          formControlName=&quot;phone&quot;
-        /&gt;
+        &lt;input name=&quot;phone&quot; type=&quot;text&quot; formControlName=&quot;phone&quot; /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;submit&quot;&gt;
@@ -1135,8 +1131,8 @@ export class AppRoutingModule {}
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   AbstractControl,
-  FormArray,
   FormBuilder,
+  FormControl,
   FormGroup,
   ValidationErrors,
   ValidatorFn,
@@ -1146,6 +1142,19 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Restaurant } from '../restaurant/restaurant';
 import { RestaurantService } from '../restaurant/restaurant.service';
+
+export interface Item {
+  name: string;
+  price: number;
+}
+
+export interface OrderForm {
+  restaurant: FormControl&lt;string&gt;;
+  name: FormControl&lt;string&gt;;
+  address: FormControl&lt;string&gt;;
+  phone: FormControl&lt;string&gt;;
+  items: FormControl&lt;Item[]&gt;;
+}
 
 // CUSTOM VALIDATION FUNCTION TO ENSURE THAT THE ITEMS FORM VALUE CONTAINS AT LEAST ONE ITEM.
 function minLengthArray(min: number): ValidatorFn {
@@ -1163,10 +1172,9 @@ function minLengthArray(min: number): ValidatorFn {
   styleUrls: ['./order.component.less'],
 })
 export class OrderComponent implements OnInit, OnDestroy {
-  orderForm?: FormGroup;
+  orderForm?: FormGroup&lt;OrderForm&gt;;
   restaurant?: Restaurant;
   isLoading = true;
-  items?: FormArray;
   orderTotal = 0.0;
   completedOrder: any;
   orderComplete = false;
@@ -1188,7 +1196,7 @@ export class OrderComponent implements OnInit, OnDestroy {
   createOrderForm(): void {
     // CREATE AN ORDER FORM TO COLLECT: RESTAURANT ID, NAME, ADDRESS, PHONE, AND ITEMS
     // ITEMS SHOULD USE THE CUSTOM MINLENGTH ARRAY VALIDATION
-    this.orderForm = this.formBuilder.group({});
+    this.orderForm = this.formBuilder.nonNullable.group({});
     this.onChanges();
   }
 
@@ -1200,7 +1208,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   startNewOrder(): void {
     this.orderComplete = false;
-    this.completedOrder = this.orderForm?.value;
+    this.completedOrder = undefined;
     // CLEAR THE ORDER FORM
     this.createOrderForm();
   }
@@ -1408,8 +1416,8 @@ describe('OrderComponent', () =&gt; {
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   AbstractControl,
-  FormArray,
   FormBuilder,
+  FormControl,
   FormGroup,
   ValidationErrors,
   ValidatorFn,
@@ -1420,6 +1428,19 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Restaurant } from '../restaurant/restaurant';
 import { RestaurantService } from '../restaurant/restaurant.service';
+
+export interface Item {
+  name: string;
+  price: number;
+}
+
+export interface OrderForm {
+  restaurant: FormControl&lt;string&gt;;
+  name: FormControl&lt;string&gt;;
+  address: FormControl&lt;string&gt;;
+  phone: FormControl&lt;string&gt;;
+  items: FormControl&lt;Item[]&gt;;
+}
 
 // CUSTOM VALIDATION FUNCTION TO ENSURE THAT THE ITEMS FORM VALUE CONTAINS AT LEAST ONE ITEM.
 function minLengthArray(min: number): ValidatorFn {
@@ -1437,10 +1458,9 @@ function minLengthArray(min: number): ValidatorFn {
   styleUrls: ['./order.component.less'],
 })
 export class OrderComponent implements OnInit, OnDestroy {
-  orderForm?: FormGroup;
+  orderForm?: FormGroup&lt;OrderForm&gt;;
   restaurant?: Restaurant;
   isLoading = true;
-  items?: FormArray;
   orderTotal = 0.0;
   completedOrder: any;
   orderComplete = false;
@@ -1475,22 +1495,21 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   createOrderForm(): void {
-    this.orderForm = this.formBuilder.group({
-      restaurant: [this.restaurant?._id],
-      name: [null, Validators.required],
-      address: [null, Validators.required],
-      phone: [null, Validators.required],
+    this.orderForm = this.formBuilder.nonNullable.group({
+      restaurant: [this.restaurant?._id ?? '', Validators.required],
+      name: ['', Validators.required],
+      address: ['', Validators.required],
+      phone: ['', Validators.required],
       // PASSING OUR CUSTOM VALIDATION FUNCTION TO THIS FORM CONTROL
-      items: [[], minLengthArray(1)],
+      items: [[] as Item[], minLengthArray(1)],
     });
     this.onChanges();
   }
 
   onChanges(): void {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
-    this.orderForm
-      ?.get('items')
-      ?.valueChanges.pipe(takeUntil(this.onDestroy$))
+    this.orderForm?.controls.items.valueChanges
+      .pipe(takeUntil(this.onDestroy$))
       .subscribe((val) =&gt; {
         let total = 0.0;
         if (val.length) {
@@ -1508,14 +1527,14 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   startNewOrder(): void {
     this.orderComplete = false;
-    this.completedOrder = this.orderForm?.value;
+    this.completedOrder = undefined;
     // CLEAR THE ORDER FORM
     this.createOrderForm();
   }
 }
 
 </code></pre>
- <div line-highlight="9,50-51,53-62,65-67,71-78,83-97,107,only"></div>
+ <div line-highlight="9,62-63,65-74,77-79,83-90,95-108,118,only"></div>
 <p></details></p>
 <h2>Importing 3rd Party Plugins</h2>
 <p>In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let's import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started" >ngx-bootstrap</a>:</p>
@@ -1568,9 +1587,13 @@ export class AppModule { }
   &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;&lt;/ng-container&gt;
   &lt;ng-template #showOrderForm&gt;
     &lt;h2&gt;Order here&lt;/h2&gt;
-    &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+    &lt;form
+      *ngIf=&quot;orderForm &amp;&amp; restaurant&quot;
+      [formGroup]=&quot;orderForm&quot;
+      (ngSubmit)=&quot;onSubmit()&quot;
+    &gt;
       &lt;tabset&gt;
-        &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
+        &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant.menu.lunch&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
             &lt;li
               class=&quot;list-group-item&quot;
@@ -1583,11 +1606,11 @@ export class AppModule { }
             &lt;/li&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
-        &lt;tab heading=&quot;Dinner Menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
+        &lt;tab heading=&quot;Dinner Menu&quot; *ngIf=&quot;restaurant.menu.dinner&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
             &lt;li
               class=&quot;list-group-item&quot;
-              *ngFor=&quot;let item of restaurant?.menu?.dinner&quot;
+              *ngFor=&quot;let item of restaurant.menu.dinner&quot;
             &gt;
               &lt;label&gt;
                 &lt;input type=&quot;checkbox&quot; formControlName=&quot;items&quot; /&gt;
@@ -1599,29 +1622,17 @@ export class AppModule { }
       &lt;/tabset&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-        &lt;input
-          name=&quot;name&quot;
-          type=&quot;text&quot;
-          formControlName=&quot;name&quot;
-        /&gt;
+        &lt;input name=&quot;name&quot; type=&quot;text&quot; formControlName=&quot;name&quot; /&gt;
         &lt;p&gt;Please enter your name.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-        &lt;input
-          name=&quot;address&quot;
-          type=&quot;text&quot;
-          formControlName=&quot;address&quot;
-        /&gt;
+        &lt;input name=&quot;address&quot; type=&quot;text&quot; formControlName=&quot;address&quot; /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
-        &lt;input
-          name=&quot;phone&quot;
-          type=&quot;text&quot;
-          formControlName=&quot;phone&quot;
-        /&gt;
+        &lt;input name=&quot;phone&quot; type=&quot;text&quot; formControlName=&quot;phone&quot; /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;submit&quot;&gt;
@@ -1640,7 +1651,7 @@ export class AppModule { }
 &lt;/div&gt;
 
 </code></pre>
- <div line-highlight="6-33,only"></div>
+ <div line-highlight="10-37,only"></div>
 <p>Now when we view the order form of our route, we'll see a nice form and tabs for lunch and dinner menu options.</p>
 <p><img src="../static/img/angular/pmo-tabs-working.gif" alt="Place My Order App tabs" title="Place My Order App tabs" /></p>
 <h2>Problem 3: Create Custom Menu-Items Component</h2>
@@ -1665,20 +1676,24 @@ export class AppModule { }
 <p>✏️ Run:</p>
 <pre><code class="language-bash">ng g component order/menu-items
 </code></pre>
-<p>Go ahead and put your new component in the order history component.</p>
+<p>Go ahead and put your new component in the order component.</p>
 <p>✏️ Update <strong>src/app/order/order.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
   &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;&lt;/ng-container&gt;
   &lt;ng-template #showOrderForm&gt;
     &lt;h2&gt;Order here&lt;/h2&gt;
-    &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+    &lt;form
+      *ngIf=&quot;orderForm &amp;&amp; restaurant&quot;
+      [formGroup]=&quot;orderForm&quot;
+      (ngSubmit)=&quot;onSubmit()&quot;
+    &gt;
       &lt;tabset&gt;
-        &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
+        &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant.menu.lunch&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
             &lt;pmo-menu-items&gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
-        &lt;tab heading=&quot;Dinner Menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
+        &lt;tab heading=&quot;Dinner Menu&quot; *ngIf=&quot;restaurant.menu.dinner&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
             &lt;pmo-menu-items&gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
@@ -1686,29 +1701,17 @@ export class AppModule { }
       &lt;/tabset&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-        &lt;input
-          name=&quot;name&quot;
-          type=&quot;text&quot;
-          formControlName=&quot;name&quot;
-        /&gt;
+        &lt;input name=&quot;name&quot; type=&quot;text&quot; formControlName=&quot;name&quot; /&gt;
         &lt;p&gt;Please enter your name.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-        &lt;input
-          name=&quot;address&quot;
-          type=&quot;text&quot;
-          formControlName=&quot;address&quot;
-        /&gt;
+        &lt;input name=&quot;address&quot; type=&quot;text&quot; formControlName=&quot;address&quot; /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
-        &lt;input
-          name=&quot;phone&quot;
-          type=&quot;text&quot;
-          formControlName=&quot;phone&quot;
-        /&gt;
+        &lt;input name=&quot;phone&quot; type=&quot;text&quot; formControlName=&quot;phone&quot; /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;submit&quot;&gt;
@@ -1727,7 +1730,7 @@ export class AppModule { }
 &lt;/div&gt;
 
 </code></pre>
- <div line-highlight="9,14,only"></div>
+ <div line-highlight="13,18,only"></div>
 <h2>P3: How to Verify Your Solution is Correct</h2>
 <p>✏️ Update the order spec file <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -2029,11 +2032,7 @@ platformBrowserDynamic()
 </code></pre>
 <p>✏️ Update <strong>src/app/order/menu-items.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, Input, OnInit } from '@angular/core';
-
-interface Item {
-  name: string;
-  price: number;
-}
+import { Item } from '../order.component';
 
 @Component({
   selector: 'pmo-menu-items',
@@ -2041,7 +2040,7 @@ interface Item {
   styleUrls: ['./menu-items.component.less'],
 })
 export class MenuItemsComponent implements OnInit {
-  @Input() items?: Item[];
+  @Input() items: Item[] = [];
 
   constructor() {}
 
@@ -2054,44 +2053,36 @@ export class MenuItemsComponent implements OnInit {
   &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;&lt;/ng-container&gt;
   &lt;ng-template #showOrderForm&gt;
     &lt;h2&gt;Order here&lt;/h2&gt;
-    &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+    &lt;form
+      *ngIf=&quot;orderForm &amp;&amp; restaurant&quot;
+      [formGroup]=&quot;orderForm&quot;
+      (ngSubmit)=&quot;onSubmit()&quot;
+    &gt;
       &lt;tabset&gt;
-        &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
+        &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant.menu.lunch&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
-            &lt;pmo-menu-items [items]=&quot;restaurant?.menu?.lunch&quot;&gt;&lt;/pmo-menu-items&gt;
+            &lt;pmo-menu-items [items]=&quot;restaurant.menu.lunch&quot;&gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
-        &lt;tab heading=&quot;Dinner Menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
+        &lt;tab heading=&quot;Dinner Menu&quot; *ngIf=&quot;restaurant.menu.dinner&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
-            &lt;pmo-menu-items [items]=&quot;restaurant?.menu?.dinner&quot;&gt;&lt;/pmo-menu-items&gt;
+            &lt;pmo-menu-items [items]=&quot;restaurant.menu.dinner&quot;&gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
       &lt;/tabset&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-        &lt;input
-          name=&quot;name&quot;
-          type=&quot;text&quot;
-          formControlName=&quot;name&quot;
-        /&gt;
+        &lt;input name=&quot;name&quot; type=&quot;text&quot; formControlName=&quot;name&quot; /&gt;
         &lt;p&gt;Please enter your name.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-        &lt;input
-          name=&quot;address&quot;
-          type=&quot;text&quot;
-          formControlName=&quot;address&quot;
-        /&gt;
+        &lt;input name=&quot;address&quot; type=&quot;text&quot; formControlName=&quot;address&quot; /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
-        &lt;input
-          name=&quot;phone&quot;
-          type=&quot;text&quot;
-          formControlName=&quot;phone&quot;
-        /&gt;
+        &lt;input name=&quot;phone&quot; type=&quot;text&quot; formControlName=&quot;phone&quot; /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;submit&quot;&gt;
@@ -2110,7 +2101,7 @@ export class MenuItemsComponent implements OnInit {
 &lt;/div&gt;
 
 </code></pre>
- <div line-highlight="9,14,only"></div>
+ <div line-highlight="13,18,only"></div>
 <p></details></p>
 <h2>Problem 4: Attaching Event Handlers to Item Checkboxes</h2>
 <p>Next, we want to know when a checkbox has been checked or unchecked, and update an array called <code>selectedItems</code> containing all checked items.</p>
@@ -2273,11 +2264,7 @@ describe('MenuItemsComponent', () =&gt; {
  <div line-highlight="3,only"></div>
 <p>✏️ Update <strong>src/app/order/menu-items/menu-items.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, Input, OnInit } from '@angular/core';
-
-interface Item {
-  name: string;
-  price: number;
-}
+import { Item } from '../order.component';
 
 @Component({
   selector: 'pmo-menu-items',
@@ -2285,7 +2272,7 @@ interface Item {
   styleUrls: ['./menu-items.component.less'],
 })
 export class MenuItemsComponent implements OnInit {
-  @Input() items?: Item[];
+  @Input() items: Item[] = [];
   selectedItems: Item[] = [];
 
   constructor() {}
@@ -2303,7 +2290,7 @@ export class MenuItemsComponent implements OnInit {
 }
 
 </code></pre>
- <div line-highlight="15,21-28,only"></div>
+ <div line-highlight="11,17-24,only"></div>
 <p></details></p>
 <h2>Problem 5: Update OrderFormComponent with selectedItems Array from MenuItemsComponent</h2>
 <p>Now we want to let the form know what the selected items are as they change so we can update the order total accordingly.</p>
@@ -2633,8 +2620,9 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='31,32,43-45,69,77-79,only'></div>
-<h2>Programmatically Updating FormControl Values</h2>
-<p>When we have a formControl we need to update programmatically with a value we can use the <a href="https://angular.io/api/forms/FormControl#patchvalue" ><code>patchValue</code></a> method on the <code>FormControl</code> class. This method must be called on a FormControl instance and with a parameter of the new value.</p>
+<h2>Programmatically Updating FormArray Values</h2>
+<p>When we have a FormArray we need to update programmatically with a value we can use the <a href="https://angular.io/api/forms/FormArray#patchvalue" ><code>patchValue</code></a> or <a href="https://angular.io/api/forms/FormArray#setvalue" ><code>setValue</code></a> methods on the <code>FormArray</code> class.</p>
+<p>The difference between these two FormArray's methods is that <code>setValue</code> replaces the current array with the new value, and <code>patchValue</code> updates the array with the new values, trying to update values where possible.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -2725,18 +2713,14 @@ platformBrowserDynamic()
 <div line-highlight='25,57-61,only'></div>
 <ul>
 <li>How to emit a value to a parent component (you learned this in the section above! ✔️)</li>
-<li>How to programmatically update a FormControl's value (you learned this in the section above! ✔️)</li>
+<li>How to programmatically update a FormArray's value (you learned this in the section above! ✔️)</li>
 </ul>
 <h2>P5: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/order/menu-items.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-
-interface Item {
-  name: string;
-  price: number;
-}
+import { Item } from '../order.component';
 
 @Component({
   selector: 'pmo-menu-items',
@@ -2744,7 +2728,7 @@ interface Item {
   styleUrls: ['./menu-items.component.less'],
 })
 export class MenuItemsComponent implements OnInit {
-  @Input() items?: Item[];
+  @Input() items: Item[] = [];
   @Output() itemsChanged: EventEmitter&lt;Item[]&gt; = new EventEmitter();
   selectedItems: Item[] = [];
 
@@ -2764,26 +2748,30 @@ export class MenuItemsComponent implements OnInit {
 }
 
 </code></pre>
- <div line-highlight="1,15,29,only"></div>
+ <div line-highlight="1,11,25,only"></div>
 <p>✏️ Update <strong>src/app/order/order.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
   &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;&lt;/ng-container&gt;
   &lt;ng-template #showOrderForm&gt;
     &lt;h2&gt;Order here&lt;/h2&gt;
-    &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+    &lt;form
+      *ngIf=&quot;orderForm &amp;&amp; restaurant&quot;
+      [formGroup]=&quot;orderForm&quot;
+      (ngSubmit)=&quot;onSubmit()&quot;
+    &gt;
       &lt;tabset&gt;
-        &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
+        &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant.menu.lunch&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
             &lt;pmo-menu-items
-              [items]=&quot;restaurant?.menu?.lunch&quot;
+              [items]=&quot;restaurant.menu.lunch&quot;
               (itemsChanged)=&quot;getChange($event)&quot;
             &gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
-        &lt;tab heading=&quot;Dinner Menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
+        &lt;tab heading=&quot;Dinner Menu&quot; *ngIf=&quot;restaurant.menu.dinner&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
             &lt;pmo-menu-items
-              [items]=&quot;restaurant?.menu?.dinner&quot;
+              [items]=&quot;restaurant.menu.dinner&quot;
               (itemsChanged)=&quot;getChange($event)&quot;
             &gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
@@ -2791,29 +2779,17 @@ export class MenuItemsComponent implements OnInit {
       &lt;/tabset&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-        &lt;input
-          name=&quot;name&quot;
-          type=&quot;text&quot;
-          formControlName=&quot;name&quot;
-        /&gt;
+        &lt;input name=&quot;name&quot; type=&quot;text&quot; formControlName=&quot;name&quot; /&gt;
         &lt;p&gt;Please enter your name.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-        &lt;input
-          name=&quot;address&quot;
-          type=&quot;text&quot;
-          formControlName=&quot;address&quot;
-        /&gt;
+        &lt;input name=&quot;address&quot; type=&quot;text&quot; formControlName=&quot;address&quot; /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
-        &lt;input
-          name=&quot;phone&quot;
-          type=&quot;text&quot;
-          formControlName=&quot;phone&quot;
-        /&gt;
+        &lt;input name=&quot;phone&quot; type=&quot;text&quot; formControlName=&quot;phone&quot; /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;submit&quot;&gt;
@@ -2832,13 +2808,13 @@ export class MenuItemsComponent implements OnInit {
 &lt;/div&gt;
 
 </code></pre>
- <div line-highlight="9-12,17-20,only"></div>
+ <div line-highlight="13-16,21-24,only"></div>
 <p>✏️ Update <strong>src/app/order/order.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
 import {
   AbstractControl,
-  FormArray,
   FormBuilder,
+  FormControl,
   FormGroup,
   ValidationErrors,
   ValidatorFn,
@@ -2849,6 +2825,19 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 import { Restaurant } from '../restaurant/restaurant';
 import { RestaurantService } from '../restaurant/restaurant.service';
+
+export interface Item {
+  name: string;
+  price: number;
+}
+
+export interface OrderForm {
+  restaurant: FormControl&lt;string&gt;;
+  name: FormControl&lt;string&gt;;
+  address: FormControl&lt;string&gt;;
+  phone: FormControl&lt;string&gt;;
+  items: FormControl&lt;Item[]&gt;;
+}
 
 // CUSTOM VALIDATION FUNCTION TO ENSURE THAT THE ITEMS FORM VALUE CONTAINS AT LEAST ONE ITEM.
 function minLengthArray(min: number): ValidatorFn {
@@ -2866,10 +2855,9 @@ function minLengthArray(min: number): ValidatorFn {
   styleUrls: ['./order.component.less'],
 })
 export class OrderComponent implements OnInit, OnDestroy {
-  orderForm?: FormGroup;
+  orderForm?: FormGroup&lt;OrderForm&gt;;
   restaurant?: Restaurant;
   isLoading = true;
-  items?: FormArray;
   orderTotal = 0.0;
   completedOrder: any;
   orderComplete = false;
@@ -2904,26 +2892,25 @@ export class OrderComponent implements OnInit, OnDestroy {
   }
 
   createOrderForm(): void {
-    this.orderForm = this.formBuilder.group({
-      restaurant: [this.restaurant?._id],
-      name: [null, Validators.required],
-      address: [null, Validators.required],
-      phone: [null, Validators.required],
+    this.orderForm = this.formBuilder.nonNullable.group({
+      restaurant: [this.restaurant?._id ?? '', Validators.required],
+      name: ['', Validators.required],
+      address: ['', Validators.required],
+      phone: ['', Validators.required],
       // PASSING OUR CUSTOM VALIDATION FUNCTION TO THIS FORM CONTROL
-      items: [[], minLengthArray(1)],
+      items: [[] as Item[], minLengthArray(1)],
     });
     this.onChanges();
   }
 
-  getChange(newItems: []): void {
-    this.orderForm?.get('items')?.patchValue(newItems);
+  getChange(newItems: Item[]): void {
+    this.orderForm?.controls.items.patchValue(newItems);
   }
 
   onChanges(): void {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
-    this.orderForm
-      ?.get('items')
-      ?.valueChanges.pipe(takeUntil(this.onDestroy$))
+    this.orderForm?.controls.items.valueChanges
+      .pipe(takeUntil(this.onDestroy$))
       .subscribe((val) =&gt; {
         let total = 0.0;
         if (val.length) {
@@ -2941,25 +2928,21 @@ export class OrderComponent implements OnInit, OnDestroy {
 
   startNewOrder(): void {
     this.orderComplete = false;
-    this.completedOrder = this.orderForm?.value;
+    this.completedOrder = undefined;
     // CLEAR THE ORDER FORM
     this.createOrderForm();
   }
 }
 
 </code></pre>
- <div line-highlight="82-83,111,only"></div>
+ <div line-highlight="94-95,122,only"></div>
 <p></details></p>
 <h2>Control Value Accessor</h2>
 <p>Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the <a href="https://angular.io/api/forms/ControlValueAccessor" >Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - onChange, onTouched, setValue. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.</p>
 <p>✏️ Update <strong>src/app/order/menu-items.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-
-interface Item {
-  name: string;
-  price: number;
-}
+import { Item } from '../order.component';
 
 @Component({
   selector: 'pmo-menu-items',
@@ -2974,7 +2957,7 @@ interface Item {
   ],
 })
 export class MenuItemsComponent implements ControlValueAccessor {
-  @Input() items?: Item[];
+  @Input() items: Item[] = [];
   @Input('value') _value: Item[] = [];
 
   constructor() {}
@@ -3016,7 +2999,7 @@ export class MenuItemsComponent implements ControlValueAccessor {
 }
 
 </code></pre>
- <div line-highlight="1-2,13-19,21,23,27-28,30-31,34-38,40-42,44-46,48-50,53-55,57,59-60,only"></div>
+ <div line-highlight="1-2,9-15,17,19,23-24,26-27,30-34,36-38,40-42,44-46,49-51,53,55-56,only"></div>
 <p>Other concepts used here:</p>
 <h3>forwardRef</h3>
 <p><a href="https://angular.io/api/core/forwardRef">forwardRef</a> is used to reference a token that may not be defined when we need it.</p>
@@ -3028,20 +3011,24 @@ export class MenuItemsComponent implements ControlValueAccessor {
   &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;&lt;/ng-container&gt;
   &lt;ng-template #showOrderForm&gt;
     &lt;h2&gt;Order here&lt;/h2&gt;
-    &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+    &lt;form
+      *ngIf=&quot;orderForm &amp;&amp; restaurant&quot;
+      [formGroup]=&quot;orderForm&quot;
+      (ngSubmit)=&quot;onSubmit()&quot;
+    &gt;
       &lt;tabset&gt;
-        &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
+        &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant.menu.lunch&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
             &lt;pmo-menu-items
-              [items]=&quot;restaurant?.menu?.lunch&quot;
+              [items]=&quot;restaurant.menu.lunch&quot;
               formControlName=&quot;items&quot;
             &gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
-        &lt;tab heading=&quot;Dinner Menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
+        &lt;tab heading=&quot;Dinner Menu&quot; *ngIf=&quot;restaurant.menu.dinner&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
             &lt;pmo-menu-items
-              [items]=&quot;restaurant?.menu?.dinner&quot;
+              [items]=&quot;restaurant.menu.dinner&quot;
               formControlName=&quot;items&quot;
             &gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
@@ -3049,29 +3036,17 @@ export class MenuItemsComponent implements ControlValueAccessor {
       &lt;/tabset&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-        &lt;input
-          name=&quot;name&quot;
-          type=&quot;text&quot;
-          formControlName=&quot;name&quot;
-        /&gt;
+        &lt;input name=&quot;name&quot; type=&quot;text&quot; formControlName=&quot;name&quot; /&gt;
         &lt;p&gt;Please enter your name.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-        &lt;input
-          name=&quot;address&quot;
-          type=&quot;text&quot;
-          formControlName=&quot;address&quot;
-        /&gt;
+        &lt;input name=&quot;address&quot; type=&quot;text&quot; formControlName=&quot;address&quot; /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Phone:&lt;/label&gt;
-        &lt;input
-          name=&quot;phone&quot;
-          type=&quot;text&quot;
-          formControlName=&quot;phone&quot;
-        /&gt;
+        &lt;input name=&quot;phone&quot; type=&quot;text&quot; formControlName=&quot;phone&quot; /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your phone number.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;submit&quot;&gt;
@@ -3090,7 +3065,7 @@ export class MenuItemsComponent implements ControlValueAccessor {
 &lt;/div&gt;
 
 </code></pre>
- <div line-highlight="11,19,only"></div>
+ <div line-highlight="15,23,only"></div>
 <p>We now have a form that updates the <code>items</code> formControl when items are selected and shows the user an updated total!</p>
 <h3>Update Order Component Tests</h3>
 <p>✏️ Update the order spec file <strong>src/app/order/order.component.spec.ts</strong> to be:</p>

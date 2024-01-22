@@ -308,7 +308,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular 13 application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 17 application with its command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -814,20 +814,24 @@ platformBrowserDynamic()
   &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;&lt;/ng-container&gt;
   &lt;ng-template #showOrderForm&gt;
     &lt;h2&gt;Order here&lt;/h2&gt;
-    &lt;form *ngIf=&quot;orderForm&quot; [formGroup]=&quot;orderForm&quot; (ngSubmit)=&quot;onSubmit()&quot;&gt;
+    &lt;form
+      *ngIf=&quot;orderForm &amp;&amp; restaurant&quot;
+      [formGroup]=&quot;orderForm&quot;
+      (ngSubmit)=&quot;onSubmit()&quot;
+    &gt;
       &lt;tabset&gt;
-        &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant?.menu?.lunch&quot;&gt;
+        &lt;tab heading=&quot;Lunch Menu&quot; *ngIf=&quot;restaurant.menu.lunch&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
             &lt;pmo-menu-items
-              [items]=&quot;restaurant?.menu?.lunch&quot;
+              [items]=&quot;restaurant.menu.lunch&quot;
               formControlName=&quot;items&quot;
             &gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
-        &lt;tab heading=&quot;Dinner Menu&quot; *ngIf=&quot;restaurant?.menu?.dinner&quot;&gt;
+        &lt;tab heading=&quot;Dinner Menu&quot; *ngIf=&quot;restaurant.menu.dinner&quot;&gt;
           &lt;ul class=&quot;list-group&quot;&gt;
             &lt;pmo-menu-items
-              [items]=&quot;restaurant?.menu?.dinner&quot;
+              [items]=&quot;restaurant.menu.dinner&quot;
               formControlName=&quot;items&quot;
             &gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
@@ -835,20 +839,12 @@ platformBrowserDynamic()
       &lt;/tabset&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Name:&lt;/label&gt;
-        &lt;input
-          name=&quot;name&quot;
-          type=&quot;text&quot;
-          formControlName=&quot;name&quot;
-        /&gt;
+        &lt;input name=&quot;name&quot; type=&quot;text&quot; formControlName=&quot;name&quot; /&gt;
         &lt;p&gt;Please enter your name.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
         &lt;label class=&quot;control-label&quot;&gt;Address:&lt;/label&gt;
-        &lt;input
-          name=&quot;address&quot;
-          type=&quot;text&quot;
-          formControlName=&quot;address&quot;
-        /&gt;
+        &lt;input name=&quot;address&quot; type=&quot;text&quot; formControlName=&quot;address&quot; /&gt;
         &lt;p class=&quot;help-text&quot;&gt;Please enter your address.&lt;/p&gt;
       &lt;/div&gt;
       &lt;div class=&quot;form-group&quot;&gt;
@@ -877,7 +873,7 @@ platformBrowserDynamic()
 &lt;/div&gt;
 
 </code></pre>
- <div line-highlight="47,only"></div>
+ <div line-highlight="40-45,only"></div>
 <p>✏️ Run the following to generate the <strong>Directive</strong> and the directive's tests:</p>
 <pre><code class="language-bash">ng g directive onlyNumbers
 </code></pre>

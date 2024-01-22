@@ -307,7 +307,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular 13 application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 17 application with its command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -673,7 +673,7 @@ covering CanJS core libraries.">
 <li>Update npm script to include deploy</li>
 </ul>
 <h2>Add Production API URL</h2>
-<p>For our production app, we won't be running a local server, instead we'll point to <code>https://place-my-order-api.herokuapp.com</code>. All we need to do is add the apiUrl variable to our production environment file. When we do a production build by running <code>ng build --prod</code>, our production file will be used.</p>
+<p>For our production app, we won't be running a local server, instead we'll point to <code>https://place-my-order-api.herokuapp.com</code>. All we need to do is add the apiUrl variable to our production environment file. When we do a production build by running <code>ng build</code>, our production file will be used.</p>
 <p>✏️ Update <strong>src/environments/environment.prod.ts</strong>:</p>
 <pre><code class="language-ts">export const environment = {
   production: true,
@@ -709,8 +709,8 @@ covering CanJS core libraries.">
 <li>What alias do you want to use for this project? (prod)</li>
 </ol>
 <h2>Deploy App</h2>
-<p>We need to get our app ready to deploy, so we'll create a build with the production flag.</p>
-<pre><code class="language-shell">ng build --prod
+<p>We need to get our app ready to deploy, so we'll create a build.</p>
+<pre><code class="language-shell">ng build
 </code></pre>
 <pre><code class="language-shell">firebase deploy
 firebase open hosting:site

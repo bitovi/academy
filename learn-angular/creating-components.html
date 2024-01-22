@@ -308,7 +308,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular 13 application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 17 application with its command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -861,7 +861,7 @@ something that reads the component's <code>title</code> property.</p>
 </code></pre>
 <p>Open the <code>angular.json</code> file, and make the following changes to include these files in our build process. This will copy the images into our assets directory for when we serve our application.</p>
 <blockquote>
-<p>Pay close attention that you're making these changes under the &quot;build&quot; key and not the &quot;test&quot; key, as the code looks very similar. The build key should be close to line 20.</p>
+<p>Pay close attention that you're making these changes under the &quot;build&quot; key and not the &quot;test&quot; key, as the code looks very similar. The build key should be close to line 24.</p>
 </blockquote>
 <p><details open>
 <summary>section copied - angular.json</summary>
@@ -875,10 +875,14 @@ something that reads the component's <code>title</code> property.</p>
       &quot;projectType&quot;: &quot;application&quot;,
       &quot;schematics&quot;: {
         &quot;@schematics/angular:component&quot;: {
-          &quot;style&quot;: &quot;less&quot;
+          &quot;style&quot;: &quot;less&quot;,
+          &quot;standalone&quot;: false
         },
-        &quot;@schematics/angular:application&quot;: {
-          &quot;strict&quot;: true
+        &quot;@schematics/angular:directive&quot;: {
+          &quot;standalone&quot;: false
+        },
+        &quot;@schematics/angular:pipe&quot;: {
+          &quot;standalone&quot;: false
         }
       },
       &quot;root&quot;: &quot;&quot;,
@@ -886,12 +890,14 @@ something that reads the component's <code>title</code> property.</p>
       &quot;prefix&quot;: &quot;pmo&quot;,
       &quot;architect&quot;: {
         &quot;build&quot;: {
-          &quot;builder&quot;: &quot;@angular-devkit/build-angular:browser&quot;,
+          &quot;builder&quot;: &quot;@angular-devkit/build-angular:application&quot;,
           &quot;options&quot;: {
             &quot;outputPath&quot;: &quot;dist/place-my-order&quot;,
             &quot;index&quot;: &quot;src/index.html&quot;,
-            &quot;main&quot;: &quot;src/main.ts&quot;,
-            &quot;polyfills&quot;: &quot;src/polyfills.ts&quot;,
+            &quot;browser&quot;: &quot;src/main.ts&quot;,
+            &quot;polyfills&quot;: [
+              &quot;zone.js&quot;
+            ],
             &quot;tsConfig&quot;: &quot;tsconfig.app.json&quot;,
             &quot;inlineStyleLanguage&quot;: &quot;less&quot;,
             &quot;assets&quot;: [
@@ -923,21 +929,12 @@ something that reads the component's <code>title</code> property.</p>
                   &quot;maximumError&quot;: &quot;4kb&quot;
                 }
               ],
-              &quot;fileReplacements&quot;: [
-                {
-                  &quot;replace&quot;: &quot;src/environments/environment.ts&quot;,
-                  &quot;with&quot;: &quot;src/environments/environment.prod.ts&quot;
-                }
-              ],
               &quot;outputHashing&quot;: &quot;all&quot;
             },
             &quot;development&quot;: {
-              &quot;buildOptimizer&quot;: false,
               &quot;optimization&quot;: false,
-              &quot;vendorChunk&quot;: true,
               &quot;extractLicenses&quot;: false,
-              &quot;sourceMap&quot;: true,
-              &quot;namedChunks&quot;: true
+              &quot;sourceMap&quot;: true
             }
           },
           &quot;defaultConfiguration&quot;: &quot;production&quot;
@@ -946,10 +943,10 @@ something that reads the component's <code>title</code> property.</p>
           &quot;builder&quot;: &quot;@angular-devkit/build-angular:dev-server&quot;,
           &quot;configurations&quot;: {
             &quot;production&quot;: {
-              &quot;browserTarget&quot;: &quot;place-my-order:build:production&quot;
+              &quot;buildTarget&quot;: &quot;place-my-order:build:production&quot;
             },
             &quot;development&quot;: {
-              &quot;browserTarget&quot;: &quot;place-my-order:build:development&quot;
+              &quot;buildTarget&quot;: &quot;place-my-order:build:development&quot;
             }
           },
           &quot;defaultConfiguration&quot;: &quot;development&quot;
@@ -957,16 +954,17 @@ something that reads the component's <code>title</code> property.</p>
         &quot;extract-i18n&quot;: {
           &quot;builder&quot;: &quot;@angular-devkit/build-angular:extract-i18n&quot;,
           &quot;options&quot;: {
-            &quot;browserTarget&quot;: &quot;place-my-order:build&quot;
+            &quot;buildTarget&quot;: &quot;place-my-order:build&quot;
           }
         },
         &quot;test&quot;: {
           &quot;builder&quot;: &quot;@angular-devkit/build-angular:karma&quot;,
           &quot;options&quot;: {
-            &quot;main&quot;: &quot;src/test.ts&quot;,
-            &quot;polyfills&quot;: &quot;src/polyfills.ts&quot;,
+            &quot;polyfills&quot;: [
+              &quot;zone.js&quot;,
+              &quot;zone.js/testing&quot;
+            ],
             &quot;tsConfig&quot;: &quot;tsconfig.spec.json&quot;,
-            &quot;karmaConfig&quot;: &quot;karma.conf.js&quot;,
             &quot;inlineStyleLanguage&quot;: &quot;less&quot;,
             &quot;assets&quot;: [
               &quot;src/favicon.ico&quot;,
@@ -980,12 +978,11 @@ something that reads the component's <code>title</code> property.</p>
         }
       }
     }
-  },
-  &quot;defaultProject&quot;: &quot;place-my-order&quot;
+  }
 }
 
 </code></pre>
-<div line-highlight='29-41,only'></div>
+<div line-highlight='35-47,only'></div>
 <p></details></p>
 <p><strong>Any time changes are made to the <code>angular.json</code> file, we need to restart our server to catch the new changes.</strong></p>
 <p>✏️ <strong>Quit process by running <code>Ctrl + C</code>.</strong></p>

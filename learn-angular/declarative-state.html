@@ -308,7 +308,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular 13 application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 17 application with its command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -1535,7 +1535,7 @@ describe('RestaurantComponent', () =&gt; {
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import {
   combineLatest,
   map,
@@ -1575,7 +1575,10 @@ const toData = map(
   styleUrls: ['./restaurant.component.less'],
 })
 export class RestaurantComponent implements OnInit, OnDestroy {
-  form: FormGroup = this.createForm();
+  form: FormGroup&lt;{
+    state: FormControl&lt;string&gt;;
+    city: FormControl&lt;string&gt;;
+  }&gt; = this.createForm();
 
   states$: Observable&lt;Data&lt;State&gt;&gt;;
   cities$: Observable&lt;Data&lt;City&gt;&gt;;
@@ -1592,13 +1595,13 @@ export class RestaurantComponent implements OnInit, OnDestroy {
     private restaurantService: RestaurantService,
     private fb: FormBuilder
   ) {
-    this.selectedState$ = this.form
-      .get('state')!
-      .valueChanges.pipe(startWith(''));
+    this.selectedState$ = this.form.controls.state.valueChanges.pipe(
+      startWith('')
+    );
 
-    this.selectedCity$ = this.form
-      .get('city')!
-      .valueChanges.pipe(startWith(''));
+    this.selectedCity$ = this.form.controls.city.valueChanges.pipe(
+      startWith('')
+    );
 
     this.states$ = this.restaurantService
       .getStates()
@@ -1612,7 +1615,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
       takeUntil(this.onDestroy$),
       tap((states) =&gt; {
         if (states.value.length &gt; 0) {
-          this.form.get('state')!.enable();
+          this.form.controls.state.enable();
         }
       })
     );
@@ -1634,12 +1637,12 @@ export class RestaurantComponent implements OnInit, OnDestroy {
       takeUntil(this.onDestroy$),
       tap((cities) =&gt; {
         if (cities.value.length === 0) {
-          this.form.get('city')!.disable({
+          this.form.controls.city.disable({
             onlySelf: true,
             emitEvent: false,
           });
         } else {
-          this.form.get('city')!.enable({
+          this.form.controls.city.enable({
             onlySelf: true,
             emitEvent: false,
           });
@@ -1652,7 +1655,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
       pairwise(),
       tap(([previous, current]) =&gt; {
         if (current &amp;&amp; current !== previous) {
-          this.form.get('city')!.patchValue('');
+          this.form.controls.city.setValue('');
         }
       })
     );
@@ -1684,8 +1687,11 @@ export class RestaurantComponent implements OnInit, OnDestroy {
     this.onDestroy$.complete();
   }
 
-  createForm(): FormGroup {
-    return this.fb.group({
+  createForm(): FormGroup&lt;{
+    state: FormControl&lt;string&gt;;
+    city: FormControl&lt;string&gt;;
+  }&gt; {
+    return this.fb.nonNullable.group({
       state: { value: '', disabled: true },
       city: { value: '', disabled: true },
     });
@@ -1693,7 +1699,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
-<div line-highlight='3-15, 29-34, 44-51, 59-137, 141-143'></div>
+<div line-highlight='3-15, 29-34, 47-54, 62-140, 144-146'></div>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
   &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;

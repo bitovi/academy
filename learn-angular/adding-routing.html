@@ -308,7 +308,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular 13 application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 17 application with its command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -678,7 +678,7 @@ covering CanJS core libraries.">
 at the end of this tutorial:</p>
 <p><img src="../static/img/angular/4-adding-routing/after.gif" alt="Choose a restaurant routing" title="Choose a restaurant routing" /></p>
 <h2>Setup</h2>
-<p><code>&lt;router-outlet&gt;</code>, which handles routing to a component based on a url, was added to our <strong>src/app/app.component.html</strong> file when we first generated our app and answered <code>yes</code> to the routing question. But since that time, we added components to that view. Let's remove those components because <code>&lt;router-outlet&gt;</code> will handle showing
+<p><code>&lt;router-outlet&gt;</code>, which handles routing to a component based on a url, was added to our <strong>src/app/app.component.html</strong> file when we first generated our app. But since that time, we added components to that view. Let's remove those components because <code>&lt;router-outlet&gt;</code> will handle showing
 those components going forward.</p>
 <p>✏️ Update <strong>src/app/app.component.html</strong> to:</p>
 <pre><code class="language-html">&lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;
@@ -733,6 +733,7 @@ describe('AppComponent', () =&gt; {
   it('should render the HomeComponent with router navigates to &quot;/&quot; path', fakeAsync(() =&gt; {
     const location: Location = TestBed.inject(Location);
     const router: Router = TestBed.inject(Router);
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['']).then(() =&gt; {
       expect(location.path()).toBe('');
@@ -743,6 +744,7 @@ describe('AppComponent', () =&gt; {
   it('should render the RestaurantsComponent with router navigates to &quot;/restaurants&quot; path', fakeAsync(() =&gt; {
     const location: Location = TestBed.inject(Location);
     const router: Router = TestBed.inject(Router);
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants']).then(() =&gt; {
       expect(location.path()).toBe('/restaurants');
@@ -752,7 +754,7 @@ describe('AppComponent', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="1,3-5,7-8,11,15-17,20,36-38,41-49,51-59,"></div>
+ <div line-highlight="1,3-5,7-8,11,15-17,20,36-38,41-50,52-61,"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
@@ -854,7 +856,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='31, only'></div>
 <h2>Router</h2>
-<p>To be able to navigate between different views in our app, we can take advantage of Angular's built-in routing module. We already told Angular we'd like to set up routing, so it generated <code>src/app/app-routing.module.ts</code> for us and included it in our root module. <code>src/app/app-routing.module.ts</code> currently looks like:</p>
+<p>To be able to navigate between different views in our app, we can take advantage of Angular's built-in routing module. Angular generated <code>src/app/app-routing.module.ts</code> for us and included it in our root module. <code>src/app/app-routing.module.ts</code> currently looks like:</p>
 <pre><code class="language-typescript">import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 

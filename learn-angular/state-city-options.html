@@ -308,7 +308,7 @@ covering CanJS core libraries.">
            						">
 						<a class="page"
 							href="building-our-first-app.html"
-							title="Learn how to generate an Angular 13 application with it&#x27;s command line interface (CLI).">
+							title="Learn how to generate an Angular 17 application with its command line interface (CLI).">
 							Generate an App
 						</a>
 						
@@ -689,7 +689,7 @@ we will need to implement a reactive form with two controls, <code>state</code> 
 </ul>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong> to:</p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Restaurant } from './restaurant';
 import { ResponseData, RestaurantService } from './restaurant.service';
 
@@ -704,7 +704,10 @@ export interface Data {
   styleUrls: ['./restaurant.component.less'],
 })
 export class RestaurantComponent implements OnInit {
-  form: FormGroup = this.createForm();
+  form: FormGroup&lt;{
+    state: FormControl&lt;string&gt;;
+    city: FormControl&lt;string&gt;;
+  }&gt; = this.createForm();
 
   restaurants: Data = {
     value: [],
@@ -737,13 +740,16 @@ export class RestaurantComponent implements OnInit {
     });
   }
 
-  createForm(): FormGroup {
+  createForm(): FormGroup&lt;{
+    state: FormControl&lt;string&gt;;
+    city: FormControl&lt;string&gt;;
+  }&gt; {
 
   }
 }
 
 </code></pre>
- <div line-highlight="2,17,24-29,32-35,37-40,48,50,52,only"></div>
+ <div line-highlight="2,17-20,27-32,35-38,40-43,51,53-56,58,only"></div>
 <p>Make sure to use the <code>formControl</code> directive to tie the selects to
 their FormControls in the component.</p>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong> to include
@@ -1398,6 +1404,7 @@ describe('AppComponent', () =&gt; {
   });
 
   it('should render the HomeComponent with router navigates to &quot;/&quot; path', fakeAsync(() =&gt; {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['']).then(() =&gt; {
       expect(location.path()).toBe('');
@@ -1406,6 +1413,7 @@ describe('AppComponent', () =&gt; {
   }));
 
   it('should render the RestaurantsComponent with router navigates to &quot;/restaurants&quot; path', fakeAsync(() =&gt; {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants']).then(() =&gt; {
       expect(location.path()).toBe('/restaurants');
@@ -1457,7 +1465,7 @@ describe('AppComponent', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="11,199,211-214,252,277,291,only"></div>
+ <div line-highlight="11,199,211-214,254,only"></div>
 <blockquote>
 <p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
@@ -1575,7 +1583,7 @@ platformBrowserDynamic()
 <div line-highlight='79,only'></div>
 <h2>FormControl</h2>
 <p>The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl" >FormControl</a>. This class manages the form input model and connection to it's input element in the DOM and inherits from the <a href="https://angular.io/api/forms/AbstractControl" >AbstractControl</a>
-class. It's worth getting familiar with the methods available in this class (like setValidators and patchValue), as they're used quite often in reactive form development. The formControl is bound to it's element in the DOM using the <code>[formControl]</code> directive.</p>
+class. It's worth getting familiar with the methods available in this class (like setValidators and setValue), as they're used quite often in reactive form development. The formControl is bound to it's element in the DOM using the <code>[formControl]</code> directive.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1910,12 +1918,25 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='17,40,42,45-49,only'></div>
+<h2>Form Nullability</h2>
+<p>Since Angular v14, Angular Forms are strictly typed by default.</p>
+<p>By default, all controls include the type <code>null</code>. The reason for the <code>null</code> type is that when calling <code>reset</code> on the form or its controls, the values are updated to <code>null</code>.</p>
+<p>To avoid the default behavior and having to handle possible <code>null</code> values, we can use the <code>NonNullableFormBuilder</code>, either via injecting it or accessing the FormBuilder's <code>nonNullable</code> property.</p>
+<p>Using <code>NonNullableFormBuilder</code> will make <code>reset</code> method use the control's initial value instead of <code>null</code>.</p>
+<pre><code class="language-typescript">constructor(private fb: NonNullableFormBuilder) {}
+</code></pre>
+<pre><code class="language-typescript">this.myQuickForm = this.fb.nonNullable.group({
+  firstName: { value: '', disabled: false },
+  lastName: { value: '', disabled: false },
+  email: { value: '', disabled: false },
+});
+</code></pre>
 <h2>The Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong> to:</p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Restaurant } from './restaurant';
 import { ResponseData, RestaurantService } from './restaurant.service';
 
@@ -1930,7 +1951,10 @@ export interface Data {
   styleUrls: ['./restaurant.component.less'],
 })
 export class RestaurantComponent implements OnInit {
-  form: FormGroup = this.createForm();
+  form: FormGroup&lt;{
+    state: FormControl&lt;string&gt;;
+    city: FormControl&lt;string&gt;;
+  }&gt; = this.createForm();
 
   restaurants: Data = {
     value: [],
@@ -1963,8 +1987,11 @@ export class RestaurantComponent implements OnInit {
     });
   }
 
-  createForm(): FormGroup {
-    return this.fb.group({
+  createForm(): FormGroup&lt;{
+    state: FormControl&lt;string&gt;;
+    city: FormControl&lt;string&gt;;
+  }&gt; {
+    return this.fb.nonNullable.group({
       state: { value: '', disabled: false },
       city: { value: '', disabled: false },
     });
@@ -1972,7 +1999,7 @@ export class RestaurantComponent implements OnInit {
 }
 
 </code></pre>
-<div line-highlight='2,17,18,23-35,49-55'></div>
+<div line-highlight='53-62'></div>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong> to:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
   &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
