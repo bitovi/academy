@@ -162,7 +162,7 @@ You should be able see a list of restaurants when you navigate to <a href="http:
 
 ## Did You Know?
 
-You may have noticed in our markup there's another use of routerLink:
+You may have noticed in our markup there's another use of `routerLink`:
 
 ```html
 <a class="btn" [routerLink]="['/restaurants', restaurant.slug]">

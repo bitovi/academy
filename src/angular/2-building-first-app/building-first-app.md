@@ -65,7 +65,7 @@ Helpful Plugins:
 
 Angular has a command line interface or CLI that does a lot of the initial legwork in setting up a minimal app, as well as letting you easily create and include new components on the fly.
 
-We'll start by globally installing the Angular CLI.
+We'll start by globally installing the Angular CLI using npm.
 
 ✏️ Run the following:
 
@@ -75,13 +75,13 @@ npm install -g @angular/cli@17
 
 ## Generating a new app
 
-We're going to build a restaurant menu and ordering application. The final result will look like this:
+Our final goal is to build a restaurant menu and ordering application, which should look something like this:
 
 ![Place My Order App screenshot](../static/img/place-my-order.png 'Place My Order App screenshot')
 
 (reminder: You can see a DoneJS implementation of this application at [www.place-my-order.com](http://www.place-my-order.com))
 
-✏️ To create a new Angular Workspace, run the 'ng new' command:
+✏️ To create a new Angular Workspace, run the `ng new` command:
 
 ```shell
 ng new place-my-order --prefix pmo --standalone false
@@ -93,7 +93,7 @@ This will create a new Angular Workspace, generate an app module, needed config 
 1. Which stylesheet format would you like to use? (**Less**)
 2. Do you want to enable Server-Side Rendering (SSR) and Static Site Generation (SSG/Prerendering)? (**No**)
 
-Note that we used the prefix property to set our own default prefix. Angular's default is "app", but a good naming convention is to use a short prefix related to your company or application name to easily differentiate from 3rd party utilities.
+Note that we used the `--prefix` property above to set our own default prefix. Angular's default prefix is `app`, but a good naming convention is to use a short prefix related to your company or application name, which helps to easily differentiate from 3rd party utilities.
 
 ```html
 <!-- this looks like it's one of our own app components -->
@@ -143,9 +143,9 @@ Let's walk through some of the files that were generated.
 
 ### angular.json
 
-This file is the config schema for an Angular Workspace. By default Angular configures esbuild (Webpack before v17) for its build process, and uses the angular.json file for the build information.
+This file is the config schema for an Angular Workspace. By default Angular configures esbuild (Webpack before v17) for its build process, and uses the `angular.json` file to store the build information.
 
-(Note, prior to Angular v6, this file was .angular-cli.json. When migrating versions, having the wrong workspace config file name is a cause for problems.)
+(Note, prior to Angular v6, this file was `.angular-cli.json`. When migrating versions, having the wrong workspace config file name is a common cause for problems.)
 
 ### tsconfig.json
 
@@ -218,10 +218,10 @@ This should feel familiar - our main index page.
 
 This file is the root module for our app. Every Angular app has at least one module that determines how to compile and launch an app. It uses the @@NgModule decorator with four properties:
 
-- declarations [array]: where we include components, directives, and pipes that will be used by this module.
-- imports [array]: where we include any other modules our app needs to use. This may include 3rd party modules like bootstrap datepickers, or modules we've created.
-- providers [array]: where we include services that we want used at the module level
-- bootstrap [array]: where we include the root AppModule - this is the main Application view that hosts all of our other app views.
+- **declarations** `[array]`: where we include components, directives, and pipes that will be used by this module.
+- **imports** `[array]`: where we include any other modules our app needs to use. This may include 3rd party modules like bootstrap datepickers, or modules we've created.
+- **providers** `[array]`: where we include services that we want used at the global app level
+- **bootstrap** `[array]`: where we include the root AppModule - this is the main Application view that hosts all of our other app views.
 
 Further reading: <a href="https://angular.io/guide/architecture-services#dependency-injection-di" >Dependency Injection in Angular</a>
 
@@ -237,7 +237,7 @@ This is our root component, you saw it called in our index.html file as `<pmo-ro
 npm run start
 ```
 
-The `start` script command value is `ng serve` which starts a development server on port 4200 by default using <a href="https://esbuild.github.io/" >esbuild</a> and <a href="https://vitejs.dev/">Vite</a> (<a href="https://github.com/webpack/webpack-dev-server">webpack-dev-server</a> before v17), to compile and serve a development version of the app. Any TypeScript errors will be caught by the compiler here, and once ready we can view our app at <a href="http://localhost:4200" >localhost:4200</a>. `ng serve` also has live-reload functionality, meaning the browser will automatically reload as changes are saved and compiled.
+The `start` script command value is `ng serve` which starts a development server on port `4200` by default using <a href="https://esbuild.github.io/" >esbuild</a> and <a href="https://vitejs.dev/">Vite</a> (<a href="https://github.com/webpack/webpack-dev-server">webpack-dev-server</a> before v17), to compile and serve a development version of the app. Any TypeScript errors will be caught by the compiler here, and once ready we can view our app at <a href="http://localhost:4200">localhost:4200</a>. `ng serve` also has live-reload functionality, meaning the browser will automatically reload as changes are saved and compiled.
 
 ## Running Tests
 

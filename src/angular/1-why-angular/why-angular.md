@@ -14,9 +14,9 @@ Some of the best things about Angular are that it is opinionated, has built-in t
 
 ### 1. An Opinionated Framework
 
-Developers have to make a lot of decisions on a daily basis, which can often create decision fatigue. The great part about using an opinionated framework is being able to shift your focus from build configs, high level architecture decisions, to writing the actual client-specific functioning pieces of the application.
+Developers have to make a lot of decisions on a daily basis, which can often create decision fatigue. The great part about using an opinionated framework like Angular, is being able to shift your focus from build configs and high level architecture decisions, to writing the actual client-specific functioning pieces of the application.
 
-The use of TypeScript to force type checking improves workflow by catching errors at compile time allowing teams to catch potential errors much faster.
+The use of TypeScript to force type checking improves developer workflow by catching errors at compile time, allowing teams to catch potential errors much faster.
 
 ### 2. Testing Built In
 
@@ -32,6 +32,6 @@ Starting on Angular 17, to keep up with latest technology and for its improved b
 
 ### 4. Google-Backed and Supported Product
 
-Having a heavy hitting tech titan backing a library can make it a very sustainable choice to use.
+Having a heavy hitting tech titan backing a library can make it a very sustainable and future-proof choice.
 
 For more information see the <a href="https://angular.io" >Angular Docs</a>

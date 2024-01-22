@@ -9,8 +9,8 @@
 
 In this part, we will:
 
-- Use routerLink to create navigation links
-- Use routerLinkActive to highlight current navigation
+- Use `routerLink` to create navigation links
+- Use `routerLinkActive` to highlight current navigation
 
 ## Problem
 
@@ -61,12 +61,12 @@ see the UI change and see the active class on the current nav item.
 
 To solve this, you will need to know how to:
 
-- How to use the routerLink directive
-- How to use the routerLinkActive directive
+- How to use the `routerLink` directive
+- How to use the `routerLinkActive` directive
 
 ## RouterLink
 
-You may have noticed the links in the routing examples to switch between views. They use the <a href="https://angular.io/api/router/RouterLink" >routerLink</a> directive. The routerLink takes a property of a path that can be static or built dynamically based on properties on the component.
+You may have noticed the links in the routing examples to switch between views. They use the <a href="https://angular.io/api/router/RouterLink">routerLink</a> directive. The `routerLink` takes a property of a path that can be static or built dynamically based on properties on the component.
 
 ### Static routerLink Segments
 
@@ -78,7 +78,7 @@ The following is an example of a hard coded path:
 
 ### Dynamic routerLink Segments
 
-The following is an example of a path being built from different pieces of data. In reusable components we'll often want to dynamically create paths based on a piece of datas unique property values.
+The following is an example of a path being built from different pieces of data. In reusable components we'll often want to dynamically create paths based on a piece of data's unique property values.
 
 @sourceref ./dynamic-path.html
 @codepen
@@ -96,7 +96,7 @@ The <a href="https://angular.io/api/router/RouterLinkActive" >routerLinkActive</
 
 ### Adding an Active Class with Options
 
-Using `{exact: true}` will only set the class if the path match is exactly equal. `{exact: true}` can also be applied to parents of routerlinks
+Using `{exact: true}` will only set the class if the path match is exactly equal. `{exact: true}` can also be applied to parents of `routerLink`s.
 
 @sourceref ./router-link-active-options.html
 @codepen
@@ -104,7 +104,7 @@ Using `{exact: true}` will only set the class if the path match is exactly equal
 
 ### Adding an Active Class with Template Variable
 
-RouterLinkActive can also be used to set <a href="https://angular.io/api/router/RouterLinkActive#template-variable-references">template variables</a> to check the active status of the route. In this example we're creating a template variable `myroutervariable` to represent our route and it's active state for logic in our template.
+`RouterLinkActive` can also be used to set <a href="https://angular.io/api/router/RouterLinkActive#template-variable-references">template variables</a> to check the active status of the route. In this example we're creating a template variable `myroutervariable` to represent our route and it's active state for logic in our template.
 
 @sourceref ./router-link-active-template.html
 @codepen
