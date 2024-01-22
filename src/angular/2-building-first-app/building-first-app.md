@@ -237,7 +237,7 @@ This is our root component, you saw it called in our index.html file as `<pmo-ro
 npm run start
 ```
 
-The `start` script command value is `ng serve` which starts a development server on port `4200` by default using <a href="https://esbuild.github.io/" >esbuild</a> and <a href="https://vitejs.dev/">Vite</a> (<a href="https://github.com/webpack/webpack-dev-server">webpack-dev-server</a> before v17), to compile and serve a development version of the app. Any TypeScript errors will be caught by the compiler here, and once ready we can view our app at <a href="http://localhost:4200">localhost:4200</a>. `ng serve` also has live-reload functionality, meaning the browser will automatically reload as changes are saved and compiled.
+The `start` script command value is `ng serve` which starts a development server on port `4200` by default using <a href="https://esbuild.github.io/">esbuild</a> and <a href="https://vitejs.dev/">Vite</a> (<a href="https://github.com/webpack/webpack-dev-server">webpack-dev-server</a> before v17), to compile and serve a development version of the app. Any TypeScript errors will be caught by the compiler here, and once ready we can view our app at <a href="http://localhost:4200">localhost:4200</a>. `ng serve` also has live-reload functionality, meaning the browser will automatically reload as changes are saved and compiled.
 
 ## Running Tests
 
@@ -271,10 +271,10 @@ Let's change the markup to look like the home page of our place my order app.
 
 ```html
 <h1>Place My Order App: Coming Soon!</h1>
-<router-outlet></router-outlet>
+<router-outlet />
 ```
 
-@highlight 1-2
+@highlight 1
 
 When you save your changes, you should see the new h1 tag in your browser at <a href="http://localhost:4200">localhost:4200</a>.
 </details>

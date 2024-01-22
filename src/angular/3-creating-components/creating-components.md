@@ -144,7 +144,7 @@ ng g component home
 
 ```html
 <h1>Place My Order App: Coming Soon!</h1>
-<router-outlet></router-outlet>
+<router-outlet />
 
 <pmo-home></pmo-home>
 ```
@@ -353,7 +353,7 @@ For now, we'll use fake data for a list of restaurants in the component, and put
 
 ```html
 <h1>Place My Order App: Coming Soon!</h1>
-<router-outlet></router-outlet>
+<router-outlet />
 
 <pmo-restaurant></pmo-restaurant>
 ```
