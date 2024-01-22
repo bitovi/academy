@@ -98,7 +98,7 @@ To use reactive forms we must import our ReactiveFormsModule into the root app.
 ## FormControl
 
 The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl" >FormControl</a>. This class manages the form input model and connection to it's input element in the DOM and inherits from the <a href="https://angular.io/api/forms/AbstractControl" >AbstractControl</a>
-class. It's worth getting familiar with the methods available in this class (like setValidators and patchValue), as they're used quite often in reactive form development. The formControl is bound to it's element in the DOM using the `[formControl]` directive.
+class. It's worth getting familiar with the methods available in this class (like setValidators and setValue), as they're used quite often in reactive form development. The formControl is bound to it's element in the DOM using the `[formControl]` directive.
 
 @sourceref ./form-control.html
 @codepen
@@ -130,6 +130,28 @@ This example shows the use of FormArray and using an `insert` method to dynamica
 @codepen
 @highlight 17,40,42,45-49,only
 
+## Form Nullability
+
+Since Angular v14, Angular Forms are strictly typed by default.
+
+By default, all controls include the type `null`. The reason for the `null` type is that when calling `reset` on the form or its controls, the values are updated to `null`.
+
+To avoid the default behavior and having to handle possible `null` values, we can use the `NonNullableFormBuilder`, either via injecting it or accessing the FormBuilder's `nonNullable` property.
+
+Using `NonNullableFormBuilder` will make `reset` method use the control's initial value instead of `null`.
+
+```typescript
+constructor(private fb: NonNullableFormBuilder) {}
+```
+
+```typescript
+this.myQuickForm = this.fb.nonNullable.group({
+  firstName: { value: '', disabled: false },
+  lastName: { value: '', disabled: false },
+  email: { value: '', disabled: false },
+});
+```
+
 ## The Solution
 
 <details>
@@ -137,7 +159,7 @@ This example shows the use of FormArray and using an `insert` method to dynamica
 ✏️ Update **src/app/restaurant/restaurant.component.ts** to:
 
 @sourceref ./restaurant.component.ts
-@highlight 2,17,18,23-35,49-55
+@highlight 53-62
 
 ✏️ Update **src/app/restaurant/restaurant.component.html** to:
 

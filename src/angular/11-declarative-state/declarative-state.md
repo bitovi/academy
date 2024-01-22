@@ -226,7 +226,7 @@ You'll also add new single-responsibility streams:
 ✏️ Update __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./restaurant.component.ts
-@highlight 3-15, 29-34, 44-51, 59-137, 141-143
+@highlight 3-15, 29-34, 47-54, 62-140, 144-146
 
 ✏️ Update **src/app/restaurant/restaurant.component.html**
 

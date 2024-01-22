@@ -80,7 +80,7 @@ heavy use of it. Checkout our [learn-rxjs] tutorial for more information.
 
 ## P1: Technical Requirements
 
-Write a `RestaurantService` with a method `getRestaurants` that uses `httpClient` to get a list of restaurants from an environment variable\ + `/restaurants`. For example, we could get restaurants like:
+Write a `RestaurantService` with a method `getRestaurants` that uses `httpClient` to get a list of restaurants from an environment variable + `/restaurants`. For example, we could get restaurants like:
 
 ```typescript
 const httpClient = new HttpClient();
@@ -141,42 +141,36 @@ Double check the api by navigating to <a href="http://localhost:7070/restaurants
 
 ### Create an Environment Variable
 
-The way we're accessing our locally run API during development may be different than how we access it in production. To prepare for this, we'll set an environment variable to do what we need. Angular already generated an `environments` folder for us with two files:
+The way we're accessing our locally run API during development may be different than how we access it in production. To prepare for this, we'll set an environment variable to do what we need.
 
-`src/environments/environment.ts`
+✏️ To generate the environment files, run:
 
-```typescript
-// This file can be replaced during build by using the `fileReplacements` array.
-// `ng build` replaces `environment.ts` with `environment.prod.ts`.
-// The list of file replacements can be found in `angular.json`.
-
-export const environment = {
-  production: false
-};
-
-/*
- * For easier debugging in development mode, you can import the following file
- * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
- *
- * This import should be commented out in production mode because it will have a negative impact
- * on performance if an error is thrown.
- */
-// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
-
+```bash
+ng generate environments
 ```
 
-`src/environments/environment.prod.ts`
+> Before v15, Angular used to generate the environment files with `ng new` command.
+
+The command will generate two files, `src/environments/environment.ts` and `src/environments/environment.development.ts`, with the following content:
 
 ```typescript
-export const environment = {
-  production: true
-};
-
+export const environment = {};
 ```
 
-When developing locally Angular will use the `environment.ts` file, but when we create a production build the `environment.prod.ts` file will be used. We'll update the production file when we get ready to deploy, but for now, update the `environment.ts` file to include an `apiUrl` key with the value of where our API is being served from: `http://localhost:7070`.
+When developing locally Angular will use the `environment.development.ts` file, but when we create a production build the `environment.ts` file will be used. Update `environment.ts` and `environment.development.ts` files to include a `production` key and an `apiUrl` key with the value of where our API is being served from: `http://localhost:7070`.
 
 ✏️ Update `src/environments/environment.ts`:
+
+```typescript
+export const environment = {
+  production: true,
+  apiUrl: 'http://localhost:7070',
+};
+```
+
+@highlight 2, 3
+
+✏️ Update `src/environments/environment.development.ts`:
 
 ```typescript
 export const environment = {
@@ -185,7 +179,7 @@ export const environment = {
 };
 ```
 
-@highlight 3
+@highlight 2, 3
 
 Now generate the restaurant service:
 
@@ -265,9 +259,7 @@ ng g interface user
 This will generate:
 
 ```typescript
-export interface User {
-}
-
+export interface User {}
 ```
 
 ## P2: Technical Requirements
@@ -307,7 +299,7 @@ let restaurant = {
 };
 ```
 
-This interface should be written in the **src/app/restaurant/restaurant.service.ts** file.
+This interface should be written in the **src/app/restaurant/restaurant.ts** file.
 
 ## P2: Setup
 

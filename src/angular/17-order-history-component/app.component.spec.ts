@@ -243,6 +243,7 @@ describe('AppComponent', () => {
   });
 
   it('should render the HomeComponent with router navigates to "/" path', fakeAsync(() => {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['']).then(() => {
       expect(location.path()).toBe('');
@@ -251,6 +252,7 @@ describe('AppComponent', () => {
   }));
 
   it('should render the RestaurantsComponent with router navigates to "/restaurants" path', fakeAsync(() => {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants']).then(() => {
       expect(location.path()).toBe('/restaurants');
@@ -259,6 +261,7 @@ describe('AppComponent', () => {
   }));
 
   it('should render the DetailComponent with router navigates to "/restaurants/slug" path', fakeAsync(() => {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants/crab-shack']).then(() => {
       expect(location.path()).toBe('/restaurants/crab-shack');
@@ -267,6 +270,7 @@ describe('AppComponent', () => {
   }));
 
   it('should render the OrderComponent with router navigates to "/restaurants/slug/order" path', fakeAsync(() => {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants/crab-shack/order']).then(() => {
       expect(location.path()).toBe('/restaurants/crab-shack/order');
@@ -275,6 +279,7 @@ describe('AppComponent', () => {
   }));
 
   it('should render the HistoryComponent with router navigates to "/order-history" path', fakeAsync(() => {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['order-history']).then(() => {
       expect(location.path()).toBe('/order-history');

@@ -1,14 +1,14 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of } from 'rxjs';
 import { ItemTotalPipe } from '../item-total.pipe';
 import { RestaurantService } from '../restaurant/restaurant.service';
 import { MenuItemsComponent } from './menu-items/menu-items.component';
-import { OrderComponent } from './order.component';
-import { OrderForm, OrderService } from './order.service';
+import { OrderComponent, OrderForm } from './order.component';
+import { CreateOrderDto, OrderService } from './order.service';
 
 class MockRestaurantService {
   getRestaurant(slug: string) {
@@ -62,7 +62,7 @@ class MockRestaurantService {
 }
 
 class MockOrderService {
-  createOrder(order: OrderForm) {
+  createOrder(order: CreateOrderDto) {
     return of({
       address: null,
       items: [
@@ -226,16 +226,17 @@ describe('OrderComponent', () => {
 
   it('should call the orderService createOrder on form submit with form values', () => {
     const createOrderSpy = spyOn(orderService, 'createOrder').and.callThrough();
-    const expectedOrderValue: OrderForm = {
-      restaurant: '12345',
-      name: 'Jennifer Hungry',
-      address: '123 Main St',
-      phone: '555-555-5555',
-      items: [
-        { name: 'Onion fries', price: 15.99 },
-        { name: 'Roasted Salmon', price: 23.99 },
-      ],
-    };
+    const expectedOrderValue: ReturnType<FormGroup<OrderForm>['getRawValue']> =
+      {
+        restaurant: '12345',
+        name: 'Jennifer Hungry',
+        address: '123 Main St',
+        phone: '555-555-5555',
+        items: [
+          { name: 'Onion fries', price: 15.99 },
+          { name: 'Roasted Salmon', price: 23.99 },
+        ],
+      };
     const compiled = fixture.nativeElement as HTMLElement;
     fixture.componentInstance.orderForm?.setValue(expectedOrderValue);
     fixture.detectChanges();
@@ -246,16 +247,17 @@ describe('OrderComponent', () => {
   });
 
   it('should show completed order when order is complete', () => {
-    const expectedOrderValue: OrderForm = {
-      restaurant: '12345',
-      name: 'Jennifer Hungry',
-      address: '123 Main St',
-      phone: '555-555-5555',
-      items: [
-        { name: 'Onion fries', price: 15.99 },
-        { name: 'Roasted Salmon', price: 23.99 },
-      ],
-    };
+    const expectedOrderValue: ReturnType<FormGroup<OrderForm>['getRawValue']> =
+      {
+        restaurant: '12345',
+        name: 'Jennifer Hungry',
+        address: '123 Main St',
+        phone: '555-555-5555',
+        items: [
+          { name: 'Onion fries', price: 15.99 },
+          { name: 'Roasted Salmon', price: 23.99 },
+        ],
+      };
     const compiled = fixture.nativeElement as HTMLElement;
     fixture.componentInstance.orderForm?.setValue(expectedOrderValue);
     fixture.detectChanges();
@@ -270,16 +272,17 @@ describe('OrderComponent', () => {
   });
 
   it('should clear the form values when create new order is clicked', () => {
-    const expectedOrderValue: OrderForm = {
-      restaurant: '12345',
-      name: 'Jennifer Hungry',
-      address: '123 Main St',
-      phone: '555-555-5555',
-      items: [
-        { name: 'Onion fries', price: 15.99 },
-        { name: 'Roasted Salmon', price: 23.99 },
-      ],
-    };
+    const expectedOrderValue: ReturnType<FormGroup<OrderForm>['getRawValue']> =
+      {
+        restaurant: '12345',
+        name: 'Jennifer Hungry',
+        address: '123 Main St',
+        phone: '555-555-5555',
+        items: [
+          { name: 'Onion fries', price: 15.99 },
+          { name: 'Roasted Salmon', price: 23.99 },
+        ],
+      };
     const compiled = fixture.nativeElement as HTMLElement;
     fixture.componentInstance.orderForm?.setValue(expectedOrderValue);
     fixture.detectChanges();
@@ -292,9 +295,9 @@ describe('OrderComponent', () => {
     ).click();
     const emptyform = {
       restaurant: '3ZOZyTY1LH26LnVw',
-      name: null,
-      address: null,
-      phone: null,
+      name: '',
+      address: '',
+      phone: '',
       items: [],
     };
     expect(fixture.componentInstance.orderForm?.value).toEqual(emptyform);
