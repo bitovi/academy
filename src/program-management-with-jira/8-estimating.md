@@ -176,6 +176,7 @@ The presentation walks through breaking down the initiative into the following 8
     \- Any other error message
     
 *   **Order - Remove promotion from cart**
+    \+ Add promotions to checkout page
     
 *   **Order - Promotion end-date error handling**  
     \+ Show a nice error message

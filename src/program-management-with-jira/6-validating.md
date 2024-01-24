@@ -79,13 +79,13 @@ We hope to increase our revenue by 2x the amount spent on Marketing ads.
 
 We pulled the following data:
 
-*   50% of users that go on our site complete a purchase
+*   10% of users that go on our site complete a purchase
     
 *   Lifetime customer value is $100
     
 *   Our average cart price is $50.
     
-*   Historically we spend $50 on ads, we get 100 more visitors.
+*   Historically, we spend $50 on ads, we get 10 more visitors.
     
 
 We received 30 requests for promotions from our customer support and sales channels over the last 3 months.
