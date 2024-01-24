@@ -10,7 +10,7 @@
 In this part, we will:
 
 - Learn About Reactive Forms
-- Import ReactiveFormsModule into our root app
+- Import `ReactiveFormsModule` into our root app
 - Create a reactive form in our Restaurant Component
 - Create a form in our markup and connect inputs to reactive form
 
@@ -43,7 +43,7 @@ Here's some code to get you started. Notice that:
 @diff ../7-pull-restaurant-data-into-view/restaurant.component.ts ./restaurant.component-starter.ts only
 
 Make sure to use the `formControl` directive to tie the selects to
-their FormControls in the component.
+their `FormControl`s in the component.
 
 ✏️ Update **src/app/restaurant/restaurant.component.html** to include
 some boilerplate for the state and city `<select>` controls:
@@ -75,11 +75,11 @@ When you visit <a href="http://localhost:4200/restaurants" >localhost:4200/resta
 
 To solve this, you will need to know:
 
-- How to create a FormControl
+- How to create a `FormControl`
 - How to use `formControl` directive in the DOM
-- How to create a FormGroup
-- How to use FormBuilder
-- How to use ngFor (you learned this in the Creating Components section! ✔️)
+- How to create a `FormGroup`
+- How to use `FormBuilder`
+- How to use `ngFor` (you learned this in the Creating Components section! ✔️)
 
 ## Reactive Forms
 
@@ -98,7 +98,7 @@ To use reactive forms we must import our ReactiveFormsModule into the root app.
 ## FormControl
 
 The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl" >FormControl</a>. This class manages the form input model and connection to it's input element in the DOM and inherits from the <a href="https://angular.io/api/forms/AbstractControl" >AbstractControl</a>
-class. It's worth getting familiar with the methods available in this class (like setValidators and patchValue), as they're used quite often in reactive form development. The formControl is bound to it's element in the DOM using the `[formControl]` directive.
+class. It's worth getting familiar with the methods available in this class (like setValidators and setValue), as they're used quite often in reactive form development. The formControl is bound to it's element in the DOM using the `[formControl]` directive.
 
 @sourceref ./form-control.html
 @codepen
@@ -106,7 +106,7 @@ class. It's worth getting familiar with the methods available in this class (lik
 
 ## FormGroup
 
-A <a href="https://angular.io/api/forms/FormGroup" >FormGroup</a> is a way of grouping FormControls and tracking the state of the entire group. For instance, if you want to get the values of all of your FormControls to submit as an object of those values, you'd use `formGroupName.value`. Notice the way we connect our input in the markup is slightly different - we can use the `formControlName` directive to bind to the name value of a FormControl in our FormGroup. Groups can be nested within other groups or arrays.
+A <a href="https://angular.io/api/forms/FormGroup" >FormGroup</a> is a way of grouping `FormControl`s and tracking the state of the entire group. For instance, if you want to get the values of all of your `FormControl`s to submit as an object of those values, you'd use `formGroupName.value`. Notice the way we connect our input in the markup is slightly different - we can use the `formControlName` directive to bind to the name value of a `FormControl` in our `FormGroup`. Groups can be nested within other groups or arrays.
 
 @sourceref ./form-group.html
 @codepen
@@ -114,9 +114,9 @@ A <a href="https://angular.io/api/forms/FormGroup" >FormGroup</a> is a way of gr
 
 ## FormArray
 
-A <a href="https://angular.io/api/forms/FormArray" >FormArray</a> aggregates FormControls into an array. It's different than FormGroup in that the controls inside are serialized as an array. FormArrays are very useful when dealing with repeated FormControls or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.
+A <a href="https://angular.io/api/forms/FormArray" >FormArray</a> aggregates `FormControl`s into an array. It's different than FormGroup in that the controls inside are serialized as an array. `FormArray`s are very useful when dealing with repeated `FormControl`s or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.
 
-This example shows the use of FormArray and using an `insert` method to dynamically add more FormGroups to the `users` FormArray.
+This example shows the use of `FormArray` and using an `insert` method to dynamically add more `FormGroup`s to the `users` FormArray.
 
 @sourceref ./form-array.html
 @codepen
@@ -130,6 +130,28 @@ This example shows the use of FormArray and using an `insert` method to dynamica
 @codepen
 @highlight 17,40,42,45-49,only
 
+## Form Nullability
+
+Since Angular v14, Angular Forms are strictly typed by default.
+
+By default, all controls include the type `null`. The reason for the `null` type is that when calling `reset` on the form or its controls, the values are updated to `null`.
+
+To avoid the default behavior and having to handle possible `null` values, we can use the `NonNullableFormBuilder`, either via injecting it or accessing the FormBuilder's `nonNullable` property.
+
+Using `NonNullableFormBuilder` will make `reset` method use the control's initial value instead of `null`.
+
+```typescript
+constructor(private fb: NonNullableFormBuilder) {}
+```
+
+```typescript
+this.myQuickForm = this.fb.nonNullable.group({
+  firstName: { value: '', disabled: false },
+  lastName: { value: '', disabled: false },
+  email: { value: '', disabled: false },
+});
+```
+
 ## The Solution
 
 <details>
@@ -137,7 +159,7 @@ This example shows the use of FormArray and using an `insert` method to dynamica
 ✏️ Update **src/app/restaurant/restaurant.component.ts** to:
 
 @sourceref ./restaurant.component.ts
-@highlight 2,17,18,23-35,49-55
+@highlight 53-62
 
 ✏️ Update **src/app/restaurant/restaurant.component.html** to:
 

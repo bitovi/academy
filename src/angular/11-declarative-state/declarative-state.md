@@ -187,7 +187,7 @@ When you're finished the component members `states$`, `cities$` & `restaurants$`
 operators that either produce values from a response emitted by a service layer request, or produce values from changes
 in a form control (which in turn may make a request).
 
-You'll define `selectedState$` and `selectedCity$` members to be of Type `Observable<string>` to represent current form control values. To access form values as streams you'll use the `valueChanges` observable available in each FormControl.
+You'll define `selectedState$` and `selectedCity$` members to be of Type `Observable<string>` to represent current form control values. To access form values as streams you'll use the `valueChanges` observable available in each `FormControl`.
 
 You'll also add new single-responsibility streams:
 
@@ -226,7 +226,7 @@ You'll also add new single-responsibility streams:
 ✏️ Update __src/app/restaurant/restaurant.component.ts__
 
 @sourceref ./restaurant.component.ts
-@highlight 3-15, 29-34, 44-51, 59-137, 141-143
+@highlight 3-15, 29-34, 47-54, 62-140, 144-146
 
 ✏️ Update **src/app/restaurant/restaurant.component.html**
 

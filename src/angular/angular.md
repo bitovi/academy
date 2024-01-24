@@ -40,7 +40,7 @@ the features that are present across almost all single page apps:
 
 As for the application itself, it:
 
-- Is written in Angular 13
+- Is written in Angular 17
 - Is a single page application (SPA) that uses [pushState](https://developer.mozilla.org/en-US/docs/Web/API/History/pushState) to simulate routing between several pages.
   - A `home` page
   - A `restaurant list` page that lets the user filter restaurants by state and city
@@ -75,7 +75,7 @@ retrieving a single restaurant from the service layer ([learn-angular/writing-un
 
 Now we are ready to turn our attention to learning about creating, updating, and deleting
 data. We will start by building an Order Form ([learn-angular/building-order-form]) and then update it to utilize directives
-([learn-angular/creating-directive]), which in turn allows us to create orders on the server ([learn-angular/order-service]). We'll then create a page that lets us update an order's status or delete an order ([learn-angular/order-history-component]). 
+([learn-angular/creating-directive]), which in turn allows us to create orders on the server ([learn-angular/order-service]). We'll then create a page that lets us update an order's status or delete an order ([learn-angular/order-history-component]).
 We will utilize pipes to create an item total calculation across the application ([learn-angular/item-total-pipe])
 and will even make the order page update when someone else updates an order ([learn-angular/real-time-connection]).
 
@@ -85,7 +85,7 @@ production and deploying it for others to see ([learn-angular/deploy-app]).
 ## Requirements
 
 In order to complete this guide, you need to have [NodeJS](https://nodejs.org/en/) version
-12 or later installed.
+18.13 or later installed.
 
 ## Next Steps
 

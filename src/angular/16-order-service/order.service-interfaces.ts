@@ -5,7 +5,7 @@ export interface Item {
   price: number;
 }
 
-export interface OrderForm {
+export interface CreateOrderDto {
   restaurant: string;
   name: string;
   address: string;

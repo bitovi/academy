@@ -1,10 +1,6 @@
 import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-
-interface Item {
-  name: string;
-  price: number;
-}
+import { Item } from '../order.component';
 
 @Component({
   selector: 'pmo-menu-items',
@@ -19,7 +15,7 @@ interface Item {
   ],
 })
 export class MenuItemsComponent implements ControlValueAccessor {
-  @Input() items?: Item[];
+  @Input() items: Item[] = [];
   @Input('value') _value: Item[] = [];
 
   constructor() {}

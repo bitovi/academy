@@ -1,7 +1,7 @@
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Observable, of } from 'rxjs';
-import { ItemTotalPipe } from 'src/app/item-total.pipe';
+import { ItemTotalPipe } from '../../item-total.pipe';
 import { ListComponent } from '../list/list.component';
 import { Order, OrderService } from '../order.service';
 

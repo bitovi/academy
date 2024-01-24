@@ -1,9 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-
-interface Item {
-  name: string;
-  price: number;
-}
+import { Item } from '../order.component';
 
 @Component({
   selector: 'pmo-menu-items',
@@ -11,7 +7,7 @@ interface Item {
   styleUrls: ['./menu-items.component.less'],
 })
 export class MenuItemsComponent implements OnInit {
-  @Input() items?: Item[];
+  @Input() items: Item[] = [];
 
   constructor() {}
 

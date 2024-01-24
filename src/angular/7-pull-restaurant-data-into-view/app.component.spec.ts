@@ -232,6 +232,7 @@ describe('AppComponent', () => {
   });
 
   it('should render the HomeComponent with router navigates to "/" path', fakeAsync(() => {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['']).then(() => {
       expect(location.path()).toBe('');
@@ -240,6 +241,7 @@ describe('AppComponent', () => {
   }));
 
   it('should render the RestaurantsComponent with router navigates to "/restaurants" path', fakeAsync(() => {
+    fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     router.navigate(['restaurants']).then(() => {
       expect(location.path()).toBe('/restaurants');
@@ -269,7 +271,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
     tick();
 
-    let homeLinkLi = compiled.querySelector('li');
+    const homeLinkLi = compiled.querySelector('li');
     expect(homeLinkLi?.classList).toContain('active');
     expect(compiled.querySelectorAll('.active').length).toBe(1);
     flush();
@@ -283,7 +285,7 @@ describe('AppComponent', () => {
     fixture.detectChanges();
 
     expect(location.path()).toBe('/restaurants');
-    let restaurantsLinkLi = compiled.querySelector('li:nth-child(2)');
+    const restaurantsLinkLi = compiled.querySelector('li:nth-child(2)');
     expect(restaurantsLinkLi?.classList).toContain('active');
     expect(compiled.querySelectorAll('.active').length).toBe(1);
     flush();

@@ -115,14 +115,14 @@ npm install place-my-order-assets --save
 
 Open the `angular.json` file, and make the following changes to include these files in our build process. This will copy the images into our assets directory for when we serve our application.
 
-> Pay close attention that you're making these changes under the "build" key and not the "test" key, as the code looks very similar. The build key should be close to line 20.
+> Pay close attention that you're making these changes under the "build" key and not the "test" key, as the code looks very similar. The build key should be close to line 24.
 
 <details open>
 <summary>section copied - angular.json</summary>
 ✏️ Update __angular.json__:
 
 @sourceref ./angular.json
-@highlight 29-41,only
+@highlight 35-47,only
 
 </details>
 
@@ -281,7 +281,9 @@ This example shows various ways classes can be added to elements.
 @codepen
 @highlight 17, 19, 21, 23,25, 27-30, 34, only
 
-Notice in the above example our `ng-class` is surrounded by `[ ]`. This signals that we're passing in an object, instead of just a string. When using <a href="https://angular.io/guide/property-binding" >property binding</a>, `ngClass="value"` will evaluate the value as a string of _"value"_ and `[ngClass]="value"` as whatever the component property value is.
+Notice in the above example our `ng-class` is surrounded by `[ ]`. This signals that we're passing in an object, instead of just a string.
+
+When using <a href="https://angular.io/guide/property-binding">property binding</a>, `ngClass="value"` will evaluate the value as a string of _"value"_ and `[ngClass]="value"` as whatever the component property value is.
 
 @sourceref ./ng-class-property.html
 @codepen

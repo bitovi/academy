@@ -28,7 +28,7 @@ at the end of this tutorial:
 
 ## Setup
 
-`<router-outlet>`, which handles routing to a component based on a url, was added to our **src/app/app.component.html** file when we first generated our app and answered `yes` to the routing question. But since that time, we added components to that view. Let's remove those components because `<router-outlet>` will handle showing
+`<router-outlet>`, which handles routing to a component based on a url, was added to our **src/app/app.component.html** file when we first generated our app. But since that time, we added components to that view. Let's remove those components because `<router-outlet>` will handle showing
 those components going forward.
 
 ✏️ Update **src/app/app.component.html** to:
@@ -62,7 +62,7 @@ If you have completed the exercise successfully you should be able to see the ho
 
 ## Router
 
-To be able to navigate between different views in our app, we can take advantage of Angular's built-in routing module. We already told Angular we'd like to set up routing, so it generated `src/app/app-routing.module.ts` for us and included it in our root module. `src/app/app-routing.module.ts` currently looks like:
+To be able to navigate between different views in our app, we can take advantage of Angular's built-in routing module. Angular generated `src/app/app-routing.module.ts` for us and included it in our root module. `src/app/app-routing.module.ts` currently looks like:
 
 ```typescript
 import { NgModule } from '@angular/core';
@@ -82,7 +82,7 @@ The router module takes an array of routes we can generate in a few different wa
 
 ## Setting Paths to Components
 
-The following example will render the AboutComponent in the router-outlet when the path is `/about`:
+The following example will render the `AboutComponent` in the router-outlet when the path is `/about`:
 
 @sourceref ./path-route.html
 @codepen
@@ -90,7 +90,7 @@ The following example will render the AboutComponent in the router-outlet when t
 
 ## Using Wildcards
 
-The next example uses the wildcard path, which will render the PageNotFoundComponent when any unregistered route is hit:
+The next example uses the wildcard path, which will render the `PageNotFoundComponent` when any unregistered route is hit:
 
 @sourceref ./wildcard-route.html
 @codepen
@@ -114,7 +114,7 @@ As our applications grow, it doesn't make sense to load all the code at once. Th
 
 ## <base-href>
 
-In our index.html file, the angular cli included `<base href="/>`. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base">here</a>, but it's important to know this is how the Angular router will know how to compose URLs - the value in the `href` attribute specifies the base URL for all relative URLs contained in the app. If you'd like to serve your app from a different directory (wherever the index.html will be served from) or have a specific hosting URL that your app will be deployed at, you will need to change the `base href` to match.
+In our `index.html` file, the angular cli included `<base href="/>`. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base">here</a>, but it's important to know this is how the Angular router will know how to compose URLs - the value in the `href` attribute specifies the base URL for all relative URLs contained in the app. If you'd like to serve your app from a different directory (wherever the index.html will be served from) or have a specific hosting URL that your app will be deployed at, you will need to change the `base href` to match.
 
 ```html
 <!doctype html>
