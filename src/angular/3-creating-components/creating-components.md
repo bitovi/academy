@@ -289,31 +289,6 @@ When using <a href="https://angular.io/guide/property-binding">property binding<
 @codepen
 @highlight 17,19,23,only
 
-## P2: Technical Requirements
-
-Here is the markup to show for each restaurant:
-
-```html
-<img src="{{ restaurant.images.thumbnail }}" width="100" height="100" />
-<h3>{{ restaurant.name }}</h3>
-
-<div class="address" *ngIf="restaurant.address">
-  {{ restaurant.address.street }}<br />{{ restaurant.address.city }},
-  {{ restaurant.address.state }} {{ restaurant.address.zip }}
-</div>
-
-<div class="hours-price">
-  $$$<br />
-  Hours: M-F 10am-11pm
-  <span class="open-now">Open Now</span>
-</div>
-
-<a class="btn" [routerLink]="['/restaurants', restaurant.slug]"> Details </a>
-<br />
-```
-
-To solve this problem, use Angular directives to iterate through data and display properties of restaurants.
-
 ## P2: Setup
 
 Let's create our restaurant component as well. This will be a component that displays a list of restaurants.
@@ -332,6 +307,8 @@ For now, we'll use fake data for a list of restaurants in the component, and put
 
 @highlight 3-97, 104, 109-111
 
+To solve this problem, use Angular directives to iterate through data and display properties of restaurants.
+
 ✏️ Update **src/app/restaurant/restaurant.component.html** to be:
 
 ```html
@@ -339,15 +316,28 @@ For now, we'll use fake data for a list of restaurants in the component, and put
   <h2 class="page-header">Restaurants</h2>
   <!-- if restaurants has a length show the list -->
 
-  <!-- inside this container, show the following markup for each restaurant -->
+  <!-- show the following markup for each restaurant -->
   <div class="restaurant">
+    <img src="{{ restaurant.images.thumbnail }}" width="100" height="100" />
+    <h3>{{ restaurant.name }}</h3>
 
+    <div class="address" *ngIf="restaurant.address">
+      {{ restaurant.address.street }}<br />{{ restaurant.address.city }},
+      {{ restaurant.address.state }} {{ restaurant.address.zip }}
+    </div>
+
+    <div class="hours-price">
+      $$$<br />
+      Hours: M-F 10am-11pm
+      <span class="open-now">Open Now</span>
+    </div>
+
+    <a class="btn" [routerLink]="['/restaurants', restaurant.slug]"> Details </a>
+    <br />
   </div>
   <!-- end of restaurant markup -->
 </div>
 ```
-
-> Reminder: The markup that should be written out for each restaurant can be found in the [exercise description](#p2-technical-requirements).
 
 ✏️ To see our component working, we can paste it into our **src/app/app.component.html** file just like with the home component:
 
