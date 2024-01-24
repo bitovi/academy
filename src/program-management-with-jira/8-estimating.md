@@ -30,10 +30,10 @@ The purpose of estimating is to gauge the costs associated with implementing an 
   
 For the exercise, you will break down your work into epics and work with the other trainees to estimate the work. Finally, you’ll make a plan for the work in Advanced Roadmaps that shows the work plan similar to the image above.
 
-The following is the [Google Slides presentation](https://docs.google.com/presentation/d/1J-8iyn9GJ0nPA939_8OYQpgzjkpbWNogS8JWKohbkAY/edit?usp=sharing)
+The following is the [Google Slides presentation](https://docs.google.com/presentation/d/1KG7_VD7lmkW06NP7G1_uolDN3zLr10P35fJZVfF12EE/edit?usp=sharing)
 for much of this material:
 
-<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQ_BzvFQiSnpNgTinUYBcGytCSBtmpearJhuSwySLlRQmJSYr-ZDb2CpA0KX35sLNMPYzp0wF4ittCC/embed?start=false&loop=false&delayms=3000" frameborder="0" class="block-16-by-9" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQlxJmGH4esEPn8WK-nQbQxRZJXKuQZbbMw1uT06VqZJ02P_rnOhoS__HXbfqeXDRd9BViLgT3oCl5w/embed?start=false&loop=false&delayms=3000" frameborder="0" class="block-16-by-9" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
 Note, there is another presentation below!
 
