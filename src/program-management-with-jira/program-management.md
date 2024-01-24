@@ -14,7 +14,7 @@ On Wednesday, January 24 at 11AM CT, attend a free 2.5-hour hands-on
 of some of the techniques in this training. <br/>
 <span>Register here.</span>
 </div>
-<img src="../static/img/program-management-with-jira/home/jan24-workshop-rect.png"/>
+<img src="../static/img/program-management-with-jira/home/training-thumbnail.png"/>
 </a>
 <a href="https://www.youtube.com/watch?v=ipW1I74cDGo">
 <div>Real World Results</div>
