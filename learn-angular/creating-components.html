@@ -994,7 +994,7 @@ application. One of the ways components can be rendered is by putting them in ma
 </code></pre>
 <p>✏️ Update <strong>src/app/app.component.html</strong> to be:</p>
 <pre><code class="language-html">&lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;
-&lt;router-outlet&gt;&lt;/router-outlet&gt;
+&lt;router-outlet /&gt;
 
 &lt;pmo-home&gt;&lt;/pmo-home&gt;
 </code></pre>
@@ -1449,26 +1449,6 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='17,19,23,only'></div>
-<h2>P2: Technical Requirements</h2>
-<p>Here is the markup to show for each restaurant:</p>
-<pre><code class="language-html">&lt;img src=&quot;{{ restaurant.images.thumbnail }}&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
-&lt;h3&gt;{{ restaurant.name }}&lt;/h3&gt;
-
-&lt;div class=&quot;address&quot; *ngIf=&quot;restaurant.address&quot;&gt;
-  {{ restaurant.address.street }}&lt;br /&gt;{{ restaurant.address.city }},
-  {{ restaurant.address.state }} {{ restaurant.address.zip }}
-&lt;/div&gt;
-
-&lt;div class=&quot;hours-price&quot;&gt;
-  $$$&lt;br /&gt;
-  Hours: M-F 10am-11pm
-  &lt;span class=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
-&lt;/div&gt;
-
-&lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt; Details &lt;/a&gt;
-&lt;br /&gt;
-</code></pre>
-<p>To solve this problem, use Angular directives to iterate through data and display properties of restaurants.</p>
 <h2>P2: Setup</h2>
 <p>Let's create our restaurant component as well. This will be a component that displays a list of restaurants.</p>
 <p>✏️ Run:</p>
@@ -1592,24 +1572,37 @@ export class RestaurantComponent implements OnInit {
 
 </code></pre>
 <div line-highlight='3-97, 104, 109-111'></div>
+<p>To solve this problem, use Angular directives to iterate through data and display properties of restaurants.</p>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong> to be:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
   &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
   &lt;!-- if restaurants has a length show the list --&gt;
 
-  &lt;!-- inside this container, show the following markup for each restaurant --&gt;
+  &lt;!-- show the following markup for each restaurant --&gt;
   &lt;div class=&quot;restaurant&quot;&gt;
+    &lt;img src=&quot;{{ restaurant.images.thumbnail }}&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+    &lt;h3&gt;{{ restaurant.name }}&lt;/h3&gt;
 
+    &lt;div class=&quot;address&quot; *ngIf=&quot;restaurant.address&quot;&gt;
+      {{ restaurant.address.street }}&lt;br /&gt;{{ restaurant.address.city }},
+      {{ restaurant.address.state }} {{ restaurant.address.zip }}
+    &lt;/div&gt;
+
+    &lt;div class=&quot;hours-price&quot;&gt;
+      $$$&lt;br /&gt;
+      Hours: M-F 10am-11pm
+      &lt;span class=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt; Details &lt;/a&gt;
+    &lt;br /&gt;
   &lt;/div&gt;
   &lt;!-- end of restaurant markup --&gt;
 &lt;/div&gt;
 </code></pre>
-<blockquote>
-<p>Reminder: The markup that should be written out for each restaurant can be found in the <a href="#p2-technical-requirements">exercise description</a>.</p>
-</blockquote>
 <p>✏️ To see our component working, we can paste it into our <strong>src/app/app.component.html</strong> file just like with the home component:</p>
 <pre><code class="language-html">&lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;
-&lt;router-outlet&gt;&lt;/router-outlet&gt;
+&lt;router-outlet /&gt;
 
 &lt;pmo-restaurant&gt;&lt;/pmo-restaurant&gt;
 </code></pre>
