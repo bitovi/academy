@@ -10,9 +10,9 @@
 
 ## Overview
 
-1. Verify `DashboardComponent`'s `username$` member extracts `username` from Login State.
+1. Verify `DashboardComponent`’s `username$` member extracts `username` from Login State.
 
-2. Verify `AuthenticationGuard`'s `userId$` member extracts `userId` from Login State.
+2. Verify `AuthenticationGuard`’s `userId$` member extracts `userId` from Login State.
 
 
 ## Running Tests

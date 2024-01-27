@@ -95,7 +95,7 @@ function ButtonComponent() {
 
 @highlight 2,only
 
-Let's create two state items in the `WrapperContainer`.
+Let’s create two state items in the `WrapperContainer`.
 
 - `savedText` as we defined in the earlier example will hold the set message.
 - `unsavedText` will keep the inputs typed by the user until they are saved
@@ -149,7 +149,7 @@ function DisplayComponent({ unsavedText, setUnsavedText, savedText }) {
 
 @highlight 1,2-5,9,11
 
-Next, let's wire up that button. We'll define an `onButtonClick` callback to handle changes to the state variables. Pass the callback down to `ButtonComponent`.
+Next, let’s wire up that button. We’ll define an `onButtonClick` callback to handle changes to the state variables. Pass the callback down to `ButtonComponent`.
 
 ```jsx
 function WrapperContainer() {

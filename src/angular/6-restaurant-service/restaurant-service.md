@@ -22,7 +22,7 @@ We want to create an Angular service with a method that will get a list of resta
 
 ## P1: What You Need to Know
 
-To complete this problem, you'll need to know:
+To complete this problem, you’ll need to know:
 
 - The basics of Angular Services.
 - How to generate a service.
@@ -54,13 +54,13 @@ test file.
 
 ## Injectable
 
-<a href="https://angular.io/api/core/Injectable" >`Injectable`</a> is an Angular decorator that makes the class it's decorating available to Angular's <a href="https://angular.io/api/core/Injector" >Injector</a> for creation. In the case of creating service to get data to use in our application, we want those services to be able to be injected into the app components we need the services in.
+<a href="https://angular.io/api/core/Injectable" >`Injectable`</a> is an Angular decorator that makes the class it’s decorating available to Angular’s <a href="https://angular.io/api/core/Injector" >Injector</a> for creation. In the case of creating service to get data to use in our application, we want those services to be able to be injected into the app components we need the services in.
 
-Angular uses the injector to create dependencies using providers - which know how to create said dependencies. We can then inject our service into our components constructor to take advantage of Angular's dependency injection pattern.
+Angular uses the injector to create dependencies using providers - which know how to create said dependencies. We can then inject our service into our components constructor to take advantage of Angular’s dependency injection pattern.
 
 ## Importing `HttpClientModule` into _app.module.ts_
 
-For making HTTP requests to interact with an API, Angular provides <a href="https://angular.io/api/common/http/HttpClientModule" >HttpClient Module</a>. To use it we'll need to import it in the root module of our app and include it the imports array.
+For making HTTP requests to interact with an API, Angular provides <a href="https://angular.io/api/common/http/HttpClientModule" >HttpClient Module</a>. To use it we’ll need to import it in the root module of our app and include it the imports array.
 
 **src/app/app.module.ts**
 
@@ -75,8 +75,8 @@ For making HTTP requests to interact with an API, Angular provides <a href="http
 @codepen
 @highlight 23,25-27,29-31, only
 
-This tutorial won't cover RxJS in depth, but it's worth being aware of Angular's
-heavy use of it. Checkout our [learn-rxjs] tutorial for more information.
+This tutorial won’t cover RxJS in depth, but it’s worth being aware of Angular’s
+heavy use of it. Check out our [learn-rxjs] tutorial for more information.
 
 ## P1: Technical Requirements
 
@@ -108,7 +108,7 @@ Before we begin making services, we must:
 
 ### Installing the Place My Order API
 
-We've done some work to create a Place My Order API for use in this app by creating an NPM package that will generate fake restaurant data and serve it from port 7070.
+We’ve done some work to create a Place My Order API for use in this app by creating an npm package that will generate fake restaurant data and serve it from port 7070.
 
 ✏️ Run:
 
@@ -141,7 +141,7 @@ Double check the api by navigating to <a href="http://localhost:7070/restaurants
 
 ### Create an Environment Variable
 
-The way we're accessing our locally run API during development may be different than how we access it in production. To prepare for this, we'll set an environment variable to do what we need.
+The way we’re accessing our locally run API during development may be different than how we access it in production. To prepare for this, we’ll set an environment variable to do what we need.
 
 ✏️ To generate the environment files, run:
 
@@ -201,7 +201,7 @@ ng g service restaurant/restaurant
 npm run test
 ```
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## P1: Solution
 
@@ -221,16 +221,16 @@ npm run test
 
 ## Problem 2: Write an Interface to Describe the Restaurant Object and Data Response
 
-Currently, from TypeScript's perspective, `getRestaurants()` can return anything. This
+Currently, from TypeScript’s perspective, `getRestaurants()` can return anything. This
 means if we use the data from `getRestaurants()`, TypeScript will not be able to notice
 any mistakes. This undermines the whole point of TypeScript!
 
 ## P2: What You Need to Know
 
-To solve this problem, you'll need to:
+To solve this problem, you’ll need to:
 
 - Understand interfaces in TypeScript
-- How to generate an interface with Angular's CLI.
+- How to generate an interface with Angular’s CLI.
 
 ## Interfaces in TypeScript
 
@@ -303,7 +303,7 @@ This interface should be written in the **src/app/restaurant/restaurant.ts** fil
 
 ## P2: Setup
 
-We've already written a `ResponseData` interface that will take an array of restaurants for you. Here's the code to get you started:
+We’ve already written a `ResponseData` interface that will take an array of restaurants for you. Here’s the code to get you started:
 
 ✏️ Generate the restaurant interface:
 
@@ -328,7 +328,7 @@ it within the `ResponseData` interface which is used by `httpClient.get`:
 
 @diff ./restaurant.service.spec.ts ./restaurant.service-with-interface.spec.ts only
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass! If you haven't written the interfaces correctly, you'll see a compile error before the tests runs. You might need to restart the test script to see the compile error.
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass! If you haven’t written the interfaces correctly, you’ll see a compile error before the tests runs. You might need to restart the test script to see the compile error.
 
 ## P2: Solution
 
@@ -338,6 +338,6 @@ it within the `ResponseData` interface which is used by `httpClient.get`:
 
 @diff ./restaurant-starter.ts ./restaurant.ts
 
-In the next step we'll call the `getRestaurants` method in our component to get the list of restaurants.
+In the next step we’ll call the `getRestaurants` method in our component to get the list of restaurants.
 
 </details>

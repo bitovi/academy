@@ -39,7 +39,7 @@ type Dinosaur = keyof DinosaurFactObject;
 /**
  * This function should, given a facts object and dinosaur name, return the facts for that creature.
  *
- * > NOTE: Don't worry about the `DinosaurFactObject[Dinosaur]` type in the return of the function signature. That's called
+ * > NOTE: Don’t worry about the `DinosaurFactObject[Dinosaur]` type in the return of the function signature. That’s called
  * an index-signature which we will get into later on.
  */
 export const getDinoFact = (

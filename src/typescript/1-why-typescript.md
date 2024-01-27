@@ -31,7 +31,7 @@ myVariable = 1;
 myVariable = "2";
 ```
 
-JavaScript can call a function with a type it doesn't expect:
+JavaScript can call a function with a type it doesn’t expect:
 
 ```js
 function greeter(person) {
@@ -42,9 +42,9 @@ let user = {name: "Justin"};
 document.body.innerHTML = greeter(user);
 ```
 
-If there's a bug in the code related to falsely assuming a type, it won't throw an error until we're already running our code.
+If there’s a bug in the code related to falsely assuming a type, it won’t throw an error until we’re already running our code.
 
-TypeScript uses static typing, which allows us to specify what type a variable should hold, and types are checked when the code compiles alerting us of any incorrect usages of a variable assignment. The concept of "static" comes from the idea of variables being static, meaning once you set a variable to a type it can't (shouldn't) be changed. For a deeper dive into how typechecking works, the creators of typescript have a <a href="https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html" >typechecking handbook</a> of more specific cases as well as their inspiration for the way these features were designed.
+TypeScript uses static typing, which allows us to specify what type a variable should hold, and types are checked when the code compiles alerting us of any incorrect usages of a variable assignment. The concept of "static" comes from the idea of variables being static, meaning once you set a variable to a type it can’t (shouldn’t) be changed. For a deeper dive into how typechecking works, the creators of typescript have a <a href="https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html" >typechecking handbook</a> of more specific cases as well as their inspiration for the way these features were designed.
 
 ## Using this Guide
 
@@ -72,8 +72,8 @@ After cloning and installing the repository, we will:
 
 1. Create a simple _0-why-hello-world.ts_ TypeScript file that writes out `"Hello World"`.
 2. Compile that code the _0-why-hello-world.ts_ JavaScript file.
-3. Open _0-why-hello-world.html_ and verify that we've written and compiled some TypeScript!
-4. Run the exercise repository's tests for this exercise.
+3. Open _0-why-hello-world.html_ and verify that we’ve written and compiled some TypeScript!
+4. Run the exercise repository’s tests for this exercise.
 
 
 
@@ -105,13 +105,13 @@ repository. To use it:
   ```shell
    code . # if you are using VS Code
   ```
-   > The '.' after the editor is a shorthand to refer to the folder you're currently in
+   > The '.' after the editor is a shorthand to refer to the folder you’re currently in
 
 ### What You Need to Know
 
 In order to use TypeScript in the browser, we must compile the TypeScript code to plain JavaScript first. We will do this using our terminal in this example, but most often TypeScript will be compiled during a build process.
 
-✏️ Let's install TypeScript globally:
+✏️ Let’s install TypeScript globally:
 
 ```shell
 npm install -g typescript
@@ -123,7 +123,7 @@ npm install -g typescript
 tsc -v
 ```
 
-✏️ Let's create a new file called _0-why-hello-world.ts_ and open it in our favorite editor.
+✏️ Let’s create a new file called _0-why-hello-world.ts_ and open it in our favorite editor.
 
 OSX
 ```shell
@@ -137,7 +137,7 @@ echo > 0-why-hello-world.ts
 
    > The `touch` or `echo` command creates a new file
 
-✏️ We'll write some basic TypeScript next:
+✏️ We’ll write some basic TypeScript next:
 
 ```javascript
 function greeter(person: string) {
@@ -149,7 +149,7 @@ let user = "World";
 document.body.innerHTML = greeter(user);
 ```
 
-✏️ We'll compile our code by running:
+✏️ We’ll compile our code by running:
 
 ```shell
 tsc 0-why-hello-world.ts
@@ -166,7 +166,7 @@ Open _0-why-hello-world.html_ in your browser.  You should see `"Hello, World"` 
 The __learn-typescript__ repository also tests to make sure your solution
 works.  
 
-✏️ Once you've completed all of the previous steps, run the following to make sure your solution works:
+✏️ Once you’ve completed all of the previous steps, run the following to make sure your solution works:
 
 ```shell
 npm run 0-why

@@ -46,7 +46,7 @@ Make your changes in the **src/app/app.component.html** file. The markup structu
 
 ## How to Verify Your Solution is Correct
 
-You will know you've completed the exercise correctly when you can click the nav items to
+You will know you’ve completed the exercise correctly when you can click the nav items to
 see the UI change and see the active class on the current nav item.
 
 ![Place My Order App working nav](../static/img/angular/pmo-working-nav.gif 'Place My Order App working nav')
@@ -55,7 +55,7 @@ see the UI change and see the active class on the current nav item.
 
 @diff ../4-adding-routing/app.component.spec.ts ./app.component.spec.ts only
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## What You Need to Know
 
@@ -78,7 +78,7 @@ The following is an example of a hard coded path:
 
 ### Dynamic routerLink Segments
 
-The following is an example of a path being built from different pieces of data. In reusable components we'll often want to dynamically create paths based on a piece of data's unique property values.
+The following is an example of a path being built from different pieces of data. In reusable components we’ll often want to dynamically create paths based on a piece of data’s unique property values.
 
 @sourceref ./dynamic-path.html
 @codepen
@@ -104,7 +104,7 @@ Using `{exact: true}` will only set the class if the path match is exactly equal
 
 ### Adding an Active Class with Template Variable
 
-`RouterLinkActive` can also be used to set <a href="https://angular.io/api/router/RouterLinkActive#template-variable-references">template variables</a> to check the active status of the route. In this example we're creating a template variable `myroutervariable` to represent our route and it's active state for logic in our template.
+`RouterLinkActive` can also be used to set <a href="https://angular.io/api/router/RouterLinkActive#template-variable-references">template variables</a> to check the active status of the route. In this example we’re creating a template variable `myroutervariable` to represent our route and it’s active state for logic in our template.
 
 @sourceref ./router-link-active-template.html
 @codepen

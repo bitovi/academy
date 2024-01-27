@@ -1,7 +1,7 @@
 @page learn-rxjs/expiry Expiry
 @parent learn-rxjs 6
 
-@description Apply what you've learned from previous sections to the `expiry` field.
+@description Apply what you’ve learned from previous sections to the `expiry` field.
 
 @body
 

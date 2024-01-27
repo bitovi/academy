@@ -1,7 +1,7 @@
 @page learn-rxjs/cvc CVC
 @parent learn-rxjs 7
 
-@description Apply what you've learned from previous sections to the `cvc` field.
+@description Apply what you’ve learned from previous sections to the `cvc` field.
 
 @body
 

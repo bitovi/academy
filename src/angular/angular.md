@@ -56,7 +56,7 @@ As for the application itself, it:
 
 ## Outline
 
-The guide begins ([learn-angular/why-angular]) with a discussion of Angular's
+The guide begins ([learn-angular/why-angular]) with a discussion of Angular’s
 strengths. We will install Angular ([learn-angular/building-our-first-app]) and use it to generate a new project. Then we will set out creating some _components_ ([learn-angular/creating-components]) and ([learn-angular/creating-pipes]) to manipulate their data, the component will be shown when
 the right url is present ([learn-angular/adding-routing]) and adding navigation links ([learn-angular/creating-navigation]) to route to those _components_.
 
@@ -69,13 +69,13 @@ selecting a city filter the restaurants ([learn-angular/updating-service-params]
 an optional and advanced exercise, you can convert handle the state declaratively
 with RxJS ([learn-angular/declarative-state]).
 
-After writing all that code, it's good to learn a bit about testing. While this tutorial
+After writing all that code, it’s good to learn a bit about testing. While this tutorial
 has tests to verify your solutions, we will turn the tables and have you write a test for
 retrieving a single restaurant from the service layer ([learn-angular/writing-unit-tests]). This will prepare us to create a nested route for the restaurant details page ([learn-angular/nested-routes]).
 
 Now we are ready to turn our attention to learning about creating, updating, and deleting
 data. We will start by building an Order Form ([learn-angular/building-order-form]) and then update it to utilize directives
-([learn-angular/creating-directive]), which in turn allows us to create orders on the server ([learn-angular/order-service]). We'll then create a page that lets us update an order's status or delete an order ([learn-angular/order-history-component]).
+([learn-angular/creating-directive]), which in turn allows us to create orders on the server ([learn-angular/order-service]). We’ll then create a page that lets us update an order’s status or delete an order ([learn-angular/order-history-component]).
 We will utilize pipes to create an item total calculation across the application ([learn-angular/item-total-pipe])
 and will even make the order page update when someone else updates an order ([learn-angular/real-time-connection]).
 

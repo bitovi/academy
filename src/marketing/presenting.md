@@ -16,7 +16,7 @@ Speaking at conferences is a great way to:
 1. Build your network
 2. Develop communication skills
 3. Become an expert
-4. Help Bitovi's open source efforts
+4. Help Bitovi’s open source efforts
 5. Make contacts for new client projects (QSLs and sales incentive bonus!)
 
 ## Policies
@@ -39,9 +39,9 @@ How much Bitovi will assist you is determined on a case-by-case basis and depend
 
 ### Developers
 
-You're _automatically approved_ for talks where the event covers speaker costs and you are talking about Bitovi's open source or delivery efforts. Bitovi will also provide at least one _paid_ day to develop content as well as _paid_ days for the conference and travel time.  
+You’re _automatically approved_ for talks where the event covers speaker costs and you are talking about Bitovi’s open source or delivery efforts. Bitovi will also provide at least one _paid_ day to develop content as well as _paid_ days for the conference and travel time.  
 
-For events that don't cover speaker costs:
+For events that don’t cover speaker costs:
 
 - Full Day Training Events
   - In the US: Full Reimbursement
@@ -69,13 +69,13 @@ You’re not limited to the topics we’ve already started working on. If you ha
 ### Conferences
 
 - [Search Lanyrd](http://lanyrd.com/search/?q=JavaScript)
-- Bitovi's #interest-conf-props room
-- [Bitovi's list](https://docs.google.com/spreadsheets/d/1gqV-8wrmlgrkULDyheRBiPD5zhYfDzR9HXg9QNnnSTU/edit#gid=0)
+- Bitovi’s #interest-conf-props room
+- [Bitovi’s list](https://docs.google.com/spreadsheets/d/1gqV-8wrmlgrkULDyheRBiPD5zhYfDzR9HXg9QNnnSTU/edit#gid=0)
 
 
 ### Meetups
 
-- Meetup.com's local search
+- Meetup.com’s local search
 
 
 
@@ -85,7 +85,7 @@ You’re not limited to the topics we’ve already started working on. If you ha
 ### Meetups
 
 1. Join the meetup group.
-2. Send a [Meetup Talk Request](#meetup-talk-request) email to the organizers using the "Contact the Organizer" button on the meetup's page.
+2. Send a [Meetup Talk Request](#meetup-talk-request) email to the organizers using the "Contact the Organizer" button on the meetup’s page.
 3. Figure out a date that works.
 4. Ask them for their personal email so you can send them an [Abstract](#abstract)
    and [Bio](#bio).
@@ -110,7 +110,7 @@ You’re not limited to the topics we’ve already started working on. If you ha
    - How will your presentation make them feel that way?
    - Get a review.
 2. Create an outline
-   - Don't start with slides.
+   - Don’t start with slides.
    - Write a blog post.
    - Add a story.
    - Record a conversation with yourself.
@@ -126,7 +126,7 @@ You’re not limited to the topics we’ve already started working on. If you ha
 #### Two weeks before the meetup
 
 - <input type="checkbox"/> Make sure you have been sent the swag you need for the meetup.
-- <input type="checkbox"/> If you are giving swag, and haven't already, add this to the meetup comments. [Example](https://www.meetup.com/JavaScript-Workshops-LA/events/230773173/#event_comment-465934090)
+- <input type="checkbox"/> If you are giving swag, and haven’t already, add this to the meetup comments. [Example](https://www.meetup.com/JavaScript-Workshops-LA/events/230773173/#event_comment-465934090)
 
 #### Day before the meetup
 
@@ -151,7 +151,7 @@ You’re not limited to the topics we’ve already started working on. If you ha
 - Make eye contact
 - Speak in a clear voice
 - At the end, make sure to let people know how to keep the conversation going
-  and what sorts of conversations you'd like to have.
+  and what sorts of conversations you’d like to have.
 
 ## After Presenting
 
@@ -177,8 +177,8 @@ Example description (for _High performance apps with DoneJS_): https://drive.goo
 ### Bio
 
 > Bio:
-> Jen Macky (@jenmakcy) is senior consultant for [Bitovi](https://bitovi.com), a JavaScript consulting company known for making apps for Walmart and other high profile companies she can’t talk about. If you'd like to keep learning from
-Jen, checkout [Bitovi's JavaScript Training page](https://www.bitovi.com/javascript-training) for more details.
+> Jen Macky (@jenmakcy) is senior consultant for [Bitovi](https://bitovi.com), a JavaScript consulting company known for making apps for Walmart and other high profile companies she can’t talk about. If you’d like to keep learning from
+Jen, check out [Bitovi’s JavaScript Training page](https://www.bitovi.com/javascript-training) for more details.
 
 ### Meetup Talk Request
 

@@ -7,17 +7,17 @@
 
 ## What are stateful hooks?
 
-Stateful hooks are React's way of managing the data that a functional component needs to remember. The most widely used stateful hook, [`useState`](https://reactjs.org/docs/hooks-state.html), streamlines the process of both using and updating individual state values in a straightforward way.
+Stateful hooks are React’s way of managing the data that a functional component needs to remember. The most widely used stateful hook, [`useState`](https://reactjs.org/docs/hooks-state.html), streamlines the process of both using and updating individual state values in a straightforward way.
 
 Another stateful hook, `useRef`, gives component code access to the underlying DOM elements rendered from the JSX.
 
-Let's take a look at each hook and see what they can do.
+Let’s take a look at each hook and see what they can do.
 
 ## useState
 
 [`useState`](https://reactjs.org/docs/hooks-state.html) accepts a single parameter and returns an array with two elements. The argument to `useState` is the default value of the `state` that you are creating. The first element of the return value is the state value itself; this is the value you would render inside the JSX. The second element is a setter function, which, when called, can be used to update the state value and trigger a re-render.
 
-Here's an example of a React component that uses state to power an input element.
+Here’s an example of a React component that uses state to power an input element.
 
 ```jsx
 function Hello() {
@@ -41,7 +41,7 @@ Above is a simple example of using state to control an `input` element. The star
 
 Note also that the input box always displays the `uppercase` value of the text. This is because when we display the text value (when we pass the `value` prop to the `input`), we uppercase the string.
 
-This process is similar no matter what component you're building. The basic pattern is:
+This process is similar no matter what component you’re building. The basic pattern is:
 
 1. Get the value and setter from [`useState`](https://reactjs.org/docs/hooks-state.html).
 2. Use the value as needed
@@ -102,9 +102,9 @@ This process is similar no matter what component you're building. The basic patt
 
 Just like `useState`, `useRef` is a data store, keeping track of values the component is interested in. In this case however, `useRef` helps store DOM references instead of state data.
 
-DOM references give your component access to the underlying DOM elements that your JSX creates. These references can then be used to make more specific changes to the DOM or provide access to external libraries. To get to the value of a ref, it is always located in the `.current` property. It's important to note that updating refs does not cause updates like modifying the state does.
+DOM references give your component access to the underlying DOM elements that your JSX creates. These references can then be used to make more specific changes to the DOM or provide access to external libraries. To get to the value of a ref, it is always located in the `.current` property. It’s important to note that updating refs does not cause updates like modifying the state does.
 
-Let's take a look at `useRef` in action:
+Let’s take a look at `useRef` in action:
 
 ```jsx
 function Hello() {
@@ -126,7 +126,7 @@ ReactDOM.render(<Hello />, document.getElementById('root'));
 @highlight 2,8,10
 @codepen react
 
-In the code above we're doing a couple things:
+In the code above we’re doing a couple things:
 
 - Creating a ref that will reference the input field.
 - Use that input ref so that button onClick handler to `.focus()` on the underlying DOM element.
@@ -135,7 +135,7 @@ This strategy is useful when you need to interface with older libraries that req
 
 ## Exercise
 
-Let's use our stateful hooks knowledge to make our Tic-Tac-Toe game more functional!
+Let’s use our stateful hooks knowledge to make our Tic-Tac-Toe game more functional!
 
 ### The problem
 

@@ -30,10 +30,10 @@ How to:
 
 ## Provide Pipe Globally
 
-Unlike services, Pipes are not readily injectable into our components. In order to be able to use a Pipe in a component's `.ts` file, the Pipe has to be provided by a module.
+Unlike services, Pipes are not readily injectable into our components. In order to be able to use a Pipe in a component’s `.ts` file, the Pipe has to be provided by a module.
 To provide the **Pipe** just created in the app module, simply add the Pipe to the `providers` array in the `app.module.ts` file. [Learn More](https://angular.io/guide/providers).
 
-By including the Pipe in a component's constructor, you gain the ability to run the Pipe using its `transform` method.
+By including the Pipe in a component’s constructor, you gain the ability to run the Pipe using its `transform` method.
 
 ✏️ Update **src/app/app.module.ts**
 
@@ -68,7 +68,7 @@ The example below shows how to provide a Pipe globally in Angular. The Pipe bein
 
 @sourceref ./item-total.pipe.spec.ts
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## P1: Solution
 
@@ -91,7 +91,7 @@ The example below shows how to provide a Pipe globally in Angular. The Pipe bein
 ## Problem 2: Using Currency Pipe
 
 Now that we have finished implementing our Item Total Pipe, this is a good time for us to talk about using Currency Pipe. You might have noticed that our prices are in USD, which is a currency, and is a perfect use for the Currency Pipe.
-Angular provides us with a [Currency Pipe](https://angular.io/api/common/CurrencyPipe) that formats a number as currency using locale rules. Locale Rules refers to a user's country or region specific details like currency, language and more.
+Angular provides us with a [Currency Pipe](https://angular.io/api/common/CurrencyPipe) that formats a number as currency using locale rules. Locale Rules refers to a user’s country or region specific details like currency, language and more.
 
 Add the Currency Pipe to the `order.component.html` , `menu-items.component.html` and `list.component.html` template files:
 
@@ -122,7 +122,7 @@ Like all the other Pipes we have created, the Currency Pipe can be used the exac
 
 ## Set Default Currency Code
 
-If we want to display a different currency than the one provided by the application's locale, which defaults to `en-US` and therefore `USD`, we may override the locale's currency by providing `DEFAULT_CURRENCY_CODE` in `app.module.ts`.
+If we want to display a different currency than the one provided by the application’s locale, which defaults to `en-US` and therefore `USD`, we may override the locale’s currency by providing `DEFAULT_CURRENCY_CODE` in `app.module.ts`.
 
 ✏️ Update **app.module.ts** to provide currency code:
 

@@ -21,7 +21,7 @@ If you find bugs in this training or have suggestions, create an [issue](https:/
 ## Overview
 
 - <em>Audience:</em> Intermediate JS developers.
-- <em>Goal:</em> Understand how JavaScript works, what's going on "under the hood".
+- <em>Goal:</em> Understand how JavaScript works, what’s going on "under the hood".
 - <em>Time:</em> About 6 hours
 
 <strong>We are going to be figuring out how JavaScript works in memory. We will cover:</strong>

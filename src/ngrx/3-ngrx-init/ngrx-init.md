@@ -20,7 +20,7 @@
 
 ## Installing Project Dependencies
 
-We will need access to the Angular cli for this section, so if you haven't already installed the project's dependencies ([learn-ngrx/getting-started]), be sure to install them:
+We will need access to the Angular cli for this section, so if you haven’t already installed the project’s dependencies ([learn-ngrx/getting-started]), be sure to install them:
 
 ```bash
 npm install
@@ -55,7 +55,7 @@ npm install @ngrx/{store,effects,entity,store-devtools}@14 --save
 
 ## Generating Global Store
 
-We'll take advantage of NgRx schematics to [generate our initial state management files](https://ngrx.io/guide/schematics/store#command), and register the root of our Global Store within `app.module.ts`. 
+We’ll take advantage of NgRx schematics to [generate our initial state management files](https://ngrx.io/guide/schematics/store#command), and register the root of our Global Store within `app.module.ts`. 
 
 ```bash
 npx ng generate store State --root --state-path store --module app.module.ts
@@ -114,7 +114,7 @@ Lastly, we need to update `src/app/store/login/login.reducer.ts` to include a `L
 1. Writing tests for `Components` using NgRx Selectors
 2. Writing tests for NgRx Selectors themselves
 
-<!-- Can't show code diff since it will result in misleading highlights: 12, 13, 18 -->
+<!-- Can’t show code diff since it will result in misleading highlights: 12, 13, 18 -->
 <details open>
 <summary>src/app/store/login/login.reducer.ts</summary>
 @sourceref ./login.reducer.ts

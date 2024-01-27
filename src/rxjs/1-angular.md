@@ -122,7 +122,7 @@ You can call `subject.next()` in the DOM as follows:
 
 @highlight 5
 
-Use `| async` to write out an observable's value in a template as follows:
+Use `| async` to write out an observable’s value in a template as follows:
 
 ```html
 UserCardNumber: {{ userCardNumber$ | async }} <br />

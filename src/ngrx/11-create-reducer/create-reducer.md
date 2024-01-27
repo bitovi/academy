@@ -30,7 +30,7 @@ Now that we have all of our Actions prepared to dispatch whenever we need, we wi
 
 1. Define or update `Store` interface to have an [expected shape](https://ngrx.io/guide/store/reducers#defining-the-state-shape) after Reducer updates state.
 
-2. Set or update value to [state's initial value](https://ngrx.io/guide/store/reducers#setting-the-initial-state) to satisfy new `Store` interface definition.
+2. Set or update value to [state’s initial value](https://ngrx.io/guide/store/reducers#setting-the-initial-state) to satisfy new `Store` interface definition.
 
 3. [Add or update handler(s)](https://ngrx.io/guide/store/reducers#creating-the-reducer-function) used to define Reducer function.
 
@@ -55,7 +55,7 @@ Set initial state for Login State. Each member of the Login State should start w
 
 ## P2: What You Need to Know
 
-Now that we have updated the Login State's shape by updating the `State` interface, we need to update its initial shape. By default, we will set each member to `null`. Here is an example of doing that:
+Now that we have updated the Login State’s shape by updating the `State` interface, we need to update its initial shape. By default, we will set each member to `null`. Here is an example of doing that:
 
 @sourceref ./initial-value.ts
 @highlight 2, 3

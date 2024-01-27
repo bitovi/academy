@@ -44,7 +44,7 @@ For more information on JavaScript classes, checkout the
 Classes in TypeScript look just like classes in JavaScript; however, there are additional features
 that add type safety.
 
-In the following TypeScript class example, the `name` member is defined on line 3. We'll look at setting the name via the constructor next.
+In the following TypeScript class example, the `name` member is defined on line 3. We’ll look at setting the name via the constructor next.
 
 @sourceref ./6-2-typescript-class.ts
 @codepen
@@ -59,7 +59,7 @@ The constructor method is how to initialize a new object with members. The const
 @codepen
 @highlight 3
 
-When declaring members, it's also possible to instantiate a value on them.
+When declaring members, it’s also possible to instantiate a value on them.
 
 @sourceref ./6-3-class-constructor-initialized.ts
 @codepen
@@ -111,7 +111,7 @@ Members marked private are unable to be accessed from outside their containing c
 
 ## Protected modifier
 
-Protected modifiers are similar to private modifiers in that they can't be accessed but they CAN be accessed by deriving classes. The following example shows an inherited class that can access it's parent protected property `teethCount`:
+Protected modifiers are similar to private modifiers in that they can’t be accessed but they CAN be accessed by deriving classes. The following example shows an inherited class that can access it’s parent protected property `teethCount`:
 
 @sourceref ./6-9-protected.ts
 @codepen
@@ -120,7 +120,7 @@ Protected modifiers are similar to private modifiers in that they can't be acces
 
 ## Readonly modifier
 
-Readonly modifiers allow properties to be read, but not changed after initialization. Read-only members can be accessed outside the class, but their value can't be changed.
+Readonly modifiers allow properties to be read, but not changed after initialization. Read-only members can be accessed outside the class, but their value can’t be changed.
 
 @sourceref ./6-10-readonly.ts
 @codepen
@@ -128,7 +128,7 @@ Readonly modifiers allow properties to be read, but not changed after initializa
 
 ## This and `=>` Functions
 
-If you're familiar with ES6, you may know that using the fat arrow (=>) captures the context of `this` where it's used. The functionality is the same in TypeScript.
+If you’re familiar with ES6, you may know that using the fat arrow (=>) captures the context of `this` where it’s used. The functionality is the same in TypeScript.
 
 
 Wrong `this`:

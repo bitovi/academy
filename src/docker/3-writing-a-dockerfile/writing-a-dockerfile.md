@@ -26,7 +26,7 @@ EXPOSE $PORT
 CMD npm start
 ```
 
-Let's break down each line.
+Let’s break down each line.
 ## FROM instruction
 The `FROM` instruction is the first line of any Dockerfile. It sets the base image to be used as a starting point for all other instructions. Using base images allows deferring:
 
@@ -160,5 +160,5 @@ In our case, we are running our express server with `CMD npm start`. This will c
 
 More information about [CMD](https://docs.docker.com/engine/reference/builder/#cmd)
 
-## What's next
-That was a lot on Dockerfiles. Next we'll be looking at actually building and running our image!
+## What’s next
+That was a lot on Dockerfiles. Next we’ll be looking at actually building and running our image!

@@ -66,7 +66,7 @@ function DOT(object, property) {
 }
 /* end DOT code */
 
-// Test code. There's no need to edit the following:
+// Test code. There’s no need to edit the following:
 QUnit.test("DOT works", function(){
 	var Person = function(name){
 		this.name = name;
@@ -145,7 +145,7 @@ function DOT(object, property) {
 }
 /* end DOT code */
 
-// Test code. There's no need to edit the following:
+// Test code. There’s no need to edit the following:
 QUnit.test("DOT works", function(){
 	var Person = function(name){
 		this.name = name;

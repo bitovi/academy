@@ -118,7 +118,7 @@ describe('RestaurantService', () => {
       },
       _id:"xugqxQIX5dfgdgTLBv"
     }
-    //will error if interface isn't implemented correctly
+    //will error if interface isn’t implemented correctly
     expect(true).toBe(true);
   });
 

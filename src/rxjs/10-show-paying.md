@@ -10,7 +10,7 @@ that emits observables. Learn how to order observables.
 
 In this section, we will:
 
-- Change the button's text to **Paying** while the
+- Change the button’s text to **Paying** while the
   `payments` promise is pending and to **Pay** while
   waiting to pay or payment has completed.
 
@@ -46,7 +46,7 @@ In this section, we will:
 
 ## What you need to know
 
-This is a tricky problem. A promise has state (if it's pending or resolved). We need
+This is a tricky problem. A promise has state (if it’s pending or resolved). We need
 to convert this state to observables. The pattern is to map the promises to an observable of
 observables and then _flatten_ that observable with `mergeAll`.
 
@@ -225,7 +225,7 @@ observables and then _flatten_ that observable with `mergeAll`.
   @codepen
   @highlight 12
 
-- Read a value from an observable's last emitted value with the
+- Read a value from an observable’s last emitted value with the
   conditional operator (`?.`) like:
   ```html
   {{ (paymentStatus$ | async)?.status }}

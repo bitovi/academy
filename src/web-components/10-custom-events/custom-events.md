@@ -22,14 +22,14 @@ We want to display the bus destination for the selected marker. This should look
 ## How to Solve This Problem
 
 1. Add the provided CSS to the `bus-tracker` template.
-1. Add the `#selected-vehicle` element to the bus-tracker's `footer`.
+1. Add the `#selected-vehicle` element to the bus-tracker’s `footer`.
 1. Add an event listener for when a marker is selected which dispatches an event called `vehicle-selected`.
 1. Add an event listener in `bus-tracker` for the `vehicle-selected` event on the `google-map-view`.
 1. In the event listener set the `vehicle.des` in the `#selected-vehicle` element.
 
 ## Technical Requirements
 
-* For displaying the selected vehicle use a `span` element and give it an `id` of `selected-vehicle`. It will have mostly the same styles as the selected route. You could use the same CSS but just modify it to work for both. For simplicity here's the full CSS needed:
+* For displaying the selected vehicle use a `span` element and give it an `id` of `selected-vehicle`. It will have mostly the same styles as the selected route. You could use the same CSS but just modify it to work for both. For simplicity here’s the full CSS needed:
 
   ```css
   #selected-vehicle:not(.vehicle-selected) {
@@ -56,7 +56,7 @@ We want to display the bus destination for the selected marker. This should look
   }
   ```
 
-* Markers are not DOM elements and therefore don't have all of the same methods. To listen to events you use a slightly different mechanism:
+* Markers are not DOM elements and therefore don’t have all of the same methods. To listen to events you use a slightly different mechanism:
 
   ```js
   marker.addListener('event-name', () => {
@@ -64,7 +64,7 @@ We want to display the bus destination for the selected marker. This should look
   });
   ```
 
-  Where `event-name` is the event you're interested in.
+  Where `event-name` is the event you’re interested in.
 
 * Use this snippet for setting the the destination of the bus:
 
@@ -81,7 +81,7 @@ We want to display the bus destination for the selected marker. This should look
 
 ### Custom events
 
-Custom elements can have events associated with them just like any other element. You can listen to events the same way as well; in our case we'll use [addEventListener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener).
+Custom elements can have events associated with them just like any other element. You can listen to events the same way as well; in our case we’ll use [addEventListener](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener).
 
 ```js
 el.addEventListener('any-event', () => {
@@ -89,7 +89,7 @@ el.addEventListener('any-event', () => {
 });
 ```
 
-To dispatch a __custom event__ that contains data pertaining to the event, use the [CustomEvent](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) constructor. With `CustomEvent` you can include a `detail` property. This can contain any sort of data about the event you want to provide. In our case we'll use the __route__ object as the detail property.
+To dispatch a __custom event__ that contains data pertaining to the event, use the [CustomEvent](https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent) constructor. With `CustomEvent` you can include a `detail` property. This can contain any sort of data about the event you want to provide. In our case we’ll use the __route__ object as the detail property.
 
 Events are created using `let ev = new CustomEvent({ detail: {...} })`. This creates an event object. To dispatch it, the element (in our case a custom element) has a `dispatchEvent(ev)` function that takes the new event.
 
@@ -120,7 +120,7 @@ let ev = new CustomEvent('my-event', {
 Most of the time you want to delay setting up event listeners until `connectedCallback` is called. This is for a few different reasons:
 
 - Most events deal with user interaction and the user can only interact with elements in the page.
-- Events can reference elements not contained within the element; for example an event might be placed on the `document`. This creates a memory leak where the element's memory can never be freed.
+- Events can reference elements not contained within the element; for example an event might be placed on the `document`. This creates a memory leak where the element’s memory can never be freed.
 
 Use `connectedCallback` to add event listeners and `disconnectedCallback` to remove them. disconnectedCallback is called when the element is removed from the page.
 
@@ -156,7 +156,7 @@ Most people are familiar with using `addEventListener` with a function like so:
 element.addEventListener('click', callback);
 ```
 
-In a custom element class you'll often want to call some method on your class when an event occurs, but that might not do what you expect:
+In a custom element class you’ll often want to call some method on your class when an event occurs, but that might not do what you expect:
 
 ```js
 class MyElement extends HTMLElement {
@@ -178,7 +178,7 @@ class MyElement extends HTMLElement {
 }
 ```
 
-In the above example we are listening for when a button gets a `click` event and calling `this.handleButtonClick`. However this doesn't do what you expect; the `this` value when `handleButtonClick` is called will be the *button*, not your element.
+In the above example we are listening for when a button gets a `click` event and calling `this.handleButtonClick`. However this doesn’t do what you expect; the `this` value when `handleButtonClick` is called will be the *button*, not your element.
 
 You can fix this by using an arrow function instead (as shown in the previous section):
 
@@ -186,7 +186,7 @@ You can fix this by using an arrow function instead (as shown in the previous se
 this.button.addEventListener('click', ev => this.handleButtonClick(ev));
 ```
 
-However this creates a *new function*. To tear this down in `disconnectedCallback` you'll have to keep a reference to it.
+However this creates a *new function*. To tear this down in `disconnectedCallback` you’ll have to keep a reference to it.
 
 A way to avoid this is to use `handleEvent`. [handleEvent](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener#the_event_listener_callback) is a special method you can add to any object (not just elements) that makes that object an [EventTarget](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget). You use it like this:
 
@@ -226,7 +226,7 @@ class MyElement extends HTMLElement {
 }
 ```
 
-`handleEvent` is convenient when you only have a few events you're curious about, but when you have many events it can be difficult to differentiate between the events since they are all on the same method.
+`handleEvent` is convenient when you only have a few events you’re curious about, but when you have many events it can be difficult to differentiate between the events since they are all on the same method.
 
 ## Solution
 

@@ -9,7 +9,7 @@ React is all about components. In fact the whole point of the library is to help
 
 ## Components
 
-Earlier, we learned that React JSX is almost always the return value of our components. Components are like small containers which can be reused throughout your application. For example, you might build a `Button` component which renders all the JSX required for a button. Here's an example.
+Earlier, we learned that React JSX is almost always the return value of our components. Components are like small containers which can be reused throughout your application. For example, you might build a `Button` component which renders all the JSX required for a button. Here’s an example.
 
 ```jsx
 function Button() {
@@ -25,7 +25,7 @@ ReactDOM.render(<Button />, document.getElementById('root'));
 
 @codepen react
 
-In the code above, we're defining a functional component (a function which returns JSX) called `Button`.
+In the code above, we’re defining a functional component (a function which returns JSX) called `Button`.
 
 This component returns JSX and could then be rendered and reused by another component like `App` below.
 
@@ -41,11 +41,11 @@ function App() {
 }
 ```
 
-Here the `App` component is rendering the `Button` component 3 times. Note that when you render custom components like this they don't need closing tags, instead they can be self-closing with a `/` tacked onto the end. You can also design them to have closing tags with extra elements rendered inside (see an explanation on JSX children [here](https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891)).
+Here the `App` component is rendering the `Button` component 3 times. Note that when you render custom components like this they don’t need closing tags, instead they can be self-closing with a `/` tacked onto the end. You can also design them to have closing tags with extra elements rendered inside (see an explanation on JSX children [here](https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891)).
 
 ## Functional Components
 
-Functional components are simple. They're just functions which return a React element, usually written in JSX.
+Functional components are simple. They’re just functions which return a React element, usually written in JSX.
 
 ```jsx
 function MyFuncComponent() {
@@ -58,7 +58,7 @@ ReactDOM.render(<MyFuncComponent />, document.getElementById('root'));
 @highlight 2
 @codepen react
 
-As you can see in the functional component above, there's not much magic happening. We simply define a function and return JSX.
+As you can see in the functional component above, there’s not much magic happening. We simply define a function and return JSX.
 
 ## Class Components
 
@@ -77,9 +77,9 @@ ReactDOM.render(<MyClassComponent />, document.getElementById('root'));
 @highlight 2-4
 @codepen react
 
-## What's the Difference?
+## What’s the Difference?
 
-The above `MyFuncComponent` and `MyClassComponent` produce the exact same result using the two different methods. No matter which type of component you're working with, they can be used the same way:
+The above `MyFuncComponent` and `MyClassComponent` produce the exact same result using the two different methods. No matter which type of component you’re working with, they can be used the same way:
 
 ```jsx
 function App() {
@@ -93,7 +93,7 @@ function App() {
 ```
 @highlight 4-5
 
-Originally, class components were the most popular because they could keep track of state and respond to specific component lifecycle events. This wasn't possible in functional components until the release of the [React Hooks API](https://reactjs.org/docs/hooks-reference.html) in v16. Up until then, functional components were commonly referred to as _stateless components_.
+Originally, class components were the most popular because they could keep track of state and respond to specific component lifecycle events. This wasn’t possible in functional components until the release of the [React Hooks API](https://reactjs.org/docs/hooks-reference.html) in v16. Up until then, functional components were commonly referred to as _stateless components_.
 
 Now both class and functional components are used commonly in codebases around the world, but there has been a shift to using only functional components, as the syntax for them is more readable and cleaner.
 
@@ -101,7 +101,7 @@ For the remainder of this training, we will be using functional components exclu
 
 ## Multiples of the same component
 
-It's important to note that when you have more than one of the same component, you will need a unique way to identify them. This helps React know to only re-render the component with that key. Otherwise, React will not know which component to update and will have to update them all, or in some cases, it may even update the wrong component!
+It’s important to note that when you have more than one of the same component, you will need a unique way to identify them. This helps React know to only re-render the component with that key. Otherwise, React will not know which component to update and will have to update them all, or in some cases, it may even update the wrong component!
 An example of this is:
 ```jsx
 function App() {

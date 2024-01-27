@@ -1,15 +1,15 @@
-Welcome to Bitovi academy.
+Welcome to Bitovi Academy.
 
 This course covers cleaning the card number to remove
 spaces and dashes.  Specifically, we will learn how to
-map one observable's value to another observable's value.
+map one observable’s value to another observable’s value.
 
 
 Our goal is to allow the user to type a card number
 with spaces and dashes, but print out a cleaned
 up card number without those spaces and dashes.
 
-Notice how CardNumber doesn't have the spaces?
+Notice how CardNumber doesn’t have the spaces?
 
 Lets do this!
 

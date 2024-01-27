@@ -11,7 +11,7 @@ In addition to the core hooks exposed by React, namely `useState` and `useEffect
 
 Specifically, optimization through memoization. In a nutshell, memoization is the process of caching the values returned from long-running functions, and returning the cached values when inputs are identical to the previous run.
 
-There are two hooks which deal with memoization, `useMemo` and `useCallback`, let's take a look at them below.
+There are two hooks which deal with memoization, `useMemo` and `useCallback`, let’s take a look at them below.
 
 ## useMemo
 
@@ -38,9 +38,9 @@ ReactDOM.render(
 @highlight 2,5
 @codepen react
 
-In the code above, we're utilizing `useMemo` to memoize a value derived from two props, `firstName` and `lastName`. (Imagine that in order to get the full `name`, we need to perform some long-running or expensive operation.)
+In the code above, we’re utilizing `useMemo` to memoize a value derived from two props, `firstName` and `lastName`. (Imagine that in order to get the full `name`, we need to perform some long-running or expensive operation.)
 
-Normally, we would perform this operation every time the component renders, regardless of the `firstName`/`lastName` prop values. When we memoize the value however, React keeps track of the inputs and outputs of this function, and caches inputs and output for the last time it was run. This means that if this component gets rendered with the same first and last name 100 times in a row, we'll only need to perform the expensive operation once.
+Normally, we would perform this operation every time the component renders, regardless of the `firstName`/`lastName` prop values. When we memoize the value however, React keeps track of the inputs and outputs of this function, and caches inputs and output for the last time it was run. This means that if this component gets rendered with the same first and last name 100 times in a row, we’ll only need to perform the expensive operation once.
 
 `useMemo` takes two arguments. The first is a function which performs the expensive operation and returns a value. The second is an array of dependencies. The dependency array determines which values, when changed, should cause the memoized value to be re-computed. All state values used in the function should be declared in the dependencies.
 
@@ -52,9 +52,9 @@ To sum it all up:
 
 ### useMemo to cache a function call
 
-Let's take a look at a more real-world example. Here we'll parse a large JSON object, then flatten it into more easily printable lines.
+Let’s take a look at a more real-world example. Here we’ll parse a large JSON object, then flatten it into more easily printable lines.
 
-Here's a look at it without `useMemo`:
+Here’s a look at it without `useMemo`:
 
 ```jsx
 function Hello({ bigJSONBlob }) {
@@ -136,7 +136,7 @@ ReactDOM.render(
 - `useCallback(fn, deps)` is equivalent to `useMemo(() => fn, deps)`
 - Used to maintain referential equality between renders.
 
-[`useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback) is particularly useful when defining event handlers. In such cases, we're not necessarily interested in memoizing a single value, but rather in memoizing a callback function. This is very common in React, as we frequently use callbacks as props.
+[`useCallback`](https://reactjs.org/docs/hooks-reference.html#usecallback) is particularly useful when defining event handlers. In such cases, we’re not necessarily interested in memoizing a single value, but rather in memoizing a callback function. This is very common in React, as we frequently use callbacks as props.
 
 Below is a clickable `Hello` component which defines an un-memoized `handleClick` function.
 
@@ -158,7 +158,7 @@ ReactDOM.render(
 @highlight 2-4
 @codepen react
 
-Now below, we'll wrap `handleClick`'s logic in a `useCallback` so we can cache the results.
+Now below, we’ll wrap `handleClick`’s logic in a `useCallback` so we can cache the results.
 
 ```jsx
 function Hello({ firstName, lastName }) {
@@ -180,11 +180,11 @@ ReactDOM.render(
 
 ## Exercise
 
-Let's use our optimization hooks knowledge to make our Tic-Tac-Toe game a bit more performant!
+Let’s use our optimization hooks knowledge to make our Tic-Tac-Toe game a bit more performant!
 
 ### The problem
 
-✏️ Modify the `Board` component so that it's `handleSquareClick` function uses the `useCallback` hook.
+✏️ Modify the `Board` component so that it’s `handleSquareClick` function uses the `useCallback` hook.
 
 ```jsx
 const squareStyling = {

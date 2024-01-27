@@ -1,7 +1,7 @@
 @page learn-agile-program-management-with-jira/managing Managing
 @parent learn-agile-program-management-with-jira 13
 
-@description Learn how to manage a program's active work.
+@description Learn how to manage a program’s active work.
 
 @body
 

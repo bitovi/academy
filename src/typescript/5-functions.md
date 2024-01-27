@@ -16,7 +16,7 @@ The exercise will have you update a function with TypeScript annotations.
 
 ## Functions in TypeScript
 
-In TypeScript, we're able to annotate function parameters to better guard our code. If the following, `add` is called  with two parameters that are not numbers TypeScript's compiler will throw an error when compiled.
+In TypeScript, we’re able to annotate function parameters to better guard our code. If the following, `add` is called  with two parameters that are not numbers TypeScript’s compiler will throw an error when compiled.
 
 ```typescript
 function add(x: number, y: number): number {
@@ -43,7 +43,7 @@ function returnNumber(): number {
 
 ## Optional Parameters
 
-Sometimes when writing functions, we don't need every parameter to be satisfied. TypeScript allows us to mark optional parameters (or properties) with a ``?`` so the compiler will not error if an optional param isn't passed.
+Sometimes when writing functions, we don’t need every parameter to be satisfied. TypeScript allows us to mark optional parameters (or properties) with a ``?`` so the compiler will not error if an optional param isn’t passed.
 
 ```typescript
 function buildDinosaur(name: string, breed: string, teeth?: number): void {
@@ -160,7 +160,7 @@ base cost.  This solution uses [Array.prototype.reduce](https://developer.mozill
 
 
 
-You'll notice that specifying a return type is not necessary.  This is
+You’ll notice that specifying a return type is not necessary.  This is
 because TypeScript can infer the return value from the arguments.
 
 The following is another

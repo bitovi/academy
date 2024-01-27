@@ -7,7 +7,7 @@
 
 ## The Prop Drilling Problem
 
-A single component can take as many props as you want to give it, but just like arguments in functions, it's a good idea to limit this number, as more props makes for a more confusing and harder to test component. [This discussion here](https://stackoverflow.com/questions/37695557/react-are-there-respectable-limits-to-number-of-props-on-react-components), perfectly summarizes why it's a bad idea and considered a ["code smell"](https://martinfowler.com/bliki/CodeSmell.html).
+A single component can take as many props as you want to give it, but just like arguments in functions, it’s a good idea to limit this number, as more props makes for a more confusing and harder to test component. [This discussion here](https://stackoverflow.com/questions/37695557/react-are-there-respectable-limits-to-number-of-props-on-react-components), perfectly summarizes why it’s a bad idea and considered a ["code smell"](https://martinfowler.com/bliki/CodeSmell.html).
 
 However, this can be difficult to do when you have a lot of data to pass through your component tree. Consider the following hierarchy with a few "drilled props". Lets imagine that the `Theme`, `Domain` and `RootUrl` are decided within the `App` component, but are **only** needed within the `ButtonText` component. That is to say, `Dashboard` and `Button` have no business related to any of those props.
 
@@ -40,11 +40,11 @@ function Component1(props) {
 
 @highlight 1,2
 
-In this case, it doesn't matter if `Component1` even needs the `Theme` prop; it will always require it simply because `Component2` might require it. Initially, this was solved using libraries such as [Redux](https://redux.js.org/). These libraries would work by wrapping each component in a connector Higher-order Component (HoC) which would automatically pass in any required props. Today, we solve this problem using React's Context Providers and Consumers.
+In this case, it doesn’t matter if `Component1` even needs the `Theme` prop; it will always require it simply because `Component2` might require it. Initially, this was solved using libraries such as [Redux](https://redux.js.org/). These libraries would work by wrapping each component in a connector Higher-order Component (HoC) which would automatically pass in any required props. Today, we solve this problem using React’s Context Providers and Consumers.
 
 ## What is Context?
 
-One way to think about Contexts is an additional set of props which are passed transparently through React's internals instead of arguments. It involves three parts:
+One way to think about Contexts is an additional set of props which are passed transparently through React’s internals instead of arguments. It involves three parts:
 
 1. **The Context:** Think of the context like a box of things. The box needs to be available to all who want to use it.
 2. **The Provider:** The provider puts things into the box. Whatever data it handles is only available to its children.
@@ -267,7 +267,7 @@ Much better.
 
 The example above demonstrates the simplest use-case for context, but often times developers will organize their providers to abstract away a lot of the boilerplate. Exposing your Context object directly can also result in more complex code and even more complex maintenance, as the consuming code is accessing the data directly. By creating wrappers for the `Provider` component and `useContext` hook, you can control exactly what data each component is using, thereby reducing code complexity and simplifying maintenance.
 
-Let us consider a more complex situation: Global styles. take a look at how we might refactor the `ThemeContext` so that it's wrapped in it's own custom component:
+Let us consider a more complex situation: Global styles. take a look at how we might refactor the `ThemeContext` so that it’s wrapped in it’s own custom component:
 
 ```jsx
 import React, { createContext } from 'react';
@@ -290,7 +290,7 @@ export default function ThemeProvider({ theme, children }) {
 
 @highlight 10-16,only
 
-In the example above, we've taken away all of the `ThemeContext` logic and encapsulated it into it's own component `ThemeProvider`. This is a very common technique for organizing contexts in a scalable and reusable way.
+In the example above, we’ve taken away all of the `ThemeContext` logic and encapsulated it into its own component `ThemeProvider`. This is a very common technique for organizing contexts in a scalable and reusable way.
 
 We can take this a step further by exporting a custom hook `useTheme` from this file, which can then be used by nested components like `Button` to access the theme:
 
@@ -320,7 +320,7 @@ export function useTheme() {
 
 @highlight 18-21,only
 
-Now, we can refactor our `Layout` component to use this new provider. Notice how much cleaner it looks when we abstract away the context logic into it's own component (`ThemeProvider`)
+Now, we can refactor our `Layout` component to use this new provider. Notice how much cleaner it looks when we abstract away the context logic into its own component (`ThemeProvider`)
 
 ```jsx
 import React from 'react';
@@ -358,11 +358,11 @@ function Button({ label }) {
 
 ## Exercise
 
-Let's use our context hook knowledge to make our Tic-Tac-Toe use a style theme!
+Let’s use our context hook knowledge to make our Tic-Tac-Toe use a style theme!
 
 ### The problem
 
-✏️ Let's add in the ability to use a style theme for our app.
+✏️ Let’s add in the ability to use a style theme for our app.
 
 - `Game` Component
   - Create a new piece of state called `theme`, which will store the current theme used by the app (`themes.light` by default).
@@ -373,7 +373,7 @@ Let's use our context hook knowledge to make our Tic-Tac-Toe use a style theme!
 - `Square` Component
   - Get the theme from the new `useTheme` hook in the `Game` component.
 
-Here's the starter code
+Here’s the starter code
 
 ```jsx
 const squareStyling = {

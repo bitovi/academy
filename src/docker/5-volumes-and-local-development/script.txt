@@ -1,8 +1,8 @@
 Welcome to part 6 of Bitovi academies learn doctor training. 
 
-With the concepts we've explored so far, Trying to locally develop a containerized service is very slow. To test every code change, a developer would have to 
+With the concepts we’ve explored so far, Trying to locally develop a containerized service is very slow. To test every code change, a developer would have to 
 
-In this video we're going to look at volumes
+In this video we’re going to look at volumes
 ...
 
 
@@ -10,7 +10,7 @@ When a container is destroyed, any state is lost with it. Docker offers volumes 
 
 This is especially useful for running databases in containers, but also allows us to not have to rebuild containers on every code change.
 
-To use volumes, we'll add the -v flag to our `docker run` command
+To use volumes, we’ll add the -v flag to our `docker run` command
 
 docker run --name my-container -p 8000:8000 -d -v $PWD/src:/app/src my-node-app:latest
 
@@ -20,4 +20,4 @@ Code change
 
 docker logs -f my-container
 
-Thats it! Next we'll be looking at changing up our Dockerfile to make it ready for production
+Thats it! Next we’ll be looking at changing up our Dockerfile to make it ready for production

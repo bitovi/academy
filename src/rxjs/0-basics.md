@@ -326,7 +326,7 @@ you often want multiple subscribers receiving the same value.
 `Subjects` are just like Observables except they publish values
 to many observables at once without creating new execution contexts.
 
-In the following example, you'll notice that each subscription gets
+In the following example, you’ll notice that each subscription gets
 the same random value:
 
 ```html

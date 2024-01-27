@@ -35,7 +35,7 @@ The app requires only two files
   }
 }
 ```
-This file defines `express` as a standard dependency and `nodemon` as a dev dependency. Nodemon is used to run our Express server and watches the source code to hot-reload any new changes without needing to restart the server. It is a dev dependency because we don't want the overhead of running nodemon in production or even the bulk of keeping it in `node_modules/`.
+This file defines `express` as a standard dependency and `nodemon` as a dev dependency. Nodemon is used to run our Express server and watches the source code to hot-reload any new changes without needing to restart the server. It is a dev dependency because we don’t want the overhead of running nodemon in production or even the bulk of keeping it in `node_modules/`.
 
 Our `package.json` also defines a `start` script and a `start:prod`. These are convenient ways to allow us to start our application with nodemon or node by running `npm start` or `npm run start:prod`.
 
@@ -66,6 +66,6 @@ Open your browser to `localhost:3000` and you should see `Hello World!`
 
 ![node app in browser](../static/img/docker/2-build-node-app/node-hello-world.png)
 
-## What's next
-Now that we've created a simple NodeJS app, we are going to containerize it.
+## What’s next
+Now that we’ve created a simple NodeJS app, we are going to containerize it.
     

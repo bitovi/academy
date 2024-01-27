@@ -60,7 +60,7 @@ The discovery workflow is a process that looks at:
   style="border: solid 1px black; min-width: 400px; width: 100%; max-width: 800px"/>
 
 
-The discovery workflow is out-of-scope for this training. If you'd like to learn more, please vote for the [Product Discovery Process](https://github.com/bitovi/academy/issues/386) training.
+The discovery workflow is out-of-scope for this training. If you’d like to learn more, please vote for the [Product Discovery Process](https://github.com/bitovi/academy/issues/386) training.
 
 While a discovery workflow ideally plays a part in sourcing ideas, we believe that anyone should be able to contribute initiative ideas at any time.
 
@@ -68,7 +68,7 @@ While a discovery workflow ideally plays a part in sourcing ideas, we believe th
 Writing Up Initiative Ideas
 ---------------------------
 
-While ideas can be created at any time, by anyone. In order to have a fruitful conversation around which ideas should be prioritized and moved into `Refinement`, it's helpful to have the value proposition detailed in the initiative.
+While ideas can be created at any time, by anyone. In order to have a fruitful conversation around which ideas should be prioritized and moved into `Refinement`, it’s helpful to have the value proposition detailed in the initiative.
 
 For this training, we will be using a promotion initiative as an example. We will develop the promotion initiative from `idea` to `ready` for development.
 
@@ -124,7 +124,7 @@ It’s important to avoid talking about specific features when writing up the im
 
 ### Writing up the Value and Value Confidence
 
-The `value` is how much value you think this initiative will produce after it's completed, per quarter. The `value confidence` is how confident you are about achieving this.
+The `value` is how much value you think this initiative will produce after it’s completed, per quarter. The `value confidence` is how confident you are about achieving this.
 
 Perhaps you think a one-click-checkout will improve conversions 3%. How much revenue will that create per quarter? How confident are you that the idea will achieve that conversion improvement?
 

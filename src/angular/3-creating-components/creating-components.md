@@ -19,7 +19,7 @@ In this part, we will:
 
 ## Problem 1: Creating a Home Component With a Dynamic Title Member
 
-Let's begin to build out the main views of our app. We'll create a home view now,
+Let’s begin to build out the main views of our app. We’ll create a home view now,
 and restaurant list view in the next exercise.
 
 ## P1: What You Need to Know
@@ -51,7 +51,7 @@ This will create a new component for us and import it in our root module.
 |   |       |── new-component-name.component.html
 ```
 
-Generated components have the same structure - a name.component.ts file that will contain the boilerplate code for the Angular component class. This class will also have a component decorator pointing to the name.component.less file for styles, and the name.component.html file for it's template. Styles and templates can also be written inline in the decorator with backticks to escape the code using the keys `style` and `template`.
+Generated components have the same structure - a name.component.ts file that will contain the boilerplate code for the Angular component class. This class will also have a component decorator pointing to the name.component.less file for styles, and the name.component.html file for it’s template. Styles and templates can also be written inline in the decorator with backticks to escape the code using the keys `style` and `template`.
 
 ## Bind Data to Components
 
@@ -69,7 +69,7 @@ Data can also be passed to child components. Data can be passed with expression 
 
 ## P1: Technical Requirements
 
-Create a component that displays a title read from a component's `title` member.
+Create a component that displays a title read from a component’s `title` member.
 
 <img src="../static/img/angular/3-creating-components/home-component.png"
   style="border: solid 1px black; max-width: 640px;"/>
@@ -98,14 +98,14 @@ The component should provide the following HTML:
 ```
 
 > Notice the `TITLE GOES HERE` part of the HTML. `TITLE GOES HERE` should be replaced by
-> something that reads the component's `title` property.
+> something that reads the component’s `title` property.
 
-The component's `title` member should have a string value of
+The component’s `title` member should have a string value of
 `"Ordering food has never been easier"`.
 
 ## P1: Setup
 
-To get this application up and running quicker so we can focus on the architecture, we'll import some pre-created styles and assets to save us time.
+To get this application up and running quicker so we can focus on the architecture, we’ll import some pre-created styles and assets to save us time.
 
 ✏️ Run:
 
@@ -115,7 +115,7 @@ npm install place-my-order-assets --save
 
 Open the `angular.json` file, and make the following changes to include these files in our build process. This will copy the images into our assets directory for when we serve our application.
 
-> Pay close attention that you're making these changes under the "build" key and not the "test" key, as the code looks very similar. The build key should be close to line 24.
+> Pay close attention that you’re making these changes under the "build" key and not the "test" key, as the code looks very similar. The build key should be close to line 24.
 
 <details open>
 <summary>section copied - angular.json</summary>
@@ -131,7 +131,7 @@ Open the `angular.json` file, and make the following changes to include these fi
 ✏️ **Quit process by running `Ctrl + C`.**
 
 While we are building the component, it will be nice to see it in the
-application. One of the ways components can be rendered is by putting them in markup. We'll do this by putting our `<pmo-home></pmo-home>` tag in our base app component markup. To see the
+application. One of the ways components can be rendered is by putting them in markup. We’ll do this by putting our `<pmo-home></pmo-home>` tag in our base app component markup. To see the
 `<pmo-home>` component, do the following.
 
 ✏️ Run:
@@ -175,7 +175,7 @@ ng g component home
 ```
 @highlight only
 
-Run `npm run start`, and your app should compile with no errors, and you'll be able to see the home component. Later we'll move the home component to it's own page with a unique route.
+Run `npm run start`, and your app should compile with no errors, and you’ll be able to see the home component. Later we’ll move the home component to its own page with a unique route.
 
 ## P1: How to Verify Your Solution is Correct
 
@@ -184,7 +184,7 @@ Run `npm run start`, and your app should compile with no errors, and you'll be a
 @sourceref ./home.component.spec.ts
 @highlight 25-41, only
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## P1: Solution
 
@@ -233,8 +233,8 @@ We want to display a list of restaurants in our UI once the data has been set on
 
 ## P2: What You Need to Know
 
-To solve this exercise, you'll need to learn some of Angular's more common
-template directives. Template directives in Angular help us iterate through and manipulate data we've bound to the DOM. You'll need some of the following:
+To solve this exercise, you’ll need to learn some of Angular’s more common
+template directives. Template directives in Angular help us iterate through and manipulate data we’ve bound to the DOM. You’ll need some of the following:
 
 - \*ngIf - conditionally show content.
 - \*ngFor - iterate through a list and create content for each item in the list.
@@ -281,7 +281,7 @@ This example shows various ways classes can be added to elements.
 @codepen
 @highlight 17, 19, 21, 23,25, 27-30, 34, only
 
-Notice in the above example our `ng-class` is surrounded by `[ ]`. This signals that we're passing in an object, instead of just a string.
+Notice in the above example our `ng-class` is surrounded by `[ ]`. This signals that we’re passing in an object, instead of just a string.
 
 When using <a href="https://angular.io/guide/property-binding">property binding</a>, `ngClass="value"` will evaluate the value as a string of _"value"_ and `[ngClass]="value"` as whatever the component property value is.
 
@@ -291,7 +291,7 @@ When using <a href="https://angular.io/guide/property-binding">property binding<
 
 ## P2: Setup
 
-Let's create our restaurant component as well. This will be a component that displays a list of restaurants.
+Let’s create our restaurant component as well. This will be a component that displays a list of restaurants.
 
 ✏️ Run:
 
@@ -299,7 +299,7 @@ Let's create our restaurant component as well. This will be a component that dis
 ng g component restaurant
 ```
 
-For now, we'll use fake data for a list of restaurants in the component, and put the data in a setTimeout to simulate an api call.
+For now, we’ll use fake data for a list of restaurants in the component, and put the data in a setTimeout to simulate an api call.
 
 ✏️ Update **src/app/restaurant/restaurant.component.ts** to be:
 
@@ -356,7 +356,7 @@ To solve this problem, use Angular directives to iterate through data and displa
 
 @sourceref ./restaurant.component.spec.ts
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## P2: Solution
 

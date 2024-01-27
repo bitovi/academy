@@ -182,7 +182,7 @@ Change the Reported Status to “Complete”
 Show a Development, QA, and UAT breakout
 ----------------------------------------
 
-It can be nice to see an initiative's timing as it flow from development, to QA (testing), and finally to User Acceptance Testing (UAT).
+It can be nice to see an initiative’s timing as it flow from development, to QA (testing), and finally to User Acceptance Testing (UAT).
 
 **Given**: The previous timeline.
 

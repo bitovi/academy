@@ -27,8 +27,8 @@ We want to build a component that displays the CTA bus tracker routes and displa
 
 1. Create a template that contains the styles and markup for this new element.
 1. Create a custom element called `bus-tracker`.
-1. Include the styles/markup in this element's `shadowRoot`.
-1. Place the `google-map-view` component within this new element's `footer`.
+1. Include the styles/markup in this element’s `shadowRoot`.
+1. Place the `google-map-view` component within this new element’s `footer`.
 
 ## Technical Requirements
 
@@ -192,7 +192,7 @@ The `google-map-view` component should be displayed in the `<footer>` section of
 
 ## What You Need to Know
 
-To solve this problem you'll need to:
+To solve this problem you’ll need to:
 
 * Know how to use CSS in a component that uses Shadow DOM.
 * Use a component within another component.
@@ -221,7 +221,7 @@ In our component we are using `display: flex` to give space to the header, route
 
 ### Nesting components
 
-Any component defined using `customElements.define()` can be used within another element's `shadowRoot` just as they can inside of the page's HTML. To add the `google-map-view` to this new component, place the tag within the footer.
+Any component defined using `customElements.define()` can be used within another element’s `shadowRoot` just as they can inside of the page’s HTML. To add the `google-map-view` to this new component, place the tag within the footer.
 
 ```html
 <parent-element></parent-element>
