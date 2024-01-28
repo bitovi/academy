@@ -33,7 +33,7 @@ for this material:
 Continuous Exploration is the process of determining which features should be built to
 maximize product value and customer success.  The output of the Continuous Exploration
 process is the __product backlog__ - a prioritized list of features that represents
-the product team's best guess at how they will achieve their target outcomes.
+the product team’s best guess at how they will achieve their target outcomes.
 
  Continuous Exploration is a term popularized by
 [Scaled Agile](https://www.scaledagileframework.com/continuous-exploration/). The following
@@ -42,7 +42,7 @@ is their definition:
 > Continuous Exploration (CE) is the process that drives innovation and fosters alignment on what should be built by continually exploring market and customer needs, and defining a Vision, Roadmap, and set of Features for a Solution that addresses those needs.
 > © Scaled Agile, Inc.
 
-Bitovi's Continuous Exploration process is represented by the following two combined workflows:
+Bitovi’s Continuous Exploration process is represented by the following two combined workflows:
 
 <img src="../static/img/program-management-with-jira/continuous-exploration/workflow.png"
 	class="content-400-800-shadow"/>
@@ -69,12 +69,12 @@ we will focus on the __Evaluation workflow__.
 ## Evaluation Workflow
 
 The evaluation workflow's goal is to produce a prioritized list of features that represents
-the product team's best guess at how they will achieve their target outcomes. This best guess is
+the product team’s best guess at how they will achieve their target outcomes. This best guess is
 often called the __product backlog__.  In summary, there are four broad steps to produce a prioritized list of features:
 
 1. Define what the feature is.
-2. Evaluate and validate the feature's benefits.
-3. Estimate the feature's costs.
+2. Evaluate and validate the feature’s benefits.
+3. Estimate the feature’s costs.
 4. Rank the feature against other features.
 
 In the next page, step of the tutorial, an exploration board and workflow to help us manage this process.
@@ -82,7 +82,7 @@ In the next page, step of the tutorial, an exploration board and workflow to hel
 ## Exploration Board Overview
 
 In the next lesson, we will be setting up a Board in Jira to manage
-the exploration process. Let's take a look at it now to get a sense of it.
+the exploration process. Let’s take a look at it now to get a sense of it.
 
 It first starts with an ideas space.  This is the `backlog` below:
 

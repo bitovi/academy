@@ -367,7 +367,7 @@ The following video shows the steps to accomplishing this:
 2. <code>[3:20](https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&t=200)</code> Enter adjusted "Story points".
 3. <code>[4:19](https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&t=258)</code> Adjust epic timings.
 4. <code>[4:57](https://youtu.be/dFldN5ugf74?list=PL--xV5crGpX_EdvA-rcDXVC4qjiujYTKE&t=295)</code> Repeat setting epic adjusted "Story points" and timing with the Bitovi [auto-scheduler](https://auto-scheduler.bitovi-jira.com/) by loading just the 
-   initiative's epics with:
+   initiative’s epics with:
 
    ```
    issuekey in portfolioChildIssuesOf("KEY") and issueType = Epic
@@ -394,7 +394,7 @@ We suggest using an average of past sprint velocities. Next, you need to determi
 
 The promotions example has story-pointed epics for the _order_ and _store_ product teams.
 
-Let's say that the _order_ team’s velocity is 50 points per sprint, and they typically work on two epics at once. The velocity we will use for _order_ is 25 points per sprint. The _store_’s velocity is 20, but they work on a single epic at once, so we will use 20 points per sprint for the _store_ team.
+Let’s say that the _order_ team’s velocity is 50 points per sprint, and they typically work on two epics at once. The velocity we will use for _order_ is 25 points per sprint. The _store_’s velocity is 20, but they work on a single epic at once, so we will use 20 points per sprint for the _store_ team.
 
 
 
@@ -402,7 +402,7 @@ Let's say that the _order_ team’s velocity is 50 points per sprint, and they t
 
 Now we will set the adjusted story points for each epic and set the time range of the epic based on team velocity.
 
-To do that, you’ll want to use the [https://bitovi.github.io/statistical-software-estimator/?estimateUnit=story+points&outputUnit=story+points](https://bitovi.github.io/statistical-software-estimator/?estimateUnit=story+points&outputUnit=story+points). First, let's configure for “Store - Create a promotion”.
+To do that, you’ll want to use the [https://bitovi.github.io/statistical-software-estimator/?estimateUnit=story+points&outputUnit=story+points](https://bitovi.github.io/statistical-software-estimator/?estimateUnit=story+points&outputUnit=story+points). First, let’s configure for “Store - Create a promotion”.
 
 You will want to configure:
 
@@ -473,7 +473,7 @@ The statistical approach outlined above has several benefits when compared to ta
     
 *   It highlights uncertainty.
     
-    Often, it's the epics that have the lowest confidence that lengthen the end-to-end time of delivery. By identifying those epics, program managers can adjust plans to reign in uncertainty. We will see this in action in [Breaking Long Poles \[Rough Draft/In Progress\]](https://bitovi.atlassian.net/wiki/spaces/PM/pages/368476911/Breaking+Long+Poles) .
+    Often, it’s the epics that have the lowest confidence that lengthen the end-to-end time of delivery. By identifying those epics, program managers can adjust plans to reign in uncertainty. We will see this in action in [Breaking Long Poles \[Rough Draft/In Progress\]](https://bitovi.atlassian.net/wiki/spaces/PM/pages/368476911/Breaking+Long+Poles) .
     
 *   It’s more accurate.  
     This approach models work how work is actually done.

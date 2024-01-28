@@ -88,15 +88,15 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 my-node-app         latest              848464f1725a        5 seconds ago       944MB
 node                15                  b34e90f5c9c0        24 hours ago        935MB
 ```
-You'll notice there's also a `node:15` image in our registry. This is because we defined it as our base image in our `Dockerfile` (`FROM node:15`). It was pulled from Dockerhub so it can be used locally.
+You’ll notice there’s also a `node:15` image in our registry. This is because we defined it as our base image in our `Dockerfile` (`FROM node:15`). It was pulled from Dockerhub so it can be used locally.
 
 ## Run our image
-We're finally ready to run our image. Open a terminal and run
+We’re finally ready to run our image. Open a terminal and run
 ```bash
 docker run --name my-container -p 8000:8000 -d my-node-app:latest
 ```
 - `--name my-container` gives our container a friendly name. If this is not provided, Docker will name the container for you.
-- `-p 8000:8000` publishes the container's internal port 8000 to our host machine's port 8000. This will allow us to access the app from `localhost:8000`
+- `-p 8000:8000` publishes the container’s internal port 8000 to our host machine’s port 8000. This will allow us to access the app from `localhost:8000`
 - `-d` runs the container in detached mode. This runs the process as a background process.
 - `my-node-app:latest` specifies what image we want to run. If this image does not exist in our local registry, Docker will try and find and download a match from [Dockerhub](https://hub.docker.com/).
 
@@ -157,10 +157,10 @@ $ docker logs my-container
 [nodemon] starting `node src/index.js index.js`
 Example app listening at http://localhost:9000
 ```
-You'll see the last line of the logs indicating the app is now listening on port 9000. However, because we set the port mapping with `-p 8000:9000`, we still will view the application in our browser from `localhost:8000`.
+You’ll see the last line of the logs indicating the app is now listening on port 9000. However, because we set the port mapping with `-p 8000:9000`, we still will view the application in our browser from `localhost:8000`.
 
 ## Review
-We've built an image and run a container for our NodeJS app. Here's a cheat sheet of all the commands we ran.
+We’ve built an image and run a container for our NodeJS app. Here’s a cheat sheet of all the commands we ran.
 ```bash
 # Build an image
 docker build -t my-node-app .
@@ -183,4 +183,4 @@ docker logs <container-name>
 # Kill a container
 docker rm -f <container-name>
 ```
-Next we'll look at introducing storage mounts to make local application development efficient.
+Next we’ll look at introducing storage mounts to make local application development efficient.

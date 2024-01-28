@@ -131,7 +131,7 @@ const number = source.pipe(mapToNumber).pipe(log('number'));
 > **NOTE 1:** Notice that to log `number`, we call `.pipe(log(...))`
 > on what would be the `number` observable.
 
-> **NOTE 2:** The solution will log `cardNumber` twice. That's expected because
+> **NOTE 2:** The solution will log `cardNumber` twice. That’s expected because
 > there are two subscriptions on `cardNumber`:
 >
 > - one directly from `cardNumber$` in the template - `{{ cardNumber$ | async }}`

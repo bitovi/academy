@@ -27,7 +27,7 @@ function wrapAsValue(value) {
 }
 ```
 
-Ideally, you'd want to use this function to wrap all sorts of values:
+Ideally, you’d want to use this function to wrap all sorts of values:
 
 ```js
 let fourObj = wrapAsValue(4);  //-> {value: 4}
@@ -56,7 +56,7 @@ __But watch out!__  The following will __not__ error until _runtime_
 getDollars(hiObj);  
 ```
 
-You don't see a compile time error because `hiObj` object looks like `{value: any}` to TypeScript.
+You don’t see a compile time error because `hiObj` object looks like `{value: any}` to TypeScript.
 
 Getting a compile time error can be solved in a variety of __inelegant__ ways:
 
@@ -129,7 +129,7 @@ We can call generic functions in two ways:
   ```typescript
   wrapAsValue("hi")
   ```
-  Notice that we didn't explicitly pass the type n the angle brackets (`<>`). Instead,
+  Notice that we didn’t explicitly pass the type n the angle brackets (`<>`). Instead,
   the compiler just looked at the value `"hi"` and set `MyType` to `string`.
 
 
@@ -145,7 +145,7 @@ const cardNumber = new Subject<string>();
 cardNumber.next("1234")
 ```
 
-Let's look at making a basic class to collect a list of things.
+Let’s look at making a basic class to collect a list of things.
 
 ```typescript
 class Collection {
@@ -171,7 +171,7 @@ myList.push('25');
 `myList` now holds an assortment of types and will be a likely source of
 runtime errors.
 
-Let's build a __generic__ `Collection` class instead.
+Let’s build a __generic__ `Collection` class instead.
 
 ```typescript
 class GenericCollection<T> {
@@ -294,7 +294,7 @@ class LinkedList<T> {
 
 		this._head = node;
 
-		// If there wasn't a tail, this is the first node
+		// If there wasn’t a tail, this is the first node
 		if(!this._tail) {
 			this._tail = node;
 		}
@@ -323,7 +323,7 @@ class LinkedList<T> {
 }
 ```
 
-Thanks to generics we're able to use the same ``LinkedList`` class in multiple different scenarios with any type.
+Thanks to generics we’re able to use the same ``LinkedList`` class in multiple different scenarios with any type.
 
 ## Exercise: `TreeNode`
 

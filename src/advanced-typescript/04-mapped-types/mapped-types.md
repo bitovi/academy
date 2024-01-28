@@ -129,7 +129,7 @@ These three types have a strange relationship
 - `symbol` is a proper subset of `string`
 - `number` and symbol are mutually exclusive
 
-In order for TypeScript to provide type safety, it has to be able to differentiate between the keys passed in. If the indexer's values have the same types, it doesn’t matter.
+In order for TypeScript to provide type safety, it has to be able to differentiate between the keys passed in. If the indexer’s values have the same types, it doesn’t matter.
 
 ```ts
 type IndexerDifferentSameValue = {
@@ -206,7 +206,7 @@ const bulbasaurWithString = firstThreePokemon["0"];
 
 ### Readonly Property Modifier
 
-While the optional syntax (`?`) isn't supported on index signature types, the index signature syntax does allow for the `readonly` modifier. The `readonly` modifier marks a property as immutable on an object meaning it cannot be re-assigned once set. If we wanted to make our `PokemonNameList` type above unchangeable we could do it by putting the `readonly` modifier at the beginning of the declaration.
+While the optional syntax (`?`) isn’t supported on index signature types, the index signature syntax does allow for the `readonly` modifier. The `readonly` modifier marks a property as immutable on an object meaning it cannot be re-assigned once set. If we wanted to make our `PokemonNameList` type above unchangeable we could do it by putting the `readonly` modifier at the beginning of the declaration.
 
 ```ts
 type ReadonlyPokemonNameList = {

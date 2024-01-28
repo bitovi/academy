@@ -64,14 +64,14 @@ request.then( function(response){
 @codepen
 
 
-Setting a promise's returning value is actually called _resolving_ the
-promise's value. This is because a promise's value can
+Setting a promise’s returning value is actually called _resolving_ the
+promise’s value. This is because a promise’s value can
 only be set once.
 
 ## Failure reasons
 
 If the operation fails, a reason for the failure can be returned.
-For example, if `fetch` makes a request to a URL that doesn't exist,
+For example, if `fetch` makes a request to a URL that doesn’t exist,
 the `reason` will be an TypeError object.
 
 ```js
@@ -113,7 +113,7 @@ Notice:
   promise.
 - `.then( onFulfilled )` takes an `onFulfilled` function that is called
   when the promise is resolved. `onFulfilled` is called with
-  the promise's resolved value.
+  the promise’s resolved value.
 
 <details>
 
@@ -225,7 +225,7 @@ numberPromise.catch(console.log) //-> Error[Borked]
 One of the most common uses of promises is to take a promise value and convert it to another
 promise value.
 
-A promise's `.then( onFulfilled )` method always returns another _outer_ promise.  That _outer_ promise
+A promise’s `.then( onFulfilled )` method always returns another _outer_ promise.  That _outer_ promise
 will take on the value of what the `onFulfilled` function returns.
 
 In the following example, notice how `breedsPromise` resolves to an object of breeds. However,
@@ -259,7 +259,7 @@ the behavior of the returned promise. This was used in the above example.  `resp
 returns a promise, so `breedsPromise` took on the behavior of the result of `response.json()`.
 
 > NOTE: The process of reducing nested observables into a single observable is often called flattening.
-> This is what it's called in RxJS's [mergeAll](https://rxjs-dev.firebaseapp.com/api/operators/mergeAll).
+> This is what it’s called in RxJS's [mergeAll](https://rxjs-dev.firebaseapp.com/api/operators/mergeAll).
 
 The following shows using a `delay()` function to delay when `countPromise` completes by 3 seconds. `delay`
 returns a promise that resolves after 3 seconds.
@@ -626,8 +626,8 @@ __Callback negatives:__
 
 __When to use callbacks instead of promises__
 
-If you are making something that needs to run extremely quickly and doesn't need to
-be user friendly, callbacks might be a good solution. After all, it's not difficult to
+If you are making something that needs to run extremely quickly and doesn’t need to
+be user friendly, callbacks might be a good solution. After all, it’s not difficult to
 "promisify" callback-based APIs.  Many libraries do exactly this.
 
 ### Promises compared to event streams
@@ -669,7 +669,7 @@ This lets you create a stream of events.
 __Event stream positives:__
 
 - Event streams can emit values over time.  Promise can not do this.
-- Event streams can be cancelled. There's no way to do this through the promise API.
+- Event streams can be cancelled. There’s no way to do this through the promise API.
 - Event streams often have utility libraries, making deriving new event streams
   from other event streams easy.
 
@@ -677,7 +677,7 @@ __Event stream negatives:__
 
 - You must stop listening to an event stream or end the stream to avoid memory leaks.
 - Event streams are often heavier than Promises.
-- With the exception of `ReadableStream` (which isn't in every environment yet),
+- With the exception of `ReadableStream` (which isn’t in every environment yet),
   streams are not part of the JavaScript specification and are not present in
   every environment. Promises come for free for almost every user.
 

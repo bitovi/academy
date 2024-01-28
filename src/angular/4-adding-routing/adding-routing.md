@@ -28,7 +28,7 @@ at the end of this tutorial:
 
 ## Setup
 
-`<router-outlet>`, which handles routing to a component based on a url, was added to our **src/app/app.component.html** file when we first generated our app. But since that time, we added components to that view. Let's remove those components because `<router-outlet>` will handle showing
+`<router-outlet>`, which handles routing to a component based on a url, was added to our **src/app/app.component.html** file when we first generated our app. But since that time, we added components to that view. Let’s remove those components because `<router-outlet>` will handle showing
 those components going forward.
 
 ✏️ Update **src/app/app.component.html** to:
@@ -48,7 +48,7 @@ If you have completed the exercise successfully you should be able to see the ho
 
 @diff ../2-building-first-app/app.component.spec.ts ./app.component.spec.ts
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## What You Need to Know
 
@@ -62,7 +62,7 @@ If you have completed the exercise successfully you should be able to see the ho
 
 ## Router
 
-To be able to navigate between different views in our app, we can take advantage of Angular's built-in routing module. Angular generated `src/app/app-routing.module.ts` for us and included it in our root module. `src/app/app-routing.module.ts` currently looks like:
+To be able to navigate between different views in our app, we can take advantage of Angular’s built-in routing module. Angular generated `src/app/app-routing.module.ts` for us and included it in our root module. `src/app/app-routing.module.ts` currently looks like:
 
 ```typescript
 import { NgModule } from '@angular/core';
@@ -106,7 +106,7 @@ This example shows one route redirecting to another:
 
 ## Setting Paths to Modules
 
-As our applications grow, it doesn't make sense to load all the code at once. Thanks to <a href="https://angular.io/guide/lazy-loading-ngmodules" >lazyloading</a>, we can wait to render modules until a specific route requiring them is hit.
+As our applications grow, it doesn’t make sense to load all the code at once. Thanks to <a href="https://angular.io/guide/lazy-loading-ngmodules" >lazy loading</a>, we can wait to render modules until a specific route requiring them is hit.
 
 @sourceref ./lazyload-route.html
 @codepen
@@ -114,7 +114,7 @@ As our applications grow, it doesn't make sense to load all the code at once. Th
 
 ## <base-href>
 
-In our `index.html` file, the angular cli included `<base href="/>`. This isn't an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base">here</a>, but it's important to know this is how the Angular router will know how to compose URLs - the value in the `href` attribute specifies the base URL for all relative URLs contained in the app. If you'd like to serve your app from a different directory (wherever the index.html will be served from) or have a specific hosting URL that your app will be deployed at, you will need to change the `base href` to match.
+In our `index.html` file, the angular cli included `<base href="/>`. This isn’t an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base">here</a>, but it’s important to know this is how the Angular router will know how to compose URLs - the value in the `href` attribute specifies the base URL for all relative URLs contained in the app. If you’d like to serve your app from a different directory (wherever the index.html will be served from) or have a specific hosting URL that your app will be deployed at, you will need to change the `base href` to match.
 
 ```html
 <!doctype html>

@@ -24,14 +24,14 @@ see a longer list:
 
 ## P1: Technical Requirements
 
-1. Change `RestaurantComponent`'s _restaurant_ property definition:
+1. Change `RestaurantComponent`’s _restaurant_ property definition:
 
 ```typescript
 restaurants: any[] = [];
 ```
 
-2. Use `RestaurantService`'s `getRestaurants` to get an array of restaurants and
-   set it on `RestaurantComponent`'s _restaurant_ property.
+2. Use `RestaurantService`’s `getRestaurants` to get an array of restaurants and
+   set it on `RestaurantComponent`’s _restaurant_ property.
 
 ## P1: How to Verify Your Solution is Correct
 
@@ -45,7 +45,7 @@ You should be able see a list of all restaurants when you navigate to <a href="h
 
 @diff ../5-creating-navigation/app.component.spec.ts ./app.component.spec.ts only
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## P1: What You Need to Know
 
@@ -56,7 +56,7 @@ You should be able see a list of all restaurants when you navigate to <a href="h
 
 ## Inject a Service into a Component
 
-To use a service in a component, we use dependency injection to pass the service in the component constructor function. We're then able to access methods on it for use in our component.
+To use a service in a component, we use dependency injection to pass the service in the component constructor function. We’re then able to access methods on it for use in our component.
 
 @sourceref ./di.html
 @codepen
@@ -100,7 +100,7 @@ observable.subscribe(function subscriber(value) {
 
 ## Problem 2: Show a Loading State while Restaurants are Being Requested
 
-Sometimes the server can take a long time to respond. It's a better experience for the user
+Sometimes the server can take a long time to respond. It’s a better experience for the user
 to show a loading icon to the user while data is loading:
 
 TODO:
@@ -139,7 +139,7 @@ You should be able see a list of restaurants when you navigate to <a href="http:
 
 @diff ./restaurant.component.spec-service.ts ./restaurant.component.spec.ts only
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## P2: What You Need to Know
 
@@ -162,7 +162,7 @@ You should be able see a list of restaurants when you navigate to <a href="http:
 
 ## Did You Know?
 
-You may have noticed in our markup there's another use of `routerLink`:
+You may have noticed in our markup there’s another use of `routerLink`:
 
 ```html
 <a class="btn" [routerLink]="['/restaurants', restaurant.slug]">
@@ -170,4 +170,4 @@ You may have noticed in our markup there's another use of `routerLink`:
 </a>
 ```
 
-One of the ways to create a link is to pass in the individual parts to the `routerLink` directive. This will generate the path `/restaurants/crab-cafe` for the "crab cafe" restaurant from it's slug.
+One of the ways to create a link is to pass in the individual parts to the `routerLink` directive. This will generate the path `/restaurants/crab-cafe` for the "crab cafe" restaurant from it’s slug.

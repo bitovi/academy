@@ -117,7 +117,7 @@ The Directive will be used to listen for the event on the input field. This Dire
 
 @diff ../14-building-order-form/order.component-final.html ./order.component.directive.html only
 
-✏️ Run the following to generate the **Directive** and the directive's tests:
+✏️ Run the following to generate the **Directive** and the directive’s tests:
 
 ```bash
 ng g directive onlyNumbers
@@ -129,7 +129,7 @@ ng g directive onlyNumbers
 
 @sourceref ./only-numbers.directive.spec.ts
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## Solution
 

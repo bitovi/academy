@@ -422,7 +422,7 @@ my3rdPartyData.invalidFunction(3); // Will not error until runtime
 
 ### Void
 
-No type at all - commonly used with functions that don't return a value.
+No type at all - commonly used with functions that don’t return a value.
 
 ```typescript
 function buttonClick(): void {
@@ -446,7 +446,7 @@ function error(message: string): never {
 
 ## Type Inference
 
-When we don't provide explicit types for our variables, TypeScript will do its best to infer the types, and it's very good at it. The following code will not compile due to type inference.
+When we don’t provide explicit types for our variables, TypeScript will do its best to infer the types, and it’s very good at it. The following code will not compile due to type inference.
 
 ```typescript
 let name = "Sally";

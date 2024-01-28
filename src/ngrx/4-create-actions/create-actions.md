@@ -42,7 +42,7 @@ Action Types in NgRx follow a string pattern: `[Source] Event`. Since Actions re
 
 `createAction()` can take up to two arguments: the string `type` and a `config` function that represents additional metadata, usually referred as `props` in Redux Pattern:
 
-> Note that many of the code examples in these sections are for instructional purposes only, and aren't part of our main application repo or solution
+> Note that many of the code examples in these sections are for instructional purposes only, and aren’t part of our main application repo or solution
 
 ```ts
 // Note: This example code is not part of our application repo or solution
@@ -87,18 +87,18 @@ Next, our goal is to create 3 more Actions for logout:
 
 ## Cleaning Up Removed Actions
 
-Now that we've removed the generated Actions, we will need to update a couple of files so that our application can run:
+Now that we’ve removed the generated Actions, we will need to update a couple of files so that our application can run:
 
 >Also note that this clean up will be required for the upcoming unit tests to pass
 
-First, we'll remove the generated Effects. And we will remove the unused imports from `@ngrx/effects`, `rxjs/operators`, `rxjs`, and `./login.actions`:
+First, we’ll remove the generated Effects. And we will remove the unused imports from `@ngrx/effects`, `rxjs/operators`, `rxjs`, and `./login.actions`:
 
 <details open>
 <summary>src/app/store/login/login.effects.ts</summary>
 @diff ../3-ngrx-init/login.effects.ts ./login.effects.ts only
 </details>
 
-Last, we'll remove the generated `on()` handlers in our Reducer function. And we will remove the unused imports from `@ngrx/store` and `./login.actions`:
+Last, we’ll remove the generated `on()` handlers in our Reducer function. And we will remove the unused imports from `@ngrx/store` and `./login.actions`:
 
 <details open>
 <summary>src/app/store/login/login.reducer.ts</summary>

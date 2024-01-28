@@ -17,7 +17,7 @@
 
 ## Problem 1: Dispatch Login Action on `LoginComponent`
 
-Now that we have our Actions, let's use them. The `LoginComponent` should have the Login Action be dispatched when the submit button is clicked.
+Now that we have our Actions, let’s use them. The `LoginComponent` should have the Login Action be dispatched when the submit button is clicked.
 
 
 ## P1: What You Need to Know

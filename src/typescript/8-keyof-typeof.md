@@ -58,7 +58,7 @@ By itself, `keyof` may not seem all too interesting. However, it becomes powerfu
 
 ## Typeof
 
-`typeof` is a way to create a type from a value. It can be used on values and properties of those values. `typeof` is useful for creating type queries and capturing types that aren't strictly defined.
+`typeof` is a way to create a type from a value. It can be used on values and properties of those values. `typeof` is useful for creating type queries and capturing types that aren’t strictly defined.
 
 ```ts
 const tRex = {
@@ -121,7 +121,7 @@ const getDinoFacts = () => {
 type DinoFacts = ReturnType<typeof getDinoFacts>;
 ```
 
-There are two `typeof`s to be aware of in TypeScript – the JavaScript one and the TypeScript one. The difference between them is the context in which they are used. If it is being used in an expression context, (used as a part of your code) it is the JavaScript `typeof` and will return a string with one of nine JavaScript types. And if it's used in a type context (as part of your type declarations) it's the TypeScript `typeof` and will refer to the type of whatever values follow it.
+There are two `typeof`s to be aware of in TypeScript – the JavaScript one and the TypeScript one. The difference between them is the context in which they are used. If it is being used in an expression context, (used as a part of your code) it is the JavaScript `typeof` and will return a string with one of nine JavaScript types. And if it’s used in a type context (as part of your type declarations) it’s the TypeScript `typeof` and will refer to the type of whatever values follow it.
 
 `typeof` cannot be called on everything; there are some restrictions. `typeof` can only be called on identifiers and any of their properties.
 
@@ -178,7 +178,7 @@ type DinosaurColorsKeys = keyof typeof DinosaurColors; // “blue” | “green�
 
 Update the `DinosaurFactObject` and `Dinosaur` type to gain type safety on the `getDinoFact` function. The function should, given a dinosaurs name (`velociraptor` or `t-rex`) and the `dinosaurFacts` object return the correct facts about the dinosaur.
 
-> **NOTE:** Don't worry about the `DinosaurFactObject[Dinosaur]` type in the return of the function signature. That's called an index-signature which we will get into later on.
+> **NOTE:** Don’t worry about the `DinosaurFactObject[Dinosaur]` type in the return of the function signature. That’s called an index-signature which we will get into later on.
 
 @sourceref ./8-exercise-1.ts
 @codepen

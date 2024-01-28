@@ -25,7 +25,7 @@ The end result of this training is to build a basic, [progressively enhanced](ht
 
 <img src="./static/img/dog-tabs.png" width="50%"/>
 
-We will be creating simple versions of many of jQuery's most useful methods:
+We will be creating simple versions of many of jQuery’s most useful methods:
 
 ```js
 $ = function (selector) {

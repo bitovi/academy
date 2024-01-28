@@ -9,13 +9,13 @@
 
 Styling in React is a diverse and opinionated topic. React does a great job of combining HTML & JavaScript together, but it is ultimately agnostic when it comes to working with CSS and styling.
 
-The good news is that all of the same styling techniques you're used to will still work in React. You can use stylesheets, inline styling, and even extension languages like SASS or LESS.
+The good news is that all of the same styling techniques you’re used to will still work in React. You can use stylesheets, inline styling, and even extension languages like SASS or LESS.
 
-Let's take a look at some of the ways we can go about styling React components and walk through some of the pros and cons of each.
+Let’s take a look at some of the ways we can go about styling React components and walk through some of the pros and cons of each.
 
 ## Inline styling
 
-The simplest way to style a component is with inline styling. All core JSX tags accept a `style` prop, essentially an object with css styles in it. As you can see below, we're able to construct style objects directly inside the JSX, and even interpolate JavaScript values into them.
+The simplest way to style a component is with inline styling. All core JSX tags accept a `style` prop, essentially an object with css styles in it. As you can see below, we’re able to construct style objects directly inside the JSX, and even interpolate JavaScript values into them.
 
 The object passed into `style={}` should map css attributes to css values. This structure closely resembles the [`CSSStyleDeclaration`](https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration) object used by the browser to store element styles.
 
@@ -38,9 +38,9 @@ function Thing({ isActive }) {
 
 @highlight 6-9
 
-In the example above we're specifying that the top-level div should have a color of either black or white depending on the `isActive` prop, and it's background image URL is imported from an external file.
+In the example above we’re specifying that the top-level div should have a color of either black or white depending on the `isActive` prop, and it’s background image URL is imported from an external file.
 
-Although this is the simplest way to add styles, it shouldn't be counted out. Using inline styles like this is a great way of combining your HTML, CSS & JavaScript all into one neat package. It's especially useful when your styles will depend on component state or props.
+Although this is the simplest way to add styles, it shouldn’t be counted out. Using inline styles like this is a great way of combining your HTML, CSS & JavaScript all into one neat package. It’s especially useful when your styles will depend on component state or props.
 
 One of the downsides of this approach is the performance cost associated with making and interpolating these style objects. Though, for many common layouts you will likely never run into performance concerns. In the off-chance that you are rendering hundreds / thousands of components (nested tables, etc...), it would be faster to use a stylesheet.
 
@@ -62,9 +62,9 @@ function Thing({ isActive }) {
 
 @highlight 4
 
-The component above uses a `thing` class that is imported from `thing.css`. This is a common way of including classes in a component, but keep in mind that due to its cascading nature, it's possible to encounter clashing names with a large component tree.
+The component above uses a `thing` class that is imported from `thing.css`. This is a common way of including classes in a component, but keep in mind that due to its cascading nature, it’s possible to encounter clashing names with a large component tree.
 
-`className`'s can also be dynamically generated in response to props or component state. In the component below, the `thing-active` class is only added to the class name if the `isActive` prop is truthy.
+`className`’s can also be dynamically generated in response to props or component state. In the component below, the `thing-active` class is only added to the class name if the `isActive` prop is truthy.
 
 ```jsx
 function Thing({ isActive }) {
@@ -104,7 +104,7 @@ When you define styles for a specific component, you want to be able to use desc
 
 This is also compatible with SASS/LESS making it a good option if you want to use a class-based styling approach.
 
-Below is the CSS you would write inside of a .css file. You can see that it looks normal, and we don't need to worry about conflicts.
+Below is the CSS you would write inside of a .css file. You can see that it looks normal, and we don’t need to worry about conflicts.
 
 ```css
 .border {
@@ -163,7 +163,7 @@ The styled components philosophy is that everything is a component. Instead of s
 
 In a styled components implementation, a `Button` component for example, might take a `color` prop or a `fontSize` prop to determine its style. This approach is closely integrated with React, and utilizes the built-in React features (props/state) more than any other.
 
-In the code below, we're using the [emotion](https://emotion.sh/docs/introduction) library to create a styled `Button` component. The syntax is a bit foreign, but this is essentially creating a `<button>` component which maps its props to styles. The button below accepts a `color` and an `outline` prop, which are used to generate the styling.
+In the code below, we’re using the [emotion](https://emotion.sh/docs/introduction) library to create a styled `Button` component. The syntax is a bit foreign, but this is essentially creating a `<button>` component which maps its props to styles. The button below accepts a `color` and an `outline` prop, which are used to generate the styling.
 
 ```js
 import styled from '@emotion/styled';
@@ -205,15 +205,15 @@ Remember that if you just supply a `prop` with no value (ie... the `outline` in 
 
 The styled components approach is definitely a departure from traditional styling methodologies, however it makes up for it by integrating so nicely with the React paradigm.
 
-It's important to note that in many production codebases, some combination of the above styling techniques are utilized. Oftentimes some static css files will be necessary, and used alongside something like styled components. At the end of the day the right solution is the one that works for your team!
+It’s important to note that in many production codebases, some combination of the above styling techniques are utilized. Oftentimes some static css files will be necessary, and used alongside something like styled components. At the end of the day the right solution is the one that works for your team!
 
 ## Exercise
 
-Let's use our styling knowledge to make our Tic-Tac-Toe game look amazing!
+Let’s use our styling knowledge to make our Tic-Tac-Toe game look amazing!
 
 ### The problem
 
-✏️ Below, you'll find a link that says "starter code". It will take you to a Create-React-App conveniently setup in `codesandbox`. You have been provided a basic set of global styles in App.css. Your task is to convert these initial styles into each of the other styling types.
+✏️ Below, you’ll find a link that says "starter code". It will take you to a Create-React-App conveniently setup in `codesandbox`. You have been provided a basic set of global styles in App.css. Your task is to convert these initial styles into each of the other styling types.
 
 1.  Inline Styles
 2.  Modular CSS

@@ -21,7 +21,7 @@ In this part, we will:
 
 ## Problem 1: Listen to Changes on the State and City formControls and log their value to the console
 
-Our end goal is to be able to show restaurants based on state, then city. As we move through getting each piece of information from the user we want to be able to update the next step - like getting a list of cities based on the state selected. We'll implement this form functionality in a few small steps.
+Our end goal is to be able to show restaurants based on state, then city. As we move through getting each piece of information from the user we want to be able to update the next step - like getting a list of cities based on the state selected. We’ll implement this form functionality in a few small steps.
 
 ## P1: What You Need to Know
 
@@ -33,17 +33,17 @@ Our end goal is to be able to show restaurants based on state, then city. As we 
 
 For a more robust understanding of Observables, Subscriptions, and other RxJS core tenants check out our [RxJS guide](../learn-rxjs.html). For the following exercises, Observables are lazy collections of multiple values over time. We can subscribe to Observables to get any new data, or create and add to Subscriptions of Observables.
 
-This example shows creating a Subscription to an Observable, saving it's value to a member on the component and displaying it in the template. This is useful for when we want to capture an Observable's values and make changes based on them, but Subscriptions do need to be cleaned up to avoid memory leaks.
+This example shows creating a Subscription to an Observable, saving it’s value to a member on the component and displaying it in the template. This is useful for when we want to capture an Observable’s values and make changes based on them, but Subscriptions do need to be cleaned up to avoid memory leaks.
 
 Whenever a component is destroyed an <a href="https://angular.io/api/core/OnDestroy">ngOnDestroy</a> method is called. This is a good place to put our cleanup code, like unsubscribing from Observables.
 
-In this example, click the button to start subscribing to the Observables - you'll see two variables logged: the new Observable value and the Subscription value. Then click the "remove component" button to see what happens when a component is destroyed. Next delete lines 90 and 91, follow the same process and see what happens!
+In this example, click the button to start subscribing to the Observables - you’ll see two variables logged: the new Observable value and the Subscription value. Then click the "remove component" button to see what happens when a component is destroyed. Next delete lines 90 and 91, follow the same process and see what happens!
 
 @sourceref ./observables-subscriptions.html
 @codepen
 @highlight 48,49,54,58-60,67,73,78-85,89-91,only
 
-This example shows creating a Subscription to an Observable, and using an <a href="https://angular.io/api/common/AsyncPipe" >async pipe</a> to display the value. This is useful for displaying Observable values in templates without the need to unsubscribe as that's handled by the pipe when the component is destroyed .
+This example shows creating a Subscription to an Observable, and using an <a href="https://angular.io/api/common/AsyncPipe" >async pipe</a> to display the value. This is useful for displaying Observable values in templates without the need to unsubscribe as that’s handled by the pipe when the component is destroyed .
 
 @sourceref ./observables-subscriptions-async.html
 @codepen
@@ -91,7 +91,7 @@ When you interact with the dropdown menus, you should see their values logged to
 
 </details>
 
-Now that we know how to get values from our dropdowns, let's populate them with real data. We can get our list of states immediately, but to get our cities, we'll want to make a GET request based on the state the user selected.
+Now that we know how to get values from our dropdowns, let’s populate them with real data. We can get our list of states immediately, but to get our cities, we’ll want to make a GET request based on the state the user selected.
 
 ## Problem 2: Write Service Methods to Get States and Cities from API
 
@@ -101,7 +101,7 @@ We want to be able to get lists of cities and states from our API to populate th
 
 ## How to use HttpParams
 
-<a href="https://angular.io/api/common/http/HttpParams">HttpParams</a> are part of Angular's HttpClient API and help us create parameters for our requests.
+<a href="https://angular.io/api/common/http/HttpParams">HttpParams</a> are part of Angular’s HttpClient API and help us create parameters for our requests.
 
 @sourceref ./http-params.html
 @codepen
@@ -113,7 +113,7 @@ Write two new methods in the `RestaurantsService` to get state and city lists.
 
 Method 1 - `getStates` takes no params and makes a request to `'/states'`
 
-Method 2 - `getCities`, takes a string param called 'state' and makes a request to `'/cities?state="{state abbreviation here}"'`
+Method 2 - `getCities`, takes a string param called `state` and makes a request to `'/cities?state="{state abbreviation here}"'`
 
 ## P2: How to Verify Your Solution is Correct
 
@@ -121,7 +121,7 @@ Method 2 - `getCities`, takes a string param called 'state' and makes a request 
 
 @diff ../6-restaurant-service/restaurant.service-with-interface.spec.ts ./restaurant.service-citystate.spec.ts only
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## P2: Solution
 
@@ -143,7 +143,7 @@ We would like to use the `ResponseData` interface we wrote to describe the respo
 
 For an in-depth understanding of generics in TypeScript, check out our [learn-typescript/generics TypeScript guide]. For now, generics are a way to abstract functions, interfaces, etc to use different types in different situations.
 
-This example shows creating a generic for a list that can be used to create arrays of various types, including Dinosaurs. Codepen doesn't have a TypeScript compiler that will throw errors, but if you paste the code into your IDE you'll be able to see the TypeScript errors thrown.
+This example shows creating a generic for a list that can be used to create arrays of various types, including Dinosaurs. Codepen doesn’t have a TypeScript compiler that will throw errors, but if you paste the code into your IDE you’ll be able to see the TypeScript errors thrown.
 
 @sourceref ./generics.html
 @codepen
@@ -151,7 +151,7 @@ This example shows creating a generic for a list that can be used to create arra
 
 ## P3: Technical Requirements
 
-Convert the `ResponseData` interface to use generics so it can take a type of `Restaurant`, `State`, or `City`. We've written the state & city interfaces for you. Make sure to update the `getRestaurants` method in the `RestaurantComponent` as well.
+Convert the `ResponseData` interface to use generics so it can take a type of `Restaurant`, `State`, or `City`. We’ve written the state & city interfaces for you. Make sure to update the `getRestaurants` method in the `RestaurantComponent` as well.
 
 ## P3: Setup
 
@@ -181,7 +181,7 @@ Convert the `ResponseData` interface to use generics so it can take a type of `R
 
 ## Problem 4: Get Cities and States Based on Dropdown Values
 
-Now that our service is in working order, let's populate our dropdowns with state and city data. We will want our list of states to be available right away, but we will want to fetch our list of cities only after we have the state value selected by the user.
+Now that our service is in working order, let’s populate our dropdowns with state and city data. We will want our list of states to be available right away, but we will want to fetch our list of cities only after we have the state value selected by the user.
 
 ## P4: Technical Requirements
 
@@ -191,7 +191,7 @@ Now that our service is in working order, let's populate our dropdowns with stat
 4. When the State `FormControl` value changes, fetch the list of cities for the newly selected state and reset the list of restaurants to an empty array
 5. When a City is selected, fetch the list of restaurants
 
-> Hint: You'll want to clear the fake data from the state and city value props, and move the call to get restaurants out of the `ngOnInit` function.
+> Hint: You’ll want to clear the fake data from the state and city value props, and move the call to get restaurants out of the `ngOnInit` function.
 
 ## P4: How to Verify Your Solution is Correct
 

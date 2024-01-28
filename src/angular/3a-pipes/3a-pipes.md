@@ -7,7 +7,7 @@
 
 ## Problem
 
-You may have noticed an image error in our rendered html page. We're using an API in this demo that wasn't built for our exact purposes, and we need a different image path for our app to serve.
+You may have noticed an image error in our rendered html page. We’re using an API in this demo that wasn’t built for our exact purposes, and we need a different image path for our app to serve.
 
 <img src="../static/img/angular/3-creating-components/restaurant-component.png"
   style="border: solid 1px black; max-width: 320px;"/>
@@ -73,7 +73,7 @@ The pipe will take an image url and transform it to the path we actually want to
 
 @diff ../3-creating-components/restaurant.component.html ./restaurant.component.html
 
-✏️ Run the following to generate the **pipe** and the pipe's tests:
+✏️ Run the following to generate the **pipe** and the pipe’s tests:
 
 ```bash
 ng g pipe imageUrl
@@ -93,7 +93,7 @@ ng g pipe imageUrl
 
 @highlight 8-14
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## Solution
 

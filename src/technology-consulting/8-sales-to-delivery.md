@@ -21,14 +21,14 @@ When transitioning many projects to delivery, these common problems emerge:
 - Sales teams are the first group of people to interact with a client. They get
   a lot of knowledge of the project, the client, process, etc. This information
   needs to be provided to the delivery team.
-- Clients often don't have agreed upon goals and processes themselves.
+- Clients often don’t have agreed upon goals and processes themselves.
 - Sales teams want to sell. However, without due diligence during hand off, too much gets lost in translation.
 
 This training will attempt to address these issues with a process that promotes regular communication and a shared understanding of the goals, people and processes used on the project.
 
 ## Transition Goals
 
-Before getting into the "how", it's important to understand the goals of an effective transition:
+Before getting into the "how", it’s important to understand the goals of an effective transition:
 
 - Indicators of success for the project are clearly spelled out and known to all parties.
 - Clearly documenting and communicating expectations with the client and delivery teams.
@@ -36,7 +36,7 @@ Before getting into the "how", it's important to understand the goals of an effe
 - The client is not wasting time repeating themselves to the sales team and then to
   the delivery team.
 
-## Bitovi's Four Phases of Transition
+## Bitovi’s Four Phases of Transition
 
 There are four key phases of a successful transition that Bitovi implements:
 
@@ -53,7 +53,7 @@ _When:_ after the initial "yes"
 
 _Attendees:_ Delivery Director, Team Lead, client stakeholders
 
-Once you've received a verbal commitment from the client, it's a good time to start setting expectations. For small projects, this may be done over email, but for large projects, a scheduled meeting is recommended.
+Once you’ve received a verbal commitment from the client, it’s a good time to start setting expectations. For small projects, this may be done over email, but for large projects, a scheduled meeting is recommended.
 
 > Note: Pursuing a signed Statement of Work ([SOW](#statement-of-work)) should occur in parallel to this phase
 
@@ -75,7 +75,7 @@ Before this meeting, a Team Lead should be selected, and the Delivery Director o
 
 <input type="checkbox"/> Fill out the remaining items in the [Engagement Summary](#engagement-summary-document) document with client. _Ideally, this would be started by the sales team before the "yes"_
 
-The last item, the [Engagement Summary](#engagement-summary-document) document, is arguably the most important item of this phase. It will take some time (allocate one hour at least) to fill out this document, but it will serve as the project's shared understanding. The most critical pieces are defining the project's goals and initial roadmap. It's also important to align on who will fill what roles on the project (you or the client).
+The last item, the [Engagement Summary](#engagement-summary-document) document, is arguably the most important item of this phase. It will take some time (allocate one hour at least) to fill out this document, but it will serve as the project’s shared understanding. The most critical pieces are defining the project’s goals and initial roadmap. It’s also important to align on who will fill what roles on the project (you or the client).
 
 ## Expectation Setting with the Delivery Team
 
@@ -95,9 +95,9 @@ Once the [SOW](#statement-of-work) is signed, choose your final development team
 
 <input type="checkbox"/> Risks and opportunities with this client, and how to mitigate/strategize for them
 
-<input type="checkbox"/> Provide resources to the team about the client's product and industry to prepare
+<input type="checkbox"/> Provide resources to the team about the client’s product and industry to prepare
 
-During this meeting, it's recommended to start filling out an internal wiki for the project. This should include strategy and risk management notes discussed in this meeting.
+During this meeting, it’s recommended to start filling out an internal wiki for the project. This should include strategy and risk management notes discussed in this meeting.
 
 ## Project Kickoff
 
@@ -139,10 +139,10 @@ Regular checkins should be weekly for the first month of the project, but may mo
 
 ### Engagement Summary document
 
-To facilitate efficient communication in the future, it's important
+To facilitate efficient communication in the future, it’s important
 to create organized documents _now_ that can be shared with:
 
-- **a future delivery team** (so they don't have to ask clients the
+- **a future delivery team** (so they don’t have to ask clients the
   same questions in the future)
 - **the client** (so they can confirm our interpretation of their information)
 

@@ -11,7 +11,7 @@ export class ContactEffects {
     return this.actions$.pipe(
       ofType(ContactActions.submitSuccess),
       exhaustMap(({ confirmationNumber }) =>
-        // call `showModal()`, but doesn't `map` to some Action
+        // call `showModal()`, but doesn’t `map` to some Action
         this.showModal(confirmationNumber)
       )
     );

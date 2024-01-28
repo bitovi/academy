@@ -26,7 +26,7 @@ Spinning up a new Angular Workspace automatically creates a test suite, with a w
 
 Angular streamlines the build process by masking bundler complexity with the Angular CLI.
 
-Up until Angular 16, Angular's build process used Webpack. Webpack is a module bundler that also handles transforming resources like Less or Typescript.
+Up until Angular 16, Angular’s build process used Webpack. Webpack is a module bundler that also handles transforming resources like Less or Typescript.
 
 Starting on Angular 17, to keep up with latest technology and for its improved build times, Angular switched to esbuild by default.
 

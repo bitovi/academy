@@ -7,7 +7,7 @@
 
 ## Properly Understood Goals Have Value
 
-There's _a lot_ that goes into building, marketing, and selling a successful product. By appropriately prioritizing each of these activities, your team will be empowered to focus on productivity that adds the most value. When every team member understands these higher level goals and priorities, each will be able to appreciate the contributions of those in other areas. Everyone will be working towards a common goal.
+There’s _a lot_ that goes into building, marketing, and selling a successful product. By appropriately prioritizing each of these activities, your team will be empowered to focus on productivity that adds the most value. When every team member understands these higher level goals and priorities, each will be able to appreciate the contributions of those in other areas. Everyone will be working towards a common goal.
 
 ### The most important activities to get right _(listed in priority order)_:
 
@@ -32,15 +32,15 @@ However, consider what happens to that application if it:
   - Unless you are lucky enough to
     get the application right on the first try, you will
     be unable to respond to feedback and quickly iterate.
-    The product won't improve, fall behind, and eventually fail.
+    The product won’t improve, fall behind, and eventually fail.
 - has **misunderstood goals**
   - Progress will be chaotic: team members end up siloed, focusing on individual goals or goals that are misinterpreted in the larger scheme.
 - has the **wrong goals**
-  - Sometimes the product doesn't
+  - Sometimes the product doesn’t
     fit the market. No amount of technology changes that.
 
 Despite all of this, technology choices are
-**very** important. Applications are built on code after all - a slow application negatively influences user experience. An inflexible application won't be able to change direction.
+**very** important. Applications are built on code after all - a slow application negatively influences user experience. An inflexible application won’t be able to change direction.
 
 This course will cover all the afore-mentioned prioritized activities.
 
@@ -50,7 +50,7 @@ This course will cover all the afore-mentioned prioritized activities.
 
 But **before** embarking on these trainings, it is _critical_ that everyone on the team values outcome over output.
 
-## Here's some Video Evidence
+## Here’s some Video Evidence
 
 In 2014, Bitovi performed a review of its clients against a
 [checklist](https://github.com/bitovi/checklist) of best practices. While far from scientific, the following video goes through the results:
@@ -64,7 +64,7 @@ In 2014, Bitovi performed a review of its clients against a
 
 ## Take Action
 
-If your product doesn't have **clear goals** that create customer value, **product management** organized toward creating customer value, and **design _and_ development tools and technology** that rapidly create customer value, then start working today to change this!
+If your product doesn’t have **clear goals** that create customer value, **product management** organized toward creating customer value, and **design _and_ development tools and technology** that rapidly create customer value, then start working today to change this!
 
 Being on successful projects is _sublime_.
 
@@ -72,10 +72,10 @@ Being on successful projects is _sublime_.
 
 There are likely many obstacles to change:
 
-- You don't have the authority to create change. You aren't the CEO,
+- You don’t have the authority to create change. You aren’t the CEO,
   partner, product owner, etc.
-- You don't have the information to recommend changes.
-- The culture isn't conducive to change and/or questioning authority.
+- You don’t have the information to recommend changes.
+- The culture isn’t conducive to change and/or questioning authority.
 
 **Change is hard.** If these challenges seem daunting, be patient: This course includes
 strategies for working through those obstacles. [learn-technology-consulting/communication]

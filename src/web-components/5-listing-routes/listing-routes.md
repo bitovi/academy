@@ -55,13 +55,13 @@ To display the routes we want to create an `<li>` for each route and attach it t
 ## What You Need to Know
 
 - How to use [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to make API requests.
-- Setting an element's text.
+- Setting an element’s text.
 
 ### Fetch
 
 `fetch` is a function on the `window` object that is used to make network requests. In its simplest form it only needs a string URL, which will be used to make a [GET](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET) request.
 
-fetch differs slightly from the older [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) in a variety of ways; for example fetch does not include cookies by default. It's easier to use, however, because it uses [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). If you don't need to support Internet Explorer you'll probably want to use fetch in your applications.
+fetch differs slightly from the older [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest) in a variety of ways; for example fetch does not include cookies by default. It’s easier to use, however, because it uses [Promises](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise). If you don’t need to support Internet Explorer you’ll probably want to use fetch in your applications.
 
 `fetch()` returns a [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response) object. To get a JSON object from this use `response.json()` like so:
 
@@ -111,13 +111,13 @@ setTimeout(() => {
 @codepen
 @highlight 4-9
 
-Usually you will use `.textContent` unless building a library where performance is critical. textContent is the most convenient way to change an element's text.
+Usually you will use `.textContent` unless building a library where performance is critical. textContent is the most convenient way to change an element’s text.
 
 ## Solution
 
 ✏️ Use the markup provided above and create another template with the id of `route-template`. Keep a reference to this template in your JavaScript along with the other template. Copy the URL snippet from above and paste that so that it can be used within the component.
 
-Create a method on the component, we're calling it `getRoutes` here that is called in the `connectedCallback` method. It's an async method that uses [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to retrieve the list of routes which we can get with `data["bustime-response"].routes`.
+Create a method on the component, we’re calling it `getRoutes` here that is called in the `connectedCallback` method. It’s an async method that uses [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to retrieve the list of routes which we can get with `data["bustime-response"].routes`.
 
 Loop over the routes and clone an instance of the template filling in the route number with `route.rt` and the route name with `route.rtnm`.
 

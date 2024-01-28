@@ -32,7 +32,7 @@ function throwError(message: string): never {
 }
 ```
 
-…and when TypeScript has exhausted all possible cases and determines a block of code won't run:
+…and when TypeScript has exhausted all possible cases and determines a block of code won’t run:
 
 ```ts
 function primaryColorsToHexMessage(primaryColor: "red" | "blue" | "yellow") {
@@ -412,7 +412,7 @@ type ReturnType<T extends (...args: any) => any> = T extends (
   : any;
 ```
 
-Conditional type's refinement makes it a powerful utility. We’ve seen how conditional types can be used to simplify function signatures and create robust types for complex functions. Conditional types and `infer` will play a big role in our last section: template literal types.
+Conditional type’s refinement makes it a powerful utility. We’ve seen how conditional types can be used to simplify function signatures and create robust types for complex functions. Conditional types and `infer` will play a big role in our last section: template literal types.
 
 ## Exercises
 

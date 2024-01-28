@@ -280,7 +280,7 @@ QUnit.test("$.fn.on", function () {
 
 ### What you need to know
 
-- Instead of binding the `handler`, you'll need to bind a `delegator` that
+- Instead of binding the `handler`, you’ll need to bind a `delegator` that
   will conditionally call the `handler`.
 - Use `.data` to store the `delegator` and `handler` in an object
   like `{delegator, handler}`. That object should be stored in a data structure that

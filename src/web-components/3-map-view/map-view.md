@@ -28,7 +28,7 @@ Create a component where we can display a Google map. Google maps need to be att
 
 ## Technical Requirements
 
-Use the existing `#gmap-template` template, and append it to the host component's Shadow DOM. Use this script tag to enable the Google maps API:
+Use the existing `#gmap-template` template, and append it to the host component’s Shadow DOM. Use this script tag to enable the Google maps API:
 
 ```html
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD7POAQA-i16Vws48h4yRFVGBZzIExOAJI"></script>
@@ -101,7 +101,7 @@ document.body.append(el);
 
 ### connectedCallback
 
-For elements with side-effects (such as those that make network requests), it's best to do those side effects in the __connectedCallback__.
+For elements with side-effects (such as those that make network requests), it’s best to do those side effects in the __connectedCallback__.
 
 `connectedCallback` is a lifecycle method for custom elements. It is called when the element is __connected__, which can occur in one of these scenarios:
   - The HTML parser sees the element within the page.

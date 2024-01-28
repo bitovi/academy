@@ -18,9 +18,9 @@ When actively working on the content, the most useful option is the watch mode. 
 npm run dev
 ```
 
-This will take a while the first time. The site will be created in the `academy` folder. Use `http-server` or something similar to view site with automatic refreshing on file-save. (In your browser you may need to open the academy folder if running from root.) If you don't use something like `http-server`, you will need to refresh after changes.
+This will take a while the first time. The site will be created in the `academy` folder. Use `http-server` or something similar to view site with automatic refreshing on file-save. (In your browser you may need to open the academy folder if running from root.) If you don’t use something like `http-server`, you will need to refresh after changes.
 
-If the upcoming calendar events section returns "Sorry, events can't load right now", it may be an issue with the ip address, so try http://localhost:5500/academy/
+If the upcoming calendar events section returns "Sorry, events can’t load right now", it may be an issue with the ip address, so try http://localhost:5500/academy/
 
 ### Changing styles or images
 
@@ -52,7 +52,7 @@ Academy can be deployed manually by running the following command:
 npm run deploy
 ```
 
-Doing so requires access to the Bitovi Hubspot Access token and Campaign Id, which can be found in Bitovi's 1Password `Academy` vault. Add them to a new `.env` file in this repos root directory:
+Doing so requires access to the Bitovi Hubspot Access token and Campaign Id, which can be found in Bitovi’s 1Password `Academy` vault. Add them to a new `.env` file in this repos root directory:
 
 ```
 HUBSPOT_TOKEN=<access token>
@@ -113,13 +113,13 @@ Pages other than the first, introductory page should change the header to this f
 - Highlight all changed lines whenever possible.
 - If possible, highlight and use `only` on all long codeblocks to display only relevant code sections.
 - Solution codeblocks should be inside collapsed summary elements and have all changed lines highlighted.
-- Code blocks benefit from introduction as demonstrated before every code block at Angular Course's [Filter Cities by State](https://www.bitovi.com/academy/learn-angular/form-value-changes.html)
+- Code blocks benefit from introduction as demonstrated before every code block at Angular Course’s [Filter Cities by State](https://www.bitovi.com/academy/learn-angular/form-value-changes.html)
 
 ---
 
 ## Formatting Tips
 
-- Empty lines matter after certain elements. If something isn't displaying properly it could be missing a blank like before or after it.
+- Empty lines matter after certain elements. If something isn’t displaying properly it could be missing a blank like before or after it.
 - More sample elements can be viewed in training/style-guide.md
 
 ### Collapsing Summary Elements
@@ -176,7 +176,7 @@ Internal and external links can be created with Markdown syntax:
 
 ```
 <!-- Internal link -->
-[Bitovi Academy's RxJS training](../learn-rxjs.html)
+[Bitovi Academy’s RxJS training](../learn-rxjs.html)
 
 <!-- External link: -->
 [`mergeMap`](https://rxjs-dev.firebaseapp.com/api/operators/mergeMap)

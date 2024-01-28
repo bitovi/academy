@@ -15,14 +15,14 @@ Interfaces are a powerful way to enforce types and document what our code provid
 
 ## Interfaces in TypeScript
 
-An interface in TypeScript is a way to define the shape an entity should adhere to. An interface defines the members - properties, methods, and events. It may be easy to think of it as the signature of an API. It's worth noting that interfaces aren't transpiled into our output JavaScript, they're simply used for typechecking during the development process.
+An interface in TypeScript is a way to define the shape an entity should adhere to. An interface defines the members - properties, methods, and events. It may be easy to think of it as the signature of an API. It’s worth noting that interfaces aren’t transpiled into our output JavaScript, they’re simply used for typechecking during the development process.
 
 @sourceref ./7-1-interface.ts
 @codepen
 
 ## Optional Properties
 
-Some times all properties on an object don't need to be required, using the ``?`` lets us tell the TypeScript compiler which properties aren't required.
+Some times all properties on an object don’t need to be required, using the ``?`` lets us tell the TypeScript compiler which properties aren’t required.
 
 @sourceref ./7-2-optional.ts
 @highlight 4
@@ -37,7 +37,7 @@ In the case that a class needs to follow an object structure, we can use interfa
 
 ## Interfaces in Functions
 
-Interfaces are incredibly useful in describing the shape of objects we want to use in multiple situations. The following functions both require a ``Dinosaur`` object shape we've defined in the ``Dinosaur`` interface.
+Interfaces are incredibly useful in describing the shape of objects we want to use in multiple situations. The following functions both require a ``Dinosaur`` object shape we’ve defined in the ``Dinosaur`` interface.
 
 @sourceref ./7-3-2-functions.ts
 @codepen
@@ -49,7 +49,7 @@ We can also use interfaces to describe functions, basically creating reusable ty
 @sourceref ./7-3-3-describefuncs.ts
 @codepen
 
-It's possible to use the `type` keyword as an interface to describe a function.
+It’s possible to use the `type` keyword as an interface to describe a function.
 
 @sourceref ./7-3-4-describefuncs-type.ts
 @codepen
@@ -72,7 +72,7 @@ When we create empty object literals in TypeScript, they are inferred to be obje
 
 ### The Problem
 
-We're going to write some interfaces to set up for the next problem. Edit the files `5a-dino-park.ts` and `5a-address.ts` to create an interface to define a ``DinoPark`` object shown below:
+We’re going to write some interfaces to set up for the next problem. Edit the files `5a-dino-park.ts` and `5a-address.ts` to create an interface to define a ``DinoPark`` object shown below:
 
 ```javascript
 let park = {

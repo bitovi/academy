@@ -67,11 +67,11 @@ Further reading:
 
 [Product Validation](https://svpg.com/product-validation/) is the process of
 making sure the product will be successful without actually building the
-product. While many of the [Continuous Exploration](#continuous-exploration) section's techniques (like prototyping) should also be used to validate your product,
+product. While many of the [Continuous Exploration](#continuous-exploration) section’s techniques (like prototyping) should also be used to validate your product,
 the following list of techniques can be useful at the start of a new product or major
 feature:
 
-- [Customer Letter](https://svpg.com/the-customer-letter/) - Write up an imagined press release or letter to a customer advocating for the product or feature's benefits.
+- [Customer Letter](https://svpg.com/the-customer-letter/) - Write up an imagined press release or letter to a customer advocating for the product or feature’s benefits.
 - [Assessing Product Opportunities](https://svpg.com/assessing-product-opportunities/) - A list of 10 questions test product-market fit.
 - [Concierge method](http://ibuildmvps.com/blog/the-concierge-minimum-viable-product-maximizes-customer-learning) - Manually do the work your app would do.
 - [Reference customers](https://svpg.com/the-power-of-reference-customers/) - Find 6 reference customers before you launch in the marketplace.
@@ -112,15 +112,15 @@ The following list several techniques:
 - Surveys
   - Feature Poll - Poll your users on what features they would like to see.
   - [Sean Ellis Test](https://www.cleverism.com/product-market-fit-sean-ellis-test/) - Ask users if they could no longer use the product/service.
-  - [Net Promoter Score](https://en.wikipedia.org/wiki/Net_Promoter) - Gauge the loyalty of a firm's customer relationships.
+  - [Net Promoter Score](https://en.wikipedia.org/wiki/Net_Promoter) - Gauge the loyalty of a firm’s customer relationships.
 - Interviews - Talk to users or potential users about their problems.
 - UX studies - Watch someone use the app.
 - Hack Nights - Get developers to hack on new ideas of their own.
-- Competitor review - Checkout what the competition is doing.
+- Competitor review - Check out what the competition is doing.
 
 ### Prioritization Techniques
 
-Once you have some data, it's time to prioritize features for the backlog. The
+Once you have some data, it’s time to prioritize features for the backlog. The
 following are a number of different prioritization techniques:
 
 - [User Story Mapping](https://manifesto.co.uk/user-story-mapping/) -
@@ -130,8 +130,8 @@ following are a number of different prioritization techniques:
   `Cost of Delay = Business Value + Time Criticality + Risk Reduction`.
 - [Kano Model](https://en.wikipedia.org/wiki/Kano_model) - Survey
   users to find out what they like.
-- [MoScoW method](https://en.wikipedia.org/wiki/MoSCoW_method) - Must Haves > Should Haves > Could Haves > Won't Haves
-- [You Aren't Gonna Need it (Yagni)](https://martinfowler.com/bliki/Yagni.html) - Build immediate needs now. Leave "might needs" for later.
+- [MoScoW method](https://en.wikipedia.org/wiki/MoSCoW_method) - Must Haves > Should Haves > Could Haves > Won’t Haves
+- [You Aren’t Gonna Need it (Yagni)](https://martinfowler.com/bliki/Yagni.html) - Build immediate needs now. Leave "might needs" for later.
 
 Additional Reading:
 

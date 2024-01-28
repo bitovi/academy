@@ -40,7 +40,7 @@ const createParameters = (fileInformation) => {
   /**
    * This part takes advantage of the advanced ts courses file structure.
    * It takes splits the file path at advanced-typescript and grabs the section (02-generics-with-constraints)
-   * and uses the section name as the codesandbox file name. If it can't split the path, the codesandbox file name
+   * and uses the section name as the codesandbox file name. If it can’t split the path, the codesandbox file name
    * defaults to the file name
    */
   const advancedTypeScriptSectionInfo = filePath.split(

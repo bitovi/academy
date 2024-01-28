@@ -7,10 +7,10 @@
 
 ## Overview
 
-This guide goes through Bitovi's process for performing technology
+This guide goes through Bitovi’s process for performing technology
 consulting. This guide is for:
 
-- Bitovi consultants to know how to manage each part of an application's lifecycle.
+- Bitovi consultants to know how to manage each part of an application’s lifecycle.
 - Bitovi clients looking to understand how we operate.
 - Bitovi community members wanting to learn technology consulting.
 

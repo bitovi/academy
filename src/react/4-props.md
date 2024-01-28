@@ -17,7 +17,7 @@ function addOneAndSeven() {
 
 @highlight 2
 
-This is a perfectly good function, but notice that it always adds the same two numbers. In other words, it's only usable in very specific cases.
+This is a perfectly good function, but notice that it always adds the same two numbers. In other words, it’s only usable in very specific cases.
 
 We can make this function more reusable by allowing arguments to be passed in:
 
@@ -61,9 +61,9 @@ function AddNumbers({ num1, num2 }) {
 
 > In React, all functional components receive a `props` object as their first argument.
 
-We're also [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) the props object, a convention used by much of the community and in the rest of this guide.
+We’re also [destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment) the props object, a convention used by much of the community and in the rest of this guide.
 
-The props object contains any values which are passed into the component when it's rendered.
+The props object contains any values which are passed into the component when it’s rendered.
 
 ```jsx
 <AddNumbers num1={1} num2={7} />
@@ -72,7 +72,7 @@ The props object contains any values which are passed into the component when it
 
 Whenever the `AddNumbers` component is rendered, we can now pass it `num1` & `num2` props which it will use to do the calculation.
 
-Now, instead of having a hardcoded addition, the component is flexible and can be reused in any scenario where it's necessary to display the result of adding two numbers.
+Now, instead of having a hardcoded addition, the component is flexible and can be reused in any scenario where it’s necessary to display the result of adding two numbers.
 
 ## Prop Data Types
 
@@ -100,7 +100,7 @@ function MyButton() {
 
 @highlight 2
 
-The button above calls `console.log('clicked')` whenever the user clicks it. But once again, we're running into a reusability issue.
+The button above calls `console.log('clicked')` whenever the user clicks it. But once again, we’re running into a reusability issue.
 
 Suppose we wanted to perform an arbitrary action when the button is clicked instead of the hardcoded `console.log('clicked')`.
 
@@ -108,7 +108,7 @@ To accomplish that, we would use a callback prop. To do so, simply pass the comp
 
 ```jsx
 function MyButton({ onButtonClick }) {
-  // here we're destructuring the props object
+  // here we’re destructuring the props object
   return <button onClick={onButtonClick}>click me</button>;
 }
 ```
@@ -121,7 +121,7 @@ Notice above that the `MyButton` component now accepts an `onButtonClick` prop. 
 <MyButton onButtonClick={() => console.log('custom click action')}>
 ```
 
-When we render the button, we'll pass in the `onButtonClick` prop just like the numbers from the `AddNumbers` component. Since we're not passing a string prop, it needs to be enclosed in curly brackets `{ }`.
+When we render the button, we’ll pass in the `onButtonClick` prop just like the numbers from the `AddNumbers` component. Since we’re not passing a string prop, it needs to be enclosed in curly brackets `{ }`.
 
 ## Try it out
 
@@ -159,7 +159,7 @@ Notice that if you supply a `prop` with no value (ie... the `isCool` in `<AddNum
 
 ## Exercise
 
-Let's use our props knowledge to start building out the Tic-Tac-Toe component.
+Let’s use our props knowledge to start building out the Tic-Tac-Toe component.
 
 ### The problem
 
@@ -217,7 +217,7 @@ function Board({ onSquareClick, board }) {
           a <Square /> component.
 
           The Square component takes a symbol prop (x or o), an
-          onClick prop, and since we're using the map function each
+          onClick prop, and since we’re using the map function each
           Square will also need a unique key prop.
       */}</div>;
 }
@@ -243,7 +243,7 @@ ReactDOM.render(<Game />, document.getElementById('root'));
 
 @codepen react
 
-You can run the code above by hovering over the code block and hitting Run, which is in the upper right hand corner. Only check the solution below once you've taken a pass yourself.
+You can run the code above by hovering over the code block and hitting Run, which is in the upper right hand corner. Only check the solution below once you’ve taken a pass yourself.
 
 ## Solution
 <details>

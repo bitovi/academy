@@ -32,7 +32,7 @@ Create a reactive form with two formControls, `state` and `city`, and use the `f
 
 ## Setup
 
-Here's some code to get you started. Notice that:
+Here’s some code to get you started. Notice that:
 
 - `cities` and `states` are hard coded (for this exercise).
 - A `FormBuilder` instance is injected as the `fb` property.
@@ -69,7 +69,7 @@ When you visit <a href="http://localhost:4200/restaurants" >localhost:4200/resta
 
 @diff ../7-pull-restaurant-data-into-view/app.component.spec.ts ./app.component.spec.ts only
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## What You Need to Know
 
@@ -83,7 +83,7 @@ To solve this, you will need to know:
 
 ## Reactive Forms
 
-We're eventually going to use select boxes to handle our user's input. Angular's <a href="https://angular.io/guide/reactive-forms" >Reactive Forms</a> API provides a clean way to get data from user input and do work based on it.
+We’re eventually going to use select boxes to handle our user’s input. Angular’s <a href="https://angular.io/guide/reactive-forms" >Reactive Forms</a> API provides a clean way to get data from user input and do work based on it.
 
 > From the docs: Reactive forms use an explicit and immutable approach to managing the state of a form at a given point in time. Each change to the form state returns a new state, which maintains the integrity of the model between changes. Reactive forms are built around observable streams, where form inputs and values are provided as streams of input values, which can be accessed synchronously.
 
@@ -97,8 +97,8 @@ To use reactive forms we must import our ReactiveFormsModule into the root app.
 
 ## FormControl
 
-The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl" >FormControl</a>. This class manages the form input model and connection to it's input element in the DOM and inherits from the <a href="https://angular.io/api/forms/AbstractControl" >AbstractControl</a>
-class. It's worth getting familiar with the methods available in this class (like setValidators and setValue), as they're used quite often in reactive form development. The formControl is bound to it's element in the DOM using the `[formControl]` directive.
+The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl" >FormControl</a>. This class manages the form input model and connection to its input element in the DOM and inherits from the <a href="https://angular.io/api/forms/AbstractControl" >AbstractControl</a>
+class. It’s worth getting familiar with the methods available in this class (like setValidators and setValue), as they’re used quite often in reactive form development. The formControl is bound to its element in the DOM using the `[formControl]` directive.
 
 @sourceref ./form-control.html
 @codepen
@@ -106,7 +106,7 @@ class. It's worth getting familiar with the methods available in this class (lik
 
 ## FormGroup
 
-A <a href="https://angular.io/api/forms/FormGroup" >FormGroup</a> is a way of grouping `FormControl`s and tracking the state of the entire group. For instance, if you want to get the values of all of your `FormControl`s to submit as an object of those values, you'd use `formGroupName.value`. Notice the way we connect our input in the markup is slightly different - we can use the `formControlName` directive to bind to the name value of a `FormControl` in our `FormGroup`. Groups can be nested within other groups or arrays.
+A <a href="https://angular.io/api/forms/FormGroup" >FormGroup</a> is a way of grouping `FormControl`s and tracking the state of the entire group. For instance, if you want to get the values of all of your `FormControl`s to submit as an object of those values, you’d use `formGroupName.value`. Notice the way we connect our input in the markup is slightly different - we can use the `formControlName` directive to bind to the name value of a `FormControl` in our `FormGroup`. Groups can be nested within other groups or arrays.
 
 @sourceref ./form-group.html
 @codepen
@@ -114,7 +114,7 @@ A <a href="https://angular.io/api/forms/FormGroup" >FormGroup</a> is a way of gr
 
 ## FormArray
 
-A <a href="https://angular.io/api/forms/FormArray" >FormArray</a> aggregates `FormControl`s into an array. It's different than FormGroup in that the controls inside are serialized as an array. `FormArray`s are very useful when dealing with repeated `FormControl`s or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.
+A <a href="https://angular.io/api/forms/FormArray" >FormArray</a> aggregates `FormControl`s into an array. It’s different than FormGroup in that the controls inside are serialized as an array. `FormArray`s are very useful when dealing with repeated `FormControl`s or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.
 
 This example shows the use of `FormArray` and using an `insert` method to dynamically add more `FormGroup`s to the `users` FormArray.
 
@@ -136,9 +136,9 @@ Since Angular v14, Angular Forms are strictly typed by default.
 
 By default, all controls include the type `null`. The reason for the `null` type is that when calling `reset` on the form or its controls, the values are updated to `null`.
 
-To avoid the default behavior and having to handle possible `null` values, we can use the `NonNullableFormBuilder`, either via injecting it or accessing the FormBuilder's `nonNullable` property.
+To avoid the default behavior and having to handle possible `null` values, we can use the `NonNullableFormBuilder`, either via injecting it or accessing the FormBuilder’s `nonNullable` property.
 
-Using `NonNullableFormBuilder` will make `reset` method use the control's initial value instead of `null`.
+Using `NonNullableFormBuilder` will make `reset` method use the control’s initial value instead of `null`.
 
 ```typescript
 constructor(private fb: NonNullableFormBuilder) {}

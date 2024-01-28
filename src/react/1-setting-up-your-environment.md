@@ -7,7 +7,7 @@
 
 ## The React Stack
 
-In its simplest form React is just a library. When developing real-world applications, React is best used in combination with several other technologies. Let's take a look at some of these below:
+In its simplest form React is just a library. When developing real-world applications, React is best used in combination with several other technologies. Let’s take a look at some of these below:
 
 - **[Babel](https://babeljs.io/)** - Babel is a JavaScript transpiler which allows developers to use the latest language features in a backwards compatible way. Specifically, React relies on Babel to transpile JSX (the syntax used to define components) into executable JavaScript code.
 - **[Webpack](https://webpack.js.org/)** - Webpack lets developers bundle their React components and apps into small, easily-servable bundles which are downloaded and run when the page loads. Additionally, Webpack can be configured for live-reloading during development.
@@ -34,7 +34,7 @@ This command will create a new app named `myapp` in a folder with the same name 
 
 ### Looking at Our Generated Project
 
-Let's walk through some of the generated files.
+Let’s walk through some of the generated files.
 
 ```code
 ├── node_modules/
@@ -43,14 +43,14 @@ Let's walk through some of the generated files.
 ├── .gitignore
 ├── package.json
 ├── README.md
-├── yarn.lock/package-lock.json (depends if you're using yarn or npm)
+├── yarn.lock/package-lock.json (depends if you’re using yarn or npm)
 ```
 
 **/public**
 
 The public folder contains static assets which will be served up as part of your website. You can include stylesheets, images and other static files. The most important file here is `index.html`, which is the page that will render React by default.
 
-Anything put inside this directory will be copied as-is into the `build` directory during the build process. Generally, you shouldn't need to touch this folder too much.
+Anything put inside this directory will be copied as-is into the `build` directory during the build process. Generally, you shouldn’t need to touch this folder too much.
 
 **/src**
 
@@ -87,7 +87,7 @@ The `package.json` file is kept intentionally small, and includes only a few dep
 
 If you are wondering where the Webpack and Babel dependencies are, they are hidden as dependencies of `react-scripts`.
 
-Create React App provides a set of scripts (`react-scripts`) which know how to start, build and test your app. It's generally recommended to leave these as is, as a lot of work has been put into these scripts to ensure the best developer experience possible. These can be found in the `scripts` section of your `package.json`, and you may expand this list with new scripts as you need.
+Create React App provides a set of scripts (`react-scripts`) which know how to start, build and test your app. It’s generally recommended to leave these as is, as a lot of work has been put into these scripts to ensure the best developer experience possible. These can be found in the `scripts` section of your `package.json`, and you may expand this list with new scripts as you need.
 
 ```js
 "scripts": {
@@ -98,7 +98,7 @@ Create React App provides a set of scripts (`react-scripts`) which know how to s
 }
 ```
 
-The final script, `eject`, is very important and dangerous. In order to simplify your workflow, Create React App hides the Webpack, Babel and Jest configuration files. By running `npm run eject`, all of the internal packages in react-scripts will be copied and put into your package.json as well as the default webpack config, and other internals. This allows you more control if you absolutely need it, though the downside is that you don't gain access to updates to the `create-react-app` project.
+The final script, `eject`, is very important and dangerous. In order to simplify your workflow, Create React App hides the Webpack, Babel and Jest configuration files. By running `npm run eject`, all of the internal packages in react-scripts will be copied and put into your package.json as well as the default webpack config, and other internals. This allows you more control if you absolutely need it, though the downside is that you don’t gain access to updates to the `create-react-app` project.
 
 > Note that ejecting is generally **not** recommended unless absolutely necessary.
 
@@ -118,7 +118,7 @@ npm run build
 
 @highlight 2
 
-The final command will build the site and create a `build` folder. Check out the generated files. Notice how they're nicely [minified](<https://en.wikipedia.org/wiki/Minification_(programming)>) and [bundled](https://www.simplethread.com/javascript-modules-and-code-bundling-explained/)!
+The final command will build the site and create a `build` folder. Check out the generated files. Notice how they’re nicely [minified](<https://en.wikipedia.org/wiki/Minification_(programming)>) and [bundled](https://www.simplethread.com/javascript-modules-and-code-bundling-explained/)!
 
 More information on the `build` folder and on deployment in general can be found in the [Create React App documentation](https://create-react-app.dev/docs/deployment/).
 

@@ -16,7 +16,7 @@ In this part, we will:
 
 ## Problem 1: Generate a `HistoryComponent` and create a route for it
 
-We want to create a component that will show the app's order history.
+We want to create a component that will show the app’s order history.
 
 ## P1: Technical Requirements
 
@@ -25,17 +25,17 @@ We want to create a component that will show the app's order history.
 
 ## P1: How to Verify Your Solution is Correct
 
-If you've implemented the solution correctly you should be able to navigate to [http://localhost:4200/order-history](http://localhost:4200/order-history) and see _'history works!'_.
+If you’ve implemented the solution correctly you should be able to navigate to [http://localhost:4200/order-history](http://localhost:4200/order-history) and see _'history works!'_.
 
 ✏️ Update the spec file **src/app/app.component.spec.ts** to be:
 
 @diff ../14-building-order-form/app.component.spec.ts ./app.component.spec.ts only
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## P1: What you need to know
 
-You got this already, but just in case, here's some hints:
+You got this already, but just in case, here’s some hints:
 
 - How to generate a component
   ```shell
@@ -73,12 +73,12 @@ We want a user to be able to navigate to the `HistoryComponent` via a link in th
 
 ## P2: What You Need to Know
 
-You've seen this before. Checkout how the **Home** link works in
+You’ve seen this before. Check out how the **Home** link works in
 `app.component.html`.
 
 ## P2: How to Verify Your Solution is Correct
 
-If you've implemented the solution correctly you should now be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see a list of all orders.
+If you’ve implemented the solution correctly you should now be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see a list of all orders.
 
 ## P2: Solution
 
@@ -97,7 +97,7 @@ We want to be able to see a list of all created orders and their varying statuse
 ## P3: Technical Requirements
 
 1. List all orders in the `HistoryComponent`.
-2. Make sure the `<div>` for each order has a class name of _'order'_ and a class name that is the `order.status` value. Make sure you've created a new order.
+2. Make sure the `<div>` for each order has a class name of _'order'_ and a class name that is the `order.status` value. Make sure you’ve created a new order.
 
 ## P3: Setup
 
@@ -119,7 +119,7 @@ iterate through orders and add the right class names to the outer `<div>` for ea
 
 @sourceref ./history.component-1.spec.ts
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## P3: What You Need to Know
 
@@ -127,7 +127,7 @@ iterate through orders and add the right class names to the outer `<div>` for ea
   property in the constructor.
 - How to loop through values in HTML. Hint: `*ngFor`.
 
-For this step, you'll need to know how to add multiple class names. You can do this with
+For this step, you’ll need to know how to add multiple class names. You can do this with
 `[ngClass]` and setting it to an array like:
 
 ```html
@@ -215,7 +215,7 @@ ng g component order/list
 
 @sourceref ./list.component.spec.ts
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## P4: What You Need to Know
 

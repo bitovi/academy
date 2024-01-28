@@ -17,7 +17,7 @@ In this part, we will:
 
 ## Creating an Order Form Component
 
-Our order form is how we can create new orders. We'll use a reactive form to get data from the users, use a custom validation function to make sure at least one item has been selected, and calculate the order total every time a new item is selected or unselected.
+Our order form is how we can create new orders. We’ll use a reactive form to get data from the users, use a custom validation function to make sure at least one item has been selected, and calculate the order total every time a new item is selected or unselected.
 
 ## Problem 1: Create New Route for Ordering From a Restaurant
 
@@ -33,7 +33,7 @@ When you navigate to the `/order` path from a restaurant detail page you should 
 
 @diff ../13-nested-routes/app.component.spec.ts ./app.component.spec.ts only
 
-> If you've implemented the solution correctly, when you run `npm run test` all tests will pass!
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 ## P1: What You Need to Know
 
@@ -41,7 +41,7 @@ When you navigate to the `/order` path from a restaurant detail page you should 
   ```bash
   ng g component order
   ```
-- You've created routes before! You got this!
+- You’ve created routes before! You got this!
 
 ## P1: Solution
 
@@ -55,9 +55,9 @@ When you navigate to the `/order` path from a restaurant detail page you should 
 
 ## Problem 2: Build Out the Order Component
 
-We've covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes. Let's practice those concepts.
+We’ve covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes. Let’s practice those concepts.
 
-We've provided some starting code to get through this section to help you get the restaurant based on the route slug, create a new reactive form to collect order information, and update the order total whenever the `items` FormControl value changes.
+We’ve provided some starting code to get through this section to help you get the restaurant based on the route slug, create a new reactive form to collect order information, and update the order total whenever the `items` FormControl value changes.
 
 ## P2: Technical Requirements
 
@@ -80,7 +80,7 @@ The order form component needs to get the restaurant from the route slug, and ne
 - Listen to form value changes (you learned this in previous sections! ✔️)
 - Add validation:
 
-  This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation" >validation</a>. Here's an example of a form with form controls with different validation, and one that's value is set to an array.
+  This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation" >validation</a>. Here’s an example of a form with form controls with different validation, and one that’s value is set to an array.
 
   ```typescript
   function coolKidsChecker(isACoolKid: string): ValidatorFn {
@@ -117,7 +117,7 @@ The order form component needs to get the restaurant from the route slug, and ne
 
 ## Importing 3rd Party Plugins
 
-In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let's import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started" >ngx-bootstrap</a>:
+In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let’s import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started" >ngx-bootstrap</a>:
 
 ✏️ Run:
 
@@ -127,24 +127,24 @@ ng add ngx-bootstrap
 
 Ng add is a convenient way to import 3rd party libs that will update `angular.json` and `package.json` with any changes we need.
 
-✏️ Update **src/app/app.module.ts**. Once you're done, don't forget to restart the server!
+✏️ Update **src/app/app.module.ts**. Once you’re done, don’t forget to restart the server!
 
 @sourceref ./app.module.ts
 @highlight 5, 6, 29, 30, only
 
-Now let's add the markup to our order component implementing the tabs widget.
+Now let’s add the markup to our order component implementing the tabs widget.
 
 ✏️ Update **src/app/order/order.component.html**
 
 @diff ./order.component-starter.html ./order.component-withtabs.html only
 
-Now when we view the order form of our route, we'll see a nice form and tabs for lunch and dinner menu options.
+Now when we view the order form of our route, we’ll see a nice form and tabs for lunch and dinner menu options.
 
 ![Place My Order App tabs](../static/img/angular/pmo-tabs-working.gif 'Place My Order App tabs')
 
 ## Problem 3: Create Custom Menu-Items Component
 
-We're going to build another component to use in our form to handle selecting order items. We use data-binding to pass data between components. We'll use the `@Input()` to get our list of items from the restaurant to display in our child component, and eventually hook it into our Reactive Form using the `formControlName` attribute as shown below.
+We’re going to build another component to use in our form to handle selecting order items. We use data-binding to pass data between components. We’ll use the `@Input()` to get our list of items from the restaurant to display in our child component, and eventually hook it into our Reactive Form using the `formControlName` attribute as shown below.
 
 ```html
 <pmo-menu-items
@@ -290,9 +290,9 @@ Create an `itemsChanged` EventEmitter property that emits the `selectedItems` va
 
 ## Emitting Data to Parent Components
 
-To pass data to parent components in Angular, the <a href="https://angular.io/api/core/EventEmitter" >EventEmitter</a> class is used in combination with the <a href="https://angular.io/api/core/Output" >Output decorator</a>. The Output decorator marks a property to be listened to during change detection, and we call the `emit` method to broadcast the property's new value.
+To pass data to parent components in Angular, the <a href="https://angular.io/api/core/EventEmitter" >EventEmitter</a> class is used in combination with the <a href="https://angular.io/api/core/Output" >Output decorator</a>. The Output decorator marks a property to be listened to during change detection, and we call the `emit` method to broadcast the property’s new value.
 
-The parent component is listening for a change on the child component's property and calls a function on that change that takes a parameter of the updated value.
+The parent component is listening for a change on the child component’s property and calls a function on that change that takes a parameter of the updated value.
 
 @sourceref ./event-emitter.html
 @codepen
@@ -302,14 +302,14 @@ The parent component is listening for a change on the child component's property
 
 When we have a FormArray we need to update programmatically with a value we can use the <a href="https://angular.io/api/forms/FormArray#patchvalue" >`patchValue`</a> or <a href="https://angular.io/api/forms/FormArray#setvalue" >`setValue`</a> methods on the `FormArray` class.
 
-The difference between these two FormArray's methods is that `setValue` replaces the current array with the new value, and `patchValue` updates the array with the new values, trying to update values where possible.
+The difference between these two FormArray’s methods is that `setValue` replaces the current array with the new value, and `patchValue` updates the array with the new values, trying to update values where possible.
 
 @sourceref ./form-patch-value.html
 @codepen
 @highlight 25,57-61,only
 
 - How to emit a value to a parent component (you learned this in the section above! ✔️)
-- How to programmatically update a `FormArray`'s value (you learned this in the section above! ✔️)
+- How to programmatically update a `FormArray`’s value (you learned this in the section above! ✔️)
 
 ## P5: Solution
 

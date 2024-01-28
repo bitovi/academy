@@ -302,7 +302,7 @@ a.quote-link:hover{
 <div class="container">
   <div class="hero-banner">
     <h1>Level up your front-end skills</h1>
-    <h2>Whether you're a beginner or experienced professional, Academy courses have something to help you perfect your design, development, or management skills.</h2>
+    <h2>Whether you’re a beginner or experienced professional, Academy courses have something to help you perfect your design, development, or management skills.</h2>
     <a class="button button-large button-red" href="#courses-section">Browse our courses</a>
   </div>
   <div class="academy-section academy-logos">
@@ -344,7 +344,7 @@ a.quote-link:hover{
     <h3>What people are saying about us</h3>
     <div class="academy-cards-container">
       <div class="academy-card academy-card--red">
-          <p><a class="quote-link" href="https://www.meetup.com/DoneJS-Chicago/events/260347973/#commentsTitle" >“Really enjoyed this class! The instructor, Justin, was phenomenal, and the content was both challenging and engaging. Even though framework usage is ubiquitous these days, it's rewarding to understand exactly how libraries interact with the DOM on a granular level. I am looking forward to more Bitovi events in the future.”</a></p>
+          <p><a class="quote-link" href="https://www.meetup.com/DoneJS-Chicago/events/260347973/#commentsTitle" >“Really enjoyed this class! The instructor, Justin, was phenomenal, and the content was both challenging and engaging. Even though framework usage is ubiquitous these days, it’s rewarding to understand exactly how libraries interact with the DOM on a granular level. I am looking forward to more Bitovi events in the future.”</a></p>
           <p class="quote-author">- Patrick Gallagher</p>
       </div>
       <div class="academy-card academy-card--blue">
@@ -496,7 +496,7 @@ with Jira.</p>
           <p>Learn all the hard but important stuff you should know when programming JavaScript.</p>
           <div class="width100">
             <p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
-            <p class='detail'><strong>Goal:</strong> Understand what's going on "under the hood".</p>
+            <p class='detail'><strong>Goal:</strong> Understand what’s going on "under the hood".</p>
             <p class='detail'><strong>Time:</strong> 6 hours</p>
           </div>
           <a href="./learn-advanced-javascript.html" class="button button-grey full-width">Take this course</a>
@@ -510,7 +510,7 @@ with Jira.</p>
   meta programming too!</p>
           <div class="width100">
             <p class='detail'><strong>Audience:</strong> Intermediate JS developers</p>
-            <p class='detail'><strong>Goal:</strong> Understand the DOM enough to build widgets frameworks can't.</p>
+            <p class='detail'><strong>Goal:</strong> Understand the DOM enough to build widgets frameworks can’t.</p>
             <p class='detail'><strong>Time:</strong> 10 hours</p>
           </div>
           <a href="./learn-dom-jquery.html" class="button button-grey full-width">Take this course</a>

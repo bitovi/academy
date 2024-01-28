@@ -40,7 +40,7 @@ function makeRequest<T>(requestFunction: (args:any) => Observable<ResponseData<T
     mergeMap(requestArguments => {
         const responseStream = requestFunction(requestArguments);
 
-        // awaiting input case where the requestFunction hasn't made a request yet
+        // awaiting input case where the requestFunction hasn’t made a request yet
         if (!responseStream) {
           return of({
             data: [],
@@ -77,10 +77,10 @@ function makeRequest<T>(requestFunction: (args:any) => Observable<ResponseData<T
       shareReplay(1))
 }
 
-// operator that checks if the incoming requests haven't yet succeeded
+// operator that checks if the incoming requests haven’t yet succeeded
 const isRequestIncomplete = pipe(map<RequestStatus<any>, boolean>((requestStatus) => !requestStatus.isResolved));
 
-// operator that shows failed RequestStatus emissions as popups, used when the isRejected case isn't handled in the view
+// operator that shows failed RequestStatus emissions as popups, used when the isRejected case isn’t handled in the view
 // TODO: rather than tap, provide a stream to some singleton component?
 //       would require a subscription though, possibly triggering requests early :/
 const showErrorsAsPopups = pipe(

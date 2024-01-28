@@ -9,7 +9,7 @@
 
 - Setup steal to load a basic CanJS application.  A basic CanJS application has:
   - A custom element defined by [Component](https://canjs.com/doc/can-component.html) and
-    an instance of that custom element in the page's HTML. That component includes a:
+    an instance of that custom element in the page’s HTML. That component includes a:
     - A [DefineMap](https://canjs.com/doc/can-define/map/map.html) ViewModel and an instance of that ViewModel.
     - A [stache](https://canjs.com/doc/can-stache.html) view that is rendered with the instance of the ViewModel.
 - In addition, this application should load the [can-todomvc-test](https://www.npmjs.com/package/can-todomvc-test) module version 5.0 and

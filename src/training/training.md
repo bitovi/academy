@@ -7,13 +7,13 @@
 
 ## Overview
 
-It's difficult to give a training!
+It’s difficult to give a training!
 
 Trainings are intense. They usually
 are performed contiguously, forcing trainees to continually learn
 in a very rapid manner.
 
-Trainees have a variety of experience.  It's hard to make trainings
+Trainees have a variety of experience.  It’s hard to make trainings
 interesting and informative for everyone.  Experienced people might
 find it boring and inexperienced people might find it too difficult.
 
@@ -52,7 +52,7 @@ have a successful training.
 2. Let people know that the training will be hard
    and that they should ask questions.
 
-   > This week will be hard. There's a lot to learn about X, Y, Z.
+   > This week will be hard. There’s a lot to learn about X, Y, Z.
    > Some of you might find it very challenging, others might find it boring.
    > To those who find it boring, this can be a great time to spread knowledge
    > around, share your knowledge.  Help other people.  And even
@@ -62,7 +62,7 @@ have a successful training.
    > The most important thing is to ask questions. There are
    > no stupid questions.  In fact, I think my strength as a developer
    > is entirely built around being unafraid to get help and ask questions.
-   > I'll happily repeat myself in different ways to explain something better.
+   > I’ll happily repeat myself in different ways to explain something better.
 
 3. Get introductions from the trainees.
 

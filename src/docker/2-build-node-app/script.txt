@@ -1,2 +1,2 @@
 
-Welcome to Part 3 of Bitovi academy's Learn Docker training. In this video we're going to build a dead simple Node API
+Welcome to Part 3 of Bitovi Academy’s Learn Docker training. In this video we’re going to build a dead simple Node API

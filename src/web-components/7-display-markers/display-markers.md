@@ -60,7 +60,7 @@ marker.setMap(null);
 
 JavaScript [setters](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set) allow observation of property changes. Adding a setter for `vehicles` provides a hook for when the `<bus-tracker>` component passes the array of vehicles for the selected route.
 
-In order to reflect back the list of vehicles in a [getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) you can save the vehicle list to another property on the element (like an underscore property). It's common when a setter exists that a getter does as well.
+In order to reflect back the list of vehicles in a [getter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get) you can save the vehicle list to another property on the element (like an underscore property). It’s common when a setter exists that a getter does as well.
 
 This is an example of a getter/setter pair in a JavaScript class.
 
@@ -126,7 +126,7 @@ setTimeout(() => counter.count--, 15000);
 
 ### Default values
 
-Most properties supported by built-in elements have some sort of default value. For example the [\<progress\>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress) element has a `max` property that defaults to `1`: `document.createElement('progress').max; // 1`. __All__ elements have an `onclick` property whose default value is `null`. It's good practice to provide default values for your supported public properties, and these can be set in the [constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor). Combining getters, setters and default values for properties makes your component more robust.
+Most properties supported by built-in elements have some sort of default value. For example the [\<progress\>](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress) element has a `max` property that defaults to `1`: `document.createElement('progress').max; // 1`. __All__ elements have an `onclick` property whose default value is `null`. It’s good practice to provide default values for your supported public properties, and these can be set in the [constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor). Combining getters, setters and default values for properties makes your component more robust.
 
 ```js
 class DogElement extends HTMLElement {

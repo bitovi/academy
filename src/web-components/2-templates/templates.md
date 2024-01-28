@@ -65,7 +65,7 @@ To solve this, you will need to know:
 
 ### The template element
 
-A `<template>` is an element whose children are __inert__. This means that the browser doesn't render them, like it will for nodes outside of templates. Images will not load, scripts will not execute, styles are not applied.
+A `<template>` is an element whose children are __inert__. This means that the browser doesn’t render them, like it will for nodes outside of templates. Images will not load, scripts will not execute, styles are not applied.
 
 ```html
 <template>
@@ -77,7 +77,7 @@ A `<template>` is an element whose children are __inert__. This means that the b
 ```
 @codepen
 
-You can't grab content inside of a template using the normal DOM APIs like [document.querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) or [document.getElementById](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById). They only exist within the template's `content` fragment.
+You can’t grab content inside of a template using the normal DOM APIs like [document.querySelector](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) or [document.getElementById](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById). They only exist within the template’s `content` fragment.
 
 ```js
 let h1 = document.querySelector('h1');

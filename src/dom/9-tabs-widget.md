@@ -47,7 +47,7 @@ following structure:
 ```
 
 The `<ul>` elements will have `<li>` children which serve as the **buttons**. Each `<li>`
-must contain an `<a>` element. The `<a>` element's `href` attributes reference the
+must contain an `<a>` element. The `<a>` element’s `href` attributes reference the
 `id` of a **tab** element to show when the corresponding `<li>` **button** element is
 clicked.
 

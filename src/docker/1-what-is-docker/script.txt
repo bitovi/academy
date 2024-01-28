@@ -1,12 +1,12 @@
 
-Hello and welcome to Part 2 of Bitovi academy's Learn Docker training. This video covers Docker concepts and architecture.
+Hello and welcome to Part 2 of Bitovi Academy’s Learn Docker training. This video covers Docker concepts and architecture.
 
 Virtual Machines and Containers can be easily confused, but there are some fundamental differences between the two.
 Virtual machines (VM) are an abstraction of a physical server turning one server into many. A hypervisor is installed on the host server allowing multiple VMs to run on a single machine. Each VM includes a full copy of an operating system (OS) making it resource intensive to run and slow to boot.
 
-Meanwhile, containers are an abstraction at the app layer that packages application artifacts and dependencies together. The fundamental difference is containers share the same host operating system, but each container runs in it's own isolated process controlled by the Docker Engine. The Docker Engine (also called the Docker Daemon) is installed to your machine, when you installed Docker Desktop.
+Meanwhile, containers are an abstraction at the app layer that packages application artifacts and dependencies together. The fundamental difference is containers share the same host operating system, but each container runs in it’s own isolated process controlled by the Docker Engine. The Docker Engine (also called the Docker Daemon) is installed to your machine, when you installed Docker Desktop.
 
-There's not as much segregtaion between containers as there is between Virtual machines, but containers are separated enough and are far more lightweight in terms of cpu and memory consumption and typically boot in seconds instead of minutes.
+There’s not as much segregtaion between containers as there is between Virtual machines, but containers are separated enough and are far more lightweight in terms of cpu and memory consumption and typically boot in seconds instead of minutes.
 
 Docker images are built from Dockerfiles. A dockerfile is a plain-text file that contains a series of instructions telling Docker what operating system, application dependencies and application source code is required to actually run the application.
 

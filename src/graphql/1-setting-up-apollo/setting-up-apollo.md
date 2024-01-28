@@ -890,7 +890,7 @@ const server = new ApolloServer({
         ApolloServerPluginCacheControl({
             // Cache everything for 1 second by default.
             defaultMaxAge: 1,
-            // Don't send the `cache-control` response header.
+            // Don’t send the `cache-control` response header.
             calculateHttpHeaders: false,
         })
     ]

@@ -51,7 +51,7 @@ text-align: center;
 
 ### Slots
 
-The [slot](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) has a curious effect when used within shadow DOM. It will take DOM within the custom element's children and *inject* (but not move) those nodes as children of itself.
+The [slot](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) has a curious effect when used within shadow DOM. It will take DOM within the custom element’s children and *inject* (but not move) those nodes as children of itself.
 
 Default content can be specified by nesting DOM inside of the `<slot>` element.
 

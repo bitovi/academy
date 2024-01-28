@@ -7,13 +7,13 @@
 
 ## Overview
 
-In this section we'll learn about TypeScript configuration options to help us optimize our workflow.
+In this section we’ll learn about TypeScript configuration options to help us optimize our workflow.
 
 For the exercise, we will learn how to import and export functions between modules.
 
 ## Configuring TypeScript
 
-We're able to configure how our projects use TypeScript from selecting which files to compile to removing comments from those files. This is done through the creation of a `tsconfig.json` file.
+We’re able to configure how our projects use TypeScript from selecting which files to compile to removing comments from those files. This is done through the creation of a `tsconfig.json` file.
 
 ### tsconfig.json
 
@@ -24,7 +24,7 @@ Customize the TypeScript compiling and linting options by creating a `tsconfig.j
 - generate source map files
 - remove comments from compiled code
 
-The following is just example config code. **Don't add this to your project or the tests for the TypeScript exercises in this training will fail.**
+The following is just example config code. **Don’t add this to your project or the tests for the TypeScript exercises in this training will fail.**
 
 ```javascript
 {
@@ -73,7 +73,7 @@ ESLint is a static code analysis tool. It helps us find and fix problematic patt
 
 ### Before Starting
 
-It should be fairly painless to migrate to ESLint, but we do recommended checking if there are any TSLint rules that are considered essential to your project, and comparing those with ESLint to see if there are mismatches regarding your project's requirements. This [Migration Guide](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/TSLINT_RULE_ALTERNATIVES.md) is a great source for comparing ESLint and TSLint rules.
+It should be fairly painless to migrate to ESLint, but we do recommended checking if there are any TSLint rules that are considered essential to your project, and comparing those with ESLint to see if there are mismatches regarding your project’s requirements. This [Migration Guide](https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/TSLINT_RULE_ALTERNATIVES.md) is a great source for comparing ESLint and TSLint rules.
 
 ### Migration
 
@@ -82,7 +82,7 @@ The [tslint-to-eslint-config repository](https://github.com/typescript-eslint/ts
 1. Depending on your project, you might want to take a look at some of the [CLI flags available](https://github.com/typescript-eslint/tslint-to-eslint-config#cli-flags);
 2. Run `npx tslint-to-eslint-config`.
 
-And that's it!
+And that’s it!
 
 ### ESLint Configuration
 
