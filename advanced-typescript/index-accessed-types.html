@@ -553,7 +553,7 @@ type PokemonMoveName = Pokemon[&quot;firstMove&quot;][&quot;name&quot;]; // stri
     </tr>
 </table>
 </div>
-<p>Ideally, we’d like a generic factory to create requests for multiple crud-ish entities, like a <code>HatchedPokemon</code> or a <code>Trainer</code>, to reduce the duplicated logic in our code. One way we could accomplish this is by constraining the type of entity passed into our factory to some base <code>Entity</code> type that describes what all entities must have, in our case, this is an <code>id</code> value, and then having all the methods returned by the factory use the type of that <code>Entity</code>'s id.</p>
+<p>Ideally, we’d like a generic factory to create requests for multiple crud-ish entities, like a <code>HatchedPokemon</code> or a <code>Trainer</code>, to reduce the duplicated logic in our code. One way we could accomplish this is by constraining the type of entity passed into our factory to some base <code>Entity</code> type that describes what all entities must have, in our case, this is an <code>id</code> value, and then having all the methods returned by the factory use the type of that <code>Entity</code>’s id.</p>
 <pre><code class="language-ts">type Entity = { id: number };
 type Updatable&lt;T extends Entity&gt; = Partial&lt;Omit&lt;T, &quot;id&quot;&gt;&gt;;
 
@@ -583,7 +583,7 @@ function factory&lt;T extends Entity&gt;(path: string): Requests&lt;T&gt; {
 </code></pre>
 <div line-highlight='2, 5-6'></div>
 <p>Using index accessed types we have resolved this issue and any future issue like it down the road.</p>
-<p>As we've seen, indexed access types are a powerful feature from TypeScript which helps our typing become more flexible and dynamic. Like generics, they will become a staple in our types as we progress through other TypeScript features.</p>
+<p>As we’ve seen, indexed access types are a powerful feature from TypeScript which helps our typing become more flexible and dynamic. Like generics, they will become a staple in our types as we progress through other TypeScript features.</p>
 <h2>Exercises</h2>
 <h3>Exercise 1</h3>
 <p>Below is an array of Pokemon trainers and a <code>FavoritePokemon</code> type currently assigned to any.

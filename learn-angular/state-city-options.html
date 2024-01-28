@@ -681,7 +681,7 @@ we will need to implement a reactive form with two controls, <code>state</code> 
 <h2>Technical Requirements</h2>
 <p>Create a reactive form with two formControls, <code>state</code> and <code>city</code>, and use the <code>formControlName</code> directive to bind the formControls to their select elements in the template.</p>
 <h2>Setup</h2>
-<p>Here's some code to get you started. Notice that:</p>
+<p>Here’s some code to get you started. Notice that:</p>
 <ul>
 <li><code>cities</code> and <code>states</code> are hard coded (for this exercise).</li>
 <li>A <code>FormBuilder</code> instance is injected as the <code>fb</code> property.</li>
@@ -1467,7 +1467,7 @@ describe('AppComponent', () =&gt; {
 </code></pre>
  <div line-highlight="11,199,211-214,254,only"></div>
 <blockquote>
-<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+<p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
 <h2>What You Need to Know</h2>
 <p>To solve this, you will need to know:</p>
@@ -1479,7 +1479,7 @@ describe('AppComponent', () =&gt; {
 <li>How to use <code>ngFor</code> (you learned this in the Creating Components section! ✔️)</li>
 </ul>
 <h2>Reactive Forms</h2>
-<p>We're eventually going to use select boxes to handle our user's input. Angular's <a href="https://angular.io/guide/reactive-forms" >Reactive Forms</a> API provides a clean way to get data from user input and do work based on it.</p>
+<p>We’re eventually going to use select boxes to handle our user’s input. Angular’s <a href="https://angular.io/guide/reactive-forms" >Reactive Forms</a> API provides a clean way to get data from user input and do work based on it.</p>
 <blockquote>
 <p>From the docs: Reactive forms use an explicit and immutable approach to managing the state of a form at a given point in time. Each change to the form state returns a new state, which maintains the integrity of the model between changes. Reactive forms are built around observable streams, where form inputs and values are provided as streams of input values, which can be accessed synchronously.</p>
 </blockquote>
@@ -1582,8 +1582,8 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='79,only'></div>
 <h2>FormControl</h2>
-<p>The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl" >FormControl</a>. This class manages the form input model and connection to it's input element in the DOM and inherits from the <a href="https://angular.io/api/forms/AbstractControl" >AbstractControl</a>
-class. It's worth getting familiar with the methods available in this class (like setValidators and setValue), as they're used quite often in reactive form development. The formControl is bound to it's element in the DOM using the <code>[formControl]</code> directive.</p>
+<p>The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl" >FormControl</a>. This class manages the form input model and connection to its input element in the DOM and inherits from the <a href="https://angular.io/api/forms/AbstractControl" >AbstractControl</a>
+class. It’s worth getting familiar with the methods available in this class (like setValidators and setValue), as they’re used quite often in reactive form development. The formControl is bound to its element in the DOM using the <code>[formControl]</code> directive.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1645,7 +1645,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='17,23-29,33,only'></div>
 <h2>FormGroup</h2>
-<p>A <a href="https://angular.io/api/forms/FormGroup" >FormGroup</a> is a way of grouping <code>FormControl</code>s and tracking the state of the entire group. For instance, if you want to get the values of all of your <code>FormControl</code>s to submit as an object of those values, you'd use <code>formGroupName.value</code>. Notice the way we connect our input in the markup is slightly different - we can use the <code>formControlName</code> directive to bind to the name value of a <code>FormControl</code> in our <code>FormGroup</code>. Groups can be nested within other groups or arrays.</p>
+<p>A <a href="https://angular.io/api/forms/FormGroup" >FormGroup</a> is a way of grouping <code>FormControl</code>s and tracking the state of the entire group. For instance, if you want to get the values of all of your <code>FormControl</code>s to submit as an object of those values, you’d use <code>formGroupName.value</code>. Notice the way we connect our input in the markup is slightly different - we can use the <code>formControlName</code> directive to bind to the name value of a <code>FormControl</code> in our <code>FormGroup</code>. Groups can be nested within other groups or arrays.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1727,7 +1727,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='17,23-37,39,43,45-49,53-55,only'></div>
 <h2>FormArray</h2>
-<p>A <a href="https://angular.io/api/forms/FormArray" >FormArray</a> aggregates <code>FormControl</code>s into an array. It's different than FormGroup in that the controls inside are serialized as an array. <code>FormArray</code>s are very useful when dealing with repeated <code>FormControl</code>s or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.</p>
+<p>A <a href="https://angular.io/api/forms/FormArray" >FormArray</a> aggregates <code>FormControl</code>s into an array. It’s different than FormGroup in that the controls inside are serialized as an array. <code>FormArray</code>s are very useful when dealing with repeated <code>FormControl</code>s or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.</p>
 <p>This example shows the use of <code>FormArray</code> and using an <code>insert</code> method to dynamically add more <code>FormGroup</code>s to the <code>users</code> FormArray.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1921,8 +1921,8 @@ platformBrowserDynamic()
 <h2>Form Nullability</h2>
 <p>Since Angular v14, Angular Forms are strictly typed by default.</p>
 <p>By default, all controls include the type <code>null</code>. The reason for the <code>null</code> type is that when calling <code>reset</code> on the form or its controls, the values are updated to <code>null</code>.</p>
-<p>To avoid the default behavior and having to handle possible <code>null</code> values, we can use the <code>NonNullableFormBuilder</code>, either via injecting it or accessing the FormBuilder's <code>nonNullable</code> property.</p>
-<p>Using <code>NonNullableFormBuilder</code> will make <code>reset</code> method use the control's initial value instead of <code>null</code>.</p>
+<p>To avoid the default behavior and having to handle possible <code>null</code> values, we can use the <code>NonNullableFormBuilder</code>, either via injecting it or accessing the FormBuilder’s <code>nonNullable</code> property.</p>
+<p>Using <code>NonNullableFormBuilder</code> will make <code>reset</code> method use the control’s initial value instead of <code>null</code>.</p>
 <pre><code class="language-typescript">constructor(private fb: NonNullableFormBuilder) {}
 </code></pre>
 <pre><code class="language-typescript">this.myQuickForm = this.fb.nonNullable.group({

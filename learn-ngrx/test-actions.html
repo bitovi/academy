@@ -246,7 +246,7 @@
            						">
 						<a class="page"
 							href="getting-started.html"
-							title="Checkout the course repository and get setup for upcoming lessons!">
+							title="Check out the course repository and get setup for upcoming lessons!">
 							Getting Started
 						</a>
 						
@@ -593,8 +593,8 @@ covering CanJS core libraries.">
 </blockquote>
 <h2>Overview</h2>
 <ol>
-<li><p>Verify <code>LoginActions.logout</code> Action dispatches when calling <code>DashboardComponent</code>'s <code>logout()</code>.</p></li>
-<li><p>Verify <code>LoginActions.login</code> Action dispatches with form payload when calling <code>LoginComponent</code>'s <code>login()</code>.</p></li>
+<li><p>Verify <code>LoginActions.logout</code> Action dispatches when calling <code>DashboardComponent</code>’s <code>logout()</code>.</p></li>
+<li><p>Verify <code>LoginActions.login</code> Action dispatches with form payload when calling <code>LoginComponent</code>’s <code>login()</code>.</p></li>
 </ol>
 <h2>Running Tests</h2>
 <p>To run unit tests in your project, you can either use the <code>test</code> npm script, or the <code>ng test</code> command:</p>
@@ -606,11 +606,11 @@ ng test --watch
 <h2>Introduction</h2>
 <p>Each implementation section will be paired with a testing section. These testing sections will go over the basics of how to test the implementation and use of NgRx. Before continuing, you should have an intermediate understanding of the following:</p>
 <ol>
-<li><p><a href="https://angular.io/guide/testing-utility-apis">Angular TestBeds</a> - Although <code>TestBeds</code> aren't required for testing Angular applications, and <a href="https://ngrx.io/guide/store/testing#testing-without-testbed">there are ways to test NgRx without a TestBed</a>, we use <code>TestBeds</code> throughout this course.</p></li>
+<li><p><a href="https://angular.io/guide/testing-utility-apis">Angular TestBeds</a> - Although <code>TestBeds</code> aren’t required for testing Angular applications, and <a href="https://ngrx.io/guide/store/testing#testing-without-testbed">there are ways to test NgRx without a TestBed</a>, we use <code>TestBeds</code> throughout this course.</p></li>
 <li><p><a href="https://github.com/jasmine/jasmine#a-javascript-testing-framework">Jasmine Unit Tests</a> - Throughout this course, we will be using <a href="https://jasmine.github.io/tutorials/your_first_suite">Jasmine to test our application</a>. Although the syntax will differ slightly between different testing tools such as <a href="https://mochajs.org/">Mocha</a> and <a href="https://jestjs.io/">Jest</a>, the concepts used throughout this course will apply to whatever solution you use in your future projects.</p></li>
 </ol>
 <h2>Description</h2>
-<p>In this section, we will write unit tests involving Actions. When testing Actions, we don't typically test Actions directly. Instead, we test their use in Components, Effects, and Reducers.
+<p>In this section, we will write unit tests involving Actions. When testing Actions, we don’t typically test Actions directly. Instead, we test their use in Components, Effects, and Reducers.
 Throughout this course we will cover all these situations. For this section, we will verify that Actions are dispatched when expected by checking their use in Components.</p>
 <h2>Update <code>dashboard.component.spec.ts</code></h2>
 <p>We will walk through updating <code>src/app/dashboard/dashboard.component.spec.ts</code> to run tests for your Actions.</p>
@@ -793,7 +793,7 @@ describe('DashboardComponent', () =&gt; {
  <div line-highlight="6,36,only"></div>
 </details>
 <blockquote>
-<p>Note that there are 2 more pending <code>TODO</code>s in <code>src/app/dashboard/dashboard.component.spec.ts</code> that will be resolved in upcoming sections. For now we'll only be testing our Actions.</p>
+<p>Note that there are 2 more pending <code>TODO</code>s in <code>src/app/dashboard/dashboard.component.spec.ts</code> that will be resolved in upcoming sections. For now we’ll only be testing our Actions.</p>
 </blockquote>
 <h2>Update <code>login.component.spec.ts</code></h2>
 <p>We will walk through updating <code>src/app/login/login.component.spec.ts</code> to run tests for your Actions.</p>

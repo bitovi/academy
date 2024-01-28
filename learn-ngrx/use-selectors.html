@@ -246,7 +246,7 @@
            						">
 						<a class="page"
 							href="getting-started.html"
-							title="Checkout the course repository and get setup for upcoming lessons!">
+							title="Check out the course repository and get setup for upcoming lessons!">
 							Getting Started
 						</a>
 						
@@ -593,8 +593,8 @@ covering CanJS core libraries.">
 </blockquote>
 <h2>Overview</h2>
 <ol>
-<li><p>Update <code>DashboardComponent</code>'s <code>username$</code> and <code>userId$</code> members to use Login Selectors.</p></li>
-<li><p>Update <code>AuthenticationGuard</code>'s <code>canActivate()</code> method to use Login Selector.</p></li>
+<li><p>Update <code>DashboardComponent</code>’s <code>username$</code> and <code>userId$</code> members to use Login Selectors.</p></li>
+<li><p>Update <code>AuthenticationGuard</code>’s <code>canActivate()</code> method to use Login Selector.</p></li>
 </ol>
 <h2>Problem 1: Update <code>username$</code> and <code>userId$</code> to use Login Selectors on <code>DashboardComponent</code></h2>
 <p><code>DashboardComponent</code> should use the <code>LoginSelectors.selectUsername</code> and <code>LoginSelectors.selectUserId</code> Selectors for its <code>username$</code> and <code>userId$</code> members.</p>
@@ -619,7 +619,7 @@ export class ContactComponent {
 
 </code></pre>
 <div line-highlight='2, 3, 11, 13'></div>
-<p>In the <code>DashboardComponent</code>, there is are <code>TODO</code>'s where the Login Selectors should be used.</p>
+<p>In the <code>DashboardComponent</code>, there is are <code>TODO</code>’s where the Login Selectors should be used.</p>
 <h2>P1: Solution</h2>
 <p><details>
 <summary>src/app/dashboard/dashboard.component.ts</summary></p>
@@ -653,7 +653,7 @@ export class DashboardComponent {
  <div line-highlight="6,15,18,only"></div>
 </details>
 <h2>Problem 2: Update <code>canActivate()</code> to use Login Selector on <code>AuthenticationGuard</code></h2>
-<p><code>AuthenticationGuard</code>'s <code>canActivate()</code> method should use the <code>LoginSelectors.selectToken</code> Selector.</p>
+<p><code>AuthenticationGuard</code>’s <code>canActivate()</code> method should use the <code>LoginSelectors.selectToken</code> Selector.</p>
 <h2>P2: What You Need to Know</h2>
 <p>In the <code>AuthenticationGuard</code>, there is a <code>TODO</code> where the Login Selector should be used.</p>
 <h2>P2: Solution</h2>

@@ -470,7 +470,7 @@ RUN npm install
 EXPOSE $PORT
 CMD npm start
 </code></pre>
-<p>Let's break down each line.</p>
+<p>Let’s break down each line.</p>
 <h2>FROM instruction</h2>
 <p>The <code>FROM</code> instruction is the first line of any Dockerfile. It sets the base image to be used as a starting point for all other instructions. Using base images allows deferring:</p>
 <ul>
@@ -572,8 +572,8 @@ Learn more about <a href="https://docs.docker.com/engine/reference/builder/#expo
 <p><code>CMD</code> is a special instruction. It is not run during build time like a <code>RUN</code> instruction. Instead, it is run at runtime. When the <code>CMD</code> instruction finishes, the docker container will be destroyed.</p>
 <p>In our case, we are running our express server with <code>CMD npm start</code>. This will cause our container to run until a fatal error occurs or it is manually killed.</p>
 <p>More information about <a href="https://docs.docker.com/engine/reference/builder/#cmd">CMD</a></p>
-<h2>What's next</h2>
-<p>That was a lot on Dockerfiles. Next we'll be looking at actually building and running our image!</p>
+<h2>What’s next</h2>
+<p>That was a lot on Dockerfiles. Next we’ll be looking at actually building and running our image!</p>
 
 </section>
 

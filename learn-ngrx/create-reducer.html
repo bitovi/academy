@@ -246,7 +246,7 @@
            						">
 						<a class="page"
 							href="getting-started.html"
-							title="Checkout the course repository and get setup for upcoming lessons!">
+							title="Check out the course repository and get setup for upcoming lessons!">
 							Getting Started
 						</a>
 						
@@ -604,7 +604,7 @@ covering CanJS core libraries.">
 <p>Now that we have all of our Actions prepared to dispatch whenever we need, we will update the Login State. Typically a Reducer is updated with 3 steps:</p>
 <ol>
 <li><p>Define or update <code>Store</code> interface to have an <a href="https://ngrx.io/guide/store/reducers#defining-the-state-shape">expected shape</a> after Reducer updates state.</p></li>
-<li><p>Set or update value to <a href="https://ngrx.io/guide/store/reducers#setting-the-initial-state">state's initial value</a> to satisfy new <code>Store</code> interface definition.</p></li>
+<li><p>Set or update value to <a href="https://ngrx.io/guide/store/reducers#setting-the-initial-state">state’s initial value</a> to satisfy new <code>Store</code> interface definition.</p></li>
 <li><p><a href="https://ngrx.io/guide/store/reducers#creating-the-reducer-function">Add or update handler(s)</a> used to define Reducer function.</p></li>
 </ol>
 <p>To prepare this, we need to update the Login Feature <code>State</code> interface found at <code>src/app/store/login/login.reducer.ts</code>. Here is an example of how to add properties to an interface:</p>
@@ -650,7 +650,7 @@ export const reducer = createReducer(
 <h2>Problem 2: Set Initial Value For Login State</h2>
 <p>Set initial state for Login State. Each member of the Login State should start with <code>null</code> as its value.</p>
 <h2>P2: What You Need to Know</h2>
-<p>Now that we have updated the Login State's shape by updating the <code>State</code> interface, we need to update its initial shape. By default, we will set each member to <code>null</code>. Here is an example of doing that:</p>
+<p>Now that we have updated the Login State’s shape by updating the <code>State</code> interface, we need to update its initial shape. By default, we will set each member to <code>null</code>. Here is an example of doing that:</p>
 <pre><code class="language-ts">export const initialValue: Contact = {
     emailAddress: null;
     fullName: null;

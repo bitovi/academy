@@ -455,7 +455,7 @@ anything = new Promise(() =&gt; {});
   throw new Error(message);
 }
 </code></pre>
-<p>…and when TypeScript has exhausted all possible cases and determines a block of code won't run:</p>
+<p>…and when TypeScript has exhausted all possible cases and determines a block of code won’t run:</p>
 <pre><code class="language-ts">function primaryColorsToHexMessage(primaryColor: &quot;red&quot; | &quot;blue&quot; | &quot;yellow&quot;) {
   switch (primaryColor) {
     case &quot;red&quot;:
@@ -744,7 +744,7 @@ type ReturnType&lt;T extends (...args: any) =&gt; any&gt; = T extends (
   ? R
   : any;
 </code></pre>
-<p>Conditional type's refinement makes it a powerful utility. We’ve seen how conditional types can be used to simplify function signatures and create robust types for complex functions. Conditional types and <code>infer</code> will play a big role in our last section: template literal types.</p>
+<p>Conditional type’s refinement makes it a powerful utility. We’ve seen how conditional types can be used to simplify function signatures and create robust types for complex functions. Conditional types and <code>infer</code> will play a big role in our last section: template literal types.</p>
 <h2>Exercises</h2>
 <h3>Exercise 1</h3>
 <p>We used exclude in one of the examples in the content of this section.

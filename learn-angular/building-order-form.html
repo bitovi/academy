@@ -673,7 +673,7 @@ covering CanJS core libraries.">
 <li>Create a custom component to handle item selection</li>
 </ul>
 <h2>Creating an Order Form Component</h2>
-<p>Our order form is how we can create new orders. We'll use a reactive form to get data from the users, use a custom validation function to make sure at least one item has been selected, and calculate the order total every time a new item is selected or unselected.</p>
+<p>Our order form is how we can create new orders. We’ll use a reactive form to get data from the users, use a custom validation function to make sure at least one item has been selected, and calculate the order total every time a new item is selected or unselected.</p>
 <h2>Problem 1: Create New Route for Ordering From a Restaurant</h2>
 <h2>P1: Technical Requirements</h2>
 <p>Create a new <code>order</code> component, and create a route for our new component! The path should be <code>/restaurants/{{slug}}/order</code>.</p>
@@ -1004,14 +1004,14 @@ describe('AppComponent', () =&gt; {
 </code></pre>
  <div line-highlight="18,208,270,273-276,308,312,319,only"></div>
 <blockquote>
-<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+<p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
 <h2>P1: What You Need to Know</h2>
 <ul>
 <li>How to create new components
 <pre><code class="language-bash">ng g component order
 </code></pre></li>
-<li>You've created routes before! You got this!</li>
+<li>You’ve created routes before! You got this!</li>
 </ul>
 <h2>P1: Solution</h2>
 <p><details>
@@ -1053,8 +1053,8 @@ export class AppRoutingModule {}
  <div line-highlight="4,21-24,only"></div>
 <p></details></p>
 <h2>Problem 2: Build Out the Order Component</h2>
-<p>We've covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes. Let's practice those concepts.</p>
-<p>We've provided some starting code to get through this section to help you get the restaurant based on the route slug, create a new reactive form to collect order information, and update the order total whenever the <code>items</code> FormControl value changes.</p>
+<p>We’ve covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes. Let’s practice those concepts.</p>
+<p>We’ve provided some starting code to get through this section to help you get the restaurant based on the route slug, create a new reactive form to collect order information, and update the order total whenever the <code>items</code> FormControl value changes.</p>
 <h2>P2: Technical Requirements</h2>
 <p>The order form component needs to get the restaurant from the route slug, and needs a reactive form to collect <code>restaurant</code>, <code>name</code>, <code>address</code>, <code>phone</code>, and <code>items</code>, and a way to update the order total when the items form control changes.</p>
 <h2>P2: Setup</h2>
@@ -1221,7 +1221,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 <li><p>Create a reactive form (you learned this in previous sections! ✔️)</p></li>
 <li><p>Listen to form value changes (you learned this in previous sections! ✔️)</p></li>
 <li><p>Add validation:</p>
-<p>This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation" >validation</a>. Here's an example of a form with form controls with different validation, and one that's value is set to an array.</p>
+<p>This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation" >validation</a>. Here’s an example of a form with form controls with different validation, and one that’s value is set to an array.</p>
 <pre><code class="language-typescript">function coolKidsChecker(isACoolKid: string): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null =&gt; {
     if (control.value === isACoolKid) {
@@ -1537,12 +1537,12 @@ export class OrderComponent implements OnInit, OnDestroy {
  <div line-highlight="9,62-63,65-74,77-79,83-90,95-108,118,only"></div>
 <p></details></p>
 <h2>Importing 3rd Party Plugins</h2>
-<p>In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let's import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started" >ngx-bootstrap</a>:</p>
+<p>In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let’s import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started" >ngx-bootstrap</a>:</p>
 <p>✏️ Run:</p>
 <pre><code class="language-bash">ng add ngx-bootstrap
 </code></pre>
 <p>Ng add is a convenient way to import 3rd party libs that will update <code>angular.json</code> and <code>package.json</code> with any changes we need.</p>
-<p>✏️ Update <strong>src/app/app.module.ts</strong>. Once you're done, don't forget to restart the server!</p>
+<p>✏️ Update <strong>src/app/app.module.ts</strong>. Once you’re done, don’t forget to restart the server!</p>
 <pre><code class="language-ts">import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -1581,7 +1581,7 @@ export class AppModule { }
 
 </code></pre>
 <div line-highlight='5, 6, 29, 30, only'></div>
-<p>Now let's add the markup to our order component implementing the tabs widget.</p>
+<p>Now let’s add the markup to our order component implementing the tabs widget.</p>
 <p>✏️ Update <strong>src/app/order/order.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
   &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;&lt;/ng-container&gt;
@@ -1652,10 +1652,10 @@ export class AppModule { }
 
 </code></pre>
  <div line-highlight="10-37,only"></div>
-<p>Now when we view the order form of our route, we'll see a nice form and tabs for lunch and dinner menu options.</p>
+<p>Now when we view the order form of our route, we’ll see a nice form and tabs for lunch and dinner menu options.</p>
 <p><img src="../static/img/angular/pmo-tabs-working.gif" alt="Place My Order App tabs" title="Place My Order App tabs" /></p>
 <h2>Problem 3: Create Custom Menu-Items Component</h2>
-<p>We're going to build another component to use in our form to handle selecting order items. We use data-binding to pass data between components. We'll use the <code>@Input()</code> to get our list of items from the restaurant to display in our child component, and eventually hook it into our Reactive Form using the <code>formControlName</code> attribute as shown below.</p>
+<p>We’re going to build another component to use in our form to handle selecting order items. We use data-binding to pass data between components. We’ll use the <code>@Input()</code> to get our list of items from the restaurant to display in our child component, and eventually hook it into our Reactive Form using the <code>formControlName</code> attribute as shown below.</p>
 <pre><code class="language-html">&lt;pmo-menu-items
   [data]=&quot;restaurant.menu.lunch&quot;
   formControlName=&quot;items&quot;
@@ -1963,7 +1963,7 @@ const { Component, VERSION, Input } = ng.core;
 @Component({
   selector: 'my-child',
   template: `
-    My parent's name is {{parentName}}
+    My parent’s name is {{parentName}}
   `
 })
 class ChildComponent {
@@ -2514,8 +2514,8 @@ describe('OrderComponent', () =&gt; {
  <div line-highlight="8,78,171-180,182-194,196-210,only"></div>
 <h2>P5: What you need to know</h2>
 <h2>Emitting Data to Parent Components</h2>
-<p>To pass data to parent components in Angular, the <a href="https://angular.io/api/core/EventEmitter" >EventEmitter</a> class is used in combination with the <a href="https://angular.io/api/core/Output" >Output decorator</a>. The Output decorator marks a property to be listened to during change detection, and we call the <code>emit</code> method to broadcast the property's new value.</p>
-<p>The parent component is listening for a change on the child component's property and calls a function on that change that takes a parameter of the updated value.</p>
+<p>To pass data to parent components in Angular, the <a href="https://angular.io/api/core/EventEmitter" >EventEmitter</a> class is used in combination with the <a href="https://angular.io/api/core/Output" >Output decorator</a>. The Output decorator marks a property to be listened to during change detection, and we call the <code>emit</code> method to broadcast the property’s new value.</p>
+<p>The parent component is listening for a change on the child component’s property and calls a function on that change that takes a parameter of the updated value.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -2622,7 +2622,7 @@ platformBrowserDynamic()
 <div line-highlight='31,32,43-45,69,77-79,only'></div>
 <h2>Programmatically Updating FormArray Values</h2>
 <p>When we have a FormArray we need to update programmatically with a value we can use the <a href="https://angular.io/api/forms/FormArray#patchvalue" ><code>patchValue</code></a> or <a href="https://angular.io/api/forms/FormArray#setvalue" ><code>setValue</code></a> methods on the <code>FormArray</code> class.</p>
-<p>The difference between these two FormArray's methods is that <code>setValue</code> replaces the current array with the new value, and <code>patchValue</code> updates the array with the new values, trying to update values where possible.</p>
+<p>The difference between these two FormArray’s methods is that <code>setValue</code> replaces the current array with the new value, and <code>patchValue</code> updates the array with the new values, trying to update values where possible.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -2713,7 +2713,7 @@ platformBrowserDynamic()
 <div line-highlight='25,57-61,only'></div>
 <ul>
 <li>How to emit a value to a parent component (you learned this in the section above! ✔️)</li>
-<li>How to programmatically update a <code>FormArray</code>'s value (you learned this in the section above! ✔️)</li>
+<li>How to programmatically update a <code>FormArray</code>’s value (you learned this in the section above! ✔️)</li>
 </ul>
 <h2>P5: Solution</h2>
 <p><details>

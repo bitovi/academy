@@ -246,7 +246,7 @@
            						">
 						<a class="page"
 							href="getting-started.html"
-							title="Checkout the course repository and get setup for upcoming lessons!">
+							title="Check out the course repository and get setup for upcoming lessons!">
 							Getting Started
 						</a>
 						
@@ -621,7 +621,7 @@ covering CanJS core libraries.">
 <p>Action Types in NgRx follow a string pattern: <code>[Source] Event</code>. Since Actions represent a unique event, an Action Type should be a unique identifier for that event. NgRx encourages Actions to be unique in order to help with application debugging, traceability and maintainability. <a href="https://www.youtube.com/watch?v=JmnsEvoy-gY">Here’s a great presentation about Action Best Practices</a> from Mike Ryan, co-creator of NgRx.</p>
 <p><code>createAction()</code> can take up to two arguments: the string <code>type</code> and a <code>config</code> function that represents additional metadata, usually referred as <code>props</code> in Redux Pattern:</p>
 <blockquote>
-<p>Note that many of the code examples in these sections are for instructional purposes only, and aren't part of our main application repo or solution</p>
+<p>Note that many of the code examples in these sections are for instructional purposes only, and aren’t part of our main application repo or solution</p>
 </blockquote>
 <pre><code class="language-ts">// Note: This example code is not part of our application repo or solution
 
@@ -709,11 +709,11 @@ export const logoutFailure = createAction(
  <div line-highlight="20,22,24-27,only"></div>
 </details>
 <h2>Cleaning Up Removed Actions</h2>
-<p>Now that we've removed the generated Actions, we will need to update a couple of files so that our application can run:</p>
+<p>Now that we’ve removed the generated Actions, we will need to update a couple of files so that our application can run:</p>
 <blockquote>
 <p>Also note that this clean up will be required for the upcoming unit tests to pass</p>
 </blockquote>
-<p>First, we'll remove the generated Effects. And we will remove the unused imports from <code>@ngrx/effects</code>, <code>rxjs/operators</code>, <code>rxjs</code>, and <code>./login.actions</code>:</p>
+<p>First, we’ll remove the generated Effects. And we will remove the unused imports from <code>@ngrx/effects</code>, <code>rxjs/operators</code>, <code>rxjs</code>, and <code>./login.actions</code>:</p>
 <p><details open>
 <summary>src/app/store/login/login.effects.ts</summary></p>
 <pre><code class="language-ts">// src/app/store/login/login.effects.ts
@@ -729,7 +729,7 @@ export class LoginEffects {
 </code></pre>
  <div line-highlight="4,only"></div>
 </details>
-<p>Last, we'll remove the generated <code>on()</code> handlers in our Reducer function. And we will remove the unused imports from <code>@ngrx/store</code> and <code>./login.actions</code>:</p>
+<p>Last, we’ll remove the generated <code>on()</code> handlers in our Reducer function. And we will remove the unused imports from <code>@ngrx/store</code> and <code>./login.actions</code>:</p>
 <p><details open>
 <summary>src/app/store/login/login.reducer.ts</summary></p>
 <pre><code class="language-ts">// src/app/store/login/login.reducer.ts

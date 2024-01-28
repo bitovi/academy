@@ -535,7 +535,7 @@ type M = keyof VisitedParkMapping;
 </blockquote>
 <p>By itself, <code>keyof</code> may not seem all too interesting. However, it becomes powerful when used in tandem with other TypeScript features like Mapped Types and Generics which we will see in the future.</p>
 <h2>Typeof</h2>
-<p><code>typeof</code> is a way to create a type from a value. It can be used on values and properties of those values. <code>typeof</code> is useful for creating type queries and capturing types that aren't strictly defined.</p>
+<p><code>typeof</code> is a way to create a type from a value. It can be used on values and properties of those values. <code>typeof</code> is useful for creating type queries and capturing types that aren’t strictly defined.</p>
 <pre><code class="language-ts">const tRex = {
   name: &quot;tyrannosaurus rex&quot;,
   type: &quot;carnivore&quot;,
@@ -587,7 +587,7 @@ const dinoFight = (dino1: Dinosaur, dino2: Dinosaur): Dinosaur =&gt; {
  */
 type DinoFacts = ReturnType&lt;typeof getDinoFacts&gt;;
 </code></pre>
-<p>There are two <code>typeof</code>s to be aware of in TypeScript – the JavaScript one and the TypeScript one. The difference between them is the context in which they are used. If it is being used in an expression context, (used as a part of your code) it is the JavaScript <code>typeof</code> and will return a string with one of nine JavaScript types. And if it's used in a type context (as part of your type declarations) it's the TypeScript <code>typeof</code> and will refer to the type of whatever values follow it.</p>
+<p>There are two <code>typeof</code>s to be aware of in TypeScript – the JavaScript one and the TypeScript one. The difference between them is the context in which they are used. If it is being used in an expression context, (used as a part of your code) it is the JavaScript <code>typeof</code> and will return a string with one of nine JavaScript types. And if it’s used in a type context (as part of your type declarations) it’s the TypeScript <code>typeof</code> and will refer to the type of whatever values follow it.</p>
 <p><code>typeof</code> cannot be called on everything; there are some restrictions. <code>typeof</code> can only be called on identifiers and any of their properties.</p>
 <pre><code class="language-ts">const dinosaur = { name: &quot;velociraptor&quot;, type: &quot;carnivore&quot; };
 
@@ -630,7 +630,7 @@ type DinosaurColorsKeys = keyof typeof DinosaurColors; // “blue” | “green�
 <h3>Exercise 1</h3>
 <p>Update the <code>DinosaurFactObject</code> and <code>Dinosaur</code> type to gain type safety on the <code>getDinoFact</code> function. The function should, given a dinosaurs name (<code>velociraptor</code> or <code>t-rex</code>) and the <code>dinosaurFacts</code> object return the correct facts about the dinosaur.</p>
 <blockquote>
-<p><strong>NOTE:</strong> Don't worry about the <code>DinosaurFactObject[Dinosaur]</code> type in the return of the function signature. That's called an index-signature which we will get into later on.</p>
+<p><strong>NOTE:</strong> Don’t worry about the <code>DinosaurFactObject[Dinosaur]</code> type in the return of the function signature. That’s called an index-signature which we will get into later on.</p>
 </blockquote>
 <pre><code class="language-ts">/**
  * EX 1: Update the `DinosaurFactObject` and `Dinosaur` type to gain type safety on the `getDinoFact`
@@ -673,7 +673,7 @@ type Dinosaur = any;
 /**
  * This function should, given a facts object and dinosaur name, return the facts for that creature.
  *
- * &gt;NOTE: Don't worry about the `DinosaurFactObject[Dinosaur]` type in the return of the function signature. That's called
+ * &gt;NOTE: Don’t worry about the `DinosaurFactObject[Dinosaur]` type in the return of the function signature. That’s called
  * and index-signature which we will get into later on.
  */
 export const getDinoFact = (
@@ -734,7 +734,7 @@ type Dinosaur = keyof DinosaurFactObject;
 /**
  * This function should, given a facts object and dinosaur name, return the facts for that creature.
  *
- * &gt; NOTE: Don't worry about the `DinosaurFactObject[Dinosaur]` type in the return of the function signature. That's called
+ * &gt; NOTE: Don’t worry about the `DinosaurFactObject[Dinosaur]` type in the return of the function signature. That’s called
  * an index-signature which we will get into later on.
  */
 export const getDinoFact = (

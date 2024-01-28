@@ -154,7 +154,7 @@
            						">
 						<a class="page"
 							href="intro-to-jsx.html"
-							title="Learn how to use React&#x27;s preferred markup syntax JSX, and combine HTML with JavaScript.">
+							title="Learn how to use React’s preferred markup syntax JSX, and combine HTML with JavaScript.">
 							Introduction to JSX
 						</a>
 						
@@ -501,7 +501,7 @@ covering CanJS core libraries.">
     <h2>Introduction</h2>
 <p>One of the biggest mindset shifts for new developers learning React is the concept of a controlled vs uncontrolled component. This is something that is particularly important when building input components (text, checkbox, radio, etc).</p>
 <p>There are two types of input components we can create in React; controlled inputs and uncontrolled inputs.</p>
-<p>An uncontrolled input is one where we're not explicitly setting the value attribute. When a value attribute is not explicitly set, the input is ultimately controlled by the browser, and thus, out of the control of the React developer:</p>
+<p>An uncontrolled input is one where we’re not explicitly setting the value attribute. When a value attribute is not explicitly set, the input is ultimately controlled by the browser, and thus, out of the control of the React developer:</p>
 <pre><code class="language-jsx">// Uncontrolled
 function SearchBar() {
   return &lt;input type=&quot;text&quot; /&gt;;
@@ -511,8 +511,8 @@ ReactDOM.render(&lt;SearchBar /&gt;, document.getElementById('root'));
 </code></pre>
 <div line-highlight='3'></div>
 <div class='codepen' data-codepen='react'></div>
-<p>The <code>SearchBar</code> above is considered uncontrolled because we're not explicitly giving it a value. The value of the input is now entirely determined by the browser &amp; the user. We as developers have no say.</p>
-<p>While this isn't necessarily a bad thing, it does make our lives as React developers more difficult. The reason being, at any given point in the lifecycle of this component, we don't know what the value of the input is. Assuming we'll want to use the value at some point, this becomes a problem. How do we access the input's value?</p>
+<p>The <code>SearchBar</code> above is considered uncontrolled because we’re not explicitly giving it a value. The value of the input is now entirely determined by the browser &amp; the user. We as developers have no say.</p>
+<p>While this isn’t necessarily a bad thing, it does make our lives as React developers more difficult. The reason being, at any given point in the lifecycle of this component, we don’t know what the value of the input is. Assuming we’ll want to use the value at some point, this becomes a problem. How do we access the input’s value?</p>
 <p>We can solve this problem by <b>explicitly</b> controlling the input (giving it a value).</p>
 <pre><code class="language-jsx">// Controlled (sort of)
 function SearchBar() {
@@ -523,8 +523,8 @@ ReactDOM.render(&lt;SearchBar /&gt;, document.getElementById('root'));
 </code></pre>
 <div line-highlight='3'></div>
 <div class='codepen' data-codepen='react'></div>
-<p>The component above is now considered to be &quot;controlled&quot;, at any given point we always know what the value is (<code>hello</code>), and we've taken control away from the browser.</p>
-<p>Obviously this isn't a great solution though because the value will always be &quot;hello&quot;. We can remedy this by involving state:</p>
+<p>The component above is now considered to be &quot;controlled&quot;, at any given point we always know what the value is (<code>hello</code>), and we’ve taken control away from the browser.</p>
+<p>Obviously this isn’t a great solution though because the value will always be &quot;hello&quot;. We can remedy this by involving state:</p>
 <pre><code class="language-jsx">// Controlled (with state)
 function SearchBar() {
   const [inputValue, setInputValue] = React.useState('');
@@ -542,8 +542,8 @@ ReactDOM.render(&lt;SearchBar /&gt;, document.getElementById('root'));
 </code></pre>
 <div line-highlight='2,8,9'></div>
 <div class='codepen' data-codepen='react'></div>
-<p>We'll create a piece of state called <code>inputValue</code>, use that as the value of the input, and update it whenever the input changes.</p>
-<p>The process outlined above is how most controlled inputs are structured. Whether it's a textbox, a color picker or a checkbox, we can use this same stateful strategy to construct it. By storing the value in state, we always have access to it, and we can even control what the value ends up being.</p>
+<p>We’ll create a piece of state called <code>inputValue</code>, use that as the value of the input, and update it whenever the input changes.</p>
+<p>The process outlined above is how most controlled inputs are structured. Whether it’s a textbox, a color picker or a checkbox, we can use this same stateful strategy to construct it. By storing the value in state, we always have access to it, and we can even control what the value ends up being.</p>
 <p>We can take this a step further, by controlling the component with props:</p>
 <pre><code class="language-jsx">// Controlled (with props)
 function SearchBar({ inputValue, onInputValueChange }) {
@@ -571,15 +571,15 @@ ReactDOM.render(&lt;SmartParentComponent /&gt;, document.getElementById('root'))
 </code></pre>
 <div line-highlight='2,6,7,13,17,18'></div>
 <div class='codepen' data-codepen='react'></div>
-<p>Above we've defined both components, <code>SmartParentComponent</code> and <code>SearchBar</code>. The <code>SearchBar</code> component accepts two props: one for the value of the input, and another for updating the value of the input. Notice that there is no state here. This is a stateless (i.e. controlled) component.</p>
+<p>Above we’ve defined both components, <code>SmartParentComponent</code> and <code>SearchBar</code>. The <code>SearchBar</code> component accepts two props: one for the value of the input, and another for updating the value of the input. Notice that there is no state here. This is a stateless (i.e. controlled) component.</p>
 <p>The <code>SmartParentComponent</code> does have state however, it is keeping track of the input value and how to set the input value. These are then passed down into the <code>SearchBar</code> component, and used to control it.</p>
 <p>This is another very common pattern. The idea is that we have a very simple, lightweight <code>SearchBar</code> component, which has no concept of state. Instead it is entirely controlled by props passed down from a smart, stateful parent.</p>
 <h2>Exercise</h2>
-<p>Let's use our knowledge of controlled and uncontrolled components to build an input component! (Note: this will not be apart of the Tic-Tac-Toe game.)</p>
+<p>Let’s use our knowledge of controlled and uncontrolled components to build an input component! (Note: this will not be apart of the Tic-Tac-Toe game.)</p>
 <h3>The problem</h3>
-<p>✏️ You'll be modifying the <code>Search</code> component so that it is a controlled input. Specifically, try your hand at the following:</p>
+<p>✏️ You’ll be modifying the <code>Search</code> component so that it is a controlled input. Specifically, try your hand at the following:</p>
 <ul>
-<li>Modify the <code>Search</code> component below so that it's value is controlled by state.</li>
+<li>Modify the <code>Search</code> component below so that it’s value is controlled by state.</li>
 <li>Modify the clear button so that, when clicked, it clears out the value of the input.</li>
 <li>Make it so that the clear button is only visible when there is text in the input.</li>
 </ul>

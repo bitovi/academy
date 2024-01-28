@@ -678,13 +678,13 @@ see a longer list:</p>
 style="border: solid 1px black; max-width: 640px;"/></p>
 <h2>P1: Technical Requirements</h2>
 <ol>
-<li>Change <code>RestaurantComponent</code>'s <em>restaurant</em> property definition:</li>
+<li>Change <code>RestaurantComponent</code>’s <em>restaurant</em> property definition:</li>
 </ol>
 <pre><code class="language-typescript">restaurants: any[] = [];
 </code></pre>
 <ol start="2">
-<li>Use <code>RestaurantService</code>'s <code>getRestaurants</code> to get an array of restaurants and
-set it on <code>RestaurantComponent</code>'s <em>restaurant</em> property.</li>
+<li>Use <code>RestaurantService</code>’s <code>getRestaurants</code> to get an array of restaurants and
+set it on <code>RestaurantComponent</code>’s <em>restaurant</em> property.</li>
 </ol>
 <h2>P1: How to Verify Your Solution is Correct</h2>
 <p>You should be able see a list of all restaurants when you navigate to <a href="http://localhost:4200/restaurants" >localhost:4200/restaurants</a>, instead of the two that were previously hard-coded.</p>
@@ -1260,7 +1260,7 @@ describe('AppComponent', () =&gt; {
 </code></pre>
  <div line-highlight="2,12,16,18,20-118,120,122-128,130,132-139,141-189,198-207,240,249,only"></div>
 <blockquote>
-<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+<p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
 <h2>P1: What You Need to Know</h2>
 <ul>
@@ -1271,7 +1271,7 @@ describe('AppComponent', () =&gt; {
 <p>Hint: Call the <code>getRestaurants</code> method in the <code>ngOnInit</code> method.</p>
 </blockquote>
 <h2>Inject a Service into a Component</h2>
-<p>To use a service in a component, we use dependency injection to pass the service in the component constructor function. We're then able to access methods on it for use in our component.</p>
+<p>To use a service in a component, we use dependency injection to pass the service in the component constructor function. We’re then able to access methods on it for use in our component.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1456,7 +1456,7 @@ export class RestaurantComponent implements OnInit {
  <div line-highlight="2-3,11,13,16-18,"></div>
 <p></details></p>
 <h2>Problem 2: Show a Loading State while Restaurants are Being Requested</h2>
-<p>Sometimes the server can take a long time to respond. It's a better experience for the user
+<p>Sometimes the server can take a long time to respond. It’s a better experience for the user
 to show a loading icon to the user while data is loading:</p>
 <p>TODO:</p>
 <p>This icon will be shown with the following HTML:</p>
@@ -1775,7 +1775,7 @@ describe('RestaurantComponent', () =&gt; {
 </code></pre>
  <div line-highlight="167,172-219,221-266,268-270,274-281,283-290,only"></div>
 <blockquote>
-<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+<p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
 <h2>P2: What You Need to Know</h2>
 <ul>
@@ -1855,12 +1855,12 @@ export class RestaurantComponent implements OnInit {
  <div line-highlight="3-5,only"></div>
 <p></details></p>
 <h2>Did You Know?</h2>
-<p>You may have noticed in our markup there's another use of <code>routerLink</code>:</p>
+<p>You may have noticed in our markup there’s another use of <code>routerLink</code>:</p>
 <pre><code class="language-html">&lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
   Details
 &lt;/a&gt;
 </code></pre>
-<p>One of the ways to create a link is to pass in the individual parts to the <code>routerLink</code> directive. This will generate the path <code>/restaurants/crab-cafe</code> for the &quot;crab cafe&quot; restaurant from it's slug.</p>
+<p>One of the ways to create a link is to pass in the individual parts to the <code>routerLink</code> directive. This will generate the path <code>/restaurants/crab-cafe</code> for the &quot;crab cafe&quot; restaurant from it’s slug.</p>
 
 </section>
 

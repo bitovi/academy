@@ -673,7 +673,7 @@ covering CanJS core libraries.">
 <li>Update npm script to include deploy</li>
 </ul>
 <h2>Add Production API URL</h2>
-<p>For our production app, we won't be running a local server, instead we'll point to <code>https://www.place-my-order.com/api</code>. All we need to do is add the apiUrl variable to our production environment file. When we do a production build by running <code>ng build</code>, our production file will be used.</p>
+<p>For our production app, we won’t be running a local server, instead we’ll point to <code>https://www.place-my-order.com/api</code>. All we need to do is add the apiUrl variable to our production environment file. When we do a production build by running <code>ng build</code>, our production file will be used.</p>
 <p>✏️ Update <strong>src/environments/environment.prod.ts</strong>:</p>
 <pre><code class="language-ts">export const environment = {
   production: true,
@@ -697,7 +697,7 @@ covering CanJS core libraries.">
 </code></pre>
 <ol>
 <li>Which Firebase CLI features do you want to setup for this folder? (hosting)</li>
-<li>Select a default Firebase project for this directory? (don't setup a default project)</li>
+<li>Select a default Firebase project for this directory? (don’t setup a default project)</li>
 <li>What do you want to use as your public directory? (dist/place-my-order)</li>
 <li>Configure as a single-page app (rewrite all urls to /index.html)? (yes)</li>
 <li>Set up automatic builds and deploys with GitHub? (no)</li>
@@ -709,13 +709,13 @@ covering CanJS core libraries.">
 <li>What alias do you want to use for this project? (prod)</li>
 </ol>
 <h2>Deploy App</h2>
-<p>We need to get our app ready to deploy, so we'll create a build.</p>
+<p>We need to get our app ready to deploy, so we’ll create a build.</p>
 <pre><code class="language-shell">ng build
 </code></pre>
 <pre><code class="language-shell">firebase deploy
 firebase open hosting:site
 </code></pre>
-<p>Now when we view our project url from the page Firebase launches we'll see our app!</p>
+<p>Now when we view our project url from the page Firebase launches we’ll see our app!</p>
 <h2>Update npm scripts</h2>
 <pre><code class="language-json"> &quot;scripts&quot;: {
     &quot;ng&quot;: &quot;ng&quot;,

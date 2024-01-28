@@ -676,7 +676,7 @@ covering CanJS core libraries.">
 <h2>Problem 1: Write a Restaurant Service to Fetch a List of Restaurants</h2>
 <p>We want to create an Angular service with a method that will get a list of restaurants from our Place My Order API.</p>
 <h2>P1: What You Need to Know</h2>
-<p>To complete this problem, you'll need to know:</p>
+<p>To complete this problem, you’ll need to know:</p>
 <ul>
 <li>The basics of Angular Services.</li>
 <li>How to generate a service.</li>
@@ -830,10 +830,10 @@ test file.</p>
 <p>HINT: You can generate a service in a folder <code>ng g service folder/users</code></p>
 </blockquote>
 <h2>Injectable</h2>
-<p><a href="https://angular.io/api/core/Injectable" ><code>Injectable</code></a> is an Angular decorator that makes the class it's decorating available to Angular's <a href="https://angular.io/api/core/Injector" >Injector</a> for creation. In the case of creating service to get data to use in our application, we want those services to be able to be injected into the app components we need the services in.</p>
-<p>Angular uses the injector to create dependencies using providers - which know how to create said dependencies. We can then inject our service into our components constructor to take advantage of Angular's dependency injection pattern.</p>
+<p><a href="https://angular.io/api/core/Injectable" ><code>Injectable</code></a> is an Angular decorator that makes the class it’s decorating available to Angular’s <a href="https://angular.io/api/core/Injector" >Injector</a> for creation. In the case of creating service to get data to use in our application, we want those services to be able to be injected into the app components we need the services in.</p>
+<p>Angular uses the injector to create dependencies using providers - which know how to create said dependencies. We can then inject our service into our components constructor to take advantage of Angular’s dependency injection pattern.</p>
 <h2>Importing <code>HttpClientModule</code> into <em>app.module.ts</em></h2>
-<p>For making HTTP requests to interact with an API, Angular provides <a href="https://angular.io/api/common/http/HttpClientModule" >HttpClient Module</a>. To use it we'll need to import it in the root module of our app and include it the imports array.</p>
+<p>For making HTTP requests to interact with an API, Angular provides <a href="https://angular.io/api/common/http/HttpClientModule" >HttpClient Module</a>. To use it we’ll need to import it in the root module of our app and include it the imports array.</p>
 <p><strong>src/app/app.module.ts</strong></p>
 <pre><code class="language-ts">import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -985,8 +985,8 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='23,25-27,29-31, only'></div>
-<p>This tutorial won't cover RxJS in depth, but it's worth being aware of Angular's
-heavy use of it. Checkout our <a href="../learn-rxjs.html" title="Learn RxJS by creating a validating credit card form.">Learn RxJS</a> tutorial for more information.</p>
+<p>This tutorial won’t cover RxJS in depth, but it’s worth being aware of Angular’s
+heavy use of it. Check out our <a href="../learn-rxjs.html" title="Learn RxJS by creating a validating credit card form.">Learn RxJS</a> tutorial for more information.</p>
 <h2>P1: Technical Requirements</h2>
 <p>Write a <code>RestaurantService</code> with a method <code>getRestaurants</code> that uses <code>httpClient</code> to get a list of restaurants from an environment variable + <code>/restaurants</code>. For example, we could get restaurants like:</p>
 <pre><code class="language-typescript">const httpClient = new HttpClient();
@@ -1010,7 +1010,7 @@ as shown above.</li>
 <li>Create an environment variable to point to the API</li>
 </ul>
 <h3>Installing the Place My Order API</h3>
-<p>We've done some work to create a Place My Order API for use in this app by creating an NPM package that will generate fake restaurant data and serve it from port 7070.</p>
+<p>We’ve done some work to create a Place My Order API for use in this app by creating an npm package that will generate fake restaurant data and serve it from port 7070.</p>
 <p>✏️ Run:</p>
 <pre><code class="language-bash">npm install place-my-order-api --save
 </code></pre>
@@ -1030,7 +1030,7 @@ as shown above.</li>
 </code></pre>
 <p>Double check the api by navigating to <a href="http://localhost:7070/restaurants">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the api command from.</p>
 <h3>Create an Environment Variable</h3>
-<p>The way we're accessing our locally run API during development may be different than how we access it in production. To prepare for this, we'll set an environment variable to do what we need.</p>
+<p>The way we’re accessing our locally run API during development may be different than how we access it in production. To prepare for this, we’ll set an environment variable to do what we need.</p>
 <p>✏️ To generate the environment files, run:</p>
 <pre><code class="language-bash">ng generate environments
 </code></pre>
@@ -1170,7 +1170,7 @@ describe('RestaurantService', () =&gt; {
 <pre><code class="language-shell">npm run test
 </code></pre>
 <blockquote>
-<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+<p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
 <h2>P1: Solution</h2>
 <p><details>
@@ -1226,14 +1226,14 @@ export class RestaurantService {
 <div line-highlight='1,3,4,10,12-14'></div>
 <p></details></p>
 <h2>Problem 2: Write an Interface to Describe the Restaurant Object and Data Response</h2>
-<p>Currently, from TypeScript's perspective, <code>getRestaurants()</code> can return anything. This
+<p>Currently, from TypeScript’s perspective, <code>getRestaurants()</code> can return anything. This
 means if we use the data from <code>getRestaurants()</code>, TypeScript will not be able to notice
 any mistakes. This undermines the whole point of TypeScript!</p>
 <h2>P2: What You Need to Know</h2>
-<p>To solve this problem, you'll need to:</p>
+<p>To solve this problem, you’ll need to:</p>
 <ul>
 <li>Understand interfaces in TypeScript</li>
-<li>How to generate an interface with Angular's CLI.</li>
+<li>How to generate an interface with Angular’s CLI.</li>
 </ul>
 <h2>Interfaces in TypeScript</h2>
 <p>Thanks to TypeScript we can write interfaces to describe what we expect objects to look like. Consider the user service below returning an array of users. This interface describes what a user (and array of users) should look like:</p>
@@ -1423,7 +1423,7 @@ platformBrowserDynamic()
 </code></pre>
 <p>This interface should be written in the <strong>src/app/restaurant/restaurant.ts</strong> file.</p>
 <h2>P2: Setup</h2>
-<p>We've already written a <code>ResponseData</code> interface that will take an array of restaurants for you. Here's the code to get you started:</p>
+<p>We’ve already written a <code>ResponseData</code> interface that will take an array of restaurants for you. Here’s the code to get you started:</p>
 <p>✏️ Generate the restaurant interface:</p>
 <pre><code class="language-bash">ng g interface restaurant/restaurant
 </code></pre>
@@ -1611,7 +1611,7 @@ describe('RestaurantService', () =&gt; {
       },
       _id: 'xugqxQIX5dfgdgTLBv',
     };
-    // will error if interface isn't implemented correctly
+    // will error if interface isn’t implemented correctly
     expect(true).toBe(true);
   });
 });
@@ -1619,7 +1619,7 @@ describe('RestaurantService', () =&gt; {
 </code></pre>
  <div line-highlight="6-7,90,103-134,only"></div>
 <blockquote>
-<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass! If you haven't written the interfaces correctly, you'll see a compile error before the tests runs. You might need to restart the test script to see the compile error.</p>
+<p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass! If you haven’t written the interfaces correctly, you’ll see a compile error before the tests runs. You might need to restart the test script to see the compile error.</p>
 </blockquote>
 <h2>P2: Solution</h2>
 <p><details>
@@ -1659,7 +1659,7 @@ export interface Restaurant {
 
 </code></pre>
  <div line-highlight="3,8,13-15,20-21,26-30,"></div>
-<p>In the next step we'll call the <code>getRestaurants</code> method in our component to get the list of restaurants.</p>
+<p>In the next step we’ll call the <code>getRestaurants</code> method in our component to get the list of restaurants.</p>
 <p></details></p>
 
 </section>

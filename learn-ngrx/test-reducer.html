@@ -246,7 +246,7 @@
            						">
 						<a class="page"
 							href="getting-started.html"
-							title="Checkout the course repository and get setup for upcoming lessons!">
+							title="Check out the course repository and get setup for upcoming lessons!">
 							Getting Started
 						</a>
 						
@@ -604,9 +604,9 @@ ng test --watch
 </code></pre>
 <p>The <code>--watch</code> switch will rerun your tests whenever a code file changes. You can skip it to just run all tests once.</p>
 <h2>Description</h2>
-<p>When testing a Reducer, we will test each of its <code>on()</code> handlers by verifying each pure function returns the expected value given an Action and a Login State (typically the <code>initialState</code>). Unlike the previous testing sections, when testing the Reducer, we don't need a <code>TestBed</code> since there shouldn't be any dependencies when dealing with the Reducer.</p>
+<p>When testing a Reducer, we will test each of its <code>on()</code> handlers by verifying each pure function returns the expected value given an Action and a Login State (typically the <code>initialState</code>). Unlike the previous testing sections, when testing the Reducer, we don’t need a <code>TestBed</code> since there shouldn’t be any dependencies when dealing with the Reducer.</p>
 <h2>Update <code>login.selectors.spec.ts</code></h2>
-<p>Before we can test our Reducer, our tests involving our Selectors are failing. This is because we've changed the shape and initial value of our Login State. To continue, we need to update them. Copy the following code to replace the contents of <code>src/app/store/login/login.selectors.spec.ts</code>:</p>
+<p>Before we can test our Reducer, our tests involving our Selectors are failing. This is because we’ve changed the shape and initial value of our Login State. To continue, we need to update them. Copy the following code to replace the contents of <code>src/app/store/login/login.selectors.spec.ts</code>:</p>
 <p><details>
 <summary>src/app/store/login/login.selectors.spec.ts</summary></p>
 <pre><code class="language-ts">// src/app/store/login/login.selectors.spec.ts
@@ -826,7 +826,7 @@ describe('Login Reducer', () =&gt; {
 
       const result = reducer(initialState, action);
 
-      // Shouldn't update state at all
+      // Shouldn’t update state at all
       expect(result).toBe(initialState);
     });
   });
@@ -899,7 +899,7 @@ describe('Login Reducer', () =&gt; {
 
       const result = reducer(initialState, action);
 
-      // Shouldn't update state at all
+      // Shouldn’t update state at all
       expect(result).toBe(initialState);
     });
   });

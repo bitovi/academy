@@ -246,7 +246,7 @@
            						">
 						<a class="page"
 							href="getting-started.html"
-							title="Checkout the course repository and get setup for upcoming lessons!">
+							title="Check out the course repository and get setup for upcoming lessons!">
 							Getting Started
 						</a>
 						
@@ -599,7 +599,7 @@ covering CanJS core libraries.">
 <li><p>Generate Login Feature Store using NgRx schematics.</p></li>
 </ol>
 <h2>Installing Project Dependencies</h2>
-<p>We will need access to the Angular cli for this section, so if you haven't already installed the project's dependencies (<a href="getting-started.html" title="Checkout the course repository and get setup for upcoming lessons!">Getting Started</a>), be sure to install them:</p>
+<p>We will need access to the Angular cli for this section, so if you haven’t already installed the project’s dependencies (<a href="getting-started.html" title="Check out the course repository and get setup for upcoming lessons!">Getting Started</a>), be sure to install them:</p>
 <pre><code class="language-bash">npm install
 </code></pre>
 <h2>NgRx Dependencies</h2>
@@ -615,7 +615,7 @@ covering CanJS core libraries.">
 <pre><code class="language-bash">npm install @ngrx/{store,effects,entity,store-devtools}@14 --save
 </code></pre>
 <h2>Generating Global Store</h2>
-<p>We'll take advantage of NgRx schematics to <a href="https://ngrx.io/guide/schematics/store#command">generate our initial state management files</a>, and register the root of our Global Store within <code>app.module.ts</code>.</p>
+<p>We’ll take advantage of NgRx schematics to <a href="https://ngrx.io/guide/schematics/store#command">generate our initial state management files</a>, and register the root of our Global Store within <code>app.module.ts</code>.</p>
 <pre><code class="language-bash">npx ng generate store State --root --state-path store --module app.module.ts
 </code></pre>
 <p>We are now setup to be able to generate NgRx Features.</p>
@@ -722,7 +722,7 @@ export class AppModule {}
 <li>Writing tests for <code>Components</code> using NgRx Selectors</li>
 <li>Writing tests for NgRx Selectors themselves</li>
 </ol>
-<!-- Can't show code diff since it will result in misleading highlights: 12, 13, 18 -->
+<!-- Can’t show code diff since it will result in misleading highlights: 12, 13, 18 -->
 <details open>
 <summary>src/app/store/login/login.reducer.ts</summary>
 <pre><code class="language-ts">// src/app/store/login/login.reducer.ts

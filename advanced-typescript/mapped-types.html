@@ -538,7 +538,7 @@ const bagWithPokeball: BagWithRequiredValue = {
 <li><code>symbol</code> is a proper subset of <code>string</code></li>
 <li><code>number</code> and symbol are mutually exclusive</li>
 </ul>
-<p>In order for TypeScript to provide type safety, it has to be able to differentiate between the keys passed in. If the indexer's values have the same types, it doesn’t matter.</p>
+<p>In order for TypeScript to provide type safety, it has to be able to differentiate between the keys passed in. If the indexer’s values have the same types, it doesn’t matter.</p>
 <pre><code class="language-ts">type IndexerDifferentSameValue = {
   [itemString: string]: number;
   [itemNumber: number]: number;
@@ -598,7 +598,7 @@ const bulbasaurWithString = firstThreePokemon[&quot;0&quot;];
 </code></pre>
 <div line-highlight='1-3, 6, 8-12, 14-18'></div>
 <h3>Readonly Property Modifier</h3>
-<p>While the optional syntax (<code>?</code>) isn't supported on index signature types, the index signature syntax does allow for the <code>readonly</code> modifier. The <code>readonly</code> modifier marks a property as immutable on an object meaning it cannot be re-assigned once set. If we wanted to make our <code>PokemonNameList</code> type above unchangeable we could do it by putting the <code>readonly</code> modifier at the beginning of the declaration.</p>
+<p>While the optional syntax (<code>?</code>) isn’t supported on index signature types, the index signature syntax does allow for the <code>readonly</code> modifier. The <code>readonly</code> modifier marks a property as immutable on an object meaning it cannot be re-assigned once set. If we wanted to make our <code>PokemonNameList</code> type above unchangeable we could do it by putting the <code>readonly</code> modifier at the beginning of the declaration.</p>
 <pre><code class="language-ts">type ReadonlyPokemonNameList = {
   readonly [index: number]: string;
 };
@@ -844,7 +844,7 @@ type Numberfied = ToNumber&lt;{ level: string; age: string }&gt;; // {level: num
  * type Numberfied = ToNumber&lt;{level: string; age: string;}&gt; // {level: number; age: number}
  * ```
  */
-type To&lt;T, K&gt; = any; // TODO: don't use any
+type To&lt;T, K&gt; = any; // TODO: don’t use any
 
 const initialState = {
   name: &quot;&quot;,

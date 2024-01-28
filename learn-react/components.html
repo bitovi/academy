@@ -154,7 +154,7 @@
            						">
 						<a class="page"
 							href="intro-to-jsx.html"
-							title="Learn how to use React&#x27;s preferred markup syntax JSX, and combine HTML with JavaScript.">
+							title="Learn how to use React’s preferred markup syntax JSX, and combine HTML with JavaScript.">
 							Introduction to JSX
 						</a>
 						
@@ -500,7 +500,7 @@ covering CanJS core libraries.">
   				<section class="body">
     <p>React is all about components. In fact the whole point of the library is to help developers easily create reusable components.</p>
 <h2>Components</h2>
-<p>Earlier, we learned that React JSX is almost always the return value of our components. Components are like small containers which can be reused throughout your application. For example, you might build a <code>Button</code> component which renders all the JSX required for a button. Here's an example.</p>
+<p>Earlier, we learned that React JSX is almost always the return value of our components. Components are like small containers which can be reused throughout your application. For example, you might build a <code>Button</code> component which renders all the JSX required for a button. Here’s an example.</p>
 <pre><code class="language-jsx">function Button() {
   return (
     &lt;div className=&quot;button primary&quot;&gt;
@@ -512,7 +512,7 @@ covering CanJS core libraries.">
 ReactDOM.render(&lt;Button /&gt;, document.getElementById('root'));
 </code></pre>
 <div class='codepen' data-codepen='react'></div>
-<p>In the code above, we're defining a functional component (a function which returns JSX) called <code>Button</code>.</p>
+<p>In the code above, we’re defining a functional component (a function which returns JSX) called <code>Button</code>.</p>
 <p>This component returns JSX and could then be rendered and reused by another component like <code>App</code> below.</p>
 <pre><code class="language-jsx">function App() {
   return (
@@ -524,9 +524,9 @@ ReactDOM.render(&lt;Button /&gt;, document.getElementById('root'));
   );
 }
 </code></pre>
-<p>Here the <code>App</code> component is rendering the <code>Button</code> component 3 times. Note that when you render custom components like this they don't need closing tags, instead they can be self-closing with a <code>/</code> tacked onto the end. You can also design them to have closing tags with extra elements rendered inside (see an explanation on JSX children <a href="https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891">here</a>).</p>
+<p>Here the <code>App</code> component is rendering the <code>Button</code> component 3 times. Note that when you render custom components like this they don’t need closing tags, instead they can be self-closing with a <code>/</code> tacked onto the end. You can also design them to have closing tags with extra elements rendered inside (see an explanation on JSX children <a href="https://codeburst.io/a-quick-intro-to-reacts-props-children-cb3d2fce4891">here</a>).</p>
 <h2>Functional Components</h2>
-<p>Functional components are simple. They're just functions which return a React element, usually written in JSX.</p>
+<p>Functional components are simple. They’re just functions which return a React element, usually written in JSX.</p>
 <pre><code class="language-jsx">function MyFuncComponent() {
   return &lt;div&gt;hello world&lt;/div&gt;;
 }
@@ -535,7 +535,7 @@ ReactDOM.render(&lt;MyFuncComponent /&gt;, document.getElementById('root'));
 </code></pre>
 <div line-highlight='2'></div>
 <div class='codepen' data-codepen='react'></div>
-<p>As you can see in the functional component above, there's not much magic happening. We simply define a function and return JSX.</p>
+<p>As you can see in the functional component above, there’s not much magic happening. We simply define a function and return JSX.</p>
 <h2>Class Components</h2>
 <p>Class components are a bit more complex than functional ones. Class components are contained in a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes"><code>class</code></a> and have a <code>render</code> method which returns JSX.</p>
 <pre><code class="language-jsx">class MyClassComponent extends React.Component {
@@ -548,8 +548,8 @@ ReactDOM.render(&lt;MyClassComponent /&gt;, document.getElementById('root'));
 </code></pre>
 <div line-highlight='2-4'></div>
 <div class='codepen' data-codepen='react'></div>
-<h2>What's the Difference?</h2>
-<p>The above <code>MyFuncComponent</code> and <code>MyClassComponent</code> produce the exact same result using the two different methods. No matter which type of component you're working with, they can be used the same way:</p>
+<h2>What’s the Difference?</h2>
+<p>The above <code>MyFuncComponent</code> and <code>MyClassComponent</code> produce the exact same result using the two different methods. No matter which type of component you’re working with, they can be used the same way:</p>
 <pre><code class="language-jsx">function App() {
   return (
     &lt;div&gt;
@@ -560,11 +560,11 @@ ReactDOM.render(&lt;MyClassComponent /&gt;, document.getElementById('root'));
 }
 </code></pre>
 <div line-highlight='4-5'></div>
-<p>Originally, class components were the most popular because they could keep track of state and respond to specific component lifecycle events. This wasn't possible in functional components until the release of the <a href="https://reactjs.org/docs/hooks-reference.html">React Hooks API</a> in v16. Up until then, functional components were commonly referred to as <em>stateless components</em>.</p>
+<p>Originally, class components were the most popular because they could keep track of state and respond to specific component lifecycle events. This wasn’t possible in functional components until the release of the <a href="https://reactjs.org/docs/hooks-reference.html">React Hooks API</a> in v16. Up until then, functional components were commonly referred to as <em>stateless components</em>.</p>
 <p>Now both class and functional components are used commonly in codebases around the world, but there has been a shift to using only functional components, as the syntax for them is more readable and cleaner.</p>
 <p>For the remainder of this training, we will be using functional components exclusively.</p>
 <h2>Multiples of the same component</h2>
-<p>It's important to note that when you have more than one of the same component, you will need a unique way to identify them. This helps React know to only re-render the component with that key. Otherwise, React will not know which component to update and will have to update them all, or in some cases, it may even update the wrong component!
+<p>It’s important to note that when you have more than one of the same component, you will need a unique way to identify them. This helps React know to only re-render the component with that key. Otherwise, React will not know which component to update and will have to update them all, or in some cases, it may even update the wrong component!
 An example of this is:</p>
 <pre><code class="language-jsx">function App() {
   return (

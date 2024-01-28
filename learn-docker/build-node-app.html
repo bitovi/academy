@@ -480,7 +480,7 @@ covering CanJS core libraries.">
   }
 }
 </code></pre>
-<p>This file defines <code>express</code> as a standard dependency and <code>nodemon</code> as a dev dependency. Nodemon is used to run our Express server and watches the source code to hot-reload any new changes without needing to restart the server. It is a dev dependency because we don't want the overhead of running nodemon in production or even the bulk of keeping it in <code>node_modules/</code>.</p>
+<p>This file defines <code>express</code> as a standard dependency and <code>nodemon</code> as a dev dependency. Nodemon is used to run our Express server and watches the source code to hot-reload any new changes without needing to restart the server. It is a dev dependency because we don’t want the overhead of running nodemon in production or even the bulk of keeping it in <code>node_modules/</code>.</p>
 <p>Our <code>package.json</code> also defines a <code>start</code> script and a <code>start:prod</code>. These are convenient ways to allow us to start our application with nodemon or node by running <code>npm start</code> or <code>npm run start:prod</code>.</p>
 <h3>src/index.js</h3>
 <p>✏️ Create a <code>src</code> directory and <code>index.js</code> within it.</p>
@@ -504,8 +504,8 @@ npm start
 </code></pre>
 <p>Open your browser to <code>localhost:3000</code> and you should see <code>Hello World!</code></p>
 <p><img src="../static/img/docker/2-build-node-app/node-hello-world.png" alt="node app in browser" /></p>
-<h2>What's next</h2>
-<p>Now that we've created a simple NodeJS app, we are going to containerize it.</p>
+<h2>What’s next</h2>
+<p>Now that we’ve created a simple NodeJS app, we are going to containerize it.</p>
 
 </section>
 

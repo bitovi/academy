@@ -554,27 +554,27 @@ title="Text displaying 'Hello world' and a few other greetings." /></p>
 // OR provide HTML like this
 otherElement.innerHTML = `&lt;my-greeting&gt;&lt;/my-greeting&gt;`;
 </code></pre></li>
-<li><p>And the <strong>bonus</strong>, call their constructors (you can't do this with normal elements):</p>
+<li><p>And the <strong>bonus</strong>, call their constructors (you can’t do this with normal elements):</p>
 <pre><code class="language-js">let element = new MyGreeting();
 
 // This is a DOM node now, do the usual things with it:
 document.body.appendChild(element);
 </code></pre></li>
 </ul>
-<p>Let's create our first element by adding it to the HTML.</p>
+<p>Let’s create our first element by adding it to the HTML.</p>
 <pre><code class="language-html">&lt;my-greeting&gt;&lt;/my-greeting&gt;
 </code></pre>
 <div class='codepen'></div>
 <p>Click the &quot;Run in your browser&quot; button above and notice that... nothing happens. In order to do anything useful, we have to register our element.</p>
 <h3>Registering our tag</h3>
-<p>The <a href="https://html.spec.whatwg.org/multipage/custom-elements.html">custom elements API</a> provides a way to hook into the browser's HTML parser and receive callbacks whenever a certain tag is encountered. Think about that; your code can run before the page has even finished loading (provided your script has run). That's a lot of power.</p>
+<p>The <a href="https://html.spec.whatwg.org/multipage/custom-elements.html">custom elements API</a> provides a way to hook into the browser’s HTML parser and receive callbacks whenever a certain tag is encountered. Think about that; your code can run before the page has even finished loading (provided your script has run). That’s a lot of power.</p>
 <p>Custom elements are classes that extend <a href="https://html.spec.whatwg.org/multipage/dom.html#elements-in-the-dom">HTMLElement</a>. This is the base class from which all elements, both built-in and custom, derive. For example the <code>&lt;progress&gt;</code> element is an instance of <code>HTMLProgressElement</code>.</p>
 <p>To register our own tag we first extend HTMLElement like so:</p>
 <pre><code class="language-js">class MyGreeting extends HTMLElement {
 
 }
 </code></pre>
-<p>Once you've extended HTMLElement you then need to give it a tag name and pass that, along with the class into <code>customElements.define()</code>. Since we want to print <strong>Hello world</strong> we can do that in the constructor:</p>
+<p>Once you’ve extended HTMLElement you then need to give it a tag name and pass that, along with the class into <code>customElements.define()</code>. Since we want to print <strong>Hello world</strong> we can do that in the constructor:</p>
 <pre><code class="language-html">&lt;my-greeting&gt;&lt;/my-greeting&gt;
 &lt;script type=&quot;module&quot;&gt;
 class MyGreeting extends HTMLElement {
@@ -596,14 +596,14 @@ customElements.define('my-greeting', MyGreeting);
 </ul>
 <p>In this exercise we are doing both.</p>
 <h4>attributeChangeCallback</h4>
-<p>In order to understand attributes in custom elements we'll learn about our first lifecycle callback. <code>attributeChangedCallback</code> is a method you define on your element class. It will be called back with the name of the attribute, as well as the new and old value.</p>
+<p>In order to understand attributes in custom elements we’ll learn about our first lifecycle callback. <code>attributeChangedCallback</code> is a method you define on your element class. It will be called back with the name of the attribute, as well as the new and old value.</p>
 <pre><code class="language-js">class MyGreeting extends HTMLElement {
   attributeChangedCallback(attributeName, oldValue, newValue) {
     // Do whatever you want here
   }
 }
 </code></pre>
-<p><em>However</em>, in order to get attribute change notification you <strong>must</strong> define which attributes should be observed. This means that you aren't notified when any arbitrary attribute is added; only those you predefine. This is a performance optimization tradeoff that was made when designing the API.</p>
+<p><em>However</em>, in order to get attribute change notification you <strong>must</strong> define which attributes should be observed. This means that you aren’t notified when any arbitrary attribute is added; only those you predefine. This is a performance optimization tradeoff that was made when designing the API.</p>
 <p>To define which attributes should be observed you add a static getter <code>observedAttributes</code> on the class.</p>
 <pre><code class="language-js">class MyGreeting extends HTMLElement {
   static get observedAttributes() {
@@ -670,7 +670,7 @@ class MyGreeting extends HTMLElement {
 
 customElements.define('my-greeting', MyGreeting);
 
-// Let's modify the element
+// Let’s modify the element
 let element = document.querySelector('my-greeting');
 
 setTimeout(() =&gt; {

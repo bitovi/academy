@@ -672,13 +672,13 @@ covering CanJS core libraries.">
 <h2>Problem</h2>
 <p><img src="../static/img/angular/10-updating-service-params/before.png"
 style="border: solid 1px black; max-width: 400px;"/></p>
-<p>Now that we are able to capture a user's state and city preferences, we want to only return restaurants in the selected city. Modify the <code>getRestaurants</code> method in the <strong>src/app/restaurant/restaurant.service.ts</strong> file to take two string parameters, one for city, and one for state. The requested url with params should look like this: <code>'/api/restaurants?filter[address.state]=IL&amp;filter[address.city]=Chicago'</code></p>
+<p>Now that we are able to capture a user’s state and city preferences, we want to only return restaurants in the selected city. Modify the <code>getRestaurants</code> method in the <strong>src/app/restaurant/restaurant.service.ts</strong> file to take two string parameters, one for city, and one for state. The requested url with params should look like this: <code>'/api/restaurants?filter[address.state]=IL&amp;filter[address.city]=Chicago'</code></p>
 <p><img src="../static/img/angular/10-updating-service-params/after.png"
 style="border: solid 1px black; max-width: 400px;"/></p>
 <h2>Technical Requirements</h2>
-<p>In the <strong>src/app/restaurant/restaurant.component.ts</strong> file, update the call to the <code>getRestaurants</code> service method to use the city and state values captured from the user's form input.</p>
+<p>In the <strong>src/app/restaurant/restaurant.component.ts</strong> file, update the call to the <code>getRestaurants</code> service method to use the city and state values captured from the user’s form input.</p>
 <h2>How to Verify Your Solution is Correct</h2>
-<p>If you've implemented the solution correctly, when you use the select boxes to choose state and city, you should see a list of just restaurants from the selected city returned.</p>
+<p>If you’ve implemented the solution correctly, when you use the select boxes to choose state and city, you should see a list of just restaurants from the selected city returned.</p>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
   ComponentFixture,
@@ -1267,7 +1267,7 @@ describe('RestaurantService', () =&gt; {
       },
       _id: 'xugqxQIX5dfgdgTLBv',
     };
-    // will error if interface isn't implemented correctly
+    // will error if interface isn’t implemented correctly
     expect(true).toBe(true);
   });
 
@@ -1310,7 +1310,7 @@ describe('RestaurantService', () =&gt; {
 </code></pre>
  <div line-highlight="96,101-103,only"></div>
 <blockquote>
-<p>If you've implemented the solution correctly, when you run <code>npm run test</code> the tests will pass!</p>
+<p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> the tests will pass!</p>
 </blockquote>
 <h2>What You Need to Know</h2>
 <ul>

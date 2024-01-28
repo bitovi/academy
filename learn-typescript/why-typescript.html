@@ -516,7 +516,7 @@ JavaScript can assign variables to values of different types:</p>
 myVariable = 1;
 myVariable = &quot;2&quot;;
 </code></pre>
-<p>JavaScript can call a function with a type it doesn't expect:</p>
+<p>JavaScript can call a function with a type it doesn’t expect:</p>
 <pre><code class="language-js">function greeter(person) {
     return &quot;Hello, &quot; + person;
 }
@@ -524,8 +524,8 @@ myVariable = &quot;2&quot;;
 let user = {name: &quot;Justin&quot;};
 document.body.innerHTML = greeter(user);
 </code></pre>
-<p>If there's a bug in the code related to falsely assuming a type, it won't throw an error until we're already running our code.</p>
-<p>TypeScript uses static typing, which allows us to specify what type a variable should hold, and types are checked when the code compiles alerting us of any incorrect usages of a variable assignment. The concept of &quot;static&quot; comes from the idea of variables being static, meaning once you set a variable to a type it can't (shouldn't) be changed. For a deeper dive into how typechecking works, the creators of typescript have a <a href="https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html" >typechecking handbook</a> of more specific cases as well as their inspiration for the way these features were designed.</p>
+<p>If there’s a bug in the code related to falsely assuming a type, it won’t throw an error until we’re already running our code.</p>
+<p>TypeScript uses static typing, which allows us to specify what type a variable should hold, and types are checked when the code compiles alerting us of any incorrect usages of a variable assignment. The concept of &quot;static&quot; comes from the idea of variables being static, meaning once you set a variable to a type it can’t (shouldn’t) be changed. For a deeper dive into how typechecking works, the creators of typescript have a <a href="https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html" >typechecking handbook</a> of more specific cases as well as their inspiration for the way these features were designed.</p>
 <h2>Using this Guide</h2>
 <p>In this guide we will teach you about TypeScript concepts and have an environment for you to practice in. Running the tests will catch any problems if the code was not written correctly or as expected. Pay close attention to how you name and save the files.</p>
 <p>When we give you a command to run to verify your work it will look for a file named respectively. If you run into issues you can look at the package.json file to see which file the command listed is looking for.</p>
@@ -543,8 +543,8 @@ document.body.innerHTML = greeter(user);
 <ol>
 <li>Create a simple <em>0-why-hello-world.ts</em> TypeScript file that writes out <code>&quot;Hello World&quot;</code>.</li>
 <li>Compile that code the <em>0-why-hello-world.ts</em> JavaScript file.</li>
-<li>Open <em>0-why-hello-world.html</em> and verify that we've written and compiled some TypeScript!</li>
-<li>Run the exercise repository's tests for this exercise.</li>
+<li>Open <em>0-why-hello-world.html</em> and verify that we’ve written and compiled some TypeScript!</li>
+<li>Run the exercise repository’s tests for this exercise.</li>
 </ol>
 <h3>Setup</h3>
 <p>For this and following TypeScript exercises, we will be working in the
@@ -570,17 +570,17 @@ node versions.</p>
 <pre><code class="language-shell"> code . # if you are using VS Code
 </code></pre>
 <blockquote>
-<p>The '.' after the editor is a shorthand to refer to the folder you're currently in</p>
+<p>The '.' after the editor is a shorthand to refer to the folder you’re currently in</p>
 </blockquote>
 <h3>What You Need to Know</h3>
 <p>In order to use TypeScript in the browser, we must compile the TypeScript code to plain JavaScript first. We will do this using our terminal in this example, but most often TypeScript will be compiled during a build process.</p>
-<p>✏️ Let's install TypeScript globally:</p>
+<p>✏️ Let’s install TypeScript globally:</p>
 <pre><code class="language-shell">npm install -g typescript
 </code></pre>
 <p>✏️ Double check it has installed properly with:</p>
 <pre><code class="language-shell">tsc -v
 </code></pre>
-<p>✏️ Let's create a new file called <em>0-why-hello-world.ts</em> and open it in our favorite editor.</p>
+<p>✏️ Let’s create a new file called <em>0-why-hello-world.ts</em> and open it in our favorite editor.</p>
 <p>OSX</p>
 <pre><code class="language-shell">touch 0-why-hello-world.ts
 </code></pre>
@@ -590,7 +590,7 @@ node versions.</p>
 <blockquote>
 <p>The <code>touch</code> or <code>echo</code> command creates a new file</p>
 </blockquote>
-<p>✏️ We'll write some basic TypeScript next:</p>
+<p>✏️ We’ll write some basic TypeScript next:</p>
 <pre><code class="language-javascript">function greeter(person: string) {
     return &quot;Hello, &quot; + person;
 }
@@ -599,7 +599,7 @@ let user = &quot;World&quot;;
 
 document.body.innerHTML = greeter(user);
 </code></pre>
-<p>✏️ We'll compile our code by running:</p>
+<p>✏️ We’ll compile our code by running:</p>
 <pre><code class="language-shell">tsc 0-why-hello-world.ts
 </code></pre>
 <p>Provided there are no errors, this will compile the TypeScript to JavaScript file <code>0-why-hello-world.js</code></p>
@@ -607,7 +607,7 @@ document.body.innerHTML = greeter(user);
 <p>Open <em>0-why-hello-world.html</em> in your browser.  You should see <code>&quot;Hello, World&quot;</code> in the page.</p>
 <p>The <strong>learn-typescript</strong> repository also tests to make sure your solution
 works.</p>
-<p>✏️ Once you've completed all of the previous steps, run the following to make sure your solution works:</p>
+<p>✏️ Once you’ve completed all of the previous steps, run the following to make sure your solution works:</p>
 <pre><code class="language-shell">npm run 0-why
 </code></pre>
 <h2>Bonus Challenge</h2>

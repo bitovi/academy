@@ -468,7 +468,7 @@ $ docker run \
 -v &quot;$(pwd)&quot;/src:/app/src \
 my-node-app:dev
 </code></pre>
-<p>That's a lot of typing and memorization to run a container. Docker compose condenses all of this into one command: <code>docker-compose up</code>.</p>
+<p>That’s a lot of typing and memorization to run a container. Docker compose condenses all of this into one command: <code>docker-compose up</code>.</p>
 <h2>Docker Compose</h2>
 <p>Docker Compose is a cli included with Docker that provides a declarative way to building and running multiple Docker containers. When Docker Compose manages a container, it is called a &quot;service&quot;.</p>
 <p>Docker Compose reads a special file called <code>docker-compose.yml</code> that defines any number of services' port mappings, volumes, interdependencies and more. Docker Compose ensures containers are run in a consistent way without needing to type <code>docker build</code> and <code>docker run</code> along with numerous arguments into the console.</p>
@@ -517,7 +517,7 @@ my-app_1  | Example app listening at http://localhost:8000
 </code></pre>
 <p>You can press <code>ctrl+c</code> or run <code>docker-compose down</code> from a separate tab to kill your container(s).</p>
 <h2>Replacing docker build</h2>
-<p>Now that we've replaced <code>docker run</code> with <code>docker-compose up</code>, Let's update <code>docker-compose.yml</code> to allow Docker Compose to manage builds too.</p>
+<p>Now that we’ve replaced <code>docker run</code> with <code>docker-compose up</code>, Let’s update <code>docker-compose.yml</code> to allow Docker Compose to manage builds too.</p>
 <pre><code class="language-yaml">version: &quot;3.8&quot;
 services:
   my-app:
@@ -532,7 +532,7 @@ services:
     environment:
       PORT: ${MY_PORT}
 </code></pre>
-<p>We've added a <code>build</code> section to our <code>my-app</code> service.</p>
+<p>We’ve added a <code>build</code> section to our <code>my-app</code> service.</p>
 <ul>
 <li><code>context: .</code> tells Docker Compose where to find the Dockerfile</li>
 <li><code>target: ${MY_ENV}</code> tells Docker to build either a dev or prod image
@@ -541,11 +541,11 @@ Run <code>docker-compose build</code> to build a fresh copy of <code>my-node-app
 <h2>Customizing Behaviour</h2>
 <p>Now we can control how our image is built and run from <code>.env</code>.</p>
 <p>Changing <code>MY_ENV=dev</code> to <code>MY_ENV=prod</code> will cause <code>docker-compose up</code> to create a container in the production mode. If an image does not exist, <code>docker-compose up</code> will automatically run <code>docker-compose build</code> for us!</p>
-<h2>Let's add more containers!</h2>
-<p>Let's add a MySQL database and ensure it is running before starting the <code>my-app</code> service.</p>
-<p>We'll use the <code>mysql:5.7</code> image from <a href="https://hub.docker.com/_/mysql">Dockerhub</a>.</p>
+<h2>Let’s add more containers!</h2>
+<p>Let’s add a MySQL database and ensure it is running before starting the <code>my-app</code> service.</p>
+<p>We’ll use the <code>mysql:5.7</code> image from <a href="https://hub.docker.com/_/mysql">Dockerhub</a>.</p>
 <h3>.env</h3>
-<p>The Dockerhub page specifies several required environment variables to pass in to the container. We'll add these to <code>.env</code></p>
+<p>The Dockerhub page specifies several required environment variables to pass in to the container. We’ll add these to <code>.env</code></p>
 <pre><code class="language-yaml"># My App
 MY_ENV=prod
 MY_PORT=8000
@@ -557,7 +557,7 @@ MYSQL_USER=my_user
 MYSQL_PASSWORD=S3cure!_user
 </code></pre>
 <h3>docker-compose.yml</h3>
-<p>The <code>db</code> service we're adding below should be intuitive based on what's been covered so far. The exception is the <code>volumes:</code> section.</p>
+<p>The <code>db</code> service we’re adding below should be intuitive based on what’s been covered so far. The exception is the <code>volumes:</code> section.</p>
 <pre><code class="language-yaml">version: &quot;3.8&quot;
 services:
   my-app:
@@ -596,7 +596,7 @@ volumes:
 - db_data:/var/lib/mysql
 </code></pre>
 <h3>Test</h3>
-<p>Finally, let's start everything up</p>
+<p>Finally, let’s start everything up</p>
 <pre><code class="language-bash">$ docker-compose up
 Creating network &quot;nodeapp_default&quot; with the default driver
 Creating nodeapp_db_1 ... done

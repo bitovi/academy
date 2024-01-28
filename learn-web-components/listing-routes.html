@@ -551,11 +551,11 @@ const getVehiclesEndpoint = apiRoot + &quot;vehicles&quot;;
 <h2>What You Need to Know</h2>
 <ul>
 <li>How to use <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">fetch</a> to make API requests.</li>
-<li>Setting an element's text.</li>
+<li>Setting an element’s text.</li>
 </ul>
 <h3>Fetch</h3>
 <p><code>fetch</code> is a function on the <code>window</code> object that is used to make network requests. In its simplest form it only needs a string URL, which will be used to make a <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET">GET</a> request.</p>
-<p>fetch differs slightly from the older <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XMLHttpRequest</a> in a variety of ways; for example fetch does not include cookies by default. It's easier to use, however, because it uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promises</a>. If you don't need to support Internet Explorer you'll probably want to use fetch in your applications.</p>
+<p>fetch differs slightly from the older <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XMLHttpRequest</a> in a variety of ways; for example fetch does not include cookies by default. It’s easier to use, however, because it uses <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise">Promises</a>. If you don’t need to support Internet Explorer you’ll probably want to use fetch in your applications.</p>
 <p><code>fetch()</code> returns a <a href="https://developer.mozilla.org/en-US/docs/Web/API/Response">Response</a> object. To get a JSON object from this use <code>response.json()</code> like so:</p>
 <pre><code class="language-js">async function listFoods() {
   let response = await fetch('/api/food');
@@ -594,10 +594,10 @@ setTimeout(() =&gt; {
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='4-9'></div>
-<p>Usually you will use <code>.textContent</code> unless building a library where performance is critical. textContent is the most convenient way to change an element's text.</p>
+<p>Usually you will use <code>.textContent</code> unless building a library where performance is critical. textContent is the most convenient way to change an element’s text.</p>
 <h2>Solution</h2>
 <p>✏️ Use the markup provided above and create another template with the id of <code>route-template</code>. Keep a reference to this template in your JavaScript along with the other template. Copy the URL snippet from above and paste that so that it can be used within the component.</p>
-<p>Create a method on the component, we're calling it <code>getRoutes</code> here that is called in the <code>connectedCallback</code> method. It's an async method that uses <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">fetch</a> to retrieve the list of routes which we can get with <code>data[&quot;bustime-response&quot;].routes</code>.</p>
+<p>Create a method on the component, we’re calling it <code>getRoutes</code> here that is called in the <code>connectedCallback</code> method. It’s an async method that uses <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">fetch</a> to retrieve the list of routes which we can get with <code>data[&quot;bustime-response&quot;].routes</code>.</p>
 <p>Loop over the routes and clone an instance of the template filling in the route number with <code>route.rt</code> and the route name with <code>route.rtnm</code>.</p>
 <p>At the end of the <code>getRoutes</code> method remove the <code>#loading-routes</code> element.</p>
 <p><details>

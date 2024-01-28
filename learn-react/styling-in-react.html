@@ -154,7 +154,7 @@
            						">
 						<a class="page"
 							href="intro-to-jsx.html"
-							title="Learn how to use React&#x27;s preferred markup syntax JSX, and combine HTML with JavaScript.">
+							title="Learn how to use React’s preferred markup syntax JSX, and combine HTML with JavaScript.">
 							Introduction to JSX
 						</a>
 						
@@ -500,10 +500,10 @@ covering CanJS core libraries.">
   				<section class="body">
     <h2>Different ways of styling components</h2>
 <p>Styling in React is a diverse and opinionated topic. React does a great job of combining HTML &amp; JavaScript together, but it is ultimately agnostic when it comes to working with CSS and styling.</p>
-<p>The good news is that all of the same styling techniques you're used to will still work in React. You can use stylesheets, inline styling, and even extension languages like SASS or LESS.</p>
-<p>Let's take a look at some of the ways we can go about styling React components and walk through some of the pros and cons of each.</p>
+<p>The good news is that all of the same styling techniques you’re used to will still work in React. You can use stylesheets, inline styling, and even extension languages like SASS or LESS.</p>
+<p>Let’s take a look at some of the ways we can go about styling React components and walk through some of the pros and cons of each.</p>
 <h2>Inline styling</h2>
-<p>The simplest way to style a component is with inline styling. All core JSX tags accept a <code>style</code> prop, essentially an object with css styles in it. As you can see below, we're able to construct style objects directly inside the JSX, and even interpolate JavaScript values into them.</p>
+<p>The simplest way to style a component is with inline styling. All core JSX tags accept a <code>style</code> prop, essentially an object with css styles in it. As you can see below, we’re able to construct style objects directly inside the JSX, and even interpolate JavaScript values into them.</p>
 <p>The object passed into <code>style={}</code> should map css attributes to css values. This structure closely resembles the <a href="https://developer.mozilla.org/en-US/docs/Web/API/CSSStyleDeclaration"><code>CSSStyleDeclaration</code></a> object used by the browser to store element styles.</p>
 <pre><code class="language-jsx">import { imageUrl } from './data';
 
@@ -521,8 +521,8 @@ function Thing({ isActive }) {
 }
 </code></pre>
 <div line-highlight='6-9'></div>
-<p>In the example above we're specifying that the top-level div should have a color of either black or white depending on the <code>isActive</code> prop, and it's background image URL is imported from an external file.</p>
-<p>Although this is the simplest way to add styles, it shouldn't be counted out. Using inline styles like this is a great way of combining your HTML, CSS &amp; JavaScript all into one neat package. It's especially useful when your styles will depend on component state or props.</p>
+<p>In the example above we’re specifying that the top-level div should have a color of either black or white depending on the <code>isActive</code> prop, and it’s background image URL is imported from an external file.</p>
+<p>Although this is the simplest way to add styles, it shouldn’t be counted out. Using inline styles like this is a great way of combining your HTML, CSS &amp; JavaScript all into one neat package. It’s especially useful when your styles will depend on component state or props.</p>
 <p>One of the downsides of this approach is the performance cost associated with making and interpolating these style objects. Though, for many common layouts you will likely never run into performance concerns. In the off-chance that you are rendering hundreds / thousands of components (nested tables, etc...), it would be faster to use a stylesheet.</p>
 <p>That being said there are libraries that mitigate this speed concern while still using inline styling (namely <a href="https://emotion.sh/docs/introduction">emotion</a>). They perform a build step conversion that takes your inline styles and generates stylesheets for them.</p>
 <h2>External Styles</h2>
@@ -535,8 +535,8 @@ function Thing({ isActive }) {
 }
 </code></pre>
 <div line-highlight='4'></div>
-<p>The component above uses a <code>thing</code> class that is imported from <code>thing.css</code>. This is a common way of including classes in a component, but keep in mind that due to its cascading nature, it's possible to encounter clashing names with a large component tree.</p>
-<p><code>className</code>'s can also be dynamically generated in response to props or component state. In the component below, the <code>thing-active</code> class is only added to the class name if the <code>isActive</code> prop is truthy.</p>
+<p>The component above uses a <code>thing</code> class that is imported from <code>thing.css</code>. This is a common way of including classes in a component, but keep in mind that due to its cascading nature, it’s possible to encounter clashing names with a large component tree.</p>
+<p><code>className</code>’s can also be dynamically generated in response to props or component state. In the component below, the <code>thing-active</code> class is only added to the class name if the <code>isActive</code> prop is truthy.</p>
 <pre><code class="language-jsx">function Thing({ isActive }) {
   let className = 'thing';
   if (isActive) {
@@ -563,7 +563,7 @@ function Thing({ isActive }) {
 <p><a href="https://css-tricks.com/css-modules-part-1-need/">A CSS Module</a> is a CSS file in which all class names and animation names are scoped locally by default. This prevents a common problem with importing css into components, name clashing.</p>
 <p>When you define styles for a specific component, you want to be able to use descriptive names without having to worry about the other class names in the app. When you structure your css as a module, unique names are automatically generated. This solves the clashing issue.</p>
 <p>This is also compatible with SASS/LESS making it a good option if you want to use a class-based styling approach.</p>
-<p>Below is the CSS you would write inside of a .css file. You can see that it looks normal, and we don't need to worry about conflicts.</p>
+<p>Below is the CSS you would write inside of a .css file. You can see that it looks normal, and we don’t need to worry about conflicts.</p>
 <pre><code class="language-css">.border {
   border: 1em solid black;
 }
@@ -602,7 +602,7 @@ function HelloWorld({ isActive }) {
 <h2>Styled Components</h2>
 <p>The styled components philosophy is that everything is a component. Instead of separating your CSS and your JS, they become integrated into one single entity. So instead of loading styles into a component from some external source, the styles are actually built into the component itself, and can be configured using props/state.</p>
 <p>In a styled components implementation, a <code>Button</code> component for example, might take a <code>color</code> prop or a <code>fontSize</code> prop to determine its style. This approach is closely integrated with React, and utilizes the built-in React features (props/state) more than any other.</p>
-<p>In the code below, we're using the <a href="https://emotion.sh/docs/introduction">emotion</a> library to create a styled <code>Button</code> component. The syntax is a bit foreign, but this is essentially creating a <code>&lt;button&gt;</code> component which maps its props to styles. The button below accepts a <code>color</code> and an <code>outline</code> prop, which are used to generate the styling.</p>
+<p>In the code below, we’re using the <a href="https://emotion.sh/docs/introduction">emotion</a> library to create a styled <code>Button</code> component. The syntax is a bit foreign, but this is essentially creating a <code>&lt;button&gt;</code> component which maps its props to styles. The button below accepts a <code>color</code> and an <code>outline</code> prop, which are used to generate the styling.</p>
 <pre><code class="language-js">import styled from '@emotion/styled';
 
 export const Button = styled.button`
@@ -634,11 +634,11 @@ function Thing() {
 <div line-highlight='6-8'></div>
 <p>Remember that if you just supply a <code>prop</code> with no value (ie... the <code>outline</code> in <code>&lt;Button outline&gt;</code>), then React supplies the value of <code>true</code>. It assumes it is a boolean prop.</p>
 <p>The styled components approach is definitely a departure from traditional styling methodologies, however it makes up for it by integrating so nicely with the React paradigm.</p>
-<p>It's important to note that in many production codebases, some combination of the above styling techniques are utilized. Oftentimes some static css files will be necessary, and used alongside something like styled components. At the end of the day the right solution is the one that works for your team!</p>
+<p>It’s important to note that in many production codebases, some combination of the above styling techniques are utilized. Oftentimes some static css files will be necessary, and used alongside something like styled components. At the end of the day the right solution is the one that works for your team!</p>
 <h2>Exercise</h2>
-<p>Let's use our styling knowledge to make our Tic-Tac-Toe game look amazing!</p>
+<p>Let’s use our styling knowledge to make our Tic-Tac-Toe game look amazing!</p>
 <h3>The problem</h3>
-<p>✏️ Below, you'll find a link that says &quot;starter code&quot;. It will take you to a Create-React-App conveniently setup in <code>codesandbox</code>. You have been provided a basic set of global styles in App.css. Your task is to convert these initial styles into each of the other styling types.</p>
+<p>✏️ Below, you’ll find a link that says &quot;starter code&quot;. It will take you to a Create-React-App conveniently setup in <code>codesandbox</code>. You have been provided a basic set of global styles in App.css. Your task is to convert these initial styles into each of the other styling types.</p>
 <ol>
 <li>Inline Styles</li>
 <li>Modular CSS</li>

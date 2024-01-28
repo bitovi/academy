@@ -539,7 +539,7 @@ type JohtoPokedex = {
 <p>Moving into the upcoming lessons, constraining generics will be a common tool we reach for to leverage more of TypeScript’s powerful features.</p>
 <h2>Exercises</h2>
 <h3>Exercise 1</h3>
-<p>Update the <code>Keys</code> type to act as a type alias for <code>keyof</code>. With this type, we don't want to allow <code>string</code>s, <code>number</code>s and <code>boolean</code>s to be passed
+<p>Update the <code>Keys</code> type to act as a type alias for <code>keyof</code>. With this type, we don’t want to allow <code>string</code>s, <code>number</code>s and <code>boolean</code>s to be passed
 into the <code>Keys</code> type (<code>Keys&lt;string&gt;</code>, <code>Keys&lt;number&gt;</code>, etc. should not be allowed). So that the following is true</p>
 <pre><code class="language-ts">type LeafStarterPokemon = {
   bulbasaur: PokedexEntry;
@@ -584,7 +584,7 @@ type RandomAttacks = Keys&lt;typeof randomAttacks&gt;; // 'quickAttack' | 'thund
  * Exercise 1
  *
  * Update the `Keys` type to act as a type alias for `keyof`. With this type,
- * we don't want to allow `string`s, `number`s and `boolean`s to be passed
+ * we don’t want to allow `string`s, `number`s and `boolean`s to be passed
  * into the `Keys` type  (`Keys&lt;string&gt;`, `Keys&lt;number&gt;`, etc. should not be allowed). So that given
  * the following types...
  *
@@ -659,11 +659,11 @@ type WaterStartPokemon = {
 
 </code></pre>
 <p>Below is a function called <code>getStarterPokemonInfomation</code> that
-takes two generics. We would like to be able to pass in any of our three starters objects and a starter's name to get the
+takes two generics. We would like to be able to pass in any of our three starters objects and a starter’s name to get the
 data for that pokemon. Update the generics definition in the function to allow for this to happen.</p>
 <blockquote>
 <p><strong>Before you Start</strong>
-Don't worry about adding a return type to the function, focus only on the definition of the generics</p>
+Don’t worry about adding a return type to the function, focus only on the definition of the generics</p>
 </blockquote>
 <pre><code class="language-ts">type FireStarterPokemon = {
   charmander: PokedexEntry;
@@ -695,11 +695,11 @@ our <code>Keys</code> type has a constraint to be satisfied, we need to make sur
 /* Exercise 2
  *
  * Now that we have a `Keys` type let's put it to work. Below is a function called `getStarterPokemonInfomation` that
- * takes two generics. We would like to be able to pass in any of our three starters objects and a starter's name to get the
+ * takes two generics. We would like to be able to pass in any of our three starters objects and a starter’s name to get the
  * data for that pokemon. Update the generics definition in the function to allow for this to happen.
  *
  * &gt; **Before you Start**
- * &gt; Don't worry about adding a return type to the function, focus only on the definition of the generics
+ * &gt; Don’t worry about adding a return type to the function, focus only on the definition of the generics
  *
  * ```ts
  * type FireStarterPokemon = {

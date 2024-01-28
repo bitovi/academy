@@ -95,7 +95,7 @@
            						">
 						<a class="page"
 							href="functional-utilities.html"
-							title="Create some of jQuery&#x27;s functional utility methods.">
+							title="Create some of jQuery’s functional utility methods.">
 							Functional Utilities
 						</a>
 						
@@ -693,7 +693,7 @@ and returns the collection.
 </code></pre></li>
 </ul>
 <div class='codepen' data-codepen=''></div>
-<p>Many of jQuery's methods either get or set depending on the number of arguments.</p>
+<p>Many of jQuery’s methods either get or set depending on the number of arguments.</p>
 <p><details>
 <summary>Click to see test code</summary></p>
 <pre><code class="language-js">QUnit.test(&quot;$.fn.html&quot;, function () {
@@ -774,7 +774,7 @@ to set the html contents of an element.</li>
 <p></details></p>
 <h3>What you need to know</h3>
 <ul>
-<li>The <code>.value</code> property can be used to read and write an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input">input</a> element's value.</li>
+<li>The <code>.value</code> property can be used to read and write an <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input">input</a> element’s value.</li>
 </ul>
 <h3>The solution</h3>
 <p><details>
@@ -864,7 +864,7 @@ console.log(sponge instanceof Animal); //-&gt; true
 
   $(&quot;#qunit-fixture span&quot;).text(&quot;&lt;input/&gt;&quot;);
 
-  equal($(&quot;#qunit-fixture input&quot;).length, 0, &quot;there's no input&quot;);
+  equal($(&quot;#qunit-fixture input&quot;).length, 0, &quot;there’s no input&quot;);
 
   equal(
     $(&quot;#qunit-fixture span&quot;).text(),
@@ -879,8 +879,8 @@ console.log(sponge instanceof Animal); //-&gt; true
 <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent">textContent</a>
 can get and set the text content of an element.</li>
 </ul>
-<p>For an <em>extra challenge</em>, don't use <code>textContent</code> and recursively collect
-the <code>textContent</code>. For that, you'll need to know:</p>
+<p>For an <em>extra challenge</em>, don’t use <code>textContent</code> and recursively collect
+the <code>textContent</code>. For that, you’ll need to know:</p>
 <ul>
 <li><p>Use <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createTextNode">document.createTextNode</a>
 to create a text node.</p></li>

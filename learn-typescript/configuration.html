@@ -501,10 +501,10 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
-<p>In this section we'll learn about TypeScript configuration options to help us optimize our workflow.</p>
+<p>In this section we’ll learn about TypeScript configuration options to help us optimize our workflow.</p>
 <p>For the exercise, we will learn how to import and export functions between modules.</p>
 <h2>Configuring TypeScript</h2>
-<p>We're able to configure how our projects use TypeScript from selecting which files to compile to removing comments from those files. This is done through the creation of a <code>tsconfig.json</code> file.</p>
+<p>We’re able to configure how our projects use TypeScript from selecting which files to compile to removing comments from those files. This is done through the creation of a <code>tsconfig.json</code> file.</p>
 <h3>tsconfig.json</h3>
 <p>Customize the TypeScript compiling and linting options by creating a <code>tsconfig.json</code> file in the root directory of your TypeScript project. The following config will</p>
 <ul>
@@ -513,7 +513,7 @@ covering CanJS core libraries.">
 <li>generate source map files</li>
 <li>remove comments from compiled code</li>
 </ul>
-<p>The following is just example config code. <strong>Don't add this to your project or the tests for the TypeScript exercises in this training will fail.</strong></p>
+<p>The following is just example config code. <strong>Don’t add this to your project or the tests for the TypeScript exercises in this training will fail.</strong></p>
 <pre><code class="language-javascript">{
     &quot;compilerOptions&quot;: {
         &quot;target&quot;: &quot;es5&quot;,
@@ -549,14 +549,14 @@ covering CanJS core libraries.">
 <li><p>Performance improvements <a href="https://blog.palantir.com/tslint-in-2019-1a144c2317a9" title="TSLint in 2019">have been listed</a> as one of the reasons by the TSLint creators and maintainers for its deprecation.</p></li>
 </ul>
 <h3>Before Starting</h3>
-<p>It should be fairly painless to migrate to ESLint, but we do recommended checking if there are any TSLint rules that are considered essential to your project, and comparing those with ESLint to see if there are mismatches regarding your project's requirements. This <a href="https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/TSLINT_RULE_ALTERNATIVES.md">Migration Guide</a> is a great source for comparing ESLint and TSLint rules.</p>
+<p>It should be fairly painless to migrate to ESLint, but we do recommended checking if there are any TSLint rules that are considered essential to your project, and comparing those with ESLint to see if there are mismatches regarding your project’s requirements. This <a href="https://github.com/typescript-eslint/typescript-eslint/blob/main/packages/eslint-plugin/TSLINT_RULE_ALTERNATIVES.md">Migration Guide</a> is a great source for comparing ESLint and TSLint rules.</p>
 <h3>Migration</h3>
 <p>The <a href="https://github.com/typescript-eslint/tslint-to-eslint-config">tslint-to-eslint-config repository</a> aims to convert the TSLint configuration to &quot;the closest possible ESLint equivalent&quot;.</p>
 <ol>
 <li>Depending on your project, you might want to take a look at some of the <a href="https://github.com/typescript-eslint/tslint-to-eslint-config#cli-flags">CLI flags available</a>;</li>
 <li>Run <code>npx tslint-to-eslint-config</code>.</li>
 </ol>
-<p>And that's it!</p>
+<p>And that’s it!</p>
 <h3>ESLint Configuration</h3>
 <p>After the migration, you should see a new file called <code>.eslintrc.js</code> with ESLint configuration in it.
 It looks like this one:</p>

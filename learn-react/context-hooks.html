@@ -154,7 +154,7 @@
            						">
 						<a class="page"
 							href="intro-to-jsx.html"
-							title="Learn how to use React&#x27;s preferred markup syntax JSX, and combine HTML with JavaScript.">
+							title="Learn how to use React’s preferred markup syntax JSX, and combine HTML with JavaScript.">
 							Introduction to JSX
 						</a>
 						
@@ -499,7 +499,7 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>The Prop Drilling Problem</h2>
-<p>A single component can take as many props as you want to give it, but just like arguments in functions, it's a good idea to limit this number, as more props makes for a more confusing and harder to test component. <a href="https://stackoverflow.com/questions/37695557/react-are-there-respectable-limits-to-number-of-props-on-react-components">This discussion here</a>, perfectly summarizes why it's a bad idea and considered a <a href="https://martinfowler.com/bliki/CodeSmell.html">&quot;code smell&quot;</a>.</p>
+<p>A single component can take as many props as you want to give it, but just like arguments in functions, it’s a good idea to limit this number, as more props makes for a more confusing and harder to test component. <a href="https://stackoverflow.com/questions/37695557/react-are-there-respectable-limits-to-number-of-props-on-react-components">This discussion here</a>, perfectly summarizes why it’s a bad idea and considered a <a href="https://martinfowler.com/bliki/CodeSmell.html">&quot;code smell&quot;</a>.</p>
 <p>However, this can be difficult to do when you have a lot of data to pass through your component tree. Consider the following hierarchy with a few &quot;drilled props&quot;. Lets imagine that the <code>Theme</code>, <code>Domain</code> and <code>RootUrl</code> are decided within the <code>App</code> component, but are <strong>only</strong> needed within the <code>ButtonText</code> component. That is to say, <code>Dashboard</code> and <code>Button</code> have no business related to any of those props.</p>
 <pre><code class="language-code">──┬ App(Theme, Domain, RootUrl)
   └─┬ Dashboard(Theme, Domain, RootUrl)
@@ -520,9 +520,9 @@ covering CanJS core libraries.">
 }
 </code></pre>
 <div line-highlight='1,2'></div>
-<p>In this case, it doesn't matter if <code>Component1</code> even needs the <code>Theme</code> prop; it will always require it simply because <code>Component2</code> might require it. Initially, this was solved using libraries such as <a href="https://redux.js.org/">Redux</a>. These libraries would work by wrapping each component in a connector Higher-order Component (HoC) which would automatically pass in any required props. Today, we solve this problem using React's Context Providers and Consumers.</p>
+<p>In this case, it doesn’t matter if <code>Component1</code> even needs the <code>Theme</code> prop; it will always require it simply because <code>Component2</code> might require it. Initially, this was solved using libraries such as <a href="https://redux.js.org/">Redux</a>. These libraries would work by wrapping each component in a connector Higher-order Component (HoC) which would automatically pass in any required props. Today, we solve this problem using React’s Context Providers and Consumers.</p>
 <h2>What is Context?</h2>
-<p>One way to think about Contexts is an additional set of props which are passed transparently through React's internals instead of arguments. It involves three parts:</p>
+<p>One way to think about Contexts is an additional set of props which are passed transparently through React’s internals instead of arguments. It involves three parts:</p>
 <ol>
 <li><strong>The Context:</strong> Think of the context like a box of things. The box needs to be available to all who want to use it.</li>
 <li><strong>The Provider:</strong> The provider puts things into the box. Whatever data it handles is only available to its children.</li>
@@ -705,7 +705,7 @@ return (
 <p>Much better.</p>
 <h2>Advanced Provider Patterns</h2>
 <p>The example above demonstrates the simplest use-case for context, but often times developers will organize their providers to abstract away a lot of the boilerplate. Exposing your Context object directly can also result in more complex code and even more complex maintenance, as the consuming code is accessing the data directly. By creating wrappers for the <code>Provider</code> component and <code>useContext</code> hook, you can control exactly what data each component is using, thereby reducing code complexity and simplifying maintenance.</p>
-<p>Let us consider a more complex situation: Global styles. take a look at how we might refactor the <code>ThemeContext</code> so that it's wrapped in it's own custom component:</p>
+<p>Let us consider a more complex situation: Global styles. take a look at how we might refactor the <code>ThemeContext</code> so that it’s wrapped in it’s own custom component:</p>
 <pre><code class="language-jsx">import React, { createContext } from 'react';
 
 const THEMES = {
@@ -724,7 +724,7 @@ export default function ThemeProvider({ theme, children }) {
 }
 </code></pre>
 <div line-highlight='10-16,only'></div>
-<p>In the example above, we've taken away all of the <code>ThemeContext</code> logic and encapsulated it into it's own component <code>ThemeProvider</code>. This is a very common technique for organizing contexts in a scalable and reusable way.</p>
+<p>In the example above, we’ve taken away all of the <code>ThemeContext</code> logic and encapsulated it into its own component <code>ThemeProvider</code>. This is a very common technique for organizing contexts in a scalable and reusable way.</p>
 <p>We can take this a step further by exporting a custom hook <code>useTheme</code> from this file, which can then be used by nested components like <code>Button</code> to access the theme:</p>
 <pre><code class="language-jsx">import React, { createContext } from 'react';
 
@@ -749,7 +749,7 @@ export function useTheme() {
 }
 </code></pre>
 <div line-highlight='18-21,only'></div>
-<p>Now, we can refactor our <code>Layout</code> component to use this new provider. Notice how much cleaner it looks when we abstract away the context logic into it's own component (<code>ThemeProvider</code>)</p>
+<p>Now, we can refactor our <code>Layout</code> component to use this new provider. Notice how much cleaner it looks when we abstract away the context logic into its own component (<code>ThemeProvider</code>)</p>
 <pre><code class="language-jsx">import React from 'react';
 import ThemeProvider from './ThemeProvider';
 
@@ -778,9 +778,9 @@ function Button({ label }) {
 </code></pre>
 <div line-highlight='2,5'></div>
 <h2>Exercise</h2>
-<p>Let's use our context hook knowledge to make our Tic-Tac-Toe use a style theme!</p>
+<p>Let’s use our context hook knowledge to make our Tic-Tac-Toe use a style theme!</p>
 <h3>The problem</h3>
-<p>✏️ Let's add in the ability to use a style theme for our app.</p>
+<p>✏️ Let’s add in the ability to use a style theme for our app.</p>
 <ul>
 <li><code>Game</code> Component
 <ul>
@@ -795,7 +795,7 @@ function Button({ label }) {
 <li>Get the theme from the new <code>useTheme</code> hook in the <code>Game</code> component.</li>
 </ul></li>
 </ul>
-<p>Here's the starter code</p>
+<p>Here’s the starter code</p>
 <pre><code class="language-jsx">const squareStyling = {
   width: '200px',
   height: '200px',

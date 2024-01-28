@@ -508,7 +508,7 @@ covering CanJS core libraries.">
 <li>The power of using interfaces in classes and functions.</li>
 </ul>
 <h2>Interfaces in TypeScript</h2>
-<p>An interface in TypeScript is a way to define the shape an entity should adhere to. An interface defines the members - properties, methods, and events. It may be easy to think of it as the signature of an API. It's worth noting that interfaces aren't transpiled into our output JavaScript, they're simply used for typechecking during the development process.</p>
+<p>An interface in TypeScript is a way to define the shape an entity should adhere to. An interface defines the members - properties, methods, and events. It may be easy to think of it as the signature of an API. It’s worth noting that interfaces aren’t transpiled into our output JavaScript, they’re simply used for typechecking during the development process.</p>
 <pre><code class="language-ts">//interface describing object
 interface Dinosaur {
   name: string;
@@ -534,7 +534,7 @@ trackDino(blue);
 </code></pre>
 <div class='codepen'></div>
 <h2>Optional Properties</h2>
-<p>Some times all properties on an object don't need to be required, using the <code>?</code> lets us tell the TypeScript compiler which properties aren't required.</p>
+<p>Some times all properties on an object don’t need to be required, using the <code>?</code> lets us tell the TypeScript compiler which properties aren’t required.</p>
 <pre><code class="language-ts">interface Dinosaur {
   name: string;
   breed: string;
@@ -577,7 +577,7 @@ class ClonedDino implements Dinosaur {
 </code></pre>
 <div class='codepen'></div>
 <h2>Interfaces in Functions</h2>
-<p>Interfaces are incredibly useful in describing the shape of objects we want to use in multiple situations. The following functions both require a <code>Dinosaur</code> object shape we've defined in the <code>Dinosaur</code> interface.</p>
+<p>Interfaces are incredibly useful in describing the shape of objects we want to use in multiple situations. The following functions both require a <code>Dinosaur</code> object shape we’ve defined in the <code>Dinosaur</code> interface.</p>
 <pre><code class="language-ts">interface Dinosaur {
   name: string;
   breed: string;
@@ -622,7 +622,7 @@ console.log(newDino); //logs 'CADCAA'
 
 </code></pre>
 <div class='codepen'></div>
-<p>It's possible to use the <code>type</code> keyword as an interface to describe a function.</p>
+<p>It’s possible to use the <code>type</code> keyword as an interface to describe a function.</p>
 <pre><code class="language-ts">type DinoDNAMixer = (dino1: string, dino2: string, spliceIdx: number) =&gt; string;
 
 interface DinoFactory {
@@ -656,7 +656,7 @@ myObj.height = 6;
 <div class='codepen'></div>
 <h2>Exercise 1: Write Interfaces to Describe an Object</h2>
 <h3>The Problem</h3>
-<p>We're going to write some interfaces to set up for the next problem. Edit the files <code>5a-dino-park.ts</code> and <code>5a-address.ts</code> to create an interface to define a <code>DinoPark</code> object shown below:</p>
+<p>We’re going to write some interfaces to set up for the next problem. Edit the files <code>5a-dino-park.ts</code> and <code>5a-address.ts</code> to create an interface to define a <code>DinoPark</code> object shown below:</p>
 <pre><code class="language-javascript">let park = {
   name: '',
   image: '',

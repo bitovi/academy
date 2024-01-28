@@ -675,7 +675,7 @@ covering CanJS core libraries.">
 <li>Create a restaurant component that shows a list of restaurants</li>
 </ul>
 <h2>Problem 1: Creating a Home Component With a Dynamic Title Member</h2>
-<p>Let's begin to build out the main views of our app. We'll create a home view now,
+<p>Let’s begin to build out the main views of our app. We’ll create a home view now,
 and restaurant list view in the next exercise.</p>
 <h2>P1: What You Need to Know</h2>
 <ul>
@@ -697,7 +697,7 @@ and restaurant list view in the next exercise.</p>
 |   |       |── new-component-name.component.less
 |   |       |── new-component-name.component.html
 </code></pre>
-<p>Generated components have the same structure - a name.component.ts file that will contain the boilerplate code for the Angular component class. This class will also have a component decorator pointing to the name.component.less file for styles, and the name.component.html file for it's template. Styles and templates can also be written inline in the decorator with backticks to escape the code using the keys <code>style</code> and <code>template</code>.</p>
+<p>Generated components have the same structure - a name.component.ts file that will contain the boilerplate code for the Angular component class. This class will also have a component decorator pointing to the name.component.less file for styles, and the name.component.html file for it’s template. Styles and templates can also be written inline in the decorator with backticks to escape the code using the keys <code>style</code> and <code>template</code>.</p>
 <h2>Bind Data to Components</h2>
 <p>Like most modern JS frameworks, Angular provides us a way of displaying data dynamically in the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model">DOM</a>. Properties declared in a component can be used in the component template with double curly brace syntax: <code>{{myTitle}}</code></p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -825,7 +825,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='30-32,only'></div>
 <h2>P1: Technical Requirements</h2>
-<p>Create a component that displays a title read from a component's <code>title</code> member.</p>
+<p>Create a component that displays a title read from a component’s <code>title</code> member.</p>
 <p><img src="../static/img/angular/3-creating-components/home-component.png"
 style="border: solid 1px black; max-width: 640px;"/></p>
 <p>The component should provide the following HTML:</p>
@@ -850,18 +850,18 @@ style="border: solid 1px black; max-width: 640px;"/></p>
 </code></pre>
 <blockquote>
 <p>Notice the <code>TITLE GOES HERE</code> part of the HTML. <code>TITLE GOES HERE</code> should be replaced by
-something that reads the component's <code>title</code> property.</p>
+something that reads the component’s <code>title</code> property.</p>
 </blockquote>
-<p>The component's <code>title</code> member should have a string value of
+<p>The component’s <code>title</code> member should have a string value of
 <code>&quot;Ordering food has never been easier&quot;</code>.</p>
 <h2>P1: Setup</h2>
-<p>To get this application up and running quicker so we can focus on the architecture, we'll import some pre-created styles and assets to save us time.</p>
+<p>To get this application up and running quicker so we can focus on the architecture, we’ll import some pre-created styles and assets to save us time.</p>
 <p>✏️ Run:</p>
 <pre><code class="language-shell">npm install place-my-order-assets --save
 </code></pre>
 <p>Open the <code>angular.json</code> file, and make the following changes to include these files in our build process. This will copy the images into our assets directory for when we serve our application.</p>
 <blockquote>
-<p>Pay close attention that you're making these changes under the &quot;build&quot; key and not the &quot;test&quot; key, as the code looks very similar. The build key should be close to line 24.</p>
+<p>Pay close attention that you’re making these changes under the &quot;build&quot; key and not the &quot;test&quot; key, as the code looks very similar. The build key should be close to line 24.</p>
 </blockquote>
 <p><details open>
 <summary>section copied - angular.json</summary>
@@ -987,7 +987,7 @@ something that reads the component's <code>title</code> property.</p>
 <p><strong>Any time changes are made to the <code>angular.json</code> file, we need to restart our server to catch the new changes.</strong></p>
 <p>✏️ <strong>Quit process by running <code>Ctrl + C</code>.</strong></p>
 <p>While we are building the component, it will be nice to see it in the
-application. One of the ways components can be rendered is by putting them in markup. We'll do this by putting our <code>&lt;pmo-home&gt;&lt;/pmo-home&gt;</code> tag in our base app component markup. To see the
+application. One of the ways components can be rendered is by putting them in markup. We’ll do this by putting our <code>&lt;pmo-home&gt;&lt;/pmo-home&gt;</code> tag in our base app component markup. To see the
 <code>&lt;pmo-home&gt;</code> component, do the following.</p>
 <p>✏️ Run:</p>
 <pre><code class="language-shell">ng g component home
@@ -1020,7 +1020,7 @@ application. One of the ways components can be rendered is by putting them in ma
 &lt;/div&gt;
 </code></pre>
 <div line-highlight='only'></div>
-<p>Run <code>npm run start</code>, and your app should compile with no errors, and you'll be able to see the home component. Later we'll move the home component to it's own page with a unique route.</p>
+<p>Run <code>npm run start</code>, and your app should compile with no errors, and you’ll be able to see the home component. Later we’ll move the home component to its own page with a unique route.</p>
 <h2>P1: How to Verify Your Solution is Correct</h2>
 <p>✏️ Update the spec file <strong>src/app/home/home.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -1069,7 +1069,7 @@ describe('HomeComponent', () =&gt; {
 </code></pre>
 <div line-highlight='25-41, only'></div>
 <blockquote>
-<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+<p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
 <h2>P1: Solution</h2>
 <p><details>
@@ -1124,8 +1124,8 @@ style="border: solid 1px black; max-width: 640px;"/></p>
 <p>Note: We will fix the missing images in the next step.</p>
 </blockquote>
 <h2>P2: What You Need to Know</h2>
-<p>To solve this exercise, you'll need to learn some of Angular's more common
-template directives. Template directives in Angular help us iterate through and manipulate data we've bound to the DOM. You'll need some of the following:</p>
+<p>To solve this exercise, you’ll need to learn some of Angular’s more common
+template directives. Template directives in Angular help us iterate through and manipulate data we’ve bound to the DOM. You’ll need some of the following:</p>
 <ul>
 <li>*ngIf - conditionally show content.</li>
 <li>*ngFor - iterate through a list and create content for each item in the list.</li>
@@ -1388,7 +1388,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='17, 19, 21, 23,25, 27-30, 34, only'></div>
-<p>Notice in the above example our <code>ng-class</code> is surrounded by <code>[ ]</code>. This signals that we're passing in an object, instead of just a string.</p>
+<p>Notice in the above example our <code>ng-class</code> is surrounded by <code>[ ]</code>. This signals that we’re passing in an object, instead of just a string.</p>
 <p>When using <a href="https://angular.io/guide/property-binding">property binding</a>, <code>ngClass=&quot;value&quot;</code> will evaluate the value as a string of <em>&quot;value&quot;</em> and <code>[ngClass]=&quot;value&quot;</code> as whatever the component property value is.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1450,11 +1450,11 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='17,19,23,only'></div>
 <h2>P2: Setup</h2>
-<p>Let's create our restaurant component as well. This will be a component that displays a list of restaurants.</p>
+<p>Let’s create our restaurant component as well. This will be a component that displays a list of restaurants.</p>
 <p>✏️ Run:</p>
 <pre><code class="language-shell">ng g component restaurant
 </code></pre>
-<p>For now, we'll use fake data for a list of restaurants in the component, and put the data in a setTimeout to simulate an api call.</p>
+<p>For now, we’ll use fake data for a list of restaurants in the component, and put the data in a setTimeout to simulate an api call.</p>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong> to be:</p>
 <pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
 
@@ -1669,7 +1669,7 @@ describe('RestaurantComponent', () =&gt; {
 
 </code></pre>
 <blockquote>
-<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+<p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
 <h2>P2: Solution</h2>
 <p><details>

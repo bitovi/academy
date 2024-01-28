@@ -529,14 +529,14 @@ REPOSITORY          TAG                 IMAGE ID            CREATED             
 my-node-app         latest              848464f1725a        5 seconds ago       944MB
 node                15                  b34e90f5c9c0        24 hours ago        935MB
 </code></pre>
-<p>You'll notice there's also a <code>node:15</code> image in our registry. This is because we defined it as our base image in our <code>Dockerfile</code> (<code>FROM node:15</code>). It was pulled from Dockerhub so it can be used locally.</p>
+<p>You’ll notice there’s also a <code>node:15</code> image in our registry. This is because we defined it as our base image in our <code>Dockerfile</code> (<code>FROM node:15</code>). It was pulled from Dockerhub so it can be used locally.</p>
 <h2>Run our image</h2>
-<p>We're finally ready to run our image. Open a terminal and run</p>
+<p>We’re finally ready to run our image. Open a terminal and run</p>
 <pre><code class="language-bash">docker run --name my-container -p 8000:8000 -d my-node-app:latest
 </code></pre>
 <ul>
 <li><code>--name my-container</code> gives our container a friendly name. If this is not provided, Docker will name the container for you.</li>
-<li><code>-p 8000:8000</code> publishes the container's internal port 8000 to our host machine's port 8000. This will allow us to access the app from <code>localhost:8000</code></li>
+<li><code>-p 8000:8000</code> publishes the container’s internal port 8000 to our host machine’s port 8000. This will allow us to access the app from <code>localhost:8000</code></li>
 <li><code>-d</code> runs the container in detached mode. This runs the process as a background process.</li>
 <li><code>my-node-app:latest</code> specifies what image we want to run. If this image does not exist in our local registry, Docker will try and find and download a match from <a href="https://hub.docker.com/">Dockerhub</a>.</li>
 </ul>
@@ -590,9 +590,9 @@ $ docker logs my-container
 [nodemon] starting `node src/index.js index.js`
 Example app listening at http://localhost:9000
 </code></pre>
-<p>You'll see the last line of the logs indicating the app is now listening on port 9000. However, because we set the port mapping with <code>-p 8000:9000</code>, we still will view the application in our browser from <code>localhost:8000</code>.</p>
+<p>You’ll see the last line of the logs indicating the app is now listening on port 9000. However, because we set the port mapping with <code>-p 8000:9000</code>, we still will view the application in our browser from <code>localhost:8000</code>.</p>
 <h2>Review</h2>
-<p>We've built an image and run a container for our NodeJS app. Here's a cheat sheet of all the commands we ran.</p>
+<p>We’ve built an image and run a container for our NodeJS app. Here’s a cheat sheet of all the commands we ran.</p>
 <pre><code class="language-bash"># Build an image
 docker build -t my-node-app .
 
@@ -614,7 +614,7 @@ docker logs &lt;container-name&gt;
 # Kill a container
 docker rm -f &lt;container-name&gt;
 </code></pre>
-<p>Next we'll look at introducing storage mounts to make local application development efficient.</p>
+<p>Next we’ll look at introducing storage mounts to make local application development efficient.</p>
 
 </section>
 

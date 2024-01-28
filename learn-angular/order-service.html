@@ -672,7 +672,7 @@ covering CanJS core libraries.">
 <li>Show completed order in UI</li>
 </ul>
 <h2>Problem 1: Create Order Service and Export Items and Order interfaces</h2>
-<p>We need to create a new service to handle creating and updating orders. We'll need three interfaces - one to describe the order form data, one to describe the order, and one to describe items in the order.</p>
+<p>We need to create a new service to handle creating and updating orders. We’ll need three interfaces - one to describe the order form data, one to describe the order, and one to describe items in the order.</p>
 <h2>P1: Technical Requirements</h2>
 <p>Create a new service <code>order</code> in the order directory, and write and export <code>CreateOrderDto</code>, <code>Order</code> and <code>Item</code> interfaces representing these objects in the new service:</p>
 <pre><code class="language-typescript">const createOrderDto = {
@@ -751,7 +751,7 @@ export class OrderService {
 <div line-highlight='3-6, 8-14, 16-24'></div>
 <p></details></p>
 <h2>Problem 2: Finish the Order Service</h2>
-<p>With our order service we'll want to be able to create new orders, updating existing orders, delete orders, and view all orders.</p>
+<p>With our order service we’ll want to be able to create new orders, updating existing orders, delete orders, and view all orders.</p>
 <h2>P2: Setup</h2>
 <p>✏️ Paste the following into <strong>src/app/order/order.service.spec.ts</strong>:</p>
 <pre><code class="language-ts">import { HttpRequest } from '@angular/common/http';
@@ -943,7 +943,7 @@ get the tests to pass.</p>
 </code></pre>
 <h2>P2: What You Need to Know</h2>
 <ul>
-<li>The method signatures for the methods you'll be adding to <code>OrderService</code>:
+<li>The method signatures for the methods you’ll be adding to <code>OrderService</code>:
 <ul>
 <li><code>getOrders(): Observable&lt;{data: Order[]}&gt;</code> should make a <code>GET</code> request</li>
 <li><code>createOrder(orderForm: CreateOrderDto): Observable&lt;Order&gt;</code> should make a <code>POST</code> request</li>
@@ -1040,15 +1040,15 @@ export class OrderService {
 <p>How we will solve this:</p>
 <ol>
 <li>We will import the order service, and save it as <code>orderService</code> in the
-<code>OrderComponent</code>'s <code>constructor</code>.</li>
-<li>Call <code>orderService</code>'s <code>createOrder</code> with the <code>orderForm</code>'s values.</li>
+<code>OrderComponent</code>’s <code>constructor</code>.</li>
+<li>Call <code>orderService</code>’s <code>createOrder</code> with the <code>orderForm</code>’s values.</li>
 <li>While the order is being created <code>orderProcessing</code> should be <code>true</code>.</li>
 <li>Once complete, <code>orderComplete</code> should be set to <code>true</code>
 and set back to <code>false</code> when <code>startNewOrder()</code> is called.</li>
 <li>We will save the completed order in <code>completedOrder</code>.</li>
 </ol>
 <blockquote>
-<p>A FormGroup's <code>value</code> property is wrapped in <code>Partial</code> type because controls are removed from the form's value when disabled. For our case, we don't need to disable controls. We can use a FormGroup's <code>getRawValue()</code> method to access its value with the full type.</p>
+<p>A FormGroup’s <code>value</code> property is wrapped in <code>Partial</code> type because controls are removed from the form’s value when disabled. For our case, we don’t need to disable controls. We can use a FormGroup’s <code>getRawValue()</code> method to access its value with the full type.</p>
 </blockquote>
 <h2>P3: Setup</h2>
 <p>Before starting:</p>
@@ -1283,7 +1283,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 </code></pre>
  <div line-highlight="115-117,125,only"></div>
 <h2>P3: How to Verify Your Solution is Correct</h2>
-<p>If you've implemented everything correctly, you should now be able to create an order from the UI and see a record of your completed order once it's created.</p>
+<p>If you’ve implemented everything correctly, you should now be able to create an order from the UI and see a record of your completed order once it’s created.</p>
 <p>✏️ Update the menu-items spec file <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -1592,7 +1592,7 @@ describe('OrderComponent', () =&gt; {
 </code></pre>
  <div line-highlight="3,9-10,63-69,71-77,88,93,108-112,115,225-245,247-270,272-302,only"></div>
 <blockquote>
-<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+<p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
 <h2>P3: What You Need to Know</h2>
 <ul>

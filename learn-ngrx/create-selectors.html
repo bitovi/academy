@@ -246,7 +246,7 @@
            						">
 						<a class="page"
 							href="getting-started.html"
-							title="Checkout the course repository and get setup for upcoming lessons!">
+							title="Check out the course repository and get setup for upcoming lessons!">
 							Getting Started
 						</a>
 						
@@ -606,7 +606,7 @@ covering CanJS core libraries.">
 <li><p><a href="https://ngrx.io/api/store/createFeatureSelector">createFeatureSelector</a> - Used to obtain the entire Feature State from the Global State by looking up the Login Feature key.</p></li>
 <li><p><a href="https://ngrx.io/api/store/createSelector">createSelector</a> - Uses other Selectors to obtain slices of state. The first arguments are any other Selectors used for this new Selector. The last argument of this function is a <code>pure</code> function commonly referred to as a <strong>projector</strong>.</p></li>
 </ol>
-<p>The NgRx schematics take care of creating our Login Selector, and it's up to us to create additional Selectors using that generated Feature Selector to obtain slices of that state:</p>
+<p>The NgRx schematics take care of creating our Login Selector, and it’s up to us to create additional Selectors using that generated Feature Selector to obtain slices of that state:</p>
 <pre><code class="language-ts">import { createFeatureSelector, createSelector } from '@ngrx/store';
 import * as fromContact from './contact.reducer';
 

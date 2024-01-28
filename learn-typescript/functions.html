@@ -508,7 +508,7 @@ covering CanJS core libraries.">
 </ul>
 <p>The exercise will have you update a function with TypeScript annotations.</p>
 <h2>Functions in TypeScript</h2>
-<p>In TypeScript, we're able to annotate function parameters to better guard our code. If the following, <code>add</code> is called  with two parameters that are not numbers TypeScript's compiler will throw an error when compiled.</p>
+<p>In TypeScript, we’re able to annotate function parameters to better guard our code. If the following, <code>add</code> is called  with two parameters that are not numbers TypeScript’s compiler will throw an error when compiled.</p>
 <pre><code class="language-typescript">function add(x: number, y: number): number {
   return x + y;
 }
@@ -528,7 +528,7 @@ function returnNumber(): number {
 //works!
 </code></pre>
 <h2>Optional Parameters</h2>
-<p>Sometimes when writing functions, we don't need every parameter to be satisfied. TypeScript allows us to mark optional parameters (or properties) with a <code>?</code> so the compiler will not error if an optional param isn't passed.</p>
+<p>Sometimes when writing functions, we don’t need every parameter to be satisfied. TypeScript allows us to mark optional parameters (or properties) with a <code>?</code> so the compiler will not error if an optional param isn’t passed.</p>
 <pre><code class="language-typescript">function buildDinosaur(name: string, breed: string, teeth?: number): void {
   if (teeth) {
     console.log(`${name} is a ${breed} and has ${teeth} teeth.`);
@@ -630,7 +630,7 @@ base cost.  This solution uses <a href="https://developer.mozilla.org/en-US/docs
 }
 
 </code></pre>
-<p>You'll notice that specifying a return type is not necessary.  This is
+<p>You’ll notice that specifying a return type is not necessary.  This is
 because TypeScript can infer the return value from the arguments.</p>
 <p>The following is another
 valid solution:</p>

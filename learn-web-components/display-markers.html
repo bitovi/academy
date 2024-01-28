@@ -554,7 +554,7 @@ title="Markers being displayed when a route is selected." /></p>
 </ul>
 <h3>getters/setters</h3>
 <p>JavaScript <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/set">setters</a> allow observation of property changes. Adding a setter for <code>vehicles</code> provides a hook for when the <code>&lt;bus-tracker&gt;</code> component passes the array of vehicles for the selected route.</p>
-<p>In order to reflect back the list of vehicles in a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get">getter</a> you can save the vehicle list to another property on the element (like an underscore property). It's common when a setter exists that a getter does as well.</p>
+<p>In order to reflect back the list of vehicles in a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/get">getter</a> you can save the vehicle list to another property on the element (like an underscore property). It’s common when a setter exists that a getter does as well.</p>
 <p>This is an example of a getter/setter pair in a JavaScript class.</p>
 <pre><code class="language-js">class Person {
   set age(val) {
@@ -612,7 +612,7 @@ setTimeout(() =&gt; counter.count--, 15000);
 <div class='codepen'></div>
 <div line-highlight='15-22'></div>
 <h3>Default values</h3>
-<p>Most properties supported by built-in elements have some sort of default value. For example the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress">&lt;progress&gt;</a> element has a <code>max</code> property that defaults to <code>1</code>: <code>document.createElement('progress').max; // 1</code>. <strong>All</strong> elements have an <code>onclick</code> property whose default value is <code>null</code>. It's good practice to provide default values for your supported public properties, and these can be set in the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor">constructor</a>. Combining getters, setters and default values for properties makes your component more robust.</p>
+<p>Most properties supported by built-in elements have some sort of default value. For example the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress">&lt;progress&gt;</a> element has a <code>max</code> property that defaults to <code>1</code>: <code>document.createElement('progress').max; // 1</code>. <strong>All</strong> elements have an <code>onclick</code> property whose default value is <code>null</code>. It’s good practice to provide default values for your supported public properties, and these can be set in the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor">constructor</a>. Combining getters, setters and default values for properties makes your component more robust.</p>
 <pre><code class="language-js">class DogElement extends HTMLElement {
   constructor() {
     super();

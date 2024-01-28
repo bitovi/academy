@@ -672,14 +672,14 @@ covering CanJS core libraries.">
 <li>Add order history link to our main navigation</li>
 </ul>
 <h2>Problem 1: Generate a <code>HistoryComponent</code> and create a route for it</h2>
-<p>We want to create a component that will show the app's order history.</p>
+<p>We want to create a component that will show the app’s order history.</p>
 <h2>P1: Technical Requirements</h2>
 <ol>
 <li>Generate a <code>HistoryComponent</code> in <code>src/app/order/history/history.component.ts</code></li>
 <li>Show <code>HistoryComponent</code> when we navigate to <code>/order-history</code></li>
 </ol>
 <h2>P1: How to Verify Your Solution is Correct</h2>
-<p>If you've implemented the solution correctly you should be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see <em>'history works!'</em>.</p>
+<p>If you’ve implemented the solution correctly you should be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see <em>'history works!'</em>.</p>
 <p>✏️ Update the spec file <strong>src/app/app.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { Location } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -1016,10 +1016,10 @@ describe('AppComponent', () =&gt; {
 </code></pre>
  <div line-highlight="18,210,281,284-287,319,323,330,only"></div>
 <blockquote>
-<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+<p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
 <h2>P1: What you need to know</h2>
-<p>You got this already, but just in case, here's some hints:</p>
+<p>You got this already, but just in case, here’s some hints:</p>
 <ul>
 <li>How to generate a component
 <pre><code class="language-shell">ng g component PATH
@@ -1082,10 +1082,10 @@ export class AppRoutingModule {}
 <li>Add the class name <code>active</code> to the link if we are on the <code>OrderHistory</code> page.</li>
 </ol>
 <h2>P2: What You Need to Know</h2>
-<p>You've seen this before. Checkout how the <strong>Home</strong> link works in
+<p>You’ve seen this before. Check out how the <strong>Home</strong> link works in
 <code>app.component.html</code>.</p>
 <h2>P2: How to Verify Your Solution is Correct</h2>
-<p>If you've implemented the solution correctly you should now be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see a list of all orders.</p>
+<p>If you’ve implemented the solution correctly you should now be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see a list of all orders.</p>
 <h2>P2: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
@@ -1118,7 +1118,7 @@ export class AppRoutingModule {}
 <h2>P3: Technical Requirements</h2>
 <ol>
 <li>List all orders in the <code>HistoryComponent</code>.</li>
-<li>Make sure the <code>&lt;div&gt;</code> for each order has a class name of <em>'order'</em> and a class name that is the <code>order.status</code> value. Make sure you've created a new order.</li>
+<li>Make sure the <code>&lt;div&gt;</code> for each order has a class name of <em>'order'</em> and a class name that is the <code>order.status</code> value. Make sure you’ve created a new order.</li>
 </ol>
 <h2>P3: Setup</h2>
 <p>1. ✏️ Copy the following into <strong>src/app/order/history/history.component.ts</strong>. You will fill out its
@@ -1391,7 +1391,7 @@ describe('HistoryComponent', () =&gt; {
 
 </code></pre>
 <blockquote>
-<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+<p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
 <h2>P3: What You Need to Know</h2>
 <ul>
@@ -1399,7 +1399,7 @@ describe('HistoryComponent', () =&gt; {
 property in the constructor.</li>
 <li>How to loop through values in HTML. Hint: <code>*ngFor</code>.</li>
 </ul>
-<p>For this step, you'll need to know how to add multiple class names. You can do this with
+<p>For this step, you’ll need to know how to add multiple class names. You can do this with
 <code>[ngClass]</code> and setting it to an array like:</p>
 <pre><code class="language-html">&lt;div [ngClass]=&quot;['first','second']&quot;&gt;&lt;/div&gt;
 </code></pre>
@@ -1949,7 +1949,7 @@ describe('ListComponent', () =&gt; {
 
 </code></pre>
 <blockquote>
-<p>If you've implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+<p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
 <h2>P4: What You Need to Know</h2>
 <ul>

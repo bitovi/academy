@@ -531,7 +531,7 @@ raptorGuy.sayHi();
 <h2>Classes in TypeScript</h2>
 <p>Classes in TypeScript look just like classes in JavaScript; however, there are additional features
 that add type safety.</p>
-<p>In the following TypeScript class example, the <code>name</code> member is defined on line 3. We'll look at setting the name via the constructor next.</p>
+<p>In the following TypeScript class example, the <code>name</code> member is defined on line 3. We’ll look at setting the name via the constructor next.</p>
 <pre><code class="language-ts">//class way
 class ParkEmployee {
   name: string;
@@ -568,7 +568,7 @@ console.log(dino.name);
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='3'></div>
-<p>When declaring members, it's also possible to instantiate a value on them.</p>
+<p>When declaring members, it’s also possible to instantiate a value on them.</p>
 <pre><code class="language-ts">class Dinosaur {
   name: string;
   age = 0;
@@ -693,7 +693,7 @@ scaryDino.dna;
 <div class='codepen'></div>
 <div line-highlight='3,13'></div>
 <h2>Protected modifier</h2>
-<p>Protected modifiers are similar to private modifiers in that they can't be accessed but they CAN be accessed by deriving classes. The following example shows an inherited class that can access it's parent protected property <code>teethCount</code>:</p>
+<p>Protected modifiers are similar to private modifiers in that they can’t be accessed but they CAN be accessed by deriving classes. The following example shows an inherited class that can access it’s parent protected property <code>teethCount</code>:</p>
 <pre><code class="language-ts">class Dinosaur {
   public name: string;
   private dna: string;
@@ -720,7 +720,7 @@ class GeneticallyModifiedDinosaur extends Dinosaur {
 <div class='codepen'></div>
 <div line-highlight='4,19'></div>
 <h2>Readonly modifier</h2>
-<p>Readonly modifiers allow properties to be read, but not changed after initialization. Read-only members can be accessed outside the class, but their value can't be changed.</p>
+<p>Readonly modifiers allow properties to be read, but not changed after initialization. Read-only members can be accessed outside the class, but their value can’t be changed.</p>
 <pre><code class="language-ts">class Leoplurodon {
   readonly location: string;
   readonly numberOfFlippers = 4;
@@ -740,7 +740,7 @@ firstStop.location = &quot;On a bridge&quot;; // error! location is readonly.
 <div class='codepen'></div>
 <div line-highlight='2,10'></div>
 <h2>This and <code>=&gt;</code> Functions</h2>
-<p>If you're familiar with ES6, you may know that using the fat arrow (=&gt;) captures the context of <code>this</code> where it's used. The functionality is the same in TypeScript.</p>
+<p>If you’re familiar with ES6, you may know that using the fat arrow (=&gt;) captures the context of <code>this</code> where it’s used. The functionality is the same in TypeScript.</p>
 <p>Wrong <code>this</code>:</p>
 <pre><code class="language-typescript">class DinoBuilder {
   dinoName = 'Trex';

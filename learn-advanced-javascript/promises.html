@@ -165,7 +165,7 @@ Bonus: Hash maps and order of complexity">
            						">
 						<a class="page"
 							href="prototypes.html"
-							title="Demystify .prototype and ._proto_! We&#x27;ll cover what the &quot;new&quot; and &quot;instanceof&quot; operators are actually doing behind the scenes, and what prototype-based inheritance looks like in memory.">
+							title="Demystify .prototype and ._proto_! We’ll cover what the &quot;new&quot; and &quot;instanceof&quot; operators are actually doing behind the scenes, and what prototype-based inheritance looks like in memory.">
 							Prototypes
 						</a>
 						
@@ -523,12 +523,12 @@ request.then( function(response){
 });
 </code></pre>
 <div class='codepen'></div>
-<p>Setting a promise's returning value is actually called <em>resolving</em> the
-promise's value. This is because a promise's value can
+<p>Setting a promise’s returning value is actually called <em>resolving</em> the
+promise’s value. This is because a promise’s value can
 only be set once.</p>
 <h2>Failure reasons</h2>
 <p>If the operation fails, a reason for the failure can be returned.
-For example, if <code>fetch</code> makes a request to a URL that doesn't exist,
+For example, if <code>fetch</code> makes a request to a URL that doesn’t exist,
 the <code>reason</code> will be an TypeError object.</p>
 <pre><code class="language-js">const request = fetch(&quot;http://foo.bar&quot;);
 
@@ -560,7 +560,7 @@ numberPromise.then( function( number ){
 promise.</li>
 <li><code>.then( onFulfilled )</code> takes an <code>onFulfilled</code> function that is called
 when the promise is resolved. <code>onFulfilled</code> is called with
-the promise's resolved value.</li>
+the promise’s resolved value.</li>
 </ul>
 <p><details></p>
 <p><summary>Example Implementation</summary></p>
@@ -653,7 +653,7 @@ numberPromise.catch(console.log) //-&gt; Error[Borked]
 <h2>Creating promises from other promises</h2>
 <p>One of the most common uses of promises is to take a promise value and convert it to another
 promise value.</p>
-<p>A promise's <code>.then( onFulfilled )</code> method always returns another <em>outer</em> promise.  That <em>outer</em> promise
+<p>A promise’s <code>.then( onFulfilled )</code> method always returns another <em>outer</em> promise.  That <em>outer</em> promise
 will take on the value of what the <code>onFulfilled</code> function returns.</p>
 <p>In the following example, notice how <code>breedsPromise</code> resolves to an object of breeds. However,
 the <code>toCount</code> function is returning the number of breeds. This return value is used to
@@ -682,7 +682,7 @@ the behavior of the returned promise. This was used in the above example.  <code
 returns a promise, so <code>breedsPromise</code> took on the behavior of the result of <code>response.json()</code>.</p>
 <blockquote>
 <p>NOTE: The process of reducing nested observables into a single observable is often called flattening.
-This is what it's called in RxJS's <a href="https://rxjs-dev.firebaseapp.com/api/operators/mergeAll">mergeAll</a>.</p>
+This is what it’s called in RxJS's <a href="https://rxjs-dev.firebaseapp.com/api/operators/mergeAll">mergeAll</a>.</p>
 </blockquote>
 <p>The following shows using a <code>delay()</code> function to delay when <code>countPromise</code> completes by 3 seconds. <code>delay</code>
 returns a promise that resolves after 3 seconds.</p>
@@ -982,8 +982,8 @@ can create timing issues.</li>
 <li>Callbacks can create the <em>pyramid of doom</em>.</li>
 </ul>
 <p><strong>When to use callbacks instead of promises</strong></p>
-<p>If you are making something that needs to run extremely quickly and doesn't need to
-be user friendly, callbacks might be a good solution. After all, it's not difficult to
+<p>If you are making something that needs to run extremely quickly and doesn’t need to
+be user friendly, callbacks might be a good solution. After all, it’s not difficult to
 &quot;promisify&quot; callback-based APIs.  Many libraries do exactly this.</p>
 <h3>Promises compared to event streams</h3>
 <p>Event streams are any technology that might produce values
@@ -1016,7 +1016,7 @@ This lets you create a stream of events.</p>
 <p><strong>Event stream positives:</strong></p>
 <ul>
 <li>Event streams can emit values over time.  Promise can not do this.</li>
-<li>Event streams can be cancelled. There's no way to do this through the promise API.</li>
+<li>Event streams can be cancelled. There’s no way to do this through the promise API.</li>
 <li>Event streams often have utility libraries, making deriving new event streams
 from other event streams easy.</li>
 </ul>
@@ -1024,7 +1024,7 @@ from other event streams easy.</li>
 <ul>
 <li>You must stop listening to an event stream or end the stream to avoid memory leaks.</li>
 <li>Event streams are often heavier than Promises.</li>
-<li>With the exception of <code>ReadableStream</code> (which isn't in every environment yet),
+<li>With the exception of <code>ReadableStream</code> (which isn’t in every environment yet),
 streams are not part of the JavaScript specification and are not present in
 every environment. Promises come for free for almost every user.</li>
 </ul>

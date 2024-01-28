@@ -154,7 +154,7 @@
            						">
 						<a class="page"
 							href="intro-to-jsx.html"
-							title="Learn how to use React&#x27;s preferred markup syntax JSX, and combine HTML with JavaScript.">
+							title="Learn how to use React’s preferred markup syntax JSX, and combine HTML with JavaScript.">
 							Introduction to JSX
 						</a>
 						
@@ -505,7 +505,7 @@ covering CanJS core libraries.">
 }
 </code></pre>
 <div line-highlight='2'></div>
-<p>This is a perfectly good function, but notice that it always adds the same two numbers. In other words, it's only usable in very specific cases.</p>
+<p>This is a perfectly good function, but notice that it always adds the same two numbers. In other words, it’s only usable in very specific cases.</p>
 <p>We can make this function more reusable by allowing arguments to be passed in:</p>
 <pre><code class="language-js">function addNumbers(num1, num2) {
   return num1 + num2;
@@ -532,13 +532,13 @@ covering CanJS core libraries.">
 <blockquote>
 <p>In React, all functional components receive a <code>props</code> object as their first argument.</p>
 </blockquote>
-<p>We're also <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">destructuring</a> the props object, a convention used by much of the community and in the rest of this guide.</p>
-<p>The props object contains any values which are passed into the component when it's rendered.</p>
+<p>We’re also <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment">destructuring</a> the props object, a convention used by much of the community and in the rest of this guide.</p>
+<p>The props object contains any values which are passed into the component when it’s rendered.</p>
 <pre><code class="language-jsx">&lt;AddNumbers num1={1} num2={7} /&gt;
 &lt;AddNumbers num1={5} num2={-90} /&gt;
 </code></pre>
 <p>Whenever the <code>AddNumbers</code> component is rendered, we can now pass it <code>num1</code> &amp; <code>num2</code> props which it will use to do the calculation.</p>
-<p>Now, instead of having a hardcoded addition, the component is flexible and can be reused in any scenario where it's necessary to display the result of adding two numbers.</p>
+<p>Now, instead of having a hardcoded addition, the component is flexible and can be reused in any scenario where it’s necessary to display the result of adding two numbers.</p>
 <h2>Prop Data Types</h2>
 <p>Props can be any data type or data structure. Anything you could pass into a JavaScript function can be passed into a component as a prop.</p>
 <pre><code class="language-jsx">&lt;Component
@@ -555,11 +555,11 @@ covering CanJS core libraries.">
 }
 </code></pre>
 <div line-highlight='2'></div>
-<p>The button above calls <code>console.log('clicked')</code> whenever the user clicks it. But once again, we're running into a reusability issue.</p>
+<p>The button above calls <code>console.log('clicked')</code> whenever the user clicks it. But once again, we’re running into a reusability issue.</p>
 <p>Suppose we wanted to perform an arbitrary action when the button is clicked instead of the hardcoded <code>console.log('clicked')</code>.</p>
 <p>To accomplish that, we would use a callback prop. To do so, simply pass the component a callback function as one of its props and pass that function to the button as the onClick prop. Note that by convention, callback props should begin with <code>on</code> just like native DOM events:</p>
 <pre><code class="language-jsx">function MyButton({ onButtonClick }) {
-  // here we're destructuring the props object
+  // here we’re destructuring the props object
   return &lt;button onClick={onButtonClick}&gt;click me&lt;/button&gt;;
 }
 </code></pre>
@@ -567,7 +567,7 @@ covering CanJS core libraries.">
 <p>Notice above that the <code>MyButton</code> component now accepts an <code>onButtonClick</code> prop. Now whenever the button is clicked it will call the callback function, making the <code>MyButton</code> component more reusable.</p>
 <pre><code class="language-jsx">&lt;MyButton onButtonClick={() =&gt; console.log('custom click action')}&gt;
 </code></pre>
-<p>When we render the button, we'll pass in the <code>onButtonClick</code> prop just like the numbers from the <code>AddNumbers</code> component. Since we're not passing a string prop, it needs to be enclosed in curly brackets <code>{ }</code>.</p>
+<p>When we render the button, we’ll pass in the <code>onButtonClick</code> prop just like the numbers from the <code>AddNumbers</code> component. Since we’re not passing a string prop, it needs to be enclosed in curly brackets <code>{ }</code>.</p>
 <h2>Try it out</h2>
 <p>Below is the <code>MyButton</code> component code in a working example:</p>
 <pre><code class="language-jsx">function MyButton({ onButtonClick }) {
@@ -597,7 +597,7 @@ ReactDOM.render(&lt;App /&gt;, document.getElementById('root'));
 <div class='codepen' data-codepen='react'></div>
 <p>Notice that if you supply a <code>prop</code> with no value (ie... the <code>isCool</code> in <code>&lt;AddNumbers num1={5} num2={10} isCool/&gt;</code>), then React supplies the value of <code>true</code>. It assumes it is a boolean prop.</p>
 <h2>Exercise</h2>
-<p>Let's use our props knowledge to start building out the Tic-Tac-Toe component.</p>
+<p>Let’s use our props knowledge to start building out the Tic-Tac-Toe component.</p>
 <h3>The problem</h3>
 <p>The goal of this exercise to render a full Tic-Tac-Toe game board. But this time, we will pass the symbol (X, or O) into the Tic-Tac-Toe for rendering. Also we will pass a function down into the Tic-Tac-Toe cell that prints <code>console.log()</code> whenever the user clicks on a square. You will need to render the squares first. This will require you to modify some of the props in the starter code below.</p>
 <h4>Instructions</h4>
@@ -653,7 +653,7 @@ function Board({ onSquareClick, board }) {
           a &lt;Square /&gt; component.
 
           The Square component takes a symbol prop (x or o), an
-          onClick prop, and since we're using the map function each
+          onClick prop, and since we’re using the map function each
           Square will also need a unique key prop.
       */}&lt;/div&gt;;
 }
@@ -677,7 +677,7 @@ function Game() {
 ReactDOM.render(&lt;Game /&gt;, document.getElementById('root'));
 </code></pre>
 <div class='codepen' data-codepen='react'></div>
-<p>You can run the code above by hovering over the code block and hitting Run, which is in the upper right hand corner. Only check the solution below once you've taken a pass yourself.</p>
+<p>You can run the code above by hovering over the code block and hitting Run, which is in the upper right hand corner. Only check the solution below once you’ve taken a pass yourself.</p>
 <h2>Solution</h2>
 <p><details>
 <summary>

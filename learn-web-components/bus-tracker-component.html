@@ -533,8 +533,8 @@ title="The shell of our bus-tracker component showing a header and a Google map"
 <ol>
 <li>Create a template that contains the styles and markup for this new element.</li>
 <li>Create a custom element called <code>bus-tracker</code>.</li>
-<li>Include the styles/markup in this element's <code>shadowRoot</code>.</li>
-<li>Place the <code>google-map-view</code> component within this new element's <code>footer</code>.</li>
+<li>Include the styles/markup in this element’s <code>shadowRoot</code>.</li>
+<li>Place the <code>google-map-view</code> component within this new element’s <code>footer</code>.</li>
 </ol>
 <h2>Technical Requirements</h2>
 <p>The styles for our <code>bus-tracker</code> component should be contained within Shadow DOM. The CSS needed for the rest of the guide is:</p>
@@ -689,7 +689,7 @@ p {
 </code></pre>
 <p>The <code>google-map-view</code> component should be displayed in the <code>&lt;footer&gt;</code> section of the component.</p>
 <h2>What You Need to Know</h2>
-<p>To solve this problem you'll need to:</p>
+<p>To solve this problem you’ll need to:</p>
 <ul>
 <li>Know how to use CSS in a component that uses Shadow DOM.</li>
 <li>Use a component within another component.</li>
@@ -709,7 +709,7 @@ p {
 </code></pre>
 <p>In our component we are using <code>display: flex</code> to give space to the header, route list, and Google map.</p>
 <h3>Nesting components</h3>
-<p>Any component defined using <code>customElements.define()</code> can be used within another element's <code>shadowRoot</code> just as they can inside of the page's HTML. To add the <code>google-map-view</code> to this new component, place the tag within the footer.</p>
+<p>Any component defined using <code>customElements.define()</code> can be used within another element’s <code>shadowRoot</code> just as they can inside of the page’s HTML. To add the <code>google-map-view</code> to this new component, place the tag within the footer.</p>
 <pre><code class="language-html">&lt;parent-element&gt;&lt;/parent-element&gt;
 
 &lt;template id=&quot;child-template&quot;&gt;

@@ -154,7 +154,7 @@
            						">
 						<a class="page"
 							href="intro-to-jsx.html"
-							title="Learn how to use React&#x27;s preferred markup syntax JSX, and combine HTML with JavaScript.">
+							title="Learn how to use React’s preferred markup syntax JSX, and combine HTML with JavaScript.">
 							Introduction to JSX
 						</a>
 						
@@ -499,12 +499,12 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>What are stateful hooks?</h2>
-<p>Stateful hooks are React's way of managing the data that a functional component needs to remember. The most widely used stateful hook, <a href="https://reactjs.org/docs/hooks-state.html"><code>useState</code></a>, streamlines the process of both using and updating individual state values in a straightforward way.</p>
+<p>Stateful hooks are React’s way of managing the data that a functional component needs to remember. The most widely used stateful hook, <a href="https://reactjs.org/docs/hooks-state.html"><code>useState</code></a>, streamlines the process of both using and updating individual state values in a straightforward way.</p>
 <p>Another stateful hook, <code>useRef</code>, gives component code access to the underlying DOM elements rendered from the JSX.</p>
-<p>Let's take a look at each hook and see what they can do.</p>
+<p>Let’s take a look at each hook and see what they can do.</p>
 <h2>useState</h2>
 <p><a href="https://reactjs.org/docs/hooks-state.html"><code>useState</code></a> accepts a single parameter and returns an array with two elements. The argument to <code>useState</code> is the default value of the <code>state</code> that you are creating. The first element of the return value is the state value itself; this is the value you would render inside the JSX. The second element is a setter function, which, when called, can be used to update the state value and trigger a re-render.</p>
-<p>Here's an example of a React component that uses state to power an input element.</p>
+<p>Here’s an example of a React component that uses state to power an input element.</p>
 <pre><code class="language-jsx">function Hello() {
   const [inputValue, setInputValue] = React.useState('');
 
@@ -522,7 +522,7 @@ ReactDOM.render(&lt;Hello /&gt;, document.getElementById('root'));
 <div class='codepen' data-codepen='react'></div>
 <p>Above is a simple example of using state to control an <code>input</code> element. The starting value of <code>inputValue</code> is <code>''</code> because it is the argument to <code>React.useState</code>. If we were to call <code>setInputValue('hello')</code>, then <code>inputValue</code> would change to <code>hello</code> and the component would re-render.</p>
 <p>Note also that the input box always displays the <code>uppercase</code> value of the text. This is because when we display the text value (when we pass the <code>value</code> prop to the <code>input</code>), we uppercase the string.</p>
-<p>This process is similar no matter what component you're building. The basic pattern is:</p>
+<p>This process is similar no matter what component you’re building. The basic pattern is:</p>
 <ol>
 <li>Get the value and setter from <a href="https://reactjs.org/docs/hooks-state.html"><code>useState</code></a>.</li>
 <li>Use the value as needed</li>
@@ -575,8 +575,8 @@ ReactDOM.render(&lt;Hello /&gt;, document.getElementById('root'));
 </blockquote>
 <h2>useRef</h2>
 <p>Just like <code>useState</code>, <code>useRef</code> is a data store, keeping track of values the component is interested in. In this case however, <code>useRef</code> helps store DOM references instead of state data.</p>
-<p>DOM references give your component access to the underlying DOM elements that your JSX creates. These references can then be used to make more specific changes to the DOM or provide access to external libraries. To get to the value of a ref, it is always located in the <code>.current</code> property. It's important to note that updating refs does not cause updates like modifying the state does.</p>
-<p>Let's take a look at <code>useRef</code> in action:</p>
+<p>DOM references give your component access to the underlying DOM elements that your JSX creates. These references can then be used to make more specific changes to the DOM or provide access to external libraries. To get to the value of a ref, it is always located in the <code>.current</code> property. It’s important to note that updating refs does not cause updates like modifying the state does.</p>
+<p>Let’s take a look at <code>useRef</code> in action:</p>
 <pre><code class="language-jsx">function Hello() {
   const nameRef = React.useRef();
 
@@ -594,14 +594,14 @@ ReactDOM.render(&lt;Hello /&gt;, document.getElementById('root'));
 </code></pre>
 <div line-highlight='2,8,10'></div>
 <div class='codepen' data-codepen='react'></div>
-<p>In the code above we're doing a couple things:</p>
+<p>In the code above we’re doing a couple things:</p>
 <ul>
 <li>Creating a ref that will reference the input field.</li>
 <li>Use that input ref so that button onClick handler to <code>.focus()</code> on the underlying DOM element.</li>
 </ul>
 <p>This strategy is useful when you need to interface with older libraries that require you have the reference to the actual DOM element instance.</p>
 <h2>Exercise</h2>
-<p>Let's use our stateful hooks knowledge to make our Tic-Tac-Toe game more functional!</p>
+<p>Let’s use our stateful hooks knowledge to make our Tic-Tac-Toe game more functional!</p>
 <h3>The problem</h3>
 <p>✏️ Modify the <code>Board</code> component so that it keeps track of the current state of the game and players using hooks.</p>
 <ul>

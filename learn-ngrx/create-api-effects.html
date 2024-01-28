@@ -246,7 +246,7 @@
            						">
 						<a class="page"
 							href="getting-started.html"
-							title="Checkout the course repository and get setup for upcoming lessons!">
+							title="Check out the course repository and get setup for upcoming lessons!">
 							Getting Started
 						</a>
 						
@@ -602,7 +602,7 @@ covering CanJS core libraries.">
 </ol>
 <h2>Problem 1: Create <code>login$</code> Effect to Handle API Requests</h2>
 <ol>
-<li><p><code>LoginEffects</code> should create a login API request using <code>ngx-learn-ngrx</code>'s <code>LoginService.login()</code> method whenever the <code>LoginActions.login</code> Action is dispatched using an Effect called <code>login$</code>.</p></li>
+<li><p><code>LoginEffects</code> should create a login API request using <code>ngx-learn-ngrx</code>’s <code>LoginService.login()</code> method whenever the <code>LoginActions.login</code> Action is dispatched using an Effect called <code>login$</code>.</p></li>
 <li><p>If the API request is successful, a <code>LoginActions.loginSuccess</code> Action should be dispatched using the API response.</p></li>
 <li><p>If the API request is unsuccessful, a <code>LoginActions.loginFailure</code> Action should be dispatched using the following method to parse the error to a message:</p></li>
 </ol>
@@ -667,7 +667,7 @@ export class ContactEffects {
 <p>&quot;Flattening&quot; operators are commonly used when creating Effects since we will likely use <code>Observables</code> or <code>Promises</code> to make API requests or perform some asynchronous task to produce some kind of side-effect.</p>
 <p>One way to subscribe to an &quot;inner&quot; <code>Observable</code> within an existing &quot;outer&quot; <code>Observable</code> stream is to use
 &quot;flattening&quot; operators such as <a href="https://rxjs.dev/api/operators/mergeMap"><code>mergeMap</code></a>, <a href="https://rxjs.dev/api/operators/switchMap"><code>switchMap</code></a>, or <a href="https://rxjs.dev/api/operators/exhaustMap"><code>exhaustMap</code></a>. These &quot;flattening&quot; operators can also allow us to use <code>Promises</code> within our <code>Observable</code> stream as well.</p>
-<p>Although we could use any of these &quot;flattening&quot; operators as a working solution, we will be using <code>exhaustMap</code>. Each of the &quot;flattening&quot; operators have a slightly different behavior when handling <strong>multiple</strong> &quot;inner&quot; <code>Subscriptions</code>. For <code>exhaustMap</code>, each new &quot;inner&quot; <code>Subscription</code> is ignored if there is an existing &quot;inner&quot; <code>Subscription</code> that hasn't completed yet:</p>
+<p>Although we could use any of these &quot;flattening&quot; operators as a working solution, we will be using <code>exhaustMap</code>. Each of the &quot;flattening&quot; operators have a slightly different behavior when handling <strong>multiple</strong> &quot;inner&quot; <code>Subscriptions</code>. For <code>exhaustMap</code>, each new &quot;inner&quot; <code>Subscription</code> is ignored if there is an existing &quot;inner&quot; <code>Subscription</code> that hasn’t completed yet:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/7.4.0/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 
 &lt;script type=&quot;typescript&quot;&gt;
@@ -774,7 +774,7 @@ export class ContactEffects {
 
 </code></pre>
 <div line-highlight='18-25, 35, only'></div>
-<p>And last, you will need to use <code>ngx-learn-ngrx</code>'s <code>LoginService</code> to perform authentication for course:</p>
+<p>And last, you will need to use <code>ngx-learn-ngrx</code>’s <code>LoginService</code> to perform authentication for course:</p>
 <pre><code class="language-ts">// src/app/store/login/login.effects.ts
 
 import { Injectable } from '@angular/core';
@@ -805,7 +805,7 @@ export class LoginEffects {
 <li><p><code>username</code> must be at least 3 characters.</p></li>
 <li><p><code>username</code> must be alphanumeric including hyphens or underscores.</p></li>
 </ol>
-<p>When one of these requirements aren't met, an error is thrown and an error is logged in the console in red text.</p>
+<p>When one of these requirements aren’t met, an error is thrown and an error is logged in the console in red text.</p>
 <h2>P1: Solution</h2>
 <p><details>
 <summary>src/app/store/login/login.effects.ts</summary></p>
@@ -855,7 +855,7 @@ export class LoginEffects {
 </details>
 <h2>Problem 2: Create <code>logout$</code> Effect to Handle API Requests</h2>
 <ol>
-<li><p><code>LoginEffects</code> should create a logout API request  using <code>ngx-learn-ngrx</code>'s <code>LoginService.logout()</code> method whenever the <code>LoginActions.logout</code> Action is dispatched using an Effect called <code>logout$</code>.</p></li>
+<li><p><code>LoginEffects</code> should create a logout API request  using <code>ngx-learn-ngrx</code>’s <code>LoginService.logout()</code> method whenever the <code>LoginActions.logout</code> Action is dispatched using an Effect called <code>logout$</code>.</p></li>
 <li><p>If the API request is successful, a <code>LoginActions.logoutSuccess</code> Action should be dispatched using the API response.</p></li>
 <li><p>If the API request is unsuccessful, a <code>LoginActions.logoutFailure</code> Action should be dispatched using the same <code>getErrorMessage()</code> method to parse the error to a message.</p></li>
 </ol>

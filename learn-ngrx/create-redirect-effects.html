@@ -246,7 +246,7 @@
            						">
 						<a class="page"
 							href="getting-started.html"
-							title="Checkout the course repository and get setup for upcoming lessons!">
+							title="Check out the course repository and get setup for upcoming lessons!">
 							Getting Started
 						</a>
 						
@@ -599,8 +599,8 @@ covering CanJS core libraries.">
 <h2>Problem 1: Create <code>loginSuccess$</code> Effect to Handle Navigating to Dashboard Page</h2>
 <p><code>LoginEffects</code> should use <code>Router</code> to navigate to the dashboard page at path <code>/dashboard</code> using an Effect called <code>loginSuccess$</code>.</p>
 <h2>P1: What You Need to Know</h2>
-<p>Although it's common for Effects to dispatch another Action after handling a side-effect, there is a way to update the configuration for an Effect to never dispatch an Action instead. This is useful when a side-effect resolves and there's no need to trigger another side-effect or update state.</p>
-<p>To understand this better, let's take a deeper dive into the <code>createEffect()</code> <a href="https://ngrx.io/api/effects/createEffect">helper function</a>:</p>
+<p>Although it’s common for Effects to dispatch another Action after handling a side-effect, there is a way to update the configuration for an Effect to never dispatch an Action instead. This is useful when a side-effect resolves and there’s no need to trigger another side-effect or update state.</p>
+<p>To understand this better, let’s take a deeper dive into the <code>createEffect()</code> <a href="https://ngrx.io/api/effects/createEffect">helper function</a>:</p>
 <p><code>createEffect()</code> takes two arguments:</p>
 <ol>
 <li><p><code>source</code> - A function which returns an <code>Observable</code>.</p></li>
@@ -622,7 +622,7 @@ export interface EffectConfig {
   useEffectsErrorHandler?: boolean;
 }
 </code></pre>
-<p>By default, the <code>dispatch</code> option is set to <code>true</code>, but if we set it to <code>false</code>, the Effect doesn't have to end with an Action being dispatched:</p>
+<p>By default, the <code>dispatch</code> option is set to <code>true</code>, but if we set it to <code>false</code>, the Effect doesn’t have to end with an Action being dispatched:</p>
 <pre><code class="language-ts">// Note: This example code is not part of our application repo or solution
 
 import { Injectable } from '@angular/core';
@@ -636,7 +636,7 @@ export class ContactEffects {
     return this.actions$.pipe(
       ofType(ContactActions.submitSuccess),
       exhaustMap(({ confirmationNumber }) =&gt;
-        // call `showModal()`, but doesn't `map` to some Action
+        // call `showModal()`, but doesn’t `map` to some Action
         this.showModal(confirmationNumber)
       )
     );
@@ -832,7 +832,7 @@ export class LoginEffects {
 <li><p><code>username</code> must be at least 3 characters.</p></li>
 <li><p><code>username</code> must be alphanumeric including hyphens or underscores.</p></li>
 </ol>
-<p><em>When one of these requirements aren't met, an error is thrown and an error is logged in the console in red text.</em></p>
+<p><em>When one of these requirements aren’t met, an error is thrown and an error is logged in the console in red text.</em></p>
 <blockquote>
 <p><strong>Wrap-up</strong>: By the end of this section, your code should match <a href="https://github.com/bitovi/angular-ngrx-chat/tree/create-redirect-effects">this branch</a>. You can also compare the <a href="https://github.com/bitovi/angular-ngrx-chat/compare/test-api-effects...create-redirect-effects">code changes for our solution to this section</a> on GitHub or you can use the following command in your terminal:</p>
 </blockquote>

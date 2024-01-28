@@ -532,7 +532,7 @@ title="google-map-view component with a useable slippy map."/></p>
 <li>Set up the Google map <em>only</em> when the custom element is connected to the DOM.</li>
 </ol>
 <h2>Technical Requirements</h2>
-<p>Use the existing <code>#gmap-template</code> template, and append it to the host component's Shadow DOM. Use this script tag to enable the Google maps API:</p>
+<p>Use the existing <code>#gmap-template</code> template, and append it to the host component’s Shadow DOM. Use this script tag to enable the Google maps API:</p>
 <pre><code class="language-html">&lt;script src=&quot;https://maps.googleapis.com/maps/api/js?key=AIzaSyD7POAQA-i16Vws48h4yRFVGBZzIExOAJI&quot;&gt;&lt;/script&gt;
 </code></pre>
 <p>This snippet will create a Map centered on Chicago:</p>
@@ -588,7 +588,7 @@ document.body.append(el);
 <div class='codepen'></div>
 <div line-highlight='2, 9-13'></div>
 <h3>connectedCallback</h3>
-<p>For elements with side-effects (such as those that make network requests), it's best to do those side effects in the <strong>connectedCallback</strong>.</p>
+<p>For elements with side-effects (such as those that make network requests), it’s best to do those side effects in the <strong>connectedCallback</strong>.</p>
 <p><code>connectedCallback</code> is a lifecycle method for custom elements. It is called when the element is <strong>connected</strong>, which can occur in one of these scenarios:</p>
 <ul>
 <li>The HTML parser sees the element within the page.</li>

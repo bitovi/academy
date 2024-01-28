@@ -154,7 +154,7 @@
            						">
 						<a class="page"
 							href="intro-to-jsx.html"
-							title="Learn how to use React&#x27;s preferred markup syntax JSX, and combine HTML with JavaScript.">
+							title="Learn how to use React’s preferred markup syntax JSX, and combine HTML with JavaScript.">
 							Introduction to JSX
 						</a>
 						
@@ -501,7 +501,7 @@ covering CanJS core libraries.">
     <h1>Optimization Hooks</h1>
 <p>In addition to the core hooks exposed by React, namely <code>useState</code> and <code>useEffect</code>, there are several hooks aimed at optimizing your code for performance.</p>
 <p>Specifically, optimization through memoization. In a nutshell, memoization is the process of caching the values returned from long-running functions, and returning the cached values when inputs are identical to the previous run.</p>
-<p>There are two hooks which deal with memoization, <code>useMemo</code> and <code>useCallback</code>, let's take a look at them below.</p>
+<p>There are two hooks which deal with memoization, <code>useMemo</code> and <code>useCallback</code>, let’s take a look at them below.</p>
 <h2>useMemo</h2>
 <ul>
 <li>Returns a memoized value.</li>
@@ -524,8 +524,8 @@ ReactDOM.render(
 </code></pre>
 <div line-highlight='2,5'></div>
 <div class='codepen' data-codepen='react'></div>
-<p>In the code above, we're utilizing <code>useMemo</code> to memoize a value derived from two props, <code>firstName</code> and <code>lastName</code>. (Imagine that in order to get the full <code>name</code>, we need to perform some long-running or expensive operation.)</p>
-<p>Normally, we would perform this operation every time the component renders, regardless of the <code>firstName</code>/<code>lastName</code> prop values. When we memoize the value however, React keeps track of the inputs and outputs of this function, and caches inputs and output for the last time it was run. This means that if this component gets rendered with the same first and last name 100 times in a row, we'll only need to perform the expensive operation once.</p>
+<p>In the code above, we’re utilizing <code>useMemo</code> to memoize a value derived from two props, <code>firstName</code> and <code>lastName</code>. (Imagine that in order to get the full <code>name</code>, we need to perform some long-running or expensive operation.)</p>
+<p>Normally, we would perform this operation every time the component renders, regardless of the <code>firstName</code>/<code>lastName</code> prop values. When we memoize the value however, React keeps track of the inputs and outputs of this function, and caches inputs and output for the last time it was run. This means that if this component gets rendered with the same first and last name 100 times in a row, we’ll only need to perform the expensive operation once.</p>
 <p><code>useMemo</code> takes two arguments. The first is a function which performs the expensive operation and returns a value. The second is an array of dependencies. The dependency array determines which values, when changed, should cause the memoized value to be re-computed. All state values used in the function should be declared in the dependencies.</p>
 <p>To sum it all up:</p>
 <ul>
@@ -536,8 +536,8 @@ ReactDOM.render(
 </ol></li>
 </ul>
 <h3>useMemo to cache a function call</h3>
-<p>Let's take a look at a more real-world example. Here we'll parse a large JSON object, then flatten it into more easily printable lines.</p>
-<p>Here's a look at it without <code>useMemo</code>:</p>
+<p>Let’s take a look at a more real-world example. Here we’ll parse a large JSON object, then flatten it into more easily printable lines.</p>
+<p>Here’s a look at it without <code>useMemo</code>:</p>
 <pre><code class="language-jsx">function Hello({ bigJSONBlob }) {
   const data = JSON.parse(bigJSONBlob);
   const lines = flatten(data);
@@ -611,7 +611,7 @@ ReactDOM.render(
 <li><code>useCallback(fn, deps)</code> is equivalent to <code>useMemo(() =&gt; fn, deps)</code></li>
 <li>Used to maintain referential equality between renders.</li>
 </ul>
-<p><a href="https://reactjs.org/docs/hooks-reference.html#usecallback"><code>useCallback</code></a> is particularly useful when defining event handlers. In such cases, we're not necessarily interested in memoizing a single value, but rather in memoizing a callback function. This is very common in React, as we frequently use callbacks as props.</p>
+<p><a href="https://reactjs.org/docs/hooks-reference.html#usecallback"><code>useCallback</code></a> is particularly useful when defining event handlers. In such cases, we’re not necessarily interested in memoizing a single value, but rather in memoizing a callback function. This is very common in React, as we frequently use callbacks as props.</p>
 <p>Below is a clickable <code>Hello</code> component which defines an un-memoized <code>handleClick</code> function.</p>
 <pre><code class="language-jsx">function Hello({ firstName, lastName }) {
   const handleClick = () =&gt; {
@@ -628,7 +628,7 @@ ReactDOM.render(
 </code></pre>
 <div line-highlight='2-4'></div>
 <div class='codepen' data-codepen='react'></div>
-<p>Now below, we'll wrap <code>handleClick</code>'s logic in a <code>useCallback</code> so we can cache the results.</p>
+<p>Now below, we’ll wrap <code>handleClick</code>’s logic in a <code>useCallback</code> so we can cache the results.</p>
 <pre><code class="language-jsx">function Hello({ firstName, lastName }) {
   const handleClick = React.useCallback(() =&gt; {
     console.log(`${firstName} ${lastName}`);
@@ -645,9 +645,9 @@ ReactDOM.render(
 <div line-highlight='2-4'></div>
 <div class='codepen' data-codepen='react'></div>
 <h2>Exercise</h2>
-<p>Let's use our optimization hooks knowledge to make our Tic-Tac-Toe game a bit more performant!</p>
+<p>Let’s use our optimization hooks knowledge to make our Tic-Tac-Toe game a bit more performant!</p>
 <h3>The problem</h3>
-<p>✏️ Modify the <code>Board</code> component so that it's <code>handleSquareClick</code> function uses the <code>useCallback</code> hook.</p>
+<p>✏️ Modify the <code>Board</code> component so that it’s <code>handleSquareClick</code> function uses the <code>useCallback</code> hook.</p>
 <pre><code class="language-jsx">const squareStyling = {
   width: '200px',
   height: '200px',
