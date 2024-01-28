@@ -84,7 +84,7 @@ production and deploying it for others to see ([learn-angular/deploy-app]).
 
 ## Requirements
 
-In order to complete this guide, you need to have [NodeJS](https://nodejs.org/en/) version
+In order to complete this guide, you need to have [Node.js](https://nodejs.org/en/) version
 18.13 or later installed.
 
 ## Next Steps

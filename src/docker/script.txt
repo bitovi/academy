@@ -8,7 +8,7 @@ Docker bundles runtime dependencies with application source code into an image -
 This creates a common and repeatable experience 
 whether an application is being run on a developer’s workstation or a production server. 
 
-In this course, to cover Docker basics, we will be building a simple NodeJS API from scratch and then containerizing it.
+In this course, to cover Docker basics, we will be building a simple Node.js API from scratch and then containerizing it.
 
 Once we have built and run our Docker image, we will explore using volume mounting to make local development of 
 containerized applications more efficient. 

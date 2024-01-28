@@ -610,7 +610,7 @@ doSomething(someArg, function onComplete(err, data) {
 });
 ```
 
-This form of continuation passing is very common in NodeJS.
+This form of continuation passing is very common in Node.js.
 
 __Callback positives:__
 

@@ -1,4 +1,4 @@
-@page learn-docker/build-node-app Build a NodeJS App
+@page learn-docker/build-node-app Build a Node.js App
 @parent learn-docker 2
 
 @description Build a simple Express API to use for the rest of the course.
@@ -10,7 +10,7 @@
 ## Overview
 In this section, we are going to build a simple "Hello World" service using [Express](https://expressjs.com/).
 
-NodeJS is not required if you just want to read through this section and copy/paste the code snippets. If you want to run the application natively before we containerize it in the next section, you can install NodeJS [here](https://nodejs.org/en/download/).
+Node.js is not required if you just want to read through this section and copy/paste the code snippets. If you want to run the application natively before we containerize it in the next section, you can install Node.js [here](https://nodejs.org/en/download/).
                   
 ## Building our app
 The app requires only two files
@@ -67,5 +67,5 @@ Open your browser to `localhost:3000` and you should see `Hello World!`
 ![node app in browser](../static/img/docker/2-build-node-app/node-hello-world.png)
 
 ## What’s next
-Now that we’ve created a simple NodeJS app, we are going to containerize it.
+Now that we’ve created a simple Node.js app, we are going to containerize it.
     

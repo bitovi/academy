@@ -62,7 +62,7 @@ Finally we will add testing with Jest and include some nice abstractions to keep
 
 ## Requirements
 
-In order to complete this guide, you need to have [NodeJS](https://nodejs.org/en/) version
+In order to complete this guide, you need to have [Node.js](https://nodejs.org/en/) version
 18.12.1 or later installed. This is to use the new `--watch` feature that was added to Node JS.
 
 ## Next Steps

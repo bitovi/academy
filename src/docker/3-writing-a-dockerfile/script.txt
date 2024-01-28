@@ -15,9 +15,9 @@ EXPOSE $PORT
 CMD npm start
 
 ### FROM node:15
-the first line of any docker file as a from instruction because we are looking to containerize a NodeJS app our from instruction will be from node:15. The node part specifies the name of the image we want to use the: 15 part is a tag and specifies the version of the image we want to use in this case nodes 15.
+the first line of any docker file as a from instruction because we are looking to containerize a Node.js app our from instruction will be from node:15. The node part specifies the name of the image we want to use the: 15 part is a tag and specifies the version of the image we want to use in this case nodes 15.
 
-The node 15 image contains npm, node some other helpful packages for building and running a NodeJS app. Using a base image like this allows the rest of her docker file to focus explicitly on logic specific to our application.
+The node 15 image contains npm, node some other helpful packages for building and running a Node.js app. Using a base image like this allows the rest of her docker file to focus explicitly on logic specific to our application.
 
 Because the node image is in itself a docker image it also has its own Docker file. Because it’s a Docker file it has its own from statement this hierarchy of our Docker file depending on no JS that depends on another base image repeats all the way down until we reach a special base image called scratch scratch is just a base image that contains what’s required for Docker to function at all.
 
