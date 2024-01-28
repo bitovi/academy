@@ -573,6 +573,197 @@ sillyList = [5, &quot;boop&quot;]; //typescript is happy
 sillyList = [&quot;boop&quot;, 5]; //will error
 </code></pre>
 <p><a id="enum"></a></p>
+<h2>Intersections</h2>
+<p>There are many different ways to create new types from existing ones in TS. Intersections allow us to create a type containing all the properties of multiple types together. Put another way; Intersections combine multiple types into one. Let's imagine we have the following types.</p>
+<pre><code class="language-ts">type Person = {
+  name: string;
+  age: number;
+};
+
+type AnimalTrainer = {
+  level: &quot;rookie&quot; | &quot;intermediate&quot; | &quot;advanced&quot;;
+  animals: Array&lt;Animals&gt;;
+};
+</code></pre>
+<p>However, we also need a <code>DinosaurCareTaker</code>. A <code>Dinosaur</code> caretaker is a <code>Person</code> <strong>and</strong> an <code>AnimalTrainer</code>. Intersections allow us to create a type from <code>Person</code> and <code>DinosaurCareTaker</code> using the <code>&amp;</code> symbol.</p>
+<pre><code class="language-ts">/**
+ * {
+ *   name: string;
+ *   age: number;
+ *   level: &quot;rookie&quot; | &quot;intermediate&quot; | &quot;advanced&quot;;
+ *   animals: Array&lt;Animals&gt;;
+ * }
+ */
+type DinosaurCareTaker = Person &amp; AnimalTrainer;
+</code></pre>
+<p><code>DinosaurCareTaker</code> looks good, but there is more to being a dinosaur caretaker than just being a <code>Person</code> and an <code>AnimalTrainer</code>. Luckily, there can be more than one intersection in a type declaration, and we can add the specifics of <code>DinosaurCareTaker</code> in another intersection.</p>
+<pre><code class="language-ts">/**
+ * {
+ *   name: string;
+ *   age: number;
+ *   level: &quot;rookie&quot; | &quot;intermediate&quot; | &quot;advanced&quot;;
+ *   animals: Array&lt;Animals&gt;;
+ *   dinosaurName: string;
+ *   dinosaurType: &quot;carnivore&quot; | &quot;herbivore&quot;;
+ * }
+ */
+type DinosaurCareTaker = Person &amp;
+  AnimalTrainer &amp; {
+    dinosaurName: string;
+    dinosaurType: &quot;carnivore&quot; | &quot;herbivore&quot;;
+  };
+</code></pre>
+<p>There are a couple of things to be aware of when using type intersections. One is that order doesn’t matter since the intersection operator (<code>&amp;</code>) is associative. This means the following two types (<code>A</code> and <code>B</code>) are the same.</p>
+<pre><code class="language-ts">type A = A1 &amp; A2;
+type B = A2 &amp; A1;
+</code></pre>
+<p>One catch with intersections is giving them types that can’t be reconciled together. For example, creating a type from the intersection of two string unions</p>
+<pre><code class="language-ts">type Union1 = &quot;hello&quot; | &quot;world&quot;;
+type Union2 = &quot;foo&quot; | &quot;bar&quot;;
+
+type Intersection = Union1 &amp; Union2;
+</code></pre>
+<p>…or trying to create a type from the intersection of two types that share a key name but the type of the key is different in both types</p>
+<pre><code class="language-ts">type Object1 = {
+  name: string;
+  age: number;
+};
+
+type Object2 = {
+  description: string;
+  age: string;
+};
+
+type Intersection = Object1 &amp; Object2;
+</code></pre>
+<p>Both of these will appear to work, however, when used, the type of Intersection is never and an error reading something along the lines of</p>
+<blockquote>
+<p>Type 'X' is not assignable to type 'never'.ts(2322)</p>
+</blockquote>
+<p>will appear. We will learn more about never below!</p>
+<h2>Type Unions</h2>
+<p>In the earlier sections, we saw how we could make unions from primitive type literals; however, unions extend beyond the primitives. This section will explore how type unions work with object types.</p>
+<p>Type unions allow us to create a single type from two or more different types. Imagine we have the following.</p>
+<pre><code class="language-ts">type LandDinosaur = {
+  name: string;
+  distanceAbleToWalk: number;
+  legLength: number;
+};
+
+type AirDinosaur = {
+  name: string;
+  distanceAbleToFly: number;
+  wingLength: number;
+};
+
+type WaterDinosaur = {
+  name: string;
+  distanceAbleToSwim: number;
+  finLength: number;
+};
+</code></pre>
+<blockquote>
+<p>Functions will be covered in the next section!</p>
+</blockquote>
+<p>And we have to implement a <code>getTotalDistanceAbleToTravel</code> function that takes any number of dinosaurs and computes how far they could move. Given the current tools in our arsenal, we could create something along the lines of this:</p>
+<pre><code class="language-ts">function getTotalDistanceAbleToTravelOnLand(quadDino: LandDinosaur[]): number {
+  return quadDino.reduce((total, dino) =&gt; total + dino.distanceAbleToWalk, 0);
+}
+
+function getTotalDistanceAbleToTravelInAir(wingDino: AirDinosaur[]): number {
+  return wingDino.reduce((total, dino) =&gt; total + dino.distanceAbleToFly, 0);
+}
+
+function getTotalDistanceAbleToTravelInWater(
+  waterDino: WaterDinosaur[]
+): number {
+  return waterDino.reduce((total, dino) =&gt; total + dino.distanceAbleToSwim, 0);
+}
+</code></pre>
+<p>This works, but it’d be a pain to have to figure out which dinosaur we have and then select the correct function to use for that dinosaur group. It’d be nice if we could just pass our dinosaurs to a single function and get the result we’re after.</p>
+<p>Currently, our typing is the limitation stopping us from achieving this. This is where type unions can make a big impact in our code. Type unions use the <code>|</code>, operator to combine any number of different types and can be read as <strong>or</strong>. This allows us to create a Dinosaur type that is either a <code>LandDinosaur</code>, an <code>AirDinosaur</code>, or a <code>WaterDinosaur</code>.</p>
+<pre><code class="language-ts">type Dinosaur = AirDinosaur | WaterDinosaur | LandDinosaur;
+
+function getTotalDistanceAbleToTravel(dinos: Dinosaur[]): number {
+  // ...
+}
+</code></pre>
+<p>This solves our function signature problem and allows us to pass any collection of dinosaurs to our function. However, this introduces two new problems.</p>
+<h3>Object Creation</h3>
+<p>The first problem comes when creating a dinosaur object. Union types simplify creating an object – all you need to do is pass it keys from any of the types in the union. The only keys that are required are the ones that are shared across all types in the union. In our case, the only shared key across <code>LandDinosaur</code>, <code>AirDinosaur</code>, and <code>WaterDinosaur</code> is <code>name</code>; anything else is fair game to add as long as the keys are from the same type. However, this means we can get type-safe objects that don't make a lot of sense. Take, for example, this pterodactyl object.</p>
+<pre><code class="language-ts">const pterodactyl: Dinosaur = {
+  name: &quot;pterodactyl&quot;,
+  distanceAbleToSwim: 500,
+  distanceAbleToFly: 900,
+  finLength: 60,
+  wingLenth: 10,
+};
+</code></pre>
+<p>According to TypeScript, type-wise, it is correct, but it doesn’t really make a lot of sense since pterodactyls don’t have fins, and in the context of our types and the function we’re trying to write should only have a <code>distanceAbleToFly</code> property rather than an additional <code>distanceAbleToSwim</code>. A common solution is to update our types a little to give TypeScript a hint as to what keys can go with each other. We do this by providing a common key across all types and assigning them to a type literal. In our case, a string literal would provide the most semantic sense, so we will use that. Let’s add a type key to our three types and try to create the pterodactyl object again.</p>
+<pre><code class="language-ts">type LandDinosaur = {
+  type: &quot;land&quot;;
+  name: string;
+  distanceAbleToWalk: number;
+  legLength: number;
+};
+
+type AirDinosaur = {
+  type: &quot;air&quot;;
+  name: string;
+  distanceAbleToFly: number;
+  wingLength: number;
+};
+
+type WaterDinosaur = {
+  type: &quot;water&quot;;
+  name: string;
+  distanceAbleToSwim: number;
+  finLength: number;
+};
+
+const pterodactyl: Dinosaur = {
+  type: &quot;air&quot;,
+  name: &quot;pterodactyl&quot;,
+  distanceAbleToSwim: 500, // ERROR see below
+  distanceAbleToFly: 900,
+  finLength: 60,
+};
+</code></pre>
+<p>We get an error that says:</p>
+<blockquote>
+<p>Type '{ type: &quot;air&quot;; name: string; distanceAbleToSwim: number; distanceAbleToFly: number; finLength: number; }' is not assignable to type 'Dinosaur'.
+Object literal may only specify known properties, but 'distanceAbleToSwim' does not exist in type 'AirDinosaur'. Did you mean to write 'distanceAbleToFly'?</p>
+</blockquote>
+<p>This translates to, “you said it’d be an <code>AirDinosaur</code>, but you gave me some stuff, not on <code>AirDinosaur</code>&quot;. This solves our first problem of creating objects.</p>
+<h3>Object Use</h3>
+<p>The second problem with our solution comes with using our typed parameter in our function. Which looks like this (in case it slipped the mind)</p>
+<pre><code class="language-ts">type Dinosaur = AirDinosaur | WaterDinosaur | LandDinosaur;
+
+function getTotalDistanceAbleToTravel(dinos: Dinosaur[]): number {
+  return dinos.reduce((total, nextDino) =&gt; {
+    /** ... */
+  }, 0);
+}
+</code></pre>
+<p>If we try to use nextDino, there will only be two properties available to us -- <code>name</code> and <code>type</code>. This is because TypeScript has no idea which type of dinosaur has been passed to it, so the only thing it can say exists on the object is the ones that are shared across all types comprising the union. In order for us to be able to use the distance and length properties of the different dinosaurs, we need to go through a process called type narrowing. Type narrowing allows us to move from a more general type (like <code>Dinosaur</code>) to a more specific type (like <code>AirDinosaur</code>). There are many ways for us to do this, one being a type literal unique to each type which, luckily for us, we have already implemented when solving the first issue.</p>
+<p>To type narrow, we first check the type with an if or switch statement. Inside the context of that conditional typescript is able to discern which type the <code>nextDino</code> is!</p>
+<pre><code class="language-ts">function getTotalDistanceAbleToTravel(dinos: Dinosaur[]): number {
+  return dinos.reduce((total, nextDino) =&gt; {
+    if (nextDino.type === &quot;air&quot;) {
+      return total + nextDino.distanceAbleToFly;
+    }
+
+    if (nextDino.type === &quot;water&quot;) {
+      return total + nextDino.distanceAbleToSwim;
+    }
+
+    return total + nextDino.distanceAbleToWalk;
+  }, 0);
+}
+</code></pre>
+<blockquote>
+<p><strong>Note:</strong> notice that we never check for <code>nextDino.type</code> to be <code>land</code>. We don’t have to! TypeScript is smart enough to figure out that there are only three types land, water, and air and since we have checked for the first two (air and water) it knows if it gets through those conditionals the type is land.</p>
+</blockquote>
 <h3>Enum</h3>
 <p>Enums allow the aliasing of names to a list of numeric values. Like most indexing, enums start their first member at 0.</p>
 <pre><code class="language-typescript">enum Color {
