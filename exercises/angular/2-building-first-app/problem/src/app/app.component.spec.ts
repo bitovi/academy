@@ -14,7 +14,7 @@ describe('AppComponent', () => {
       ],
       schemas: [
         NO_ERRORS_SCHEMA
-      ]
+      ],
     }).compileComponents();
   });
 
@@ -30,7 +30,7 @@ describe('AppComponent', () => {
     expect(app.title).toEqual('place-my-order');
   });
 
-  it('should render title in a h1 tag', () => {
+  it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
