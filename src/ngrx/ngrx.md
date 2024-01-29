@@ -50,7 +50,7 @@ Our application will be making use of a Global State (`@ngrx/store`) to manage u
 
 ## Requirements
 
-In order to complete this guide, you need to have git and [NodeJS](https://nodejs.org/en/) version 14 or later installed.
+In order to complete this guide, you need to have git and [Node.js](https://nodejs.org/en/) version 14 or later installed.
 
 We’ll be using Angular 14.
 

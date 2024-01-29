@@ -14,4 +14,4 @@ A Docker image is a static artifact that is built from a Dockerfile and is tagge
 
 Lastly, A Docker container is just a running instance of a Docker image.
 
-Next we are going take a brief break from Docker build a simple NodeJS app before containerizing it.            
+Next we are going take a brief break from Docker build a simple Node.js app before containerizing it.            
