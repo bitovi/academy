@@ -248,7 +248,7 @@ Write testcases testing created endpoints.">
            						expanded">
 						<a class="page"
 							href="../learn-docker.html"
-							title="Build and containerize a NodeJS app then orchestrate multiple containers with docker-compose in this Docker guide.">
+							title="Build and containerize a Node.js app then orchestrate multiple containers with docker-compose in this Docker guide.">
 							Learn Docker
 						</a>
 						
@@ -278,7 +278,7 @@ Write testcases testing created endpoints.">
 						<a class="page"
 							href="build-node-app.html"
 							title="Build a simple Express API to use for the rest of the course.">
-							Build a NodeJS App
+							Build a Node.js App
 						</a>
 						
 					</li>
@@ -292,7 +292,7 @@ Write testcases testing created endpoints.">
            						">
 						<a class="page"
 							href="writing-a-dockerfile.html"
-							title="Write a Dockerfile to containerize the NodeJS app.">
+							title="Write a Dockerfile to containerize the Node.js app.">
 							Writing a Dockerfile
 						</a>
 						
@@ -307,7 +307,7 @@ Write testcases testing created endpoints.">
            						">
 						<a class="page"
 							href="build-and-run-image.html"
-							title="Build an image and run a container for our NodeJS app.">
+							title="Build an image and run a container for our Node.js app.">
 							Build and Run An Image
 						</a>
 						
@@ -455,7 +455,7 @@ covering CanJS core libraries.">
   				<section class="body">
     <iframe width="560" height="315" src="https://www.youtube.com/embed/aVCr1bGjw0k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 <h2>Overview</h2>
-<p>We want to make our image as lightweight as possible. Reducing image size will make it faster to pull and run in production. In its current state, our simple NodeJS app is a staggering <code>944MB</code>!</p>
+<p>We want to make our image as lightweight as possible. Reducing image size will make it faster to pull and run in production. In its current state, our simple Node.js app is a staggering <code>944MB</code>!</p>
 <pre><code class="language-bash">$ docker image ls my-node-app
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 my-node-app         latest              78ef31600011        7 seconds ago       944MB
@@ -515,7 +515,7 @@ my-node-app         latest              78ef31600011        18 minutes ago      
 <p>This is especially powerful in compiled languages like Go or Java where multi-stage builds can be used to have your first stage compile the source code into a runtime artifact and then only the runtime artifact is copied into a leaner final image.</p>
 <h2>Targets</h2>
 <p>By using the <code>--target</code> cli argument when building our image, we can tell Docker to stop building at a specific stage. We will use this alone with a <code>prod</code> stage and a <code>dev</code> stage to give us our desired result.</p>
-<p>Replace our NodeJS app’s Dockerfile to the following:</p>
+<p>Replace our Node.js app’s Dockerfile to the following:</p>
 <pre><code class="language-dockerfile">FROM node:15-alpine as prod
 ARG PORT=8000
 ENV PORT=$PORT
