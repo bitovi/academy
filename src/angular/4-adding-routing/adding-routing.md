@@ -46,7 +46,7 @@ If you have completed the exercise successfully you should be able to see the ho
 
 ✏️ Update the spec file **src/app/app.component.spec.ts** to be:
 
-@diff ../2-building-first-app/app.component.spec.ts ./app.component.spec.ts
+@diff ../../../exercises/angular/2-building-first-app/problem/src/app/app.component.spec.ts ./app.component.spec.ts
 
 > If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 

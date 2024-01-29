@@ -114,6 +114,16 @@ While new Angular apps default to standalone `true`, for the purposes of this tr
 
 There are [several more helpful properties](https://angular.io/cli/new) that customize how a project is set up.
 
+### Having issues with your local setup?
+
+You can get through most of this tutorial by using an online code editor. You won’t be able to run our tests to verify your solution, but you will be able to make changes to your app and see them live.
+
+You can use one of these two online editors:
+
+- [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/angular/2-building-first-app/problem?file=src/app/app.component.html)
+
+- [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/angular/2-building-first-app/problem?file=src/app/app.component.html)
+
 ## Looking at Our Generated Workspace
 
 Let’s walk through some of the files that were generated.
@@ -149,45 +159,10 @@ This file is the config schema for an Angular Workspace. By default Angular conf
 
 ### tsconfig.json
 
-This file contains our TypeScript compiling options. Starting from Angular 12, "strict mode" is set to true by default. Angular’s strict mode enforces the [TypeScript strict flag](https://www.staging-typescript.org/tsconfig#strict) and a few additional TypeScript rules: `forceConsistentCasingInFileNames`, `noImplicitReturns`, `noFallthroughCasesInSwitch`. Additionally this mode turns on Angular-specific compiler flags `strictTemplates`, `strictInjectionParameters` and `strictInputAccessModifiers`. This Template type checking was made available with [Angular Ivy](https://angular.io/guide/ivy) and will throw compiler errors for incorrect typings inside templates.
+This file contains our TypeScript compiling options. Starting from Angular 12, “strict mode” is set to true by default. Angular’s strict mode enforces the [TypeScript strict flag](https://www.staging-typescript.org/tsconfig#strict) and a few additional TypeScript rules: `forceConsistentCasingInFileNames`, `noImplicitReturns`, `noFallthroughCasesInSwitch`. Additionally this mode turns on Angular-specific compiler flags `strictTemplates`, `strictInjectionParameters` and `strictInputAccessModifiers`. This Template type checking was made available with [Angular Ivy](https://angular.io/guide/ivy) and will throw compiler errors for incorrect typings inside templates.
 
-```json
-/* To learn more about this file see: https://angular.io/config/tsconfig. */
-{
-  "compileOnSave": false,
-  "compilerOptions": {
-    "outDir": "./dist/out-tsc",
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "sourceMap": true,
-    "declaration": false,
-    "experimentalDecorators": true,
-    "moduleResolution": "node",
-    "importHelpers": true,
-    "target": "ES2022",
-    "module": "ES2022",
-    "useDefineForClassFields": false,
-    "lib": [
-      "ES2022",
-      "dom"
-    ]
-  },
-  "angularCompilerOptions": {
-    "enableI18nLegacyMessageIdFormat": false,
-    "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "strictTemplates": true
-  }
-}
-```
-
-@highlight 7
+@sourceref ../../../exercises/angular/2-building-first-app/problem/tsconfig.json
+@highlight 7,only
 
 ### src/main.ts
 
@@ -195,24 +170,10 @@ This is the entry point of our application, it compiles and bootstraps our app.
 
 ### src/index.html
 
-This should feel familiar - our main index page.
+This should feel familiar - our main index page. Our entry component is highlighted below.
 
-```html
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>PlaceMyOrder</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <!-- our entry component -->
-  <pmo-root></pmo-root>
-</body>
-</html>
-```
+@sourceref ../../../exercises/angular/2-building-first-app/problem/src/index.html
+@highlight 11
 
 ### src/app/app.module.ts
 
@@ -221,7 +182,7 @@ This file is the root module for our app. Every Angular app has at least one mod
 - **declarations** `[array]`: where we include components, directives, and pipes that will be used by this module.
 - **imports** `[array]`: where we include any other modules our app needs to use. This may include 3rd party modules like bootstrap datepickers, or modules we’ve created.
 - **providers** `[array]`: where we include services that we want used at the global app level
-- **bootstrap** `[array]`: where we include the root AppModule - this is the main Application view that hosts all of our other app views.
+- **bootstrap** `[array]`: where we include the root `AppComponent` - this is the main Application view that hosts all of our other app views.
 
 Further reading: <a href="https://angular.io/guide/architecture-services#dependency-injection-di" >Dependency Injection in Angular</a>
 
@@ -258,8 +219,8 @@ We also included `schemas` metadata for our module. <a href="https://angular.io/
 
 ✏️ Update **src/app/app.component.spec.ts**:
 
-@sourceref ./app.component.spec.ts
-@highlight 37
+@sourceref ../../../exercises/angular/2-building-first-app/problem/src/app/app.component.spec.ts
+@highlight 1,15-17,37,only
 
 ## Solution
 
@@ -269,12 +230,7 @@ Let’s change the markup to look like the home page of our place my order app.
 
 ✏️ Update **src/app/app.component.html** to:
 
-```html
-<h1>Place My Order App: Coming Soon!</h1>
-<router-outlet />
-```
-
-@highlight 1
+@diff ../../../exercises/angular/2-building-first-app/problem/src/app/app.component.html ./app.component.html
 
 When you save your changes, you should see the new h1 tag in your browser at <a href="http://localhost:4200">localhost:4200</a>.
 </details>
