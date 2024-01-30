@@ -36,4 +36,4 @@ Advanced TypeScript can be generally stated as finding ways to create types from
 
 ## Next Steps
 
-✏️ Head over to the [first lesson](advanced-typescript/typing-systems.html) and strengthen the way you think about Typescript's typing systems.
+✏️ Head over to the [first lesson](advanced-typescript/typing-systems.html) and strengthen the way you think about TypeScript’s typing systems.

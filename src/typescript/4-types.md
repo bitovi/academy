@@ -58,7 +58,7 @@ let name: string = "Leoplurodon";
 
 ### Literals
 
-In Typescript, there is a subset within string, number, and boolean which allow you to refine the specificity of the type. These are called type literals. A string literal is a single string for example:
+In TypeScript, there is a subset within string, number, and boolean which allow you to refine the specificity of the type. These are called type literals. A string literal is a single string for example:
 
 ```typescript
 type StringLiteralExample = "hello";
@@ -116,7 +116,7 @@ sillyList = ["boop", 5]; //will error
 
 ## Intersections
 
-There are many different ways to create new types from existing ones in TS. Intersections allow us to create a type containing all the properties of multiple types together. Put another way; Intersections combine multiple types into one. Let's imagine we have the following types.
+There are many different ways to create new types from existing ones in TS. Intersections allow us to create a type containing all the properties of multiple types together. Put another way; Intersections combine multiple types into one. Let’s imagine we have the following types.
 
 ```ts
 type Person = {
