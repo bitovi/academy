@@ -1134,7 +1134,7 @@ interface Data&lt;T&gt; {
 @Component({
   selector: 'pmo-history',
   templateUrl: './history.component.html',
-  styleUrls: ['./history.component.less'],
+  styleUrl: './history.component.less',
 })
 export class HistoryComponent implements OnInit, OnDestroy {
   constructor() {}
@@ -1420,7 +1420,7 @@ interface Data&lt;T&gt; {
 @Component({
   selector: 'pmo-history',
   templateUrl: './history.component.html',
-  styleUrls: ['./history.component.less'],
+  styleUrl: './history.component.less',
 })
 export class HistoryComponent implements OnInit, OnDestroy {
   orders: Data&lt;Order&gt; = { value: [], isPending: true };
@@ -1960,16 +1960,16 @@ describe('ListComponent', () =&gt; {
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/order/list.component.ts</strong></p>
-<pre><code class="language-ts">import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+<pre><code class="language-ts">import { Component, Input, OnDestroy } from '@angular/core';
 import { Subject, takeUntil } from 'rxjs';
 import { Item, Order, OrderService } from '../order.service';
 
 @Component({
   selector: 'pmo-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.less'],
+  styleUrl: './list.component.less',
 })
-export class ListComponent implements OnInit, OnDestroy {
+export class ListComponent implements OnDestroy {
   @Input() orders?: Order[];
   @Input() listTitle?: string;
   @Input() status?: string;
@@ -1980,8 +1980,6 @@ export class ListComponent implements OnInit, OnDestroy {
   private onDestroy$ = new Subject&lt;void&gt;();
 
   constructor(private orderService: OrderService) {}
-
-  ngOnInit(): void {}
 
   ngOnDestroy(): void {
     this.onDestroy$.next();
@@ -2012,7 +2010,7 @@ export class ListComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
-<div line-highlight='2-3,10-18,20,24-49'></div>
+<div line-highlight='2-3,10-18,20,22-47'></div>
 <p></details></p>
 
 </section>

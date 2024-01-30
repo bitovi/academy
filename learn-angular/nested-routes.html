@@ -754,7 +754,7 @@ class UsersService {
   `
 })
 class AppComponent {
-  public userId: number = 1;
+  userId: number = 1;
   constructor() {
   }
 }
@@ -780,7 +780,7 @@ class HomeComponent {
   `
 })
 class UserComponent implements OnInit {
-  public user: User;
+  user: User;
 
   constructor(private route: ActivatedRoute, private usersService: UsersService) {
   }
@@ -1399,7 +1399,7 @@ import { RestaurantService } from '../restaurant.service';
 @Component({
   selector: 'pmo-detail',
   templateUrl: './detail.component.html',
-  styleUrls: ['./detail.component.less'],
+  styleUrl: './detail.component.less',
 })
 export class DetailComponent implements OnInit, OnDestroy {
   restaurant?: Restaurant;
@@ -1432,7 +1432,7 @@ export class DetailComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="1-5,10,12-15,17-20,23,25-33,36-39,"></div>
+ <div line-highlight="1-5,10,12-15,17-20,22-23,25-34,36-39,"></div>
 <p></details></p>
 
 </section>

@@ -1279,7 +1279,7 @@ export interface Data {
 @Component({
   selector: 'pmo-restaurant',
   templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less'],
+  styleUrl: './restaurant.component.less',
 })
 export class RestaurantComponent implements OnInit, OnDestroy {
   form: FormGroup&lt;{
@@ -1723,8 +1723,8 @@ interface Dinosaur {
   `
 })
 class AppComponent implements OnInit {
-  public myListOfStrings = new GenericCollection&lt;string&gt;();
-  public myListOfDinosaurs = new GenericCollection&lt;Dinosaur&gt;();
+  myListOfStrings = new GenericCollection&lt;string&gt;();
+  myListOfDinosaurs = new GenericCollection&lt;Dinosaur&gt;();
 
   constructor() {}
 
@@ -2073,7 +2073,7 @@ export interface Data {
 @Component({
   selector: 'pmo-restaurant',
   templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less'],
+  styleUrl: './restaurant.component.less',
 })
 export class RestaurantComponent implements OnInit, OnDestroy {
   form: FormGroup&lt;{
@@ -2622,7 +2622,7 @@ export interface Data&lt;T&gt; {
 @Component({
   selector: 'pmo-restaurant',
   templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less'],
+  styleUrl: './restaurant.component.less',
 })
 export class RestaurantComponent implements OnInit, OnDestroy {
   form: FormGroup&lt;{

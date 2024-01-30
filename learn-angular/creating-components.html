@@ -1096,21 +1096,15 @@ describe('HomeComponent', () =&gt; {
 </code></pre>
 <div line-highlight='8'></div>
 <p>✏️ Update <strong>src/app/home/home.component.ts</strong></p>
-<pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
+<pre><code class="language-ts">import { Component } from '@angular/core';
 
 @Component({
   selector: 'pmo-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.less']
+  styleUrl: './home.component.less'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   title = 'Ordering food has never been easier';
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }
 
 </code></pre>
@@ -1412,7 +1406,7 @@ const { Component, VERSION } = ng.core;
   `
 })
 class AppComponent {
-  public classSetOnComponent: string = 'my-active-class';
+  classSetOnComponent: string = 'my-active-class';
   constructor() {
   }
 }
@@ -1556,12 +1550,10 @@ const fakeRestaurants = [
 @Component({
   selector: 'pmo-restaurant',
   templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less'],
+  styleUrl: './restaurant.component.less',
 })
 export class RestaurantComponent implements OnInit {
   restaurants: any[] = [];
-
-  constructor() {}
 
   ngOnInit(): void {
     setTimeout(() =&gt; {
@@ -1571,7 +1563,7 @@ export class RestaurantComponent implements OnInit {
 }
 
 </code></pre>
-<div line-highlight='3-97, 104, 109-111'></div>
+<div line-highlight='1, 3-97, 103, 104, 106-110'></div>
 <p>To solve this problem, use Angular directives to iterate through data and display properties of restaurants.</p>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong> to be:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;

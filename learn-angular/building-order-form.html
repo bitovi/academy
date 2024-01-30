@@ -1169,7 +1169,7 @@ function minLengthArray(min: number): ValidatorFn {
 @Component({
   selector: 'pmo-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.less'],
+  styleUrl: './order.component.less',
 })
 export class OrderComponent implements OnInit, OnDestroy {
   orderForm?: FormGroup&lt;OrderForm&gt;;
@@ -1455,7 +1455,7 @@ function minLengthArray(min: number): ValidatorFn {
 @Component({
   selector: 'pmo-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.less'],
+  styleUrl: './order.component.less',
 })
 export class OrderComponent implements OnInit, OnDestroy {
   orderForm?: FormGroup&lt;OrderForm&gt;;
@@ -1661,20 +1661,19 @@ export class AppModule { }
   formControlName=&quot;items&quot;
 &gt;&lt;/pmo-menu-items&gt;
 </code></pre>
-<h2>P3: Technical Requirements</h2>
-<p>We want the menu-items component take an array of menu items and iterate through them in the template.</p>
-<p>Each menu item should have this markup:</p>
-<pre><code class="language-html">&lt;li class=&quot;list-group-item&quot;&gt;
+<h2>P3: Setup</h2>
+<p>Create the new menu-items component inside the order component folder</p>
+<p>✏️ Run:</p>
+<pre><code class="language-bash">ng g component order/menu-items
+</code></pre>
+<p>✏️ Update <strong>src/app/order/menu-items/menu-items.component.html</strong></p>
+<pre><code class="language-html">&lt;!--  Iterate over items and render the markup below for each item --&gt;
+&lt;li class=&quot;list-group-item&quot;&gt;
   &lt;label&gt;
     &lt;input type=&quot;checkbox&quot; /&gt;
     ITEM_NAME &lt;span class=&quot;badge&quot;&gt;$ ITEM_PRICE&lt;/span&gt;
   &lt;/label&gt;
 &lt;/li&gt;
-</code></pre>
-<h2>P3: Setup</h2>
-<p>Create the new menu-items component inside the order component folder</p>
-<p>✏️ Run:</p>
-<pre><code class="language-bash">ng g component order/menu-items
 </code></pre>
 <p>Go ahead and put your new component in the order component.</p>
 <p>✏️ Update <strong>src/app/order/order.component.html</strong></p>
@@ -2031,20 +2030,16 @@ platformBrowserDynamic()
 
 </code></pre>
 <p>✏️ Update <strong>src/app/order/menu-items.component.ts</strong></p>
-<pre><code class="language-ts">import { Component, Input, OnInit } from '@angular/core';
+<pre><code class="language-ts">import { Component, Input } from '@angular/core';
 import { Item } from '../order.component';
 
 @Component({
   selector: 'pmo-menu-items',
   templateUrl: './menu-items.component.html',
-  styleUrls: ['./menu-items.component.less'],
+  styleUrl: './menu-items.component.less',
 })
-export class MenuItemsComponent implements OnInit {
+export class MenuItemsComponent {
   @Input() items: Item[] = [];
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }
 
 </code></pre>
@@ -2153,7 +2148,7 @@ const { ReactiveFormsModule, FormControl } = ng.forms;
   `
 })
 class AppComponent {
-  public name = new FormControl('');
+  name = new FormControl('');
 
   constructor() {}
 
@@ -2263,21 +2258,17 @@ describe('MenuItemsComponent', () =&gt; {
 </code></pre>
  <div line-highlight="3,only"></div>
 <p>✏️ Update <strong>src/app/order/menu-items/menu-items.component.ts</strong></p>
-<pre><code class="language-ts">import { Component, Input, OnInit } from '@angular/core';
+<pre><code class="language-ts">import { Component, Input } from '@angular/core';
 import { Item } from '../order.component';
 
 @Component({
   selector: 'pmo-menu-items',
   templateUrl: './menu-items.component.html',
-  styleUrls: ['./menu-items.component.less'],
+  styleUrl: './menu-items.component.less',
 })
-export class MenuItemsComponent implements OnInit {
+export class MenuItemsComponent {
   @Input() items: Item[] = [];
   selectedItems: Item[] = [];
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   updateItems(item: Item): void {
     const index = this.selectedItems.indexOf(item);
@@ -2290,7 +2281,7 @@ export class MenuItemsComponent implements OnInit {
 }
 
 </code></pre>
- <div line-highlight="11,17-24,only"></div>
+ <div line-highlight="11,13-20,only"></div>
 <p></details></p>
 <h2>Problem 5: Update OrderFormComponent with selectedItems Array from MenuItemsComponent</h2>
 <p>Now we want to let the form know what the selected items are as they change so we can update the order total accordingly.</p>
@@ -2551,7 +2542,7 @@ const { ReactiveFormsModule, FormControl } = ng.forms;
   `
 })
 class ParentComponent implements OnInit {
-  public message: string;
+  message: string;
   constructor() {}
 
   ngOnInit(): void {
@@ -2583,7 +2574,7 @@ class ParentComponent implements OnInit {
   `
 })
 class ChildComponent implements OnInit {
-  public childMessage = new FormControl('');
+  childMessage = new FormControl('');
   @Output() sendMessage: EventEmitter&lt;any&gt; = new EventEmitter();
  
   constructor() {}
@@ -2719,22 +2710,18 @@ platformBrowserDynamic()
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/order/menu-items.component.ts</strong></p>
-<pre><code class="language-ts">import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+<pre><code class="language-ts">import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Item } from '../order.component';
 
 @Component({
   selector: 'pmo-menu-items',
   templateUrl: './menu-items.component.html',
-  styleUrls: ['./menu-items.component.less'],
+  styleUrl: './menu-items.component.less',
 })
-export class MenuItemsComponent implements OnInit {
+export class MenuItemsComponent {
   @Input() items: Item[] = [];
   @Output() itemsChanged: EventEmitter&lt;Item[]&gt; = new EventEmitter();
   selectedItems: Item[] = [];
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   updateItems(item: Item): void {
     const index = this.selectedItems.indexOf(item);
@@ -2748,7 +2735,7 @@ export class MenuItemsComponent implements OnInit {
 }
 
 </code></pre>
- <div line-highlight="1,11,25,only"></div>
+ <div line-highlight="1,11,21,only"></div>
 <p>✏️ Update <strong>src/app/order/order.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
   &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;&lt;/ng-container&gt;
@@ -2852,7 +2839,7 @@ function minLengthArray(min: number): ValidatorFn {
 @Component({
   selector: 'pmo-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.less'],
+  styleUrl: './order.component.less',
 })
 export class OrderComponent implements OnInit, OnDestroy {
   orderForm?: FormGroup&lt;OrderForm&gt;;
@@ -2947,7 +2934,7 @@ import { Item } from '../order.component';
 @Component({
   selector: 'pmo-menu-items',
   templateUrl: './menu-items.component.html',
-  styleUrls: ['./menu-items.component.less'],
+  styleUrl: './menu-items.component.less',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -2959,8 +2946,6 @@ import { Item } from '../order.component';
 export class MenuItemsComponent implements ControlValueAccessor {
   @Input() items: Item[] = [];
   @Input('value') _value: Item[] = [];
-
-  constructor() {}
 
   onChange: any = () =&gt; {};
   onTouched: any = () =&gt; {};
@@ -2999,7 +2984,7 @@ export class MenuItemsComponent implements ControlValueAccessor {
 }
 
 </code></pre>
- <div line-highlight="1-2,9-15,17,19,23-24,26-27,30-34,36-38,40-42,44-46,49-51,53,55-56,only"></div>
+ <div line-highlight="1-2,9-15,17,19,21-22,24-25,28-32,34-36,38-40,42-44,47-49,51,53-54,only"></div>
 <p>Other concepts used here:</p>
 <h3>forwardRef</h3>
 <p><a href="https://angular.io/api/core/forwardRef">forwardRef</a> is used to reference a token that may not be defined when we need it.</p>
