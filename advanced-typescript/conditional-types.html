@@ -522,7 +522,7 @@ const trainer = createBattle(&quot;trainer-battle&quot;); // Type is TrainerBatt
 const wild = createBattle(&quot;wild-pokemon-battle&quot;); // Type is WildPokemonBattle
 </code></pre>
 <div line-highlight='1,3-5,7-8,'></div>
-<p>The magic here happens in the <code>Battle</code> conditional type. In <code>Battle</code> we look for whichever <code>BattleType</code> is passed in. If it's <code>&quot;wild-pokemon-battle&quot;</code> we resolve to <code>WildPokemonBattle</code>, otherwise we resolve to <code>TrainerBattle</code>. Another cool feature of conditional types is that they are nestable. To demonstrate this, let’s take this battle situation a step further and make a couple of adjustments. Let’s add a third battle type.</p>
+<p>The magic here happens in the <code>Battle</code> conditional type. In <code>Battle</code> we look for whichever <code>BattleType</code> is passed in. If it’s <code>&quot;wild-pokemon-battle&quot;</code> we resolve to <code>WildPokemonBattle</code>, otherwise we resolve to <code>TrainerBattle</code>. Another cool feature of conditional types is that they are nestable. To demonstrate this, let’s take this battle situation a step further and make a couple of adjustments. Let’s add a third battle type.</p>
 <pre><code class="language-ts">type TrainerBattle = {
   challenger: string;
 };
@@ -566,7 +566,7 @@ type StringOrNumber = NonNullable&lt;MaybeStringOrNumber&gt;; // string | number
  */
 type NonNullable&lt;T&gt; = T extends null | undefined ? never : T;
 </code></pre>
-<p>The definition may look complicated, but as we did with mapped types, let’s remove some of the noise and break it down bit by bit to see how this works. Let's start by placing the union into <code>NonNullable</code> directly.</p>
+<p>The definition may look complicated, but as we did with mapped types, let’s remove some of the noise and break it down bit by bit to see how this works. Let’s start by placing the union into <code>NonNullable</code> directly.</p>
 <pre><code class="language-ts">type StringOrNumber = NonNullable&lt;string | number | undefined | null&gt;;
 </code></pre>
 <div line-highlight='1'></div>
@@ -597,7 +597,7 @@ type NonNullable&lt;T&gt; = T extends null | undefined ? never : T;
 <p>The refinement aspects of conditional types become even stronger when used in conjunction with other TypeScript features we’ve seen so far. Let’s do a little more tweaking to our types from the <code>createBattle</code> example above and define a function called <code>emitBattleStart</code> that can take a battle name and a payload that corresponds to the properties in the named typed.</p>
 <pre><code class="language-ts">emitBattleStart(&quot;wild-pokemon-battle&quot;, { challengingPokemon: &quot;onix&quot; });
 </code></pre>
-<p>Before we start looking at the <code>emitBattle</code> function let's make our types a little more functional. Instead of having <code>BattleTypes</code> separated from the rest of the battle types, we could use them as literals on our battle types to create a discriminating union.</p>
+<p>Before we start looking at the <code>emitBattle</code> function let’s make our types a little more functional. Instead of having <code>BattleTypes</code> separated from the rest of the battle types, we could use them as literals on our battle types to create a discriminating union.</p>
 <pre><code class="language-ts">type TrainerBattle = {
   battleType: &quot;trainer-battle&quot;;
   challenger: string;
@@ -642,7 +642,7 @@ function createBattle&lt;T extends PokemonBattles[&quot;battleType&quot;]&gt;(
 }
 </code></pre>
 <p>The next part is where it gets tricky. Somehow we need to get the correct object shape for the battle information. We can break it down like this. First, we need to select the member of the <code>PokemonBattles</code> union that corresponds to the <code>BattleType</code> from the first parameter of the function. Second, we need to remove the <code>battleType</code> key from that type. And finally, we need to map over the new keys, making sure they have the same values.</p>
-<p>Starting with the first step, let's find a way to select the correct member of the <code>PokemonBattles</code> union. We can accomplish this with our good friend conditional types. We can use generics to give our <code>BattleInformation</code> type access to the <code>PokemonBattles</code> union and the <code>BattleType</code> and inside it uses a conditional type to refine the union to being the battle type we’re after.</p>
+<p>Starting with the first step, let’s find a way to select the correct member of the <code>PokemonBattles</code> union. We can accomplish this with our good friend conditional types. We can use generics to give our <code>BattleInformation</code> type access to the <code>PokemonBattles</code> union and the <code>BattleType</code> and inside it uses a conditional type to refine the union to being the battle type we’re after.</p>
 <pre><code class="language-ts">type BattleInformation&lt;BattleType, Battle&gt; = Battle extends {
   battleType: BattleType;
 }
@@ -664,7 +664,7 @@ function createBattle&lt;T extends PokemonBattles[&quot;battleType&quot;]&gt;(
 <p>Next, we need a way to get rid of the <code>battleType</code> key from this new type. Luckily for us, TypeScript provides a utility type that does just that – <code>Exclude</code>. Exclude takes two unions and <strong>excludes</strong> the members of the second union from the first. As you might have guessed, <code>Exclude</code> uses conditional types under the hood to provide this functionality. For our case, we want to exclude <code>battleType</code> from the keys of the battle.</p>
 <pre><code class="language-ts">Exclude&lt;keyof Battle, &quot;battleType&quot;&gt;;
 </code></pre>
-<p>Our final step is to map over these and reconstruct the type. To do this, let's define a <code>FormatBattle</code> type that does this for us and pass our refined <code>Battle</code> type into it.</p>
+<p>Our final step is to map over these and reconstruct the type. To do this, let’s define a <code>FormatBattle</code> type that does this for us and pass our refined <code>Battle</code> type into it.</p>
 <pre><code class="language-ts">type FormatBattle&lt;Battle&gt; = {
   [FilteredKey in Exclude&lt;keyof Battle, &quot;battleType&quot;&gt;]: Battle[FilteredKey];
 };
@@ -693,7 +693,7 @@ emitBattleStart(
 )
 </code></pre>
 <div line-highlight='3, 7-13'></div>
-<p>That said, we can take it a little bit further and add an alias and default to help make the typing a bit more semantic. It feels a little weird needing to pass in <code>PokemonBattles</code>, and the functionality of the type and how it's used seem to differ a bit. One extra type we can resolve this. Let’s update <code>BattleInformation</code> to alias our conditional mapping and give a more semantically relevant name like <code>GetBattleInformation</code>.</p>
+<p>That said, we can take it a little bit further and add an alias and default to help make the typing a bit more semantic. It feels a little weird needing to pass in <code>PokemonBattles</code>, and the functionality of the type and how it’s used seem to differ a bit. One extra type we can resolve this. Let’s update <code>BattleInformation</code> to alias our conditional mapping and give a more semantically relevant name like <code>GetBattleInformation</code>.</p>
 <pre><code class="language-ts">type FormatBattle&lt;Battle&gt; = {
   [FilterKey in Exclude&lt;keyof Battle, &quot;battleType&quot;&gt;]: Battle[FilterKey];
 };
@@ -748,7 +748,7 @@ type ReturnType&lt;T extends (...args: any) =&gt; any&gt; = T extends (
 <h2>Exercises</h2>
 <h3>Exercise 1</h3>
 <p>We used exclude in one of the examples in the content of this section.
-Let's take a moment to create the type ourselves. Exlude takes two generics
+Let’s take a moment to create the type ourselves. Exlude takes two generics
 <code>T</code> and <code>U</code> and removes the memebers in <code>U</code> from <code>T</code>.</p>
 <pre><code class="language-ts">type WildPokemonBattle = {
   battleType: &quot;wild-pokemon-battle&quot;;
@@ -765,7 +765,7 @@ type WildPokemonBattleNoBattleType = _Exclude&lt;
  * Exercise 1
  *
  * We used exclude in one of the examples in the content of this section.
- * Let's take a moment to create the type ourselves. Exlude takes two generics
+ * Let’s take a moment to create the type ourselves. Exlude takes two generics
  * `T` and `U` and removes the memebers in `U` from `T`.
  *
  * ```ts
@@ -788,7 +788,7 @@ type _Exclude&lt;T, U&gt; = any;
 <div line-highlight='1'></div>
 <p></details></p>
 <h3>Exercise 2</h3>
-<p>Let's build out an example similar to <code>ArrayElement</code> provided by the TypeScript documentation (No cheating by looking it up!)</p>
+<p>Let’s build out an example similar to <code>ArrayElement</code> provided by the TypeScript documentation (No cheating by looking it up!)</p>
 <p><code>Flatten</code> should a new type that unnests arrays by one level.</p>
 <pre><code class="language-ts">type FlattenedStringArray = Flatten&lt;string[]&gt;; // string
 type FlatString = Flatten&lt;string&gt;; // string
@@ -799,7 +799,7 @@ type NestedNumberArray = Flatten&lt;Array&lt;Array&lt;number&gt;&gt;&gt;; // num
 <pre><code class="language-ts">/**
  Exercise 2
  *
- * Let's build out an example similar to `ArrayElement` provided by the TypeScript documentation (No cheating by looking it up!)
+ * Let’s build out an example similar to `ArrayElement` provided by the TypeScript documentation (No cheating by looking it up!)
  *
  * `Flatten` should create a new type that unnests arrays by one level.
  *

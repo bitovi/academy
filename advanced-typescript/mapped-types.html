@@ -439,9 +439,9 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
-<p>Due to syntax similarity, let's do a quick recap on using index signatures to define object types. Then we will dive into what mapped types are and how to define them, followed by practical applciations of mapped types. Finally, we will work through exercises building out some commonly used mapped types.</p>
+<p>Due to syntax similarity, let’s do a quick recap on using index signatures to define object types. Then we will dive into what mapped types are and how to define them, followed by practical applciations of mapped types. Finally, we will work through exercises building out some commonly used mapped types.</p>
 <h2>Index Signatures</h2>
-<p>Index signatures are a way to define object types when you know the general shape of any object but nothing more specific than the key type and the value type. Let's imagine we have an object that looks something like this:</p>
+<p>Index signatures are a way to define object types when you know the general shape of any object but nothing more specific than the key type and the value type. Let’s imagine we have an object that looks something like this:</p>
 <pre><code class="language-js">const bag = {
   maxPotion: 2,
   maxRevive: 23,
@@ -468,13 +468,13 @@ covering CanJS core libraries.">
 <ul>
 <li>Defines the type of the property</li>
 </ul>
-<p>One thing to be aware of with defining types using index signature is the value may or may <strong>not</strong> be there, but typescript makes it seem as though it's always present.</p>
+<p>One thing to be aware of with defining types using index signature is the value may or may <strong>not</strong> be there, but typescript makes it seem as though it’s always present.</p>
 <pre><code class="language-ts">const bag: Bag = {
   maxPotion: 2,
 };
 
-bag.maxPotion; // Ts says it's a number
-bag.maxRevive; // Ts says it's a number... but it's not there...
+bag.maxPotion; // TS says it’s a number
+bag.maxRevive; // TS says it’s a number... but it’s not there...
 </code></pre>
 <div line-highlight='5-6'></div>
 <p>With interfaces and other type definitions, you can add a <code>?</code> to delineate the property is optional. This is not the case with types defined using index signatures. To achieve the optional type-safety with index signature type you can create a <strong>union</strong> with the value type and <code>undefined</code>.</p>
@@ -486,8 +486,8 @@ const bag: BagWithUndefinedUnion = {
   maxPotion: 2,
 };
 
-bag.maxPotion; // Ts says it's a number | undefined
-bag.maxRevive; // Ts says it's a number | undefined
+bag.maxPotion; // TS says it’s a number | undefined
+bag.maxRevive; // TS says it’s a number | undefined
 </code></pre>
 <div line-highlight='2, 5-7'></div>
 <h3>Requiring Certain Properties</h3>
@@ -508,7 +508,7 @@ const bagWithPokeball: BagWithRequiredValue = {
 };
 </code></pre>
 <div line-highlight='6-9, 11-14'></div>
-<p>When defining required properties, the required properties cannot violate the index signature types. In the example above <code>pokeball: number</code> conforms to <code>[itemName: string]: number</code>; however, if we change pokeball to be of type <code>string</code> TypeScript doesn’t allow it, since it's a <code>string</code> indexing another <code>string</code>.</p>
+<p>When defining required properties, the required properties cannot violate the index signature types. In the example above <code>pokeball: number</code> conforms to <code>[itemName: string]: number</code>; however, if we change pokeball to be of type <code>string</code> TypeScript doesn’t allow it, since it’s a <code>string</code> indexing another <code>string</code>.</p>
 <pre><code class="language-ts">type BagWithRequiredValue = {
   [itemName: string]: number;
 
@@ -646,7 +646,7 @@ console.log(firstThreePokemon.length); // 3
 <p><strong>Note:</strong> In JavaScript the <code>firstThreePokemon</code> variable does have a <code>.length</code> property since it is an <code>Array</code>. TypeScript however, is not aware that it is an array, instead it thinks it is a <code>ReadOnlyPokemonList</code> which is why generally speaking you should avoid defining your arrays using an index signature. Instead you should use <code>Array&lt;T&gt;</code> or the shorthand <code>[]</code>.</p>
 </blockquote>
 <h2>Mapped Types</h2>
-<p>Mapped types are another way to generate types in TypeScript. Mapped types are a way to iterate through each key of an object type to create new types for those keys. Mapped types are generic types that extend upon the index signature syntax. The best way to understand it is to see it in action. Let's take a look at a utility type that uses mapped types – <code>Partial&lt;T&gt;</code>.</p>
+<p>Mapped types are another way to generate types in TypeScript. Mapped types are a way to iterate through each key of an object type to create new types for those keys. Mapped types are generic types that extend upon the index signature syntax. The best way to understand it is to see it in action. Let’s take a look at a utility type that uses mapped types – <code>Partial&lt;T&gt;</code>.</p>
 <pre><code class="language-ts">type Pokemon = {
   name: string;
   moves: string[];
@@ -674,13 +674,13 @@ type Partial&lt;T&gt; = {
   [P in keyof Pokemon]?: Pokemon[P];
 };
 </code></pre>
-<p>Since we know what <code>keyof Pokemon</code> evaluates too, let's substitute that out.</p>
+<p>Since we know what <code>keyof Pokemon</code> evaluates too, let’s substitute that out.</p>
 <pre><code class="language-ts">type PartialPokemon = {
   [P in &quot;name&quot; | &quot;moves&quot;]?: Pokemon[P];
 };
 </code></pre>
 <div line-highlight='2'></div>
-<p><code>P</code> serves as a variable for mapping and can be named anything, let's name it something more semantically relevant.</p>
+<p><code>P</code> serves as a variable for mapping and can be named anything, let’s name it something more semantically relevant.</p>
 <pre><code class="language-ts">type PartialPokemon = {
   [KeyName in &quot;name&quot; | &quot;moves&quot;]?: Pokemon[KeyName];
 };
@@ -701,7 +701,7 @@ type Partial&lt;T&gt; = {
 </code></pre>
 <div line-highlight='2-3'></div>
 <h3>Property Modifiers</h3>
-<p>We saw it a little bit when looking at <code>Partial</code> but mapped types give us the opportunity to change two things about the properties of the type we are creating – whether or not it's optional and whether or not it's immutable. Like types defined with an index signature, the properties of a mapped type can be made immutable by applying the <code>readonly</code> modifier. Using the <code>readonly</code> modifier in a mapped type is exactly how the <code>Readonly</code> utility type in Typescript works.</p>
+<p>We saw it a little bit when looking at <code>Partial</code> but mapped types give us the opportunity to change two things about the properties of the type we are creating – whether or not it’s optional and whether or not it’s immutable. Like types defined with an index signature, the properties of a mapped type can be made immutable by applying the <code>readonly</code> modifier. Using the <code>readonly</code> modifier in a mapped type is exactly how the <code>Readonly</code> utility type in TypeScript works.</p>
 <pre><code class="language-ts">/**
  * Make all properties in T readonly
  */
@@ -763,8 +763,8 @@ type Items = PokeballItem | BerryItem | TMItem;
  */
 type Bag = MakeBag&lt;Items&gt;;
 </code></pre>
-<h3>Let's Make our own!</h3>
-<p>So far we’ve seen some mapped types that TypeScript provides for us in its utility types, so let's walk through making our own. In this case, let’s look at creating a <code>Pokemon</code> class whose constructor takes the types of the Pokemon. So far in the examples leading up to this, the type property of a Pokemon has been defined as a union <code>&quot;Normal&quot; | &quot;Fire&quot; | ...</code>, but Pokemon can have more than one type, in fact, they can have up to two, like, in the case of Charizard – Fire and Flying. To create our class we want a single pokemon type (either a <code>PokemonType</code> or a <code>[PokemonType]</code>) or tuple that provides these options.</p>
+<h3>Let’s Make our own!</h3>
+<p>So far we’ve seen some mapped types that TypeScript provides for us in its utility types, so let’s walk through making our own. In this case, let’s look at creating a <code>Pokemon</code> class whose constructor takes the types of the Pokemon. So far in the examples leading up to this, the type property of a Pokemon has been defined as a union <code>&quot;Normal&quot; | &quot;Fire&quot; | ...</code>, but Pokemon can have more than one type, in fact, they can have up to two, like, in the case of Charizard – Fire and Flying. To create our class we want a single pokemon type (either a <code>PokemonType</code> or a <code>[PokemonType]</code>) or tuple that provides these options.</p>
 <pre><code class="language-ts">const pikachu = new Pokemon(&quot;Electric&quot;);
 const charizard = new Pokemon([&quot;Fire&quot;, &quot;Flying&quot;]);
 const gyarados = new Pokemon([&quot;Flying&quot;, &quot;Water&quot;]);
@@ -880,7 +880,7 @@ const FAILURE_stateValidationTypeError: StateValidation = {
 <p></details></p>
 <h3>Exercise 2</h3>
 <p>Exercise 2:</p>
-<p>Let's recreate the <code>Pick</code> utility type. <code>_Pick</code> should take two generics, some object <code>T</code> and a string literal union that is
+<p>Let’s recreate the <code>Pick</code> utility type. <code>_Pick</code> should take two generics, some object <code>T</code> and a string literal union that is
 some subset of keys from <code>T</code> as <code>K</code>.</p>
 <pre><code class="language-ts">type _Pick&lt;T, K&gt; = any; // TODO
 
@@ -894,7 +894,7 @@ You may need to update the definition of <code>K</code> to get this type to work
 <pre><code class="language-ts">/**
  * Exercise 2:
  *
- * Let's recreate the `Pick` utility type. `_Pick` should take two generics, some object `T` and a string literal union that is
+ * Let’s recreate the `Pick` utility type. `_Pick` should take two generics, some object `T` and a string literal union that is
  * some subset of keys from `T` as `K`.
  *
  * ```ts

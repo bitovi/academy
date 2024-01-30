@@ -580,7 +580,7 @@ dino.age = 0;
 // Today is its birthday! Let`s attempt to increase its age:
 dino.age += 1;
 // Cannot assign to 'age' because it is a read-only property.
-// Oops! Typescript error
+// Oops! TypeScript error
 </code></pre>
 <h2>Record&lt;Keys,Type&gt;</h2>
 <p>Shortcut for defining properties keys and values. Particularly useful when you have a type in which multiple keys share the same value <code>Type</code>, so you could avoid repeating the pattern <code>key: type;</code></p>
@@ -687,7 +687,7 @@ type D2 = ReturnType&lt;() =&gt; Dinosaur&gt;;
 <li>Uncapitalize&lt;StringType&gt;</li>
 </ul></li>
 </ul>
-<p>If you would like to dive deeper onto them, check the <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html" title="The Typescript Handbook">official documentation</a> for TypeScript.</p>
+<p>If you would like to dive deeper onto them, check the <a href="https://www.typescriptlang.org/docs/handbook/utility-types.html" title="The TypeScript Handbook">official documentation</a> for TypeScript.</p>
 <h2>Exercise: Create a new Type from existing Type</h2>
 <h3>The Problem</h3>
 <p>Update the <code>9-utility-types.ts</code> in order to create a new <code>Tyrannosaurus</code> type that enforces diet property to be <code>Diet.Carnivore</code> and all <code>Dinosaur</code> properties to be required. Remember to take advantage of Utility Types and using existing <code>Dinosaur</code> Type when creating the new <code>Tyrannosaurus</code> Type.</p>

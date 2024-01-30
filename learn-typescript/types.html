@@ -535,7 +535,7 @@ let hex: number = 0xf00d;
 <pre><code class="language-typescript">let name: string = &quot;Leoplurodon&quot;;
 </code></pre>
 <h3>Literals</h3>
-<p>In Typescript, there is a subset within string, number, and boolean which allow you to refine the specificity of the type. These are called type literals. A string literal is a single string for example:</p>
+<p>In TypeScript, there is a subset within string, number, and boolean which allow you to refine the specificity of the type. These are called type literals. A string literal is a single string for example:</p>
 <pre><code class="language-typescript">type StringLiteralExample = &quot;hello&quot;;
 </code></pre>
 <p>If we were to assign a variable to this <code>StringLiteralExample</code> type we just declared, we would see the only value it can be is <code>&quot;hello&quot;</code>.</p>
@@ -574,7 +574,7 @@ sillyList = [&quot;boop&quot;, 5]; //will error
 </code></pre>
 <p><a id="enum"></a></p>
 <h2>Intersections</h2>
-<p>There are many different ways to create new types from existing ones in TS. Intersections allow us to create a type containing all the properties of multiple types together. Put another way; Intersections combine multiple types into one. Let's imagine we have the following types.</p>
+<p>There are many different ways to create new types from existing ones in TS. Intersections allow us to create a type containing all the properties of multiple types together. Put another way; Intersections combine multiple types into one. Let’s imagine we have the following types.</p>
 <pre><code class="language-ts">type Person = {
   name: string;
   age: number;

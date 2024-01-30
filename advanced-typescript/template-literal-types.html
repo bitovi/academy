@@ -465,7 +465,7 @@ type BagItems = `${ItemTypes} ${Items}`; //&quot;regular potion&quot; | &quot;re
 type PokemonNamesFromEgg = FromEgg&lt;PokemonEgg&gt;; // &quot;bulbasaur&quot; | &quot;ivysaur&quot; | ...
 </code></pre>
 <h2>Renamed Keys</h2>
-<p>Back when we were looking at mapped types, the name of the key was always preserved; however, it’d be incredibly useful if there was a way we could rename some of the keys by adding some text to them. Luckily for us, there’s a way! We can leverage template literal types within a key mapping. Let's look at an example. Let’s make a <code>Stateful</code> type that adds getters and setters for any of the properties of the type passed in. If we gave it <code>{name: string}</code> we’d want it to create <code>{name: string; setName: (newValue: string) =&gt; void; getName: () =&gt; string;</code>. Let's start with adding a type that produces a “getter”.</p>
+<p>Back when we were looking at mapped types, the name of the key was always preserved; however, it’d be incredibly useful if there was a way we could rename some of the keys by adding some text to them. Luckily for us, there’s a way! We can leverage template literal types within a key mapping. Let’s look at an example. Let’s make a <code>Stateful</code> type that adds getters and setters for any of the properties of the type passed in. If we gave it <code>{name: string}</code> we’d want it to create <code>{name: string; setName: (newValue: string) =&gt; void; getName: () =&gt; string;</code>. Let’s start with adding a type that produces a “getter”.</p>
 <pre><code class="language-ts">type Getters&lt;T&gt; = {
   [OriginalKey in keyof T as `get${string &amp;
     OriginalKey}`]: () =&gt; T[OriginalKey];
@@ -474,7 +474,7 @@ type PokemonNamesFromEgg = FromEgg&lt;PokemonEgg&gt;; // &quot;bulbasaur&quot; |
 <blockquote>
 <p><code>string &amp; OriginalKey</code> is a way for us to tell TypeScript <code>OriginalKey</code> can be used in template literal types.</p>
 </blockquote>
-<p>When we feed a type into this, everything looks decent, but there’s one big issue, the getter’s name doesn’t follow any sort of naming convention – it's not camel-cased.</p>
+<p>When we feed a type into this, everything looks decent, but there’s one big issue, the getter’s name doesn’t follow any sort of naming convention – it’s not camel-cased.</p>
 <pre><code class="language-ts">type Pokemon = {
   name: string;
   trainer: string;
@@ -570,7 +570,7 @@ export type Margin = `margin-${Direction}`;
 <div line-highlight='1, 3-4'></div>
 <p></details></p>
 <h3>Exercise 2</h3>
-<p>Let's create a type that reverses <code>Getter&lt;T&gt;</code>. <code>FromGetter&lt;T&gt;</code> should take an object type and create a new type from all keys starting
+<p>Let’s create a type that reverses <code>Getter&lt;T&gt;</code>. <code>FromGetter&lt;T&gt;</code> should take an object type and create a new type from all keys starting
 with <code>get</code>. The new type should have the key name be camel-cased and the type of the property should resolve to the <code>ReturnType</code> of
 the getter if it is a function. If it is not a function, it should resolve to whatever it was.</p>
 <pre><code class="language-ts">type WithName = FromGetter&lt;{ getName: () =&gt; string }&gt;; // {name: string;}
@@ -580,7 +580,7 @@ type NonFunction = FromGetter&lt;{ getObject: object }&gt;; // {object: object;}
 <pre><code class="language-ts">/**
  * Exercise 2
  *
- * Let's create a type that reverses `Getter&lt;T&gt;`. `FromGetter&lt;T&gt;` should take an object type and create a new type from all keys starting
+ * Let’s create a type that reverses `Getter&lt;T&gt;`. `FromGetter&lt;T&gt;` should take an object type and create a new type from all keys starting
  * with `get`. The new type should have the key name be camel-cased and the type of the property should resolve to the `ReturnType` of
  * the getter if its a function. If its not a function, it should resolve to whatever it was.
  *
