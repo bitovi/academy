@@ -37,7 +37,7 @@ scripts
 └── codesandbox-link-helpers.js
 ```
 
-It is also possible to override the source using `--source`. The `--source` option accepts globs for pattern matching. It's default is set to look for all the exercise files within the advanced typescript course.
+It is also possible to override the source using `--source`. The `--source` option accepts globs for pattern matching. It’s default is set to look for all the exercise files within the advanced typescript course.
 
 > #### **Heads Up:**
 >

@@ -102,7 +102,7 @@ dino.age = 0;
 // Today is its birthday! Let`s attempt to increase its age:
 dino.age += 1;
 // Cannot assign to 'age' because it is a read-only property.
-// Oops! Typescript error
+// Oops! TypeScript error
 ```
 
 ## Record&lt;Keys,Type&gt;
@@ -238,7 +238,7 @@ There are other built-in Utility Types:
   - Capitalize&lt;StringType&gt;
   - Uncapitalize&lt;StringType&gt;
 
-If you would like to dive deeper onto them, check the [official documentation](https://www.typescriptlang.org/docs/handbook/utility-types.html "The Typescript Handbook") for TypeScript.
+If you would like to dive deeper onto them, check the [official documentation](https://www.typescriptlang.org/docs/handbook/utility-types.html "The TypeScript Handbook") for TypeScript.
 
 ## Exercise: Create a new Type from existing Type
 
