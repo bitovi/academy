@@ -229,6 +229,6 @@ ng g component order/list
 ✏️ Update **src/app/order/list.component.ts**
 
 @sourceref ./list.component.ts
-@highlight 2-3,10-18,20,24-49
+@highlight 2-3,10-18,20,22-47
 
 </details>

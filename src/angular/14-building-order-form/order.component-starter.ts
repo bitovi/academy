@@ -39,7 +39,7 @@ function minLengthArray(min: number): ValidatorFn {
 @Component({
   selector: 'pmo-order',
   templateUrl: './order.component.html',
-  styleUrls: ['./order.component.less'],
+  styleUrl: './order.component.less',
 })
 export class OrderComponent implements OnInit, OnDestroy {
   orderForm?: FormGroup<OrderForm>;

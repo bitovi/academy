@@ -1,16 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'pmo-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.less']
+  styleUrl: './home.component.less'
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
   title = 'Ordering food has never been easier';
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
 }

@@ -153,21 +153,6 @@ We’re going to build another component to use in our form to handle selecting 
 ></pmo-menu-items>
 ```
 
-## P3: Technical Requirements
-
-We want the menu-items component take an array of menu items and iterate through them in the template.
-
-Each menu item should have this markup:
-
-```html
-<li class="list-group-item">
-  <label>
-    <input type="checkbox" />
-    ITEM_NAME <span class="badge">$ ITEM_PRICE</span>
-  </label>
-</li>
-```
-
 ## P3: Setup
 
 Create the new menu-items component inside the order component folder
@@ -176,6 +161,18 @@ Create the new menu-items component inside the order component folder
 
 ```bash
 ng g component order/menu-items
+```
+
+✏️ Update **src/app/order/menu-items/menu-items.component.html**
+
+```html
+<!--  Iterate over items and render the markup below for each item -->
+<li class="list-group-item">
+  <label>
+    <input type="checkbox" />
+    ITEM_NAME <span class="badge">$ ITEM_PRICE</span>
+  </label>
+</li>
 ```
 
 Go ahead and put your new component in the order component.

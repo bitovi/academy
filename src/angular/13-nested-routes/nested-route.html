@@ -70,7 +70,7 @@ class UsersService {
   `
 })
 class AppComponent {
-  public userId: number = 1;
+  userId: number = 1;
   constructor() {
   }
 }
@@ -96,7 +96,7 @@ class HomeComponent {
   `
 })
 class UserComponent implements OnInit {
-  public user: User;
+  user: User;
 
   constructor(private route: ActivatedRoute, private usersService: UsersService) {
   }

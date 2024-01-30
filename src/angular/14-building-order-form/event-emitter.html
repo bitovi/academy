@@ -33,7 +33,7 @@ const { ReactiveFormsModule, FormControl } = ng.forms;
   `
 })
 class ParentComponent implements OnInit {
-  public message: string;
+  message: string;
   constructor() {}
 
   ngOnInit(): void {
@@ -65,7 +65,7 @@ class ParentComponent implements OnInit {
   `
 })
 class ChildComponent implements OnInit {
-  public childMessage = new FormControl('');
+  childMessage = new FormControl('');
   @Output() sendMessage: EventEmitter<any> = new EventEmitter();
  
   constructor() {}

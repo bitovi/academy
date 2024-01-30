@@ -11,7 +11,7 @@ export interface Data {
 @Component({
   selector: 'pmo-restaurant',
   templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less'],
+  styleUrl: './restaurant.component.less',
 })
 export class RestaurantComponent implements OnInit {
   form: FormGroup<{

@@ -1,19 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Item } from '../order.component';
 
 @Component({
   selector: 'pmo-menu-items',
   templateUrl: './menu-items.component.html',
-  styleUrls: ['./menu-items.component.less'],
+  styleUrl: './menu-items.component.less',
 })
-export class MenuItemsComponent implements OnInit {
+export class MenuItemsComponent {
   @Input() items: Item[] = [];
   @Output() itemsChanged: EventEmitter<Item[]> = new EventEmitter();
   selectedItems: Item[] = [];
-
-  constructor() {}
-
-  ngOnInit(): void {}
 
   updateItems(item: Item): void {
     const index = this.selectedItems.indexOf(item);
