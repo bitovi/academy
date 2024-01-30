@@ -11,7 +11,7 @@ interface Data<T> {
 @Component({
   selector: 'pmo-history',
   templateUrl: './history.component.html',
-  styleUrls: ['./history.component.less'],
+  styleUrl: './history.component.less',
 })
 export class HistoryComponent implements OnInit, OnDestroy {
   orders: Data<Order> = { value: [], isPending: true };

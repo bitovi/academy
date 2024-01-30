@@ -305,7 +305,7 @@ For now, we’ll use fake data for a list of restaurants in the component, and p
 
 @sourceref ./restaurant.component.ts
 
-@highlight 3-97, 104, 109-111
+@highlight 1, 3-97, 103, 104, 106-110
 
 To solve this problem, use Angular directives to iterate through data and display properties of restaurants.
 

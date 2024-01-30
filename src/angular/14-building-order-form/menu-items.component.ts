@@ -5,7 +5,7 @@ import { Item } from '../order.component';
 @Component({
   selector: 'pmo-menu-items',
   templateUrl: './menu-items.component.html',
-  styleUrls: ['./menu-items.component.less'],
+  styleUrl: './menu-items.component.less',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -17,8 +17,6 @@ import { Item } from '../order.component';
 export class MenuItemsComponent implements ControlValueAccessor {
   @Input() items: Item[] = [];
   @Input('value') _value: Item[] = [];
-
-  constructor() {}
 
   onChange: any = () => {};
   onTouched: any = () => {};

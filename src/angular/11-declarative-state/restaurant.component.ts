@@ -36,7 +36,7 @@ const toData = map(
 @Component({
   selector: 'pmo-restaurant',
   templateUrl: './restaurant.component.html',
-  styleUrls: ['./restaurant.component.less'],
+  styleUrl: './restaurant.component.less',
 })
 export class RestaurantComponent implements OnInit, OnDestroy {
   form: FormGroup<{

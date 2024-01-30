@@ -1,15 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Item } from '../order.component';
 
 @Component({
   selector: 'pmo-menu-items',
   templateUrl: './menu-items.component.html',
-  styleUrls: ['./menu-items.component.less'],
+  styleUrl: './menu-items.component.less',
 })
-export class MenuItemsComponent implements OnInit {
+export class MenuItemsComponent {
   @Input() items: Item[] = [];
-
-  constructor() {}
-
-  ngOnInit(): void {}
 }
