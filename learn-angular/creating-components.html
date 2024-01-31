@@ -1586,7 +1586,7 @@ export class RestaurantComponent implements OnInit {
 
   &lt;!-- show the following markup for each restaurant --&gt;
   &lt;div class=&quot;restaurant&quot;&gt;
-    &lt;img src=&quot;{{ restaurant.images.thumbnail }}&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+    &lt;img alt=&quot;&quot; src=&quot;{{ restaurant.images.thumbnail }}&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
     &lt;h3&gt;{{ restaurant.name }}&lt;/h3&gt;
 
     &lt;div class=&quot;address&quot; *ngIf=&quot;restaurant.address&quot;&gt;
@@ -1689,7 +1689,7 @@ describe('RestaurantComponent', () =&gt; {
   &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
   &lt;ng-container *ngIf=&quot;restaurants.length&quot;&gt;
     &lt;div class=&quot;restaurant&quot; *ngFor=&quot;let restaurant of restaurants&quot;&gt;
-      &lt;img src=&quot;{{ restaurant.images.thumbnail }}&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+      &lt;img alt=&quot;&quot; src=&quot;{{ restaurant.images.thumbnail }}&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
       &lt;h3&gt;{{ restaurant.name }}&lt;/h3&gt;
 
       &lt;div class=&quot;address&quot; *ngIf=&quot;restaurant.address&quot;&gt;

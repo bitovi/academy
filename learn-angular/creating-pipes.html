@@ -671,8 +671,14 @@ style="border: solid 1px black; max-width: 320px;"/></p>
 <p><img src="../static/img/angular/3b-creating-pipes/restaurant-thumbnails.png"
 style="border: solid 1px black; max-width: 320px;"/></p>
 <p>Currently the path is written out like:</p>
-<pre><code class="language-html">&lt;img src=&quot;{{ restaurant.images.thumbnail }}&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+<pre><code class="language-html">&lt;img
+  alt=&quot;&quot;
+  src=&quot;{{ restaurant.images.thumbnail }}&quot;
+  width=&quot;100&quot;
+  height=&quot;100&quot;
+/&gt;
 </code></pre>
+<div line-highlight='3'></div>
 <p><code>restaurant.images.thumbnail</code> will be a path like <code>node_modules/place-my-order-assets/image.png</code>. We need to change that path to be more like <code>./assets/image.png</code>. Once
 the path rewriting is fixed, images will show up correctly.</p>
 <h2>What You Need to Know</h2>
@@ -688,7 +694,7 @@ the path rewriting is fixed, images will show up correctly.</p>
 <h2>How to Build a Pipe</h2>
 <p><a href="https://angular.io/guide/pipes">Angular Pipes</a> come in handy to transform content in our templates. Pipes allow us to transform data to display to the user in our HTML without modifying the original source.</p>
 <p>Angular comes with several built-it pipes like DatePipe, UpperCasePipe, LowerCasePipe, CurrencyPipe, and PercentPipe. These pipes can be used in templates to modify the way data displays. We can build custom pipes as well. Pipes require one parameter - the value we want to change, but can take an additional parameters as well.</p>
-<p>This example takes the value to be transformed and a parameter to use as an exponential multiplier.</p>
+<p>This example takes a price to be transformed and a parameter to use as the currency symbol.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -703,18 +709,18 @@ the path rewriting is fixed, images will show up correctly.</p>
 const { Component, VERSION, Pipe, PipeTransform } = ng.core;
 
 
-@Pipe({name: 'exponentialStrength'})
-class ExponentialStrengthPipe implements PipeTransform {
-  transform(value: number, exponent: number): number {
-    return Math.pow(value, isNaN(exponent) ? 1 : exponent);
+@Pipe({ name: 'currencyFormat' })
+export class CurrencyFormatPipe implements PipeTransform {
+  transform(value: number, symbol: string = '$'): string {
+    return `${symbol}${value / 100}`;
   }
 }
 
 @Component({
   selector: 'my-app',
   template: `
-  &lt;h2&gt;Power Booster&lt;/h2&gt;
-  &lt;p&gt;Super power boost: {{2 | exponentialStrength: 10}}&lt;/p&gt;
+    &lt;h2&gt;Prices&lt;/h2&gt;
+    &lt;p&gt;USD price: {{ 1522 | currencyFormat:'$' }}&lt;/p&gt;
   `
 })
 class AppComponent {
@@ -730,7 +736,7 @@ const { CommonModule } = ng.common;
 @NgModule({
   imports: [ BrowserModule,
   CommonModule],
-  declarations: [AppComponent, ExponentialStrengthPipe],
+  declarations: [AppComponent, CurrencyFormatPipe],
   bootstrap: [AppComponent],
   providers: []
 })
@@ -751,8 +757,14 @@ platformBrowserDynamic()
 <ol>
 <li>Use an <code>imageUrl</code> <strong>pipe</strong> in <strong>src/app/restaurant/restaurant.component.html</strong> to rewrite the path. Using a pipe looks like the following:</li>
 </ol>
-<pre><code class="language-html">&lt;img src=&quot;{{ restaurant.images.thumbnail | imageUrl }}&quot; /&gt;
+<pre><code class="language-html">&lt;img
+  alt=&quot;&quot;
+  src=&quot;{{ restaurant.images.thumbnail }}&quot;
+  width=&quot;100&quot;
+  height=&quot;100&quot;
+/&gt;
 </code></pre>
+<div line-highlight='3'></div>
 <ol start="2">
 <li>Generate and implement the <code>imageUrl</code> <strong>pipe</strong>.</li>
 </ol>
@@ -761,12 +773,16 @@ platformBrowserDynamic()
 <p>Hint: Use String.prototype.replace to create the new path with image name.</p>
 </blockquote>
 <h2>Setup</h2>
+<p>✏️ Run the following to generate the <strong>pipe</strong> and the pipe’s tests:</p>
+<pre><code class="language-bash">ng g pipe imageUrl
+</code></pre>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong> file to use the pipe we will create:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
   &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
   &lt;ng-container *ngIf=&quot;restaurants.length&quot;&gt;
     &lt;div class=&quot;restaurant&quot; *ngFor=&quot;let restaurant of restaurants&quot;&gt;
       &lt;img
+        alt=&quot;&quot;
         src=&quot;{{ restaurant.images.thumbnail | imageUrl }}&quot;
         width=&quot;100&quot;
         height=&quot;100&quot;
@@ -793,10 +809,14 @@ platformBrowserDynamic()
 &lt;/div&gt;
 
 </code></pre>
- <div line-highlight="5-9,"></div>
-<p>✏️ Run the following to generate the <strong>pipe</strong> and the pipe’s tests:</p>
-<pre><code class="language-bash">ng g pipe imageUrl
-</code></pre>
+ <div line-highlight="5-10,only"></div>
+<h3>Having issues with your local setup?</h3>
+<p>You can get through most of this tutorial by using an online code editor. You won’t be able to run our tests to verify your solution, but you will be able to make changes to your app and see them live.</p>
+<p>You can use one of these two online editors:</p>
+<ul>
+<li><p><a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/angular/3a-pipes/problem?file=src/app/image-url.pipe.ts">StackBlitz</a></p></li>
+<li><p><a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/angular/3a-pipes/problem?file=src/app/image-url.pipe.ts">CodeSandbox</a></p></li>
+</ul>
 <h2>How to Verify Your Solution is Correct</h2>
 <p>✏️ Update the restaurant spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to include the new pipe:</p>
 <pre><code class="language-ts">import {
@@ -859,7 +879,7 @@ describe('RestaurantComponent', () =&gt; {
 });
 
 </code></pre>
-<div line-highlight='8,17, only'></div>
+ <div line-highlight="8,17,only"></div>
 <p>✏️ Update the spec file <strong>src/app/image-url.pipe.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { ImageUrlPipe } from './image-url.pipe';
 
@@ -879,26 +899,28 @@ describe('ImageUrlPipe', () =&gt; {
 
 </code></pre>
 <div line-highlight='8-14'></div>
+<h2>Solution</h2>
 <blockquote>
 <p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h2>Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/image-url.pipe.ts</strong> to:</p>
 <pre><code class="language-ts">import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'imageUrl',
+  name: 'imageUrl'
 })
 export class ImageUrlPipe implements PipeTransform {
+
   transform(value: string): string {
     return value.replace('node_modules/place-my-order-assets', './assets');
   }
+
 }
 
 </code></pre>
-<div line-highlight='7-9'></div>
+ <div line-highlight="8-9,only"></div>
 <p></details></p>
 
 </section>

@@ -1742,6 +1742,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
     &lt;ng-container *ngIf=&quot;restaurants.value.length&quot;&gt;
       &lt;div class=&quot;restaurant&quot; *ngFor=&quot;let restaurant of restaurants.value&quot;&gt;
         &lt;img
+          alt=&quot;&quot;
           src=&quot;{{ restaurant.images.thumbnail | imageUrl }}&quot;
           width=&quot;100&quot;
           height=&quot;100&quot;

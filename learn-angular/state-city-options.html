@@ -784,6 +784,7 @@ some boilerplate for the state and city <code>&lt;select&gt;</code> controls:</p
   &lt;ng-container *ngIf=&quot;restaurants.value.length&quot;&gt;
     &lt;div class=&quot;restaurant&quot; *ngFor=&quot;let restaurant of restaurants.value&quot;&gt;
       &lt;img
+        alt=&quot;&quot;
         src=&quot;{{ restaurant.images.thumbnail | imageUrl }}&quot;
         width=&quot;100&quot;
         height=&quot;100&quot;
@@ -810,7 +811,7 @@ some boilerplate for the state and city <code>&lt;select&gt;</code> controls:</p
 &lt;/div&gt;
 
 </code></pre>
- <div line-highlight="3-13,15-26,52,only"></div>
+ <div line-highlight="3-13,15-26,53,only"></div>
 <p>✏️ Update <strong>src/app/app.module.ts</strong> to import reactiveForms in the root app module:</p>
 <pre><code class="language-ts">import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -2033,6 +2034,7 @@ export class RestaurantComponent implements OnInit {
   &lt;ng-container *ngIf=&quot;restaurants.value.length&quot;&gt;
     &lt;div class=&quot;restaurant&quot; *ngFor=&quot;let restaurant of restaurants.value&quot;&gt;
       &lt;img
+        alt=&quot;&quot;
         src=&quot;{{ restaurant.images.thumbnail | imageUrl }}&quot;
         width=&quot;100&quot;
         height=&quot;100&quot;
