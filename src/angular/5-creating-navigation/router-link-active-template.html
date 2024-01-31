@@ -20,17 +20,17 @@ const { Routes, RouterModule } = ng.router;
 @Component({
   selector: 'my-app',
   template: `
-  <ul class="nav">
-    <li routerLinkActive="my-active-class" >
-      <a routerLink="/about" >About</a>
-    </li>
-    <li routerLinkActive #myroutervariable="routerLinkActive" 
-      [ngClass]="{'my-active-class' : myroutervariable.isActive}" >
-      <a [routerLink]="['/users', userId]">User 1</a>
-    </li>
-  </ul>
-  <p *ngIf="myroutervariable.isActive">The users/1 route is active. 💖💖💖</p> 
-  <router-outlet></router-outlet>
+    <ul class="nav">
+      <li routerLinkActive="my-active-class">
+        <a routerLink="/about">About</a>
+      </li>
+      <li routerLinkActive #myroutervariable="routerLinkActive" 
+        [ngClass]="{'my-active-class' : myroutervariable.isActive}">
+        <a [routerLink]="['/users', userId]">User 1</a>
+      </li>
+    </ul>
+    <p *ngIf="myroutervariable.isActive">The users/1 route is active. 💖💖💖</p> 
+    <router-outlet></router-outlet>
   `
 })
 class AppComponent {

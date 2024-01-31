@@ -31,7 +31,7 @@ To complete this problem, you’ll need to know:
 
 ## Angular Service Basics
 
-Angular <a href="https://angular.io/guide/architecture-services" >Services</a> are pieces of functionality that may not need to be tied to a view like components. A common example of a service is making an HTTP request to get data. Many components may require functionality to fetch data, and a Service can help abstract that logic into one place to be used across components.
+Angular <a href="https://angular.io/guide/architecture-services">Services</a> are pieces of functionality that may not need to be tied to a view like components. A common example of a service is making an HTTP request to get data. Many components may require functionality to fetch data, and a Service can help abstract that logic into one place to be used across components.
 
 The following example shows a `UsersService` with methods on it that return a list of users and get a user by ID, and shows how the `UsersService` is injected into the `AppComponent` and calls the `getUsers` to get the list of users to display in the template.
 
@@ -54,13 +54,13 @@ test file.
 
 ## Injectable
 
-<a href="https://angular.io/api/core/Injectable" >`Injectable`</a> is an Angular decorator that makes the class it’s decorating available to Angular’s <a href="https://angular.io/api/core/Injector" >Injector</a> for creation. In the case of creating service to get data to use in our application, we want those services to be able to be injected into the app components we need the services in.
+<a href="https://angular.io/api/core/Injectable">`Injectable`</a> is an Angular decorator that makes the class it’s decorating available to Angular’s <a href="https://angular.io/api/core/Injector">Injector</a> for creation. In the case of creating service to get data to use in our application, we want those services to be able to be injected into the app components we need the services in.
 
 Angular uses the injector to create dependencies using providers - which know how to create said dependencies. We can then inject our service into our components constructor to take advantage of Angular’s dependency injection pattern.
 
 ## Importing `HttpClientModule` into _app.module.ts_
 
-For making HTTP requests to interact with an API, Angular provides <a href="https://angular.io/api/common/http/HttpClientModule" >HttpClient Module</a>. To use it we’ll need to import it in the root module of our app and include it the imports array.
+For making HTTP requests to interact with an API, Angular provides <a href="https://angular.io/api/common/http/HttpClientModule">HttpClient Module</a>. To use it we’ll need to import it in the root module of our app and include it the imports array.
 
 **src/app/app.module.ts**
 
@@ -69,7 +69,7 @@ For making HTTP requests to interact with an API, Angular provides <a href="http
 
 ## Using HttpClient to Make a Request
 
-<a href="https://angular.io/api/common/http/HttpClient" >HttpClient</a> is a class with methods for making HTTP requests. Methods will return <a href="https://angular.io/guide/observables" >RxJS Observables</a>.
+<a href="https://angular.io/api/common/http/HttpClient">HttpClient</a> is a class with methods for making HTTP requests. Methods will return <a href="https://angular.io/guide/observables">RxJS Observables</a>.
 
 @sourceref ./http.html
 @codepen

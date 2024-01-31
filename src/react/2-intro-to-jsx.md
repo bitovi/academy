@@ -394,7 +394,7 @@ In this exercise you will be creating a component that is a single square with w
 
 So if a person rendered that component, they would see
 
-<img src="../static/img/react/redQ.png" >
+<img src="../static/img/react/redQ.png">
 
 _✏️ Note: Centering content inside of a div is easy with flexbox. Simply add `"display: flex; justify-content: center; align-items: center;"` to the parent div which holds the content you wish to be centered. Remember the differences between normal CSS, and inline styles with React though._
 

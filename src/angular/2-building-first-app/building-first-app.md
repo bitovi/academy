@@ -7,7 +7,7 @@
 
 ## How to Use This Guide
 
-This guide will walk you through building an application in Angular 17. Each page of the guide is based on building a new feature, and may have multiple "problems" to solve. Each problem will be explained and include requirements and any set-up steps needed. Most problems will also include unit tests to update to verify the solution has been implemented correctly. The ✏️ icon will be used to indicate when commands need to be run or when files need to be updated. If you have any issues or suggestions as you move through this training, we’d love you to submit a <a href="https://github.com/bitovi/academy/issues/new" >GitHub issue</a> for it! 💖
+This guide will walk you through building an application in Angular 17. Each page of the guide is based on building a new feature, and may have multiple "problems" to solve. Each problem will be explained and include requirements and any set-up steps needed. Most problems will also include unit tests to update to verify the solution has been implemented correctly. The ✏️ icon will be used to indicate when commands need to be run or when files need to be updated. If you have any issues or suggestions as you move through this training, we’d love you to submit a <a href="https://github.com/bitovi/academy/issues/new">GitHub issue</a> for it! 💖
 
 ## Overview
 
@@ -42,24 +42,24 @@ If you’re looking for a code editor (aka IDE) to improve your Angular developm
 
 ### Visual Studio Code
 
-<a href="https://code.visualstudio.com/" >VS Code</a> is Microsoft’s modern take on an IDE for app development (P.S. TypeScript is a Microsoft Open Source project). VS Code has built in TypeScript support for syntax highlighting, IntelliSense code completion, and linting.
+<a href="https://code.visualstudio.com/">VS Code</a> is Microsoft’s modern take on an IDE for app development (P.S. TypeScript is a Microsoft Open Source project). VS Code has built in TypeScript support for syntax highlighting, IntelliSense code completion, and linting.
 
-<a href="../static/img/vs-code-screenshot.png" ><img src="../static/img/vs-code-screenshot.png" width="100%" alt="Visual Studio Code screenshot" /></a>
+<a href="../static/img/vs-code-screenshot.png"><img src="../static/img/vs-code-screenshot.png" width="100%" alt="Visual Studio Code screenshot" /></a>
 
 Helpful Plugins:
 
-- <a href="https://marketplace.visualstudio.com/items?itemName=Angular.ng-template" >Angular Language Service</a>
-- <a href="https://marketplace.visualstudio.com/items?itemName=johnpapa.Angular2" >Angular Snippets</a>
+- <a href="https://marketplace.visualstudio.com/items?itemName=Angular.ng-template">Angular Language Service</a>
+- <a href="https://marketplace.visualstudio.com/items?itemName=johnpapa.Angular2">Angular Snippets</a>
 
 ### Webstorm
 
-<a href="https://www.jetbrains.com/webstorm/download/" >Webstorm</a> is a platform by JetBrains that is loved for its great code refactoring assistance and version control integration, but it does require a paid subscription.
+<a href="https://www.jetbrains.com/webstorm/download/">Webstorm</a> is a platform by JetBrains that is loved for its great code refactoring assistance and version control integration, but it does require a paid subscription.
 
-<a href="../static/img/webstorm-screenshot.png" ><img src="../static/img/webstorm-screenshot.png" width="100%" alt="Webstorm screenshot" /></a>
+<a href="../static/img/webstorm-screenshot.png"><img src="../static/img/webstorm-screenshot.png" width="100%" alt="Webstorm screenshot" /></a>
 
 Helpful Plugins:
 
-- <a href="https://next.angular.io/guide/language-service" >Angular Language Service</a>
+- <a href="https://next.angular.io/guide/language-service">Angular Language Service</a>
 
 ## Installing the CLI
 
@@ -184,7 +184,7 @@ This file is the root module for our app. Every Angular app has at least one mod
 - **providers** `[array]`: where we include services that we want used at the global app level
 - **bootstrap** `[array]`: where we include the root `AppComponent` - this is the main Application view that hosts all of our other app views.
 
-Further reading: <a href="https://angular.io/guide/architecture-services#dependency-injection-di" >Dependency Injection in Angular</a>
+Further reading: <a href="https://angular.io/guide/architecture-services#dependency-injection-di">Dependency Injection in Angular</a>
 
 ### src/app/app.component.ts
 
@@ -215,7 +215,7 @@ npm run test
 
 The change we needed to make for our tests to pass is on the highlighted line 37.
 
-We also included `schemas` metadata for our module. <a href="https://angular.io/api/core/NO_ERRORS_SCHEMA">NO_ERRORS_SCHEMA</a> will keep the compiler from throwing errors when unknown components are included in the tested components. In unit tests we often only want to test the very small piece of code we’re working on and don’t care about deeply nested components <a href="https://medium.com/@fivedicephoto/why-you-shouldnt-use-no-errors-schema-in-angular-unit-tests-cdd478c30782" >unless we’re testing the props in a parent/child component relationship</a>. For our purposes in this training, it’s safe to use here.
+We also included `schemas` metadata for our module. <a href="https://angular.io/api/core/NO_ERRORS_SCHEMA">NO_ERRORS_SCHEMA</a> will keep the compiler from throwing errors when unknown components are included in the tested components. In unit tests we often only want to test the very small piece of code we’re working on and don’t care about deeply nested components <a href="https://medium.com/@fivedicephoto/why-you-shouldnt-use-no-errors-schema-in-angular-unit-tests-cdd478c30782">unless we’re testing the props in a parent/child component relationship</a>. For our purposes in this training, it’s safe to use here.
 
 ✏️ Update **src/app/app.component.spec.ts**:
 
