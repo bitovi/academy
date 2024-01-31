@@ -26,10 +26,10 @@
       <p>Look at me!</p>
       <ul class="nav">
         <li routerLinkActive="active">
-          <a routerLink="/about" >About</a>
+          <a routerLink="/about">About</a>
         </li>
         <li routerLinkActive="active">
-          <a routerLink="boop">/boop - I will reroute to /about</a>
+          <a routerLink="team">/team - I will reroute to /about</a>
         </li>
         <li routerLinkActive="active">
           <a routerLink="/mymodule">/mymodule - I will load the child module</a>
@@ -111,7 +111,7 @@
   
   const routes: Routes = [
     { path: 'about', component: AboutComponent },
-    { path: 'boop',  redirectTo: '/about', pathMatch: 'full' },
+    { path: 'team',  redirectTo: '/about', pathMatch: 'full' },
     /*
       loadChildren would normally be a result of an import Promise,
       but we used a function for demonstration purposes and to enable it to work on codepen

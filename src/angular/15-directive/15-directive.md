@@ -45,13 +45,13 @@ and they consist of three types:
 
 In this training, we previously talked about [learn-angular/creating-components Components].
 Components are a type of Directive. Components use the `@Component` decorator function along with a template, style, and other logic needed for the view.
-This was previously discussed in detail [learn-angular/creating-components#p2-what-you-need-to-know here]. The official <a href="https://angular.io/guide/built-in-directives#:~:text=Components%E2%80%94-,directives,-with%20a%20template" >Angular documentation</a> has more information on this as well.
+This was previously discussed in detail [learn-angular/creating-components#p2-what-you-need-to-know here]. The official <a href="https://angular.io/guide/built-in-directives#:~:text=Components%E2%80%94-,directives,-with%20a%20template">Angular documentation</a> has more information on this as well.
 
 # Attribute Directives
 
 Attribute Directives are a type of directive that are mainly used to listen or change the behavior or appearance of DOM Elements,
 Attributes and Components.
-<a href="https://angular.io/guide/attribute-directives" >Read more</a>.
+<a href="https://angular.io/guide/attribute-directives">Read more</a>.
 
 # Structural Directives
 

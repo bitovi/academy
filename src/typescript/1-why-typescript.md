@@ -13,7 +13,7 @@ JavaScript. Typing helps enhance code quality and readability, assists in self-d
 The following shows an IDE catching that `greeter` was expecting a `string`,
 but was passed a `number`:
 
-<a href="../static/img/typescript-error-compiling.png" ><img src="../static/img/typescript-error-compiling.png" width="100%"/></a>
+<a href="../static/img/typescript-error-compiling.png"><img src="../static/img/typescript-error-compiling.png" width="100%"/></a>
 
 ### Typechecking
 
@@ -44,7 +44,7 @@ document.body.innerHTML = greeter(user);
 
 If there’s a bug in the code related to falsely assuming a type, it won’t throw an error until we’re already running our code.
 
-TypeScript uses static typing, which allows us to specify what type a variable should hold, and types are checked when the code compiles alerting us of any incorrect usages of a variable assignment. The concept of "static" comes from the idea of variables being static, meaning once you set a variable to a type it can’t (shouldn’t) be changed. For a deeper dive into how typechecking works, the creators of typescript have a <a href="https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html" >typechecking handbook</a> of more specific cases as well as their inspiration for the way these features were designed.
+TypeScript uses static typing, which allows us to specify what type a variable should hold, and types are checked when the code compiles alerting us of any incorrect usages of a variable assignment. The concept of "static" comes from the idea of variables being static, meaning once you set a variable to a type it can’t (shouldn’t) be changed. For a deeper dive into how typechecking works, the creators of typescript have a <a href="https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html">typechecking handbook</a> of more specific cases as well as their inspiration for the way these features were designed.
 
 ## Using this Guide
 
@@ -185,5 +185,5 @@ You should see an error message.
 
 <details>
 <summary>Click to see the error message.</summary>
-<a href="../static/img/typescript-error-compiling.png" ><img src="../static/img/typescript-error-compiling.png" width="100%"/></a>
+<a href="../static/img/typescript-error-compiling.png"><img src="../static/img/typescript-error-compiling.png" width="100%"/></a>
 </details>

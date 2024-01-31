@@ -35,4 +35,4 @@ Starting on Angular 17, to keep up with latest technology and for its improved b
 
 Google's support for Angular is not just a stamp of approval; it’s a promise of sustainability and forward-thinking evolution. This partnership ensures continuous improvements, keeping Angular at the forefront of web development technologies.
 
-For more information see the <a href="https://angular.io" >Angular Docs</a>
+For more information see the <a href="https://angular.io">Angular Docs</a>

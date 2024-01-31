@@ -37,7 +37,7 @@ ReactDOM.render(<Hello />, document.getElementById('root'));
 @highlight 2,5
 @codepen react
 
-Above is a simple example of using state to control an `input` element. The starting value of `inputValue` is `''` because it is the argument to `React.useState`. If we were to call `setInputValue('hello')`, then `inputValue` would change to `hello` and the component would re-render.
+Above is a simple example of using state to control an `input` element. The starting value of `inputValue` is `""` because it is the argument to `React.useState`. If we were to call `setInputValue('hello')`, then `inputValue` would change to `hello` and the component would re-render.
 
 Note also that the input box always displays the `uppercase` value of the text. This is because when we display the text value (when we pass the `value` prop to the `input`), we uppercase the string.
 

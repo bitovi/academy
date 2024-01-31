@@ -43,7 +43,7 @@ In this example, click the button to start subscribing to the Observables - you�
 @codepen
 @highlight 48,49,54,58-60,67,73,78-85,89-91,only
 
-This example shows creating a Subscription to an Observable, and using an <a href="https://angular.io/api/common/AsyncPipe" >async pipe</a> to display the value. This is useful for displaying Observable values in templates without the need to unsubscribe as that’s handled by the pipe when the component is destroyed .
+This example shows creating a Subscription to an Observable, and using an <a href="https://angular.io/api/common/AsyncPipe">async pipe</a> to display the value. This is useful for displaying Observable values in templates without the need to unsubscribe as that’s handled by the pipe when the component is destroyed .
 
 @sourceref ./observables-subscriptions-async.html
 @codepen
