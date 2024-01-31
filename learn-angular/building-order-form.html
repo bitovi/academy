@@ -1221,7 +1221,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 <li><p>Create a reactive form (you learned this in previous sections! ✔️)</p></li>
 <li><p>Listen to form value changes (you learned this in previous sections! ✔️)</p></li>
 <li><p>Add validation:</p>
-<p>This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation" >validation</a>. Here’s an example of a form with form controls with different validation, and one that’s value is set to an array.</p>
+<p>This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation">validation</a>. Here’s an example of a form with form controls with different validation, and one that’s value is set to an array.</p>
 <pre><code class="language-typescript">function coolKidsChecker(isACoolKid: string): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null =&gt; {
     if (control.value === isACoolKid) {
@@ -1537,7 +1537,7 @@ export class OrderComponent implements OnInit, OnDestroy {
  <div line-highlight="9,62-63,65-74,77-79,83-90,95-108,118,only"></div>
 <p></details></p>
 <h2>Importing 3rd Party Plugins</h2>
-<p>In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let’s import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started" >ngx-bootstrap</a>:</p>
+<p>In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let’s import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started">ngx-bootstrap</a>:</p>
 <p>✏️ Run:</p>
 <pre><code class="language-bash">ng add ngx-bootstrap
 </code></pre>
@@ -1945,7 +1945,7 @@ describe('MenuItemsComponent', () =&gt; {
 </code></pre>
 <h2>P3: What You Need to Know</h2>
 <h2>Component Interaction</h2>
-<p>Components in Angular can pass data back and forth to each other through the use of <a href="https://angular.io/api/core/Input" >@Input</a> and <a href="https://angular.io/api/core/Output" >@Output</a> decorations.</p>
+<p>Components in Angular can pass data back and forth to each other through the use of <a href="https://angular.io/api/core/Input">@Input</a> and <a href="https://angular.io/api/core/Output">@Output</a> decorations.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -2505,7 +2505,7 @@ describe('OrderComponent', () =&gt; {
  <div line-highlight="8,78,171-180,182-194,196-210,only"></div>
 <h2>P5: What you need to know</h2>
 <h2>Emitting Data to Parent Components</h2>
-<p>To pass data to parent components in Angular, the <a href="https://angular.io/api/core/EventEmitter" >EventEmitter</a> class is used in combination with the <a href="https://angular.io/api/core/Output" >Output decorator</a>. The Output decorator marks a property to be listened to during change detection, and we call the <code>emit</code> method to broadcast the property’s new value.</p>
+<p>To pass data to parent components in Angular, the <a href="https://angular.io/api/core/EventEmitter">EventEmitter</a> class is used in combination with the <a href="https://angular.io/api/core/Output">Output decorator</a>. The Output decorator marks a property to be listened to during change detection, and we call the <code>emit</code> method to broadcast the property’s new value.</p>
 <p>The parent component is listening for a change on the child component’s property and calls a function on that change that takes a parameter of the updated value.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -2612,7 +2612,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='31,32,43-45,69,77-79,only'></div>
 <h2>Programmatically Updating FormArray Values</h2>
-<p>When we have a FormArray we need to update programmatically with a value we can use the <a href="https://angular.io/api/forms/FormArray#patchvalue" ><code>patchValue</code></a> or <a href="https://angular.io/api/forms/FormArray#setvalue" ><code>setValue</code></a> methods on the <code>FormArray</code> class.</p>
+<p>When we have a FormArray we need to update programmatically with a value we can use the <a href="https://angular.io/api/forms/FormArray#patchvalue"><code>patchValue</code></a> or <a href="https://angular.io/api/forms/FormArray#setvalue"><code>setValue</code></a> methods on the <code>FormArray</code> class.</p>
 <p>The difference between these two FormArray’s methods is that <code>setValue</code> replaces the current array with the new value, and <code>patchValue</code> updates the array with the new values, trying to update values where possible.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -2925,7 +2925,7 @@ export class OrderComponent implements OnInit, OnDestroy {
  <div line-highlight="94-95,122,only"></div>
 <p></details></p>
 <h2>Control Value Accessor</h2>
-<p>Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the <a href="https://angular.io/api/forms/ControlValueAccessor" >Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - <code>onChange</code>, <code>onTouched</code>, <code>setValue</code>. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.</p>
+<p>Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the <a href="https://angular.io/api/forms/ControlValueAccessor">Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - <code>onChange</code>, <code>onTouched</code>, <code>setValue</code>. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.</p>
 <p>✏️ Update <strong>src/app/order/menu-items.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, forwardRef, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';

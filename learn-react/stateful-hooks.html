@@ -520,7 +520,7 @@ ReactDOM.render(&lt;Hello /&gt;, document.getElementById('root'));
 </code></pre>
 <div line-highlight='2,5'></div>
 <div class='codepen' data-codepen='react'></div>
-<p>Above is a simple example of using state to control an <code>input</code> element. The starting value of <code>inputValue</code> is <code>''</code> because it is the argument to <code>React.useState</code>. If we were to call <code>setInputValue('hello')</code>, then <code>inputValue</code> would change to <code>hello</code> and the component would re-render.</p>
+<p>Above is a simple example of using state to control an <code>input</code> element. The starting value of <code>inputValue</code> is <code>&quot;&quot;</code> because it is the argument to <code>React.useState</code>. If we were to call <code>setInputValue('hello')</code>, then <code>inputValue</code> would change to <code>hello</code> and the component would re-render.</p>
 <p>Note also that the input box always displays the <code>uppercase</code> value of the text. This is because when we display the text value (when we pass the <code>value</code> prop to the <code>input</code>), we uppercase the string.</p>
 <p>This process is similar no matter what component you’re building. The basic pattern is:</p>
 <ol>

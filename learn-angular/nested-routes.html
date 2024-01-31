@@ -681,7 +681,7 @@ covering CanJS core libraries.">
 <li>How to get a route param using ActivatedRoute</li>
 </ul>
 <h2>Route Parameters &amp; Child Views</h2>
-<p>A common pattern in SPA architecture is to serve a view of an individual piece of data from a path with an identifying parameter. Previously we’ve defined static paths with Angular’s <a href="https://angular.io/guide/router" >router</a>. To create a nested route, we’ll need the slug after the slash to be dynamic. We can set a token for the router parameter with <code>:</code>. To get the slug from the route in a component, we use the <a href="https://angular.io/api/router/ActivatedRoute" >ActivatedRoute</a> interface.</p>
+<p>A common pattern in SPA architecture is to serve a view of an individual piece of data from a path with an identifying parameter. Previously we’ve defined static paths with Angular’s <a href="https://angular.io/guide/router">router</a>. To create a nested route, we’ll need the slug after the slash to be dynamic. We can set a token for the router parameter with <code>:</code>. To get the slug from the route in a component, we use the <a href="https://angular.io/api/router/ActivatedRoute">ActivatedRoute</a> interface.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -742,15 +742,15 @@ class UsersService {
 @Component({
   selector: 'my-app',
   template: `
-  &lt;ul class=&quot;nav&quot;&gt;
-    &lt;li routerLinkActive=&quot;active&quot;&gt;
-      &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li routerLinkActive=&quot;active&quot;&gt;
-      &lt;a [routerLink]=&quot;['/users', userId]&quot;&gt;User 1&lt;/a&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;router-outlet&gt;&lt;/router-outlet&gt;
+    &lt;ul class=&quot;nav&quot;&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+        &lt;a routerLink=&quot;/about&quot;&gt;About&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+        &lt;a [routerLink]=&quot;['/users', userId]&quot;&gt;User 1&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
   `
 })
 class AppComponent {

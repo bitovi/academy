@@ -673,7 +673,7 @@ covering CanJS core libraries.">
 <h2>Problem</h2>
 <p>We need to set up routes for the home view and restaurant view.</p>
 <h2>Technical Requirements</h2>
-<p>Create routes for the <code>HomeComponent</code> and <code>RestaurantComponent</code>. When the route is <code>''</code>, the <code>HomeComponent</code> should display, and when the route is <code>/restaurants</code> the <code>RestaurantComponent</code> should display. These changes should be made in <strong>src/app/app-routing.module.ts</strong>.</p>
+<p>Create routes for the <code>HomeComponent</code> and <code>RestaurantComponent</code>. When the route is <code>&quot;&quot;</code>, the <code>HomeComponent</code> should display, and when the route is <code>/restaurants</code> the <code>RestaurantComponent</code> should display. These changes should be made in <strong>src/app/app-routing.module.ts</strong>.</p>
 <p>Notice that you will be able to click the <strong>Choose a Restaurant</strong> button
 at the end of this tutorial:</p>
 <p><img src="../static/img/angular/4-adding-routing/after.gif" alt="Choose a restaurant routing" title="Choose a restaurant routing" /></p>
@@ -686,7 +686,7 @@ those components going forward.</p>
 </code></pre>
 <div line-highlight='1-2,only'></div>
 <h2>How to Verify Your Solution is Correct</h2>
-<p>If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants" >localhost:4200/restaurants</a>. You may have noticed the <code>routerLink</code> attribute on the <code>&lt;a&gt;</code> tag in our home component markup. This one of the ways we link to specific routes in our app. When you click that link, you should see the restaurants component.</p>
+<p>If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants">localhost:4200/restaurants</a>. You may have noticed the <code>routerLink</code> attribute on the <code>&lt;a&gt;</code> tag in our home component markup. This one of the ways we link to specific routes in our app. When you click that link, you should see the restaurants component.</p>
 <pre><code class="language-html">&lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;&gt; Choose a Restaurant &lt;/a&gt;
 </code></pre>
 <p>✏️ Update the spec file <strong>src/app/app.component.spec.ts</strong> to be:</p>
@@ -760,7 +760,7 @@ describe('AppComponent', () =&gt; {
 </blockquote>
 <h2>What You Need to Know</h2>
 <h2>Router Outlet</h2>
-<p><a href="https://angular.io/api/router/RouterOutlet" ><code>RouterOutlet</code></a> is an Angular directive that is a placeholder for content that is filled when the route changes. In this example the <code>HomeComponent</code> template or the <code>AboutComponent</code> template are shown below the <code>&lt;router-outlet&gt;</code> element as the route changes.</p>
+<p><a href="https://angular.io/api/router/RouterOutlet"><code>RouterOutlet</code></a> is an Angular directive that is a placeholder for content that is filled when the route changes. In this example the <code>HomeComponent</code> template or the <code>AboutComponent</code> template are shown below the <code>&lt;router-outlet&gt;</code> element as the route changes.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -785,11 +785,11 @@ const { Routes, RouterModule } = ng.router;
   template: `
     &lt;ul class=&quot;nav&quot;&gt;
       &lt;li routerLinkActive=&quot;active&quot;&gt;
-        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+        &lt;a routerLink=&quot;/about&quot;&gt;About&lt;/a&gt;
       &lt;/li&gt;
       &lt;li routerLinkActive=&quot;active&quot;&gt;
-          &lt;a routerLink=&quot;&quot; &gt;Home&lt;/a&gt;
-        &lt;/li&gt;
+        &lt;a routerLink=&quot;&quot;&gt;Home&lt;/a&gt;
+      &lt;/li&gt;
     &lt;/ul&gt;
     &lt;router-outlet&gt;&lt;/router-outlet&gt;
   `
@@ -857,17 +857,19 @@ platformBrowserDynamic()
 <div line-highlight='31, only'></div>
 <h2>Router</h2>
 <p>To be able to navigate between different views in our app, we can take advantage of Angular’s built-in routing module. Angular generated <code>src/app/app-routing.module.ts</code> for us and included it in our root module. <code>src/app/app-routing.module.ts</code> currently looks like:</p>
-<pre><code class="language-typescript">import { NgModule } from '@angular/core';
+<pre><code class="language-ts">import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [];
 
+@NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
 
 </code></pre>
+<div line-highlight='2, 7-8, only'></div>
 <p>The router module takes an array of routes we can generate in a few different ways that will render content in the <code>router-outlet</code> directive.</p>
 <h2>Setting Paths to Components</h2>
 <p>The following example will render the <code>AboutComponent</code> in the router-outlet when the path is <code>/about</code>:</p>
@@ -895,11 +897,11 @@ const { Routes, RouterModule } = ng.router;
   template: `
     &lt;ul class=&quot;nav&quot;&gt;
       &lt;li routerLinkActive=&quot;active&quot;&gt;
-        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+        &lt;a routerLink=&quot;/about&quot;&gt;About&lt;/a&gt;
       &lt;/li&gt;
       &lt;li routerLinkActive=&quot;active&quot;&gt;
-          &lt;a routerLink=&quot;&quot; &gt;Home&lt;/a&gt;
-        &lt;/li&gt;
+        &lt;a routerLink=&quot;&quot;&gt;Home&lt;/a&gt;
+      &lt;/li&gt;
     &lt;/ul&gt;
     &lt;router-outlet&gt;&lt;/router-outlet&gt;
   `
@@ -993,7 +995,7 @@ const { Routes, RouterModule } = ng.router;
     &lt;p&gt;Look at me!&lt;/p&gt;
     &lt;ul class=&quot;nav&quot;&gt;
       &lt;li routerLinkActive=&quot;active&quot;&gt;
-        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+        &lt;a routerLink=&quot;/about&quot;&gt;About&lt;/a&gt;
       &lt;/li&gt;
       &lt;li routerLinkActive=&quot;active&quot;&gt;
         &lt;a routerLink=&quot;/merp&quot;&gt;/merp - Not an actual route&lt;/a&gt;
@@ -1095,7 +1097,7 @@ const { Routes, RouterModule } = ng.router;
     &lt;p&gt;Look at me!&lt;/p&gt;
     &lt;ul class=&quot;nav&quot;&gt;
       &lt;li routerLinkActive=&quot;active&quot;&gt;
-        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+        &lt;a routerLink=&quot;/about&quot;&gt;About&lt;/a&gt;
       &lt;/li&gt;
       &lt;li routerLinkActive=&quot;active&quot;&gt;
         &lt;a routerLink=&quot;/merp&quot;&gt;Not an actual route&lt;/a&gt;
@@ -1104,7 +1106,7 @@ const { Routes, RouterModule } = ng.router;
         &lt;a routerLink=&quot;/blarg&quot;&gt;Another not actual route&lt;/a&gt;
       &lt;/li&gt;
       &lt;li routerLinkActive=&quot;active&quot;&gt;
-        &lt;a routerLink=&quot;boop&quot;&gt;/boop - I will reroute to /about&lt;/a&gt;
+        &lt;a routerLink=&quot;team&quot;&gt;/team - I will reroute to /about&lt;/a&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
     &lt;router-outlet&gt;&lt;/router-outlet&gt;
@@ -1139,7 +1141,7 @@ class PageNotFoundComponent {
 
 const routes: Routes = [
   { path: 'about', component: AboutComponent },
-  { path: 'boop',  redirectTo: '/about', pathMatch: 'full' },
+  { path: 'team',  redirectTo: '/about', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -1173,157 +1175,28 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='71, only'></div>
 <h2>Setting Paths to Modules</h2>
-<p>As our applications grow, it doesn’t make sense to load all the code at once. Thanks to <a href="https://angular.io/guide/lazy-loading-ngmodules" >lazy loading</a>, we can wait to render modules until a specific route requiring them is hit.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;//unpkg.com/mock-url@^5.0.0&quot; type=&quot;module&quot;&gt;&lt;/script&gt;
-&lt;mock-url pushstate:from=&quot;true&quot;&gt;&lt;/mock-url&gt;
-&lt;base href=&quot;/&quot;&gt;
-&lt;my-app&gt;&lt;/my-app&gt;
-&lt;script type=&quot;typescript&quot;&gt;
-  // app.js
-  const { Component, NgModule, VERSION } = ng.core;
-  const { BrowserModule } = ng.platformBrowser;
-  const { CommonModule } = ng.common;
-  const { Routes, RouterModule } = ng.router;
-  
-  const { platformBrowserDynamic } = ng.platformBrowserDynamic;
-  
-  @Component({
-    selector: 'my-app',
-    template: `
-      &lt;p&gt;Look at me!&lt;/p&gt;
-      &lt;ul class=&quot;nav&quot;&gt;
-        &lt;li routerLinkActive=&quot;active&quot;&gt;
-          &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
-        &lt;/li&gt;
-        &lt;li routerLinkActive=&quot;active&quot;&gt;
-          &lt;a routerLink=&quot;boop&quot;&gt;/boop - I will reroute to /about&lt;/a&gt;
-        &lt;/li&gt;
-        &lt;li routerLinkActive=&quot;active&quot;&gt;
-          &lt;a routerLink=&quot;/mymodule&quot;&gt;/mymodule - I will load the child module&lt;/a&gt;
-        &lt;/li&gt;
-      &lt;/ul&gt;
-      &lt;router-outlet&gt;&lt;/router-outlet&gt;
-    `
-  })
-  class AppComponent {
-    constructor() {
+<p>As our applications grow, it doesn’t make sense to load all the code at once. Thanks to <a href="https://angular.io/guide/lazy-loading-ngmodules">lazy loading</a>, we can wait to render modules until a specific route requiring them is hit.</p>
+<!-- [//]: # @sourceref ./lazyload-route.html
+[//]: # @codepen
+[//]: # @highlight 120, only -->
+<pre><code class="language-typescript">const routes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: 'team',  redirectTo: '/about', pathMatch: 'full' },
+  {
+    path: 'products',
+    loadChildren: () =&gt; {
+      return import('./products/products.module').then(m =&gt; m.ProductsModule)
     }
-  }
-  
-  @Component({
-    selector: 'about-component',
-    template: `
-      &lt;p&gt;A very sweet component!&lt;/p&gt;
-    `
-  })
-  class AboutComponent {
-    constructor() {
-    }
-  }
-  
-  @Component({
-    selector: 'unfound-component',
-    template: `
-      &lt;p&gt;These are not the components you are looking for.&lt;/p&gt;
-    `
-  })
-  class PageNotFoundComponent {
-    constructor() {
-    }
-  }
-  
-  @Component({
-    selector: 'child-component',
-    template: `
-      &lt;p&gt;I'm in a child module!&lt;/p&gt;
-    `
-  })
-  class ChildComponent {
-    constructor() {
-      console.log('loading child component');
-    }
-  }
-  
-  const childRoutes: Routes = [
-    {
-      path: '',
-      component: ChildComponent
-    }
-  ];
-  
-  @NgModule({
-    imports: [RouterModule.forChild(childRoutes)],
-    exports: [RouterModule]
-  })
-  class ChildRoutingModule { }
-  
-  @NgModule({
-    imports: [
-      CommonModule,
-      ChildRoutingModule
-    ],
-    declarations: [ChildComponent],
-    bootstrap: [ChildComponent],
-    providers: []
-  })
-  class ChildModule {
-    constructor() {
-      console.log('loading child module');
-    }
-  }
+  },
+  { path: '**', component: PageNotFoundComponent }
+];
 
-  platformBrowserDynamic()
-    .bootstrapModule(ChildModule)
-    .catch(err =&gt; console.error(err));
-  
-  const routes: Routes = [
-    { path: 'about', component: AboutComponent },
-    { path: 'boop',  redirectTo: '/about', pathMatch: 'full' },
-    /*
-      loadChildren would normally be a result of an import Promise,
-      but we used a function for demonstration purposes and to enable it to work on codepen
-      Correct: { path: 'mymodule', loadChildren: () =&gt; import('./child/child.module').then(m =&gt; m.ChildModule) },
-    */
-    { path: 'mymodule', loadChildren: () =&gt; ChildModule},
-    { path: '**', component: PageNotFoundComponent }
-  ];
-  
-  @NgModule({
-    imports: [RouterModule.forRoot(routes)],
-    exports: [RouterModule]
-  })
-  class AppRoutingModule { }
-  
-  @NgModule({
-    declarations: [AppComponent, AboutComponent, PageNotFoundComponent],
-    imports: [
-      BrowserModule,
-      CommonModule,
-      AppRoutingModule
-    ],
-    bootstrap: [AppComponent],
-    providers: []
-  })
-  class AppModule {}
-  
-  platformBrowserDynamic()
-    .bootstrapModule(AppModule)
-    .catch(err =&gt; console.error(err));
-&lt;/script&gt;
-
-
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+class AppRoutingModule { }
 </code></pre>
-<div class='codepen'></div>
-<div line-highlight='120, only'></div>
+<div line-highlight='4-9'></div>
 <h2>&lt;base-href&gt;</h2>
 <p>In our <code>index.html</code> file, the angular cli included <code>&lt;base href=&quot;/&gt;</code>. This isn’t an Angular specific feature and you can read more about it <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base">here</a>, but it’s important to know this is how the Angular router will know how to compose URLs - the value in the <code>href</code> attribute specifies the base URL for all relative URLs contained in the app. If you’d like to serve your app from a different directory (wherever the index.html will be served from) or have a specific hosting URL that your app will be deployed at, you will need to change the <code>base href</code> to match.</p>
 <pre><code class="language-html">&lt;!doctype html&gt;
@@ -1339,6 +1212,7 @@ platformBrowserDynamic()
   &lt;pmo-root&gt;&lt;/pmo-root&gt;
 &lt;/body&gt;
 &lt;/html&gt;
+
 </code></pre>
 <div line-highlight='6'></div>
 <h2>Solution</h2>

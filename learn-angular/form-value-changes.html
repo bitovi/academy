@@ -808,7 +808,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='48,49,54,58-60,67,73,78-85,89-91,only'></div>
-<p>This example shows creating a Subscription to an Observable, and using an <a href="https://angular.io/api/common/AsyncPipe" >async pipe</a> to display the value. This is useful for displaying Observable values in templates without the need to unsubscribe as that’s handled by the pipe when the component is destroyed .</p>
+<p>This example shows creating a Subscription to an Observable, and using an <a href="https://angular.io/api/common/AsyncPipe">async pipe</a> to display the value. This is useful for displaying Observable values in templates without the need to unsubscribe as that’s handled by the pipe when the component is destroyed .</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -834,7 +834,7 @@ const { Observable, Subscription } = rxjs;
   template: `
     &lt;ul class=&quot;nav&quot;&gt;
       &lt;li routerLinkActive=&quot;active&quot;&gt;
-        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+        &lt;a routerLink=&quot;/about&quot;&gt;About&lt;/a&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
     &lt;router-outlet&gt;&lt;/router-outlet&gt;
@@ -945,7 +945,7 @@ const { takeUntil } = rxjs.operators;
   template: `
     &lt;ul class=&quot;nav&quot;&gt;
       &lt;li routerLinkActive=&quot;active&quot;&gt;
-        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+        &lt;a routerLink=&quot;/about&quot;&gt;About&lt;/a&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
     &lt;router-outlet&gt;&lt;/router-outlet&gt;

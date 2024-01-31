@@ -845,7 +845,7 @@ export class AppModule { }
 </code></pre>
  <div line-highlight="3,23,only"></div>
 <h2>How to Verify Your Solution is Correct</h2>
-<p>When you visit <a href="http://localhost:4200/restaurants" >localhost:4200/restaurants</a>, there will now be state and city dropdown options populated with fake data.</p>
+<p>When you visit <a href="http://localhost:4200/restaurants">localhost:4200/restaurants</a>, there will now be state and city dropdown options populated with fake data.</p>
 <p><img src="../static/img/angular/pmo-dropdowns.gif" alt="Place My Order App city and state dropdowns" title="Place My Order App city and state dropdowns" /></p>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
@@ -1480,7 +1480,7 @@ describe('AppComponent', () =&gt; {
 <li>How to use <code>ngFor</code> (you learned this in the Creating Components section! ✔️)</li>
 </ul>
 <h2>Reactive Forms</h2>
-<p>We’re eventually going to use select boxes to handle our user’s input. Angular’s <a href="https://angular.io/guide/reactive-forms" >Reactive Forms</a> API provides a clean way to get data from user input and do work based on it.</p>
+<p>We’re eventually going to use select boxes to handle our user’s input. Angular’s <a href="https://angular.io/guide/reactive-forms">Reactive Forms</a> API provides a clean way to get data from user input and do work based on it.</p>
 <blockquote>
 <p>From the docs: Reactive forms use an explicit and immutable approach to managing the state of a form at a given point in time. Each change to the form state returns a new state, which maintains the integrity of the model between changes. Reactive forms are built around observable streams, where form inputs and values are provided as streams of input values, which can be accessed synchronously.</p>
 </blockquote>
@@ -1510,7 +1510,7 @@ const { ReactiveFormsModule } = ng.forms;
   template: `
     &lt;ul class=&quot;nav&quot;&gt;
       &lt;li routerLinkActive=&quot;active&quot;&gt;
-        &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
+        &lt;a routerLink=&quot;/about&quot;&gt;About&lt;/a&gt;
       &lt;/li&gt;
     &lt;/ul&gt;
     &lt;router-outlet&gt;&lt;/router-outlet&gt;
@@ -1583,7 +1583,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='79,only'></div>
 <h2>FormControl</h2>
-<p>The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl" >FormControl</a>. This class manages the form input model and connection to its input element in the DOM and inherits from the <a href="https://angular.io/api/forms/AbstractControl" >AbstractControl</a>
+<p>The basic element of a reactive form is the <a href="https://angular.io/api/forms/FormControl">FormControl</a>. This class manages the form input model and connection to its input element in the DOM and inherits from the <a href="https://angular.io/api/forms/AbstractControl">AbstractControl</a>
 class. It’s worth getting familiar with the methods available in this class (like setValidators and setValue), as they’re used quite often in reactive form development. The formControl is bound to its element in the DOM using the <code>[formControl]</code> directive.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1646,7 +1646,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='17,23-29,33,only'></div>
 <h2>FormGroup</h2>
-<p>A <a href="https://angular.io/api/forms/FormGroup" >FormGroup</a> is a way of grouping <code>FormControl</code>s and tracking the state of the entire group. For instance, if you want to get the values of all of your <code>FormControl</code>s to submit as an object of those values, you’d use <code>formGroupName.value</code>. Notice the way we connect our input in the markup is slightly different - we can use the <code>formControlName</code> directive to bind to the name value of a <code>FormControl</code> in our <code>FormGroup</code>. Groups can be nested within other groups or arrays.</p>
+<p>A <a href="https://angular.io/api/forms/FormGroup">FormGroup</a> is a way of grouping <code>FormControl</code>s and tracking the state of the entire group. For instance, if you want to get the values of all of your <code>FormControl</code>s to submit as an object of those values, you’d use <code>formGroupName.value</code>. Notice the way we connect our input in the markup is slightly different - we can use the <code>formControlName</code> directive to bind to the name value of a <code>FormControl</code> in our <code>FormGroup</code>. Groups can be nested within other groups or arrays.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -1728,7 +1728,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='17,23-37,39,43,45-49,53-55,only'></div>
 <h2>FormArray</h2>
-<p>A <a href="https://angular.io/api/forms/FormArray" >FormArray</a> aggregates <code>FormControl</code>s into an array. It’s different than FormGroup in that the controls inside are serialized as an array. <code>FormArray</code>s are very useful when dealing with repeated <code>FormControl</code>s or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.</p>
+<p>A <a href="https://angular.io/api/forms/FormArray">FormArray</a> aggregates <code>FormControl</code>s into an array. It’s different than FormGroup in that the controls inside are serialized as an array. <code>FormArray</code>s are very useful when dealing with repeated <code>FormControl</code>s or dynamic forms that allow users to create additional inputs. Arrays can be nested in groups or other arrays.</p>
 <p>This example shows the use of <code>FormArray</code> and using an <code>insert</code> method to dynamically add more <code>FormGroup</code>s to the <code>users</code> FormArray.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;

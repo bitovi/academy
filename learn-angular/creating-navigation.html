@@ -846,11 +846,11 @@ const { Routes, RouterModule } = ng.router;
 @Component({
   selector: 'my-app',
   template: `
-  &lt;ul class=&quot;nav&quot;&gt;
-    &lt;li routerLinkActive=&quot;active&quot;&gt;
-      &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;
+    &lt;ul class=&quot;nav&quot;&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+        &lt;a routerLink=&quot;/about&quot;&gt;About&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
     &lt;router-outlet&gt;&lt;/router-outlet&gt;
   `
 })
@@ -940,15 +940,15 @@ const { Routes, RouterModule } = ng.router;
 @Component({
   selector: 'my-app',
   template: `
-  &lt;ul class=&quot;nav&quot;&gt;
-    &lt;li routerLinkActive=&quot;active&quot;&gt;
-      &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li routerLinkActive=&quot;active&quot;&gt;
-      &lt;a [routerLink]=&quot;['/users', userId]&quot;&gt;User 1&lt;/a&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;router-outlet&gt;&lt;/router-outlet&gt;
+    &lt;ul class=&quot;nav&quot;&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+        &lt;a routerLink=&quot;/about&quot;&gt;About&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+        &lt;a [routerLink]=&quot;['/users', userId]&quot;&gt;User 1&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
   `
 })
 class AppComponent {
@@ -1027,7 +1027,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='28,35, only'></div>
 <h2>RouterLinkActive</h2>
-<p>The <a href="https://angular.io/api/router/RouterLinkActive" >routerLinkActive</a> directive lets you add a CSS class to an element when the link's route becomes active. Angular looks at the path to determine if the route is active and will return true if any of the path matches, meaning when a path contains a &quot;child&quot; segment the route active status will still return true. If exact specificity is needed, <code>[routerLinkActiveOptions]=&quot;{exact: true}&quot;</code> can be used.</p>
+<p>The <a href="https://angular.io/api/router/RouterLinkActive">routerLinkActive</a> directive lets you add a CSS class to an element when the link's route becomes active. Angular looks at the path to determine if the route is active and will return true if any of the path matches, meaning when a path contains a &quot;child&quot; segment the route active status will still return true. If exact specificity is needed, <code>[routerLinkActiveOptions]=&quot;{exact: true}&quot;</code> can be used.</p>
 <h3>Adding a Basic Active Class</h3>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1051,15 +1051,15 @@ const { Routes, RouterModule } = ng.router;
 @Component({
   selector: 'my-app',
   template: `
-  &lt;ul class=&quot;nav&quot;&gt;
-    &lt;li&gt;
-      &lt;a routerLink=&quot;/about&quot; routerLinkActive=&quot;my-active-class&quot;&gt;About&lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li&gt;
-      &lt;a [routerLink]=&quot;['/users', userId]&quot;&gt;User 1&lt;/a&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;router-outlet&gt;&lt;/router-outlet&gt;
+    &lt;ul class=&quot;nav&quot;&gt;
+      &lt;li&gt;
+        &lt;a routerLink=&quot;/about&quot; routerLinkActive=&quot;my-active-class&quot;&gt;About&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li&gt;
+        &lt;a [routerLink]=&quot;['/users', userId]&quot;&gt;User 1&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
   `
 })
 class AppComponent {
@@ -1166,21 +1166,21 @@ const { Routes, RouterModule } = ng.router;
 @Component({
   selector: 'my-app',
   template: `
-  &lt;ul class=&quot;nav&quot;&gt;
-    &lt;li routerLinkActive=&quot;my-active-class&quot; &gt;
-      &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li routerLinkActive=&quot;my-active-class&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
-      &lt;a [routerLink]=&quot;['/users', userId]&quot;&gt;User 1&lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li routerLinkActive=&quot;my-active-class&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
-      &lt;ul&gt;
-        &lt;li&gt;&lt;a routerLink=&quot;/user/1&quot;&gt;User 1&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a routerLink=&quot;/user/2&quot;&gt;User 2&lt;/a&gt;&lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;router-outlet&gt;&lt;/router-outlet&gt;
+    &lt;ul class=&quot;nav&quot;&gt;
+      &lt;li routerLinkActive=&quot;my-active-class&quot;&gt;
+        &lt;a routerLink=&quot;/about&quot;&gt;About&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li routerLinkActive=&quot;my-active-class&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
+        &lt;a [routerLink]=&quot;['/users', userId]&quot;&gt;User 1&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li routerLinkActive=&quot;my-active-class&quot; [routerLinkActiveOptions]=&quot;{exact: true}&quot;&gt;
+        &lt;ul&gt;
+          &lt;li&gt;&lt;a routerLink=&quot;/user/1&quot;&gt;User 1&lt;/a&gt;&lt;/li&gt;
+          &lt;li&gt;&lt;a routerLink=&quot;/user/2&quot;&gt;User 2&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
   `
 })
 class AppComponent {
@@ -1287,17 +1287,17 @@ const { Routes, RouterModule } = ng.router;
 @Component({
   selector: 'my-app',
   template: `
-  &lt;ul class=&quot;nav&quot;&gt;
-    &lt;li routerLinkActive=&quot;my-active-class&quot; &gt;
-      &lt;a routerLink=&quot;/about&quot; &gt;About&lt;/a&gt;
-    &lt;/li&gt;
-    &lt;li routerLinkActive #myroutervariable=&quot;routerLinkActive&quot; 
-      [ngClass]=&quot;{'my-active-class' : myroutervariable.isActive}&quot; &gt;
-      &lt;a [routerLink]=&quot;['/users', userId]&quot;&gt;User 1&lt;/a&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;p *ngIf=&quot;myroutervariable.isActive&quot;&gt;The users/1 route is active. 💖💖💖&lt;/p&gt; 
-  &lt;router-outlet&gt;&lt;/router-outlet&gt;
+    &lt;ul class=&quot;nav&quot;&gt;
+      &lt;li routerLinkActive=&quot;my-active-class&quot;&gt;
+        &lt;a routerLink=&quot;/about&quot;&gt;About&lt;/a&gt;
+      &lt;/li&gt;
+      &lt;li routerLinkActive #myroutervariable=&quot;routerLinkActive&quot; 
+        [ngClass]=&quot;{'my-active-class' : myroutervariable.isActive}&quot;&gt;
+        &lt;a [routerLink]=&quot;['/users', userId]&quot;&gt;User 1&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;p *ngIf=&quot;myroutervariable.isActive&quot;&gt;The users/1 route is active. 💖💖💖&lt;/p&gt; 
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
   `
 })
 class AppComponent {
