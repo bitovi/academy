@@ -71,7 +71,7 @@ The pipe will take an image url and transform it to the path we actually want to
 
 ✏️ Update **src/app/restaurant/restaurant.component.html** file to use the pipe we will create:
 
-@diff ../3-creating-components/restaurant.component.html ./restaurant.component.html
+@diff ../3-creating-components/restaurant.component.solution.html ./restaurant.component.html
 
 ✏️ Run the following to generate the **pipe** and the pipe’s tests:
 

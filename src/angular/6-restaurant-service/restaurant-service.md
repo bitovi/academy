@@ -113,7 +113,7 @@ We’ve done some work to create a Place My Order API for use in this app by cre
 ✏️ Run:
 
 ```bash
-npm install place-my-order-api --save
+npm install place-my-order-api
 ```
 
 ✏️ Next add an API script to your `package.json`

@@ -27,7 +27,7 @@ and restaurant list view in the next exercise.
 - How to generate a new Angular component
 - How to bind data in a component to its template
 
-## Generate Components
+## Generating components
 
 In Angular, Components are the basic building blocks that help us craft the UI. They are classes that handle views, allow management of user interaction, and displaying information via data binding. Data binding is the term for connecting data or information to the UI. An example would be an input field that a user enters a value into.
 
@@ -53,13 +53,15 @@ This will create a new component for us and import it in our root module.
 
 Generated components have the same structure - a name.component.ts file that will contain the boilerplate code for the Angular component class. This class will also have a component decorator pointing to the name.component.less file for styles, and the name.component.html file for it’s template. Styles and templates can also be written inline in the decorator with backticks to escape the code using the keys `style` and `template`.
 
-## Bind Data to Components
+## Binding data to components
 
 Like most modern JS frameworks, Angular provides us a way of displaying data dynamically in the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model). Properties declared in a component can be used in the component template with double curly brace syntax: `{{myTitle}}`
 
 @sourceref ./template.html
 @codepen
 @highlight 17,21,only
+
+## Passing data to child components
 
 Data can also be passed to child components. Data can be passed with expression context to determine if passed data is just a string for example, or a property on the component class. This example shows passing data as a string as well as a component member using the `[ ]` syntax.
 
@@ -76,26 +78,7 @@ Create a component that displays a title read from a component’s `title` membe
 
 The component should provide the following HTML:
 
-```html
-<div class="homepage">
-  <img
-    src="./assets/images/homepage-hero.jpg"
-    alt="Restaurant table with glasses."
-    width="250"
-    height="380"
-  />
-  <h1><!-- TITLE GOES HERE --></h1>
-  <p>
-    We make it easier than ever to order gourmet food from your favorite local
-    restaurants.
-  </p>
-  <p>
-    <a class="btn" routerLink="/restaurants" role="button"
-      >Choose a Restaurant</a
-    >
-  </p>
-</div>
-```
+@sourceref ../../../exercises/angular/3-creating-components/problem/src/app/home/home.component.html
 
 > Notice the `TITLE GOES HERE` part of the HTML. `TITLE GOES HERE` should be replaced by
 > something that reads the component’s `title` property.
@@ -110,7 +93,7 @@ To get this application up and running quicker so we can focus on the architectu
 ✏️ Run:
 
 ```shell
-npm install place-my-order-assets --save
+npm install place-my-order-assets
 ```
 
 Open the `angular.json` file, and make the following changes to include these files in our build process. This will copy the images into our assets directory for when we serve our application.
@@ -121,8 +104,7 @@ Open the `angular.json` file, and make the following changes to include these fi
 <summary>section copied - angular.json</summary>
 ✏️ Update __angular.json__:
 
-@sourceref ./angular.json
-@highlight 35-47,only
+@diff ../../../exercises/angular/2-building-first-app/problem/angular.json ../../../exercises/angular/3-creating-components/problem/angular.json only
 
 </details>
 
@@ -142,83 +124,45 @@ ng g component home
 
 ✏️ Update **src/app/app.component.html** to be:
 
-```html
-<h1>Place My Order App: Coming Soon!</h1>
-<router-outlet />
-
-<pmo-home></pmo-home>
-```
-
-@highlight 4
+@diff ../2-building-first-app/app.component.html ../../../exercises/angular/3-creating-components/problem/src/app/app.component.html only
 
 ✏️ Update **src/app/home/home.component.html** to be:
 
-```html
-<div class="homepage">
-  <img
-    src="./assets/images/homepage-hero.jpg"
-    alt="Restaurant table with glasses."
-    width="250"
-    height="380"
-  />
-  <h1><!-- TITLE GOES HERE --></h1>
-  <p>
-    We make it easier than ever to order gourmet food from your favorite local
-    restaurants.
-  </p>
-  <p>
-    <a class="btn" routerLink="/restaurants" role="button"
-      >Choose a Restaurant</a
-    >
-  </p>
-</div>
-```
-@highlight only
+@sourceref ../../../exercises/angular/3-creating-components/problem/src/app/home/home.component.html
+@highlight 8
 
 Run `npm run start`, and your app should compile with no errors, and you’ll be able to see the home component. Later we’ll move the home component to its own page with a unique route.
+
+### Having issues with your local setup?
+
+You can get through most of this tutorial by using an online code editor. You won’t be able to run our tests to verify your solution, but you will be able to make changes to your app and see them live.
+
+You can use one of these two online editors:
+
+- [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/angular/3-creating-components/problem?file=src/app/home/home.component.html)
+
+- [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/angular/3-creating-components/problem?file=src/app/home/home.component.html)
 
 ## P1: How to Verify Your Solution is Correct
 
 ✏️ Update the spec file **src/app/home/home.component.spec.ts** to be:
 
-@sourceref ./home.component.spec.ts
-@highlight 25-41, only
-
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
+@sourceref ../../../exercises/angular/3-creating-components/problem/src/app/home/home.component.spec.ts
+@highlight 23-39, only
 
 ## P1: Solution
+
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 <details>
 <summary>Click to see the solution</summary>
 ✏️ Update **src/app/home/home.component.html**
 
-```html
-<div class="homepage">
-  <img
-    src="./assets/images/homepage-hero.jpg"
-    alt="Restaurant table with glasses."
-    width="250"
-    height="380"
-  />
-  <h1>{{ title }}</h1>
-  <p>
-    We make it easier than ever to order gourmet food from your favorite local
-    restaurants.
-  </p>
-  <p>
-    <a class="btn" routerLink="/restaurants" role="button"
-      >Choose a Restaurant</a
-    >
-  </p>
-</div>
-```
-
-@highlight 8
+@diff ../../../exercises/angular/3-creating-components/problem/src/app/home/home.component.html ./home.component.html only
 
 ✏️ Update **src/app/home/home.component.ts**
 
-@sourceref ./home.component.ts
-@highlight 9
+@diff ../../../exercises/angular/3-creating-components/problem/src/app/home/home.component.ts ./home.component.ts only
 
 </details>
 
@@ -304,68 +248,33 @@ For now, we’ll use fake data for a list of restaurants in the component, and p
 ✏️ Update **src/app/restaurant/restaurant.component.ts** to be:
 
 @sourceref ./restaurant.component.ts
-
 @highlight 1, 3-97, 103, 104, 106-110
 
 To solve this problem, use Angular directives to iterate through data and display properties of restaurants.
 
 ✏️ Update **src/app/restaurant/restaurant.component.html** to be:
 
-```html
-<div class="restaurants">
-  <h2 class="page-header">Restaurants</h2>
-  <!-- if restaurants has a length show the list -->
-
-  <!-- show the following markup for each restaurant -->
-  <div class="restaurant">
-    <img src="{{ restaurant.images.thumbnail }}" width="100" height="100" />
-    <h3>{{ restaurant.name }}</h3>
-
-    <div class="address" *ngIf="restaurant.address">
-      {{ restaurant.address.street }}<br />{{ restaurant.address.city }},
-      {{ restaurant.address.state }} {{ restaurant.address.zip }}
-    </div>
-
-    <div class="hours-price">
-      $$$<br />
-      Hours: M-F 10am-11pm
-      <span class="open-now">Open Now</span>
-    </div>
-
-    <a class="btn" [routerLink]="['/restaurants', restaurant.slug]"> Details </a>
-    <br />
-  </div>
-  <!-- end of restaurant markup -->
-</div>
-```
+@sourceref ./restaurant.component.problem.html
 
 ✏️ To see our component working, we can paste it into our **src/app/app.component.html** file just like with the home component:
 
-```html
-<h1>Place My Order App: Coming Soon!</h1>
-<router-outlet />
-
-<pmo-restaurant></pmo-restaurant>
-```
-
-@highlight 4
+@diff ../../../exercises/angular/3-creating-components/problem/src/app/app.component.html ./app.component.html only
 
 ## P2: How to Verify Your Solution is Correct
 
 ✏️ Update the spec file **src/app/restaurant/restaurant.component.spec.ts** to be:
 
 @sourceref ./restaurant.component.spec.ts
-
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
+@highlight 32-56, only
 
 ## P2: Solution
+
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 <details>
 <summary>Click to see the solution</summary>
 ✏️ Update **src/app/restaurant/restaurant.component.html** to the following:
 
-@sourceref ./restaurant.component.html
-
-@highlight 3-23
+@diff ./restaurant.component.problem.html ./restaurant.component.solution.html only
 
 </details>
