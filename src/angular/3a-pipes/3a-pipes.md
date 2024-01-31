@@ -20,8 +20,14 @@ In this exercise, we will fix the path of the thumbnail images in **src/app/rest
 Currently the path is written out like:
 
 ```html
-<img src="{{ restaurant.images.thumbnail }}" width="100" height="100" />
+<img
+  alt=""
+  src="{{ restaurant.images.thumbnail }}"
+  width="100"
+  height="100"
+/>
 ```
+@highlight 3
 
 `restaurant.images.thumbnail` will be a path like `node_modules/place-my-order-assets/image.png`. We need to change that path to be more like `./assets/image.png`. Once
 the path rewriting is fixed, images will show up correctly.
@@ -47,7 +53,7 @@ This will generate a pipe file: `image-url.pipe.ts`
 
 Angular comes with several built-it pipes like DatePipe, UpperCasePipe, LowerCasePipe, CurrencyPipe, and PercentPipe. These pipes can be used in templates to modify the way data displays. We can build custom pipes as well. Pipes require one parameter - the value we want to change, but can take an additional parameters as well.
 
-This example takes the value to be transformed and a parameter to use as an exponential multiplier.
+This example takes a price to be transformed and a parameter to use as the currency symbol.
 
 @sourceref ./pipe.html
 @codepen
@@ -58,8 +64,14 @@ This example takes the value to be transformed and a parameter to use as an expo
 1. Use an `imageUrl` **pipe** in **src/app/restaurant/restaurant.component.html** to rewrite the path. Using a pipe looks like the following:
 
 ```html
-<img src="{{ restaurant.images.thumbnail | imageUrl }}" />
+<img
+  alt=""
+  src="{{ restaurant.images.thumbnail }}"
+  width="100"
+  height="100"
+/>
 ```
+@highlight 3
 
 2. Generate and implement the `imageUrl` **pipe**.
 
@@ -69,40 +81,45 @@ The pipe will take an image url and transform it to the path we actually want to
 
 ## Setup
 
-✏️ Update **src/app/restaurant/restaurant.component.html** file to use the pipe we will create:
-
-@diff ../3-creating-components/restaurant.component.solution.html ./restaurant.component.html
-
 ✏️ Run the following to generate the **pipe** and the pipe’s tests:
 
 ```bash
 ng g pipe imageUrl
 ```
 
+✏️ Update **src/app/restaurant/restaurant.component.html** file to use the pipe we will create:
+
+@diff ../3-creating-components/restaurant.component.solution.html ./restaurant.component.html only
+
+### Having issues with your local setup?
+
+You can get through most of this tutorial by using an online code editor. You won’t be able to run our tests to verify your solution, but you will be able to make changes to your app and see them live.
+
+You can use one of these two online editors:
+
+- [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/angular/3a-pipes/problem?file=src/app/image-url.pipe.ts)
+
+- [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/angular/3a-pipes/problem?file=src/app/image-url.pipe.ts)
+
 ## How to Verify Your Solution is Correct
 
 ✏️ Update the restaurant spec file **src/app/restaurant/restaurant.component.spec.ts** to include the new pipe:
 
-@sourceref ./restaurant.component.spec-with-pipe.ts
-
-@highlight 8,17, only
+@diff ../3-creating-components/restaurant.component.spec.ts ../../../exercises/angular/3a-pipes/problem/src/app/restaurant/restaurant.component.spec.ts only
 
 ✏️ Update the spec file **src/app/image-url.pipe.spec.ts** to be:
 
-@sourceref ./image-url.pipe.spec.ts
-
+@sourceref ../../../exercises/angular/3a-pipes/problem/src/app/image-url.pipe.spec.ts
 @highlight 8-14
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
-
 ## Solution
+
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 <details>
 <summary>Click to see the solution</summary>
 ✏️ Update **src/app/image-url.pipe.ts** to:
 
-@sourceref ./image-url.pipe.ts
-
-@highlight 7-9
+@diff ../../../exercises/angular/3a-pipes/problem/src/app/image-url.pipe.ts ./image-url.pipe.ts only
 
 </details>
