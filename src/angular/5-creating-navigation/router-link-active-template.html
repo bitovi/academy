@@ -24,12 +24,12 @@ const { Routes, RouterModule } = ng.router;
       <li routerLinkActive="my-active-class">
         <a routerLink="/about">About</a>
       </li>
-      <li routerLinkActive #myroutervariable="routerLinkActive" 
-        [ngClass]="{'my-active-class' : myroutervariable.isActive}">
+      <li routerLinkActive #userLink="routerLinkActive" 
+        [ngClass]="{'my-active-class' : userLink.isActive}">
         <a [routerLink]="['/users', userId]">User 1</a>
       </li>
     </ul>
-    <p *ngIf="myroutervariable.isActive">The users/1 route is active. 💖💖💖</p> 
+    <p *ngIf="userLink.isActive">The users/1 route is active. 💖💖💖</p> 
     <router-outlet></router-outlet>
   `
 })

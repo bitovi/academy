@@ -22,41 +22,6 @@ if they are for the current page or not.
   style="border: solid 1px black; "
   title="Place My Order App working nav"/>
 
-## Technical Requirements
-
-Create a navigation menu that will route to our home and restaurant components when clicked, as well as show an `active` class on the `li` element when the route is active.
-
-Make your changes in the **src/app/app.component.html** file. The markup structure should look like this:
-
-```html
-<header>
-  <nav>
-    <h1>place-my-order.com</h1>
-    <ul>
-      <li>
-        <a>Home</a>
-      </li>
-      <li>
-        <a>Restaurants</a>
-      </li>
-    </ul>
-  </nav>
-</header>
-```
-
-## How to Verify Your Solution is Correct
-
-You will know you’ve completed the exercise correctly when you can click the nav items to
-see the UI change and see the active class on the current nav item.
-
-![Place My Order App working nav](../static/img/angular/pmo-working-nav.gif 'Place My Order App working nav')
-
-✏️ Update the spec file **src/app/app.component.spec.ts** to be:
-
-@diff ../4-adding-routing/app.component.spec.ts ./app.component.spec.ts only
-
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
-
 ## What You Need to Know
 
 To solve this, you will need to know how to:
@@ -100,22 +65,45 @@ Using `{exact: true}` will only set the class if the path match is exactly equal
 
 @sourceref ./router-link-active-options.html
 @codepen
-@highlight 24-25,27-30, only
+@highlight 24-25,27-28,30, only
 
 ### Adding an Active Class with Template Variable
 
-`RouterLinkActive` can also be used to set <a href="https://angular.io/api/router/RouterLinkActive#template-variable-references">template variables</a> to check the active status of the route. In this example we’re creating a template variable `myroutervariable` to represent our route and it’s active state for logic in our template.
+`RouterLinkActive` can also be used to set <a href="https://angular.io/api/router/RouterLinkActive#template-variable-references">template variables</a> to check the active status of the route. In this example, we’re creating a template variable `userLink` to represent our route and its active state for logic in our template.
 
 @sourceref ./router-link-active-template.html
 @codepen
-@highlight 27-31, only
+@highlight 27-28, 32, only
+
+## Technical Requirements
+
+Create a navigation menu that will route to our home and restaurant components when clicked, as well as show an `active` class on the `li` element when the route is active.
+
+## Setup
+
+Make your changes in the **src/app/app.component.html** file. The markup structure should look like this:
+
+@diff ../4-adding-routing/app.component.html ./app.component.problem.html
+
+## How to Verify Your Solution is Correct
+
+You will know you’ve completed the exercise correctly when you can click the nav items to
+see the UI change and see the active class on the current nav item.
+
+![Place My Order App working nav](../static/img/angular/pmo-working-nav.gif 'Place My Order App working nav')
+
+✏️ Update the spec file **src/app/app.component.spec.ts** to be:
+
+@diff ../4-adding-routing/app.component.spec.ts ./app.component.spec.ts only
 
 ## Solution
+
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 <details>
 <summary>Click to see the solution</summary>
 ✏️ Update **src/app/app.component.html** to:
 
-@diff ../4-adding-routing/app.component.html ./app.component.html
+@diff ./app.component.problem.html ./app.component.solution.html
 
 </details>
