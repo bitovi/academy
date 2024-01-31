@@ -827,7 +827,7 @@ platformBrowserDynamic()
 <p>This will create a <code>src/app/users.service.ts</code> file and associated <code>spec</code>
 test file.</p>
 <blockquote>
-<p>HINT: You can generate a service in a folder <code>ng g service folder/users</code></p>
+<p>Hint: You can generate a service in a folder <code>ng g service folder/users</code></p>
 </blockquote>
 <h2>Injectable</h2>
 <p><a href="https://angular.io/api/core/Injectable" ><code>Injectable</code></a> is an Angular decorator that makes the class it’s decorating available to Angular’s <a href="https://angular.io/api/core/Injector" >Injector</a> for creation. In the case of creating service to get data to use in our application, we want those services to be able to be injected into the app components we need the services in.</p>
@@ -1070,7 +1070,7 @@ import { TestBed } from '@angular/core/testing';
 import { RestaurantService } from './restaurant.service';
 
 describe('RestaurantService', () =&gt; {
-  let httpMock: HttpTestingController;
+  let httpTestingController: HttpTestingController;
   let service: RestaurantService;
 
   beforeEach(() =&gt; {
@@ -1079,7 +1079,7 @@ describe('RestaurantService', () =&gt; {
       providers: [RestaurantService],
     });
 
-    httpMock = TestBed.inject(HttpTestingController);
+    httpTestingController = TestBed.inject(HttpTestingController);
     service = TestBed.inject(RestaurantService);
   });
 
@@ -1156,12 +1156,12 @@ describe('RestaurantService', () =&gt; {
     });
 
     const url = 'http://localhost:7070/restaurants';
-    const req = httpMock.expectOne(url);
+    const req = httpTestingController.expectOne(url);
 
     expect(req.request.method).toEqual('GET');
     req.flush(mockRestaurants);
 
-    httpMock.verify();
+    httpTestingController.verify();
   });
 });
 
@@ -1489,7 +1489,7 @@ import { Restaurant } from './restaurant';
 import { ResponseData, RestaurantService } from './restaurant.service';
 
 describe('RestaurantService', () =&gt; {
-  let httpMock: HttpTestingController;
+  let httpTestingController: HttpTestingController;
   let service: RestaurantService;
 
   beforeEach(() =&gt; {
@@ -1497,7 +1497,7 @@ describe('RestaurantService', () =&gt; {
       imports: [HttpClientTestingModule],
     });
 
-    httpMock = TestBed.inject(HttpTestingController);
+    httpTestingController = TestBed.inject(HttpTestingController);
     service = TestBed.inject(RestaurantService);
   });
 
@@ -1574,12 +1574,12 @@ describe('RestaurantService', () =&gt; {
     });
 
     const url = 'http://localhost:7070/restaurants';
-    const req = httpMock.expectOne(url);
+    const req = httpTestingController.expectOne(url);
 
     expect(req.request.method).toEqual('GET');
     req.flush(mockRestaurants);
 
-    httpMock.verify();
+    httpTestingController.verify();
   });
 
   it('can set proper properties on restaurant type', () =&gt; {

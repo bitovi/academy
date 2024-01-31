@@ -764,7 +764,7 @@ import { TestBed } from '@angular/core/testing';
 import { OrderService } from './order.service';
 
 describe('OrderService', () =&gt; {
-  let httpMock: HttpTestingController;
+  let httpTestingController: HttpTestingController;
   let orderService: OrderService;
 
   beforeEach(() =&gt; {
@@ -772,7 +772,7 @@ describe('OrderService', () =&gt; {
       imports: [HttpClientTestingModule],
       providers: [OrderService],
     });
-    httpMock = TestBed.inject(HttpTestingController);
+    httpTestingController = TestBed.inject(HttpTestingController);
     orderService = TestBed.inject(OrderService);
   });
 
@@ -801,12 +801,12 @@ describe('OrderService', () =&gt; {
     });
 
     const url = 'http://localhost:7070/orders';
-    const req = httpMock.expectOne(url);
+    const req = httpTestingController.expectOne(url);
 
     expect(req.request.method).toEqual('GET');
     req.flush(mockOrders);
 
-    httpMock.verify();
+    httpTestingController.verify();
   });
 
   it('should make a post request to create an order', () =&gt; {
@@ -843,7 +843,7 @@ describe('OrderService', () =&gt; {
     });
 
     const url = 'http://localhost:7070/orders';
-    httpMock
+    httpTestingController
       .expectOne(
         (request: HttpRequest&lt;any&gt;) =&gt;
           request.method == 'POST' &amp;&amp;
@@ -853,7 +853,7 @@ describe('OrderService', () =&gt; {
       )
       .flush(mockOrder);
 
-    httpMock.verify();
+    httpTestingController.verify();
   });
 
   it('should make a put request to update an order', () =&gt; {
@@ -892,7 +892,7 @@ describe('OrderService', () =&gt; {
     });
 
     const url = 'http://localhost:7070/orders/adsfsdf';
-    httpMock
+    httpTestingController
       .expectOne(
         (request: HttpRequest&lt;any&gt;) =&gt;
           request.method == 'PUT' &amp;&amp;
@@ -901,7 +901,7 @@ describe('OrderService', () =&gt; {
       )
       .flush(updatedOrder);
 
-    httpMock.verify();
+    httpTestingController.verify();
   });
 
   it('should make a delete request to delete an order', () =&gt; {
@@ -925,12 +925,12 @@ describe('OrderService', () =&gt; {
     });
 
     const url = 'http://localhost:7070/orders/adsfsdf';
-    const req = httpMock.expectOne(url);
+    const req = httpTestingController.expectOne(url);
 
     expect(req.request.method).toEqual('DELETE');
     req.flush(mockOrder);
 
-    httpMock.verify();
+    httpTestingController.verify();
   });
 });
 
