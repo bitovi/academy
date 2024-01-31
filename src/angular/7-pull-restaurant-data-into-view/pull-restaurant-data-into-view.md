@@ -39,7 +39,7 @@ You should be able see a list of all restaurants when you navigate to <a href="h
 
 ✏️ Update the spec file **src/app/restaurant/restaurant.component.spec.ts** to be:
 
-@diff ../3a-pipes/restaurant.component.spec-with-pipe.ts ./restaurant.component.spec-service.ts only
+@diff ../../../exercises/angular/3a-pipes/problem/src/app/restaurant/restaurant.component.spec.ts ./restaurant.component.spec-service.ts only
 
 ✏️ Update the spec file **src/app/app.component.spec.ts** to be:
 
