@@ -682,7 +682,7 @@ and restaurant list view in the next exercise.</p>
 <li>How to generate a new Angular component</li>
 <li>How to bind data in a component to its template</li>
 </ul>
-<h2>Generate Components</h2>
+<h2>Generating components</h2>
 <p>In Angular, Components are the basic building blocks that help us craft the UI. They are classes that handle views, allow management of user interaction, and displaying information via data binding. Data binding is the term for connecting data or information to the UI. An example would be an input field that a user enters a value into.</p>
 <p>Recommended reading: <a href="https://angular.io/guide/lifecycle-hooks"  >Angular Lifecyle Hooks</a></p>
 <p>The best way to create a new component is by using the Angular CLI:</p>
@@ -698,7 +698,7 @@ and restaurant list view in the next exercise.</p>
 |   |       |── new-component-name.component.html
 </code></pre>
 <p>Generated components have the same structure - a name.component.ts file that will contain the boilerplate code for the Angular component class. This class will also have a component decorator pointing to the name.component.less file for styles, and the name.component.html file for it’s template. Styles and templates can also be written inline in the decorator with backticks to escape the code using the keys <code>style</code> and <code>template</code>.</p>
-<h2>Bind Data to Components</h2>
+<h2>Binding data to components</h2>
 <p>Like most modern JS frameworks, Angular provides us a way of displaying data dynamically in the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model">DOM</a>. Properties declared in a component can be used in the component template with double curly brace syntax: <code>{{myTitle}}</code></p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -752,6 +752,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='17,21,only'></div>
+<h2>Passing data to child components</h2>
 <p>Data can also be passed to child components. Data can be passed with expression context to determine if passed data is just a string for example, or a property on the component class. This example shows passing data as a string as well as a component member using the <code>[ ]</code> syntax.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -769,27 +770,27 @@ const { Component, VERSION, Input } = ng.core;
 @Component({
   selector: 'child-component',
   template: `
-    &lt;p&gt;{{myData}}&lt;/p&gt;
-    &lt;p&gt;{{myObject | json}}&lt;/p&gt;
+    &lt;p&gt;{{childData}}&lt;/p&gt;
+    &lt;p&gt;{{childObject | json}}&lt;/p&gt;
   `
 })
 class ChildComponent {
-  @Input() myData: string;
-  @Input() myObject: any;
+  @Input() childData: string;
+  @Input() childObject: any;
   constructor() {}
 }
 
 @Component({
   selector: 'my-app',
   template: `
-   &lt;child-component myData=&quot;Hello string.&quot;&gt;&lt;/child-component&gt;
-   &lt;child-component [myData]=&quot;myTitle&quot;&gt;&lt;/child-component&gt;
-   &lt;child-component [myObject]=&quot;sillyObject&quot;&gt;&lt;/child-component&gt;
+    &lt;child-component childData=&quot;Hello string.&quot;&gt;&lt;/child-component&gt;
+    &lt;child-component [childData]=&quot;parentTitle&quot;&gt;&lt;/child-component&gt;
+    &lt;child-component [childObject]=&quot;parentObject&quot;&gt;&lt;/child-component&gt;
   `
 })
 class AppComponent {
-  myTitle = 'Hello world.';
-  sillyObject = {
+  parentTitle = 'Hello world.';
+  parentObject = {
     name: 'hello there',
     id: 5
   }
@@ -842,11 +843,12 @@ style="border: solid 1px black; max-width: 640px;"/></p>
     restaurants.
   &lt;/p&gt;
   &lt;p&gt;
-    &lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;
-      &gt;Choose a Restaurant&lt;/a
-    &gt;
+    &lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;&gt;
+      Choose a Restaurant
+    &lt;/a&gt;
   &lt;/p&gt;
 &lt;/div&gt;
+
 </code></pre>
 <blockquote>
 <p>Notice the <code>TITLE GOES HERE</code> part of the HTML. <code>TITLE GOES HERE</code> should be replaced by
@@ -857,7 +859,7 @@ something that reads the component’s <code>title</code> property.</p>
 <h2>P1: Setup</h2>
 <p>To get this application up and running quicker so we can focus on the architecture, we’ll import some pre-created styles and assets to save us time.</p>
 <p>✏️ Run:</p>
-<pre><code class="language-shell">npm install place-my-order-assets --save
+<pre><code class="language-shell">npm install place-my-order-assets
 </code></pre>
 <p>Open the <code>angular.json</code> file, and make the following changes to include these files in our build process. This will copy the images into our assets directory for when we serve our application.</p>
 <blockquote>
@@ -978,11 +980,14 @@ something that reads the component’s <code>title</code> property.</p>
         }
       }
     }
+  },
+  &quot;cli&quot;: {
+    &quot;analytics&quot;: false
   }
 }
 
 </code></pre>
-<div line-highlight='35-47,only'></div>
+ <div line-highlight="37-42,45-46,only"></div>
 <p></details></p>
 <p><strong>Any time changes are made to the <code>angular.json</code> file, we need to restart our server to catch the new changes.</strong></p>
 <p>✏️ <strong>Quit process by running <code>Ctrl + C</code>.</strong></p>
@@ -994,11 +999,13 @@ application. One of the ways components can be rendered is by putting them in ma
 </code></pre>
 <p>✏️ Update <strong>src/app/app.component.html</strong> to be:</p>
 <pre><code class="language-html">&lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;
+
 &lt;router-outlet /&gt;
 
 &lt;pmo-home&gt;&lt;/pmo-home&gt;
+
 </code></pre>
-<div line-highlight='4'></div>
+ <div line-highlight="5,only"></div>
 <p>✏️ Update <strong>src/app/home/home.component.html</strong> to be:</p>
 <pre><code class="language-html">&lt;div class=&quot;homepage&quot;&gt;
   &lt;img
@@ -1013,14 +1020,22 @@ application. One of the ways components can be rendered is by putting them in ma
     restaurants.
   &lt;/p&gt;
   &lt;p&gt;
-    &lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;
-      &gt;Choose a Restaurant&lt;/a
-    &gt;
+    &lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;&gt;
+      Choose a Restaurant
+    &lt;/a&gt;
   &lt;/p&gt;
 &lt;/div&gt;
+
 </code></pre>
-<div line-highlight='only'></div>
+<div line-highlight='8'></div>
 <p>Run <code>npm run start</code>, and your app should compile with no errors, and you’ll be able to see the home component. Later we’ll move the home component to its own page with a unique route.</p>
+<h3>Having issues with your local setup?</h3>
+<p>You can get through most of this tutorial by using an online code editor. You won’t be able to run our tests to verify your solution, but you will be able to make changes to your app and see them live.</p>
+<p>You can use one of these two online editors:</p>
+<ul>
+<li><p><a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/angular/3-creating-components/problem?file=src/app/home/home.component.html">StackBlitz</a></p></li>
+<li><p><a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/angular/3-creating-components/problem?file=src/app/home/home.component.html">CodeSandbox</a></p></li>
+</ul>
 <h2>P1: How to Verify Your Solution is Correct</h2>
 <p>✏️ Update the spec file <strong>src/app/home/home.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -1033,12 +1048,10 @@ describe('HomeComponent', () =&gt; {
 
   beforeEach(async () =&gt; {
     await TestBed.configureTestingModule({
-      declarations: [ HomeComponent ]
+      declarations: [HomeComponent]
     })
     .compileComponents();
-  });
 
-  beforeEach(() =&gt; {
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -1067,11 +1080,11 @@ describe('HomeComponent', () =&gt; {
 });
 
 </code></pre>
-<div line-highlight='25-41, only'></div>
+<div line-highlight='23-39, only'></div>
+<h2>P1: Solution</h2>
 <blockquote>
 <p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h2>P1: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/home/home.component.html</strong></p>
@@ -1088,13 +1101,14 @@ describe('HomeComponent', () =&gt; {
     restaurants.
   &lt;/p&gt;
   &lt;p&gt;
-    &lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;
-      &gt;Choose a Restaurant&lt;/a
-    &gt;
+    &lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;&gt;
+      Choose a Restaurant
+    &lt;/a&gt;
   &lt;/p&gt;
 &lt;/div&gt;
+
 </code></pre>
-<div line-highlight='8'></div>
+ <div line-highlight="8,only"></div>
 <p>✏️ Update <strong>src/app/home/home.component.ts</strong></p>
 <pre><code class="language-ts">import { Component } from '@angular/core';
 
@@ -1108,7 +1122,7 @@ export class HomeComponent {
 }
 
 </code></pre>
-<div line-highlight='9'></div>
+ <div line-highlight="9,only"></div>
 <p></details></p>
 <h2>Problem 2: Write Restaurant Component Markup that Displays a List of Restaurants</h2>
 <p>We want to display a list of restaurants in our UI once the data has been set on the restaurants member. It will look like:</p>
@@ -1263,7 +1277,7 @@ const { Component, VERSION } = ng.core;
   selector: 'my-app',
   template: `
     &lt;ng-container&gt;
-      &lt;p&gt;Inspect me using dev tools. Look, Ma, no ng-container!&lt;/p&gt;
+      &lt;p&gt;Inspect me using DevTools. Look, Ma, no ng-container!&lt;/p&gt;
     &lt;/ng-container&gt;
     &lt;ng-container *ngIf=&quot;certainThing&quot;&gt;
       &lt;ng-container *ngFor=&quot;let thing of myThings&quot;&gt;{{thing.name}} {{thing.id}}&lt;/ng-container&gt;
@@ -1328,20 +1342,20 @@ const { Component, VERSION } = ng.core;
 @Component({
   selector: 'my-app',
   template: `
-  &lt;div [ngClass]=&quot;'first second'&quot;&gt;...&lt;/div&gt;
+    &lt;div [ngClass]=&quot;'first second'&quot;&gt;...&lt;/div&gt;
 
-  &lt;div [ngClass]=&quot;['first', 'second']&quot;&gt;...&lt;/div&gt;
+    &lt;div [ngClass]=&quot;['first', 'second']&quot;&gt;...&lt;/div&gt;
 
-  &lt;div [ngClass]=&quot;{'first': true, 'second': true, 'third': false}&quot;&gt;...&lt;/div&gt;
+    &lt;div [ngClass]=&quot;{'first': true, 'second': true, 'third': false}&quot;&gt;...&lt;/div&gt;
 
-  &lt;div [ngClass]=&quot;stringExp|arrayExp|objExp&quot;&gt;...&lt;/div&gt;
+    &lt;div [ngClass]=&quot;stringExp|arrayExp|objExp&quot;&gt;...&lt;/div&gt;
 
-  &lt;div [ngClass]=&quot;{'class1 class2 class3' : true}&quot;&gt;...&lt;/div&gt;
+    &lt;div [ngClass]=&quot;{'class1 class2 class3' : true}&quot;&gt;...&lt;/div&gt;
 
-  &lt;div [ngClass]=&quot;{'my-active-class' : classIsActive}&quot;&gt;
-    Setting classes
-  &lt;/div&gt;
-  &lt;button (click)=&quot;classIsActive = classIsActive ? false: true&quot;&gt;set class active&lt;/button&gt; 
+    &lt;div [ngClass]=&quot;{'my-active-class' : classIsActive}&quot;&gt;
+      Setting classes
+    &lt;/div&gt;
+    &lt;button (click)=&quot;classIsActive = classIsActive ? false: true&quot;&gt;set class active&lt;/button&gt; 
   `
 })
 class AppComponent {
@@ -1400,9 +1414,9 @@ const { Component, VERSION } = ng.core;
 @Component({
   selector: 'my-app',
   template: `
-  &lt;div ngClass=&quot;my-active-class&quot;&gt;...&lt;/div&gt;
+    &lt;div ngClass=&quot;my-active-class&quot;&gt;...&lt;/div&gt;
 
-  &lt;div [ngClass]=&quot;classSetOnComponent&quot;&gt;...&lt;/div&gt;
+    &lt;div [ngClass]=&quot;classSetOnComponent&quot;&gt;...&lt;/div&gt;
   `
 })
 class AppComponent {
@@ -1591,14 +1605,17 @@ export class RestaurantComponent implements OnInit {
   &lt;/div&gt;
   &lt;!-- end of restaurant markup --&gt;
 &lt;/div&gt;
+
 </code></pre>
 <p>✏️ To see our component working, we can paste it into our <strong>src/app/app.component.html</strong> file just like with the home component:</p>
 <pre><code class="language-html">&lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;
+
 &lt;router-outlet /&gt;
 
 &lt;pmo-restaurant&gt;&lt;/pmo-restaurant&gt;
+
 </code></pre>
-<div line-highlight='4'></div>
+ <div line-highlight="5,only"></div>
 <h2>P2: How to Verify Your Solution is Correct</h2>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
@@ -1660,10 +1677,11 @@ describe('RestaurantComponent', () =&gt; {
 });
 
 </code></pre>
+<div line-highlight='32-56, only'></div>
+<h2>P2: Solution</h2>
 <blockquote>
 <p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h2>P2: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/restaurant/restaurant.component.html</strong> to the following:</p>
@@ -1694,7 +1712,7 @@ describe('RestaurantComponent', () =&gt; {
 &lt;/div&gt;
 
 </code></pre>
-<div line-highlight='3-23'></div>
+ <div line-highlight="3-6,8-11,13-17,19-22,24,only"></div>
 <p></details></p>
 
 </section>
