@@ -17,39 +17,6 @@ In this part, we will:
 
 We need to set up routes for the home view and restaurant view.
 
-## Technical Requirements
-
-Create routes for the `HomeComponent` and `RestaurantComponent`. When the route is `""`, the `HomeComponent` should display, and when the route is `/restaurants` the `RestaurantComponent` should display. These changes should be made in **src/app/app-routing.module.ts**.
-
-Notice that you will be able to click the **Choose a Restaurant** button
-at the end of this tutorial:
-
-![Choose a restaurant routing](../static/img/angular/4-adding-routing/after.gif 'Choose a restaurant routing')
-
-## Setup
-
-`<router-outlet>`, which handles routing to a component based on a url, was added to our **src/app/app.component.html** file when we first generated our app. But since that time, we added components to that view. Let’s remove those components because `<router-outlet>` will handle showing
-those components going forward.
-
-✏️ Update **src/app/app.component.html** to:
-
-@sourceref ./app.component.html
-@highlight 1-2,only
-
-## How to Verify Your Solution is Correct
-
-If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants">localhost:4200/restaurants</a>. You may have noticed the `routerLink` attribute on the `<a>` tag in our home component markup. This one of the ways we link to specific routes in our app. When you click that link, you should see the restaurants component.
-
-```html
-<a class="btn" routerLink="/restaurants" role="button"> Choose a Restaurant </a>
-```
-
-✏️ Update the spec file **src/app/app.component.spec.ts** to be:
-
-@diff ../../../exercises/angular/2-building-first-app/problem/src/app/app.component.spec.ts ./app.component.spec.ts
-
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
-
 ## What You Need to Know
 
 ## Router Outlet
@@ -129,7 +96,40 @@ In our `index.html` file, the angular cli included `<base href="/>`. This isn’
 @sourceref ../../../exercises/angular/3a-pipes/problem/src/index.html
 @highlight 6
 
+## Technical Requirements
+
+Create routes for the `HomeComponent` and `RestaurantComponent`. When the route is `""`, the `HomeComponent` should display, and when the route is `/restaurants` the `RestaurantComponent` should display. These changes should be made in **src/app/app-routing.module.ts**.
+
+Notice that you will be able to click the **Choose a Restaurant** button
+after implementing the solution:
+
+![Choose a restaurant routing](../static/img/angular/4-adding-routing/after.gif 'Choose a restaurant routing')
+
+## Setup
+
+`<router-outlet>`, which handles routing to a component based on a url, was added to our **src/app/app.component.html** file when we first generated our app. But since that time, we added components to that view. Let’s remove those components because `<router-outlet>` will handle showing
+those components going forward.
+
+✏️ Update **src/app/app.component.html** to:
+
+@sourceref ./app.component.html
+@highlight 1-2,only
+
+## How to Verify Your Solution is Correct
+
+If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants">localhost:4200/restaurants</a>. You may have noticed the `routerLink` attribute on the `<a>` tag in our home component markup. This one of the ways we link to specific routes in our app. When you click that link, you should see the restaurants component.
+
+```html
+<a class="btn" routerLink="/restaurants" role="button"> Choose a Restaurant </a>
+```
+
+✏️ Update the spec file **src/app/app.component.spec.ts** to be:
+
+@diff ../../../exercises/angular/2-building-first-app/problem/src/app/app.component.spec.ts ./app.component.spec.ts
+
 ## Solution
+
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 <details>
 <summary>Click to see the solution</summary>
