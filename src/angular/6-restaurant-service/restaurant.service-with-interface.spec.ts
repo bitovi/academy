@@ -7,7 +7,7 @@ import { Restaurant } from './restaurant';
 import { ResponseData, RestaurantService } from './restaurant.service';
 
 describe('RestaurantService', () => {
-  let httpMock: HttpTestingController;
+  let httpTestingController: HttpTestingController;
   let service: RestaurantService;
 
   beforeEach(() => {
@@ -15,7 +15,7 @@ describe('RestaurantService', () => {
       imports: [HttpClientTestingModule],
     });
 
-    httpMock = TestBed.inject(HttpTestingController);
+    httpTestingController = TestBed.inject(HttpTestingController);
     service = TestBed.inject(RestaurantService);
   });
 
@@ -92,12 +92,12 @@ describe('RestaurantService', () => {
     });
 
     const url = 'http://localhost:7070/restaurants';
-    const req = httpMock.expectOne(url);
+    const req = httpTestingController.expectOne(url);
 
     expect(req.request.method).toEqual('GET');
     req.flush(mockRestaurants);
 
-    httpMock.verify();
+    httpTestingController.verify();
   });
 
   it('can set proper properties on restaurant type', () => {

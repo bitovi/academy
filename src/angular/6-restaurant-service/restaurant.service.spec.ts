@@ -7,7 +7,7 @@ import { TestBed } from '@angular/core/testing';
 import { RestaurantService } from './restaurant.service';
 
 describe('RestaurantService', () => {
-  let httpMock: HttpTestingController;
+  let httpTestingController: HttpTestingController;
   let service: RestaurantService;
 
   beforeEach(() => {
@@ -16,7 +16,7 @@ describe('RestaurantService', () => {
       providers: [RestaurantService],
     });
 
-    httpMock = TestBed.inject(HttpTestingController);
+    httpTestingController = TestBed.inject(HttpTestingController);
     service = TestBed.inject(RestaurantService);
   });
 
@@ -93,11 +93,11 @@ describe('RestaurantService', () => {
     });
 
     const url = 'http://localhost:7070/restaurants';
-    const req = httpMock.expectOne(url);
+    const req = httpTestingController.expectOne(url);
 
     expect(req.request.method).toEqual('GET');
     req.flush(mockRestaurants);
 
-    httpMock.verify();
+    httpTestingController.verify();
   });
 });

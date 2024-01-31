@@ -50,7 +50,7 @@ ng g service users
 This will create a `src/app/users.service.ts` file and associated `spec`
 test file.
 
-> HINT: You can generate a service in a folder `ng g service folder/users`
+> Hint: You can generate a service in a folder `ng g service folder/users`
 
 ## Injectable
 
