@@ -94,7 +94,7 @@ observable.subscribe(function subscriber(value) {
 <summary>Click to see the solution</summary>
 ✏️ Update **src/app/restaurant/restaurant.component.ts** as follows:
 
-@diff ../3-creating-components/restaurant.component.ts ./restaurant.component-service.ts
+@diff ../../../exercises/angular/3-creating-components/problem/src/app/restaurant/restaurant.component.ts ./restaurant.component-service.ts
 
 </details>
 

@@ -18,7 +18,7 @@ If you’ve implemented the solution correctly you should now be able to navigat
 ## Install Socket.io Client and Types
 
 ```bash
-npm install --save socket.io-client@2
+npm install socket.io-client@2
 npm install --save-dev @types/socket.io-client@1
 ```
 

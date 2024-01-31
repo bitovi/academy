@@ -14,27 +14,27 @@ const { Component, VERSION, Input } = ng.core;
 @Component({
   selector: 'child-component',
   template: `
-    <p>{{myData}}</p>
-    <p>{{myObject | json}}</p>
+    <p>{{childData}}</p>
+    <p>{{childObject | json}}</p>
   `
 })
 class ChildComponent {
-  @Input() myData: string;
-  @Input() myObject: any;
+  @Input() childData: string;
+  @Input() childObject: any;
   constructor() {}
 }
 
 @Component({
   selector: 'my-app',
   template: `
-   <child-component myData="Hello string."></child-component>
-   <child-component [myData]="myTitle"></child-component>
-   <child-component [myObject]="sillyObject"></child-component>
+    <child-component childData="Hello string."></child-component>
+    <child-component [childData]="parentTitle"></child-component>
+    <child-component [childObject]="parentObject"></child-component>
   `
 })
 class AppComponent {
-  myTitle = 'Hello world.';
-  sillyObject = {
+  parentTitle = 'Hello world.';
+  parentObject = {
     name: 'hello there',
     id: 5
   }
