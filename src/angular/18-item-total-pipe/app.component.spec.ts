@@ -290,7 +290,7 @@ describe('AppComponent', () => {
     });
   }));
 
-  it('should have the home navigation link href set to ""', () => {
+  it('should have the home navigation link href set to "/"', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     const homeLink = compiled.querySelector('li a');
@@ -298,7 +298,7 @@ describe('AppComponent', () => {
     expect(href).toEqual('/');
   });
 
-  it('should have the restaurants navigation link href set to ""', () => {
+  it('should have the restaurants navigation link href set to "/restaurants"', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     const restaurantsLink = compiled.querySelector('li:nth-child(2) a');
