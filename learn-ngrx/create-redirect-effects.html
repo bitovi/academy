@@ -598,7 +598,7 @@ covering CanJS core libraries.">
 </ol>
 <h2>Problem 1: Create <code>loginSuccess$</code> Effect to Handle Navigating to Dashboard Page</h2>
 <p><code>LoginEffects</code> should use <code>Router</code> to navigate to the dashboard page at path <code>/dashboard</code> using an Effect called <code>loginSuccess$</code>.</p>
-<h2>P1: What You Need to Know</h2>
+<h2>P1: What you need to know</h2>
 <p>Although it’s common for Effects to dispatch another Action after handling a side-effect, there is a way to update the configuration for an Effect to never dispatch an Action instead. This is useful when a side-effect resolves and there’s no need to trigger another side-effect or update state.</p>
 <p>To understand this better, let’s take a deeper dive into the <code>createEffect()</code> <a href="https://ngrx.io/api/effects/createEffect">helper function</a>:</p>
 <p><code>createEffect()</code> takes two arguments:</p>

@@ -399,7 +399,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="pull-restaurant-data-into-view.html"
 							title="Learn how to render API data into HTML with a view.">
-							Use Restaurant API data
+							Rendering Data in Components
 						</a>
 						
 					</li>
@@ -414,7 +414,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="state-city-options.html"
 							title="Learn how to create a Reactive Form with Angular. We will create a Reactive Form in the Restaurant component with city and state dropdown inputs.">
-							City &amp; State Options
+							Reactive Forms Data Binding
 						</a>
 						
 					</li>
@@ -673,7 +673,7 @@ covering CanJS core libraries.">
 </ul>
 <h2>Problem</h2>
 <p>We want to have a component to display individual restaurants details, and want the path to be nested under the restaurants path.</p>
-<h2>What You Need to Know</h2>
+<h2>What you need to know</h2>
 <p>To solve this exercise you will need to know:</p>
 <ul>
 <li>How to create a nested component</li>
@@ -829,7 +829,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='93-94,101,105,107,115,only'></div>
-<h2>Technical Requirements</h2>
+<h2>Technical requirements</h2>
 <p>Create a new component called <code>detail</code> in the restaurant component folder that is a detail view for an individual restaurant that is served from the path <code>'/restaurants/restaurant-slug'</code>. Create the route as well, and use the <code>getRestaurant</code> method on the <code>RestaurantService</code> to fetch the restaurant based on the route snapshot. The detail component should have a member <code>restaurant</code> that is a type of Restaurant and an <code>isLoading</code> member set to true or false based on when the restaurant data has been fetched.</p>
 <h2>Setup</h2>
 <p>✏️ Run:</p>
@@ -880,7 +880,7 @@ platformBrowserDynamic()
 &lt;/ng-container&gt;
 
 </code></pre>
-<h2>How to Verify Your Solution is Correct</h2>
+<h2>How to verify your solution is correct</h2>
 <p>When you click the detail button on a restaurant from the restaurant list view you’ll see the detail view of that restaurant.</p>
 <p>✏️ Update the spec file <strong>src/app/restaurant/detail/detail.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';

@@ -399,7 +399,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="pull-restaurant-data-into-view.html"
 							title="Learn how to render API data into HTML with a view.">
-							Use Restaurant API data
+							Rendering Data in Components
 						</a>
 						
 					</li>
@@ -414,7 +414,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="state-city-options.html"
 							title="Learn how to create a Reactive Form with Angular. We will create a Reactive Form in the Restaurant component with city and state dropdown inputs.">
-							City &amp; State Options
+							Reactive Forms Data Binding
 						</a>
 						
 					</li>
@@ -675,9 +675,9 @@ style="border: solid 1px black; max-width: 400px;"/></p>
 <p>Now that we are able to capture a user’s state and city preferences, we want to only return restaurants in the selected city. Modify the <code>getRestaurants</code> method in the <strong>src/app/restaurant/restaurant.service.ts</strong> file to take two string parameters, one for city, and one for state. The requested url with params should look like this: <code>'/api/restaurants?filter[address.state]=IL&amp;filter[address.city]=Chicago'</code></p>
 <p><img src="../static/img/angular/10-updating-service-params/after.png"
 style="border: solid 1px black; max-width: 400px;"/></p>
-<h2>Technical Requirements</h2>
+<h2>Technical requirements</h2>
 <p>In the <strong>src/app/restaurant/restaurant.component.ts</strong> file, update the call to the <code>getRestaurants</code> service method to use the city and state values captured from the user’s form input.</p>
-<h2>How to Verify Your Solution is Correct</h2>
+<h2>How to verify your solution is correct</h2>
 <p>If you’ve implemented the solution correctly, when you use the select boxes to choose state and city, you should see a list of just restaurants from the selected city returned.</p>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
@@ -1312,7 +1312,7 @@ describe('RestaurantService', () =&gt; {
 <blockquote>
 <p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> the tests will pass!</p>
 </blockquote>
-<h2>What You Need to Know</h2>
+<h2>What you need to know</h2>
 <ul>
 <li>How to use <a href="form-value-changes.html#how-to-use-httpparams" title="Learn how to listen to form value changes with Angular.">HttpParams</a> (you learned this in the previous section! ✔️)</li>
 </ul>

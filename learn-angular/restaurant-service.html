@@ -402,7 +402,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="pull-restaurant-data-into-view.html"
 							title="Learn how to render API data into HTML with a view.">
-							Use Restaurant API data
+							Rendering Data in Components
 						</a>
 						
 					</li>
@@ -417,7 +417,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="state-city-options.html"
 							title="Learn how to create a Reactive Form with Angular. We will create a Reactive Form in the Restaurant component with city and state dropdown inputs.">
-							City &amp; State Options
+							Reactive Forms Data Binding
 						</a>
 						
 					</li>
@@ -675,7 +675,7 @@ covering CanJS core libraries.">
 </ul>
 <h2>Problem 1: Write a Restaurant Service to Fetch a List of Restaurants</h2>
 <p>We want to create an Angular service with a method that will get a list of restaurants from our Place My Order API.</p>
-<h2>P1: What You Need to Know</h2>
+<h2>P1: What you need to know</h2>
 <p>To complete this problem, you’ll need to know:</p>
 <ul>
 <li>The basics of Angular Services.</li>
@@ -987,7 +987,7 @@ platformBrowserDynamic()
 <div line-highlight='23,25-27,29-31, only'></div>
 <p>This tutorial won’t cover RxJS in depth, but it’s worth being aware of Angular’s
 heavy use of it. Check out our <a href="../learn-rxjs.html" title="Learn RxJS by creating a validating credit card form.">Learn RxJS</a> tutorial for more information.</p>
-<h2>P1: Technical Requirements</h2>
+<h2>P1: Technical requirements</h2>
 <p>Write a <code>RestaurantService</code> with a method <code>getRestaurants</code> that uses <code>httpClient</code> to get a list of restaurants from an environment variable + <code>/restaurants</code>. For example, we could get restaurants like:</p>
 <pre><code class="language-typescript">const httpClient = new HttpClient();
 const restaurantService = new RestaurantService(httpClient);
@@ -1116,7 +1116,7 @@ export class RestaurantService {
 <li><p><a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/angular/6-restaurant-service/problem?file=src/app/image-url.pipe.ts">StackBlitz</a></p></li>
 <li><p><a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/angular/6-restaurant-service/problem?file=src/app/image-url.pipe.ts">CodeSandbox</a></p></li>
 </ul>
-<h2>P1: How to Verify Your Solution is Correct</h2>
+<h2>P1: How to verify your solution is correct</h2>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
   HttpClientTestingModule,
@@ -1288,7 +1288,7 @@ export class RestaurantService {
 <p>Currently, from TypeScript’s perspective, <code>getRestaurants()</code> can return anything. This
 means if we use the data from <code>getRestaurants()</code>, TypeScript will not be able to notice
 any mistakes. This undermines the whole point of TypeScript!</p>
-<h2>P2: What You Need to Know</h2>
+<h2>P2: What you need to know</h2>
 <p>To solve this problem, you’ll need to:</p>
 <ul>
 <li>Understand interfaces in TypeScript</li>
@@ -1447,7 +1447,7 @@ platformBrowserDynamic()
 <p>This will generate:</p>
 <pre><code class="language-typescript">export interface User {}
 </code></pre>
-<h2>P2: Technical Requirements</h2>
+<h2>P2: Technical requirements</h2>
 <p>Write interfaces to tell TypeScript what we expect restaurant and other related objects to look like and use them in our restaurant service. A <code>Restaurant</code> interface should represent an object like this:</p>
 <pre><code class="language-javascript">let restaurant = {
   name: '', //string

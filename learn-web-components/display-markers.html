@@ -533,7 +533,7 @@ title="Markers being displayed when a route is selected." /></p>
 <li>Add a getter/setter pair on the <code>google-map-view</code> to handle <code>.vehicles</code>. When set it should use the Marker snippet (below) to create a new marker for <em>each</em> vehicle.</li>
 <li>When a route is selected and markers are already displayed for a previous route, remove the previous markers.</li>
 </ol>
-<h2>Technical Requirements</h2>
+<h2>Technical requirements</h2>
 <p>To create a new marker use <code>new google.maps.Marker</code>. This takes an object with some options that look like this:</p>
 <pre><code class="language-js">new google.maps.Marker({
   position: {
@@ -547,7 +547,7 @@ title="Markers being displayed when a route is selected." /></p>
 <p>Additionally this snippet can be used to remove a marker:</p>
 <pre><code class="language-js">marker.setMap(null);
 </code></pre>
-<h2>What You Need to Know</h2>
+<h2>What you need to know</h2>
 <ul>
 <li>How to use JavaScript getters and setters to handle dynamic property values.</li>
 <li>How to use default values in custom elements.</li>

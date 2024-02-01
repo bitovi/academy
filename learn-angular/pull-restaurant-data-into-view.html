@@ -22,7 +22,7 @@
   })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
   <!-- End Google Tag Manager -->
 
-  <title>Bitovi Academy - Use Restaurant API data</title>
+  <title>Bitovi Academy - Rendering Data in Components</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -399,7 +399,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="pull-restaurant-data-into-view.html"
 							title="Learn how to render API data into HTML with a view.">
-							Use Restaurant API data
+							Rendering Data in Components
 						</a>
 						
 							
@@ -417,7 +417,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="state-city-options.html"
 							title="Learn how to create a Reactive Form with Angular. We will create a Reactive Form in the Restaurant component with city and state dropdown inputs.">
-							City &amp; State Options
+							Reactive Forms Data Binding
 						</a>
 						
 					</li>
@@ -642,7 +642,7 @@ covering CanJS core libraries.">
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Use Restaurant API data <code>page</code></h1>
+	<h1>Rendering Data in Components <code>page</code></h1>
 </section>
 
   		
@@ -670,23 +670,297 @@ covering CanJS core libraries.">
 <li>Call <code>getRestaurants()</code> method in component</li>
 <li>Change restaurant markup to use new restaurant object</li>
 </ul>
-<h2>Problem 1: Make RestaurantComponent Use the <code>getRestaurants</code> Function</h2>
+<h2>Problem 1: Make <code>RestaurantComponent</code> use the <code>getRestaurants</code> function</h2>
 <p>In this section, we will change <code>RestaurantComponent</code> to actually get
 data from the service API. Instead of two hard coded restaurants, we will
 see a longer list:</p>
 <p><img src="../static/img/angular/7-data-into-view/1-after.png"
 style="border: solid 1px black; max-width: 640px;"/></p>
-<h2>P1: Technical Requirements</h2>
-<ol>
-<li>Change <code>RestaurantComponent</code>’s <em>restaurant</em> property definition:</li>
-</ol>
-<pre><code class="language-typescript">restaurants: any[] = [];
+<h2>P1: What you need to know</h2>
+<ul>
+<li>How to inject a service into a component</li>
+<li>How to subscribe to an observable</li>
+</ul>
+<h2>Inject a service into a component</h2>
+<p>To use a service in a component, we use dependency injection to pass the service in the component constructor function. We’re then able to access methods on it for use in our component.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { Routes, RouterModule } = ng.router;
+
+@Injectable({
+  providedIn: 'root'
+})
+class UsersService {
+  private users = [
+  {
+    name: 'Jennifer',
+    id: 1,
+    role: 'admin'
+  },
+  {
+    name: 'Steve',
+    id: 2,
+    role: 'user'
+  },
+  {
+    name: 'Alice',
+    id: 3,
+    role: 'developer'
+  }]
+
+  constructor() { }
+
+  getUsers() {
+    return this.users;
+  }
+
+  getUser(id: number) {
+    return this.users.find(x =&gt; x.id === id)
+  }
+}
+
+@Component({
+  selector: 'my-app',
+  template: `
+    &lt;ul class=&quot;nav&quot;&gt;
+      &lt;li routerLinkActive=&quot;active&quot;&gt;
+        &lt;a routerLink=&quot;/about&quot;&gt;About&lt;/a&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;router-outlet&gt;&lt;/router-outlet&gt;
+  `
+})
+class AppComponent {
+  constructor() {}
+}
+
+@Component({
+  selector: 'about-component',
+  template: `
+    &lt;p&gt;An about component!&lt;/p&gt;
+  `
+})
+class AboutComponent {
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'home-component',
+  template: `
+    &lt;p&gt;A home component!&lt;/p&gt;
+    &lt;ul&gt;
+      &lt;li *ngFor=&quot;let user of users&quot;&gt;
+        {{user.name}}
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  `
+})
+class HomeComponent implements OnInit{
+  private users: any[] = [];
+
+  constructor(private usersService: UsersService) {
+  
+  }
+
+  ngOnInit() {
+    this.users = this.usersService.getUsers();
+  }
+}
+//THIS IS A HACK JUST FOR CODEPEN TO WORK
+HomeComponent.parameters = [UsersService];
+
+const routes: Routes = [
+  { path: 'about', component: AboutComponent },
+  { path: '**', component: HomeComponent }
+]
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+class AppRoutingModule { }
+
+                 
+@NgModule({
+  declarations: [AppComponent, AboutComponent, HomeComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    AppRoutingModule,
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
 </code></pre>
+<div class='codepen'></div>
+<div line-highlight='90,only'></div>
+<h2>Subscribe to an <code>Observable</code></h2>
+<p>The result of <code>getRestaurants()</code> is an observable. Use <a href="https://rxjs.dev/guide/subscription">subscribe</a> to listen to when
+an RxJS observable changes:</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Observable } = rxjs;
+
+const observable = Observable.create(function (observer) {
+  observer.next(1);
+  observer.next(2);
+  observer.next(3);
+});
+
+observable.subscribe(function subscriber(value) {
+  console.log('got value ' + value);
+  // Logs 1, 2, 3
+});
+&lt;/script&gt;
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='11'></div>
+<h2>P1: Technical requirements</h2>
+<ol>
+<li>Change <code>RestaurantComponent</code>’s <em>restaurants</em> property definition:</li>
+</ol>
+<pre><code class="language-ts">import { Component, OnInit } from '@angular/core';
+
+const fakeRestaurants = [
+  {
+    name: 'Poutine Palace',
+    slug: 'poutine-palace',
+    images: {
+      thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+      owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+      banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+    },
+    menu: {
+      lunch: [
+        {
+          name: 'Crab Pancakes with Sorrel Syrup',
+          price: 35.99,
+        },
+        {
+          name: 'Steamed Mussels',
+          price: 21.99,
+        },
+        {
+          name: 'Spinach Fennel Watercress Ravioli',
+          price: 35.99,
+        },
+      ],
+      dinner: [
+        {
+          name: 'Gunthorp Chicken',
+          price: 21.99,
+        },
+        {
+          name: 'Herring in Lavender Dill Reduction',
+          price: 45.99,
+        },
+        {
+          name: 'Chicken with Tomato Carrot Chutney Sauce',
+          price: 45.99,
+        },
+      ],
+    },
+    address: {
+      street: '230 W Kinzie Street',
+      city: 'Green Bay',
+      state: 'WI',
+      zip: '53205',
+    },
+    _id: '3ZOZyTY1LH26LnVw',
+  },
+  {
+    name: 'Cheese Curd City',
+    slug: 'cheese-curd-city',
+    images: {
+      thumbnail: 'node_modules/place-my-order-assets/images/2-thumbnail.jpg',
+      owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+      banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+    },
+    menu: {
+      lunch: [
+        {
+          name: 'Ricotta Gnocchi',
+          price: 15.99,
+        },
+        {
+          name: 'Gunthorp Chicken',
+          price: 21.99,
+        },
+        {
+          name: 'Garlic Fries',
+          price: 15.99,
+        },
+      ],
+      dinner: [
+        {
+          name: 'Herring in Lavender Dill Reduction',
+          price: 45.99,
+        },
+        {
+          name: 'Truffle Noodles',
+          price: 14.99,
+        },
+        {
+          name: 'Charred Octopus',
+          price: 25.99,
+        },
+      ],
+    },
+    address: {
+      street: '2451 W Washburne Ave',
+      city: 'Green Bay',
+      state: 'WI',
+      zip: '53295',
+    },
+    _id: 'Ar0qBJHxM3ecOhcr',
+  },
+];
+
+@Component({
+  selector: 'pmo-restaurant',
+  templateUrl: './restaurant.component.html',
+  styleUrl: './restaurant.component.less',
+})
+export class RestaurantComponent implements OnInit {
+  restaurants: any[] = [];
+
+  ngOnInit(): void {
+    setTimeout(() =&gt; {
+      this.restaurants = fakeRestaurants;
+    }, 500);
+  }
+}
+
+</code></pre>
+<div line-highlight='104, only'></div>
 <ol start="2">
 <li>Use <code>RestaurantService</code>’s <code>getRestaurants</code> to get an array of restaurants and
-set it on <code>RestaurantComponent</code>’s <em>restaurant</em> property.</li>
+set it on <code>RestaurantComponent</code>’s <em>restaurants</em> property.</li>
 </ol>
-<h2>P1: How to Verify Your Solution is Correct</h2>
+<h2>P1: How to verify your solution is correct</h2>
 <p>You should be able see a list of all restaurants when you navigate to <a href="http://localhost:4200/restaurants">localhost:4200/restaurants</a>, instead of the two that were previously hard-coded.</p>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
@@ -961,7 +1235,7 @@ describe('RestaurantComponent', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="8,11,13-114,123-125,167-269,only"></div>
+ <div line-highlight="2-10,13-15,18-19,23,28-39,42-53,57-60,62,65-66,69-70,75-86,89-100,105-106,109,113-114,116-117,119-126,128,131-133,136-138,141-144,146-155,157-165,167-269,only"></div>
 <p>✏️ Update the spec file <strong>src/app/app.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { Location } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -1260,174 +1534,12 @@ describe('AppComponent', () =&gt; {
 </code></pre>
  <div line-highlight="2,12,16,18,20-118,120,122-128,130,132-139,141-189,198-207,240,249,only"></div>
 <blockquote>
-<p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
-</blockquote>
-<h2>P1: What You Need to Know</h2>
-<ul>
-<li>How to inject a service into a component</li>
-<li>How to subscribe to an observable</li>
-</ul>
-<blockquote>
 <p>Hint: Call the <code>getRestaurants</code> method in the <code>ngOnInit</code> method.</p>
 </blockquote>
-<h2>Inject a Service into a Component</h2>
-<p>To use a service in a component, we use dependency injection to pass the service in the component constructor function. We’re then able to access methods on it for use in our component.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
-&lt;base href=&quot;/&quot;&gt;
-&lt;my-app&gt;&lt;/my-app&gt;
-&lt;script type=&quot;typescript&quot;&gt;
-const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
-const { BrowserModule } = ng.platformBrowser;
-const { CommonModule } = ng.common;
-const { Routes, RouterModule } = ng.router;
-
-@Injectable({
-  providedIn: 'root'
-})
-class UsersService {
-  private users = [
-  {
-    name: 'Jennifer',
-    id: 1,
-    role: 'admin'
-  },
-  {
-    name: 'Steve',
-    id: 2,
-    role: 'user'
-  },
-  {
-    name: 'Alice',
-    id: 3,
-    role: 'developer'
-  }]
-
-  constructor() { }
-
-  getUsers() {
-    return this.users;
-  }
-
-  getUser(id: number) {
-    return this.users.find(x =&gt; x.id === id)
-  }
-}
-
-@Component({
-  selector: 'my-app',
-  template: `
-    &lt;ul class=&quot;nav&quot;&gt;
-      &lt;li routerLinkActive=&quot;active&quot;&gt;
-        &lt;a routerLink=&quot;/about&quot;&gt;About&lt;/a&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-    &lt;router-outlet&gt;&lt;/router-outlet&gt;
-  `
-})
-class AppComponent {
-  constructor() {}
-}
-
-@Component({
-  selector: 'about-component',
-  template: `
-    &lt;p&gt;An about component!&lt;/p&gt;
-  `
-})
-class AboutComponent {
-  constructor() {
-  }
-}
-
-@Component({
-  selector: 'home-component',
-  template: `
-    &lt;p&gt;A home component!&lt;/p&gt;
-    &lt;ul&gt;
-      &lt;li *ngFor=&quot;let user of users&quot;&gt;
-        {{user.name}}
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  `
-})
-class HomeComponent implements OnInit{
-  private users: any[] = [];
-
-  constructor(private usersService: UsersService) {
-  
-  }
-
-  ngOnInit() {
-    this.users = this.usersService.getUsers();
-  }
-}
-//THIS IS A HACK JUST FOR CODEPEN TO WORK
-HomeComponent.parameters = [UsersService];
-
-const routes: Routes = [
-  { path: 'about', component: AboutComponent },
-  { path: '**', component: HomeComponent }
-]
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-class AppRoutingModule { }
-
-                 
-@NgModule({
-  declarations: [AppComponent, AboutComponent, HomeComponent],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    AppRoutingModule,
-  ],
-  bootstrap: [AppComponent],
-  providers: []
-})
-class AppModule {}
-
-const { platformBrowserDynamic } = ng.platformBrowserDynamic;
-
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch(err =&gt; console.error(err));
-&lt;/script&gt;
-
-
-</code></pre>
-<div class='codepen'></div>
-<div line-highlight='90,only'></div>
-<h2>Subscribe to an Observable</h2>
-<p>The result of <code>getRestaurants()</code> is an observable. Use <a href="https://rxjs.dev/guide/subscription">subscribe</a> to listen to when
-an RxJS observable changes:</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script type=&quot;typescript&quot;&gt;
-const { Observable } = rxjs;
-
-const observable = Observable.create(function (observer) {
-  observer.next(1);
-  observer.next(2);
-  observer.next(3);
-});
-
-observable.subscribe(function subscriber(value) {
-  console.log('got value ' + value);
-  // Logs 1, 2, 3
-});
-&lt;/script&gt;
-</code></pre>
-<div class='codepen'></div>
-<div line-highlight='11'></div>
 <h2>P1: Solution</h2>
+<blockquote>
+<p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+</blockquote>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong> as follows:</p>
@@ -1453,16 +1565,20 @@ export class RestaurantComponent implements OnInit {
 }
 
 </code></pre>
- <div line-highlight="1-3,8,10-11,13,15-19,"></div>
+ <div line-highlight="2-3,11,13,16-18,"></div>
 <p></details></p>
-<h2>Problem 2: Show a Loading State while Restaurants are Being Requested</h2>
+<h2>Problem 2: Show a loading state while restaurants are being requested</h2>
 <p>Sometimes the server can take a long time to respond. It’s a better experience for the user
 to show a loading icon to the user while data is loading:</p>
-<p>TODO:</p>
 <p>This icon will be shown with the following HTML:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurant loading&quot;&gt;&lt;/div&gt;
 </code></pre>
-<h2>P2: Technical Requirements</h2>
+<h2>P2: What you need to know</h2>
+<ul>
+<li>How to write an interface (you learned this in the previous section! ✔️)</li>
+<li>How to conditionally show html blocks (you learned this in a previous section! ✔️)</li>
+</ul>
+<h2>P2: Technical requirements</h2>
 <ol>
 <li><p>Create a new interface <code>Data</code> that represents the following object:</p>
 <pre><code class="language-js">let data = {
@@ -1477,7 +1593,7 @@ to show a loading icon to the user while data is loading:</p>
 </ol>
 <pre><code class="language-html">&lt;div class=&quot;restaurant loading&quot;&gt;&lt;/div&gt;
 </code></pre>
-<h2>P2: To Verify Solution</h2>
+<h2>P2: How to verify your solution is correct</h2>
 <p>You should be able see a list of restaurants when you navigate to <a href="http://localhost:4200/restaurants">localhost:4200/restaurants</a>!</p>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
@@ -1774,15 +1890,10 @@ describe('RestaurantComponent', () =&gt; {
 
 </code></pre>
  <div line-highlight="167,172-219,221-266,268-270,274-281,283-290,only"></div>
+<h2>P2: Solution</h2>
 <blockquote>
 <p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h2>P2: What You Need to Know</h2>
-<ul>
-<li>How to write an interface (you learned this in the previous section! ✔️)</li>
-<li>How to conditionally show html blocks (you learned this in a previous section! ✔️)</li>
-</ul>
-<h2>P2: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong> to:</p>
@@ -1853,15 +1964,15 @@ export class RestaurantComponent implements OnInit {
 &lt;/div&gt;
 
 </code></pre>
- <div line-highlight="3-5,only"></div>
+ <div line-highlight="3-11,only"></div>
 <p></details></p>
-<h2>Did You Know?</h2>
+<h2>Did you know?</h2>
 <p>You may have noticed in our markup there’s another use of <code>routerLink</code>:</p>
 <pre><code class="language-html">&lt;a class=&quot;btn&quot; [routerLink]=&quot;['/restaurants', restaurant.slug]&quot;&gt;
   Details
 &lt;/a&gt;
 </code></pre>
-<p>One of the ways to create a link is to pass in the individual parts to the <code>routerLink</code> directive. This will generate the path <code>/restaurants/crab-cafe</code> for the &quot;crab cafe&quot; restaurant from it’s slug.</p>
+<p>One of the ways to create a link is to pass in the individual parts to the <code>routerLink</code> directive. This will generate the path <code>/restaurants/crab-cafe</code> for the &quot;crab cafe&quot; restaurant from its slug.</p>
 
 </section>
 
@@ -1900,7 +2011,7 @@ export class RestaurantComponent implements OnInit {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/7-pull-restaurant-data-into-view/pull-restaurant-data-into-view.md"},"description":"Learn how to render API data into HTML with a view. \n","name":"learn-angular/pull-restaurant-data-into-view","title":"Use Restaurant API data","type":"page","parent":"learn-angular","order":7,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/7-pull-restaurant-data-into-view/pull-restaurant-data-into-view.md"},"description":"Learn how to render API data into HTML with a view. \n","name":"learn-angular/pull-restaurant-data-into-view","title":"Rendering Data in Components","type":"page","parent":"learn-angular","order":7,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

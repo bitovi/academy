@@ -399,7 +399,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="pull-restaurant-data-into-view.html"
 							title="Learn how to render API data into HTML with a view.">
-							Use Restaurant API data
+							Rendering Data in Components
 						</a>
 						
 					</li>
@@ -414,7 +414,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="state-city-options.html"
 							title="Learn how to create a Reactive Form with Angular. We will create a Reactive Form in the Restaurant component with city and state dropdown inputs.">
-							City &amp; State Options
+							Reactive Forms Data Binding
 						</a>
 						
 					</li>
@@ -678,7 +678,7 @@ covering CanJS core libraries.">
 </ul>
 <h2>Problem 1: Listen to Changes on the State and City formControls and log their value to the console</h2>
 <p>Our end goal is to be able to show restaurants based on state, then city. As we move through getting each piece of information from the user we want to be able to update the next step - like getting a list of cities based on the state selected. We’ll implement this form functionality in a few small steps.</p>
-<h2>P1: What You Need to Know</h2>
+<h2>P1: What you need to know</h2>
 <ul>
 <li>How Observables and Subscriptions work</li>
 <li>How to subscribe to the <code>valueChanges</code> method on a <code>FormGroup</code> (or <code>FormControl</code>)</li>
@@ -1094,7 +1094,7 @@ const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
   selector: 'my-app',
   template: `
     &lt;p&gt;A home component!&lt;/p&gt;
-    &lt;form [formGroup]=&quot;myQuickForm&quot;&gt;
+    &lt;form [formGroup]=&quot;userForm&quot;&gt;
       &lt;label&gt;
           First name:
           &lt;input type=&quot;text&quot; formControlName=&quot;firstName&quot;&gt;
@@ -1111,18 +1111,18 @@ const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
   `
 })
 class AppComponent {
-  myQuickForm: FormGroup;
+  userForm: FormGroup;
 
   constructor(private fb:FormBuilder) {}
 
   ngOnInit(): void {
-    this.myQuickForm = this.fb.group({
+    this.userForm = this.fb.group({
       firstName: {value: '', disabled: false},
       lastName: {value: '', disabled: false},
       email: {value: '', disabled: false}
     });
 
-    this.myQuickForm.valueChanges.subscribe((val) =&gt; {
+    this.userForm.valueChanges.subscribe((val) =&gt; {
       console.log(val);
     });
   }
@@ -1178,42 +1178,42 @@ const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
   selector: 'my-app',
   template: `
     &lt;p&gt;A home component!&lt;/p&gt;
-    &lt;form [formGroup]=&quot;myQuickForm&quot;&gt;
+    &lt;form [formGroup]=&quot;userForm&quot;&gt;
       &lt;label&gt;
           First name:
           &lt;input type=&quot;text&quot; formControlName=&quot;firstName&quot;&gt;
-          &lt;p&gt;this control is enabled: {{myQuickForm.controls.firstName.enabled}}&lt;/p&gt;
-          &lt;button (click)=&quot;toggleControl(myQuickForm.controls.firstName)&quot;&gt;toggle firstName control&lt;/button&gt;&lt;br /&gt;
+          &lt;p&gt;this control is enabled: {{userForm.controls.firstName.enabled}}&lt;/p&gt;
+          &lt;button (click)=&quot;toggleControl(userForm.controls.firstName)&quot;&gt;toggle firstName control&lt;/button&gt;&lt;br /&gt;
         &lt;/label&gt;
         &lt;label&gt;
           Last name:
           &lt;input type=&quot;text&quot; formControlName=&quot;lastName&quot;&gt;
-          &lt;p&gt;this control is enabled: {{myQuickForm.controls.lastName.enabled}}&lt;/p&gt;
-          &lt;button (click)=&quot;toggleControl(myQuickForm.controls.lastName)&quot;&gt;toggle lastName control&lt;/button&gt;&lt;br /&gt;
+          &lt;p&gt;this control is enabled: {{userForm.controls.lastName.enabled}}&lt;/p&gt;
+          &lt;button (click)=&quot;toggleControl(userForm.controls.lastName)&quot;&gt;toggle lastName control&lt;/button&gt;&lt;br /&gt;
         &lt;/label&gt;
         &lt;label&gt;
           Email:
           &lt;input type=&quot;text&quot; formControlName=&quot;email&quot;&gt;
-          &lt;p&gt;this control is enabled: {{myQuickForm.controls.email.enabled}}&lt;/p&gt;
-          &lt;button (click)=&quot;toggleControl(myQuickForm.controls.email)&quot;&gt;toggle email control&lt;/button&gt;&lt;br /&gt;
+          &lt;p&gt;this control is enabled: {{userForm.controls.email.enabled}}&lt;/p&gt;
+          &lt;button (click)=&quot;toggleControl(userForm.controls.email)&quot;&gt;toggle email control&lt;/button&gt;&lt;br /&gt;
         &lt;/label&gt;
     &lt;/form&gt;
 
   `
 })
 class AppComponent {
-  myQuickForm: FormGroup;
+  userForm: FormGroup;
 
   constructor(private fb:FormBuilder) {}
 
   ngOnInit() {
-    this.myQuickForm = this.fb.group({
+    this.userForm = this.fb.group({
       firstName: {value: '', disabled: false},
       lastName: {value: '', disabled: false},
       email: {value: '', disabled: false}
     });
 
-    this.myQuickForm.valueChanges.subscribe((val) =&gt; {
+    this.userForm.valueChanges.subscribe((val) =&gt; {
       console.log(val);
     });
   }
@@ -1254,7 +1254,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='27-28,33-34,39-40,63-71,only'></div>
-<h2>P1: Technical Requirements</h2>
+<h2>P1: Technical requirements</h2>
 <ol>
 <li>Subscribe to the <code>state</code> and <code>city</code> formControl value changes and log the resulting value to the console.</li>
 <li>Unsubscribe from Subscriptions within <code>restaurant.component</code> in the <code>ngOnDestroy</code> function</li>
@@ -1357,7 +1357,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 <p>Now that we know how to get values from our dropdowns, let’s populate them with real data. We can get our list of states immediately, but to get our cities, we’ll want to make a GET request based on the state the user selected.</p>
 <h2>Problem 2: Write Service Methods to Get States and Cities from API</h2>
 <p>We want to be able to get lists of cities and states from our API to populate the dropdown options.</p>
-<h2>P2: What You Need to Know</h2>
+<h2>P2: What you need to know</h2>
 <h2>How to use HttpParams</h2>
 <p><a href="https://angular.io/api/common/http/HttpParams">HttpParams</a> are part of Angular’s HttpClient API and help us create parameters for our requests.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -1451,7 +1451,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='33-35,only'></div>
-<h2>P2: Technical Requirements</h2>
+<h2>P2: Technical requirements</h2>
 <p>Write two new methods in the <code>RestaurantsService</code> to get state and city lists.</p>
 <p>Method 1 - <code>getStates</code> takes no params and makes a request to <code>'/states'</code></p>
 <p>Method 2 - <code>getCities</code>, takes a string param called <code>state</code> and makes a request to <code>'/cities?state=&quot;{state abbreviation here}&quot;'</code></p>

@@ -398,7 +398,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="pull-restaurant-data-into-view.html"
 							title="Learn how to render API data into HTML with a view.">
-							Use Restaurant API data
+							Rendering Data in Components
 						</a>
 						
 					</li>
@@ -413,7 +413,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="state-city-options.html"
 							title="Learn how to create a Reactive Form with Angular. We will create a Reactive Form in the Restaurant component with city and state dropdown inputs.">
-							City &amp; State Options
+							Reactive Forms Data Binding
 						</a>
 						
 					</li>
@@ -672,7 +672,7 @@ covering CanJS core libraries.">
 <p>Now that our application is coming together nicely, you might have noticed we are repeating the same code to calculate the total prices of our items.
 We can simplify this by creating an Item Total Pipe which we will use in the <code>list.component.html</code> template file and call directly using <code>transform</code> within <code>order.component.ts</code> file. The Pipe will transform an array of items and return the total sum of the price of each item.</p>
 <p>After implementing this Pipe, you should be able to remove the <code>total</code> method from <code>list.component.ts</code>.</p>
-<h2>P1: What You Need to Know</h2>
+<h2>P1: What you need to know</h2>
 <p>How to:</p>
 <ul>
 <li>Generate a Pipe using Angular CLI (you previously learned this in the <a href="creating-pipes.html" title="Learn how to create a custom pipe in Angular that returns a modified version of a string.">Creating Pipes</a> section! ✔️)
@@ -801,7 +801,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='14-22, 27, 29, 39, 50, 52, only'></div>
-<h2>P1: How to Verify Your Solution is Correct</h2>
+<h2>P1: How to verify your solution is correct</h2>
 <p>✏️ Update the following spec files to include and provide the new Pipe:</p>
 <ul>
 <li><strong>src/app/order/order.component.spec.ts</strong></li>
@@ -1991,7 +1991,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 <p>Now that we have finished implementing our Item Total Pipe, this is a good time for us to talk about using Currency Pipe. You might have noticed that our prices are in USD, which is a currency, and is a perfect use for the Currency Pipe.
 Angular provides us with a <a href="https://angular.io/api/common/CurrencyPipe">Currency Pipe</a> that formats a number as currency using locale rules. Locale Rules refers to a user’s country or region specific details like currency, language and more.</p>
 <p>Add the Currency Pipe to the <code>order.component.html</code> , <code>menu-items.component.html</code> and <code>list.component.html</code> template files:</p>
-<h2>P2: What You Need to Know</h2>
+<h2>P2: What you need to know</h2>
 <p>How to:</p>
 <ul>
 <li>Apply a Pipe (you previously learned this ✔️)</li>

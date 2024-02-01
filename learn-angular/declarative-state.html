@@ -399,7 +399,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="pull-restaurant-data-into-view.html"
 							title="Learn how to render API data into HTML with a view.">
-							Use Restaurant API data
+							Rendering Data in Components
 						</a>
 						
 					</li>
@@ -414,7 +414,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="state-city-options.html"
 							title="Learn how to create a Reactive Form with Angular. We will create a Reactive Form in the Restaurant component with city and state dropdown inputs.">
-							City &amp; State Options
+							Reactive Forms Data Binding
 						</a>
 						
 					</li>
@@ -1028,7 +1028,7 @@ rendered and subscribes, it will receive the successful HTTP request and render 
 </ul>
 <h2>Problem</h2>
 <p>Convert the imperatively managed state in the restaurant component to declarative state.</p>
-<h2>Technical Requirements</h2>
+<h2>Technical requirements</h2>
 <p>When you’re finished the component members <code>states$</code>, <code>cities$</code> &amp; <code>restaurants$</code> will be of the types <code>Observable&lt;Data&lt;State&gt;&gt;</code>,
 <code>Observable&lt;Data&lt;City&gt;&gt;</code> and <code>Observable&lt;Data&lt;Restaurant&gt;&gt;</code> respectively. Each will be defined as a set of RxJS
 operators that either produce values from a response emitted by a service layer request, or produce values from changes
@@ -1040,7 +1040,7 @@ in a form control (which in turn may make a request).</p>
 <li><code>toggleCitySelect$</code> which enables/disables the city select control if loading is ongoing or no values are available</li>
 <li><code>clearCityWhenStateChanges$</code> which clears the city select control value if the state select control has been changed</li>
 </ul>
-<h2>How to Verify Your Solution is Correct</h2>
+<h2>How to verify your solution is correct</h2>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
   ComponentFixture,
@@ -1515,7 +1515,7 @@ describe('RestaurantComponent', () =&gt; {
 <blockquote>
 <p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h2>What You Need to Know</h2>
+<h2>What you need to know</h2>
 <ul>
 <li><p>Creating streams of Form Control values with <code>valueChanges</code> member (you previously learned this in the <a href="form-value-changes.html#listening-to-form-changes" title="Learn how to listen to form value changes with Angular.">Filter Cities by State</a> section! ✔️)</p></li>
 <li><p>How to perform common RxJS operations like:</p>

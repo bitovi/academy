@@ -598,7 +598,7 @@ covering CanJS core libraries.">
 </ol>
 <h2>Problem 1: Update <code>username$</code> and <code>userId$</code> to use Login Selectors on <code>DashboardComponent</code></h2>
 <p><code>DashboardComponent</code> should use the <code>LoginSelectors.selectUsername</code> and <code>LoginSelectors.selectUserId</code> Selectors for its <code>username$</code> and <code>userId$</code> members.</p>
-<h2>P1: What You Need to Know</h2>
+<h2>P1: What you need to know</h2>
 <p>Now that we have our Selectors defined, we can inject <code>Store</code> into our <code>Components</code> and use the <code>select()</code> method to obtain slices of state using our Selectors:</p>
 <pre><code class="language-ts">// Note: This example code is not part of our application repo or solution
 
@@ -654,7 +654,7 @@ export class DashboardComponent {
 </details>
 <h2>Problem 2: Update <code>canActivate()</code> to use Login Selector on <code>AuthenticationGuard</code></h2>
 <p><code>AuthenticationGuard</code>’s <code>canActivate()</code> method should use the <code>LoginSelectors.selectToken</code> Selector.</p>
-<h2>P2: What You Need to Know</h2>
+<h2>P2: What you need to know</h2>
 <p>In the <code>AuthenticationGuard</code>, there is a <code>TODO</code> where the Login Selector should be used.</p>
 <h2>P2: Solution</h2>
 <p><details>

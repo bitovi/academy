@@ -399,7 +399,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="pull-restaurant-data-into-view.html"
 							title="Learn how to render API data into HTML with a view.">
-							Use Restaurant API data
+							Rendering Data in Components
 						</a>
 						
 					</li>
@@ -414,7 +414,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="state-city-options.html"
 							title="Learn how to create a Reactive Form with Angular. We will create a Reactive Form in the Restaurant component with city and state dropdown inputs.">
-							City &amp; State Options
+							Reactive Forms Data Binding
 						</a>
 						
 					</li>
@@ -675,9 +675,9 @@ covering CanJS core libraries.">
 <h2>Creating an Order Form Component</h2>
 <p>Our order form is how we can create new orders. We’ll use a reactive form to get data from the users, use a custom validation function to make sure at least one item has been selected, and calculate the order total every time a new item is selected or unselected.</p>
 <h2>Problem 1: Create New Route for Ordering From a Restaurant</h2>
-<h2>P1: Technical Requirements</h2>
+<h2>P1: Technical requirements</h2>
 <p>Create a new <code>order</code> component, and create a route for our new component! The path should be <code>/restaurants/{{slug}}/order</code>.</p>
-<h2>P1: How to Verify Your Solution is Correct</h2>
+<h2>P1: How to verify your solution is correct</h2>
 <p>When you navigate to the <code>/order</code> path from a restaurant detail page you should see your new order component.</p>
 <p>✏️ Update the spec file <strong>src/app/app.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { Location } from '@angular/common';
@@ -1006,7 +1006,7 @@ describe('AppComponent', () =&gt; {
 <blockquote>
 <p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h2>P1: What You Need to Know</h2>
+<h2>P1: What you need to know</h2>
 <ul>
 <li>How to create new components
 <pre><code class="language-bash">ng g component order
@@ -1055,7 +1055,7 @@ export class AppRoutingModule {}
 <h2>Problem 2: Build Out the Order Component</h2>
 <p>We’ve covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes. Let’s practice those concepts.</p>
 <p>We’ve provided some starting code to get through this section to help you get the restaurant based on the route slug, create a new reactive form to collect order information, and update the order total whenever the <code>items</code> FormControl value changes.</p>
-<h2>P2: Technical Requirements</h2>
+<h2>P2: Technical requirements</h2>
 <p>The order form component needs to get the restaurant from the route slug, and needs a reactive form to collect <code>restaurant</code>, <code>name</code>, <code>address</code>, <code>phone</code>, and <code>items</code>, and a way to update the order total when the items form control changes.</p>
 <h2>P2: Setup</h2>
 <p>✏️ Update the <strong>src/app/order/order.component.html</strong> file to be:</p>
@@ -1215,7 +1215,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
-<h2>P2: What You Need to Know</h2>
+<h2>P2: What you need to know</h2>
 <ul>
 <li><p>How to get the restaurant from the route slug (you learned this in previous sections! ✔️)</p></li>
 <li><p>Create a reactive form (you learned this in previous sections! ✔️)</p></li>
@@ -2641,7 +2641,7 @@ const { ReactiveFormsModule, FormGroup, FormBuilder } = ng.forms;
       &lt;input type=&quot;text&quot; (change)=&quot;customChange($event)&quot;&gt;
     &lt;/label&gt;
     
-    &lt;form [formGroup]=&quot;myQuickForm&quot;&gt;
+    &lt;form [formGroup]=&quot;userForm&quot;&gt;
       &lt;label&gt;
         First name:
         &lt;input type=&quot;text&quot; formControlName=&quot;firstName&quot;&gt;
@@ -2658,12 +2658,12 @@ const { ReactiveFormsModule, FormGroup, FormBuilder } = ng.forms;
   `
 })
 class AppComponent implements OnInit {
-  myQuickForm: FormGroup;
+  userForm: FormGroup;
 
   constructor(private fb:FormBuilder) {}
 
   ngOnInit(): void {
-    this.myQuickForm = this.fb.group({
+    this.userForm = this.fb.group({
       firstName: {value: '', disabled: false},
       lastName: {value: '', disabled: false},
       email: {value: '', disabled: false}
@@ -2672,7 +2672,7 @@ class AppComponent implements OnInit {
 
   customChange(ev): void {
     const newVal = ev.currentTarget.value;
-    const formControl = this.myQuickForm.get('firstName');
+    const formControl = this.userForm.get('firstName');
     formControl.patchValue(newVal);
   }
 }
