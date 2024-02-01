@@ -30,7 +30,7 @@ We want to build a component that displays the CTA bus tracker routes and displa
 1. Include the styles/markup in this element’s `shadowRoot`.
 1. Place the `google-map-view` component within this new element’s `footer`.
 
-## Technical Requirements
+## Technical requirements
 
 The styles for our `bus-tracker` component should be contained within Shadow DOM. The CSS needed for the rest of the guide is:
 
@@ -190,7 +190,7 @@ The minimal markup needed for this component is:
 
 The `google-map-view` component should be displayed in the `<footer>` section of the component.
 
-## What You Need to Know
+## What you need to know
 
 To solve this problem you’ll need to:
 

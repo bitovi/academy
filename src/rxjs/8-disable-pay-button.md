@@ -71,7 +71,7 @@ In this section, we will:
   <button [disabled]="value"></button>
   ```
 
-## The Solution
+## The solution
 
 <details>
 <summary>Click to see the solution</summary>

@@ -272,7 +272,7 @@ export { Diet, Tyrannosaurus };
 npm run 9-utility-types
 ```
 
-### The Solution
+### The solution
 
 <details>
 <summary>Click to see the solution</summary>

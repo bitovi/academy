@@ -22,7 +22,7 @@ if they are for the current page or not.
   style="border: solid 1px black; "
   title="Place My Order App working nav"/>
 
-## What You Need to Know
+## What you need to know
 
 To solve this, you will need to know how to:
 
@@ -75,7 +75,7 @@ Using `{exact: true}` will only set the class if the path match is exactly equal
 @codepen
 @highlight 27-28, 32, only
 
-## Technical Requirements
+## Technical requirements
 
 Create a navigation menu that will route to our home and restaurant components when clicked, as well as show an `active` class on the `li` element when the route is active.
 
@@ -85,7 +85,7 @@ Make your changes in the **src/app/app.component.html** file. The markup structu
 
 @diff ../4-adding-routing/app.component.html ./app.component.problem.html
 
-## How to Verify Your Solution is Correct
+## How to verify your solution is correct
 
 You will know you’ve completed the exercise correctly when you can click the nav items to
 see the UI change and see the active class on the current nav item.

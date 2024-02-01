@@ -137,7 +137,7 @@ const number = source.pipe(mapToNumber).pipe(log('number'));
 > - one directly from `cardNumber$` in the template - `{{ cardNumber$ | async }}`
 > - the other from `cardError$` in the template - `{{ cardError$ | async }}` - `cardError` derives from `cardNumber`.
 
-## The Solution
+## The solution
 
 <details>
 <summary>Click to see the solution</summary>

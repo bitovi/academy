@@ -32,7 +32,7 @@ Currently the path is written out like:
 `restaurant.images.thumbnail` will be a path like `node_modules/place-my-order-assets/image.png`. We need to change that path to be more like `./assets/image.png`. Once
 the path rewriting is fixed, images will show up correctly.
 
-## What You Need to Know
+## What you need to know
 
 - How to generate a pipe
 - How to use a pipe to transform data
@@ -59,7 +59,7 @@ This example takes a price to be transformed and a parameter to use as the curre
 @codepen
 @highlight 15-20, 26,only
 
-## Technical Requirements
+## Technical requirements
 
 1. Use an `imageUrl` **pipe** in **src/app/restaurant/restaurant.component.html** to rewrite the path. Using a pipe looks like the following:
 
@@ -101,7 +101,7 @@ You can use one of these two online editors:
 
 - [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/angular/3a-pipes/problem?file=src/app/image-url.pipe.ts)
 
-## How to Verify Your Solution is Correct
+## How to verify your solution is correct
 
 ✏️ Update the restaurant spec file **src/app/restaurant/restaurant.component.spec.ts** to include the new pipe:
 

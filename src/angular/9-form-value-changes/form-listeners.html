@@ -20,7 +20,7 @@ const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
   selector: 'my-app',
   template: `
     <p>A home component!</p>
-    <form [formGroup]="myQuickForm">
+    <form [formGroup]="userForm">
       <label>
           First name:
           <input type="text" formControlName="firstName">
@@ -37,18 +37,18 @@ const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
   `
 })
 class AppComponent {
-  myQuickForm: FormGroup;
+  userForm: FormGroup;
 
   constructor(private fb:FormBuilder) {}
 
   ngOnInit(): void {
-    this.myQuickForm = this.fb.group({
+    this.userForm = this.fb.group({
       firstName: {value: '', disabled: false},
       lastName: {value: '', disabled: false},
       email: {value: '', disabled: false}
     });
 
-    this.myQuickForm.valueChanges.subscribe((val) => {
+    this.userForm.valueChanges.subscribe((val) => {
       console.log(val);
     });
   }

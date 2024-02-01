@@ -89,7 +89,7 @@ __DELETE /api/todos/{id}__
   fixture("/api/entities/{id}", entitiesStore);
   ```
 
-## The Solution
+## The solution
 
 <details>
 <summary>Click to see the solution</summary>

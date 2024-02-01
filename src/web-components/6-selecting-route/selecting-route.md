@@ -35,7 +35,7 @@ When a route is selected it should become active and show a checkmark by the nam
     1. Add the `route-selected` class to the `#selected-route` button once you have the vehicles.
 1. Add the `active` class to the route’s `li`. If there is already an active route, remove the `active` class from that `li`.
 
-## Technical Requirements
+## Technical requirements
 
 ### Selected route button
 
@@ -71,7 +71,7 @@ Where `NUMBER` is the route number, which again can be gotten from the route obj
 
 Set the `active` class on the `li` element associated with the route to mark it as active.
 
-## What You Need to Know
+## What you need to know
 
 This part doesn’t have any new web component APIs to learn, but builds off what we’ve already done. You will need to know a few basic DOM APIs however:
 

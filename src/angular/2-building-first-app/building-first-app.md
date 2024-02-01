@@ -26,7 +26,7 @@ We want to create a new Angular application and update it to say **Place My Orde
 <img src="../static/img/angular/2-generate-an-app/after.png"
   style="border: solid 1px black; max-width: 320px;"/>
 
-## What You Need to Know
+## What you need to know
 
 To complete this exercise, you are going to want:
 
@@ -211,7 +211,7 @@ for us.
 npm run test
 ```
 
-## How to Verify Your Solution is Correct
+## How to verify your solution is correct
 
 The change we needed to make for our tests to pass is on the highlighted line 37.
 

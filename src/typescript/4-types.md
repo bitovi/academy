@@ -533,7 +533,7 @@ export const tom = greet("Tom", 42, "software");
 export { isLoading, inventory };
 ```
 
-### What You Need to Know
+### What you need to know
 
 The exports of `2a-fix-errors.ts` should look like:
 
@@ -556,7 +556,7 @@ it("exports are correct", function () {
 npm run 2a-types
 ```
 
-### The Solution
+### The solution
 
 <details>
 <summary>Click to see the solution</summary>
@@ -597,7 +597,7 @@ In this exercise, we will create our own typed variable by updating `2b-date-exp
 - Assign that variable to an instance of `Date`
 - Export that variable as the default export.
 
-### What You Need to Know
+### What you need to know
 
 - Use `new Date()` to create an instance of Date.
 
@@ -609,7 +609,7 @@ In this exercise, we will create our own typed variable by updating `2b-date-exp
 npm run 2b-types
 ```
 
-### The Solution
+### The solution
 
 <details>
 <summary>Click to see the solution</summary>

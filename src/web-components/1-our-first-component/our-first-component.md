@@ -37,7 +37,7 @@ It looks like this:
 1. Add the tag to the page.
 1. Use `setTimeout` to change the name as described in the Problem section above.
 
-## What You Need to Know
+## What you need to know
 
 ### Using custom elements
 

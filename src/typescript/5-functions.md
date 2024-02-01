@@ -148,7 +148,7 @@ console.log(indoraptorCost);
 npm run 3-functions
 ```
 
-### The Solution
+### The solution
 
 <details>
 <summary>Click to see the solution</summary>

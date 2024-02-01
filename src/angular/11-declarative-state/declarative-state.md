@@ -180,7 +180,7 @@ To go more in depth about this topic check out these articles:
 
 Convert the imperatively managed state in the restaurant component to declarative state.
 
-## Technical Requirements
+## Technical requirements
 
 When you’re finished the component members `states$`, `cities$` & `restaurants$` will be of the types `Observable<Data<State>>`,
 `Observable<Data<City>>` and `Observable<Data<Restaurant>>` respectively. Each will be defined as a set of RxJS
@@ -195,7 +195,7 @@ You’ll also add new single-responsibility streams:
 - `toggleCitySelect$` which enables/disables the city select control if loading is ongoing or no values are available
 - `clearCityWhenStateChanges$` which clears the city select control value if the state select control has been changed
 
-## How to Verify Your Solution is Correct
+## How to verify your solution is correct
 
 ✏️ Update the spec file **src/app/restaurant/restaurant.component.spec.ts** to be:
 
@@ -204,7 +204,7 @@ You’ll also add new single-responsibility streams:
 
 > If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
-## What You Need to Know
+## What you need to know
 
 - Creating streams of Form Control values with `valueChanges` member (you previously learned this in the [learn-angular/form-value-changes#listening-to-form-changes Filter Cities by State] section! ✔️)
 - How to perform common RxJS operations like:

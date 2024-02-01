@@ -69,7 +69,7 @@ QUnit.equal(todos.allComplete, true, "allComplete");
   })
   ```
 
-## The Solution
+## The solution
 
 <details>
 <summary>Click to see the solution</summary>

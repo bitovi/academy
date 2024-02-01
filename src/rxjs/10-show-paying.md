@@ -235,7 +235,7 @@ observables and then _flatten_ that observable with `mergeAll`.
   {{ status === "pending" ? "Paying" : "Pay" }}
   ```
 
-## The Solution
+## The solution
 
 <details>
 <summary>Click to see the solution</summary>

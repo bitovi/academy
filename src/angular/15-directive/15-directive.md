@@ -25,7 +25,7 @@ In order to fix this, we will create an Attribute Directive that will change the
 
 @highlight 4
 
-## What You Need to Know
+## What you need to know
 
 - What Directives are
 - What ElementRef is
@@ -90,7 +90,7 @@ As we have discussed above, Directives are very useful tools in Angular that can
 @codepen
 @highlight 14-34, 40,only
 
-## Technical Requirements
+## Technical requirements
 
 1. Use an `onlyNumber` **Directive** in **src/app/order/order.component.html** in the phone number input field. Using the Directive should look like this:
 
@@ -123,7 +123,7 @@ The Directive will be used to listen for the event on the input field. This Dire
 ng g directive onlyNumbers
 ```
 
-## How to Verify Your Solution is Correct
+## How to verify your solution is correct
 
 ✏️ Update the spec file **src/app/only-numbers.directive.spec.ts** to be:
 

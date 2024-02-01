@@ -1,4 +1,4 @@
-@page learn-angular/state-city-options City & State Options
+@page learn-angular/state-city-options Reactive Forms Data Binding
 @parent learn-angular 8
 
 @description Learn how to create a Reactive Form with Angular. We will create a Reactive Form in the Restaurant component with city and state dropdown inputs.
@@ -26,52 +26,7 @@ we will need to implement a reactive form with two controls, `state` and `city`,
 
 ![Place My Order App city and state dropdowns](../static/img/angular/pmo-dropdowns.gif 'Place My Order App city and state dropdowns')
 
-## Technical Requirements
-
-Create a reactive form with two formControls, `state` and `city`, and use the `formControlName` directive to bind the formControls to their select elements in the template.
-
-## Setup
-
-Here’s some code to get you started. Notice that:
-
-- `cities` and `states` are hard coded (for this exercise).
-- A `FormBuilder` instance is injected as the `fb` property.
-- `createForm` is empty. Use it to initialize the form control.
-
-✏️ Update **src/app/restaurant/restaurant.component.ts** to:
-
-@diff ../7-pull-restaurant-data-into-view/restaurant.component.ts ./restaurant.component-starter.ts only
-
-Make sure to use the `formControl` directive to tie the selects to
-their `FormControl`s in the component.
-
-✏️ Update **src/app/restaurant/restaurant.component.html** to include
-some boilerplate for the state and city `<select>` controls:
-
-@diff ../7-pull-restaurant-data-into-view/restaurant.component.html ./restaurant.component-starter.html only
-
-✏️ Update **src/app/app.module.ts** to import reactiveForms in the root app module:
-
-@diff ../6-restaurant-service/app.module.ts ./app.module.ts only
-
-## How to Verify Your Solution is Correct
-
-When you visit <a href="http://localhost:4200/restaurants">localhost:4200/restaurants</a>, there will now be state and city dropdown options populated with fake data.
-
-![Place My Order App city and state dropdowns](../static/img/angular/pmo-dropdowns.gif 'Place My Order App city and state dropdowns')
-
-✏️ Update the spec file **src/app/restaurant/restaurant.component.spec.ts** to be:
-
-@sourceref ./restaurant.component.spec.ts
-@highlight 7,122,293-297,299-306,308-313, only
-
-✏️ Update the spec file **src/app/app.component.spec.ts** to be:
-
-@diff ../7-pull-restaurant-data-into-view/app.component.spec.ts ./app.component.spec.ts only
-
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
-
-## What You Need to Know
+## What you need to know
 
 To solve this, you will need to know:
 
@@ -85,7 +40,9 @@ To solve this, you will need to know:
 
 We’re eventually going to use select boxes to handle our user’s input. Angular’s <a href="https://angular.io/guide/reactive-forms">Reactive Forms</a> API provides a clean way to get data from user input and do work based on it.
 
-> From the docs: Reactive forms use an explicit and immutable approach to managing the state of a form at a given point in time. Each change to the form state returns a new state, which maintains the integrity of the model between changes. Reactive forms are built around observable streams, where form inputs and values are provided as streams of input values, which can be accessed synchronously.
+From the Angular documentation:
+
+> Reactive forms use an explicit and immutable approach to managing the state of a form at a given point in time. Each change to the form state returns a new state, which maintains the integrity of the model between changes. Reactive forms are built around observable streams, where form inputs and values are provided as streams of input values, which can be accessed synchronously.
 
 ## ReactiveFormsModule
 
@@ -102,7 +59,7 @@ class. It’s worth getting familiar with the methods available in this class (l
 
 @sourceref ./form-control.html
 @codepen
-@highlight 17,23-29,33,only
+@highlight 17, 24, 28, 33, only
 
 ## FormGroup
 
@@ -141,25 +98,84 @@ To avoid the default behavior and having to handle possible `null` values, we ca
 Using `NonNullableFormBuilder` will make `reset` method use the control’s initial value instead of `null`.
 
 ```typescript
-constructor(private fb: NonNullableFormBuilder) {}
+export class UserComponent {
+  constructor(private fb: NonNullableFormBuilder) {
+    this.userForm = fb.group({
+      email: { value: '', disabled: false },
+      firstName: { value: '', disabled: false },
+      lastName: { value: '', disabled: false },
+    });
+  }
+}
 ```
+
+The syntax above is equivalent to the code below:
 
 ```typescript
-this.myQuickForm = this.fb.nonNullable.group({
-  firstName: { value: '', disabled: false },
-  lastName: { value: '', disabled: false },
-  email: { value: '', disabled: false },
-});
+export class UserComponent {
+  constructor(private fb: FormBuilder) {
+    this.userForm = fb.nonNullable.group({
+      email: { value: '', disabled: false },
+      firstName: { value: '', disabled: false },
+      lastName: { value: '', disabled: false },
+    });
+  }
+}
 ```
 
-## The Solution
+## Technical requirements
+
+Create a reactive form with two formControls, `state` and `city`, and use the `formControlName` directive to bind the formControls to their select elements in the template.
+
+## Setup
+
+Here’s some code to get you started. Notice that:
+
+- The `cities` and `states` are hard coded (for this exercise).
+- A `FormBuilder` instance is injected as the `fb` property.
+- The `createForm` method is empty. Use it to initialize the form control.
+
+✏️ Update **src/app/restaurant/restaurant.component.ts** to:
+
+@diff ../7-pull-restaurant-data-into-view/restaurant.component.ts ./restaurant.component-starter.ts only
+
+Make sure to use the `formControl` directive to tie the `select` elements to
+their `FormControl`s in the component.
+
+✏️ Update **src/app/restaurant/restaurant.component.html** to include
+some boilerplate for the state and city `<select>` controls:
+
+@diff ../7-pull-restaurant-data-into-view/restaurant.component.html ./restaurant.component-starter.html only
+
+✏️ Update **src/app/app.module.ts** to import reactiveForms in the root app module:
+
+@diff ../6-restaurant-service/app.module.ts ./app.module.ts only
+
+## How to verify your solution is correct
+
+When you visit <a href="http://localhost:4200/restaurants">localhost:4200/restaurants</a>, there will now be state and city dropdown options populated with fake data.
+
+![Place My Order App city and state dropdowns](../static/img/angular/pmo-dropdowns.gif 'Place My Order App city and state dropdowns')
+
+✏️ Update the spec file **src/app/restaurant/restaurant.component.spec.ts** to be:
+
+@sourceref ./restaurant.component.spec.ts
+@highlight 7,122,293-297,299-306,308-313, only
+
+✏️ Update the spec file **src/app/app.component.spec.ts** to be:
+
+@diff ../7-pull-restaurant-data-into-view/app.component.spec.ts ./app.component.spec.ts only
+
+## The solution
+
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 <details>
 <summary>Click to see the solution</summary>
 ✏️ Update **src/app/restaurant/restaurant.component.ts** to:
 
 @sourceref ./restaurant.component.ts
-@highlight 53-62
+@highlight 53-62, only
 
 ✏️ Update **src/app/restaurant/restaurant.component.html** to:
 

@@ -63,7 +63,7 @@ be added if they represent the current page.
   <a href="{{ routeUrl(page='login') }}">Login</a>
   ```
 
-## The Solution
+## The solution
 
 <details>
 <summary>Click to see the solution</summary>

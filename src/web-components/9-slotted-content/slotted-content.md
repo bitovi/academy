@@ -26,7 +26,7 @@ An easier way to allow consumers of your component to have *complete* control is
 1. Use named slots to allow the `header` slot to be provided by the user.
 1. Add custom styles to style the new header.
 
-## Technical Requirements
+## Technical requirements
 
 Use this markup as the header that is passed into the component:
 
@@ -44,7 +44,7 @@ color: wheat;
 text-align: center;
 ```
 
-## What You Need to Know
+## What you need to know
 
 - How the slot element works.
 - How to give slots names to allow multiple slotted content.

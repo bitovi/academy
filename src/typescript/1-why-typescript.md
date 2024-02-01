@@ -107,7 +107,7 @@ repository. To use it:
   ```
    > The '.' after the editor is a shorthand to refer to the folder you’re currently in
 
-### What You Need to Know
+### What you need to know
 
 In order to use TypeScript in the browser, we must compile the TypeScript code to plain JavaScript first. We will do this using our terminal in this example, but most often TypeScript will be compiled during a build process.
 
@@ -179,7 +179,7 @@ npm run 0-why
 
 Change your ``user`` variable to a number and compile again. What do you think will happen?
 
-### The Solution
+### The solution
 
 You should see an error message.
 

@@ -17,7 +17,7 @@ In this part, we will:
 
 We need to set up routes for the home view and restaurant view.
 
-## What You Need to Know
+## What you need to know
 
 ## Router Outlet
 
@@ -96,7 +96,7 @@ In our `index.html` file, the angular cli included `<base href="/>`. This isn’
 @sourceref ../../../exercises/angular/3a-pipes/problem/src/index.html
 @highlight 6
 
-## Technical Requirements
+## Technical requirements
 
 Create routes for the `HomeComponent` and `RestaurantComponent`. When the route is `""`, the `HomeComponent` should display, and when the route is `/restaurants` the `RestaurantComponent` should display. These changes should be made in **src/app/app-routing.module.ts**.
 
@@ -115,7 +115,7 @@ those components going forward.
 @sourceref ./app.component.html
 @highlight 1-2,only
 
-## How to Verify Your Solution is Correct
+## How to verify your solution is correct
 
 If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants">localhost:4200/restaurants</a>. You may have noticed the `routerLink` attribute on the `<a>` tag in our home component markup. This one of the ways we link to specific routes in our app. When you click that link, you should see the restaurants component.
 

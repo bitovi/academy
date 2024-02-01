@@ -130,7 +130,7 @@ UserCardNumber: {{ userCardNumber$ | async }} <br />
 
 Read more about this technique [here](https://angular.io/guide/observables-in-angular#async-pipe).
 
-## The Solution
+## The solution
 
 <details>
 <summary>Click to see the solution</summary>
