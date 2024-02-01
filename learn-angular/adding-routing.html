@@ -672,94 +672,6 @@ covering CanJS core libraries.">
 </ul>
 <h2>Problem</h2>
 <p>We need to set up routes for the home view and restaurant view.</p>
-<h2>Technical Requirements</h2>
-<p>Create routes for the <code>HomeComponent</code> and <code>RestaurantComponent</code>. When the route is <code>&quot;&quot;</code>, the <code>HomeComponent</code> should display, and when the route is <code>/restaurants</code> the <code>RestaurantComponent</code> should display. These changes should be made in <strong>src/app/app-routing.module.ts</strong>.</p>
-<p>Notice that you will be able to click the <strong>Choose a Restaurant</strong> button
-at the end of this tutorial:</p>
-<p><img src="../static/img/angular/4-adding-routing/after.gif" alt="Choose a restaurant routing" title="Choose a restaurant routing" /></p>
-<h2>Setup</h2>
-<p><code>&lt;router-outlet&gt;</code>, which handles routing to a component based on a url, was added to our <strong>src/app/app.component.html</strong> file when we first generated our app. But since that time, we added components to that view. Let’s remove those components because <code>&lt;router-outlet&gt;</code> will handle showing
-those components going forward.</p>
-<p>✏️ Update <strong>src/app/app.component.html</strong> to:</p>
-<pre><code class="language-html">&lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;
-
-&lt;router-outlet /&gt;
-
-</code></pre>
-<div line-highlight='1-2,only'></div>
-<h2>How to Verify Your Solution is Correct</h2>
-<p>If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants">localhost:4200/restaurants</a>. You may have noticed the <code>routerLink</code> attribute on the <code>&lt;a&gt;</code> tag in our home component markup. This one of the ways we link to specific routes in our app. When you click that link, you should see the restaurants component.</p>
-<pre><code class="language-html">&lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;&gt; Choose a Restaurant &lt;/a&gt;
-</code></pre>
-<p>✏️ Update the spec file <strong>src/app/app.component.spec.ts</strong> to be:</p>
-<pre><code class="language-ts">import { Location } from '@angular/common';
-import { NO_ERRORS_SCHEMA } from '@angular/core';
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { RestaurantComponent } from './restaurant/restaurant.component';
-
-describe('AppComponent', () =&gt; {
-  let fixture: ComponentFixture&lt;AppComponent&gt;;
-
-  beforeEach(async () =&gt; {
-    await TestBed.configureTestingModule({
-      imports: [AppRoutingModule],
-      declarations: [AppComponent, HomeComponent, RestaurantComponent],
-      schemas: [NO_ERRORS_SCHEMA],
-    }).compileComponents();
-
-    fixture = TestBed.createComponent(AppComponent);
-  });
-
-  it('should create the app', () =&gt; {
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
-  });
-
-  it(`should have as title 'place-my-order'`, () =&gt; {
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('place-my-order');
-  });
-
-  it('should render title in a h1 tag', () =&gt; {
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain(
-      'Place My Order App: Coming Soon!'
-    );
-  });
-
-  it('should render the HomeComponent with router navigates to &quot;/&quot; path', fakeAsync(() =&gt; {
-    const location: Location = TestBed.inject(Location);
-    const router: Router = TestBed.inject(Router);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    router.navigate(['']).then(() =&gt; {
-      expect(location.path()).toBe('');
-      expect(compiled.querySelector('pmo-home')).not.toBe(null);
-    });
-  }));
-
-  it('should render the RestaurantsComponent with router navigates to &quot;/restaurants&quot; path', fakeAsync(() =&gt; {
-    const location: Location = TestBed.inject(Location);
-    const router: Router = TestBed.inject(Router);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    router.navigate(['restaurants']).then(() =&gt; {
-      expect(location.path()).toBe('/restaurants');
-      expect(compiled.querySelector('pmo-restaurant')).not.toBe(null);
-    });
-  }));
-});
-
-</code></pre>
- <div line-highlight="1,3-5,7-8,11,15-17,20,33,36-38,41-50,52-61,"></div>
-<blockquote>
-<p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
-</blockquote>
 <h2>What You Need to Know</h2>
 <h2>Router Outlet</h2>
 <p><a href="https://angular.io/api/router/RouterOutlet"><code>RouterOutlet</code></a> is an Angular directive that is a placeholder for content that is filled when the route changes. In this example the <code>HomeComponent</code> template or the <code>AboutComponent</code> template are shown below the <code>&lt;router-outlet&gt;</code> element as the route changes.</p>
@@ -1217,7 +1129,95 @@ class AppRoutingModule { }
 
 </code></pre>
 <div line-highlight='6'></div>
+<h2>Technical Requirements</h2>
+<p>Create routes for the <code>HomeComponent</code> and <code>RestaurantComponent</code>. When the route is <code>&quot;&quot;</code>, the <code>HomeComponent</code> should display, and when the route is <code>/restaurants</code> the <code>RestaurantComponent</code> should display. These changes should be made in <strong>src/app/app-routing.module.ts</strong>.</p>
+<p>Notice that you will be able to click the <strong>Choose a Restaurant</strong> button
+after implementing the solution:</p>
+<p><img src="../static/img/angular/4-adding-routing/after.gif" alt="Choose a restaurant routing" title="Choose a restaurant routing" /></p>
+<h2>Setup</h2>
+<p><code>&lt;router-outlet&gt;</code>, which handles routing to a component based on a url, was added to our <strong>src/app/app.component.html</strong> file when we first generated our app. But since that time, we added components to that view. Let’s remove those components because <code>&lt;router-outlet&gt;</code> will handle showing
+those components going forward.</p>
+<p>✏️ Update <strong>src/app/app.component.html</strong> to:</p>
+<pre><code class="language-html">&lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;
+
+&lt;router-outlet /&gt;
+
+</code></pre>
+<div line-highlight='1-2,only'></div>
+<h2>How to Verify Your Solution is Correct</h2>
+<p>If you have completed the exercise successfully you should be able to see the home component when the app loads, and the restaurant component when you navigate to <a href="http://localhost:4200/restaurants">localhost:4200/restaurants</a>. You may have noticed the <code>routerLink</code> attribute on the <code>&lt;a&gt;</code> tag in our home component markup. This one of the ways we link to specific routes in our app. When you click that link, you should see the restaurants component.</p>
+<pre><code class="language-html">&lt;a class=&quot;btn&quot; routerLink=&quot;/restaurants&quot; role=&quot;button&quot;&gt; Choose a Restaurant &lt;/a&gt;
+</code></pre>
+<p>✏️ Update the spec file <strong>src/app/app.component.spec.ts</strong> to be:</p>
+<pre><code class="language-ts">import { Location } from '@angular/common';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { RestaurantComponent } from './restaurant/restaurant.component';
+
+describe('AppComponent', () =&gt; {
+  let fixture: ComponentFixture&lt;AppComponent&gt;;
+
+  beforeEach(async () =&gt; {
+    await TestBed.configureTestingModule({
+      imports: [AppRoutingModule],
+      declarations: [AppComponent, HomeComponent, RestaurantComponent],
+      schemas: [NO_ERRORS_SCHEMA],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(AppComponent);
+  });
+
+  it('should create the app', () =&gt; {
+    const app = fixture.componentInstance;
+    expect(app).toBeTruthy();
+  });
+
+  it(`should have as title 'place-my-order'`, () =&gt; {
+    const app = fixture.componentInstance;
+    expect(app.title).toEqual('place-my-order');
+  });
+
+  it('should render title in a h1 tag', () =&gt; {
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h1')?.textContent).toContain(
+      'Place My Order App: Coming Soon!'
+    );
+  });
+
+  it('should render the HomeComponent with router navigates to &quot;/&quot; path', fakeAsync(() =&gt; {
+    const location: Location = TestBed.inject(Location);
+    const router: Router = TestBed.inject(Router);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    router.navigate(['']).then(() =&gt; {
+      expect(location.path()).toBe('');
+      expect(compiled.querySelector('pmo-home')).not.toBe(null);
+    });
+  }));
+
+  it('should render the RestaurantsComponent with router navigates to &quot;/restaurants&quot; path', fakeAsync(() =&gt; {
+    const location: Location = TestBed.inject(Location);
+    const router: Router = TestBed.inject(Router);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    router.navigate(['restaurants']).then(() =&gt; {
+      expect(location.path()).toBe('/restaurants');
+      expect(compiled.querySelector('pmo-restaurant')).not.toBe(null);
+    });
+  }));
+});
+
+</code></pre>
+ <div line-highlight="1,3-5,7-8,11,15-17,20,33,36-38,41-50,52-61,"></div>
 <h2>Solution</h2>
+<blockquote>
+<p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
+</blockquote>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/app-routing.module.ts</strong> to:</p>
