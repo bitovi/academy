@@ -85,10 +85,10 @@ Now when we view our project url from the page Firebase launches we’ll see our
  "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "api": "place-my-order-api --port 7070",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "api": "place-my-order-api --port 7070",
     "deploy": "ng build && firebase deploy"
   },
 ```
