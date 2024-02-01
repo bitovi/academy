@@ -384,7 +384,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="restaurant-service.html"
 							title="Learn how to write an Angular service that gets data from the server.">
-							Writing a Restaurant Service
+							Fetching Data with Services
 						</a>
 						
 					</li>
@@ -1648,9 +1648,10 @@ export interface ResponseData {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class RestaurantService {
+
   constructor(private httpClient: HttpClient) {}
 
   getRestaurants(): Observable&lt;ResponseData&gt; {
@@ -1670,7 +1671,7 @@ export class RestaurantService {
 }
 
 </code></pre>
- <div line-highlight="1,23-25,27-30,"></div>
+ <div line-highlight="1,24-26,28-31,"></div>
 <p></details></p>
 <h2>Problem 3: Use Generics to Modify ResponseData interface to Work with States and Cities Data</h2>
 <p>We would like to use the <code>ResponseData</code> interface we wrote to describe the response for the state and city requests, but it only works with an array of type <code>Restaurant</code>.</p>
@@ -1800,9 +1801,10 @@ export interface City {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class RestaurantService {
+
   constructor(private httpClient: HttpClient) {}
 
   getRestaurants(): Observable&lt;ResponseData&gt; {
@@ -1822,7 +1824,7 @@ export class RestaurantService {
 }
 
 </code></pre>
- <div line-highlight="11-13,16-19,41,"></div>
+ <div line-highlight="11-13,16-19,42,"></div>
 <h2>P3: How to Verify Your Solution is Correct</h2>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
@@ -2030,9 +2032,10 @@ export interface City {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class RestaurantService {
+
   constructor(private httpClient: HttpClient) {}
 
   getRestaurants(): Observable&lt;ResponseData&lt;Restaurant&gt;&gt; {
@@ -2057,7 +2060,7 @@ export class RestaurantService {
 }
 
 </code></pre>
- <div line-highlight="7-8,27-28,33-36,39,41-44,"></div>
+ <div line-highlight="7-8,28-29,34-37,40,42-45,"></div>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';

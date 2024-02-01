@@ -22,7 +22,7 @@
   })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
   <!-- End Google Tag Manager -->
 
-  <title>Bitovi Academy - Writing a Restaurant Service</title>
+  <title>Bitovi Academy - Fetching Data with Services</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -384,7 +384,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="restaurant-service.html"
 							title="Learn how to write an Angular service that gets data from the server.">
-							Writing a Restaurant Service
+							Fetching Data with Services
 						</a>
 						
 							
@@ -642,7 +642,7 @@ covering CanJS core libraries.">
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Writing a Restaurant Service <code>page</code></h1>
+	<h1>Fetching Data with Services <code>page</code></h1>
 </section>
 
   		
@@ -802,7 +802,7 @@ class AppRoutingModule { }
   imports: [
     BrowserModule,
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   bootstrap: [AppComponent],
   providers: []
@@ -967,7 +967,7 @@ class AppRoutingModule { }
   imports: [
     BrowserModule,
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   bootstrap: [AppComponent],
   providers: []
@@ -1012,19 +1012,53 @@ as shown above.</li>
 <h3>Installing the Place My Order API</h3>
 <p>We’ve done some work to create a Place My Order API for use in this app by creating an npm package that will generate fake restaurant data and serve it from port 7070.</p>
 <p>✏️ Run:</p>
-<pre><code class="language-bash">npm install place-my-order-api
+<pre><code class="language-bash">npm install place-my-order-api@1
 </code></pre>
 <p>✏️ Next add an API script to your <code>package.json</code></p>
-<pre><code class="language-js">  &quot;scripts&quot;: {
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;place-my-order&quot;,
+  &quot;version&quot;: &quot;0.0.0&quot;,
+  &quot;scripts&quot;: {
     &quot;ng&quot;: &quot;ng&quot;,
     &quot;start&quot;: &quot;ng serve&quot;,
+    &quot;api&quot;: &quot;place-my-order-api --port 7070&quot;,
     &quot;build&quot;: &quot;ng build&quot;,
     &quot;watch&quot;: &quot;ng build --watch --configuration development&quot;,
-    &quot;test&quot;: &quot;ng test&quot;,
-    &quot;api&quot;: &quot;place-my-order-api --port 7070&quot;
+    &quot;test&quot;: &quot;ng test&quot;
   },
+  &quot;private&quot;: true,
+  &quot;dependencies&quot;: {
+    &quot;@angular/animations&quot;: &quot;^17.1.0&quot;,
+    &quot;@angular/common&quot;: &quot;^17.1.0&quot;,
+    &quot;@angular/compiler&quot;: &quot;^17.1.0&quot;,
+    &quot;@angular/core&quot;: &quot;^17.1.0&quot;,
+    &quot;@angular/forms&quot;: &quot;^17.1.0&quot;,
+    &quot;@angular/platform-browser&quot;: &quot;^17.1.0&quot;,
+    &quot;@angular/platform-browser-dynamic&quot;: &quot;^17.1.0&quot;,
+    &quot;@angular/router&quot;: &quot;^17.1.0&quot;,
+    &quot;place-my-order-api&quot;: &quot;^1.3.0&quot;,
+    &quot;place-my-order-assets&quot;: &quot;^0.2.2&quot;,
+    &quot;rxjs&quot;: &quot;~7.8.0&quot;,
+    &quot;tslib&quot;: &quot;^2.3.0&quot;,
+    &quot;zone.js&quot;: &quot;~0.14.3&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;@angular-devkit/build-angular&quot;: &quot;^17.1.0&quot;,
+    &quot;@angular/cli&quot;: &quot;^17.1.0&quot;,
+    &quot;@angular/compiler-cli&quot;: &quot;^17.1.0&quot;,
+    &quot;@types/jasmine&quot;: &quot;~5.1.0&quot;,
+    &quot;jasmine-core&quot;: &quot;~5.1.0&quot;,
+    &quot;karma&quot;: &quot;~6.4.0&quot;,
+    &quot;karma-chrome-launcher&quot;: &quot;~3.2.0&quot;,
+    &quot;karma-coverage&quot;: &quot;~2.2.0&quot;,
+    &quot;karma-jasmine&quot;: &quot;~5.1.0&quot;,
+    &quot;karma-jasmine-html-reporter&quot;: &quot;~2.1.0&quot;,
+    &quot;typescript&quot;: &quot;~5.3.2&quot;
+  }
+}
+
 </code></pre>
-<div line-highlight='7'></div>
+<div line-highlight='7, only'></div>
 <p>✏️ In <strong>new</strong> terminal window, start the API server by running:</p>
 <pre><code class="language-bash">npm run api
 </code></pre>
@@ -1059,6 +1093,29 @@ as shown above.</li>
 <p>✏️ Run</p>
 <pre><code class="language-shell">ng g service restaurant/restaurant
 </code></pre>
+<p>✏️ Update <code>src/app/restaurant/restaurant.service.ts</code>:</p>
+<pre><code class="language-ts">import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class RestaurantService {
+
+  constructor() { }
+}
+
+</code></pre>
+<div line-highlight='1, 3-4, only'></div>
+<h3>Having issues with your local setup?</h3>
+<p>You can get through most of this tutorial by using an online code editor. You won’t be able to run our tests to verify your solution, but you will be able to make changes to your app and see them live.</p>
+<p>You can use one of these two online editors:</p>
+<ul>
+<li><p><a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/angular/6-restaurant-service/problem?file=src/app/image-url.pipe.ts">StackBlitz</a></p></li>
+<li><p><a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/angular/6-restaurant-service/problem?file=src/app/image-url.pipe.ts">CodeSandbox</a></p></li>
+</ul>
 <h2>P1: How to Verify Your Solution is Correct</h2>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
@@ -1166,13 +1223,14 @@ describe('RestaurantService', () =&gt; {
 });
 
 </code></pre>
+ <div line-highlight="2-5,7,9-11,13-17,19-20,23-24,27-89,91-93,95-96,98-99,101,only"></div>
 <p>✏️ Quit the previous tests running and restart them:</p>
 <pre><code class="language-shell">npm run test
 </code></pre>
+<h2>P1: Solution</h2>
 <blockquote>
 <p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h2>P1: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/app.module.ts</strong> to inject the <code>HttpClientModule</code>:</p>
@@ -1204,7 +1262,7 @@ import { ImageUrlPipe } from './image-url.pipe';
 export class AppModule { }
 
 </code></pre>
-<div line-highlight='1,21, only'></div>
+ <div line-highlight="1,21,only"></div>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.service.ts</strong> to make a request to the API server <code>/restaurants</code>:</p>
 <pre><code class="language-ts">import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -1212,9 +1270,10 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class RestaurantService {
+
   constructor(private httpClient: HttpClient) {}
 
   getRestaurants(): Observable&lt;any&gt; {
@@ -1223,7 +1282,7 @@ export class RestaurantService {
 }
 
 </code></pre>
-<div line-highlight='1,3,4,10,12-14'></div>
+ <div line-highlight="11,13-15,only"></div>
 <p></details></p>
 <h2>Problem 2: Write an Interface to Describe the Restaurant Object and Data Response</h2>
 <p>Currently, from TypeScript’s perspective, <code>getRestaurants()</code> can return anything. This
@@ -1359,7 +1418,7 @@ class AppRoutingModule { }
   imports: [
     BrowserModule,
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   bootstrap: [AppComponent],
   providers: []
@@ -1464,9 +1523,10 @@ export interface ResponseData {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class RestaurantService {
+
   constructor(private httpClient: HttpClient) {}
 
   getRestaurants(): Observable&lt;ResponseData&gt; {
@@ -1477,7 +1537,7 @@ export class RestaurantService {
 }
 
 </code></pre>
- <div line-highlight="5,7-8,17-20,22,"></div>
+ <div line-highlight="5,7-8,18-21,23,"></div>
 <h2>P2: How to Verify Your Solution is Correct</h2>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
@@ -1699,7 +1759,7 @@ export interface Restaurant {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/6-restaurant-service/restaurant-service.md"},"description":"Learn how to write an Angular service that gets data from the server. \n","name":"learn-angular/restaurant-service","title":"Writing a Restaurant Service","type":"page","parent":"learn-angular","order":6,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/6-restaurant-service/restaurant-service.md"},"description":"Learn how to write an Angular service that gets data from the server. \n","name":"learn-angular/restaurant-service","title":"Fetching Data with Services","type":"page","parent":"learn-angular","order":6,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

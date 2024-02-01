@@ -384,7 +384,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="restaurant-service.html"
 							title="Learn how to write an Angular service that gets data from the server.">
-							Writing a Restaurant Service
+							Fetching Data with Services
 						</a>
 						
 					</li>
@@ -732,9 +732,10 @@ export interface City {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class RestaurantService {
+
   constructor(private httpClient: HttpClient) {}
 
   getRestaurants(
@@ -772,7 +773,7 @@ export class RestaurantService {
 }
 
 </code></pre>
- <div line-highlight="54-58,only"></div>
+ <div line-highlight="55-59,only"></div>
 <h2>Solution</h2>
 <blockquote>
 <p>Hint: you may use existing tests on the service as a guide</p>

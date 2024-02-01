@@ -384,7 +384,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="restaurant-service.html"
 							title="Learn how to write an Angular service that gets data from the server.">
-							Writing a Restaurant Service
+							Fetching Data with Services
 						</a>
 						
 					</li>
@@ -1341,9 +1341,10 @@ export interface City {
 }
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class RestaurantService {
+
   constructor(private httpClient: HttpClient) {}
 
   getRestaurants(
@@ -1375,7 +1376,7 @@ export class RestaurantService {
 }
 
 </code></pre>
- <div line-highlight="27-33,35,50,only"></div>
+ <div line-highlight="28-34,36,51,only"></div>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
