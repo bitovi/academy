@@ -86,7 +86,7 @@ If you’ve implemented the solution correctly you should now be able to navigat
 <summary>Click to see the solution</summary>
 ✏️ Update **src/app/app.component.html**
 
-@diff ../5-creating-navigation/app.component.html ./app.component.html
+@diff ../5-creating-navigation/app.component.solution.html ./app.component.html
 
 </details>
 

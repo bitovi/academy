@@ -6,11 +6,12 @@
         <a routerLink="/">Home</a>
       </li>
       <li [ngClass]="{ active: rla.isActive }">
-        <a routerLink="/restaurants" routerLinkActive #rla="routerLinkActive"
-          >Restaurants</a
-        >
+        <a routerLink="/restaurants" routerLinkActive #rla="routerLinkActive">
+          Restaurants
+        </a>
       </li>
     </ul>
   </nav>
 </header>
+
 <router-outlet />
