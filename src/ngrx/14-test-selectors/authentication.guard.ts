@@ -5,7 +5,7 @@ import { CanActivate, CanLoad, Router, UrlTree } from '@angular/router';
 import { map, Observable, of } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class AuthenticationGuard implements CanActivate, CanLoad {
   constructor(private router: Router) {}

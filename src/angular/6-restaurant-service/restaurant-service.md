@@ -1,4 +1,4 @@
-@page learn-angular/restaurant-service Writing a Restaurant Service
+@page learn-angular/restaurant-service Fetching Data with Services
 @parent learn-angular 6
 
 @description Learn how to write an Angular service that gets data from the server.
@@ -113,23 +113,13 @@ We’ve done some work to create a Place My Order API for use in this app by cre
 ✏️ Run:
 
 ```bash
-npm install place-my-order-api
+npm install place-my-order-api@1
 ```
 
 ✏️ Next add an API script to your `package.json`
 
-```js
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "api": "place-my-order-api --port 7070"
-  },
-```
-
-@highlight 7
+@sourceref ../../../exercises/angular/6-restaurant-service/problem/package.json
+@highlight 7, only
 
 ✏️ In **new** terminal window, start the API server by running:
 
@@ -189,11 +179,26 @@ Now generate the restaurant service:
 ng g service restaurant/restaurant
 ```
 
+✏️ Update `src/app/restaurant/restaurant.service.ts`:
+
+@sourceref ../../../exercises/angular/6-restaurant-service/problem/src/app/restaurant/restaurant.service.ts
+@highlight 1, 3-4, only
+
+### Having issues with your local setup?
+
+You can get through most of this tutorial by using an online code editor. You won’t be able to run our tests to verify your solution, but you will be able to make changes to your app and see them live.
+
+You can use one of these two online editors:
+
+- [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/angular/6-restaurant-service/problem?file=src/app/image-url.pipe.ts)
+
+- [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/angular/6-restaurant-service/problem?file=src/app/image-url.pipe.ts)
+
 ## P1: How to Verify Your Solution is Correct
 
 ✏️ Update the spec file **src/app/restaurant/restaurant.service.spec.ts** to be:
 
-@sourceref ./restaurant.service.spec.ts
+@diff ../../../exercises/angular/3a-pipes/problem/src/app/restaurant/restaurant.component.spec.ts ../../../exercises/angular/6-restaurant-service/problem/src/app/restaurant/restaurant.component.spec.ts only
 
 ✏️ Quit the previous tests running and restart them:
 
@@ -201,21 +206,19 @@ ng g service restaurant/restaurant
 npm run test
 ```
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
-
 ## P1: Solution
+
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 <details>
 <summary>Click to see the solution</summary>
 ✏️ Update **src/app/app.module.ts** to inject the `HttpClientModule`:
 
-@sourceref ./app.module.ts
-@highlight 1,21, only
+@diff ../../../exercises/angular/6-restaurant-service/problem/src/app/app.module.ts ./app.module.ts only
 
 ✏️ Update **src/app/restaurant/restaurant.service.ts** to make a request to the API server `/restaurants`:
 
-@sourceref ./restaurant.service-1.ts
-@highlight 1,3,4,10,12-14
+@diff ../../../exercises/angular/6-restaurant-service/problem/src/app/restaurant/restaurant.service.ts ./restaurant.service-1.ts only
 
 </details>
 
@@ -314,7 +317,7 @@ ng g interface restaurant/restaurant
 ✏️ Update **src/app/restaurant/restaurant.ts** with some starter code that includes
 some scaffolding for some of the sub-interfaces within the `Restaurant` interfaces:
 
-@sourceref ./restaurant-starter.ts
+@sourceref ../../../exercises/angular/6-restaurant-service/problem/src/app/restaurant/restaurant.ts
 @highlight 1-16,18
 
 ✏️ Update **src/app/restaurant/restaurant.service.ts** to import the `Restaurant` interface, use
@@ -326,7 +329,7 @@ it within the `ResponseData` interface which is used by `httpClient.get`:
 
 ✏️ Update the spec file **src/app/restaurant/restaurant.service.spec.ts** to be:
 
-@diff ./restaurant.service.spec.ts ./restaurant.service-with-interface.spec.ts only
+@diff ../../../exercises/angular/6-restaurant-service/problem/src/app/restaurant/restaurant.component.spec.ts ./restaurant.service-with-interface.spec.ts only
 
 > If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass! If you haven’t written the interfaces correctly, you’ll see a compile error before the tests runs. You might need to restart the test script to see the compile error.
 
@@ -336,7 +339,7 @@ it within the `ResponseData` interface which is used by `httpClient.get`:
 <summary>Click to see the solution</summary>
 ✏️ Update **src/app/restaurant/restaurant.ts** to:
 
-@diff ./restaurant-starter.ts ./restaurant.ts
+@diff ../../../exercises/angular/6-restaurant-service/problem/src/app/restaurant/restaurant.ts ./restaurant.ts
 
 In the next step we’ll call the `getRestaurants` method in our component to get the list of restaurants.
 
