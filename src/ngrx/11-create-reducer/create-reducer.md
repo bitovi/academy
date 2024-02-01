@@ -24,7 +24,7 @@
 Update the Login State shape by adding `userId`, `username`, and `token` properties to its interface definition. Each property should have type `string | null`.
 
 
-## P1: What You Need to Know
+## P1: What you need to know
 
 Now that we have all of our Actions prepared to dispatch whenever we need, we will update the Login State. Typically a Reducer is updated with 3 steps:
 
@@ -53,7 +53,7 @@ To prepare this, we need to update the Login Feature `State` interface found at 
 Set initial state for Login State. Each member of the Login State should start with `null` as its value.
 
 
-## P2: What You Need to Know
+## P2: What you need to know
 
 Now that we have updated the Login State’s shape by updating the `State` interface, we need to update its initial shape. By default, we will set each member to `null`. Here is an example of doing that:
 

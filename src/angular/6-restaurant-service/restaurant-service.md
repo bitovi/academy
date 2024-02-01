@@ -20,7 +20,7 @@ In this part, we will:
 
 We want to create an Angular service with a method that will get a list of restaurants from our Place My Order API.
 
-## P1: What You Need to Know
+## P1: What you need to know
 
 To complete this problem, you’ll need to know:
 
@@ -78,7 +78,7 @@ For making HTTP requests to interact with an API, Angular provides <a href="http
 This tutorial won’t cover RxJS in depth, but it’s worth being aware of Angular’s
 heavy use of it. Check out our [learn-rxjs] tutorial for more information.
 
-## P1: Technical Requirements
+## P1: Technical requirements
 
 Write a `RestaurantService` with a method `getRestaurants` that uses `httpClient` to get a list of restaurants from an environment variable + `/restaurants`. For example, we could get restaurants like:
 
@@ -194,7 +194,7 @@ You can use one of these two online editors:
 
 - [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/angular/6-restaurant-service/problem?file=src/app/image-url.pipe.ts)
 
-## P1: How to Verify Your Solution is Correct
+## P1: How to verify your solution is correct
 
 ✏️ Update the spec file **src/app/restaurant/restaurant.service.spec.ts** to be:
 
@@ -228,7 +228,7 @@ Currently, from TypeScript’s perspective, `getRestaurants()` can return anythi
 means if we use the data from `getRestaurants()`, TypeScript will not be able to notice
 any mistakes. This undermines the whole point of TypeScript!
 
-## P2: What You Need to Know
+## P2: What you need to know
 
 To solve this problem, you’ll need to:
 
@@ -265,7 +265,7 @@ This will generate:
 export interface User {}
 ```
 
-## P2: Technical Requirements
+## P2: Technical requirements
 
 Write interfaces to tell TypeScript what we expect restaurant and other related objects to look like and use them in our restaurant service. A `Restaurant` interface should represent an object like this:
 

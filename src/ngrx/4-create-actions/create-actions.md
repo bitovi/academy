@@ -36,7 +36,7 @@ Our goal is to have a different set of Action instead:
     - props: `{ errorMsg: string }`
 
 
-## P1: What You Need to Know
+## P1: What you need to know
 
 Action Types in NgRx follow a string pattern: `[Source] Event`. Since Actions represent a unique event, an Action Type should be a unique identifier for that event. NgRx encourages Actions to be unique in order to help with application debugging, traceability and maintainability. [Here’s a great presentation about Action Best Practices](https://www.youtube.com/watch?v=JmnsEvoy-gY) from Mike Ryan, co-creator of NgRx.
 

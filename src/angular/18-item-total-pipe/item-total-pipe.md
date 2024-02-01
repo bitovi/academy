@@ -18,7 +18,7 @@ We can simplify this by creating an Item Total Pipe which we will use in the `li
 
 After implementing this Pipe, you should be able to remove the `total` method from `list.component.ts`.
 
-## P1: What You Need to Know
+## P1: What you need to know
 
 How to:
 
@@ -48,7 +48,7 @@ The example below shows how to provide a Pipe globally in Angular. The Pipe bein
 @codepen
 @highlight 14-22, 27, 29, 39, 50, 52, only
 
-## P1: How to Verify Your Solution is Correct
+## P1: How to verify your solution is correct
 
 ✏️ Update the following spec files to include and provide the new Pipe:
 
@@ -95,7 +95,7 @@ Angular provides us with a [Currency Pipe](https://angular.io/api/common/Currenc
 
 Add the Currency Pipe to the `order.component.html` , `menu-items.component.html` and `list.component.html` template files:
 
-## P2: What You Need to Know
+## P2: What you need to know
 
 How to:
 

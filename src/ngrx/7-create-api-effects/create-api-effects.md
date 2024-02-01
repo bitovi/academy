@@ -36,7 +36,7 @@
 @diff ../4-create-actions/login.effects.ts ./login.effects-error-message-helper.ts only
 </details>
 
-## P1: What You Need to Know
+## P1: What you need to know
 
 [NgRx Effects](https://ngrx.io/guide/effects) are a side-effect model that utilizes RxJS to react to Actions being dispatched to manage side-effects such as network requests, web socket messages and time-based events. One thing that Effects are not responsible for is updating state; this is a responsiblity for Reducers ([learn-ngrx/create-reducer]).
 
