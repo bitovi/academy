@@ -97,7 +97,7 @@ Hint: the interface should have properties and types:
   - ``state``(string)
   - ``zip`` (string)
 
-### The Solution
+### The solution
 
 <details>
 <summary>Click to see the solution</summary>
@@ -151,7 +151,7 @@ In the `5b-create-park-slug.ts` file edit the ``createParkSlug`` function to tak
 npm run 5-interfaces
 ```
 
-### The Solution
+### The solution
 
 
 <details>

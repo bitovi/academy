@@ -26,7 +26,7 @@ Create a component where we can display a Google map. Google maps need to be att
 2. Create a custom element that contains a Shadow DOM with the contents from the `template` in the previous exercise.
 3. Set up the Google map *only* when the custom element is connected to the DOM.
 
-## Technical Requirements
+## Technical requirements
 
 Use the existing `#gmap-template` template, and append it to the host component’s Shadow DOM. Use this script tag to enable the Google maps API:
 
@@ -48,7 +48,7 @@ new google.maps.Map(element, {
 
 Where `element` is the element the Google map will mount to.
 
-## What You Need to Know
+## What you need to know
 
 - How to create Shadow DOM for an element.
 - Which callback to use to instantiate a new `Map` for the Google map.

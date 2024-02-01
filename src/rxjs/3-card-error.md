@@ -33,7 +33,7 @@ You know everything you need to know already.
 
 > HINT: Create a `validateCard` operator with `map`.
 
-## The Solution
+## The solution
 
 <details>
 <summary>Click to see the solution</summary>

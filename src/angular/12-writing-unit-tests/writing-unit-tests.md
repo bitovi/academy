@@ -16,7 +16,7 @@ In this part, we will:
 
 In the next section we’re going to be creating a restaurant detail view. We’ll need to have a `getRestaurant` method on our service that returns one restaurant from the list. Once the method is set up, write a unit test ensuring it makes the correct request and returns an object type of `Restaurant`.
 
-## What You Need to Know
+## What you need to know
 
 - How to write a unit test. Here’s a codeblock to get you started:
 

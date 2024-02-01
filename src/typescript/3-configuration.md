@@ -129,7 +129,7 @@ In this exercise, we will:
   ```
 - Compile _1-ide-hello-earth.ts_ to JavaScript so we can run it.
 
-### What You Need to Know
+### What you need to know
 
 - [Export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) a default value like:
   ```typescript
@@ -149,7 +149,7 @@ In this exercise, we will:
 npm run 1-ide
 ```
 
-### The Solution
+### The solution
 
 <details>
 <summary>Click to see the solution</summary>

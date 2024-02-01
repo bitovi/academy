@@ -27,7 +27,7 @@ We want to display the bus destination for the selected marker. This should look
 1. Add an event listener in `bus-tracker` for the `vehicle-selected` event on the `google-map-view`.
 1. In the event listener set the `vehicle.des` in the `#selected-vehicle` element.
 
-## Technical Requirements
+## Technical requirements
 
 * For displaying the selected vehicle use a `span` element and give it an `id` of `selected-vehicle`. It will have mostly the same styles as the selected route. You could use the same CSS but just modify it to work for both. For simplicity here’s the full CSS needed:
 
@@ -72,7 +72,7 @@ We want to display the bus destination for the selected marker. This should look
   <small>Vehicle:</small> VEHICLE_DESTINATION
   ```
 
-## What You Need to Know
+## What you need to know
 
 - Using `CustomEvent` to create new event types.
 - Using the `detail` property to pass information about an event.

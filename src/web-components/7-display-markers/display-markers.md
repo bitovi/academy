@@ -29,7 +29,7 @@ When an error occurs in the API it should wipe away any existing markers.
 1. Add a getter/setter pair on the `google-map-view` to handle `.vehicles`. When set it should use the Marker snippet (below) to create a new marker for *each* vehicle.
 1. When a route is selected and markers are already displayed for a previous route, remove the previous markers.
 
-## Technical Requirements
+## Technical requirements
 
 To create a new marker use `new google.maps.Marker`. This takes an object with some options that look like this:
 
@@ -51,7 +51,7 @@ Additionally this snippet can be used to remove a marker:
 marker.setMap(null);
 ```
 
-## What You Need to Know
+## What you need to know
 
 - How to use JavaScript getters and setters to handle dynamic property values.
 - How to use default values in custom elements.

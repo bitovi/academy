@@ -25,14 +25,14 @@ Open up the styling for this component by providing supported CSS custom propert
 1. Style the `bus-tracker` using custom properties in the global CSS.
 1. Change the `bus-tracker` component’s own CSS to use those properties in the `header` and `header h1` elements.
 
-## Technical Requirements
+## Technical requirements
 
 Use the following CSS property names and values:
 
 - `--header-background` - Pick any color you want. I’ll use `salmon`.
 - `--header-text-transform` - Use `capitalize`.
 
-## What You Need to Know
+## What you need to know
 
 - How to define CSS custom properties.
 - How to use CSS custom properties to set the value of styles.

@@ -26,7 +26,7 @@ The Google map API needs an element to mount the map into. We want our map to be
 2. Add the global styles to the CSS tab in CodePen.
 3. In the JS tab write the JavaScript necessary to clone and activate the template, appending it to the `body`.
 
-## Technical Requirements
+## Technical requirements
 
 The following CSS will give the container the dimensions we want.
 
@@ -56,7 +56,7 @@ body {
 }
 ```
 
-## What You Need to Know
+## What you need to know
 
 To solve this, you will need to know:
 

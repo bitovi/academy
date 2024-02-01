@@ -191,7 +191,7 @@ Update the `DinosaurFactObject` and `Dinosaur` type to gain type safety on the `
 npm run 5c-keyof-typeof-ex1
 ```
 
-### The Solution
+### The solution
 
 <details>
 <summary>Click to see the solution</summary>
@@ -233,7 +233,7 @@ The `getColorValue` function should take a one of the easily readable names and 
 npm run 5d-keyof-typeof-ex2
 ```
 
-### The Solution
+### The solution
 
 <details>
 <summary>Click to see the solution</summary>

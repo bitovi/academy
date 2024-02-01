@@ -19,24 +19,24 @@ const { ReactiveFormsModule, FormControl, FormGroup } = ng.forms;
 @Component({
   selector: 'my-app',
   template: `
-  <p>A home component!</p>
-  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-    <label>
-        First name:
-        <input type="text" formControlName="firstName">
-      </label>
+    <p>A home component!</p>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
       <label>
-        Last name:
-        <input type="text" formControlName="lastName">
-      </label>
-      <label>
-        Email:
-        <input type="text" formControlName="email">
-      </label>
-      <button type="submit">see form value</button>
-  </form>
+          First name:
+          <input type="text" formControlName="firstName">
+        </label>
+        <label>
+          Last name:
+          <input type="text" formControlName="lastName">
+        </label>
+        <label>
+          Email:
+          <input type="text" formControlName="email">
+        </label>
+        <button type="submit">see form value</button>
+    </form>
 
-  {{ formValue | json }}
+    {{ formValue | json }}
   `
 })
 class AppComponent {

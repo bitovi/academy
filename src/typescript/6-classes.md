@@ -314,7 +314,7 @@ employee2.safetyQuote();
 npm run 4b-classes
 ```
 
-### The Solution
+### The solution
 
 <details>
 <summary>Click to see the solution</summary>

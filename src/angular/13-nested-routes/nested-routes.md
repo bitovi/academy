@@ -18,7 +18,7 @@ In this part, we will:
 
 We want to have a component to display individual restaurants details, and want the path to be nested under the restaurants path.
 
-## What You Need to Know
+## What you need to know
 
 To solve this exercise you will need to know:
 
@@ -34,7 +34,7 @@ A common pattern in SPA architecture is to serve a view of an individual piece o
 @codepen
 @highlight 93-94,101,105,107,115,only
 
-## Technical Requirements
+## Technical requirements
 
 Create a new component called `detail` in the restaurant component folder that is a detail view for an individual restaurant that is served from the path `'/restaurants/restaurant-slug'`. Create the route as well, and use the `getRestaurant` method on the `RestaurantService` to fetch the restaurant based on the route snapshot. The detail component should have a member `restaurant` that is a type of Restaurant and an `isLoading` member set to true or false based on when the restaurant data has been fetched.
 
@@ -50,7 +50,7 @@ ng g component restaurant/detail
 
 @sourceref ./detail.component.html
 
-## How to Verify Your Solution is Correct
+## How to verify your solution is correct
 
 When you click the detail button on a restaurant from the restaurant list view you’ll see the detail view of that restaurant.
 

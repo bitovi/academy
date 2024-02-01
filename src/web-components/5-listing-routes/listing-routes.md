@@ -30,7 +30,7 @@ Additionally we have text within the header that says __Loading routes…__ stat
 1. Remove the `#loading-routes` element since the routes are now loaded.
 
 
-## Technical Requirements
+## Technical requirements
 
 The following snippet of JavaScript will be useful for fetching data from the bus tracker API. Use the `getRoutesEndpoint` string to fetch the list of routes.
 
@@ -52,7 +52,7 @@ To display the routes we want to create an `<li>` for each route and attach it t
 </li>
 ```
 
-## What You Need to Know
+## What you need to know
 
 - How to use [fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) to make API requests.
 - Setting an element’s text.
