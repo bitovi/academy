@@ -1488,7 +1488,7 @@ describe('AppComponent', () =&gt; {
     });
   }));
 
-  it('should have the home navigation link href set to &quot;&quot;', () =&gt; {
+  it('should have the home navigation link href set to &quot;/&quot;', () =&gt; {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     const homeLink = compiled.querySelector('li a');
@@ -1496,7 +1496,7 @@ describe('AppComponent', () =&gt; {
     expect(href).toEqual('/');
   });
 
-  it('should have the restaurants navigation link href set to &quot;&quot;', () =&gt; {
+  it('should have the restaurants navigation link href set to &quot;/restaurants&quot;', () =&gt; {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     const restaurantsLink = compiled.querySelector('li:nth-child(2) a');
@@ -1532,7 +1532,7 @@ describe('AppComponent', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="2,12,16,18,20-118,120,122-128,130,132-139,141-189,198-207,240,249,only"></div>
+ <div line-highlight="2,12,16,18,20-118,120,122-128,130,132-139,141-189,198-207,240,249,252,260,only"></div>
 <blockquote>
 <p>Hint: Call the <code>getRestaurants</code> method in the <code>ngOnInit</code> method.</p>
 </blockquote>
