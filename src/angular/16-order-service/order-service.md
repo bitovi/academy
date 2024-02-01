@@ -18,7 +18,7 @@ In this part, we will:
 
 We need to create a new service to handle creating and updating orders. We’ll need three interfaces - one to describe the order form data, one to describe the order, and one to describe items in the order.
 
-## P1: Technical Requirements
+## P1: Technical requirements
 
 Create a new service `order` in the order directory, and write and export `CreateOrderDto`, `Order` and `Item` interfaces representing these objects in the new service:
 
@@ -92,7 +92,7 @@ get the tests to pass.
 ng test
 ```
 
-## P2: What You Need to Know
+## P2: What you need to know
 
 - The method signatures for the methods you’ll be adding to `OrderService`:
   - `getOrders(): Observable<{data: Order[]}>` should make a `GET` request

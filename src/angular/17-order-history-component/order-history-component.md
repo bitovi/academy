@@ -18,12 +18,12 @@ In this part, we will:
 
 We want to create a component that will show the app’s order history.
 
-## P1: Technical Requirements
+## P1: Technical requirements
 
 1. Generate a `HistoryComponent` in `src/app/order/history/history.component.ts`
 2. Show `HistoryComponent` when we navigate to `/order-history`
 
-## P1: How to Verify Your Solution is Correct
+## P1: How to verify your solution is correct
 
 If you’ve implemented the solution correctly you should be able to navigate to [http://localhost:4200/order-history](http://localhost:4200/order-history) and see _'history works!'_.
 
@@ -66,12 +66,12 @@ Then route to the component:
 
 We want a user to be able to navigate to the `HistoryComponent` via a link in the main navigation.
 
-## P2: Technical Requirements
+## P2: Technical requirements
 
 1. Add a **Order History** link to the navigation bar at the top of the page.
 2. Add the class name `active` to the link if we are on the `OrderHistory` page.
 
-## P2: What You Need to Know
+## P2: What you need to know
 
 You’ve seen this before. Check out how the **Home** link works in
 `app.component.html`.

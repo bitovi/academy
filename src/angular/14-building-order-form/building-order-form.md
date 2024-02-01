@@ -21,11 +21,11 @@ Our order form is how we can create new orders. We’ll use a reactive form to g
 
 ## Problem 1: Create New Route for Ordering From a Restaurant
 
-## P1: Technical Requirements
+## P1: Technical requirements
 
 Create a new `order` component, and create a route for our new component! The path should be `/restaurants/{{slug}}/order`.
 
-## P1: How to Verify Your Solution is Correct
+## P1: How to verify your solution is correct
 
 When you navigate to the `/order` path from a restaurant detail page you should see your new order component.
 
@@ -35,7 +35,7 @@ When you navigate to the `/order` path from a restaurant detail page you should 
 
 > If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
-## P1: What You Need to Know
+## P1: What you need to know
 
 - How to create new components
   ```bash
@@ -59,7 +59,7 @@ We’ve covered a few concepts, like how to get the slug from the route, how to 
 
 We’ve provided some starting code to get through this section to help you get the restaurant based on the route slug, create a new reactive form to collect order information, and update the order total whenever the `items` FormControl value changes.
 
-## P2: Technical Requirements
+## P2: Technical requirements
 
 The order form component needs to get the restaurant from the route slug, and needs a reactive form to collect `restaurant`, `name`, `address`, `phone`, and `items`, and a way to update the order total when the items form control changes.
 
@@ -73,7 +73,7 @@ The order form component needs to get the restaurant from the route slug, and ne
 
 @sourceref ./order.component-starter.ts
 
-## P2: What You Need to Know
+## P2: What you need to know
 
 - How to get the restaurant from the route slug (you learned this in previous sections! ✔️)
 - Create a reactive form (you learned this in previous sections! ✔️)

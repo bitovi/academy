@@ -20,7 +20,7 @@
 `LoginEffects` should use `Router` to navigate to the dashboard page at path `/dashboard` using an Effect called `loginSuccess$`.
 
 
-## P1: What You Need to Know
+## P1: What you need to know
 
 Although it’s common for Effects to dispatch another Action after handling a side-effect, there is a way to update the configuration for an Effect to never dispatch an Action instead. This is useful when a side-effect resolves and there’s no need to trigger another side-effect or update state.
 

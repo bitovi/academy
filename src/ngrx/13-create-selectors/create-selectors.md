@@ -22,7 +22,7 @@
 There should be a Selector that obtains the `userId` from the Login State.
 
 
-## P1: What You Need to Know
+## P1: What you need to know
 
 NgRx Selectors are `pure` functions used for [obtaining slices of state](https://ngrx.io/guide/store/selectors#using-a-selector-for-one-piece-of-state).
 

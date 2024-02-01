@@ -20,7 +20,7 @@
 Now that we have our Actions, let’s use them. The `LoginComponent` should have the Login Action be dispatched when the submit button is clicked.
 
 
-## P1: What You Need to Know
+## P1: What you need to know
 
 We can import our Action creators from `src/app/store/login/login.actions.ts` to create Actions and then use the NgRx Store to dispatch them:
 
@@ -45,7 +45,7 @@ In the `LoginComponent`, there is a `TODO` where the Login Action should be disp
 And the `DashboardComponent` should have the Logout Action be dispatched when the logout button is clicked.
 
 
-## P2: What You Need to Know
+## P2: What you need to know
 
 In the `DashboardComponent`, there is a `TODO` where the Logout Action should be dispatched.
 

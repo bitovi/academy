@@ -23,7 +23,7 @@ In this part, we will:
 
 Our end goal is to be able to show restaurants based on state, then city. As we move through getting each piece of information from the user we want to be able to update the next step - like getting a list of cities based on the state selected. We’ll implement this form functionality in a few small steps.
 
-## P1: What You Need to Know
+## P1: What you need to know
 
 - How Observables and Subscriptions work
 - How to subscribe to the `valueChanges` method on a `FormGroup` (or `FormControl`)
@@ -71,7 +71,7 @@ The ReactiveForms API makes it easy for us to change our `FormControl`s as neede
 @codepen
 @highlight 27-28,33-34,39-40,63-71,only
 
-## P1: Technical Requirements
+## P1: Technical requirements
 
 1. Subscribe to the `state` and `city` formControl value changes and log the resulting value to the console.
 2. Unsubscribe from Subscriptions within `restaurant.component` in the `ngOnDestroy` function
@@ -97,7 +97,7 @@ Now that we know how to get values from our dropdowns, let’s populate them wit
 
 We want to be able to get lists of cities and states from our API to populate the dropdown options.
 
-## P2: What You Need to Know
+## P2: What you need to know
 
 ## How to use HttpParams
 
@@ -107,7 +107,7 @@ We want to be able to get lists of cities and states from our API to populate th
 @codepen
 @highlight 33-35,only
 
-## P2: Technical Requirements
+## P2: Technical requirements
 
 Write two new methods in the `RestaurantsService` to get state and city lists.
 

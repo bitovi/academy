@@ -20,7 +20,7 @@
 `DashboardComponent` should use the `LoginSelectors.selectUsername` and `LoginSelectors.selectUserId` Selectors for its `username$` and `userId$` members.
 
 
-## P1: What You Need to Know
+## P1: What you need to know
 
 Now that we have our Selectors defined, we can inject `Store` into our `Components` and use the `select()` method to obtain slices of state using our Selectors:
 
@@ -42,7 +42,7 @@ In the `DashboardComponent`, there is are `TODO`’s where the Login Selectors s
 
 `AuthenticationGuard`’s `canActivate()` method should use the `LoginSelectors.selectToken` Selector.
 
-## P2: What You Need to Know
+## P2: What you need to know
 
 In the `AuthenticationGuard`, there is a `TODO` where the Login Selector should be used.
 

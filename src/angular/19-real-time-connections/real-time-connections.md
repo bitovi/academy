@@ -11,7 +11,7 @@ In this part, we will:
 - Install socket.io Client
 - Update list view on socket events.
 
-## P1: How to Verify Your Solution is Correct
+## P1: How to verify your solution is correct
 
 If you’ve implemented the solution correctly you should now be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see orders be created, updated or removed without refreshing the page!
 

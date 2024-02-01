@@ -22,7 +22,7 @@ In this part, we will:
 Let’s begin to build out the main views of our app. We’ll create a home view now,
 and restaurant list view in the next exercise.
 
-## P1: What You Need to Know
+## P1: What you need to know
 
 - How to generate a new Angular component
 - How to bind data in a component to its template
@@ -69,7 +69,7 @@ Data can also be passed to child components. Data can be passed with expression 
 @codepen
 @highlight 30-32,only
 
-## P1: Technical Requirements
+## P1: Technical requirements
 
 Create a component that displays a title read from a component’s `title` member.
 
@@ -143,7 +143,7 @@ You can use one of these two online editors:
 
 - [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/angular/3-creating-components/problem?file=src/app/home/home.component.html)
 
-## P1: How to Verify Your Solution is Correct
+## P1: How to verify your solution is correct
 
 ✏️ Update the spec file **src/app/home/home.component.spec.ts** to be:
 
@@ -175,7 +175,7 @@ We want to display a list of restaurants in our UI once the data has been set on
 
 > Note: We will fix the missing images in the next step.
 
-## P2: What You Need to Know
+## P2: What you need to know
 
 To solve this exercise, you’ll need to learn some of Angular’s more common
 template directives. Template directives in Angular help us iterate through and manipulate data we’ve bound to the DOM. You’ll need some of the following:
