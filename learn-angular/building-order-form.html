@@ -2129,15 +2129,23 @@ const { ReactiveFormsModule, FormControl } = ng.forms;
   template: `
     &lt;p&gt;A home component!&lt;/p&gt;
 
-    &lt;button (click)=&quot;willCallOnClick()&quot;&gt;Click me!&lt;/button&gt;
+    &lt;button (click)=&quot;willCallOnClick()&quot;&gt;
+      Click me!
+    &lt;/button&gt;
     {{ clickMessage }}
-    &lt;button (click)=&quot;willCallWithParam(clickMessage)&quot;&gt;log click message&lt;/button&gt;
+    &lt;button (click)=&quot;willCallWithParam(clickMessage)&quot;&gt;
+      Log click message
+    &lt;/button&gt;
     &lt;p&gt;
       Value: {{ name.value }}
     &lt;/p&gt;
     &lt;label&gt;
       Name:
-      &lt;input type=&quot;text&quot; [formControl]=&quot;name&quot; (change)=&quot;willCallOnBlur($event)&quot;&gt;
+      &lt;input
+        type=&quot;text&quot;
+        [formControl]=&quot;name&quot;
+        (change)=&quot;willCallOnBlur($event)&quot;
+      /&gt;
     &lt;/label&gt;
   `
 })
@@ -2181,7 +2189,7 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='24,26,32,41-31,45-47,49-51,only'></div>
+<div line-highlight='24,26,32,41-43,45-47,49-51,only'></div>
 <h2>P4: Technical requirements</h2>
 <p>Create a function in the <code>MenuItemsComponent</code> called <code>updateItems</code> that fires whenever a checkbox is checked and takes a parameter of the item that has been checked. In the <code>updateItems</code> function use the following code to update the <code>selectedItems</code> array:</p>
 <pre><code class="language-typescript">let index = this.selectedItems.indexOf(item);
@@ -2323,7 +2331,8 @@ const { ReactiveFormsModule, FormControl } = ng.forms;
   template: `
     &lt;p&gt;Parent component!&lt;/p&gt;
     &lt;p&gt;Message from child: {{ message }}&lt;/p&gt;
-    &lt;child-component (sendMessage)=&quot;getMessage($event)&quot;&gt;&lt;/child-component&gt;
+    &lt;child-component (sendMessage)=&quot;getMessage($event)&quot;&gt;
+    &lt;/child-component&gt;
   `
 })
 class ParentComponent implements OnInit {
@@ -2350,12 +2359,12 @@ class ParentComponent implements OnInit {
     }`
   ],
   template: `
-  &lt;p&gt;Child component&lt;/p&gt;
-  &lt;label&gt;
-    Name:
-    &lt;input type=&quot;text&quot; [formControl]=&quot;childMessage&quot;&gt;
-  &lt;/label&gt;
-  &lt;button (click)=&quot;callToEmit()&quot;&gt;send child message&lt;/button&gt;
+    &lt;p&gt;Child component&lt;/p&gt;
+    &lt;label&gt;
+      Name:
+      &lt;input type=&quot;text&quot; [formControl]=&quot;childMessage&quot;&gt;
+    &lt;/label&gt;
+    &lt;button (click)=&quot;callToEmit()&quot;&gt;Send child message&lt;/button&gt;
   `
 })
 class ChildComponent implements OnInit {
@@ -2395,7 +2404,7 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='31,32,43-45,69,77-79,only'></div>
+<div line-highlight='31-33,44-46,65,70,78-80,only'></div>
 <h2>Programmatically updating <code>FormArray</code> values</h2>
 <p>When we have a FormArray we need to update programmatically with a value we can use the <a href="https://angular.io/api/forms/FormArray#patchvalue"><code>patchValue</code></a> or <a href="https://angular.io/api/forms/FormArray#setvalue"><code>setValue</code></a> methods on the <code>FormArray</code> class.</p>
 <p>The difference between these two FormArray’s methods is that <code>setValue</code> replaces the current array with the new value, and <code>patchValue</code> updates the array with the new values, trying to update values where possible.</p>
@@ -2423,7 +2432,10 @@ const { ReactiveFormsModule, FormGroup, FormBuilder } = ng.forms;
     &lt;p&gt;A home component!&lt;/p&gt;
     &lt;label&gt;
       Custom input:
-      &lt;input type=&quot;text&quot; (change)=&quot;customChange($event)&quot;&gt;
+      &lt;input
+        (change)=&quot;customChange($event)&quot;
+        type=&quot;text&quot;
+      /&gt;
     &lt;/label&gt;
     
     &lt;form [formGroup]=&quot;userForm&quot;&gt;
@@ -2455,8 +2467,8 @@ class AppComponent implements OnInit {
     });
   }
 
-  customChange(ev): void {
-    const newVal = ev.currentTarget.value;
+  customChange(event): void {
+    const newVal = event.currentTarget.value;
     const formControl = this.userForm.get('firstName');
     formControl.patchValue(newVal);
   }
@@ -2486,7 +2498,7 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='25,57-61,only'></div>
+<div line-highlight='25-28,60-64,only'></div>
 <ul>
 <li>How to emit a value to a parent component (you learned this in the section above! ✔️)</li>
 <li>How to programmatically update a <code>FormArray</code>’s value (you learned this in the section above! ✔️)</li>
