@@ -21,7 +21,7 @@ In the next section we’re going to be creating a restaurant detail view. We’
 - How to write a unit test. Here’s a codeblock to get you started:
 
   ```typescript
-  it('should make a get request to get a restaurant based on its slug', () => {
+  it('should make a GET request to get a restaurant based on its slug', () => {
     
   });
   ```

@@ -23,7 +23,7 @@ describe('RestaurantService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should make a get request to restaurants', () => {
+  it('should make a GET request to restaurants', () => {
     const mockRestaurants = {
       data: [
         {

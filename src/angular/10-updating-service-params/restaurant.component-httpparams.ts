@@ -100,9 +100,9 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
     this.form.controls.city.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((value) => {
-        if (value) {
-          this.getRestaurants(state, value);
+      .subscribe(cityName => {
+        if (cityName) {
+          this.getRestaurants(state, cityName);
         }
       });
   }
