@@ -1,7 +1,7 @@
-@page learn-angular/nested-routes Nested Restaurant Routes
+@page learn-angular/nested-routes Creating Nested Routes
 @parent learn-angular 13
 
-@description Creating nested restaurant routes
+@description Creating nested restaurant routes.
 
 @body
 
@@ -26,7 +26,7 @@ To solve this exercise you will need to know:
 - How to create a route with a param
 - How to get a route param using ActivatedRoute
 
-## Route Parameters & Child Views
+## Route parameters & child views
 
 A common pattern in SPA architecture is to serve a view of an individual piece of data from a path with an identifying parameter. Previously we’ve defined static paths with Angular’s <a href="https://angular.io/guide/router">router</a>. To create a nested route, we’ll need the slug after the slash to be dynamic. We can set a token for the router parameter with `:`. To get the slug from the route in a component, we use the <a href="https://angular.io/api/router/ActivatedRoute">ActivatedRoute</a> interface.
 
@@ -57,14 +57,15 @@ When you click the detail button on a restaurant from the restaurant list view y
 ✏️ Update the spec file **src/app/restaurant/detail/detail.component.spec.ts** to be:
 
 @sourceref ./detail.component.spec.ts
+@highlight 101-155, only
 
 ✏️ Update the spec file **src/app/app.component.spec.ts** to be:
 
 @diff ../8-state-city-options/app.component.spec.ts ./app.component.spec.ts only
 
-> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
-
 ## Solution
+
+> If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
 <details>
 <summary>Click to see the solution</summary>

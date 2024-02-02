@@ -7,7 +7,7 @@ import { RestaurantService } from '../restaurant.service';
 @Component({
   selector: 'pmo-detail',
   templateUrl: './detail.component.html',
-  styleUrl: './detail.component.less',
+  styleUrl: './detail.component.less'
 })
 export class DetailComponent implements OnInit, OnDestroy {
   restaurant?: Restaurant;
