@@ -411,7 +411,7 @@ if (typeof value === "string") {
 
 ### Any
 
-Any is useful when you want to opt-out of type checking. Using `any` will disable all compile-time checks including access to properties and functions. This is mostly useful for 3rd party data structures that you do not know the shape of, or when incrementally opting in to types.
+Any is useful when you want to opt-out of type checking. Using `any` will disable all compile-time checks including access to properties and functions. This is mostly useful for third-party data structures that you do not know the shape of, or when incrementally opting in to types.
 
 ```typescript
 let my3rdPartyData: any = 5;

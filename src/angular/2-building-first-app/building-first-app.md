@@ -93,13 +93,13 @@ This will create a new Angular Workspace, generate an app module, needed config 
 1. Which stylesheet format would you like to use? (**Less**)
 2. Do you want to enable Server-Side Rendering (SSR) and Static Site Generation (SSG/Prerendering)? (**No**)
 
-Note that we used the `--prefix` property above to set our own default prefix. Angular’s default prefix is `app`, but a good naming convention is to use a short prefix related to your company or application name, which helps to easily differentiate from 3rd party utilities.
+Note that we used the `--prefix` property above to set our own default prefix. Angular’s default prefix is `app`, but a good naming convention is to use a short prefix related to your company or application name, which helps to easily differentiate from third-party utilities.
 
 ```html
 <!-- this looks like it’s one of our own app components -->
 <pmo-header></pmo-header>
 
-<!-- safe to assume this a 3rd party -->
+<!-- safe to assume this a third-party -->
 <tabset>
   <tab heading="Basic title" id="tab1">Basic content</tab>
   <tab heading="Basic Title 1">Basic content 1</tab>
@@ -180,7 +180,7 @@ This should feel familiar - our main index page. Our entry component is highligh
 This file is the root module for our app. Every Angular app has at least one module that determines how to compile and launch an app. It uses the @@NgModule decorator with four properties:
 
 - **declarations** `[array]`: where we include components, directives, and pipes that will be used by this module.
-- **imports** `[array]`: where we include any other modules our app needs to use. This may include 3rd party modules like bootstrap datepickers, or modules we’ve created.
+- **imports** `[array]`: where we include any other modules our app needs to use. This may include third-party modules like bootstrap datepickers, or modules we’ve created.
 - **providers** `[array]`: where we include services that we want used at the global app level
 - **bootstrap** `[array]`: where we include the root `AppComponent` - this is the main Application view that hosts all of our other app views.
 
