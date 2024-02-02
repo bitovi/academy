@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Creating nested restaurant routes 
+  <meta name="description" content="Creating nested restaurant routes. 
 ">
   
   <!-- Google Tag Manager -->
@@ -22,7 +22,7 @@
   })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
   <!-- End Google Tag Manager -->
 
-  <title>Bitovi Academy - Nested Restaurant Routes</title>
+  <title>Bitovi Academy - Creating Nested Routes</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -488,8 +488,8 @@ covering CanJS core libraries.">
            						expanded">
 						<a class="page"
 							href="nested-routes.html"
-							title="Creating nested restaurant routes">
-							Nested Restaurant Routes
+							title="Creating nested restaurant routes.">
+							Creating Nested Routes
 						</a>
 						
 							
@@ -642,7 +642,7 @@ covering CanJS core libraries.">
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Nested Restaurant Routes <code>page</code></h1>
+	<h1>Creating Nested Routes <code>page</code></h1>
 </section>
 
   		
@@ -650,7 +650,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Creating nested restaurant routes</p>
+    <p>Creating nested restaurant routes.</p>
 
 </section>
 
@@ -680,7 +680,7 @@ covering CanJS core libraries.">
 <li>How to create a route with a param</li>
 <li>How to get a route param using ActivatedRoute</li>
 </ul>
-<h2>Route Parameters &amp; Child Views</h2>
+<h2>Route parameters &amp; child views</h2>
 <p>A common pattern in SPA architecture is to serve a view of an individual piece of data from a path with an identifying parameter. Previously we’ve defined static paths with Angular’s <a href="https://angular.io/guide/router">router</a>. To create a nested route, we’ll need the slug after the slash to be dynamic. We can set a token for the router parameter with <code>:</code>. To get the slug from the route in a component, we use the <a href="https://angular.io/api/router/ActivatedRoute">ActivatedRoute</a> interface.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1040,6 +1040,7 @@ describe('DetailComponent', () =&gt; {
 });
 
 </code></pre>
+<div line-highlight='101-155, only'></div>
 <p>✏️ Update the spec file <strong>src/app/app.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { Location } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
@@ -1353,10 +1354,10 @@ describe('AppComponent', () =&gt; {
 
 </code></pre>
  <div line-highlight="18,206,259,262-265,297,301,308,only"></div>
+<h2>Solution</h2>
 <blockquote>
 <p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h2>Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/app-routing.module.ts</strong></p>
@@ -1399,7 +1400,7 @@ import { RestaurantService } from '../restaurant.service';
 @Component({
   selector: 'pmo-detail',
   templateUrl: './detail.component.html',
-  styleUrl: './detail.component.less',
+  styleUrl: './detail.component.less'
 })
 export class DetailComponent implements OnInit, OnDestroy {
   restaurant?: Restaurant;
@@ -1432,7 +1433,7 @@ export class DetailComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="1-5,10,12-15,17-20,22-23,25-34,36-39,"></div>
+ <div line-highlight="1-5,12-15,17-20,22-23,25-34,36-39,"></div>
 <p></details></p>
 
 </section>
@@ -1472,7 +1473,7 @@ export class DetailComponent implements OnInit, OnDestroy {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/13-nested-routes/nested-routes.md"},"description":"Creating nested restaurant routes \n","name":"learn-angular/nested-routes","title":"Nested Restaurant Routes","type":"page","parent":"learn-angular","order":13,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/13-nested-routes/nested-routes.md"},"description":"Creating nested restaurant routes. \n","name":"learn-angular/nested-routes","title":"Creating Nested Routes","type":"page","parent":"learn-angular","order":13,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     
