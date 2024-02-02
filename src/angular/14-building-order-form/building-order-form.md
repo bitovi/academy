@@ -99,7 +99,7 @@ The order form component needs to get the restaurant from the route slug, and ne
   });
   ```
 
-## P2: How to Verify Your Solution is Correct
+## P2: How to verify your solution is correct
 
 ✏️ Update the order spec file **src/app/order/order.component.spec.ts** to be:
 
@@ -181,7 +181,7 @@ Go ahead and put your new component in the order component.
 
 @diff ./order.component-withtabs.html ./child-component/order.component-childcomponent.html only
 
-## P3: How to Verify Your Solution is Correct
+## P3: How to verify your solution is correct
 
 ✏️ Update the order spec file **src/app/order/order.component.spec.ts** to be:
 
@@ -191,7 +191,7 @@ Go ahead and put your new component in the order component.
 
 @sourceref ./child-component/menu-items.component.spec-props.ts
 
-## P3: What You Need to Know
+## P3: What you need to know
 
 ## Component Interaction
 
@@ -226,7 +226,7 @@ Components in Angular can pass data back and forth to each other through the use
 
 Next, we want to know when a checkbox has been checked or unchecked, and update an array called `selectedItems` containing all checked items.
 
-## P4: Technical Requirements
+## P4: Technical requirements
 
 Create a function in the `MenuItemsComponent` called `updateItems` that fires whenever a checkbox is checked and takes a parameter of the item that has been checked. In the `updateItems` function use the following code to update the `selectedItems` array:
 
@@ -239,7 +239,7 @@ if (index > -1) {
 }
 ```
 
-## P4: What You Need to Know
+## P4: What you need to know
 
 ## Event Handlers in Angular
 
@@ -249,7 +249,7 @@ Event binding in Angular follows a simple pattern - the event name in parenthesi
 @codepen
 @highlight 24,26,32,41-31,45-47,49-51,only
 
-## P4: How to Verify Your Solution is Correct
+## P4: How to verify your solution is correct
 
 ✏️ Update the menu-items spec file **src/app/order/menu-items/menu-items.component.spec.ts** to be:
 

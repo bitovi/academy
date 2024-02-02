@@ -260,7 +260,7 @@ To solve this problem, use Angular directives to iterate through data and displa
 
 @diff ../../../exercises/angular/3-creating-components/problem/src/app/app.component.html ./app.component.html only
 
-## P2: How to Verify Your Solution is Correct
+## P2: How to verify your solution is correct
 
 ✏️ Update the spec file **src/app/restaurant/restaurant.component.spec.ts** to be:
 

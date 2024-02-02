@@ -76,7 +76,7 @@ We want a user to be able to navigate to the `HistoryComponent` via a link in th
 You’ve seen this before. Check out how the **Home** link works in
 `app.component.html`.
 
-## P2: How to Verify Your Solution is Correct
+## P2: How to verify your solution is correct
 
 If you’ve implemented the solution correctly you should now be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see a list of all orders.
 
@@ -94,7 +94,7 @@ If you’ve implemented the solution correctly you should now be able to navigat
 
 We want to be able to see a list of all created orders and their varying statuses of "new", "preparing", "delivery", and "delivered".
 
-## P3: Technical Requirements
+## P3: Technical requirements
 
 1. List all orders in the `HistoryComponent`.
 2. Make sure the `<div>` for each order has a class name of _'order'_ and a class name that is the `order.status` value. Make sure you’ve created a new order.
@@ -113,7 +113,7 @@ iterate through orders and add the right class names to the outer `<div>` for ea
 @sourceref ./0-history.component.html
 @highlight 9,10, only
 
-## P3: How to Verify Your Solution is Correct
+## P3: How to verify your solution is correct
 
 ✏️ Update the menu-items spec file **src/app/order/history/history.component.spec.ts** to be:
 
@@ -121,7 +121,7 @@ iterate through orders and add the right class names to the outer `<div>` for ea
 
 > If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
-## P3: What You Need to Know
+## P3: What you need to know
 
 - How to import a service and get data out of it. Hint: Import it and create a
   property in the constructor.
@@ -152,7 +152,7 @@ For this step, you’ll need to know how to add multiple class names. You can do
 
 We want to create a child component that will take a list of orders by status and display them, as well as actions a user can perform on an order.
 
-## P4: Technical Requirements
+## P4: Technical requirements
 
 1. Group the orders by status.
 2. Allow the user to change the status of an order.
@@ -205,7 +205,7 @@ ng g component order/list
 
 @sourceref ./list.component.html
 
-## P4: How to Verify Your Solution is Correct
+## P4: How to verify your solution is correct
 
 ✏️ Update **src/app/order/history/history.component.spec.ts** to be:
 
@@ -217,7 +217,7 @@ ng g component order/list
 
 > If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
-## P4: What You Need to Know
+## P4: What you need to know
 
 - How to add `@Input()`s to a component so it can be passed values.
 - How to call methods on a service that you get from the `constructor`.

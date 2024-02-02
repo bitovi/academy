@@ -74,7 +74,7 @@ Now that we have updated the Login State’s shape by updating the `State` inter
 Login Reducer should include an `on()` handler that updates Login State with `userId`, `username` and `token` whenever `LoginActions.loginSuccess` Action is dispatched.
 
 
-## P3: What You Need to Know
+## P3: What you need to know
 
 We can [create NgRx Reducers](https://ngrx.io/guide/store/reducers#creating-the-reducer-function) using the [`createReducer()`](https://ngrx.io/api/store/createReducer#description) helper function.
 
@@ -103,7 +103,7 @@ When writing an `on()` handler, there are 2 arguments that we need to provide:
 Login Reducer should include an `on()` handler that resets Login State back to `initialState` whenever `LoginActions.logoutSuccess` Action is dispatched.
 
 
-## P4: What You Need to Know
+## P4: What you need to know
 
 A common requirement is to reset state. One approach might look like this:
 

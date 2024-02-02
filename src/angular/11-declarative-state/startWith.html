@@ -9,7 +9,7 @@
   const baseCaseAdded$ = pseudoRequest$.pipe(startWith([]));
 
   baseCaseAdded$.subscribe((arr) => {
-    console.log('Contents: ' + JSON.stringify(arr));
+    console.info('Contents: ' + JSON.stringify(arr));
   });
 
   // logs:

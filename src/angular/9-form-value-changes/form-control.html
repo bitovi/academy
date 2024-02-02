@@ -24,23 +24,40 @@ const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
       <label>
           First name:
           <input type="text" formControlName="firstName">
-          <p>this control is enabled: {{userForm.controls.firstName.enabled}}</p>
-          <button (click)="toggleControl(userForm.controls.firstName)">toggle firstName control</button><br />
+          <p>
+            This control is enabled:
+            {{userForm.controls.firstName.enabled}}
+          </p>
+          <button (click)="toggleControl(userForm.controls.firstName)">
+            Toggle firstName control
+          </button>
+          <br />
         </label>
         <label>
           Last name:
           <input type="text" formControlName="lastName">
-          <p>this control is enabled: {{userForm.controls.lastName.enabled}}</p>
-          <button (click)="toggleControl(userForm.controls.lastName)">toggle lastName control</button><br />
+          <p>
+            This control is enabled:
+            {{userForm.controls.lastName.enabled}}
+          </p>
+          <button (click)="toggleControl(userForm.controls.lastName)">
+            Toggle lastName control
+          </button>
+          <br />
         </label>
         <label>
           Email:
           <input type="text" formControlName="email">
-          <p>this control is enabled: {{userForm.controls.email.enabled}}</p>
-          <button (click)="toggleControl(userForm.controls.email)">toggle email control</button><br />
+          <p>
+            This control is enabled:
+            {{userForm.controls.email.enabled}}
+          </p>
+          <button (click)="toggleControl(userForm.controls.email)">
+            Toggle email control
+          </button>
+          <br />
         </label>
     </form>
-
   `
 })
 class AppComponent {
@@ -55,18 +72,18 @@ class AppComponent {
       email: {value: '', disabled: false}
     });
 
-    this.userForm.valueChanges.subscribe((val) => {
-      console.log(val);
+    this.userForm.valueChanges.subscribe((value) => {
+      console.info(value);
     });
   }
 
   toggleControl(control) {
-    let ctrl = control as FormControl;
-    if(ctrl.enabled) {
-      ctrl.disable();
+    let formControl = control as FormControl;
+    if(formControl.enabled) {
+      formControl.disable();
     }
     else {
-      ctrl.enable();
+      formControl.enable();
     }
   }
 }

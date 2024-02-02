@@ -103,8 +103,8 @@ export class OrderComponent implements OnInit, OnDestroy {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
     this.orderForm?.controls.items.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) => {
-        this.orderTotal = this.itemTotal.transform(val);
+      .subscribe((value) => {
+        this.orderTotal = this.itemTotal.transform(value);
       });
   }
 

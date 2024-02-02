@@ -50,7 +50,7 @@ class AboutComponent {
     <ng-container *ngIf="myObservable$ | async as latestObservableValue">
         {{ latestObservableValue }}
     </ng-container>
-    `
+  `
 })
 class HomeComponent implements OnInit {
   myObservable$: Observable<string>;
