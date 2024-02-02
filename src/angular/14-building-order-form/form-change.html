@@ -21,15 +21,23 @@ const { ReactiveFormsModule, FormControl } = ng.forms;
   template: `
     <p>A home component!</p>
 
-    <button (click)="willCallOnClick()">Click me!</button>
+    <button (click)="willCallOnClick()">
+      Click me!
+    </button>
     {{ clickMessage }}
-    <button (click)="willCallWithParam(clickMessage)">log click message</button>
+    <button (click)="willCallWithParam(clickMessage)">
+      Log click message
+    </button>
     <p>
       Value: {{ name.value }}
     </p>
     <label>
       Name:
-      <input type="text" [formControl]="name" (change)="willCallOnBlur($event)">
+      <input
+        type="text"
+        [formControl]="name"
+        (change)="willCallOnBlur($event)"
+      />
     </label>
   `
 })

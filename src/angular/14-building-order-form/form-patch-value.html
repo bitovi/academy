@@ -22,7 +22,10 @@ const { ReactiveFormsModule, FormGroup, FormBuilder } = ng.forms;
     <p>A home component!</p>
     <label>
       Custom input:
-      <input type="text" (change)="customChange($event)">
+      <input
+        (change)="customChange($event)"
+        type="text"
+      />
     </label>
     
     <form [formGroup]="userForm">
@@ -54,8 +57,8 @@ class AppComponent implements OnInit {
     });
   }
 
-  customChange(ev): void {
-    const newVal = ev.currentTarget.value;
+  customChange(event): void {
+    const newVal = event.currentTarget.value;
     const formControl = this.userForm.get('firstName');
     formControl.patchValue(newVal);
   }
