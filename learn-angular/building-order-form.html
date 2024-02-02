@@ -22,7 +22,7 @@
   })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
   <!-- End Google Tag Manager -->
 
-  <title>Bitovi Academy - Building the Order Form</title>
+  <title>Bitovi Academy - Binding Component Data</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -504,7 +504,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="building-order-form.html"
 							title="Building the Order Form">
-							Building the Order Form
+							Binding Component Data
 						</a>
 						
 							
@@ -642,7 +642,7 @@ covering CanJS core libraries.">
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Building the Order Form <code>page</code></h1>
+	<h1>Binding Component Data <code>page</code></h1>
 </section>
 
   		
@@ -669,12 +669,19 @@ covering CanJS core libraries.">
 <li>Create a new order component</li>
 <li>Get the restaurant from route params</li>
 <li>Add new route for ordering from a restaurant</li>
-<li>Import a 3rd party lib</li>
+<li>Import a third-party lib</li>
 <li>Create a custom component to handle item selection</li>
 </ul>
-<h2>Creating an Order Form Component</h2>
+<h2>Creating an order form component</h2>
 <p>Our order form is how we can create new orders. We’ll use a reactive form to get data from the users, use a custom validation function to make sure at least one item has been selected, and calculate the order total every time a new item is selected or unselected.</p>
-<h2>Problem 1: Create New Route for Ordering From a Restaurant</h2>
+<h2>Problem 1: Create a new route for ordering from a restaurant</h2>
+<h2>P1: What you need to know</h2>
+<ul>
+<li>How to create new components
+<pre><code class="language-bash">ng g component order
+</code></pre></li>
+<li>You’ve created routes before! You got this!</li>
+</ul>
 <h2>P1: Technical requirements</h2>
 <p>Create a new <code>order</code> component, and create a route for our new component! The path should be <code>/restaurants/{{slug}}/order</code>.</p>
 <h2>P1: How to verify your solution is correct</h2>
@@ -1006,13 +1013,6 @@ describe('AppComponent', () =&gt; {
 <blockquote>
 <p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h2>P1: What you need to know</h2>
-<ul>
-<li>How to create new components
-<pre><code class="language-bash">ng g component order
-</code></pre></li>
-<li>You’ve created routes before! You got this!</li>
-</ul>
 <h2>P1: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
@@ -1052,9 +1052,32 @@ export class AppRoutingModule {}
 </code></pre>
  <div line-highlight="4,21-24,only"></div>
 <p></details></p>
-<h2>Problem 2: Build Out the Order Component</h2>
+<h2>Problem 2: Build out the order component</h2>
 <p>We’ve covered a few concepts, like how to get the slug from the route, how to get a restaurant, how to create a form and subscribe to its changes. Let’s practice those concepts.</p>
 <p>We’ve provided some starting code to get through this section to help you get the restaurant based on the route slug, create a new reactive form to collect order information, and update the order total whenever the <code>items</code> FormControl value changes.</p>
+<h2>P2: What you need to know</h2>
+<ul>
+<li><p>How to get the restaurant from the route slug (you learned this in previous sections! ✔️)</p></li>
+<li><p>Create a reactive form (you learned this in previous sections! ✔️)</p></li>
+<li><p>Listen to form value changes (you learned this in previous sections! ✔️)</p></li>
+<li><p>Add validation:</p>
+<p>This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation">validation</a>. Here’s an example of a form with form controls with different validation, and one whose value is set to an array.</p></li>
+</ul>
+<pre><code class="language-typescript">function validateLessThan(maxValue: number): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null =&gt; {
+    if (control.value &lt; maxValue) {
+      return null;
+    }
+    return { belowMax: { valid: false } };
+  };
+}
+
+this.myValidatingForm = this.formBuilder.group({
+  name: [null, Validators.required],
+  age: [null, validateLessThan(18)],
+  hobbies: [[]]
+});
+</code></pre>
 <h2>P2: Technical requirements</h2>
 <p>The order form component needs to get the restaurant from the route slug, and needs a reactive form to collect <code>restaurant</code>, <code>name</code>, <code>address</code>, <code>phone</code>, and <code>items</code>, and a way to update the order total when the items form control changes.</p>
 <h2>P2: Setup</h2>
@@ -1215,29 +1238,6 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
-<h2>P2: What you need to know</h2>
-<ul>
-<li><p>How to get the restaurant from the route slug (you learned this in previous sections! ✔️)</p></li>
-<li><p>Create a reactive form (you learned this in previous sections! ✔️)</p></li>
-<li><p>Listen to form value changes (you learned this in previous sections! ✔️)</p></li>
-<li><p>Add validation:</p>
-<p>This time, our form will require <a href="https://angular.io/guide/form-validation#reactive-form-validation">validation</a>. Here’s an example of a form with form controls with different validation, and one that’s value is set to an array.</p>
-<pre><code class="language-typescript">function coolKidsChecker(isACoolKid: string): ValidatorFn {
-  return (control: AbstractControl): ValidationErrors | null =&gt; {
-    if (control.value === isACoolKid) {
-      return null;
-    }
-    return { coolKidsChecker: { valid: false } };
-  };
-}
-
-this.myValidatingForm = this.formBuilder.group({
-  aRequiredField: [null, Validators.required]
-  aCustomRequiredField: [null, coolKidsChecker('yes')],
-  anArrayField: [[]]
-});
-</code></pre></li>
-</ul>
 <h2>P2: How to verify your solution is correct</h2>
 <p>✏️ Update the order spec file <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -1409,6 +1409,7 @@ describe('OrderComponent', () =&gt; {
 });
 
 </code></pre>
+<div line-highlight='101-167, only'></div>
 <h2>P2: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
@@ -1536,12 +1537,12 @@ export class OrderComponent implements OnInit, OnDestroy {
 </code></pre>
  <div line-highlight="9,62-63,65-74,77-79,83-90,95-108,118,only"></div>
 <p></details></p>
-<h2>Importing 3rd Party Plugins</h2>
+<h2>Importing third-party plugins</h2>
 <p>In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let’s import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started">ngx-bootstrap</a>:</p>
 <p>✏️ Run:</p>
 <pre><code class="language-bash">ng add ngx-bootstrap
 </code></pre>
-<p>Ng add is a convenient way to import 3rd party libs that will update <code>angular.json</code> and <code>package.json</code> with any changes we need.</p>
+<p>The <code>ng add</code> command is a convenient way to import third-party libs that will update <code>angular.json</code> and <code>package.json</code> with any changes we need.</p>
 <p>✏️ Update <strong>src/app/app.module.ts</strong>. Once you’re done, don’t forget to restart the server!</p>
 <pre><code class="language-ts">import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
@@ -1654,13 +1655,87 @@ export class AppModule { }
  <div line-highlight="10-37,only"></div>
 <p>Now when we view the order form of our route, we’ll see a nice form and tabs for lunch and dinner menu options.</p>
 <p><img src="../static/img/angular/pmo-tabs-working.gif" alt="Place My Order App tabs" title="Place My Order App tabs" /></p>
-<h2>Problem 3: Create Custom Menu-Items Component</h2>
+<h2>Problem 3: Create a <code>menu-items</code> component</h2>
 <p>We’re going to build another component to use in our form to handle selecting order items. We use data-binding to pass data between components. We’ll use the <code>@Input()</code> to get our list of items from the restaurant to display in our child component, and eventually hook it into our Reactive Form using the <code>formControlName</code> attribute as shown below.</p>
 <pre><code class="language-html">&lt;pmo-menu-items
   [data]=&quot;restaurant.menu.lunch&quot;
   formControlName=&quot;items&quot;
 &gt;&lt;/pmo-menu-items&gt;
 </code></pre>
+<h2>P3: What you need to know</h2>
+<h2>Component interaction</h2>
+<p>Components in Angular can pass data back and forth to each other through the use of <a href="https://angular.io/api/core/Input">@Input</a> and <a href="https://angular.io/api/core/Output">@Output</a> decorations.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+// app.js
+const { Component, VERSION, Input } = ng.core;
+
+@Component({
+  selector: 'my-child',
+  template: `
+    My parent’s name is {{parentName}}
+  `
+})
+class ChildComponent {
+  @Input() parentName: string;
+  constructor() {
+  }
+}
+
+@Component({
+  selector: 'my-app',
+  template: `
+    &lt;my-child parentName=&quot;Bob&quot;&gt;&lt;/my-child&gt;
+
+    &lt;my-child [parentName]=&quot;momName&quot;&gt;&lt;/my-child&gt;
+  `
+})
+class AppComponent {
+  momName = 'Sandy';
+
+  constructor() {
+  }
+}
+
+// main.js
+const { BrowserModule } = ng.platformBrowser;
+const { NgModule } = ng.core;
+const { CommonModule } = ng.common;
+
+@NgModule({
+  imports: [
+    BrowserModule,
+    CommonModule,
+  ],
+  declarations: [AppComponent, ChildComponent],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='17,21,29,31,35,only'></div>
+<ul>
+<li>How to use *ngFor (you learned this in previous sections! ✔️)</li>
+<li>How to use @Input to pass properties (you learned this in the section above! ✔️)</li>
+</ul>
 <h2>P3: Setup</h2>
 <p>Create the new menu-items component inside the order component folder</p>
 <p>✏️ Run:</p>
@@ -1943,80 +2018,7 @@ describe('MenuItemsComponent', () =&gt; {
 });
 
 </code></pre>
-<h2>P3: What you need to know</h2>
-<h2>Component Interaction</h2>
-<p>Components in Angular can pass data back and forth to each other through the use of <a href="https://angular.io/api/core/Input">@Input</a> and <a href="https://angular.io/api/core/Output">@Output</a> decorations.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
-&lt;my-app&gt;&lt;/my-app&gt;
-&lt;script type=&quot;typescript&quot;&gt;
-// app.js
-const { Component, VERSION, Input } = ng.core;
-
-@Component({
-  selector: 'my-child',
-  template: `
-    My parent’s name is {{parentName}}
-  `
-})
-class ChildComponent {
-  @Input() parentName: string;
-  constructor() {
-  }
-}
-
-@Component({
-  selector: 'my-app',
-  template: `
-  &lt;my-child parentName=&quot;Bob&quot;&gt;&lt;/my-child&gt;
-
-  &lt;my-child [parentName]=&quot;momName&quot;&gt;&lt;/my-child&gt;
-  `
-})
-class AppComponent {
-  momName = 'Sandy';
-
-  constructor() {
-  }
-}
-
-// main.js
-const { BrowserModule } = ng.platformBrowser;
-const { NgModule } = ng.core;
-const { CommonModule } = ng.common;
-
-@NgModule({
-  imports: [
-    BrowserModule,
-    CommonModule,
-  ],
-  declarations: [AppComponent, ChildComponent],
-  bootstrap: [AppComponent],
-  providers: []
-})
-class AppModule {}
-
-const { platformBrowserDynamic } = ng.platformBrowserDynamic;
-
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch(err =&gt; console.error(err));
-&lt;/script&gt;
-
-
-</code></pre>
-<div class='codepen'></div>
-<div line-highlight='17,21,29,31,35,only'></div>
-<ul>
-<li>How to use *ngFor (you learned this in previous sections! ✔️)</li>
-<li>How to use @Input to pass properties (you learned this in the section above! ✔️)</li>
-</ul>
+<div line-highlight='25-36, only'></div>
 <h2>P3: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
@@ -2029,6 +2031,7 @@ platformBrowserDynamic()
 &lt;/li&gt;
 
 </code></pre>
+<div line-highlight='1-7, only'></div>
 <p>✏️ Update <strong>src/app/order/menu-items.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, Input } from '@angular/core';
 import { Item } from '../order.component';
@@ -2098,19 +2101,10 @@ export class MenuItemsComponent {
 </code></pre>
  <div line-highlight="13,18,only"></div>
 <p></details></p>
-<h2>Problem 4: Attaching Event Handlers to Item Checkboxes</h2>
+<h2>Problem 4: Attaching event handlers to item checkboxes</h2>
 <p>Next, we want to know when a checkbox has been checked or unchecked, and update an array called <code>selectedItems</code> containing all checked items.</p>
-<h2>P4: Technical requirements</h2>
-<p>Create a function in the <code>MenuItemsComponent</code> called <code>updateItems</code> that fires whenever a checkbox is checked and takes a parameter of the item that has been checked. In the <code>updateItems</code> function use the following code to update the <code>selectedItems</code> array:</p>
-<pre><code class="language-typescript">let index = this.selectedItems.indexOf(item);
-if (index &gt; -1) {
-  this.selectedItems.splice(index, 1);
-} else {
-  this.selectedItems.push(item);
-}
-</code></pre>
 <h2>P4: What you need to know</h2>
-<h2>Event Handlers in Angular</h2>
+<h2>Event handlers in Angular</h2>
 <p>Event binding in Angular follows a simple pattern - the event name in parenthesis and a function to call in quotes on the other side of an equal sign. <code>(event)=&quot;functionToCall()&quot;</code>. Any parameter(s) can be passed to the event function, but to capture the event itself use the parameter <code>$event</code></p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -2188,6 +2182,15 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='24,26,32,41-31,45-47,49-51,only'></div>
+<h2>P4: Technical requirements</h2>
+<p>Create a function in the <code>MenuItemsComponent</code> called <code>updateItems</code> that fires whenever a checkbox is checked and takes a parameter of the item that has been checked. In the <code>updateItems</code> function use the following code to update the <code>selectedItems</code> array:</p>
+<pre><code class="language-typescript">let index = this.selectedItems.indexOf(item);
+if (index &gt; -1) {
+  this.selectedItems.splice(index, 1);
+} else {
+  this.selectedItems.push(item);
+}
+</code></pre>
 <h2>P4: How to verify your solution is correct</h2>
 <p>✏️ Update the menu-items spec file <strong>src/app/order/menu-items/menu-items.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -2283,11 +2286,214 @@ export class MenuItemsComponent {
 </code></pre>
  <div line-highlight="11,13-20,only"></div>
 <p></details></p>
-<h2>Problem 5: Update OrderFormComponent with selectedItems Array from MenuItemsComponent</h2>
+<h2>Problem 5: Update <code>OrderFormComponent</code> with the <code>selectedItems</code> array from <code>MenuItemsComponent</code></h2>
 <p>Now we want to let the form know what the selected items are as they change so we can update the order total accordingly.</p>
-<h2>P5: Technical Requirements</h2>
+<h2>P5: What you need to know</h2>
+<h2>Emitting Data to Parent Components</h2>
+<p>To pass data to parent components in Angular, the <a href="https://angular.io/api/core/EventEmitter">EventEmitter</a> class is used in combination with the <a href="https://angular.io/api/core/Output">Output decorator</a>. The Output decorator marks a property to be listened to during change detection, and we call the <code>emit</code> method to broadcast the property’s new value.</p>
+<p>The parent component is listening for a change on the child component’s property and calls a function on that change that takes a parameter of the updated value.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;app-parent&gt;&lt;/app-parent&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION, OnInit, Input, Output, EventEmitter } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { ReactiveFormsModule, FormControl } = ng.forms;
+
+@Component({
+  selector: 'app-parent',
+  styles: [ `
+    :host {
+      border: solid 2px deeppink;
+      display: block;
+      overflow: hidden;
+      padding: 2em;
+    }`
+  ],
+  template: `
+    &lt;p&gt;Parent component!&lt;/p&gt;
+    &lt;p&gt;Message from child: {{ message }}&lt;/p&gt;
+    &lt;child-component (sendMessage)=&quot;getMessage($event)&quot;&gt;&lt;/child-component&gt;
+  `
+})
+class ParentComponent implements OnInit {
+  message: string;
+  constructor() {}
+
+  ngOnInit(): void {
+
+  }
+
+  getMessage(event): void {
+    this.message = event;
+  }
+}
+
+@Component({
+  selector: 'child-component',
+  styles: [ `
+    :host {
+      border: solid 2px blue;
+      display: block;
+      overflow: hidden;
+      padding: 2em;
+    }`
+  ],
+  template: `
+  &lt;p&gt;Child component&lt;/p&gt;
+  &lt;label&gt;
+    Name:
+    &lt;input type=&quot;text&quot; [formControl]=&quot;childMessage&quot;&gt;
+  &lt;/label&gt;
+  &lt;button (click)=&quot;callToEmit()&quot;&gt;send child message&lt;/button&gt;
+  `
+})
+class ChildComponent implements OnInit {
+  childMessage = new FormControl('');
+  @Output() sendMessage: EventEmitter&lt;any&gt; = new EventEmitter();
+ 
+  constructor() {}
+
+  ngOnInit(): void {
+
+  }
+
+  callToEmit(): void {
+    this.sendMessage.emit(this.childMessage.value);
+  }
+}
+
+@NgModule({
+  declarations: [ParentComponent, ChildComponent],
+  imports: [
+    BrowserModule,
+    CommonModule, 
+    ReactiveFormsModule
+  ],
+  bootstrap: [ParentComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='31,32,43-45,69,77-79,only'></div>
+<h2>Programmatically updating <code>FormArray</code> values</h2>
+<p>When we have a FormArray we need to update programmatically with a value we can use the <a href="https://angular.io/api/forms/FormArray#patchvalue"><code>patchValue</code></a> or <a href="https://angular.io/api/forms/FormArray#setvalue"><code>setValue</code></a> methods on the <code>FormArray</code> class.</p>
+<p>The difference between these two FormArray’s methods is that <code>setValue</code> replaces the current array with the new value, and <code>patchValue</code> updates the array with the new values, trying to update values where possible.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION, OnInit } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { ReactiveFormsModule, FormGroup, FormBuilder } = ng.forms;
+
+@Component({
+  selector: 'my-app',
+  template: `
+    &lt;p&gt;A home component!&lt;/p&gt;
+    &lt;label&gt;
+      Custom input:
+      &lt;input type=&quot;text&quot; (change)=&quot;customChange($event)&quot;&gt;
+    &lt;/label&gt;
+    
+    &lt;form [formGroup]=&quot;userForm&quot;&gt;
+      &lt;label&gt;
+        First name:
+        &lt;input type=&quot;text&quot; formControlName=&quot;firstName&quot;&gt;
+      &lt;/label&gt;
+      &lt;label&gt;
+        Last name:
+        &lt;input type=&quot;text&quot; formControlName=&quot;lastName&quot;&gt;
+      &lt;/label&gt;
+      &lt;label&gt;
+        Email:
+        &lt;input type=&quot;text&quot; formControlName=&quot;email&quot;&gt;
+      &lt;/label&gt;
+    &lt;/form&gt;
+  `
+})
+class AppComponent implements OnInit {
+  userForm: FormGroup;
+
+  constructor(private fb:FormBuilder) {}
+
+  ngOnInit(): void {
+    this.userForm = this.fb.group({
+      firstName: {value: '', disabled: false},
+      lastName: {value: '', disabled: false},
+      email: {value: '', disabled: false}
+    });
+  }
+
+  customChange(ev): void {
+    const newVal = ev.currentTarget.value;
+    const formControl = this.userForm.get('firstName');
+    formControl.patchValue(newVal);
+  }
+}
+//THIS IS A HACK JUST FOR CODEPEN TO WORK
+AppComponent.parameters = [FormBuilder];
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    ReactiveFormsModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='25,57-61,only'></div>
+<ul>
+<li>How to emit a value to a parent component (you learned this in the section above! ✔️)</li>
+<li>How to programmatically update a <code>FormArray</code>’s value (you learned this in the section above! ✔️)</li>
+</ul>
+<h2>P5: Technical requirements</h2>
 <p>Create an <code>itemsChanged</code> EventEmitter property that emits the <code>selectedItems</code> value every time it changes, and in the parent OrderForm component update the <code>items</code> FormControl with the value.</p>
-<h2>P5: How to Verify Your Solution is Correct</h2>
+<h2>P5: How to verify your solution is correct</h2>
 <p>✏️ Update the menu-items spec file <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -2503,209 +2709,6 @@ describe('OrderComponent', () =&gt; {
 
 </code></pre>
  <div line-highlight="8,78,171-180,182-194,196-210,only"></div>
-<h2>P5: What you need to know</h2>
-<h2>Emitting Data to Parent Components</h2>
-<p>To pass data to parent components in Angular, the <a href="https://angular.io/api/core/EventEmitter">EventEmitter</a> class is used in combination with the <a href="https://angular.io/api/core/Output">Output decorator</a>. The Output decorator marks a property to be listened to during change detection, and we call the <code>emit</code> method to broadcast the property’s new value.</p>
-<p>The parent component is listening for a change on the child component’s property and calls a function on that change that takes a parameter of the updated value.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
-&lt;base href=&quot;/&quot;&gt;
-&lt;app-parent&gt;&lt;/app-parent&gt;
-&lt;script type=&quot;typescript&quot;&gt;
-const { Component, NgModule, VERSION, OnInit, Input, Output, EventEmitter } = ng.core;
-const { BrowserModule } = ng.platformBrowser;
-const { CommonModule } = ng.common;
-const { ReactiveFormsModule, FormControl } = ng.forms;
-
-@Component({
-  selector: 'app-parent',
-  styles: [ `
-    :host {
-      border: solid 2px deeppink;
-      display: block;
-      overflow: hidden;
-      padding: 2em;
-    }`
-  ],
-  template: `
-    &lt;p&gt;Parent component!&lt;/p&gt;
-    &lt;p&gt;Message from child: {{ message }}&lt;/p&gt;
-    &lt;child-component (sendMessage)=&quot;getMessage($event)&quot;&gt;&lt;/child-component&gt;
-  `
-})
-class ParentComponent implements OnInit {
-  message: string;
-  constructor() {}
-
-  ngOnInit(): void {
-
-  }
-
-  getMessage(event): void {
-    this.message = event;
-  }
-}
-
-@Component({
-  selector: 'child-component',
-  styles: [ `
-    :host {
-      border: solid 2px blue;
-      display: block;
-      overflow: hidden;
-      padding: 2em;
-    }`
-  ],
-  template: `
-  &lt;p&gt;Child component&lt;/p&gt;
-  &lt;label&gt;
-    Name:
-    &lt;input type=&quot;text&quot; [formControl]=&quot;childMessage&quot;&gt;
-  &lt;/label&gt;
-  &lt;button (click)=&quot;callToEmit()&quot;&gt;send child message&lt;/button&gt;
-  `
-})
-class ChildComponent implements OnInit {
-  childMessage = new FormControl('');
-  @Output() sendMessage: EventEmitter&lt;any&gt; = new EventEmitter();
- 
-  constructor() {}
-
-  ngOnInit(): void {
-
-  }
-
-  callToEmit(): void {
-    this.sendMessage.emit(this.childMessage.value);
-  }
-}
-
-@NgModule({
-  declarations: [ParentComponent, ChildComponent],
-  imports: [
-    BrowserModule,
-    CommonModule, 
-    ReactiveFormsModule
-  ],
-  bootstrap: [ParentComponent],
-  providers: []
-})
-class AppModule {}
-
-const { platformBrowserDynamic } = ng.platformBrowserDynamic;
-
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch(err =&gt; console.error(err));
-&lt;/script&gt;
-
-
-</code></pre>
-<div class='codepen'></div>
-<div line-highlight='31,32,43-45,69,77-79,only'></div>
-<h2>Programmatically Updating FormArray Values</h2>
-<p>When we have a FormArray we need to update programmatically with a value we can use the <a href="https://angular.io/api/forms/FormArray#patchvalue"><code>patchValue</code></a> or <a href="https://angular.io/api/forms/FormArray#setvalue"><code>setValue</code></a> methods on the <code>FormArray</code> class.</p>
-<p>The difference between these two FormArray’s methods is that <code>setValue</code> replaces the current array with the new value, and <code>patchValue</code> updates the array with the new values, trying to update values where possible.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
-&lt;base href=&quot;/&quot;&gt;
-&lt;my-app&gt;&lt;/my-app&gt;
-&lt;script type=&quot;typescript&quot;&gt;
-const { Component, NgModule, VERSION, OnInit } = ng.core;
-const { BrowserModule } = ng.platformBrowser;
-const { CommonModule } = ng.common;
-const { ReactiveFormsModule, FormGroup, FormBuilder } = ng.forms;
-
-@Component({
-  selector: 'my-app',
-  template: `
-    &lt;p&gt;A home component!&lt;/p&gt;
-    &lt;label&gt;
-      Custom input:
-      &lt;input type=&quot;text&quot; (change)=&quot;customChange($event)&quot;&gt;
-    &lt;/label&gt;
-    
-    &lt;form [formGroup]=&quot;userForm&quot;&gt;
-      &lt;label&gt;
-        First name:
-        &lt;input type=&quot;text&quot; formControlName=&quot;firstName&quot;&gt;
-      &lt;/label&gt;
-      &lt;label&gt;
-        Last name:
-        &lt;input type=&quot;text&quot; formControlName=&quot;lastName&quot;&gt;
-      &lt;/label&gt;
-      &lt;label&gt;
-        Email:
-        &lt;input type=&quot;text&quot; formControlName=&quot;email&quot;&gt;
-      &lt;/label&gt;
-    &lt;/form&gt;
-  `
-})
-class AppComponent implements OnInit {
-  userForm: FormGroup;
-
-  constructor(private fb:FormBuilder) {}
-
-  ngOnInit(): void {
-    this.userForm = this.fb.group({
-      firstName: {value: '', disabled: false},
-      lastName: {value: '', disabled: false},
-      email: {value: '', disabled: false}
-    });
-  }
-
-  customChange(ev): void {
-    const newVal = ev.currentTarget.value;
-    const formControl = this.userForm.get('firstName');
-    formControl.patchValue(newVal);
-  }
-}
-//THIS IS A HACK JUST FOR CODEPEN TO WORK
-AppComponent.parameters = [FormBuilder];
-
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    ReactiveFormsModule
-  ],
-  bootstrap: [AppComponent],
-  providers: []
-})
-class AppModule {}
-
-const { platformBrowserDynamic } = ng.platformBrowserDynamic;
-
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch(err =&gt; console.error(err));
-&lt;/script&gt;
-
-
-</code></pre>
-<div class='codepen'></div>
-<div line-highlight='25,57-61,only'></div>
-<ul>
-<li>How to emit a value to a parent component (you learned this in the section above! ✔️)</li>
-<li>How to programmatically update a <code>FormArray</code>’s value (you learned this in the section above! ✔️)</li>
-</ul>
 <h2>P5: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
@@ -3052,7 +3055,7 @@ export class MenuItemsComponent implements ControlValueAccessor {
 </code></pre>
  <div line-highlight="15,23,only"></div>
 <p>We now have a form that updates the <code>items</code> formControl when items are selected and shows the user an updated total!</p>
-<h3>Update Order Component Tests</h3>
+<h3>Update order component Tests</h3>
 <p>✏️ Update the order spec file <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -3295,7 +3298,7 @@ describe('OrderComponent', () =&gt; {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/14-building-order-form/building-order-form.md"},"description":"Building the Order Form \n","name":"learn-angular/building-order-form","title":"Building the Order Form","type":"page","parent":"learn-angular","order":14,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/14-building-order-form/building-order-form.md"},"description":"Building the Order Form \n","name":"learn-angular/building-order-form","title":"Binding Component Data","type":"page","parent":"learn-angular","order":14,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

@@ -507,7 +507,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="building-order-form.html"
 							title="Building the Order Form">
-							Building the Order Form
+							Binding Component Data
 						</a>
 						
 					</li>
@@ -723,11 +723,11 @@ cd place-my-order
 <li>Which stylesheet format would you like to use? (<strong>Less</strong>)</li>
 <li>Do you want to enable Server-Side Rendering (SSR) and Static Site Generation (SSG/Prerendering)? (<strong>No</strong>)</li>
 </ol>
-<p>Note that we used the <code>--prefix</code> property above to set our own default prefix. Angular’s default prefix is <code>app</code>, but a good naming convention is to use a short prefix related to your company or application name, which helps to easily differentiate from 3rd party utilities.</p>
+<p>Note that we used the <code>--prefix</code> property above to set our own default prefix. Angular’s default prefix is <code>app</code>, but a good naming convention is to use a short prefix related to your company or application name, which helps to easily differentiate from third-party utilities.</p>
 <pre><code class="language-html">&lt;!-- this looks like it’s one of our own app components --&gt;
 &lt;pmo-header&gt;&lt;/pmo-header&gt;
 
-&lt;!-- safe to assume this a 3rd party --&gt;
+&lt;!-- safe to assume this a third-party --&gt;
 &lt;tabset&gt;
   &lt;tab heading=&quot;Basic title&quot; id=&quot;tab1&quot;&gt;Basic content&lt;/tab&gt;
   &lt;tab heading=&quot;Basic Title 1&quot;&gt;Basic content 1&lt;/tab&gt;
@@ -833,7 +833,7 @@ While new Angular apps default to standalone <code>true</code>, for the purposes
 <p>This file is the root module for our app. Every Angular app has at least one module that determines how to compile and launch an app. It uses the @NgModule decorator with four properties:</p>
 <ul>
 <li><strong>declarations</strong> <code>[array]</code>: where we include components, directives, and pipes that will be used by this module.</li>
-<li><strong>imports</strong> <code>[array]</code>: where we include any other modules our app needs to use. This may include 3rd party modules like bootstrap datepickers, or modules we’ve created.</li>
+<li><strong>imports</strong> <code>[array]</code>: where we include any other modules our app needs to use. This may include third-party modules like bootstrap datepickers, or modules we’ve created.</li>
 <li><strong>providers</strong> <code>[array]</code>: where we include services that we want used at the global app level</li>
 <li><strong>bootstrap</strong> <code>[array]</code>: where we include the root <code>AppComponent</code> - this is the main Application view that hosts all of our other app views.</li>
 </ul>
