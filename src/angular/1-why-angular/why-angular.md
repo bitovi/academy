@@ -21,7 +21,7 @@ Angular’s use of TypeScript enhances developer experience by enabling early er
 
 ### 2. Testing Built In
 
-Angular's commitment to quality is evident in its built-in testing framework. Upon initiating a new Angular Workspace, developers are greeted with a ready-to-use test suite, complete with a configured Karma setup and test spec files for newly generated components. This seamless integration underscores Angular's emphasis on reliability and maintainability in web development.
+Angular’s commitment to quality is evident in its built-in testing framework. Upon initiating a new Angular Workspace, developers are greeted with a ready-to-use test suite, complete with a configured Karma setup and test spec files for newly generated components. This seamless integration underscores Angular’s emphasis on reliability and maintainability in web development.
 
 ### 3. Harnesses the Power of Modern Bundlers
 
