@@ -325,7 +325,7 @@ it within the `ResponseData` interface which is used by `httpClient.get`:
 
 @diff ./restaurant.service-1.ts ./restaurant.service.ts
 
-## P2: How to Verify Your Solution is Correct
+## P2: How to verify your solution is correct
 
 ✏️ Update the spec file **src/app/restaurant/restaurant.service.spec.ts** to be:
 

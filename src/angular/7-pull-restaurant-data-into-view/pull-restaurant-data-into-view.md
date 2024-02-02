@@ -52,7 +52,7 @@ const observable = Observable.create(function (observer) {
 });
 
 observable.subscribe(function subscriber(value) {
-  console.log('got value ' + value);
+  console.info('got value ' + value);
   // Logs 1, 2, 3
 });
 </script>

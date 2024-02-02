@@ -48,8 +48,8 @@ class AppComponent {
       email: {value: '', disabled: false}
     });
 
-    this.userForm.valueChanges.subscribe((val) => {
-      console.log(val);
+    this.userForm.valueChanges.subscribe((value) => {
+      console.info(value);
     });
   }
 }

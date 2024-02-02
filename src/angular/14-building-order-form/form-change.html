@@ -43,11 +43,11 @@ class AppComponent {
   }
 
   willCallWithParam(message: string): void {
-    console.log(message + ' from my 1st click')
+    console.info(message + ' from my 1st click')
   }
 
   willCallOnBlur(event): void {
-    console.log('value', event.target.value);
+    console.info('value', event.target.value);
   }
 }
 

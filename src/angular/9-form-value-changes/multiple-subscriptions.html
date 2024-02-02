@@ -94,14 +94,14 @@ class HomeComponent implements OnInit, OnDestroy {
 
     this.myObservable$
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) => {
-        this.myDisplayValue = val;
+      .subscribe((value) => {
+        this.myDisplayValue = value;
       });
 
     this.myOtherObservable$
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) => {
-        this.myOtherDisplayValue = val;
+      .subscribe((value) => {
+        this.myOtherDisplayValue = value;
       });
   }
 

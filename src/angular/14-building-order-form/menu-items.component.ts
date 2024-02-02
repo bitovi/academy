@@ -25,9 +25,9 @@ export class MenuItemsComponent implements ControlValueAccessor {
     return this._value;
   }
 
-  set value(val) {
-    this._value = val;
-    this.onChange(val);
+  set value(value) {
+    this._value = value;
+    this.onChange(value);
     this.onTouched();
   }
 

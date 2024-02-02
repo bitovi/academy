@@ -81,8 +81,8 @@ class HomeComponent implements OnInit, OnDestroy {
       email: {value: '', disabled: false}
     });
 
-    this.userForm.valueChanges.pipe(takeUntil(this.onDestroy$)).subscribe((val) => {
-      console.log(val);
+    this.userForm.valueChanges.pipe(takeUntil(this.onDestroy$)).subscribe((value) => {
+      console.info(value);
     });
 
   }

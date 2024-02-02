@@ -114,7 +114,7 @@ ng test
 
 ## Problem 3: Use the OrderService in the OrderComponent to Create an Order
 
-## P3: Technical Requirements
+## P3: Technical requirements
 
 For this problem, we will:
 
@@ -148,7 +148,7 @@ a `startNewOrder` that will start a new order.
 
 @diff ../14-building-order-form/child-component/order-2.component.ts ./order.component.ts only
 
-## P3: How to Verify Your Solution is Correct
+## P3: How to verify your solution is correct
 
 If you’ve implemented everything correctly, you should now be able to create an order from the UI and see a record of your completed order once it’s created.
 
@@ -158,7 +158,7 @@ If you’ve implemented everything correctly, you should now be able to create a
 
 > If you’ve implemented the solution correctly, when you run `npm run test` all tests will pass!
 
-## P3: What You Need to Know
+## P3: What you need to know
 
 - How to import a service
 - How to call a method on a service and get the result
