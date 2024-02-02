@@ -237,7 +237,7 @@ Event binding in Angular follows a simple pattern - the event name in parenthesi
 
 @sourceref ./form-change.html
 @codepen
-@highlight 24,26,32,41-31,45-47,49-51,only
+@highlight 24,26,32,41-43,45-47,49-51,only
 
 ## P4: Technical requirements
 
@@ -286,7 +286,7 @@ The parent component is listening for a change on the child component’s proper
 
 @sourceref ./event-emitter.html
 @codepen
-@highlight 31,32,43-45,69,77-79,only
+@highlight 31-33,44-46,65,70,78-80,only
 
 ## Programmatically updating `FormArray` values
 
@@ -296,7 +296,7 @@ The difference between these two FormArray’s methods is that `setValue` replac
 
 @sourceref ./form-patch-value.html
 @codepen
-@highlight 25,57-61,only
+@highlight 25-28,60-64,only
 
 - How to emit a value to a parent component (you learned this in the section above! ✔️)
 - How to programmatically update a `FormArray`’s value (you learned this in the section above! ✔️)
