@@ -428,7 +428,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="form-value-changes.html"
 							title="Learn how to listen to form value changes with Angular.">
-							Filter Cities by State
+							Listening to Form Changes
 						</a>
 						
 					</li>
@@ -1029,7 +1029,7 @@ export class OrderService {
  <div line-highlight="1,3-4,33,35-39,41-50,52-61,63-65,only"></div>
 <p></details></p>
 <h2>Problem 3: Use the OrderService in the OrderComponent to Create an Order</h2>
-<h2>P3: Technical Requirements</h2>
+<h2>P3: Technical requirements</h2>
 <p>For this problem, we will:</p>
 <ul>
 <li>Create an order when the user submits the form using the service.</li>
@@ -1254,10 +1254,10 @@ export class OrderComponent implements OnInit, OnDestroy {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
     this.orderForm?.controls.items.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) =&gt; {
+      .subscribe((value) =&gt; {
         let total = 0.0;
-        if (val.length) {
-          for (const item of val) {
+        if (value.length) {
+          for (const item of value) {
             total += item.price;
           }
           this.orderTotal = Math.round(total * 100) / 100;
@@ -1282,7 +1282,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 
 </code></pre>
  <div line-highlight="115-117,125,only"></div>
-<h2>P3: How to Verify Your Solution is Correct</h2>
+<h2>P3: How to verify your solution is correct</h2>
 <p>If you’ve implemented everything correctly, you should now be able to create an order from the UI and see a record of your completed order once it’s created.</p>
 <p>✏️ Update the menu-items spec file <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -1594,7 +1594,7 @@ describe('OrderComponent', () =&gt; {
 <blockquote>
 <p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h2>P3: What You Need to Know</h2>
+<h2>P3: What you need to know</h2>
 <ul>
 <li>How to import a service</li>
 <li>How to call a method on a service and get the result</li>
@@ -1707,10 +1707,10 @@ export class OrderComponent implements OnInit, OnDestroy {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
     this.orderForm?.controls.items.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) =&gt; {
+      .subscribe((value) =&gt; {
         let total = 0.0;
-        if (val.length) {
-          for (const item of val) {
+        if (value.length) {
+          for (const item of value) {
             total += item.price;
           }
           this.orderTotal = Math.round(total * 100) / 100;

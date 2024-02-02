@@ -22,7 +22,7 @@
   })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
   <!-- End Google Tag Manager -->
 
-  <title>Bitovi Academy - Filter Cities by State</title>
+  <title>Bitovi Academy - Listening to Form Changes</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -429,7 +429,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="form-value-changes.html"
 							title="Learn how to listen to form value changes with Angular.">
-							Filter Cities by State
+							Listening to Form Changes
 						</a>
 						
 							
@@ -642,7 +642,7 @@ covering CanJS core libraries.">
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Filter Cities by State <code>page</code></h1>
+	<h1>Listening to Form Changes <code>page</code></h1>
 </section>
 
   		
@@ -676,7 +676,7 @@ covering CanJS core libraries.">
 <li>Learn about Generics</li>
 <li>Get state and city data in the Restaurant Component</li>
 </ul>
-<h2>Problem 1: Listen to Changes on the State and City formControls and log their value to the console</h2>
+<h2>Problem 1: Listen to changes on the state and city formControls and log their value to the console</h2>
 <p>Our end goal is to be able to show restaurants based on state, then city. As we move through getting each piece of information from the user we want to be able to update the next step - like getting a list of cities based on the state selected. We’ll implement this form functionality in a few small steps.</p>
 <h2>P1: What you need to know</h2>
 <ul>
@@ -688,7 +688,7 @@ covering CanJS core libraries.">
 <p>For a more robust understanding of Observables, Subscriptions, and other RxJS core tenants check out our <a href="../learn-rxjs.html">RxJS guide</a>. For the following exercises, Observables are lazy collections of multiple values over time. We can subscribe to Observables to get any new data, or create and add to Subscriptions of Observables.</p>
 <p>This example shows creating a Subscription to an Observable, saving it’s value to a member on the component and displaying it in the template. This is useful for when we want to capture an Observable’s values and make changes based on them, but Subscriptions do need to be cleaned up to avoid memory leaks.</p>
 <p>Whenever a component is destroyed an <a href="https://angular.io/api/core/OnDestroy">ngOnDestroy</a> method is called. This is a good place to put our cleanup code, like unsubscribing from Observables.</p>
-<p>In this example, click the button to start subscribing to the Observables - you’ll see two variables logged: the new Observable value and the Subscription value. Then click the &quot;remove component&quot; button to see what happens when a component is destroyed. Next delete lines 90 and 91, follow the same process and see what happens!</p>
+<p>In this example, click the button to start subscribing to the Observables - you’ll see two variables logged: the new <code>Observable</code> value and the Subscription value. Then click the &quot;remove component&quot; button to see what happens when a component is destroyed. Next delete lines 92 and 93, follow the same process and see what happens!</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -716,18 +716,18 @@ class ObsService {
 
   getObs(): Observable&lt;number&gt; {
     return new Observable&lt;number&gt;(observer =&gt; {
-      console.log('New subscription created');
+      console.info('New subscription created');
       let count = 0;
       
       const interval = setInterval(() =&gt; {
         count++;
-        console.log(&quot;incrementing&quot;, count); 
+        console.info(&quot;incrementing&quot;, count); 
         observer.next(count);
       }, 1000);
     
       return () =&gt; {
-        clearInterval(interval);
-        console.log('unsubscribed');
+        clearIntervalue(interval);
+        console.info('unsubscribed');
       }
     })
   }
@@ -736,29 +736,31 @@ class ObsService {
 @Component({
   selector: 'my-app',
   template: `
-    &lt;destroy-component *ngIf=&quot;yayComponent&quot;&gt;&lt;/destroy-component&gt;
-    &lt;button (click)=&quot;removeComponent()&quot; *ngIf=&quot;yayComponent&quot;&gt;remove component&lt;/button&gt;
-    &lt;p *ngIf=&quot;!yayComponent&quot;&gt;I am a very sad empty component now&lt;/p&gt;
+    &lt;destroy-component *ngIf=&quot;showComponent&quot;&gt;&lt;/destroy-component&gt;
+    &lt;button (click)=&quot;removeComponent()&quot; *ngIf=&quot;showComponent&quot;&gt;
+      Remove component
+    &lt;/button&gt;
+    &lt;p *ngIf=&quot;!showComponent&quot;&gt;The component has been removed.&lt;/p&gt;
   `
 })
 class AppComponent {
-  yayComponent: boolean = true;
+  showComponent: boolean = true;
   
   constructor() {}
 
   removeComponent(): void {
-    this.yayComponent = false;
+    this.showComponent = false;
   }
 }
 
 @Component({
   selector: 'destroy-component',
   template: `
-    &lt;p&gt;This component will be destroyed. Rawr.&lt;/p&gt;
-    &lt;button (click)=&quot;startObservable()&quot;&gt;start observable&lt;/button&gt;
+    &lt;p&gt;This component will be destroyed. 🪄&lt;/p&gt;
+    &lt;button (click)=&quot;startObservable()&quot;&gt;Start observable&lt;/button&gt;
 
     &lt;p&gt;{{ myDisplayValue }}&lt;/p&gt;
-    `
+  `
 })
 class DestroyComponent implements OnDestroy {
   private onDestroy$ = new Subject&lt;void&gt;();
@@ -767,17 +769,17 @@ class DestroyComponent implements OnDestroy {
   constructor(private obsService: ObsService) {}
 
   startObservable(): void {
-    // subscribing to a service that emits observable values every second.
+    // Subscribing to a service that emits observable values every second.
     this.obsService.getObs()
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) =&gt; {
-        console.log('new value', val);
-        this.myDisplayValue = val;
+      .subscribe((value) =&gt; {
+        console.info('new value', value);
+        this.myDisplayValue = value;
       });
   }
 
   ngOnDestroy(): void {
-    console.log('destroying component');
+    console.info('destroying component');
     this.onDestroy$.next();
     this.onDestroy$.complete();
   }
@@ -807,8 +809,8 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='48,49,54,58-60,67,73,78-85,89-91,only'></div>
-<p>This example shows creating a Subscription to an Observable, and using an <a href="https://angular.io/api/common/AsyncPipe">async pipe</a> to display the value. This is useful for displaying Observable values in templates without the need to unsubscribe as that’s handled by the pipe when the component is destroyed .</p>
+<div line-highlight='48,49-51,56,60-62,69,75,80-88,92-93,only'></div>
+<p>This example shows creating a Subscription to an <code>Observable</code>, and using an <a href="https://angular.io/api/common/AsyncPipe">async pipe</a> to display the value. This is useful for displaying <code>Observable</code> values in templates without the need to unsubscribe as that’s handled by the pipe when the component is destroyed .</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
 &lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
@@ -861,7 +863,7 @@ class AboutComponent {
     &lt;ng-container *ngIf=&quot;myObservable$ | async as latestObservableValue&quot;&gt;
         {{ latestObservableValue }}
     &lt;/ng-container&gt;
-    `
+  `
 })
 class HomeComponent implements OnInit {
   myObservable$: Observable&lt;string&gt;;
@@ -1015,14 +1017,14 @@ class HomeComponent implements OnInit, OnDestroy {
 
     this.myObservable$
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) =&gt; {
-        this.myDisplayValue = val;
+      .subscribe((value) =&gt; {
+        this.myDisplayValue = value;
       });
 
     this.myOtherObservable$
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) =&gt; {
-        this.myOtherDisplayValue = val;
+      .subscribe((value) =&gt; {
+        this.myOtherDisplayValue = value;
       });
   }
 
@@ -1070,7 +1072,47 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='58,95-99,101-105,109-110,only'></div>
-<h2>Listening to Form Changes</h2>
+<h3>Handling errors</h3>
+<p>When an <code>Observable</code> encounters an error, it emits an error notification and terminates the stream. Proper error handling ensures your application can manage and respond to errors gracefully.</p>
+<p>You can handle errors directly in the subscription by providing an error handling function. This function is called if the <code>Observable</code> emits an error.</p>
+<p>Here’s an example:</p>
+<pre><code class="language-js">of([1, 2, 3]).subscribe({
+  next: (v) =&gt; console.info(v),
+  error: (e) =&gt; console.error(e),
+  complete: () =&gt; console.info('complete')
+});
+</code></pre>
+<div line-highlight='3'></div>
+<p>In this pattern, the subscription object includes next for handling emitted values, error for handling errors, and complete for handling the completion of the <code>Observable</code> stream.</p>
+<p>The <code>catchError</code> operator is a more versatile tool for error handling. It allows you to intercept an error and return a new <code>Observable</code> or rethrow an error. This can be useful for implementing fallback values or more complex error handling strategies.</p>
+<pre><code class="language-js">of([1, 2, 31]).pipe(
+  catchError(() =&gt; {
+    return of([]);
+  })
+).subscribe({
+  next: returnedObservable =&gt; {
+    console.info(returnedObservable);
+  },
+  error: console.error
+});
+</code></pre>
+<div line-highlight='2-3, 6-7'></div>
+<p>In the case above, catchError is used to intercept an error and return an empty array as a fallback, ensuring that the <code>Observable</code> stream does not terminate on error.</p>
+<p>Sometimes, you might want to perform some operation on the error and then rethrow it. This can be done within <code>catchError</code>.</p>
+<pre><code class="language-js">of([1, 2, 31]).pipe(
+  catchError(error =&gt; {
+    throw `Caught error: ${error}`;
+  })
+).subscribe({
+  next: console.info,
+  error: thrownError =&gt; {
+    console.error(thrownError);
+  }
+});
+</code></pre>
+<div line-highlight='2-3, 7-8'></div>
+<p>Here, <code>catchError</code> catches the error, modifies it, and then rethrows it. The rethrown error is then handled in the error callback of the subscription.</p>
+<h2>Listening to form changes</h2>
 <p>We can listen to changes to values on <code>FormControl</code>s and <code>FormGroup</code> using the <code>valueChanges</code> method, which emits an Observable. The following example subscribes to any changes to the <code>FormGroup</code> (which must be unsubscribed on destroy to avoid memory leaks).</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
@@ -1122,8 +1164,8 @@ class AppComponent {
       email: {value: '', disabled: false}
     });
 
-    this.userForm.valueChanges.subscribe((val) =&gt; {
-      console.log(val);
+    this.userForm.valueChanges.subscribe((value) =&gt; {
+      console.info(value);
     });
   }
 }
@@ -1154,112 +1196,79 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='51-53,only'></div>
-<h2>Call Methods on FormControls</h2>
-<p>The ReactiveForms API makes it easy for us to change our <code>FormControl</code>s as needed. As a reminder, the <code>FormControl</code> class extends the <a href="https://angular.io/api/forms/AbstractControl">AbstractControl</a> class which has a lot of helpful properties and methods on it. The following example shows enabling and disabling controls via the <code>enable</code> and <code>disable</code> methods, and displaying the <code>enabled</code> FormControl property.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
-&lt;base href=&quot;/&quot;&gt;
-&lt;my-app&gt;&lt;/my-app&gt;
-&lt;script type=&quot;typescript&quot;&gt;
-const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
-const { BrowserModule } = ng.platformBrowser;
-const { CommonModule } = ng.common;
-const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
-
-@Component({
-  selector: 'my-app',
-  template: `
-    &lt;p&gt;A home component!&lt;/p&gt;
-    &lt;form [formGroup]=&quot;userForm&quot;&gt;
-      &lt;label&gt;
-          First name:
-          &lt;input type=&quot;text&quot; formControlName=&quot;firstName&quot;&gt;
-          &lt;p&gt;this control is enabled: {{userForm.controls.firstName.enabled}}&lt;/p&gt;
-          &lt;button (click)=&quot;toggleControl(userForm.controls.firstName)&quot;&gt;toggle firstName control&lt;/button&gt;&lt;br /&gt;
-        &lt;/label&gt;
-        &lt;label&gt;
-          Last name:
-          &lt;input type=&quot;text&quot; formControlName=&quot;lastName&quot;&gt;
-          &lt;p&gt;this control is enabled: {{userForm.controls.lastName.enabled}}&lt;/p&gt;
-          &lt;button (click)=&quot;toggleControl(userForm.controls.lastName)&quot;&gt;toggle lastName control&lt;/button&gt;&lt;br /&gt;
-        &lt;/label&gt;
-        &lt;label&gt;
-          Email:
-          &lt;input type=&quot;text&quot; formControlName=&quot;email&quot;&gt;
-          &lt;p&gt;this control is enabled: {{userForm.controls.email.enabled}}&lt;/p&gt;
-          &lt;button (click)=&quot;toggleControl(userForm.controls.email)&quot;&gt;toggle email control&lt;/button&gt;&lt;br /&gt;
-        &lt;/label&gt;
-    &lt;/form&gt;
-
-  `
-})
-class AppComponent {
-  userForm: FormGroup;
-
-  constructor(private fb:FormBuilder) {}
-
-  ngOnInit() {
-    this.userForm = this.fb.group({
-      firstName: {value: '', disabled: false},
-      lastName: {value: '', disabled: false},
-      email: {value: '', disabled: false}
-    });
-
-    this.userForm.valueChanges.subscribe((val) =&gt; {
-      console.log(val);
-    });
-  }
-
-  toggleControl(control) {
-    let ctrl = control as FormControl;
-    if(ctrl.enabled) {
-      ctrl.disable();
-    }
-    else {
-      ctrl.enable();
-    }
-  }
-}
-//THIS IS A HACK JUST FOR CODEPEN TO WORK
-AppComponent.parameters = [FormBuilder];
-            
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    ReactiveFormsModule
-  ],
-  bootstrap: [AppComponent],
-  providers: []
-})
-class AppModule {}
-
-const { platformBrowserDynamic } = ng.platformBrowserDynamic;
-
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch(err =&gt; console.error(err));
-&lt;/script&gt;
-
-
-</code></pre>
-<div class='codepen'></div>
-<div line-highlight='27-28,33-34,39-40,63-71,only'></div>
 <h2>P1: Technical requirements</h2>
 <ol>
 <li>Subscribe to the <code>state</code> and <code>city</code> formControl value changes and log the resulting value to the console.</li>
 <li>Unsubscribe from Subscriptions within <code>restaurant.component</code> in the <code>ngOnDestroy</code> function</li>
 </ol>
-<h2>P1: To Verify Your Solution is Correct</h2>
+<h2>P1: Setup</h2>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong> to be:</p>
+<pre><code class="language-ts">import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { Subject, takeUntil } from 'rxjs';
+import { Restaurant } from './restaurant';
+import { ResponseData, RestaurantService } from './restaurant.service';
+
+export interface Data {
+  value: Restaurant[];
+  isPending: boolean;
+}
+
+@Component({
+  selector: 'pmo-restaurant',
+  templateUrl: './restaurant.component.html',
+  styleUrl: './restaurant.component.less',
+})
+export class RestaurantComponent implements OnInit {
+  form: FormGroup&lt;{
+    state: FormControl&lt;string&gt;;
+    city: FormControl&lt;string&gt;;
+  }&gt; = this.createForm();
+
+  restaurants: Data = {
+    value: [],
+    isPending: false,
+  };
+
+  states = {
+    isPending: false,
+    value: [
+      { name: 'Illinois', short: 'IL' },
+      { name: 'Wisconsin', short: 'WI' },
+    ],
+  };
+
+  cities = {
+    isPending: false,
+    value: [{ name: 'Springfield' }, { name: 'Madison' }],
+  };
+
+  constructor(
+    private restaurantService: RestaurantService,
+    private fb: FormBuilder
+  ) {}
+
+  ngOnInit(): void {
+    this.restaurants.isPending = true;
+    this.restaurantService.getRestaurants().subscribe((res: ResponseData) =&gt; {
+      this.restaurants.value = res.data;
+      this.restaurants.isPending = false;
+    });
+  }
+
+  createForm(): FormGroup&lt;{
+    state: FormControl&lt;string&gt;;
+    city: FormControl&lt;string&gt;;
+  }&gt; {
+    return this.fb.nonNullable.group({
+      state: { value: '', disabled: false },
+      city: { value: '', disabled: false },
+    });
+  }
+}
+</code></pre>
+ <div line-highlight="1,3,only"></div>
+<h2>P1: How to verify your solution is correct</h2>
 <p>When you interact with the dropdown menus, you should see their values logged to the console as you change them.</p>
 <h2>P1: Solution</h2>
 <p><details>
@@ -1324,14 +1333,14 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
     this.form.controls.state.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) =&gt; {
-        console.log('state', val);
+      .subscribe((value) =&gt; {
+        console.info('state', value);
       });
 
     this.form.controls.city.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) =&gt; {
-        console.log('city', val);
+      .subscribe((value) =&gt; {
+        console.info('city', value);
       });
   }
 
@@ -1352,10 +1361,10 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
-<div line-highlight='1,3,17,41,42,50-73'></div>
+ <div line-highlight="17,41,50-56,58-62,64-68,71-73,84,only"></div>
 <p></details></p>
 <p>Now that we know how to get values from our dropdowns, let’s populate them with real data. We can get our list of states immediately, but to get our cities, we’ll want to make a GET request based on the state the user selected.</p>
-<h2>Problem 2: Write Service Methods to Get States and Cities from API</h2>
+<h2>Problem 2: Write service methods to get states and cities from API</h2>
 <p>We want to be able to get lists of cities and states from our API to populate the dropdown options.</p>
 <h2>P2: What you need to know</h2>
 <h2>How to use HttpParams</h2>
@@ -1455,7 +1464,35 @@ platformBrowserDynamic()
 <p>Write two new methods in the <code>RestaurantsService</code> to get state and city lists.</p>
 <p>Method 1 - <code>getStates</code> takes no params and makes a request to <code>'/states'</code></p>
 <p>Method 2 - <code>getCities</code>, takes a string param called <code>state</code> and makes a request to <code>'/cities?state=&quot;{state abbreviation here}&quot;'</code></p>
-<h2>P2: How to Verify Your Solution is Correct</h2>
+<h2>P2: Setup</h2>
+<p>✏️ Update <strong>src/app/restaurant/restaurant.service.ts</strong></p>
+<pre><code class="language-ts">import { HttpClient, HttpParams } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
+import { Restaurant } from './restaurant';
+
+export interface ResponseData {
+  data: Restaurant[];
+}
+
+@Injectable({
+  providedIn: 'root'
+})
+export class RestaurantService {
+
+  constructor(private httpClient: HttpClient) {}
+
+  getRestaurants(): Observable&lt;ResponseData&gt; {
+    return this.httpClient.get&lt;ResponseData&gt;(
+      environment.apiUrl + '/restaurants'
+    );
+  }
+}
+
+</code></pre>
+ <div line-highlight="1,only"></div>
+<h2>P2: How to verify your solution is correct</h2>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
   HttpClientTestingModule,
@@ -1630,10 +1667,10 @@ describe('RestaurantService', () =&gt; {
 
 </code></pre>
  <div line-highlight="136-139,141-143,145-146,148-149,151-152,154-157,159-161,163-166,168-169,only"></div>
+<h2>P2: Solution</h2>
 <blockquote>
 <p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h2>P2: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/restaurant/restaurant.service.ts</strong></p>
@@ -1671,11 +1708,11 @@ export class RestaurantService {
 }
 
 </code></pre>
- <div line-highlight="1,24-26,28-31,"></div>
+ <div line-highlight="24-26,28-31,only"></div>
 <p></details></p>
-<h2>Problem 3: Use Generics to Modify ResponseData interface to Work with States and Cities Data</h2>
+<h2>Problem 3: Use generics to modify ResponseData interface to work with states and cities data</h2>
 <p>We would like to use the <code>ResponseData</code> interface we wrote to describe the response for the state and city requests, but it only works with an array of type <code>Restaurant</code>.</p>
-<h2>P3: What You Need to Know</h2>
+<h2>P3: What you need to know</h2>
 <h2>How to write a generic</h2>
 <p>For an in-depth understanding of generics in TypeScript, check out our <a href="../learn-typescript/generics.html" title="Learn about what Generics are, why they are useful, and how to create a linked list using Generics in TypeScript.">TypeScript guide</a>. For now, generics are a way to abstract functions, interfaces, etc to use different types in different situations.</p>
 <p>This example shows creating a generic for a list that can be used to create arrays of various types, including Dinosaurs. Codepen doesn’t have a TypeScript compiler that will throw errors, but if you paste the code into your IDE you’ll be able to see the TypeScript errors thrown.</p>
@@ -1714,12 +1751,16 @@ interface Dinosaur {
   template: `
     &lt;p&gt;My strings&lt;/p&gt;
     &lt;ul&gt;
-      &lt;li *ngFor=&quot;let string of myListOfStrings; let i=index&quot;&gt;{{string}}&lt;/li&gt;
+      &lt;li *ngFor=&quot;let string of myListOfStrings; let i=index&quot;&gt;
+        {{string}}
+      &lt;/li&gt;
     &lt;/ul&gt;
 
     &lt;p&gt;My dinosaurs&lt;/p&gt;
     &lt;ul&gt;
-      &lt;li *ngFor=&quot;let dino of myListOfDinosaurs; let i=index&quot;&gt;{{dino.name}} is a {{dino.breed}} and has {{dino.teeth}} teeth.&lt;/li&gt;
+      &lt;li *ngFor=&quot;let dino of myListOfDinosaurs; let i=index&quot;&gt;
+        {{dino.name}} is a {{dino.breed}} and has {{dino.teeth}} teeth.
+      &lt;/li&gt;
     &lt;/ul&gt;
   `
 })
@@ -1733,7 +1774,8 @@ class AppComponent implements OnInit {
     this.myListOfStrings.pushItem('booop');
     this.myListOfStrings.pushItem('TA DA');
     this.myListOfStrings.pushItem(5);
-    //error Argument type of '5' is not assignable to parameter of type 'string'
+    // Error: Argument type of '5' is not assignable to
+    // parameter of type 'string'
 
     let dinoA = {
       name: 'Blue',
@@ -1749,7 +1791,8 @@ class AppComponent implements OnInit {
     this.myListOfDinosaurs.pushItem(dinoA);
     this.myListOfDinosaurs.pushItem(dinoB);
     this.myListOfDinosaurs.pushItem({name: 'Charlie'});
-    //error Argument type '{ name: string; }' is not assignable to parameter of type 'Dinosaur'.
+    // Error: Argument type '{ name: string; }' is not
+    // assignable to parameter of type 'Dinosaur'.
   }
 
 }
@@ -1775,8 +1818,8 @@ platformBrowserDynamic()
 
 </code></pre>
 <div class='codepen'></div>
-<div line-highlight='18-23,25-29,36,41,46,47,51-55,57-61,63-67,68-71,only'></div>
-<h2>P3: Technical Requirements</h2>
+<div line-highlight='18-23,25-29,36-38,43-45,50,51,56-60,62-66,68-77,only'></div>
+<h2>P3: Technical requirements</h2>
 <p>Convert the <code>ResponseData</code> interface to use generics so it can take a type of <code>Restaurant</code>, <code>State</code>, or <code>City</code>. We’ve written the state &amp; city interfaces for you. Make sure to update the <code>getRestaurants</code> method in the <code>RestaurantComponent</code> as well.</p>
 <h2>P3: Setup</h2>
 <p>✏️ Update your <strong>src/app/restaurant/restaurant.service.ts</strong> file to be:</p>
@@ -1824,8 +1867,8 @@ export class RestaurantService {
 }
 
 </code></pre>
- <div line-highlight="11-13,16-19,42,"></div>
-<h2>P3: How to Verify Your Solution is Correct</h2>
+ <div line-highlight="11-13,16-19,42,only"></div>
+<h2>P3: How to verify your solution is correct</h2>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.service.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
   HttpClientTestingModule,
@@ -2060,7 +2103,7 @@ export class RestaurantService {
 }
 
 </code></pre>
- <div line-highlight="7-8,28-29,34-37,40,42-45,"></div>
+ <div line-highlight="7-8,28-29,34-37,40,42-45,only"></div>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.component.ts</strong></p>
 <pre><code class="language-ts">import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
@@ -2121,14 +2164,14 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
     this.form.controls.state.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) =&gt; {
-        console.log('state', val);
+      .subscribe((value) =&gt; {
+        console.info('state', value);
       });
 
     this.form.controls.city.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) =&gt; {
-        console.log('city', val);
+      .subscribe((value) =&gt; {
+        console.info('city', value);
       });
   }
 
@@ -2151,9 +2194,131 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 </code></pre>
  <div line-highlight="53,only"></div>
 <p></details></p>
-<h2>Problem 4: Get Cities and States Based on Dropdown Values</h2>
+<h2>Problem 4: Get cities and states based on dropdown values</h2>
 <p>Now that our service is in working order, let’s populate our dropdowns with state and city data. We will want our list of states to be available right away, but we will want to fetch our list of cities only after we have the state value selected by the user.</p>
-<h2>P4: Technical Requirements</h2>
+<h2>P4: What you need to know</h2>
+<ul>
+<li>How to call service methods in a component</li>
+<li>How to write generics</li>
+</ul>
+<h2>Call methods on FormControls</h2>
+<p>The ReactiveForms API makes it easy for us to change our <code>FormControl</code>s as needed. As a reminder, the <code>FormControl</code> class extends the <a href="https://angular.io/api/forms/AbstractControl">AbstractControl</a> class which has a lot of helpful properties and methods on it. The following example shows enabling and disabling controls via the <code>enable</code> and <code>disable</code> methods, and displaying the <code>enabled</code> FormControl property.</p>
+<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
+&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
+&lt;base href=&quot;/&quot;&gt;
+&lt;my-app&gt;&lt;/my-app&gt;
+&lt;script type=&quot;typescript&quot;&gt;
+const { Component, NgModule, VERSION, OnInit, Injectable } = ng.core;
+const { BrowserModule } = ng.platformBrowser;
+const { CommonModule } = ng.common;
+const { ReactiveFormsModule, FormControl, FormGroup, FormBuilder } = ng.forms;
+
+@Component({
+  selector: 'my-app',
+  template: `
+    &lt;p&gt;A home component!&lt;/p&gt;
+    &lt;form [formGroup]=&quot;userForm&quot;&gt;
+      &lt;label&gt;
+          First name:
+          &lt;input type=&quot;text&quot; formControlName=&quot;firstName&quot;&gt;
+          &lt;p&gt;
+            This control is enabled:
+            {{userForm.controls.firstName.enabled}}
+          &lt;/p&gt;
+          &lt;button (click)=&quot;toggleControl(userForm.controls.firstName)&quot;&gt;
+            Toggle firstName control
+          &lt;/button&gt;
+          &lt;br /&gt;
+        &lt;/label&gt;
+        &lt;label&gt;
+          Last name:
+          &lt;input type=&quot;text&quot; formControlName=&quot;lastName&quot;&gt;
+          &lt;p&gt;
+            This control is enabled:
+            {{userForm.controls.lastName.enabled}}
+          &lt;/p&gt;
+          &lt;button (click)=&quot;toggleControl(userForm.controls.lastName)&quot;&gt;
+            Toggle lastName control
+          &lt;/button&gt;
+          &lt;br /&gt;
+        &lt;/label&gt;
+        &lt;label&gt;
+          Email:
+          &lt;input type=&quot;text&quot; formControlName=&quot;email&quot;&gt;
+          &lt;p&gt;
+            This control is enabled:
+            {{userForm.controls.email.enabled}}
+          &lt;/p&gt;
+          &lt;button (click)=&quot;toggleControl(userForm.controls.email)&quot;&gt;
+            Toggle email control
+          &lt;/button&gt;
+          &lt;br /&gt;
+        &lt;/label&gt;
+    &lt;/form&gt;
+  `
+})
+class AppComponent {
+  userForm: FormGroup;
+
+  constructor(private fb:FormBuilder) {}
+
+  ngOnInit() {
+    this.userForm = this.fb.group({
+      firstName: {value: '', disabled: false},
+      lastName: {value: '', disabled: false},
+      email: {value: '', disabled: false}
+    });
+
+    this.userForm.valueChanges.subscribe((value) =&gt; {
+      console.info(value);
+    });
+  }
+
+  toggleControl(control) {
+    let formControl = control as FormControl;
+    if(formControl.enabled) {
+      formControl.disable();
+    }
+    else {
+      formControl.enable();
+    }
+  }
+}
+//THIS IS A HACK JUST FOR CODEPEN TO WORK
+AppComponent.parameters = [FormBuilder];
+            
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    CommonModule,
+    ReactiveFormsModule
+  ],
+  bootstrap: [AppComponent],
+  providers: []
+})
+class AppModule {}
+
+const { platformBrowserDynamic } = ng.platformBrowserDynamic;
+
+platformBrowserDynamic()
+  .bootstrapModule(AppModule)
+  .catch(err =&gt; console.error(err));
+&lt;/script&gt;
+
+
+</code></pre>
+<div class='codepen'></div>
+<div line-highlight='27-33, 39-45, 51-57, 80-88, only'></div>
+<h2>P4: Technical requirements</h2>
 <ol>
 <li>Rewrite the <code>Data</code> interface to be a generic to work with State and City types as well</li>
 <li>Mark state and city dropdowns as disabled until they are populated with data</li>
@@ -2164,7 +2329,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 <blockquote>
 <p>Hint: You’ll want to clear the fake data from the state and city value props, and move the call to get restaurants out of the <code>ngOnInit</code> function.</p>
 </blockquote>
-<h2>P4: How to Verify Your Solution is Correct</h2>
+<h2>P4: How to verify your solution is correct</h2>
 <p>✏️ Update the spec file <strong>src/app/restaurant/restaurant.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import {
   ComponentFixture,
@@ -2597,11 +2762,6 @@ describe('RestaurantComponent', () =&gt; {
 
 </code></pre>
  <div line-highlight="116-121,123-124,126-130,132-133,145,169-170,182-183,191,195-196,294,340-353,355-365,367-380,382-393,395-406,408-416,418-427,only"></div>
-<h2>P4: What You Need to Know</h2>
-<ul>
-<li>How to call service methods in a component</li>
-<li>How to write generics</li>
-</ul>
 <h2>P4: Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
@@ -2680,9 +2840,9 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
     this.form.controls.state.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) =&gt; {
+      .subscribe((value) =&gt; {
         this.restaurants.value = [];
-        if (val) {
+        if (value) {
           // only enable city if state has value
           this.form.controls.city.enable({
             onlySelf: true,
@@ -2690,12 +2850,12 @@ export class RestaurantComponent implements OnInit, OnDestroy {
           });
 
           // if state has a value and has changed, clear previous city value
-          if (state !== val) {
+          if (state !== value) {
             this.form.controls.city.setValue('');
           }
 
-          // fetch cities based on state val
-          this.getCities(val);
+          // fetch cities based on state value
+          this.getCities(value);
         } else {
           // disable city if no value
           this.form.controls.city.disable({
@@ -2703,13 +2863,13 @@ export class RestaurantComponent implements OnInit, OnDestroy {
             emitEvent: false,
           });
         }
-        state = val;
+        state = value;
       });
 
     this.form.controls.city.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) =&gt; {
-        if (val) {
+      .subscribe((value) =&gt; {
+        if (value) {
           this.getRestaurants();
         }
       });
@@ -2795,7 +2955,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/9-form-value-changes/form-value-changes.md"},"description":"Learn how to listen to form value changes with Angular. \n","name":"learn-angular/form-value-changes","title":"Filter Cities by State","type":"page","parent":"learn-angular","order":9,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/9-form-value-changes/form-value-changes.md"},"description":"Learn how to listen to form value changes with Angular. \n","name":"learn-angular/form-value-changes","title":"Listening to Form Changes","type":"page","parent":"learn-angular","order":9,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

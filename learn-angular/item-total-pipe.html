@@ -428,7 +428,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="form-value-changes.html"
 							title="Learn how to listen to form value changes with Angular.">
-							Filter Cities by State
+							Listening to Form Changes
 						</a>
 						
 					</li>
@@ -1916,8 +1916,8 @@ export class OrderComponent implements OnInit, OnDestroy {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
     this.orderForm?.controls.items.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) =&gt; {
-        this.orderTotal = this.itemTotal.transform(val);
+      .subscribe((value) =&gt; {
+        this.orderTotal = this.itemTotal.transform(value);
       });
   }
 

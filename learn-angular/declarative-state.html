@@ -429,7 +429,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="form-value-changes.html"
 							title="Learn how to listen to form value changes with Angular.">
-							Filter Cities by State
+							Listening to Form Changes
 						</a>
 						
 					</li>
@@ -684,10 +684,10 @@ state. This model of programming is very familiar, although it can become quite 
 the state as an application grows in complexity.</p>
 <pre><code class="language-html">&lt;script type=&quot;module&quot;&gt;
   let x = '';
-  console.log('x: ' + x);
+  console.info('x: ' + x);
   setInterval(() =&gt; {
     x = x + 'A';
-    console.log('x: ' + x);
+    console.info('x: ' + x);
   }, 1000);
 
   // logs:
@@ -714,7 +714,7 @@ distinction has some very useful implications.</p>
     // create a string of As the length of the incrementing number
     map((length) =&gt; Array(length).fill('A').join(''))
   );
-  x$.subscribe((value) =&gt; console.log('x: ' + value));
+  x$.subscribe((value) =&gt; console.info('x: ' + value));
 
   // logs:
   // x:
@@ -750,7 +750,7 @@ demo streams or composing streams.</p>
   const { of } = rxjs;
 
   of(1, 2, 3, 4).subscribe((v) =&gt; {
-    console.log(v);
+    console.info(v);
   });
 
   // logs:
@@ -779,17 +779,17 @@ when all input streams have emitted a value.</p>
   const selectedHatStream$ = zip(
     of('Bowler', 'Top', 'Baseball'),
     interval(750)
-  ).pipe(map(([val, num]) =&gt; val));
+  ).pipe(map(([value, num]) =&gt; value));
 
   // emits the values every 2000ms in order
   const selectedJacketStream$ = zip(
     of('Trenchcoat', 'Tuxedo', 'Bomber'),
     interval(2000)
-  ).pipe(map(([val, num]) =&gt; val));
+  ).pipe(map(([value, num]) =&gt; value));
 
   combineLatest(selectedHatStream$, selectedJacketStream$).subscribe(
     ([hat, jacket]) =&gt; {
-      console.log(`selected outfit: ${hat} hat &amp; ${jacket} jacket`);
+      console.info(`selected outfit: ${hat} hat &amp; ${jacket} jacket`);
     }
   );
 
@@ -823,7 +823,7 @@ stream is first subscribed to.</p>
   const baseCaseAdded$ = pseudoRequest$.pipe(startWith([]));
 
   baseCaseAdded$.subscribe((arr) =&gt; {
-    console.log('Contents: ' + JSON.stringify(arr));
+    console.info('Contents: ' + JSON.stringify(arr));
   });
 
   // logs:
@@ -846,7 +846,7 @@ takes an emitted value and returns a modified value that will be passed to the s
   of(1, 2, 3)
     .pipe(map((v) =&gt; v * 2))
     .subscribe((v) =&gt; {
-      console.log('Value: ' + v);
+      console.info('Value: ' + v);
     });
 
   // logs:
@@ -878,7 +878,7 @@ will be passed to the subsequent operators.</p>
     }
 
     // emits the values every 2 seconds in order
-    const pseudoFormValueStream = zip(of('', 'Truffle Noodles', 'Charred Octopus', ''), interval(2000)).pipe(map(([val, num]) =&gt; val));
+    const pseudoFormValueStream = zip(of('', 'Truffle Noodles', 'Charred Octopus', ''), interval(2000)).pipe(map(([value, num]) =&gt; value));
 
     // stream that makes a &quot;request&quot; if provided a menu item name or returns &quot;No Item Selected&quot;
     const pseudoPriceStream = pseudoFormValueStream.pipe(mergeMap((selectedItem) =&gt; {
@@ -890,7 +890,7 @@ will be passed to the subsequent operators.</p>
     }));
 
     pseudoPriceStream.subscribe((price) =&gt; {
-        console.log('Price Of Selected Item: ' + price);
+        console.info('Price Of Selected Item: ' + price);
     })
 
     // logs:
@@ -916,10 +916,10 @@ will be passed to the subsequent operators.</p>
   const menuItems$ = zip(
     of('Steamed Mussels', 'Truffle Noodles', 'Charred Octopus', 'Onion fries'),
     interval(2000)
-  ).pipe(map(([val, num]) =&gt; val));
+  ).pipe(map(([value, num]) =&gt; value));
 
   menuItems$.pipe(pairwise()).subscribe(([previous, current]) =&gt; {
-    console.log('Previous: ' + previous, 'Current: ' + current);
+    console.info('Previous: ' + previous, 'Current: ' + current);
   });
 
   // logs:
@@ -979,28 +979,28 @@ rendered and subscribes, it will receive the successful HTTP request and render 
   const pseudoFormValueStream$ = zip(
     of('Truffle Noodles', 'Charred Octopus', 'Gunthorp Chicken'),
     interval(2000)
-  ).pipe(map(([val, num]) =&gt; val));
+  ).pipe(map(([value, num]) =&gt; value));
 
   // prevents multiple instances of pseudoFormValueStream$ from being created for each subscriber
   const sharedFormValues$ = pseudoFormValueStream$.pipe(shareReplay(1));
 
   // subscriber 1, will subscribe to stream, starting values to be emitted
   sharedFormValues$.subscribe((menuItem) =&gt; {
-    console.log('s1: ' + menuItem);
+    console.info('s1: ' + menuItem);
   });
 
   // subscriber 2, subscribes late, but still emits 'Truffle Noodles' because the stream replays it.
   // afterwards works like subscriber 1, logging at the same time since they’re both listening to same hot observable.
   setTimeout(() =&gt; {
     sharedFormValues$.subscribe((menuItem) =&gt; {
-      console.log('s2: ' + menuItem);
+      console.info('s2: ' + menuItem);
     });
   }, 2500);
 
   // subscriber 3, subscribes after the stream completes, but still emits 'Gunthorp Chicken' because the stream replays it.
   setTimeout(() =&gt; {
     sharedFormValues$.subscribe((menuItem) =&gt; {
-      console.log('s3: ' + menuItem);
+      console.info('s3: ' + menuItem);
     });
   }, 6500);
 

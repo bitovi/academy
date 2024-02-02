@@ -692,7 +692,7 @@ export const reducer = createReducer(
 </details>
 <h2>Problem 3: Update Login State With Login Information On Login</h2>
 <p>Login Reducer should include an <code>on()</code> handler that updates Login State with <code>userId</code>, <code>username</code> and <code>token</code> whenever <code>LoginActions.loginSuccess</code> Action is dispatched.</p>
-<h2>P3: What You Need to Know</h2>
+<h2>P3: What you need to know</h2>
 <p>We can <a href="https://ngrx.io/guide/store/reducers#creating-the-reducer-function">create NgRx Reducers</a> using the <a href="https://ngrx.io/api/store/createReducer#description"><code>createReducer()</code></a> helper function.</p>
 <p>The first argument for <code>createReducer()</code> sets the initial value of your State. Then every argument after should be an <a href="https://ngrx.io/api/store/on"><code>on()</code> handler function calls</a>.</p>
 <p>When writing an <code>on()</code> handler, there are 2 arguments that we need to provide:</p>
@@ -758,7 +758,7 @@ export const reducer = createReducer(
 </details>
 <h2>Problem 4: Reset Login State On Logout</h2>
 <p>Login Reducer should include an <code>on()</code> handler that resets Login State back to <code>initialState</code> whenever <code>LoginActions.logoutSuccess</code> Action is dispatched.</p>
-<h2>P4: What You Need to Know</h2>
+<h2>P4: What you need to know</h2>
 <p>A common requirement is to reset state. One approach might look like this:</p>
 <pre><code class="language-ts">// Note: This example code is not part of our application repo or solution
 

@@ -429,7 +429,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="form-value-changes.html"
 							title="Learn how to listen to form value changes with Angular.">
-							Filter Cities by State
+							Listening to Form Changes
 						</a>
 						
 					</li>
@@ -1452,9 +1452,9 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
     this.form.controls.state.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) =&gt; {
+      .subscribe((value) =&gt; {
         this.restaurants.value = [];
-        if (val) {
+        if (value) {
           // only enable city if state has value
           this.form.controls.city.enable({
             onlySelf: true,
@@ -1462,12 +1462,12 @@ export class RestaurantComponent implements OnInit, OnDestroy {
           });
 
           // if state has a value and has changed, clear previous city value
-          if (state !== val) {
+          if (state !== value) {
             this.form.controls.city.setValue('');
           }
 
-          // fetch cities based on state val
-          this.getCities(val);
+          // fetch cities based on state value
+          this.getCities(value);
         } else {
           // disable city if no value
           this.form.controls.city.disable({
@@ -1475,14 +1475,14 @@ export class RestaurantComponent implements OnInit, OnDestroy {
             emitEvent: false,
           });
         }
-        state = val;
+        state = value;
       });
 
     this.form.controls.city.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) =&gt; {
-        if (val) {
-          this.getRestaurants(state, val);
+      .subscribe((value) =&gt; {
+        if (value) {
+          this.getRestaurants(state, value);
         }
       });
   }

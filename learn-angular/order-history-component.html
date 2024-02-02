@@ -428,7 +428,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="form-value-changes.html"
 							title="Learn how to listen to form value changes with Angular.">
-							Filter Cities by State
+							Listening to Form Changes
 						</a>
 						
 					</li>
@@ -1084,7 +1084,7 @@ export class AppRoutingModule {}
 <h2>P2: What you need to know</h2>
 <p>You’ve seen this before. Check out how the <strong>Home</strong> link works in
 <code>app.component.html</code>.</p>
-<h2>P2: How to Verify Your Solution is Correct</h2>
+<h2>P2: How to verify your solution is correct</h2>
 <p>If you’ve implemented the solution correctly you should now be able to navigate to <a href="http://localhost:4200/order-history">http://localhost:4200/order-history</a> and see a list of all orders.</p>
 <h2>P2: Solution</h2>
 <p><details>
@@ -1115,7 +1115,7 @@ export class AppRoutingModule {}
 <p></details></p>
 <h2>Problem 3: List All Orders</h2>
 <p>We want to be able to see a list of all created orders and their varying statuses of &quot;new&quot;, &quot;preparing&quot;, &quot;delivery&quot;, and &quot;delivered&quot;.</p>
-<h2>P3: Technical Requirements</h2>
+<h2>P3: Technical requirements</h2>
 <ol>
 <li>List all orders in the <code>HistoryComponent</code>.</li>
 <li>Make sure the <code>&lt;div&gt;</code> for each order has a class name of <em>'order'</em> and a class name that is the <code>order.status</code> value. Make sure you’ve created a new order.</li>
@@ -1223,7 +1223,7 @@ iterate through orders and add the right class names to the outer <code>&lt;div&
 
 </code></pre>
 <div line-highlight='9,10, only'></div>
-<h2>P3: How to Verify Your Solution is Correct</h2>
+<h2>P3: How to verify your solution is correct</h2>
 <p>✏️ Update the menu-items spec file <strong>src/app/order/history/history.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Observable, of } from 'rxjs';
@@ -1393,7 +1393,7 @@ describe('HistoryComponent', () =&gt; {
 <blockquote>
 <p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h2>P3: What You Need to Know</h2>
+<h2>P3: What you need to know</h2>
 <ul>
 <li>How to import a service and get data out of it. Hint: Import it and create a
 property in the constructor.</li>
@@ -1520,7 +1520,7 @@ export class HistoryComponent implements OnInit, OnDestroy {
 <p></details></p>
 <h2>Problem 4: Creating a Child Component to Handle Order States</h2>
 <p>We want to create a child component that will take a list of orders by status and display them, as well as actions a user can perform on an order.</p>
-<h2>P4: Technical Requirements</h2>
+<h2>P4: Technical requirements</h2>
 <ol>
 <li>Group the orders by status.</li>
 <li>Allow the user to change the status of an order.</li>
@@ -1654,7 +1654,7 @@ of orders and other values like:
 &lt;div class=&quot;order empty&quot;&gt;{{ emptyMessage }}&lt;/div&gt;
 
 </code></pre>
-<h2>P4: How to Verify Your Solution is Correct</h2>
+<h2>P4: How to verify your solution is correct</h2>
 <p>✏️ Update <strong>src/app/order/history/history.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -1951,7 +1951,7 @@ describe('ListComponent', () =&gt; {
 <blockquote>
 <p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
-<h2>P4: What You Need to Know</h2>
+<h2>P4: What you need to know</h2>
 <ul>
 <li>How to add <code>@Input()</code>s to a component so it can be passed values.</li>
 <li>How to call methods on a service that you get from the <code>constructor</code>.</li>

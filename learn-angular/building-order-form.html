@@ -429,7 +429,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="form-value-changes.html"
 							title="Learn how to listen to form value changes with Angular.">
-							Filter Cities by State
+							Listening to Form Changes
 						</a>
 						
 					</li>
@@ -1238,7 +1238,7 @@ this.myValidatingForm = this.formBuilder.group({
 });
 </code></pre></li>
 </ul>
-<h2>P2: How to Verify Your Solution is Correct</h2>
+<h2>P2: How to verify your solution is correct</h2>
 <p>✏️ Update the order spec file <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -1510,10 +1510,10 @@ export class OrderComponent implements OnInit, OnDestroy {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
     this.orderForm?.controls.items.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) =&gt; {
+      .subscribe((value) =&gt; {
         let total = 0.0;
-        if (val.length) {
-          for (const item of val) {
+        if (value.length) {
+          for (const item of value) {
             total += item.price;
           }
           this.orderTotal = Math.round(total * 100) / 100;
@@ -1730,7 +1730,7 @@ export class AppModule { }
 
 </code></pre>
  <div line-highlight="13,18,only"></div>
-<h2>P3: How to Verify Your Solution is Correct</h2>
+<h2>P3: How to verify your solution is correct</h2>
 <p>✏️ Update the order spec file <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -1943,7 +1943,7 @@ describe('MenuItemsComponent', () =&gt; {
 });
 
 </code></pre>
-<h2>P3: What You Need to Know</h2>
+<h2>P3: What you need to know</h2>
 <h2>Component Interaction</h2>
 <p>Components in Angular can pass data back and forth to each other through the use of <a href="https://angular.io/api/core/Input">@Input</a> and <a href="https://angular.io/api/core/Output">@Output</a> decorations.</p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -2100,7 +2100,7 @@ export class MenuItemsComponent {
 <p></details></p>
 <h2>Problem 4: Attaching Event Handlers to Item Checkboxes</h2>
 <p>Next, we want to know when a checkbox has been checked or unchecked, and update an array called <code>selectedItems</code> containing all checked items.</p>
-<h2>P4: Technical Requirements</h2>
+<h2>P4: Technical requirements</h2>
 <p>Create a function in the <code>MenuItemsComponent</code> called <code>updateItems</code> that fires whenever a checkbox is checked and takes a parameter of the item that has been checked. In the <code>updateItems</code> function use the following code to update the <code>selectedItems</code> array:</p>
 <pre><code class="language-typescript">let index = this.selectedItems.indexOf(item);
 if (index &gt; -1) {
@@ -2109,7 +2109,7 @@ if (index &gt; -1) {
   this.selectedItems.push(item);
 }
 </code></pre>
-<h2>P4: What You Need to Know</h2>
+<h2>P4: What you need to know</h2>
 <h2>Event Handlers in Angular</h2>
 <p>Event binding in Angular follows a simple pattern - the event name in parenthesis and a function to call in quotes on the other side of an equal sign. <code>(event)=&quot;functionToCall()&quot;</code>. Any parameter(s) can be passed to the event function, but to capture the event itself use the parameter <code>$event</code></p>
 <pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
@@ -2157,11 +2157,11 @@ class AppComponent {
   }
 
   willCallWithParam(message: string): void {
-    console.log(message + ' from my 1st click')
+    console.info(message + ' from my 1st click')
   }
 
   willCallOnBlur(event): void {
-    console.log('value', event.target.value);
+    console.info('value', event.target.value);
   }
 }
 
@@ -2188,7 +2188,7 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='24,26,32,41-31,45-47,49-51,only'></div>
-<h2>P4: How to Verify Your Solution is Correct</h2>
+<h2>P4: How to verify your solution is correct</h2>
 <p>✏️ Update the menu-items spec file <strong>src/app/order/menu-items/menu-items.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -2898,10 +2898,10 @@ export class OrderComponent implements OnInit, OnDestroy {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
     this.orderForm?.controls.items.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((val) =&gt; {
+      .subscribe((value) =&gt; {
         let total = 0.0;
-        if (val.length) {
-          for (const item of val) {
+        if (value.length) {
+          for (const item of value) {
             total += item.price;
           }
           this.orderTotal = Math.round(total * 100) / 100;
@@ -2954,9 +2954,9 @@ export class MenuItemsComponent implements ControlValueAccessor {
     return this._value;
   }
 
-  set value(val) {
-    this._value = val;
-    this.onChange(val);
+  set value(value) {
+    this._value = value;
+    this.onChange(value);
     this.onTouched();
   }
 
