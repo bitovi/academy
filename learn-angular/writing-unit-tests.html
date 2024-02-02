@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Write a unit test for a service in Angular 
+  <meta name="description" content="Write a unit test for a service in Angular. 
 ">
   
   <!-- Google Tag Manager -->
@@ -473,7 +473,7 @@ covering CanJS core libraries.">
            						expanded">
 						<a class="page"
 							href="writing-unit-tests.html"
-							title="Write a unit test for a service in Angular">
+							title="Write a unit test for a service in Angular.">
 							Writing Unit Tests
 						</a>
 						
@@ -650,7 +650,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Write a unit test for a service in Angular</p>
+    <p>Write a unit test for a service in Angular.</p>
 
 </section>
 
@@ -681,9 +681,9 @@ covering CanJS core libraries.">
 <li><p>How to use <code>HttpTestingController</code> to test <code>HttpClient</code> calls.</p></li>
 </ul>
 <h2>HttpTestingController</h2>
-<p><a href="https://angular.io/guide/http-test-requests">Angular's HTTP testing library</a> was designed with a pattern in mind:</p>
+<p><a href="https://angular.io/guide/http-test-requests">Angular’s HTTP testing library</a> was designed with a pattern in mind:</p>
 <ol>
-<li>A request is made;</li>
+<li>Make a request;</li>
 <li>Expect one or more requests have (or not have) been made;</li>
 <li>Perform assertions;</li>
 <li>Resolve requests (flush);</li>
@@ -706,8 +706,28 @@ covering CanJS core libraries.">
 <pre><code class="language-typescript">req.flush(mockStates);
 </code></pre>
 <h3>Avoiding the unexpected</h3>
-<p>When testing service methods in isolation, it's better to ensure we don't have unexpected effects. <code>HttpTestingController</code>’s <code>verify</code> method ensures there are no unmatched requests that were not handled.</p>
+<p>When testing service methods in isolation, it’s better to ensure we don't have unexpected effects. <code>HttpTestingController</code>’s <code>verify</code> method ensures there are no unmatched requests that were not handled.</p>
 <pre><code class="language-typescript">httpTestingController.verify();
+</code></pre>
+<h3>Putting it all together</h3>
+<pre><code class="language-typescript">it('should make a GET request to get the states data', () =&gt; {
+  const mockStates = {
+    data: [{ name: 'California', short: 'CA' }]
+  };
+
+  service
+    .getStates()
+    .subscribe((states: State[]) =&gt; {
+      expect(states).toEqual(mockStates);
+    });
+
+  const req = httpTestingController.expectOne('/api/states');
+
+  expect(req.request.method).toEqual('GET');
+  req.flush(mockStates);
+
+  httpTestingController.verify();
+});
 </code></pre>
 <h2>Setup</h2>
 <p>✏️ Update <strong>src/app/restaurant/restaurant.service.ts</strong> file with the new getRestaurants method:</p>
@@ -776,7 +796,7 @@ export class RestaurantService {
  <div line-highlight="55-59,only"></div>
 <h2>Solution</h2>
 <blockquote>
-<p>Hint: you may use existing tests on the service as a guide</p>
+<p>Hint: you may use existing tests on the service as a guide.</p>
 </blockquote>
 <p><details>
 <summary>Click to see the solution</summary>
@@ -1048,7 +1068,7 @@ describe('RestaurantService', () =&gt; {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/12-writing-unit-tests/writing-unit-tests.md"},"description":"Write a unit test for a service in Angular \n","name":"learn-angular/writing-unit-tests","title":"Writing Unit Tests","type":"page","parent":"learn-angular","order":12,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/12-writing-unit-tests/writing-unit-tests.md"},"description":"Write a unit test for a service in Angular. \n","name":"learn-angular/writing-unit-tests","title":"Writing Unit Tests","type":"page","parent":"learn-angular","order":12,"comment":" ","pathToRoot":"../.."};
     </script>
 
     
