@@ -447,7 +447,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="updating-service-params.html"
 							title="Learn how to make a service take multiple parameters.">
-							Filter Restaurants by City
+							Multi-parameter Services
 						</a>
 						
 					</li>
@@ -1519,7 +1519,7 @@ describe('RestaurantService', () =&gt; {
     expect(service).toBeTruthy();
   });
 
-  it('should make a get request to restaurants', () =&gt; {
+  it('should make a GET request to restaurants', () =&gt; {
     const mockRestaurants = {
       data: [
         {
@@ -1629,7 +1629,7 @@ describe('RestaurantService', () =&gt; {
     expect(true).toBe(true);
   });
 
-  it('should make a get request to states', () =&gt; {
+  it('should make a GET request to states', () =&gt; {
     const mockStates = {
       data: [{ name: 'Missouri', short: 'MO' }],
     };
@@ -1647,7 +1647,7 @@ describe('RestaurantService', () =&gt; {
     httpTestingController.verify();
   });
 
-  it('should make a get request to cities', () =&gt; {
+  it('should make a GET request to cities', () =&gt; {
     const mockCities = {
       data: [{ name: 'Kansas City', state: 'MO' }],
     };
@@ -1900,7 +1900,7 @@ describe('RestaurantService', () =&gt; {
     expect(service).toBeTruthy();
   });
 
-  it('should make a get request to restaurants', () =&gt; {
+  it('should make a GET request to restaurants', () =&gt; {
     const mockRestaurants = {
       data: [
         {
@@ -2012,7 +2012,7 @@ describe('RestaurantService', () =&gt; {
     expect(true).toBe(true);
   });
 
-  it('should make a get request to states', () =&gt; {
+  it('should make a GET request to states', () =&gt; {
     const mockStates = {
       data: [{ name: 'Missouri', short: 'MO' }],
     };
@@ -2030,7 +2030,7 @@ describe('RestaurantService', () =&gt; {
     httpTestingController.verify();
   });
 
-  it('should make a get request to cities', () =&gt; {
+  it('should make a GET request to cities', () =&gt; {
     const mockCities = {
       data: [{ name: 'Kansas City', state: 'MO' }],
     };

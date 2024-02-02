@@ -22,7 +22,7 @@
   })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
   <!-- End Google Tag Manager -->
 
-  <title>Bitovi Academy - Filter Restaurants by City</title>
+  <title>Bitovi Academy - Multi-parameter Services</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -444,7 +444,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="updating-service-params.html"
 							title="Learn how to make a service take multiple parameters.">
-							Filter Restaurants by City
+							Multi-parameter Services
 						</a>
 						
 							
@@ -642,7 +642,7 @@ covering CanJS core libraries.">
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Filter Restaurants by City <code>page</code></h1>
+	<h1>Multi-parameter Services <code>page</code></h1>
 </section>
 
   		
@@ -675,6 +675,10 @@ style="border: solid 1px black; max-width: 400px;"/></p>
 <p>Now that we are able to capture a user’s state and city preferences, we want to only return restaurants in the selected city. Modify the <code>getRestaurants</code> method in the <strong>src/app/restaurant/restaurant.service.ts</strong> file to take two string parameters, one for city, and one for state. The requested url with params should look like this: <code>'/api/restaurants?filter[address.state]=IL&amp;filter[address.city]=Chicago'</code></p>
 <p><img src="../static/img/angular/10-updating-service-params/after.png"
 style="border: solid 1px black; max-width: 400px;"/></p>
+<h2>What you need to know</h2>
+<ul>
+<li>How to use <a href="form-value-changes.html#how-to-use-httpparams" title="Learn how to listen to form value changes with Angular.">HttpParams</a> (you learned this in the previous section! ✔️)</li>
+</ul>
 <h2>Technical requirements</h2>
 <p>In the <strong>src/app/restaurant/restaurant.component.ts</strong> file, update the call to the <code>getRestaurants</code> service method to use the city and state values captured from the user’s form input.</p>
 <h2>How to verify your solution is correct</h2>
@@ -1156,7 +1160,7 @@ describe('RestaurantService', () =&gt; {
     expect(service).toBeTruthy();
   });
 
-  it('should make a get request to restaurants', () =&gt; {
+  it('should make a GET request to restaurants', () =&gt; {
     const mockRestaurants = {
       data: [
         {
@@ -1271,7 +1275,7 @@ describe('RestaurantService', () =&gt; {
     expect(true).toBe(true);
   });
 
-  it('should make a get request to states', () =&gt; {
+  it('should make a GET request to states', () =&gt; {
     const mockStates = {
       data: [{ name: 'Missouri', short: 'MO' }],
     };
@@ -1289,7 +1293,7 @@ describe('RestaurantService', () =&gt; {
     httpTestingController.verify();
   });
 
-  it('should make a get request to cities', () =&gt; {
+  it('should make a GET request to cities', () =&gt; {
     const mockCities = {
       data: [{ name: 'Kansas City', state: 'MO' }],
     };
@@ -1309,14 +1313,10 @@ describe('RestaurantService', () =&gt; {
 
 </code></pre>
  <div line-highlight="96,101-103,only"></div>
+<h2>Solution</h2>
 <blockquote>
 <p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> the tests will pass!</p>
 </blockquote>
-<h2>What you need to know</h2>
-<ul>
-<li>How to use <a href="form-value-changes.html#how-to-use-httpparams" title="Learn how to listen to form value changes with Angular.">HttpParams</a> (you learned this in the previous section! ✔️)</li>
-</ul>
-<h2>Solution</h2>
 <p><details>
 <summary>Click to see the solution</summary>
 ✏️ Update <strong>src/app/restaurant/restaurant.service.ts</strong></p>
@@ -1480,9 +1480,9 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
     this.form.controls.city.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((value) =&gt; {
-        if (value) {
-          this.getRestaurants(state, value);
+      .subscribe(cityName =&gt; {
+        if (cityName) {
+          this.getRestaurants(state, cityName);
         }
       });
   }
@@ -1527,7 +1527,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="105,137,140,only"></div>
+ <div line-highlight="103-105,137,140,only"></div>
 <p></details></p>
 
 </section>
@@ -1567,7 +1567,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/10-updating-service-params/updating-service-params.md"},"description":"Learn how to make a service take multiple parameters. \n","name":"learn-angular/updating-service-params","title":"Filter Restaurants by City","type":"page","parent":"learn-angular","order":10,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/10-updating-service-params/updating-service-params.md"},"description":"Learn how to make a service take multiple parameters. \n","name":"learn-angular/updating-service-params","title":"Multi-parameter Services","type":"page","parent":"learn-angular","order":10,"comment":" ","pathToRoot":"../.."};
     </script>
 
     
