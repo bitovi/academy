@@ -28,7 +28,7 @@ describe('RestaurantService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should make a get request to restaurants', () => {
+  it('should make a GET request to restaurants', () => {
     const mockRestaurants = {
       data: [
         {
@@ -143,7 +143,7 @@ describe('RestaurantService', () => {
     expect(true).toBe(true);
   });
 
-  it('should make a get request to states', () => {
+  it('should make a GET request to states', () => {
     const mockStates = {
       data: [{ name: 'Missouri', short: 'MO' }],
     };
@@ -161,7 +161,7 @@ describe('RestaurantService', () => {
     httpTestingController.verify();
   });
 
-  it('should make a get request to cities', () => {
+  it('should make a GET request to cities', () => {
     const mockCities = {
       data: [{ name: 'Kansas City', state: 'MO' }],
     };
@@ -178,7 +178,7 @@ describe('RestaurantService', () => {
     httpTestingController.verify();
   });
 
-  it('should make a get request to get a restaurant based on its slug', () => {
+  it('should make a GET request to get a restaurant based on its slug', () => {
     const mockRestaurant = {
       name: 'Brunch Place',
       slug: 'brunch-place',

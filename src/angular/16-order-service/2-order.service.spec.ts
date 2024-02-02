@@ -20,7 +20,7 @@ describe('OrderService', () => {
     orderService = TestBed.inject(OrderService);
   });
 
-  it('should make a get request to get orders', () => {
+  it('should make a GET request to get orders', () => {
     const mockOrders = {
       data: [
         {

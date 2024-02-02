@@ -1,4 +1,4 @@
-@page learn-angular/updating-service-params Filter Restaurants by City
+@page learn-angular/updating-service-params Multi-parameter Services
 @parent learn-angular 10
 
 @description Learn how to make a service take multiple parameters.
@@ -22,6 +22,10 @@ Now that we are able to capture a user’s state and city preferences, we want t
 <img src="../static/img/angular/10-updating-service-params/after.png"
   style="border: solid 1px black; max-width: 400px;"/>
 
+## What you need to know
+
+- How to use [learn-angular/form-value-changes#how-to-use-httpparams HttpParams] (you learned this in the previous section! ✔️)
+
 ## Technical requirements
 
 In the **src/app/restaurant/restaurant.component.ts** file, update the call to the `getRestaurants` service method to use the city and state values captured from the user’s form input.
@@ -38,13 +42,9 @@ If you’ve implemented the solution correctly, when you use the select boxes to
 
 @diff ../9-form-value-changes/restaurant.service-generics.spec.ts ./restaurant.service-httpparams.spec.ts only
 
-> If you’ve implemented the solution correctly, when you run `npm run test` the tests will pass!
-
-## What you need to know
-
-- How to use [learn-angular/form-value-changes#how-to-use-httpparams HttpParams] (you learned this in the previous section! ✔️)
-
 ## Solution
+
+> If you’ve implemented the solution correctly, when you run `npm run test` the tests will pass!
 
 <details>
 <summary>Click to see the solution</summary>
