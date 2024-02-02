@@ -2845,7 +2845,6 @@ export class RestaurantComponent implements OnInit, OnDestroy {
         if (value) {
           // only enable city if state has value
           this.form.controls.city.enable({
-            onlySelf: true,
             emitEvent: false,
           });
 
@@ -2859,7 +2858,6 @@ export class RestaurantComponent implements OnInit, OnDestroy {
         } else {
           // disable city if no value
           this.form.controls.city.disable({
-            onlySelf: true,
             emitEvent: false,
           });
         }
@@ -2896,7 +2894,6 @@ export class RestaurantComponent implements OnInit, OnDestroy {
         this.cities.value = res.data;
         this.cities.isPending = false;
         this.form.controls.city.enable({
-          onlySelf: true,
           emitEvent: false,
         });
       });
@@ -2915,7 +2912,7 @@ export class RestaurantComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="5-10,12-13,28,33,35,38,40,51-52,65-66,70-71,76-82,84-87,89-98,104-106,108,110-111,113,115-118,120,122-135,137,139,141,145-146,only"></div>
+ <div line-highlight="5-10,12-13,28,33,35,38,40,51-52,65-66,70-71,76-81,83-86,88-96,102-104,106,108-109,111,113-116,118,120-132,134,136,138,142-143,only"></div>
 <p></details></p>
 
 </section>
