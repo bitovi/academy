@@ -109,7 +109,7 @@ export class UserComponent {
 }
 ```
 
-The syntax above is equivalueent to the code below:
+The syntax above is equivalent to the code below:
 
 ```typescript
 export class UserComponent {
