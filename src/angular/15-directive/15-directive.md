@@ -1,4 +1,4 @@
-@page learn-angular/creating-directive Creating Directive
+@page learn-angular/creating-directive Creating Directives
 @parent learn-angular 15
 
 @description Learn how to create Directives in Angular that can change the appearance or behavior of DOM Elements.
@@ -27,36 +27,44 @@ In order to fix this, we will create an Attribute Directive that will change the
 
 ## What you need to know
 
-- What Directives are
-- What ElementRef is
-- What HostListeners are
+- What are Directives?
+- What is `ElementRef`?
+- What are `HostListeners`?
 - How to create a Directive
 
-## What are Directives
+## What are Directives?
 
-Directives are classes that tell Angular to change the appearance or behavior of DOM Elements. Angular comes with a set of <a href="https://angular.io/guide/built-in-directives"  >Built-in</a> Directives,
+Directives are classes that tell Angular to change the appearance or behavior of DOM Elements. Angular comes with a set of <a href="https://angular.io/guide/built-in-directives">Built-in</a> Directives,
 and they consist of three types:
 
-- Components Directives
-- Attribute Directives
+- Components
 - Structural Directives
+- Attribute Directives
 
-# Components Directives
+### Components
 
 In this training, we previously talked about [learn-angular/creating-components Components].
 Components are a type of Directive. Components use the `@Component` decorator function along with a template, style, and other logic needed for the view.
 This was previously discussed in detail [learn-angular/creating-components#p2-what-you-need-to-know here]. The official <a href="https://angular.io/guide/built-in-directives#:~:text=Components%E2%80%94-,directives,-with%20a%20template">Angular documentation</a> has more information on this as well.
 
-# Attribute Directives
+@sourceref ./example.component.ts
+
+### Structural Directives
+
+Structural Directives are types of Directives that are used to change HTML DOM layout by adding, removing or manipulating Elements.
+<a href="https://angular.io/guide/structural-directives">Learn more about structural directives.</a>
+
+@sourceref ./example.structural.ts
+
+### Attribute Directives
 
 Attribute Directives are a type of directive that are mainly used to listen or change the behavior or appearance of DOM Elements,
 Attributes and Components.
-<a href="https://angular.io/guide/attribute-directives">Read more</a>.
+<a href="https://angular.io/guide/attribute-directives">Learn more about attribute directives</a>.
 
-# Structural Directives
+Here’s a small example of building a directive (we will dig into this more in a section below):
 
-Structural Directives are types of Directives that are used to change HTML DOM layout by adding, removing or manipulating Elements.
-<a href="https://angular.io/guide/structural-directives"  >Read more</a>
+@sourceref ./example.attribute.ts
 
 ## ElementRef
 
@@ -66,6 +74,24 @@ The ElementRef class contains a property `nativeElement`, which references the u
 
 When creating a Directive, we use ElementRef to gain reference to the native HTML Element, which the Directive will be used on, and perform any manipulation we need to.
 
+@sourceref ./example.ElementRef.ts
+
+Here’s how we would use this directive in a component:
+
+```typescript
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-button',
+  template: `
+    <p appHighlight>
+      This paragraph will be highlighted in yellow.
+    </p>
+  `
+})
+export class AppButtonComponent {}
+```
+
 ## HostListener
 
 HostListener is a function decorator that allows you to listen and handle DOM events from the host element.
@@ -73,6 +99,24 @@ Some examples of events include `keyboard` and `mouse` events.
 <a href="https://angular.io/api/core/HostListener">Read more</a>.
 
 When creating a Directive, we use the @HostListener decorator in the Directive Class to listen for host events. Based on the event, we can perform any action needed.
+
+@sourceref ./example.HostListener.ts
+
+Here’s how we would use this directive in a component:
+
+```typescript
+import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-button',
+  template: `
+    <div appClickTracker>
+      Click or hover over this div.
+    </div>
+  `
+})
+export class AppButtonComponent {}
+```
 
 ## How to Generate a Directive via the CLI
 

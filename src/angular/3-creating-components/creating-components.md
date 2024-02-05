@@ -31,7 +31,7 @@ and restaurant list view in the next exercise.
 
 In Angular, Components are the basic building blocks that help us craft the UI. They are classes that handle views, allow management of user interaction, and displaying information via data binding. Data binding is the term for connecting data or information to the UI. An example would be an input field that a user enters a value into.
 
-Recommended reading: <a href="https://angular.io/guide/lifecycle-hooks"  >Angular Lifecyle Hooks</a>
+Recommended reading: <a href="https://angular.io/guide/lifecycle-hooks">Angular Lifecyle Hooks</a>
 
 The best way to create a new component is by using the Angular CLI:
 
