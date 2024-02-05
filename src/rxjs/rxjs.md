@@ -5,7 +5,7 @@
 
 @body
 
-## Before You Begin
+## Before you begin
 
 <a href="https://discord.gg/J7ejFsZnJ4">
 <img src="./static/img/discord.png"
@@ -92,7 +92,7 @@ be a useful reference for understanding how the tutorial works:
 - This guide uses Angular. However, most of the Angular parts are explained. Angular experience is
   not required; however, experience in some other modern web framework **is** required.
 
-## Next Steps
+## Next steps
 
 Head over to the [first lesson](learn-rxjs/basics.html) and learn about observables.
 

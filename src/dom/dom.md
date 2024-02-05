@@ -6,7 +6,7 @@ using it to make a basic tabs widget. We strongly suggest finishing [learn-advan
 
 @body
 
-## Before You Begin
+## Before you begin
 
 <a href="https://discord.gg/J7ejFsZnJ4" style="display:flex;align-items:center">
 <img src="./static/img/discord.png"
@@ -89,6 +89,6 @@ Creating jQuery requires meta programming
 (functions that take functions that return functions). We encourage participants to
 finish the [learn-advanced-javascript] course before beginning this training.
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [first lesson](learn-dom-jquery/functional-utilities.html) to get set up and start learning about functional utilities.

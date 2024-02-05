@@ -4,7 +4,7 @@
 
 @body
 
-## Before You Begin
+## Before you begin
 
 <a href="https://discord.gg/J7ejFsZnJ4">
 <img src="./static/img/discord.png"

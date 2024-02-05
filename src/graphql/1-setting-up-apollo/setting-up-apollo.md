@@ -322,7 +322,7 @@ module.exports = {
 
 ## PropertyOwner Entity
 
-Overall we want some baseline fields that represent what sort of information we may want to display from a property owner, but namely we want to setup a relationship between a property owner and a property. We will accomplish this via the **properties** field. Like the renter folder, we are going to create a *schema, resolver, and dataSource* as well as a file to export our **typeDefs** and **resolvers** created for schema stitching.
+Overall we want some baseline fields that represent what sort of information we may want to display from a property owner, but namely we want to set up a relationship between a property owner and a property. We will accomplish this via the **properties** field. Like the renter folder, we are going to create a *schema, resolver, and dataSource* as well as a file to export our **typeDefs** and **resolvers** created for schema stitching.
 
 
 ### PropertyOwner Schema

@@ -7,7 +7,7 @@
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/BBpXqLUy05U" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-## Before You Begin
+## Before you begin
 
 <a href="https://discord.gg/J7ejFsZnJ4">
 <img src="./static/img/discord.png"
@@ -41,6 +41,6 @@ Afterwards, we will look at orchestrating multiple docker images to form a full 
 - ✏️ This guide uses Node.js. However, the code is all explained. If you want to run the code without Docker, you will need to [install Node.js](https://nodejs.org/en/download/). This is optional.
 
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [first lesson](learn-docker/what-is-docker.html) where we will explore Docker concepts and architecture.

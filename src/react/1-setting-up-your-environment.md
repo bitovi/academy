@@ -1,7 +1,7 @@
-@page learn-react/setting-up-your-environment Setting up your Environment
+@page learn-react/setting-up-your-environment Setting Up Your Environment
 @parent learn-react 1
 
-@description Learn how to setup a React environment using [Create React App](https://create-react-app.dev/).
+@description Learn how to set up a React environment using [Create React App](https://create-react-app.dev/).
 
 @body
 
@@ -122,6 +122,6 @@ The final command will build the site and create a `build` folder. Check out the
 
 More information on the `build` folder and on deployment in general can be found in the [Create React App documentation](https://create-react-app.dev/docs/deployment/).
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [next lesson](intro-to-jsx.html) to learn more about JSX.

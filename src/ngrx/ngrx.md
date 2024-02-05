@@ -5,7 +5,7 @@
 
 @body
 
-## Before You Begin
+## Before you begin
 
 
 <p><a href="https://discord.gg/J7ejFsZnJ4">

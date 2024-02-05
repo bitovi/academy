@@ -452,6 +452,6 @@ ReactDOM.render(
 
 > Note: You’ll see `ReactDOM.render` in all of the code samples in this tutorial. `ReactDOM.render` injects a component (first argument) into a DOM element (second argument).
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [next lesson](components.html) to get the inside scoop on how components are made.

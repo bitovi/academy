@@ -38,6 +38,6 @@ Additional skills important for consulting are included after the core curriculu
 
 - [learn-technology-consulting/ending-a-project]
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [first lesson](learn-technology-consulting/values.html) to learn how to prioritize your effort.

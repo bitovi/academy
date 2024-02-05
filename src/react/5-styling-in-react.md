@@ -412,6 +412,6 @@ export default App;
 @highlight 4,15,39-49,only
 </details>
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [next lesson](stateful-hooks.html) to get a deeper appreciation for how hooks can simplify your life.

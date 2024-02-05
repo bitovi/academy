@@ -270,6 +270,6 @@ There is no "right" answer for what data should be stored in state. Applications
 
 The next lesson will discuss a purely React method of maintaining and exposing state accross your application.
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [next lesson](context-hooks.html) to get a more detailed picture on how and when you can use context.
