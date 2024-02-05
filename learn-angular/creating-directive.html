@@ -22,7 +22,7 @@
   })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
   <!-- End Google Tag Manager -->
 
-  <title>Bitovi Academy - Creating Directive</title>
+  <title>Bitovi Academy - Creating Directives</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -519,7 +519,7 @@ covering CanJS core libraries.">
 						<a class="page"
 							href="creating-directive.html"
 							title="Learn how to create Directives in Angular that can change the appearance or behavior of DOM Elements.">
-							Creating Directive
+							Creating Directives
 						</a>
 						
 							
@@ -642,7 +642,7 @@ covering CanJS core libraries.">
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Creating Directive <code>page</code></h1>
+	<h1>Creating Directives <code>page</code></h1>
 </section>
 
   		
@@ -678,40 +678,144 @@ style="border: solid 1px black; max-width: 420px;"/></p>
 <div line-highlight='4'></div>
 <h2>What you need to know</h2>
 <ul>
-<li>What Directives are</li>
-<li>What ElementRef is</li>
-<li>What HostListeners are</li>
+<li>What are Directives?</li>
+<li>What is <code>ElementRef</code>?</li>
+<li>What are <code>HostListeners</code>?</li>
 <li>How to create a Directive</li>
 </ul>
-<h2>What are Directives</h2>
-<p>Directives are classes that tell Angular to change the appearance or behavior of DOM Elements. Angular comes with a set of <a href="https://angular.io/guide/built-in-directives"  >Built-in</a> Directives,
+<h2>What are Directives?</h2>
+<p>Directives are classes that tell Angular to change the appearance or behavior of DOM Elements. Angular comes with a set of <a href="https://angular.io/guide/built-in-directives">Built-in</a> Directives,
 and they consist of three types:</p>
 <ul>
-<li>Components Directives</li>
-<li>Attribute Directives</li>
+<li>Components</li>
 <li>Structural Directives</li>
+<li>Attribute Directives</li>
 </ul>
-<h1>Components Directives</h1>
+<h3>Components</h3>
 <p>In this training, we previously talked about <a href="creating-components.html" title="Learn how to create basic components in Angular and iterate through data using an Angular for loop.">Components</a>.
 Components are a type of Directive. Components use the <code>@Component</code> decorator function along with a template, style, and other logic needed for the view.
 This was previously discussed in detail <a href="creating-components.html#p2-what-you-need-to-know" title="Learn how to create basic components in Angular and iterate through data using an Angular for loop.">here</a>. The official <a href="https://angular.io/guide/built-in-directives#:~:text=Components%E2%80%94-,directives,-with%20a%20template">Angular documentation</a> has more information on this as well.</p>
-<h1>Attribute Directives</h1>
+<pre><code class="language-ts">import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-button',
+  template: `&lt;button&gt;Click me!&lt;/button&gt;`
+})
+export class AppButtonComponent {}
+</code></pre>
+<h3>Structural Directives</h3>
+<p>Structural Directives are types of Directives that are used to change HTML DOM layout by adding, removing or manipulating Elements.
+<a href="https://angular.io/guide/structural-directives">Learn more about structural directives.</a></p>
+<pre><code class="language-ts">import { Component } from '@angular/core';
+
+@Component({
+  selector: 'app-message',
+  template: `
+    &lt;p *ngIf=&quot;showMessage&quot;&gt;
+      Conditional message!
+    &lt;/p&gt;
+  `
+})
+export class AppMessageComponent {
+  showMessage: boolean = true;
+
+  // You can toggle this value to show or hide the message
+  toggleMessage(): void {
+    this.showMessage = !this.showMessage;
+  }
+}
+</code></pre>
+<h3>Attribute Directives</h3>
 <p>Attribute Directives are a type of directive that are mainly used to listen or change the behavior or appearance of DOM Elements,
 Attributes and Components.
-<a href="https://angular.io/guide/attribute-directives">Read more</a>.</p>
-<h1>Structural Directives</h1>
-<p>Structural Directives are types of Directives that are used to change HTML DOM layout by adding, removing or manipulating Elements.
-<a href="https://angular.io/guide/structural-directives"  >Read more</a></p>
+<a href="https://angular.io/guide/attribute-directives">Learn more about attribute directives</a>.</p>
+<p>Here’s a small example of building a directive (we will dig into this more in a section below):</p>
+<pre><code class="language-ts">import { Directive, ElementRef, Input } from '@angular/core';
+
+@Directive({
+  selector: '[appColor]'
+})
+export class AppColorDirective {
+  @Input('appColor') set color(color: string) {
+    this.el.nativeElement.style.color = color;
+  }
+
+  constructor(private el: ElementRef) {}
+}
+</code></pre>
 <h2>ElementRef</h2>
 <p>ElementRef (Element Reference) is a wrapper around a native DOM Element inside of a View.
 The ElementRef class contains a property <code>nativeElement</code>, which references the underlying DOM object that we can use to manipulate the DOM.
 <a href="https://angular.io/api/core/ElementRef">Read more</a>.</p>
 <p>When creating a Directive, we use ElementRef to gain reference to the native HTML Element, which the Directive will be used on, and perform any manipulation we need to.</p>
+<pre><code class="language-ts">import { Directive, ElementRef, Renderer2, OnInit } from '@angular/core';
+
+@Directive({
+  selector: '[appHighlight]'
+})
+export class HighlightDirective implements OnInit {
+
+  constructor(private el: ElementRef, private renderer: Renderer2) { }
+
+  ngOnInit() {
+    this.renderer.setStyle(this.el.nativeElement, 'backgroundColor', 'yellow');
+  }
+}
+
+</code></pre>
+<p>Here’s how we would use this directive in a component:</p>
+<pre><code class="language-typescript">import { Component } from '@angular/core';
+
+  selector: 'app-button',
+  template: `
+    &lt;p appHighlight&gt;
+      This paragraph will be highlighted in yellow.
+    &lt;/p&gt;
+  `
+})
+export class AppButtonComponent {}
+</code></pre>
 <h2>HostListener</h2>
 <p>HostListener is a function decorator that allows you to listen and handle DOM events from the host element.
 Some examples of events include <code>keyboard</code> and <code>mouse</code> events.
 <a href="https://angular.io/api/core/HostListener">Read more</a>.</p>
 <p>When creating a Directive, we use the @HostListener decorator in the Directive Class to listen for host events. Based on the event, we can perform any action needed.</p>
+<pre><code class="language-ts">import { Directive, HostListener } from '@angular/core';
+
+@Directive({
+  selector: '[appClickTracker]'
+})
+export class ClickTrackerDirective {
+
+  @HostListener('click', ['$event'])
+  onClick(event: MouseEvent) {
+    console.info('Element clicked:', event);
+  }
+
+  @HostListener('mouseenter')
+  onMouseEnter() {
+    console.info('Mouse entered');
+  }
+
+  @HostListener('mouseleave')
+  onMouseLeave() {
+    console.info('Mouse left');
+  }
+}
+
+</code></pre>
+<p>Here’s how we would use this directive in a component:</p>
+<pre><code class="language-typescript">import { Component } from '@angular/core';
+
+  selector: 'app-button',
+  template: `
+    &lt;div appClickTracker&gt;
+      Click or hover over this div.
+    &lt;/div&gt;
+  `
+})
+export class AppButtonComponent {}
+</code></pre>
 <h2>How to Generate a Directive via the CLI</h2>
 <pre><code class="language-bash">ng generate directive onlyNumbers
 </code></pre>
@@ -756,8 +860,8 @@ class OnlyLettersDirective {
 @Component({
   selector: 'my-app',
   template: `
-  &lt;h2&gt;Allow Only Letters Directive&lt;/h2&gt;
-  &lt;input name=&quot;phone&quot; type=&quot;text&quot; pmoOnlyLetters&gt;
+    &lt;h2&gt;Allow Only Letters Directive&lt;/h2&gt;
+    &lt;input name=&quot;phone&quot; type=&quot;text&quot; pmoOnlyLetters&gt;
   `
 })
 class AppComponent {
@@ -1021,7 +1125,7 @@ export class OnlyNumbersDirective {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/15-directive/15-directive.md"},"description":"Learn how to create Directives in Angular that can change the appearance or behavior of DOM Elements. \n","name":"learn-angular/creating-directive","title":"Creating Directive","type":"page","parent":"learn-angular","order":15,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/15-directive/15-directive.md"},"description":"Learn how to create Directives in Angular that can change the appearance or behavior of DOM Elements. \n","name":"learn-angular/creating-directive","title":"Creating Directives","type":"page","parent":"learn-angular","order":15,"comment":" ","component":["({","({"],"codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     
