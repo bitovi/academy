@@ -308,7 +308,7 @@ a.quote-link:hover{
   <div class="academy-section academy-logos">
     <a href="./learn-advanced-javascript.html"><img class="academy-course-logo" src="./static/img/javascript.png"></a>
     <a href="./learn-angular.html"><img class="academy-course-logo" src="./static/img/angular.png"></a>
-    <a href="./learn-dom-jquery.html"><img class="academy-course-logo" src="./static/img/jquery-logo.png"></a>
+    <a href="./learn-react.html"><img class="academy-course-logo" src="./static/img/react.png"></a>
     <a href="./learn-rxjs.html"><img class="academy-course-logo" src="./static/img/rxjs.png"></a>
     <a href="./learn-typescript.html"><img class="academy-course-logo" src="./static/img/ts-logo.png"/></a>
   </div>
