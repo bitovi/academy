@@ -16,7 +16,7 @@
 
 
 - [The can-stache-bindings Presentation’s](https://docs.google.com/presentation/d/1xiu2fe_mIi37lNcAfTUnNXs-nSvLUDm8BADl_KJIC0g/edit?usp=sharing#slide=10) _DOM Data Bindings_
-- Use [https://canjs.com/doc/can-stache-bindings.twoWay.html value:bind] to setup a two-way binding in `can-stache`.  For example, the following keeps `todo.name` and the input’s `value` in sync:
+- Use [https://canjs.com/doc/can-stache-bindings.twoWay.html value:bind] to set up a two-way binding in `can-stache`.  For example, the following keeps `todo.name` and the input’s `value` in sync:
 
    ```html
    <input  value:bind="todo.name" />

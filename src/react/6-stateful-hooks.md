@@ -291,6 +291,6 @@ ReactDOM.render(<Board />, document.getElementById('root'));
 
 </details>
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [next lesson](controlled-vs-uncontrolled.html) to learn how React manages browser inputs.

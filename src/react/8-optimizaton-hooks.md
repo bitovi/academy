@@ -350,6 +350,6 @@ ReactDOM.render(<Board />, document.getElementById('root'));
 @highlight 46,58,only
 </details>
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [next lesson](managing-complex-state.html) to get a more comprehensive example on how one can use state.

@@ -9,7 +9,7 @@
 
 Jira’s [Advanced Roadmap](https://www.atlassian.com/software/jira/guides/advanced-roadmaps/overview#what-are-scenarios-in-advanced-roadmaps) feature enables the coordination of timelines across multiple projects and teams. We will use Advanced Roadmaps as part of the upcoming [learn-agile-program-management-with-jira/estimating],  Scheduling, and Managing training pages.  
 
-We will learn how to setup an Advanced Roadmap plan that shows all initiatives that are in the estimating phase and later. The plan will also be able to:
+We will learn how to set up an Advanced Roadmap plan that shows all initiatives that are in the estimating phase and later. The plan will also be able to:
 
 - show epics and stories under those initiatives
 - show the "Story points median" and "Story points confidence" fields we will use to estimate work

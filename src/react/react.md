@@ -5,7 +5,7 @@
 
 @body
 
-## Before You Begin
+## Before you begin
 
 Before beginning this tutorial, you will want to have some familiarity with HTML and [JavaScript](https://www.bitovi.com/academy/learn-advanced-javascript.html). Specifically, you will need to understand [functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions), [objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object), and [arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array). Additionally, you should be familiar with some of the more recent [ECMAScript](https://medium.com/sons-of-javascript/javascript-an-introduction-to-es6-1819d0d89a0f) features, such as [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), [const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) and the [rest operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters). It is also beneficial to have some familiarity with [npm](https://docs.npmjs.com/about-npm/), though it is not strictly necessary to begin.
 
@@ -19,7 +19,7 @@ React’s goal is to enable developers to break down the view layer of their app
 
 One of the best things about React is that it can be used in any website, even one that is already built with another framework. This makes it easy to convert an existing project to React, or just use it for one part of a site.
 
-## Course Outline
+## Course outline
 
 This guide begins by walking you through how to [set up an environment](learn-react/setting-up-your-environment.html), providing an introduction into [JSX](learn-react/intro-to-jsx.html) (JavaScript flavor of XML) and some basic [React theory](learn-react/components.html).
 
@@ -29,6 +29,6 @@ The second half of the guide will cover more intermediate topics like state mana
 
 Throughout this guide, we’ll be building out a simple Tic-Tac-Toe game, gradually applying all of these concepts to produce a clean and optimized solution!
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [first lesson](learn-react/setting-up-your-environment.html) and get your environment setup.

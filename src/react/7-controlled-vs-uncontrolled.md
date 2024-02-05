@@ -238,6 +238,6 @@ ReactDOM.render(<Search />, document.getElementById('root'));
 >
 > If `isBool` is true, then it will return the `React.createElement` expression, if `isBool` is false, then this whole expression will return `false` which `React` will ignore when putting elements into the DOM. In this way, it becomes a convenient shorthand for conditionally rendering HTML.
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [next lesson](optimization-hooks.html) to get performance advice on how to speed up components.

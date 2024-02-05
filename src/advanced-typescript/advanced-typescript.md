@@ -3,7 +3,7 @@
 @description This is the second course in the TypeScript series. By the end, you will be comfortable with any types you come across and possess the knowledge to create your own advanced types. The only prerequisite is the first course in the TypeScript series found [here](learn-typescript.html).
 @body
 
-## Before You Begin
+## Before you begin
 
 <a href="https://discord.gg/J7ejFsZnJ4" style="display:flex;align-items:center">
 <img src="./static/img/discord.png"
@@ -34,6 +34,6 @@ Advanced TypeScript can be generally stated as finding ways to create types from
 - [advanced-typescript/template-literal-types]
   - Learn how to make string literals even more powerful.
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [first lesson](advanced-typescript/typing-systems.html) and strengthen the way you think about TypeScript’s typing systems.

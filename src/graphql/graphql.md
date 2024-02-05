@@ -7,7 +7,7 @@
 
 @body
 
-## Before You Begin
+## Before you begin
 
 <p><a href="https://discord.gg/J7ejFsZnJ4">
 <img src="./static/img/discord.png"
@@ -65,6 +65,6 @@ Finally we will add testing with Jest and include some nice abstractions to keep
 In order to complete this guide, you need to have [Node.js](https://nodejs.org/en/) version
 18.12.1 or later installed. This is to use the new `--watch` feature that was added to Node JS.
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [first lesson](learn-graphql/setting-up-apollo.html) and get the initial project created.

@@ -9,7 +9,7 @@ We’ll also go over some basic methods to perform CRUD operations, and how we w
 
 ## Setting up MongoDB in the cloud
 
-Rather than host a local instance of MongoDB, we can instead use **MongoDB Atlas** and leverage their free-tier option in order to setup a MongoDB instance. I would recommend to follow the first 5 minutes of the video to get your account and your [cluster setup](https://www.youtube.com/watch?v=xrc7dIO_tXk&ab_channel=MongoDB). After this video I would suggest to keep your connection uri so that we can begin to use it in our project.
+Rather than host a local instance of MongoDB, we can instead use **MongoDB Atlas** and leverage their free-tier option in order to set up a MongoDB instance. I would recommend to follow the first 5 minutes of the video to get your account and your [cluster setup](https://www.youtube.com/watch?v=xrc7dIO_tXk&ab_channel=MongoDB). After this video I would suggest to keep your connection uri so that we can begin to use it in our project.
 
 ### Dependencies
 

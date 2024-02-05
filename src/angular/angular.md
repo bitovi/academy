@@ -5,7 +5,7 @@
 
 @body
 
-## Before You Begin
+## Before you begin
 
 <p><a href="https://discord.gg/J7ejFsZnJ4">
 <img src="./static/img/discord.png"
@@ -87,6 +87,6 @@ production and deploying it for others to see ([learn-angular/deploy-app]).
 In order to complete this guide, you need to have [Node.js](https://nodejs.org/en/) version
 18.13 or later installed.
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [first lesson](learn-angular/why-angular.html) and get your environment setup.

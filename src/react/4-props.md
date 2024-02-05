@@ -320,6 +320,6 @@ ReactDOM.render(<Game />, document.getElementById('root'));
 @codepen react
 </details>
 
-## Next Steps
+## Next steps
 
 ✏️ Head over to the [next lesson](styling-in-react.html) to learn all the different ways one can style components.
