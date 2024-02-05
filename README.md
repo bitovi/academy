@@ -18,9 +18,21 @@ When actively working on the content, the most useful option is the watch mode. 
 npm run dev
 ```
 
-This will take a while the first time. The site will be created in the `academy` folder. Use `http-server` or something similar to view site with automatic refreshing on file-save. (In your browser you may need to open the academy folder if running from root.) If you don’t use something like `http-server`, you will need to refresh after changes.
+This will take a while the first time. The site will be created in the `academy` folder.
 
 If the upcoming calendar events section returns "Sorry, events can’t load right now", it may be an issue with the ip address, so try http://localhost:5500/academy/
+
+### Dev Server
+
+You can start a server at `http://localhost:4444/` by running:
+
+```sh
+npm run start
+```
+
+The server does not build the source code or reload when the source code
+changes. You probably want two terminals open, one for `npm run dev` and another
+for `npm run start`.
 
 ### Changing styles or images
 
