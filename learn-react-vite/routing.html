@@ -3,7 +3,7 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/react-vite/10-routing/routing.md
+	source: src/react-vite/05-routing/routing.md
 	@page learn-react-vite/routing
 ######################################################################## -->
 <html lang="en">
@@ -194,6 +194,24 @@
 		
 			
 				
+					<li class="current
+           						parent
+           						expanded">
+						<a class="page"
+							href="routing.html"
+							title="TODO">
+							Routing in React
+						</a>
+						
+							
+
+						
+					</li>
+				
+			
+		
+			
+				
 					<li class="
            						
            						">
@@ -262,24 +280,6 @@
 							title="TODO">
 							Handling User Inputs and Forms
 						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="current
-           						parent
-           						expanded">
-						<a class="page"
-							href="routing.html"
-							title="TODO">
-							Routing in React
-						</a>
-						
-							
-
 						
 					</li>
 				
@@ -557,12 +557,265 @@ covering CanJS core libraries.">
 <p>TODO</p>
 <h3>Setup</h3>
 <p>TODO</p>
+<pre><code class="language-shell">npm install react-router-dom@6
+</code></pre>
+<pre><code class="language-tsx">import { Outlet } from 'react-router-dom'
+import RestaurantList from './pages/RestaurantList/RestaurantList'
+import './App.css'
+
+function App() {
+  return (
+    &lt;&gt;
+      &lt;RestaurantList&gt;&lt;/RestaurantList&gt;
+    &lt;/&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="1,only"></div>
+<pre><code class="language-tsx">import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Home from './pages/Home/Home'
+import RestaurantList from './pages/RestaurantList/RestaurantList'
+import App from './App.tsx'
+import './index.css'
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  &lt;React.StrictMode&gt;
+    &lt;App /&gt;
+  &lt;/React.StrictMode&gt;,
+)
+
+</code></pre>
+ <div line-highlight="3-5,only"></div>
 <h3>Verify</h3>
 <p>TODO</p>
 <h3>Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>TODO</p>
+<pre><code class="language-tsx">import { Outlet } from 'react-router-dom'
+import './App.css'
+
+function App() {
+  return (
+    &lt;&gt;
+      &lt;header&gt;
+        &lt;nav&gt;
+          &lt;h1&gt;place-my-order.com&lt;/h1&gt;
+        &lt;/nav&gt;
+      &lt;/header&gt;
+
+      &lt;Outlet /&gt;
+    &lt;/&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="7-11,13,only"></div>
+<pre><code class="language-tsx">import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Home from './pages/Home/Home'
+import RestaurantList from './pages/RestaurantList/RestaurantList'
+import App from './App.tsx'
+import './index.css'
+
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: &lt;App /&gt;,
+      children: [
+        {
+          index: true,
+          element: &lt;Home /&gt;,
+        },
+        {
+          path: 'restaurants',
+          element: &lt;RestaurantList /&gt;,
+        },
+      ],
+    },
+  ],
+  {
+    basename: import.meta.env.BASE_URL,
+  },
+)
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  &lt;React.StrictMode&gt;
+    &lt;RouterProvider router={router} /&gt;
+  &lt;/React.StrictMode&gt;,
+)
+
+</code></pre>
+ <div line-highlight="9-28,33,35,only"></div>
+<p></details></p>
+<h2>Objective 2</h2>
+<p>TODO</p>
+<h3>Key concepts</h3>
+<p>TODO</p>
+<h4>Concept 1</h4>
+<p>TODO</p>
+<h4>Concept 2</h4>
+<p>TODO</p>
+<h3>Requirements</h3>
+<p>TODO</p>
+<h3>Setup</h3>
+<p>TODO</p>
+<pre><code class="language-tsx">import { NavLink, Outlet, useMatch } from 'react-router-dom';
+import './App.css'
+
+function App() {
+  return (
+    &lt;&gt;
+      &lt;header&gt;
+        &lt;nav&gt;
+          &lt;h1&gt;place-my-order.com&lt;/h1&gt;
+        &lt;/nav&gt;
+      &lt;/header&gt;
+
+      &lt;Outlet /&gt;
+    &lt;/&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="1,only"></div>
+<pre><code class="language-tsx">import { Link } from &quot;react-router-dom&quot;
+
+const Home: React.FC = () =&gt; {
+    const title = &quot;Ordering food has never been easier&quot;;
+    return (
+        &lt;div className=&quot;homepage&quot; style={{ margin: &quot;auto&quot; }}&gt;
+            &lt;img
+                src=&quot;node_modules/place-my-order-assets/images/homepage-hero.jpg&quot;
+                alt=&quot;Restaurant table with glasses.&quot;
+                width=&quot;250&quot;
+                height=&quot;380&quot;
+            /&gt;
+
+            &lt;h1&gt;{title}&lt;/h1&gt;
+
+            &lt;p&gt;
+                We make it easier than ever to order gourmet food from your favorite
+                local restaurants.
+            &lt;/p&gt;
+
+            &lt;p&gt;
+                &lt;a className=&quot;btn&quot; role=&quot;button&quot;&gt;
+                    Choose a Restaurant
+                &lt;/a&gt;
+            &lt;/p&gt;
+        &lt;/div&gt;
+    )
+}
+
+export default Home
+</code></pre>
+ <div line-highlight="1,only"></div>
+<h3>Verify</h3>
+<p>TODO</p>
+<pre><code class="language-tsx">import '@testing-library/jest-dom';
+import { render } from '@testing-library/react';
+import { describe, it, vi } from 'vitest';
+
+import App from './App';
+
+vi.mock('react-router-dom', () =&gt; {
+  const originalModule = vi.importActual('react-router-dom');
+  return {
+    ...originalModule,
+    NavLink: vi.fn(),
+    Outlet: vi.fn(),
+    useMatch: vi.fn(),
+  };
+});
+
+describe('App component', () =&gt; {
+  it('renders', () =&gt; {
+    render(&lt;App /&gt;);
+  });
+});
+
+</code></pre>
+ <div line-highlight="3,7-14,21,only"></div>
+<h3>Solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>TODO</p>
+<pre><code class="language-tsx">import { NavLink, Outlet, useMatch } from 'react-router-dom';
+import './App.css';
+
+function App() {
+  const homeMatch = useMatch('/');
+  const restaurantsMatch = useMatch('/restaurants');
+
+  return (
+    &lt;&gt;
+      &lt;header&gt;
+        &lt;nav&gt;
+          &lt;h1&gt;place-my-order.com&lt;/h1&gt;
+          &lt;ul&gt;
+            &lt;li className={homeMatch ? 'active' : ''}&gt;
+              &lt;NavLink to='/'&gt;Home&lt;/NavLink&gt;
+            &lt;/li&gt;
+            &lt;li className={restaurantsMatch ? 'active' : ''}&gt;
+              &lt;NavLink to='/restaurants'&gt;Restaurants&lt;/NavLink&gt;
+            &lt;/li&gt;
+          &lt;/ul&gt;
+        &lt;/nav&gt;
+      &lt;/header&gt;
+
+      &lt;Outlet /&gt;
+    &lt;/&gt;
+  );
+}
+
+export default App;
+
+</code></pre>
+ <div line-highlight="5-6,13-20,only"></div>
+<pre><code class="language-tsx">import { Link } from &quot;react-router-dom&quot;
+
+const Home: React.FC = () =&gt; {
+    const title = &quot;Ordering food has never been easier&quot;;
+    return (
+        &lt;div className=&quot;homepage&quot; style={{ margin: &quot;auto&quot; }}&gt;
+            &lt;img
+                src=&quot;node_modules/place-my-order-assets/images/homepage-hero.jpg&quot;
+                alt=&quot;Restaurant table with glasses.&quot;
+                width=&quot;250&quot;
+                height=&quot;380&quot;
+            /&gt;
+
+            &lt;h1&gt;{title}&lt;/h1&gt;
+
+            &lt;p&gt;
+                We make it easier than ever to order gourmet food from your favorite
+                local restaurants.
+            &lt;/p&gt;
+
+            &lt;p&gt;
+                &lt;Link className=&quot;btn&quot; to=&quot;/restaurants&quot; role=&quot;button&quot;&gt;
+                    Choose a Restaurant
+                &lt;/Link&gt;
+            &lt;/p&gt;
+        &lt;/div&gt;
+    )
+}
+
+export default Home
+</code></pre>
+ <div line-highlight="22,24,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>TODO</p>
@@ -604,7 +857,7 @@ covering CanJS core libraries.">
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-vite/10-routing/routing.md"},"description":"TODO \n","name":"learn-react-vite/routing","title":"Routing in React","type":"page","parent":"learn-react-vite","order":10,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-vite/05-routing/routing.md"},"description":"TODO \n","name":"learn-react-vite/routing","title":"Routing in React","type":"page","parent":"learn-react-vite","order":5,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
