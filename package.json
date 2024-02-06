@@ -12,7 +12,7 @@
     "rebuild-assets": "bit-docs -dfs",
     "clean": "rm -rf academy",
     "deploy": "node scripts/hubspot-deploy",
-    "start": "./node_modules/.bin/http-server -c -1"
+    "start": "concurrently -k \"npm:dev\" \"http-server -c -1\""
   },
   "bit-docs": {
     "dependencies": {
@@ -56,6 +56,7 @@
     "bottleneck": "^2.17.1",
     "cheerio": "^1.0.0-rc.3",
     "commander": "^9.4.0",
+    "concurrently": "^8.2.2",
     "depcheck": "^1.4.3",
     "dotenv": "^7.0.0",
     "glob": "^8.0.3",
