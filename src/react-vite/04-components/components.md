@@ -26,10 +26,6 @@ TODO
 
 TODO
 
-### Requirements
-
-TODO
-
 ### Setup
 
 TODO
@@ -41,6 +37,10 @@ TODO
 TODO
 
 @sourceref ../../../exercises/react-vite/04-components/01-solution/src/pages/Home/Home.test.tsx
+
+### Exercise
+
+TODO
 
 ### Solution
 
@@ -71,10 +71,6 @@ TODO
 
 TODO
 
-### Requirements
-
-TODO
-
 ### Setup
 
 TODO
@@ -83,6 +79,10 @@ TODO
 @highlight 104, 106, only
 
 ### Verify
+
+TODO
+
+### Exercise
 
 TODO
 
