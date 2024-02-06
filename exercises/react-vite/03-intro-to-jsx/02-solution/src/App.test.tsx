@@ -15,7 +15,7 @@ describe('App component', () => {
 
   it('renders the title', () => {
     render(<App />);
-    const titleElement = screen.getByText(/Ordering food has never been easier/i);
+    const titleElement = screen.getByRole('heading', { level: 1, name: /Ordering food has never been easier/i })
     expect(titleElement).toBeInTheDocument();
   });
 
