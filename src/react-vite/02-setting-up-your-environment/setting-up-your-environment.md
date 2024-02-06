@@ -41,15 +41,15 @@ npm install -D @testing-library/jest-dom@6 @testing-library/react@14 jsdom@24 vi
 @sourceref ../../../exercises/react-vite/02-setting-up-your-environment/problem/package.json
 @highlight 10, only
 
-### Requirements
-
-TODO
-
 ### Setup
 
 TODO
 
 ### Verify
+
+TODO
+
+### Exercise
 
 TODO
 

@@ -26,15 +26,15 @@ TODO
 
 TODO
 
-### Requirements
-
-TODO
-
 ### Setup
 
 TODO
 
 ### Verify
+
+TODO
+
+### Exercise
 
 TODO
 

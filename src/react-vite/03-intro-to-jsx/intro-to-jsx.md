@@ -26,7 +26,27 @@ TODO
 
 TODO
 
-### Requirements
+### Setup
+
+TODO
+
+```shell
+npm install place-my-order-assets
+```
+
+Remove contents of `src/App.css` file:
+
+@diff ../../../exercises/react-vite/02-setting-up-your-environment/solution/src/App.css ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/App.css only
+
+@diff ../../../exercises/react-vite/02-setting-up-your-environment/solution/src/index.css ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/index.css only
+
+### Verify
+
+TODO
+
+@diff ../../../exercises/react-vite/02-setting-up-your-environment/solution/src/App.test.tsx ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/App.test.tsx only
+
+### Exercise
 
 TODO
 
@@ -52,26 +72,6 @@ Take the below HTML and convert it to JSX:
   </p>
 </div>
 ```
-
-### Setup
-
-TODO
-
-```shell
-npm install place-my-order-assets
-```
-
-Remove contents of `src/App.css` file:
-
-@diff ../../../exercises/react-vite/02-setting-up-your-environment/solution/src/App.css ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/App.css only
-
-@diff ../../../exercises/react-vite/02-setting-up-your-environment/solution/src/index.css ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/index.css only
-
-### Verify
-
-TODO
-
-@diff ../../../exercises/react-vite/02-setting-up-your-environment/solution/src/App.test.tsx ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/App.test.tsx only
 
 ### Solution
 
@@ -100,15 +100,15 @@ TODO
 
 TODO
 
-### Requirements
-
-TODO
-
 ### Setup
 
 TODO
 
 ### Verify
+
+TODO
+
+### Exercise
 
 TODO
 

@@ -26,10 +26,6 @@ TODO
 
 TODO
 
-### Requirements
-
-TODO
-
 ### Setup
 
 TODO
@@ -43,6 +39,10 @@ npm install react-router-dom@6
 @diff ../../../exercises/react-vite/04-components/02-solution/src/main.tsx ../../../exercises/react-vite/05-routing/01-problem/src/main.tsx only
 
 ### Verify
+
+TODO
+
+### Exercise
 
 TODO
 
@@ -75,10 +75,6 @@ TODO
 
 TODO
 
-### Requirements
-
-TODO
-
 ### Setup
 
 TODO
@@ -92,6 +88,10 @@ TODO
 TODO
 
 @diff ../../../exercises/react-vite/05-routing/01-solution/src/App.test.tsx ../../../exercises/react-vite/05-routing/02-problem/src/App.test.tsx only
+
+### Exercise
+
+TODO
 
 ### Solution
 
