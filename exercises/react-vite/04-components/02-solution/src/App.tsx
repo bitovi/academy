@@ -1,5 +1,5 @@
-import './App.css'
 import RestaurantList from './pages/RestaurantList/RestaurantList'
+import './App.css'
 
 function App() {
   return (
