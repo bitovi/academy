@@ -11,7 +11,8 @@
     "build": "bit-docs -df",
     "rebuild-assets": "bit-docs -dfs",
     "clean": "rm -rf academy",
-    "deploy": "node scripts/hubspot-deploy"
+    "deploy": "node scripts/hubspot-deploy",
+    "start": "./node_modules/.bin/http-server -c -1"
   },
   "bit-docs": {
     "dependencies": {
@@ -58,6 +59,7 @@
     "depcheck": "^1.4.3",
     "dotenv": "^7.0.0",
     "glob": "^8.0.3",
+    "http-server": "^14.1.1",
     "lz-string": "^1.4.4",
     "recursive-readdir": "^2.2.2"
   }
