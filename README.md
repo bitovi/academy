@@ -24,15 +24,15 @@ If the upcoming calendar events section returns "Sorry, events can’t load righ
 
 ### Dev Server
 
-You can start a server at `http://localhost:4444/` by running:
+You can start a development server at `http://localhost:8080/` by running:
 
 ```sh
 npm run start
 ```
 
-The server does not build the source code or reload when the source code
-changes. You probably want two terminals open, one for `npm run dev` and another
-for `npm run start`.
+`start` incorporates the `npm run dev` command and changes to the source code
+will cause a rebuild, however the browser will **not** reload when the source
+code changes.
 
 ### Changing styles or images
 
