@@ -50,9 +50,7 @@ We've created an assets package with images and CSS you'll need to build the app
 npm install place-my-order-assets
 ```
 
-✏️ Update **src/App.css** to be:
-
-@diff ../../../exercises/react-vite/02-setting-up-your-environment/solution/src/App.css ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/App.css only
+✏️ Update **src/index.css** to be:
 
 @diff ../../../exercises/react-vite/02-setting-up-your-environment/solution/src/index.css ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/index.css only
 
