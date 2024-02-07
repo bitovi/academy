@@ -38,9 +38,7 @@ React has a procedural `React.createElement` syntax, but most applications do no
 - Create the homepage using JSX
 - Match the design below
 
-<img src="../static/img/react-vite/mock-homepage.jpg"
-  style="border: solid 1px black; max-width: 640px;"/>
-
+<img src="../static/img/react-vite/mock-homepage.jpg" alt="mockup" style="border: solid 1px black; max-width: 640px;"/>
 
 ### Setup
 
@@ -245,7 +243,7 @@ If ternaries seem excessive for any particular case, you can write all your logi
 ```
 
 If you want to iterate within JSX, use methods such as `Array.map`, `Array.filter` and `Array.reduce`:
-    
+
 @highlight 3
 
 _✏️ Note: Due to how React stores elements in memory, list items require a stable `key` to identify them in the Virtual DOM. You can learn more in the [React docs](https://react.dev/learn/rendering-lists#why-does-react-need-keys)_
@@ -270,7 +268,7 @@ Mapping over the array above will render as the following HTML.
 </div>
 ```
 
-## Exercise 2 
+## Exercise 2
 
 ### Acceptance Criteria
 
@@ -287,10 +285,6 @@ Mapping over the array above will render as the following HTML.
 Add these tests into your application to verify you have met the acceptance criteria. Note how React Testing Library allows our tests to specify exact elements.
 
 ✏️ Update **src/App.test** to be:
-
-### Exercise
-
-TODO
 
 @diff ../../../exercises/react-vite/03-intro-to-jsx/01-solution/src/App.test.tsx ../../../exercises/react-vite/03-intro-to-jsx/02-solution/src/App.test.tsx only
 
