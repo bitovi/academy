@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="TODO 
+  <meta name="description" content="Learn how to use JSX to define your UI in React. 
 ">
   
   <!-- Google Tag Manager -->
@@ -169,7 +169,7 @@
            						expanded">
 						<a class="page"
 							href="intro-to-jsx.html"
-							title="TODO">
+							title="Learn how to use JSX to define your UI in React.">
 							Introduction to JSX
 						</a>
 						
@@ -530,7 +530,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>TODO</p>
+    <p>Learn how to use JSX to define your UI in React.</p>
 
 </section>
 
@@ -544,27 +544,47 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
-<p>TODO</p>
-<h2>Objective 1</h2>
-<p>TODO</p>
+<p>In this section we will:</p>
+<ul>
+<li>Learn to use JSX to define our UI</li>
+<li>Install project assets</li>
+<li>Create our first component</li>
+<li>Add variables to JSX</li>
+<li>Work with loops in JSX</li>
+</ul>
+<h2>Objective 1: Creating a UI with JSX</h2>
 <h3>Key concepts</h3>
-<p>TODO</p>
-<h4>Concept 1</h4>
-<p>TODO</p>
-<h4>Concept 2</h4>
-<p>TODO</p>
+<ul>
+<li>What is JSX</li>
+<li>Loops in JSX</li>
+</ul>
+<h2>What is JSX?</h2>
+<p>JSX is used by React developers to define the user interface.</p>
+<p>JSX is a special syntax designed to look almost identical to HTML. Developers define the UI using JSX and React transforms it into the HTML the browser displays. JSX can be written alongside standard JavaScript, which makes for a powerful programming environment.</p>
+<p>React has a procedural <code>React.createElement</code> syntax, but most applications do not use it directly. Instead, views are defined and maintained in JSX and will automatically be transpiled into the equivalent <code>React.createElement</code> calls at build-time.</p>
+<h2>Exercise 1</h2>
+<h3>Acceptance criteria</h3>
+<ul>
+<li>Create the homepage using JSX</li>
+<li>Match the design below</li>
+</ul>
+<p><img src="../static/img/react-vite/mock-homepage.jpg" alt="mockup" style="border: solid 1px black; max-width: 640px;"/></p>
 <h3>Setup</h3>
-<p>TODO</p>
+<p>We've created an assets package with images and CSS you'll need to build the application. Install the <code>place-my-order-assets</code> package.</p>
+<p>✏️ Run:</p>
 <pre><code class="language-shell">npm install place-my-order-assets
 </code></pre>
-<p>Remove contents of <code>src/App.css</code> file:</p>
-<pre><code class="language-css">
-</code></pre>
+<p>✏️ Update <strong>src/index.css</strong> to be:</p>
 <pre><code class="language-css">@import &quot;place-my-order-assets/css/place-my-order-assets.css&quot;;
 </code></pre>
  <div line-highlight="1,only"></div>
+<p>Next, you'll need to pull the image from the assets package by adding the following import into <code>src/App.tsx</code>.</p>
+<pre><code class="language-tsx">import HeroImage from 'place-my-order-assets/images/homepage-hero.jpg'
+</code></pre>
+<p>If you inspect the type on the import, you'll notice it is a string. It's actually just the URL for the image. You can use the image import by setting it as the <code>src</code> of an image element like <code>src={HeroImage}</code></p>
 <h3>Verify</h3>
-<p>TODO</p>
+<p>You should have already installed Vitest in the previous section. If you haven't done so already, create a test file at <code>src/App.test.tsx</code> and copy the following tests into your test file.</p>
+<p>✏️ Copy:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
@@ -589,8 +609,11 @@ describe('App component', () =&gt; {
 
 </code></pre>
  <div line-highlight="8,10-13,16-20,only"></div>
+<p>✏️ Run:</p>
+<pre><code class="language-shell">npm run test
+</code></pre>
+<p>Note that we won't be able to write an automated test that verifies the styles and images appear as desired, so you will have to test those manually.</p>
 <h3>Exercise</h3>
-<p>TODO</p>
 <p>Take the below HTML and convert it to JSX:</p>
 <pre><code class="language-html">&lt;div class=&quot;homepage&quot; style=&quot;margin: auto&quot;&gt;
   &lt;img
@@ -614,7 +637,7 @@ describe('App component', () =&gt; {
 <h3>Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>TODO</p>
+<p>✏️ Update <strong>src/App.tsx</strong></p>
 <pre><code class="language-tsx">import './App.css'
 
 function App() {
@@ -650,20 +673,128 @@ export default App
 </code></pre>
  <div line-highlight="6-12,14,16-19,21-26,only"></div>
 <p></details></p>
-<h2>Objective 2</h2>
-<p>TODO</p>
+<h2>Objective 2: Loops in JSX</h2>
 <h3>Key concepts</h3>
-<p>TODO</p>
-<h4>Concept 1</h4>
-<p>TODO</p>
-<h4>Concept 2</h4>
-<p>TODO</p>
-<h3>Setup</h3>
-<p>TODO</p>
+<ul>
+<li>JSX Interpolation</li>
+<li>Loops in JSX</li>
+</ul>
+<h2>JSX Interpolation</h2>
+<p>JSX is dynamic. You can insert values from variables and objects into your JSX as we did with the image URL in the previous section.</p>
+<pre><code class="language-jsx">const name = 'Bitovi';
+
+&lt;div className=&quot;button primary&quot;&gt;Welcome to {name}!&lt;/div&gt;;
+</code></pre>
+<p>In the code above, use the <code>{name}</code> syntax to tell JSX that to render the value stored in the <code>name</code> variable (i.e. <code>&quot;Bitovi&quot;</code>) into our view.</p>
+<p>You can take this a step further by interpolating multiple values, and using JavaScript functions to transform data on the fly. Anything that goes inside <code>{}</code> is executed as normal JavaScript. These are the same rules as the brackets on a prop: any JavaScript expression is valid inside the curly brackets.</p>
+<pre><code class="language-jsx">const person = {
+  name: 'mike',
+  profession: 'programmer',
+};
+
+&lt;div className=&quot;button primary&quot;&gt;
+  &lt;h1&gt;Hi I'm {person.name.toUpperCase()}!&lt;/h1&gt;
+  &lt;p&gt;I'm a {person.profession} living in Philadelphia&lt;/p&gt;
+&lt;/div&gt;;
+</code></pre>
+<div line-highlight='7,8'></div>
+<h3>JSX is JavaScript</h3>
+<p>Remember, JSX is simply an alternative syntax for normal JavaScript—it is not magic. This means that you can use JSX as a normal value.</p>
+<pre><code class="language-jsx">const header = &lt;h1&gt;Hello World&lt;/h1&gt;;
+const body = &lt;p&gt;My name is {'Mike'}&lt;/p&gt;;
+
+function MyPage() {
+  return (
+    &lt;div&gt;
+      {header}
+      {body}
+    &lt;/div&gt;
+  );
+}
+
+ReactDOM.render(&lt;MyPage /&gt;, document.getElementById('root'));
+</code></pre>
+<div class='codepen' data-codepen='react'></div>
+<p>If rendered, <code>page</code> will output:</p>
+<pre><code class="language-html">&lt;div&gt;
+  &lt;h1&gt;Hello World&lt;/h1&gt;
+  &lt;p&gt;My name is Mike&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+<p>If this surprises you, remember that underneath the syntactic sugar, JSX is nothing more than <code>React.createElement</code> calls:</p>
+<pre><code class="language-js">const header = React.createElement('h1', null, 'Hello World');
+const body = React.createElement('p', null, `Hello ${'Mike'}`);
+
+const page = React.createElement('div', null, [header, body]);
+</code></pre>
+<h3>Conditions and loops</h3>
+<p>Only expressions which return a value may be interpolated. This includes static values, variables and calls to functions. It does not include control-flow statements such as <code>if</code>, <code>case</code>, <code>for</code>, <code>while</code>. These can either be abstracted behind a function, which is then called within the JSX or be re-written in a JSX-friendly way.</p>
+<p>To put it simply: only things that you could pass into a function can be used inside the brackets.</p>
+<h4>Using Conditions</h4>
+<p>Conditions can be re-written using the ternary operator.</p>
+<pre><code class="language-jsx">// This does not work
+&lt;div&gt;
+  {
+    if (a === b) { // Control flow does not belong in JSX
+      &quot;a and b are equal&quot;
+    } else {
+      &quot;a and b are different&quot;
+    }
+  }
+&lt;/div&gt;
+</code></pre>
+<pre><code class="language-jsx">// But the same can be accomplished with ternaries
+&lt;div&gt;
+  {a === b // Ternaries are expressions. They return a value.
+    ? 'a and b are equal'
+    : 'a and b are different'}
+&lt;/div&gt;
+</code></pre>
+<p>If ternaries seem excessive for any particular case, you can write all your logic in a separate function and invoke it from within JSX.</p>
+<pre><code class="language-jsx">&lt;div&gt;{outputResult()}&lt;/div&gt;
+</code></pre>
+<h4>Using Loops</h4>
+<pre><code class="language-jsx">// This does not work
+&lt;div&gt;
+  {
+    for (let n of [1, 2, 3, 4]) { // Control flow does not belong in JSX
+      &lt;span&gt;n&lt;/span&gt;
+    }
+  }
+&lt;/div&gt;
+</code></pre>
+<p>If you want to iterate within JSX, use methods such as <code>Array.map</code>, <code>Array.filter</code> and <code>Array.reduce</code>:</p>
+<div line-highlight='3'></div>
+<p><em>✏️ Note: Due to how React stores elements in memory, list items require a stable <code>key</code> to identify them in the Virtual DOM. You can learn more in the <a href="https://react.dev/learn/rendering-lists#why-does-react-need-keys">React docs</a></em></p>
+<pre><code class="language-jsx">// Mapping values to JSX elements
+&lt;div&gt;
+  {[1, 2, 3, 4].map((n, index) =&gt; (
+    &lt;span key={index}&gt;{n}&lt;/span&gt;
+  ))}
+&lt;/div&gt;
+</code></pre>
+<p>Mapping over the array above will render as the following HTML.</p>
+<pre><code class="language-html">&lt;div&gt;
+  &lt;span&gt;1&lt;/span&gt;
+  &lt;span&gt;2&lt;/span&gt;
+  &lt;span&gt;3&lt;/span&gt;
+  &lt;span&gt;4&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+<h2>Exercise 2</h2>
+<h3>Acceptance Criteria</h3>
+<ul>
+<li>Set the H1 tag to &quot;Ordering food has never been easier&quot;</li>
+<li>Display a list of restaurants: 'Cheese Curd City' &amp; 'Poutine Palace'</li>
+</ul>
+<h3>Requirements</h3>
+<ul>
+<li>Use the proper <code>ul</code> and <code>li</code> tags to create the list</li>
+<li>List items should have a unique key</li>
+</ul>
 <h3>Verify</h3>
-<p>TODO</p>
-<h3>Exercise</h3>
-<p>TODO</p>
+<p>Add these tests into your application to verify you have met the acceptance criteria. Note how React Testing Library allows our tests to specify exact elements.</p>
+<p>✏️ Update <strong>src/App.test</strong> to be:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
@@ -681,7 +812,7 @@ describe('App component', () =&gt; {
 
   it('renders the title', () =&gt; {
     render(&lt;App /&gt;);
-    const titleElement = screen.getByText(/Ordering food has never been easier/i);
+    const titleElement = screen.getByRole('heading', { level: 1, name: /Ordering food has never been easier/i })
     expect(titleElement).toBeInTheDocument();
   });
 
@@ -705,7 +836,7 @@ describe('App component', () =&gt; {
 <h3>Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>TODO</p>
+<p>✏️ Update <strong>src/App.tsx</strong></p>
 <pre><code class="language-tsx">import './App.css'
 
 function App() {
@@ -750,7 +881,7 @@ export default App
  <div line-highlight="4-8,20,27-33,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
-<p>TODO</p>
+<p>Next we will learn about building out a React application with components.</p>
 
 </section>
 
@@ -789,7 +920,7 @@ export default App
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-vite/03-intro-to-jsx/intro-to-jsx.md"},"description":"TODO \n","name":"learn-react-vite/intro-to-jsx","title":"Introduction to JSX","type":"page","parent":"learn-react-vite","order":3,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-vite/03-intro-to-jsx/intro-to-jsx.md"},"description":"Learn how to use JSX to define your UI in React. \n","name":"learn-react-vite/intro-to-jsx","title":"Introduction to JSX","type":"page","parent":"learn-react-vite","order":3,"outline":{"depth":3},"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     
