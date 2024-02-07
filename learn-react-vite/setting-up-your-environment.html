@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn how to set up a React environment using [Vite](https://vitejs.dev). 
+  <meta name="description" content="Learn how to set up a React environment using Vite. 
 ">
   
   <!-- Google Tag Manager -->
@@ -530,7 +530,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn how to set up a React environment using <a href="https://vitejs.dev">Vite</a>.</p>
+    <p>Learn how to set up a React environment using Vite.</p>
 
 </section>
 
@@ -544,21 +544,121 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
-<p>TODO</p>
-<h2>Objective 1</h2>
-<p>TODO</p>
-<h3>Key concepts</h3>
-<p>TODO</p>
-<h4>Concept 1</h4>
-<p>TODO</p>
-<h4>Generating a new app</h4>
-<p>TODO</p>
+<p>In this section we will:</p>
+<ul>
+<li>learn about Node.js</li>
+<li>recommend tools to use in React development</li>
+<li>generate a new React application using Vite</li>
+<li>setup testing</li>
+<li>verify that the new application can be served to the browser and tested</li>
+</ul>
+<h2>Objective</h2>
+<p>Create a new React application named &quot;Place My Order&quot; that supports TypeScript
+and can be served and tested.</p>
+<h3>Installing Node.js</h3>
+<p>Our solution requires the <a href="https://nodejs.org/">Node.js</a> JavaScript runtime
+environment. Node.js and its included package manager <code>npm</code> will be used to do a
+variety of tasks including: installing required packages, running the
+development server, executing tests, and building the application for
+deployment.</p>
+<h3>Editing code</h3>
+<p>There are a variety of code editors that support React, the most popular is
+Microsoft's <a href="https://code.visualstudio.com/">VS Code</a>. VS Code is available for
+most operating systems and has extensive support for React and JSX including:
+code completion, code highlighting, and linting. It's also used by cloud
+environments like CodeSandbox and StackBlitz - making it easy to switch among
+different runtime environments.</p>
+<h3>Using Vite to generate a React app</h3>
+<p>For this course we will use <a href="https://vitejs.dev">Vite</a> to manage our React
+project. Vite is a Node.js application that simplifies the creation,
+development, testing, and building of web application frontends. We will use a
+Vite &quot;template&quot; to specify that we are creating a React project with support for
+TypeScript.</p>
+<p>After generating the React app the following folders and files will be included
+in the &quot;place-my-order&quot; folder:</p>
+<pre><code class="language-code">├── public/
+├── src/
+│   ├── assets/
+│   ├── App.css
+│   ├── App.tsx
+│   ├── index.css
+│   ├── main.tsx
+│   ├── vite-env.d.ts
+├── index.html
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+</code></pre>
+<p><strong>/public</strong> contains static assets which will be served up as part of your
+website. You can include stylesheets, images and other static files.</p>
+<p><strong>/src</strong> is where all your React components should be stored alongside any logic
+for your app. This will already be seeded with a small sample app.</p>
+<p><strong>index.html</strong> will render React by default.</p>
+<p><strong>main.tsx</strong> is the entry point of the React application. This is where our
+application is initialized and mounted in the DOM.</p>
+<p><strong>App.tsx</strong> the contents displayed as the application's root <code>/</code> web page.</p>
+<h3>Testing code with React Testing Library</h3>
+<p>We will create unit tests for our application using the <a href="https://testing-library.com/docs/react-testing-library/intro/">React Testing
+Library</a>. The
+unit tests for components will be focused on verifying that a component creates
+the correct DOM output based on the state the component is provided. We also
+need to create tests for any React custom hooks we create to ensure they provide
+the expected results.</p>
+<h2>Setup</h2>
+<h3>Install Node.js</h3>
+<p>✏️ This course requires Node.js version 20 or 18 (we suggest using the long-term
+support release of version 20). The installation method varies depending on your
+operating system. Please <strong>review the available options and choose one to
+install Node.js</strong>:</p>
+<ul>
+<li>Windows: select the <a href="https://nodejs.org/en/download">MSI installer</a> for your
+flavor of Windows.</li>
+<li>MacOS: we suggest following the <a href="https://nodejs.org/en/download/package-manager#macos">homebrew
+instructions</a> to install
+Node.js.</li>
+<li>Linux: use the <a href="https://nodejs.org/en/download/package-manager#installing-nodejs-via-package-manager">package
+manager</a>
+for your distro.</li>
+</ul>
+<h4>Verify Node.js installation</h4>
+<p>Run the following command in a terminal to verify Node.js is installed correctly:</p>
+<pre><code class="language-shell">node -v
+</code></pre>
+<p>The output of the command will be the current version of Node.js, we expect it
+to start with either &quot;v18&quot; or &quot;v20&quot;.</p>
+<p>Now run the following command in a terminal to verify <code>npm</code> is installed correctly:</p>
+<pre><code class="language-shell">npm -v
+</code></pre>
+<p>The output of the command will be the current version of <code>npm</code>, we expect it
+to start with either &quot;9&quot; or &quot;10&quot;.</p>
+<h3>Generate a new React app</h3>
+<p>✏️ Open a terminal and move to a location where you want to generate your React
+application, then execute the following command:</p>
 <pre><code class="language-shell">npm create vite@5 place-my-order -- --template react-ts
 </code></pre>
-<h4>Setting up testing</h4>
-<p>TODO</p>
+<p>The command runs <code>npm</code> with <code>vite</code> to create a new application named
+&quot;place-my-order&quot;. Vite will use its &quot;react-ts&quot; template to generate the React
+application with <a href="https://www.typescriptlang.org/">TypeScript</a> support.</p>
+<p>Now <code>cd</code> into the new directory created for the application and install the
+required packages:</p>
+<pre><code class="language-shell">cd place-my-order
+npm i
+</code></pre>
+<h4>Verify React app generated</h4>
+<p>Once you have completed the previous step you will be able to start the
+development server and see the default welcome page. Run the command:</p>
+<pre><code class="language-shell">npm run dev
+</code></pre>
+<p>and the server will output the &quot;Local&quot; URL for the dev server, copy and paste it
+into a browser. The browser will display a welcome page with &quot;Vite + React.&quot;</p>
+<h3>Setup testing</h3>
+<p>✏️ Before we can create or execute any tests run the following command to
+install the packages related to the React Testing Library:</p>
 <pre><code class="language-shell">npm install -D @testing-library/jest-dom@6 @testing-library/react@14 jsdom@24 vitest@1
 </code></pre>
+<p>✏️ Once the packages are installed open the &quot;package.json&quot; file (in the
+project's root) and add the &quot;test&quot; line to the <code>scripts</code> object; this simplifies
+running tests using Vite.</p>
 <pre><code class="language-json">{
   &quot;name&quot;: &quot;place-my-order&quot;,
   &quot;private&quot;: true,
@@ -595,33 +695,49 @@ covering CanJS core libraries.">
 
 </code></pre>
 <div line-highlight='10, only'></div>
-<h3>Setup</h3>
-<p>TODO</p>
-<h3>Verify</h3>
-<p>TODO</p>
-<h3>Exercise</h3>
-<p>TODO</p>
+<h4>Verify testing setup</h4>
+<p>After completing the previous steps you will be able to run unit tests.
+Execute the command:</p>
+<pre><code class="language-shell">npm run test
+</code></pre>
+<p>and &quot;No test files found&quot; will be written to the console.</p>
+<h2>Exercise</h2>
+<p>This exercise will finish the objective of creating a new React application with
+TypeScript support that can be served and tested. To complete the exercise make
+code changes to accomplish the following:</p>
+<ul>
+<li>The root <code>/</code> web page shall display a single heading element with the text
+&quot;Place My Order App: Coming Soon!&quot;</li>
+</ul>
+<figure>
+  <img alt="A web browser displaying the root page of the newly created application served by the dev server. The page displays a single level 1 heading with the text 'Place My Order App: Coming Soon!'" src="/static/img/react-vite/setting-up-your-environment_solution_screen-capture.png" style="border: solid black 1px" width="600px" />
+  <figcaption style="font-style: italic">
+    Screen capture of the completed exercise.
+  </figcaption>
+</figure>
 <h3>Solution</h3>
-<p><details>
-<summary>Click to see the solution</summary></p>
-<p>TODO</p>
+<p><details></p>
+<p><summary>Click to see the solution</summary></p>
+<ol>
+<li>In your code editor open the file <code>src/App.tsx</code></li>
+<li>Delete all the <code>import</code> lines <strong>except</strong> <code>import &quot;./App.css&quot;;</code>.</li>
+<li>Delete the line <code>const [count, setCount] = useState(0)</code></li>
+<li>Replace the value of the return statement to be a single <code>&lt;h1&gt;</code> element</li>
+<li>The source code of App.tsx should now look like the example below.</li>
+</ol>
 <pre><code class="language-tsx">import './App.css'
 
 function App() {
   return (
-    &lt;&gt;
-      &lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;
-    &lt;/&gt;
+    &lt;h1&gt;Place My Order App: Coming Soon!&lt;/h1&gt;
   )
 }
 
 export default App
 
 </code></pre>
- <div line-highlight="6,only"></div>
+ <div line-highlight="5,only"></div>
 <p></details></p>
-<h2>Next steps</h2>
-<p>TODO</p>
 
 </section>
 
@@ -660,7 +776,7 @@ export default App
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-vite/02-setting-up-your-environment/setting-up-your-environment.md"},"description":"Learn how to set up a React environment using [Vite](https://vitejs.dev). \n","name":"learn-react-vite/setting-up-your-environment","title":"Setting Up Your Environment","type":"page","parent":"learn-react-vite","order":2,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-vite/02-setting-up-your-environment/setting-up-your-environment.md"},"description":"Learn how to set up a React environment using Vite. \n","name":"learn-react-vite/setting-up-your-environment","title":"Setting Up Your Environment","type":"page","parent":"learn-react-vite","order":2,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
