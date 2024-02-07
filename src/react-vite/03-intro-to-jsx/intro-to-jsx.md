@@ -260,6 +260,10 @@ If ternaries seem excessive for any particular case, you can write all your logi
 ```
 
 If you want to iterate within JSX, use methods such as `Array.map`, `Array.filter` and `Array.reduce`:
+    
+@highlight 3
+
+_✏️ Note: Due to how React stores elements in memory, list items require a stable `key` to identify them in the Virtual DOM. You can learn more in the [React docs](https://react.dev/learn/rendering-lists#why-does-react-need-keys)_
 
 ```jsx
 // Mapping values to JSX elements
@@ -270,9 +274,7 @@ If you want to iterate within JSX, use methods such as `Array.map`, `Array.filte
 </div>
 ```
 
-@highlight 3
-
-_✏️ Note: Due to how React stores elements in memory, list items require a stable `key` to identify them in the Virtual DOM. You can learn more in the [React docs](https://react.dev/learn/rendering-lists#why-does-react-need-keys)_
+Mapping over the array above will render as the following HTML.
 
 ```html
 <div>
