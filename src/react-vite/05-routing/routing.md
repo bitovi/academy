@@ -2,29 +2,66 @@
 @parent learn-react-vite 5
 @outline 3
 
-@description TODO
+@description Learn how to setup and use React Router to update the application's
+user interface in response to URL changes.
 
 @body
 
 ## Overview
 
-TODO
+Routing is a mechanism used by single-page applications to determine what their
+user interface looks like based on the browser's current URL. This follows the
+standard pattern for browsers where changing the URL fetches a new resource;
+however in client rendered applications like React there is no communication
+between the browser and server, instead a specific component is displayed.
 
-## Objective 1
+We will use the [React Router](https://reactrouter.com/) package to provide
+routing for the Place My Order application. This router is popular in the React
+community and is the basis of the [Remix](https://remix.run/) framework.
 
-TODO
+## Objective 1: Defining routes and Outlets
 
-### Key concepts
+Update the Place My Order application with a router, routes, and an Outlet.
 
-TODO
+In this section we will:
 
-#### Concept 1
+- install React Router
+- setup a `RouterProvider` with static routes
+- create an `Outlet` to display the route's component
 
-TODO
+### Concept: Statically defined routing
 
-#### Concept 2
+React Router works by matching the segments of the browser's URL path to
+components, i.e. each segment of the URL's path corresponds to a particular
+React component based on the segment's value. The mapping of a segment's value
+to a component is done though a collection of `RouteObject` items that are
+passed to the router when it is initialized.
 
-TODO
+**TODO: describe `RouteObject`**
+
+### Concept: Outlet
+
+Say you have a component and you want to combine it with the component mapped to
+a route? For example, there's a menu bar at the top of the application and when
+one of its items is selected it changes the browser's URL, and you want the
+component that maps to the current URL to be displayed below the menu as the
+application's content. React Router allows you to do that with its `<Outlet>`
+component.
+
+An `<Outlet>` renders a single child of a route — or nothing if the route has no
+matches. For example give the following route structure:
+
+```code
+/
+├── fruit
+    ├── apple
+    ├── banana
+```
+
+If the browser's URL path is `/fruit/apple/` and the component displaying the
+`fruit` portion of the path contains an `<Outlet>` then the `apple` component
+will be displayed. If the browser's URL path is `/fruit/orange/` then nothing
+will be displayed in the `<Outlet>` because there is no matching route.
 
 ### Setup
 
@@ -42,13 +79,14 @@ npm install react-router-dom@6
 
 TODO
 
-### Exercise
+### Exercise: Add routes and an Outlet
 
 TODO
 
 ### Solution
 
 <details>
+
 <summary>Click to see the solution</summary>
 
 TODO
@@ -59,19 +97,15 @@ TODO
 
 </details>
 
-## Objective 2
+## Objective 2: Links and useMatch
 
 TODO
 
-### Key concepts
+### Concept: Types of Links (and why they're not \<a\> tags)
 
 TODO
 
-#### Concept 1
-
-TODO
-
-#### Concept 2
+### Concept: Match based on the current route
 
 TODO
 
@@ -89,7 +123,7 @@ TODO
 
 @diff ../../../exercises/react-vite/05-routing/01-solution/src/App.test.tsx ../../../exercises/react-vite/05-routing/02-problem/src/App.test.tsx only
 
-### Exercise
+### Exercise: Add a Link and update class names based on route matching
 
 TODO
 
@@ -105,7 +139,3 @@ TODO
 @diff ../../../exercises/react-vite/05-routing/02-problem/src/pages/Home/Home.tsx ../../../exercises/react-vite/05-routing/02-solution/src/pages/Home/Home.tsx only
 
 </details>
-
-## Next steps
-
-TODO
