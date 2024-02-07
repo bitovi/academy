@@ -16,7 +16,7 @@ In this section we will:
 - Add variables to JSX
 - Work with loops in JSX
 
-## Objective 1 - Creating a UI with JSX
+## Objective 1: Creating a UI with JSX
 
 ### Key concepts
 
@@ -31,7 +31,7 @@ JSX is a special syntax designed to look almost identical to HTML. Developers de
 
 React has a procedural `React.createElement` syntax, but most applications do not use it directly. Instead, views are defined and maintained in JSX and will automatically be transpiled into the equivalent `React.createElement` calls at build-time.
 
-## Exercise #1
+## Exercise 1
 
 ### Acceptance criteria
 
@@ -41,25 +41,46 @@ React has a procedural `React.createElement` syntax, but most applications do no
 <img src="../static/img/react-vite/mock-homepage.jpg"
   style="border: solid 1px black; max-width: 640px;"/>
 
+
 ### Setup
 
-TODO
+We've created an assets package with images and CSS you'll need to build the application. Install the `place-my-order-assets` package.
+
+✏️ Run:
 
 ```shell
 npm install place-my-order-assets
 ```
 
-Remove contents of `src/App.css` file:
+✏️ Update **src/App.css** to be:
 
 @diff ../../../exercises/react-vite/02-setting-up-your-environment/solution/src/App.css ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/App.css only
 
 @diff ../../../exercises/react-vite/02-setting-up-your-environment/solution/src/index.css ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/index.css only
 
+Next, you'll need to pull the image from the assets package by adding the following import into `src/App.tsx`.
+
+```tsx
+import HeroImage from 'place-my-order-assets/images/homepage-hero.jpg'
+```
+
+If you inspect the type on the import, you'll notice it is a string. It's actually just the URL for the image. You can use the image import by setting it as the `src` of an image element like `src={HeroImage}`
+
 ### Verify
 
-TODO
+You should have already installed Vitest in the previous section. If you haven't done so already, create a test file at `src/App.test.tsx` and copy the following tests into your test file.
+
+✏️ Copy: 
 
 @diff ../../../exercises/react-vite/02-setting-up-your-environment/solution/src/App.test.tsx ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/App.test.tsx only
+
+✏️ Run: 
+
+```shell
+npm run test
+```
+
+Note that we won't be able to write an automated test that verifies the styles and images appear as desired, so you will have to test those manually.
 
 ### Exercise
 
@@ -86,42 +107,6 @@ Take the below HTML and convert it to JSX:
 </div>
 ```
 
-### Setup
-
-We've created an assets package with images and CSS you'll need to build the application. Install the `place-my-order-assets` package.
-
-```shell
-npm install place-my-order-assets
-```
-
-Remove contents of `src/App.css` file and replace with the following:
-
-@diff ../../../exercises/react-vite/02-setting-up-your-environment/solution/src/App.css ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/App.css only
-
-@diff ../../../exercises/react-vite/02-setting-up-your-environment/solution/src/index.css ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/index.css only
-
-Next, you'll need to pull the image from the assets package by adding the following import into `src/App.tsx`.
-
-```tsx
-import HeroImage from 'place-my-order-assets/images/homepage-hero.jpg'
-```
-
-If you inspect the type on the import, you'll notice it is a string. It's actually just the URL for the image. You can use the image import by setting it as the `src` of an image element like `src={HeroImage}`
-
-### Verify
-
-You should have already installed Vitest in the previous section. If you haven't done so already, create a test file at `src/App.test.tsx` and copy the following tests into your test file.
-
-@diff ../../../exercises/react-vite/02-setting-up-your-environment/solution/src/App.test.tsx ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/App.test.tsx only
-
-Run your tests and verify the results
-
-```shell
-npm run test
-```
-
-Note that we won't be able to write an automated test that verifies the desired styles and images appear as desired, so you will have to test those manually.
-
 ### Solution
 
 <details>
@@ -133,7 +118,7 @@ Note that we won't be able to write an automated test that verifies the desired 
 
 </details>
 
-## Objective 2 - Loops in JSX
+## Objective 2: Loops in JSX
 
 ### Key concepts
 
@@ -142,7 +127,7 @@ Note that we won't be able to write an automated test that verifies the desired 
 
 ## JSX Interpolation
 
-JSX is dynamic. You can easily insert values from variables and objects into your JSX as we did with the image URL in the previous section.
+JSX is dynamic. You can insert values from variables and objects into your JSX as we did with the image URL in the previous section.
 
 ```jsx
 const name = 'Bitovi';
@@ -170,7 +155,7 @@ const person = {
 
 ### JSX is JavaScript
 
-Remember, JSX is simply an alternative syntax for normal JavaScript&mdash;it is not magic. This means that you can use JSX as a normal value.
+Remember, JSX is simply an alternative syntax for normal JavaScript—it is not magic. This means that you can use JSX as a normal value.
 
 ```jsx
 const header = <h1>Hello World</h1>;
@@ -285,7 +270,7 @@ Mapping over the array above will render as the following HTML.
 </div>
 ```
 
-## Exercise #2
+## Exercise 2 
 
 ### Acceptance Criteria
 
@@ -299,7 +284,9 @@ Mapping over the array above will render as the following HTML.
 
 ### Verify
 
-Copy this test into your application to verify you have met the acceptance criteria. Note how React Testing Library allows our tests to specify exact elements.
+Add these tests into your application to verify you have met the acceptance criteria. Note how React Testing Library allows our tests to specify exact elements.
+
+✏️ Update **src/App.test** to be:
 
 ### Exercise
 
