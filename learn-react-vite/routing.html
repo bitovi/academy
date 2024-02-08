@@ -11,7 +11,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="TODO 
+  <meta name="description" content="Learn how to setup and use React Router to update the application&#x27;s user interface in response to URL changes.
+
 ">
   
   <!-- Google Tag Manager -->
@@ -199,7 +200,7 @@
            						expanded">
 						<a class="page"
 							href="routing.html"
-							title="TODO">
+							title="Learn how to setup and use React Router to update the application&#x27;s user interface in response to URL changes.">
 							Routing in React
 						</a>
 						
@@ -530,7 +531,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>TODO</p>
+    <p>Learn how to setup and use React Router to update the application's user interface in response to URL changes.</p>
 
 </section>
 
@@ -544,15 +545,47 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
-<p>TODO</p>
-<h2>Objective 1</h2>
-<p>TODO</p>
-<h3>Key concepts</h3>
-<p>TODO</p>
-<h4>Concept 1</h4>
-<p>TODO</p>
-<h4>Concept 2</h4>
-<p>TODO</p>
+<p>Routing is a mechanism used by single-page applications to determine what their
+user interface looks like based on the browser's current URL. This follows the
+standard pattern for browsers where changing the URL fetches a new resource;
+however in client rendered applications like React there is no communication
+between the browser and server, instead a specific component is displayed.</p>
+<p>We will use the <a href="https://reactrouter.com/">React Router</a> package to provide
+routing for the Place My Order application. This router is popular in the React
+community and is the basis of the <a href="https://remix.run/">Remix</a> framework.</p>
+<h2>Objective 1: Defining routes and Outlets</h2>
+<p>Update the Place My Order application with a router, routes, and an Outlet.</p>
+<p>In this section we will:</p>
+<ul>
+<li>install React Router</li>
+<li>setup a <code>RouterProvider</code> with static routes</li>
+<li>create an <code>Outlet</code> to display the route's component</li>
+</ul>
+<h3>Concept: Statically defined routing</h3>
+<p>React Router works by matching the segments of the browser's URL path to
+components, i.e. each segment of the URL's path corresponds to a particular
+React component based on the segment's value. The mapping of a segment's value
+to a component is done though a collection of <code>RouteObject</code> items that are
+passed to the router when it is initialized.</p>
+<p><strong>TODO: describe <code>RouteObject</code></strong></p>
+<h3>Concept: Outlet</h3>
+<p>Say you have a component and you want to combine it with the component mapped to
+a route? For example, there's a menu bar at the top of the application and when
+one of its items is selected it changes the browser's URL, and you want the
+component that maps to the current URL to be displayed below the menu as the
+application's content. React Router allows you to do that with its <code>&lt;Outlet&gt;</code>
+component.</p>
+<p>An <code>&lt;Outlet&gt;</code> renders a single child of a route — or nothing if the route has no
+matches. For example give the following route structure:</p>
+<pre><code class="language-code">/
+├── fruit
+    ├── apple
+    ├── banana
+</code></pre>
+<p>If the browser's URL path is <code>/fruit/apple/</code> and the component displaying the
+<code>fruit</code> portion of the path contains an <code>&lt;Outlet&gt;</code> then the <code>apple</code> component
+will be displayed. If the browser's URL path is <code>/fruit/orange/</code> then nothing
+will be displayed in the <code>&lt;Outlet&gt;</code> because there is no matching route.</p>
 <h3>Setup</h3>
 <p>TODO</p>
 <pre><code class="language-shell">npm install react-router-dom@6
@@ -591,11 +624,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
  <div line-highlight="3-5,only"></div>
 <h3>Verify</h3>
 <p>TODO</p>
-<h3>Exercise</h3>
+<h3>Exercise: Add routes and an Outlet</h3>
 <p>TODO</p>
 <h3>Solution</h3>
-<p><details>
-<summary>Click to see the solution</summary></p>
+<p><details></p>
+<p><summary>Click to see the solution</summary></p>
 <p>TODO</p>
 <pre><code class="language-tsx">import { Outlet } from 'react-router-dom'
 import './App.css'
@@ -657,13 +690,11 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 </code></pre>
  <div line-highlight="9-28,33,35,only"></div>
 <p></details></p>
-<h2>Objective 2</h2>
+<h2>Objective 2: Links and useMatch</h2>
 <p>TODO</p>
-<h3>Key concepts</h3>
+<h3>Concept: Types of Links (and why they're not &lt;a&gt; tags)</h3>
 <p>TODO</p>
-<h4>Concept 1</h4>
-<p>TODO</p>
-<h4>Concept 2</h4>
+<h3>Concept: Match based on the current route</h3>
 <p>TODO</p>
 <h3>Setup</h3>
 <p>TODO</p>
@@ -746,7 +777,7 @@ describe('App component', () =&gt; {
 
 </code></pre>
  <div line-highlight="3,7-14,21,only"></div>
-<h3>Exercise</h3>
+<h3>Exercise: Add a Link and update class names based on route matching</h3>
 <p>TODO</p>
 <h3>Solution</h3>
 <p><details>
@@ -817,8 +848,6 @@ export default Home
 </code></pre>
  <div line-highlight="22,24,only"></div>
 <p></details></p>
-<h2>Next steps</h2>
-<p>TODO</p>
 
 </section>
 
@@ -857,7 +886,7 @@ export default Home
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-vite/05-routing/routing.md"},"description":"TODO \n","name":"learn-react-vite/routing","title":"Routing in React","type":"page","parent":"learn-react-vite","order":5,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-vite/05-routing/routing.md"},"description":"Learn how to setup and use React Router to update the application's user interface in response to URL changes.\n\n","name":"learn-react-vite/routing","title":"Routing in React","type":"page","parent":"learn-react-vite","order":5,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
