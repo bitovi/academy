@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="TODO 
+  <meta name="description" content="Learn how to provide information to a component through props. 
 ">
   
   <!-- Google Tag Manager -->
@@ -214,7 +214,7 @@
            						expanded">
 						<a class="page"
 							href="props.html"
-							title="TODO">
+							title="Learn how to provide information to a component through props.">
 							Passing Props
 						</a>
 						
@@ -530,7 +530,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>TODO</p>
+    <p>Learn how to provide information to a component through props.</p>
 
 </section>
 
@@ -544,21 +544,300 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
-<p>TODO</p>
+<p>What are props?
+Passing data back from a component to its parent using a functional prop
+Standard prop <code>children</code>
+standard prop <code>key</code></p>
 <h2>Objective 1</h2>
-<p>TODO</p>
+<p>In this section we will:</p>
+<ul>
+<li>pass props to a component</li>
+</ul>
 <h3>Key concepts</h3>
 <p>TODO</p>
 <h4>Concept 1</h4>
-<p>TODO</p>
-<h4>Concept 2</h4>
-<p>TODO</p>
+<p>Since functional components are just a JavaScript function we can pass arguments
+to them. React has defined an API for functional components: they accept an
+optional argument of type <code>object</code> or <code>string</code> that is named &quot;props&quot;.</p>
+<p>Let's talk about when props is a string. This occurs when the content of a
+component's tags is a string, i.e. there are no tags. This situation is similar
+to the <code>&lt;span&gt;</code> tag which contains only text. Receiving a string as props is not
+common.</p>
+<p>TODO: example</p>
+<p>The property names on the props object are defined by the developer for use by
+the component. The values of the properties can be any type including functions
+or other React components.</p>
+<p>TODO: example</p>
 <h3>Setup</h3>
-<p>TODO</p>
+<p>✏️ Update tsconfig.json with a path alias.</p>
+<pre><code class="language-json">{
+  &quot;compilerOptions&quot;: {
+    &quot;baseUrl&quot;: &quot;.&quot;,
+    &quot;paths&quot;: {
+      &quot;@shared/*&quot;: [&quot;src/shared/*&quot;],
+    },
+    &quot;target&quot;: &quot;ES2020&quot;,
+    &quot;useDefineForClassFields&quot;: true,
+    &quot;lib&quot;: [&quot;ES2020&quot;, &quot;DOM&quot;, &quot;DOM.Iterable&quot;],
+    &quot;module&quot;: &quot;ESNext&quot;,
+    &quot;skipLibCheck&quot;: true,
+
+    /* Bundler mode */
+    &quot;moduleResolution&quot;: &quot;bundler&quot;,
+    &quot;allowImportingTsExtensions&quot;: true,
+    &quot;resolveJsonModule&quot;: true,
+    &quot;isolatedModules&quot;: true,
+    &quot;noEmit&quot;: true,
+    &quot;jsx&quot;: &quot;react-jsx&quot;,
+
+    /* Linting */
+    &quot;strict&quot;: true,
+    &quot;noUnusedLocals&quot;: true,
+    &quot;noUnusedParameters&quot;: true,
+    &quot;noFallthroughCasesInSwitch&quot;: true
+  },
+  &quot;include&quot;: [&quot;src&quot;],
+  &quot;references&quot;: [{ &quot;path&quot;: &quot;./tsconfig.node.json&quot; }]
+}
+
+</code></pre>
+ <div line-highlight="3-6,only"></div>
+<p>✏️ From the root of the project</p>
+<pre><code class="language-shell">mkdir -p src/shared/components/FormSelect/
+touch src/shared/components/FormSelect/index.ts
+touch src/shared/components/FormSelect/FormSelect.tsx
+</code></pre>
+<p>✏️ Update the contents of index.ts</p>
+<pre><code class="language-ts">export { default } from &quot;./FormSelect&quot;;
+
+</code></pre>
+<p>✏️ Update the contents of FormSelect.tsx</p>
+<pre><code class="language-tsx">import { useId } from &quot;react&quot;;
+
+const FormTextField: React.FC&lt;React.PropsWithChildren&lt;{
+  label: string;
+  help?: string;
+  disabled?: boolean;
+  value: string;
+  onChange: (data: string) =&gt; void;
+}&gt;&gt; = ({ children, label, help, disabled = false, value, onChange }) =&gt; {
+  const id = useId();
+
+  return (
+    &lt;div className=&quot;form-group&quot;&gt;
+      &lt;label htmlFor={id} className=&quot;control-label&quot;&gt;
+        {label}:
+      &lt;/label&gt;
+
+      &lt;select
+        id={id}
+        className=&quot;form-control&quot;
+        disabled={disabled}
+        value={value}
+        onChange={(e) =&gt; onChange(e.target.value)}
+      &gt;
+        {children}
+      &lt;/select&gt;
+
+      {help &amp;&amp; &lt;p className=&quot;help-text&quot;&gt;{help}&lt;/p&gt;}
+    &lt;/div&gt;
+  );
+};
+
+export default FormTextField;
+
+</code></pre>
+<p>✏️ Update RestaurantList</p>
+<pre><code class="language-tsx">import FormSelect from &quot;@shared/components/FormSelect&quot;;
+
+const RestaurantList: React.FC = () =&gt; {
+    const restaurants = {
+        data: [
+            {
+                name: 'Poutine Palace',
+                slug: 'poutine-palace',
+                images: {
+                    thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
+                    owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+                    banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+                },
+                menu: {
+                    lunch: [
+                        {
+                            name: 'Crab Pancakes with Sorrel Syrup',
+                            price: 35.99,
+                        },
+                        {
+                            name: 'Steamed Mussels',
+                            price: 21.99,
+                        },
+                        {
+                            name: 'Spinach Fennel Watercress Ravioli',
+                            price: 35.99,
+                        },
+                    ],
+                    dinner: [
+                        {
+                            name: 'Gunthorp Chicken',
+                            price: 21.99,
+                        },
+                        {
+                            name: 'Herring in Lavender Dill Reduction',
+                            price: 45.99,
+                        },
+                        {
+                            name: 'Chicken with Tomato Carrot Chutney Sauce',
+                            price: 45.99,
+                        },
+                    ],
+                },
+                address: {
+                    street: '230 W Kinzie Street',
+                    city: 'Green Bay',
+                    state: 'WI',
+                    zip: '53205',
+                },
+                _id: '3ZOZyTY1LH26LnVw',
+            },
+            {
+                name: 'Cheese Curd City',
+                slug: 'cheese-curd-city',
+                images: {
+                    thumbnail: 'node_modules/place-my-order-assets/images/2-thumbnail.jpg',
+                    owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
+                    banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
+                },
+                menu: {
+                    lunch: [
+                        {
+                            name: 'Ricotta Gnocchi',
+                            price: 15.99,
+                        },
+                        {
+                            name: 'Gunthorp Chicken',
+                            price: 21.99,
+                        },
+                        {
+                            name: 'Garlic Fries',
+                            price: 15.99,
+                        },
+                    ],
+                    dinner: [
+                        {
+                            name: 'Herring in Lavender Dill Reduction',
+                            price: 45.99,
+                        },
+                        {
+                            name: 'Truffle Noodles',
+                            price: 14.99,
+                        },
+                        {
+                            name: 'Charred Octopus',
+                            price: 25.99,
+                        },
+                    ],
+                },
+                address: {
+                    street: '2451 W Washburne Ave',
+                    city: 'Green Bay',
+                    state: 'WI',
+                    zip: '53295',
+                },
+                _id: 'Ar0qBJHxM3ecOhcr',
+            },
+        ]
+    };
+
+    return (
+        &lt;&gt;
+            &lt;div className=&quot;restaurants&quot;&gt;
+                &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
+                &lt;form className=&quot;form&quot;&gt;
+                    &lt;FormSelect /&gt;
+                &lt;/form&gt;
+                {restaurants.data ? (
+                    restaurants.data.map(({ _id, slug, name, address, images }) =&gt; (
+                        &lt;div key={_id} className=&quot;restaurant&quot;&gt;
+                            &lt;img src={images.thumbnail} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+                            &lt;h3&gt;{name}&lt;/h3&gt;
+
+                            {address &amp;&amp; (
+                                &lt;div className=&quot;address&quot;&gt;
+                                    {address.street}
+                                    &lt;br /&gt;
+                                    {address.city}, {address.state} {address.zip}
+                                &lt;/div&gt;
+                            )}
+
+                            &lt;div className=&quot;hours-price&quot;&gt;
+                                $$$
+                                &lt;br /&gt;
+                                Hours: M-F 10am-11pm
+                                &lt;span className=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
+                            &lt;/div&gt;
+
+                            &lt;a className=&quot;btn&quot; href={`/restaurants/${slug}`}&gt;
+                                Details
+                            &lt;/a&gt;
+                            &lt;br /&gt;
+                        &lt;/div&gt;
+                    ))
+                ) : (
+                    &lt;p&gt;No restaurants.&lt;/p&gt;
+                )}
+            &lt;/div&gt;
+        &lt;/&gt;
+    )
+}
+
+export default RestaurantList
+</code></pre>
+ <div line-highlight="1,105-107,only"></div>
 <h3>Verify</h3>
 <p>TODO</p>
 <h3>Exercise</h3>
+<p>Update the <code>FormSelect</code> to accept (label, value, onChange)</p>
+<h3>Solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
 <p>TODO</p>
+<p></details></p>
+<h2>Objective 2</h2>
+<p>In this section we will:</p>
+<p>Standard prop <code>children</code>
+standard prop <code>key</code></p>
+<h3>Key concepts</h3>
+<h4>Concept 1</h4>
+<p>There is one exception to the naming of properties on the props object, React
+defines one optional property named &quot;children&quot; that contains either a single
+component or a collection of components. The children property is set to the
+contents between a component's opening and closing tags. For example if a
+component displayed a table it might accept a collection of row components as
+children to display as rows in the table.</p>
+<p>TODO: replace with real sample code</p>
+<pre><code class="language-jsx">&lt;MyTable&gt;
+  &lt;tr&gt;
+    &lt;td&gt;row data&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/MyTable&gt;
+</code></pre>
+<p>In the example above the <code>MyTable</code> component would receive a props object where
+<code>children</code> was set to the <code>tr</code> component. It's up to the MyTable component to
+determine where those children are rendered for display as shown below.</p>
+<p>TODO: replace with real sample code</p>
+<pre><code class="language-jsx">const MyTable: React.FC = ({ children }) =&gt; {
+  return &lt;table&gt;{ children }&lt;/table&gt;;
+}
+</code></pre>
+<h4>Concept 2</h4>
+<p>TODO: the <code>key</code> prop</p>
+<h3>Setup</h3>
+<p>Add remaining <code>FormSelect</code> boilerplate props (help, disabled) - maybe this is already done...</p>
+<h3>Verify</h3>
+<p>TODO</p>
+<h3>Exercise</h3>
+<p>Add options as children in <code>RestaurantList</code>
+Update <code>FormSelect</code> to render children</p>
 <h3>Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -604,7 +883,7 @@ covering CanJS core libraries.">
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-vite/06-props/props.md"},"description":"TODO \n","name":"learn-react-vite/props","title":"Passing Props","type":"page","parent":"learn-react-vite","order":6,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-vite/06-props/props.md"},"description":"Learn how to provide information to a component through props. \n","name":"learn-react-vite/props","title":"Passing Props","type":"page","parent":"learn-react-vite","order":6,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
