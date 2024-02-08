@@ -17,6 +17,13 @@ a component.
 
 ## Key React Concepts
 
+### Declarative Syntax
+
+Through JSX, React "declares" how a UI looks based on the current state. This is
+different from typical web application development where a UI is constructed
+using imperative methods such as creating an element setting properties and then
+attaching it to the DOM.
+
 ### Unidirectional data flow
 
 Data in a React based application flows one way: into a component through
