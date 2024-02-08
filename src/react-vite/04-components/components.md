@@ -53,6 +53,8 @@ TODO
 
 @diff ../../../exercises/react-vite/03-intro-to-jsx/02-solution/src/App.tsx ../../../exercises/react-vite/04-components/01-solution/src/App.tsx only
 
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/04-components/01-solution?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/04-components/01-solution?file=src/App.tsx).
+
 </details>
 
 ## Objective 2
@@ -86,6 +88,8 @@ TODO
 
 TODO
 
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/04-components/02-problem?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/04-components/02-problem?file=src/App.tsx) to do this exercise in an online code editor.
+
 ### Solution
 
 <details>
@@ -94,6 +98,8 @@ TODO
 TODO
 
 @diff ../../../exercises/react-vite/04-components/02-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/04-components/02-solution/src/pages/RestaurantList/RestaurantList.tsx only
+
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/04-components/02-solution?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/04-components/02-solution?file=src/App.tsx).
 
 </details>
 

@@ -8,7 +8,7 @@
 
 ## Overview
 
-In this section we will:
+In this section, we will:
 
 - learn about Node.js
 - recommend tools to use in React development
@@ -200,6 +200,8 @@ code changes to accomplish the following:
   </figcaption>
 </figure>
 
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/problem?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/problem?file=src/App.tsx) to do this exercise in an online code editor.
+
 ### Solution
 
 <details>
@@ -213,5 +215,7 @@ code changes to accomplish the following:
 5. The source code of App.tsx should now look like the example below.
 
 @diff ../../../exercises/react-vite/02-setting-up-your-environment/problem/src/App.tsx ../../../exercises/react-vite/02-setting-up-your-environment/solution/src/App.tsx only
+
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/solution?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/solution?file=src/App.tsx).
 
 </details>
