@@ -3,7 +3,7 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/react-vite/05-routing/routing.md
+	source: src/react-vite/06-routing/routing.md
 	@page learn-react-vite/routing
 ######################################################################## -->
 <html lang="en">
@@ -195,6 +195,21 @@
 		
 			
 				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="props.html"
+							title="Learn how to provide information to a component through props.">
+							Passing Props
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
 					<li class="current
            						parent
            						expanded">
@@ -206,21 +221,6 @@
 						
 							
 
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="props.html"
-							title="Learn how to provide information to a component through props.">
-							Passing Props
-						</a>
 						
 					</li>
 				
@@ -618,9 +618,6 @@ This is useful for scenarios where your application is served from a subdirector
 Remember that our <code>main.tsx</code> file currently looks like this:</p>
 <pre><code class="language-tsx">import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from './pages/Home/Home'
-import RestaurantList from './pages/RestaurantList/RestaurantList'
 import App from './App.tsx'
 import './index.css'
 
@@ -631,13 +628,13 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 )
 
 </code></pre>
-<div line-highlight='11, only'></div>
+<div line-highlight='8, only'></div>
 <p>Instead of only rendering our <code>&lt;App&gt;</code> component, we can use <code>&lt;RouterProvider&gt;</code>:</p>
 <pre><code class="language-tsx">import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from './pages/Home/Home'
-import RestaurantList from './pages/RestaurantList/RestaurantList'
+import Home from './pages/Home'
+import RestaurantList from './pages/RestaurantList'
 import App from './App.tsx'
 import './index.css'
 
@@ -668,7 +665,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     &lt;RouterProvider router={router} /&gt;
   &lt;/React.StrictMode&gt;,
 )
-
 </code></pre>
 <div line-highlight='33, only'></div>
 <p>The <code>RouterProvider</code> requires the <code>router</code> object created by <code>createBrowserRouter</code>.
@@ -704,10 +700,37 @@ let’s install <code>react-router-dom</code> with npm:</p>
 <p>✏️ Run:</p>
 <pre><code class="language-shell">npm install react-router-dom@6
 </code></pre>
+<p>✏️ Create <strong>src/pages/Home/</strong> (folder)</p>
+<p>✏️ Create <strong>src/pages/Home/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./Home&quot;
+</code></pre>
+<p>✏️ Create <strong>src/pages/Home/Home.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import HeroImage from &quot;place-my-order-assets/images/homepage-hero.jpg&quot;
+
+const Home: React.FC = () =&gt; {
+    return (
+        &lt;div className=&quot;homepage&quot; style={{ margin: &quot;auto&quot; }}&gt;
+            &lt;img
+                alt=&quot;Restaurant table with glasses.&quot;
+                height=&quot;380&quot;
+                src={HeroImage}
+                width=&quot;250&quot;
+            /&gt;
+
+            &lt;h1&gt;Ordering food has never been easier&lt;/h1&gt;
+
+            &lt;p&gt;
+                We make it easier than ever to order gourmet food from your favorite
+                local restaurants.
+            &lt;/p&gt;
+        &lt;/div&gt;
+    )
+}
+
+export default Home
+</code></pre>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { Outlet } from 'react-router-dom'
-import Home from './pages/Home/Home'
-import RestaurantList from './pages/RestaurantList/RestaurantList'
 import './App.css'
 
 function App() {
@@ -716,26 +739,31 @@ function App() {
       &lt;header&gt;
         &lt;nav&gt;
           &lt;h1&gt;place-my-order.com&lt;/h1&gt;
+          &lt;ul&gt;
+            &lt;li&gt;
+              &lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;a href=&quot;/restaurants&quot;&gt;Restaurants&lt;/a&gt;
+            &lt;/li&gt;
+          &lt;/ul&gt;
         &lt;/nav&gt;
       &lt;/header&gt;
 
-      &lt;Home&gt;&lt;/Home&gt;
-
-      &lt;RestaurantList&gt;&lt;/RestaurantList&gt;
+      &lt;RestaurantList /&gt;
     &lt;/&gt;
   )
 }
 
 export default App
-
 </code></pre>
- <div line-highlight="1,only"></div>
+ <div line-highlight="1,7-19,only"></div>
 <p>✏️ Update <strong>src/main.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from './pages/Home/Home'
-import RestaurantList from './pages/RestaurantList/RestaurantList'
+import Home from './pages/Home'
+import RestaurantList from './pages/RestaurantList'
 import App from './App.tsx'
 import './index.css'
 
@@ -749,13 +777,46 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
  <div line-highlight="3-5,only"></div>
 <h3>Verify</h3>
 <p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
-<p>TODO</p>
+<pre><code class="language-tsx">import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import { describe, expect, it } from 'vitest';
+
+import App from './App';
+
+// Wrap App with MemoryRouter to mock routing
+const renderWithRouter = (ui, { route = '/' } = {}) =&gt; {
+  window.history.pushState({}, 'Test page', route)
+  return render(ui, { wrapper: MemoryRouter });
+};
+
+describe('App component', () =&gt; {
+  it('renders without crashing', () =&gt; {
+    renderWithRouter(&lt;App /&gt;);
+    expect(screen.getByText(/place-my-order.com/i)).toBeInTheDocument();
+  });
+
+  it('contains the navigation bar with correct links', () =&gt; {
+    renderWithRouter(&lt;App /&gt;);
+    expect(screen.getByText('Home')).toBeInTheDocument();
+    expect(screen.getByText('Restaurants')).toBeInTheDocument();
+
+    const homeLink = screen.getByText('Home').closest('a');
+    expect(homeLink).toHaveAttribute('href', '/');
+
+    const restaurantsLink = screen.getByText('Restaurants').closest('a');
+    expect(restaurantsLink).toHaveAttribute('href', '/restaurants');
+  });
+});
+
+</code></pre>
+ <div line-highlight="3-4,8-12,14,16-17,20-23,25-26,28-30,only"></div>
 <h3>Exercise 1</h3>
 <p>Create routes for the <code>&lt;Home&gt;</code> component and <code>&lt;RestaurantList&gt;</code> component.
 When the route is <code>&quot;&quot;</code>, the <code>&lt;Home&gt;</code> component should display, and when
 the route is <code>/restaurants</code> then the <code>&lt;RestaurantList&gt;</code> component should
 display. These changes should be made in <code>src/App.tsx</code> and <code>src/main.tsx</code>.</p>
-<p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/05-routing/01-problem?file=App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/05-routing/01-problem?file=App.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
+<p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-problem?file=App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-problem?file=App.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
 <h3>Solution</h3>
 <p><details></p>
 <p><summary>Click to see the solution</summary></p>
@@ -769,6 +830,14 @@ function App() {
       &lt;header&gt;
         &lt;nav&gt;
           &lt;h1&gt;place-my-order.com&lt;/h1&gt;
+          &lt;ul&gt;
+            &lt;li&gt;
+              &lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;a href=&quot;/restaurants&quot;&gt;Restaurants&lt;/a&gt;
+            &lt;/li&gt;
+          &lt;/ul&gt;
         &lt;/nav&gt;
       &lt;/header&gt;
 
@@ -778,15 +847,14 @@ function App() {
 }
 
 export default App
-
 </code></pre>
- <div line-highlight="13,only"></div>
+ <div line-highlight="21,only"></div>
 <p>✏️ Update <strong>src/main.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import Home from './pages/Home/Home'
-import RestaurantList from './pages/RestaurantList/RestaurantList'
+import Home from './pages/Home'
+import RestaurantList from './pages/RestaurantList'
 import App from './App.tsx'
 import './index.css'
 
@@ -817,10 +885,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
     &lt;RouterProvider router={router} /&gt;
   &lt;/React.StrictMode&gt;,
 )
-
 </code></pre>
  <div line-highlight="9-28,33,35,only"></div>
-<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/05-routing/01-solution?file=App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/05-routing/01-solution?file=App.tsx">CodeSandbox</a>.</p>
+<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-solution?file=App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-solution?file=App.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Objective 2: Creating links between pages</h2>
 <p>Next, we want to update Place My Order to include links in our <code>&lt;header&gt;</code>
@@ -865,7 +932,7 @@ the current route is <code>/about</code>; otherwise, <code>useMatch</code> will 
 current route is something else.</p>
 <h3>Setup</h3>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { NavLink, Outlet, useMatch } from 'react-router-dom';
+<pre><code class="language-tsx">import { Link, Outlet, useMatch } from 'react-router-dom'
 import './App.css'
 
 function App() {
@@ -874,6 +941,14 @@ function App() {
       &lt;header&gt;
         &lt;nav&gt;
           &lt;h1&gt;place-my-order.com&lt;/h1&gt;
+          &lt;ul&gt;
+            &lt;li&gt;
+              &lt;a href=&quot;/&quot;&gt;Home&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+              &lt;a href=&quot;/restaurants&quot;&gt;Restaurants&lt;/a&gt;
+            &lt;/li&gt;
+          &lt;/ul&gt;
         &lt;/nav&gt;
       &lt;/header&gt;
 
@@ -883,68 +958,50 @@ function App() {
 }
 
 export default App
-
-</code></pre>
- <div line-highlight="1,only"></div>
-<p>✏️ Update <strong>src/pages/Home/Home.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { Link } from &quot;react-router-dom&quot;
-
-const Home: React.FC = () =&gt; {
-    const title = &quot;Ordering food has never been easier&quot;;
-    return (
-        &lt;div className=&quot;homepage&quot; style={{ margin: &quot;auto&quot; }}&gt;
-            &lt;img
-                src=&quot;node_modules/place-my-order-assets/images/homepage-hero.jpg&quot;
-                alt=&quot;Restaurant table with glasses.&quot;
-                width=&quot;250&quot;
-                height=&quot;380&quot;
-            /&gt;
-
-            &lt;h1&gt;{title}&lt;/h1&gt;
-
-            &lt;p&gt;
-                We make it easier than ever to order gourmet food from your favorite
-                local restaurants.
-            &lt;/p&gt;
-
-            &lt;p&gt;
-                &lt;a className=&quot;btn&quot; role=&quot;button&quot;&gt;
-                    Choose a Restaurant
-                &lt;/a&gt;
-            &lt;/p&gt;
-        &lt;/div&gt;
-    )
-}
-
-export default Home
 </code></pre>
  <div line-highlight="1,only"></div>
 <h3>Verify</h3>
 <p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
-import { describe, it, vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import { describe, expect, it } from 'vitest';
 
 import App from './App';
 
-vi.mock('react-router-dom', () =&gt; {
-  const originalModule = vi.importActual('react-router-dom');
-  return {
-    ...originalModule,
-    NavLink: vi.fn(),
-    Outlet: vi.fn(),
-    useMatch: vi.fn(),
-  };
-});
+// Wrap App with MemoryRouter to mock routing
+const renderWithRouter = (ui, { route = '/' } = {}) =&gt; {
+  window.history.pushState({}, 'Test page', route)
+  return render(ui, { wrapper: MemoryRouter });
+};
 
 describe('App component', () =&gt; {
-  it('renders', () =&gt; {
-    render(&lt;App /&gt;);
+  it('renders without crashing', () =&gt; {
+    renderWithRouter(&lt;App /&gt;);
+    expect(screen.getByText(/place-my-order.com/i)).toBeInTheDocument();
+  });
+
+  it('contains the navigation bar with correct links', () =&gt; {
+    renderWithRouter(&lt;App /&gt;);
+    expect(screen.getByText('Home')).toBeInTheDocument();
+    expect(screen.getByText('Restaurants')).toBeInTheDocument();
+
+    const homeLink = screen.getByText('Home').closest('a');
+    expect(homeLink).toHaveAttribute('href', '/');
+
+    const restaurantsLink = screen.getByText('Restaurants').closest('a');
+    expect(restaurantsLink).toHaveAttribute('href', '/restaurants');
+  });
+
+  it('highlights &quot;Home&quot; link as active when on the home page', () =&gt; {
+    renderWithRouter(&lt;App /&gt;, { route: '/' });
+    expect(screen.getByText('Home').closest('li')).toHaveClass('active');
+    expect(screen.getByText('Restaurants').closest('li')).not.toHaveClass('active');
   });
 });
 
 </code></pre>
- <div line-highlight="3,7-14,21,only"></div>
+ <div line-highlight="32-36,only"></div>
 <h3>Exercise 2</h3>
 <p>Add a Link and update class names based on route matching</p>
 <p>In the <code>&lt;Home&gt;</code> component, we want to use React Router for the
@@ -961,12 +1018,12 @@ of what the DOM should look like when the home page is active:</p>
     &lt;/li&gt;
 &lt;/ul&gt;
 </code></pre>
-<p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/05-routing/02-problem?file=src/pages/Home/Home.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/05-routing/02-problem?file=src/pages/Home/Home.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
+<p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/02-problem?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/02-problem?file=src/App.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
 <h3>Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { NavLink, Outlet, useMatch } from 'react-router-dom';
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { Link, Outlet, useMatch } from 'react-router-dom';
 import './App.css';
 
 function App() {
@@ -980,10 +1037,10 @@ function App() {
           &lt;h1&gt;place-my-order.com&lt;/h1&gt;
           &lt;ul&gt;
             &lt;li className={homeMatch ? 'active' : ''}&gt;
-              &lt;NavLink to='/'&gt;Home&lt;/NavLink&gt;
+              &lt;Link to='/'&gt;Home&lt;/Link&gt;
             &lt;/li&gt;
             &lt;li className={restaurantsMatch ? 'active' : ''}&gt;
-              &lt;NavLink to='/restaurants'&gt;Restaurants&lt;/NavLink&gt;
+              &lt;Link to='/restaurants'&gt;Restaurants&lt;/Link&gt;
             &lt;/li&gt;
           &lt;/ul&gt;
         &lt;/nav&gt;
@@ -995,43 +1052,9 @@ function App() {
 }
 
 export default App;
-
 </code></pre>
- <div line-highlight="5-6,13-20,only"></div>
-<p>✏️ Update <strong>src/pages/Home/Home.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import { Link } from &quot;react-router-dom&quot;
-
-const Home: React.FC = () =&gt; {
-    const title = &quot;Ordering food has never been easier&quot;;
-    return (
-        &lt;div className=&quot;homepage&quot; style={{ margin: &quot;auto&quot; }}&gt;
-            &lt;img
-                src=&quot;node_modules/place-my-order-assets/images/homepage-hero.jpg&quot;
-                alt=&quot;Restaurant table with glasses.&quot;
-                width=&quot;250&quot;
-                height=&quot;380&quot;
-            /&gt;
-
-            &lt;h1&gt;{title}&lt;/h1&gt;
-
-            &lt;p&gt;
-                We make it easier than ever to order gourmet food from your favorite
-                local restaurants.
-            &lt;/p&gt;
-
-            &lt;p&gt;
-                &lt;Link className=&quot;btn&quot; to=&quot;/restaurants&quot; role=&quot;button&quot;&gt;
-                    Choose a Restaurant
-                &lt;/Link&gt;
-            &lt;/p&gt;
-        &lt;/div&gt;
-    )
-}
-
-export default Home
-</code></pre>
- <div line-highlight="22,24,only"></div>
-<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/05-routing/02-solution?file=src/pages/Home/Home.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/05-routing/02-solution?file=src/pages/Home/Home.tsx">CodeSandbox</a>.</p>
+ <div line-highlight="5-6,14-15,17-18,only"></div>
+<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/02-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/02-solution?file=src/App.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 
 </section>
@@ -1071,7 +1094,7 @@ export default Home
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-vite/05-routing/routing.md"},"description":"Learn how to set up and use React Router to update the application's user interface in response to URL changes.\n\n","name":"learn-react-vite/routing","title":"Routing in React","type":"page","parent":"learn-react-vite","order":5,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-vite/06-routing/routing.md"},"description":"Learn how to set up and use React Router to update the application's user interface in response to URL changes.\n\n","name":"learn-react-vite/routing","title":"Routing in React","type":"page","parent":"learn-react-vite","order":6,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     

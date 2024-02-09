@@ -3,7 +3,7 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/react-vite/06-props/props.md
+	source: src/react-vite/05-props/props.md
 	@page learn-react-vite/props
 ######################################################################## -->
 <html lang="en">
@@ -194,21 +194,6 @@
 		
 			
 				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="routing.html"
-							title="Learn how to set up and use React Router to update the application&#x27;s user interface in response to URL changes.">
-							Routing in React
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
 					<li class="current
            						parent
            						expanded">
@@ -220,6 +205,21 @@
 						
 							
 
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="routing.html"
+							title="Learn how to set up and use React Router to update the application&#x27;s user interface in response to URL changes.">
+							Routing in React
+						</a>
 						
 					</li>
 				
@@ -569,237 +569,285 @@ the component. The values of the properties can be any type including functions
 or other React components.</p>
 <p>TODO: example</p>
 <h3>Setup</h3>
-<p>✏️ Update tsconfig.json with a path alias.</p>
-<pre><code class="language-json">{
-  &quot;compilerOptions&quot;: {
-    &quot;baseUrl&quot;: &quot;.&quot;,
-    &quot;paths&quot;: {
-      &quot;@shared/*&quot;: [&quot;src/shared/*&quot;],
-    },
-    &quot;target&quot;: &quot;ES2020&quot;,
-    &quot;useDefineForClassFields&quot;: true,
-    &quot;lib&quot;: [&quot;ES2020&quot;, &quot;DOM&quot;, &quot;DOM.Iterable&quot;],
-    &quot;module&quot;: &quot;ESNext&quot;,
-    &quot;skipLibCheck&quot;: true,
-
-    /* Bundler mode */
-    &quot;moduleResolution&quot;: &quot;bundler&quot;,
-    &quot;allowImportingTsExtensions&quot;: true,
-    &quot;resolveJsonModule&quot;: true,
-    &quot;isolatedModules&quot;: true,
-    &quot;noEmit&quot;: true,
-    &quot;jsx&quot;: &quot;react-jsx&quot;,
-
-    /* Linting */
-    &quot;strict&quot;: true,
-    &quot;noUnusedLocals&quot;: true,
-    &quot;noUnusedParameters&quot;: true,
-    &quot;noFallthroughCasesInSwitch&quot;: true
-  },
-  &quot;include&quot;: [&quot;src&quot;],
-  &quot;references&quot;: [{ &quot;path&quot;: &quot;./tsconfig.node.json&quot; }]
+<p>✏️ Create <strong>src/pages/RestaurantList/ListItem.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">interface ListItemProps {
+    address?: {
+        city: string;
+        state: string;
+        street: string;
+        zip: string;
+    };
+    name: string;
+    slug: string;
+    thumbnail: string;
 }
 
-</code></pre>
- <div line-highlight="3-6,only"></div>
-<p>✏️ From the root of the project</p>
-<pre><code class="language-shell">mkdir -p src/shared/components/FormSelect/
-touch src/shared/components/FormSelect/index.ts
-touch src/shared/components/FormSelect/FormSelect.tsx
-</code></pre>
-<p>✏️ Update the contents of index.ts</p>
-<pre><code class="language-ts">export { default } from &quot;./FormSelect&quot;;
-
-</code></pre>
-<p>✏️ Update the contents of FormSelect.tsx</p>
-<pre><code class="language-tsx">import { useId } from &quot;react&quot;;
-
-const FormTextField: React.FC&lt;React.PropsWithChildren&lt;{
-  label: string;
-  help?: string;
-  disabled?: boolean;
-  value: string;
-  onChange: (data: string) =&gt; void;
-}&gt;&gt; = ({ children, label, help, disabled = false, value, onChange }) =&gt; {
-  const id = useId();
-
-  return (
-    &lt;div className=&quot;form-group&quot;&gt;
-      &lt;label htmlFor={id} className=&quot;control-label&quot;&gt;
-        {label}:
-      &lt;/label&gt;
-
-      &lt;select
-        id={id}
-        className=&quot;form-control&quot;
-        disabled={disabled}
-        value={value}
-        onChange={(e) =&gt; onChange(e.target.value)}
-      &gt;
-        {children}
-      &lt;/select&gt;
-
-      {help &amp;&amp; &lt;p className=&quot;help-text&quot;&gt;{help}&lt;/p&gt;}
-    &lt;/div&gt;
-  );
-};
-
-export default FormTextField;
-
-</code></pre>
-<p>✏️ Update RestaurantList</p>
-<pre><code class="language-tsx">import FormSelect from &quot;@shared/components/FormSelect&quot;;
-
-const RestaurantList: React.FC = () =&gt; {
-    const restaurants = {
-        data: [
-            {
-                name: 'Poutine Palace',
-                slug: 'poutine-palace',
-                images: {
-                    thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
-                    owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
-                    banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
-                },
-                menu: {
-                    lunch: [
-                        {
-                            name: 'Crab Pancakes with Sorrel Syrup',
-                            price: 35.99,
-                        },
-                        {
-                            name: 'Steamed Mussels',
-                            price: 21.99,
-                        },
-                        {
-                            name: 'Spinach Fennel Watercress Ravioli',
-                            price: 35.99,
-                        },
-                    ],
-                    dinner: [
-                        {
-                            name: 'Gunthorp Chicken',
-                            price: 21.99,
-                        },
-                        {
-                            name: 'Herring in Lavender Dill Reduction',
-                            price: 45.99,
-                        },
-                        {
-                            name: 'Chicken with Tomato Carrot Chutney Sauce',
-                            price: 45.99,
-                        },
-                    ],
-                },
-                address: {
-                    street: '230 W Kinzie Street',
-                    city: 'Green Bay',
-                    state: 'WI',
-                    zip: '53205',
-                },
-                _id: '3ZOZyTY1LH26LnVw',
-            },
-            {
-                name: 'Cheese Curd City',
-                slug: 'cheese-curd-city',
-                images: {
-                    thumbnail: 'node_modules/place-my-order-assets/images/2-thumbnail.jpg',
-                    owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
-                    banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
-                },
-                menu: {
-                    lunch: [
-                        {
-                            name: 'Ricotta Gnocchi',
-                            price: 15.99,
-                        },
-                        {
-                            name: 'Gunthorp Chicken',
-                            price: 21.99,
-                        },
-                        {
-                            name: 'Garlic Fries',
-                            price: 15.99,
-                        },
-                    ],
-                    dinner: [
-                        {
-                            name: 'Herring in Lavender Dill Reduction',
-                            price: 45.99,
-                        },
-                        {
-                            name: 'Truffle Noodles',
-                            price: 14.99,
-                        },
-                        {
-                            name: 'Charred Octopus',
-                            price: 25.99,
-                        },
-                    ],
-                },
-                address: {
-                    street: '2451 W Washburne Ave',
-                    city: 'Green Bay',
-                    state: 'WI',
-                    zip: '53295',
-                },
-                _id: 'Ar0qBJHxM3ecOhcr',
-            },
-        ]
-    };
-
+const ListItem: React.FC&lt;ListItemProps&gt; = () =&gt; {
     return (
         &lt;&gt;
-            &lt;div className=&quot;restaurants&quot;&gt;
-                &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
-                &lt;form className=&quot;form&quot;&gt;
-                    &lt;FormSelect /&gt;
-                &lt;/form&gt;
-                {restaurants.data ? (
-                    restaurants.data.map(({ _id, slug, name, address, images }) =&gt; (
-                        &lt;div key={_id} className=&quot;restaurant&quot;&gt;
-                            &lt;img src={images.thumbnail} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
-                            &lt;h3&gt;{name}&lt;/h3&gt;
-
-                            {address &amp;&amp; (
-                                &lt;div className=&quot;address&quot;&gt;
-                                    {address.street}
-                                    &lt;br /&gt;
-                                    {address.city}, {address.state} {address.zip}
-                                &lt;/div&gt;
-                            )}
-
-                            &lt;div className=&quot;hours-price&quot;&gt;
-                                $$$
-                                &lt;br /&gt;
-                                Hours: M-F 10am-11pm
-                                &lt;span className=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
-                            &lt;/div&gt;
-
-                            &lt;a className=&quot;btn&quot; href={`/restaurants/${slug}`}&gt;
-                                Details
-                            &lt;/a&gt;
-                            &lt;br /&gt;
-                        &lt;/div&gt;
-                    ))
-                ) : (
-                    &lt;p&gt;No restaurants.&lt;/p&gt;
-                )}
-            &lt;/div&gt;
         &lt;/&gt;
     )
 }
 
+export default ListItem
+</code></pre>
+<p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
+import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
+import ListItem from './ListItem'
+
+const RestaurantList: React.FC = () =&gt; {
+  const restaurants = {
+    data: [
+      {
+        name: 'Cheese Curd City',
+        slug: 'cheese-curd-city',
+        images: {
+          thumbnail: CheeseThumbnail,
+        },
+        address: {
+          street: '2451 W Washburne Ave',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53295',
+        },
+        _id: 'Ar0qBJHxM3ecOhcr',
+      },
+      {
+        name: 'Poutine Palace',
+        slug: 'poutine-palace',
+        images: {
+          thumbnail: PoutineThumbnail,
+        },
+        address: {
+          street: '230 W Kinzie Street',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53205',
+        },
+        _id: '3ZOZyTY1LH26LnVw',
+      },
+    ]
+  };
+
+  return (
+    &lt;&gt;
+      &lt;div className=&quot;restaurants&quot;&gt;
+        &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
+        {restaurants.data ? (
+          restaurants.data.map(({ _id, address, images, name, slug }) =&gt; (
+            &lt;div key={_id} className=&quot;restaurant&quot;&gt;
+              &lt;img src={images.thumbnail} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+              &lt;h3&gt;{name}&lt;/h3&gt;
+
+              {address &amp;&amp; (
+                &lt;div className=&quot;address&quot;&gt;
+                  {address.street}
+                  &lt;br /&gt;
+                  {address.city}, {address.state} {address.zip}
+                &lt;/div&gt;
+              )}
+
+              &lt;div className=&quot;hours-price&quot;&gt;
+                $$$
+                &lt;br /&gt;
+                Hours: M-F 10am-11pm
+                &lt;span className=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
+              &lt;/div&gt;
+
+              &lt;a className=&quot;btn&quot; href={`/restaurants/${slug}`}&gt;
+                Details
+              &lt;/a&gt;
+              &lt;br /&gt;
+            &lt;/div&gt;
+          ))
+        ) : (
+          &lt;p&gt;No restaurants.&lt;/p&gt;
+        )}
+      &lt;/div&gt;
+    &lt;/&gt;
+  )
+}
+
 export default RestaurantList
 </code></pre>
- <div line-highlight="1,105-107,only"></div>
+ <div line-highlight="3,only"></div>
 <h3>Verify</h3>
-<p>TODO</p>
+<p>✏️ Create <strong>src/pages/RestaurantList/ListItem.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
+import ListItem from './ListItem';
+
+describe('ListItem component', () =&gt; {
+  it('renders the restaurant image', () =&gt; {
+    render(&lt;ListItem slug=&quot;test-slug&quot; name=&quot;Test Name&quot; thumbnail=&quot;test-thumbnail.jpg&quot; /&gt;);
+    const img = screen.getByRole('img');
+    expect(img).toHaveAttribute('src', 'test-thumbnail.jpg');
+    expect(img).toHaveAttribute('width', '100');
+    expect(img).toHaveAttribute('height', '100');
+  });
+
+  it('renders the address', () =&gt; {
+    const address = {
+      city: 'Test City',
+      state: 'Test State',
+      street: 'Test Street',
+      zip: '12345',
+    };
+
+    render(&lt;ListItem slug=&quot;test-slug&quot; name=&quot;Test Name&quot; address={address} thumbnail=&quot;test-thumbnail.jpg&quot; /&gt;);
+
+    const addressDiv = screen.getByText(/Test Street/i).closest('div');
+    expect(addressDiv).toHaveTextContent('Test Street');
+    expect(addressDiv).toHaveTextContent('Test City, Test State 12345');
+  });
+
+  it('does not render the address section when address is not provided', () =&gt; {
+    render(&lt;ListItem slug=&quot;test-slug&quot; name=&quot;Test Name&quot; thumbnail=&quot;test-thumbnail.jpg&quot; /&gt;);
+
+    // Check that address-related text is not in the document
+    expect(screen.queryByText('Test Street')).not.toBeInTheDocument();
+    expect(screen.queryByText(/Test City, Test State 12345/)).not.toBeInTheDocument();
+  });
+
+  it('renders the hours and price information', () =&gt; {
+    render(&lt;ListItem slug=&quot;test-slug&quot; name=&quot;Test Name&quot; thumbnail=&quot;test-thumbnail.jpg&quot; /&gt;);
+    const hoursPriceDiv = screen.getByText(/\$\$\$/i).closest('div');
+    expect(hoursPriceDiv).toHaveTextContent('$$$');
+    expect(hoursPriceDiv).toHaveTextContent('Hours: M-F 10am-11pm');
+  });
+
+  it('indicates if the restaurant is open now', () =&gt; {
+    render(&lt;ListItem slug=&quot;test-slug&quot; name=&quot;Test Name&quot; thumbnail=&quot;test-thumbnail.jpg&quot; /&gt;);
+    expect(screen.getByText('Open Now')).toBeInTheDocument();
+  });
+
+  it('renders the details button with correct link', () =&gt; {
+    render(&lt;ListItem slug=&quot;test-slug&quot; name=&quot;Test Name&quot; thumbnail=&quot;test-thumbnail.jpg&quot; /&gt;);
+    const detailsButton = screen.getByRole('link');
+    expect(detailsButton).toHaveAttribute('href', '/restaurants/test-slug');
+    expect(screen.getByText('Details')).toBeInTheDocument();
+  });
+});
+
+</code></pre>
 <h3>Exercise</h3>
 <p>Update the <code>FormSelect</code> to accept (label, value, onChange)</p>
 <h3>Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/pages/RestaurantList/ListItem.tsx</strong> to be:</p>
+<pre><code class="language-tsx">interface ListItemProps {
+    address?: {
+        city: string;
+        state: string;
+        street: string;
+        zip: string;
+    };
+    name: string;
+    slug: string;
+    thumbnail: string;
+}
+
+const ListItem: React.FC&lt;ListItemProps&gt; = ({ address, name, slug, thumbnail }) =&gt; {
+    return (
+        &lt;&gt;
+            &lt;div className=&quot;restaurant&quot;&gt;
+                &lt;img src={thumbnail} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+                &lt;h3&gt;{name}&lt;/h3&gt;
+
+                {address &amp;&amp; (
+                    &lt;div className=&quot;address&quot;&gt;
+                        {address.street}
+                        &lt;br /&gt;
+                        {address.city}, {address.state} {address.zip}
+                    &lt;/div&gt;
+                )}
+
+                &lt;div className=&quot;hours-price&quot;&gt;
+                    $$$
+                    &lt;br /&gt;
+                    Hours: M-F 10am-11pm
+                    &lt;span className=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
+                &lt;/div&gt;
+
+                &lt;a className=&quot;btn&quot; href={`/restaurants/${slug}`}&gt;
+                    Details
+                &lt;/a&gt;
+                &lt;br /&gt;
+            &lt;/div&gt;
+        &lt;/&gt;
+    )
+}
+
+export default ListItem
+</code></pre>
+ <div line-highlight="13,16-18,20-26,28-33,35-39,only"></div>
+<p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
+import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
+import ListItem from './ListItem'
+
+const RestaurantList: React.FC = () =&gt; {
+  const restaurants = {
+    data: [
+      {
+        name: 'Cheese Curd City',
+        slug: 'cheese-curd-city',
+        images: {
+          thumbnail: CheeseThumbnail,
+        },
+        address: {
+          street: '2451 W Washburne Ave',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53295',
+        },
+        _id: 'Ar0qBJHxM3ecOhcr',
+      },
+      {
+        name: 'Poutine Palace',
+        slug: 'poutine-palace',
+        images: {
+          thumbnail: PoutineThumbnail,
+        },
+        address: {
+          street: '230 W Kinzie Street',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53205',
+        },
+        _id: '3ZOZyTY1LH26LnVw',
+      },
+    ]
+  };
+
+  return (
+    &lt;&gt;
+      &lt;div className=&quot;restaurants&quot;&gt;
+        &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
+        {restaurants.data ? (
+          restaurants.data.map(({ _id, address, images, name, slug }) =&gt; (
+            &lt;ListItem
+              key={_id}
+              address={address}
+              name={name}
+              slug={slug}
+              thumbnail={images.thumbnail}
+            /&gt;
+          ))
+        ) : (
+          &lt;p&gt;No restaurants.&lt;/p&gt;
+        )}
+      &lt;/div&gt;
+    &lt;/&gt;
+  )
+}
+
+export default RestaurantList
+</code></pre>
+ <div line-highlight="45-51,only"></div>
 <p>TODO</p>
 <p></details></p>
 <h2>Objective 2</h2>
@@ -883,7 +931,7 @@ Update <code>FormSelect</code> to render children</p>
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-vite/06-props/props.md"},"description":"Learn how to provide information to a component through props. \n","name":"learn-react-vite/props","title":"Passing Props","type":"page","parent":"learn-react-vite","order":6,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-vite/05-props/props.md"},"description":"Learn how to provide information to a component through props. \n","name":"learn-react-vite/props","title":"Passing Props","type":"page","parent":"learn-react-vite","order":5,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     

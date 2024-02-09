@@ -201,9 +201,9 @@
            						
            						">
 						<a class="page"
-							href="routing.html"
-							title="Learn how to set up and use React Router to update the application&#x27;s user interface in response to URL changes.">
-							Routing in React
+							href="props.html"
+							title="Learn how to provide information to a component through props.">
+							Passing Props
 						</a>
 						
 					</li>
@@ -216,9 +216,9 @@
            						
            						">
 						<a class="page"
-							href="props.html"
-							title="Learn how to provide information to a component through props.">
-							Passing Props
+							href="routing.html"
+							title="Learn how to set up and use React Router to update the application&#x27;s user interface in response to URL changes.">
+							Routing in React
 						</a>
 						
 					</li>
@@ -602,103 +602,117 @@ ReactDOM.render(&lt;Button /&gt;, document.getElementById('root'));
 <p>Now you're ready to create your first component.</p>
 <h3>Setup</h3>
 <p>It's best practice to create a new folder that will contain all of the related files for that component, including test and CSS files.</p>
-<p>✏️ Create the folder <strong>src/Home</strong></p>
-<p>✏️ Create an empty file <strong>src/Home/Home.tsx</strong></p>
+<p>✏️ Create <strong>src/pages</strong> (folder)</p>
+<p>✏️ Create <strong>src/pages/RestaurantList/</strong> (folder)</p>
+<p>✏️ Create <strong>src/pages/RestaurantList/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./RestaurantList&quot;
+</code></pre>
+<p>✏️ Create <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
+import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
+
+const RestaurantList: React.FC = () =&gt; {
+}
+
+export default RestaurantList
+</code></pre>
 <h3>Verify</h3>
-<p>✏️ Create <strong>src/Home/Home.test.tsx</strong> and move the tests over from <strong>src/App.test.tsx</strong>:</p>
+<p>✏️ Create <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 
-import Home from './Home';
+import RestaurantList from './RestaurantList';
 
-describe('Home component', () =&gt; {
-  it('renders the image with correct attributes', () =&gt; {
-    render(&lt;Home /&gt;);
-    const image = screen.getByAltText(/Restaurant table with glasses./i);
-    expect(image).toBeInTheDocument();
-    expect(image).toHaveAttribute('width', '250');
-    expect(image).toHaveAttribute('height', '380');
+describe('RestaurantList component', () =&gt; {
+  it('renders the Restaurants header', () =&gt; {
+    render(&lt;RestaurantList /&gt;);
+    expect(screen.getByText(/Restaurants/i)).toBeInTheDocument();
   });
 
-  it('renders the title', () =&gt; {
-    render(&lt;Home /&gt;);
-    const titleElement = screen.getByText(/Ordering food has never been easier/i);
-    expect(titleElement).toBeInTheDocument();
+  it('renders the restaurant images', () =&gt; {
+    render(&lt;RestaurantList /&gt;);
+    const images = screen.getAllByRole('img');
+    expect(images[0]).toHaveAttribute('src', expect.stringContaining('2-thumbnail.jpg'));
+    expect(images[0]).toHaveAttribute('width', '100');
+    expect(images[0]).toHaveAttribute('height', '100');
+    expect(images[1]).toHaveAttribute('src', expect.stringContaining('4-thumbnail.jpg'));
+    expect(images[1]).toHaveAttribute('width', '100');
+    expect(images[1]).toHaveAttribute('height', '100');
   });
 
-  it('renders the description paragraph', () =&gt; {
-    render(&lt;Home /&gt;);
-    const description = screen.getByText(/We make it easier/i);
-    expect(description).toBeInTheDocument();
+  it('renders the addresses', () =&gt; {
+    render(&lt;RestaurantList /&gt;);
+    const addressDivs = screen.getAllByText(/Washburne Ave|Kinzie Street/i);
+    expect(addressDivs[0]).toHaveTextContent('2451 W Washburne Ave');
+    expect(addressDivs[0]).toHaveTextContent('Green Bay, WI 53295');
+    expect(addressDivs[1]).toHaveTextContent('230 W Kinzie Street');
+    expect(addressDivs[1]).toHaveTextContent('Green Bay, WI 53205');
+  });
+
+  it('renders the hours and price information for each restaurant', () =&gt; {
+    render(&lt;RestaurantList /&gt;);
+    const hoursPriceDivs = screen.getAllByText(/\$\$\$/i);
+    hoursPriceDivs.forEach(div =&gt; {
+      expect(div).toHaveTextContent('$$$');
+      expect(div).toHaveTextContent('Hours: M-F 10am-11pm');
+    });
+  });
+
+  it('indicates if the restaurant is open now for each restaurant', () =&gt; {
+    render(&lt;RestaurantList /&gt;);
+    const openNowTags = screen.getAllByText('Open Now');
+    expect(openNowTags.length).toBeGreaterThan(0);
+  });
+
+  it('renders the details buttons with correct links for each restaurant', () =&gt; {
+    render(&lt;RestaurantList /&gt;);
+    const detailsButtons = screen.getAllByRole('link');
+    expect(detailsButtons[0]).toHaveAttribute('href', '/restaurants/cheese-curd-city');
+    expect(detailsButtons[1]).toHaveAttribute('href', '/restaurants/poutine-palace');
+    detailsButtons.forEach(button =&gt; {
+      expect(button).toHaveTextContent('Details');
+    });
   });
 });
 
 </code></pre>
 <p>✏️ Update <strong>src/App.test.tsx</strong> to be a simple smoke test:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
-import { describe, it } from 'vitest';
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 
 import App from './App';
 
-describe('App component', () =&gt; {
-  it('renders', () =&gt; {
+// Mocking RestaurantList component
+vi.mock('./pages/RestaurantList', () =&gt; ({
+  __esModule: true,
+  default: () =&gt; &lt;div&gt;Mocked Restaurant List&lt;/div&gt;,
+}));
+
+describe('App Component', () =&gt; {
+  // Testing if the App component renders without crashing
+  it('renders without crashing', () =&gt; {
     render(&lt;App /&gt;);
+    expect(screen.getByText('Mocked Restaurant List')).toBeInTheDocument();
   });
 });
-
 </code></pre>
- <div line-highlight="2-3,8,only"></div>
+ <div line-highlight="3,7-11,13-15,17,only"></div>
 <h3>Exercise</h3>
 <p>Our <code>App</code> component can only show our home page content. Eventually, we'll want to show other page content. Prepare now by moving all of the JSX in <code>App</code> to a new component called <code>Home</code>.</p>
 <p>Once the <code>Home</code> component is complete, add <code>&lt;Home /&gt;</code> to the JSX response of <code>App</code>.</p>
 <h3>Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<pre><code class="language-tsx">const Home: React.FC = () =&gt; {
-    const title = &quot;Ordering food has never been easier&quot;;
-    return (
-        &lt;div className=&quot;homepage&quot; style={{ margin: &quot;auto&quot; }}&gt;
-            &lt;img
-                src=&quot;node_modules/place-my-order-assets/images/homepage-hero.jpg&quot;
-                alt=&quot;Restaurant table with glasses.&quot;
-                width=&quot;250&quot;
-                height=&quot;380&quot;
-            /&gt;
-
-            &lt;h1&gt;{title}&lt;/h1&gt;
-
-            &lt;p&gt;
-                We make it easier than ever to order gourmet food from your favorite
-                local restaurants.
-            &lt;/p&gt;
-
-            &lt;p&gt;
-                &lt;a className=&quot;btn&quot; role=&quot;button&quot;&gt;
-                    Choose a Restaurant
-                &lt;/a&gt;
-            &lt;/p&gt;
-        &lt;/div&gt;
-    )
-}
-
-export default Home
-</code></pre>
- <div line-highlight="1-10,12,14-17,19-25,28,only"></div>
-<pre><code class="language-tsx">import Home from './pages/Home/Home'
+<p>✏️ Update <strong>src/App.tsx</strong></p>
+<pre><code class="language-tsx">import RestaurantList from './pages/RestaurantList'
 import './App.css'
 
 function App() {
   return (
     &lt;&gt;
-      &lt;header&gt;
-        &lt;nav&gt;
-          &lt;h1&gt;place-my-order.com&lt;/h1&gt;
-        &lt;/nav&gt;
-      &lt;/header&gt;
-
-      &lt;Home&gt;&lt;/Home&gt;
+      &lt;RestaurantList /&gt;
     &lt;/&gt;
   )
 }
@@ -706,7 +720,86 @@ function App() {
 export default App
 
 </code></pre>
- <div line-highlight="1,7-11,13,only"></div>
+<p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong></p>
+<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
+import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
+
+const RestaurantList: React.FC = () =&gt; {
+  const restaurants = {
+    data: [
+      {
+        name: 'Cheese Curd City',
+        slug: 'cheese-curd-city',
+        images: {
+          thumbnail: CheeseThumbnail,
+        },
+        address: {
+          street: '2451 W Washburne Ave',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53295',
+        },
+        _id: 'Ar0qBJHxM3ecOhcr',
+      },
+      {
+        name: 'Poutine Palace',
+        slug: 'poutine-palace',
+        images: {
+          thumbnail: PoutineThumbnail,
+        },
+        address: {
+          street: '230 W Kinzie Street',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53205',
+        },
+        _id: '3ZOZyTY1LH26LnVw',
+      },
+    ]
+  };
+
+  return (
+    &lt;&gt;
+      &lt;div className=&quot;restaurants&quot;&gt;
+        &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
+        {restaurants.data ? (
+          restaurants.data.map(({ _id, address, images, name, slug }) =&gt; (
+            &lt;div key={_id} className=&quot;restaurant&quot;&gt;
+              &lt;img src={images.thumbnail} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+              &lt;h3&gt;{name}&lt;/h3&gt;
+
+              {address &amp;&amp; (
+                &lt;div className=&quot;address&quot;&gt;
+                  {address.street}
+                  &lt;br /&gt;
+                  {address.city}, {address.state} {address.zip}
+                &lt;/div&gt;
+              )}
+
+              &lt;div className=&quot;hours-price&quot;&gt;
+                $$$
+                &lt;br /&gt;
+                Hours: M-F 10am-11pm
+                &lt;span className=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
+              &lt;/div&gt;
+
+              &lt;a className=&quot;btn&quot; href={`/restaurants/${slug}`}&gt;
+                Details
+              &lt;/a&gt;
+              &lt;br /&gt;
+            &lt;/div&gt;
+          ))
+        ) : (
+          &lt;p&gt;No restaurants.&lt;/p&gt;
+        )}
+      &lt;/div&gt;
+    &lt;/&gt;
+  )
+}
+
+export default RestaurantList
+</code></pre>
+ <div line-highlight="5-36,38-46,48-54,56-61,63-74,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/04-components/01-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/04-components/01-solution?file=src/App.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Next steps</h2>

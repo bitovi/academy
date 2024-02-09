@@ -201,9 +201,9 @@
            						
            						">
 						<a class="page"
-							href="routing.html"
-							title="Learn how to set up and use React Router to update the application&#x27;s user interface in response to URL changes.">
-							Routing in React
+							href="props.html"
+							title="Learn how to provide information to a component through props.">
+							Passing Props
 						</a>
 						
 					</li>
@@ -216,9 +216,9 @@
            						
            						">
 						<a class="page"
-							href="props.html"
-							title="Learn how to provide information to a component through props.">
-							Passing Props
+							href="routing.html"
+							title="Learn how to set up and use React Router to update the application&#x27;s user interface in response to URL changes.">
+							Routing in React
 						</a>
 						
 					</li>
@@ -568,20 +568,17 @@ covering CanJS core libraries.">
 <li>Create the homepage using JSX</li>
 <li>Match the design below</li>
 </ul>
-<p><img src="../static/img/react-vite/mock-homepage.jpg" alt="mockup" style="border: solid 1px black; max-width: 640px;"/></p>
+<p><img src="../static/img/react-vite/03-intro-to-jsx/mock-homepage.jpg" alt="mockup" style="border: solid 1px black; max-width: 640px;"/></p>
 <h3>Setup</h3>
 <p>We've created an assets package with images and CSS you'll need to build the application. Install the <code>place-my-order-assets</code> package.</p>
 <p>✏️ Run:</p>
 <pre><code class="language-shell">npm install place-my-order-assets
 </code></pre>
+<p>✏️ Remove the contents of the <strong>src/App.css</strong> file so it’s completely blank.</p>
 <p>✏️ Update <strong>src/index.css</strong> to be:</p>
 <pre><code class="language-css">@import &quot;place-my-order-assets/css/place-my-order-assets.css&quot;;
 </code></pre>
  <div line-highlight="1,only"></div>
-<p>Next, you'll need to pull the image from the assets package by adding the following import into <code>src/App.tsx</code>.</p>
-<pre><code class="language-tsx">import HeroImage from 'place-my-order-assets/images/homepage-hero.jpg'
-</code></pre>
-<p>If you inspect the type on the import, you'll notice it is a string. It's actually just the URL for the image. You can use the image import by setting it as the <code>src</code> of an image element like <code>src={HeroImage}</code></p>
 <h3>Verify</h3>
 <p>You should have already installed Vitest in the previous section. If you haven't done so already, create a test file at <code>src/App.test.tsx</code> and copy the following tests into your test file.</p>
 <p>✏️ Copy:</p>
@@ -592,46 +589,77 @@ import { describe, it, expect } from 'vitest';
 import App from './App';
 
 describe('App component', () =&gt; {
-  it('renders the image with correct attributes', () =&gt; {
+  it('renders the Restaurants header', () =&gt; {
     render(&lt;App /&gt;);
-    const image = screen.getByAltText(/Restaurant table with glasses./i);
-    expect(image).toBeInTheDocument();
-    expect(image).toHaveAttribute('width', '250');
-    expect(image).toHaveAttribute('height', '380');
+    expect(screen.getByText(/Restaurants/i)).toBeInTheDocument();
   });
 
-  it('renders the description paragraph', () =&gt; {
+  it('renders the restaurant image', () =&gt; {
     render(&lt;App /&gt;);
-    const description = screen.getByText(/We make it easier/i);
-    expect(description).toBeInTheDocument();
+    const img = screen.getByRole('img');
+    expect(img).toHaveAttribute('src', '/node_modules/place-my-order-assets/images/4-thumbnail.jpg');
+    expect(img).toHaveAttribute('width', '100');
+    expect(img).toHaveAttribute('height', '100');
+  });
+
+  it('renders the address', () =&gt; {
+    render(&lt;App /&gt;);
+    const addressDiv = screen.getByText(/230 W Kinzie Street/i).closest('div');
+    expect(addressDiv).toHaveTextContent('230 W Kinzie Street');
+    expect(addressDiv).toHaveTextContent('Green Bay, WI 53205');
+  });
+
+  it('renders the hours and price information', () =&gt; {
+    render(&lt;App /&gt;);
+    const hoursPriceDiv = screen.getByText(/\$\$\$/i).closest('div');
+    expect(hoursPriceDiv).toHaveTextContent('$$$');
+    expect(hoursPriceDiv).toHaveTextContent('Hours: M-F 10am-11pm');
+  });
+
+  it('indicates if the restaurant is open now', () =&gt; {
+    render(&lt;App /&gt;);
+    expect(screen.getByText('Open Now')).toBeInTheDocument();
+  });
+
+  it('renders the details button with correct link', () =&gt; {
+    render(&lt;App /&gt;);
+    const detailsButton = screen.getByRole('link');
+    expect(detailsButton).toHaveAttribute('href', '/restaurants/poutine-palace');
+    expect(screen.getByText('Details')).toBeInTheDocument();
   });
 });
 
 </code></pre>
- <div line-highlight="8,10-13,16-20,only"></div>
+ <div line-highlight="8,10,13-19,21-26,28-33,35-38,40-45,only"></div>
 <p>✏️ Run:</p>
 <pre><code class="language-shell">npm run test
 </code></pre>
 <p>Note that we won't be able to write an automated test that verifies the styles and images appear as desired, so you will have to test those manually.</p>
 <h3>Exercise</h3>
 <p>Take the below HTML and convert it to JSX:</p>
-<pre><code class="language-html">&lt;div class=&quot;homepage&quot; style=&quot;margin: auto&quot;&gt;
-  &lt;img
-    alt=&quot;Restaurant table with glasses.&quot;
-    src=&quot;./assets/images/homepage-hero.jpg&quot;
-    width=&quot;250&quot;
-    height=&quot;380&quot;
-  /&gt;
-  &lt;h1&gt;&lt;!-- TITLE GOES HERE --&gt;&lt;/h1&gt;
-  &lt;p&gt;
-    We make it easier than ever to order gourmet food from your favorite local
-    restaurants.
-  &lt;/p&gt;
-  &lt;p&gt;
-    &lt;a class=&quot;btn&quot; href=&quot;/restaurants&quot; role=&quot;button&quot;&gt;
-      Choose a Restaurant
-    &lt;/a&gt;
-  &lt;/p&gt;
+<pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
+    &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
+    &lt;div class=&quot;restaurant&quot;&gt;
+        &lt;img alt=&quot;&quot; src=&quot;/node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
+        &lt;h3&gt;&lt;!-- NAME GOES HERE --&gt;&lt;/h3&gt;
+        &lt;div class=&quot;address&quot;&gt;
+            230 W Kinzie Street
+            &lt;br&gt;
+            Green Bay, WI 53205
+        &lt;/div&gt;
+        &lt;div class=&quot;hours-price&quot;&gt;
+            $$$
+            &lt;br&gt;
+            Hours: M-F 10am-11pm
+            &lt;span class=&quot;open-now&quot;&gt;
+                Open Now
+            &lt;/span&gt;
+        &lt;/div&gt;
+        &lt;a class=&quot;btn&quot; href=&quot;/restaurants/poutine-palace&quot;&gt;
+            Details
+        &lt;/a&gt;
+        &lt;br&gt;
+    &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-problem?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-problem?file=src/App.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
@@ -644,26 +672,29 @@ describe('App component', () =&gt; {
 function App() {
   return (
     &lt;&gt;
-      &lt;div className=&quot;homepage&quot; style={{ margin: &quot;auto&quot; }}&gt;
-        &lt;img
-          alt=&quot;Restaurant table with glasses.&quot;
-          src=&quot;node_modules/place-my-order-assets/images/homepage-hero.jpg&quot;
-          width=&quot;250&quot;
-          height=&quot;380&quot;
-        /&gt;
-
-        &lt;h1&gt;{/* TITLE GOES HERE */}&lt;/h1&gt;
-
-        &lt;p&gt;
-          We make it easier than ever to order gourmet food from your favorite
-          local restaurants.
-        &lt;/p&gt;
-
-        &lt;p&gt;
-          &lt;a className=&quot;btn&quot; href=&quot;/restaurants&quot; role=&quot;button&quot;&gt;
-            Choose a Restaurant
+      &lt;div className=&quot;restaurants&quot;&gt;
+        &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
+        &lt;div className=&quot;restaurant&quot;&gt;
+          &lt;img alt=&quot;&quot; src=&quot;/node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+          &lt;h3&gt;{/* NAME GOES HERE */}&lt;/h3&gt;
+          &lt;div className=&quot;address&quot;&gt;
+            230 W Kinzie Street
+            &lt;br /&gt;
+            Green Bay, WI 53205
+          &lt;/div&gt;
+          &lt;div className=&quot;hours-price&quot;&gt;
+            $$$
+            &lt;br /&gt;
+            Hours: M-F 10am-11pm
+            &lt;span className=&quot;open-now&quot;&gt;
+              Open Now
+            &lt;/span&gt;
+          &lt;/div&gt;
+          &lt;a className=&quot;btn&quot; href=&quot;/restaurants/poutine-palace&quot;&gt;
+            Details
           &lt;/a&gt;
-        &lt;/p&gt;
+          &lt;br /&gt;
+        &lt;/div&gt;
       &lt;/div&gt;
     &lt;/&gt;
   )
@@ -672,7 +703,7 @@ function App() {
 export default App
 
 </code></pre>
- <div line-highlight="6-12,14,16-19,21-26,only"></div>
+ <div line-highlight="6-29,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-solution?file=src/App.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Objective 2: Loops in JSX</h2>
@@ -794,84 +825,71 @@ const page = React.createElement('div', null, [header, body]);
 <li>Use the proper <code>ul</code> and <code>li</code> tags to create the list</li>
 <li>List items should have a unique key</li>
 </ul>
-<h3>Verify</h3>
-<p>Add these tests into your application to verify you have met the acceptance criteria. Note how React Testing Library allows our tests to specify exact elements.</p>
-<p>✏️ Update <strong>src/App.test</strong> to be:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
-
-import App from './App';
-
-describe('App component', () =&gt; {
-  it('renders the image with correct attributes', () =&gt; {
-    render(&lt;App /&gt;);
-    const image = screen.getByAltText(/Restaurant table with glasses./i);
-    expect(image).toBeInTheDocument();
-    expect(image).toHaveAttribute('width', '250');
-    expect(image).toHaveAttribute('height', '380');
-  });
-
-  it('renders the title', () =&gt; {
-    render(&lt;App /&gt;);
-    const titleElement = screen.getByRole('heading', { level: 1, name: /Ordering food has never been easier/i })
-    expect(titleElement).toBeInTheDocument();
-  });
-
-  it('renders the description paragraph', () =&gt; {
-    render(&lt;App /&gt;);
-    const description = screen.getByText(/We make it easier/i);
-    expect(description).toBeInTheDocument();
-  });
-
-  it('renders a list of restaurants', () =&gt; {
-    render(&lt;App /&gt;);
-    const listItems = screen.getAllByRole('listitem');
-    expect(listItems).toHaveLength(2);
-    expect(listItems[0]).toHaveTextContent('Cheese Curd City');
-    expect(listItems[1]).toHaveTextContent('Poutine Palace');
-  });
-});
-
-</code></pre>
- <div line-highlight="16,18-19,23,26,28-34,only"></div>
-<h3>Solution</h3>
-<p><details>
-<summary>Click to see the solution</summary></p>
-<p>✏️ Update <strong>src/App.tsx</strong></p>
-<pre><code class="language-tsx">import './App.css'
+<h3>Setup</h3>
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
+import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
+import './App.css'
 
 function App() {
-  const restaurants = [
-    'Cheese Curd City',
-    'Poutine Palace',
-  ];
-  const title = &quot;Ordering food has never been easier&quot;;
+  const restaurants = {
+    data: [
+      {
+        name: 'Cheese Curd City',
+        slug: 'cheese-curd-city',
+        images: {
+          thumbnail: CheeseThumbnail,
+        },
+        address: {
+          street: '2451 W Washburne Ave',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53295',
+        },
+        _id: 'Ar0qBJHxM3ecOhcr',
+      },
+      {
+        name: 'Poutine Palace',
+        slug: 'poutine-palace',
+        images: {
+          thumbnail: PoutineThumbnail,
+        },
+        address: {
+          street: '230 W Kinzie Street',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53205',
+        },
+        _id: '3ZOZyTY1LH26LnVw',
+      },
+    ]
+  };
 
   return (
     &lt;&gt;
-      &lt;div className=&quot;homepage&quot; style={{ margin: &quot;auto&quot; }}&gt;
-        &lt;img
-          alt=&quot;Restaurant table with glasses.&quot;
-          src=&quot;node_modules/place-my-order-assets/images/homepage-hero.jpg&quot;
-          width=&quot;250&quot;
-          height=&quot;380&quot;
-        /&gt;
-
-        &lt;h1&gt;{title}&lt;/h1&gt;
-
-        &lt;p&gt;
-          We make it easier than ever to order gourmet food from your favorite
-          local restaurants.
-        &lt;/p&gt;
-
-        &lt;ul&gt;
-          {restaurants.map(restaurant =&gt; (
-            &lt;li key={restaurant}&gt;
-              {restaurant}
-            &lt;/li&gt;
-          ))}
-        &lt;/ul&gt;
+      &lt;div className=&quot;restaurants&quot;&gt;
+        &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
+        &lt;div className=&quot;restaurant&quot;&gt;
+          &lt;img alt=&quot;&quot; src=&quot;/node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+          &lt;h3&gt;{/* NAME GOES HERE */}&lt;/h3&gt;
+          &lt;div className=&quot;address&quot;&gt;
+            230 W Kinzie Street
+            &lt;br /&gt;
+            Green Bay, WI 53205
+          &lt;/div&gt;
+          &lt;div className=&quot;hours-price&quot;&gt;
+            $$$
+            &lt;br /&gt;
+            Hours: M-F 10am-11pm
+            &lt;span className=&quot;open-now&quot;&gt;
+              Open Now
+            &lt;/span&gt;
+          &lt;/div&gt;
+          &lt;a className=&quot;btn&quot; href=&quot;/restaurants/poutine-palace&quot;&gt;
+            Details
+          &lt;/a&gt;
+          &lt;br /&gt;
+        &lt;/div&gt;
       &lt;/div&gt;
     &lt;/&gt;
   )
@@ -880,7 +898,156 @@ function App() {
 export default App
 
 </code></pre>
- <div line-highlight="4-8,20,27-33,only"></div>
+ <div line-highlight="1-2,6-37,only"></div>
+<h3>Verify</h3>
+<p>Add these tests into your application to verify you have met the acceptance criteria. Note how React Testing Library allows our tests to specify exact elements.</p>
+<p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
+
+import App from './App';
+
+describe('App component', () =&gt; {
+  it('renders the Restaurants header', () =&gt; {
+    render(&lt;App /&gt;);
+    expect(screen.getByText(/Restaurants/i)).toBeInTheDocument();
+  });
+
+  it('renders the restaurant images', () =&gt; {
+    render(&lt;App /&gt;);
+    const images = screen.getAllByRole('img');
+    expect(images[0]).toHaveAttribute('src', expect.stringContaining('2-thumbnail.jpg'));
+    expect(images[0]).toHaveAttribute('width', '100');
+    expect(images[0]).toHaveAttribute('height', '100');
+    expect(images[1]).toHaveAttribute('src', expect.stringContaining('4-thumbnail.jpg'));
+    expect(images[1]).toHaveAttribute('width', '100');
+    expect(images[1]).toHaveAttribute('height', '100');
+  });
+
+  it('renders the addresses', () =&gt; {
+    render(&lt;App /&gt;);
+    const addressDivs = screen.getAllByText(/Washburne Ave|Kinzie Street/i);
+    expect(addressDivs[0]).toHaveTextContent('2451 W Washburne Ave');
+    expect(addressDivs[0]).toHaveTextContent('Green Bay, WI 53295');
+    expect(addressDivs[1]).toHaveTextContent('230 W Kinzie Street');
+    expect(addressDivs[1]).toHaveTextContent('Green Bay, WI 53205');
+  });
+
+  it('renders the hours and price information for each restaurant', () =&gt; {
+    render(&lt;App /&gt;);
+    const hoursPriceDivs = screen.getAllByText(/\$\$\$/i);
+    hoursPriceDivs.forEach(div =&gt; {
+      expect(div).toHaveTextContent('$$$');
+      expect(div).toHaveTextContent('Hours: M-F 10am-11pm');
+    });
+  });
+
+  it('indicates if the restaurant is open now for each restaurant', () =&gt; {
+    render(&lt;App /&gt;);
+    const openNowTags = screen.getAllByText('Open Now');
+    expect(openNowTags.length).toBeGreaterThan(0);
+  });
+
+  it('renders the details buttons with correct links for each restaurant', () =&gt; {
+    render(&lt;App /&gt;);
+    const detailsButtons = screen.getAllByRole('link');
+    expect(detailsButtons[0]).toHaveAttribute('href', '/restaurants/cheese-curd-city');
+    expect(detailsButtons[1]).toHaveAttribute('href', '/restaurants/poutine-palace');
+    detailsButtons.forEach(button =&gt; {
+      expect(button).toHaveTextContent('Details');
+    });
+  });
+});
+
+</code></pre>
+ <div line-highlight="13,15-21,24,26-30,33,35-39,42,44-45,48,50-55,only"></div>
+<p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/02-problem?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/02-problem?file=src/App.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
+<h3>Solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/App.tsx</strong></p>
+<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
+import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
+import './App.css'
+
+function App() {
+  const restaurants = {
+    data: [
+      {
+        name: 'Cheese Curd City',
+        slug: 'cheese-curd-city',
+        images: {
+          thumbnail: CheeseThumbnail,
+        },
+        address: {
+          street: '2451 W Washburne Ave',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53295',
+        },
+        _id: 'Ar0qBJHxM3ecOhcr',
+      },
+      {
+        name: 'Poutine Palace',
+        slug: 'poutine-palace',
+        images: {
+          thumbnail: PoutineThumbnail,
+        },
+        address: {
+          street: '230 W Kinzie Street',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53205',
+        },
+        _id: '3ZOZyTY1LH26LnVw',
+      },
+    ]
+  };
+
+  return (
+    &lt;&gt;
+      &lt;div className=&quot;restaurants&quot;&gt;
+        &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
+        {restaurants.data ? (
+          restaurants.data.map(({ _id, address, images, name, slug }) =&gt; (
+            &lt;div key={_id} className=&quot;restaurant&quot;&gt;
+              &lt;img src={images.thumbnail} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+              &lt;h3&gt;{name}&lt;/h3&gt;
+
+              {address &amp;&amp; (
+                &lt;div className=&quot;address&quot;&gt;
+                  {address.street}
+                  &lt;br /&gt;
+                  {address.city}, {address.state} {address.zip}
+                &lt;/div&gt;
+              )}
+
+              &lt;div className=&quot;hours-price&quot;&gt;
+                $$$
+                &lt;br /&gt;
+                Hours: M-F 10am-11pm
+                &lt;span className=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
+              &lt;/div&gt;
+
+              &lt;a className=&quot;btn&quot; href={`/restaurants/${slug}`}&gt;
+                Details
+              &lt;/a&gt;
+              &lt;br /&gt;
+            &lt;/div&gt;
+          ))
+        ) : (
+          &lt;p&gt;No restaurants.&lt;/p&gt;
+        )}
+      &lt;/div&gt;
+    &lt;/&gt;
+  )
+}
+
+export default App
+
+</code></pre>
+ <div line-highlight="43-47,49-55,57-62,64-72,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/02-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/02-solution?file=src/App.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Next steps</h2>
