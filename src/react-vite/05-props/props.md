@@ -8,51 +8,77 @@
 
 ## Overview
 
-What are props?
-Passing data back from a component to its parent using a functional prop
-Standard prop `children`
-standard prop `key`
+- Learn about passing data to components using props.
+- When the `key` prop is necessary
 
-## Objective 1
+## Objective 1: Use and set props
 
 In this section we will:
 
-- pass props to a component
+- Define a component's props using an interface
+- Use props to render a component
+- Set props on a component
 
-### Key concepts
+### Using component props
 
-TODO
+Since a functional component is just a JavaScript function, we can pass
+arguments to it; however, functional components must implement a React API that
+allows an optional argument of type `object` that's named "props".
 
-#### Concept 1
+The properties on the props object are undefined (with two exceptions we'll get
+to later) and can be whatever is needed to make the component work. The property
+values can be any type, including functions and other React components.
 
-Since functional components are just a JavaScript function we can pass arguments
-to them. React has defined an API for functional components: they accept an
-optional argument of type `object` or `string` that is named "props".
+We're using TypeScript in our project so we can create an `interface` for props
+and use it in the definition of a functional component:
 
-Let's talk about when props is a string. This occurs when the content of a
-component's tags is a string, i.e. there are no tags. This situation is similar
-to the `<span>` tag which contains only text. Receiving a string as props is not
-common.
+<span style="color: red;font-weight:600;">I feel like good practice would be to
+add comments to the interface property definitions, but that adds a lot more
+static to the example so I'm not. Thoughts?</span>
 
-TODO: example
+```jsx
+interface FancyButtonProps {
+  label: string;
+  onClick: () => void;
+}
 
-The property names on the props object are defined by the developer for use by
-the component. The values of the properties can be any type including functions
-or other React components.
+const FancyButton: React.FC<FancyButtonProps> = (props) => {
+  // From now on, we will destructure props in the function
+  // parameters, but we wanted to illustrate how props is
+  // passed to a component as an argument.
+  const { label, onClick } = props;
+  return <button onClick={onClick}>{label}</button>;
+}
+```
 
-TODO: example
+### Setting component props
+
+In [JSX syntax](intro-to-jsx.html) a component's props look like an HTML tag's
+"attributes" and accept a value.
+
+- If a prop's value type is a string then the prop value is set using quotes.
+- Any other type of prop value is set using braces with the value inside. In the
+  example below, the `label` prop accepts a string. so the value is surrounded
+  by double quotes. The `onClick` prop accepts a function, so the function value
+  is surrounded by braces.
+
+```jsx
+<FancyButton label="Activate" onClick={() => alert("Activated!")} />
+```
 
 ### Setup
 
-✏️ Create **src/pages/RestaurantList/ListItem.tsx** and update it to be:
+✏️ Create **src/pages/RestaurantList/ListItem.tsx** and update it to contain:
 
 @sourceref ../../../exercises/react-vite/05-props/01-problem/src/pages/RestaurantList/ListItem.tsx
 
-✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
+✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to import `ListItem`:
 
 @diff ../../../exercises/react-vite/04-components/01-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/05-props/01-problem/src/pages/RestaurantList/RestaurantList.tsx only
 
 ### Verify
+
+These tests will pass when the solution has been implemented properly.
 
 ✏️ Create **src/pages/RestaurantList/ListItem.test.tsx** and update it to be:
 
@@ -60,7 +86,17 @@ TODO: example
 
 ### Exercise
 
-Update the `FormSelect` to accept (label, value, onChange)
+- Update `ListItem` to accept props with restaurant data.
+- Alter `ListItem` to return the JSX for a single item in `restaurants.data`,
+  use props for the variable data.
+- Refactor `RestaurantList` to use `ListItem` to render the items in
+  `restaurants.data`.
+
+<strong>Having issues with your local setup?</strong> You can use either
+[StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/05-props/01-problem?file=src%2Fpages%2FRestaurantList%2FListItem.tsx)
+or
+[CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/0props/01-problem?file=src%2Fpages%2FRestaurantList%2FListItem.tsx)
+to do this exercise in an online code editor.
 
 ### Solution
 
@@ -75,73 +111,50 @@ Update the `FormSelect` to accept (label, value, onChange)
 
 @diff ../../../exercises/react-vite/05-props/01-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/05-props/01-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
-TODO
-
 </details>
 
-## Objective 2
+## Objective 2: Understanding the key prop
 
-In this section we will:
+In this section we will learn when to use the `key` prop and why.
 
-Standard prop `children`
-standard prop `key`
+### Concept: key uniquely identifies a component
 
-### Key concepts
+Earlier we said property **names** on props were at the discretion of the
+developer—what we didn't mention is that the name "key" has special meaning for
+React. React defines "key" as an optional property whose value type is one of
+`string`, `number`, or `bigint`.
 
-#### Concept 1
+TODO: key applies to arrays
 
-There is one exception to the naming of properties on the props object, React
-defines one optional property named "children" that contains either a single
-component or a collection of components. The children property is set to the
-contents between a component's opening and closing tags. For example if a
-component displayed a table it might accept a collection of row components as
-children to display as rows in the table.
+TODO: what's a good key? not an index!
 
-TODO: replace with real sample code
+TODO: can apply to any component
 
-```jsx
-<MyTable>
-  <tr>
-    <td>row data</td>
-  </tr>
-</MyTable>
-```
+TODO: key value is not passed to your component
 
-In the example above the `MyTable` component would receive a props object where
-`children` was set to the `tr` component. It's up to the MyTable component to
-determine where those children are rendered for display as shown below.
-
-TODO: replace with real sample code
-
-```jsx
-const MyTable: React.FC = ({ children }) => {
-  return <table>{ children }</table>;
-}
-```
-
-#### Concept 2
-
-TODO: the `key` prop
+You may have noticed that when the tests were run early a warning was printed
+out to the console, "TBD"
 
 ### Setup
 
-Add remaining `FormSelect` boilerplate props (help, disabled) - maybe this is already done...
+N/A
 
 ### Verify
 
-TODO
+TODO: test for key prop
 
 ### Exercise
 
-Add options as children in `RestaurantList`
-Update `FormSelect` to render children
+- Eliminate the warning from React
 
 ### Solution
 
 <details>
 <summary>Click to see the solution</summary>
 
-TODO
+✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to include a key prop:
+
+@diff ../../../exercises/react-vite/05-props/01-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/05-props/02-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
 </details>
 
