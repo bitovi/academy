@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="TODO 
+  <meta name="description" content="Components are the core building blocks of any React application 
 ">
   
   <!-- Google Tag Manager -->
@@ -184,7 +184,7 @@
            						expanded">
 						<a class="page"
 							href="components.html"
-							title="TODO">
+							title="Components are the core building blocks of any React application">
 							Building Components
 						</a>
 						
@@ -530,7 +530,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>TODO</p>
+    <p>Components are the core building blocks of any React application</p>
 
 </section>
 
@@ -544,33 +544,68 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
-<p>TODO</p>
-<h2>Objective 1</h2>
-<p>TODO</p>
-<h3>Key concepts</h3>
-<p>TODO</p>
-<h4>Concept 1</h4>
-<p>TODO</p>
-<h4>Concept 2</h4>
-<p>TODO</p>
-<h3>Setup</h3>
-<p>TODO</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { render } from '@testing-library/react';
-import { describe, it } from 'vitest';
-
-import App from './App';
-
-describe('App component', () =&gt; {
-  it('renders', () =&gt; {
-    render(&lt;App /&gt;);
-  });
-});
-
+<p>So far, we have placed all of our JSX inside the App function. Notice two things about the App function:</p>
+<ol>
+<li>Name starts with a capital letter</li>
+<li>Returns something renderable (JSX)</li>
+</ol>
+<pre><code class="language-jsx">function App() {
+  return (
+    &lt;div&gt;
+      Some page content
+    &lt;/div&gt;
+  );
+}
 </code></pre>
- <div line-highlight="2-3,8,only"></div>
+<p>In React, we call this a component. When you create a component in React, you are creating building blocks that can be composed, reordered, and reused much like HTML elements.</p>
+<p>React makes it relatively straightforward to create new components. Let's learn to build our own.</p>
+<h2>Objective 1: Create a React component</h2>
+<h3>Key concepts</h3>
+<h4>Component structure</h4>
+<p>Let's start by creating a component from a commonly reused element, the button.</p>
+<p>First, our component names must start with a capital letter, so we can call this <code>Button</code>. While its not required, the common practice is to use PascalCase when naming components so longer component names will look like <code>IconButton</code>.</p>
+<p>Second, our component must return either <code>null</code> or something renderable, like JSX. The return value of our components is almost always JSX, though JavaScript primitives like <code>string</code> and <code>number</code> are also valid. Components cannot return complex types like arrays or objects.</p>
+<pre><code class="language-jsx">function Button() {
+  return (
+    &lt;div className=&quot;button primary&quot;&gt;
+      &lt;button&gt;click me&lt;/button&gt;
+    &lt;/div&gt;
+  );
+}
+
+ReactDOM.render(&lt;Button /&gt;, document.getElementById('root'));
+</code></pre>
+<p>Components are like small containers which can be reused throughout your application. The <code>Button</code> component above returns JSX and could then be rendered and reused by another component like <code>App</code> below.</p>
+<pre><code class="language-jsx">function App() {
+  return (
+    &lt;div&gt;
+      &lt;Button /&gt;
+      &lt;Button /&gt;
+      &lt;Button /&gt;
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<h4>React components are just functions</h4>
+<p>The JSX syntax allows function components to look like HTML, but underneath they are still functions. The return of each component is unique and you can use the same component multiple times.</p>
+<p>Components are just fancy functions. While you shouldn't do the following, you could.</p>
+<pre><code class="language-jsx">function App() {
+  return (
+    &lt;div&gt;
+      {Button()}
+      {Button()}
+      {Button()}
+    &lt;/div&gt;
+  );
+}
+</code></pre>
+<p>Now you're ready to create your first component.</p>
+<h3>Setup</h3>
+<p>It's best practice to create a new folder that will contain all of the related files for that component, including test and CSS files.</p>
+<p>✏️ Create the folder <strong>src/Home</strong></p>
+<p>✏️ Create an empty file <strong>src/Home/Home.tsx</strong></p>
 <h3>Verify</h3>
-<p>TODO</p>
+<p>✏️ Create <strong>src/Home/Home.test.tsx</strong> and move the tests over from <strong>src/App.test.tsx</strong>:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
@@ -600,12 +635,27 @@ describe('Home component', () =&gt; {
 });
 
 </code></pre>
+<p>✏️ Update <strong>src/App.test.tsx</strong> to be a simple smoke test:</p>
+<pre><code class="language-tsx">import '@testing-library/jest-dom';
+import { render } from '@testing-library/react';
+import { describe, it } from 'vitest';
+
+import App from './App';
+
+describe('App component', () =&gt; {
+  it('renders', () =&gt; {
+    render(&lt;App /&gt;);
+  });
+});
+
+</code></pre>
+ <div line-highlight="2-3,8,only"></div>
 <h3>Exercise</h3>
-<p>TODO</p>
+<p>Our <code>App</code> component can only show our home page content. Eventually, we'll want to show other page content. Prepare now by moving all of the JSX in <code>App</code> to a new component called <code>Home</code>.</p>
+<p>Once the <code>Home</code> component is complete, add <code>&lt;Home /&gt;</code> to the JSX response of <code>App</code>.</p>
 <h3>Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>TODO</p>
 <pre><code class="language-tsx">const Home: React.FC = () =&gt; {
     const title = &quot;Ordering food has never been easier&quot;;
     return (
@@ -659,310 +709,8 @@ export default App
  <div line-highlight="1,7-11,13,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/04-components/01-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/04-components/01-solution?file=src/App.tsx">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Objective 2</h2>
-<p>TODO</p>
-<h3>Key concepts</h3>
-<p>TODO</p>
-<h4>Concept 1</h4>
-<p>TODO</p>
-<h4>Concept 2</h4>
-<p>TODO</p>
-<h3>Setup</h3>
-<p>TODO</p>
-<pre><code class="language-tsx">const RestaurantList: React.FC = () =&gt; {
-    const restaurants = {
-        data: [
-            {
-                name: 'Poutine Palace',
-                slug: 'poutine-palace',
-                images: {
-                    thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
-                    owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
-                    banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
-                },
-                menu: {
-                    lunch: [
-                        {
-                            name: 'Crab Pancakes with Sorrel Syrup',
-                            price: 35.99,
-                        },
-                        {
-                            name: 'Steamed Mussels',
-                            price: 21.99,
-                        },
-                        {
-                            name: 'Spinach Fennel Watercress Ravioli',
-                            price: 35.99,
-                        },
-                    ],
-                    dinner: [
-                        {
-                            name: 'Gunthorp Chicken',
-                            price: 21.99,
-                        },
-                        {
-                            name: 'Herring in Lavender Dill Reduction',
-                            price: 45.99,
-                        },
-                        {
-                            name: 'Chicken with Tomato Carrot Chutney Sauce',
-                            price: 45.99,
-                        },
-                    ],
-                },
-                address: {
-                    street: '230 W Kinzie Street',
-                    city: 'Green Bay',
-                    state: 'WI',
-                    zip: '53205',
-                },
-                _id: '3ZOZyTY1LH26LnVw',
-            },
-            {
-                name: 'Cheese Curd City',
-                slug: 'cheese-curd-city',
-                images: {
-                    thumbnail: 'node_modules/place-my-order-assets/images/2-thumbnail.jpg',
-                    owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
-                    banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
-                },
-                menu: {
-                    lunch: [
-                        {
-                            name: 'Ricotta Gnocchi',
-                            price: 15.99,
-                        },
-                        {
-                            name: 'Gunthorp Chicken',
-                            price: 21.99,
-                        },
-                        {
-                            name: 'Garlic Fries',
-                            price: 15.99,
-                        },
-                    ],
-                    dinner: [
-                        {
-                            name: 'Herring in Lavender Dill Reduction',
-                            price: 45.99,
-                        },
-                        {
-                            name: 'Truffle Noodles',
-                            price: 14.99,
-                        },
-                        {
-                            name: 'Charred Octopus',
-                            price: 25.99,
-                        },
-                    ],
-                },
-                address: {
-                    street: '2451 W Washburne Ave',
-                    city: 'Green Bay',
-                    state: 'WI',
-                    zip: '53295',
-                },
-                _id: 'Ar0qBJHxM3ecOhcr',
-            },
-        ]
-    };
-
-    return (
-        &lt;&gt;
-            &lt;div className=&quot;restaurants&quot;&gt;
-                &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
-
-                {/* If restaurants has a length, show the list. */}
-
-                {/* Show the following markup for each restaurant */}
-                {(({ _id, slug, name, address, images }) =&gt; (
-                    &lt;div key={_id} className=&quot;restaurant&quot;&gt;
-                        &lt;img src={images.thumbnail} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
-                        &lt;h3&gt;{name}&lt;/h3&gt;
-
-                        {address &amp;&amp; (
-                            &lt;div className=&quot;address&quot;&gt;
-                                {address.street}
-                                &lt;br /&gt;
-                                {address.city}, {address.state} {address.zip}
-                            &lt;/div&gt;
-                        )}
-
-                        &lt;div className=&quot;hours-price&quot;&gt;
-                            $$$
-                            &lt;br /&gt;
-                            Hours: M-F 10am-11pm
-                            &lt;span className=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
-                        &lt;/div&gt;
-
-                        &lt;a className=&quot;btn&quot; href={`/restaurants/${slug}`}&gt;
-                            Details
-                        &lt;/a&gt;
-                        &lt;br /&gt;
-                    &lt;/div&gt;
-                ))({ _id: '', slug: '', name: '', address: {}, images: [] })}
-
-            &lt;/div&gt;
-        &lt;/&gt;
-    )
-}
-
-export default RestaurantList
-</code></pre>
-<div line-highlight='104, 106, only'></div>
-<h3>Verify</h3>
-<p>TODO</p>
-<h3>Exercise</h3>
-<p>TODO</p>
-<p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/04-components/02-problem?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/04-components/02-problem?file=src/App.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution</h3>
-<p><details>
-<summary>Click to see the solution</summary></p>
-<p>TODO</p>
-<pre><code class="language-tsx">const RestaurantList: React.FC = () =&gt; {
-    const restaurants = {
-        data: [
-            {
-                name: 'Poutine Palace',
-                slug: 'poutine-palace',
-                images: {
-                    thumbnail: 'node_modules/place-my-order-assets/images/4-thumbnail.jpg',
-                    owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
-                    banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
-                },
-                menu: {
-                    lunch: [
-                        {
-                            name: 'Crab Pancakes with Sorrel Syrup',
-                            price: 35.99,
-                        },
-                        {
-                            name: 'Steamed Mussels',
-                            price: 21.99,
-                        },
-                        {
-                            name: 'Spinach Fennel Watercress Ravioli',
-                            price: 35.99,
-                        },
-                    ],
-                    dinner: [
-                        {
-                            name: 'Gunthorp Chicken',
-                            price: 21.99,
-                        },
-                        {
-                            name: 'Herring in Lavender Dill Reduction',
-                            price: 45.99,
-                        },
-                        {
-                            name: 'Chicken with Tomato Carrot Chutney Sauce',
-                            price: 45.99,
-                        },
-                    ],
-                },
-                address: {
-                    street: '230 W Kinzie Street',
-                    city: 'Green Bay',
-                    state: 'WI',
-                    zip: '53205',
-                },
-                _id: '3ZOZyTY1LH26LnVw',
-            },
-            {
-                name: 'Cheese Curd City',
-                slug: 'cheese-curd-city',
-                images: {
-                    thumbnail: 'node_modules/place-my-order-assets/images/2-thumbnail.jpg',
-                    owner: 'node_modules/place-my-order-assets/images/3-owner.jpg',
-                    banner: 'node_modules/place-my-order-assets/images/2-banner.jpg',
-                },
-                menu: {
-                    lunch: [
-                        {
-                            name: 'Ricotta Gnocchi',
-                            price: 15.99,
-                        },
-                        {
-                            name: 'Gunthorp Chicken',
-                            price: 21.99,
-                        },
-                        {
-                            name: 'Garlic Fries',
-                            price: 15.99,
-                        },
-                    ],
-                    dinner: [
-                        {
-                            name: 'Herring in Lavender Dill Reduction',
-                            price: 45.99,
-                        },
-                        {
-                            name: 'Truffle Noodles',
-                            price: 14.99,
-                        },
-                        {
-                            name: 'Charred Octopus',
-                            price: 25.99,
-                        },
-                    ],
-                },
-                address: {
-                    street: '2451 W Washburne Ave',
-                    city: 'Green Bay',
-                    state: 'WI',
-                    zip: '53295',
-                },
-                _id: 'Ar0qBJHxM3ecOhcr',
-            },
-        ]
-    };
-
-    return (
-        &lt;&gt;
-            &lt;div className=&quot;restaurants&quot;&gt;
-                &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
-                {restaurants.data ? (
-                    restaurants.data.map(({ _id, slug, name, address, images }) =&gt; (
-                        &lt;div key={_id} className=&quot;restaurant&quot;&gt;
-                            &lt;img src={images.thumbnail} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
-                            &lt;h3&gt;{name}&lt;/h3&gt;
-
-                            {address &amp;&amp; (
-                                &lt;div className=&quot;address&quot;&gt;
-                                    {address.street}
-                                    &lt;br /&gt;
-                                    {address.city}, {address.state} {address.zip}
-                                &lt;/div&gt;
-                            )}
-
-                            &lt;div className=&quot;hours-price&quot;&gt;
-                                $$$
-                                &lt;br /&gt;
-                                Hours: M-F 10am-11pm
-                                &lt;span className=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
-                            &lt;/div&gt;
-
-                            &lt;a className=&quot;btn&quot; href={`/restaurants/${slug}`}&gt;
-                                Details
-                            &lt;/a&gt;
-                            &lt;br /&gt;
-                        &lt;/div&gt;
-                    ))
-                ) : (
-                    &lt;p&gt;No restaurants.&lt;/p&gt;
-                )}
-            &lt;/div&gt;
-        &lt;/&gt;
-    )
-}
-
-export default RestaurantList
-</code></pre>
- <div line-highlight="103-107,109-115,117-118,120-121,124-126,129-132,only"></div>
-<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/04-components/02-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/04-components/02-solution?file=src/App.tsx">CodeSandbox</a>.</p>
-<p></details></p>
 <h2>Next steps</h2>
-<p>TODO</p>
+<p>Next we'll learn to pass arguments to our components through props.</p>
 
 </section>
 
@@ -1001,7 +749,7 @@ export default RestaurantList
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-vite/04-components/components.md"},"description":"TODO \n","name":"learn-react-vite/components","title":"Building Components","type":"page","parent":"learn-react-vite","order":4,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-vite/04-components/components.md"},"description":"Components are the core building blocks of any React application \n","name":"learn-react-vite/components","title":"Building Components","type":"page","parent":"learn-react-vite","order":4,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
