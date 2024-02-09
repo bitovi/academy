@@ -74,6 +74,18 @@ export class OrderComponent implements OnInit, OnDestroy {
     // SUBSCRIBE TO THE ITEMS FORMCONTROL CHANGE TO CALCULATE A NEW TOTAL
   }
 
+  calculateTotal(value: Item[]): void {
+    let total = 0.0;
+    if (value.length) {
+      for (const item of value) {
+        total += item.price;
+      }
+      this.orderTotal = Math.round(total * 100) / 100;
+    } else {
+      this.orderTotal = total;
+    }
+  }
+
   onSubmit(): void {}
 
   startNewOrder(): void {
