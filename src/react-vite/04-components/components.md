@@ -124,4 +124,4 @@ Once the `Home` component is complete, add `<Home />` to the JSX response of `Ap
 
 ## Next steps
 
-TODO
+Next we'll learn to pass arguments to our components through props.
