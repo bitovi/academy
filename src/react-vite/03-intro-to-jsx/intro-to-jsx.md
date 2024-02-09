@@ -38,7 +38,7 @@ React has a procedural `React.createElement` syntax, but most applications do no
 - Create the homepage using JSX
 - Match the design below
 
-<img src="../static/img/react-vite/mock-homepage.jpg" alt="mockup" style="border: solid 1px black; max-width: 640px;"/>
+<img src="../static/img/react-vite/03-intro-to-jsx/mock-homepage.jpg" alt="mockup" style="border: solid 1px black; max-width: 640px;"/>
 
 ### Setup
 
@@ -50,17 +50,11 @@ We've created an assets package with images and CSS you'll need to build the app
 npm install place-my-order-assets
 ```
 
+✏️ Remove the contents of the **src/App.css** file so it’s completely blank.
+
 ✏️ Update **src/index.css** to be:
 
 @diff ../../../exercises/react-vite/02-setting-up-your-environment/solution/src/index.css ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/index.css only
-
-Next, you'll need to pull the image from the assets package by adding the following import into `src/App.tsx`.
-
-```tsx
-import HeroImage from 'place-my-order-assets/images/homepage-hero.jpg'
-```
-
-If you inspect the type on the import, you'll notice it is a string. It's actually just the URL for the image. You can use the image import by setting it as the `src` of an image element like `src={HeroImage}`
 
 ### Verify
 
@@ -82,26 +76,7 @@ Note that we won't be able to write an automated test that verifies the styles a
 
 Take the below HTML and convert it to JSX:
 
-```html
-<div class="homepage" style="margin: auto">
-  <img
-    alt="Restaurant table with glasses."
-    src="./assets/images/homepage-hero.jpg"
-    width="250"
-    height="380"
-  />
-  <h1><!-- TITLE GOES HERE --></h1>
-  <p>
-    We make it easier than ever to order gourmet food from your favorite local
-    restaurants.
-  </p>
-  <p>
-    <a class="btn" href="/restaurants" role="button">
-      Choose a Restaurant
-    </a>
-  </p>
-</div>
-```
+@sourceref ./template.html
 
 <strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-problem?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-problem?file=src/App.tsx) to do this exercise in an online code editor.
 
@@ -282,13 +257,21 @@ Mapping over the array above will render as the following HTML.
 - Use the proper `ul` and `li` tags to create the list
 - List items should have a unique key
 
+### Setup
+
+✏️ Update **src/App.tsx** to be:
+
+@diff ../../../exercises/react-vite/03-intro-to-jsx/01-solution/src/App.tsx ../../../exercises/react-vite/03-intro-to-jsx/02-problem/src/App.tsx only
+
 ### Verify
 
 Add these tests into your application to verify you have met the acceptance criteria. Note how React Testing Library allows our tests to specify exact elements.
 
-✏️ Update **src/App.test** to be:
+✏️ Update **src/App.test.tsx** to be:
 
 @diff ../../../exercises/react-vite/03-intro-to-jsx/01-solution/src/App.test.tsx ../../../exercises/react-vite/03-intro-to-jsx/02-solution/src/App.test.tsx only
+
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/02-problem?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/02-problem?file=src/App.tsx) to do this exercise in an online code editor.
 
 ### Solution
 
@@ -297,7 +280,7 @@ Add these tests into your application to verify you have met the acceptance crit
 
 ✏️ Update **src/App.tsx**
 
-@diff ../../../exercises/react-vite/03-intro-to-jsx/01-solution/src/App.tsx ../../../exercises/react-vite/03-intro-to-jsx/02-solution/src/App.tsx only
+@diff ../../../exercises/react-vite/03-intro-to-jsx/02-problem/src/App.tsx ../../../exercises/react-vite/03-intro-to-jsx/02-solution/src/App.tsx only
 
 <strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/02-solution?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/02-solution?file=src/App.tsx).
 

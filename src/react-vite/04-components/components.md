@@ -89,15 +89,23 @@ Now you're ready to create your first component.
 
 It's best practice to create a new folder that will contain all of the related files for that component, including test and CSS files.
 
-✏️ Create the folder **src/Home**
+✏️ Create **src/pages** (folder)
 
-✏️ Create an empty file **src/Home/Home.tsx**
+✏️ Create **src/pages/RestaurantList/** (folder)
+
+✏️ Create **src/pages/RestaurantList/index.ts** and update it to be:
+
+@sourceref ../../../exercises/react-vite/04-components/01-solution/src/pages/RestaurantList/index.ts
+
+✏️ Create **src/pages/RestaurantList/RestaurantList.tsx** and update it to be:
+
+@sourceref ../../../exercises/react-vite/04-components/01-problem/src/pages/RestaurantList/RestaurantList.tsx
 
 ### Verify
 
-✏️ Create **src/Home/Home.test.tsx** and move the tests over from **src/App.test.tsx**:
+✏️ Create **src/pages/RestaurantList/RestaurantList.test.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-vite/04-components/01-solution/src/pages/Home/Home.test.tsx
+@sourceref ../../../exercises/react-vite/04-components/01-solution/src/pages/RestaurantList/RestaurantList.test.tsx
 
 ✏️ Update **src/App.test.tsx** to be a simple smoke test:
 
@@ -114,9 +122,13 @@ Once the `Home` component is complete, add `<Home />` to the JSX response of `Ap
 <details>
 <summary>Click to see the solution</summary>
 
-@diff ../../../exercises/react-vite/03-intro-to-jsx/02-solution/src/App.tsx ../../../exercises/react-vite/04-components/01-solution/src/pages/Home/Home.tsx only
+✏️ Update **src/App.tsx**
 
-@diff ../../../exercises/react-vite/03-intro-to-jsx/02-solution/src/App.tsx ../../../exercises/react-vite/04-components/01-solution/src/App.tsx only
+@diff ../../../exercises/react-vite/04-components/01-problem/src/App.tsx ../../../exercises/react-vite/04-components/01-solution/src/App.tsx only
+
+✏️ Update **src/pages/RestaurantList/RestaurantList.tsx**
+
+@diff ../../../exercises/react-vite/04-components/01-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/04-components/01-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
 <strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/04-components/01-solution?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/04-components/01-solution?file=src/App.tsx).
 
