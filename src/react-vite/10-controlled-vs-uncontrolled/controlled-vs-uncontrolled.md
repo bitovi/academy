@@ -8,7 +8,8 @@
 
 ## Overview
 
-TODO
+- Passing data back from a component to its parent using a functional prop
+- TODO
 
 ## Objective 1
 
