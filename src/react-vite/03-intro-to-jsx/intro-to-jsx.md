@@ -20,16 +20,34 @@ In this section, we will:
 
 ### Key concepts
 
-- What is JSX
-- Loops in JSX
-
-## What is JSX?
+#### What is JSX?
 
 JSX is used by React developers to define the user interface.
 
 JSX is a special syntax designed to look almost identical to HTML. Developers define the UI using JSX and React transforms it into the HTML the browser displays. JSX can be written alongside standard JavaScript, which makes for a powerful programming environment.
 
 React has a procedural `React.createElement` syntax, but most applications do not use it directly. Instead, views are defined and maintained in JSX and will automatically be transpiled into the equivalent `React.createElement` calls at build-time.
+
+#### HTML differences
+
+JSX looks a lot like HTML, and that's intentional. Browsers understand HTML, JavaScript, and CSS. Eventually, anything we build has to be converted into one of those 3 syntaxes. Since our UI code will eventually end up as HTML, using JSX means it will be easier to understand and debug the end result in the browser.
+
+However, JSX is converted into JavaScript and therefore is not an exact mirror of HTML. Some of the most noticeable differences include:
+
+__Say "props" instead of "attributes."__ This nomenclature difference is because they are technically different, though visually they appear the same. When the following image tag appears in HTML, the "src" is called an _attribute_. In JSX, the "src" is a _prop_ or _property_.
+
+```jsx
+<img src="image.png">
+```
+
+__Reserved words are renamed.__ The HTML attributes "class" and "for" are reserved words in JavaScript. These had to be renamed to "className" and "htmlFor" respectively.
+
+```jsx
+<label className="label" htmlFor="name-input">Name:</input>
+<input className="input" id="name-input" />
+```
+
+As we go through this training, you'll learn additional differences.
 
 ## Exercise 1
 
@@ -189,9 +207,7 @@ Conditions can be re-written using the ternary operator.
     }
   }
 </div>
-```
 
-```jsx
 // But the same can be accomplished with ternaries
 <div>
   {a === b // Ternaries are expressions. They return a value.
