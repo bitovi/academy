@@ -554,14 +554,21 @@ covering CanJS core libraries.">
 </ul>
 <h2>Objective 1: Creating a UI with JSX</h2>
 <h3>Key concepts</h3>
-<ul>
-<li>What is JSX</li>
-<li>Loops in JSX</li>
-</ul>
-<h2>What is JSX?</h2>
+<h4>What is JSX?</h4>
 <p>JSX is used by React developers to define the user interface.</p>
 <p>JSX is a special syntax designed to look almost identical to HTML. Developers define the UI using JSX and React transforms it into the HTML the browser displays. JSX can be written alongside standard JavaScript, which makes for a powerful programming environment.</p>
 <p>React has a procedural <code>React.createElement</code> syntax, but most applications do not use it directly. Instead, views are defined and maintained in JSX and will automatically be transpiled into the equivalent <code>React.createElement</code> calls at build-time.</p>
+<h4>HTML differences</h4>
+<p>JSX looks a lot like HTML, and that's intentional. Browsers understand HTML, JavaScript, and CSS. Eventually, anything we build has to be converted into one of those 3 syntaxes. Since our UI code will eventually end up as HTML, using JSX means it will be easier to understand and debug the end result in the browser.</p>
+<p>However, JSX is converted into JavaScript and therefore is not an exact mirror of HTML. Some of the most noticeable differences include:</p>
+<p><strong>Say &quot;props&quot; instead of &quot;attributes.&quot;</strong> This nomenclature difference is because they are technically different, though visually they appear the same. When the following image tag appears in HTML, the &quot;src&quot; is called an <em>attribute</em>. In JSX, the &quot;src&quot; is a <em>prop</em> or <em>property</em>.</p>
+<pre><code class="language-jsx">&lt;img src=&quot;image.png&quot;&gt;
+</code></pre>
+<p><strong>Reserved words are renamed.</strong> The HTML attributes &quot;class&quot; and &quot;for&quot; are reserved words in JavaScript. These had to be renamed to &quot;className&quot; and &quot;htmlFor&quot; respectively.</p>
+<pre><code class="language-jsx">&lt;label className=&quot;label&quot; htmlFor=&quot;name-input&quot;&gt;Name:&lt;/input&gt;
+&lt;input className=&quot;input&quot; id=&quot;name-input&quot; /&gt;
+</code></pre>
+<p>As we go through this training, you'll learn additional differences.</p>
 <h2>Exercise 1</h2>
 <h3>Acceptance criteria</h3>
 <ul>
@@ -775,8 +782,8 @@ const page = React.createElement('div', null, [header, body]);
     }
   }
 &lt;/div&gt;
-</code></pre>
-<pre><code class="language-jsx">// But the same can be accomplished with ternaries
+
+// But the same can be accomplished with ternaries
 &lt;div&gt;
   {a === b // Ternaries are expressions. They return a value.
     ? 'a and b are equal'
