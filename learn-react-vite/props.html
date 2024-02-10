@@ -544,32 +544,56 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
-<p>What are props?
-Passing data back from a component to its parent using a functional prop
-Standard prop <code>children</code>
-standard prop <code>key</code></p>
-<h2>Objective 1</h2>
+<ul>
+<li>Learn about passing data to components using props.</li>
+<li>When the <code>key</code> prop is necessary</li>
+</ul>
+<h2>Objective 1: Use and set props</h2>
 <p>In this section we will:</p>
 <ul>
-<li>pass props to a component</li>
+<li>Define a component's props using an interface</li>
+<li>Use props to render a component</li>
+<li>Set props on a component</li>
 </ul>
-<h3>Key concepts</h3>
-<p>TODO</p>
-<h4>Concept 1</h4>
-<p>Since functional components are just a JavaScript function we can pass arguments
-to them. React has defined an API for functional components: they accept an
-optional argument of type <code>object</code> or <code>string</code> that is named &quot;props&quot;.</p>
-<p>Let's talk about when props is a string. This occurs when the content of a
-component's tags is a string, i.e. there are no tags. This situation is similar
-to the <code>&lt;span&gt;</code> tag which contains only text. Receiving a string as props is not
-common.</p>
-<p>TODO: example</p>
-<p>The property names on the props object are defined by the developer for use by
-the component. The values of the properties can be any type including functions
-or other React components.</p>
-<p>TODO: example</p>
+<h3>Using component props</h3>
+<p>Since a functional component is just a JavaScript function, we can pass
+arguments to it; however, functional components must implement a React API that
+allows an optional argument of type <code>object</code> that's named &quot;props&quot;.</p>
+<p>The properties on the props object are undefined (with two exceptions we'll get
+to later) and can be whatever is needed to make the component work. The property
+values can be any type, including functions and other React components.</p>
+<p>We're using TypeScript in our project so we can create an <code>interface</code> for props
+and use it in the definition of a functional component:</p>
+<p><span style="color: red;font-weight:600;">I feel like good practice would be to
+add comments to the interface property definitions, but that adds a lot more
+static to the example so I'm not. Thoughts?</span></p>
+<pre><code class="language-jsx">interface FancyButtonProps {
+  label: string;
+  onClick: () =&gt; void;
+}
+
+const FancyButton: React.FC&lt;FancyButtonProps&gt; = (props) =&gt; {
+  // From now on, we will destructure props in the function
+  // parameters, but we wanted to illustrate how props is
+  // passed to a component as an argument.
+  const { label, onClick } = props;
+  return &lt;button onClick={onClick}&gt;{label}&lt;/button&gt;;
+}
+</code></pre>
+<h3>Setting component props</h3>
+<p>In <a href="intro-to-jsx.html">JSX syntax</a> a component's props look like an HTML tag's
+&quot;attributes&quot; and accept a value.</p>
+<ul>
+<li>If a prop's value type is a string then the prop value is set using quotes.</li>
+<li>Any other type of prop value is set using braces with the value inside. In the
+example below, the <code>label</code> prop accepts a string. so the value is surrounded
+by double quotes. The <code>onClick</code> prop accepts a function, so the function value
+is surrounded by braces.</li>
+</ul>
+<pre><code class="language-jsx">&lt;FancyButton label=&quot;Activate&quot; onClick={() =&gt; alert(&quot;Activated!&quot;)} /&gt;
+</code></pre>
 <h3>Setup</h3>
-<p>✏️ Create <strong>src/pages/RestaurantList/ListItem.tsx</strong> and update it to be:</p>
+<p>✏️ Create <strong>src/pages/RestaurantList/ListItem.tsx</strong> and update it to contain:</p>
 <pre><code class="language-tsx">interface ListItemProps {
     address?: {
         city: string;
@@ -591,7 +615,7 @@ const ListItem: React.FC&lt;ListItemProps&gt; = () =&gt; {
 
 export default ListItem
 </code></pre>
-<p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
+<p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to import <code>ListItem</code>:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
 import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
 import ListItem from './ListItem'
@@ -673,6 +697,7 @@ export default RestaurantList
 </code></pre>
  <div line-highlight="3,only"></div>
 <h3>Verify</h3>
+<p>These tests will pass when the solution has been implemented properly.</p>
 <p>✏️ Create <strong>src/pages/RestaurantList/ListItem.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
@@ -733,7 +758,18 @@ describe('ListItem component', () =&gt; {
 
 </code></pre>
 <h3>Exercise</h3>
-<p>Update the <code>FormSelect</code> to accept (label, value, onChange)</p>
+<ul>
+<li>Update <code>ListItem</code> to accept props with restaurant data.</li>
+<li>Alter <code>ListItem</code> to return the JSX for a single item in <code>restaurants.data</code>,
+use props for the variable data.</li>
+<li>Refactor <code>RestaurantList</code> to use <code>ListItem</code> to render the items in
+<code>restaurants.data</code>.</li>
+</ul>
+<p><strong>Having issues with your local setup?</strong> You can use either
+<a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/05-props/01-problem?file=src%2Fpages%2FRestaurantList%2FListItem.tsx">StackBlitz</a>
+or
+<a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/0props/01-problem?file=src%2Fpages%2FRestaurantList%2FListItem.tsx">CodeSandbox</a>
+to do this exercise in an online code editor.</p>
 <h3>Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -830,6 +866,94 @@ const RestaurantList: React.FC = () =&gt; {
         {restaurants.data ? (
           restaurants.data.map(({ _id, address, images, name, slug }) =&gt; (
             &lt;ListItem
+              address={address}
+              name={name}
+              slug={slug}
+              thumbnail={images.thumbnail}
+            /&gt;
+          ))
+        ) : (
+          &lt;p&gt;No restaurants.&lt;/p&gt;
+        )}
+      &lt;/div&gt;
+    &lt;/&gt;
+  )
+}
+
+export default RestaurantList
+</code></pre>
+ <div line-highlight="45-50,only"></div>
+<p></details></p>
+<h2>Objective 2: Understanding the key prop</h2>
+<p>In this section we will learn when to use the <code>key</code> prop and why.</p>
+<h3>Concept: key uniquely identifies a component</h3>
+<p>Earlier we said property <strong>names</strong> on props were at the discretion of the
+developer—what we didn't mention is that the name &quot;key&quot; has special meaning for
+React. React defines &quot;key&quot; as an optional property whose value type is one of
+<code>string</code>, <code>number</code>, or <code>bigint</code>.</p>
+<p>TODO: key applies to arrays</p>
+<p>TODO: what's a good key? not an index!</p>
+<p>TODO: can apply to any component</p>
+<p>TODO: key value is not passed to your component</p>
+<p>You may have noticed that when the tests were run early a warning was printed
+out to the console, &quot;TBD&quot;</p>
+<h3>Setup</h3>
+<p>N/A</p>
+<h3>Verify</h3>
+<p>TODO: test for key prop</p>
+<h3>Exercise</h3>
+<ul>
+<li>Eliminate the warning from React</li>
+</ul>
+<h3>Solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to include a key prop:</p>
+<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
+import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
+import ListItem from './ListItem'
+
+const RestaurantList: React.FC = () =&gt; {
+  const restaurants = {
+    data: [
+      {
+        name: 'Cheese Curd City',
+        slug: 'cheese-curd-city',
+        images: {
+          thumbnail: CheeseThumbnail,
+        },
+        address: {
+          street: '2451 W Washburne Ave',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53295',
+        },
+        _id: 'Ar0qBJHxM3ecOhcr',
+      },
+      {
+        name: 'Poutine Palace',
+        slug: 'poutine-palace',
+        images: {
+          thumbnail: PoutineThumbnail,
+        },
+        address: {
+          street: '230 W Kinzie Street',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53205',
+        },
+        _id: '3ZOZyTY1LH26LnVw',
+      },
+    ]
+  };
+
+  return (
+    &lt;&gt;
+      &lt;div className=&quot;restaurants&quot;&gt;
+        &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
+        {restaurants.data ? (
+          restaurants.data.map(({ _id, address, images, name, slug }) =&gt; (
+            &lt;ListItem
               key={_id}
               address={address}
               name={name}
@@ -847,49 +971,7 @@ const RestaurantList: React.FC = () =&gt; {
 
 export default RestaurantList
 </code></pre>
- <div line-highlight="45-51,only"></div>
-<p>TODO</p>
-<p></details></p>
-<h2>Objective 2</h2>
-<p>In this section we will:</p>
-<p>Standard prop <code>children</code>
-standard prop <code>key</code></p>
-<h3>Key concepts</h3>
-<h4>Concept 1</h4>
-<p>There is one exception to the naming of properties on the props object, React
-defines one optional property named &quot;children&quot; that contains either a single
-component or a collection of components. The children property is set to the
-contents between a component's opening and closing tags. For example if a
-component displayed a table it might accept a collection of row components as
-children to display as rows in the table.</p>
-<p>TODO: replace with real sample code</p>
-<pre><code class="language-jsx">&lt;MyTable&gt;
-  &lt;tr&gt;
-    &lt;td&gt;row data&lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/MyTable&gt;
-</code></pre>
-<p>In the example above the <code>MyTable</code> component would receive a props object where
-<code>children</code> was set to the <code>tr</code> component. It's up to the MyTable component to
-determine where those children are rendered for display as shown below.</p>
-<p>TODO: replace with real sample code</p>
-<pre><code class="language-jsx">const MyTable: React.FC = ({ children }) =&gt; {
-  return &lt;table&gt;{ children }&lt;/table&gt;;
-}
-</code></pre>
-<h4>Concept 2</h4>
-<p>TODO: the <code>key</code> prop</p>
-<h3>Setup</h3>
-<p>Add remaining <code>FormSelect</code> boilerplate props (help, disabled) - maybe this is already done...</p>
-<h3>Verify</h3>
-<p>TODO</p>
-<h3>Exercise</h3>
-<p>Add options as children in <code>RestaurantList</code>
-Update <code>FormSelect</code> to render children</p>
-<h3>Solution</h3>
-<p><details>
-<summary>Click to see the solution</summary></p>
-<p>TODO</p>
+ <div line-highlight="46,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>TODO</p>
