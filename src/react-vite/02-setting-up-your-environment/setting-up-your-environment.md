@@ -163,7 +163,7 @@ into a browser. The browser will display a welcome page with "Vite + React."
 install the packages related to the React Testing Library:
 
 ```shell
-npm install -D @testing-library/jest-dom@6 @testing-library/react@14 jsdom@24 vitest@1
+npm install -D @testing-library/jest-dom@6 @testing-library/react@14 @testing-library/user-event@14 jsdom@24 vitest@1
 ```
 
 ✏️ Once the packages are installed open the "package.json" file (in the
