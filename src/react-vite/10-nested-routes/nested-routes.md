@@ -1,5 +1,5 @@
-@page learn-react-vite/data-fetching Fetching Data
-@parent learn-react-vite 11
+@page learn-react-vite/nested-routes Creating Nested Routes
+@parent learn-react-vite 10
 @outline 3
 
 @description TODO

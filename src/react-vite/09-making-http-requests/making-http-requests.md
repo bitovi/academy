@@ -1,4 +1,4 @@
-@page learn-react-vite/side-effects Handling Side Effects
+@page learn-react-vite/making-http-requests Making HTTP Requests
 @parent learn-react-vite 9
 @outline 3
 
