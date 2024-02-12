@@ -654,7 +654,7 @@ into a browser. The browser will display a welcome page with &quot;Vite + React.
 <h3>Setup testing</h3>
 <p>✏️ Before we can create or execute any tests run the following command to
 install the packages related to the React Testing Library:</p>
-<pre><code class="language-shell">npm install -D @testing-library/jest-dom@6 @testing-library/react@14 jsdom@24 vitest@1
+<pre><code class="language-shell">npm install -D @testing-library/jest-dom@6 @testing-library/react@14 @testing-library/user-event@14 jsdom@24 vitest@1
 </code></pre>
 <p>✏️ Once the packages are installed open the &quot;package.json&quot; file (in the
 project's root) and add the &quot;test&quot; line to the <code>scripts</code> object; this simplifies
@@ -676,8 +676,9 @@ running tests using Vite.</p>
     &quot;react-dom&quot;: &quot;^18.2.0&quot;
   },
   &quot;devDependencies&quot;: {
-    &quot;@testing-library/jest-dom&quot;: &quot;^6.4.1&quot;,
+    &quot;@testing-library/jest-dom&quot;: &quot;^6.4.2&quot;,
     &quot;@testing-library/react&quot;: &quot;^14.2.1&quot;,
+    &quot;@testing-library/user-event&quot;: &quot;^14.5.2&quot;,
     &quot;@types/react&quot;: &quot;^18.2.43&quot;,
     &quot;@types/react-dom&quot;: &quot;^18.2.17&quot;,
     &quot;@typescript-eslint/eslint-plugin&quot;: &quot;^6.14.0&quot;,
