@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import type { PromiseState } from "../interfaces";
 import type { City, Restaurant, State } from "./interfaces"
 import { getCities, getRestaurants, getStates } from "./restaurant"
@@ -11,6 +11,8 @@ export function useCities(
     error: null,
     isPending: true,
   })
+  const lastState = useRef("");
+  lastState.current = state;
 
   useEffect(() => {
     if (state) {
@@ -22,10 +24,14 @@ export function useCities(
       const fetchData = async () => {
         try {
           const apiResponse = await getCities(state)
-          setResponse({
-            ...apiResponse,
-            isPending: false,
-          })
+          // The user may have changed the state while the request was in
+          // progress.
+          if (lastState.current === state){
+            setResponse({
+              ...apiResponse,
+              isPending: false,
+            })
+          }
         } catch (error) {
           setResponse({
             data: null,
@@ -56,6 +62,9 @@ export function useRestaurants(
     error: null,
     isPending: true,
   })
+  const lastStateCity = useRef({state: "", city: ""});
+  lastStateCity.current.state = state;
+  lastStateCity.current.city = city;
 
   useEffect(() => {
     if (city && state) {
@@ -67,10 +76,14 @@ export function useRestaurants(
       const fetchData = async () => {
         try {
           const apiResponse = await getRestaurants(state, city)
-          setResponse({
-            ...apiResponse,
-            isPending: false,
-          })
+          // The user may have changed the state or city while the request was
+          // in progress.
+          if(lastStateCity.current.state === state && lastStateCity.current.city === city){
+            setResponse({
+              ...apiResponse,
+              isPending: false,
+            })
+          }
         } catch (error) {
           setResponse({
             data: null,
