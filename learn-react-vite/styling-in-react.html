@@ -544,17 +544,59 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
-<p>TODO</p>
-<h2>Objective 1</h2>
-<p>TODO</p>
-<h3>Key concepts</h3>
-<p>TODO</p>
-<h4>Concept 1</h4>
-<p>TODO</p>
-<h4>Concept 2</h4>
-<p>TODO</p>
-<h3>Setup</h3>
-<p>TODO</p>
+<p>There is no prescribed approach for styling React apps. The community has built several styling options. We will be using CSS Modules as it is one of the most popular styling libraries and is very approachable for anyone that is used to styling in plain CSS.</p>
+<h2>Objective 1: Applying style with CSS Modules</h2>
+<p>In this section we will:</p>
+<ul>
+<li>Setup CSS Modules</li>
+<li>Create a component-specific stylesheet</li>
+<li>Apply styles to a component</li>
+</ul>
+<h3>Installing CSS Modules</h3>
+<p>Already done. Vite, our build tool, ships with first-class CSS Modules support. Vite also supports a few <a href="https://vitejs.dev/guide/features#css">other styling options</a> to of the box.</p>
+<h3>Scoped stylesheet</h3>
+<p>CSS classes are global; there is not a feature to scope a class to a specific component other than by using unique names. If two React components implement a <code>.wrapper</code> class, those styles will merge and create styling conflicts.</p>
+<p>CSS Modules works like regular CSS or Sass, but the class names are randomized to prevent conflicts between components. When using CSS Modules, if multiple components implement a <code>.wrapper</code> class those classes will be unique and conflict-free because CSS Modules will rename each class with a unique random string like <code>.wrapper_R8f2</code>.</p>
+<pre><code class="language-CSS">/* CSS Modules will randomize this class name, preventing style conflicts */
+.wrapper {
+  display: flex;
+}
+</code></pre>
+<p>The standard procedure with CSS Modules is to create a stylesheet for each component. That stylesheet is placed in the same folder as the component. In order to identify the file as a CSS Module, the filename should end with <code>.module.css</code> or <code>.module.scss</code>. The file structure for a Button component will look like the following:</p>
+<ul>
+<li>Button
+<ul>
+<li>Button.tsx</li>
+<li>Button.module.css</li>
+<li>Button.test.tsx</li>
+<li>index.ts</li>
+</ul></li>
+</ul>
+<p>Note that CSS Modules cannot rename HTML tags, so all of your styling should use classes to avoid unexpected styling bugs. The following will apply to all <code>div</code> elements in the project and should be avoided.</p>
+<pre><code class="language-CSS">/* Don't do this with CSS Modules as tag names can not be randomized */
+div { 
+  display: flex;
+}
+</code></pre>
+<h3>Importing and applying styles</h3>
+<p>During the build process, the CSS classes will be randomized and added to a global stylesheet. The randomized class names are imported into components as an object where the key is the original class and the value is the new, randomized string.</p>
+<pre><code class="language-js">{ wrapper: &quot;wrapper_R8f2&quot; }
+</code></pre>
+<p>In order to add the <code>.wrapper</code> class to a button components, import the CSS Modules styling object and apply the class using the original class name as the key. Note the HTML &quot;class&quot; attribute is renamed to &quot;className&quot; in JSX because &quot;class&quot; is a reserved word in JavaScript.</p>
+<pre><code class="language-tsx">import styles from './Button.module.css`
+
+const Button: FC&lt;ComponentPropsWithoutRef&lt;&quot;button&quot;&gt;&gt; = (props) =&gt; {
+  return (
+    &lt;div className={styles['wrapper']}&gt;
+      &lt;button {...props} /&gt;
+    &lt;/div&gt;
+  )
+}
+</code></pre>
+<h3>Exercise 1</h3>
+<p>Now that we've learned to apply styling in React with CSS Modules, it's time to practice by styling a link in the Home component. You'll bring in a <code>Link</code> component from React Router.</p>
+<h4>Setup</h4>
+<p>We've created some CSS for this exercise. Create a CSS Modules file and copy the following styles into it.</p>
 <p>✏️ Create <strong>src/pages/Home/Home.module.css</strong> and update it to be:</p>
 <pre><code class="language-css">.chooseButton {
     display: inline-block;
@@ -601,9 +643,7 @@ covering CanJS core libraries.">
     text-decoration: none;
 }
 </code></pre>
-<p>TODO</p>
-<h3>Verify</h3>
-<p>TODO</p>
+<h4>Verify</h4>
 <p>✏️ Create <strong>src/pages/Home/Home.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
@@ -647,12 +687,19 @@ describe('Home component', () =&gt; {
 
 </code></pre>
  <div line-highlight="3-4,9-14,32,34-38,only"></div>
-<h3>Exercise</h3>
-<p>TODO</p>
-<h3>Solution</h3>
+<h4>Exercise</h4>
+<p>In the <code>Home</code> component, <code>import { Link } from &quot;react-router-dom&quot;</code> and add the following near the end of the JSX:</p>
+<pre><code class="language-jsx">&lt;p&gt;
+  &lt;Link to=&quot;/restaurants&quot;&gt;
+    Choose a Restaurant
+  &lt;/Link&gt;
+&lt;/p&gt;
+</code></pre>
+<p>Use what you've learned to import styles and apply the <code>chooseButton</code> class to the <code>Link</code>.</p>
+<h4>Solution</h4>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
+<p>✏️ Update <strong>src/Home.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import HeroImage from &quot;place-my-order-assets/images/homepage-hero.jpg&quot;
 import { Link } from &quot;react-router-dom&quot;
 import styles from &quot;./Home.module.css&quot;
@@ -689,7 +736,7 @@ export default Home
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/07-styling-in-react/01-solution?file=src/pages/Home/Home.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/07-styling-in-react/01-solution?file=src/pages/Home/Home.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Next steps</h2>
-<p>TODO</p>
+<p>In the next section, we'll learn to manage state.</p>
 
 </section>
 
