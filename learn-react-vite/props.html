@@ -559,14 +559,12 @@ covering CanJS core libraries.">
 <p>Since a functional component is just a JavaScript function, we can pass
 arguments to it; however, functional components must implement a React API that
 allows an optional argument of type <code>object</code> that's named &quot;props&quot;.</p>
-<p>The properties on the props object are undefined (with two exceptions we'll get
-to later) and can be whatever is needed to make the component work. The property
-values can be any type, including functions and other React components.</p>
+<p>The properties on the props object—individually called a &quot;prop&quot;—are undefined
+(with two exceptions we'll get to later) and can be whatever is needed to make
+the component work. The property values can be any type, including functions and
+other React components.</p>
 <p>We're using TypeScript in our project so we can create an <code>interface</code> for props
 and use it in the definition of a functional component:</p>
-<p><span style="color: red;font-weight:600;">I feel like good practice would be to
-add comments to the interface property definitions, but that adds a lot more
-static to the example so I'm not. Thoughts?</span></p>
 <pre><code class="language-jsx">interface FancyButtonProps {
   label: string;
   onClick: () =&gt; void;
@@ -884,97 +882,6 @@ export default RestaurantList
 </code></pre>
  <div line-highlight="45-50,only"></div>
 <p></details></p>
-<h2>Objective 2: Understanding the key prop</h2>
-<p>In this section we will learn when to use the <code>key</code> prop and why.</p>
-<h3>Concept: key uniquely identifies a component</h3>
-<p>Earlier we said property <strong>names</strong> on props were at the discretion of the
-developer—what we didn't mention is that the name &quot;key&quot; has special meaning for
-React. React defines &quot;key&quot; as an optional property whose value type is one of
-<code>string</code>, <code>number</code>, or <code>bigint</code>.</p>
-<p>TODO: key applies to arrays</p>
-<p>TODO: what's a good key? not an index!</p>
-<p>TODO: can apply to any component</p>
-<p>TODO: key value is not passed to your component</p>
-<p>You may have noticed that when the tests were run early a warning was printed
-out to the console, &quot;TBD&quot;</p>
-<h3>Setup</h3>
-<p>N/A</p>
-<h3>Verify</h3>
-<p>TODO: test for key prop</p>
-<h3>Exercise</h3>
-<ul>
-<li>Eliminate the warning from React</li>
-</ul>
-<h3>Solution</h3>
-<p><details>
-<summary>Click to see the solution</summary></p>
-<p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to include a key prop:</p>
-<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
-import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import ListItem from './ListItem'
-
-const RestaurantList: React.FC = () =&gt; {
-  const restaurants = {
-    data: [
-      {
-        name: 'Cheese Curd City',
-        slug: 'cheese-curd-city',
-        images: {
-          thumbnail: CheeseThumbnail,
-        },
-        address: {
-          street: '2451 W Washburne Ave',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53295',
-        },
-        _id: 'Ar0qBJHxM3ecOhcr',
-      },
-      {
-        name: 'Poutine Palace',
-        slug: 'poutine-palace',
-        images: {
-          thumbnail: PoutineThumbnail,
-        },
-        address: {
-          street: '230 W Kinzie Street',
-          city: 'Green Bay',
-          state: 'WI',
-          zip: '53205',
-        },
-        _id: '3ZOZyTY1LH26LnVw',
-      },
-    ]
-  };
-
-  return (
-    &lt;&gt;
-      &lt;div className=&quot;restaurants&quot;&gt;
-        &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
-        {restaurants.data ? (
-          restaurants.data.map(({ _id, address, images, name, slug }) =&gt; (
-            &lt;ListItem
-              key={_id}
-              address={address}
-              name={name}
-              slug={slug}
-              thumbnail={images.thumbnail}
-            /&gt;
-          ))
-        ) : (
-          &lt;p&gt;No restaurants.&lt;/p&gt;
-        )}
-      &lt;/div&gt;
-    &lt;/&gt;
-  )
-}
-
-export default RestaurantList
-</code></pre>
- <div line-highlight="46,only"></div>
-<p></details></p>
-<h2>Next steps</h2>
-<p>TODO</p>
 
 </section>
 
