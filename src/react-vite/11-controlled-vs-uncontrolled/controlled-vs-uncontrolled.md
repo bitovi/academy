@@ -2,22 +2,20 @@
 @parent learn-react-vite 11
 @outline 3
 
-@description TODO
+@description Use forms and inputs to collect information.
 
 @body
 
 ## Overview
 
-- Passing data back from a component to its parent using a functional prop
-- TODO
-
-## Objective 1
+## Objective 1: Add a form with controlled checkboxes
 
 TODO
 
 ### Key concepts
 
-TODO
+- A controlled input requires value (checked) and onChange props.
+- Store form data as an object in state.
 
 #### Concept 1
 
@@ -48,6 +46,41 @@ TODO
 
 </details>
 
-## Next steps
+## Objective 2: Submit the form and create custom input components
 
 TODO
+
+### Key concepts
+
+- Form submission: submit button, onSubmit handler, and managing the submit
+  event.
+- Custom input components and onChange function props.
+
+#### Concept 1
+
+TODO
+
+#### Concept 2
+
+TODO
+
+### Setup
+
+TODO
+
+### Verify
+
+TODO
+
+### Exercise
+
+TODO
+
+### Solution
+
+<details>
+<summary>Click to see the solution</summary>
+
+TODO
+
+</details>
