@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
 import { describe, it, expect } from 'vitest';
 
 import RestaurantList from './RestaurantList';
@@ -14,6 +15,32 @@ describe('RestaurantList component', () => {
     render(<RestaurantList />)
     expect(screen.getByLabelText(/State/i)).toBeInTheDocument()
     expect(screen.getByLabelText(/City/i)).toBeInTheDocument()
+  })
+
+  it('allows selecting a state', async () => {
+    render(<RestaurantList />)
+    const stateSelect = screen.getByLabelText(/State/i) as HTMLSelectElement
+    await userEvent.selectOptions(stateSelect, 'IL')
+    expect(stateSelect.value).toBe('IL')
+  })
+
+  it('updates city dropdown based on selected state', async () => {
+    render(<RestaurantList />)
+    const stateSelect = screen.getByLabelText(/State/i) as HTMLSelectElement
+    const citySelect = screen.getByLabelText(/City/i) as HTMLSelectElement
+
+    await userEvent.selectOptions(stateSelect, 'IL')
+    expect(citySelect).toHaveTextContent('Choose a city')
+  })
+
+  it('allows selecting a city', async () => {
+    render(<RestaurantList />)
+    const stateSelect = screen.getByLabelText(/State/i) as HTMLSelectElement
+    const citySelect = screen.getByLabelText(/City/i) as HTMLSelectElement
+
+    await userEvent.selectOptions(stateSelect, 'IL')
+    await userEvent.selectOptions(citySelect, 'Springfield')
+    expect(citySelect.value).toBe('Springfield')
   })
 
   it('renders the restaurant images', () => {

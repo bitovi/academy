@@ -1,12 +1,23 @@
 import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
 import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import { useId } from 'react'
+import { useId, useState } from 'react'
 import ListItem from './ListItem'
 
 const RestaurantList: React.FC = () => {
   const stateId = useId()
   const cityId = useId()
 
+  const [state, setState] = useState("")
+  const [city, setCity] = useState("")
+
+  const states = [
+    { name: 'Illinois', short: 'IL' },
+    { name: 'Wisconsin', short: 'WI' },
+  ]
+  const cities = [
+    { name: 'Madison', state: 'WI' },
+    { name: 'Springfield', state: 'IL' },
+  ]
   const restaurants = {
     data: [
       {
@@ -53,7 +64,18 @@ const RestaurantList: React.FC = () => {
             <select
               className="form-control"
               id={stateId}
+              onChange={(event) => {
+                setState(event.target.value)
+                setCity("")
+              }}
+              value={state}
             >
+              <option key="choose" value="">Choose a state</option>
+              {states.map(({ short, name }) => (
+                <option key={short} value={short}>
+                  {name}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -64,7 +86,23 @@ const RestaurantList: React.FC = () => {
             <select
               className="form-control"
               id={cityId}
+              onChange={(event) => setCity(event.target.value)}
+              value={city}
             >
+              <option key="choose" value="">
+                {
+                  state
+                    ? "Choose a city"
+                    : "Choose a state before selecting a city"
+                }
+              </option>
+              {state && cities
+                .filter((city) => city.state === state)
+                .map(({ name }) => (
+                  <option key={name} value={name}>
+                    {name}
+                  </option>
+                ))}
             </select>
           </div>
         </form>
