@@ -25,16 +25,13 @@ Since a functional component is just a JavaScript function, we can pass
 arguments to it; however, functional components must implement a React API that
 allows an optional argument of type `object` that's named "props".
 
-The properties on the props object are undefined (with two exceptions we'll get
-to later) and can be whatever is needed to make the component work. The property
-values can be any type, including functions and other React components.
+The properties on the props object—individually called a "prop"—are undefined
+(with two exceptions we'll get to later) and can be whatever is needed to make
+the component work. The property values can be any type, including functions and
+other React components.
 
 We're using TypeScript in our project so we can create an `interface` for props
 and use it in the definition of a functional component:
-
-<span style="color: red;font-weight:600;">I feel like good practice would be to
-add comments to the interface property definitions, but that adds a lot more
-static to the example so I'm not. Thoughts?</span>
 
 ```jsx
 interface FancyButtonProps {
@@ -112,52 +109,3 @@ to do this exercise in an online code editor.
 @diff ../../../exercises/react-vite/05-props/01-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/05-props/01-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
 </details>
-
-## Objective 2: Understanding the key prop
-
-In this section we will learn when to use the `key` prop and why.
-
-### Concept: key uniquely identifies a component
-
-Earlier we said property **names** on props were at the discretion of the
-developer—what we didn't mention is that the name "key" has special meaning for
-React. React defines "key" as an optional property whose value type is one of
-`string`, `number`, or `bigint`.
-
-TODO: key applies to arrays
-
-TODO: what's a good key? not an index!
-
-TODO: can apply to any component
-
-TODO: key value is not passed to your component
-
-You may have noticed that when the tests were run early a warning was printed
-out to the console, "TBD"
-
-### Setup
-
-N/A
-
-### Verify
-
-TODO: test for key prop
-
-### Exercise
-
-- Eliminate the warning from React
-
-### Solution
-
-<details>
-<summary>Click to see the solution</summary>
-
-✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to include a key prop:
-
-@diff ../../../exercises/react-vite/05-props/01-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/05-props/02-solution/src/pages/RestaurantList/RestaurantList.tsx only
-
-</details>
-
-## Next steps
-
-TODO
