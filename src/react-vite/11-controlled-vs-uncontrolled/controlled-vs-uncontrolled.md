@@ -15,9 +15,13 @@ TODO
 ### Key concepts
 
 - A controlled input requires value (checked) and onChange props.
+- Form input events have a `target` property with current form values.
+- Store form data as an object in state.
 - Update form data in state using the setState callback signature.
+- Always create a new value for arrays and objects in state (don’t update the arrays and values).
+- `Record` helper in TypeScript.
 
-#### Controlled / uncontrolled inputs
+#### Controlled and uncontrolled inputs
 
 React has special handling for `<input>` components that allow developers to
 create "controlled" or "uncontrolled" inputs. An input is uncontrolled when its
@@ -38,7 +42,7 @@ const FancyInput: React.FC = () => {
   const [name, setName] = useState("")
   return (
     <label>Name: 
-      <input onChange={(evt) => setName(evt.target.value)} type="text" value={name} />
+      <input onChange={(event) => setName(event.target.value)} type="text" value={name} />
     </label>
   )
 }
@@ -87,10 +91,10 @@ const MyForm: React.FC = () => {
 return (
     <form>
       <label>First Name:
-        <input onChange={(evt) => setData("first", evt.target.value)} value={formData.first} />
+        <input onChange={(event) => setData("first", event.target.value)} value={formData.first} />
       </label>
       <label>Last Name:
-        <input onChange={(evt) => setData("last", evt.target.value)} value={formData.last} />
+        <input onChange={(event) => setData("last", event.target.value)} value={formData.last} />
       </label>
     </form>
   )
@@ -103,13 +107,43 @@ TODO
 
 TODO
 
+✏️ Create **src/services/order/interfaces.ts** and update it to be:
+
+@sourceref ../../../exercises/react-vite/11-controlled-vs-uncontrolled/01-solution/src/services/order/interfaces.ts
+@highlight 1-14
+
+✏️ Update **src/pages/RestaurantOrder/RestaurantOrder.tsx** to be:
+
+@diff ../../../exercises/react-vite/10-nested-routes/02-solution/src/pages/RestaurantOrder/RestaurantOrder.tsx ../../../exercises/react-vite/11-controlled-vs-uncontrolled/01-problem/src/pages/RestaurantOrder/RestaurantOrder.tsx only
+
 ### Verify
 
 TODO
 
+✏️ Update **src/pages/RestaurantOrder/RestaurantOrder.test.tsx.tsx** to be:
+
+@diff ../../../exercises/react-vite/10-nested-routes/02-solution/src/pages/RestaurantOrder/RestaurantOrder.test.tsx ../../../exercises/react-vite/11-controlled-vs-uncontrolled/01-solution/src/pages/RestaurantOrder/RestaurantOrder.test.tsx only
+
 ### Exercise
 
 TODO
+
+- Add `newOrder` state so that when menu items are selected, the state will look like:
+
+```
+{
+  items: {
+    "Menu item 1 name": 1.23,// Menu item 1 price
+    "Menu item 2 name": 4.56,// Menu item 2 price
+  }
+}
+```
+
+- Add the `onChange` listener to all the checkboxes.
+
+- Add the `checked` prop to all the checkboxes.
+
+- Update `subtotal` to use the `calculateTotal` helper function.
 
 ### Solution
 
@@ -118,17 +152,21 @@ TODO
 
 TODO
 
+✏️ Update **src/pages/RestaurantOrder/RestaurantOrder.tsx** to be:
+
+@diff ../../../exercises/react-vite/11-controlled-vs-uncontrolled/01-problem/src/pages/RestaurantOrder/RestaurantOrder.tsx ../../../exercises/react-vite/11-controlled-vs-uncontrolled/01-solution/src/pages/RestaurantOrder/RestaurantOrder.tsx only
+
 </details>
 
-## Objective 2: Submit the form and create custom input components
+## Objective 2: Create a reusable text field component
 
 TODO
 
 ### Key concepts
 
-- Form submission: submit button, onSubmit handler, and managing the submit
-  event.
 - Custom input components and onChange function props.
+
+TODO: I think most of this exercise is stuff they’ve already done and not anything new? Maybe we just need reminders here, or not? I can figure this out when making the slides.
 
 #### Concept 1
 
@@ -142,9 +180,24 @@ TODO
 
 TODO
 
+✏️ Create **src/components/FormTextField/FormTextField.tsx** and update it to be:
+
+@sourceref ../../../exercises/react-vite/11-controlled-vs-uncontrolled/02-problem/src/components/FormTextField/FormTextField.tsx
+@highlight 1-9
+
+✏️ Create **src/components/FormTextField/index.ts** and update it to be:
+
+@sourceref ../../../exercises/react-vite/11-controlled-vs-uncontrolled/02-solution/src/components/FormTextField/index.ts
+@highlight 1
+
 ### Verify
 
 TODO
+
+✏️ Create **src/components/FormTextField/FormTextField.test.tsx** and update it to be:
+
+@sourceref ../../../exercises/react-vite/11-controlled-vs-uncontrolled/02-solution/src/components/FormTextField/FormTextField.test.tsx
+@highlight 10-39, only
 
 ### Exercise
 
@@ -157,4 +210,67 @@ TODO
 
 TODO
 
+✏️ Update **src/components/FormTextField/FormTextField.tsx** to be:
+
+@diff ../../../exercises/react-vite/11-controlled-vs-uncontrolled/02-problem/src/components/FormTextField/FormTextField.tsx ../../../exercises/react-vite/11-controlled-vs-uncontrolled/02-solution/src/components/FormTextField/FormTextField.tsx only
+
 </details>
+
+## Objective 3: Integrate `FormTextField` into `RestaurantOrder` and submit the form
+
+TODO
+
+### Key concepts
+
+TODO
+
+- Form submission: submit button, onSubmit handler, and managing the submit
+  event.
+- `[key]: value` syntax to make reusable setter functions.
+
+TODO: I’m not sure whether the submit button should be a part of the exercise. Maybe? For now I’d like to have the content to cover it, then figure out if we actually want it in the exercise after we see how it looks.
+
+#### Concept 1
+
+TODO
+
+#### Concept 2
+
+TODO
+
+### Setup
+
+TODO
+
+✏️ Update **src/pages/RestaurantOrder/RestaurantOrder.tsx** to be:
+
+@diff ../../../exercises/react-vite/11-controlled-vs-uncontrolled/02-solution/src/pages/RestaurantOrder/RestaurantOrder.tsx ../../../exercises/react-vite/11-controlled-vs-uncontrolled/03-problem/src/pages/RestaurantOrder/RestaurantOrder.tsx only
+
+### Verify
+
+TODO
+
+✏️ Update **src/pages/RestaurantOrder/RestaurantOrder.test.tsx.tsx** to be:
+
+@diff ../../../exercises/react-vite/11-controlled-vs-uncontrolled/02-solution/src/pages/RestaurantOrder/RestaurantOrder.test.tsx ../../../exercises/react-vite/11-controlled-vs-uncontrolled/03-solution/src/pages/RestaurantOrder/RestaurantOrder.test.tsx only
+
+### Exercise
+
+TODO
+
+### Solution
+
+<details>
+<summary>Click to see the solution</summary>
+
+TODO
+
+✏️ Update **src/pages/RestaurantOrder/RestaurantOrder.tsx** to be:
+
+@diff ../../../exercises/react-vite/11-controlled-vs-uncontrolled/03-problem/src/pages/RestaurantOrder/RestaurantOrder.tsx ../../../exercises/react-vite/11-controlled-vs-uncontrolled/03-solution/src/pages/RestaurantOrder/RestaurantOrder.tsx only
+
+</details>
+
+## Next steps
+
+TODO

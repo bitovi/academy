@@ -14,10 +14,6 @@ const RestaurantOrder: React.FC = () => {
 
     const restaurant = useRestaurant(params.slug)
 
-    const [newOrder, setNewOrder] = useState<NewOrderState>({
-        items: {},
-    })
-
     if (restaurant.isPending) {
         return (
             <p aria-live="polite" className="loading">
@@ -38,24 +34,7 @@ const RestaurantOrder: React.FC = () => {
         return <p aria-live="polite">No restaurant found.</p>;
     }
 
-    const setItem = (itemId: string, isChecked: boolean, itemPrice: number) => {
-        return setNewOrder((newOrder) => {
-            const updatedItems = {
-                ...newOrder.items,
-            }
-            if (isChecked) {
-                updatedItems[itemId] = itemPrice;
-            } else {
-                delete updatedItems[itemId]
-            }
-            return {
-                ...newOrder,
-                items: updatedItems,
-            }
-        })
-    }
-
-    const subtotal = calculateTotal(newOrder.items)
+    const subtotal = 0 // Use calculateTotal here.
 
     return (
         <>
@@ -75,8 +54,6 @@ const RestaurantOrder: React.FC = () => {
                             <li key={name} className="list-group-item">
                                 <label>
                                     <input
-                                        checked={name in newOrder.items}
-                                        onChange={(e) => setItem(name, e.target.checked, price)}
                                         type="checkbox"
                                     />
                                     {name}
@@ -92,8 +69,6 @@ const RestaurantOrder: React.FC = () => {
                             <li key={name} className="list-group-item">
                                 <label>
                                     <input
-                                        checked={name in newOrder.items}
-                                        onChange={(e) => setItem(name, e.target.checked, price)}
                                         type="checkbox"
                                     />
                                     {name}
