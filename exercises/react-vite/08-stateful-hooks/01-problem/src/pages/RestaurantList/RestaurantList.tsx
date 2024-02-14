@@ -1,12 +1,8 @@
 import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
 import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import { useId } from 'react'
 import ListItem from './ListItem'
 
 const RestaurantList: React.FC = () => {
-  const stateId = useId()
-  const cityId = useId()
-
   const restaurants = {
     data: [
       {
@@ -47,23 +43,21 @@ const RestaurantList: React.FC = () => {
 
         <form className="form">
           <div className="form-group">
-            <label className="control-label" htmlFor={stateId}>
+            <label className="control-label">
               State
             </label>
             <select
               className="form-control"
-              id={stateId}
             >
             </select>
           </div>
 
           <div className="form-group">
-            <label className="control-label" htmlFor={cityId}>
+            <label className="control-label">
               City
             </label>
             <select
               className="form-control"
-              id={cityId}
             >
             </select>
           </div>

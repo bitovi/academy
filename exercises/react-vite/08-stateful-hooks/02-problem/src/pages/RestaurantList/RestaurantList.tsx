@@ -7,6 +7,14 @@ const RestaurantList: React.FC = () => {
   const stateId = useId()
   const cityId = useId()
 
+  const states = [
+    { name: 'Illinois', short: 'IL' },
+    { name: 'Wisconsin', short: 'WI' },
+  ]
+  const cities = [
+    { name: 'Madison', state: 'WI' },
+    { name: 'Springfield', state: 'IL' },
+  ]
   const restaurants = {
     data: [
       {
@@ -54,6 +62,7 @@ const RestaurantList: React.FC = () => {
               className="form-control"
               id={stateId}
             >
+              <option key="choose" value="">Choose a state</option>
             </select>
           </div>
 
