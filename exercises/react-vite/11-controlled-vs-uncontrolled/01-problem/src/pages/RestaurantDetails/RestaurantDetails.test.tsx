@@ -1,11 +1,10 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom';
 import { describe, it, expect, vi } from 'vitest';
-import RestaurantOrder from './RestaurantOrder';
+import RestaurantDetails from './RestaurantDetails';
 
-// Mock the hooks and components used in RestaurantOrder
+// Mock the hooks and components used in RestaurantDetails
 vi.mock('../../services/restaurant/hooks', () => ({
   useRestaurant: vi.fn()
 }));
@@ -26,16 +25,6 @@ const mockRestaurantData = {
     name: 'Test Restaurant',
     slug: 'test-restaurant',
     images: { owner: 'owner.jpg' },
-    menu: {
-      lunch: [
-        { name: 'Lunch Item 1', price: 10 },
-        { name: 'Lunch Item 2', price: 15 }
-      ],
-      dinner: [
-        { name: 'Dinner Item 1', price: 20 },
-        { name: 'Dinner Item 2', price: 25 }
-      ]
-    },
   },
   isPending: false,
   error: null
@@ -49,52 +38,32 @@ const renderWithRouter = (ui, { route = '/restaurants/test-restaurant' } = {}) =
   );
 };
 
-describe('RestaurantOrder component', () => {
+describe('RestaurantDetails component', () => {
   it('renders loading state', () => {
     useRestaurant.mockReturnValue({ data: null, isPending: true, error: null });
-    renderWithRouter(<RestaurantOrder />);
+    renderWithRouter(<RestaurantDetails />);
     expect(screen.getByText(/Loading restaurant…/i)).toBeInTheDocument();
   });
 
   it('renders error state', () => {
     useRestaurant.mockReturnValue({ data: null, isPending: false, error: { message: 'Error loading' } });
-    renderWithRouter(<RestaurantOrder />);
+    renderWithRouter(<RestaurantDetails />);
     expect(screen.getByText(/Error loading restaurant/i)).toBeInTheDocument();
   });
 
   it('renders no restaurant found state', () => {
     useRestaurant.mockReturnValue({ data: null, isPending: false, error: null });
-    renderWithRouter(<RestaurantOrder />);
+    renderWithRouter(<RestaurantDetails />);
     expect(screen.getByText(/No restaurant found/i)).toBeInTheDocument();
   });
 
-  it('renders the RestaurantHeader when data is available', () => {
+  it('renders the RestaurantHeader and content when data is available', () => {
     useRestaurant.mockReturnValue(mockRestaurantData);
-    renderWithRouter(<RestaurantOrder />);
+    renderWithRouter(<RestaurantDetails />);
 
     expect(screen.getByTestId('mock-restaurant-header')).toBeInTheDocument();
-  });
-
-  it('renders the order form when restaurant data is available', () => {
-    useRestaurant.mockReturnValue(mockRestaurantData);
-    render(<RestaurantOrder />);
-
-    expect(screen.getByTestId('mock-restaurant-header')).toBeInTheDocument();
-    expect(screen.getByText('Order from Test Restaurant!')).toBeInTheDocument();
-    expect(screen.getAllByRole('checkbox').length).toBe(4); // 2 lunch + 2 dinner items
-  });
-
-  it('updates subtotal when menu items are selected', async () => {
-    useRestaurant.mockReturnValue(mockRestaurantData);
-    render(<RestaurantOrder />);
-
-    const checkboxes = screen.getAllByRole('checkbox');
-    await userEvent.click(checkboxes[0]); // Select 'Lunch Item 1' (price: 10)
-
-    expect(screen.getByText('Total: $10.00')).toBeInTheDocument();
-
-    await userEvent.click(checkboxes[2]); // Select 'Dinner Item 1' (price: 20)
-
-    expect(screen.getByText('Total: $30.00')).toBeInTheDocument();
+    expect(screen.getByText(/The best food this side of the Mississippi/i)).toBeInTheDocument();
+    expect(screen.getByText(/Description for Test Restaurant/i)).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /Order from Test Restaurant/i })).toBeInTheDocument();
   });
 });

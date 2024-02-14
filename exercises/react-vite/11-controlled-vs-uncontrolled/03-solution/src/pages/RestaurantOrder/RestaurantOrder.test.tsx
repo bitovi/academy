@@ -10,14 +10,30 @@ vi.mock('../../services/restaurant/hooks', () => ({
   useRestaurant: vi.fn()
 }));
 
+vi.mock('../../components/FormTextField', () => ({
+  default: vi.fn(({ label, onChange, type, value }) => (
+    <div className="form-group">
+      <label htmlFor={`form-field-${label.toLowerCase()}`}>{label}</label>
+      <input
+        id={`form-field-${label.toLowerCase()}`}
+        data-testid={`form-field-${label.toLowerCase()}`}
+        className="form-control"
+        onChange={(event) => onChange(event.target.value)}
+        type={type}
+        value={value}
+      />
+    </div>
+  ))
+}));
+
 vi.mock('../../components/RestaurantHeader', () => ({
-    default: vi.fn(() => (
-      <div data-testid="mock-restaurant-header">
-        Mock RestaurantHeader
-      </div>
-    ))
-  }));
-  
+  default: vi.fn(() => (
+    <div data-testid="mock-restaurant-header">
+      Mock RestaurantHeader
+    </div>
+  ))
+}));
+
 import { useRestaurant } from '../../services/restaurant/hooks';
 
 const mockRestaurantData = {
@@ -96,5 +112,34 @@ describe('RestaurantOrder component', () => {
     await userEvent.click(checkboxes[2]); // Select 'Dinner Item 1' (price: 20)
 
     expect(screen.getByText('Total: $30.00')).toBeInTheDocument();
+  });
+
+  it('updates form fields', async () => {
+    renderWithRouter(<RestaurantOrder />);
+
+    await userEvent.type(screen.getByTestId('form-field-name'), 'John Doe');
+    expect(screen.getByTestId('form-field-name')).toHaveValue('John Doe');
+
+    await userEvent.type(screen.getByTestId('form-field-address'), '123 Main St');
+    expect(screen.getByTestId('form-field-address')).toHaveValue('123 Main St');
+
+    await userEvent.type(screen.getByTestId('form-field-phone'), '555-1234');
+    expect(screen.getByTestId('form-field-phone')).toHaveValue('555-1234');
+  });
+
+  it('handles form submission', async () => {
+    const submitSpy = vi.fn();
+    renderWithRouter(<RestaurantOrder />);
+
+    const submitButton = screen.getByRole('button', { name: /Place My Order!/i });
+    const form = submitButton.closest('form');
+    expect(form).toBeInTheDocument(); // Ensure the form is found
+
+    if (form) {
+      form.onsubmit = submitSpy;
+    }
+
+    await userEvent.click(submitButton);
+    expect(submitSpy).toHaveBeenCalledTimes(1);
   });
 });

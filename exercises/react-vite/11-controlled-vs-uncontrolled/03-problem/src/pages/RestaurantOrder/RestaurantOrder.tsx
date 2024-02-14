@@ -1,12 +1,16 @@
-import { useState } from "react"
+import { FormEvent, useState } from "react"
 import { useParams } from "react-router-dom"
+import FormTextField from "../../components/FormTextField"
 import RestaurantHeader from "../../components/RestaurantHeader"
 import { useRestaurant } from "../../services/restaurant/hooks"
 
 type OrderItems = Record<string, number>
 
 interface NewOrderState {
+    address: string;
     items: OrderItems;
+    name: string;
+    phone: string;
 }
 
 const RestaurantOrder: React.FC = () => {
@@ -55,6 +59,11 @@ const RestaurantOrder: React.FC = () => {
         })
     }
 
+    const submit = (event: FormEvent) => {
+        event.preventDefault()
+    }
+
+    const selectedCount = Object.values(newOrder.items).length
     const subtotal = calculateTotal(newOrder.items)
 
     return (
@@ -64,10 +73,16 @@ const RestaurantOrder: React.FC = () => {
             <div className="order-form">
                 <h3>Order from {restaurant.data.name}!</h3>
 
-                <form>
-                    {subtotal === 0 && (
-                        <p className="info text-error">Please choose an item.</p>
-                    )}
+                <form onSubmit={(event) => submit(event)}>
+                    {
+                        subtotal === 0
+                            ? (
+                                <p className="info text-error">Please choose an item.</p>
+                            )
+                            : (
+                                <p className="info text-success">{selectedCount} selected.</p>
+                            )
+                    }
 
                     <h4>Lunch Menu</h4>
                     <ul className="list-group">
@@ -105,6 +120,9 @@ const RestaurantOrder: React.FC = () => {
 
                     <div className="submit">
                         <h4>Total: ${subtotal ? subtotal.toFixed(2) : "0.00"}</h4>
+                        <button className="btn" type="submit">
+                            Place My Order!
+                        </button>
                     </div>
                 </form>
             </div>
