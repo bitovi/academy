@@ -949,7 +949,7 @@ const RestaurantList: React.FC = () =&gt; {
               className=&quot;form-control&quot;
               id={stateId}
             &gt;
-              &lt;option key=&quot;choose&quot; value=&quot;&quot;&gt;Choose a state&lt;/option&gt;
+              &lt;option key=&quot;choose_state&quot; value=&quot;&quot;&gt;Choose a state&lt;/option&gt;
             &lt;/select&gt;
           &lt;/div&gt;
 
@@ -1099,7 +1099,7 @@ to do this exercise in an online code editor.</p>
 <summary>Click to see the solution</summary></p>
 <pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
 import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import { useId, useState } from 'react'
+import { ChangeEvent, useId, useState } from 'react'
 import ListItem from './ListItem'
 
 const RestaurantList: React.FC = () =&gt; {
@@ -1150,6 +1150,15 @@ const RestaurantList: React.FC = () =&gt; {
     ]
   };
 
+  const updateState = (event: ChangeEvent&lt;HTMLSelectElement&gt;) =&gt; {
+    setState(event.target.value)
+    setCity(&quot;&quot;)
+  }
+
+  const updateCity = (event: ChangeEvent&lt;HTMLSelectElement&gt;) =&gt; {
+    setCity(event.target.value)
+  }
+
   return (
     &lt;&gt;
       &lt;div className=&quot;restaurants&quot;&gt;
@@ -1163,13 +1172,10 @@ const RestaurantList: React.FC = () =&gt; {
             &lt;select
               className=&quot;form-control&quot;
               id={stateId}
-              onChange={(event) =&gt; {
-                setState(event.target.value)
-                setCity(&quot;&quot;)
-              }}
+              onChange={updateState}
               value={state}
             &gt;
-              &lt;option key=&quot;choose&quot; value=&quot;&quot;&gt;Choose a state&lt;/option&gt;
+              &lt;option key=&quot;choose_state&quot; value=&quot;&quot;&gt;Choose a state&lt;/option&gt;
               {states.map(({ short, name }) =&gt; (
                 &lt;option key={short} value={short}&gt;
                   {name}
@@ -1185,10 +1191,10 @@ const RestaurantList: React.FC = () =&gt; {
             &lt;select
               className=&quot;form-control&quot;
               id={cityId}
-              onChange={(event) =&gt; setCity(event.target.value)}
+              onChange={updateCity}
               value={city}
             &gt;
-              &lt;option key=&quot;choose&quot; value=&quot;&quot;&gt;
+              &lt;option key=&quot;choose_city&quot; value=&quot;&quot;&gt;
                 {
                   state
                     ? &quot;Choose a city&quot;
@@ -1226,7 +1232,7 @@ const RestaurantList: React.FC = () =&gt; {
 
 export default RestaurantList
 </code></pre>
- <div line-highlight="3,10-11,67-71,74-78,89-90,92-105,only"></div>
+ <div line-highlight="3,10-11,54-57,59-61,76-77,80-84,95-96,98-111,only"></div>
 <p></details></p>
 
 </section>
