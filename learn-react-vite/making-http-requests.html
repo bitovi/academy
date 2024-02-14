@@ -546,15 +546,87 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>TODO</p>
 <h2>Objective 1</h2>
-<p>TODO</p>
-<h3>Key concepts</h3>
-<p>TODO</p>
-<h4>Concept 1</h4>
-<p>TODO</p>
-<h4>Concept 2</h4>
-<p>TODO</p>
+<p>In this section, we will:</p>
+<ul>
+<li>Learn about the <code>useEffect</code> Hook</li>
+<li>Review TypeScript generics</li>
+</ul>
+<h3>The <code>useEffect</code> Hook</h3>
+<p><code>useEffect</code> is a React Hook that lets you perform side effects in your functional components.
+It serves as a powerful tool to execute code in response to component renders or state changes.</p>
+<p>The <code>useEffect</code> Hook takes two arguments:</p>
+<h4>Effect callback function</h4>
+<p>The first argument of <code>useEffect</code> is a function, often referred to as the “effect” function.
+This is where you perform your side effects, such as fetching data, setting up a subscription,
+or manually changing the DOM in React components.</p>
+<p>The key aspect of this function is that it’s executed after the component renders. The effects
+in <code>useEffect</code> don’t block the browser from updating the screen, leading to more responsive UIs.</p>
+<p>This effect function can optionally return another function, known as the “cleanup” function.
+The cleanup function is useful for performing any necessary cleanup activities when the component
+unmounts or before the component re-renders and the effect is re-invoked. Common examples include
+clearing timers, canceling network requests, or removing event listeners.</p>
+<h4>The dependency array</h4>
+<p>The second argument of <code>useEffect</code> is an array, called the “dependency array”, which determines
+when your effect function should be called. The behavior of the effect changes based on the
+contents of this array:</p>
+<p>Consider three scenarios based on the dependency array:</p>
+<p><strong>No dependency array:</strong> If the dependency array is omitted, the effect runs after every render
+of the component.</p>
+<pre><code class="language-tsx">useEffect(() =&gt; {
+  console.info('This runs after every render')
+})
+</code></pre>
+<p><strong>Empty dependency array ([]):</strong> If the dependency array is an empty array, the effect runs once
+after the initial render.</p>
+<pre><code class="language-tsx">useEffect(() =&gt; {
+  console.info('This runs once after the initial render')
+}, [])
+</code></pre>
+<p><strong>Array with values:</strong> When you include values (variables, props, state) in the dependency array,
+the effect will only re-run if those specific values change between renders. This selective
+execution can optimize performance by avoiding unnecessary work.</p>
+<pre><code class="language-tsx">const [count, setCount] = useState(0)
+
+useEffect(() =&gt; {
+  console.info('This runs when count changes')
+}, [count])
+</code></pre>
+<h4>Async operations inside useEffect</h4>
+<p>Unlike traditional functions, <code>useEffect</code> functions can’t be marked as async. This is
+because returning a <code>Promise</code> from <code>useEffect</code> would conflict with its mechanism, which expects
+either nothing or a clean-up function to be returned. To handle asynchronous operations, you
+typically define an <code>async</code> function inside the effect and then call it.</p>
+<pre><code class="language-tsx">useEffect(() =&gt; {
+  const fetchData = async () =&gt; {
+    // Async fetch logic
+  };
+
+  fetchData();
+}, []);
+
+</code></pre>
+<h3>Error handling with async/await</h3>
+<p>When using async/await, error handling is typically done using try-catch blocks. This allows
+you to gracefully handle any errors that occur during the execution of your async operation.</p>
+<pre><code>useEffect(() =&gt; {
+  const fetchData = async () =&gt; {
+    try {
+      let data = await fetchDataFromAPI();
+      // Process data
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  fetchData();
+}, []);
+</code></pre>
+<p>In this example, if <code>fetchDataFromAPI</code> throws an error, the <code>catch</code> block catches and handles it.
+This pattern is crucial to prevent unhandled promise rejections and ensure that your application
+can respond appropriately to failures in asynchronous tasks.</p>
+<h3>TypeScript generics</h3>
+<p>TODO? We’ve used generics, but maybe explain the ones we’re going to use so it’s a little familiar?</p>
 <h3>Setup</h3>
-<p>TODO</p>
 <p>✏️ Create <strong>src/services/interfaces.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export interface ApiResponse&lt;Data&gt; {
   data: Data | null;
@@ -762,7 +834,6 @@ export default RestaurantList
 </code></pre>
  <div line-highlight="5,14,77,79-83,86,105,109-110,only"></div>
 <h3>Verify</h3>
-<p>TODO</p>
 <p>✏️ Create <strong>src/services/restaurant/restaurant.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { getStates } from './restaurant';
 import { describe, expect, it } from 'vitest';
@@ -878,15 +949,25 @@ export function useStates(): PromiseState&lt;State[]&gt; {
  <div line-highlight="13-30,only"></div>
 <p></details></p>
 <h2>Objective 2</h2>
+<p>In this section, we will:</p>
+<ul>
+<li>Learn the basics of the <code>fetch</code> API</li>
+<li>Understand how to handle responses from <code>fetch</code></li>
+</ul>
+<h3>Making <code>fetch</code> happen</h3>
 <p>TODO</p>
-<h3>Key concepts</h3>
+<h3>Parsing responses from <code>fetch</code></h3>
 <p>TODO</p>
-<h4>Concept 1</h4>
-<p>TODO</p>
-<h4>Concept 2</h4>
-<p>TODO</p>
+<p>Explain:</p>
+<ul>
+<li><code>.json()</code></li>
+<li><code>.ok</code></li>
+<li><code>.status</code></li>
+<li><code>.statusText</code></li>
+</ul>
+<h3>Handling network errors</h3>
+<p>TODO: Explain how <code>fetch</code> can throw.</p>
 <h3>Setup</h3>
-<p>TODO</p>
 <p>Before we begin making services, we must:</p>
 <ul>
 <li>Install the place-my-order API</li>
@@ -904,6 +985,7 @@ export function useStates(): PromiseState&lt;State[]&gt; {
   &quot;version&quot;: &quot;0.0.0&quot;,
   &quot;type&quot;: &quot;module&quot;,
   &quot;scripts&quot;: {
+    &quot;api&quot;: &quot;place-my-order-api --port 7070&quot;,
     &quot;dev&quot;: &quot;vite&quot;,
     &quot;build&quot;: &quot;tsc &amp;&amp; vite build&quot;,
     &quot;lint&quot;: &quot;eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0&quot;,
@@ -911,6 +993,7 @@ export function useStates(): PromiseState&lt;State[]&gt; {
     &quot;preview&quot;: &quot;vite preview&quot;
   },
   &quot;dependencies&quot;: {
+    &quot;place-my-order-api&quot;: &quot;^1.3.0&quot;,
     &quot;place-my-order-assets&quot;: &quot;^0.2.2&quot;,
     &quot;react&quot;: &quot;^18.2.0&quot;,
     &quot;react-dom&quot;: &quot;^18.2.0&quot;,
@@ -942,10 +1025,10 @@ export function useStates(): PromiseState&lt;State[]&gt; {
 </code></pre>
 <p>Double check the api by navigating to <a href="http://localhost:7070/restaurants">localhost:7070/restaurants</a>. You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the api command from.</p>
 <h4>Create an environment variable</h4>
-<p>TODO</p>
 <p>✏️ Create <strong>.env</strong> and update it to be:</p>
 <pre><code>VITE_PMO_API = '//localhost:7070'
 </code></pre>
+<div line-highlight='1'></div>
 <h4>Create the API file</h4>
 <p>✏️ Create <strong>src/services/api.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export async function apiRequest&lt;Data = never&gt;({
@@ -1291,7 +1374,7 @@ describe('Restaurant service', () =&gt; {
  <div line-highlight="1,15-17,20-21,24-25,33,37-38,40-42,only"></div>
 <h3>Exercise</h3>
 <p>TODO</p>
-<p>Give them <code>stringifyQuery</code> and have them make <code>getCities</code></p>
+<p>Give them <code>stringifyQuery</code> and have them make <code>getCities</code> and extend <code>apiRequest</code> to handle params.</p>
 <h3>Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
