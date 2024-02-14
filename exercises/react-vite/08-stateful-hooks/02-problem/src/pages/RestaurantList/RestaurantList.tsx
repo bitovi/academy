@@ -62,7 +62,7 @@ const RestaurantList: React.FC = () => {
               className="form-control"
               id={stateId}
             >
-              <option key="choose" value="">Choose a state</option>
+              <option key="choose_state" value="">Choose a state</option>
             </select>
           </div>
 

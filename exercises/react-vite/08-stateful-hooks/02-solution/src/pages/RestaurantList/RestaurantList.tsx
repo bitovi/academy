@@ -1,6 +1,6 @@
 import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
 import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import { useId, useState } from 'react'
+import { ChangeEvent, useId, useState } from 'react'
 import ListItem from './ListItem'
 
 const RestaurantList: React.FC = () => {
@@ -51,6 +51,15 @@ const RestaurantList: React.FC = () => {
     ]
   };
 
+  const updateState = (event: ChangeEvent<HTMLSelectElement>) => {
+    setState(event.target.value)
+    setCity("")
+  }
+
+  const updateCity = (event: ChangeEvent<HTMLSelectElement>) => {
+    setCity(event.target.value)
+  }
+
   return (
     <>
       <div className="restaurants">
@@ -64,13 +73,10 @@ const RestaurantList: React.FC = () => {
             <select
               className="form-control"
               id={stateId}
-              onChange={(event) => {
-                setState(event.target.value)
-                setCity("")
-              }}
+              onChange={updateState}
               value={state}
             >
-              <option key="choose" value="">Choose a state</option>
+              <option key="choose_state" value="">Choose a state</option>
               {states.map(({ short, name }) => (
                 <option key={short} value={short}>
                   {name}
@@ -86,10 +92,10 @@ const RestaurantList: React.FC = () => {
             <select
               className="form-control"
               id={cityId}
-              onChange={(event) => setCity(event.target.value)}
+              onChange={updateCity}
               value={city}
             >
-              <option key="choose" value="">
+              <option key="choose_city" value="">
                 {
                   state
                     ? "Choose a city"

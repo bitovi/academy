@@ -31,7 +31,7 @@ const RestaurantList: React.FC = () => {
             onChange={updateState}
             value={state}
           >
-            <option key="choose" value="">
+            <option key="choose_state" value="">
               {
                 statesResponse.isPending
                   ? "Loading states…"
@@ -52,7 +52,7 @@ const RestaurantList: React.FC = () => {
             onChange={updateCity}
             value={city}
           >
-            <option key="choose" value="">
+            <option key="choose_city" value="">
               {
                 state
                   ? citiesResponse.isPending

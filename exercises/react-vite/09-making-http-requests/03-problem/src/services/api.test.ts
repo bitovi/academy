@@ -1,4 +1,3 @@
-// apiRequest.test.js
 import { apiRequest, stringifyQuery } from './api';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
