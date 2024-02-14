@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="TODO 
+  <meta name="description" content="Learn about how to make &#x60;fetch&#x60; requests and render requested data in React components. 
 ">
   
   <!-- Google Tag Manager -->
@@ -259,7 +259,7 @@
            						expanded">
 						<a class="page"
 							href="making-http-requests.html"
-							title="TODO">
+							title="Learn about how to make fetch requests and render requested data in React components.">
 							Making HTTP Requests
 						</a>
 						
@@ -530,7 +530,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>TODO</p>
+    <p>Learn about how to make <code>fetch</code> requests and render requested data in React components.</p>
 
 </section>
 
@@ -549,12 +549,44 @@ covering CanJS core libraries.">
 <p>In this section, we will:</p>
 <ul>
 <li>Learn about the <code>useEffect</code> Hook</li>
-<li>Review TypeScript generics</li>
+<li>TODO: Review TypeScript generics?</li>
 </ul>
 <h3>The <code>useEffect</code> Hook</h3>
 <p><code>useEffect</code> is a React Hook that lets you perform side effects in your functional components.
 It serves as a powerful tool to execute code in response to component renders or state changes.</p>
-<p>The <code>useEffect</code> Hook takes two arguments:</p>
+<p>Here is an example component with <code>useEffect</code>:</p>
+<pre><code class="language-tsx">import { useEffect, useState } from 'react';
+
+const GeolocationComponent: React.FC = () =&gt; {
+    const [location, setLocation] = useState(null);
+
+    useEffect(() =&gt; { // Effect callback function
+        navigator.geolocation.getCurrentPosition(position =&gt; {
+            setLocation(position.coords);
+        }, (error) =&gt; {
+            console.error(error);
+        });
+    }, []); // Dependency array
+
+    return (
+        &lt;main&gt;
+            {location ? (
+                &lt;p&gt;
+                    Latitude: {location.latitude},
+                    Longitude: {location.longitude}
+                &lt;/p&gt;
+            ) : (
+                &lt;p&gt;Requesting location…&lt;/p&gt;
+            )}
+        &lt;/main&gt;
+    );
+}
+
+export default GeolocationComponent;
+
+</code></pre>
+<div line-highlight='1, 6-12, only'></div>
+<p>Let’s break this example down by the two arguments that <code>useEffect</code> takes:</p>
 <h4>Effect callback function</h4>
 <p>The first argument of <code>useEffect</code> is a function, often referred to as the “effect” function.
 This is where you perform your side effects, such as fetching data, setting up a subscription,
@@ -570,62 +602,197 @@ clearing timers, canceling network requests, or removing event listeners.</p>
 when your effect function should be called. The behavior of the effect changes based on the
 contents of this array:</p>
 <p>Consider three scenarios based on the dependency array:</p>
-<p><strong>No dependency array:</strong> If the dependency array is omitted, the effect runs after every render
-of the component.</p>
-<pre><code class="language-tsx">useEffect(() =&gt; {
-  console.info('This runs after every render')
-})
-</code></pre>
-<p><strong>Empty dependency array ([]):</strong> If the dependency array is an empty array, the effect runs once
+<h5>Empty dependency array (<code>[]</code>)</h5>
+<p>If the dependency array is an empty array, the effect runs once
 after the initial render.</p>
-<pre><code class="language-tsx">useEffect(() =&gt; {
-  console.info('This runs once after the initial render')
-}, [])
+<pre><code class="language-tsx">import { useEffect, useState } from 'react';
+
+const GeolocationComponent: React.FC = () =&gt; {
+    const [location, setLocation] = useState(null);
+
+    useEffect(() =&gt; { // Effect callback function
+        navigator.geolocation.getCurrentPosition(position =&gt; {
+            setLocation(position.coords);
+        }, (error) =&gt; {
+            console.error(error);
+        });
+    }, []); // Dependency array
+
+    return (
+        &lt;main&gt;
+            {location ? (
+                &lt;p&gt;
+                    Latitude: {location.latitude},
+                    Longitude: {location.longitude}
+                &lt;/p&gt;
+            ) : (
+                &lt;p&gt;Requesting location…&lt;/p&gt;
+            )}
+        &lt;/main&gt;
+    );
+}
+
+export default GeolocationComponent;
+
 </code></pre>
-<p><strong>Array with values:</strong> When you include values (variables, props, state) in the dependency array,
+<div line-highlight='6-12, only'></div>
+<h5>Array with values</h5>
+<p>When you include values (variables, props, state) in the dependency array,
 the effect will only re-run if those specific values change between renders. This selective
 execution can optimize performance by avoiding unnecessary work.</p>
-<pre><code class="language-tsx">const [count, setCount] = useState(0)
+<pre><code class="language-tsx">import { useEffect, useState } from 'react';
 
-useEffect(() =&gt; {
-  console.info('This runs when count changes')
-}, [count])
+function NameStorage() {
+    const [name, setName] = useState('');
+
+    useEffect(() =&gt; {
+        localStorage.setItem('name', name);
+    }, [name]);
+
+    return (
+        &lt;label&gt;
+            Name
+            &lt;input
+                onChange={event =&gt; setName(event.target.value)}
+                type=&quot;text&quot;
+                value={name}
+            /&gt;
+        &lt;/label&gt;
+    );
+}
+
+export default NameStorage;
 </code></pre>
+<div line-highlight='4, 7-8, only'></div>
+<h5>No dependency array</h5>
+<p>If the dependency array is omitted, the effect runs after every render
+of the component.</p>
+<pre><code class="language-tsx">import { useEffect, useState } from 'react';
+
+function UpdateLogger() {
+    const [count, setCount] = useState(0);
+
+    useEffect(() =&gt; {
+        console.info('Component updated!');
+    }); // No dependency array, runs on every update
+
+    return (
+        &lt;button onClick={() =&gt; setCount(count + 1)}&gt;
+            Increment
+        &lt;/button&gt;
+    );
+}
+
+export default UpdateLogger;
+
+</code></pre>
+<div line-highlight='8, only'></div>
 <h4>Async operations inside useEffect</h4>
-<p>Unlike traditional functions, <code>useEffect</code> functions can’t be marked as async. This is
-because returning a <code>Promise</code> from <code>useEffect</code> would conflict with its mechanism, which expects
-either nothing or a clean-up function to be returned. To handle asynchronous operations, you
-typically define an <code>async</code> function inside the effect and then call it.</p>
-<pre><code class="language-tsx">useEffect(() =&gt; {
-  const fetchData = async () =&gt; {
-    // Async fetch logic
-  };
+<p>You can use APIs that return a <code>Promise</code> normally within a <code>useEffect</code>:</p>
+<pre><code class="language-tsx">import { useEffect, useState } from 'react';
 
-  fetchData();
-}, []);
+function DataFetcher() {
+    const [data, setData] = useState(null);
+
+    useEffect(() =&gt; {
+        fetch('https://api.example.com/data')
+            .then(response =&gt; {
+                setData(response.json());
+            })
+            .catch(error =&gt; {
+                // Error should be shown to the user
+                console.error('Error fetching data:', error)
+            });
+    }, []);
+
+    return (
+        &lt;p&gt;{data}&lt;/p&gt;
+    );
+}
+
+export default DataFetcher;
 
 </code></pre>
-<h3>Error handling with async/await</h3>
+<div line-highlight='7-14, only'></div>
+<p>However, unlike traditional functions, <code>useEffect</code> functions can’t be marked as async.
+This is because returning a <code>Promise</code> from <code>useEffect</code> would conflict with its mechanism,
+which expects either nothing or a clean-up function to be returned.</p>
+<p>To handle asynchronous operations, you typically define an <code>async</code> function inside the
+effect and then call it:</p>
+<pre><code class="language-tsx">import { useEffect, useState } from 'react';
+
+function DataFetcher() {
+    const [data, setData] = useState(null);
+
+    useEffect(() =&gt; {
+        const fetchData = async () =&gt; {
+            try {
+                const response = await fetch('https://api.example.com/data');
+                setData(response.json());
+            } catch (error) {
+                // Error should be shown to the user
+                console.error('Error fetching data:', error)
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    return (
+        &lt;p&gt;{data}&lt;/p&gt;
+    );
+}
+
+export default DataFetcher;
+
+</code></pre>
+<div line-highlight='7-17, only'></div>
 <p>When using async/await, error handling is typically done using try-catch blocks. This allows
 you to gracefully handle any errors that occur during the execution of your async operation.</p>
-<pre><code>useEffect(() =&gt; {
-  const fetchData = async () =&gt; {
-    try {
-      let data = await fetchDataFromAPI();
-      // Process data
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
-  fetchData();
-}, []);
-</code></pre>
-<p>In this example, if <code>fetchDataFromAPI</code> throws an error, the <code>catch</code> block catches and handles it.
+<p>In this example, if <code>fetch</code> throws an error, the <code>catch</code> block catches and handles it.
 This pattern is crucial to prevent unhandled promise rejections and ensure that your application
 can respond appropriately to failures in asynchronous tasks.</p>
 <h3>TypeScript generics</h3>
 <p>TODO? We’ve used generics, but maybe explain the ones we’re going to use so it’s a little familiar?</p>
+<h3>Cleanup functions</h3>
+<p>The effect function can optionally return another function, known as the “cleanup” function. The cleanup function is useful for performing any necessary cleanup activities when the component unmounts or before the component re-renders and the effect is re-invoked. Common examples include clearing timers, canceling network requests, or removing event listeners.</p>
+<pre><code class="language-tsx">import { useEffect, useState } from 'react';
+
+function WebSocketComponent() {
+  const [messages, setMessages] = useState([]);
+
+  useEffect(() =&gt; {
+    const socket = new WebSocket('wss://chat.donejs.com/');
+
+    socket.onmessage = (event) =&gt; {
+      setMessages(previousMessages =&gt; {
+        return [ ...previousMessages, event.data ];
+      });
+    };
+
+    return () =&gt; {
+      // Clean up (tear down) the socket connection
+      return socket.close();
+    };
+  }, []);
+
+  return (
+    &lt;ol&gt;
+      {messages.map((message) =&gt; (
+        &lt;li key={message}&gt;{message}&lt;/li&gt;
+      ))}
+    &lt;/ol&gt;
+  );
+}
+
+export default WebSocketComponent;
+
+</code></pre>
+<div line-highlight='7-21, only'></div>
+<p>In the example above, we’re creating a WebSocket connection to an API when the component
+is first rendered (note the empty dependency array).</p>
+<p>When the component is removed from the DOM, the cleanup function will run and tear down
+the WebSocket connection.</p>
 <h3>Setup</h3>
 <p>✏️ Create <strong>src/services/interfaces.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export interface ApiResponse&lt;Data&gt; {
@@ -906,11 +1073,11 @@ describe('RestaurantList component', () =&gt; {
 </code></pre>
  <div line-highlight="3,7-16,18,32-33,37-38,41-42,46,only"></div>
 <h3>Exercise</h3>
-<p>TODO</p>
+<p>Update <code>src/services/restaurant/hooks.ts</code> with a <code>useEffect</code> that uses <code>getStates</code> to get a list of states.</p>
+<p>Hint: Call <code>setResponse</code> after you get the response from <code>getStates()</code>.</p>
 <h3>Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>TODO</p>
 <p>✏️ Update <strong>src/services/restaurant/hooks.ts</strong> to be:</p>
 <pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
 import type { PromiseState } from &quot;../interfaces&quot;;
@@ -2319,7 +2486,7 @@ export async function getStates(): Promise&lt;ApiResponse&lt;State[]&gt;&gt; {
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-vite/09-making-http-requests/making-http-requests.md"},"description":"TODO \n","name":"learn-react-vite/making-http-requests","title":"Making HTTP Requests","type":"page","parent":"learn-react-vite","order":9,"outline":{"depth":2},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-vite/09-making-http-requests/making-http-requests.md"},"description":"Learn about how to make `fetch` requests and render requested data in React components. \n","name":"learn-react-vite/making-http-requests","title":"Making HTTP Requests","type":"page","parent":"learn-react-vite","order":9,"outline":{"depth":2},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
