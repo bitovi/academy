@@ -43,6 +43,7 @@ const RestaurantList: React.FC = () => {
         {restaurants.data ? (
           restaurants.data.map(({ _id, address, images, name, slug }) => (
             <ListItem
+              key={_id}
               address={address}
               name={name}
               slug={slug}
