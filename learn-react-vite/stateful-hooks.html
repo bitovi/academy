@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="TODO 
+  <meta name="description" content="Work with React&#x27;s useState hook to manage a component&#x27;s state. 
 ">
   
   <!-- Google Tag Manager -->
@@ -244,7 +244,7 @@
            						expanded">
 						<a class="page"
 							href="stateful-hooks.html"
-							title="TODO">
+							title="Work with React&#x27;s useState hook to manage a component&#x27;s state.">
 							Managing State in React
 						</a>
 						
@@ -530,7 +530,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>TODO</p>
+    <p>Work with React's useState hook to manage a component's state.</p>
 
 </section>
 
@@ -544,28 +544,690 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
-<p>TODO</p>
-<h2>Objective 1</h2>
-<p>TODO</p>
-<h3>Key concepts</h3>
-<p>TODO</p>
-<h4>Concept 1</h4>
-<p>TODO</p>
-<h4>Concept 2</h4>
-<p>TODO</p>
+<h2>Objective: Introducing React hooks and useId</h2>
+<p>Learn about React hooks and use one!</p>
+<h3>React hooks</h3>
+<p>React hooks (referred to as just hooks for the rest of this training) are
+special functions that allow developers to “hook” into React functionality.
+Hooks provide developers with many conveniences like sharing stateful logic
+between components and simplifying what would be otherwise complex components.</p>
+<p>Hooks can only be used in functional components. Almost anything that could be
+done in a class component can be done with hooks. <em>The one thing that class
+component can do that hooks cannot is implement error boundaries.</em></p>
+<p>React imposes a few rules around the use of hooks: first, only call hooks from
+&quot;React functions,&quot; which is either a functional component or a custom hook. The
+second rule is that all the hooks in a React function must be invoked in the
+same order every time the function runs, so no hooks can occur after an <code>if</code>,
+<code>loop</code>, or <code>return</code> statement. Typically this means all hooks are placed at the
+top of the React function body.</p>
+<p>Although not a requirement, a naming convention for hooks is imposed by the
+community: hooks should be named by prefixing their functionality with &quot;use.&quot; An
+illustrative example is <code>useId</code> which allows developers to create unique IDs in
+functional components.</p>
+<h3>useId</h3>
+<p>Let's start with one of the newer hooks that React includes: <code>useId</code>. Since the
+value of every <code>id</code> attribute in an HTML document must be unique, this hook is
+useful in creating a unique identifier string that can be used as the value for
+an <code>id</code> prop.</p>
+<pre><code class="language-jsx">const List: React.FC = () =&gt; {
+  const id = useId();
+  return (
+    &lt;label htmlFor={id}&gt;Name:&lt;/label&gt;
+    &lt;select id={id}&gt;&lt;select&gt;
+  )
+}
+</code></pre>
+<p>The value of <code>useId</code> is guaranteed to be unique within the component where it is
+used; this ideal for linking related components together.</p>
 <h3>Setup</h3>
-<p>TODO</p>
+<p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to include the State
+and City dropdown lists.</p>
+<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
+import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
+import ListItem from './ListItem'
+
+const RestaurantList: React.FC = () =&gt; {
+  const restaurants = {
+    data: [
+      {
+        name: 'Cheese Curd City',
+        slug: 'cheese-curd-city',
+        images: {
+          thumbnail: CheeseThumbnail,
+        },
+        address: {
+          street: '2451 W Washburne Ave',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53295',
+        },
+        _id: 'Ar0qBJHxM3ecOhcr',
+      },
+      {
+        name: 'Poutine Palace',
+        slug: 'poutine-palace',
+        images: {
+          thumbnail: PoutineThumbnail,
+        },
+        address: {
+          street: '230 W Kinzie Street',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53205',
+        },
+        _id: '3ZOZyTY1LH26LnVw',
+      },
+    ]
+  };
+
+  return (
+    &lt;&gt;
+      &lt;div className=&quot;restaurants&quot;&gt;
+        &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
+
+        &lt;form className=&quot;form&quot;&gt;
+          &lt;div className=&quot;form-group&quot;&gt;
+            &lt;label className=&quot;control-label&quot;&gt;
+              State
+            &lt;/label&gt;
+            &lt;select
+              className=&quot;form-control&quot;
+            &gt;
+            &lt;/select&gt;
+          &lt;/div&gt;
+
+          &lt;div className=&quot;form-group&quot;&gt;
+            &lt;label className=&quot;control-label&quot;&gt;
+              City
+            &lt;/label&gt;
+            &lt;select
+              className=&quot;form-control&quot;
+            &gt;
+            &lt;/select&gt;
+          &lt;/div&gt;
+        &lt;/form&gt;
+
+        {restaurants.data ? (
+          restaurants.data.map(({ _id, address, images, name, slug }) =&gt; (
+            &lt;ListItem
+              key={_id}
+              address={address}
+              name={name}
+              slug={slug}
+              thumbnail={images.thumbnail}
+            /&gt;
+          ))
+        ) : (
+          &lt;p&gt;No restaurants.&lt;/p&gt;
+        )}
+      &lt;/div&gt;
+    &lt;/&gt;
+  )
+}
+
+export default RestaurantList
+</code></pre>
+ <div line-highlight="44-53,55-64,only"></div>
 <h3>Verify</h3>
-<p>TODO</p>
+<p>These tests will pass when the solution has been implemented properly.</p>
+<p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong>:</p>
+<pre><code class="language-tsx">import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
+
+import RestaurantList from './RestaurantList';
+
+describe('RestaurantList component', () =&gt; {
+  it('renders the Restaurants header', () =&gt; {
+    render(&lt;RestaurantList /&gt;);
+    expect(screen.getByText(/Restaurants/i)).toBeInTheDocument();
+  });
+
+  it('renders state and city dropdowns', () =&gt; {
+    render(&lt;RestaurantList /&gt;)
+    expect(screen.getByLabelText(/State/i)).toBeInTheDocument()
+    expect(screen.getByLabelText(/City/i)).toBeInTheDocument()
+  })
+
+  it('renders the restaurant images', () =&gt; {
+    render(&lt;RestaurantList /&gt;);
+    const images = screen.getAllByRole('img');
+    expect(images[0]).toHaveAttribute('src', expect.stringContaining('2-thumbnail.jpg'));
+    expect(images[0]).toHaveAttribute('width', '100');
+    expect(images[0]).toHaveAttribute('height', '100');
+    expect(images[1]).toHaveAttribute('src', expect.stringContaining('4-thumbnail.jpg'));
+    expect(images[1]).toHaveAttribute('width', '100');
+    expect(images[1]).toHaveAttribute('height', '100');
+  });
+
+  it('renders the addresses', () =&gt; {
+    render(&lt;RestaurantList /&gt;);
+    const addressDivs = screen.getAllByText(/Washburne Ave|Kinzie Street/i);
+    expect(addressDivs[0]).toHaveTextContent('2451 W Washburne Ave');
+    expect(addressDivs[0]).toHaveTextContent('Green Bay, WI 53295');
+    expect(addressDivs[1]).toHaveTextContent('230 W Kinzie Street');
+    expect(addressDivs[1]).toHaveTextContent('Green Bay, WI 53205');
+  });
+
+  it('renders the hours and price information for each restaurant', () =&gt; {
+    render(&lt;RestaurantList /&gt;);
+    const hoursPriceDivs = screen.getAllByText(/\$\$\$/i);
+    hoursPriceDivs.forEach(div =&gt; {
+      expect(div).toHaveTextContent('$$$');
+      expect(div).toHaveTextContent('Hours: M-F 10am-11pm');
+    });
+  });
+
+  it('indicates if the restaurant is open now for each restaurant', () =&gt; {
+    render(&lt;RestaurantList /&gt;);
+    const openNowTags = screen.getAllByText('Open Now');
+    expect(openNowTags.length).toBeGreaterThan(0);
+  });
+
+  it('renders the details buttons with correct links for each restaurant', () =&gt; {
+    render(&lt;RestaurantList /&gt;);
+    const detailsButtons = screen.getAllByRole('link');
+    expect(detailsButtons[0]).toHaveAttribute('href', '/restaurants/cheese-curd-city');
+    expect(detailsButtons[1]).toHaveAttribute('href', '/restaurants/poutine-palace');
+    detailsButtons.forEach(button =&gt; {
+      expect(button).toHaveTextContent('Details');
+    });
+  });
+});
+
+</code></pre>
+ <div line-highlight="13,15-16,55,62,only"></div>
 <h3>Exercise</h3>
-<p>TODO</p>
+<ul>
+<li>Link <code>&lt;label&gt;</code> and <code>&lt;select&gt;</code> components together using id values provided by
+<code>useId</code> hooks.</li>
+</ul>
+<p><strong>Having issues with your local setup?</strong> You can use either
+<a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-problem?file=src%2Fpages%2FRestaurantList%2FRestaurantList.tsx">StackBlitz</a>
+or
+<a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-problem?file=src%2Fpages%2FRestaurantList%2FRestaurantList.tsx">CodeSandbox</a>
+to do this exercise in an online code editor.</p>
 <h3>Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>TODO</p>
+<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
+import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
+import { useId } from 'react'
+import ListItem from './ListItem'
+
+const RestaurantList: React.FC = () =&gt; {
+  const stateId = useId()
+  const cityId = useId()
+
+  const restaurants = {
+    data: [
+      {
+        name: 'Cheese Curd City',
+        slug: 'cheese-curd-city',
+        images: {
+          thumbnail: CheeseThumbnail,
+        },
+        address: {
+          street: '2451 W Washburne Ave',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53295',
+        },
+        _id: 'Ar0qBJHxM3ecOhcr',
+      },
+      {
+        name: 'Poutine Palace',
+        slug: 'poutine-palace',
+        images: {
+          thumbnail: PoutineThumbnail,
+        },
+        address: {
+          street: '230 W Kinzie Street',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53205',
+        },
+        _id: '3ZOZyTY1LH26LnVw',
+      },
+    ]
+  };
+
+  return (
+    &lt;&gt;
+      &lt;div className=&quot;restaurants&quot;&gt;
+        &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
+
+        &lt;form className=&quot;form&quot;&gt;
+          &lt;div className=&quot;form-group&quot;&gt;
+            &lt;label className=&quot;control-label&quot; htmlFor={stateId}&gt;
+              State
+            &lt;/label&gt;
+            &lt;select
+              className=&quot;form-control&quot;
+              id={stateId}
+            &gt;
+            &lt;/select&gt;
+          &lt;/div&gt;
+
+          &lt;div className=&quot;form-group&quot;&gt;
+            &lt;label className=&quot;control-label&quot; htmlFor={cityId}&gt;
+              City
+            &lt;/label&gt;
+            &lt;select
+              className=&quot;form-control&quot;
+              id={cityId}
+            &gt;
+            &lt;/select&gt;
+          &lt;/div&gt;
+        &lt;/form&gt;
+
+        {restaurants.data ? (
+          restaurants.data.map(({ _id, address, images, name, slug }) =&gt; (
+            &lt;ListItem
+              key={_id}
+              address={address}
+              name={name}
+              slug={slug}
+              thumbnail={images.thumbnail}
+            /&gt;
+          ))
+        ) : (
+          &lt;p&gt;No restaurants.&lt;/p&gt;
+        )}
+      &lt;/div&gt;
+    &lt;/&gt;
+  )
+}
+
+export default RestaurantList
+</code></pre>
+ <div line-highlight="3,7-8,50,55,61,66,only"></div>
 <p></details></p>
-<h2>Next steps</h2>
-<p>TODO</p>
+<h2>Objective: Manage component state using hooks</h2>
+<p>When users make choices that need to be maintained or that affect other parts of
+the UI, we need to use <code>state</code>. That's a pretty abstract concept so let's look
+at a concrete example from the Place My Order Restaurants tab.</p>
+<p>There are two dropdown lists — &quot;State&quot; which has a list of U.S. states, and
+another named &quot;City&quot; that displays a list of cities located in the selected
+&quot;State&quot; item. Until the user makes a choice in the &quot;State&quot; dropdown the &quot;City&quot;
+dropdown is disabled.</p>
+<p><img src="../../../static/img/react-vite/08-stateful-hooks/why-state-1.png" style="box-shadow:2px 2px 10px 3px rgb(0 0 0 / 70%);max-width:838px"></p>
+<p>If &quot;Wisconsin&quot; is chosen in the &quot;State&quot; dropdown that value needs to persist
+through component rendering and be available for use throughout the code:
+getting the cities for Wisconsin, and enabling the &quot;City&quot; dropdown list. To
+accomplish that the value &quot;Wisconsin&quot; is stored in React <code>state</code>.</p>
+<p><img src="../../../static/img/react-vite/08-stateful-hooks/why-state-2.png" style="box-shadow:2px 2px 10px 3px rgb(0 0 0 / 70%);max-width:839px"></p>
+<h3>useState</h3>
+<p>We can store state that persists through component rendering with the <code>useState</code>
+hook. You can set the initial state value when the component <strong>first</strong> renders
+by providing the value as an argument to the hook. <em>If you do not provide a
+value the initial state value will be <code>undefined</code>.</em></p>
+<p>This example shows a <code>useState</code> hook being set with an initial value of an empty
+string.</p>
+<pre><code class="language-jsx">const List: React.FC = () =&gt; {
+  const [value, setValue] = useState(&quot;&quot;)
+}
+</code></pre>
+<p>As you can see in the previous example, <code>useState</code> returns an array with two
+elements: the first is the current state value of the hook, and the second is a
+setter function that is used to update the state value. In the following code,
+the value and setter are being used to update changes in a select component.</p>
+<pre><code class="language-jsx">const List: React.FC = () =&gt; {
+  const [value, setValue] = useState(&quot;&quot;)
+  return &lt;select onChange={(evt) =&gt; setValue(evt.target.value)} value={value} /&gt; 
+}
+</code></pre>
+<p>Every time a <code>useState</code>'s setter is invoked with a new value, React compares the
+new value with the current value. If the values are the same, nothing happens;
+<strong>if the values are different, React will rerender the component</strong> so the new
+state value can be used to update the component. In the example above, when the
+user makes a selection, the <code>List</code> component is rendered again, and the select
+is updated with the current value.</p>
+<h3>Setup</h3>
+<p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be the following:</p>
+<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
+import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
+import { useId } from 'react'
+import ListItem from './ListItem'
+
+const RestaurantList: React.FC = () =&gt; {
+  const stateId = useId()
+  const cityId = useId()
+
+  const states = [
+    { name: 'Illinois', short: 'IL' },
+    { name: 'Wisconsin', short: 'WI' },
+  ]
+  const cities = [
+    { name: 'Madison', state: 'WI' },
+    { name: 'Springfield', state: 'IL' },
+  ]
+  const restaurants = {
+    data: [
+      {
+        name: 'Cheese Curd City',
+        slug: 'cheese-curd-city',
+        images: {
+          thumbnail: CheeseThumbnail,
+        },
+        address: {
+          street: '2451 W Washburne Ave',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53295',
+        },
+        _id: 'Ar0qBJHxM3ecOhcr',
+      },
+      {
+        name: 'Poutine Palace',
+        slug: 'poutine-palace',
+        images: {
+          thumbnail: PoutineThumbnail,
+        },
+        address: {
+          street: '230 W Kinzie Street',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53205',
+        },
+        _id: '3ZOZyTY1LH26LnVw',
+      },
+    ]
+  };
+
+  return (
+    &lt;&gt;
+      &lt;div className=&quot;restaurants&quot;&gt;
+        &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
+
+        &lt;form className=&quot;form&quot;&gt;
+          &lt;div className=&quot;form-group&quot;&gt;
+            &lt;label className=&quot;control-label&quot; htmlFor={stateId}&gt;
+              State
+            &lt;/label&gt;
+            &lt;select
+              className=&quot;form-control&quot;
+              id={stateId}
+            &gt;
+              &lt;option key=&quot;choose&quot; value=&quot;&quot;&gt;Choose a state&lt;/option&gt;
+            &lt;/select&gt;
+          &lt;/div&gt;
+
+          &lt;div className=&quot;form-group&quot;&gt;
+            &lt;label className=&quot;control-label&quot; htmlFor={cityId}&gt;
+              City
+            &lt;/label&gt;
+            &lt;select
+              className=&quot;form-control&quot;
+              id={cityId}
+            &gt;
+            &lt;/select&gt;
+          &lt;/div&gt;
+        &lt;/form&gt;
+
+        {restaurants.data ? (
+          restaurants.data.map(({ _id, address, images, name, slug }) =&gt; (
+            &lt;ListItem
+              key={_id}
+              address={address}
+              name={name}
+              slug={slug}
+              thumbnail={images.thumbnail}
+            /&gt;
+          ))
+        ) : (
+          &lt;p&gt;No restaurants.&lt;/p&gt;
+        )}
+      &lt;/div&gt;
+    &lt;/&gt;
+  )
+}
+
+export default RestaurantList
+</code></pre>
+ <div line-highlight="10-17,65,only"></div>
+<h3>Verify</h3>
+<p>These tests will pass when the solution has been implemented properly.</p>
+<p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> to be the
+following:</p>
+<pre><code class="language-tsx">import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
+import { describe, it, expect } from 'vitest';
+
+import RestaurantList from './RestaurantList';
+
+describe('RestaurantList component', () =&gt; {
+  it('renders the Restaurants header', () =&gt; {
+    render(&lt;RestaurantList /&gt;);
+    expect(screen.getByText(/Restaurants/i)).toBeInTheDocument();
+  });
+
+  it('renders state and city dropdowns', () =&gt; {
+    render(&lt;RestaurantList /&gt;)
+    expect(screen.getByLabelText(/State/i)).toBeInTheDocument()
+    expect(screen.getByLabelText(/City/i)).toBeInTheDocument()
+  })
+
+  it('allows selecting a state', async () =&gt; {
+    render(&lt;RestaurantList /&gt;)
+    const stateSelect = screen.getByLabelText(/State/i) as HTMLSelectElement
+    await userEvent.selectOptions(stateSelect, 'IL')
+    expect(stateSelect.value).toBe('IL')
+  })
+
+  it('updates city dropdown based on selected state', async () =&gt; {
+    render(&lt;RestaurantList /&gt;)
+    const stateSelect = screen.getByLabelText(/State/i) as HTMLSelectElement
+    const citySelect = screen.getByLabelText(/City/i) as HTMLSelectElement
+
+    await userEvent.selectOptions(stateSelect, 'IL')
+    expect(citySelect).toHaveTextContent('Choose a city')
+  })
+
+  it('allows selecting a city', async () =&gt; {
+    render(&lt;RestaurantList /&gt;)
+    const stateSelect = screen.getByLabelText(/State/i) as HTMLSelectElement
+    const citySelect = screen.getByLabelText(/City/i) as HTMLSelectElement
+
+    await userEvent.selectOptions(stateSelect, 'IL')
+    await userEvent.selectOptions(citySelect, 'Springfield')
+    expect(citySelect.value).toBe('Springfield')
+  })
+
+  it('renders the restaurant images', () =&gt; {
+    render(&lt;RestaurantList /&gt;);
+    const images = screen.getAllByRole('img');
+    expect(images[0]).toHaveAttribute('src', expect.stringContaining('2-thumbnail.jpg'));
+    expect(images[0]).toHaveAttribute('width', '100');
+    expect(images[0]).toHaveAttribute('height', '100');
+    expect(images[1]).toHaveAttribute('src', expect.stringContaining('4-thumbnail.jpg'));
+    expect(images[1]).toHaveAttribute('width', '100');
+    expect(images[1]).toHaveAttribute('height', '100');
+  });
+
+  it('renders the addresses', () =&gt; {
+    render(&lt;RestaurantList /&gt;);
+    const addressDivs = screen.getAllByText(/Washburne Ave|Kinzie Street/i);
+    expect(addressDivs[0]).toHaveTextContent('2451 W Washburne Ave');
+    expect(addressDivs[0]).toHaveTextContent('Green Bay, WI 53295');
+    expect(addressDivs[1]).toHaveTextContent('230 W Kinzie Street');
+    expect(addressDivs[1]).toHaveTextContent('Green Bay, WI 53205');
+  });
+
+  it('renders the hours and price information for each restaurant', () =&gt; {
+    render(&lt;RestaurantList /&gt;);
+    const hoursPriceDivs = screen.getAllByText(/\$\$\$/i);
+    hoursPriceDivs.forEach(div =&gt; {
+      expect(div).toHaveTextContent('$$$');
+      expect(div).toHaveTextContent('Hours: M-F 10am-11pm');
+    });
+  });
+
+  it('indicates if the restaurant is open now for each restaurant', () =&gt; {
+    render(&lt;RestaurantList /&gt;);
+    const openNowTags = screen.getAllByText('Open Now');
+    expect(openNowTags.length).toBeGreaterThan(0);
+  });
+
+  it('renders the details buttons with correct links for each restaurant', () =&gt; {
+    render(&lt;RestaurantList /&gt;);
+    const detailsButtons = screen.getAllByRole('link');
+    expect(detailsButtons[0]).toHaveAttribute('href', '/restaurants/cheese-curd-city');
+    expect(detailsButtons[1]).toHaveAttribute('href', '/restaurants/poutine-palace');
+    detailsButtons.forEach(button =&gt; {
+      expect(button).toHaveTextContent('Details');
+    });
+  });
+});
+
+</code></pre>
+ <div line-highlight="3,20,22-24,27,29-30,32-33,36,38-39,41-43,67,73,76,79,82,89,only"></div>
+<h3>Exercise</h3>
+<ul>
+<li>The selected <strong>state</strong> value should be managed by a <code>useState</code> hook.</li>
+<li>The selected <strong>city</strong> value should be managed by a <code>useState</code> hook.</li>
+<li>The City select should only include cities for the selected state.</li>
+</ul>
+<p><strong>Having issues with your local setup?</strong> You can use either
+<a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-solution?file=src%2Fpages%2FRestaurantList%2FRestaurantList.tsx">StackBlitz</a>
+or
+<a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-solution?file=src%2Fpages%2FRestaurantList%2FRestaurantList.tsx">CodeSandbox</a>
+to do this exercise in an online code editor.</p>
+<h3>Solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
+import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
+import { useId, useState } from 'react'
+import ListItem from './ListItem'
+
+const RestaurantList: React.FC = () =&gt; {
+  const stateId = useId()
+  const cityId = useId()
+
+  const [state, setState] = useState(&quot;&quot;)
+  const [city, setCity] = useState(&quot;&quot;)
+
+  const states = [
+    { name: 'Illinois', short: 'IL' },
+    { name: 'Wisconsin', short: 'WI' },
+  ]
+  const cities = [
+    { name: 'Madison', state: 'WI' },
+    { name: 'Springfield', state: 'IL' },
+  ]
+  const restaurants = {
+    data: [
+      {
+        name: 'Cheese Curd City',
+        slug: 'cheese-curd-city',
+        images: {
+          thumbnail: CheeseThumbnail,
+        },
+        address: {
+          street: '2451 W Washburne Ave',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53295',
+        },
+        _id: 'Ar0qBJHxM3ecOhcr',
+      },
+      {
+        name: 'Poutine Palace',
+        slug: 'poutine-palace',
+        images: {
+          thumbnail: PoutineThumbnail,
+        },
+        address: {
+          street: '230 W Kinzie Street',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53205',
+        },
+        _id: '3ZOZyTY1LH26LnVw',
+      },
+    ]
+  };
+
+  return (
+    &lt;&gt;
+      &lt;div className=&quot;restaurants&quot;&gt;
+        &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
+
+        &lt;form className=&quot;form&quot;&gt;
+          &lt;div className=&quot;form-group&quot;&gt;
+            &lt;label className=&quot;control-label&quot; htmlFor={stateId}&gt;
+              State
+            &lt;/label&gt;
+            &lt;select
+              className=&quot;form-control&quot;
+              id={stateId}
+              onChange={(event) =&gt; {
+                setState(event.target.value)
+                setCity(&quot;&quot;)
+              }}
+              value={state}
+            &gt;
+              &lt;option key=&quot;choose&quot; value=&quot;&quot;&gt;Choose a state&lt;/option&gt;
+              {states.map(({ short, name }) =&gt; (
+                &lt;option key={short} value={short}&gt;
+                  {name}
+                &lt;/option&gt;
+              ))}
+            &lt;/select&gt;
+          &lt;/div&gt;
+
+          &lt;div className=&quot;form-group&quot;&gt;
+            &lt;label className=&quot;control-label&quot; htmlFor={cityId}&gt;
+              City
+            &lt;/label&gt;
+            &lt;select
+              className=&quot;form-control&quot;
+              id={cityId}
+              onChange={(event) =&gt; setCity(event.target.value)}
+              value={city}
+            &gt;
+              &lt;option key=&quot;choose&quot; value=&quot;&quot;&gt;
+                {
+                  state
+                    ? &quot;Choose a city&quot;
+                    : &quot;Choose a state before selecting a city&quot;
+                }
+              &lt;/option&gt;
+              {state &amp;&amp; cities
+                .filter((city) =&gt; city.state === state)
+                .map(({ name }) =&gt; (
+                  &lt;option key={name} value={name}&gt;
+                    {name}
+                  &lt;/option&gt;
+                ))}
+            &lt;/select&gt;
+          &lt;/div&gt;
+        &lt;/form&gt;
+
+        {restaurants.data ? (
+          restaurants.data.map(({ _id, address, images, name, slug }) =&gt; (
+            &lt;ListItem
+              key={_id}
+              address={address}
+              name={name}
+              slug={slug}
+              thumbnail={images.thumbnail}
+            /&gt;
+          ))
+        ) : (
+          &lt;p&gt;No restaurants.&lt;/p&gt;
+        )}
+      &lt;/div&gt;
+    &lt;/&gt;
+  )
+}
+
+export default RestaurantList
+</code></pre>
+ <div line-highlight="3,10-11,67-71,74-78,89-90,92-105,only"></div>
+<p></details></p>
 
 </section>
 
@@ -604,7 +1266,7 @@ covering CanJS core libraries.">
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-vite/08-stateful-hooks/stateful-hooks.md"},"description":"TODO \n","name":"learn-react-vite/stateful-hooks","title":"Managing State in React","type":"page","parent":"learn-react-vite","order":8,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-vite/08-stateful-hooks/stateful-hooks.md"},"description":"Work with React's useState hook to manage a component's state. \n","name":"learn-react-vite/stateful-hooks","title":"Managing State in React","type":"page","parent":"learn-react-vite","order":8,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
