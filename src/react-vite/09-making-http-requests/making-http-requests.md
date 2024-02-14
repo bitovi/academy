@@ -2,7 +2,7 @@
 @parent learn-react-vite 9
 @outline 2
 
-@description TODO
+@description Learn about how to make `fetch` requests and render requested data in React components.
 
 @body
 
@@ -15,14 +15,19 @@ TODO
 In this section, we will:
 
 - Learn about the `useEffect` Hook
-- Review TypeScript generics
+- TODO: Review TypeScript generics?
 
 ### The `useEffect` Hook
 
 `useEffect` is a React Hook that lets you perform side effects in your functional components.
 It serves as a powerful tool to execute code in response to component renders or state changes.
 
-The `useEffect` Hook takes two arguments:
+Here is an example component with `useEffect`:
+
+@sourceref dependency-array-empty.tsx
+@highlight 1, 6-12, only
+
+Let’s break this example down by the two arguments that `useEffect` takes:
 
 #### Effect callback function
 
@@ -46,81 +51,71 @@ contents of this array:
 
 Consider three scenarios based on the dependency array:
 
-**No dependency array:** If the dependency array is omitted, the effect runs after every render
-of the component.
+##### Empty dependency array (`[]`)
 
-```tsx
-useEffect(() => {
-  console.info('This runs after every render')
-})
-```
-
-**Empty dependency array ([]):** If the dependency array is an empty array, the effect runs once
+If the dependency array is an empty array, the effect runs once
 after the initial render.
 
-```tsx
-useEffect(() => {
-  console.info('This runs once after the initial render')
-}, [])
-```
+@sourceref dependency-array-empty.tsx
+@highlight 6-12, only
 
-**Array with values:** When you include values (variables, props, state) in the dependency array,
+##### Array with values
+
+When you include values (variables, props, state) in the dependency array,
 the effect will only re-run if those specific values change between renders. This selective
 execution can optimize performance by avoiding unnecessary work.
 
-```tsx
-const [count, setCount] = useState(0)
+@sourceref dependency-array-with-values.tsx
+@highlight 4, 7-8, only
 
-useEffect(() => {
-  console.info('This runs when count changes')
-}, [count])
-```
+##### No dependency array
+
+If the dependency array is omitted, the effect runs after every render
+of the component.
+
+@sourceref dependency-array-undefined.tsx
+@highlight 8, only
 
 #### Async operations inside useEffect
 
-Unlike traditional functions, `useEffect` functions can’t be marked as async. This is
-because returning a `Promise` from `useEffect` would conflict with its mechanism, which expects
-either nothing or a clean-up function to be returned. To handle asynchronous operations, you
-typically define an `async` function inside the effect and then call it.
+You can use APIs that return a `Promise` normally within a `useEffect`:
 
-```tsx
-useEffect(() => {
-  const fetchData = async () => {
-    // Async fetch logic
-  };
+@sourceref fetch-with-promise.tsx
+@highlight 7-14, only
 
-  fetchData();
-}, []);
+However, unlike traditional functions, `useEffect` functions can’t be marked as async.
+This is because returning a `Promise` from `useEffect` would conflict with its mechanism,
+which expects either nothing or a clean-up function to be returned.
 
-```
+To handle asynchronous operations, you typically define an `async` function inside the
+effect and then call it:
 
-### Error handling with async/await
+@sourceref fetch-with-async.tsx
+@highlight 7-17, only
 
 When using async/await, error handling is typically done using try-catch blocks. This allows
 you to gracefully handle any errors that occur during the execution of your async operation.
 
-```
-useEffect(() => {
-  const fetchData = async () => {
-    try {
-      let data = await fetchDataFromAPI();
-      // Process data
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
-  };
-
-  fetchData();
-}, []);
-```
-
-In this example, if `fetchDataFromAPI` throws an error, the `catch` block catches and handles it.
+In this example, if `fetch` throws an error, the `catch` block catches and handles it.
 This pattern is crucial to prevent unhandled promise rejections and ensure that your application
 can respond appropriately to failures in asynchronous tasks.
 
 ### TypeScript generics
 
 TODO? We’ve used generics, but maybe explain the ones we’re going to use so it’s a little familiar?
+
+### Cleanup functions
+
+The effect function can optionally return another function, known as the “cleanup” function. The cleanup function is useful for performing any necessary cleanup activities when the component unmounts or before the component re-renders and the effect is re-invoked. Common examples include clearing timers, canceling network requests, or removing event listeners.
+
+@sourceref useEffect-with-cleanup.tsx
+@highlight 7-21, only
+
+In the example above, we’re creating a WebSocket connection to an API when the component
+is first rendered (note the empty dependency array).
+
+When the component is removed from the DOM, the cleanup function will run and tear down
+the WebSocket connection.
 
 ### Setup
 
@@ -156,14 +151,14 @@ TODO? We’ve used generics, but maybe explain the ones we’re going to use so 
 
 ### Exercise
 
-TODO
+Update `src/services/restaurant/hooks.ts` with a `useEffect` that uses `getStates` to get a list of states.
+
+Hint: Call `setResponse` after you get the response from `getStates()`.
 
 ### Solution
 
 <details>
 <summary>Click to see the solution</summary>
-
-TODO
 
 ✏️ Update **src/services/restaurant/hooks.ts** to be:
 
