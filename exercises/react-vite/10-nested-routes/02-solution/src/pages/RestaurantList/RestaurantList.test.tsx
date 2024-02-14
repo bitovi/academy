@@ -31,7 +31,7 @@ vi.mock('../../services/restaurant/hooks', () => ({
   }),
 }));
 
-import { useStates, useCities, useRestaurants } from '../../services/restaurant/hooks'
+import { useCities, useRestaurants, useStates } from '../../services/restaurant/hooks'
 
 // Wrap component with MemoryRouter to mock routing
 const renderWithRouter = (ui, { route = '/' } = {}) => {
