@@ -12,23 +12,117 @@ TODO
 
 ## Objective 1
 
-TODO
+In this section, we will:
 
-### Key concepts
+- Learn about the `useEffect` Hook
+- Review TypeScript generics
 
-TODO
+### The `useEffect` Hook
 
-#### Concept 1
+`useEffect` is a React Hook that lets you perform side effects in your functional components.
+It serves as a powerful tool to execute code in response to component renders or state changes.
 
-TODO
+The `useEffect` Hook takes two arguments:
 
-#### Concept 2
+#### Effect callback function
 
-TODO
+The first argument of `useEffect` is a function, often referred to as the “effect” function.
+This is where you perform your side effects, such as fetching data, setting up a subscription,
+or manually changing the DOM in React components.
+
+The key aspect of this function is that it’s executed after the component renders. The effects
+in `useEffect` don’t block the browser from updating the screen, leading to more responsive UIs.
+
+This effect function can optionally return another function, known as the “cleanup” function.
+The cleanup function is useful for performing any necessary cleanup activities when the component
+unmounts or before the component re-renders and the effect is re-invoked. Common examples include
+clearing timers, canceling network requests, or removing event listeners.
+
+#### The dependency array
+
+The second argument of `useEffect` is an array, called the “dependency array”, which determines
+when your effect function should be called. The behavior of the effect changes based on the
+contents of this array:
+
+Consider three scenarios based on the dependency array:
+
+**No dependency array:** If the dependency array is omitted, the effect runs after every render
+of the component.
+
+```tsx
+useEffect(() => {
+  console.info('This runs after every render')
+})
+```
+
+**Empty dependency array ([]):** If the dependency array is an empty array, the effect runs once
+after the initial render.
+
+```tsx
+useEffect(() => {
+  console.info('This runs once after the initial render')
+}, [])
+```
+
+**Array with values:** When you include values (variables, props, state) in the dependency array,
+the effect will only re-run if those specific values change between renders. This selective
+execution can optimize performance by avoiding unnecessary work.
+
+```tsx
+const [count, setCount] = useState(0)
+
+useEffect(() => {
+  console.info('This runs when count changes')
+}, [count])
+```
+
+#### Async operations inside useEffect
+
+Unlike traditional functions, `useEffect` functions can’t be marked as async. This is
+because returning a `Promise` from `useEffect` would conflict with its mechanism, which expects
+either nothing or a clean-up function to be returned. To handle asynchronous operations, you
+typically define an `async` function inside the effect and then call it.
+
+```tsx
+useEffect(() => {
+  const fetchData = async () => {
+    // Async fetch logic
+  };
+
+  fetchData();
+}, []);
+
+```
+
+### Error handling with async/await
+
+When using async/await, error handling is typically done using try-catch blocks. This allows
+you to gracefully handle any errors that occur during the execution of your async operation.
+
+```
+useEffect(() => {
+  const fetchData = async () => {
+    try {
+      let data = await fetchDataFromAPI();
+      // Process data
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  fetchData();
+}, []);
+```
+
+In this example, if `fetchDataFromAPI` throws an error, the `catch` block catches and handles it.
+This pattern is crucial to prevent unhandled promise rejections and ensure that your application
+can respond appropriately to failures in asynchronous tasks.
+
+### TypeScript generics
+
+TODO? We’ve used generics, but maybe explain the ones we’re going to use so it’s a little familiar?
 
 ### Setup
-
-TODO
 
 ✏️ Create **src/services/interfaces.ts** and update it to be:
 
@@ -51,8 +145,6 @@ TODO
 @diff ../../../exercises/react-vite/08-stateful-hooks/02-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/01-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
 ### Verify
-
-TODO
 
 ✏️ Create **src/services/restaurant/restaurant.test.ts** and update it to be:
 
@@ -81,23 +173,31 @@ TODO
 
 ## Objective 2
 
-TODO
+In this section, we will:
 
-### Key concepts
+- Learn the basics of the `fetch` API
+- Understand how to handle responses from `fetch`
 
-TODO
-
-#### Concept 1
-
-TODO
-
-#### Concept 2
+### Making `fetch` happen
 
 TODO
+
+### Parsing responses from `fetch`
+
+TODO
+
+Explain:
+
+- `.json()`
+- `.ok`
+- `.status`
+- `.statusText`
+
+### Handling network errors
+
+TODO: Explain how `fetch` can throw.
 
 ### Setup
-
-TODO
 
 Before we begin making services, we must:
 
@@ -116,7 +216,7 @@ npm install place-my-order-api@1
 
 ✏️ Next add an API script to your `package.json`
 
-@sourceref ../../../exercises/react-vite/09-making-http-requests/01-solution/package.json
+@sourceref ../../../exercises/react-vite/09-making-http-requests/02-solution/package.json
 @highlight 7, only
 
 ✏️ In a **new** terminal window, start the API server by running:
@@ -129,11 +229,10 @@ Double check the api by navigating to <a href="http://localhost:7070/restaurants
 
 #### Create an environment variable
 
-TODO
-
 ✏️ Create **.env** and update it to be:
 
 @sourceref ../../../exercises/react-vite/09-making-http-requests/02-solution/.env
+@highlight 1
 
 #### Create the API file
 
@@ -214,7 +313,7 @@ TODO
 
 TODO
 
-Give them `stringifyQuery` and have them make `getCities`
+Give them `stringifyQuery` and have them make `getCities` and extend `apiRequest` to handle params.
 
 ### Solution
 
