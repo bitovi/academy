@@ -203,7 +203,7 @@ Add a link to the order page inside the `ListItem` component/
 @diff ../../../exercises/react-vite/10-nested-routes/02-solution/src/main.tsx ../../../exercises/react-vite/10-nested-routes/02-solution/src/main.tsx only
 
 
-@diff ../../../exercises/react-vite/10-nested-routes/02-solution/src/pages/RestaurantList/ListItem.tsx ../../../exercises/react-vite/10-nested-routes/02-solution/src/RestaurantList/ListItem.tsx only
+@diff ../../../exercises/react-vite/10-nested-routes/02-solution/src/pages/RestaurantList/ListItem.tsx ../../../exercises/react-vite/10-nested-routes/02-solution/src/pages/RestaurantList/ListItem.tsx only
 
 <strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/01-solution?file=src/main.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/01-solution?file=src/main.tsx).
 
