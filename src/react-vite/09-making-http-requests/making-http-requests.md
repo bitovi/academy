@@ -265,7 +265,7 @@ TODO
 
 TODO
 
-Now use getCities to build a hook and use it.
+Now use getCities to build a Hook and use it.
 
 ### Solution
 

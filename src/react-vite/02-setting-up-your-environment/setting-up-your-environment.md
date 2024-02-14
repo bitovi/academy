@@ -83,7 +83,7 @@ We will create unit tests for our application using the [React Testing
 Library](https://testing-library.com/docs/react-testing-library/intro/). The
 unit tests for components will be focused on verifying that a component creates
 the correct DOM output based on the state the component is provided. We also
-need to create tests for any React custom hooks we create to ensure they provide
+need to create tests for any React custom Hooks we create to ensure they provide
 the expected results.
 
 ## Setup
