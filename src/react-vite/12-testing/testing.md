@@ -28,11 +28,23 @@ TODO
 
 ### Setup
 
-TODO
+✏️ Create **src/components/FormSelect/FormSelect.tsx** and update it to be:
+
+@sourceref ../../../exercises/react-vite/12-testing/01-solution/src/components/FormSelect/FormSelect.tsx
+
+✏️ Create **src/components/FormSelect/index.ts** and update it to be:
+
+@sourceref ../../../exercises/react-vite/12-testing/01-solution/src/components/FormSelect/index.ts
+
+✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
+
+@diff ../../../exercises/react-vite/11-controlled-vs-uncontrolled/03-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/12-testing/01-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
 ### Verify
 
-TODO
+✏️ Create **src/components/FormSelect/FormSelect.test.tsx** and update it to be:
+
+@sourceref ../../../exercises/react-vite/12-testing/01-problem/src/components/FormSelect/FormSelect.test.tsx
 
 ### Exercise
 
@@ -43,7 +55,9 @@ TODO
 <details>
 <summary>Click to see the solution</summary>
 
-TODO
+✏️ Update **src/components/FormSelect/FormSelect.test.tsx** to be:
+
+@diff ../../../exercises/react-vite/12-testing/01-problem/src/components/FormSelect/FormSelect.test.tsx ../../../exercises/react-vite/12-testing/01-solution/src/components/FormSelect/FormSelect.test.tsx only
 
 </details>
 
