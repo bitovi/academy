@@ -42,10 +42,10 @@ to the Virtual DOM. If the results are **the same** no action is taken, if the
 results are **different** the browser's DOM is updated to reflect the new
 Virtual DOM state.
 
-### Functional components and hooks
+### Functional components and Hooks
 
 A major change occurred in 2019 with the introduction of functional components
-and hooks. A component can now be defined using a single function, the component
+and Hooks. A component can now be defined using a single function, the component
 can manage its internal data and functionality through the use of
 [hooks](stateful-hooks.html), which are functions that provide data to a
 component or cause the component to render.
