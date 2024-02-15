@@ -1,99 +1,27 @@
-import { useEffect, useState } from "react"
-import type { PromiseState } from "../interfaces";
-import type { City, Restaurant, State } from "./interfaces"
-import { getCities, getRestaurants, getStates } from "./restaurant"
+import { useEffect, useState } from 'react'
+import { apiRequest } from '../api'
+import type { City, Restaurant, State } from './interfaces'
 
-export function useCities(
-  state: string,
-): PromiseState<City[]> {
-  const [response, setResponse] = useState<PromiseState<City[]>>({
-    data: null,
-    error: null,
-    isPending: true,
-  })
-
-  useEffect(() => {
-    if (state) {
-      setResponse({
-        data: null,
-        error: null,
-        isPending: true,
-      })
-      const fetchData = async () => {
-        try {
-          const apiResponse = await getCities(state)
-          setResponse({
-            ...apiResponse,
-            isPending: false,
-          })
-        } catch (error) {
-          setResponse({
-            data: null,
-            error: error instanceof Error ? error : new Error('An unknown error occurred'),
-            isPending: false,
-          })
-        }
-      }
-      fetchData()
-    } else {
-      setResponse({
-        data: null,
-        error: null,
-        isPending: false,
-      })
-    }
-  }, [state]);
-
-  return response
+interface CityResponse {
+  data: City[] | null;
+  error: Error | null;
+  isPending: boolean;
 }
 
-export function useRestaurants(
-  state: string,
-  city: string,
-): PromiseState<Restaurant[]> {
-  const [response, setResponse] = useState<PromiseState<Restaurant[]>>({
-    data: null,
-    error: null,
-    isPending: true,
-  })
-
-  useEffect(() => {
-    if (city && state) {
-      setResponse({
-        data: null,
-        error: null,
-        isPending: true,
-      })
-      const fetchData = async () => {
-        try {
-          const apiResponse = await getRestaurants(state, city)
-          setResponse({
-            ...apiResponse,
-            isPending: false,
-          })
-        } catch (error) {
-          setResponse({
-            data: null,
-            error: error instanceof Error ? error : new Error('An unknown error occurred'),
-            isPending: false,
-          })
-        }
-      }
-      fetchData()
-    } else {
-      setResponse({
-        data: null,
-        error: null,
-        isPending: false,
-      })
-    }
-  }, [city, state]);
-
-  return response
+interface RestaurantResponse {
+  data: Restaurant[] | null;
+  error: Error | null;
+  isPending: boolean;
 }
 
-export function useStates(): PromiseState<State[]> {
-  const [response, setResponse] = useState<PromiseState<State[]>>({
+interface StateResponse {
+  data: State[] | null;
+  error: Error | null;
+  isPending: boolean;
+}
+
+export function useCities(state: string): CityResponse {
+  const [response, setResponse] = useState<CityResponse>({
     data: null,
     error: null,
     isPending: true,
@@ -101,19 +29,75 @@ export function useStates(): PromiseState<State[]> {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const apiResponse = await getStates()
-        setResponse({
-          ...apiResponse,
-          isPending: false,
-        })
-      } catch (error) {
-        setResponse({
-          data: null,
-          error: error instanceof Error ? error : new Error('An unknown error occurred'),
-          isPending: false,
-        })
-      }
+      const { data, error } = await apiRequest<CityResponse>({
+          method: "GET",
+          path: "/cities",
+          params: {
+              state: state
+          },
+      })
+
+      setResponse({
+        data: data?.data || null,
+        error: error,
+        isPending: false,
+      })
+    }
+    fetchData()
+  }, [state]);
+
+  return response
+}
+
+export function useRestaurants(state: string, city: string): RestaurantResponse {
+  const [response, setResponse] = useState<RestaurantResponse>({
+    data: null,
+    error: null,
+    isPending: true,
+  })
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data, error } = await apiRequest<RestaurantResponse>({
+          method: "GET",
+          path: "/restaurants",
+          params: {
+              "filter[address.state]": state,
+              "filter[address.city]": city,
+          },
+      })
+
+      setResponse({
+        data: data?.data || null,
+        error: error,
+        isPending: false,
+      })
+    }
+    fetchData()
+  }, [state, city]);
+
+  return response
+}
+
+export function useStates(): StateResponse {
+  const [response, setResponse] = useState<StateResponse>({
+    data: null,
+    error: null,
+    isPending: true,
+  })
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const { data, error } = await apiRequest<StateResponse>({
+          method: "GET",
+          path: "/states",
+      })
+
+      setResponse({
+        data: data?.data || null,
+        error: error,
+        isPending: false,
+      })
     }
     fetchData()
   }, []);

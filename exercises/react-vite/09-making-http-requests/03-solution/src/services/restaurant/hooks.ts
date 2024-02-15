@@ -1,10 +1,20 @@
-import { useEffect, useState } from "react"
-import type { PromiseState } from "../interfaces";
-import type { State } from "./interfaces"
-import { getStates } from "./restaurant"
+import { useEffect, useState } from 'react'
+import type { City, State } from './interfaces'
 
-export function useStates(): PromiseState<State[]> {
-  const [response, setResponse] = useState<PromiseState<State[]>>({
+interface CityResponse {
+  data: City[] | null;
+  error: Error | null;
+  isPending: boolean;
+}
+
+interface StateResponse {
+  data: State[] | null;
+  error: Error | null;
+  isPending: boolean;
+}
+
+export function useCities(state: string): CityResponse {
+  const [response, setResponse] = useState<CityResponse>({
     data: null,
     error: null,
     isPending: true,
@@ -12,19 +22,44 @@ export function useStates(): PromiseState<State[]> {
 
   useEffect(() => {
     const fetchData = async () => {
-      try {
-        const apiResponse = await getStates()
-        setResponse({
-          ...apiResponse,
-          isPending: false,
-        })
-      } catch (error) {
-        setResponse({
-          data: null,
-          error: error instanceof Error ? error : new Error('An unknown error occurred'),
-          isPending: false,
-        })
-      }
+      const response = await fetch(`${import.meta.env.VITE_PMO_API}/cities?state=${state}`, {
+        method: "GET",
+      })
+
+      const data = await response.json()
+
+      setResponse({
+        data: data?.data || null,
+        error: null,
+        isPending: false,
+      })
+    }
+    fetchData()
+  }, [state]);
+
+  return response
+}
+
+export function useStates(): StateResponse {
+  const [response, setResponse] = useState<StateResponse>({
+    data: null,
+    error: null,
+    isPending: true,
+  })
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(`${import.meta.env.VITE_PMO_API}/states`, {
+        method: "GET",
+      })
+
+      const data = await response.json()
+
+      setResponse({
+        data: data?.data || null,
+        error: null,
+        isPending: false,
+      })
     }
     fetchData()
   }, []);

@@ -1,14 +1,11 @@
-import { useEffect, useState } from "react"
-import type { PromiseState } from "../interfaces";
-import type { State } from "./interfaces"
-import { getStates } from "./restaurant"
+import type { City } from './interfaces'
 
-export function useStates(): PromiseState<State[]> {
-  const [response, setResponse] = useState<PromiseState<State[]>>({
-    data: null,
-    error: null,
-    isPending: true,
+export function useCities(state: string): City[] {
+  const cities = [
+    { name: 'Madison', state: 'WI' },
+    { name: 'Springfield', state: 'IL' },
+  ]
+  return cities.filter(city => {
+    return city.state === state
   })
-
-  return response
 }
