@@ -121,13 +121,63 @@ TODO
 
 </details>
 
-## Objective 2: Simulate a user generated event
+## Objective 2: Simulate a user-generated event
+
+Most components have ways to respond to events raised by user interaction, like clicking a button,
+how can we test code that responds to these interactions? We use another library provided by React
+Testing Library named [user-event](https://testing-library.com/docs/user-event/intro).
+
+`user-event` allows you to interact with your component similarly to a user some of its methods may
+raise more than one event to do so, for example emitting a focus event then a click event. It also
+has some helpful features such as not firing a click event on an element that's hidden.
 
 ### Key Concepts
 
-- TODO
+- The user-event library simulates user interactions - not events
+- Tests must be marked as `async` to work with user-event
 
 #### Concept 1
+
+<span style="color:red">We may want to update test code to do the following: "[We recommend invoking
+`userEvent.setup()` before the component is
+rendered.](https://testing-library.com/docs/user-event/intro#writing-tests-with-userevent)"</span>
+
+Consider the following example:
+
+```tsx
+import userEvent from "@testing-library/user-event";
+
+it("toggles pickup options when clicked", async () => {
+  const user = userEvent.setup();
+  render(<PickupOptions />);
+
+  expect(screen.queryByText("In-store Options")).not.toBeInTheDocument();
+
+  await user.click(screen.getByText("Store"));
+  expect(screen.getByText("In-store Options")).toBeInTheDocument();
+});
+```
+
+One difference between this example and the previous one is that the callback function is now
+preceded by `async` because some of of the test code will `await` an action. Failing to set a test
+callback function as `async` or use `await` with user-event methods is a common reason why tests do
+not function properly or provide the results developers expect.
+
+Before the component is rendered the `userEvent` module has its `setup` function invoked to get a
+`user` that can interact with the component. The `user` has a variety of functions to simulate
+common user actions such as clicking or typing.
+
+After calling `render` we verify that the component has initially rendered the proper DOM structure.
+Since the element is not expected the `queryByText` method is appropriate to use here, this method
+will return null if the element doesn't exist. We use `expect` with the `not` property to confirm
+that the DOM does not contain the element. In most cases prefer using the testing library's API
+methods rather than, for example, asserting on whether or not the result of `queryByText` is null.
+
+Now that we know the proper initial DOM was rendered let's use `user.click()` to click on an
+element. We pass the element to be clicked to the `click` function as its argument. Once the call to
+click resolves the DOM can be queried again to see the effect. Assuming the component code made the
+right changes the call to `getByText("In-store Options")` should return the element so it exists in
+the document.
 
 ### Setup
 
