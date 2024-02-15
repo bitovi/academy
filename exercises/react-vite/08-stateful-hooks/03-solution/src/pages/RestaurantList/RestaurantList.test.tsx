@@ -1,11 +1,22 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, vi } from 'vitest';
 
+import * as restaurantHooks from '../../services/restaurant/hooks'
 import RestaurantList from './RestaurantList';
 
+// Mocking necessary modules
+vi.mock('../../services/restaurant/hooks')
+
 describe('RestaurantList component', () => {
+  beforeEach(() => {
+    vi.spyOn(restaurantHooks, 'useCities').mockReturnValue([
+      { name: 'Green Bay' },
+      { name: 'Madison' },
+    ])
+  })
+
   it('renders the Restaurants header', () => {
     render(<RestaurantList />);
     expect(screen.getByText(/Restaurants/i)).toBeInTheDocument();
@@ -78,10 +89,10 @@ describe('RestaurantList component', () => {
     const illinoisButton = screen.getByText('Illinois')
     await userEvent.click(illinoisButton)
 
-    const greenBayButton = screen.getByText('Springfield')
+    const greenBayButton = screen.getByText('Green Bay')
     await userEvent.click(greenBayButton)
 
-    expect(screen.getByText('Current city: Springfield')).toBeInTheDocument()
+    expect(screen.getByText('Current city: Green Bay')).toBeInTheDocument()
   })
 
   it('renders ListItem components for each restaurant', () => {

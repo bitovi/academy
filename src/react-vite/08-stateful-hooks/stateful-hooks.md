@@ -19,7 +19,7 @@ There are different types of state within an application:
 - **URL State:** The state that exists on our URLs, including pathname and query parameters. We already covered this in our section about Routing!
 - **Global State:** This refers to data that is shared between multiple components. In React, global state can be managed using Context API or state management libraries; this is out of scope for this training.
 
-## Objective: Introducing React Hooks and useId
+## Objective 1: Introducing React Hooks and useId
 
 In this section, we will:
 
@@ -138,7 +138,7 @@ to do this exercise in an online code editor.
 
 </details>
 
-## Objective: Manage component state using Hooks
+## Objective 2: Manage component state using Hooks
 
 When users make choices that need to be maintained or that affect other parts of
 the UI, we need to use `state`. That's a pretty abstract concept so let's look
@@ -257,3 +257,62 @@ to do this exercise in an online code editor.
 @diff ../../../exercises/react-vite/08-stateful-hooks/02-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/08-stateful-hooks/02-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
 </details>
+
+## Objective 3
+
+TODO
+
+### Key concepts
+
+TODO
+
+#### Concept 1
+
+TODO
+
+#### Concept 2
+
+TODO
+
+### Setup
+
+✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
+
+@diff ../../../exercises/react-vite/08-stateful-hooks/02-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/08-stateful-hooks/03-problem/src/pages/RestaurantList/RestaurantList.tsx only
+
+✏️ Create **src/services/restaurant/hooks.ts** and update it to be:
+
+@sourceref ../../../exercises/react-vite/08-stateful-hooks/03-problem/src/services/restaurant/hooks.ts
+
+✏️ Create **src/services/restaurant/interfaces.ts** and update it to be:
+
+@sourceref ../../../exercises/react-vite/09-making-http-requests/01-solution/src/services/restaurant/interfaces.ts
+
+### Verify
+
+✏️ Create **src/services/restaurant/hooks.test.ts** and update it to be:
+
+@sourceref ../../../exercises/react-vite/08-stateful-hooks/03-solution/src/services/restaurant/hooks.test.ts
+
+### Exercise
+
+TODO
+
+### Solution
+
+<details>
+<summary>Click to see the solution</summary>
+
+✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
+
+@diff ../../../exercises/react-vite/08-stateful-hooks/03-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/08-stateful-hooks/03-solution/src/pages/RestaurantList/RestaurantList.tsx only
+
+✏️ Update **src/services/restaurant/hooks.ts** to be:
+
+@diff ../../../exercises/react-vite/08-stateful-hooks/03-problem/src/services/restaurant/hooks.ts ../../../exercises/react-vite/08-stateful-hooks/03-solution/src/services/restaurant/hooks.ts only
+
+</details>
+
+## Next steps
+
+TODO

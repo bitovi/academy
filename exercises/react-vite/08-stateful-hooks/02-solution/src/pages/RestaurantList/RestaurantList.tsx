@@ -1,12 +1,9 @@
 import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
 import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import { ChangeEvent, useId, useState } from 'react'
+import { useState } from 'react'
 import ListItem from './ListItem'
 
 const RestaurantList: React.FC = () => {
-  const stateId = useId()
-  const cityId = useId()
-
   const [state, setState] = useState("")
   const [city, setCity] = useState("")
 
@@ -14,10 +11,14 @@ const RestaurantList: React.FC = () => {
     { name: 'Illinois', short: 'IL' },
     { name: 'Wisconsin', short: 'WI' },
   ]
+
   const cities = [
     { name: 'Madison', state: 'WI' },
     { name: 'Springfield', state: 'IL' },
-  ]
+  ].filter(city => {
+    return city.state === state
+  })
+
   const restaurants = {
     data: [
       {
@@ -51,13 +52,13 @@ const RestaurantList: React.FC = () => {
     ]
   };
 
-  const updateState = (event: ChangeEvent<HTMLSelectElement>) => {
-    setState(event.target.value)
+  const updateState = (stateShortCode: string) => {
+    setState(stateShortCode)
     setCity("")
   }
 
-  const updateCity = (event: ChangeEvent<HTMLSelectElement>) => {
-    setCity(event.target.value)
+  const updateCity = (cityName: string) => {
+    setCity(cityName)
   }
 
   return (
@@ -67,49 +68,29 @@ const RestaurantList: React.FC = () => {
 
         <form className="form">
           <div className="form-group">
-            <label className="control-label" htmlFor={stateId}>
-              State
-            </label>
-            <select
-              className="form-control"
-              id={stateId}
-              onChange={updateState}
-              value={state}
-            >
-              <option key="choose_state" value="">Choose a state</option>
-              {states.map(({ short, name }) => (
-                <option key={short} value={short}>
-                  {name}
-                </option>
-              ))}
-            </select>
+            State:
+            {states.map(({ short, name }) => (
+              <button key={short} onClick={() => updateState(short)} type="button">
+                {name}
+              </button>
+            ))}
+            <hr />
+            <p>
+              Current state: {state || "(none)"}
+            </p>
           </div>
 
           <div className="form-group">
-            <label className="control-label" htmlFor={cityId}>
-              City
-            </label>
-            <select
-              className="form-control"
-              id={cityId}
-              onChange={updateCity}
-              value={city}
-            >
-              <option key="choose_city" value="">
-                {
-                  state
-                    ? "Choose a city"
-                    : "Choose a state before selecting a city"
-                }
-              </option>
-              {state && cities
-                .filter((city) => city.state === state)
-                .map(({ name }) => (
-                  <option key={name} value={name}>
-                    {name}
-                  </option>
-                ))}
-            </select>
+            City:
+            {state ? cities.map(({ name }) => (
+              <button key={name} onClick={() => updateCity(name)} type="button">
+                {name}
+              </button>
+            )) : <> Choose a state before selecting a city</>}
+            <hr />
+            <p>
+              Current city: {city || "(none)"}
+            </p>
           </div>
         </form>
 

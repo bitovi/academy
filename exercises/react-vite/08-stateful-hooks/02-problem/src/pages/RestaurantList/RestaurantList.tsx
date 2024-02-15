@@ -1,20 +1,21 @@
 import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
 import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import { useId } from 'react'
+import { useState } from 'react'
 import ListItem from './ListItem'
 
 const RestaurantList: React.FC = () => {
-  const stateId = useId()
-  const cityId = useId()
+  const [state, setState] = useState("")
 
   const states = [
     { name: 'Illinois', short: 'IL' },
     { name: 'Wisconsin', short: 'WI' },
   ]
+
   const cities = [
     { name: 'Madison', state: 'WI' },
     { name: 'Springfield', state: 'IL' },
   ]
+
   const restaurants = {
     data: [
       {
@@ -48,6 +49,10 @@ const RestaurantList: React.FC = () => {
     ]
   };
 
+  const updateState = (stateShortCode: string) => {
+    setState(stateShortCode)
+  }
+
   return (
     <>
       <div className="restaurants">
@@ -55,26 +60,29 @@ const RestaurantList: React.FC = () => {
 
         <form className="form">
           <div className="form-group">
-            <label className="control-label" htmlFor={stateId}>
-              State
-            </label>
-            <select
-              className="form-control"
-              id={stateId}
-            >
-              <option key="choose_state" value="">Choose a state</option>
-            </select>
+            State:
+            {states.map(({ short, name }) => (
+              <button key={short} onClick={() => updateState(short)} type="button">
+                {name}
+              </button>
+            ))}
+            <hr />
+            <p>
+              Current state: {state || "(none)"}
+            </p>
           </div>
 
           <div className="form-group">
-            <label className="control-label" htmlFor={cityId}>
-              City
-            </label>
-            <select
-              className="form-control"
-              id={cityId}
-            >
-            </select>
+            City:
+            {state ? cities.map(({ name }) => (
+              <button key={name} type="button">
+                {name}
+              </button>
+            )) : <> Choose a state before selecting a city</>}
+            <hr />
+            <p>
+              Current city: {"(none)"}
+            </p>
           </div>
         </form>
 
