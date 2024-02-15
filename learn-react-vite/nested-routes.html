@@ -1171,7 +1171,7 @@ describe('ListItem component', () =&gt; {
   it('renders the restaurant image', () =&gt; {
     renderWithRouter(&lt;ListItem slug=&quot;test-slug&quot; name=&quot;Test Name&quot; thumbnail=&quot;test-thumbnail.jpg&quot; /&gt;);
     const img = screen.getByRole('img');
-    expect(img).toHaveAttribute('src', 'test-thumbnail.jpg');
+    expect(img).toHaveAttribute('src', '/test-thumbnail.jpg');
     expect(img).toHaveAttribute('width', '100');
     expect(img).toHaveAttribute('height', '100');
   });
