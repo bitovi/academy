@@ -544,28 +544,433 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
-<p>TODO</p>
-<h2>Objective 1</h2>
-<p>TODO</p>
+<p>React Router nested routes provide a way to modify smaller portions of a page, rather than reloading everything. With nested routes, we can alter just sections of a page while also maintaining state in the URL so the page can still be reloaded or shared.</p>
+<p>Imagine a manufacturer's product site. Not only do they have a lot of information about each product, but they also need to support both new and existing customers. New customers want to see list of features, specs, and where to buy the product. Old customers need to download owner's manuals and a way to contact customer support. Nested routes provide a mechanism to handle this structure</p>
+<p>Our main product page loads at &quot;/product/:id&quot;. The matching route will load the product name, picture, and basic description. Within the main product page, we can create a tabbed section with our various types of content. The route to show the main product info along with support information is &quot;/product/:id/support&quot;. The full structure will look like the following tree:</p>
+<div class="directory-list">
+<ul>
+<li>/product/:id
+<ul>
+<li>/features</li>
+<li>/specs</li>
+<li>/where-to-buy</li>
+<li>/downloads</li>
+<li>/support</li>
+</ul></li>
+</ul>
+</div>
+<p>You could create this sort of page without nested routes, but using nested routes is a well-organized and performant solution that can be linked because it maintains state in the URL.</p>
+<h2>Objective 1: Create a nested route</h2>
 <h3>Key concepts</h3>
-<p>TODO</p>
-<h4>Concept 1</h4>
-<p>TODO</p>
-<h4>Concept 2</h4>
-<p>TODO</p>
-<h3>Setup</h3>
-<p>TODO</p>
-<h3>Verify</h3>
-<p>TODO</p>
-<h3>Exercise</h3>
-<p>TODO</p>
-<h3>Solution</h3>
+<ul>
+<li>Creating a nested routing configuration</li>
+<li>Folder structure for nested components</li>
+</ul>
+<h4>Creating a nested route config</h4>
+<p>Recall our router config from the <a href="./routing.html">first React Router lesson</a>.</p>
+<pre><code class="language-tsx">import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Home from './pages/Home'
+import RestaurantList from './pages/RestaurantList'
+import App from './App.tsx'
+import './index.css'
+
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: &lt;App /&gt;,
+      children: [
+        {
+          index: true,
+          element: &lt;Home /&gt;,
+        },
+        {
+          path: 'restaurants',
+          element: &lt;RestaurantList /&gt;,
+        },
+      ],
+    },
+  ],
+  {
+    basename: import.meta.env.BASE_URL,
+  },
+)
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  &lt;React.StrictMode&gt;
+    &lt;RouterProvider router={router} /&gt;
+  &lt;/React.StrictMode&gt;,
+)
+</code></pre>
+<div line-highlight='10-25'></div>
+<p>Notice that our home and about pages are under the <code>children</code> key. These are actually nested routes of the root path. Route children can accept a <code>children</code> property themselves, on and on, until the browser runs out of resources.</p>
+<p>The route config for our product page could look like this:</p>
+<pre><code class="language-tsx">const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: &lt;App /&gt;,
+      children: [
+        ...
+        {
+          path: 'product',
+          element: &lt;ProductPage /&gt;,
+          children: [
+            {
+              index: &quot;features&quot;,
+              element: &lt;Features /&gt;,
+            },
+            {
+              index: &quot;where-to-buy&quot;,
+              element: &lt;WhereToBuy /&gt;,
+            },
+            {
+              index: &quot;support&quot;,
+              element: &lt;Support /&gt;,
+            },
+            ...
+          ]
+        },
+      ],
+    },
+  ],
+  {
+    basename: import.meta.env.BASE_URL,
+  },
+)
+</code></pre>
+<h4>Folder structure</h4>
+<p>Notice that the child page components have simple names like <code>&lt;Support /&gt;</code> instead of <code>&lt;ProductSupport /&gt;</code>. Assuming this component is specifically designed for the product page and will not be reused elsewhere, the component file can reside within the product page's folder. Since the files live together, longer names aren't needed and will make your JSX a little harder to read.</p>
+<p>The larger directory tree should look like the following:</p>
+<div class="directory-list">
+<ul>
+<li>pages
+<ul>
+<li>Home
+<ul>
+<li>Home.tsx</li>
+<li>Home.module.css</li>
+<li>Home.test.tsx</li>
+<li>index.ts</li>
+</ul></li>
+<li>Product
+<ul>
+<li>components
+<ul>
+<li>Features
+<ul>
+<li>Features.tsx</li>
+<li>Features.module.css</li>
+<li>Features.test.tsx</li>
+<li>index.ts</li>
+</ul></li>
+<li>Support
+<ul>
+<li>Support.tsx</li>
+<li>Support.module.css</li>
+<li>Support.test.tsx</li>
+<li>index.ts</li>
+</ul></li>
+</ul></li>
+<li>Product.tsx</li>
+<li>Product.module.css</li>
+<li>Product.test.tsx</li>
+<li>index.ts</li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+<h3>Exercise 1</h3>
+<p>Let's reorganize the existing <code>/restaurants</code> routes so they are nested. For this exercise, change the routing config so the restaurant list and details pages are nested under <code>/restaurants</code>.</p>
+<h4>Setup</h4>
+<p>No additional setup needed.</p>
+<h4>Verify</h4>
+<p>The existing test already cover routing, so no new tests are needed. Ensure the existing tests pass when you run <code>npm run test</code>.</p>
+<h4>Exercise</h4>
+<p>Refactor the router config in <strong>src/main.tsx</strong> to nest the restaurant routes.</p>
+<h4>Solution</h4>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>TODO</p>
+<p>✏️ Update <strong>src/main.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Home from './pages/Home'
+import RestaurantDetails from './pages/RestaurantDetails'
+import RestaurantList from './pages/RestaurantList'
+import App from './App.tsx'
+import './index.css'
+
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: &lt;App /&gt;,
+      children: [
+        {
+          index: true,
+          element: &lt;Home /&gt;,
+        },
+        {
+          path: '/restaurants',
+          children: [
+            {
+              path: '/',
+              element: &lt;RestaurantList /&gt;,
+            },
+            {
+              path: '/:slug',
+              element: &lt;RestaurantDetails /&gt;,
+            },
+          ],
+        }
+      ],
+    },
+  ],
+  {
+    basename: import.meta.env.BASE_URL,
+  },
+)
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  &lt;React.StrictMode&gt;
+    &lt;RouterProvider router={router} /&gt;
+  &lt;/React.StrictMode&gt;,
+)
+</code></pre>
+<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/01-solution?file=src/main.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/01-solution?file=src/main.tsx">CodeSandbox</a>.</p>
+<p></details></p>
+<h3>Exercise 2</h3>
+<p>We learned to create nested routes, let's practice by adding another page to our application. Add the order page to the route config and add a link to it.</p>
+<h4>Setup</h4>
+<p>Add the order page files.</p>
+<p>✏️ Add <strong>src/pages/RestaurantOrder/index.ts</strong> :</p>
+<pre><code class="language-ts">export { default } from &quot;./RestaurantOrder&quot;
+</code></pre>
+<p>✏️ Add <strong>src/pages/RestaurantOrder/RestaurantOrder.tsx</strong> :</p>
+<pre><code class="language-tsx">import { useParams } from &quot;react-router-dom&quot;
+import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
+import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
+
+const RestaurantOrder: React.FC = () =&gt; {
+    const params = useParams() as { slug: string }
+
+    const restaurant = useRestaurant(params.slug)
+
+    if (restaurant.isPending) {
+        return (
+            &lt;p aria-live=&quot;polite&quot; className=&quot;loading&quot;&gt;
+                Loading restaurant…
+            &lt;/p&gt;
+        )
+    }
+
+    if (restaurant.error) {
+        return (
+            &lt;p aria-live=&quot;polite&quot; className=&quot;error&quot;&gt;
+                Error loading restaurant: {restaurant.error.message}
+            &lt;/p&gt;
+        )
+    }
+
+    if (!restaurant.data) {
+        return &lt;p aria-live=&quot;polite&quot;&gt;No restaurant found.&lt;/p&gt;;
+    }
+
+    return (
+        &lt;&gt;
+            &lt;RestaurantHeader restaurant={restaurant.data} /&gt;
+
+            &lt;div className=&quot;order-form&quot;&gt;
+                &lt;h3&gt;Order from {restaurant.data.name}!&lt;/h3&gt;
+            &lt;/div&gt;
+        &lt;/&gt;
+    )
+}
+
+export default RestaurantOrder
+</code></pre>
+<h4>Verify</h4>
+<p>✏️ Add <strong>src/pages/RestaurantOrder/RestaurantOrder.test.tsx</strong> :</p>
+<pre><code class="language-tsx">import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import { describe, it, expect, vi } from 'vitest';
+import RestaurantOrder from './RestaurantOrder';
+
+// Mock the hooks and components used in RestaurantOrder
+vi.mock('../../services/restaurant/hooks', () =&gt; ({
+  useRestaurant: vi.fn()
+}));
+
+vi.mock('../../components/RestaurantHeader', () =&gt; ({
+    default: vi.fn(() =&gt; (
+      &lt;div data-testid=&quot;mock-restaurant-header&quot;&gt;
+        Mock RestaurantHeader
+      &lt;/div&gt;
+    ))
+  }));
+  
+import { useRestaurant } from '../../services/restaurant/hooks';
+
+const mockRestaurantData = {
+  data: {
+    _id: '1',
+    name: 'Test Restaurant',
+    slug: 'test-restaurant',
+    images: { owner: 'owner.jpg' },
+  },
+  isPending: false,
+  error: null
+};
+
+const renderWithRouter = (ui, { route = '/restaurants/test-restaurant' } = {}) =&gt; {
+  window.history.pushState({}, 'Test page', route)
+  return render(
+    ui,
+    { wrapper: ({ children }) =&gt; &lt;MemoryRouter initialEntries={[route]}&gt;{children}&lt;/MemoryRouter&gt; }
+  );
+};
+
+describe('RestaurantOrder component', () =&gt; {
+  it('renders loading state', () =&gt; {
+    useRestaurant.mockReturnValue({ data: null, isPending: true, error: null });
+    renderWithRouter(&lt;RestaurantOrder /&gt;);
+    expect(screen.getByText(/Loading restaurant…/i)).toBeInTheDocument();
+  });
+
+  it('renders error state', () =&gt; {
+    useRestaurant.mockReturnValue({ data: null, isPending: false, error: { message: 'Error loading' } });
+    renderWithRouter(&lt;RestaurantOrder /&gt;);
+    expect(screen.getByText(/Error loading restaurant/i)).toBeInTheDocument();
+  });
+
+  it('renders no restaurant found state', () =&gt; {
+    useRestaurant.mockReturnValue({ data: null, isPending: false, error: null });
+    renderWithRouter(&lt;RestaurantOrder /&gt;);
+    expect(screen.getByText(/No restaurant found/i)).toBeInTheDocument();
+  });
+
+  it('renders the RestaurantHeader when data is available', () =&gt; {
+    useRestaurant.mockReturnValue(mockRestaurantData);
+    renderWithRouter(&lt;RestaurantOrder /&gt;);
+
+    expect(screen.getByTestId('mock-restaurant-header')).toBeInTheDocument();
+  });
+});
+
+</code></pre>
+<h4>Exercise</h4>
+<p>Refactor the router config in <strong>src/main.tsx</strong> to contain the new RestaurantOrder components. You will need to come up with the route path on your own.</p>
+<p>Add a link to the order page inside the <code>ListItem</code> component.</p>
+<h4>Solution</h4>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/main.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import React from 'react'
+import ReactDOM from 'react-dom/client'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Home from './pages/Home'
+import RestaurantDetails from './pages/RestaurantDetails'
+import RestaurantList from './pages/RestaurantList'
+import RestaurantOrder from './pages/RestaurantOrder'
+import App from './App.tsx'
+import './index.css'
+
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: &lt;App /&gt;,
+      children: [
+        {
+          index: true,
+          element: &lt;Home /&gt;,
+        },
+        {
+          path: '/restaurants',
+          children: [
+            {
+              path: '/',
+              element: &lt;RestaurantList /&gt;,
+            },
+            {
+              path: '/:slug',
+              element: &lt;RestaurantDetails /&gt;,
+            },
+            {
+              path: '/:slug/order',
+              element: &lt;RestaurantOrder /&gt;,
+            },
+          ],
+        },
+      ],
+    },
+  ],
+  {
+    basename: import.meta.env.BASE_URL,
+  },
+)
+
+ReactDOM.createRoot(document.getElementById('root')!).render(
+  &lt;React.StrictMode&gt;
+    &lt;RouterProvider router={router} /&gt;
+  &lt;/React.StrictMode&gt;,
+)
+</code></pre>
+<pre><code class="language-tsx">import { Link } from &quot;react-router-dom&quot;;
+
+interface ListItemProps {
+    address?: {
+        city: string;
+        state: string;
+        street: string;
+        zip: string;
+    };
+    name: string;
+    slug: string;
+    thumbnail: string;
+}
+
+const ListItem: React.FC&lt;ListItemProps&gt; = ({ address, name, slug, thumbnail }) =&gt; {
+    return (
+        &lt;&gt;
+            &lt;div className=&quot;restaurant&quot;&gt;
+                &lt;img src={thumbnail} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+                &lt;h3&gt;{name}&lt;/h3&gt;
+
+                {address &amp;&amp; (
+                    &lt;div className=&quot;address&quot;&gt;
+                        {address.street}
+                        &lt;br /&gt;
+                        {address.city}, {address.state} {address.zip}
+                    &lt;/div&gt;
+                )}
+
+                &lt;div className=&quot;hours-price&quot;&gt;
+                    $$$
+                    &lt;br /&gt;
+                    Hours: M-F 10am-11pm
+                    &lt;span className=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
+                &lt;/div&gt;
+
+                &lt;Link className=&quot;btn&quot; to={`/restaurants/${slug}`}&gt;
+                    Details
+                &lt;/Link&gt;
+                &lt;br /&gt;
+            &lt;/div&gt;
+        &lt;/&gt;
+    )
+}
+
+export default ListItem
+</code></pre>
+<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/01-solution?file=src/main.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/01-solution?file=src/main.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Next steps</h2>
-<p>TODO</p>
+<p>Next we'll learn to handle form data.</p>
 
 </section>
 
