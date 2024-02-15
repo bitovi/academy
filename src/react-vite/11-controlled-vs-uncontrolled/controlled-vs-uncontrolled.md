@@ -30,9 +30,10 @@ the `defaultValue` prop.
 
 An input is **controlled** when both its `value`, or `checked`, and `onChange` props have values
 set; the term "controlled" refers to the fact that the value of the input is controlled by React.
-Most of the time `<input>` components are controlled and their value is stored in a state variable.
+Most of the time, `<input>` components are controlled, and their value is stored in a state
+variable.
 
-> If an `<input>` only has the `value` or `onChange` prop set React will log a warning to the
+> If an `<input>` only has the `value` or `onChange` prop set, React will log a warning to the
 > console in development mode.
 
 ```jsx
@@ -47,43 +48,43 @@ const ControlledInput: React.FC = () => {
 ```
 
 Controlled components aren't allowed to have a value of `null` or `undefined`. To set an input with
-"no value" use an empty string: `""`.
+"no value," use an empty string: `""`.
 
 #### Working with events
 
-In the previous example the input prop `onChange` had its value set to a function known as an "event
-handler."
+In the previous example, the input prop `onChange` had its value set to a function known as an
+"event handler."
 
 ```jsx
 onChange={(event) => setName(event.target.value)}
 ```
 
 The `onChange` prop requires a function that implements the `ChangeEventHandler` interface. When an
-event handler is called it receives an argument named "event" which is a `SyntheticEvent` defined by
-React. While a `SyntheticEvent` is similar to a native DOM `Event`, and has many of the same
+event handler is called, it receives an argument named "event", which is a `SyntheticEvent` defined
+by React. While a `SyntheticEvent` is similar to a native DOM `Event` and has many of the same
 properties, they are not identical.
 
 A `ChangeEvent` — derived from `SyntheticEvent` — is the event argument provided to a
-`ChangeEventHandler`. A `ChangeEvent` always has a property named `target` which references the
-component that emitted the event. As you can see above it's possible to get the `target`'s new value
-using its `value` property.
+`ChangeEventHandler`. A `ChangeEvent` always has a property named `target` that references the
+component that emitted the event. As you can see above, it's possible to get the `target`'s new
+value using its `value` property.
 
 #### TypeScript's `Record` interface
 
-In our upcoming exercise we want to store information in a JavaScript object. We also want to use
+In our upcoming exercise, we want to store information in a JavaScript object. We also want to use
 TypeScript so we can constrain the types used as keys and values. TypeScript provides a handy
-interface named `Record` which we can use. `Record` is a generic interface that requires two types:
-the first is the type of the keys and the second is the type of the values. For example, if we're
-recording class attendance we might capture the student's name and whether or not they attended in
-state like this:
+interface named `Record` that we can use. `Record` is a generic interface that requires two types:
+the first is the type of the keys, and the second is the type of the values. For example, if we're
+recording the items in a list that are selected, we might capture the item's name and whether or not
+it's selected like this:
 
 ```jsx
-const [attendance, setAttendance] = useState<Record<string, boolean>>({});
+const [selected, setSelected] = useState<Record<string, boolean>>({});
 ```
 
 We've explicitly defined the type of `useState` as a `Record<string, boolean>`; all the keys must be
-strings and all the values must be booleans. Fortunately JavaScript's `object` implements the
-`Record` interface so we can set the default value to an empty `object` instance. Now let's see how
+strings, and all the values must be booleans. Fortunately, JavaScript's `object` implements the
+`Record` interface, so we can set the default value to an empty `object` instance. Now let's see how
 we can use a `Record` to store state data.
 
 #### Set state using a function
@@ -91,29 +92,29 @@ we can use a `Record` to store state data.
 One challenge we face when using an `object` for state is that we probably need to merge the current
 state value with the new state value. Why? Imagine we have a state object that already has multiple
 keys and values, and we need to add a new key and value. Well, we're in luck! React already has a
-solution for this: the set function returned by `useState` will accept a function, called an
-**updater function** that's passed the "pending" state value and returns a "next" state value.
+solution for this: the set function returned by `useState` will accept a function called an "updater
+function" that's passed the "pending" state value and returns a "next" state value.
 
 ```jsx
-const [value, setValue] = useState<Record<string, boolean>>({});
-setValue((pending) => { /* Do something with the pending state value and return a next state value. */ });
+const [selected, setSelected] = useState<Record<string, boolean>>({});
+setSelected((pending) => { /* Do something with the pending state value and return a next state value. */ });
 ```
 
-In the example below the `onChange` event handler calls `handleAttendanceChange` which accepts a
-name string and a boolean. In turn `handleAttendanceChange` calls `setAttendance` with an updater
-function as its argument. In the updater function the contents of the next state object are
-initially set by spreading the contents of the pending state object. Then the value provided by the
-input is set on the next state value object.
+In the example below, the `onChange` event handler calls `handleSelectedChange`, which accepts a
+name string and a boolean. In turn, `handleSelectedChange` calls `setSelected` with an updater
+function as the argument. In the updater function, the contents of the next state object are
+initially set by spreading the contents of the pending state object. Then the value of `checked`
+provided by the input is set on the next state value object.
 
 ```jsx
-const Attendance: React.FC = () => {
-  const [attendance, setAttendance] = useState<Record<string, boolean>>({});
+const Selected: React.FC = () => {
+  const [selected, setSelected] = useState<Record<string, boolean>>({});
 
-  function handleAttendanceChange(name: string, value: string | boolean){
-    setAttendance((current) => {
+  function handleSelectedChange(name: string, isSelected: boolean){
+    setSelected((current) => {
       return {
         ...current,
-        [name]: value
+        [name]: isSelected
       }
     })
   }
@@ -121,12 +122,12 @@ const Attendance: React.FC = () => {
   return (
     <form>
       {
-        studentNames.map((studentName) => {
+        items.map((item) => {
           return (
-            <label>{studentName}:
+            <label>{item.name}:
               <input
-                onChange={(event) => handleAttendanceChange(studentName, event.target.checked)}
-                value={attendance[studentName]}
+                onChange={(event) => handleSelectedChange(item.name, event.target.checked)}
+                checked={selected[item.name]}
                 type="checkbox"
               />
             </label>
@@ -138,11 +139,41 @@ const Attendance: React.FC = () => {
 }
 ```
 
-TODO: DO NOT MUTATE PENDING STATE!!!
+#### Updating reference types and rendering
+
+We'd like to call your attention again to how the updater function works in the example above. The
+updater function **does not mutate** the pending object, then return it; instead, it makes a new
+object and populates it with the contents of the pending object. This is an important detail
+because, after the updater function runs React will compare the values of the pending and next
+objects to determine if they are different. If they are **different**, React will render the
+`Selected` component; if they are the same React will do nothing.
+
+The same rules apply when state is an array, create a new array, and update the contents of the new
+array.
+
+```jsx
+// Adding an item when state (`pending`) is an array.
+setSelectedOrders(pending => {
+  const next = [...pending, newOrder];
+  return next;
+});
+
+// Replacing an item when state (`pending`) is an array.
+setUpdatedRestaurant(pending => {
+  const next = [
+    ...pending.filter(item => item.id !== updatedRestaurant.id),
+    updatedRestaurant
+  ];
+  return next;
+});
+
+```
+
+> Now may be a good time to brush up on how different JavaScript types are compared for equality.
+
+OK, that was a lot. Let's start making some code changes so we can select menu items for an order.
 
 ### Setup
-
-TODO
 
 ✏️ Update **src/pages/RestaurantOrder/RestaurantOrder.tsx** to be:
 
@@ -150,19 +181,17 @@ TODO
 
 ### Verify
 
-TODO
+These tests will pass when the solution has been implemented properly.
 
-✏️ Update **src/pages/RestaurantOrder/RestaurantOrder.test.tsx.tsx** to be:
+✏️ Update **src/pages/RestaurantOrder/RestaurantOrder.test.tsx** to be:
 
 @diff ../../../exercises/react-vite/10-nested-routes/02-solution/src/pages/RestaurantOrder/RestaurantOrder.test.tsx ../../../exercises/react-vite/11-controlled-vs-uncontrolled/01-solution/src/pages/RestaurantOrder/RestaurantOrder.test.tsx only
 
 ### Exercise
 
-TODO
-
 - Add `newOrder` state so that when menu items are selected, the state will look like:
 
-```
+```ts
 {
   items: {
     "Menu item 1 name": 1.23,// Menu item 1 price
@@ -172,10 +201,14 @@ TODO
 ```
 
 - Add the `onChange` listener to all the checkboxes.
-
 - Add the `checked` prop to all the checkboxes.
-
 - Update `subtotal` to use the `calculateTotal` helper function.
+
+**Having issues with your local setup?** You can use either
+[StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/01-problem?file=src%2Fpages%2FRestaurantOrder%2FRestaurantOrder.tsx)
+or
+[CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/01-problem?file=src%2Fpages%2FRestaurantOrder%2FRestaurantOrder.tsx)
+to do this exercise in an online code editor.
 
 ### Solution
 
