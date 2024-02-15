@@ -562,9 +562,10 @@ set, and it does not have a handler set for the <code>onChange</code> prop; an i
 the <code>defaultValue</code> prop.</p>
 <p>An input is <strong>controlled</strong> when both its <code>value</code>, or <code>checked</code>, and <code>onChange</code> props have values
 set; the term &quot;controlled&quot; refers to the fact that the value of the input is controlled by React.
-Most of the time <code>&lt;input&gt;</code> components are controlled and their value is stored in a state variable.</p>
+Most of the time, <code>&lt;input&gt;</code> components are controlled, and their value is stored in a state
+variable.</p>
 <blockquote>
-<p>If an <code>&lt;input&gt;</code> only has the <code>value</code> or <code>onChange</code> prop set React will log a warning to the
+<p>If an <code>&lt;input&gt;</code> only has the <code>value</code> or <code>onChange</code> prop set, React will log a warning to the
 console in development mode.</p>
 </blockquote>
 <pre><code class="language-jsx">const ControlledInput: React.FC = () =&gt; {
@@ -577,55 +578,55 @@ console in development mode.</p>
 }
 </code></pre>
 <p>Controlled components aren't allowed to have a value of <code>null</code> or <code>undefined</code>. To set an input with
-&quot;no value&quot; use an empty string: <code>&quot;&quot;</code>.</p>
+&quot;no value,&quot; use an empty string: <code>&quot;&quot;</code>.</p>
 <h4>Working with events</h4>
-<p>In the previous example the input prop <code>onChange</code> had its value set to a function known as an &quot;event
-handler.&quot;</p>
+<p>In the previous example, the input prop <code>onChange</code> had its value set to a function known as an
+&quot;event handler.&quot;</p>
 <pre><code class="language-jsx">onChange={(event) =&gt; setName(event.target.value)}
 </code></pre>
 <p>The <code>onChange</code> prop requires a function that implements the <code>ChangeEventHandler</code> interface. When an
-event handler is called it receives an argument named &quot;event&quot; which is a <code>SyntheticEvent</code> defined by
-React. While a <code>SyntheticEvent</code> is similar to a native DOM <code>Event</code>, and has many of the same
+event handler is called, it receives an argument named &quot;event&quot;, which is a <code>SyntheticEvent</code> defined
+by React. While a <code>SyntheticEvent</code> is similar to a native DOM <code>Event</code> and has many of the same
 properties, they are not identical.</p>
 <p>A <code>ChangeEvent</code> — derived from <code>SyntheticEvent</code> — is the event argument provided to a
-<code>ChangeEventHandler</code>. A <code>ChangeEvent</code> always has a property named <code>target</code> which references the
-component that emitted the event. As you can see above it's possible to get the <code>target</code>'s new value
-using its <code>value</code> property.</p>
+<code>ChangeEventHandler</code>. A <code>ChangeEvent</code> always has a property named <code>target</code> that references the
+component that emitted the event. As you can see above, it's possible to get the <code>target</code>'s new
+value using its <code>value</code> property.</p>
 <h4>TypeScript's <code>Record</code> interface</h4>
-<p>In our upcoming exercise we want to store information in a JavaScript object. We also want to use
+<p>In our upcoming exercise, we want to store information in a JavaScript object. We also want to use
 TypeScript so we can constrain the types used as keys and values. TypeScript provides a handy
-interface named <code>Record</code> which we can use. <code>Record</code> is a generic interface that requires two types:
-the first is the type of the keys and the second is the type of the values. For example, if we're
-recording class attendance we might capture the student's name and whether or not they attended in
-state like this:</p>
-<pre><code class="language-jsx">const [attendance, setAttendance] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
+interface named <code>Record</code> that we can use. <code>Record</code> is a generic interface that requires two types:
+the first is the type of the keys, and the second is the type of the values. For example, if we're
+recording the items in a list that are selected, we might capture the item's name and whether or not
+it's selected like this:</p>
+<pre><code class="language-jsx">const [selected, setSelected] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
 </code></pre>
 <p>We've explicitly defined the type of <code>useState</code> as a <code>Record&lt;string, boolean&gt;</code>; all the keys must be
-strings and all the values must be booleans. Fortunately JavaScript's <code>object</code> implements the
-<code>Record</code> interface so we can set the default value to an empty <code>object</code> instance. Now let's see how
+strings, and all the values must be booleans. Fortunately, JavaScript's <code>object</code> implements the
+<code>Record</code> interface, so we can set the default value to an empty <code>object</code> instance. Now let's see how
 we can use a <code>Record</code> to store state data.</p>
 <h4>Set state using a function</h4>
 <p>One challenge we face when using an <code>object</code> for state is that we probably need to merge the current
 state value with the new state value. Why? Imagine we have a state object that already has multiple
 keys and values, and we need to add a new key and value. Well, we're in luck! React already has a
-solution for this: the set function returned by <code>useState</code> will accept a function, called an
-<strong>updater function</strong> that's passed the &quot;pending&quot; state value and returns a &quot;next&quot; state value.</p>
-<pre><code class="language-jsx">const [value, setValue] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
-setValue((pending) =&gt; { /* Do something with the pending state value and return a next state value. */ });
+solution for this: the set function returned by <code>useState</code> will accept a function called an &quot;updater
+function&quot; that's passed the &quot;pending&quot; state value and returns a &quot;next&quot; state value.</p>
+<pre><code class="language-jsx">const [selected, setSelected] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
+setSelected((pending) =&gt; { /* Do something with the pending state value and return a next state value. */ });
 </code></pre>
-<p>In the example below the <code>onChange</code> event handler calls <code>handleAttendanceChange</code> which accepts a
-name string and a boolean. In turn <code>handleAttendanceChange</code> calls <code>setAttendance</code> with an updater
-function as its argument. In the updater function the contents of the next state object are
-initially set by spreading the contents of the pending state object. Then the value provided by the
-input is set on the next state value object.</p>
-<pre><code class="language-jsx">const Attendance: React.FC = () =&gt; {
-  const [attendance, setAttendance] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
+<p>In the example below, the <code>onChange</code> event handler calls <code>handleSelectedChange</code>, which accepts a
+name string and a boolean. In turn, <code>handleSelectedChange</code> calls <code>setSelected</code> with an updater
+function as the argument. In the updater function, the contents of the next state object are
+initially set by spreading the contents of the pending state object. Then the value of <code>checked</code>
+provided by the input is set on the next state value object.</p>
+<pre><code class="language-jsx">const Selected: React.FC = () =&gt; {
+  const [selected, setSelected] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
 
-  function handleAttendanceChange(name: string, value: string | boolean){
-    setAttendance((current) =&gt; {
+  function handleSelectedChange(name: string, isSelected: boolean){
+    setSelected((current) =&gt; {
       return {
         ...current,
-        [name]: value
+        [name]: isSelected
       }
     })
   }
@@ -633,12 +634,12 @@ input is set on the next state value object.</p>
   return (
     &lt;form&gt;
       {
-        studentNames.map((studentName) =&gt; {
+        items.map((item) =&gt; {
           return (
-            &lt;label&gt;{studentName}:
+            &lt;label&gt;{item.name}:
               &lt;input
-                onChange={(event) =&gt; handleAttendanceChange(studentName, event.target.checked)}
-                value={attendance[studentName]}
+                onChange={(event) =&gt; handleSelectedChange(item.name, event.target.checked)}
+                checked={selected[item.name]}
                 type=&quot;checkbox&quot;
               /&gt;
             &lt;/label&gt;
@@ -649,9 +650,36 @@ input is set on the next state value object.</p>
   )
 }
 </code></pre>
-<p>TODO: DO NOT MUTATE PENDING STATE!!!</p>
+<h4>Updating reference types and rendering</h4>
+<p>We'd like to call your attention again to how the updater function works in the example above. The
+updater function <strong>does not mutate</strong> the pending object, then return it; instead, it makes a new
+object and populates it with the contents of the pending object. This is an important detail
+because, after the updater function runs React will compare the values of the pending and next
+objects to determine if they are different. If they are <strong>different</strong>, React will render the
+<code>Selected</code> component; if they are the same React will do nothing.</p>
+<p>The same rules apply when state is an array, create a new array, and update the contents of the new
+array.</p>
+<pre><code class="language-jsx">// Adding an item when state (`pending`) is an array.
+setSelectedOrders(pending =&gt; {
+  const next = [...pending, newOrder];
+  return next;
+});
+
+// Replacing an item when state (`pending`) is an array.
+setUpdatedRestaurant(pending =&gt; {
+  const next = [
+    ...pending.filter(item =&gt; item.id !== updatedRestaurant.id),
+    updatedRestaurant
+  ];
+  return next;
+});
+
+</code></pre>
+<blockquote>
+<p>Now may be a good time to brush up on how different JavaScript types are compared for equality.</p>
+</blockquote>
+<p>OK, that was a lot. Let's start making some code changes so we can select menu items for an order.</p>
 <h3>Setup</h3>
-<p>TODO</p>
 <p>✏️ Update <strong>src/pages/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useState } from &quot;react&quot;
 import { useParams } from &quot;react-router-dom&quot;
@@ -752,8 +780,8 @@ export default RestaurantOrder
 </code></pre>
  <div line-highlight="1,6,8-9,37,46-49,51-64,66-79,81-84,88,90-94,only"></div>
 <h3>Verify</h3>
-<p>TODO</p>
-<p>✏️ Update <strong>src/pages/RestaurantOrder/RestaurantOrder.test.tsx.tsx</strong> to be:</p>
+<p>These tests will pass when the solution has been implemented properly.</p>
+<p>✏️ Update <strong>src/pages/RestaurantOrder/RestaurantOrder.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
@@ -858,11 +886,10 @@ describe('RestaurantOrder component', () =&gt; {
 </code></pre>
  <div line-highlight="3,29-38,78-80,82-85,87-89,91-92,94,96,98-99,only"></div>
 <h3>Exercise</h3>
-<p>TODO</p>
 <ul>
 <li>Add <code>newOrder</code> state so that when menu items are selected, the state will look like:</li>
 </ul>
-<pre><code>{
+<pre><code class="language-ts">{
   items: {
     &quot;Menu item 1 name&quot;: 1.23,// Menu item 1 price
     &quot;Menu item 2 name&quot;: 4.56,// Menu item 2 price
@@ -870,14 +897,18 @@ describe('RestaurantOrder component', () =&gt; {
 }
 </code></pre>
 <ul>
-<li><p>Add the <code>onChange</code> listener to all the checkboxes.</p></li>
-<li><p>Add the <code>checked</code> prop to all the checkboxes.</p></li>
-<li><p>Update <code>subtotal</code> to use the <code>calculateTotal</code> helper function.</p></li>
+<li>Add the <code>onChange</code> listener to all the checkboxes.</li>
+<li>Add the <code>checked</code> prop to all the checkboxes.</li>
+<li>Update <code>subtotal</code> to use the <code>calculateTotal</code> helper function.</li>
 </ul>
+<p><strong>Having issues with your local setup?</strong> You can use either
+<a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/01-problem?file=src%2Fpages%2FRestaurantOrder%2FRestaurantOrder.tsx">StackBlitz</a>
+or
+<a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/01-problem?file=src%2Fpages%2FRestaurantOrder%2FRestaurantOrder.tsx">CodeSandbox</a>
+to do this exercise in an online code editor.</p>
 <h3>Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>TODO</p>
 <p>✏️ Update <strong>src/pages/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useState } from &quot;react&quot;
 import { useParams } from &quot;react-router-dom&quot;
@@ -1004,18 +1035,10 @@ export default RestaurantOrder
  <div line-highlight="17-19,41-56,58,78-79,95-96,only"></div>
 <p></details></p>
 <h2>Objective 2: Create a reusable text field component</h2>
-<p>TODO</p>
-<h3>Key concepts</h3>
-<ul>
-<li>Custom input components and onChange function props.</li>
-</ul>
-<p>TODO: I think most of this exercise is stuff they’ve already done and not anything new? Maybe we just need reminders here, or not? I can figure this out when making the slides.</p>
-<h4>Concept 1</h4>
-<p>TODO</p>
-<h4>Concept 2</h4>
-<p>TODO</p>
+<p>The order form is going to be made up of many input fields with labels. Rather than repeat multiple
+components let's compose that structure in a single component named <code>FormTextField</code>. Creating this
+component will involve using some of what we've learned from prior lessons.</p>
 <h3>Setup</h3>
-<p>TODO</p>
 <p>✏️ Create <strong>src/components/FormTextField/FormTextField.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { useId } from &quot;react&quot;
 
@@ -1033,7 +1056,7 @@ export default FormTextField
 </code></pre>
 <div line-highlight='1'></div>
 <h3>Verify</h3>
-<p>TODO</p>
+<p>These tests will pass when the solution has been implemented properly.</p>
 <p>✏️ Create <strong>src/components/FormTextField/FormTextField.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
@@ -1077,11 +1100,33 @@ describe('FormTextField component', () =&gt; {
 </code></pre>
 <div line-highlight='10-39, only'></div>
 <h3>Exercise</h3>
-<p>TODO</p>
+<ul>
+<li><code>FormTextField</code>:
+<ul>
+<li>has the following props: <code>label</code>, <code>onChange</code>, <code>type</code>, and <code>value</code>.</li>
+<li>returns a <code>&lt;div&gt;</code> with the class name &quot;form-group&quot;.</li>
+<li><code>&lt;div&gt;</code> contains a <code>&lt;label&gt;</code> and <code>&lt;input&gt;</code> that are paired by a unique id</li>
+</ul></li>
+<li>The <code>&lt;label&gt;</code> will:
+<ul>
+<li>have its text set by a prop</li>
+<li>have its text positioned to the left of the input and will have a colon (:) appended</li>
+<li>include the class name &quot;control-label&quot;</li>
+</ul></li>
+<li>The <code>&lt;input&gt;</code> will:
+<ul>
+<li>have its props set by <code>FormTextField</code> props</li>
+<li>include the class name &quot;form-control&quot;</li>
+</ul></li>
+</ul>
+<p><strong>Having issues with your local setup?</strong> You can use either
+<a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/02-problem?file=src%2Fcomponents%2FFormTextField%2FFormTextField.tsx">StackBlitz</a>
+or
+<a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/02-problem?file=src%2Fcomponents%2FFormTextField%2FFormTextField.tsx">CodeSandbox</a>
+to do this exercise in an online code editor.</p>
 <h3>Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>TODO</p>
 <p>✏️ Update <strong>src/components/FormTextField/FormTextField.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useId } from &quot;react&quot;
 
@@ -1115,9 +1160,10 @@ export default FormTextField
  <div line-highlight="4-9,12-15,17-24,only"></div>
 <p></details></p>
 <h2>Objective 3: Integrate <code>FormTextField</code> into <code>RestaurantOrder</code> and submit the form</h2>
-<p>TODO</p>
+<p>Finally we'll update the form to incorporate the <code>FormTextField</code> component so users can create and
+submit an order to the restaurant. We need to fill the form with input fields and handle the submit
+button.</p>
 <h3>Key concepts</h3>
-<p>TODO</p>
 <ul>
 <li>Form submission: submit button, onSubmit handler, and managing the submit
 event.</li>
