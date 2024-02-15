@@ -602,17 +602,16 @@ export default App;
 <div line-highlight='1, 5-6, only'></div>
 <p>The <code>useMatch</code> Hook from <code>react-router-dom</code> allowed us to check whether a given
 path “matched” the current route.</p>
-<p>React imposes a couple rules around the use of Hooks:</p>
+<p>React imposes several rules around the use of Hooks:</p>
 <ul>
 <li><p><strong>First,</strong> only call Hooks from functional React components or your own custom Hook.</p></li>
 <li><p><strong>Second,</strong> all the Hooks in a React function must be invoked in the
 same order every time the function runs, so no Hooks can occur after an <code>if</code>,
 <code>loop</code>, or <code>return</code> statement. Typically this means all Hooks are placed at the
 top of the React function body.</p></li>
+<li><p><strong>Third,</strong> Hooks should be named by prefixing their functionality with <code>use</code>
+(e.g. <code>useMatch</code>).</p></li>
 </ul>
-<p>Although not a requirement, a naming convention for Hooks is imposed by the
-community: Hooks should be named by prefixing their functionality with <code>use</code>
-(e.g. <code>useMatch</code>).</p>
 <p>Hooks can only be used in functional components. Almost anything that could be
 done in a class component can be done with Hooks. <em>The one thing that class
 component can do that Hooks cannot is implement error boundaries.</em></p>
