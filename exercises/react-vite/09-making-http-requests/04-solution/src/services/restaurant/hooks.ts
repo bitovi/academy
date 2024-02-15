@@ -2,20 +2,20 @@ import { useEffect, useState } from 'react'
 import { apiRequest } from '../api'
 import type { City, State } from './interfaces'
 
-interface CityResponse {
+interface CitiesResponse {
   data: City[] | null;
   error: Error | null;
   isPending: boolean;
 }
 
-interface StateResponse {
+interface StatesResponse {
   data: State[] | null;
   error: Error | null;
   isPending: boolean;
 }
 
-export function useCities(state: string): CityResponse {
-  const [response, setResponse] = useState<CityResponse>({
+export function useCities(state: string): CitiesResponse {
+  const [response, setResponse] = useState<CitiesResponse>({
     data: null,
     error: null,
     isPending: true,
@@ -23,7 +23,7 @@ export function useCities(state: string): CityResponse {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data, error } = await apiRequest<CityResponse>({
+      const { data, error } = await apiRequest<CitiesResponse>({
           method: "GET",
           path: "/cities",
           params: {
@@ -43,8 +43,8 @@ export function useCities(state: string): CityResponse {
   return response
 }
 
-export function useStates(): StateResponse {
-  const [response, setResponse] = useState<StateResponse>({
+export function useStates(): StatesResponse {
+  const [response, setResponse] = useState<StatesResponse>({
     data: null,
     error: null,
     isPending: true,
@@ -52,7 +52,7 @@ export function useStates(): StateResponse {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data, error } = await apiRequest<StateResponse>({
+      const { data, error } = await apiRequest<StatesResponse>({
           method: "GET",
           path: "/states",
       })

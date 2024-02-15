@@ -22,15 +22,15 @@ const router = createBrowserRouter(
           path: '/restaurants',
           children: [
             {
-              path: '/',
+              path: '',
               element: <RestaurantList />,
             },
             {
-              path: '/:slug',
+              path: ':slug',
               element: <RestaurantDetails />,
             },
             {
-              path: '/:slug/order',
+              path: ':slug/order',
               element: <RestaurantOrder />,
             },
           ],

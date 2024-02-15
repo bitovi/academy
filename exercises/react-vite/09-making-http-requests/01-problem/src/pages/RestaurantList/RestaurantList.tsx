@@ -5,7 +5,7 @@ import ListItem from './ListItem'
 import { useCities } from '../../services/restaurant/hooks'
 import { State } from '../../services/restaurant/interfaces'
 
-interface StateResponse {
+interface StatesResponse {
   data: State[] | null;
   error: Error | null;
   isPending: boolean;

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import type { City, State } from './interfaces'
 
-interface StateResponse {
+interface StatesResponse {
   data: State[] | null;
   error: Error | null;
   isPending: boolean;
@@ -17,8 +17,8 @@ export function useCities(state: string): City[] {
   })
 }
 
-export function useStates(): StateResponse {
-  const [response, setResponse] = useState<StateResponse>({
+export function useStates(): StatesResponse {
+  const [response, setResponse] = useState<StatesResponse>({
     data: null,
     error: null,
     isPending: true,

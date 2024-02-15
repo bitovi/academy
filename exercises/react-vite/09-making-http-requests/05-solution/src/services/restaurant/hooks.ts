@@ -2,26 +2,26 @@ import { useEffect, useState } from 'react'
 import { apiRequest } from '../api'
 import type { City, Restaurant, State } from './interfaces'
 
-interface CityResponse {
+interface CitiesResponse {
   data: City[] | null;
   error: Error | null;
   isPending: boolean;
 }
 
-interface RestaurantResponse {
+interface RestaurantsResponse {
   data: Restaurant[] | null;
   error: Error | null;
   isPending: boolean;
 }
 
-interface StateResponse {
+interface StatesResponse {
   data: State[] | null;
   error: Error | null;
   isPending: boolean;
 }
 
-export function useCities(state: string): CityResponse {
-  const [response, setResponse] = useState<CityResponse>({
+export function useCities(state: string): CitiesResponse {
+  const [response, setResponse] = useState<CitiesResponse>({
     data: null,
     error: null,
     isPending: true,
@@ -29,7 +29,7 @@ export function useCities(state: string): CityResponse {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data, error } = await apiRequest<CityResponse>({
+      const { data, error } = await apiRequest<CitiesResponse>({
           method: "GET",
           path: "/cities",
           params: {
@@ -49,8 +49,8 @@ export function useCities(state: string): CityResponse {
   return response
 }
 
-export function useRestaurants(state: string, city: string): RestaurantResponse {
-  const [response, setResponse] = useState<RestaurantResponse>({
+export function useRestaurants(state: string, city: string): RestaurantsResponse {
+  const [response, setResponse] = useState<RestaurantsResponse>({
     data: null,
     error: null,
     isPending: true,
@@ -58,7 +58,7 @@ export function useRestaurants(state: string, city: string): RestaurantResponse 
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data, error } = await apiRequest<RestaurantResponse>({
+      const { data, error } = await apiRequest<RestaurantsResponse>({
           method: "GET",
           path: "/restaurants",
           params: {
@@ -79,8 +79,8 @@ export function useRestaurants(state: string, city: string): RestaurantResponse 
   return response
 }
 
-export function useStates(): StateResponse {
-  const [response, setResponse] = useState<StateResponse>({
+export function useStates(): StatesResponse {
+  const [response, setResponse] = useState<StatesResponse>({
     data: null,
     error: null,
     isPending: true,
@@ -88,7 +88,7 @@ export function useStates(): StateResponse {
 
   useEffect(() => {
     const fetchData = async () => {
-      const { data, error } = await apiRequest<StateResponse>({
+      const { data, error } = await apiRequest<StatesResponse>({
           method: "GET",
           path: "/states",
       })

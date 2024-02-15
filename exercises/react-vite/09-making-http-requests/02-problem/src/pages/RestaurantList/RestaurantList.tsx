@@ -4,7 +4,7 @@ import { useState } from 'react'
 import ListItem from './ListItem'
 import { useCities, useStates } from '../../services/restaurant/hooks'
 
-interface StateResponse {
+interface StatesResponse {
   data: State[] | null;
   error: Error | null;
   isPending: boolean;
@@ -14,7 +14,7 @@ const RestaurantList: React.FC = () => {
   const [state, setState] = useState("")
   const [city, setCity] = useState("")
 
-  const [statesResponse, setStatesResponse] = useState<StateResponse>({
+  const [statesResponse, setStatesResponse] = useState<StatesResponse>({
     data: null,
     error: null,
     isPending: true,

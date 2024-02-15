@@ -2,7 +2,7 @@
 @parent learn-react-vite 10
 @outline 3
 
-@description TODO
+@description Learn how to have child routes within parent routes.
 
 @body
 
@@ -29,6 +29,10 @@ You could create this sort of page without nested routes, but using nested route
 
 ## Objective 1: Create a nested route
 
+We want to have a component to display individual restaurants details, and want the path to be nested under the restaurants path.
+
+<img alt="Screenshot of a “place-my-order.com” webpage with a nested route, displaying the “/restaurants/crab-shack” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/objective.png" style="max-width: 640px;"/>
+
 ### Key concepts
 
 - Creating a nested routing configuration
@@ -39,8 +43,7 @@ You could create this sort of page without nested routes, but using nested route
 Recall our router config from the [first React Router lesson](./routing.html).
 
 @sourceref ../../../exercises/react-vite/06-routing/01-solution/src/main.tsx
-@highlight 10-25
-
+@highlight 10-25, only
 
 Notice that our home and about pages are under the `children` key. These are actually nested routes of the root path. Route children can accept a `children` property themselves, on and on, until the browser runs out of resources.
 
@@ -53,7 +56,6 @@ const router = createBrowserRouter(
       path: '/',
       element: <App />,
       children: [
-        ...
         {
           path: 'product',
           element: <ProductPage />,
@@ -70,7 +72,6 @@ const router = createBrowserRouter(
               index: "support",
               element: <Support />,
             },
-            ...
           ]
         },
       ],
@@ -81,6 +82,7 @@ const router = createBrowserRouter(
   },
 )
 ```
+@highlight 6, 10-23, only
 
 #### Folder structure
 
@@ -121,11 +123,53 @@ Let's reorganize the existing `/restaurants` routes so they are nested. For this
 
 #### Setup
 
-No additional setup needed.
+✏️ Create **src/components/RestaurantHeader/index.ts** and update it to be:
+
+@sourceref ../../../exercises/react-vite/10-nested-routes/01-solution/src/components/RestaurantHeader/index.ts
+
+✏️ Create **src/components/RestaurantHeader/RestaurantHeader.tsx** and update it to be:
+
+@sourceref ../../../exercises/react-vite/10-nested-routes/01-solution/src/components/RestaurantHeader/RestaurantHeader.tsx
+
+✏️ Create **src/pages/RestaurantDetails/index.ts** and update it to be:
+
+@sourceref ../../../exercises/react-vite/10-nested-routes/01-solution/src/pages/RestaurantDetails/index.ts
+
+✏️ Create **src/pages/RestaurantDetails/RestaurantDetails.tsx** and update it to be:
+
+@sourceref ../../../exercises/react-vite/10-nested-routes/01-solution/src/pages/RestaurantDetails/RestaurantDetails.tsx
+
+✏️ Update **src/pages/RestaurantList/ListItem.tsx** to be:
+
+@diff ../../../exercises/react-vite/09-making-http-requests/05-solution/src/pages/RestaurantList/ListItem.tsx ../../../exercises/react-vite/10-nested-routes/01-solution/src/pages/RestaurantList/ListItem.tsx only
+
+✏️ Update **src/services/restaurant/hooks.ts** to be:
+
+@diff ../../../exercises/react-vite/09-making-http-requests/05-solution/src/services/restaurant/hooks.ts ../../../exercises/react-vite/10-nested-routes/01-solution/src/services/restaurant/hooks.ts only
 
 #### Verify
 
 The existing test already cover routing, so no new tests are needed. Ensure the existing tests pass when you run `npm run test`.
+
+✏️ Create **src/components/RestaurantHeader/RestaurantHeader.test.tsx** and update it to be:
+
+@sourceref ../../../exercises/react-vite/10-nested-routes/01-solution/src/components/RestaurantHeader/RestaurantHeader.test.tsx
+
+✏️ Create **src/pages/RestaurantDetails/RestaurantDetails.test.tsx** and update it to be:
+
+@sourceref ../../../exercises/react-vite/10-nested-routes/01-solution/src/pages/RestaurantDetails/RestaurantDetails.test.tsx
+
+✏️ Update **src/pages/RestaurantList/ListItem.test.tsx** to be:
+
+@diff ../../../exercises/react-vite/09-making-http-requests/05-solution/src/pages/RestaurantList/ListItem.test.tsx ../../../exercises/react-vite/10-nested-routes/01-solution/src/pages/RestaurantList/ListItem.test.tsx only
+
+✏️ Update **src/pages/RestaurantList/RestaurantList.test.tsx** to be:
+
+@diff ../../../exercises/react-vite/09-making-http-requests/05-solution/src/pages/RestaurantList/RestaurantList.test.tsx ../../../exercises/react-vite/10-nested-routes/01-solution/src/pages/RestaurantList/RestaurantList.test.tsx only
+
+✏️ Update **src/services/restaurant/hooks.test.ts** to be:
+
+@diff ../../../exercises/react-vite/09-making-http-requests/05-solution/src/services/restaurant/hooks.test.ts ../../../exercises/react-vite/10-nested-routes/01-solution/src/services/restaurant/hooks.test.ts only
 
 #### Exercise
 
@@ -138,7 +182,7 @@ Refactor the router config in **src/main.tsx** to nest the restaurant routes.
 
 ✏️ Update **src/main.tsx** to be:
 
-@diff ../../../exercises/react-vite/10-nested-routes/01-solution/src/main.tsx ../../../exercises/react-vite/10-nested-routes/01-solution/src/main.tsx only
+@diff ../../../exercises/react-vite/09-making-http-requests/05-solution/src/main.tsx ../../../exercises/react-vite/10-nested-routes/01-solution/src/main.tsx only
 
 <strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/01-solution?file=src/main.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/01-solution?file=src/main.tsx).
 
@@ -152,20 +196,19 @@ We learned to create nested routes, let's practice by adding another page to our
 
 Add the order page files.
 
-✏️ Add **src/pages/RestaurantOrder/index.ts** :
+✏️ Create **src/pages/RestaurantOrder/index.ts** and update it to be:
 
-@diff ../../../exercises/react-vite/10-nested-routes/02-solution/src/pages/RestaurantOrder/index.ts ../../../exercises/react-vite/10-nested-routes/02-solution/src/pages/RestaurantOrder/index.ts only
+@sourceref ../../../exercises/react-vite/10-nested-routes/02-solution/src/pages/RestaurantOrder/index.ts
 
-✏️ Add **src/pages/RestaurantOrder/RestaurantOrder.tsx** :
+✏️ Create **src/pages/RestaurantOrder/RestaurantOrder.tsx** and update it to be:
 
-@diff ../../../exercises/react-vite/10-nested-routes/02-solution/src/pages/RestaurantOrder/RestaurantOrder.tsx ../../../exercises/react-vite/10-nested-routes/02-solution/src/pages/RestaurantOrder/RestaurantOrder.tsx only
-
+@sourceref ../../../exercises/react-vite/10-nested-routes/02-solution/src/pages/RestaurantOrder/RestaurantOrder.tsx
 
 #### Verify
 
-✏️ Add **src/pages/RestaurantOrder/RestaurantOrder.test.tsx** :
+✏️ Create **src/pages/RestaurantOrder/RestaurantOrder.test.tsx** and update it to be:
 
-@diff ../../../exercises/react-vite/10-nested-routes/02-solution/src/pages/RestaurantOrder/RestaurantOrder.test.tsx ../../../exercises/react-vite/10-nested-routes/02-solution/src/pages/RestaurantOrder/RestaurantOrder.test.tsx only
+@sourceref ../../../exercises/react-vite/10-nested-routes/02-solution/src/pages/RestaurantOrder/RestaurantOrder.test.tsx
 
 #### Exercise
 
@@ -180,10 +223,7 @@ Add a link to the order page inside the `ListItem` component.
 
 ✏️ Update **src/main.tsx** to be:
 
-@diff ../../../exercises/react-vite/10-nested-routes/02-solution/src/main.tsx ../../../exercises/react-vite/10-nested-routes/02-solution/src/main.tsx only
-
-
-@diff ../../../exercises/react-vite/10-nested-routes/02-solution/src/pages/RestaurantList/ListItem.tsx ../../../exercises/react-vite/10-nested-routes/02-solution/src/pages/RestaurantList/ListItem.tsx only
+@diff ../../../exercises/react-vite/10-nested-routes/01-solution/src/main.tsx ../../../exercises/react-vite/10-nested-routes/02-solution/src/main.tsx only
 
 <strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/01-solution?file=src/main.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/01-solution?file=src/main.tsx).
 
