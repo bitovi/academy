@@ -31,7 +31,7 @@ You could create this sort of page without nested routes, but using nested route
 
 We want to have a component to display individual restaurants details, and want the path to be nested under the restaurants path.
 
-<img alt="Screenshot of a “place-my-order.com” webpage with a nested route, displaying the “/restaurants/crab-shack” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/objective.png" style="max-width: 640px;"/>
+<img alt="Screenshot of the Place My Order app with a nested route, displaying the “/restaurants/brunch-place” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/objective-1.png" style="max-width: 640px;"/>
 
 ### Key concepts
 
@@ -42,47 +42,15 @@ We want to have a component to display individual restaurants details, and want 
 
 Recall our router config from the [first React Router lesson](./routing.html).
 
-@sourceref ../../../exercises/react-vite/06-routing/01-solution/src/main.tsx
-@highlight 10-25, only
+@sourceref ../06-routing/createBrowserRouter.tsx
+@highlight 9-25, only
 
 Notice that our home and about pages are under the `children` key. These are actually nested routes of the root path. Route children can accept a `children` property themselves, on and on, until the browser runs out of resources.
 
 The route config for our product page could look like this:
 
-```tsx
-const router = createBrowserRouter(
-  [
-    {
-      path: '/',
-      element: <App />,
-      children: [
-        {
-          path: 'product',
-          element: <ProductPage />,
-          children: [
-            {
-              index: "features",
-              element: <Features />,
-            },
-            {
-              index: "where-to-buy",
-              element: <WhereToBuy />,
-            },
-            {
-              index: "support",
-              element: <Support />,
-            },
-          ]
-        },
-      ],
-    },
-  ],
-  {
-    basename: import.meta.env.BASE_URL,
-  },
-)
-```
-@highlight 6, 10-23, only
+@sourceref ./createBrowserRouter.tsx
+@highlight 15, 19-32, only
 
 #### Folder structure
 
@@ -188,9 +156,11 @@ Refactor the router config in **src/main.tsx** to nest the restaurant routes.
 
 </details>
 
-### Exercise 2
+## Objective 2
 
 We learned to create nested routes, let's practice by adding another page to our application. Add the order page to the route config and add a link to it.
+
+<img alt="Screenshot of the Place My Order app with a nested route, displaying the “/restaurants/brunch-place/order” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/objective-2.png" style="max-width: 640px;"/>
 
 #### Setup
 

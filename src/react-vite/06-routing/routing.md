@@ -49,29 +49,8 @@ used to create a `router` object that defines the navigation structure of our ap
 The structure is defined through a configuration object that specifies the paths
 and corresponding components. Let’s break down its usage with the example below:
 
-```tsx
-const router = createBrowserRouter(
-  [
-    {
-      path: '/',
-      element: <App />,
-      children: [
-        {
-          index: true,
-          element: <HomePage />,
-        },
-        {
-          path: 'about',
-          element: <AboutPage />,
-        },
-      ],
-    },
-  ],
-  {
-    basename: import.meta.env.BASE_URL,
-  },
-)
-```
+@sourceref ./createBrowserRouter.tsx
+@highlight 8-28, only
 
 The first argument to `createBrowserRouter` is an array of route objects.
 Each route object represents a navigation route in our application, and
