@@ -1,5 +1,6 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
 import { describe, it, expect } from 'vitest';
 
 import RestaurantList from './RestaurantList';
@@ -9,12 +10,6 @@ describe('RestaurantList component', () => {
     render(<RestaurantList />);
     expect(screen.getByText(/Restaurants/i)).toBeInTheDocument();
   });
-
-  it('renders state and city dropdowns', () => {
-    render(<RestaurantList />)
-    expect(screen.getByLabelText(/State/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/City/i)).toBeInTheDocument()
-  })
 
   it('renders the restaurant images', () => {
     render(<RestaurantList />);
@@ -60,4 +55,27 @@ describe('RestaurantList component', () => {
       expect(button).toHaveTextContent('Details');
     });
   });
+
+  it('renders the component', () => {
+    render(<RestaurantList />)
+    expect(screen.getByText('Restaurants')).toBeInTheDocument()
+    expect(screen.getByText('State:')).toBeInTheDocument()
+  })
+
+  it('allows state selection and updates cities accordingly', async () => {
+    render(<RestaurantList />)
+
+    const illinoisButton = screen.getByText('Illinois')
+    await userEvent.click(illinoisButton)
+
+    expect(screen.getByText('Current state: IL')).toBeInTheDocument()
+    expect(screen.queryByText('Choose a state before selecting a city')).not.toBeInTheDocument()
+  })
+
+  it('renders ListItem components for each restaurant', () => {
+    render(<RestaurantList />)
+
+    const restaurantNames = screen.getAllByText(/Cheese Curd City|Poutine Palace/)
+    expect(restaurantNames.length).toBe(2)
+  })
 });

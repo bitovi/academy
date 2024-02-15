@@ -2,14 +2,23 @@ import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
 import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
 import { useState } from 'react'
 import ListItem from './ListItem'
+import { useCities } from '../../services/restaurant/hooks'
 
 const RestaurantList: React.FC = () => {
   const [state, setState] = useState("")
+  const [city, setCity] = useState("")
 
   const states = [
     { name: 'Illinois', short: 'IL' },
     { name: 'Wisconsin', short: 'WI' },
   ]
+
+  const cities = [
+    { name: 'Madison', state: 'WI' },
+    { name: 'Springfield', state: 'IL' },
+  ].filter(city => {
+    return city.state === state
+  })
 
   const restaurants = {
     data: [
@@ -46,6 +55,11 @@ const RestaurantList: React.FC = () => {
 
   const updateState = (stateShortCode: string) => {
     setState(stateShortCode)
+    setCity("")
+  }
+
+  const updateCity = (cityName: string) => {
+    setCity(cityName)
   }
 
   return (
@@ -64,6 +78,19 @@ const RestaurantList: React.FC = () => {
             <hr />
             <p>
               Current state: {state || "(none)"}
+            </p>
+          </div>
+
+          <div className="form-group">
+            City:
+            {state ? cities.map(({ name }) => (
+              <button key={name} onClick={() => updateCity(name)} type="button">
+                {name}
+              </button>
+            )) : <> Choose a state before selecting a city</>}
+            <hr />
+            <p>
+              Current city: {city || "(none)"}
             </p>
           </div>
         </form>

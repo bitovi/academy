@@ -11,38 +11,6 @@ describe('RestaurantList component', () => {
     expect(screen.getByText(/Restaurants/i)).toBeInTheDocument();
   });
 
-  it('renders state and city dropdowns', () => {
-    render(<RestaurantList />)
-    expect(screen.getByLabelText(/State/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/City/i)).toBeInTheDocument()
-  })
-
-  it('allows selecting a state', async () => {
-    render(<RestaurantList />)
-    const stateSelect = screen.getByLabelText(/State/i) as HTMLSelectElement
-    await userEvent.selectOptions(stateSelect, 'IL')
-    expect(stateSelect.value).toBe('IL')
-  })
-
-  it('updates city dropdown based on selected state', async () => {
-    render(<RestaurantList />)
-    const stateSelect = screen.getByLabelText(/State/i) as HTMLSelectElement
-    const citySelect = screen.getByLabelText(/City/i) as HTMLSelectElement
-
-    await userEvent.selectOptions(stateSelect, 'IL')
-    expect(citySelect).toHaveTextContent('Choose a city')
-  })
-
-  it('allows selecting a city', async () => {
-    render(<RestaurantList />)
-    const stateSelect = screen.getByLabelText(/State/i) as HTMLSelectElement
-    const citySelect = screen.getByLabelText(/City/i) as HTMLSelectElement
-
-    await userEvent.selectOptions(stateSelect, 'IL')
-    await userEvent.selectOptions(citySelect, 'Springfield')
-    expect(citySelect.value).toBe('Springfield')
-  })
-
   it('renders the restaurant images', () => {
     render(<RestaurantList />);
     const images = screen.getAllByRole('img');
@@ -87,4 +55,39 @@ describe('RestaurantList component', () => {
       expect(button).toHaveTextContent('Details');
     });
   });
+
+  it('renders the component', () => {
+    render(<RestaurantList />)
+    expect(screen.getByText('Restaurants')).toBeInTheDocument()
+    expect(screen.getByText('State:')).toBeInTheDocument()
+  })
+
+  it('allows state selection and updates cities accordingly', async () => {
+    render(<RestaurantList />)
+
+    const illinoisButton = screen.getByText('Illinois')
+    await userEvent.click(illinoisButton)
+
+    expect(screen.getByText('Current state: IL')).toBeInTheDocument()
+    expect(screen.queryByText('Choose a state before selecting a city')).not.toBeInTheDocument()
+  })
+
+  it('allows city selection after a state is selected', async () => {
+    render(<RestaurantList />)
+
+    const illinoisButton = screen.getByText('Illinois')
+    await userEvent.click(illinoisButton)
+
+    const greenBayButton = screen.getByText('Springfield')
+    await userEvent.click(greenBayButton)
+
+    expect(screen.getByText('Current city: Springfield')).toBeInTheDocument()
+  })
+
+  it('renders ListItem components for each restaurant', () => {
+    render(<RestaurantList />)
+
+    const restaurantNames = screen.getAllByText(/Cheese Curd City|Poutine Palace/)
+    expect(restaurantNames.length).toBe(2)
+  })
 });

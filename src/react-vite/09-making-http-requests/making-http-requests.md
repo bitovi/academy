@@ -123,14 +123,6 @@ the WebSocket connection.
 
 @sourceref ../../../exercises/react-vite/09-making-http-requests/02-solution/src/services/interfaces.ts
 
-✏️ Create **src/services/restaurant/hooks.ts** and update it to be:
-
-@sourceref ../../../exercises/react-vite/09-making-http-requests/01-problem/src/services/restaurant/hooks.ts
-
-✏️ Create **src/services/restaurant/interfaces.ts** and update it to be:
-
-@sourceref ../../../exercises/react-vite/09-making-http-requests/01-solution/src/services/restaurant/interfaces.ts
-
 ✏️ Create **src/services/restaurant/restaurant.ts** and update it to be:
 
 @sourceref ../../../exercises/react-vite/09-making-http-requests/01-solution/src/services/restaurant/restaurant.ts
