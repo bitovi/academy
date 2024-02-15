@@ -215,8 +215,6 @@ to do this exercise in an online code editor.
 <details>
 <summary>Click to see the solution</summary>
 
-TODO
-
 ✏️ Update **src/pages/RestaurantOrder/RestaurantOrder.tsx** to be:
 
 @diff ../../../exercises/react-vite/11-controlled-vs-uncontrolled/01-problem/src/pages/RestaurantOrder/RestaurantOrder.tsx ../../../exercises/react-vite/11-controlled-vs-uncontrolled/01-solution/src/pages/RestaurantOrder/RestaurantOrder.tsx only
@@ -225,25 +223,11 @@ TODO
 
 ## Objective 2: Create a reusable text field component
 
-TODO
-
-### Key concepts
-
-- Custom input components and onChange function props.
-
-TODO: I think most of this exercise is stuff they’ve already done and not anything new? Maybe we just need reminders here, or not? I can figure this out when making the slides.
-
-#### Concept 1
-
-TODO
-
-#### Concept 2
-
-TODO
+The order form is going to be made up of many input fields with labels. Rather than repeat multiple
+components let's compose that structure in a single component named `FormTextField`. Creating this
+component will involve using some of what we've learned from prior lessons.
 
 ### Setup
-
-TODO
 
 ✏️ Create **src/components/FormTextField/FormTextField.tsx** and update it to be:
 
@@ -252,28 +236,42 @@ TODO
 
 ✏️ Create **src/components/FormTextField/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-vite/11-controlled-vs-uncontrolled/02-solution/src/components/FormTextField/index.ts
+@sourceref ../../../exercises/react-vite/11-controlled-vs-uncontrolled/02-problem/src/components/FormTextField/index.ts
 @highlight 1
 
 ### Verify
 
-TODO
+These tests will pass when the solution has been implemented properly.
 
 ✏️ Create **src/components/FormTextField/FormTextField.test.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-vite/11-controlled-vs-uncontrolled/02-solution/src/components/FormTextField/FormTextField.test.tsx
+@sourceref ../../../exercises/react-vite/11-controlled-vs-uncontrolled/02-problem/src/components/FormTextField/FormTextField.test.tsx
 @highlight 10-39, only
 
 ### Exercise
 
-TODO
+- `FormTextField`:
+  - has the following props: `label`, `onChange`, `type`, and `value`.
+  - returns a `<div>` with the class name "form-group".
+  - `<div>` contains a `<label>` and `<input>` that are paired by a unique id
+- The `<label>` will:
+  - have its text set by a prop
+  - have its text positioned to the left of the input and will have a colon (:) appended
+  - include the class name "control-label"
+- The `<input>` will:
+  - have its props set by `FormTextField` props
+  - include the class name "form-control"
+
+**Having issues with your local setup?** You can use either
+[StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/02-problem?file=src%2Fcomponents%2FFormTextField%2FFormTextField.tsx)
+or
+[CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/02-problem?file=src%2Fcomponents%2FFormTextField%2FFormTextField.tsx)
+to do this exercise in an online code editor.
 
 ### Solution
 
 <details>
 <summary>Click to see the solution</summary>
-
-TODO
 
 ✏️ Update **src/components/FormTextField/FormTextField.tsx** to be:
 
@@ -283,11 +281,11 @@ TODO
 
 ## Objective 3: Integrate `FormTextField` into `RestaurantOrder` and submit the form
 
-TODO
+Finally we'll update the form to incorporate the `FormTextField` component so users can create and
+submit an order to the restaurant. We need to fill the form with input fields and handle the submit
+button.
 
 ### Key concepts
-
-TODO
 
 - Form submission: submit button, onSubmit handler, and managing the submit
   event.
