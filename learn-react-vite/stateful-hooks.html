@@ -558,7 +558,6 @@ changes, React re-renders the component and updates the DOM if it needs to.</p>
 <p>In this section, we will:</p>
 <ul>
 <li>Cover the fundamentals of React Hooks.</li>
-<li>Learn how to use the <code>useId()</code> hook.</li>
 </ul>
 <h3>React Hooks</h3>
 <p>We’ve mentioned before that <code>useState</code> is a Hook for managing state, but what
@@ -615,38 +614,6 @@ top of the React function body.</p></li>
 <p>Hooks can only be used in functional components. Almost anything that could be
 done in a class component can be done with Hooks. <em>The one thing that class
 component can do that Hooks cannot is implement error boundaries.</em></p>
-<h3>useId</h3>
-<p>Let's start with one of the newer Hooks that React includes: <code>useId</code>. Since the
-value of every <code>id</code> attribute in an HTML document must be unique, this Hook is
-useful in creating a unique identifier string that can be used as the value for
-an <code>id</code> prop.</p>
-<p>Let’s say you’re rendering a component that has a <code>label</code> that needs to be
-associated with an <code>input</code>:</p>
-<pre><code class="language-html">&lt;label for=&quot;name&quot;&gt;
-  Name
-&lt;/label&gt;
-&lt;input id=&quot;name&quot; type=&quot;text&quot;&gt;
-</code></pre>
-<div line-highlight='1, 4'></div>
-<p>Every ID has to be unique in an HTML page, but <code>name</code> might clash with another
-element in a page. To avoid this issue in React, we can get a unique ID with
-<code>useId()</code>:</p>
-<pre><code class="language-tsx">import { useId } from 'react'
-
-const Form: React.FC = () =&gt; {
-  const id = useId();
-
-  return (
-    &lt;label htmlFor={id}&gt;
-      Name
-    &lt;/label&gt;
-    &lt;input id={id} type=&quot;text&quot; /&gt;
-  )
-}
-</code></pre>
-<div line-highlight='1, 4, 7, 10'></div>
-<p>The value of <code>useId</code> is guaranteed to be unique within the component where it is
-used; this ideal for linking related components together.</p>
 <h3>Setup</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to include the State
 and City dropdown lists.</p>

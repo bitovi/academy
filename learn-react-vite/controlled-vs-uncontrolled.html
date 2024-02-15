@@ -988,7 +988,7 @@ const RestaurantOrder: React.FC = () =&gt; {
                                 &lt;label&gt;
                                     &lt;input
                                         checked={name in newOrder.items}
-                                        onChange={(e) =&gt; setItem(name, e.target.checked, price)}
+                                        onChange={(event) =&gt; setItem(name, event.target.checked, price)}
                                         type=&quot;checkbox&quot;
                                     /&gt;
                                     {name}
@@ -1005,7 +1005,7 @@ const RestaurantOrder: React.FC = () =&gt; {
                                 &lt;label&gt;
                                     &lt;input
                                         checked={name in newOrder.items}
-                                        onChange={(e) =&gt; setItem(name, e.target.checked, price)}
+                                        onChange={(event) =&gt; setItem(name, event.target.checked, price)}
                                         type=&quot;checkbox&quot;
                                     /&gt;
                                     {name}
@@ -1038,6 +1038,41 @@ export default RestaurantOrder
 <p>The order form is going to be made up of many input fields with labels. Rather than repeat multiple
 components let's compose that structure in a single component named <code>FormTextField</code>. Creating this
 component will involve using some of what we've learned from prior lessons.</p>
+<p>In this section, we will:</p>
+<ul>
+<li>Learn how to use the <code>useId()</code> hook.</li>
+</ul>
+<h3>useId</h3>
+<p>Since the value of every <code>id</code> attribute in an HTML document must be unique,
+this Hook is useful in creating a unique identifier string that can be used
+as the value for an <code>id</code> prop.</p>
+<p>Let’s say you’re rendering a component that has a <code>label</code> that needs to be
+associated with an <code>input</code>:</p>
+<pre><code class="language-html">&lt;label for=&quot;name&quot;&gt;
+  Name
+&lt;/label&gt;
+&lt;input id=&quot;name&quot; type=&quot;text&quot;&gt;
+</code></pre>
+<div line-highlight='1, 4'></div>
+<p>Every ID has to be unique in an HTML page, but <code>name</code> might clash with another
+element in a page. To avoid this issue in React, we can get a unique ID with
+<code>useId()</code>:</p>
+<pre><code class="language-tsx">import { useId } from 'react'
+
+const Form: React.FC = () =&gt; {
+  const id = useId();
+
+  return (
+    &lt;label htmlFor={id}&gt;
+      Name
+    &lt;/label&gt;
+    &lt;input id={id} type=&quot;text&quot; /&gt;
+  )
+}
+</code></pre>
+<div line-highlight='1, 4, 7, 10'></div>
+<p>The value of <code>useId</code> is guaranteed to be unique within the component where it is
+used; this ideal for linking related components together.</p>
 <h3>Setup</h3>
 <p>✏️ Create <strong>src/components/FormTextField/FormTextField.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { useId } from &quot;react&quot;
@@ -1270,7 +1305,7 @@ const RestaurantOrder: React.FC = () =&gt; {
                                 &lt;label&gt;
                                     &lt;input
                                         checked={name in newOrder.items}
-                                        onChange={(e) =&gt; setItem(name, e.target.checked, price)}
+                                        onChange={(event) =&gt; setItem(name, event.target.checked, price)}
                                         type=&quot;checkbox&quot;
                                     /&gt;
                                     {name}
@@ -1287,7 +1322,7 @@ const RestaurantOrder: React.FC = () =&gt; {
                                 &lt;label&gt;
                                     &lt;input
                                         checked={name in newOrder.items}
-                                        onChange={(e) =&gt; setItem(name, e.target.checked, price)}
+                                        onChange={(event) =&gt; setItem(name, event.target.checked, price)}
                                         type=&quot;checkbox&quot;
                                     /&gt;
                                     {name}
@@ -1581,7 +1616,7 @@ const RestaurantOrder: React.FC = () =&gt; {
                                 &lt;label&gt;
                                     &lt;input
                                         checked={name in newOrder.items}
-                                        onChange={(e) =&gt; setItem(name, e.target.checked, price)}
+                                        onChange={(event) =&gt; setItem(name, event.target.checked, price)}
                                         type=&quot;checkbox&quot;
                                     /&gt;
                                     {name}
@@ -1598,7 +1633,7 @@ const RestaurantOrder: React.FC = () =&gt; {
                                 &lt;label&gt;
                                     &lt;input
                                         checked={name in newOrder.items}
-                                        onChange={(e) =&gt; setItem(name, e.target.checked, price)}
+                                        onChange={(event) =&gt; setItem(name, event.target.checked, price)}
                                         type=&quot;checkbox&quot;
                                     /&gt;
                                     {name}
