@@ -817,28 +817,6 @@ export type PromiseState&lt;Data&gt; =
   | ResolvedState&lt;Data&gt;
 
 </code></pre>
-<p>✏️ Create <strong>src/services/restaurant/hooks.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">import { useEffect, useState } from &quot;react&quot;
-import type { PromiseState } from &quot;../interfaces&quot;;
-import type { State } from &quot;./interfaces&quot;
-import { getStates } from &quot;./restaurant&quot;
-
-export function useStates(): PromiseState&lt;State[]&gt; {
-  const [response, setResponse] = useState&lt;PromiseState&lt;State[]&gt;&gt;({
-    data: null,
-    error: null,
-    isPending: true,
-  })
-
-  return response
-}
-</code></pre>
-<p>✏️ Create <strong>src/services/restaurant/interfaces.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">export interface State {
-  name: string
-  short: string
-}
-</code></pre>
 <p>✏️ Create <strong>src/services/restaurant/restaurant.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { ApiResponse } from &quot;../interfaces&quot;
 import { State } from &quot;./interfaces&quot;
@@ -999,7 +977,7 @@ const RestaurantList: React.FC = () =&gt; {
 
 export default RestaurantList
 </code></pre>
- <div line-highlight="5,14,77,79-83,86,105,109-110,only"></div>
+ <div line-highlight="3,5,8-9,14,52-53,57-58,68-91,95-118,only"></div>
 <h3>Verify</h3>
 <p>✏️ Create <strong>src/services/restaurant/restaurant.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { getStates } from './restaurant';
@@ -1071,7 +1049,7 @@ describe('RestaurantList component', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="3,7-16,18,32-33,37-38,41-42,46,only"></div>
+ <div line-highlight="3,7-16,18,26,28-29,32-33,37-38,41-42,46,only"></div>
 <h3>Exercise</h3>
 <p>Update <code>src/services/restaurant/hooks.ts</code> with a <code>useEffect</code> that uses <code>getStates</code> to get a list of states.</p>
 <p>Hint: Call <code>setResponse</code> after you get the response from <code>getStates()</code>.</p>

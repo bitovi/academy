@@ -554,7 +554,7 @@ changes, React re-renders the component and updates the DOM if it needs to.</p>
 <li><strong>URL State:</strong> The state that exists on our URLs, including pathname and query parameters. We already covered this in our section about Routing!</li>
 <li><strong>Global State:</strong> This refers to data that is shared between multiple components. In React, global state can be managed using Context API or state management libraries; this is out of scope for this training.</li>
 </ul>
-<h2>Objective: Introducing React Hooks and useId</h2>
+<h2>Objective 1: Introducing React Hooks and useId</h2>
 <p>In this section, we will:</p>
 <ul>
 <li>Cover the fundamentals of React Hooks.</li>
@@ -652,10 +652,16 @@ used; this ideal for linking related components together.</p>
 and City dropdown lists.</p>
 <pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
 import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import { useId } from 'react'
+import { useState } from 'react'
 import ListItem from './ListItem'
 
 const RestaurantList: React.FC = () =&gt; {
+
+  const states = [
+    { name: 'Illinois', short: 'IL' },
+    { name: 'Wisconsin', short: 'WI' },
+  ]
+
   const restaurants = {
     data: [
       {
@@ -696,19 +702,16 @@ const RestaurantList: React.FC = () =&gt; {
 
         &lt;form className=&quot;form&quot;&gt;
           &lt;div className=&quot;form-group&quot;&gt;
-            &lt;label className=&quot;control-label&quot;&gt;
-              State
-            &lt;/label&gt;
-            &lt;select className=&quot;form-control&quot;&gt;
-            &lt;/select&gt;
-          &lt;/div&gt;
-
-          &lt;div className=&quot;form-group&quot;&gt;
-            &lt;label className=&quot;control-label&quot;&gt;
-              City
-            &lt;/label&gt;
-            &lt;select className=&quot;form-control&quot;&gt;
-            &lt;/select&gt;
+            State:
+            {states.map(({ short, name }) =&gt; (
+              &lt;button key={short} type=&quot;button&quot;&gt;
+                {name}
+              &lt;/button&gt;
+            ))}
+            &lt;hr /&gt;
+            &lt;p&gt;
+              Current state: {&quot;(none)&quot;}
+            &lt;/p&gt;
           &lt;/div&gt;
         &lt;/form&gt;
 
@@ -732,12 +735,13 @@ const RestaurantList: React.FC = () =&gt; {
 
 export default RestaurantList
 </code></pre>
- <div line-highlight="3,45-52,54-61,only"></div>
+ <div line-highlight="3,8-11,51-64,only"></div>
 <h3>Verify</h3>
 <p>These tests will pass when the solution has been implemented properly.</p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong>:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
 import { describe, it, expect } from 'vitest';
 
 import RestaurantList from './RestaurantList';
@@ -747,12 +751,6 @@ describe('RestaurantList component', () =&gt; {
     render(&lt;RestaurantList /&gt;);
     expect(screen.getByText(/Restaurants/i)).toBeInTheDocument();
   });
-
-  it('renders state and city dropdowns', () =&gt; {
-    render(&lt;RestaurantList /&gt;)
-    expect(screen.getByLabelText(/State/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/City/i)).toBeInTheDocument()
-  })
 
   it('renders the restaurant images', () =&gt; {
     render(&lt;RestaurantList /&gt;);
@@ -798,10 +796,33 @@ describe('RestaurantList component', () =&gt; {
       expect(button).toHaveTextContent('Details');
     });
   });
+
+  it('renders the component', () =&gt; {
+    render(&lt;RestaurantList /&gt;)
+    expect(screen.getByText('Restaurants')).toBeInTheDocument()
+    expect(screen.getByText('State:')).toBeInTheDocument()
+  })
+
+  it('allows state selection and updates cities accordingly', async () =&gt; {
+    render(&lt;RestaurantList /&gt;)
+
+    const illinoisButton = screen.getByText('Illinois')
+    await userEvent.click(illinoisButton)
+
+    expect(screen.getByText('Current state: IL')).toBeInTheDocument()
+    expect(screen.queryByText('Choose a state before selecting a city')).not.toBeInTheDocument()
+  })
+
+  it('renders ListItem components for each restaurant', () =&gt; {
+    render(&lt;RestaurantList /&gt;)
+
+    const restaurantNames = screen.getAllByText(/Cheese Curd City|Poutine Palace/)
+    expect(restaurantNames.length).toBe(2)
+  })
 });
 
 </code></pre>
- <div line-highlight="13,15-16,55,62,only"></div>
+ <div line-highlight="3,59-63,65-66,68-69,71-73,75-76,78-80,only"></div>
 <h3>Exercise</h3>
 <ul>
 <li>Associate the <code>&lt;label&gt;</code> and <code>&lt;select&gt;</code> elements together using ID values provided by the <code>useId</code> Hook.</li>
@@ -817,12 +838,16 @@ to do this exercise in an online code editor.</p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
 import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import { useId } from 'react'
+import { useState } from 'react'
 import ListItem from './ListItem'
 
 const RestaurantList: React.FC = () =&gt; {
-  const stateId = useId()
-  const cityId = useId()
+  const [state, setState] = useState(&quot;&quot;)
+
+  const states = [
+    { name: 'Illinois', short: 'IL' },
+    { name: 'Wisconsin', short: 'WI' },
+  ]
 
   const restaurants = {
     data: [
@@ -857,6 +882,10 @@ const RestaurantList: React.FC = () =&gt; {
     ]
   };
 
+  const updateState = (stateShortCode: string) =&gt; {
+    setState(stateShortCode)
+  }
+
   return (
     &lt;&gt;
       &lt;div className=&quot;restaurants&quot;&gt;
@@ -864,25 +893,16 @@ const RestaurantList: React.FC = () =&gt; {
 
         &lt;form className=&quot;form&quot;&gt;
           &lt;div className=&quot;form-group&quot;&gt;
-            &lt;label className=&quot;control-label&quot; htmlFor={stateId}&gt;
-              State
-            &lt;/label&gt;
-            &lt;select
-              className=&quot;form-control&quot;
-              id={stateId}
-            &gt;
-            &lt;/select&gt;
-          &lt;/div&gt;
-
-          &lt;div className=&quot;form-group&quot;&gt;
-            &lt;label className=&quot;control-label&quot; htmlFor={cityId}&gt;
-              City
-            &lt;/label&gt;
-            &lt;select
-              className=&quot;form-control&quot;
-              id={cityId}
-            &gt;
-            &lt;/select&gt;
+            State:
+            {states.map(({ short, name }) =&gt; (
+              &lt;button key={short} onClick={() =&gt; updateState(short)} type=&quot;button&quot;&gt;
+                {name}
+              &lt;/button&gt;
+            ))}
+            &lt;hr /&gt;
+            &lt;p&gt;
+              Current state: {state || &quot;(none)&quot;}
+            &lt;/p&gt;
           &lt;/div&gt;
         &lt;/form&gt;
 
@@ -906,9 +926,9 @@ const RestaurantList: React.FC = () =&gt; {
 
 export default RestaurantList
 </code></pre>
- <div line-highlight="7-8,50,53-56,61,64-67,only"></div>
+ <div line-highlight="7,47-49,60,66,only"></div>
 <p></details></p>
-<h2>Objective: Manage component state using Hooks</h2>
+<h2>Objective 2: Manage component state using Hooks</h2>
 <p>When users make choices that need to be maintained or that affect other parts of
 the UI, we need to use <code>state</code>. That's a pretty abstract concept so let's look
 at a concrete example from the Place My Order Restaurants tab.</p>
@@ -1006,21 +1026,22 @@ to errors.</p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be the following:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
 import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import { useId } from 'react'
+import { useState } from 'react'
 import ListItem from './ListItem'
 
 const RestaurantList: React.FC = () =&gt; {
-  const stateId = useId()
-  const cityId = useId()
+  const [state, setState] = useState(&quot;&quot;)
 
   const states = [
     { name: 'Illinois', short: 'IL' },
     { name: 'Wisconsin', short: 'WI' },
   ]
+
   const cities = [
     { name: 'Madison', state: 'WI' },
     { name: 'Springfield', state: 'IL' },
   ]
+
   const restaurants = {
     data: [
       {
@@ -1054,6 +1075,10 @@ const RestaurantList: React.FC = () =&gt; {
     ]
   };
 
+  const updateState = (stateShortCode: string) =&gt; {
+    setState(stateShortCode)
+  }
+
   return (
     &lt;&gt;
       &lt;div className=&quot;restaurants&quot;&gt;
@@ -1061,26 +1086,29 @@ const RestaurantList: React.FC = () =&gt; {
 
         &lt;form className=&quot;form&quot;&gt;
           &lt;div className=&quot;form-group&quot;&gt;
-            &lt;label className=&quot;control-label&quot; htmlFor={stateId}&gt;
-              State
-            &lt;/label&gt;
-            &lt;select
-              className=&quot;form-control&quot;
-              id={stateId}
-            &gt;
-              &lt;option key=&quot;choose_state&quot; value=&quot;&quot;&gt;Choose a state&lt;/option&gt;
-            &lt;/select&gt;
+            State:
+            {states.map(({ short, name }) =&gt; (
+              &lt;button key={short} onClick={() =&gt; updateState(short)} type=&quot;button&quot;&gt;
+                {name}
+              &lt;/button&gt;
+            ))}
+            &lt;hr /&gt;
+            &lt;p&gt;
+              Current state: {state || &quot;(none)&quot;}
+            &lt;/p&gt;
           &lt;/div&gt;
 
           &lt;div className=&quot;form-group&quot;&gt;
-            &lt;label className=&quot;control-label&quot; htmlFor={cityId}&gt;
-              City
-            &lt;/label&gt;
-            &lt;select
-              className=&quot;form-control&quot;
-              id={cityId}
-            &gt;
-            &lt;/select&gt;
+            City:
+            {state ? cities.map(({ name }) =&gt; (
+              &lt;button key={name} type=&quot;button&quot;&gt;
+                {name}
+              &lt;/button&gt;
+            )) : &lt;&gt; Choose a state before selecting a city&lt;/&gt;}
+            &lt;hr /&gt;
+            &lt;p&gt;
+              Current city: {&quot;(none)&quot;}
+            &lt;/p&gt;
           &lt;/div&gt;
         &lt;/form&gt;
 
@@ -1104,7 +1132,7 @@ const RestaurantList: React.FC = () =&gt; {
 
 export default RestaurantList
 </code></pre>
- <div line-highlight="10-17,65,only"></div>
+ <div line-highlight="14-17,75-86,only"></div>
 <h3>Verify</h3>
 <p>These tests will pass when the solution has been implemented properly.</p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> to be the
@@ -1121,38 +1149,6 @@ describe('RestaurantList component', () =&gt; {
     render(&lt;RestaurantList /&gt;);
     expect(screen.getByText(/Restaurants/i)).toBeInTheDocument();
   });
-
-  it('renders state and city dropdowns', () =&gt; {
-    render(&lt;RestaurantList /&gt;)
-    expect(screen.getByLabelText(/State/i)).toBeInTheDocument()
-    expect(screen.getByLabelText(/City/i)).toBeInTheDocument()
-  })
-
-  it('allows selecting a state', async () =&gt; {
-    render(&lt;RestaurantList /&gt;)
-    const stateSelect = screen.getByLabelText(/State/i) as HTMLSelectElement
-    await userEvent.selectOptions(stateSelect, 'IL')
-    expect(stateSelect.value).toBe('IL')
-  })
-
-  it('updates city dropdown based on selected state', async () =&gt; {
-    render(&lt;RestaurantList /&gt;)
-    const stateSelect = screen.getByLabelText(/State/i) as HTMLSelectElement
-    const citySelect = screen.getByLabelText(/City/i) as HTMLSelectElement
-
-    await userEvent.selectOptions(stateSelect, 'IL')
-    expect(citySelect).toHaveTextContent('Choose a city')
-  })
-
-  it('allows selecting a city', async () =&gt; {
-    render(&lt;RestaurantList /&gt;)
-    const stateSelect = screen.getByLabelText(/State/i) as HTMLSelectElement
-    const citySelect = screen.getByLabelText(/City/i) as HTMLSelectElement
-
-    await userEvent.selectOptions(stateSelect, 'IL')
-    await userEvent.selectOptions(citySelect, 'Springfield')
-    expect(citySelect.value).toBe('Springfield')
-  })
 
   it('renders the restaurant images', () =&gt; {
     render(&lt;RestaurantList /&gt;);
@@ -1198,10 +1194,45 @@ describe('RestaurantList component', () =&gt; {
       expect(button).toHaveTextContent('Details');
     });
   });
+
+  it('renders the component', () =&gt; {
+    render(&lt;RestaurantList /&gt;)
+    expect(screen.getByText('Restaurants')).toBeInTheDocument()
+    expect(screen.getByText('State:')).toBeInTheDocument()
+  })
+
+  it('allows state selection and updates cities accordingly', async () =&gt; {
+    render(&lt;RestaurantList /&gt;)
+
+    const illinoisButton = screen.getByText('Illinois')
+    await userEvent.click(illinoisButton)
+
+    expect(screen.getByText('Current state: IL')).toBeInTheDocument()
+    expect(screen.queryByText('Choose a state before selecting a city')).not.toBeInTheDocument()
+  })
+
+  it('allows city selection after a state is selected', async () =&gt; {
+    render(&lt;RestaurantList /&gt;)
+
+    const illinoisButton = screen.getByText('Illinois')
+    await userEvent.click(illinoisButton)
+
+    const greenBayButton = screen.getByText('Springfield')
+    await userEvent.click(greenBayButton)
+
+    expect(screen.getByText('Current city: Springfield')).toBeInTheDocument()
+  })
+
+  it('renders ListItem components for each restaurant', () =&gt; {
+    render(&lt;RestaurantList /&gt;)
+
+    const restaurantNames = screen.getAllByText(/Cheese Curd City|Poutine Palace/)
+    expect(restaurantNames.length).toBe(2)
+  })
 });
 
 </code></pre>
- <div line-highlight="3,20,22-24,27,29-30,32-33,36,38-39,41-43,67,73,76,79,82,89,only"></div>
+ <div line-highlight="75,78-79,81-82,84,88,92,only"></div>
 <h3>Exercise</h3>
 <ul>
 <li>The selected <strong>state</strong> value should be managed by a <code>useState</code> Hook.</li>
@@ -1219,13 +1250,10 @@ to do this exercise in an online code editor.</p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
 import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import { ChangeEvent, useId, useState } from 'react'
+import { useState } from 'react'
 import ListItem from './ListItem'
 
 const RestaurantList: React.FC = () =&gt; {
-  const stateId = useId()
-  const cityId = useId()
-
   const [state, setState] = useState(&quot;&quot;)
   const [city, setCity] = useState(&quot;&quot;)
 
@@ -1233,10 +1261,14 @@ const RestaurantList: React.FC = () =&gt; {
     { name: 'Illinois', short: 'IL' },
     { name: 'Wisconsin', short: 'WI' },
   ]
+
   const cities = [
     { name: 'Madison', state: 'WI' },
     { name: 'Springfield', state: 'IL' },
-  ]
+  ].filter(city =&gt; {
+    return city.state === state
+  })
+
   const restaurants = {
     data: [
       {
@@ -1270,13 +1302,13 @@ const RestaurantList: React.FC = () =&gt; {
     ]
   };
 
-  const updateState = (event: ChangeEvent&lt;HTMLSelectElement&gt;) =&gt; {
-    setState(event.target.value)
+  const updateState = (stateShortCode: string) =&gt; {
+    setState(stateShortCode)
     setCity(&quot;&quot;)
   }
 
-  const updateCity = (event: ChangeEvent&lt;HTMLSelectElement&gt;) =&gt; {
-    setCity(event.target.value)
+  const updateCity = (cityName: string) =&gt; {
+    setCity(cityName)
   }
 
   return (
@@ -1286,49 +1318,29 @@ const RestaurantList: React.FC = () =&gt; {
 
         &lt;form className=&quot;form&quot;&gt;
           &lt;div className=&quot;form-group&quot;&gt;
-            &lt;label className=&quot;control-label&quot; htmlFor={stateId}&gt;
-              State
-            &lt;/label&gt;
-            &lt;select
-              className=&quot;form-control&quot;
-              id={stateId}
-              onChange={updateState}
-              value={state}
-            &gt;
-              &lt;option key=&quot;choose_state&quot; value=&quot;&quot;&gt;Choose a state&lt;/option&gt;
-              {states.map(({ short, name }) =&gt; (
-                &lt;option key={short} value={short}&gt;
-                  {name}
-                &lt;/option&gt;
-              ))}
-            &lt;/select&gt;
+            State:
+            {states.map(({ short, name }) =&gt; (
+              &lt;button key={short} onClick={() =&gt; updateState(short)} type=&quot;button&quot;&gt;
+                {name}
+              &lt;/button&gt;
+            ))}
+            &lt;hr /&gt;
+            &lt;p&gt;
+              Current state: {state || &quot;(none)&quot;}
+            &lt;/p&gt;
           &lt;/div&gt;
 
           &lt;div className=&quot;form-group&quot;&gt;
-            &lt;label className=&quot;control-label&quot; htmlFor={cityId}&gt;
-              City
-            &lt;/label&gt;
-            &lt;select
-              className=&quot;form-control&quot;
-              id={cityId}
-              onChange={updateCity}
-              value={city}
-            &gt;
-              &lt;option key=&quot;choose_city&quot; value=&quot;&quot;&gt;
-                {
-                  state
-                    ? &quot;Choose a city&quot;
-                    : &quot;Choose a state before selecting a city&quot;
-                }
-              &lt;/option&gt;
-              {state &amp;&amp; cities
-                .filter((city) =&gt; city.state === state)
-                .map(({ name }) =&gt; (
-                  &lt;option key={name} value={name}&gt;
-                    {name}
-                  &lt;/option&gt;
-                ))}
-            &lt;/select&gt;
+            City:
+            {state ? cities.map(({ name }) =&gt; (
+              &lt;button key={name} onClick={() =&gt; updateCity(name)} type=&quot;button&quot;&gt;
+                {name}
+              &lt;/button&gt;
+            )) : &lt;&gt; Choose a state before selecting a city&lt;/&gt;}
+            &lt;hr /&gt;
+            &lt;p&gt;
+              Current city: {city || &quot;(none)&quot;}
+            &lt;/p&gt;
           &lt;/div&gt;
         &lt;/form&gt;
 
@@ -1352,8 +1364,310 @@ const RestaurantList: React.FC = () =&gt; {
 
 export default RestaurantList
 </code></pre>
- <div line-highlight="3,10-11,54-57,59-61,76-77,80-84,95-96,98-111,only"></div>
+ <div line-highlight="8,18-20,57,60-62,86,92,only"></div>
 <p></details></p>
+<h2>Objective 3</h2>
+<p>TODO</p>
+<h3>Key concepts</h3>
+<p>TODO</p>
+<h4>Concept 1</h4>
+<p>TODO</p>
+<h4>Concept 2</h4>
+<p>TODO</p>
+<h3>Setup</h3>
+<p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
+import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
+import { useState } from 'react'
+import ListItem from './ListItem'
+import { useCities } from '../../services/restaurant/hooks'
+
+const RestaurantList: React.FC = () =&gt; {
+  const [state, setState] = useState(&quot;&quot;)
+  const [city, setCity] = useState(&quot;&quot;)
+
+  const states = [
+    { name: 'Illinois', short: 'IL' },
+    { name: 'Wisconsin', short: 'WI' },
+  ]
+
+  const cities = [
+    { name: 'Madison', state: 'WI' },
+    { name: 'Springfield', state: 'IL' },
+  ].filter(city =&gt; {
+    return city.state === state
+  })
+
+  const restaurants = {
+    data: [
+      {
+        name: 'Cheese Curd City',
+        slug: 'cheese-curd-city',
+        images: {
+          thumbnail: CheeseThumbnail,
+        },
+        address: {
+          street: '2451 W Washburne Ave',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53295',
+        },
+        _id: 'Ar0qBJHxM3ecOhcr',
+      },
+      {
+        name: 'Poutine Palace',
+        slug: 'poutine-palace',
+        images: {
+          thumbnail: PoutineThumbnail,
+        },
+        address: {
+          street: '230 W Kinzie Street',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53205',
+        },
+        _id: '3ZOZyTY1LH26LnVw',
+      },
+    ]
+  };
+
+  const updateState = (stateShortCode: string) =&gt; {
+    setState(stateShortCode)
+    setCity(&quot;&quot;)
+  }
+
+  const updateCity = (cityName: string) =&gt; {
+    setCity(cityName)
+  }
+
+  return (
+    &lt;&gt;
+      &lt;div className=&quot;restaurants&quot;&gt;
+        &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
+
+        &lt;form className=&quot;form&quot;&gt;
+          &lt;div className=&quot;form-group&quot;&gt;
+            State:
+            {states.map(({ short, name }) =&gt; (
+              &lt;button key={short} onClick={() =&gt; updateState(short)} type=&quot;button&quot;&gt;
+                {name}
+              &lt;/button&gt;
+            ))}
+            &lt;hr /&gt;
+            &lt;p&gt;
+              Current state: {state || &quot;(none)&quot;}
+            &lt;/p&gt;
+          &lt;/div&gt;
+
+          &lt;div className=&quot;form-group&quot;&gt;
+            City:
+            {state ? cities.map(({ name }) =&gt; (
+              &lt;button key={name} onClick={() =&gt; updateCity(name)} type=&quot;button&quot;&gt;
+                {name}
+              &lt;/button&gt;
+            )) : &lt;&gt; Choose a state before selecting a city&lt;/&gt;}
+            &lt;hr /&gt;
+            &lt;p&gt;
+              Current city: {city || &quot;(none)&quot;}
+            &lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/form&gt;
+
+        {restaurants.data ? (
+          restaurants.data.map(({ _id, address, images, name, slug }) =&gt; (
+            &lt;ListItem
+              key={_id}
+              address={address}
+              name={name}
+              slug={slug}
+              thumbnail={images.thumbnail}
+            /&gt;
+          ))
+        ) : (
+          &lt;p&gt;No restaurants.&lt;/p&gt;
+        )}
+      &lt;/div&gt;
+    &lt;/&gt;
+  )
+}
+
+export default RestaurantList
+</code></pre>
+ <div line-highlight="5,only"></div>
+<p>✏️ Create <strong>src/services/restaurant/hooks.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import type { City } from &quot;./interfaces&quot;
+
+export function useCities(state: string): City[] {
+}
+</code></pre>
+<p>✏️ Create <strong>src/services/restaurant/interfaces.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export interface State {
+  name: string
+  short: string
+}
+</code></pre>
+<h3>Verify</h3>
+<p>✏️ Create <strong>src/services/restaurant/hooks.test.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import { renderHook } from '@testing-library/react';
+import { describe, it, expect } from 'vitest';
+import { useCities } from './hooks';
+
+describe('useCities Hook', () =&gt; {
+    it('should return cities from Wisconsin when state is WI', () =&gt; {
+        const { result } = renderHook(() =&gt; useCities('WI'));
+        expect(result.current).toHaveLength(1);
+        expect(result.current[0].name).toBe('Madison');
+    });
+
+    it('should return cities from Illinois when state is IL', () =&gt; {
+        const { result } = renderHook(() =&gt; useCities('IL'));
+        expect(result.current).toHaveLength(1);
+        expect(result.current[0].name).toBe('Springfield');
+    });
+
+    it('should return no cities for an unknown state', () =&gt; {
+        const { result } = renderHook(() =&gt; useCities('CA'));
+        expect(result.current).toHaveLength(0);
+    });
+});
+
+</code></pre>
+<h3>Exercise</h3>
+<p>TODO</p>
+<h3>Solution</h3>
+<p><details>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
+import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
+import { useState } from 'react'
+import ListItem from './ListItem'
+import { useCities } from '../../services/restaurant/hooks'
+
+const RestaurantList: React.FC = () =&gt; {
+  const [state, setState] = useState(&quot;&quot;)
+  const [city, setCity] = useState(&quot;&quot;)
+
+  const states = [
+    { name: 'Illinois', short: 'IL' },
+    { name: 'Wisconsin', short: 'WI' },
+  ]
+
+  const cities = useCities(state)
+
+  const restaurants = {
+    data: [
+      {
+        name: 'Cheese Curd City',
+        slug: 'cheese-curd-city',
+        images: {
+          thumbnail: CheeseThumbnail,
+        },
+        address: {
+          street: '2451 W Washburne Ave',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53295',
+        },
+        _id: 'Ar0qBJHxM3ecOhcr',
+      },
+      {
+        name: 'Poutine Palace',
+        slug: 'poutine-palace',
+        images: {
+          thumbnail: PoutineThumbnail,
+        },
+        address: {
+          street: '230 W Kinzie Street',
+          city: 'Green Bay',
+          state: 'WI',
+          zip: '53205',
+        },
+        _id: '3ZOZyTY1LH26LnVw',
+      },
+    ]
+  };
+
+  const updateState = (stateShortCode: string) =&gt; {
+    setState(stateShortCode)
+    setCity(&quot;&quot;)
+  }
+
+  const updateCity = (cityName: string) =&gt; {
+    setCity(cityName)
+  }
+
+  return (
+    &lt;&gt;
+      &lt;div className=&quot;restaurants&quot;&gt;
+        &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
+
+        &lt;form className=&quot;form&quot;&gt;
+          &lt;div className=&quot;form-group&quot;&gt;
+            State:
+            {states.map(({ short, name }) =&gt; (
+              &lt;button key={short} onClick={() =&gt; updateState(short)} type=&quot;button&quot;&gt;
+                {name}
+              &lt;/button&gt;
+            ))}
+            &lt;hr /&gt;
+            &lt;p&gt;
+              Current state: {state || &quot;(none)&quot;}
+            &lt;/p&gt;
+          &lt;/div&gt;
+
+          &lt;div className=&quot;form-group&quot;&gt;
+            City:
+            {state ? cities.map(({ name }) =&gt; (
+              &lt;button key={name} onClick={() =&gt; updateCity(name)} type=&quot;button&quot;&gt;
+                {name}
+              &lt;/button&gt;
+            )) : &lt;&gt; Choose a state before selecting a city&lt;/&gt;}
+            &lt;hr /&gt;
+            &lt;p&gt;
+              Current city: {city || &quot;(none)&quot;}
+            &lt;/p&gt;
+          &lt;/div&gt;
+        &lt;/form&gt;
+
+        {restaurants.data ? (
+          restaurants.data.map(({ _id, address, images, name, slug }) =&gt; (
+            &lt;ListItem
+              key={_id}
+              address={address}
+              name={name}
+              slug={slug}
+              thumbnail={images.thumbnail}
+            /&gt;
+          ))
+        ) : (
+          &lt;p&gt;No restaurants.&lt;/p&gt;
+        )}
+      &lt;/div&gt;
+    &lt;/&gt;
+  )
+}
+
+export default RestaurantList
+</code></pre>
+ <div line-highlight="16,only"></div>
+<p>✏️ Update <strong>src/services/restaurant/hooks.ts</strong> to be:</p>
+<pre><code class="language-ts">import type { City } from &quot;./interfaces&quot;
+
+export function useCities(state: string): City[] {
+  const cities = [
+    { name: 'Madison', state: 'WI' },
+    { name: 'Springfield', state: 'IL' },
+  ]
+  return cities.filter(city =&gt; {
+    return city.state === state
+  })
+}
+</code></pre>
+ <div line-highlight="4-10,only"></div>
+<p></details></p>
+<h2>Next steps</h2>
+<p>TODO</p>
 
 </section>
 
