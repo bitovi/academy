@@ -45,7 +45,7 @@ Do you remember this code from earlier?
 The `useMatch` Hook from `react-router-dom` allowed us to check whether a given
 path “matched” the current route.
 
-React imposes a couple rules around the use of Hooks:
+React imposes several rules around the use of Hooks:
 
 - **First,** only call Hooks from functional React components or your own custom Hook.
 
@@ -54,8 +54,7 @@ same order every time the function runs, so no Hooks can occur after an `if`,
 `loop`, or `return` statement. Typically this means all Hooks are placed at the
 top of the React function body.
 
-Although not a requirement, a naming convention for Hooks is imposed by the
-community: Hooks should be named by prefixing their functionality with `use`
+- **Third,** Hooks should be named by prefixing their functionality with `use`
 (e.g. `useMatch`).
 
 Hooks can only be used in functional components. Almost anything that could be
