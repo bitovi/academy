@@ -545,7 +545,7 @@ covering CanJS core libraries.">
   				<section class="body">
     <h2>Overview</h2>
 <p>TODO</p>
-<h2>Objective 1</h2>
+<h2>Objective 1: Add a <code>fetch</code> request for states</h2>
 <p>In this section, we will:</p>
 <ul>
 <li>Learn about the <code>useEffect</code> Hook</li>
@@ -697,7 +697,8 @@ function DataFetcher() {
     useEffect(() =&gt; {
         fetch('https://api.example.com/data')
             .then(response =&gt; {
-                setData(response.json());
+                const parsedData = response.json();
+                setData(parsedData);
             })
             .catch(error =&gt; {
                 // Error should be shown to the user
@@ -713,7 +714,7 @@ function DataFetcher() {
 export default DataFetcher;
 
 </code></pre>
-<div line-highlight='7-14, only'></div>
+<div line-highlight='7-15, only'></div>
 <p>However, unlike traditional functions, <code>useEffect</code> functions can’t be marked as async.
 This is because returning a <code>Promise</code> from <code>useEffect</code> would conflict with its mechanism,
 which expects either nothing or a clean-up function to be returned.</p>
@@ -728,7 +729,8 @@ function DataFetcher() {
         const fetchData = async () =&gt; {
             try {
                 const response = await fetch('https://api.example.com/data');
-                setData(response.json());
+                const parsedData = response.json();
+                setData(parsedData);
             } catch (error) {
                 // Error should be shown to the user
                 console.error('Error fetching data:', error)
@@ -746,7 +748,7 @@ function DataFetcher() {
 export default DataFetcher;
 
 </code></pre>
-<div line-highlight='7-17, only'></div>
+<div line-highlight='7-18, only'></div>
 <p>When using async/await, error handling is typically done using try-catch blocks. This allows
 you to gracefully handle any errors that occur during the execution of your async operation.</p>
 <p>In this example, if <code>fetch</code> throws an error, the <code>catch</code> block catches and handles it.
@@ -793,6 +795,13 @@ export default WebSocketComponent;
 is first rendered (note the empty dependency array).</p>
 <p>When the component is removed from the DOM, the cleanup function will run and tear down
 the WebSocket connection.</p>
+<h3>Environment variables</h3>
+<p>The way we’re accessing our locally run API during development may be different than how
+we access it in production. To prepare for this, we’ll set an environment variable to do
+what we need.</p>
+<p>TODO: Explain that setting environment variables is a generic thing you do, and on this
+project in particular, Vite will make anything prefixed with <code>VITE_</code> available in our
+client-side source code.</p>
 <h3>Setup</h3>
 <p>✏️ Create <strong>.env</strong> and update it to be:</p>
 <pre><code>VITE_PMO_API = '//localhost:7070'
@@ -934,7 +943,7 @@ export default RestaurantList
 </code></pre>
  <div line-highlight="3,6,8-11,74-97,130,only"></div>
 <h4>Install the Place My Order API</h4>
-<p>Before we begin making requesting data from our API, we need to install the
+<p>Before we begin requesting data from our API, we need to install the
 <code>place-my-order-api</code> module, which will generate fake restaurant data and
 serve it from port <code>7070</code>.</p>
 <p>✏️ Run:</p>
@@ -1082,8 +1091,11 @@ describe('RestaurantList component', () =&gt; {
 </code></pre>
  <div line-highlight="2-3,5,8-9,11-12,14,16-17,19-23,27-29,32-36,38,89,only"></div>
 <h3>Exercise</h3>
-<p>Update <code>src/services/restaurant/hooks.ts</code> with a <code>useEffect</code> that uses <code>getStates</code> to get a list of states.</p>
-<p>Hint: Call <code>setResponse</code> after you get the response from <code>getStates()</code>.</p>
+<ul>
+<li>Update <code>RestaurantList.tsx</code> to call <code>useState()</code> and use the <code>StateResponse</code> interface.</li>
+<li>Call <code>useEffect()</code> and <code>fetch</code> data from <code>${import.meta.env.VITE_PMO_API}/states</code>.</li>
+</ul>
+<p>Hint: Call your state setter after you parse the JSON response from <code>fetch()</code>.</p>
 <h3>Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1241,25 +1253,36 @@ export default RestaurantList
 </code></pre>
  <div line-highlight="18-22,24-28,30,32-39,only"></div>
 <p></details></p>
-<h2>Objective 2</h2>
+<h2>Objective 2: Move the fetch to a <code>useStates</code> Hook</h2>
 <p>In this section, we will:</p>
 <ul>
-<li>Learn the basics of the <code>fetch</code> API</li>
-<li>Understand how to handle responses from <code>fetch</code></li>
+<li>Refactor our <code>&lt;RestaurantList&gt;</code> component to depend on a custom Hook.</li>
 </ul>
-<h3>Making <code>fetch</code> happen</h3>
-<p>TODO</p>
-<h3>Parsing responses from <code>fetch</code></h3>
-<p>TODO</p>
-<p>Explain:</p>
-<ul>
-<li><code>.json()</code></li>
-<li><code>.ok</code></li>
-<li><code>.status</code></li>
-<li><code>.statusText</code></li>
-</ul>
-<h3>Handling network errors</h3>
-<p>TODO: Explain how <code>fetch</code> can throw.</p>
+<h3>Writing custom Hooks as services</h3>
+<p>In a previous section, we created a <code>useCities</code> Hook in our <code>hooks.ts</code> file.</p>
+<p>Putting stateful logic into a custom Hook has numerous benefits:</p>
+<p><strong>Reusability:</strong> One of the primary reasons for creating custom Hooks is reusability.
+You might find yourself repeating the same logic in different components—for
+example, fetching data from an API, handling form input, or managing a subscription.
+By refactoring this logic into a custom Hook, you can easily reuse this functionality
+across multiple components, keeping your code DRY (Don't Repeat Yourself).</p>
+<p><strong>Separation of concerns:</strong> Custom Hooks allow you to separate complex logic from the
+component logic. This makes your main component code cleaner and more focused on
+rendering UI, while the custom Hook handles the business logic or side effects.
+It aligns well with the principle of single responsibility, where a function or
+module should ideally do one thing only.</p>
+<p><strong>Easier testing and maintenance:</strong> Isolating logic into custom Hooks can make your code
+easier to test and maintain. Since Hooks are just JavaScript functions, they can be
+tested independently of any component. This isolation can lead to more robust and
+reliable code.</p>
+<p><strong>Simplifying components:</strong> If your component is becoming too large and difficult to
+understand, moving some logic to a custom Hook can simplify it. This not only
+improves readability but also makes it easier for other developers to grasp what
+the component is doing.</p>
+<p><strong>Sharing stateful logic:</strong> Custom Hooks can contain stateful logic, which is not
+possible with regular JavaScript functions. This means you can have a Hook that
+manages its own state and shares this logic across multiple components, something
+that would be difficult or impossible with traditional class-based components.</p>
 <h3>Setup</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
@@ -1565,7 +1588,10 @@ describe('useStates Hook', () =&gt; {
 </code></pre>
  <div line-highlight="1-3,24-28,30-34,36,38-44,only"></div>
 <h3>Exercise</h3>
-<p>TODO</p>
+<ul>
+<li>Refactor the existing <code>useState</code> and <code>useEffect</code> logic into a new <code>useStates</code> Hook.</li>
+</ul>
+<p>Hint: After moving the state and effect logic into <code>hooks.ts</code>, use your new Hook in <code>RestaurantList.tsx</code>.</p>
 <h3>Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1743,14 +1769,29 @@ export function useStates(): StateResponse {
 </code></pre>
  <div line-highlight="4-7,18,20-25,27-31,33,35-42,44-45,only"></div>
 <p></details></p>
-<h2>Objective 3</h2>
-<p>TODO</p>
-<h3>Key concepts</h3>
-<p>TODO</p>
-<h4>Concept 1</h4>
-<p>TODO</p>
-<h4>Concept 2</h4>
-<p>TODO</p>
+<h2>Objective 3: Update the <code>useCities</code> Hook to fetch data from the API.</h2>
+<p>In this section, we will:</p>
+<ul>
+<li>Learn about including query parameters in our API calls.</li>
+</ul>
+<h3>Including query parameters in API calls</h3>
+<p>Query parameters are a defined set of parameters attached to the end of a URL.
+They are used to define and pass data in the form of key-value pairs. The
+parameters are separated from the URL itself by a <code>?</code> symbol, and individual
+key-value pairs are separated by the <code>&amp;</code> symbol.</p>
+<p>A basic URL with query parameters looks like this:</p>
+<pre><code>http://www.example.com/page?param1=value1&amp;param2=value2
+</code></pre>
+<p>Here’s a breakdown of this URL:</p>
+<ul>
+<li>Base URL: <code>http://www.example.com/page</code></li>
+<li>Query Parameter Indicator: <code>?</code></li>
+<li>Query Parameters:
+<ul>
+<li><code>param1=value1</code></li>
+<li><code>param2=value2</code></li>
+</ul></li>
+</ul>
 <h3>Setup</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
@@ -2036,7 +2077,10 @@ describe('useStates Hook', () =&gt; {
 </code></pre>
  <div line-highlight="6,10-12,15,17-18,23-27,29,31-32,34-35,42,49,53-54,56-57,only"></div>
 <h3>Exercise</h3>
-<p>TODO</p>
+<p>Update our useCities Hook to fetch cities from the Place My Order API, given a selected state.</p>
+<p>When calling the Place My Order API, include the <code>state</code> query parameter:</p>
+<pre><code>http://localhost:7070/cities?state=MO
+</code></pre>
 <h3>Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -2253,14 +2297,62 @@ export function useStates(): StateResponse {
 </code></pre>
  <div line-highlight="4-5,12-13,16-17,25,38,45-47,50-51,53-54,56,58-64,67-68,only"></div>
 <p></details></p>
-<h2>Objective 4</h2>
-<p>TODO</p>
-<h3>Key concepts</h3>
-<p>TODO</p>
-<h4>Concept 1</h4>
-<p>TODO</p>
-<h4>Concept 2</h4>
-<p>TODO</p>
+<h2>Objective 4: Create an <code>apiRequest</code> helper and use it in the Hooks.</h2>
+<p>In this section, we will learn how to:</p>
+<ul>
+<li>Handle HTTP error statuses (e.g. <code>404 Not Found</code>)</li>
+<li>Catch network errors from <code>fetch()</code></li>
+</ul>
+<h3>Checking for error responses</h3>
+<ul>
+<li><code>.ok</code></li>
+<li><code>.status</code></li>
+<li><code>.statusText</code></li>
+</ul>
+<p>When you make a request with the Fetch API, it does not reject on HTTP error
+statuses (like <code>404</code> or <code>500</code>). Instead, it resolves normally (with an <code>ok</code>
+status set to <code>false</code>), and it only rejects on network failure or if anything
+prevented the request from completing.</p>
+<p>Here’s the API that <code>fetch</code> provides to handle these HTTP errors:</p>
+<ul>
+<li><code>.ok</code>: This is a shorthand property that returns <code>true</code> if the response’s status code is in the range <code>200</code>-<code>299</code>, indicating a successful request.</li>
+<li><code>.status</code>: This property returns the status code of the response (e.g. <code>200</code> for success, <code>404</code> for <code>Not Found</code>, etc.).</li>
+<li><code>.statusText</code>: This provides the status message corresponding to the status code (e.g. <code>'OK'</code>, <code>'Not Found'</code>, etc.).</li>
+</ul>
+<pre><code class="language-js">const response = await fetch('https://api.example.com/data', {
+    method: &quot;GET&quot;,
+})
+
+const data = await response.json()
+const error = response.ok ? null : new Error(`${response.status} (${response.statusText})`)
+</code></pre>
+<p>In the example above, we check the <code>response.ok</code> property to see if the status
+code is in the <code>200</code>-<code>299</code> (successful) range. If not, we create an <code>error</code>
+object that contains the status code and text (e.g. <code>404 Not Found</code>).</p>
+<h3>Handling network errors</h3>
+<p>Network errors occur when there is a problem in completing the request, like when
+the user is offline, the server is unreachable, or there is a DNS lookup failure.</p>
+<p>In these cases, the <code>fetch</code> API will <em>not</em> resolve with data, but instead it will
+throw an error that needs to be caught.</p>
+<p>Let’s take a look at how to handle these types of errors:</p>
+<pre><code class="language-js">try {
+    const response = await fetch('https://api.example.com/data', {
+        method: &quot;GET&quot;,
+    })
+
+    const data = await response.json()
+    const error = response.ok ? null : new Error(`${response.status} (${response.statusText})`)
+    // Do something with data and error
+
+} catch (error) {
+    const parsedError = error instanceof Error ? error : new Error('An unknown error occurred')
+    // Do something with parsedError
+}
+</code></pre>
+<p>In the example above, we <code>catch</code> the <code>error</code> and check its type. If it’s already an
+<code>instanceof Error</code>, then it will have a <code>message</code> property and we can use it as-is.
+If it’s not, then we can create our own <code>new Error()</code> so we <em>always</em> have an error
+to consume in our Hooks or components.</p>
 <h3>Setup</h3>
 <p>✏️ Create <strong>src/services/api.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export async function apiRequest&lt;Data = never, Params = unknown&gt;({
@@ -2514,7 +2606,16 @@ describe('Hooks', () =&gt; {
 </code></pre>
  <div line-highlight="2-3,6-9,11-14,16-19,21,23-27,30-32,34,36-40,42,44-47,49,51-55,58-60,62,64-68,70,only"></div>
 <h3>Exercise</h3>
-<p>TODO</p>
+<ul>
+<li>Implement the <code>apiRequest</code> helper function to handle errors returned and thrown from <code>fetch()</code>.</li>
+<li>Update the <code>useCities</code> and <code>useStates</code> Hooks to use the <code>data</code> and <code>error</code> returned from <code>apiRequest</code>.</li>
+</ul>
+<p>Hint: Use the new <code>stringifyQuery</code> function to convert an object of query parameters to a string:</p>
+<pre><code class="language-js">stringifyQuery({
+    param1: &quot;value1&quot;,
+    param2: &quot;value2&quot;,
+})
+</code></pre>
 <h3>Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -2636,14 +2737,17 @@ export function useStates(): StateResponse {
 </code></pre>
  <div line-highlight="26-31,36,55-57,62,only"></div>
 <p></details></p>
-<h2>Objective 5</h2>
-<p>TODO</p>
-<h3>Key concepts</h3>
-<p>TODO</p>
-<h4>Concept 1</h4>
-<p>TODO</p>
-<h4>Concept 2</h4>
-<p>TODO</p>
+<h2>Objective 5: Fetch restaurant data</h2>
+<p>In this section, we will:</p>
+<ul>
+<li>Create a <code>useRestaurants</code> Hook for fetching the restaurant data.</li>
+</ul>
+<p><img src="../static/img/react-vite/09-making-http-requests/5-problem.png"
+style="border: solid 1px black; max-width: 800px;"/></p>
+<p>Now that we are able to capture a user’s state and city preferences, we want to only
+return restaurants in the selected city.:</p>
+<p><img src="../static/img/react-vite/09-making-http-requests/5-solution.png"
+style="border: solid 1px black; max-width: 800px;"/></p>
 <h3>Setup</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
@@ -2920,6 +3024,8 @@ export function useStates(): StateResponse {
 </code></pre>
  <div line-highlight="3,only"></div>
 <h3>Verify</h3>
+<p>If you’ve implemented the solution correctly, when you use the select boxes to choose state
+and city, you should see a list of just restaurants from the selected city returned.</p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
@@ -3108,7 +3214,12 @@ describe('Hooks', () =&gt; {
 </code></pre>
  <div line-highlight="4,44-47,49,53,58-59,62,79-80,82-84,88,92-98,only"></div>
 <h3>Exercise</h3>
-<p>TODO</p>
+<ul>
+<li>Implement a <code>useRestaurants</code> Hook to fetch restaurant data.</li>
+<li>Update <code>RestaurantList.tsx</code> to use your new <code>useRestaurants</code> Hook.</li>
+</ul>
+<p>Hint: The requested URL with query parameters should look like this:
+<code>'/api/restaurants?filter[address.state]=IL&amp;filter[address.city]=Chicago'</code></p>
 <h3>Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
