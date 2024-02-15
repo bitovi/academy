@@ -550,60 +550,79 @@ covering CanJS core libraries.">
 <ul>
 <li>A controlled input requires value (checked) and onChange props.</li>
 <li>Form input events have a <code>target</code> property with current form values.</li>
-<li>Store form data as an object in state.</li>
-<li>Update form data in state using the setState callback signature.</li>
-<li>Always create a new value for arrays and objects in state (don’t update the arrays and values).</li>
 <li><code>Record</code> helper in TypeScript.</li>
+<li>Store form data as a <code>Record</code> in state.</li>
+<li>Update form data in state using an updater function.</li>
+<li>Always create a new value for arrays and objects in state (don’t update the arrays and values).</li>
 </ul>
 <h4>Controlled and uncontrolled inputs</h4>
-<p>React has special handling for <code>&lt;input&gt;</code> components that allow developers to
-create &quot;controlled&quot; or &quot;uncontrolled&quot; inputs. An input is uncontrolled when its
-<code>value</code> — or <code>checked</code> — prop is <strong>not</strong> set, and it does not have a handler set
-for the <code>onChange</code> prop; an initial value may be set using the <code>defaultValue</code>
-prop.</p>
-<p>An input is controlled when both its <code>value</code>, or <code>checked</code>, and <code>onChange</code> props
-have values set; the term controlled refers to the fact that the value of the
-input is controlled by React. Most of the time <code>&lt;input&gt;</code> components are
-controlled and their value is stored in a state variable.</p>
+<p>React has special handling for <code>&lt;input&gt;</code> components that allow developers to create &quot;controlled&quot; or
+&quot;uncontrolled&quot; inputs. An input is <strong>uncontrolled</strong> when its <code>value</code> — or <code>checked</code> — prop is not
+set, and it does not have a handler set for the <code>onChange</code> prop; an initial value may be set using
+the <code>defaultValue</code> prop.</p>
+<p>An input is <strong>controlled</strong> when both its <code>value</code>, or <code>checked</code>, and <code>onChange</code> props have values
+set; the term &quot;controlled&quot; refers to the fact that the value of the input is controlled by React.
+Most of the time <code>&lt;input&gt;</code> components are controlled and their value is stored in a state variable.</p>
 <blockquote>
-<p>If an <code>&lt;input&gt;</code> only has the <code>value</code> or <code>onChange</code> prop set React will log a
-warning to the console in development mode.</p>
+<p>If an <code>&lt;input&gt;</code> only has the <code>value</code> or <code>onChange</code> prop set React will log a warning to the
+console in development mode.</p>
 </blockquote>
-<pre><code class="language-jsx">const FancyInput: React.FC = () =&gt; {
-  const [name, setName] = useState(&quot;&quot;)
+<pre><code class="language-jsx">const ControlledInput: React.FC = () =&gt; {
+  const [name, setName] = useState(&quot;&quot;);
   return (
     &lt;label&gt;Name: 
-      &lt;input onChange={(event) =&gt; setName(event.target.value)} type=&quot;text&quot; value={name} /&gt;
+      &lt;input onChange={(event) =&gt; setName(event.target.value)} value={name} /&gt;
     &lt;/label&gt;
   )
 }
 </code></pre>
-<p>Controlled components aren't allowed to have a value of <code>null</code> or <code>undefined</code>.
-To set an input with &quot;no value&quot; use an empty string: <code>&quot;&quot;</code>.</p>
+<p>Controlled components aren't allowed to have a value of <code>null</code> or <code>undefined</code>. To set an input with
+&quot;no value&quot; use an empty string: <code>&quot;&quot;</code>.</p>
+<h4>Working with events</h4>
+<p>In the previous example the input prop <code>onChange</code> had its value set to a function known as an &quot;event
+handler.&quot;</p>
+<pre><code class="language-jsx">onChange={(event) =&gt; setName(event.target.value)}
+</code></pre>
+<p>The <code>onChange</code> prop requires a function that implements the <code>ChangeEventHandler</code> interface. When an
+event handler is called it receives an argument named &quot;event&quot; which is a <code>SyntheticEvent</code> defined by
+React. While a <code>SyntheticEvent</code> is similar to a native DOM <code>Event</code>, and has many of the same
+properties, they are not identical.</p>
+<p>A <code>ChangeEvent</code> — derived from <code>SyntheticEvent</code> — is the event argument provided to a
+<code>ChangeEventHandler</code>. A <code>ChangeEvent</code> always has a property named <code>target</code> which references the
+component that emitted the event. As you can see above it's possible to get the <code>target</code>'s new value
+using its <code>value</code> property.</p>
+<h4>TypeScript's <code>Record</code> interface</h4>
+<p>In our upcoming exercise we want to store information in a JavaScript object. We also want to use
+TypeScript so we can constrain the types used as keys and values. TypeScript provides a handy
+interface named <code>Record</code> which we can use. <code>Record</code> is a generic interface that requires two types:
+the first is the type of the keys and the second is the type of the values. For example, if we're
+recording class attendance we might capture the student's name and whether or not they attended in
+state like this:</p>
+<pre><code class="language-jsx">const [attendance, setAttendance] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
+</code></pre>
+<p>We've explicitly defined the type of <code>useState</code> as a <code>Record&lt;string, boolean&gt;</code>; all the keys must be
+strings and all the values must be booleans. Fortunately JavaScript's <code>object</code> implements the
+<code>Record</code> interface so we can set the default value to an empty <code>object</code> instance. Now let's see how
+we can use a <code>Record</code> to store state data.</p>
 <h4>Set state using a function</h4>
-<p>We're adding a form to our application to capture a user's order. As the user
-makes changes we want to store them in state to work with later on. The values
-of each input will be stored as properties on an object. In the following
-example the values from two different inputs are stored in a single state value.</p>
-<p>Each input's onChange prop invokes a the <code>setData</code> function that accepts a
-property name and a property value as parameters, these parameters will be used
-to update the state object.</p>
-<p>In the example below the <code>setData</code> function invokes <code>setFormData</code> with a
-callback function as its argument. <code>setFormData</code> is the setter returned by
-<code>useState</code>, all setters have a signature that allows a callback function to be
-passed as its argument. The callback function has one parameter which is the
-current value of state (named <code>current</code> in the example). Inside the callback a
-new object is returned, this will be the new value of state; the contents of the
-new state object are initially set by spreading the contents of the current
-state object. Then the new value provided by an input is set on the new state
-value object.</p>
-<p>Properties on the <code>formData</code> state value are used to set the value for each
-input in the form.</p>
-<pre><code class="language-jsx">const MyForm: React.FC = () =&gt; {
-  const [formData, setFormData] = useState({first: &quot;&quot;, last: &quot;&quot;});
+<p>One challenge we face when using an <code>object</code> for state is that we probably need to merge the current
+state value with the new state value. Why? Imagine we have a state object that already has multiple
+keys and values, and we need to add a new key and value. Well, we're in luck! React already has a
+solution for this: the set function returned by <code>useState</code> will accept a function, called an
+<strong>updater function</strong> that's passed the &quot;pending&quot; state value and returns a &quot;next&quot; state value.</p>
+<pre><code class="language-jsx">const [value, setValue] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
+setValue((pending) =&gt; { /* Do something with the pending state value and return a next state value. */ });
+</code></pre>
+<p>In the example below the <code>onChange</code> event handler calls <code>handleAttendanceChange</code> which accepts a
+name string and a boolean. In turn <code>handleAttendanceChange</code> calls <code>setAttendance</code> with an updater
+function as its argument. In the updater function the contents of the next state object are
+initially set by spreading the contents of the pending state object. Then the value provided by the
+input is set on the next state value object.</p>
+<pre><code class="language-jsx">const Attendance: React.FC = () =&gt; {
+  const [attendance, setAttendance] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
 
-  function setData(name: string, value: string){
-    setFormData((current) =&gt; {
+  function handleAttendanceChange(name: string, value: string | boolean){
+    setAttendance((current) =&gt; {
       return {
         ...current,
         [name]: value
@@ -611,38 +630,28 @@ input in the form.</p>
     })
   }
 
-return (
+  return (
     &lt;form&gt;
-      &lt;label&gt;First Name:
-        &lt;input onChange={(event) =&gt; setData(&quot;first&quot;, event.target.value)} value={formData.first} /&gt;
-      &lt;/label&gt;
-      &lt;label&gt;Last Name:
-        &lt;input onChange={(event) =&gt; setData(&quot;last&quot;, event.target.value)} value={formData.last} /&gt;
-      &lt;/label&gt;
+      {
+        studentNames.map((studentName) =&gt; {
+          return (
+            &lt;label&gt;{studentName}:
+              &lt;input
+                onChange={(event) =&gt; handleAttendanceChange(studentName, event.target.checked)}
+                value={attendance[studentName]}
+                type=&quot;checkbox&quot;
+              /&gt;
+            &lt;/label&gt;
+          )
+        })
+      }
     &lt;/form&gt;
   )
 }
 </code></pre>
-<p>TODO</p>
+<p>TODO: DO NOT MUTATE PENDING STATE!!!</p>
 <h3>Setup</h3>
 <p>TODO</p>
-<p>✏️ Create <strong>src/services/order/interfaces.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">export interface Order {
-    _id: string
-    status: &quot;new&quot; | &quot;preparing&quot; | &quot;delivery&quot; | &quot;delivered&quot;
-    restaurant: string
-    name: string
-    address: string
-    phone: string
-    items: OrderItem[]
-  }
-  
-  export interface OrderItem {
-    name: string
-    price: number
-  }
-</code></pre>
-<div line-highlight='1-14'></div>
 <p>✏️ Update <strong>src/pages/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useState } from &quot;react&quot;
 import { useParams } from &quot;react-router-dom&quot;
@@ -1594,8 +1603,6 @@ export default RestaurantOrder
 </code></pre>
  <div line-highlight="22,24-25,65-71,76,133-150,only"></div>
 <p></details></p>
-<h2>Next steps</h2>
-<p>TODO</p>
 
 </section>
 
