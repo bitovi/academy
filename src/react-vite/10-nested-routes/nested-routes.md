@@ -38,29 +38,9 @@ You could create this sort of page without nested routes, but using nested route
 
 Recall our router config from the [first React Router lesson](./routing.html).
 
-```tsx
-const router = createBrowserRouter(
-  [
-    {
-      path: '/',
-      element: <App />,
-      children: [
-        {
-          index: true,
-          element: <HomePage />,
-        },
-        {
-          path: 'about',
-          element: <AboutPage />,
-        },
-      ],
-    },
-  ],
-  {
-    basename: import.meta.env.BASE_URL,
-  },
-)
-```
+@sourceref ../../../exercises/react-vite/06-routing/01-solution/src/main.tsx
+@highlight 10-25
+
 
 Notice that our home and about pages are under the `children` key. These are actually nested routes of the root path. Route children can accept a `children` property themselves, on and on, until the browser runs out of resources.
 
@@ -145,7 +125,7 @@ No additional setup needed.
 
 #### Verify
 
-The existing test already cover routing, so no new tests are needed. Ensure the existing tests pass when you ren `npm run test`.
+The existing test already cover routing, so no new tests are needed. Ensure the existing tests pass when you run `npm run test`.
 
 #### Exercise
 
@@ -191,7 +171,7 @@ Add the order page files.
 
 Refactor the router config in **src/main.tsx** to contain the new RestaurantOrder components. You will need to come up with the route path on your own.
 
-Add a link to the order page inside the `ListItem` component/
+Add a link to the order page inside the `ListItem` component.
 
 #### Solution 
 
