@@ -24,7 +24,6 @@ There are different types of state within an application:
 In this section, we will:
 
 - Cover the fundamentals of React Hooks.
-- Learn how to use the `useId()` hook.
 
 ### React Hooks
 
@@ -60,47 +59,6 @@ top of the React function body.
 Hooks can only be used in functional components. Almost anything that could be
 done in a class component can be done with Hooks. _The one thing that class
 component can do that Hooks cannot is implement error boundaries._
-
-### useId
-
-Let's start with one of the newer Hooks that React includes: `useId`. Since the
-value of every `id` attribute in an HTML document must be unique, this Hook is
-useful in creating a unique identifier string that can be used as the value for
-an `id` prop.
-
-Let’s say you’re rendering a component that has a `label` that needs to be
-associated with an `input`:
-
-```html
-<label for="name">
-  Name
-</label>
-<input id="name" type="text">
-```
-@highlight 1, 4
-
-Every ID has to be unique in an HTML page, but `name` might clash with another
-element in a page. To avoid this issue in React, we can get a unique ID with
-`useId()`:
-
-```tsx
-import { useId } from 'react'
-
-const Form: React.FC = () => {
-  const id = useId();
-
-  return (
-    <label htmlFor={id}>
-      Name
-    </label>
-    <input id={id} type="text" />
-  )
-}
-```
-@highlight 1, 4, 7, 10
-
-The value of `useId` is guaranteed to be unique within the component where it is
-used; this ideal for linking related components together.
 
 ### Setup
 
