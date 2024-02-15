@@ -554,15 +554,219 @@ covering CanJS core libraries.">
 <h4>Concept 2</h4>
 <p>TODO</p>
 <h3>Setup</h3>
-<p>TODO</p>
+<p>✏️ Create <strong>src/components/FormSelect/FormSelect.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { useId } from &quot;react&quot;
+
+const FormSelect: React.FC&lt;{
+    children: React.ReactNode
+    label: string
+    onChange: (data: string) =&gt; void
+    value: string
+}&gt; = ({ children, label, onChange, value }) =&gt; {
+    const id = useId()
+
+    return (
+        &lt;div className=&quot;form-group&quot;&gt;
+            &lt;label htmlFor={id} className=&quot;control-label&quot;&gt;
+                {label}:
+            &lt;/label&gt;
+
+            &lt;select
+                className=&quot;form-control&quot;
+                id={id}
+                onChange={(event) =&gt; onChange(event.target.value)}
+                value={value}
+            &gt;
+                {children}
+            &lt;/select&gt;
+        &lt;/div&gt;
+    )
+}
+
+export default FormSelect
+</code></pre>
+<p>✏️ Create <strong>src/components/FormSelect/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./FormSelect&quot;
+</code></pre>
+<p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { useState } from 'react'
+import { useCities, useRestaurants, useStates } from '../../services/restaurant/hooks'
+import ListItem from './ListItem'
+import FormSelect from '../../components/FormSelect'
+
+const RestaurantList: React.FC = () =&gt; {
+  const [state, setState] = useState(&quot;&quot;)
+  const [city, setCity] = useState(&quot;&quot;)
+
+  const statesResponse = useStates()
+  const citiesResponse = useCities(state)
+  const restaurantsResponse = useRestaurants(state, city)
+
+  const updateState = (newValue: string) =&gt; {
+    setState(newValue)
+    setCity(&quot;&quot;)
+  }
+
+  const updateCity = (newValue: string) =&gt; {
+    setCity(newValue)
+  }
+
+  return (
+    &lt;&gt;
+      &lt;div className=&quot;restaurants&quot;&gt;
+        &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
+
+        &lt;form className=&quot;form&quot;&gt;
+          &lt;FormSelect
+            label=&quot;State&quot;
+            onChange={updateState}
+            value={state}
+          &gt;
+            &lt;option key=&quot;choose_state&quot; value=&quot;&quot;&gt;
+              {
+                statesResponse.isPending
+                  ? &quot;Loading states…&quot;
+                  : statesResponse.error
+                    ? statesResponse.error.message
+                    : &quot;Choose a state&quot;
+              }
+            &lt;/option&gt;
+            {statesResponse.data?.map(({ short, name }) =&gt; (
+              &lt;option key={short} value={short}&gt;
+                {name}
+              &lt;/option&gt;
+            ))}
+          &lt;/FormSelect&gt;
+
+          &lt;FormSelect
+            label=&quot;City&quot;
+            onChange={updateCity}
+            value={city}
+          &gt;
+            &lt;option key=&quot;choose_city&quot; value=&quot;&quot;&gt;
+              {
+                state
+                  ? citiesResponse.isPending
+                    ? &quot;Loading cities…&quot;
+                    : citiesResponse.error
+                      ? citiesResponse.error.message
+                      : &quot;Choose a city&quot;
+                  : &quot;Choose a state before selecting a city&quot;
+              }
+            &lt;/option&gt;
+            {state &amp;&amp; citiesResponse.data?.map(({ name }) =&gt; (
+              &lt;option key={name} value={name}&gt;
+                {name}
+              &lt;/option&gt;
+            ))}
+          &lt;/FormSelect&gt;
+        &lt;/form&gt;
+
+        {city &amp;&amp; restaurantsResponse.error &amp;&amp; (
+          &lt;p aria-live=&quot;polite&quot; className=&quot;restaurant&quot;&gt;
+            Error loading restaurants: {restaurantsResponse.error.message}
+          &lt;/p&gt;
+        )}
+
+        {city &amp;&amp; restaurantsResponse.isPending &amp;&amp; (
+          &lt;p aria-live=&quot;polite&quot; className=&quot;restaurant loading&quot;&gt;
+            Loading restaurants…
+          &lt;/p&gt;
+        )}
+
+        {city &amp;&amp; restaurantsResponse.data &amp;&amp; (
+          restaurantsResponse.data.length === 0 ? (
+            !restaurantsResponse.isPending &amp;&amp; (
+              &lt;p aria-live=&quot;polite&quot;&gt;No restaurants found.&lt;/p&gt;
+            )
+          ) : (
+            restaurantsResponse.data.map(({ _id, slug, name, address, images }) =&gt; (
+              &lt;ListItem
+                key={_id}
+                address={address}
+                name={name}
+                slug={slug}
+                thumbnail={images.thumbnail}
+              /&gt;
+            ))
+          )
+        )}
+      &lt;/div&gt;
+    &lt;/&gt;
+  )
+}
+
+export default RestaurantList
+</code></pre>
+ <div line-highlight="1,4,14-15,19-20,29-45,47-48,50-68,70-71,only"></div>
 <h3>Verify</h3>
-<p>TODO</p>
+<p>✏️ Create <strong>src/components/FormSelect/FormSelect.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { describe, expect, it, vi } from 'vitest'
+import FormSelect from './FormSelect'
+
+describe('FormSelect Component', () =&gt; {
+    it('renders correctly with given props', () =&gt; {
+    })
+
+    it('calls onChange with the right value when selection changes', async () =&gt; {
+    })
+})
+
+</code></pre>
 <h3>Exercise</h3>
 <p>TODO</p>
 <h3>Solution</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>TODO</p>
+<p>✏️ Update <strong>src/components/FormSelect/FormSelect.test.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
+import { describe, expect, it, vi } from 'vitest'
+import FormSelect from './FormSelect'
+
+describe('FormSelect Component', () =&gt; {
+    it('renders correctly with given props', () =&gt; {
+        render(
+            &lt;FormSelect label=&quot;Test Label&quot; onChange={() =&gt; { }} value=&quot;&quot;&gt;
+                &lt;option value=&quot;option1&quot;&gt;Option 1&lt;/option&gt;
+                &lt;option value=&quot;option2&quot;&gt;Option 2&lt;/option&gt;
+            &lt;/FormSelect&gt;
+        )
+
+        // Check if label is rendered correctly
+        expect(screen.getByText(/test label/i)).toBeInTheDocument()
+
+        // Check if select options are rendered
+        expect(screen.getByRole('option', { name: 'Option 1' })).toBeInTheDocument()
+        expect(screen.getByRole('option', { name: 'Option 2' })).toBeInTheDocument()
+    })
+
+    it('calls onChange with the right value when selection changes', async () =&gt; {
+        const handleChange = vi.fn()
+        render(
+            &lt;FormSelect label=&quot;Test Label&quot; onChange={handleChange} value=&quot;option1&quot;&gt;
+                &lt;option value=&quot;option1&quot;&gt;Option 1&lt;/option&gt;
+                &lt;option value=&quot;option2&quot;&gt;Option 2&lt;/option&gt;
+            &lt;/FormSelect&gt;
+        )
+
+        // Simulate user changing the selection
+        await userEvent.selectOptions(
+            screen.getByRole('combobox'),
+            'option2'
+        )
+
+        // Check if onChange was called with the right value
+        expect(handleChange).toHaveBeenCalledWith('option2')
+    })
+})
+
+</code></pre>
+ <div line-highlight="9-14,16-17,19-21,25-31,33-37,39-40,only"></div>
 <p></details></p>
 <h2>Next steps</h2>
 <p>TODO</p>
