@@ -6,7 +6,8 @@ function DataFetcher() {
     useEffect(() => {
         fetch('https://api.example.com/data')
             .then(response => {
-                setData(response.json());
+                const parsedData = response.json();
+                setData(parsedData);
             })
             .catch(error => {
                 // Error should be shown to the user
