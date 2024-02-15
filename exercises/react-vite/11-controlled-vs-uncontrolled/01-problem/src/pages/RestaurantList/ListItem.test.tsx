@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import ListItem from './ListItem';
 
 // Wrap component with MemoryRouter to mock routing

@@ -1,0 +1,44 @@
+.chooseButton {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.3333333;
+    border-radius: 6px;
+}
+
+.chooseButton:focus {
+    color: #fff;
+    background-color: #286090;
+    border-color: #122b40;
+    text-decoration: none;
+}
+
+.chooseButton:hover {
+    color: #fff;
+    background-color: #286090;
+    border-color: #204d74;
+    text-decoration: none;
+}
+
+.chooseButton:active {
+    color: #fff;
+    background-color: #204d74;
+    border-color: #122b40;
+    text-decoration: none;
+}

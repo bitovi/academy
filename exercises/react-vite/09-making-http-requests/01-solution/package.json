@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "api": "place-my-order-api --port 7070",
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
@@ -11,6 +12,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "place-my-order-api": "^1.3.0",
     "place-my-order-assets": "^0.2.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import type { PromiseState } from "../interfaces";
-import type { City, Restaurant, State } from "./interfaces"
+import type { City, Restaurant, State } from './interfaces'
 import { getCities, getRestaurant, getRestaurants, getStates } from "./restaurant"
 
 export function useCities(

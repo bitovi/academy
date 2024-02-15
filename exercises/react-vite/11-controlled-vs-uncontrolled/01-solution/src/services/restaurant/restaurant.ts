@@ -1,6 +1,6 @@
 import { apiRequest } from "../api"
 import { ApiResponse } from "../interfaces"
-import { City, Restaurant, State } from "./interfaces"
+import { City, Restaurant, State } from './interfaces'
 
 export async function getCities(
     state: string,

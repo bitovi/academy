@@ -1,21 +1,45 @@
 import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
 import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import { ChangeEvent, useId, useState } from 'react'
+import { useEffect, useState } from 'react'
 import ListItem from './ListItem'
-import { useStates } from '../../services/restaurant/hooks'
+import { useCities } from '../../services/restaurant/hooks'
+import { State } from '../../services/restaurant/interfaces'
+
+interface StateResponse {
+  data: State[] | null;
+  error: Error | null;
+  isPending: boolean;
+}
 
 const RestaurantList: React.FC = () => {
-  const stateId = useId()
-  const cityId = useId()
-
   const [state, setState] = useState("")
   const [city, setCity] = useState("")
 
-  const statesResponse = useStates()
-  const cities = [
-    { name: 'Madison', state: 'WI' },
-    { name: 'Springfield', state: 'IL' },
-  ]
+  const [statesResponse, setStatesResponse] = useState<StateResponse>({
+    data: null,
+    error: null,
+    isPending: true,
+  })
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(`${import.meta.env.VITE_PMO_API}/states`, {
+        method: "GET",
+      })
+
+      const data = await response.json()
+
+      setStatesResponse({
+        data: data?.data || null,
+        error: null,
+        isPending: false,
+      })
+    }
+    fetchData()
+  }, []);
+
+  const cities = useCities(state)
+
   const restaurants = {
     data: [
       {
@@ -49,13 +73,13 @@ const RestaurantList: React.FC = () => {
     ]
   };
 
-  const updateState = (event: ChangeEvent<HTMLSelectElement>) => {
-    setState(event.target.value)
+  const updateState = (stateShortCode: string) => {
+    setState(stateShortCode)
     setCity("")
   }
 
-  const updateCity = (event: ChangeEvent<HTMLSelectElement>) => {
-    setCity(event.target.value)
+  const updateCity = (cityName: string) => {
+    setCity(cityName)
   }
 
   return (
@@ -65,13 +89,13 @@ const RestaurantList: React.FC = () => {
 
         <form className="form">
           <div className="form-group">
-            <label className="control-label" htmlFor={stateId}>
+            <label className="control-label" htmlFor="stateSelect">
               State
             </label>
             <select
               className="form-control"
-              id={stateId}
-              onChange={updateState}
+              id="stateSelect"
+              onChange={event => updateState(event.target.value)}
               value={state}
             >
               <option key="choose_state" value="">
@@ -92,30 +116,16 @@ const RestaurantList: React.FC = () => {
           </div>
 
           <div className="form-group">
-            <label className="control-label" htmlFor={cityId}>
-              City
-            </label>
-            <select
-              className="form-control"
-              id={cityId}
-              onChange={updateCity}
-              value={city}
-            >
-              <option key="choose_city" value="">
-                {
-                  state
-                    ? "Choose a city"
-                    : "Choose a state before selecting a city"
-                }
-              </option>
-              {state && cities
-                .filter((city) => city.state === state)
-                .map(({ name }) => (
-                  <option key={name} value={name}>
-                    {name}
-                  </option>
-                ))}
-            </select>
+            City:
+            {state ? cities.map(({ name }) => (
+              <button key={name} onClick={() => updateCity(name)} type="button">
+                {name}
+              </button>
+            )) : <> Choose a state before selecting a city</>}
+            <hr />
+            <p>
+              Current city: {city || "(none)"}
+            </p>
           </div>
         </form>
 

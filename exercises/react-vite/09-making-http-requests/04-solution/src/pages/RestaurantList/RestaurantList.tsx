@@ -1,18 +1,17 @@
 import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
 import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
-import { ChangeEvent, useId, useState } from 'react'
-import ListItem from './ListItem'
+import { useState } from 'react'
 import { useCities, useStates } from '../../services/restaurant/hooks'
+import ListItem from './ListItem'
 
 const RestaurantList: React.FC = () => {
-  const stateId = useId()
-  const cityId = useId()
-
   const [state, setState] = useState("")
   const [city, setCity] = useState("")
 
   const statesResponse = useStates()
+
   const citiesResponse = useCities(state)
+
   const restaurants = {
     data: [
       {
@@ -46,13 +45,13 @@ const RestaurantList: React.FC = () => {
     ]
   };
 
-  const updateState = (event: ChangeEvent<HTMLSelectElement>) => {
-    setState(event.target.value)
+  const updateState = (stateShortCode: string) => {
+    setState(stateShortCode)
     setCity("")
   }
 
-  const updateCity = (event: ChangeEvent<HTMLSelectElement>) => {
-    setCity(event.target.value)
+  const updateCity = (cityName: string) => {
+    setCity(cityName)
   }
 
   return (
@@ -62,13 +61,13 @@ const RestaurantList: React.FC = () => {
 
         <form className="form">
           <div className="form-group">
-            <label className="control-label" htmlFor={stateId}>
+            <label className="control-label" htmlFor="stateSelect">
               State
             </label>
             <select
               className="form-control"
-              id={stateId}
-              onChange={updateState}
+              id="stateSelect"
+              onChange={event => updateState(event.target.value)}
               value={state}
             >
               <option key="choose_state" value="">
@@ -89,13 +88,13 @@ const RestaurantList: React.FC = () => {
           </div>
 
           <div className="form-group">
-            <label className="control-label" htmlFor={cityId}>
+            <label className="control-label" htmlFor="citySelect">
               City
             </label>
             <select
               className="form-control"
-              id={cityId}
-              onChange={updateCity}
+              id="citySelect"
+              onChange={event => updateCity(event.target.value)}
               value={city}
             >
               <option key="choose_city" value="">
