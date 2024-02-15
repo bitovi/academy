@@ -10,7 +10,7 @@
 
 TODO
 
-## Objective 1
+## Objective 1: Add a `fetch` request for states
 
 In this section, we will:
 
@@ -81,7 +81,7 @@ of the component.
 You can use APIs that return a `Promise` normally within a `useEffect`:
 
 @sourceref fetch-with-promise.tsx
-@highlight 7-14, only
+@highlight 7-15, only
 
 However, unlike traditional functions, `useEffect` functions can’t be marked as async.
 This is because returning a `Promise` from `useEffect` would conflict with its mechanism,
@@ -91,7 +91,7 @@ To handle asynchronous operations, you typically define an `async` function insi
 effect and then call it:
 
 @sourceref fetch-with-async.tsx
-@highlight 7-17, only
+@highlight 7-18, only
 
 When using async/await, error handling is typically done using try-catch blocks. This allows
 you to gracefully handle any errors that occur during the execution of your async operation.
@@ -117,6 +117,16 @@ is first rendered (note the empty dependency array).
 When the component is removed from the DOM, the cleanup function will run and tear down
 the WebSocket connection.
 
+### Environment variables
+
+The way we’re accessing our locally run API during development may be different than how
+we access it in production. To prepare for this, we’ll set an environment variable to do
+what we need.
+
+TODO: Explain that setting environment variables is a generic thing you do, and on this
+project in particular, Vite will make anything prefixed with `VITE_` available in our
+client-side source code.
+
 ### Setup
 
 ✏️ Create **.env** and update it to be:
@@ -130,7 +140,7 @@ the WebSocket connection.
 
 #### Install the Place My Order API
 
-Before we begin making requesting data from our API, we need to install the
+Before we begin requesting data from our API, we need to install the
 `place-my-order-api` module, which will generate fake restaurant data and
 serve it from port `7070`.
 
@@ -162,9 +172,10 @@ You should see a JSON list of restaurant data. It will be helpful to have a seco
 
 ### Exercise
 
-Update `src/services/restaurant/hooks.ts` with a `useEffect` that uses `getStates` to get a list of states.
+- Update `RestaurantList.tsx` to call `useState()` and use the `StateResponse` interface.
+- Call `useEffect()` and `fetch` data from `${import.meta.env.VITE_PMO_API}/states`.
 
-Hint: Call `setResponse` after you get the response from `getStates()`.
+Hint: Call your state setter after you parse the JSON response from `fetch()`.
 
 ### Solution
 
@@ -177,31 +188,44 @@ Hint: Call `setResponse` after you get the response from `getStates()`.
 
 </details>
 
-## Objective 2
+## Objective 2: Move the fetch to a `useStates` Hook
 
 In this section, we will:
 
-- Learn the basics of the `fetch` API
-- Understand how to handle responses from `fetch`
+- Refactor our `<RestaurantList>` component to depend on a custom Hook.
 
-### Making `fetch` happen
+### Writing custom Hooks as services
 
-TODO
+In a previous section, we created a `useCities` Hook in our `hooks.ts` file.
 
-### Parsing responses from `fetch`
+Putting stateful logic into a custom Hook has numerous benefits:
 
-TODO
+**Reusability:** One of the primary reasons for creating custom Hooks is reusability.
+You might find yourself repeating the same logic in different components—for
+example, fetching data from an API, handling form input, or managing a subscription.
+By refactoring this logic into a custom Hook, you can easily reuse this functionality
+across multiple components, keeping your code DRY (Don't Repeat Yourself).
 
-Explain:
+**Separation of concerns:** Custom Hooks allow you to separate complex logic from the
+component logic. This makes your main component code cleaner and more focused on
+rendering UI, while the custom Hook handles the business logic or side effects.
+It aligns well with the principle of single responsibility, where a function or
+module should ideally do one thing only.
 
-- `.json()`
-- `.ok`
-- `.status`
-- `.statusText`
+**Easier testing and maintenance:** Isolating logic into custom Hooks can make your code
+easier to test and maintain. Since Hooks are just JavaScript functions, they can be
+tested independently of any component. This isolation can lead to more robust and
+reliable code.
 
-### Handling network errors
+**Simplifying components:** If your component is becoming too large and difficult to
+understand, moving some logic to a custom Hook can simplify it. This not only
+improves readability but also makes it easier for other developers to grasp what
+the component is doing.
 
-TODO: Explain how `fetch` can throw.
+**Sharing stateful logic:** Custom Hooks can contain stateful logic, which is not
+possible with regular JavaScript functions. This means you can have a Hook that
+manages its own state and shares this logic across multiple components, something
+that would be difficult or impossible with traditional class-based components.
 
 ### Setup
 
@@ -225,7 +249,9 @@ TODO: Explain how `fetch` can throw.
 
 ### Exercise
 
-TODO
+- Refactor the existing `useState` and `useEffect` logic into a new `useStates` Hook.
+
+Hint: After moving the state and effect logic into `hooks.ts`, use your new Hook in `RestaurantList.tsx`.
 
 ### Solution
 
@@ -242,21 +268,32 @@ TODO
 
 </details>
 
-## Objective 3
+## Objective 3: Update the `useCities` Hook to fetch data from the API.
 
-TODO
+In this section, we will:
 
-### Key concepts
+- Learn about including query parameters in our API calls.
 
-TODO
+### Including query parameters in API calls
 
-#### Concept 1
+Query parameters are a defined set of parameters attached to the end of a URL.
+They are used to define and pass data in the form of key-value pairs. The
+parameters are separated from the URL itself by a `?` symbol, and individual
+key-value pairs are separated by the `&` symbol.
 
-TODO
+A basic URL with query parameters looks like this:
 
-#### Concept 2
+```
+http://www.example.com/page?param1=value1&param2=value2
+```
 
-TODO
+Here’s a breakdown of this URL:
+
+- Base URL: `http://www.example.com/page`
+- Query Parameter Indicator: `?`
+- Query Parameters:
+    - `param1=value1`
+    - `param2=value2`
 
 ### Setup
 
@@ -276,7 +313,13 @@ TODO
 
 ### Exercise
 
-TODO
+Update our useCities Hook to fetch cities from the Place My Order API, given a selected state.
+
+When calling the Place My Order API, include the `state` query parameter:
+
+```
+http://localhost:7070/cities?state=MO
+```
 
 ### Solution
 
@@ -293,21 +336,52 @@ TODO
 
 </details>
 
-## Objective 4
+## Objective 4: Create an `apiRequest` helper and use it in the Hooks.
 
-TODO
+In this section, we will learn how to:
 
-### Key concepts
+- Handle HTTP error statuses (e.g. `404 Not Found`)
+- Catch network errors from `fetch()`
 
-TODO
+### Checking for error responses
 
-#### Concept 1
+- `.ok`
+- `.status`
+- `.statusText`
 
-TODO
+When you make a request with the Fetch API, it does not reject on HTTP error
+statuses (like `404` or `500`). Instead, it resolves normally (with an `ok`
+status set to `false`), and it only rejects on network failure or if anything
+prevented the request from completing.
 
-#### Concept 2
+Here’s the API that `fetch` provides to handle these HTTP errors:
 
-TODO
+- `.ok`: This is a shorthand property that returns `true` if the response’s status code is in the range `200`-`299`, indicating a successful request.
+- `.status`: This property returns the status code of the response (e.g. `200` for success, `404` for `Not Found`, etc.).
+- `.statusText`: This provides the status message corresponding to the status code (e.g. `'OK'`, `'Not Found'`, etc.).
+
+@sourceref fetch-handle-not-ok.js
+
+In the example above, we check the `response.ok` property to see if the status
+code is in the `200`-`299` (successful) range. If not, we create an `error`
+object that contains the status code and text (e.g. `404 Not Found`).
+
+### Handling network errors
+
+Network errors occur when there is a problem in completing the request, like when
+the user is offline, the server is unreachable, or there is a DNS lookup failure.
+
+In these cases, the `fetch` API will _not_ resolve with data, but instead it will
+throw an error that needs to be caught.
+
+Let’s take a look at how to handle these types of errors:
+
+@sourceref fetch-handle-thrown-error.js
+
+In the example above, we `catch` the `error` and check its type. If it’s already an
+`instanceof Error`, then it will have a `message` property and we can use it as-is.
+If it’s not, then we can create our own `new Error()` so we _always_ have an error
+to consume in our Hooks or components.
 
 ### Setup
 
@@ -331,7 +405,17 @@ TODO
 
 ### Exercise
 
-TODO
+- Implement the `apiRequest` helper function to handle errors returned and thrown from `fetch()`.
+- Update the `useCities` and `useStates` Hooks to use the `data` and `error` returned from `apiRequest`.
+
+Hint: Use the new `stringifyQuery` function to convert an object of query parameters to a string:
+
+```js
+stringifyQuery({
+    param1: "value1",
+    param2: "value2",
+})
+```
 
 ### Solution
 
@@ -348,21 +432,20 @@ TODO
 
 </details>
 
-## Objective 5
+## Objective 5: Fetch restaurant data
 
-TODO
+In this section, we will:
 
-### Key concepts
+- Create a `useRestaurants` Hook for fetching the restaurant data.
 
-TODO
+<img src="../static/img/react-vite/09-making-http-requests/5-problem.png"
+  style="border: solid 1px black; max-width: 800px;"/>
 
-#### Concept 1
+Now that we are able to capture a user’s state and city preferences, we want to only
+return restaurants in the selected city.:
 
-TODO
-
-#### Concept 2
-
-TODO
+<img src="../static/img/react-vite/09-making-http-requests/5-solution.png"
+  style="border: solid 1px black; max-width: 800px;"/>
 
 ### Setup
 
@@ -380,6 +463,9 @@ TODO
 
 ### Verify
 
+If you’ve implemented the solution correctly, when you use the select boxes to choose state
+and city, you should see a list of just restaurants from the selected city returned.
+
 ✏️ Update **src/pages/RestaurantList/RestaurantList.test.tsx** to be:
 
 @diff ../../../exercises/react-vite/09-making-http-requests/04-solution/src/pages/RestaurantList/RestaurantList.test.tsx ../../../exercises/react-vite/09-making-http-requests/05-solution/src/pages/RestaurantList/RestaurantList.test.tsx only
@@ -390,7 +476,11 @@ TODO
 
 ### Exercise
 
-TODO
+- Implement a `useRestaurants` Hook to fetch restaurant data.
+- Update `RestaurantList.tsx` to use your new `useRestaurants` Hook.
+
+Hint: The requested URL with query parameters should look like this:
+`'/api/restaurants?filter[address.state]=IL&filter[address.city]=Chicago'`
 
 ### Solution
 

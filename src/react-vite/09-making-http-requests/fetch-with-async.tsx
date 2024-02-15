@@ -7,7 +7,8 @@ function DataFetcher() {
         const fetchData = async () => {
             try {
                 const response = await fetch('https://api.example.com/data');
-                setData(response.json());
+                const parsedData = response.json();
+                setData(parsedData);
             } catch (error) {
                 // Error should be shown to the user
                 console.error('Error fetching data:', error)
