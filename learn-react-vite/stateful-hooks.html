@@ -742,7 +742,7 @@ export default RestaurantList
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import RestaurantList from './RestaurantList';
 
@@ -1140,7 +1140,7 @@ following:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import RestaurantList from './RestaurantList';
 
@@ -1495,13 +1495,18 @@ export default RestaurantList
 </code></pre>
  <div line-highlight="5,only"></div>
 <p>✏️ Create <strong>src/services/restaurant/hooks.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">import type { City } from &quot;./interfaces&quot;
+<pre><code class="language-ts">import type { City } from './interfaces'
 
 export function useCities(state: string): City[] {
 }
 </code></pre>
 <p>✏️ Create <strong>src/services/restaurant/interfaces.ts</strong> and update it to be:</p>
-<pre><code class="language-ts">export interface State {
+<pre><code class="language-ts">export interface City {
+  name: string
+  state: string
+}
+
+export interface State {
   name: string
   short: string
 }
@@ -1509,7 +1514,7 @@ export function useCities(state: string): City[] {
 <h3>Verify</h3>
 <p>✏️ Create <strong>src/services/restaurant/hooks.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { renderHook } from '@testing-library/react';
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { useCities } from './hooks';
 
 describe('useCities Hook', () =&gt; {
@@ -1652,7 +1657,7 @@ export default RestaurantList
 </code></pre>
  <div line-highlight="16,only"></div>
 <p>✏️ Update <strong>src/services/restaurant/hooks.ts</strong> to be:</p>
-<pre><code class="language-ts">import type { City } from &quot;./interfaces&quot;
+<pre><code class="language-ts">import type { City } from './interfaces'
 
 export function useCities(state: string): City[] {
   const cities = [
