@@ -819,7 +819,7 @@ const ListItem: React.FC&lt;ListItemProps&gt; = ({ address, name, slug, thumbnai
     return (
         &lt;&gt;
             &lt;div className=&quot;restaurant&quot;&gt;
-                &lt;img src={thumbnail} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+                &lt;img src={`/${thumbnail}`} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
                 &lt;h3&gt;{name}&lt;/h3&gt;
 
                 {address &amp;&amp; (
