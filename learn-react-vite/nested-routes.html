@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="TODO 
+  <meta name="description" content="Learn how to have child routes within parent routes. 
 ">
   
   <!-- Google Tag Manager -->
@@ -274,7 +274,7 @@
            						expanded">
 						<a class="page"
 							href="nested-routes.html"
-							title="TODO">
+							title="Learn how to have child routes within parent routes.">
 							Creating Nested Routes
 						</a>
 						
@@ -530,7 +530,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>TODO</p>
+    <p>Learn how to have child routes within parent routes.</p>
 
 </section>
 
@@ -561,6 +561,8 @@ covering CanJS core libraries.">
 </div>
 <p>You could create this sort of page without nested routes, but using nested routes is a well-organized and performant solution that can be linked because it maintains state in the URL.</p>
 <h2>Objective 1: Create a nested route</h2>
+<p>We want to have a component to display individual restaurants details, and want the path to be nested under the restaurants path.</p>
+<p><img alt="Screenshot of a “place-my-order.com” webpage with a nested route, displaying the “/restaurants/crab-shack” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/objective.png" style="max-width: 640px;"/></p>
 <h3>Key concepts</h3>
 <ul>
 <li>Creating a nested routing configuration</li>
@@ -604,7 +606,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   &lt;/React.StrictMode&gt;,
 )
 </code></pre>
-<div line-highlight='10-25'></div>
+<div line-highlight='10-25, only'></div>
 <p>Notice that our home and about pages are under the <code>children</code> key. These are actually nested routes of the root path. Route children can accept a <code>children</code> property themselves, on and on, until the browser runs out of resources.</p>
 <p>The route config for our product page could look like this:</p>
 <pre><code class="language-tsx">const router = createBrowserRouter(
@@ -613,7 +615,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       path: '/',
       element: &lt;App /&gt;,
       children: [
-        ...
         {
           path: 'product',
           element: &lt;ProductPage /&gt;,
@@ -630,7 +631,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
               index: &quot;support&quot;,
               element: &lt;Support /&gt;,
             },
-            ...
           ]
         },
       ],
@@ -641,6 +641,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   },
 )
 </code></pre>
+<div line-highlight='6, 10-23, only'></div>
 <h4>Folder structure</h4>
 <p>Notice that the child page components have simple names like <code>&lt;Support /&gt;</code> instead of <code>&lt;ProductSupport /&gt;</code>. Assuming this component is specifically designed for the product page and will not be reused elsewhere, the component file can reside within the product page's folder. Since the files live together, longer names aren't needed and will make your JSX a little harder to read.</p>
 <p>The larger directory tree should look like the following:</p>
@@ -685,9 +686,749 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 <h3>Exercise 1</h3>
 <p>Let's reorganize the existing <code>/restaurants</code> routes so they are nested. For this exercise, change the routing config so the restaurant list and details pages are nested under <code>/restaurants</code>.</p>
 <h4>Setup</h4>
-<p>No additional setup needed.</p>
+<p>✏️ Create <strong>src/components/RestaurantHeader/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./RestaurantHeader&quot;
+</code></pre>
+<p>✏️ Create <strong>src/components/RestaurantHeader/RestaurantHeader.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { Restaurant } from &quot;../../services/restaurant/interfaces&quot;
+
+const RestaurantHeader: React.FC&lt;{ restaurant: Restaurant }&gt; = ({
+  restaurant,
+}) =&gt; {
+  return (
+    &lt;div
+      className=&quot;restaurant-header&quot;
+      style={{ backgroundImage: `url(/${restaurant.images.banner})` }}
+    &gt;
+      &lt;div className=&quot;background&quot;&gt;
+        &lt;h2&gt;{restaurant.name}&lt;/h2&gt;
+
+        {restaurant.address &amp;&amp; (
+          &lt;div className=&quot;address&quot;&gt;
+            {restaurant.address.street}
+            &lt;br /&gt;
+            {restaurant.address.city}, {restaurant.address.state}{&quot; &quot;}
+            {restaurant.address.zip}
+          &lt;/div&gt;
+        )}
+
+        &lt;div className=&quot;hours-price&quot;&gt;
+          $$$
+          &lt;br /&gt;
+          Hours: M-F 10am-11pm
+          &lt;span className=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
+        &lt;/div&gt;
+
+        &lt;br /&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  )
+}
+
+export default RestaurantHeader
+</code></pre>
+<p>✏️ Create <strong>src/pages/RestaurantDetails/index.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">export { default } from &quot;./RestaurantDetails&quot;
+</code></pre>
+<p>✏️ Create <strong>src/pages/RestaurantDetails/RestaurantDetails.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import { Link, useParams } from &quot;react-router-dom&quot;
+import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
+import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
+
+const RestaurantDetails: React.FC = () =&gt; {
+    const params = useParams() as { slug: string }
+    const restaurant = useRestaurant(params.slug)
+
+    if (restaurant.isPending) {
+        return (
+            &lt;p aria-live=&quot;polite&quot; className=&quot;loading&quot;&gt;
+                Loading restaurant…
+            &lt;/p&gt;
+        )
+    }
+
+    if (restaurant.error) {
+        return (
+            &lt;p aria-live=&quot;polite&quot; className=&quot;error&quot;&gt;
+                Error loading restaurant: {restaurant.error.message}
+            &lt;/p&gt;
+        )
+    }
+
+    if (!restaurant.data) {
+        return &lt;p aria-live=&quot;polite&quot;&gt;No restaurant found.&lt;/p&gt;;
+    }
+
+    return (
+        &lt;&gt;
+            &lt;RestaurantHeader restaurant={restaurant.data} /&gt;
+
+            &lt;div className=&quot;restaurant-content&quot;&gt;
+                &lt;h3&gt;The best food this side of the Mississippi&lt;/h3&gt;
+
+                &lt;p className=&quot;description&quot;&gt;
+                    &lt;img alt=&quot;&quot; src={`/${restaurant.data.images.owner}`} /&gt;
+                    Description for {restaurant.data.name}
+                &lt;/p&gt;
+                &lt;p className=&quot;order-link&quot;&gt;
+                    &lt;Link
+                        className=&quot;btn&quot;
+                        to={`/restaurants/${restaurant.data.slug}/order`}
+                    &gt;
+                        Order from {restaurant.data.name}
+                    &lt;/Link&gt;
+                &lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/&gt;
+    )
+}
+
+export default RestaurantDetails
+</code></pre>
+<p>✏️ Update <strong>src/pages/RestaurantList/ListItem.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import { Link } from &quot;react-router-dom&quot;;
+
+interface ListItemProps {
+    address?: {
+        city: string;
+        state: string;
+        street: string;
+        zip: string;
+    };
+    name: string;
+    slug: string;
+    thumbnail: string;
+}
+
+const ListItem: React.FC&lt;ListItemProps&gt; = ({ address, name, slug, thumbnail }) =&gt; {
+    return (
+        &lt;&gt;
+            &lt;div className=&quot;restaurant&quot;&gt;
+                &lt;img src={thumbnail} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+                &lt;h3&gt;{name}&lt;/h3&gt;
+
+                {address &amp;&amp; (
+                    &lt;div className=&quot;address&quot;&gt;
+                        {address.street}
+                        &lt;br /&gt;
+                        {address.city}, {address.state} {address.zip}
+                    &lt;/div&gt;
+                )}
+
+                &lt;div className=&quot;hours-price&quot;&gt;
+                    $$$
+                    &lt;br /&gt;
+                    Hours: M-F 10am-11pm
+                    &lt;span className=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
+                &lt;/div&gt;
+
+                &lt;Link className=&quot;btn&quot; to={`/restaurants/${slug}`}&gt;
+                    Details
+                &lt;/Link&gt;
+                &lt;br /&gt;
+            &lt;/div&gt;
+        &lt;/&gt;
+    )
+}
+
+export default ListItem
+</code></pre>
+ <div line-highlight="1,37,39,only"></div>
+<p>✏️ Update <strong>src/services/restaurant/hooks.ts</strong> to be:</p>
+<pre><code class="language-ts">import { useEffect, useState } from 'react'
+import { apiRequest } from '../api'
+import type { City, Restaurant, State } from './interfaces'
+
+interface CitiesResponse {
+  data: City[] | null;
+  error: Error | null;
+  isPending: boolean;
+}
+
+interface RestaurantResponse {
+  data: Restaurant | null;
+  error: Error | null;
+  isPending: boolean;
+}
+
+interface RestaurantsResponse {
+  data: Restaurant[] | null;
+  error: Error | null;
+  isPending: boolean;
+}
+
+interface StatesResponse {
+  data: State[] | null;
+  error: Error | null;
+  isPending: boolean;
+}
+
+export function useCities(state: string): CitiesResponse {
+  const [response, setResponse] = useState&lt;CitiesResponse&gt;({
+    data: null,
+    error: null,
+    isPending: true,
+  })
+
+  useEffect(() =&gt; {
+    const fetchData = async () =&gt; {
+      const { data, error } = await apiRequest&lt;CitiesResponse&gt;({
+          method: &quot;GET&quot;,
+          path: &quot;/cities&quot;,
+          params: {
+              state: state
+          },
+      })
+
+      setResponse({
+        data: data?.data || null,
+        error: error,
+        isPending: false,
+      })
+    }
+    fetchData()
+  }, [state]);
+
+  return response
+}
+
+export function useRestaurant(slug: string): RestaurantResponse {
+  const [response, setResponse] = useState&lt;RestaurantResponse&gt;({
+    data: null,
+    error: null,
+    isPending: true,
+  })
+
+  useEffect(() =&gt; {
+    const fetchData = async () =&gt; {
+      const { data, error } = await apiRequest({
+          method: &quot;GET&quot;,
+          path: `/restaurants/${slug}`,
+      })
+
+      setResponse({
+        data: data || null,
+        error: error,
+        isPending: false,
+      })
+    }
+    fetchData()
+  }, [slug]);
+
+  return response
+}
+
+export function useRestaurants(state: string, city: string): RestaurantsResponse {
+  const [response, setResponse] = useState&lt;RestaurantsResponse&gt;({
+    data: null,
+    error: null,
+    isPending: true,
+  })
+
+  useEffect(() =&gt; {
+    const fetchData = async () =&gt; {
+      const { data, error } = await apiRequest&lt;RestaurantsResponse&gt;({
+          method: &quot;GET&quot;,
+          path: &quot;/restaurants&quot;,
+          params: {
+              &quot;filter[address.state]&quot;: state,
+              &quot;filter[address.city]&quot;: city,
+          },
+      })
+
+      setResponse({
+        data: data?.data || null,
+        error: error,
+        isPending: false,
+      })
+    }
+    fetchData()
+  }, [state, city]);
+
+  return response
+}
+
+export function useStates(): StatesResponse {
+  const [response, setResponse] = useState&lt;StatesResponse&gt;({
+    data: null,
+    error: null,
+    isPending: true,
+  })
+
+  useEffect(() =&gt; {
+    const fetchData = async () =&gt; {
+      const { data, error } = await apiRequest&lt;StatesResponse&gt;({
+          method: &quot;GET&quot;,
+          path: &quot;/states&quot;,
+      })
+
+      setResponse({
+        data: data?.data || null,
+        error: error,
+        isPending: false,
+      })
+    }
+    fetchData()
+  }, []);
+
+  return response
+}
+</code></pre>
+ <div line-highlight="11-12,25-26,58-59,67,69,73,79,112,116-119,121-122,124,126,128,130-134,137-138,only"></div>
 <h4>Verify</h4>
 <p>The existing test already cover routing, so no new tests are needed. Ensure the existing tests pass when you run <code>npm run test</code>.</p>
+<p>✏️ Create <strong>src/components/RestaurantHeader/RestaurantHeader.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+import { Restaurant } from '../../services/restaurant/interfaces';
+import RestaurantHeader from &quot;./RestaurantHeader&quot;;
+
+describe('RestaurantHeader component', () =&gt; {
+    const restaurantWithoutAddress: Restaurant = {
+        _id: '3ZOZyTY1LH26LnVw',
+        images: {
+            banner: &quot;banner-image.jpg&quot;,
+            owner: &quot;owner-image.jpg&quot;,
+            thumbnail: &quot;thumbnail-image.jpg&quot;,
+        },
+        menu: {
+            lunch: [
+                {
+                    name: 'Crab Pancakes with Sorrel Syrup',
+                    price: 35.99,
+                },
+                {
+                    name: 'Steamed Mussels',
+                    price: 21.99,
+                },
+                {
+                    name: 'Spinach Fennel Watercress Ravioli',
+                    price: 35.99,
+                },
+            ],
+            dinner: [
+                {
+                    name: 'Gunthorp Chicken',
+                    price: 21.99,
+                },
+                {
+                    name: 'Herring in Lavender Dill Reduction',
+                    price: 45.99,
+                },
+                {
+                    name: 'Chicken with Tomato Carrot Chutney Sauce',
+                    price: 45.99,
+                },
+            ],
+        },
+        name: &quot;Test Restaurant&quot;,
+        slug: 'poutine-palace',
+    };
+    const restaurantWithAddress = {
+        ...restaurantWithoutAddress,
+        address: {
+            street: &quot;123 Test St&quot;,
+            city: &quot;Testville&quot;,
+            state: &quot;TS&quot;,
+            zip: &quot;12345&quot;
+        },
+    };
+
+    it('renders the restaurant name', () =&gt; {
+        render(&lt;RestaurantHeader restaurant={restaurantWithAddress} /&gt;);
+        expect(screen.getByText(restaurantWithAddress.name)).toBeInTheDocument();
+    });
+
+    it('renders the restaurant address when provided', () =&gt; {
+        render(&lt;RestaurantHeader restaurant={restaurantWithAddress} /&gt;);
+
+        const addressDiv = screen.getByText(/123 Test St/i).closest('div');
+        expect(addressDiv).toHaveTextContent(restaurantWithAddress.address.street);
+        expect(addressDiv).toHaveTextContent(`${restaurantWithAddress.address.city}, ${restaurantWithAddress.address.state} ${restaurantWithAddress.address.zip}`);
+    });
+
+    it('does not render an address when not provided', () =&gt; {
+        render(&lt;RestaurantHeader restaurant={restaurantWithoutAddress} /&gt;);
+        expect(screen.queryByText(restaurantWithAddress.address.street)).not.toBeInTheDocument();
+    });
+
+    it('renders static details like price and hours', () =&gt; {
+        render(&lt;RestaurantHeader restaurant={restaurantWithAddress} /&gt;);
+
+        const hoursPriceDiv = screen.getByText(/\$\$\$/i).closest('div');
+        expect(hoursPriceDiv).toHaveTextContent('$$$');
+        expect(hoursPriceDiv).toHaveTextContent('Hours: M-F 10am-11pm');
+    });
+
+    it('renders the &quot;Open Now&quot; text', () =&gt; {
+        render(&lt;RestaurantHeader restaurant={restaurantWithAddress} /&gt;);
+        expect(screen.getByText(&quot;Open Now&quot;)).toBeInTheDocument();
+    });
+});
+
+</code></pre>
+<p>✏️ Create <strong>src/pages/RestaurantDetails/RestaurantDetails.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import { describe, expect, it, vi } from 'vitest';
+import RestaurantDetails from './RestaurantDetails';
+
+// Mock the hooks and components used in RestaurantDetails
+vi.mock('../../services/restaurant/hooks', () =&gt; ({
+  useRestaurant: vi.fn()
+}));
+
+vi.mock('../../components/RestaurantHeader', () =&gt; ({
+    default: vi.fn(() =&gt; (
+      &lt;div data-testid=&quot;mock-restaurant-header&quot;&gt;
+        Mock RestaurantHeader
+      &lt;/div&gt;
+    ))
+  }));
+  
+import { useRestaurant } from '../../services/restaurant/hooks';
+
+const mockRestaurantData = {
+  data: {
+    _id: '1',
+    name: 'Test Restaurant',
+    slug: 'test-restaurant',
+    images: { owner: 'owner.jpg' },
+  },
+  isPending: false,
+  error: null
+};
+
+const renderWithRouter = (ui, { route = '/restaurants/test-restaurant' } = {}) =&gt; {
+  window.history.pushState({}, 'Test page', route)
+  return render(
+    ui,
+    { wrapper: ({ children }) =&gt; &lt;MemoryRouter initialEntries={[route]}&gt;{children}&lt;/MemoryRouter&gt; }
+  );
+};
+
+describe('RestaurantDetails component', () =&gt; {
+  it('renders loading state', () =&gt; {
+    useRestaurant.mockReturnValue({ data: null, isPending: true, error: null });
+    renderWithRouter(&lt;RestaurantDetails /&gt;);
+    expect(screen.getByText(/Loading restaurant…/i)).toBeInTheDocument();
+  });
+
+  it('renders error state', () =&gt; {
+    useRestaurant.mockReturnValue({ data: null, isPending: false, error: { message: 'Error loading' } });
+    renderWithRouter(&lt;RestaurantDetails /&gt;);
+    expect(screen.getByText(/Error loading restaurant/i)).toBeInTheDocument();
+  });
+
+  it('renders no restaurant found state', () =&gt; {
+    useRestaurant.mockReturnValue({ data: null, isPending: false, error: null });
+    renderWithRouter(&lt;RestaurantDetails /&gt;);
+    expect(screen.getByText(/No restaurant found/i)).toBeInTheDocument();
+  });
+
+  it('renders the RestaurantHeader and content when data is available', () =&gt; {
+    useRestaurant.mockReturnValue(mockRestaurantData);
+    renderWithRouter(&lt;RestaurantDetails /&gt;);
+
+    expect(screen.getByTestId('mock-restaurant-header')).toBeInTheDocument();
+    expect(screen.getByText(/The best food this side of the Mississippi/i)).toBeInTheDocument();
+    expect(screen.getByText(/Description for Test Restaurant/i)).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /Order from Test Restaurant/i })).toBeInTheDocument();
+  });
+});
+
+</code></pre>
+<p>✏️ Update <strong>src/pages/RestaurantList/ListItem.test.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
+import { describe, expect, it } from 'vitest';
+import ListItem from './ListItem';
+
+// Wrap component with MemoryRouter to mock routing
+const renderWithRouter = (ui, { route = '/' } = {}) =&gt; {
+  window.history.pushState({}, 'Test page', route)
+  return render(ui, { wrapper: MemoryRouter });
+};
+
+describe('ListItem component', () =&gt; {
+  it('renders the restaurant image', () =&gt; {
+    renderWithRouter(&lt;ListItem slug=&quot;test-slug&quot; name=&quot;Test Name&quot; thumbnail=&quot;test-thumbnail.jpg&quot; /&gt;);
+    const img = screen.getByRole('img');
+    expect(img).toHaveAttribute('src', 'test-thumbnail.jpg');
+    expect(img).toHaveAttribute('width', '100');
+    expect(img).toHaveAttribute('height', '100');
+  });
+
+  it('renders the address', () =&gt; {
+    const address = {
+      city: 'Test City',
+      state: 'Test State',
+      street: 'Test Street',
+      zip: '12345',
+    };
+
+    renderWithRouter(&lt;ListItem slug=&quot;test-slug&quot; name=&quot;Test Name&quot; address={address} thumbnail=&quot;test-thumbnail.jpg&quot; /&gt;);
+
+    const addressDiv = screen.getByText(/Test Street/i).closest('div');
+    expect(addressDiv).toHaveTextContent('Test Street');
+    expect(addressDiv).toHaveTextContent('Test City, Test State 12345');
+  });
+
+  it('does not render the address section when address is not provided', () =&gt; {
+    renderWithRouter(&lt;ListItem slug=&quot;test-slug&quot; name=&quot;Test Name&quot; thumbnail=&quot;test-thumbnail.jpg&quot; /&gt;);
+
+    // Check that address-related text is not in the document
+    expect(screen.queryByText('Test Street')).not.toBeInTheDocument();
+    expect(screen.queryByText(/Test City, Test State 12345/)).not.toBeInTheDocument();
+  });
+
+  it('renders the hours and price information', () =&gt; {
+    renderWithRouter(&lt;ListItem slug=&quot;test-slug&quot; name=&quot;Test Name&quot; thumbnail=&quot;test-thumbnail.jpg&quot; /&gt;);
+    const hoursPriceDiv = screen.getByText(/\$\$\$/i).closest('div');
+    expect(hoursPriceDiv).toHaveTextContent('$$$');
+    expect(hoursPriceDiv).toHaveTextContent('Hours: M-F 10am-11pm');
+  });
+
+  it('indicates if the restaurant is open now', () =&gt; {
+    renderWithRouter(&lt;ListItem slug=&quot;test-slug&quot; name=&quot;Test Name&quot; thumbnail=&quot;test-thumbnail.jpg&quot; /&gt;);
+    expect(screen.getByText('Open Now')).toBeInTheDocument();
+  });
+
+  it('renders the details button with correct link', () =&gt; {
+    renderWithRouter(&lt;ListItem slug=&quot;test-slug&quot; name=&quot;Test Name&quot; thumbnail=&quot;test-thumbnail.jpg&quot; /&gt;);
+    const detailsButton = screen.getByRole('link');
+    expect(detailsButton).toHaveAttribute('href', '/restaurants/test-slug');
+    expect(screen.getByText('Details')).toBeInTheDocument();
+  });
+});
+
+</code></pre>
+ <div line-highlight="3,7-11,15,30,38,46,53,58,only"></div>
+<p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
+<pre><code class="language-tsx">import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event'
+import { MemoryRouter } from 'react-router-dom';
+import { describe, expect, it, vi } from 'vitest';
+
+import RestaurantList from './RestaurantList';
+
+// Mock the hooks used in the component
+vi.mock('../../services/restaurant/hooks', () =&gt; ({
+  useCities: vi.fn(() =&gt; {
+    return {
+      data: null,
+      error: null,
+      isPending: false,
+    }
+  }),
+  useRestaurants: vi.fn(() =&gt; {
+    return {
+      data: null,
+      error: null,
+      isPending: false,
+    }
+  }),
+  useStates: vi.fn(() =&gt; {
+    return {
+      data: null,
+      error: null,
+      isPending: false,
+    }
+  }),
+}));
+
+import { useCities, useRestaurants, useStates } from '../../services/restaurant/hooks'
+
+// Wrap component with MemoryRouter to mock routing
+const renderWithRouter = (ui, { route = '/' } = {}) =&gt; {
+  window.history.pushState({}, 'Test page', route)
+  return render(ui, { wrapper: MemoryRouter });
+};
+
+describe('RestaurantList component', () =&gt; {
+  it('renders the Restaurants header', () =&gt; {
+    render(&lt;RestaurantList /&gt;);
+    expect(screen.getByText(/Restaurants/i)).toBeInTheDocument();
+  });
+
+  it('renders state and city dropdowns', () =&gt; {
+    render(&lt;RestaurantList /&gt;)
+    expect(screen.getByLabelText(/State/i)).toBeInTheDocument()
+    expect(screen.getByLabelText(/City/i)).toBeInTheDocument()
+  })
+
+  it('renders correctly with initial states', () =&gt; {
+    useStates.mockReturnValue({ data: null, isPending: true, error: null });
+    useCities.mockReturnValue({ data: null, isPending: false, error: null });
+    useRestaurants.mockReturnValue({ data: null, isPending: false, error: null });
+
+    render(&lt;RestaurantList /&gt;);
+
+    expect(screen.getByText(/Restaurants/)).toBeInTheDocument();
+    expect(screen.getByText(/Loading states…/)).toBeInTheDocument();
+  });
+
+  it('displays error messages correctly', () =&gt; {
+    useStates.mockReturnValue({ data: null, isPending: false, error: { message: 'Error loading states' } });
+    useCities.mockReturnValue({ data: null, isPending: false, error: { message: 'Error loading cities' } });
+    useRestaurants.mockReturnValue({ data: null, isPending: false, error: { message: 'Error loading restaurants' } });
+
+    render(&lt;RestaurantList /&gt;);
+
+    expect(screen.getByText(/Error loading states/)).toBeInTheDocument();
+  });
+
+  it('renders restaurants correctly', async () =&gt; {
+    useStates.mockReturnValue({ data: [{ short: 'CA', name: 'California' }], isPending: false, error: null });
+    useCities.mockReturnValue({ data: [{ name: 'Los Angeles' }], isPending: false, error: null });
+    useRestaurants.mockReturnValue({ data: [{ _id: '1', slug: 'test-restaurant', name: 'Test Restaurant', address: '123 Test St', images: { thumbnail: 'test.jpg' } }], isPending: false, error: null });
+
+    renderWithRouter(&lt;RestaurantList /&gt;);
+
+    await userEvent.selectOptions(screen.getByLabelText(/State/), 'CA');
+    await userEvent.selectOptions(screen.getByLabelText(/City/), 'Los Angeles');
+
+    expect(screen.getByText('Test Restaurant')).toBeInTheDocument();
+  });
+});
+
+</code></pre>
+ <div line-highlight="4,36-40,80,only"></div>
+<p>✏️ Update <strong>src/services/restaurant/hooks.test.ts</strong> to be:</p>
+<pre><code class="language-ts">import { renderHook, waitFor } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { apiRequest } from '../api'
+import { useCities, useRestaurants, useStates } from './hooks';
+
+// Mock the apiRequest function
+vi.mock('../api', () =&gt; ({
+  apiRequest: vi.fn(),
+}));
+
+describe('Hooks', () =&gt; {
+  beforeEach(() =&gt; {
+    vi.resetAllMocks();
+  });
+
+  describe('useCities hook', () =&gt; {
+    it('should return cities data successfully', async () =&gt; {
+      const mockCities = [{ id: 1, name: 'City1' }, { id: 2, name: 'City2' }];
+      apiRequest.mockResolvedValue({ data: { data: mockCities }, error: null });
+
+      const { result } = renderHook(() =&gt; useCities('test-state'));
+
+      await waitFor(() =&gt; {
+        expect(result.current.isPending).toBeFalsy();
+        expect(result.current.data).toEqual(mockCities);
+        expect(result.current.error).toBeNull();
+      });
+    });
+
+    it('should handle error when fetching cities data', async () =&gt; {
+      const mockError = new Error('Error fetching cities');
+      apiRequest.mockResolvedValue({ data: null, error: mockError });
+
+      const { result } = renderHook(() =&gt; useCities('test-state'));
+
+      await waitFor(() =&gt; {
+        expect(result.current.isPending).toBeFalsy();
+        expect(result.current.data).toBeNull();
+        expect(result.current.error).toEqual(mockError);
+      });
+    });
+  });
+
+  describe('useRestaurant hook', () =&gt; {
+    it('should return restaurant data successfully', async () =&gt; {
+      const mockRestaurant = { id: 1, name: 'Restaurant1' };
+      apiRequest.mockResolvedValue({ data: { data: mockRestaurant }, error: null });
+
+      const { result } = renderHook(() =&gt; useRestaurants('test-state', 'test-city'));
+
+      await waitFor(() =&gt; {
+        expect(result.current.isPending).toBeFalsy();
+        expect(result.current.data).toEqual(mockRestaurant);
+        expect(result.current.error).toBeNull();
+      });
+    });
+
+    it('should handle error when fetching restaurant data', async () =&gt; {
+      const mockError = new Error('Error fetching restaurant');
+      apiRequest.mockResolvedValue({ data: null, error: mockError });
+
+      const { result } = renderHook(() =&gt; useRestaurants('test-state', 'test-city'));
+
+      await waitFor(() =&gt; {
+        expect(result.current.isPending).toBeFalsy();
+        expect(result.current.data).toBeNull();
+        expect(result.current.error).toEqual(mockError);
+      });
+    });
+  });
+
+  describe('useRestaurants hook', () =&gt; {
+    it('should return restaurants data successfully', async () =&gt; {
+      const mockRestaurants = [{ id: 1, name: 'Restaurant1' }, { id: 2, name: 'Restaurant2' }];
+      apiRequest.mockResolvedValue({ data: { data: mockRestaurants }, error: null });
+
+      const { result } = renderHook(() =&gt; useRestaurants('test-state', 'test-city'));
+
+      await waitFor(() =&gt; {
+        expect(result.current.isPending).toBeFalsy();
+        expect(result.current.data).toEqual(mockRestaurants);
+        expect(result.current.error).toBeNull();
+      });
+    });
+
+    it('should handle error when fetching restaurants data', async () =&gt; {
+      const mockError = new Error('Error fetching restaurants');
+      apiRequest.mockResolvedValue({ data: null, error: mockError });
+
+      const { result } = renderHook(() =&gt; useRestaurants('test-state', 'test-city'));
+
+      await waitFor(() =&gt; {
+        expect(result.current.isPending).toBeFalsy();
+        expect(result.current.data).toBeNull();
+        expect(result.current.error).toEqual(mockError);
+      });
+    });
+  });
+
+  describe('useStates hook', () =&gt; {
+    it('should return states data successfully', async () =&gt; {
+      const mockStates = [{ id: 1, name: 'State1' }, { id: 2, name: 'State2' }];
+      apiRequest.mockResolvedValue({ data: { data: mockStates }, error: null });
+
+      const { result } = renderHook(() =&gt; useStates());
+
+      await waitFor(() =&gt; {
+        expect(result.current.isPending).toBeFalsy();
+        expect(result.current.data).toEqual(mockStates);
+        expect(result.current.error).toBeNull();
+      });
+    });
+
+    it('should handle error when fetching states data', async () =&gt; {
+      const mockError = new Error('Error fetching states');
+      apiRequest.mockResolvedValue({ data: null, error: mockError });
+
+      const { result } = renderHook(() =&gt; useStates());
+
+      await waitFor(() =&gt; {
+        expect(result.current.isPending).toBeFalsy();
+        expect(result.current.data).toBeNull();
+        expect(result.current.error).toEqual(mockError);
+      });
+    });
+  });
+});
+
+</code></pre>
+ <div line-highlight="44-47,53,58-59,77,90,107-108,110-112,116,120-126,only"></div>
 <h4>Exercise</h4>
 <p>Refactor the router config in <strong>src/main.tsx</strong> to nest the restaurant routes.</p>
 <h4>Solution</h4>
@@ -717,11 +1458,11 @@ const router = createBrowserRouter(
           path: '/restaurants',
           children: [
             {
-              path: '/',
+              path: '',
               element: &lt;RestaurantList /&gt;,
             },
             {
-              path: '/:slug',
+              path: ':slug',
               element: &lt;RestaurantDetails /&gt;,
             },
           ],
@@ -740,16 +1481,17 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   &lt;/React.StrictMode&gt;,
 )
 </code></pre>
+ <div line-highlight="5,21-32,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/01-solution?file=src/main.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/01-solution?file=src/main.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h3>Exercise 2</h3>
 <p>We learned to create nested routes, let's practice by adding another page to our application. Add the order page to the route config and add a link to it.</p>
 <h4>Setup</h4>
 <p>Add the order page files.</p>
-<p>✏️ Add <strong>src/pages/RestaurantOrder/index.ts</strong> :</p>
+<p>✏️ Create <strong>src/pages/RestaurantOrder/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./RestaurantOrder&quot;
 </code></pre>
-<p>✏️ Add <strong>src/pages/RestaurantOrder/RestaurantOrder.tsx</strong> :</p>
+<p>✏️ Create <strong>src/pages/RestaurantOrder/RestaurantOrder.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { useParams } from &quot;react-router-dom&quot;
 import RestaurantHeader from &quot;../../components/RestaurantHeader&quot;
 import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
@@ -793,7 +1535,7 @@ const RestaurantOrder: React.FC = () =&gt; {
 export default RestaurantOrder
 </code></pre>
 <h4>Verify</h4>
-<p>✏️ Add <strong>src/pages/RestaurantOrder/RestaurantOrder.test.tsx</strong> :</p>
+<p>✏️ Create <strong>src/pages/RestaurantOrder/RestaurantOrder.test.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
@@ -893,15 +1635,15 @@ const router = createBrowserRouter(
           path: '/restaurants',
           children: [
             {
-              path: '/',
+              path: '',
               element: &lt;RestaurantList /&gt;,
             },
             {
-              path: '/:slug',
+              path: ':slug',
               element: &lt;RestaurantDetails /&gt;,
             },
             {
-              path: '/:slug/order',
+              path: ':slug/order',
               element: &lt;RestaurantOrder /&gt;,
             },
           ],
@@ -920,53 +1662,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   &lt;/React.StrictMode&gt;,
 )
 </code></pre>
-<pre><code class="language-tsx">import { Link } from &quot;react-router-dom&quot;;
-
-interface ListItemProps {
-    address?: {
-        city: string;
-        state: string;
-        street: string;
-        zip: string;
-    };
-    name: string;
-    slug: string;
-    thumbnail: string;
-}
-
-const ListItem: React.FC&lt;ListItemProps&gt; = ({ address, name, slug, thumbnail }) =&gt; {
-    return (
-        &lt;&gt;
-            &lt;div className=&quot;restaurant&quot;&gt;
-                &lt;img src={thumbnail} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
-                &lt;h3&gt;{name}&lt;/h3&gt;
-
-                {address &amp;&amp; (
-                    &lt;div className=&quot;address&quot;&gt;
-                        {address.street}
-                        &lt;br /&gt;
-                        {address.city}, {address.state} {address.zip}
-                    &lt;/div&gt;
-                )}
-
-                &lt;div className=&quot;hours-price&quot;&gt;
-                    $$$
-                    &lt;br /&gt;
-                    Hours: M-F 10am-11pm
-                    &lt;span className=&quot;open-now&quot;&gt;Open Now&lt;/span&gt;
-                &lt;/div&gt;
-
-                &lt;Link className=&quot;btn&quot; to={`/restaurants/${slug}`}&gt;
-                    Details
-                &lt;/Link&gt;
-                &lt;br /&gt;
-            &lt;/div&gt;
-        &lt;/&gt;
-    )
-}
-
-export default ListItem
-</code></pre>
+ <div line-highlight="7,32-35,37,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/01-solution?file=src/main.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/01-solution?file=src/main.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Next steps</h2>
@@ -1009,7 +1705,7 @@ export default ListItem
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-vite/10-nested-routes/nested-routes.md"},"description":"TODO \n","name":"learn-react-vite/nested-routes","title":"Creating Nested Routes","type":"page","parent":"learn-react-vite","order":10,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-vite/10-nested-routes/nested-routes.md"},"description":"Learn how to have child routes within parent routes. \n","name":"learn-react-vite/nested-routes","title":"Creating Nested Routes","type":"page","parent":"learn-react-vite","order":10,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
