@@ -103,7 +103,7 @@ const RestaurantOrder: React.FC = () => {
                                 <label>
                                     <input
                                         checked={name in newOrder.items}
-                                        onChange={(e) => setItem(name, e.target.checked, price)}
+                                        onChange={(event) => setItem(name, event.target.checked, price)}
                                         type="checkbox"
                                     />
                                     {name}
@@ -120,7 +120,7 @@ const RestaurantOrder: React.FC = () => {
                                 <label>
                                     <input
                                         checked={name in newOrder.items}
-                                        onChange={(e) => setItem(name, e.target.checked, price)}
+                                        onChange={(event) => setItem(name, event.target.checked, price)}
                                         type="checkbox"
                                     />
                                     {name}

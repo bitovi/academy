@@ -227,6 +227,50 @@ The order form is going to be made up of many input fields with labels. Rather t
 components let's compose that structure in a single component named `FormTextField`. Creating this
 component will involve using some of what we've learned from prior lessons.
 
+In this section, we will:
+
+- Learn how to use the `useId()` hook.
+
+### useId
+
+Since the value of every `id` attribute in an HTML document must be unique,
+this Hook is useful in creating a unique identifier string that can be used
+as the value for an `id` prop.
+
+Let’s say you’re rendering a component that has a `label` that needs to be
+associated with an `input`:
+
+```html
+<label for="name">
+  Name
+</label>
+<input id="name" type="text">
+```
+@highlight 1, 4
+
+Every ID has to be unique in an HTML page, but `name` might clash with another
+element in a page. To avoid this issue in React, we can get a unique ID with
+`useId()`:
+
+```tsx
+import { useId } from 'react'
+
+const Form: React.FC = () => {
+  const id = useId();
+
+  return (
+    <label htmlFor={id}>
+      Name
+    </label>
+    <input id={id} type="text" />
+  )
+}
+```
+@highlight 1, 4, 7, 10
+
+The value of `useId` is guaranteed to be unique within the component where it is
+used; this ideal for linking related components together.
+
 ### Setup
 
 ✏️ Create **src/components/FormTextField/FormTextField.tsx** and update it to be:
