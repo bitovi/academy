@@ -1,5 +1,5 @@
-@page learn-react-vite/routing Routing in React
-@parent learn-react-vite 6
+@page learn-react/routing Routing in React
+@parent learn-react 6
 @outline 3
 
 @description Learn how to set up and use React Router to update the application's

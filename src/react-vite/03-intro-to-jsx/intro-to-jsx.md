@@ -1,5 +1,5 @@
-@page learn-react-vite/intro-to-jsx Introduction to JSX
-@parent learn-react-vite 3
+@page learn-react/intro-to-jsx Introduction to JSX
+@parent learn-react 3
 @outline 3
 
 @description Learn how to use JSX to define your UI in React.

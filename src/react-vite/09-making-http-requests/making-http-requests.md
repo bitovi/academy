@@ -1,5 +1,5 @@
-@page learn-react-vite/making-http-requests Making HTTP Requests
-@parent learn-react-vite 9
+@page learn-react/making-http-requests Making HTTP Requests
+@parent learn-react 9
 @outline 2
 
 @description Learn about how to make `fetch` requests and render requested data in React components.

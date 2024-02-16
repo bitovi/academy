@@ -1,5 +1,5 @@
-@page learn-react-vite/controlled-vs-uncontrolled Handling User Inputs and Forms
-@parent learn-react-vite 11
+@page learn-react/controlled-vs-uncontrolled Handling User Inputs and Forms
+@parent learn-react 11
 @outline 3
 
 @description Use forms and inputs to collect information.

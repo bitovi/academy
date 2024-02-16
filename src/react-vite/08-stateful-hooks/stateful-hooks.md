@@ -1,5 +1,5 @@
-@page learn-react-vite/stateful-hooks Managing State in React
-@parent learn-react-vite 8
+@page learn-react/stateful-hooks Managing State in React
+@parent learn-react 8
 @outline 3
 
 @description Work with React's useState Hook to manage a component's state.

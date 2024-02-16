@@ -1,5 +1,5 @@
-@page learn-react-vite/setting-up-your-environment Setting Up Your Environment
-@parent learn-react-vite 2
+@page learn-react/setting-up-your-environment Setting Up Your Environment
+@parent learn-react 2
 @outline 3
 
 @description Learn how to set up a React environment using Vite.

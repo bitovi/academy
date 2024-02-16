@@ -1,5 +1,5 @@
-@page learn-react-vite/nested-routes Creating Nested Routes
-@parent learn-react-vite 10
+@page learn-react/nested-routes Creating Nested Routes
+@parent learn-react 10
 @outline 3
 
 @description Learn how to have child routes within parent routes.

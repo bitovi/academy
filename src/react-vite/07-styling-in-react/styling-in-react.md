@@ -1,5 +1,5 @@
-@page learn-react-vite/styling-in-react Styling in React
-@parent learn-react-vite 7
+@page learn-react/styling-in-react Styling in React
+@parent learn-react 7
 @outline 3
 
 @description Learn about different ways to apply CSS styles in React applications.
