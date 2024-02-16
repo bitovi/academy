@@ -1273,7 +1273,7 @@ const RestaurantOrder: React.FC = () =&gt; {
         })
     }
 
-    const submit = (event: FormEvent) =&gt; {
+    const handleSubmit = (event: FormEvent) =&gt; {
         event.preventDefault()
     }
 
@@ -1287,7 +1287,7 @@ const RestaurantOrder: React.FC = () =&gt; {
             &lt;div className=&quot;order-form&quot;&gt;
                 &lt;h3&gt;Order from {restaurant.data.name}!&lt;/h3&gt;
 
-                &lt;form onSubmit={(event) =&gt; submit(event)}&gt;
+                &lt;form onSubmit={(event) =&gt; handleSubmit(event)}&gt;
                     {
                         subtotal === 0
                             ? (
@@ -1519,24 +1519,15 @@ import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
 
 type OrderItems = Record&lt;string, number&gt;
 
-interface NewOrderState {
-    address: string;
-    items: OrderItems;
-    name: string;
-    phone: string;
-}
-
 const RestaurantOrder: React.FC = () =&gt; {
     const params = useParams() as { slug: string }
 
     const restaurant = useRestaurant(params.slug)
 
-    const [newOrder, setNewOrder] = useState&lt;NewOrderState&gt;({
-        address: &quot;&quot;,
-        items: {},
-        name: &quot;&quot;,
-        phone: &quot;&quot;,
-    })
+    const [address, setAddress] = useState&lt;string&gt;(&quot;&quot;)
+    const [items, setItems] = useState&lt;OrderItems&gt;({})
+    const [name, setName] = useState&lt;string&gt;(&quot;&quot;)
+    const [phone, setPhone] = useState&lt;string&gt;(&quot;&quot;)
 
     if (restaurant.isPending) {
         return (
@@ -1559,37 +1550,26 @@ const RestaurantOrder: React.FC = () =&gt; {
     }
 
     const setItem = (itemId: string, isChecked: boolean, itemPrice: number) =&gt; {
-        return setNewOrder((newOrder) =&gt; {
+        return setItems((currentItems) =&gt; {
             const updatedItems = {
-                ...newOrder.items,
+                ...currentItems,
             }
             if (isChecked) {
                 updatedItems[itemId] = itemPrice;
             } else {
                 delete updatedItems[itemId]
             }
-            return {
-                ...newOrder,
-                items: updatedItems,
-            }
+            return updatedItems
         })
     }
 
-    const setValue = (key: string, value: string) =&gt; {
-        return setNewOrder((newOrder) =&gt; {
-            return {
-                ...newOrder,
-                [key]: value
-            }
-        })
-    }
-
-    const submit = (event: FormEvent) =&gt; {
+    const handleSubmit = (event: FormEvent) =&gt; {
         event.preventDefault()
+        alert('Order submitted!')
     }
 
-    const selectedCount = Object.values(newOrder.items).length
-    const subtotal = calculateTotal(newOrder.items)
+    const selectedCount = Object.values(items).length
+    const subtotal = calculateTotal(items)
 
     return (
         &lt;&gt;
@@ -1598,7 +1578,7 @@ const RestaurantOrder: React.FC = () =&gt; {
             &lt;div className=&quot;order-form&quot;&gt;
                 &lt;h3&gt;Order from {restaurant.data.name}!&lt;/h3&gt;
 
-                &lt;form onSubmit={(event) =&gt; submit(event)}&gt;
+                &lt;form onSubmit={(event) =&gt; handleSubmit(event)}&gt;
                     {
                         subtotal === 0
                             ? (
@@ -1615,7 +1595,7 @@ const RestaurantOrder: React.FC = () =&gt; {
                             &lt;li key={name} className=&quot;list-group-item&quot;&gt;
                                 &lt;label&gt;
                                     &lt;input
-                                        checked={name in newOrder.items}
+                                        checked={name in items}
                                         onChange={(event) =&gt; setItem(name, event.target.checked, price)}
                                         type=&quot;checkbox&quot;
                                     /&gt;
@@ -1632,7 +1612,7 @@ const RestaurantOrder: React.FC = () =&gt; {
                             &lt;li key={name} className=&quot;list-group-item&quot;&gt;
                                 &lt;label&gt;
                                     &lt;input
-                                        checked={name in newOrder.items}
+                                        checked={name in items}
                                         onChange={(event) =&gt; setItem(name, event.target.checked, price)}
                                         type=&quot;checkbox&quot;
                                     /&gt;
@@ -1645,21 +1625,21 @@ const RestaurantOrder: React.FC = () =&gt; {
 
                     &lt;FormTextField
                         label=&quot;Name&quot;
-                        onChange={(name) =&gt; setValue(&quot;name&quot;, name)}
+                        onChange={setName}
                         type=&quot;text&quot;
-                        value={newOrder.name}
+                        value={name}
                     /&gt;
                     &lt;FormTextField
                         label=&quot;Address&quot;
-                        onChange={(address) =&gt; setValue(&quot;address&quot;, address)}
+                        onChange={setAddress}
                         type=&quot;text&quot;
-                        value={newOrder.address}
+                        value={address}
                     /&gt;
                     &lt;FormTextField
                         label=&quot;Phone&quot;
-                        onChange={(phone) =&gt; setValue(&quot;phone&quot;, phone)}
+                        onChange={setPhone}
                         type=&quot;tel&quot;
-                        value={newOrder.phone}
+                        value={phone}
                     /&gt;
 
                     &lt;div className=&quot;submit&quot;&gt;
@@ -1682,7 +1662,7 @@ function calculateTotal(items: OrderItems) {
 
 export default RestaurantOrder
 </code></pre>
- <div line-highlight="22,24-25,65-71,76,133-150,only"></div>
+ <div line-highlight="14-17,40,42,49,55,58-59,85,102,113-130,only"></div>
 <p></details></p>
 
 </section>
