@@ -71,7 +71,7 @@ const RestaurantOrder: React.FC = () => {
         })
     }
 
-    const submit = (event: FormEvent) => {
+    const handleSubmit = (event: FormEvent) => {
         event.preventDefault()
     }
 
@@ -85,7 +85,7 @@ const RestaurantOrder: React.FC = () => {
             <div className="order-form">
                 <h3>Order from {restaurant.data.name}!</h3>
 
-                <form onSubmit={(event) => submit(event)}>
+                <form onSubmit={(event) => handleSubmit(event)}>
                     {
                         subtotal === 0
                             ? (
