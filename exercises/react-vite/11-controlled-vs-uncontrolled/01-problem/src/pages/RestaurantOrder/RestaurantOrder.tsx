@@ -5,10 +5,6 @@ import { useRestaurant } from "../../services/restaurant/hooks"
 
 type OrderItems = Record<string, number>
 
-interface NewOrderState {
-    items: OrderItems;
-}
-
 const RestaurantOrder: React.FC = () => {
     const params = useParams() as { slug: string }
 

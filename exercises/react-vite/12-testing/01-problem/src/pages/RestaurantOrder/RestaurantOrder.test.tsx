@@ -2,7 +2,7 @@ import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom';
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import RestaurantOrder from './RestaurantOrder';
 
 // Mock the hooks and components used in RestaurantOrder
@@ -33,6 +33,19 @@ vi.mock('../../components/RestaurantHeader', () => ({
     </div>
   ))
 }));
+
+// Mocking the global fetch function
+const mockAlert = vi.fn();
+
+global.alert = mockAlert;
+
+beforeEach(() => {
+  mockAlert.mockClear();
+});
+
+afterEach(() => {
+  mockAlert.mockClear();
+});
 
 import { useRestaurant } from '../../services/restaurant/hooks';
 

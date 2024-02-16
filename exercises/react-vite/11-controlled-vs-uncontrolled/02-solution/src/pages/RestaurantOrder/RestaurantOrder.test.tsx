@@ -11,13 +11,13 @@ vi.mock('../../services/restaurant/hooks', () => ({
 }));
 
 vi.mock('../../components/RestaurantHeader', () => ({
-    default: vi.fn(() => (
-      <div data-testid="mock-restaurant-header">
-        Mock RestaurantHeader
-      </div>
-    ))
-  }));
-  
+  default: vi.fn(() => (
+    <div data-testid="mock-restaurant-header">
+      Mock RestaurantHeader
+    </div>
+  ))
+}));
+
 import { useRestaurant } from '../../services/restaurant/hooks';
 
 const mockRestaurantData = {
