@@ -62,4 +62,4 @@ rendered on the client.
 
 ## Next steps
 
-TODO
+Next,let's setup your system to develop and run a React app.
