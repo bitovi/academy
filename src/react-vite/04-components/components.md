@@ -1,5 +1,5 @@
-@page learn-react-vite/components Building Components
-@parent learn-react-vite 4
+@page learn-react/components Building Components
+@parent learn-react 4
 @outline 3
 
 @description Components are the core building blocks of any React application

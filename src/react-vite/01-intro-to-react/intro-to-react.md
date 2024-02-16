@@ -1,5 +1,5 @@
-@page learn-react-vite/intro-to-react Introduction to React
-@parent learn-react-vite 1
+@page learn-react/intro-to-react Introduction to React
+@parent learn-react 1
 @outline 3
 
 @description Discover why React is a great choice for modern web application development.

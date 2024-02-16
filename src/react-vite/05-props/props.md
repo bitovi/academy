@@ -1,5 +1,5 @@
-@page learn-react-vite/props Passing Props
-@parent learn-react-vite 5
+@page learn-react/props Passing Props
+@parent learn-react 5
 @outline 3
 
 @description Learn how to provide information to a component through props.

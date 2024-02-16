@@ -1,5 +1,5 @@
-@page learn-react-vite/testing Testing in React
-@parent learn-react-vite 12
+@page learn-react/testing Testing in React
+@parent learn-react 12
 @outline 3
 
 @description Write unit tests to verify components are functioning es expected.
