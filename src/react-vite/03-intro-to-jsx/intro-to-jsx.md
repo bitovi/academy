@@ -24,7 +24,7 @@ In this section, we will:
 
 JSX is used by React developers to define the user interface.
 
-JSX is a special syntax designed to look almost identical to HTML. Developers define the UI using JSX and React transforms it into the HTML the browser displays. JSX can be written alongside standard JavaScript, which makes for a powerful programming environment.
+JSX is a special syntax designed to look almost identical to HTML. Developers define the UI using JSX. React transforms that JSX into the HTML the browser displays. JSX can be written alongside standard JavaScript, which makes for a powerful programming environment.
 
 React has a procedural `React.createElement` syntax, but most applications do not use it directly. Instead, views are defined and maintained in JSX and will automatically be transpiled into the equivalent `React.createElement` calls at build-time.
 
@@ -39,6 +39,10 @@ __Say "props" instead of "attributes."__ This nomenclature difference is because
 ```jsx
 <img src="image.png">
 ```
+
+__Tags must close__
+
+In HTML, you _should_ close your tags, but its not mandatory. JSX requires that tags close. This means that an opening tag `<div>` should have a corresponding closing tag `</div>`. Some elements use self-closing tags using an ending slash like `<img />` and `<br />`.
 
 __Reserved words are renamed.__ The HTML attributes "class" and "for" are reserved words in JavaScript. These had to be renamed to "className" and "htmlFor" respectively.
 
