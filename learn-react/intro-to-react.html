@@ -528,49 +528,104 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
-<p>React first appeared in 2013 with &quot;components&quot; as the basic building block for
-constructing a user interface. Initially, components were created using
-JavaScript classes, which implemented an interface that defined lifecycle
-methods. One of React's notable characteristics has existed from the very
-beginning: the use of <a href="intro-to-jsx.html">JSX syntax</a> to define the structure of
-a component.</p>
-<h2>Key React Concepts</h2>
-<h3>Declarative Syntax</h3>
-<p>Through JSX, React &quot;declares&quot; how a UI looks based on the current state. This is
-different from typical web application development where a UI is constructed
-using imperative methods such as creating an element setting properties and then
-attaching it to the DOM.</p>
-<h3>Unidirectional data flow</h3>
-<p>Data in a React based application flows one way: into a component through
-<code>props</code> or state then the user interface is rendered, user interactions cause
-changes to state, changes to state cause props to be updated and passed to the
-component again - restarting the cycle.</p>
-<h3>Virtual DOM</h3>
-<p>React's Virtual DOM allows React to quickly determine when the user interface
-needs to be updated; since updates to the browser's DOM are time-consuming only
-making them when necessary is critical to React's rendering performance. When
-the state provided to a React component changes the React framework will invoke
-the component (or the render method of a class component) and compare the result
-to the Virtual DOM. If the results are <strong>the same</strong> no action is taken, if the
-results are <strong>different</strong> the browser's DOM is updated to reflect the new
-Virtual DOM state.</p>
-<h3>Functional components and Hooks</h3>
-<p>A major change occurred in 2019 with the introduction of functional components
-and Hooks. A component can now be defined using a single function, the component
-can manage its internal data and functionality through the use of
-<a href="stateful-hooks.html">hooks</a>, which are functions that provide data to a
-component or cause the component to render.</p>
-<h3>Server and Client rendering</h3>
-<p>Since version 18 was released, the React team has responded to requests for
-server-side rendering with <a href="https://react.dev/blog/2023/03/22/react-labs-what-we-have-been-working-on-march-2023#react-server-components">React Server
-Components</a>.
-In this new mode, components default to rendering on the server, improving
-initial browser display performance. Any components that can not render on the
-server or have been explicitly marked as requiring client-side rendering are
-rendered on the client.</p>
+    <h2>What is React?</h2>
+<p>React is a front-end JavaScript library designed for building scalable and dynamic web applications.
+It’s renowned for its ability to break down the view layer of applications into small, reusable
+<a href="./components.html">components</a>, which are rendered as plain HTML. These components make up the
+core of React’s architecture, allowing for efficient and manageable development.</p>
+<p>React is versatile and isn’t limited to web apps. It can also be used for creating mobile and desktop
+apps through platforms like <a href="https://reactnative.dev/">React Native</a> for mobile development and
+<a href="https://www.electronjs.org/">Electron</a> for desktop applications. While this course focuses on web
+development, the concepts apply across these different environments.</p>
+<h3>Component-based architecture</h3>
+<p>React’s component-based architecture is another cornerstone of its design philosophy. This architecture
+involves building encapsulated components that manage their own state, then composing them to make
+complex UIs.</p>
+<p>Here are the benefits of this approach:</p>
+<p><strong>Reusability and consistency:</strong> Components are designed to be reusable, which means you can define a
+component once and use it in multiple places in your application. This not only saves time and effort
+but also ensures UI consistency across your application.</p>
+<p><strong>Ease of maintenance:</strong> In a component-based architecture, each component is isolated, meaning changes
+made to one component don’t directly affect others. This isolation simplifies the maintenance and
+troubleshooting of applications, as you can focus on individual components without worrying about
+unintended consequences elsewhere.</p>
+<p><strong>Improved collaboration:</strong> This architecture is inherently modular, which is a boon for teams. Developers
+can work on different components simultaneously without causing merge conflicts. It also makes it easier
+to integrate work from multiple developers.</p>
+<p><strong>Enhanced scalability:</strong> As applications grow, managing them becomes more complex. Component-based
+architecture allows you to scale your application by adding new components or improving existing
+ones without having to refactor large parts of your codebase.</p>
+<p><strong>Stateful components:</strong> Components in React can hold and manage their own state. This encapsulation of
+state in components makes for a more predictable and easier-to-manage state management, especially in
+large-scale applications.</p>
+<h3>JSX for templating</h3>
+<p>React’s declarative nature means you define UIs as they should appear based on the current state, using JSX.
+This syntax allows you to write your component’s structure in a way that’s similar to HTML, differing from
+traditional imperative methods of UI construction.</p>
+<p>Here’s why JSX is highly regarded as a templating language:</p>
+<p><strong>Familiarity with HTML:</strong> JSX closely resembles HTML, making it intuitive for anyone familiar with web development.
+This familiarity allows us to quickly understand and write UI code, significantly reducing the learning curve
+for new React developers.</p>
+<p><strong>Enhanced readability:</strong> JSX promotes cleaner and more readable code. It allows you to clearly see the layout of your
+UI in a way that feels like writing HTML, making it easier to visualize the component’s structure and behavior.</p>
+<h3>UI as a function of data and state</h3>
+<p>React maps the JSX that we write to a Virtual DOM, which is an in-memory representation of the real browser DOM.
+This apprach has numerous benefits in building large applications:</p>
+<p><strong>Predictable state-to-UI mapping:</strong> React’s Virtual DOM excels at ensuring that the UI is always a direct reflection
+of the application’s state. This approach means that every time there’s a change in state, React updates the Virtual DOM
+to reflect this change. As a developer, this gives you a predictable and straightforward way to manage UI changes, as
+the state drives the UI rendering.</p>
+<p><strong>Focus on state, not the DOM:</strong> The Virtual DOM lets us concentrate on managing the state of the application.
+The UI updates automatically to mirror the current state, thanks to React’s reactive model. This significantly
+simplifies the development process, as you’re not manually handling the DOM updates, leading to more maintainable
+and readable code.</p>
+<p><strong>Efficient update mechanism:</strong> React’s approach of re-rendering the entire component tree in the Virtual DOM can be
+resource-intensive for some applications. In larger web applications though, it actually leads to efficient update
+mechanisms in dynamic UIs. By batching these updates and only applying the necessary changes to the actual DOM, React
+ensures that the UI is always in sync with the state with minimal performance overhead.</p>
+<p><strong>Minimized reflows and repaints:</strong> Direct DOM manipulations can be costly, especially in complex UIs. React’s Virtual DOM
+minimizes the direct interactions with the actual DOM, reducing costly reflows and repaints. This results in a smoother
+performance, particularly in applications where the UI changes frequently based on user interactions and state changes.</p>
+<p><strong>Consistent experience across platforms:</strong> The principle of “UI as a function of data and state” isn’t just limited to web
+development with React. It extends to other environments like mobile apps with React Native. This provides a consistent
+development experience, where the same patterns and principles apply, regardless of the platform.</p>
+<h3>Server and client-side rendering</h3>
+<p>React supports client-side rendering (CSR) out of the box. CSR involves rendering React components directly in the browser.
+When a user visits a React application, they download a minimal HTML page along with JavaScript files that render the
+application’s content in the browser.</p>
+<p>Client-side rendering is a straightforward starting point for applications that require dynamic content updates and complex
+user interactions, as it can provide a more interactive experience. With CSR, the rendering workload is shifted to the
+client side, meaning the user’s device handles most of the processing.</p>
+<p>With the helo of some larger frameworks, React can also support server-side rendering.</p>
+<p>Server-side rendering (SSR) involves the process of generating the full HTML for a page on the server in response to a
+user’s request. When a user accesses a React application, the server processes the React components and sends the browser
+a fully rendered HTML page. This means the content is readily visible and accessible, even before any JavaScript is
+downloaded and executed.</p>
+<p>During this course, we will focus on client-side rendering for simplicity.</p>
+<h2>Why use React?</h2>
+<h3>Versatility across platforms</h3>
+<p>React’s reach extends beyond traditional web applications. One of its most significant advantages is its adaptability
+to various platforms, most notably through React Native for mobile app development. This means you can use the same
+React principles to build applications not just for the web, but also natively for iOS and Android. This versatility
+significantly reduces the learning curve when transitioning between web and mobile development, allowing teams to
+share expertise and code more effectively.</p>
+<h3>Strong community and corporate backing</h3>
+<p>React, initially developed and maintained by Facebook (now Meta), enjoys robust corporate support. This backing ensures
+continuous development and long-term viability, crucial factors when choosing a technology stack.</p>
+<p>Moreover, the React community is one of the most active and vibrant in the tech world. This thriving community contributes
+to a wealth of resources, including tutorials, tools, and third-party libraries, making React a rich and continuously
+evolving ecosystem.</p>
+<h3>Rich ecosystem of tools and libraries</h3>
+<p>React’s ecosystem is replete with tools and libraries that enhance and simplify development. From routing libraries like
+React Router to data fetching libraries like React Query and SWR, the ecosystem provides a comprehensive set of tools
+that cover virtually every need in modern web development.</p>
+<h3>Compatibility with any backend</h3>
+<p>React’s design as a frontend library makes it backend agnostic. This means it can be integrated seamlessly with any backend
+technology, whether it’s a Node.js server, a Python Django backend, or a Java Spring application. This compatibility is
+crucial for businesses and developers who work in diverse technical environments, as it allows for more flexibility in
+choosing or integrating with existing backend technologies.</p>
 <h2>Next steps</h2>
-<p>Next,let's setup your system to develop and run a React app.</p>
+<p>Next, let’s set up your system to develop and run a React app.</p>
 
 </section>
 
