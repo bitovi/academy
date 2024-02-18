@@ -6,24 +6,15 @@ import { useRestaurant } from "../../services/restaurant/hooks"
 
 type OrderItems = Record<string, number>
 
-interface NewOrderState {
-    address: string;
-    items: OrderItems;
-    name: string;
-    phone: string;
-}
-
 const RestaurantOrder: React.FC = () => {
     const params = useParams() as { slug: string }
 
     const restaurant = useRestaurant(params.slug)
 
-    const [newOrder, setNewOrder] = useState<NewOrderState>({
-        address: "",
-        items: {},
-        name: "",
-        phone: "",
-    })
+    const [address, setAddress] = useState<string>("")
+    const [items, setItems] = useState<OrderItems>({})
+    const [name, setName] = useState<string>("")
+    const [phone, setPhone] = useState<string>("")
 
     if (restaurant.isPending) {
         return (
@@ -46,19 +37,16 @@ const RestaurantOrder: React.FC = () => {
     }
 
     const setItem = (itemId: string, isChecked: boolean, itemPrice: number) => {
-        return setNewOrder((newOrder) => {
+        return setItems((currentItems) => {
             const updatedItems = {
-                ...newOrder.items,
+                ...currentItems,
             }
             if (isChecked) {
                 updatedItems[itemId] = itemPrice;
             } else {
                 delete updatedItems[itemId]
             }
-            return {
-                ...newOrder,
-                items: updatedItems,
-            }
+            return updatedItems
         })
     }
 
@@ -73,10 +61,11 @@ const RestaurantOrder: React.FC = () => {
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault()
+        alert('Order submitted!')
     }
 
-    const selectedCount = Object.values(newOrder.items).length
-    const subtotal = calculateTotal(newOrder.items)
+    const selectedCount = Object.values(items).length
+    const subtotal = calculateTotal(items)
 
     return (
         <>
@@ -102,7 +91,7 @@ const RestaurantOrder: React.FC = () => {
                             <li key={name} className="list-group-item">
                                 <label>
                                     <input
-                                        checked={name in newOrder.items}
+                                        checked={name in items}
                                         onChange={(event) => setItem(name, event.target.checked, price)}
                                         type="checkbox"
                                     />
@@ -119,7 +108,7 @@ const RestaurantOrder: React.FC = () => {
                             <li key={name} className="list-group-item">
                                 <label>
                                     <input
-                                        checked={name in newOrder.items}
+                                        checked={name in items}
                                         onChange={(event) => setItem(name, event.target.checked, price)}
                                         type="checkbox"
                                     />
@@ -132,21 +121,21 @@ const RestaurantOrder: React.FC = () => {
 
                     <FormTextField
                         label="Name"
-                        onChange={(name) => setValue("name", name)}
+                        onChange={setName}
                         type="text"
-                        value={newOrder.name}
+                        value={name}
                     />
                     <FormTextField
                         label="Address"
-                        onChange={(address) => setValue("address", address)}
+                        onChange={setAddress}
                         type="text"
-                        value={newOrder.address}
+                        value={address}
                     />
                     <FormTextField
                         label="Phone"
-                        onChange={(phone) => setValue("phone", phone)}
+                        onChange={setPhone}
                         type="tel"
-                        value={newOrder.phone}
+                        value={phone}
                     />
 
                     <div className="submit">

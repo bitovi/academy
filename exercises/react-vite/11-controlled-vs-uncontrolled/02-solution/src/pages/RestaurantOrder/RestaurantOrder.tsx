@@ -5,18 +5,12 @@ import { useRestaurant } from "../../services/restaurant/hooks"
 
 type OrderItems = Record<string, number>
 
-interface NewOrderState {
-    items: OrderItems;
-}
-
 const RestaurantOrder: React.FC = () => {
     const params = useParams() as { slug: string }
 
     const restaurant = useRestaurant(params.slug)
 
-    const [newOrder, setNewOrder] = useState<NewOrderState>({
-        items: {},
-    })
+    const [items, setItems] = useState<OrderItems>({})
 
     if (restaurant.isPending) {
         return (
@@ -39,23 +33,20 @@ const RestaurantOrder: React.FC = () => {
     }
 
     const setItem = (itemId: string, isChecked: boolean, itemPrice: number) => {
-        return setNewOrder((newOrder) => {
+        return setItems((currentItems) => {
             const updatedItems = {
-                ...newOrder.items,
+                ...currentItems,
             }
             if (isChecked) {
                 updatedItems[itemId] = itemPrice;
             } else {
                 delete updatedItems[itemId]
             }
-            return {
-                ...newOrder,
-                items: updatedItems,
-            }
+            return updatedItems
         })
     }
 
-    const subtotal = calculateTotal(newOrder.items)
+    const subtotal = calculateTotal(items)
 
     return (
         <>
@@ -75,7 +66,7 @@ const RestaurantOrder: React.FC = () => {
                             <li key={name} className="list-group-item">
                                 <label>
                                     <input
-                                        checked={name in newOrder.items}
+                                        checked={name in items}
                                         onChange={(event) => setItem(name, event.target.checked, price)}
                                         type="checkbox"
                                     />
@@ -92,7 +83,7 @@ const RestaurantOrder: React.FC = () => {
                             <li key={name} className="list-group-item">
                                 <label>
                                     <input
-                                        checked={name in newOrder.items}
+                                        checked={name in items}
                                         onChange={(event) => setItem(name, event.target.checked, price)}
                                         type="checkbox"
                                     />
