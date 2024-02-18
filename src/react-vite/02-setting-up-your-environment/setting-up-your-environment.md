@@ -166,7 +166,12 @@ install the packages related to the React Testing Library:
 npm install -D @testing-library/jest-dom@6 @testing-library/react@14 @testing-library/user-event@14 jsdom@24 vitest@1
 ```
 
-✏️ Once the packages are installed open the "package.json" file (in the
+✏️ Update **vite.config.ts** as shown
+
+@sourceref ../../../exercises/react-vite/02-setting-up-your-environment/problem/vite.config.ts
+@highlight 7-11
+
+✏️ Once the packages are installed and the config file is updated, open the "package.json" file (in the
 project's root) and add the "test" line to the `scripts` object; this simplifies
 running tests using Vite.
 
