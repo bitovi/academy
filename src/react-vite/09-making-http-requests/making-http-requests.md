@@ -29,7 +29,7 @@ Here is an example component with `useEffect`:
 
 Let’s break this example down by the two arguments that `useEffect` takes:
 
-#### Effect callback function
+### Effect callback function
 
 The first argument of `useEffect` is a function, often referred to as the “effect” function.
 This is where you perform your side effects, such as fetching data, setting up a subscription,
@@ -43,7 +43,7 @@ The cleanup function is useful for performing any necessary cleanup activities w
 unmounts or before the component re-renders and the effect is re-invoked. Common examples include
 clearing timers, canceling network requests, or removing event listeners.
 
-#### The dependency array
+### The dependency array
 
 The second argument of `useEffect` is an array, called the “dependency array”, which determines
 when your effect function should be called. The behavior of the effect changes based on the
@@ -51,7 +51,7 @@ contents of this array:
 
 Consider three scenarios based on the dependency array:
 
-##### Empty dependency array (`[]`)
+#### Empty dependency array (`[]`)
 
 If the dependency array is an empty array, the effect runs once
 after the initial render.
@@ -59,7 +59,7 @@ after the initial render.
 @sourceref dependency-array-empty.tsx
 @highlight 6-12, only
 
-##### Array with values
+#### Array with values
 
 When you include values (variables, props, state) in the dependency array,
 the effect will only re-run if those specific values change between renders. This selective
@@ -68,7 +68,7 @@ execution can optimize performance by avoiding unnecessary work.
 @sourceref dependency-array-with-values.tsx
 @highlight 4, 7-8, only
 
-##### No dependency array
+#### No dependency array
 
 If the dependency array is omitted, the effect runs after every render
 of the component.
@@ -76,7 +76,7 @@ of the component.
 @sourceref dependency-array-undefined.tsx
 @highlight 8, only
 
-#### Async operations inside useEffect
+### Async operations inside useEffect
 
 You can use APIs that return a `Promise` normally within a `useEffect`:
 
@@ -127,7 +127,7 @@ TODO: Explain that setting environment variables is a generic thing you do, and 
 project in particular, Vite will make anything prefixed with `VITE_` available in our
 client-side source code.
 
-### Setup
+### Setup 1
 
 ✏️ Create **.env** and update it to be:
 
@@ -138,7 +138,7 @@ client-side source code.
 
 @diff ../../../exercises/react-vite/08-stateful-hooks/03-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/01-problem/src/pages/RestaurantList/RestaurantList.tsx only
 
-#### Install the Place My Order API
+### Install the Place My Order API
 
 Before we begin requesting data from our API, we need to install the
 `place-my-order-api` module, which will generate fake restaurant data and
@@ -164,20 +164,20 @@ npm run api
 Double check the API by navigating to <a href="http://localhost:7070/restaurants">localhost:7070/restaurants</a>.
 You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the `api` command from.
 
-### Verify
+### Verify 1
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.test.tsx** to be:
 
 @diff ../../../exercises/react-vite/08-stateful-hooks/02-solution/src/pages/RestaurantList/RestaurantList.test.tsx ../../../exercises/react-vite/09-making-http-requests/01-solution/src/pages/RestaurantList/RestaurantList.test.tsx only
 
-### Exercise
+### Exercise 1
 
 - Update `RestaurantList.tsx` to call `useState()` and use the `StateResponse` interface.
 - Call `useEffect()` and `fetch` data from `${import.meta.env.VITE_PMO_API}/states`.
 
 Hint: Call your state setter after you parse the JSON response from `fetch()`.
 
-### Solution
+### Solution 1
 
 <details>
 <summary>Click to see the solution</summary>
@@ -227,7 +227,7 @@ possible with regular JavaScript functions. This means you can have a Hook that
 manages its own state and shares this logic across multiple components, something
 that would be difficult or impossible with traditional class-based components.
 
-### Setup
+### Setup 2
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
 
@@ -237,7 +237,7 @@ that would be difficult or impossible with traditional class-based components.
 
 @diff ../../../exercises/react-vite/09-making-http-requests/01-solution/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/02-problem/src/services/restaurant/hooks.ts only
 
-### Verify
+### Verify 2
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.test.tsx** to be:
 
@@ -247,13 +247,13 @@ that would be difficult or impossible with traditional class-based components.
 
 @diff ../../../exercises/react-vite/09-making-http-requests/01-solution/src/services/restaurant/hooks.test.ts ../../../exercises/react-vite/09-making-http-requests/02-solution/src/services/restaurant/hooks.test.ts only
 
-### Exercise
+### Exercise 2
 
 - Refactor the existing `useState` and `useEffect` logic into a new `useStates` Hook.
 
 Hint: After moving the state and effect logic into `hooks.ts`, use your new Hook in `RestaurantList.tsx`.
 
-### Solution
+### Solution 2
 
 <details>
 <summary>Click to see the solution</summary>
@@ -295,13 +295,13 @@ Here’s a breakdown of this URL:
     - `param1=value1`
     - `param2=value2`
 
-### Setup
+### Setup 3
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
 
 @diff ../../../exercises/react-vite/09-making-http-requests/02-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/03-problem/src/pages/RestaurantList/RestaurantList.tsx only
 
-### Verify
+### Verify 3
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.test.tsx** to be:
 
@@ -311,7 +311,7 @@ Here’s a breakdown of this URL:
 
 @diff ../../../exercises/react-vite/09-making-http-requests/02-solution/src/services/restaurant/hooks.test.ts ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/restaurant/hooks.test.ts only
 
-### Exercise
+### Exercise 3
 
 Update our useCities Hook to fetch cities from the Place My Order API, given a selected state.
 
@@ -321,7 +321,7 @@ When calling the Place My Order API, include the `state` query parameter:
 http://localhost:7070/cities?state=MO
 ```
 
-### Solution
+### Solution 3
 
 <details>
 <summary>Click to see the solution</summary>
@@ -383,7 +383,7 @@ In the example above, we `catch` the `error` and check its type. If it’s alrea
 If it’s not, then we can create our own `new Error()` so we _always_ have an error
 to consume in our Hooks or components.
 
-### Setup
+### Setup 4
 
 ✏️ Create **src/services/api.ts** and update it to be:
 
@@ -393,7 +393,7 @@ to consume in our Hooks or components.
 
 @diff ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/04-problem/src/services/restaurant/hooks.ts only
 
-### Verify
+### Verify 4
 
 ✏️ Create **src/services/api.test.ts** and update it to be:
 
@@ -403,7 +403,7 @@ to consume in our Hooks or components.
 
 @diff ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/restaurant/hooks.test.ts ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/restaurant/hooks.test.ts only
 
-### Exercise
+### Exercise 4
 
 - Implement the `apiRequest` helper function to handle errors returned and thrown from `fetch()`.
 - Update the `useCities` and `useStates` Hooks to use the `data` and `error` returned from `apiRequest`.
@@ -417,7 +417,7 @@ stringifyQuery({
 })
 ```
 
-### Solution
+### Solution 4
 
 <details>
 <summary>Click to see the solution</summary>
@@ -447,7 +447,7 @@ return restaurants in the selected city.:
 <img src="../static/img/react-vite/09-making-http-requests/5-solution.png"
   style="border: solid 1px black; max-width: 800px;"/>
 
-### Setup
+### Setup 5
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
 
@@ -461,7 +461,7 @@ return restaurants in the selected city.:
 
 @diff ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/05-problem/src/services/restaurant/hooks.ts only
 
-### Verify
+### Verify 5
 
 If you’ve implemented the solution correctly, when you use the select boxes to choose state
 and city, you should see a list of just restaurants from the selected city returned.
@@ -474,7 +474,7 @@ and city, you should see a list of just restaurants from the selected city retur
 
 @diff ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/restaurant/hooks.test.ts ../../../exercises/react-vite/09-making-http-requests/05-solution/src/services/restaurant/hooks.test.ts only
 
-### Exercise
+### Exercise 5
 
 - Implement a `useRestaurants` Hook to fetch restaurant data.
 - Update `RestaurantList.tsx` to use your new `useRestaurants` Hook.
@@ -482,7 +482,7 @@ and city, you should see a list of just restaurants from the selected city retur
 Hint: The requested URL with query parameters should look like this:
 `'/api/restaurants?filter[address.state]=IL&filter[address.city]=Chicago'`
 
-### Solution
+### Solution 5
 
 <details>
 <summary>Click to see the solution</summary>

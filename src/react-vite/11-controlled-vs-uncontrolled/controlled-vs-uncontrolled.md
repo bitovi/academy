@@ -21,7 +21,7 @@ TODO
 - Update form data in state using an updater function.
 - Always create a new value for arrays and objects in state (don’t update the arrays and values).
 
-#### Controlled and uncontrolled inputs
+### Controlled and uncontrolled inputs
 
 React has special handling for `<input>` components that allow developers to create "controlled" or
 "uncontrolled" inputs. An input is **uncontrolled** when its `value` — or `checked` — prop is not
@@ -50,7 +50,7 @@ const ControlledInput: React.FC = () => {
 Controlled components aren't allowed to have a value of `null` or `undefined`. To set an input with
 "no value," use an empty string: `""`.
 
-#### Working with events
+### Working with events
 
 In the previous example, the input prop `onChange` had its value set to a function known as an
 "event handler."
@@ -69,7 +69,7 @@ A `ChangeEvent` — derived from `SyntheticEvent` — is the event argument prov
 component that emitted the event. As you can see above, it's possible to get the `target`'s new
 value using its `value` property.
 
-#### TypeScript's `Record` interface
+### TypeScript's `Record` interface
 
 In our upcoming exercise, we want to store information in a JavaScript object. We also want to use
 TypeScript so we can constrain the types used as keys and values. TypeScript provides a handy
@@ -87,7 +87,7 @@ strings, and all the values must be booleans. Fortunately, JavaScript's `object`
 `Record` interface, so we can set the default value to an empty `object` instance. Now let's see how
 we can use a `Record` to store state data.
 
-#### Set state using a function
+### Set state using a function
 
 One challenge we face when using an `object` for state is that we probably need to merge the current
 state value with the new state value. Why? Imagine we have a state object that already has multiple
@@ -139,7 +139,7 @@ const Selected: React.FC = () => {
 }
 ```
 
-#### Updating reference types and rendering
+### Updating reference types and rendering
 
 We'd like to call your attention again to how the updater function works in the example above. The
 updater function **does not mutate** the pending object, then return it; instead, it makes a new
@@ -173,13 +173,13 @@ setUpdatedRestaurant(pending => {
 
 OK, that was a lot. Let's start making some code changes so we can select menu items for an order.
 
-### Setup
+### Setup 1
 
 ✏️ Update **src/pages/RestaurantOrder/RestaurantOrder.tsx** to be:
 
 @diff ../../../exercises/react-vite/10-nested-routes/02-solution/src/pages/RestaurantOrder/RestaurantOrder.tsx ../../../exercises/react-vite/11-controlled-vs-uncontrolled/01-problem/src/pages/RestaurantOrder/RestaurantOrder.tsx only
 
-### Verify
+### Verify 1
 
 These tests will pass when the solution has been implemented properly.
 
@@ -187,7 +187,7 @@ These tests will pass when the solution has been implemented properly.
 
 @diff ../../../exercises/react-vite/10-nested-routes/02-solution/src/pages/RestaurantOrder/RestaurantOrder.test.tsx ../../../exercises/react-vite/11-controlled-vs-uncontrolled/01-solution/src/pages/RestaurantOrder/RestaurantOrder.test.tsx only
 
-### Exercise
+### Exercise 1
 
 - Add `newOrder` state so that when menu items are selected, the state will look like:
 
@@ -210,7 +210,7 @@ or
 [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/01-problem?file=src%2Fpages%2FRestaurantOrder%2FRestaurantOrder.tsx)
 to do this exercise in an online code editor.
 
-### Solution
+### Solution 1
 
 <details>
 <summary>Click to see the solution</summary>
@@ -271,7 +271,7 @@ const Form: React.FC = () => {
 The value of `useId` is guaranteed to be unique within the component where it is
 used; this ideal for linking related components together.
 
-### Setup
+### Setup 2
 
 ✏️ Create **src/components/FormTextField/FormTextField.tsx** and update it to be:
 
@@ -283,7 +283,7 @@ used; this ideal for linking related components together.
 @sourceref ../../../exercises/react-vite/11-controlled-vs-uncontrolled/02-problem/src/components/FormTextField/index.ts
 @highlight 1
 
-### Verify
+### Verify 2
 
 These tests will pass when the solution has been implemented properly.
 
@@ -292,7 +292,7 @@ These tests will pass when the solution has been implemented properly.
 @sourceref ../../../exercises/react-vite/11-controlled-vs-uncontrolled/02-problem/src/components/FormTextField/FormTextField.test.tsx
 @highlight 10-39, only
 
-### Exercise
+### Exercise 2
 
 - `FormTextField`:
   - has the following props: `label`, `onChange`, `type`, and `value`.
@@ -312,7 +312,7 @@ or
 [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/02-problem?file=src%2Fcomponents%2FFormTextField%2FFormTextField.tsx)
 to do this exercise in an online code editor.
 
-### Solution
+### Solution 2
 
 <details>
 <summary>Click to see the solution</summary>
@@ -337,15 +337,15 @@ button.
 
 TODO: I’m not sure whether the submit button should be a part of the exercise. Maybe? For now I’d like to have the content to cover it, then figure out if we actually want it in the exercise after we see how it looks.
 
-#### Concept 1
+### Concept 1
 
 TODO
 
-#### Concept 2
+### Concept 2
 
 TODO
 
-### Setup
+### Setup 3
 
 TODO
 
@@ -353,7 +353,7 @@ TODO
 
 @diff ../../../exercises/react-vite/11-controlled-vs-uncontrolled/02-solution/src/pages/RestaurantOrder/RestaurantOrder.tsx ../../../exercises/react-vite/11-controlled-vs-uncontrolled/03-problem/src/pages/RestaurantOrder/RestaurantOrder.tsx only
 
-### Verify
+### Verify 3
 
 TODO
 
@@ -361,11 +361,11 @@ TODO
 
 @diff ../../../exercises/react-vite/11-controlled-vs-uncontrolled/02-solution/src/pages/RestaurantOrder/RestaurantOrder.test.tsx ../../../exercises/react-vite/11-controlled-vs-uncontrolled/03-solution/src/pages/RestaurantOrder/RestaurantOrder.test.tsx only
 
-### Exercise
+### Exercise 3
 
 TODO
 
-### Solution
+### Solution 3
 
 <details>
 <summary>Click to see the solution</summary>
@@ -377,3 +377,7 @@ TODO
 @diff ../../../exercises/react-vite/11-controlled-vs-uncontrolled/03-problem/src/pages/RestaurantOrder/RestaurantOrder.tsx ../../../exercises/react-vite/11-controlled-vs-uncontrolled/03-solution/src/pages/RestaurantOrder/RestaurantOrder.tsx only
 
 </details>
+
+## Next steps
+
+TODO

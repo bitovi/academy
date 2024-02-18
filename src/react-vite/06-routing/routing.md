@@ -114,7 +114,7 @@ const Layout = () => {
 ```
 @highlight 6
 
-### Setup
+### Setup 1
 
 To get starting with React Router in our application,
 let’s install `react-router-dom` with npm:
@@ -142,7 +142,7 @@ npm install react-router-dom@6
 
 @diff ../../../exercises/react-vite/05-props/01-solution/src/main.tsx ../../../exercises/react-vite/06-routing/01-problem/src/main.tsx only
 
-### Verify
+### Verify 1
 
 ✏️ Update **src/App.test.tsx** to be:
 
@@ -157,7 +157,7 @@ display. These changes should be made in `src/App.tsx` and `src/main.tsx`.
 
 <strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-problem?file=App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-problem?file=App.tsx) to do this exercise in an online code editor.
 
-### Solution
+### Solution 1
 
 <details>
 
@@ -235,13 +235,13 @@ In the example above, `aboutMatch` will be an object with details about the rout
 the current route is `/about`; otherwise, `useMatch` will return `undefined` if the
 current route is something else.
 
-### Setup
+### Setup 2
 
 ✏️ Update **src/App.tsx** to be:
 
 @diff ../../../exercises/react-vite/06-routing/01-solution/src/App.tsx ../../../exercises/react-vite/06-routing/02-problem/src/App.tsx only
 
-### Verify
+### Verify 2
 
 ✏️ Update **src/App.test.tsx** to be:
 
@@ -271,7 +271,7 @@ of what the DOM should look like when the home page is active:
 
 <strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/02-problem?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/02-problem?file=src/App.tsx) to do this exercise in an online code editor.
 
-### Solution
+### Solution 2
 
 <details>
 <summary>Click to see the solution</summary>
@@ -283,3 +283,7 @@ of what the DOM should look like when the home page is active:
 <strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/02-solution?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/02-solution?file=src/App.tsx).
 
 </details>
+
+## Next steps
+
+TODO

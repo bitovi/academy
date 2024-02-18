@@ -8,6 +8,19 @@
 
 ## Overview
 
+In this section, we will:
+
+- Review how plain CSS works in React applications
+- Set up CSS Modules
+- Create a component-specific stylesheet
+- Apply styles to a component
+
+## Objective: Applying style with CSS Modules
+
+Now that we've learned to apply styling in React with CSS Modules, it's time to practice by styling a link in the Home component. You'll bring in a `Link` component from React Router. 
+
+### Styling options in React applications
+
 There is no prescribed approach for styling React apps. It’s entirely possible to
 style components using regular CSS. This approach works fine for many applications,
 especially smaller ones.
@@ -20,15 +33,6 @@ The community has built several styling options. We will be using CSS Modules as
 one of the most popular styling libraries and is very approachable for anyone that is
 used to styling in plain CSS. CSS Modules offer a way to write CSS that’s scoped to
 individual components, thus preventing style clashes and maintaining a cleaner codebase.
-
-## Objective 1: Applying style with CSS Modules
-
-In this section, we will:
-
-- Review how plain CSS works in React applications
-- Set up CSS Modules
-- Create a component-specific stylesheet
-- Apply styles to a component
 
 ### Reviewing how plain CSS works
 
@@ -198,10 +202,6 @@ const BlogPost: React.FC = ({ authorAvatar, content }) => {
 }
 ```
 @highlight 2, 9
-
-### Exercise 1
-
-Now that we've learned to apply styling in React with CSS Modules, it's time to practice by styling a link in the Home component. You'll bring in a `Link` component from React Router. 
 
 ### Install CSS Modules
 
