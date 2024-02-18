@@ -7,17 +7,30 @@
 
 ## Before you begin
 
-Before beginning this tutorial, you will want to have some familiarity with HTML and [JavaScript](https://www.bitovi.com/academy/learn-advanced-javascript.html). Specifically, you will need to understand [functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions), [objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object), and [arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array). Additionally, you should be familiar with some of the more recent [ECMAScript](https://medium.com/sons-of-javascript/javascript-an-introduction-to-es6-1819d0d89a0f) features, such as [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), [const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) and the [rest operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters). It is also beneficial to have some familiarity with [npm](https://docs.npmjs.com/about-npm/), though it is not strictly necessary to begin.
+<p>
+    <a href="https://discord.gg/J7ejFsZnJ4">
+        <img src="./static/img/discord.png" style="float:left; margin:20px" width="57"/>
+        <span style="margin-top: 10px;display: inline-block;">
+            Click here to join the
+            <br/>
+            Bitovi Community Discord
+        </span>
+    </a>
+</p>
 
-## What is React?
+<br/>
 
-In a nutshell, React is a [front-end](https://www.coursereport.com/blog/front-end-development-vs-back-end-development-where-to-start) JavaScript library which makes it very easy to build scalable apps.
+Join the [Bitovi Community Discord](https://discord.gg/J7ejFsZnJ4)
+to get help with this React course or any other JavaScript problem.
 
-While it’s most commonly used for building web apps, React can also be used to create mobile & desktop apps through [React Native](https://reactnative.dev/) and [Electron](https://www.electronjs.org/). Although this course will not explicitly cover them, the theory contained here will still fully apply to other environments.
+If you find bugs in this training or have suggestions, create an [issue](https://github.com/bitovi/academy/issues) or email `contact@bitovi.com`.
 
-React’s goal is to enable developers to break down the view layer of their apps into small, reusable chunks called [components](https://reactjs.org/docs/components-and-props.html). These components are rendered as plain HTML and tracked in memory as [Virtual DOM](https://reactjs.org/docs/faq-internals.html) objects. As data or _state_ in the application changes, the underlying Virtual DOM is updated and we see the coresponding markup change. This makes React very efficent at making updates as only components that have changed will be rendered again.
+## Prerequisites
 
-One of the best things about React is that it can be used in any website, even one that is already built with another framework. This makes it easy to convert an existing project to React, or just use it for one part of a site.
+Before beginning this tutorial, you will want to have some familiarity with HTML and [JavaScript](https://www.bitovi.com/academy/learn-advanced-javascript.html). Specifically, you will need to understand [functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions), [objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object), and [arrays](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array). Additionally, you should be familiar with some of the more recent [ECMAScript](https://medium.com/sons-of-javascript/javascript-an-introduction-to-es6-1819d0d89a0f) features, such as [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [let](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), [const](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) and the [rest operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/rest_parameters).
+
+It is also beneficial to have some familiarity with [Node.js](https://nodejs.org/) and
+[npm](https://docs.npmjs.com/about-npm/), although it is not strictly necessary to begin.
 
 ## Course outline
 
@@ -28,6 +41,9 @@ Once you’re all setup and oriented into the framework, you’ll learn how to b
 The second half of the guide will cover more intermediate topics like state management using [Hooks](learn-react/managing-complex-state.html) and using `useEffect` to [fetch data](learn-react/making-http-requests.html).
 
 Throughout this guide, we’ll be building out a feature-rich Place My Order application, gradually applying all of these concepts to produce a clean and optimized solution!
+
+<img src="./static/img/place-my-order.png" title="Place My Order App screenshot"
+  style="max-width: 100%"/>
 
 ## Next steps
 
