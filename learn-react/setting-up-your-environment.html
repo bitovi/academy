@@ -641,7 +641,23 @@ into a browser. The browser will display a welcome page with &quot;Vite + React.
 install the packages related to the React Testing Library:</p>
 <pre><code class="language-shell">npm install -D @testing-library/jest-dom@6 @testing-library/react@14 @testing-library/user-event@14 jsdom@24 vitest@1
 </code></pre>
-<p>✏️ Once the packages are installed open the &quot;package.json&quot; file (in the
+<p>✏️ Update <strong>vite.config.ts</strong> as shown</p>
+<pre><code class="language-ts">import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [react()],
+  test: {
+    globals: true,
+    environment: 'jsdom',
+    css: false,
+  },
+})
+
+</code></pre>
+<div line-highlight='7-11'></div>
+<p>✏️ Once the packages are installed and the config file is updated, open the &quot;package.json&quot; file (in the
 project's root) and add the &quot;test&quot; line to the <code>scripts</code> object; this simplifies
 running tests using Vite.</p>
 <pre><code class="language-json">{
