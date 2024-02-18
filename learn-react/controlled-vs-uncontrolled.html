@@ -673,10 +673,6 @@ import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
 
 type OrderItems = Record&lt;string, number&gt;
 
-interface NewOrderState {
-    items: OrderItems;
-}
-
 const RestaurantOrder: React.FC = () =&gt; {
     const params = useParams() as { slug: string }
 
@@ -763,7 +759,7 @@ function calculateTotal(items: OrderItems) {
 
 export default RestaurantOrder
 </code></pre>
- <div line-highlight="1,6,8-9,37,46-49,51-64,66-79,81-84,88,90-94,only"></div>
+ <div line-highlight="1,6,33,42-45,47-60,62-75,77-80,86-90,only"></div>
 <h3>Verify</h3>
 <p>These tests will pass when the solution has been implemented properly.</p>
 <p>✏️ Update <strong>src/pages/RestaurantOrder/RestaurantOrder.test.tsx</strong> to be:</p>
@@ -780,13 +776,13 @@ vi.mock('../../services/restaurant/hooks', () =&gt; ({
 }));
 
 vi.mock('../../components/RestaurantHeader', () =&gt; ({
-    default: vi.fn(() =&gt; (
-      &lt;div data-testid=&quot;mock-restaurant-header&quot;&gt;
-        Mock RestaurantHeader
-      &lt;/div&gt;
-    ))
-  }));
-  
+  default: vi.fn(() =&gt; (
+    &lt;div data-testid=&quot;mock-restaurant-header&quot;&gt;
+      Mock RestaurantHeader
+    &lt;/div&gt;
+  ))
+}));
+
 import { useRestaurant } from '../../services/restaurant/hooks';
 
 const mockRestaurantData = {
@@ -869,7 +865,7 @@ describe('RestaurantOrder component', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="3,29-38,78-80,82-85,87-89,91-92,94,96,98-99,only"></div>
+ <div line-highlight="3,14-19,29-38,78-80,82-85,87-89,91-92,94,96,98-99,only"></div>
 <h3>Exercise</h3>
 <ul>
 <li>Add <code>newOrder</code> state so that when menu items are selected, the state will look like:</li>
@@ -902,18 +898,12 @@ import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
 
 type OrderItems = Record&lt;string, number&gt;
 
-interface NewOrderState {
-    items: OrderItems;
-}
-
 const RestaurantOrder: React.FC = () =&gt; {
     const params = useParams() as { slug: string }
 
     const restaurant = useRestaurant(params.slug)
 
-    const [newOrder, setNewOrder] = useState&lt;NewOrderState&gt;({
-        items: {},
-    })
+    const [items, setItems] = useState&lt;OrderItems&gt;({})
 
     if (restaurant.isPending) {
         return (
@@ -936,23 +926,20 @@ const RestaurantOrder: React.FC = () =&gt; {
     }
 
     const setItem = (itemId: string, isChecked: boolean, itemPrice: number) =&gt; {
-        return setNewOrder((newOrder) =&gt; {
+        return setItems((currentItems) =&gt; {
             const updatedItems = {
-                ...newOrder.items,
+                ...currentItems,
             }
             if (isChecked) {
                 updatedItems[itemId] = itemPrice;
             } else {
                 delete updatedItems[itemId]
             }
-            return {
-                ...newOrder,
-                items: updatedItems,
-            }
+            return updatedItems
         })
     }
 
-    const subtotal = calculateTotal(newOrder.items)
+    const subtotal = calculateTotal(items)
 
     return (
         &lt;&gt;
@@ -972,7 +959,7 @@ const RestaurantOrder: React.FC = () =&gt; {
                             &lt;li key={name} className=&quot;list-group-item&quot;&gt;
                                 &lt;label&gt;
                                     &lt;input
-                                        checked={name in newOrder.items}
+                                        checked={name in items}
                                         onChange={(event) =&gt; setItem(name, event.target.checked, price)}
                                         type=&quot;checkbox&quot;
                                     /&gt;
@@ -989,7 +976,7 @@ const RestaurantOrder: React.FC = () =&gt; {
                             &lt;li key={name} className=&quot;list-group-item&quot;&gt;
                                 &lt;label&gt;
                                     &lt;input
-                                        checked={name in newOrder.items}
+                                        checked={name in items}
                                         onChange={(event) =&gt; setItem(name, event.target.checked, price)}
                                         type=&quot;checkbox&quot;
                                     /&gt;
@@ -1017,7 +1004,7 @@ function calculateTotal(items: OrderItems) {
 
 export default RestaurantOrder
 </code></pre>
- <div line-highlight="17-19,41-56,58,78-79,95-96,only"></div>
+ <div line-highlight="13,35-47,49,69-70,86-87,only"></div>
 <p></details></p>
 <h2>Objective 2: Create a reusable text field component</h2>
 <p>The order form is going to be made up of many input fields with labels. Rather than repeat multiple
@@ -1205,21 +1192,12 @@ import { useRestaurant } from &quot;../../services/restaurant/hooks&quot;
 
 type OrderItems = Record&lt;string, number&gt;
 
-interface NewOrderState {
-    address: string;
-    items: OrderItems;
-    name: string;
-    phone: string;
-}
-
 const RestaurantOrder: React.FC = () =&gt; {
     const params = useParams() as { slug: string }
 
     const restaurant = useRestaurant(params.slug)
 
-    const [newOrder, setNewOrder] = useState&lt;NewOrderState&gt;({
-        items: {},
-    })
+    const [items, setItems] = useState&lt;OrderItems&gt;({})
 
     if (restaurant.isPending) {
         return (
@@ -1242,28 +1220,26 @@ const RestaurantOrder: React.FC = () =&gt; {
     }
 
     const setItem = (itemId: string, isChecked: boolean, itemPrice: number) =&gt; {
-        return setNewOrder((newOrder) =&gt; {
+        return setItems((currentItems) =&gt; {
             const updatedItems = {
-                ...newOrder.items,
+                ...currentItems,
             }
             if (isChecked) {
                 updatedItems[itemId] = itemPrice;
             } else {
                 delete updatedItems[itemId]
             }
-            return {
-                ...newOrder,
-                items: updatedItems,
-            }
+            return updatedItems
         })
     }
 
     const handleSubmit = (event: FormEvent) =&gt; {
         event.preventDefault()
+        alert('Order submitted!')
     }
 
-    const selectedCount = Object.values(newOrder.items).length
-    const subtotal = calculateTotal(newOrder.items)
+    const selectedCount = Object.values(items).length
+    const subtotal = calculateTotal(items)
 
     return (
         &lt;&gt;
@@ -1289,7 +1265,7 @@ const RestaurantOrder: React.FC = () =&gt; {
                             &lt;li key={name} className=&quot;list-group-item&quot;&gt;
                                 &lt;label&gt;
                                     &lt;input
-                                        checked={name in newOrder.items}
+                                        checked={name in items}
                                         onChange={(event) =&gt; setItem(name, event.target.checked, price)}
                                         type=&quot;checkbox&quot;
                                     /&gt;
@@ -1306,7 +1282,7 @@ const RestaurantOrder: React.FC = () =&gt; {
                             &lt;li key={name} className=&quot;list-group-item&quot;&gt;
                                 &lt;label&gt;
                                     &lt;input
-                                        checked={name in newOrder.items}
+                                        checked={name in items}
                                         onChange={(event) =&gt; setItem(name, event.target.checked, price)}
                                         type=&quot;checkbox&quot;
                                     /&gt;
@@ -1337,7 +1313,7 @@ function calculateTotal(items: OrderItems) {
 
 export default RestaurantOrder
 </code></pre>
- <div line-highlight="1,3,10,12-13,62-64,66,76-85,123-125,only"></div>
+ <div line-highlight="1,3,50-53,55,65-74,112-114,only"></div>
 <h3>Verify</h3>
 <p>TODO</p>
 <p>✏️ Update <strong>src/pages/RestaurantOrder/RestaurantOrder.test.tsx.tsx</strong> to be:</p>
@@ -1345,7 +1321,7 @@ export default RestaurantOrder
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom';
-import { describe, expect, it, vi } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import RestaurantOrder from './RestaurantOrder';
 
 // Mock the hooks and components used in RestaurantOrder
@@ -1376,6 +1352,19 @@ vi.mock('../../components/RestaurantHeader', () =&gt; ({
     &lt;/div&gt;
   ))
 }));
+
+// Mocking the global fetch function
+const mockAlert = vi.fn();
+
+global.alert = mockAlert;
+
+beforeEach(() =&gt; {
+  mockAlert.mockClear();
+});
+
+afterEach(() =&gt; {
+  mockAlert.mockClear();
+});
 
 import { useRestaurant } from '../../services/restaurant/hooks';
 
@@ -1488,7 +1477,7 @@ describe('RestaurantOrder component', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="13-27,30-35,117-118,120-121,123-124,126-128,130-132,134-136,138-140,142-144,only"></div>
+ <div line-highlight="5,13-24,33-35,37-38,40,42-43,46-48,130-131,133-134,136-137,139-141,143-145,147-149,151-153,155-158,only"></div>
 <h3>Exercise</h3>
 <p>TODO</p>
 <h3>Solution</h3>
@@ -1647,7 +1636,7 @@ function calculateTotal(items: OrderItems) {
 
 export default RestaurantOrder
 </code></pre>
- <div line-highlight="14-17,40,42,49,55,58-59,85,102,113-130,only"></div>
+ <div line-highlight="14,16-17,113-130,only"></div>
 <p></details></p>
 
 </section>
