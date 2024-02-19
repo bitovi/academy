@@ -34,14 +34,14 @@ describe('MenuItemsComponent', () => {
     expect(itemLabels.length).toEqual(3);
   });
 
-  it('should call an updateItems function when a checkbox is selected or unselected', () => {
+  it('should call an updateItem function when a checkbox is selected or unselected', () => {
     fixture.componentInstance.items = [
       { name: 'Charred Octopus', price: 25.99 },
       { name: 'Steamed Mussels', price: 21.99 },
       { name: 'Ricotta Gnocchi', price: 15.99 },
     ];
     fixture.detectChanges();
-    const changeSpy = spyOn(fixture.componentInstance, 'updateItems');
+    const changeSpy = spyOn(fixture.componentInstance, 'updateItem');
     const compiled = fixture.debugElement.nativeElement;
     const input = compiled.getElementsByTagName('input')[0];
     input.click();

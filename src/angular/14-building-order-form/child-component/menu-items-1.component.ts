@@ -8,14 +8,8 @@ import { Item } from '../order.component';
 })
 export class MenuItemsComponent {
   @Input() items: Item[] = [];
-  selectedItems: Item[] = [];
 
-  updateItems(item: Item): void {
-    const index = this.selectedItems.indexOf(item);
-    if (index > -1) {
-      this.selectedItems.splice(index, 1);
-    } else {
-      this.selectedItems.push(item);
-    }
+  updateItem(item: Item): void {
+
   }
 }

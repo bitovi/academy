@@ -227,7 +227,9 @@ Go ahead and put your new component in the order component.
 
 ## Problem 4: Attaching event handlers to item checkboxes
 
-Next, we want to know when a checkbox has been checked or unchecked, and update an array called `selectedItems` containing all checked items.
+Next, we want to know when a checkbox has been checked or unchecked.
+
+Before communicating between `MenuItemsComponent` and its parent `OrderComponent`, `MenuItemsComponent` will need to attach an event handler - a function - to the `change` event of the item checkboxes.
 
 ## P4: What you need to know
 
@@ -241,16 +243,7 @@ Event binding in Angular follows a simple pattern - the event name in parenthesi
 
 ## P4: Technical requirements
 
-Create a function in the `MenuItemsComponent` called `updateItems` that fires whenever a checkbox is checked and takes a parameter of the item that has been checked. In the `updateItems` function use the following code to update the `selectedItems` array:
-
-```typescript
-let index = this.selectedItems.indexOf(item);
-if (index > -1) {
-  this.selectedItems.splice(index, 1);
-} else {
-  this.selectedItems.push(item);
-}
-```
+Create a function in the `MenuItemsComponent` called `updateItem` that fires whenever a checkbox is checked and takes a parameter of the item that has been checked.
 
 ## P4: How to verify your solution is correct
 
