@@ -168,6 +168,10 @@ npm install react-router-dom@6
 
 ### Verify 1
 
+✏️ Create **src/pages/Home/Home.test.tsx** and update it to be:
+
+@sourceref ../../../exercises/react-vite/06-routing/01-solution/src/pages/Home/Home.test.tsx
+
 ✏️ Update **src/App.test.tsx** to be:
 
 @diff ../../../exercises/react-vite/05-props/01-solution/src/App.test.tsx ../../../exercises/react-vite/06-routing/01-problem/src/App.test.tsx only
