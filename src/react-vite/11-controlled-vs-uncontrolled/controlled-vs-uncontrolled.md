@@ -59,6 +59,8 @@ In the previous example, the input prop `onChange` had its value set to a functi
 onChange={(event) => setName(event.target.value)}
 ```
 
+TODO: Remove this explanation of `ChangeEvent`?
+
 The `onChange` prop requires a function that implements the `ChangeEventHandler` interface. When an
 event handler is called, it receives an argument named "event", which is a `SyntheticEvent` defined
 by React. While a `SyntheticEvent` is similar to a native DOM `Event` and has many of the same
@@ -68,6 +70,26 @@ A `ChangeEvent` — derived from `SyntheticEvent` — is the event argument prov
 `ChangeEventHandler`. A `ChangeEvent` always has a property named `target` that references the
 component that emitted the event. As you can see above, it’s possible to get the `target`'s new
 value using its `value` property.
+
+### event.target.value
+
+When an event occurs, such as a user typing in an input field, an `event` object is
+passed to the event handler function. This event object contains various properties
+and methods that provide information about the event.
+
+One such property is `target`, which is a reference to the DOM element that triggered
+the event. In the case of an input field, target would refer to the specific `<input>`
+element where the user is typing.
+
+The property `event.target.value` is particularly important when dealing with input
+fields. The value property here holds the current content of the input field. It
+represents what the user has entered or selected. When you access `event.target.value`
+in your event handler function, you’re essentially retrieving the latest input
+provided by the user. This is commonly used to update the state of the component with
+the new input value, ensuring that the component’s state is in sync with what the user
+is entering. In a TypeScript context, this process not only manages the state
+dynamically but also ensures type safety, making your code more robust and less prone
+to errors.
 
 ### TypeScript’s `Record` interface
 
@@ -293,6 +315,8 @@ These tests will pass when the solution has been implemented properly.
 @highlight 10-39, only
 
 ### Exercise 2
+
+- TODO: Associate the `<label>` and `<select>` elements together using ID values provided by the `useId` Hook.
 
 - `FormTextField`:
   - has the following props: `label`, `onChange`, `type`, and `value`.

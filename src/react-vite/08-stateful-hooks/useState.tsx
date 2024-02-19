@@ -1,16 +1,29 @@
-import { ChangeEvent, useState } from 'react'
+import { useState } from 'react'
 
-const NameField: React.FC = () => {
-  const [value, setValue] = useState<string>('')
+const Settings: React.FC = () => {
+  const [theme, setTheme] = useState('Auto')
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setValue(event.target.value)
+  const updateTheme = (newTheme) => {
+    console.info('Updating theme:', newTheme)
+    setTheme(newTheme)
   }
 
   return (
-    <label>
-      Name
-      <input onChange={handleChange} type="text" value={value} />
-    </label>
+    <main>
+      <p>
+        Current theme: {theme}
+      </p>
+      <button onClick={() => updateTheme('Light')}>
+        Set light mode
+      </button>
+      <button onClick={() => updateTheme('Dark')}>
+        Set dark mode
+      </button>
+      <button onClick={() => updateTheme('Auto')}>
+        Set theme to auto
+      </button>
+    </main>
   )
 }
+
+export default Settings
