@@ -150,7 +150,7 @@ is updated with the current value.
 
 `ChangeEvent` is a type provided by React’s TypeScript definitions. It’s used to
 type the `event` object that you receive when an event occurs, like a change in
-a form field. In TypeScript, when you're working with event handlers in React,
+a form field. In TypeScript, when you’re working with event handlers in React,
 you often need to specify the type of the event object to get the full benefits
 of TypeScript’s type checking.
 
