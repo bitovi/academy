@@ -11,7 +11,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn how to set up and use React Router to update the application&#x27;s user interface in response to URL changes.
+  <meta name="description" content="Learn how to set up and use React Router to update the application’s user interface in response to URL changes.
 
 ">
   
@@ -215,7 +215,7 @@
            						expanded">
 						<a class="page"
 							href="routing.html"
-							title="Learn how to set up and use React Router to update the application&#x27;s user interface in response to URL changes.">
+							title="Learn how to set up and use React Router to update the application’s user interface in response to URL changes.">
 							Routing in React
 						</a>
 						
@@ -516,7 +516,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn how to set up and use React Router to update the application's user interface in response to URL changes.</p>
+    <p>Learn how to set up and use React Router to update the application’s user interface in response to URL changes.</p>
 
 </section>
 
@@ -530,8 +530,21 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
+<p>In this section, we will:</p>
+<ul>
+<li>Think through why routing is important.</li>
+<li>Learn about React Router’s API for creating routes.</li>
+<li>Set up a <code>RouterProvider</code> with static routes.</li>
+<li>Create an <code>Outlet</code> to display the route’s component.</li>
+<li>Create links between pages.</li>
+<li>Determine which route is the active route with <code>useMatch()</code>.</li>
+</ul>
+<h2>Objective 1: Defining routes and Outlets</h2>
+<p>Our goal is to split the homepage of our Place My Order application so that we only
+see the Home content on the homepage.</p>
+<h3>Why is routing important?</h3>
 <p>Routing is a mechanism used by single-page applications to determine what their
-user interface looks like based on the browser's current URL. This follows the
+user interface looks like based on the browser’s current URL. This follows the
 standard pattern for browsers where changing the URL fetches a new resource;
 however in client-rendered applications like React, there is no communication
 between the browser and server; instead, a specific component is displayed.</p>
@@ -544,18 +557,23 @@ between the browser and server; instead, a specific component is displayed.</p>
 <p>We will use the <a href="https://reactrouter.com/">React Router</a> package to provide
 routing for the Place My Order application. This router is popular in the React
 community and a great de facto choice when building a React application.</p>
-<h2>Objective 1: Defining routes and Outlets</h2>
-<p>Our goal is to split the homepage of our Place My Order application so that we only
-see the Home content on the homepage.</p>
-<p>In this section, we will:</p>
-<ul>
-<li>Install React Router.</li>
-<li>Set up a <code>RouterProvider</code> with static routes.</li>
-<li>Create an <code>Outlet</code> to display the route's component.</li>
-</ul>
+<h3>What is React Router?</h3>
+<p>React Router is the de facto standard for routing in React applications. It’s extremely popular in the React community,
+especially when not using a framework like Next.js, which comes with its own routing solution. React Router adds dynamic,
+client-side routing to React, enabling the creation of single-page applications (SPAs) that can handle different URLs and
+render different content accordingly.</p>
+<p>React Router allows applications to dynamically render different components based on the URL, all without the need for a
+page reload. This is a significant enhancement over traditional multi-page applications, where navigating to a new page
+requires a complete reload of the page’s resources.</p>
+<p>React Router’s API is declarative. Routes are defined using configuration through <code>createBrowserRouter()</code> and with components
+like <code>RouterProvider</code>, <code>Outlet</code>, and <code>Link</code>, which makes the routing rules readable and integrated seamlessly into the rest
+of the React component structure.</p>
+<p>Nested routes are a powerful feature of React Router, allowing the creation of complex application structures. You can
+define routes within routes, which is particularly useful for creating layouts that persist across multiple pages, like
+headers and footers.</p>
 <h3>createBrowserRouter</h3>
-<p>React Router works by matching the segments of the browser's URL path to
-components, i.e. each segment of the URL's path corresponds to a particular
+<p>React Router works by matching the segments of the browser’s URL path to
+components, i.e. each segment of the URL’s path corresponds to a particular
 React component based on the segment’s value. The mapping of a segment’s value
 to a component is done through a collection of <code>RouteObject</code> items that are
 passed to the router when it is initialized.</p>
@@ -604,7 +622,7 @@ Each route object represents a navigation route in our application, and
 it typically contains the following properties:</p>
 <ul>
 <li><code>path</code>: A string that defines the URL path for the route.</li>
-<li><code>element</code>: A React component that will be rendered when the route's path matches the current URL.</li>
+<li><code>element</code>: A React component that will be rendered when the route’s path matches the current URL.</li>
 <li><code>children</code>: An array of nested route objects, allowing for the creation of nested URL structures.</li>
 <li><code>index</code>: A boolean for indicating that the route should act as a default or fallback route within a group of nested routes.</li>
 </ul>
@@ -730,6 +748,7 @@ export default Home
 </code></pre>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { Outlet } from 'react-router-dom'
+import RestaurantList from './pages/RestaurantList'
 import './App.css'
 
 function App() {
@@ -756,7 +775,7 @@ function App() {
 
 export default App
 </code></pre>
- <div line-highlight="1,7-19,only"></div>
+ <div line-highlight="1,8-20,only"></div>
 <p>✏️ Update <strong>src/main.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import React from 'react'
 import ReactDOM from 'react-dom/client'
@@ -888,10 +907,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
  <div line-highlight="9-28,33,35,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-solution?file=App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-solution?file=App.tsx">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Objective 2: Creating links between pages</h2>
-<p>Next, we want to update Place My Order to include links in our <code>&lt;header&gt;</code>
-so we can navigate between pages. We also want to update our <code>&lt;Home&gt;</code>
-component to use React Router for its link to the <code>/restaurants</code> page.</p>
+<h2>Objective 2: Creating (active) links between pages</h2>
+<p>Next, we want to update Place My Order to include links in our <code>&lt;header&gt;</code> so we can navigate between pages.
+Each link should show its active state when it matches the currently-selected page.</p>
 <h3>Link</h3>
 <p>The <code>Link</code> component is a basic building block in React Router. It allows
 you to create links in our application that navigate to different routes
@@ -904,28 +922,24 @@ Instead of using <code>href</code>, you use <code>to</code> to specify the path.
 </code></pre>
 <p>When users click on this link, they are directed to the <code>/about</code> route in
 your application, without causing a full page reload.</p>
-<h3>NavLink</h3>
-<p><code>NavLink</code> is a special version of the <code>Link</code> component that can add styling
-attributes to the rendered element when it matches the current URL.
-This is particularly useful for highlighting the active link in the navigation.</p>
-<p>Use <code>NavLink</code> in place of Link where you need to style the active link.</p>
-<pre><code class="language-tsx">&lt;NavLink to=&quot;/home&quot; activeClassName=&quot;active&quot;&gt;
-    Home
-&lt;/NavLink&gt;
-</code></pre>
-<p>The <code>activeClassName</code> prop is used to specify the class name that will be added when
-the link is active (i.e., when the path in the <code>to</code> prop matches the current URL).
-You can also use the <code>activeStyle</code> prop for inline styling.</p>
 <h3>Match based on the current route</h3>
-<p>The <code>activeClassName</code> API above is useful if you only need styling on the <code>&lt;a&gt;</code> itself.
-However, if you want to style another element based on the current route, you’ll need
+<p>If you want to style another element based on the current route, you’ll need
 to use the <code>useMatches</code> function:</p>
-<pre><code class="language-tsx">const aboutMatch = useMatch('/about');
-if (aboutMatch) {
-  // The current path is /about
+<pre><code class="language-tsx">import { useMatch } from 'react-router-dom';
+
+function App() {
+  const aboutMatch = useMatch('/about');
+  const contactMatch = useMatch('/contact');
+
+  return (
+    &lt;&gt;
+      &lt;p&gt;{aboutMatch ? 'Current page is /about' : 'About page is not a match'}&lt;/p&gt;
+      &lt;p&gt;{contactMatch ? 'Current page is /contact' : 'Contact page is not a match'}&lt;/p&gt;
+    &lt;/&gt;
+  );
 }
 </code></pre>
-<div line-highlight='1'></div>
+<div line-highlight='4-5, 9-10'></div>
 <p>In the example above, <code>aboutMatch</code> will be an object with details about the route if
 the current route is <code>/about</code>; otherwise, <code>useMatch</code> will return <code>undefined</code> if the
 current route is something else.</p>
@@ -1002,9 +1016,11 @@ describe('App component', () =&gt; {
 </code></pre>
  <div line-highlight="32-36,only"></div>
 <h3>Exercise 2</h3>
-<p>Add a Link and update class names based on route matching</p>
-<p>In the <code>&lt;Home&gt;</code> component, we want to use React Router for the
-link to <code>/restaurants</code>.</p>
+<ul>
+<li>Create links to the <code>/</code> (<code>Home</code>) and <code>/restaurants</code> (<code>RestaurantList</code>) pages.</li>
+<li>When the current page is Home, give the parent <code>li</code> of the link an <code>active</code> class.</li>
+<li>Likewise, on the <code>RestaurantList</code> page, the parent <code>li</code> of the <code>/restaurants</code> link should have an <code>active</code> class.</li>
+</ul>
 <p>In the <code>&lt;App&gt;</code> component, we want to use React Router to add
 navigation links inside the <code>&lt;nav&gt;</code> component. Here’s an example
 of what the DOM should look like when the home page is active:</p>
@@ -1056,7 +1072,7 @@ export default App;
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/02-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/02-solution?file=src/App.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Next steps</h2>
-<p>TODO</p>
+<p>Next, let’s learn about different ways to <a href="./styling-in-react.html">apply CSS styles</a> in React applications.</p>
 
 </section>
 
@@ -1095,7 +1111,7 @@ export default App;
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-vite/06-routing/routing.md"},"description":"Learn how to set up and use React Router to update the application's user interface in response to URL changes.\n\n","name":"learn-react/routing","title":"Routing in React","type":"page","parent":"learn-react","order":6,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-vite/06-routing/routing.md"},"description":"Learn how to set up and use React Router to update the application’s user interface in response to URL changes.\n\n","name":"learn-react/routing","title":"Routing in React","type":"page","parent":"learn-react","order":6,"outline":{"depth":3},"comment":" ","pathToRoot":"../.."};
     </script>
 
     

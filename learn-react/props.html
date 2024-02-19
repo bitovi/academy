@@ -217,7 +217,7 @@
            						">
 						<a class="page"
 							href="routing.html"
-							title="Learn how to set up and use React Router to update the application&#x27;s user interface in response to URL changes.">
+							title="Learn how to set up and use React Router to update the application’s user interface in response to URL changes.">
 							Routing in React
 						</a>
 						
@@ -724,7 +724,7 @@ describe('ListItem component', () =&gt; {
   it('renders the restaurant image', () =&gt; {
     render(&lt;ListItem slug=&quot;test-slug&quot; name=&quot;Test Name&quot; thumbnail=&quot;test-thumbnail.jpg&quot; /&gt;);
     const img = screen.getByRole('img');
-    expect(img).toHaveAttribute('src', '/test-thumbnail.jpg');
+    expect(img).toHaveAttribute('src', 'test-thumbnail.jpg');
     expect(img).toHaveAttribute('width', '100');
     expect(img).toHaveAttribute('height', '100');
   });
@@ -806,7 +806,7 @@ const ListItem: React.FC&lt;ListItemProps&gt; = ({ address, name, slug, thumbnai
     return (
         &lt;&gt;
             &lt;div className=&quot;restaurant&quot;&gt;
-                &lt;img src={`/${thumbnail}`} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+                &lt;img src={thumbnail} alt=&quot;&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
                 &lt;h3&gt;{name}&lt;/h3&gt;
 
                 {address &amp;&amp; (

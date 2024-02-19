@@ -214,7 +214,7 @@
            						">
 						<a class="page"
 							href="routing.html"
-							title="Learn how to set up and use React Router to update the application&#x27;s user interface in response to URL changes.">
+							title="Learn how to set up and use React Router to update the application’s user interface in response to URL changes.">
 							Routing in React
 						</a>
 						
@@ -539,7 +539,7 @@ covering CanJS core libraries.">
 <p><img alt="Screenshot of the Place My Order app with a nested route, displaying the “/restaurants/brunch-place” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/objective-1.png" style="max-width: 640px;"/></p>
 <h3>Introduction to nested routes</h3>
 <p>React Router nested routes provide a way to modify smaller portions of a page, rather than reloading everything. With nested routes, we can alter just sections of a page while also maintaining state in the URL so the page can still be reloaded or shared.</p>
-<p>Imagine a manufacturer's product site. Not only do they have a lot of information about each product, but they also need to support both new and existing customers. New customers want to see list of features, specs, and where to buy the product. Old customers need to download owner's manuals and a way to contact customer support. Nested routes provide a mechanism to handle this structure</p>
+<p>Imagine a manufacturer’s product site. Not only do they have a lot of information about each product, but they also need to support both new and existing customers. New customers want to see list of features, specs, and where to buy the product. Old customers need to download owner’s manuals and a way to contact customer support. Nested routes provide a mechanism to handle this structure</p>
 <p>Our main product page loads at &quot;/product/:id&quot;. The matching route will load the product name, picture, and basic description. Within the main product page, we can create a tabbed section with our various types of content. The route to show the main product info along with support information is &quot;/product/:id/support&quot;. The full structure will look like the following tree:</p>
 <div class="directory-list">
 <ul>
@@ -643,7 +643,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 </code></pre>
 <div line-highlight='15, 19-32, only'></div>
 <h3>Nesting component folders</h3>
-<p>Notice that the child page components have simple names like <code>&lt;Support /&gt;</code> instead of <code>&lt;ProductSupport /&gt;</code>. Assuming this component is specifically designed for the product page and will not be reused elsewhere, the component file can reside within the product page's folder. Since the files live together, longer names aren’t needed and will make your JSX a little harder to read.</p>
+<p>Notice that the child page components have simple names like <code>&lt;Support /&gt;</code> instead of <code>&lt;ProductSupport /&gt;</code>. Assuming this component is specifically designed for the product page and will not be reused elsewhere, the component file can reside within the product page’s folder. Since the files live together, longer names aren’t needed and will make your JSX a little harder to read.</p>
 <p>The larger directory tree should look like the following:</p>
 <div class="directory-list">
 <ul>

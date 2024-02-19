@@ -214,7 +214,7 @@
            						">
 						<a class="page"
 							href="routing.html"
-							title="Learn how to set up and use React Router to update the application&#x27;s user interface in response to URL changes.">
+							title="Learn how to set up and use React Router to update the application’s user interface in response to URL changes.">
 							Routing in React
 						</a>
 						
@@ -611,7 +611,7 @@ that has the text &quot;Test Label&quot;. You may have intuited that <code>getBy
 also accepts a regex, in this case one that matches any part of the label text and ignores case.</p>
 <pre><code class="language-tsx">expect(screen.getByLabelText(/Test Label:/i)).toBeInTheDocument();
 </code></pre>
-<p>Once <code>screen.getByLabelText</code> returns, its result can be passed to Vite's <code>expect</code> function to see if
+<p>Once <code>screen.getByLabelText</code> returns, its result can be passed to Vite’s <code>expect</code> function to see if
 the result matches what we intended. We use <code>toBeInTheDocument</code> (<code>expect</code> was augmented with this
 method by importing <code>@testing-library/jest-dom</code>) to verify that the element exists in the DOM. This
 satisfies the first part of the test description, &quot;renders with correct label.&quot;</p>
