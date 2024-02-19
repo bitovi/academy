@@ -137,11 +137,7 @@ These tests will pass when the solution has been implemented properly.
 - Refactor `RestaurantList` to use `ListItem` to render the items in
   `restaurants.data`.
 
-<strong>Having issues with your local setup?</strong> You can use either
-[StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/05-props/01-problem?file=src%2Fpages%2FRestaurantList%2FListItem.tsx)
-or
-[CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/0props/01-problem?file=src%2Fpages%2FRestaurantList%2FListItem.tsx)
-to do this exercise in an online code editor.
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/05-props/01-problem?file=src/pages/RestaurantList/ListItem.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/05-props/01-problem?file=src/pages/RestaurantList/ListItem.tsx) to do this exercise in an online code editor.
 
 ### Solution
 
@@ -155,6 +151,8 @@ to do this exercise in an online code editor.
 ✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
 
 @diff ../../../exercises/react-vite/05-props/01-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/05-props/01-solution/src/pages/RestaurantList/RestaurantList.tsx only
+
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/05-props/01-solution?file=src/pages/RestaurantList/ListItem.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/05-props/01-solution?file=src/pages/RestaurantList/ListItem.tsx).
 
 </details>
 

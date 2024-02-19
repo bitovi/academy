@@ -134,6 +134,8 @@ It’s best practice to create a new folder that will contain all of the related
 - Move the logic in our `App` component to our new `RestaurantList` component.
 - Update our `App` component to use our new `RestaurantList` component.
 
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/04-components/01-problem?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/04-components/01-problem?file=src/App.tsx) to do this exercise in an online code editor.
+
 ### Solution
 
 <details>
