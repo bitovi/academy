@@ -834,7 +834,7 @@ describe('App component', () =&gt; {
 When the route is <code>&quot;&quot;</code>, the <code>&lt;Home&gt;</code> component should display, and when
 the route is <code>/restaurants</code> then the <code>&lt;RestaurantList&gt;</code> component should
 display. These changes should be made in <code>src/App.tsx</code> and <code>src/main.tsx</code>.</p>
-<p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-problem?file=App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-problem?file=App.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
+<p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-problem?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-problem?file=src/App.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
 <h3>Solution 1</h3>
 <p><details></p>
 <p><summary>Click to see the solution</summary></p>
@@ -905,7 +905,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 )
 </code></pre>
  <div line-highlight="9-28,33,35,only"></div>
-<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-solution?file=App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-solution?file=App.tsx">CodeSandbox</a>.</p>
+<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-solution?file=src/App.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Objective 2: Creating (active) links between pages</h2>
 <p>Next, we want to update Place My Order to include links in our <code>&lt;header&gt;</code> so we can navigate between pages.
@@ -1018,8 +1018,8 @@ describe('App component', () =&gt; {
 <h3>Exercise 2</h3>
 <ul>
 <li>Create links to the <code>/</code> (<code>Home</code>) and <code>/restaurants</code> (<code>RestaurantList</code>) pages.</li>
-<li>When the current page is Home, give the parent <code>li</code> of the link an <code>active</code> class.</li>
-<li>Likewise, on the <code>RestaurantList</code> page, the parent <code>li</code> of the <code>/restaurants</code> link should have an <code>active</code> class.</li>
+<li>When the current page is Home, give the parent <code>&lt;li&gt;</code> of the link an <code>active</code> class.</li>
+<li>Likewise, on the <code>RestaurantList</code> page, the parent <code>&lt;li&gt;</code> of the <code>/restaurants</code> link should have an <code>active</code> class.</li>
 </ul>
 <p>In the <code>&lt;App&gt;</code> component, we want to use React Router to add
 navigation links inside the <code>&lt;nav&gt;</code> component. Here’s an example
