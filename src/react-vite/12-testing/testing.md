@@ -10,7 +10,7 @@
 
 How do you know your code is working correctly? How will you know it’s still working correctly in
 the future after you make changes to it? Unit testing helps by verifying that given certain inputs
-our code generates expected outputs. So far we've copied existing tests to prove that we've
+our code generates expected outputs. So far we’ve copied existing tests to prove that we’ve
 completed the exercise correctly, now let’s dive in and learn about how React testing is done.
 
 ## Objective 1: Render a component and verify the DOM structure

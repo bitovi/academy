@@ -82,7 +82,7 @@ it’s selected like this:
 const [selected, setSelected] = useState<Record<string, boolean>>({});
 ```
 
-We've explicitly defined the type of `useState` as a `Record<string, boolean>`; all the keys must be
+We’ve explicitly defined the type of `useState` as a `Record<string, boolean>`; all the keys must be
 strings, and all the values must be booleans. Fortunately, JavaScript’s `object` implements the
 `Record` interface, so we can set the default value to an empty `object` instance. Now let’s see how
 we can use a `Record` to store state data.
@@ -225,7 +225,7 @@ to do this exercise in an online code editor.
 
 The order form is going to be made up of many input fields with labels. Rather than repeat multiple
 components let’s compose that structure in a single component named `FormTextField`. Creating this
-component will involve using some of what we've learned from prior lessons.
+component will involve using some of what we’ve learned from prior lessons.
 
 In this section, we will:
 
