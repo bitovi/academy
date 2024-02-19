@@ -529,6 +529,16 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
+<p>In this section, we will:</p>
+<ul>
+<li>Review how plain CSS works in React applications</li>
+<li>Set up CSS Modules</li>
+<li>Create a component-specific stylesheet</li>
+<li>Apply styles to a component</li>
+</ul>
+<h2>Objective: Applying style with CSS Modules</h2>
+<p>Now that we've learned to apply styling in React with CSS Modules, it's time to practice by styling a link in the Home component. You'll bring in a <code>Link</code> component from React Router.</p>
+<h3>Styling options in React applications</h3>
 <p>There is no prescribed approach for styling React apps. It’s entirely possible to
 style components using regular CSS. This approach works fine for many applications,
 especially smaller ones.</p>
@@ -539,14 +549,6 @@ affect other parts of your application.</p>
 one of the most popular styling libraries and is very approachable for anyone that is
 used to styling in plain CSS. CSS Modules offer a way to write CSS that’s scoped to
 individual components, thus preventing style clashes and maintaining a cleaner codebase.</p>
-<h2>Objective 1: Applying style with CSS Modules</h2>
-<p>In this section, we will:</p>
-<ul>
-<li>Review how plain CSS works in React applications</li>
-<li>Set up CSS Modules</li>
-<li>Create a component-specific stylesheet</li>
-<li>Apply styles to a component</li>
-</ul>
 <h3>Reviewing how plain CSS works</h3>
 <p>In a standard React application using regular CSS, styles are global.
 This means that any style you define can potentially affect any element
@@ -678,8 +680,6 @@ const BlogPost: React.FC = ({ authorAvatar, content }) =&gt; {
 }
 </code></pre>
 <div line-highlight='2, 9'></div>
-<h3>Exercise 1</h3>
-<p>Now that we've learned to apply styling in React with CSS Modules, it's time to practice by styling a link in the Home component. You'll bring in a <code>Link</code> component from React Router.</p>
 <h3>Install CSS Modules</h3>
 <p>Already done! Vite, our build tool, ships with first-class CSS Modules support.
 Vite also supports a few <a href="https://vitejs.dev/guide/features#css">other styling options</a>

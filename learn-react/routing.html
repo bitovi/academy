@@ -693,7 +693,7 @@ our <code>createBrowserRouter</code> example) would be rendered inside the <code
 };
 </code></pre>
 <div line-highlight='6'></div>
-<h3>Setup</h3>
+<h3>Setup 1</h3>
 <p>To get starting with React Router in our application,
 let’s install <code>react-router-dom</code> with npm:</p>
 <p>✏️ Run:</p>
@@ -774,7 +774,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 
 </code></pre>
  <div line-highlight="3-5,only"></div>
-<h3>Verify</h3>
+<h3>Verify 1</h3>
 <p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
@@ -816,7 +816,7 @@ When the route is <code>&quot;&quot;</code>, the <code>&lt;Home&gt;</code> compo
 the route is <code>/restaurants</code> then the <code>&lt;RestaurantList&gt;</code> component should
 display. These changes should be made in <code>src/App.tsx</code> and <code>src/main.tsx</code>.</p>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-problem?file=App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-problem?file=App.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution</h3>
+<h3>Solution 1</h3>
 <p><details></p>
 <p><summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
@@ -929,7 +929,7 @@ if (aboutMatch) {
 <p>In the example above, <code>aboutMatch</code> will be an object with details about the route if
 the current route is <code>/about</code>; otherwise, <code>useMatch</code> will return <code>undefined</code> if the
 current route is something else.</p>
-<h3>Setup</h3>
+<h3>Setup 2</h3>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { Link, Outlet, useMatch } from 'react-router-dom'
 import './App.css'
@@ -959,7 +959,7 @@ function App() {
 export default App
 </code></pre>
  <div line-highlight="1,only"></div>
-<h3>Verify</h3>
+<h3>Verify 2</h3>
 <p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
@@ -1018,7 +1018,7 @@ of what the DOM should look like when the home page is active:</p>
 &lt;/ul&gt;
 </code></pre>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/02-problem?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/02-problem?file=src/App.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution</h3>
+<h3>Solution 2</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
@@ -1055,6 +1055,8 @@ export default App;
  <div line-highlight="5-6,14-15,17-18,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/02-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/02-solution?file=src/App.tsx">CodeSandbox</a>.</p>
 <p></details></p>
+<h2>Next steps</h2>
+<p>TODO</p>
 
 </section>
 

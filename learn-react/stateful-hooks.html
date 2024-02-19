@@ -529,6 +529,12 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
+<p>In this section, we will:</p>
+<ul>
+<li>Cover the fundamentals of React Hooks.</li>
+</ul>
+<h2>Objective 1: Introducing React Hooks and useId</h2>
+<h3>Overview of state</h3>
 <p>State in React is a crucial concept, as it represents the parts of an app
 that can change over time. Each component can have its own state, allowing
 them to maintain and manage their own data independently. When the state
@@ -538,11 +544,6 @@ changes, React re-renders the component and updates the DOM if it needs to.</p>
 <li><strong>Local State:</strong> This is data we manage in one or another component. Local state is often managed in React using the <code>useState</code> Hook, which we will cover in Objective 2 below.</li>
 <li><strong>URL State:</strong> The state that exists on our URLs, including pathname and query parameters. We already covered this in our section about Routing!</li>
 <li><strong>Global State:</strong> This refers to data that is shared between multiple components. In React, global state can be managed using Context API or state management libraries; this is out of scope for this training.</li>
-</ul>
-<h2>Objective 1: Introducing React Hooks and useId</h2>
-<p>In this section, we will:</p>
-<ul>
-<li>Cover the fundamentals of React Hooks.</li>
 </ul>
 <h3>React Hooks</h3>
 <p>We’ve mentioned before that <code>useState</code> is a Hook for managing state, but what
@@ -599,7 +600,7 @@ top of the React function body.</p></li>
 <p>Hooks can only be used in functional components. Almost anything that could be
 done in a class component can be done with Hooks. <em>The one thing that class
 component can do that Hooks cannot is implement error boundaries.</em></p>
-<h3>Setup</h3>
+<h3>Setup 1</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to include the State
 and City dropdown lists.</p>
 <pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
@@ -688,7 +689,7 @@ const RestaurantList: React.FC = () =&gt; {
 export default RestaurantList
 </code></pre>
  <div line-highlight="3,8-11,51-64,only"></div>
-<h3>Verify</h3>
+<h3>Verify 1</h3>
 <p>These tests will pass when the solution has been implemented properly.</p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong>:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
@@ -775,7 +776,7 @@ describe('RestaurantList component', () =&gt; {
 
 </code></pre>
  <div line-highlight="3,59-63,65-66,68-69,71-73,75-76,78-80,only"></div>
-<h3>Exercise</h3>
+<h3>Exercise 1</h3>
 <ul>
 <li>Associate the <code>&lt;label&gt;</code> and <code>&lt;select&gt;</code> elements together using ID values provided by the <code>useId</code> Hook.</li>
 </ul>
@@ -784,7 +785,7 @@ describe('RestaurantList component', () =&gt; {
 or
 <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-problem?file=src%2Fpages%2FRestaurantList%2FRestaurantList.tsx">CodeSandbox</a>
 to do this exercise in an online code editor.</p>
-<h3>Solution</h3>
+<h3>Solution 1</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
@@ -958,7 +959,7 @@ this change event is specifically for an HTML <code>&lt;input&gt;</code> element
 DOM, different elements have different properties. By specifying <code>&lt;HTMLInputElement&gt;</code>,
 TypeScript knows that this event is for an <code>&lt;input&gt;</code> element, and it will expect and
 allow properties specific to an <code>&lt;input&gt;</code> element, like <code>value</code>, <code>checked</code>, etc.</p>
-<h4>event.target.value</h4>
+<h3>event.target.value</h3>
 <p>When an event occurs, such as a user typing in an input field, an <code>event</code> object is
 passed to the event handler function. This event object contains various properties
 and methods that provide information about the event.</p>
@@ -974,7 +975,7 @@ the new input value, ensuring that the component’s state is in sync with what 
 is entering. In a TypeScript context, this process not only manages the state
 dynamically but also ensures type safety, making your code more robust and less prone
 to errors.</p>
-<h3>Setup</h3>
+<h3>Setup 2</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be the following:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
 import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
@@ -1085,7 +1086,7 @@ const RestaurantList: React.FC = () =&gt; {
 export default RestaurantList
 </code></pre>
  <div line-highlight="14-17,75-86,only"></div>
-<h3>Verify</h3>
+<h3>Verify 2</h3>
 <p>These tests will pass when the solution has been implemented properly.</p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> to be the
 following:</p>
@@ -1185,7 +1186,7 @@ describe('RestaurantList component', () =&gt; {
 
 </code></pre>
  <div line-highlight="75,78-79,81-82,84,88,92,only"></div>
-<h3>Exercise</h3>
+<h3>Exercise 2</h3>
 <ul>
 <li>The selected <strong>state</strong> value should be managed by a <code>useState</code> Hook.</li>
 <li>The selected <strong>city</strong> value should be managed by a <code>useState</code> Hook.</li>
@@ -1196,7 +1197,7 @@ describe('RestaurantList component', () =&gt; {
 or
 <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-solution?file=src%2Fpages%2FRestaurantList%2FRestaurantList.tsx">CodeSandbox</a>
 to do this exercise in an online code editor.</p>
-<h3>Solution</h3>
+<h3>Solution 2</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
@@ -1320,13 +1321,11 @@ export default RestaurantList
 <p></details></p>
 <h2>Objective 3</h2>
 <p>TODO</p>
-<h3>Key concepts</h3>
+<h3>Concept 1</h3>
 <p>TODO</p>
-<h4>Concept 1</h4>
+<h3>Concept 2</h3>
 <p>TODO</p>
-<h4>Concept 2</h4>
-<p>TODO</p>
-<h3>Setup</h3>
+<h3>Setup 3</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
 import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
@@ -1463,7 +1462,7 @@ export interface State {
   short: string
 }
 </code></pre>
-<h3>Verify</h3>
+<h3>Verify 3</h3>
 <p>✏️ Create <strong>src/services/restaurant/hooks.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { renderHook } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
@@ -1489,9 +1488,9 @@ describe('useCities Hook', () =&gt; {
 });
 
 </code></pre>
-<h3>Exercise</h3>
+<h3>Exercise 3</h3>
 <p>TODO</p>
-<h3>Solution</h3>
+<h3>Solution 3</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>

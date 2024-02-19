@@ -538,12 +538,16 @@ covering CanJS core libraries.">
 <li>Work with loops in JSX</li>
 </ul>
 <h2>Objective 1: Creating a UI with JSX</h2>
-<h3>Key concepts</h3>
-<h4>What is JSX?</h4>
+<ul>
+<li>Create the homepage using JSX</li>
+<li>Match the design below</li>
+</ul>
+<p><img src="../static/img/react-vite/03-intro-to-jsx/mock-homepage.jpg" alt="mockup" style="border: solid 1px black; max-width: 640px;"/></p>
+<h3>What is JSX?</h3>
 <p>JSX is used by React developers to define the user interface.</p>
 <p>JSX is a special syntax designed to look almost identical to HTML. Developers define the UI using JSX. React transforms that JSX into the HTML the browser displays. JSX can be written alongside standard JavaScript, which makes for a powerful programming environment.</p>
 <p>React has a procedural <code>React.createElement</code> syntax, but most applications do not use it directly. Instead, views are defined and maintained in JSX and will automatically be transpiled into the equivalent <code>React.createElement</code> calls at build-time.</p>
-<h4>HTML differences</h4>
+<h3>HTML differences</h3>
 <p>JSX looks a lot like HTML, and that's intentional. Browsers understand HTML, JavaScript, and CSS. Eventually, anything we build has to be converted into one of those 3 syntaxes. Since our UI code will eventually end up as HTML, using JSX means it will be easier to understand and debug the end result in the browser.</p>
 <p>However, JSX is converted into JavaScript and therefore is not an exact mirror of HTML. Some of the most noticeable differences include:</p>
 <p><strong>Say &quot;props&quot; instead of &quot;attributes.&quot;</strong> This nomenclature difference is because they are technically different, though visually they appear the same. When the following image tag appears in HTML, the &quot;src&quot; is called an <em>attribute</em>. In JSX, the &quot;src&quot; is a <em>prop</em> or <em>property</em>.</p>
@@ -556,14 +560,7 @@ covering CanJS core libraries.">
 &lt;input className=&quot;input&quot; id=&quot;name-input&quot; /&gt;
 </code></pre>
 <p>As we go through this training, you'll learn additional differences.</p>
-<h2>Exercise 1</h2>
-<h3>Acceptance criteria</h3>
-<ul>
-<li>Create the homepage using JSX</li>
-<li>Match the design below</li>
-</ul>
-<p><img src="../static/img/react-vite/03-intro-to-jsx/mock-homepage.jpg" alt="mockup" style="border: solid 1px black; max-width: 640px;"/></p>
-<h3>Setup</h3>
+<h3>Setup 1</h3>
 <p>We've created an assets package with images and CSS you'll need to build the application. Install the <code>place-my-order-assets</code> package.</p>
 <p>✏️ Run:</p>
 <pre><code class="language-shell">npm install place-my-order-assets
@@ -573,7 +570,7 @@ covering CanJS core libraries.">
 <pre><code class="language-css">@import &quot;place-my-order-assets/css/place-my-order-assets.css&quot;;
 </code></pre>
  <div line-highlight="1,only"></div>
-<h3>Verify</h3>
+<h3>Verify 1</h3>
 <p>You should have already installed Vitest in the previous section. If you haven't done so already, create a test file at <code>src/App.test.tsx</code> and copy the following tests into your test file.</p>
 <p>✏️ Copy:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
@@ -629,7 +626,7 @@ describe('App component', () =&gt; {
 <pre><code class="language-shell">npm run test
 </code></pre>
 <p>Note that we won't be able to write an automated test that verifies the styles and images appear as desired, so you will have to test those manually.</p>
-<h3>Exercise</h3>
+<h3>Exercise 1</h3>
 <p>Take the below HTML and convert it to JSX:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
     &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
@@ -657,7 +654,7 @@ describe('App component', () =&gt; {
 &lt;/div&gt;
 </code></pre>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-problem?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-problem?file=src/App.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution</h3>
+<h3>Solution 1</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/App.tsx</strong></p>
@@ -701,12 +698,11 @@ export default App
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-solution?file=src/App.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Objective 2: Loops in JSX</h2>
-<h3>Key concepts</h3>
 <ul>
 <li>JSX Interpolation</li>
 <li>Loops in JSX</li>
 </ul>
-<h2>JSX Interpolation</h2>
+<h3>JSX Interpolation</h3>
 <p>JSX is dynamic. You can insert values from variables and objects into your JSX as we did with the image URL in the previous section.</p>
 <pre><code class="language-jsx">const name = 'Bitovi';
 
@@ -757,7 +753,7 @@ const page = React.createElement('div', null, [header, body]);
 <h3>Conditions and loops</h3>
 <p>Only expressions which return a value may be interpolated. This includes static values, variables and calls to functions. It does not include control-flow statements such as <code>if</code>, <code>case</code>, <code>for</code>, <code>while</code>. These can either be abstracted behind a function, which is then called within the JSX or be re-written in a JSX-friendly way.</p>
 <p>To put it simply: only things that you could pass into a function can be used inside the brackets.</p>
-<h4>Using Conditions</h4>
+<h3>Using Conditions</h3>
 <p>Conditions can be re-written using the ternary operator.</p>
 <pre><code class="language-jsx">// This does not work
 &lt;div&gt;
@@ -780,7 +776,7 @@ const page = React.createElement('div', null, [header, body]);
 <p>If ternaries seem excessive for any particular case, you can write all your logic in a separate function and invoke it from within JSX.</p>
 <pre><code class="language-jsx">&lt;div&gt;{outputResult()}&lt;/div&gt;
 </code></pre>
-<h4>Using Loops</h4>
+<h3>Using Loops</h3>
 <pre><code class="language-jsx">// This does not work
 &lt;div&gt;
   {
@@ -808,18 +804,7 @@ const page = React.createElement('div', null, [header, body]);
   &lt;span&gt;4&lt;/span&gt;
 &lt;/div&gt;
 </code></pre>
-<h2>Exercise 2</h2>
-<h3>Acceptance Criteria</h3>
-<ul>
-<li>Set the H1 tag to &quot;Ordering food has never been easier&quot;</li>
-<li>Display a list of restaurants: 'Cheese Curd City' &amp; 'Poutine Palace'</li>
-</ul>
-<h3>Requirements</h3>
-<ul>
-<li>Use the proper <code>ul</code> and <code>li</code> tags to create the list</li>
-<li>List items should have a unique key</li>
-</ul>
-<h3>Setup</h3>
+<h3>Setup 2</h3>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
 import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
@@ -893,7 +878,7 @@ export default App
 
 </code></pre>
  <div line-highlight="1-2,6-37,only"></div>
-<h3>Verify</h3>
+<h3>Verify 2</h3>
 <p>Add these tests into your application to verify you have met the acceptance criteria. Note how React Testing Library allows our tests to specify exact elements.</p>
 <p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
@@ -957,7 +942,14 @@ describe('App component', () =&gt; {
 </code></pre>
  <div line-highlight="13,15-21,24,26-30,33,35-39,42,44-45,48,50-55,only"></div>
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/02-problem?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/02-problem?file=src/App.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
-<h3>Solution</h3>
+<h3>Exercise 2</h3>
+<ul>
+<li><p>Set the H1 tag to &quot;Ordering food has never been easier&quot;</p></li>
+<li><p>Display a list of restaurants: 'Cheese Curd City' &amp; 'Poutine Palace'</p></li>
+<li><p>Use the proper <code>ul</code> and <code>li</code> tags to create the list</p></li>
+<li><p>List items should have a unique key</p></li>
+</ul>
+<h3>Solution 2</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/App.tsx</strong></p>

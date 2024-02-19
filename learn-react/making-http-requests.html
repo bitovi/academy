@@ -572,7 +572,7 @@ export default GeolocationComponent;
 </code></pre>
 <div line-highlight='1, 6-12, only'></div>
 <p>Let’s break this example down by the two arguments that <code>useEffect</code> takes:</p>
-<h4>Effect callback function</h4>
+<h3>Effect callback function</h3>
 <p>The first argument of <code>useEffect</code> is a function, often referred to as the “effect” function.
 This is where you perform your side effects, such as fetching data, setting up a subscription,
 or manually changing the DOM in React components.</p>
@@ -582,12 +582,12 @@ in <code>useEffect</code> don’t block the browser from updating the screen, le
 The cleanup function is useful for performing any necessary cleanup activities when the component
 unmounts or before the component re-renders and the effect is re-invoked. Common examples include
 clearing timers, canceling network requests, or removing event listeners.</p>
-<h4>The dependency array</h4>
+<h3>The dependency array</h3>
 <p>The second argument of <code>useEffect</code> is an array, called the “dependency array”, which determines
 when your effect function should be called. The behavior of the effect changes based on the
 contents of this array:</p>
 <p>Consider three scenarios based on the dependency array:</p>
-<h5>Empty dependency array (<code>[]</code>)</h5>
+<h4>Empty dependency array (<code>[]</code>)</h4>
 <p>If the dependency array is an empty array, the effect runs once
 after the initial render.</p>
 <pre><code class="language-tsx">import { useEffect, useState } from 'react';
@@ -621,7 +621,7 @@ export default GeolocationComponent;
 
 </code></pre>
 <div line-highlight='6-12, only'></div>
-<h5>Array with values</h5>
+<h4>Array with values</h4>
 <p>When you include values (variables, props, state) in the dependency array,
 the effect will only re-run if those specific values change between renders. This selective
 execution can optimize performance by avoiding unnecessary work.</p>
@@ -649,7 +649,7 @@ function NameStorage() {
 export default NameStorage;
 </code></pre>
 <div line-highlight='4, 7-8, only'></div>
-<h5>No dependency array</h5>
+<h4>No dependency array</h4>
 <p>If the dependency array is omitted, the effect runs after every render
 of the component.</p>
 <pre><code class="language-tsx">import { useEffect, useState } from 'react';
@@ -672,7 +672,7 @@ export default UpdateLogger;
 
 </code></pre>
 <div line-highlight='8, only'></div>
-<h4>Async operations inside useEffect</h4>
+<h3>Async operations inside useEffect</h3>
 <p>You can use APIs that return a <code>Promise</code> normally within a <code>useEffect</code>:</p>
 <pre><code class="language-tsx">import { useEffect, useState } from 'react';
 
@@ -787,7 +787,7 @@ what we need.</p>
 <p>TODO: Explain that setting environment variables is a generic thing you do, and on this
 project in particular, Vite will make anything prefixed with <code>VITE_</code> available in our
 client-side source code.</p>
-<h3>Setup</h3>
+<h3>Setup 1</h3>
 <p>✏️ Create <strong>.env</strong> and update it to be:</p>
 <pre><code>VITE_PMO_API = '//localhost:7070'
 </code></pre>
@@ -927,7 +927,7 @@ const RestaurantList: React.FC = () =&gt; {
 export default RestaurantList
 </code></pre>
  <div line-highlight="3,6,8-11,74-97,130,only"></div>
-<h4>Install the Place My Order API</h4>
+<h3>Install the Place My Order API</h3>
 <p>Before we begin requesting data from our API, we need to install the
 <code>place-my-order-api</code> module, which will generate fake restaurant data and
 serve it from port <code>7070</code>.</p>
@@ -981,7 +981,7 @@ serve it from port <code>7070</code>.</p>
 </code></pre>
 <p>Double check the API by navigating to <a href="http://localhost:7070/restaurants">localhost:7070/restaurants</a>.
 You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the <code>api</code> command from.</p>
-<h3>Verify</h3>
+<h3>Verify 1</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
 import { act, render, screen } from '@testing-library/react';
@@ -1075,13 +1075,13 @@ describe('RestaurantList component', () =&gt; {
 
 </code></pre>
  <div line-highlight="2-3,5,8-9,11-12,14,16-17,19-23,27-29,32-36,38,89,only"></div>
-<h3>Exercise</h3>
+<h3>Exercise 1</h3>
 <ul>
 <li>Update <code>RestaurantList.tsx</code> to call <code>useState()</code> and use the <code>StateResponse</code> interface.</li>
 <li>Call <code>useEffect()</code> and <code>fetch</code> data from <code>${import.meta.env.VITE_PMO_API}/states</code>.</li>
 </ul>
 <p>Hint: Call your state setter after you parse the JSON response from <code>fetch()</code>.</p>
-<h3>Solution</h3>
+<h3>Solution 1</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
@@ -1268,7 +1268,7 @@ the component is doing.</p>
 possible with regular JavaScript functions. This means you can have a Hook that
 manages its own state and shares this logic across multiple components, something
 that would be difficult or impossible with traditional class-based components.</p>
-<h3>Setup</h3>
+<h3>Setup 2</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
 import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
@@ -1436,7 +1436,7 @@ export function useCities(state: string): City[] {
 }
 </code></pre>
  <div line-highlight="1-2,only"></div>
-<h3>Verify</h3>
+<h3>Verify 2</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
 import { act, render, screen } from '@testing-library/react';
@@ -1572,12 +1572,12 @@ describe('useStates Hook', () =&gt; {
 });
 </code></pre>
  <div line-highlight="1-3,24-28,30-34,36,38-44,only"></div>
-<h3>Exercise</h3>
+<h3>Exercise 2</h3>
 <ul>
 <li>Refactor the existing <code>useState</code> and <code>useEffect</code> logic into a new <code>useStates</code> Hook.</li>
 </ul>
 <p>Hint: After moving the state and effect logic into <code>hooks.ts</code>, use your new Hook in <code>RestaurantList.tsx</code>.</p>
-<h3>Solution</h3>
+<h3>Solution 2</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
@@ -1777,7 +1777,7 @@ key-value pairs are separated by the <code>&amp;</code> symbol.</p>
 <li><code>param2=value2</code></li>
 </ul></li>
 </ul>
-<h3>Setup</h3>
+<h3>Setup 3</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
 import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
@@ -1919,7 +1919,7 @@ const RestaurantList: React.FC = () =&gt; {
 export default RestaurantList
 </code></pre>
  <div line-highlight="91-116,only"></div>
-<h3>Verify</h3>
+<h3>Verify 3</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
 import { act, render, screen } from '@testing-library/react';
@@ -2061,12 +2061,12 @@ describe('useStates Hook', () =&gt; {
 });
 </code></pre>
  <div line-highlight="6,10-12,15,17-18,23-27,29,31-32,34-35,42,49,53-54,56-57,only"></div>
-<h3>Exercise</h3>
+<h3>Exercise 3</h3>
 <p>Update our useCities Hook to fetch cities from the Place My Order API, given a selected state.</p>
 <p>When calling the Place My Order API, include the <code>state</code> query parameter:</p>
 <pre><code>http://localhost:7070/cities?state=MO
 </code></pre>
-<h3>Solution</h3>
+<h3>Solution 3</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
@@ -2338,7 +2338,7 @@ throw an error that needs to be caught.</p>
 <code>instanceof Error</code>, then it will have a <code>message</code> property and we can use it as-is.
 If it’s not, then we can create our own <code>new Error()</code> so we <em>always</em> have an error
 to consume in our Hooks or components.</p>
-<h3>Setup</h3>
+<h3>Setup 4</h3>
 <p>✏️ Create <strong>src/services/api.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export async function apiRequest&lt;Data = never, Params = unknown&gt;({
     method,
@@ -2435,7 +2435,7 @@ export function useStates(): StatesResponse {
 }
 </code></pre>
  <div line-highlight="2,only"></div>
-<h3>Verify</h3>
+<h3>Verify 4</h3>
 <p>✏️ Create <strong>src/services/api.test.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">import { apiRequest, stringifyQuery } from './api';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -2590,7 +2590,7 @@ describe('Hooks', () =&gt; {
 
 </code></pre>
  <div line-highlight="2-3,6-9,11-14,16-19,21,23-27,30-32,34,36-40,42,44-47,49,51-55,58-60,62,64-68,70,only"></div>
-<h3>Exercise</h3>
+<h3>Exercise 4</h3>
 <ul>
 <li>Implement the <code>apiRequest</code> helper function to handle errors returned and thrown from <code>fetch()</code>.</li>
 <li>Update the <code>useCities</code> and <code>useStates</code> Hooks to use the <code>data</code> and <code>error</code> returned from <code>apiRequest</code>.</li>
@@ -2601,7 +2601,7 @@ describe('Hooks', () =&gt; {
     param2: &quot;value2&quot;,
 })
 </code></pre>
-<h3>Solution</h3>
+<h3>Solution 4</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/services/api.ts</strong> to be:</p>
@@ -2733,7 +2733,7 @@ style="border: solid 1px black; max-width: 800px;"/></p>
 return restaurants in the selected city.:</p>
 <p><img src="../static/img/react-vite/09-making-http-requests/5-solution.png"
 style="border: solid 1px black; max-width: 800px;"/></p>
-<h3>Setup</h3>
+<h3>Setup 5</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
 import PoutineThumbnail from 'place-my-order-assets/images/4-thumbnail.jpg'
@@ -3008,7 +3008,7 @@ export function useStates(): StatesResponse {
 }
 </code></pre>
  <div line-highlight="3,only"></div>
-<h3>Verify</h3>
+<h3>Verify 5</h3>
 <p>If you’ve implemented the solution correctly, when you use the select boxes to choose state
 and city, you should see a list of just restaurants from the selected city returned.</p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
@@ -3198,14 +3198,14 @@ describe('Hooks', () =&gt; {
 
 </code></pre>
  <div line-highlight="4,44-47,49,53,58-59,62,79-80,82-84,88,92-98,only"></div>
-<h3>Exercise</h3>
+<h3>Exercise 5</h3>
 <ul>
 <li>Implement a <code>useRestaurants</code> Hook to fetch restaurant data.</li>
 <li>Update <code>RestaurantList.tsx</code> to use your new <code>useRestaurants</code> Hook.</li>
 </ul>
 <p>Hint: The requested URL with query parameters should look like this:
 <code>'/api/restaurants?filter[address.state]=IL&amp;filter[address.city]=Chicago'</code></p>
-<h3>Solution</h3>
+<h3>Solution 5</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>

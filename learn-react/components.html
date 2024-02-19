@@ -544,9 +544,8 @@ covering CanJS core libraries.">
 </code></pre>
 <p>In React, we call this a component. When you create a component in React, you are creating building blocks that can be composed, reordered, and reused much like HTML elements.</p>
 <p>React makes it relatively straightforward to create new components. Let's learn to build our own.</p>
-<h2>Objective 1: Create a React component</h2>
-<h3>Key concepts</h3>
-<h4>Component structure</h4>
+<h2>Objective: Create a React component</h2>
+<h3>Component structure</h3>
 <p>Let's start by creating a component from a commonly reused element, the button.</p>
 <p>First, our component names must start with a capital letter, so we can call this <code>Button</code>. While its not required, the common practice is to use PascalCase when naming components so longer component names will look like <code>IconButton</code>.</p>
 <p>Second, our component must return either <code>null</code> or something renderable, like JSX. The return value of our components is almost always JSX, though JavaScript primitives like <code>string</code> and <code>number</code> are also valid. Components cannot return complex types like arrays or objects.</p>
@@ -571,7 +570,7 @@ ReactDOM.render(&lt;Button /&gt;, document.getElementById('root'));
   );
 }
 </code></pre>
-<h4>React components are just functions</h4>
+<h3>React components are just functions</h3>
 <p>The JSX syntax allows function components to look like HTML, but underneath they are still functions. The return of each component is unique and you can use the same component multiple times.</p>
 <p>Components are just fancy functions. While you shouldn't do the following, you could.</p>
 <pre><code class="language-jsx">function App() {
