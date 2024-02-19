@@ -2,23 +2,41 @@
 @parent learn-react 4
 @outline 3
 
-@description Components are the core building blocks of any React application
+@description Learn about components, the core building blocks of every React application.
 
 @body
 
 ## Overview
 
-So far, we have placed all of our JSX inside the App function. Notice two things about the App function:
+In this section, we will:
 
-1. Name starts with a capital letter
-2. Returns something renderable (JSX)
+- Learn the basics of creating components in React
+- Discover how components are structured
+- Review how React components are (fundamentally) functions
+
+## Objective: Create a React component
+
+Our `App` component currently shows our restaurant list, but eventually we’ll want to show other page content.
+Let’s prepare now by moving all of the JSX from `App` to a new component called `RestaurantList`.
+
+In our Place My Order app, we want to:
+
+- Create our first brand new React component (RestaurantList)
+- Move the logic from our App component to our new RestaurantList component
+
+### What are components?
+
+So far, we have placed all of our JSX inside the `App` function. Notice two things about the `App` function:
+
+1. The name starts with a capital letter
+2. It returns something renderable (JSX)
 
 ```tsx
 function App() {
   return (
-    <div>
+    <main>
       Some page content
-    </div>
+    </main>
   );
 }
 ```
@@ -26,8 +44,6 @@ function App() {
 In React, we call this a component. When you create a component in React, you are creating building blocks that can be composed, reordered, and reused much like HTML elements.
 
 React makes it relatively straightforward to create new components. Let’s learn to build our own.
-
-## Objective: Create a React component
 
 ### Component structure
 
@@ -38,56 +54,56 @@ First, our component names must start with a capital letter, so we can call this
 Second, our component must return either `null` or something renderable, like JSX. The return value of our components is almost always JSX, though JavaScript primitives like `string` and `number` are also valid. Components cannot return complex types like arrays or objects.
 
 ```tsx
-function Button() {
+const Button: React.FC = () => {
   return (
-    <div className="button primary">
-      <button>click me</button>
-    </div>
+    <button className="button primary">
+      Activate me
+    </button>
   );
 }
-
-ReactDOM.render(<Button />, document.getElementById('root'));
 ```
 
 Components are like small containers which can be reused throughout your application. The `Button` component above returns JSX and could then be rendered and reused by another component like `App` below.
 
 ```tsx
-function App() {
+const App: React.FC = () => {
   return (
-    <div>
+    <main>
       <Button />
       <Button />
       <Button />
-    </div>
+    </main>
   );
 }
 ```
 
-### React components are just functions
+### React components are functions
 
 The JSX syntax allows function components to look like HTML, but underneath they are still functions. The return of each component is unique and you can use the same component multiple times.
 
-Components are just fancy functions. While you shouldn’t do the following, you could.
+You can think of components as fancy functions.
+
+While you shouldn’t do the following, you could:
 
 ```tsx
-function App() {
+const App: React.FC = () => {
   return (
-    <div>
+    <main>
       {Button()}
       {Button()}
       {Button()}
-    </div>
+    </main>
   );
 }
 ```
 
-Now you're ready to create your first component.
+Now you’re ready to create your first component.
 
 ### Setup
 
 It’s best practice to create a new folder that will contain all of the related files for that component, including test and CSS files.
 
-✏️ Create **src/pages** (folder)
+✏️ Create **src/pages/** (folder)
 
 ✏️ Create **src/pages/RestaurantList/** (folder)
 
@@ -98,6 +114,10 @@ It’s best practice to create a new folder that will contain all of the related
 ✏️ Create **src/pages/RestaurantList/RestaurantList.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-vite/04-components/01-problem/src/pages/RestaurantList/RestaurantList.tsx
+
+✏️ Update **src/App.tsx**
+
+@diff ../../../exercises/react-vite/03-intro-to-jsx/02-solution/src/App.tsx ../../../exercises/react-vite/04-components/01-problem/src/App.tsx only
 
 ### Verify
 
@@ -111,9 +131,8 @@ It’s best practice to create a new folder that will contain all of the related
 
 ### Exercise
 
-Our `App` component can only show our home page content. Eventually, we’ll want to show other page content. Prepare now by moving all of the JSX in `App` to a new component called `Home`.
-
-Once the `Home` component is complete, add `<Home />` to the JSX response of `App`.
+- Move the logic in our `App` component to our new `RestaurantList` component.
+- Update our `App` component to use our new `RestaurantList` component.
 
 ### Solution
 
