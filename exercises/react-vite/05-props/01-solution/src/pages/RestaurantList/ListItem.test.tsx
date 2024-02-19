@@ -7,7 +7,7 @@ describe('ListItem component', () => {
   it('renders the restaurant image', () => {
     render(<ListItem slug="test-slug" name="Test Name" thumbnail="test-thumbnail.jpg" />);
     const img = screen.getByRole('img');
-    expect(img).toHaveAttribute('src', '/test-thumbnail.jpg');
+    expect(img).toHaveAttribute('src', 'test-thumbnail.jpg');
     expect(img).toHaveAttribute('width', '100');
     expect(img).toHaveAttribute('height', '100');
   });
