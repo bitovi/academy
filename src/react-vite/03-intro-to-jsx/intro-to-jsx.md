@@ -70,7 +70,7 @@ npm install place-my-order-assets
 
 ✏️ Update **src/index.css** to be:
 
-@diff ../../../exercises/react-vite/02-setting-up-your-environment/solution/src/index.css ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/index.css only
+@diff ../../../exercises/react-vite/02-setting-up-your-environment/04-solution/src/index.css ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/index.css only
 
 ### Verify 1
 
@@ -78,7 +78,7 @@ You should have already installed Vitest in the previous section. If you haven't
 
 ✏️ Copy: 
 
-@diff ../../../exercises/react-vite/02-setting-up-your-environment/solution/src/App.test.tsx ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/App.test.tsx only
+@diff ../../../exercises/react-vite/02-setting-up-your-environment/04-solution/src/App.test.tsx ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/App.test.tsx only
 
 ✏️ Run: 
 
