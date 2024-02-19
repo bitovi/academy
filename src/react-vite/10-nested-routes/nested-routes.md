@@ -8,6 +8,18 @@
 
 ## Overview
 
+- Introduction to nested routes
+- Creating a nested routing configuration
+- Nesting component folders
+
+## Objective 1: Restaurant details page
+
+We want to have a component to display individual restaurants details, and want the path to be nested under the restaurants path.
+
+<img alt="Screenshot of the Place My Order app with a nested route, displaying the “/restaurants/brunch-place” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/objective-1.png" style="max-width: 640px;"/>
+
+### Introduction to nested routes
+
 React Router nested routes provide a way to modify smaller portions of a page, rather than reloading everything. With nested routes, we can alter just sections of a page while also maintaining state in the URL so the page can still be reloaded or shared.
 
 Imagine a manufacturer's product site. Not only do they have a lot of information about each product, but they also need to support both new and existing customers. New customers want to see list of features, specs, and where to buy the product. Old customers need to download owner's manuals and a way to contact customer support. Nested routes provide a mechanism to handle this structure
@@ -27,18 +39,7 @@ Our main product page loads at "/product/:id". The matching route will load the 
 
 You could create this sort of page without nested routes, but using nested routes is a well-organized and performant solution that can be linked because it maintains state in the URL.
 
-## Objective 1: Create a nested route
-
-We want to have a component to display individual restaurants details, and want the path to be nested under the restaurants path.
-
-<img alt="Screenshot of the Place My Order app with a nested route, displaying the “/restaurants/brunch-place” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/objective-1.png" style="max-width: 640px;"/>
-
-### Key concepts
-
-- Creating a nested routing configuration
-- Folder structure for nested components
-
-#### Creating a nested route config
+### Creating a nested route config
 
 Recall our router config from the [first React Router lesson](./routing.html).
 
@@ -52,7 +53,7 @@ The route config for our product page could look like this:
 @sourceref ./createBrowserRouter.tsx
 @highlight 15, 19-32, only
 
-#### Folder structure
+### Nesting component folders
 
 Notice that the child page components have simple names like `<Support />` instead of `<ProductSupport />`. Assuming this component is specifically designed for the product page and will not be reused elsewhere, the component file can reside within the product page's folder. Since the files live together, longer names aren't needed and will make your JSX a little harder to read.
 
@@ -85,11 +86,7 @@ The larger directory tree should look like the following:
 
 </div>
 
-### Exercise 1
-
-Let's reorganize the existing `/restaurants` routes so they are nested. For this exercise, change the routing config so the restaurant list and details pages are nested under `/restaurants`.
-
-#### Setup
+### Setup 1
 
 ✏️ Create **src/components/RestaurantHeader/index.ts** and update it to be:
 
@@ -115,7 +112,7 @@ Let's reorganize the existing `/restaurants` routes so they are nested. For this
 
 @diff ../../../exercises/react-vite/09-making-http-requests/05-solution/src/services/restaurant/hooks.ts ../../../exercises/react-vite/10-nested-routes/01-solution/src/services/restaurant/hooks.ts only
 
-#### Verify
+### Verify 1
 
 The existing test already cover routing, so no new tests are needed. Ensure the existing tests pass when you run `npm run test`.
 
@@ -139,11 +136,13 @@ The existing test already cover routing, so no new tests are needed. Ensure the 
 
 @diff ../../../exercises/react-vite/09-making-http-requests/05-solution/src/services/restaurant/hooks.test.ts ../../../exercises/react-vite/10-nested-routes/01-solution/src/services/restaurant/hooks.test.ts only
 
-#### Exercise
+### Exercise 1
+
+Let's reorganize the existing `/restaurants` routes so they are nested. For this exercise, change the routing config so the restaurant list and details pages are nested under `/restaurants`.
 
 Refactor the router config in **src/main.tsx** to nest the restaurant routes.
 
-#### Solution 
+### Solution 1
 
 <details>
 <summary>Click to see the solution</summary>
@@ -156,13 +155,13 @@ Refactor the router config in **src/main.tsx** to nest the restaurant routes.
 
 </details>
 
-## Objective 2
+## Objective 2: Create the order page
 
 We learned to create nested routes, let's practice by adding another page to our application. Add the order page to the route config and add a link to it.
 
 <img alt="Screenshot of the Place My Order app with a nested route, displaying the “/restaurants/brunch-place/order” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/objective-2.png" style="max-width: 640px;"/>
 
-#### Setup
+### Setup 2
 
 Add the order page files.
 
@@ -174,19 +173,19 @@ Add the order page files.
 
 @sourceref ../../../exercises/react-vite/10-nested-routes/02-solution/src/pages/RestaurantOrder/RestaurantOrder.tsx
 
-#### Verify
+### Verify 2
 
 ✏️ Create **src/pages/RestaurantOrder/RestaurantOrder.test.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-vite/10-nested-routes/02-solution/src/pages/RestaurantOrder/RestaurantOrder.test.tsx
 
-#### Exercise
+### Exercise 2
 
 Refactor the router config in **src/main.tsx** to contain the new RestaurantOrder components. You will need to come up with the route path on your own.
 
 Add a link to the order page inside the `ListItem` component.
 
-#### Solution 
+### Solution 2
 
 <details>
 <summary>Click to see the solution</summary>

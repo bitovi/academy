@@ -18,11 +18,7 @@ completed the exercise correctly, now let's dive in and learn about how React te
 The most basic test is to render a component and validate the DOM that is generated. That's what
 we'll do in this first section.
 
-### Key Concepts
-
-- TODO
-
-#### Introducing React testing-library
+### Introducing React testing-library
 
 Most React unit testing is done with the [React Testing
 Library](https://testing-library.com/docs/react-testing-library/intro/). The goal of this library is
@@ -37,7 +33,7 @@ stated in [their guiding principles](https://testing-library.com/docs/guiding-pr
 What do we mean by "unit tests?" In the context of this lesson a unit test will involve working with
 a single component: passing it props and rendering it; and validating the generated DOM.
 
-#### Rendering and verifying a component in a test
+### Rendering and verifying a component in a test
 
 Let's take a look at some code that we added in [Handling User Inputs and
 Forms](./controlled-vs-uncontrolled.html).
@@ -82,7 +78,7 @@ attribute is set to "text."
 Note that this test could also have been written to assign the result of `getByLabelText` to a
 `const` then passed that const to both of the `expect` invocations.
 
-### Setup
+### Setup 1
 
 TODO
 
@@ -98,7 +94,7 @@ TODO
 
 @diff ../../../exercises/react-vite/11-controlled-vs-uncontrolled/03-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/12-testing/01-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
-### Verify
+### Verify 1
 
 TODO
 
@@ -106,11 +102,11 @@ TODO
 
 @sourceref ../../../exercises/react-vite/12-testing/01-problem/src/components/FormSelect/FormSelect.test.tsx
 
-### Exercise
+### Exercise 1
 
 TODO
 
-### Solution
+### Solution 1
 
 <details>
 <summary>Click to see the solution</summary>
@@ -136,7 +132,7 @@ has some helpful features such as not firing a click event on an element that's 
 - The user-event library simulates user interactions - not events
 - Tests must be marked as `async` to work with user-event
 
-#### Concept 1
+### Concept 1
 
 <span style="color:red">We may want to update test code to do the following: "[We recommend invoking
 `userEvent.setup()` before the component is
@@ -179,14 +175,18 @@ click resolves the DOM can be queried again to see the effect. Assuming the comp
 right changes the call to `getByText("In-store Options")` should return the element so it exists in
 the document.
 
-### Setup
+### Setup 2
 
 TODO
 
-### Verify
+### Verify 2
 
 TODO
 
-### Exercise
+### Exercise 2
+
+TODO
+
+## Next steps
 
 TODO

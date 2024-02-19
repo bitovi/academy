@@ -8,6 +8,14 @@
 
 ## Overview
 
+In this section, we will:
+
+- Cover the fundamentals of React Hooks.
+
+## Objective 1: Introducing React Hooks and useId
+
+### Overview of state
+
 State in React is a crucial concept, as it represents the parts of an app
 that can change over time. Each component can have its own state, allowing
 them to maintain and manage their own data independently. When the state
@@ -18,12 +26,6 @@ There are different types of state within an application:
 - **Local State:** This is data we manage in one or another component. Local state is often managed in React using the `useState` Hook, which we will cover in Objective 2 below.
 - **URL State:** The state that exists on our URLs, including pathname and query parameters. We already covered this in our section about Routing!
 - **Global State:** This refers to data that is shared between multiple components. In React, global state can be managed using Context API or state management libraries; this is out of scope for this training.
-
-## Objective 1: Introducing React Hooks and useId
-
-In this section, we will:
-
-- Cover the fundamentals of React Hooks.
 
 ### React Hooks
 
@@ -60,14 +62,14 @@ Hooks can only be used in functional components. Almost anything that could be
 done in a class component can be done with Hooks. _The one thing that class
 component can do that Hooks cannot is implement error boundaries._
 
-### Setup
+### Setup 1
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to include the State
 and City dropdown lists.
 
 @diff ../../../exercises/react-vite/07-styling-in-react/01-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/08-stateful-hooks/01-problem/src/pages/RestaurantList/RestaurantList.tsx only
 
-### Verify
+### Verify 1
 
 These tests will pass when the solution has been implemented properly.
 
@@ -75,7 +77,7 @@ These tests will pass when the solution has been implemented properly.
 
 @diff ../../../exercises/react-vite/07-styling-in-react/01-solution/src/pages/RestaurantList/RestaurantList.test.tsx ../../../exercises/react-vite/08-stateful-hooks/01-problem/src/pages/RestaurantList/RestaurantList.test.tsx only
 
-### Exercise
+### Exercise 1
 
 - Associate the `<label>` and `<select>` elements together using ID values provided by the `useId` Hook.
 
@@ -85,7 +87,7 @@ or
 [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-problem?file=src%2Fpages%2FRestaurantList%2FRestaurantList.tsx)
 to do this exercise in an online code editor.
 
-### Solution
+### Solution 1
 
 <details>
 <summary>Click to see the solution</summary>
@@ -158,7 +160,7 @@ DOM, different elements have different properties. By specifying `<HTMLInputElem
 TypeScript knows that this event is for an `<input>` element, and it will expect and
 allow properties specific to an `<input>` element, like `value`, `checked`, etc.
 
-#### event.target.value
+### event.target.value
 
 When an event occurs, such as a user typing in an input field, an `event` object is
 passed to the event handler function. This event object contains various properties
@@ -178,13 +180,13 @@ is entering. In a TypeScript context, this process not only manages the state
 dynamically but also ensures type safety, making your code more robust and less prone
 to errors.
 
-### Setup
+### Setup 2
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be the following:
 
 @diff ../../../exercises/react-vite/08-stateful-hooks/01-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/08-stateful-hooks/02-problem/src/pages/RestaurantList/RestaurantList.tsx only
 
-### Verify
+### Verify 2
 
 These tests will pass when the solution has been implemented properly.
 
@@ -193,7 +195,7 @@ following:
 
 @diff ../../../exercises/react-vite/08-stateful-hooks/01-solution/src/pages/RestaurantList/RestaurantList.test.tsx ../../../exercises/react-vite/08-stateful-hooks/02-solution/src/pages/RestaurantList/RestaurantList.test.tsx only
 
-### Exercise
+### Exercise 2
 
 - The selected **state** value should be managed by a `useState` Hook.
 - The selected **city** value should be managed by a `useState` Hook.
@@ -205,7 +207,7 @@ or
 [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-solution?file=src%2Fpages%2FRestaurantList%2FRestaurantList.tsx)
 to do this exercise in an online code editor.
 
-### Solution
+### Solution 2
 
 <details>
 <summary>Click to see the solution</summary>
@@ -220,19 +222,15 @@ to do this exercise in an online code editor.
 
 TODO
 
-### Key concepts
+### Concept 1
 
 TODO
 
-#### Concept 1
+### Concept 2
 
 TODO
 
-#### Concept 2
-
-TODO
-
-### Setup
+### Setup 3
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
 
@@ -246,17 +244,17 @@ TODO
 
 @sourceref ../../../exercises/react-vite/09-making-http-requests/01-solution/src/services/restaurant/interfaces.ts
 
-### Verify
+### Verify 3
 
 ✏️ Create **src/services/restaurant/hooks.test.ts** and update it to be:
 
 @sourceref ../../../exercises/react-vite/08-stateful-hooks/03-solution/src/services/restaurant/hooks.test.ts
 
-### Exercise
+### Exercise 3
 
 TODO
 
-### Solution
+### Solution 3
 
 <details>
 <summary>Click to see the solution</summary>

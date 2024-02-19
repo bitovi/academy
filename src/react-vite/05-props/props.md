@@ -10,7 +10,7 @@
 
 - Learn about passing data to components using props.
 
-## Objective 1: Use and set props
+## Objective: Use and set props
 
 In this section, we will:
 
@@ -150,3 +150,7 @@ to do this exercise in an online code editor.
 @diff ../../../exercises/react-vite/05-props/01-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/05-props/01-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
 </details>
+
+## Next steps
+
+TODO

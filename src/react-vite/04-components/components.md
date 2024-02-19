@@ -27,11 +27,9 @@ In React, we call this a component. When you create a component in React, you ar
 
 React makes it relatively straightforward to create new components. Let's learn to build our own.
 
-## Objective 1: Create a React component
+## Objective: Create a React component
 
-### Key concepts
-
-#### Component structure
+### Component structure
 
 Let's start by creating a component from a commonly reused element, the button.
 
@@ -65,7 +63,7 @@ function App() {
 }
 ```
 
-#### React components are just functions
+### React components are just functions
 
 The JSX syntax allows function components to look like HTML, but underneath they are still functions. The return of each component is unique and you can use the same component multiple times.
 

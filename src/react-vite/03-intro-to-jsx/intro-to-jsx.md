@@ -18,9 +18,12 @@ In this section, we will:
 
 ## Objective 1: Creating a UI with JSX
 
-### Key concepts
+- Create the homepage using JSX
+- Match the design below
 
-#### What is JSX?
+<img src="../static/img/react-vite/03-intro-to-jsx/mock-homepage.jpg" alt="mockup" style="border: solid 1px black; max-width: 640px;"/>
+
+### What is JSX?
 
 JSX is used by React developers to define the user interface.
 
@@ -28,7 +31,7 @@ JSX is a special syntax designed to look almost identical to HTML. Developers de
 
 React has a procedural `React.createElement` syntax, but most applications do not use it directly. Instead, views are defined and maintained in JSX and will automatically be transpiled into the equivalent `React.createElement` calls at build-time.
 
-#### HTML differences
+### HTML differences
 
 JSX looks a lot like HTML, and that's intentional. Browsers understand HTML, JavaScript, and CSS. Eventually, anything we build has to be converted into one of those 3 syntaxes. Since our UI code will eventually end up as HTML, using JSX means it will be easier to understand and debug the end result in the browser.
 
@@ -53,16 +56,7 @@ __Reserved words are renamed.__ The HTML attributes "class" and "for" are reserv
 
 As we go through this training, you'll learn additional differences.
 
-## Exercise 1
-
-### Acceptance criteria
-
-- Create the homepage using JSX
-- Match the design below
-
-<img src="../static/img/react-vite/03-intro-to-jsx/mock-homepage.jpg" alt="mockup" style="border: solid 1px black; max-width: 640px;"/>
-
-### Setup
+### Setup 1
 
 We've created an assets package with images and CSS you'll need to build the application. Install the `place-my-order-assets` package.
 
@@ -78,7 +72,7 @@ npm install place-my-order-assets
 
 @diff ../../../exercises/react-vite/02-setting-up-your-environment/solution/src/index.css ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/index.css only
 
-### Verify
+### Verify 1
 
 You should have already installed Vitest in the previous section. If you haven't done so already, create a test file at `src/App.test.tsx` and copy the following tests into your test file.
 
@@ -94,7 +88,7 @@ npm run test
 
 Note that we won't be able to write an automated test that verifies the styles and images appear as desired, so you will have to test those manually.
 
-### Exercise
+### Exercise 1
 
 Take the below HTML and convert it to JSX:
 
@@ -102,7 +96,7 @@ Take the below HTML and convert it to JSX:
 
 <strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-problem?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-problem?file=src/App.tsx) to do this exercise in an online code editor.
 
-### Solution
+### Solution 1
 
 <details>
 <summary>Click to see the solution</summary>
@@ -117,12 +111,10 @@ Take the below HTML and convert it to JSX:
 
 ## Objective 2: Loops in JSX
 
-### Key concepts
-
 - JSX Interpolation
 - Loops in JSX
 
-## JSX Interpolation
+### JSX Interpolation
 
 JSX is dynamic. You can insert values from variables and objects into your JSX as we did with the image URL in the previous section.
 
@@ -196,7 +188,7 @@ Only expressions which return a value may be interpolated. This includes static 
 
 To put it simply: only things that you could pass into a function can be used inside the brackets.
 
-#### Using Conditions
+### Using Conditions
 
 Conditions can be re-written using the ternary operator.
 
@@ -226,7 +218,7 @@ If ternaries seem excessive for any particular case, you can write all your logi
 <div>{outputResult()}</div>
 ```
 
-#### Using Loops
+### Using Loops
 
 ```jsx
 // This does not work
@@ -265,25 +257,13 @@ Mapping over the array above will render as the following HTML.
 </div>
 ```
 
-## Exercise 2
-
-### Acceptance Criteria
-
-- Set the H1 tag to "Ordering food has never been easier"
-- Display a list of restaurants: 'Cheese Curd City' & 'Poutine Palace'
-
-### Requirements
-
-- Use the proper `ul` and `li` tags to create the list
-- List items should have a unique key
-
-### Setup
+### Setup 2
 
 ✏️ Update **src/App.tsx** to be:
 
 @diff ../../../exercises/react-vite/03-intro-to-jsx/01-solution/src/App.tsx ../../../exercises/react-vite/03-intro-to-jsx/02-problem/src/App.tsx only
 
-### Verify
+### Verify 2
 
 Add these tests into your application to verify you have met the acceptance criteria. Note how React Testing Library allows our tests to specify exact elements.
 
@@ -293,7 +273,15 @@ Add these tests into your application to verify you have met the acceptance crit
 
 <strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/02-problem?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/02-problem?file=src/App.tsx) to do this exercise in an online code editor.
 
-### Solution
+### Exercise 2
+
+- Set the H1 tag to "Ordering food has never been easier"
+- Display a list of restaurants: 'Cheese Curd City' & 'Poutine Palace'
+
+- Use the proper `ul` and `li` tags to create the list
+- List items should have a unique key
+
+### Solution 2
 
 <details>
 <summary>Click to see the solution</summary>
