@@ -17,7 +17,7 @@ In this section, we will:
 
 ## Objective: Applying style with CSS Modules
 
-Now that we've learned to apply styling in React with CSS Modules, it's time to practice by styling a link in the Home component. You'll bring in a `Link` component from React Router. 
+Now that we've learned to apply styling in React with CSS Modules, it’s time to practice by styling a link in the Home component. You’ll bring in a `Link` component from React Router. 
 
 ### Styling options in React applications
 
@@ -163,7 +163,7 @@ classes to avoid unexpected styling bugs. The following will apply to all `img`
 elements in the project and should be avoided.
 
 ```CSS
-/* Don't do this with CSS Modules as tag names can not be randomized */
+/* Don’t do this with CSS Modules as tag names can not be randomized */
 img {
   float: right;
 }
@@ -175,7 +175,7 @@ During the build process, the CSS classes will be randomized and added to a glob
 
 Here’s an example of what the JS object imported from `BlogPost.module.css` might look like:
 
-```js
+```tsx
 { avatar: "avatar_R8f2" }
 ```
 
@@ -251,4 +251,4 @@ TODO: Clean up the extraneous styles in the code above. [Chasen can handle this.
 
 ## Next steps
 
-In the next section, we'll learn to manage state.
+In the next section, we’ll learn to manage state.

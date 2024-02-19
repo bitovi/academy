@@ -36,7 +36,7 @@ variable.
 > If an `<input>` only has the `value` or `onChange` prop set, React will log a warning to the
 > console in development mode.
 
-```jsx
+```tsx
 const ControlledInput: React.FC = () => {
   const [name, setName] = useState("");
   return (
@@ -47,7 +47,7 @@ const ControlledInput: React.FC = () => {
 }
 ```
 
-Controlled components aren't allowed to have a value of `null` or `undefined`. To set an input with
+Controlled components aren’t allowed to have a value of `null` or `undefined`. To set an input with
 "no value," use an empty string: `""`.
 
 ### Working with events
@@ -55,7 +55,7 @@ Controlled components aren't allowed to have a value of `null` or `undefined`. T
 In the previous example, the input prop `onChange` had its value set to a function known as an
 "event handler."
 
-```jsx
+```tsx
 onChange={(event) => setName(event.target.value)}
 ```
 
@@ -66,25 +66,25 @@ properties, they are not identical.
 
 A `ChangeEvent` — derived from `SyntheticEvent` — is the event argument provided to a
 `ChangeEventHandler`. A `ChangeEvent` always has a property named `target` that references the
-component that emitted the event. As you can see above, it's possible to get the `target`'s new
+component that emitted the event. As you can see above, it’s possible to get the `target`'s new
 value using its `value` property.
 
-### TypeScript's `Record` interface
+### TypeScript’s `Record` interface
 
 In our upcoming exercise, we want to store information in a JavaScript object. We also want to use
 TypeScript so we can constrain the types used as keys and values. TypeScript provides a handy
 interface named `Record` that we can use. `Record` is a generic interface that requires two types:
 the first is the type of the keys, and the second is the type of the values. For example, if we're
 recording the items in a list that are selected, we might capture the item's name and whether or not
-it's selected like this:
+it’s selected like this:
 
-```jsx
+```tsx
 const [selected, setSelected] = useState<Record<string, boolean>>({});
 ```
 
 We've explicitly defined the type of `useState` as a `Record<string, boolean>`; all the keys must be
-strings, and all the values must be booleans. Fortunately, JavaScript's `object` implements the
-`Record` interface, so we can set the default value to an empty `object` instance. Now let's see how
+strings, and all the values must be booleans. Fortunately, JavaScript’s `object` implements the
+`Record` interface, so we can set the default value to an empty `object` instance. Now let’s see how
 we can use a `Record` to store state data.
 
 ### Set state using a function
@@ -93,9 +93,9 @@ One challenge we face when using an `object` for state is that we probably need 
 state value with the new state value. Why? Imagine we have a state object that already has multiple
 keys and values, and we need to add a new key and value. Well, we're in luck! React already has a
 solution for this: the set function returned by `useState` will accept a function called an "updater
-function" that's passed the "pending" state value and returns a "next" state value.
+function" that’s passed the "pending" state value and returns a "next" state value.
 
-```jsx
+```tsx
 const [selected, setSelected] = useState<Record<string, boolean>>({});
 setSelected((pending) => { /* Do something with the pending state value and return a next state value. */ });
 ```
@@ -106,7 +106,7 @@ function as the argument. In the updater function, the contents of the next stat
 initially set by spreading the contents of the pending state object. Then the value of `checked`
 provided by the input is set on the next state value object.
 
-```jsx
+```tsx
 const Selected: React.FC = () => {
   const [selected, setSelected] = useState<Record<string, boolean>>({});
 
@@ -151,7 +151,7 @@ objects to determine if they are different. If they are **different**, React wil
 The same rules apply when state is an array, create a new array, and update the contents of the new
 array.
 
-```jsx
+```tsx
 // Adding an item when state (`pending`) is an array.
 setSelectedOrders(pending => {
   const next = [...pending, newOrder];
@@ -171,7 +171,7 @@ setUpdatedRestaurant(pending => {
 
 > Now may be a good time to brush up on how different JavaScript types are compared for equality.
 
-OK, that was a lot. Let's start making some code changes so we can select menu items for an order.
+OK, that was a lot. Let’s start making some code changes so we can select menu items for an order.
 
 ### Setup 1
 
@@ -191,7 +191,7 @@ These tests will pass when the solution has been implemented properly.
 
 - Add `newOrder` state so that when menu items are selected, the state will look like:
 
-```ts
+```tsx
 {
   items: {
     "Menu item 1 name": 1.23,// Menu item 1 price
@@ -224,7 +224,7 @@ to do this exercise in an online code editor.
 ## Objective 2: Create a reusable text field component
 
 The order form is going to be made up of many input fields with labels. Rather than repeat multiple
-components let's compose that structure in a single component named `FormTextField`. Creating this
+components let’s compose that structure in a single component named `FormTextField`. Creating this
 component will involve using some of what we've learned from prior lessons.
 
 In this section, we will:
@@ -325,7 +325,7 @@ to do this exercise in an online code editor.
 
 ## Objective 3: Integrate `FormTextField` into `RestaurantOrder` and submit the form
 
-Finally we'll update the form to incorporate the `FormTextField` component so users can create and
+Finally we’ll update the form to incorporate the `FormTextField` component so users can create and
 submit an order to the restaurant. We need to fill the form with input fields and handle the submit
 button.
 

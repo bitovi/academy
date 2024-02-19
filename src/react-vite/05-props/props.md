@@ -15,7 +15,7 @@
 In this section, we will:
 
 - Understand what props are and how they work in React
-- Define a component's props using TypeScript interfaces
+- Define a component’s props using TypeScript interfaces
 - Use props within a child component
 - Pass props from a parent component to a child component
 
@@ -27,7 +27,7 @@ JavaScript functions, you can think of props like the arguments you pass to
 a function.
 
 To receive props, functional components must implement a React API that
-allows an optional argument of type `object` that's named "props".
+allows an optional argument of type `object` that’s named "props".
 
 The properties on the props object—individually called a “prop”—can include
 whatever data the child component needs to make
@@ -35,10 +35,10 @@ the component work. The property values can be any type, including functions and
 other React components.
 
 We're using TypeScript in our project so we can create an `interface` for props
-and use it in the definition of a functional component. Let's create a `SubmitButton`
+and use it in the definition of a functional component. Let’s create a `SubmitButton`
 component to see props in action:
 
-```jsx
+```tsx
 interface SubmitButtonProps {
   label: string;
   onClick: () => void;
@@ -58,7 +58,7 @@ The example above illustrates how props are passed to component as an argument.
 However, more commonly (and for the rest of this course) you will see props
 destructured in the function parameters:
 
-```jsx
+```tsx
 interface SubmitButtonProps {
   label: string;
   onClick: () => void;
@@ -73,7 +73,7 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ label, onClick }) => {
 ### Passing component props
 
 Now, how do we use this `SubmitButton`?
-In [JSX syntax](intro-to-jsx.html) a component's props look like an HTML tag's
+In [JSX syntax](intro-to-jsx.html) a component’s props look like an HTML tag's
 "attributes" and accept a value.
 
 - If a prop's value type is a string then the prop value is set using quotes.
@@ -86,7 +86,7 @@ In the
 
 Here’s how to use our `SubmitButton`:
 
-```jsx
+```tsx
 <SubmitButton
   label="Activate"
   onClick={() => alert("Activated!")}

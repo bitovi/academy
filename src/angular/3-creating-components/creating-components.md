@@ -93,7 +93,7 @@ To get this application up and running quicker so we can focus on the architectu
 ✏️ Run:
 
 ```shell
-npm install place-my-order-assets
+npm install place-my-order-assets@0
 ```
 
 Open the `angular.json` file, and make the following changes to include these files in our build process. This will copy the images into our assets directory for when we serve our application.

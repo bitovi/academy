@@ -2,7 +2,7 @@
 @parent learn-react 8
 @outline 3
 
-@description Work with React's useState Hook to manage a component's state.
+@description Work with React’s useState Hook to manage a component’s state.
 
 @body
 
@@ -101,7 +101,7 @@ to do this exercise in an online code editor.
 ## Objective 2: Manage component state using Hooks
 
 When users make choices that need to be maintained or that affect other parts of
-the UI, we need to use `state`. That's a pretty abstract concept so let's look
+the UI, we need to use `state`. That’s a pretty abstract concept so let’s look
 at a concrete example from the Place My Order Restaurants tab.
 
 There are two dropdown lists — "State" which has a list of U.S. states, and
