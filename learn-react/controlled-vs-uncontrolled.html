@@ -199,7 +199,7 @@
            						">
 						<a class="page"
 							href="props.html"
-							title="Learn how to provide information to a component through props.">
+							title="Learn how to provide data to a component through props.">
 							Passing Props
 						</a>
 						
@@ -581,7 +581,7 @@ value using its <code>value</code> property.</p>
 <p>In our upcoming exercise, we want to store information in a JavaScript object. We also want to use
 TypeScript so we can constrain the types used as keys and values. TypeScript provides a handy
 interface named <code>Record</code> that we can use. <code>Record</code> is a generic interface that requires two types:
-the first is the type of the keys, and the second is the type of the values. For example, if we're
+the first is the type of the keys, and the second is the type of the values. For example, if we’re
 recording the items in a list that are selected, we might capture the item's name and whether or not
 it’s selected like this:</p>
 <pre><code class="language-tsx">const [selected, setSelected] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
@@ -593,7 +593,7 @@ we can use a <code>Record</code> to store state data.</p>
 <h3>Set state using a function</h3>
 <p>One challenge we face when using an <code>object</code> for state is that we probably need to merge the current
 state value with the new state value. Why? Imagine we have a state object that already has multiple
-keys and values, and we need to add a new key and value. Well, we're in luck! React already has a
+keys and values, and we need to add a new key and value. Well, we’re in luck! React already has a
 solution for this: the set function returned by <code>useState</code> will accept a function called an &quot;updater
 function&quot; that’s passed the &quot;pending&quot; state value and returns a &quot;next&quot; state value.</p>
 <pre><code class="language-tsx">const [selected, setSelected] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
