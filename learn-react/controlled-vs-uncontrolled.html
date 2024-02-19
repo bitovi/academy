@@ -586,7 +586,7 @@ recording the items in a list that are selected, we might capture the item's nam
 it’s selected like this:</p>
 <pre><code class="language-tsx">const [selected, setSelected] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
 </code></pre>
-<p>We've explicitly defined the type of <code>useState</code> as a <code>Record&lt;string, boolean&gt;</code>; all the keys must be
+<p>We’ve explicitly defined the type of <code>useState</code> as a <code>Record&lt;string, boolean&gt;</code>; all the keys must be
 strings, and all the values must be booleans. Fortunately, JavaScript’s <code>object</code> implements the
 <code>Record</code> interface, so we can set the default value to an empty <code>object</code> instance. Now let’s see how
 we can use a <code>Record</code> to store state data.</p>
@@ -1009,7 +1009,7 @@ export default RestaurantOrder
 <h2>Objective 2: Create a reusable text field component</h2>
 <p>The order form is going to be made up of many input fields with labels. Rather than repeat multiple
 components let’s compose that structure in a single component named <code>FormTextField</code>. Creating this
-component will involve using some of what we've learned from prior lessons.</p>
+component will involve using some of what we’ve learned from prior lessons.</p>
 <p>In this section, we will:</p>
 <ul>
 <li>Learn how to use the <code>useId()</code> hook.</li>

@@ -794,6 +794,36 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 </code></pre>
  <div line-highlight="3-5,only"></div>
 <h3>Verify 1</h3>
+<p>✏️ Create <strong>src/pages/Home/Home.test.tsx</strong> and update it to be:</p>
+<pre><code class="language-tsx">import '@testing-library/jest-dom';
+import { render, screen } from '@testing-library/react';
+import { describe, expect, it } from 'vitest';
+
+import Home from './Home';
+
+describe('Home component', () =&gt; {
+  it('renders the image with correct attributes', () =&gt; {
+    render(&lt;Home /&gt;);
+    const image = screen.getByAltText(/Restaurant table with glasses./i);
+    expect(image).toBeInTheDocument();
+    expect(image).toHaveAttribute('width', '250');
+    expect(image).toHaveAttribute('height', '380');
+  });
+
+  it('renders the title', () =&gt; {
+    render(&lt;Home /&gt;);
+    const titleElement = screen.getByText(/Ordering food has never been easier/i);
+    expect(titleElement).toBeInTheDocument();
+  });
+
+  it('renders the description paragraph', () =&gt; {
+    render(&lt;Home /&gt;);
+    const description = screen.getByText(/We make it easier/i);
+    expect(description).toBeInTheDocument();
+  });
+});
+
+</code></pre>
 <p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';

@@ -532,12 +532,13 @@ covering CanJS core libraries.">
 <p>In this section, we will:</p>
 <ul>
 <li>Review how plain CSS works in React applications</li>
-<li>Set up CSS Modules</li>
+<li>Introduce CSS Modules</li>
 <li>Create a component-specific stylesheet</li>
-<li>Apply styles to a component</li>
+<li>Apply styles in a component</li>
 </ul>
-<h2>Objective: Applying style with CSS Modules</h2>
-<p>Now that we've learned to apply styling in React with CSS Modules, it’s time to practice by styling a link in the Home component. You’ll bring in a <code>Link</code> component from React Router.</p>
+<h2>Objective: Add a styled link</h2>
+<p>We have the navigation links in the header, but it’d be nice if our <code>Home</code> component had a nice
+big Call to Action (CTA) in it so our users were directed to the next step: Choose a Restaurant.</p>
 <h3>Styling options in React applications</h3>
 <p>There is no prescribed approach for styling React apps. It’s entirely possible to
 style components using regular CSS. This approach works fine for many applications,
@@ -614,7 +615,7 @@ const UserProfile: React.FC = () =&gt; {
 the styles for that single component, but in fact they are changing any instance where
 that <code>class</code> name is used globally throughout the entire application.</p>
 <p>Let’s solve this!</p>
-<h3>Scoped stylesheet</h3>
+<h3>Introducing CSS modules</h3>
 <p>CSS Modules works like regular CSS, but the class names are randomized to prevent
 conflicts between components. When using CSS Modules, if multiple components
 implement a <code>.avatar</code> class, those classes will be unique and conflict-free because
@@ -637,6 +638,7 @@ CSS Modules will rename each class with a unique random string like <code>.avata
 That stylesheet is placed in the same folder as the component. In order to identify
 the file as a CSS Module, the filename should end with <code>.module.css</code>. The file
 structure for a BlogPost component will look like the following:</p>
+<div class="directory-list">
 <ul>
 <li>BlogPost
 <ul>
@@ -646,14 +648,7 @@ structure for a BlogPost component will look like the following:</p>
 <li>index.ts</li>
 </ul></li>
 </ul>
-<p>Note that CSS Modules cannot rename HTML tags, so all of your styling should use
-classes to avoid unexpected styling bugs. The following will apply to all <code>img</code>
-elements in the project and should be avoided.</p>
-<pre><code class="language-CSS">/* Don’t do this with CSS Modules as tag names can not be randomized */
-img {
-  float: right;
-}
-</code></pre>
+</div>
 <h3>Importing and applying styles</h3>
 <p>During the build process, the CSS classes will be randomized and added to a global stylesheet. The randomized class names are imported into components as an object where the key is the original class and the value is the new, randomized string.</p>
 <p>Here’s an example of what the JS object imported from <code>BlogPost.module.css</code> might look like:</p>
@@ -680,59 +675,53 @@ const BlogPost: React.FC = ({ authorAvatar, content }) =&gt; {
 }
 </code></pre>
 <div line-highlight='2, 9'></div>
+<h3>Avoid plain selectors</h3>
+<p>Note that CSS Modules cannot rename HTML tags, so all of your styling should use
+classes to avoid unexpected styling bugs. The following will apply to all <code>img</code>
+elements in the project and should be avoided.</p>
+<pre><code class="language-CSS">/* Don’t do this with CSS Modules as tag names can not be randomized */
+img {
+  float: right;
+}
+</code></pre>
 <h3>Install CSS Modules</h3>
 <p>Already done! Vite, our build tool, ships with first-class CSS Modules support.
 Vite also supports a few <a href="https://vitejs.dev/guide/features#css">other styling options</a>
 out of the box.</p>
 <h3>Setup</h3>
-<p>We've created some CSS for this exercise. Create a CSS Modules file and copy the following styles into it.</p>
+<p>We’ve created some CSS for this exercise. Create a CSS Modules file and copy the following styles into it.</p>
 <p>✏️ Create <strong>src/pages/Home/Home.module.css</strong> and update it to be:</p>
 <pre><code class="language-css">a {
-    display: inline-block;
-    margin-bottom: 0;
-    font-weight: normal;
-    text-align: center;
-    vertical-align: middle;
-    touch-action: manipulation;
-    cursor: pointer;
-    background-image: none;
-    border: 1px solid transparent;
-    white-space: nowrap;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    border-radius: 4px;
-    color: #fff;
     background-color: #337ab7;
     border-color: #2e6da4;
-    padding: 10px 16px;
-    font-size: 18px;
-    line-height: 1.3333333;
     border-radius: 6px;
+    color: #fff;
+    display: inline-block;
+    font-weight: normal;
+    padding: 10px 16px;
 }
 
 a:focus {
-    color: #fff;
     background-color: #286090;
     border-color: #122b40;
+    color: #fff;
     text-decoration: none;
 }
 
 a:hover {
-    color: #fff;
     background-color: #286090;
     border-color: #204d74;
+    color: #fff;
     text-decoration: none;
 }
 
 a:active {
-    color: #fff;
     background-color: #204d74;
     border-color: #122b40;
+    color: #fff;
     text-decoration: none;
 }
 </code></pre>
-<p>TODO: Clean up the extraneous styles in the code above. [Chasen can handle this.]</p>
 <h3>Verify</h3>
 <p>✏️ Update <strong>src/pages/Home/Home.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
@@ -778,6 +767,7 @@ describe('Home component', () =&gt; {
 </code></pre>
  <div line-highlight="3-4,9-14,32,34-38,only"></div>
 <h3>Exercise</h3>
+<p>Now that we’ve learned to apply styling in React with CSS Modules, it’s time to practice by styling a link in the Home component. You’ll bring in a <code>Link</code> component from React Router.</p>
 <ul>
 <li>Update the styles in <code>Home.module.css</code> to be usable as a CSS Module.</li>
 <li>Update the <code>&lt;Home&gt;</code> component to include a styled link:
@@ -791,51 +781,37 @@ describe('Home component', () =&gt; {
 <summary>Click to see the solution</summary></p>
 <p>✏️ Update <strong>src/pages/Home/Home.module.css</strong> to be:</p>
 <pre><code class="language-css">.chooseButton {
-    display: inline-block;
-    margin-bottom: 0;
-    font-weight: normal;
-    text-align: center;
-    vertical-align: middle;
-    touch-action: manipulation;
-    cursor: pointer;
-    background-image: none;
-    border: 1px solid transparent;
-    white-space: nowrap;
-    padding: 6px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    border-radius: 4px;
-    color: #fff;
     background-color: #337ab7;
     border-color: #2e6da4;
-    padding: 10px 16px;
-    font-size: 18px;
-    line-height: 1.3333333;
     border-radius: 6px;
+    color: #fff;
+    display: inline-block;
+    font-weight: normal;
+    padding: 10px 16px;
 }
 
 .chooseButton:focus {
-    color: #fff;
     background-color: #286090;
     border-color: #122b40;
+    color: #fff;
     text-decoration: none;
 }
 
 .chooseButton:hover {
-    color: #fff;
     background-color: #286090;
     border-color: #204d74;
+    color: #fff;
     text-decoration: none;
 }
 
 .chooseButton:active {
-    color: #fff;
     background-color: #204d74;
     border-color: #122b40;
+    color: #fff;
     text-decoration: none;
 }
 </code></pre>
- <div line-highlight="1,25,32,39,only"></div>
+ <div line-highlight="1,11,18,25,only"></div>
 <p>✏️ Update <strong>src/pages/Home/Home.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import HeroImage from &quot;place-my-order-assets/images/homepage-hero.jpg&quot;
 import { Link } from &quot;react-router-dom&quot;
