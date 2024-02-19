@@ -244,7 +244,7 @@
            						">
 						<a class="page"
 							href="stateful-hooks.html"
-							title="Work with React&#x27;s useState Hook to manage a component&#x27;s state.">
+							title="Work with React’s useState Hook to manage a component’s state.">
 							Managing State in React
 						</a>
 						
@@ -529,13 +529,13 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
-<p>How do you know your code is working correctly? How will you know it's still working correctly in
+<p>How do you know your code is working correctly? How will you know it’s still working correctly in
 the future after you make changes to it? Unit testing helps by verifying that given certain inputs
 our code generates expected outputs. So far we've copied existing tests to prove that we've
-completed the exercise correctly, now let's dive in and learn about how React testing is done.</p>
+completed the exercise correctly, now let’s dive in and learn about how React testing is done.</p>
 <h2>Objective 1: Render a component and verify the DOM structure</h2>
-<p>The most basic test is to render a component and validate the DOM that is generated. That's what
-we'll do in this first section.</p>
+<p>The most basic test is to render a component and validate the DOM that is generated. That’s what
+we’ll do in this first section.</p>
 <h3>Introducing React testing-library</h3>
 <p>Most React unit testing is done with the <a href="https://testing-library.com/docs/react-testing-library/intro/">React Testing
 Library</a>. The goal of this library is
@@ -552,7 +552,7 @@ use it.</li>
 <p>What do we mean by &quot;unit tests?&quot; In the context of this lesson a unit test will involve working with
 a single component: passing it props and rendering it; and validating the generated DOM.</p>
 <h3>Rendering and verifying a component in a test</h3>
-<p>Let's take a look at some code that we added in <a href="./controlled-vs-uncontrolled.html">Handling User Inputs and
+<p>Let’s take a look at some code that we added in <a href="./controlled-vs-uncontrolled.html">Handling User Inputs and
 Forms</a>.</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
@@ -604,9 +604,9 @@ component including props. After <code>render</code> completes the <code>screen<
 elements created by our React code.</p>
 <pre><code class="language-tsx">render(&lt;FormTextField label=&quot;Test Label&quot; type=&quot;text&quot; value=&quot;&quot; onChange={mockOnChange} /&gt;);
 </code></pre>
-<p>Now it's time to see if the DOM matches what we expected to create. The React Testing Library
+<p>Now it’s time to see if the DOM matches what we expected to create. The React Testing Library
 provides the <code>screen</code> object that allows us to select elements from the DOM. In the current scenario
-we'll use <code>getByLabelText</code> which returns the <code>&lt;input&gt;</code> associated by <code>id</code> with a single <code>&lt;label&gt;</code>
+we’ll use <code>getByLabelText</code> which returns the <code>&lt;input&gt;</code> associated by <code>id</code> with a single <code>&lt;label&gt;</code>
 that has the text &quot;Test Label&quot;. You may have intuited that <code>getByLabelText</code> accepts a string, but it
 also accepts a regex, in this case one that matches any part of the label text and ignores case.</p>
 <pre><code class="language-tsx">expect(screen.getByLabelText(/Test Label:/i)).toBeInTheDocument();
@@ -844,7 +844,7 @@ how can we test code that responds to these interactions? We use another library
 Testing Library named <a href="https://testing-library.com/docs/user-event/intro">user-event</a>.</p>
 <p><code>user-event</code> allows you to interact with your component similarly to a user some of its methods may
 raise more than one event to do so, for example emitting a focus event then a click event. It also
-has some helpful features such as not firing a click event on an element that's hidden.</p>
+has some helpful features such as not firing a click event on an element that’s hidden.</p>
 <h3>Key Concepts</h3>
 <ul>
 <li>The user-event library simulates user interactions - not events</li>
@@ -876,10 +876,10 @@ not function properly or provide the results developers expect.</p>
 common user actions such as clicking or typing.</p>
 <p>After calling <code>render</code> we verify that the component has initially rendered the proper DOM structure.
 Since the element is not expected the <code>queryByText</code> method is appropriate to use here, this method
-will return null if the element doesn't exist. We use <code>expect</code> with the <code>not</code> property to confirm
+will return null if the element doesn’t exist. We use <code>expect</code> with the <code>not</code> property to confirm
 that the DOM does not contain the element. In most cases prefer using the testing library's API
 methods rather than, for example, asserting on whether or not the result of <code>queryByText</code> is null.</p>
-<p>Now that we know the proper initial DOM was rendered let's use <code>user.click()</code> to click on an
+<p>Now that we know the proper initial DOM was rendered let’s use <code>user.click()</code> to click on an
 element. We pass the element to be clicked to the <code>click</code> function as its argument. Once the call to
 click resolves the DOM can be queried again to see the effect. Assuming the component code made the
 right changes the call to <code>getByText(&quot;In-store Options&quot;)</code> should return the element so it exists in

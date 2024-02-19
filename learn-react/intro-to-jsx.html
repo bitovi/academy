@@ -247,7 +247,7 @@
            						">
 						<a class="page"
 							href="stateful-hooks.html"
-							title="Work with React&#x27;s useState Hook to manage a component&#x27;s state.">
+							title="Work with React’s useState Hook to manage a component’s state.">
 							Managing State in React
 						</a>
 						
@@ -531,39 +531,97 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, we will:</p>
 <ul>
-<li>Learn to use JSX to define our UI</li>
-<li>Install project assets</li>
-<li>Create our first component</li>
-<li>Add variables to JSX</li>
-<li>Work with loops in JSX</li>
+<li>Learn the basics of JSX</li>
+<li>Discover the differences between JSX and HTML</li>
+<li>Use JavaScript variables and expressions in JSX</li>
+<li>Work with conditionals and loops in JSX</li>
 </ul>
-<h2>Objective 1: Creating a UI with JSX</h2>
-<ul>
-<li>Create the homepage using JSX</li>
-<li>Match the design below</li>
-</ul>
-<p><img src="../static/img/react-vite/03-intro-to-jsx/mock-homepage.jpg" alt="mockup" style="border: solid 1px black; max-width: 640px;"/></p>
+<h2>Objective 1: Create a UI with JSX</h2>
+<p>Now that we have our project set up, let’s update our page to look like the design below:</p>
+<p><img alt="Screenshot of a web application interface titled “Restaurants” showing a single restaurant entry. The entry includes a photo of a sushi plate, an address, a price indicator, business hours, and a green badge stating “Open Now”. There is also a “Details” button to the right. The browser tab indicates “Vite + React + TS” and the URL is “localhost:5173”." src="../static/img/react-vite/03-intro-to-jsx/01-solution.png" style="max-width: 640px;"/></p>
 <h3>What is JSX?</h3>
 <p>JSX is used by React developers to define the user interface.</p>
 <p>JSX is a special syntax designed to look almost identical to HTML. Developers define the UI using JSX. React transforms that JSX into the HTML the browser displays. JSX can be written alongside standard JavaScript, which makes for a powerful programming environment.</p>
-<p>React has a procedural <code>React.createElement</code> syntax, but most applications do not use it directly. Instead, views are defined and maintained in JSX and will automatically be transpiled into the equivalent <code>React.createElement</code> calls at build-time.</p>
-<h3>HTML differences</h3>
-<p>JSX looks a lot like HTML, and that's intentional. Browsers understand HTML, JavaScript, and CSS. Eventually, anything we build has to be converted into one of those 3 syntaxes. Since our UI code will eventually end up as HTML, using JSX means it will be easier to understand and debug the end result in the browser.</p>
+<h4>Basic JSX looks like HTML</h4>
+<pre><code class="language-tsx">const greeting = &lt;h1&gt;Hello, world!&lt;/h1&gt;;
+</code></pre>
+<p>This code snippet creates a simple JSX element, an <code>&lt;h1&gt;</code> header, with the text “Hello, world!”
+This is similar to writing HTML, but it’s actually JSX inside a JavaScript file.</p>
+<h3>Embedding a JavaScript expression in JSX</h3>
+<pre><code class="language-tsx">const name = 'Alice';
+const greeting = &lt;h1&gt;Hello, {name}!&lt;/h1&gt;;
+</code></pre>
+<p>Here, we embed a JavaScript expression <code>{name}</code> within JSX.
+The value of the name variable is displayed within the <code>&lt;h1&gt;</code> tag.</p>
+<h3>Combining JSX with standard JavaScript</h3>
+<pre><code class="language-tsx">function Welcome(name) {
+  return &lt;h1&gt;Hello, {name}&lt;/h1&gt;;
+}
+
+const welcomeMessage = Welcome('Alice');
+</code></pre>
+<p>This example illustrates a regular JavaScript function being called with a single argument.
+The <code>Welcome</code> function returns JSX, showing how JSX can be seamlessly integrated within
+standard JavaScript functions.</p>
+<h3>JSX transpiled</h3>
+<p>React has a procedural <code>React.createElement</code> syntax, but most applications do not use it directly.
+Instead, views are defined and maintained in JSX and will automatically be transpiled into the
+equivalent <code>React.createElement</code> calls at build-time.</p>
+<pre><code class="language-tsx">function Welcome(name) {
+  return React.createElement('h1', null, `Hello, ${name}!`);
+}
+
+const welcomeMessage = Welcome('Alice');
+</code></pre>
+<p>This transformation is handled by tools like Vite during the build process,
+allowing us to write more readable and maintainable code using JSX.</p>
+<h3>Differences between JSX and HTML</h3>
+<p>JSX looks a lot like HTML, and that’s intentional. Browsers understand HTML, JavaScript, and CSS. Eventually, anything we build has to be converted into one of those 3 syntaxes. Since our UI code will eventually end up as HTML, using JSX means it will be easier to understand and debug the end result in the browser.</p>
 <p>However, JSX is converted into JavaScript and therefore is not an exact mirror of HTML. Some of the most noticeable differences include:</p>
-<p><strong>Say &quot;props&quot; instead of &quot;attributes.&quot;</strong> This nomenclature difference is because they are technically different, though visually they appear the same. When the following image tag appears in HTML, the &quot;src&quot; is called an <em>attribute</em>. In JSX, the &quot;src&quot; is a <em>prop</em> or <em>property</em>.</p>
-<pre><code class="language-jsx">&lt;img src=&quot;image.png&quot;&gt;
+<h4>HTML has attributes, JSX has props</h4>
+<p>This nomenclature difference is because they are technically different, though they might appear to be the same visually.</p>
+<p>When talking about the HTML below, you might say that the <code>href</code> attribute is a URL:</p>
+<pre><code class="language-html">&lt;a href=&quot;https://www.bitovi.com/academy/&quot;&gt;
+  Bitovi Academy
+&lt;/a&gt;
 </code></pre>
-<p><strong>Tags must close</strong></p>
-<p>In HTML, you <em>should</em> close your tags, but its not mandatory. JSX requires that tags close. This means that an opening tag <code>&lt;div&gt;</code> should have a corresponding closing tag <code>&lt;/div&gt;</code>. Some elements use self-closing tags using an ending slash like <code>&lt;img /&gt;</code> and <code>&lt;br /&gt;</code>.</p>
-<p><strong>Reserved words are renamed.</strong> The HTML attributes &quot;class&quot; and &quot;for&quot; are reserved words in JavaScript. These had to be renamed to &quot;className&quot; and &quot;htmlFor&quot; respectively.</p>
-<pre><code class="language-jsx">&lt;label className=&quot;label&quot; htmlFor=&quot;name-input&quot;&gt;Name:&lt;/input&gt;
-&lt;input className=&quot;input&quot; id=&quot;name-input&quot; /&gt;
+<p>The above is valid JSX too, but we would say that the <code>href</code> <em>prop</em> is being passed into the anchor element.</p>
+<h4>Tags must close</h4>
+<p>In HTML, some elements are self-closing and don’t need a closing tag.</p>
+<p>For example: the <code>img</code> element is a self-closing element:</p>
+<pre><code class="language-html">&lt;img alt=&quot;&quot; src=&quot;image.png&quot;&gt;
 </code></pre>
-<p>As we go through this training, you'll learn additional differences.</p>
+<p>In JSX, no elements are self-closing, which means that <em>all</em> elements must have a closing tag, like the <code>img</code> below:</p>
+<pre><code class="language-tsx">&lt;img alt=&quot;&quot; src=&quot;image.png&quot; /&gt;
+</code></pre>
+<h4>Writing comments</h4>
+<p>In HTML, comments are written using the <code>&lt;!-- --&gt;</code> syntax, seen below.
+Anything inside these comment tags is ignored by the browser and is not rendered or executed.</p>
+<pre><code class="language-html">&lt;p&gt;
+  &lt;!-- This is an HTML comment --&gt;
+  Visible content
+&lt;/p&gt;
+</code></pre>
+<p>In JSX, comments follow the JavaScript comment syntax. Since JSX is transpiled into JavaScript,
+you must use JavaScript’s {/* */} syntax for comments within the JSX part of your code.</p>
+<pre><code class="language-tsx">&lt;p&gt;
+  {/* This is a JSX comment */}
+  Visible content
+&lt;/p&gt;
+</code></pre>
+<h4>Reserved words are renamed</h4>
+<p>The HTML attributes <code>class</code> and <code>for</code> are reserved words in JavaScript.
+In JSX, these are renamed to <code>className</code> and <code>htmlFor</code>, respectively.</p>
+<pre><code class="language-tsx">&lt;p className=&quot;form-field&quot;&gt;
+  &lt;label htmlFor=&quot;name-input&quot;&gt;Name:&lt;/label&gt;
+  &lt;input id=&quot;name-input&quot; /&gt;
+&lt;/p&gt;
+</code></pre>
+<p>As we go through this training, you’ll learn additional differences.</p>
 <h3>Setup 1</h3>
-<p>We've created an assets package with images and CSS you'll need to build the application. Install the <code>place-my-order-assets</code> package.</p>
+<p>We've created an assets package with images and CSS you’ll need to build the application. Install the <code>place-my-order-assets</code> package.</p>
 <p>✏️ Run:</p>
-<pre><code class="language-shell">npm install place-my-order-assets
+<pre><code class="language-shell">npm install place-my-order-assets@0
 </code></pre>
 <p>✏️ Remove the contents of the <strong>src/App.css</strong> file so it’s completely blank.</p>
 <p>✏️ Update <strong>src/index.css</strong> to be:</p>
@@ -571,8 +629,7 @@ covering CanJS core libraries.">
 </code></pre>
  <div line-highlight="1,only"></div>
 <h3>Verify 1</h3>
-<p>You should have already installed Vitest in the previous section. If you haven't done so already, create a test file at <code>src/App.test.tsx</code> and copy the following tests into your test file.</p>
-<p>✏️ Copy:</p>
+<p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
@@ -625,13 +682,18 @@ describe('App component', () =&gt; {
 <p>✏️ Run:</p>
 <pre><code class="language-shell">npm run test
 </code></pre>
-<p>Note that we won't be able to write an automated test that verifies the styles and images appear as desired, so you will have to test those manually.</p>
+<p>Note that we won’t be able to write an automated test that verifies the styles and images appear as desired, so you will have to test those manually.</p>
 <h3>Exercise 1</h3>
 <p>Take the below HTML and convert it to JSX:</p>
 <pre><code class="language-html">&lt;div class=&quot;restaurants&quot;&gt;
     &lt;h2 class=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
     &lt;div class=&quot;restaurant&quot;&gt;
-        &lt;img alt=&quot;&quot; src=&quot;/node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot; width=&quot;100&quot; height=&quot;100&quot;&gt;
+        &lt;img
+            alt=&quot;&quot;
+            src=&quot;/node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;
+            width=&quot;100&quot;
+            height=&quot;100&quot;
+        &gt;
         &lt;h3&gt;&lt;!-- NAME GOES HERE --&gt;&lt;/h3&gt;
         &lt;div class=&quot;address&quot;&gt;
             230 W Kinzie Street
@@ -657,7 +719,7 @@ describe('App component', () =&gt; {
 <h3>Solution 1</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>✏️ Update <strong>src/App.tsx</strong></p>
+<p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import './App.css'
 
 function App() {
@@ -666,7 +728,12 @@ function App() {
       &lt;div className=&quot;restaurants&quot;&gt;
         &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
         &lt;div className=&quot;restaurant&quot;&gt;
-          &lt;img alt=&quot;&quot; src=&quot;/node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+          &lt;img
+            alt=&quot;&quot;
+            src=&quot;/node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;
+            width=&quot;100&quot;
+            height=&quot;100&quot;
+          /&gt;
           &lt;h3&gt;{/* NAME GOES HERE */}&lt;/h3&gt;
           &lt;div className=&quot;address&quot;&gt;
             230 W Kinzie Street
@@ -694,44 +761,49 @@ function App() {
 export default App
 
 </code></pre>
- <div line-highlight="6-29,only"></div>
+ <div line-highlight="6-34,only"></div>
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-solution?file=src/App.tsx">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Objective 2: Loops in JSX</h2>
+<h2>Objective 2: Expressions and loops in JSX</h2>
+<p>Next, we want to render a list of restaurants in our application:</p>
+<p><img alt="Screenshot of the same web application interface from Objective 1, except now there are multiple restaurants listed in the UI." src="../static/img/react-vite/03-intro-to-jsx/02-solution.png" style="max-width: 640px;"/></p>
+<p>To do so, we‘ll learn about:</p>
 <ul>
-<li>JSX Interpolation</li>
-<li>Loops in JSX</li>
+<li>Using JavaScript variables and expressions in JSX</li>
+<li>Working with conditionals and loops in JSX</li>
 </ul>
-<h3>JSX Interpolation</h3>
+<h3>Using JavaScript variables and expressions in JSX</h3>
 <p>JSX is dynamic. You can insert values from variables and objects into your JSX as we did with the image URL in the previous section.</p>
-<pre><code class="language-jsx">const name = 'Bitovi';
+<pre><code class="language-tsx">const name = 'Bitovi'
 
-&lt;div className=&quot;button primary&quot;&gt;Welcome to {name}!&lt;/div&gt;;
+&lt;p&gt;Welcome to {name}!&lt;/p&gt;
 </code></pre>
 <p>In the code above, use the <code>{name}</code> syntax to tell JSX that to render the value stored in the <code>name</code> variable (i.e. <code>&quot;Bitovi&quot;</code>) into our view.</p>
 <p>You can take this a step further by interpolating multiple values, and using JavaScript functions to transform data on the fly. Anything that goes inside <code>{}</code> is executed as normal JavaScript. These are the same rules as the brackets on a prop: any JavaScript expression is valid inside the curly brackets.</p>
-<pre><code class="language-jsx">const person = {
+<pre><code class="language-tsx">const person = {
   name: 'mike',
   profession: 'programmer',
 };
 
-&lt;div className=&quot;button primary&quot;&gt;
-  &lt;h1&gt;Hi I'm {person.name.toUpperCase()}!&lt;/h1&gt;
-  &lt;p&gt;I'm a {person.profession} living in Philadelphia&lt;/p&gt;
-&lt;/div&gt;;
+const content = (
+  &lt;main&gt;
+    &lt;h1&gt;Hi I'm {person.name.toUpperCase()}!&lt;/h1&gt;
+    &lt;p&gt;I'm a {person.profession} living in Philadelphia.&lt;/p&gt;
+  &lt;/main&gt;
+);
 </code></pre>
 <div line-highlight='7,8'></div>
-<h3>JSX is JavaScript</h3>
-<p>Remember, JSX is simply an alternative syntax for normal JavaScript—it is not magic. This means that you can use JSX as a normal value.</p>
-<pre><code class="language-jsx">const header = &lt;h1&gt;Hello World&lt;/h1&gt;;
+<h3>JSX is a syntax extension for JavaScript</h3>
+<p>Remember, JSX is an alternative syntax for normal JavaScript—it is not magic. This means that you can use JSX as a normal value.</p>
+<pre><code class="language-tsx">const header = &lt;h1&gt;Hello World&lt;/h1&gt;;
 const body = &lt;p&gt;My name is {'Mike'}&lt;/p&gt;;
 
 function MyPage() {
   return (
-    &lt;div&gt;
+    &lt;main&gt;
       {header}
       {body}
-    &lt;/div&gt;
+    &lt;/main&gt;
   );
 }
 
@@ -739,24 +811,24 @@ ReactDOM.render(&lt;MyPage /&gt;, document.getElementById('root'));
 </code></pre>
 <div class='codepen' data-codepen='react'></div>
 <p>If rendered, <code>page</code> will output:</p>
-<pre><code class="language-html">&lt;div&gt;
+<pre><code class="language-html">&lt;main&gt;
   &lt;h1&gt;Hello World&lt;/h1&gt;
   &lt;p&gt;My name is Mike&lt;/p&gt;
-&lt;/div&gt;
+&lt;/main&gt;
 </code></pre>
 <p>If this surprises you, remember that underneath the syntactic sugar, JSX is nothing more than <code>React.createElement</code> calls:</p>
-<pre><code class="language-js">const header = React.createElement('h1', null, 'Hello World');
+<pre><code class="language-tsx">const header = React.createElement('h1', null, 'Hello World');
 const body = React.createElement('p', null, `Hello ${'Mike'}`);
 
-const page = React.createElement('div', null, [header, body]);
+const page = React.createElement('main', null, [header, body]);
 </code></pre>
-<h3>Conditions and loops</h3>
+<h3>Working with conditionals and loops in JSX</h3>
 <p>Only expressions which return a value may be interpolated. This includes static values, variables and calls to functions. It does not include control-flow statements such as <code>if</code>, <code>case</code>, <code>for</code>, <code>while</code>. These can either be abstracted behind a function, which is then called within the JSX or be re-written in a JSX-friendly way.</p>
 <p>To put it simply: only things that you could pass into a function can be used inside the brackets.</p>
-<h3>Using Conditions</h3>
+<h4>Using conditionals</h4>
 <p>Conditions can be re-written using the ternary operator.</p>
-<pre><code class="language-jsx">// This does not work
-&lt;div&gt;
+<pre><code class="language-tsx">// This does not work
+&lt;p&gt;
   {
     if (a === b) { // Control flow does not belong in JSX
       &quot;a and b are equal&quot;
@@ -764,45 +836,103 @@ const page = React.createElement('div', null, [header, body]);
       &quot;a and b are different&quot;
     }
   }
-&lt;/div&gt;
+&lt;/p&gt;
 
 // But the same can be accomplished with ternaries
-&lt;div&gt;
+&lt;p&gt;
   {a === b // Ternaries are expressions. They return a value.
     ? 'a and b are equal'
     : 'a and b are different'}
-&lt;/div&gt;
+&lt;/p&gt;
 </code></pre>
 <p>If ternaries seem excessive for any particular case, you can write all your logic in a separate function and invoke it from within JSX.</p>
-<pre><code class="language-jsx">&lt;div&gt;{outputResult()}&lt;/div&gt;
+<pre><code class="language-tsx">function outputResult() {
+  return a === b
+    ? 'a and b are equal'
+    : 'a and b are different';
+}
+
+&lt;p&gt;{outputResult()}&lt;/p&gt;
 </code></pre>
-<h3>Using Loops</h3>
-<pre><code class="language-jsx">// This does not work
-&lt;div&gt;
-  {
-    for (let n of [1, 2, 3, 4]) { // Control flow does not belong in JSX
-      &lt;span&gt;n&lt;/span&gt;
+<h4>Using loops</h4>
+<p>JSX does not support traditional loop statements like <code>for</code>, <code>while</code>, or <code>do...while</code> directly within JSX.</p>
+<p>The example below will <strong>not</strong> work:</p>
+<pre><code class="language-tsx">const names = ['Alfa', 'Bravo', 'Charlie'];
+
+// This does not work
+const content = (
+  &lt;ul&gt;
+    {
+      // Control flow does not belong in JSX
+      for (let name of names) {
+        &lt;li&gt;name&lt;/li&gt;
+      }
     }
-  }
-&lt;/div&gt;
+  &lt;/ul&gt;
+);
 </code></pre>
-<p>If you want to iterate within JSX, use methods such as <code>Array.map</code>, <code>Array.filter</code> and <code>Array.reduce</code>:</p>
-<div line-highlight='3'></div>
-<p><em>✏️ Note: Due to how React stores elements in memory, list items require a stable <code>key</code> to identify them in the Virtual DOM. You can learn more in the <a href="https://react.dev/learn/rendering-lists#why-does-react-need-keys">React docs</a></em></p>
-<pre><code class="language-jsx">// Mapping values to JSX elements
-&lt;div&gt;
-  {[1, 2, 3, 4].map((n, index) =&gt; (
-    &lt;span key={index}&gt;{n}&lt;/span&gt;
-  ))}
-&lt;/div&gt;
+<p>The <code>Array.map()</code> function is the most common and idiomatic way to render lists in JSX.
+It’s especially useful for rendering arrays of data as HTML elements.</p>
+<pre><code class="language-tsx">const names = ['Alfa', 'Bravo', 'Charlie'];
+
+// This will work
+const content = (
+  &lt;ul&gt;
+    {names.map((name) =&gt; {
+      return (
+        &lt;li key={name}&gt;
+          {name}
+        &lt;/li&gt;
+      );
+    })}
+  &lt;/ul&gt;
+);
 </code></pre>
-<p>Mapping over the array above will render as the following HTML.</p>
-<pre><code class="language-html">&lt;div&gt;
-  &lt;span&gt;1&lt;/span&gt;
-  &lt;span&gt;2&lt;/span&gt;
-  &lt;span&gt;3&lt;/span&gt;
-  &lt;span&gt;4&lt;/span&gt;
-&lt;/div&gt;
+<p>That will produce the following HTML:</p>
+<pre><code class="language-html">&lt;ul&gt;
+  &lt;li&gt;Alfa&lt;/li&gt;
+  &lt;li&gt;Bravo&lt;/li&gt;
+  &lt;li&gt;Charlie&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+<p>There are lots of ways to iterate over arrays in JavaScript with functions like <code>Array.map</code>, <code>Array.filter</code>, and <code>Array.reduce</code>.
+These all work in JSX!</p>
+<h5>The <code>key</code> prop</h5>
+<p>Did you notice the <code>key</code> prop in the example above?</p>
+<p>When rendering a list of elements, React needs a way to uniquely identify each element. This helps React
+understand which items have changed, been added, or removed, which is crucial for efficient re-rendering.</p>
+<p>Each key should be a unique identifier among siblings. Keys should be stable (not change over time), predictable
+(generated in a predictable manner), and unique (no two elements in the list should have the same key).</p>
+<p>It’s often convenient to use IDs from your data as keys. For example, if our data had <code>id</code> properties for each name,
+then we could use those as the <code>key</code> prop, even if there were duplicate names in the array:</p>
+<pre><code class="language-tsx">const names = [
+  { id: '550e8400', name: 'Alfa' },
+  { id: 'f47ac10b', name: 'Bravo' },
+  { id: '5a3c9dd9', name: 'Alfa' },
+  { id: '3d3f6f4d', name: 'Charlie' },
+  { id: 'aab3fcba', name: 'Delta' },
+];
+
+const content = (
+  &lt;ul&gt;
+    {names.map(({ id, name }) =&gt; {
+      return (
+        &lt;li key={id}&gt;
+          {name}
+        &lt;/li&gt;
+      );
+    })}
+  &lt;/ul&gt;
+);
+</code></pre>
+<p>That will produce the following HTML:</p>
+<pre><code class="language-html">&lt;ul&gt;
+  &lt;li&gt;Alfa&lt;/li&gt;
+  &lt;li&gt;Bravo&lt;/li&gt;
+  &lt;li&gt;Alfa&lt;/li&gt;
+  &lt;li&gt;Charlie&lt;/li&gt;
+  &lt;li&gt;Delta&lt;/li&gt;
+&lt;/ul&gt;
 </code></pre>
 <h3>Setup 2</h3>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
@@ -849,7 +979,12 @@ function App() {
       &lt;div className=&quot;restaurants&quot;&gt;
         &lt;h2 className=&quot;page-header&quot;&gt;Restaurants&lt;/h2&gt;
         &lt;div className=&quot;restaurant&quot;&gt;
-          &lt;img alt=&quot;&quot; src=&quot;/node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt;
+          &lt;img
+            alt=&quot;&quot;
+            src=&quot;/node_modules/place-my-order-assets/images/4-thumbnail.jpg&quot;
+            width=&quot;100&quot;
+            height=&quot;100&quot;
+          /&gt;
           &lt;h3&gt;{/* NAME GOES HERE */}&lt;/h3&gt;
           &lt;div className=&quot;address&quot;&gt;
             230 W Kinzie Street
@@ -944,10 +1079,10 @@ describe('App component', () =&gt; {
 <p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/02-problem?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/02-problem?file=src/App.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
 <h3>Exercise 2</h3>
 <ul>
-<li><p>Set the H1 tag to &quot;Ordering food has never been easier&quot;</p></li>
-<li><p>Display a list of restaurants: 'Cheese Curd City' &amp; 'Poutine Palace'</p></li>
-<li><p>Use the proper <code>ul</code> and <code>li</code> tags to create the list</p></li>
-<li><p>List items should have a unique key</p></li>
+<li>Update the existing JSX to render the list of restaurants</li>
+<li>Use <code>Array.map()</code> to iterate over the <code>restaurants.data</code></li>
+<li>Make sure to use <code>key</code> inside the <code>.map()</code></li>
+<li>Render <code>&lt;p&gt;No restaurants.&lt;/p&gt;</code> if, hypothetically, there weren’t any restaurants.</li>
 </ul>
 <h3>Solution 2</h3>
 <p><details>
@@ -1076,7 +1211,7 @@ export default App
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/react-vite/03-intro-to-jsx/intro-to-jsx.md"},"description":"Learn how to use JSX to define your UI in React. \n","name":"learn-react/intro-to-jsx","title":"Introduction to JSX","type":"page","parent":"learn-react","order":3,"outline":{"depth":3},"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/react-vite/03-intro-to-jsx/intro-to-jsx.md"},"description":"Learn how to use JSX to define your UI in React. \n","name":"learn-react/intro-to-jsx","title":"Introduction to JSX","type":"page","parent":"learn-react","order":3,"outline":{"depth":2},"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

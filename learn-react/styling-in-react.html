@@ -247,7 +247,7 @@
            						">
 						<a class="page"
 							href="stateful-hooks.html"
-							title="Work with React&#x27;s useState Hook to manage a component&#x27;s state.">
+							title="Work with React’s useState Hook to manage a component’s state.">
 							Managing State in React
 						</a>
 						
@@ -537,7 +537,7 @@ covering CanJS core libraries.">
 <li>Apply styles to a component</li>
 </ul>
 <h2>Objective: Applying style with CSS Modules</h2>
-<p>Now that we've learned to apply styling in React with CSS Modules, it's time to practice by styling a link in the Home component. You'll bring in a <code>Link</code> component from React Router.</p>
+<p>Now that we've learned to apply styling in React with CSS Modules, it’s time to practice by styling a link in the Home component. You’ll bring in a <code>Link</code> component from React Router.</p>
 <h3>Styling options in React applications</h3>
 <p>There is no prescribed approach for styling React apps. It’s entirely possible to
 style components using regular CSS. This approach works fine for many applications,
@@ -649,7 +649,7 @@ structure for a BlogPost component will look like the following:</p>
 <p>Note that CSS Modules cannot rename HTML tags, so all of your styling should use
 classes to avoid unexpected styling bugs. The following will apply to all <code>img</code>
 elements in the project and should be avoided.</p>
-<pre><code class="language-CSS">/* Don't do this with CSS Modules as tag names can not be randomized */
+<pre><code class="language-CSS">/* Don’t do this with CSS Modules as tag names can not be randomized */
 img {
   float: right;
 }
@@ -657,7 +657,7 @@ img {
 <h3>Importing and applying styles</h3>
 <p>During the build process, the CSS classes will be randomized and added to a global stylesheet. The randomized class names are imported into components as an object where the key is the original class and the value is the new, randomized string.</p>
 <p>Here’s an example of what the JS object imported from <code>BlogPost.module.css</code> might look like:</p>
-<pre><code class="language-js">{ avatar: &quot;avatar_R8f2&quot; }
+<pre><code class="language-tsx">{ avatar: &quot;avatar_R8f2&quot; }
 </code></pre>
 <p>In order to add the <code>.avatar</code> class to a component, import the CSS Modules
 styling object and apply the class using the original class name as the key. Note
@@ -873,7 +873,7 @@ export default Home
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/07-styling-in-react/01-solution?file=src/pages/Home/Home.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/07-styling-in-react/01-solution?file=src/pages/Home/Home.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Next steps</h2>
-<p>In the next section, we'll learn to manage state.</p>
+<p>In the next section, we’ll learn to manage state.</p>
 
 </section>
 

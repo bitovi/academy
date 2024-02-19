@@ -247,7 +247,7 @@
            						">
 						<a class="page"
 							href="stateful-hooks.html"
-							title="Work with React&#x27;s useState Hook to manage a component&#x27;s state.">
+							title="Work with React’s useState Hook to manage a component’s state.">
 							Managing State in React
 						</a>
 						
@@ -534,7 +534,7 @@ covering CanJS core libraries.">
 <li>Name starts with a capital letter</li>
 <li>Returns something renderable (JSX)</li>
 </ol>
-<pre><code class="language-jsx">function App() {
+<pre><code class="language-tsx">function App() {
   return (
     &lt;div&gt;
       Some page content
@@ -543,13 +543,13 @@ covering CanJS core libraries.">
 }
 </code></pre>
 <p>In React, we call this a component. When you create a component in React, you are creating building blocks that can be composed, reordered, and reused much like HTML elements.</p>
-<p>React makes it relatively straightforward to create new components. Let's learn to build our own.</p>
+<p>React makes it relatively straightforward to create new components. Let’s learn to build our own.</p>
 <h2>Objective: Create a React component</h2>
 <h3>Component structure</h3>
-<p>Let's start by creating a component from a commonly reused element, the button.</p>
-<p>First, our component names must start with a capital letter, so we can call this <code>Button</code>. While its not required, the common practice is to use PascalCase when naming components so longer component names will look like <code>IconButton</code>.</p>
+<p>Let’s start by creating a component from a commonly reused element, the button.</p>
+<p>First, our component names must start with a capital letter, so we can call this <code>Button</code>. While it’s not required, the common practice is to use PascalCase when naming components so longer component names will look like <code>IconButton</code>.</p>
 <p>Second, our component must return either <code>null</code> or something renderable, like JSX. The return value of our components is almost always JSX, though JavaScript primitives like <code>string</code> and <code>number</code> are also valid. Components cannot return complex types like arrays or objects.</p>
-<pre><code class="language-jsx">function Button() {
+<pre><code class="language-tsx">function Button() {
   return (
     &lt;div className=&quot;button primary&quot;&gt;
       &lt;button&gt;click me&lt;/button&gt;
@@ -560,7 +560,7 @@ covering CanJS core libraries.">
 ReactDOM.render(&lt;Button /&gt;, document.getElementById('root'));
 </code></pre>
 <p>Components are like small containers which can be reused throughout your application. The <code>Button</code> component above returns JSX and could then be rendered and reused by another component like <code>App</code> below.</p>
-<pre><code class="language-jsx">function App() {
+<pre><code class="language-tsx">function App() {
   return (
     &lt;div&gt;
       &lt;Button /&gt;
@@ -572,8 +572,8 @@ ReactDOM.render(&lt;Button /&gt;, document.getElementById('root'));
 </code></pre>
 <h3>React components are just functions</h3>
 <p>The JSX syntax allows function components to look like HTML, but underneath they are still functions. The return of each component is unique and you can use the same component multiple times.</p>
-<p>Components are just fancy functions. While you shouldn't do the following, you could.</p>
-<pre><code class="language-jsx">function App() {
+<p>Components are just fancy functions. While you shouldn’t do the following, you could.</p>
+<pre><code class="language-tsx">function App() {
   return (
     &lt;div&gt;
       {Button()}
@@ -585,7 +585,7 @@ ReactDOM.render(&lt;Button /&gt;, document.getElementById('root'));
 </code></pre>
 <p>Now you're ready to create your first component.</p>
 <h3>Setup</h3>
-<p>It's best practice to create a new folder that will contain all of the related files for that component, including test and CSS files.</p>
+<p>It’s best practice to create a new folder that will contain all of the related files for that component, including test and CSS files.</p>
 <p>✏️ Create <strong>src/pages</strong> (folder)</p>
 <p>✏️ Create <strong>src/pages/RestaurantList/</strong> (folder)</p>
 <p>✏️ Create <strong>src/pages/RestaurantList/index.ts</strong> and update it to be:</p>
@@ -684,7 +684,7 @@ describe('App Component', () =&gt; {
 </code></pre>
  <div line-highlight="3,7-11,13-15,17,only"></div>
 <h3>Exercise</h3>
-<p>Our <code>App</code> component can only show our home page content. Eventually, we'll want to show other page content. Prepare now by moving all of the JSX in <code>App</code> to a new component called <code>Home</code>.</p>
+<p>Our <code>App</code> component can only show our home page content. Eventually, we’ll want to show other page content. Prepare now by moving all of the JSX in <code>App</code> to a new component called <code>Home</code>.</p>
 <p>Once the <code>Home</code> component is complete, add <code>&lt;Home /&gt;</code> to the JSX response of <code>App</code>.</p>
 <h3>Solution</h3>
 <p><details>
@@ -787,7 +787,7 @@ export default RestaurantList
 <p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/04-components/01-solution?file=src/App.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/04-components/01-solution?file=src/App.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Next steps</h2>
-<p>Next we'll learn to pass arguments to our components through props.</p>
+<p>Next we’ll learn to pass arguments to our components through props.</p>
 
 </section>
 

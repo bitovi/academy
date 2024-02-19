@@ -248,7 +248,7 @@
            						">
 						<a class="page"
 							href="stateful-hooks.html"
-							title="Work with React&#x27;s useState Hook to manage a component&#x27;s state.">
+							title="Work with React’s useState Hook to manage a component’s state.">
 							Managing State in React
 						</a>
 						
@@ -556,7 +556,7 @@ see the Home content on the homepage.</p>
 <h3>createBrowserRouter</h3>
 <p>React Router works by matching the segments of the browser's URL path to
 components, i.e. each segment of the URL's path corresponds to a particular
-React component based on the segment's value. The mapping of a segment's value
+React component based on the segment’s value. The mapping of a segment’s value
 to a component is done through a collection of <code>RouteObject</code> items that are
 passed to the router when it is initialized.</p>
 <p>The <code>createBrowserRouter</code> function is a key part of React Router. This function is
@@ -610,7 +610,7 @@ it typically contains the following properties:</p>
 </ul>
 <p>The second argument to <code>createBrowserRouter</code> is an optional configuration object.
 In the code above, it sets the <code>basename</code>, which is the base URL for all locations.
-Here, it's dynamically set based on the environment variable <code>import.meta.env.BASE_URL</code>.
+Here, it’s dynamically set based on the environment variable <code>import.meta.env.BASE_URL</code>.
 This is useful for scenarios where your application is served from a subdirectory on your server.</p>
 <h3>RouterProvider</h3>
 <p>Next, we can use <code>RouterProvider</code> to render our <code>&lt;App&gt;</code> component.
@@ -674,9 +674,9 @@ component.</p>
 <p>The <code>Outlet</code> component is used within a parent route component to render its
 child route components. Think of it as a marker that tells React Router,
 “Insert the child route component here.”</p>
-<p>When you define nested routes in your route configuration above, you don't
-immediately specify where in the parent component's JSX the child components
-should appear. Instead, you use <code>Outlet</code> in the parent component's JSX as a
+<p>When you define nested routes in your route configuration above, you don’t
+immediately specify where in the parent component’s JSX the child components
+should appear. Instead, you use <code>Outlet</code> in the parent component’s JSX as a
 placeholder for where the matched child route component should be rendered.</p>
 <p>In the example below, the child component (<code>&lt;AboutPage&gt;</code> or <code>&lt;HomePage&gt;</code> from
 our <code>createBrowserRouter</code> example) would be rendered inside the <code>&lt;main&gt;</code> element:</p>

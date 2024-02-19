@@ -244,7 +244,7 @@
            						">
 						<a class="page"
 							href="stateful-hooks.html"
-							title="Work with React&#x27;s useState Hook to manage a component&#x27;s state.">
+							title="Work with React’s useState Hook to manage a component’s state.">
 							Managing State in React
 						</a>
 						
@@ -1250,7 +1250,7 @@ export default RestaurantList
 You might find yourself repeating the same logic in different components—for
 example, fetching data from an API, handling form input, or managing a subscription.
 By refactoring this logic into a custom Hook, you can easily reuse this functionality
-across multiple components, keeping your code DRY (Don't Repeat Yourself).</p>
+across multiple components, keeping your code DRY (Don’t Repeat Yourself).</p>
 <p><strong>Separation of concerns:</strong> Custom Hooks allow you to separate complex logic from the
 component logic. This makes your main component code cleaner and more focused on
 rendering UI, while the custom Hook handles the business logic or side effects.
@@ -2596,7 +2596,7 @@ describe('Hooks', () =&gt; {
 <li>Update the <code>useCities</code> and <code>useStates</code> Hooks to use the <code>data</code> and <code>error</code> returned from <code>apiRequest</code>.</li>
 </ul>
 <p>Hint: Use the new <code>stringifyQuery</code> function to convert an object of query parameters to a string:</p>
-<pre><code class="language-js">stringifyQuery({
+<pre><code class="language-tsx">stringifyQuery({
     param1: &quot;value1&quot;,
     param2: &quot;value2&quot;,
 })

@@ -247,7 +247,7 @@
            						">
 						<a class="page"
 							href="stateful-hooks.html"
-							title="Work with React&#x27;s useState Hook to manage a component&#x27;s state.">
+							title="Work with React’s useState Hook to manage a component’s state.">
 							Managing State in React
 						</a>
 						
@@ -536,7 +536,7 @@ covering CanJS core libraries.">
 <p>In this section, we will:</p>
 <ul>
 <li>Understand what props are and how they work in React</li>
-<li>Define a component's props using TypeScript interfaces</li>
+<li>Define a component’s props using TypeScript interfaces</li>
 <li>Use props within a child component</li>
 <li>Pass props from a parent component to a child component</li>
 </ul>
@@ -546,15 +546,15 @@ component to a child component. Since functional React components are “just”
 JavaScript functions, you can think of props like the arguments you pass to
 a function.</p>
 <p>To receive props, functional components must implement a React API that
-allows an optional argument of type <code>object</code> that's named &quot;props&quot;.</p>
+allows an optional argument of type <code>object</code> that’s named &quot;props&quot;.</p>
 <p>The properties on the props object—individually called a “prop”—can include
 whatever data the child component needs to make
 the component work. The property values can be any type, including functions and
 other React components.</p>
 <p>We're using TypeScript in our project so we can create an <code>interface</code> for props
-and use it in the definition of a functional component. Let's create a <code>SubmitButton</code>
+and use it in the definition of a functional component. Let’s create a <code>SubmitButton</code>
 component to see props in action:</p>
-<pre><code class="language-jsx">interface SubmitButtonProps {
+<pre><code class="language-tsx">interface SubmitButtonProps {
   label: string;
   onClick: () =&gt; void;
 }
@@ -570,7 +570,7 @@ uses these props to display a button with a label and a click action.</p>
 <p>The example above illustrates how props are passed to component as an argument.
 However, more commonly (and for the rest of this course) you will see props
 destructured in the function parameters:</p>
-<pre><code class="language-jsx">interface SubmitButtonProps {
+<pre><code class="language-tsx">interface SubmitButtonProps {
   label: string;
   onClick: () =&gt; void;
 }
@@ -582,7 +582,7 @@ const SubmitButton: React.FC&lt;SubmitButtonProps&gt; = ({ label, onClick }) =&g
 <div line-highlight='6 only'></div>
 <h3>Passing component props</h3>
 <p>Now, how do we use this <code>SubmitButton</code>?
-In <a href="intro-to-jsx.html">JSX syntax</a> a component's props look like an HTML tag's
+In <a href="intro-to-jsx.html">JSX syntax</a> a component’s props look like an HTML tag's
 &quot;attributes&quot; and accept a value.</p>
 <ul>
 <li>If a prop's value type is a string then the prop value is set using quotes.</li>
@@ -593,7 +593,7 @@ example below, the <code>label</code> prop accepts a string. so the value is sur
 by double quotes. The <code>onClick</code> prop accepts a function, so the function value
 is surrounded by braces.</p>
 <p>Here’s how to use our <code>SubmitButton</code>:</p>
-<pre><code class="language-jsx">&lt;SubmitButton
+<pre><code class="language-tsx">&lt;SubmitButton
   label=&quot;Activate&quot;
   onClick={() =&gt; alert(&quot;Activated!&quot;)}
 /&gt;

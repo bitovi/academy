@@ -244,7 +244,7 @@
            						">
 						<a class="page"
 							href="stateful-hooks.html"
-							title="Work with React&#x27;s useState Hook to manage a component&#x27;s state.">
+							title="Work with React’s useState Hook to manage a component’s state.">
 							Managing State in React
 						</a>
 						
@@ -553,7 +553,7 @@ variable.</p>
 <p>If an <code>&lt;input&gt;</code> only has the <code>value</code> or <code>onChange</code> prop set, React will log a warning to the
 console in development mode.</p>
 </blockquote>
-<pre><code class="language-jsx">const ControlledInput: React.FC = () =&gt; {
+<pre><code class="language-tsx">const ControlledInput: React.FC = () =&gt; {
   const [name, setName] = useState(&quot;&quot;);
   return (
     &lt;label&gt;Name: 
@@ -562,12 +562,12 @@ console in development mode.</p>
   )
 }
 </code></pre>
-<p>Controlled components aren't allowed to have a value of <code>null</code> or <code>undefined</code>. To set an input with
+<p>Controlled components aren’t allowed to have a value of <code>null</code> or <code>undefined</code>. To set an input with
 &quot;no value,&quot; use an empty string: <code>&quot;&quot;</code>.</p>
 <h3>Working with events</h3>
 <p>In the previous example, the input prop <code>onChange</code> had its value set to a function known as an
 &quot;event handler.&quot;</p>
-<pre><code class="language-jsx">onChange={(event) =&gt; setName(event.target.value)}
+<pre><code class="language-tsx">onChange={(event) =&gt; setName(event.target.value)}
 </code></pre>
 <p>The <code>onChange</code> prop requires a function that implements the <code>ChangeEventHandler</code> interface. When an
 event handler is called, it receives an argument named &quot;event&quot;, which is a <code>SyntheticEvent</code> defined
@@ -575,28 +575,28 @@ by React. While a <code>SyntheticEvent</code> is similar to a native DOM <code>E
 properties, they are not identical.</p>
 <p>A <code>ChangeEvent</code> — derived from <code>SyntheticEvent</code> — is the event argument provided to a
 <code>ChangeEventHandler</code>. A <code>ChangeEvent</code> always has a property named <code>target</code> that references the
-component that emitted the event. As you can see above, it's possible to get the <code>target</code>'s new
+component that emitted the event. As you can see above, it’s possible to get the <code>target</code>'s new
 value using its <code>value</code> property.</p>
-<h3>TypeScript's <code>Record</code> interface</h3>
+<h3>TypeScript’s <code>Record</code> interface</h3>
 <p>In our upcoming exercise, we want to store information in a JavaScript object. We also want to use
 TypeScript so we can constrain the types used as keys and values. TypeScript provides a handy
 interface named <code>Record</code> that we can use. <code>Record</code> is a generic interface that requires two types:
 the first is the type of the keys, and the second is the type of the values. For example, if we're
 recording the items in a list that are selected, we might capture the item's name and whether or not
-it's selected like this:</p>
-<pre><code class="language-jsx">const [selected, setSelected] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
+it’s selected like this:</p>
+<pre><code class="language-tsx">const [selected, setSelected] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
 </code></pre>
 <p>We've explicitly defined the type of <code>useState</code> as a <code>Record&lt;string, boolean&gt;</code>; all the keys must be
-strings, and all the values must be booleans. Fortunately, JavaScript's <code>object</code> implements the
-<code>Record</code> interface, so we can set the default value to an empty <code>object</code> instance. Now let's see how
+strings, and all the values must be booleans. Fortunately, JavaScript’s <code>object</code> implements the
+<code>Record</code> interface, so we can set the default value to an empty <code>object</code> instance. Now let’s see how
 we can use a <code>Record</code> to store state data.</p>
 <h3>Set state using a function</h3>
 <p>One challenge we face when using an <code>object</code> for state is that we probably need to merge the current
 state value with the new state value. Why? Imagine we have a state object that already has multiple
 keys and values, and we need to add a new key and value. Well, we're in luck! React already has a
 solution for this: the set function returned by <code>useState</code> will accept a function called an &quot;updater
-function&quot; that's passed the &quot;pending&quot; state value and returns a &quot;next&quot; state value.</p>
-<pre><code class="language-jsx">const [selected, setSelected] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
+function&quot; that’s passed the &quot;pending&quot; state value and returns a &quot;next&quot; state value.</p>
+<pre><code class="language-tsx">const [selected, setSelected] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
 setSelected((pending) =&gt; { /* Do something with the pending state value and return a next state value. */ });
 </code></pre>
 <p>In the example below, the <code>onChange</code> event handler calls <code>handleSelectedChange</code>, which accepts a
@@ -604,7 +604,7 @@ name string and a boolean. In turn, <code>handleSelectedChange</code> calls <cod
 function as the argument. In the updater function, the contents of the next state object are
 initially set by spreading the contents of the pending state object. Then the value of <code>checked</code>
 provided by the input is set on the next state value object.</p>
-<pre><code class="language-jsx">const Selected: React.FC = () =&gt; {
+<pre><code class="language-tsx">const Selected: React.FC = () =&gt; {
   const [selected, setSelected] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
 
   function handleSelectedChange(name: string, isSelected: boolean){
@@ -644,7 +644,7 @@ objects to determine if they are different. If they are <strong>different</stron
 <code>Selected</code> component; if they are the same React will do nothing.</p>
 <p>The same rules apply when state is an array, create a new array, and update the contents of the new
 array.</p>
-<pre><code class="language-jsx">// Adding an item when state (`pending`) is an array.
+<pre><code class="language-tsx">// Adding an item when state (`pending`) is an array.
 setSelectedOrders(pending =&gt; {
   const next = [...pending, newOrder];
   return next;
@@ -663,7 +663,7 @@ setUpdatedRestaurant(pending =&gt; {
 <blockquote>
 <p>Now may be a good time to brush up on how different JavaScript types are compared for equality.</p>
 </blockquote>
-<p>OK, that was a lot. Let's start making some code changes so we can select menu items for an order.</p>
+<p>OK, that was a lot. Let’s start making some code changes so we can select menu items for an order.</p>
 <h3>Setup 1</h3>
 <p>✏️ Update <strong>src/pages/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { useState } from &quot;react&quot;
@@ -870,7 +870,7 @@ describe('RestaurantOrder component', () =&gt; {
 <ul>
 <li>Add <code>newOrder</code> state so that when menu items are selected, the state will look like:</li>
 </ul>
-<pre><code class="language-ts">{
+<pre><code class="language-tsx">{
   items: {
     &quot;Menu item 1 name&quot;: 1.23,// Menu item 1 price
     &quot;Menu item 2 name&quot;: 4.56,// Menu item 2 price
@@ -1008,7 +1008,7 @@ export default RestaurantOrder
 <p></details></p>
 <h2>Objective 2: Create a reusable text field component</h2>
 <p>The order form is going to be made up of many input fields with labels. Rather than repeat multiple
-components let's compose that structure in a single component named <code>FormTextField</code>. Creating this
+components let’s compose that structure in a single component named <code>FormTextField</code>. Creating this
 component will involve using some of what we've learned from prior lessons.</p>
 <p>In this section, we will:</p>
 <ul>
@@ -1167,7 +1167,7 @@ export default FormTextField
  <div line-highlight="4-9,12-15,17-24,only"></div>
 <p></details></p>
 <h2>Objective 3: Integrate <code>FormTextField</code> into <code>RestaurantOrder</code> and submit the form</h2>
-<p>Finally we'll update the form to incorporate the <code>FormTextField</code> component so users can create and
+<p>Finally we’ll update the form to incorporate the <code>FormTextField</code> component so users can create and
 submit an order to the restaurant. We need to fill the form with input fields and handle the submit
 button.</p>
 <h3>Key concepts</h3>
