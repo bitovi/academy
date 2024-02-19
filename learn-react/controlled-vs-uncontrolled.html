@@ -569,6 +569,7 @@ console in development mode.</p>
 &quot;event handler.&quot;</p>
 <pre><code class="language-tsx">onChange={(event) =&gt; setName(event.target.value)}
 </code></pre>
+<p>TODO: Remove this explanation of <code>ChangeEvent</code>?</p>
 <p>The <code>onChange</code> prop requires a function that implements the <code>ChangeEventHandler</code> interface. When an
 event handler is called, it receives an argument named &quot;event&quot;, which is a <code>SyntheticEvent</code> defined
 by React. While a <code>SyntheticEvent</code> is similar to a native DOM <code>Event</code> and has many of the same
@@ -577,6 +578,22 @@ properties, they are not identical.</p>
 <code>ChangeEventHandler</code>. A <code>ChangeEvent</code> always has a property named <code>target</code> that references the
 component that emitted the event. As you can see above, it’s possible to get the <code>target</code>'s new
 value using its <code>value</code> property.</p>
+<h3>event.target.value</h3>
+<p>When an event occurs, such as a user typing in an input field, an <code>event</code> object is
+passed to the event handler function. This event object contains various properties
+and methods that provide information about the event.</p>
+<p>One such property is <code>target</code>, which is a reference to the DOM element that triggered
+the event. In the case of an input field, target would refer to the specific <code>&lt;input&gt;</code>
+element where the user is typing.</p>
+<p>The property <code>event.target.value</code> is particularly important when dealing with input
+fields. The value property here holds the current content of the input field. It
+represents what the user has entered or selected. When you access <code>event.target.value</code>
+in your event handler function, you’re essentially retrieving the latest input
+provided by the user. This is commonly used to update the state of the component with
+the new input value, ensuring that the component’s state is in sync with what the user
+is entering. In a TypeScript context, this process not only manages the state
+dynamically but also ensures type safety, making your code more robust and less prone
+to errors.</p>
 <h3>TypeScript’s <code>Record</code> interface</h3>
 <p>In our upcoming exercise, we want to store information in a JavaScript object. We also want to use
 TypeScript so we can constrain the types used as keys and values. TypeScript provides a handy
@@ -1108,19 +1125,20 @@ describe('FormTextField component', () =&gt; {
 <div line-highlight='10-39, only'></div>
 <h3>Exercise 2</h3>
 <ul>
-<li><code>FormTextField</code>:
+<li><p>TODO: Associate the <code>&lt;label&gt;</code> and <code>&lt;select&gt;</code> elements together using ID values provided by the <code>useId</code> Hook.</p></li>
+<li><p><code>FormTextField</code>:</p>
 <ul>
 <li>has the following props: <code>label</code>, <code>onChange</code>, <code>type</code>, and <code>value</code>.</li>
 <li>returns a <code>&lt;div&gt;</code> with the class name &quot;form-group&quot;.</li>
 <li><code>&lt;div&gt;</code> contains a <code>&lt;label&gt;</code> and <code>&lt;input&gt;</code> that are paired by a unique id</li>
 </ul></li>
-<li>The <code>&lt;label&gt;</code> will:
+<li><p>The <code>&lt;label&gt;</code> will:</p>
 <ul>
 <li>have its text set by a prop</li>
 <li>have its text positioned to the left of the input and will have a colon (:) appended</li>
 <li>include the class name &quot;control-label&quot;</li>
 </ul></li>
-<li>The <code>&lt;input&gt;</code> will:
+<li><p>The <code>&lt;input&gt;</code> will:</p>
 <ul>
 <li>have its props set by <code>FormTextField</code> props</li>
 <li>include the class name &quot;form-control&quot;</li>
