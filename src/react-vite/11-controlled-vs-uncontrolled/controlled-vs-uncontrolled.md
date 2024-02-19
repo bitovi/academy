@@ -74,7 +74,7 @@ value using its `value` property.
 In our upcoming exercise, we want to store information in a JavaScript object. We also want to use
 TypeScript so we can constrain the types used as keys and values. TypeScript provides a handy
 interface named `Record` that we can use. `Record` is a generic interface that requires two types:
-the first is the type of the keys, and the second is the type of the values. For example, if we're
+the first is the type of the keys, and the second is the type of the values. For example, if we’re
 recording the items in a list that are selected, we might capture the item's name and whether or not
 it’s selected like this:
 
@@ -91,7 +91,7 @@ we can use a `Record` to store state data.
 
 One challenge we face when using an `object` for state is that we probably need to merge the current
 state value with the new state value. Why? Imagine we have a state object that already has multiple
-keys and values, and we need to add a new key and value. Well, we're in luck! React already has a
+keys and values, and we need to add a new key and value. Well, we’re in luck! React already has a
 solution for this: the set function returned by `useState` will accept a function called an "updater
 function" that’s passed the "pending" state value and returns a "next" state value.
 

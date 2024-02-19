@@ -2,15 +2,11 @@
 @parent learn-react 5
 @outline 3
 
-@description Learn how to provide information to a component through props.
+@description Learn how to provide data to a component through props.
 
 @body
 
 ## Overview
-
-- Learn about passing data to components using props.
-
-## Objective: Use and set props
 
 In this section, we will:
 
@@ -19,23 +15,33 @@ In this section, we will:
 - Use props within a child component
 - Pass props from a parent component to a child component
 
+## Objective: Use props to make more maintainable components
+
+We’ve taken a great step to make our code more readable and our app more maintainable
+by creating the `RestaurantList` component.
+
+Let’s keep the good refactoring rolling by creating a `ListItem` component to house
+the JSX used to render each restaurant in the list.
+
 ### Using component props
 
 In React, props (short for “properties”) are how we pass data from a parent
-component to a child component. Since functional React components are “just”
+component to a child component. Since functional React components are fundamentally
 JavaScript functions, you can think of props like the arguments you pass to
 a function.
 
 To receive props, functional components must implement a React API that
-allows an optional argument of type `object` that’s named "props".
+allows an optional argument of type `object` that’s named `props`.
 
 The properties on the props object—individually called a “prop”—can include
 whatever data the child component needs to make
 the component work. The property values can be any type, including functions and
 other React components.
 
-We're using TypeScript in our project so we can create an `interface` for props
-and use it in the definition of a functional component. Let’s create a `SubmitButton`
+We’re using TypeScript in our project, so we can create an `interface` for props
+and use it in the definition of a functional component.
+
+Let’s create a `SubmitButton`
 component to see props in action:
 
 ```tsx
@@ -55,6 +61,7 @@ In this example, `SubmitButtonProps` is an interface that defines the types for
 uses these props to display a button with a label and a click action.
 
 The example above illustrates how props are passed to component as an argument.
+
 However, more commonly (and for the rest of this course) you will see props
 destructured in the function parameters:
 
@@ -73,10 +80,10 @@ const SubmitButton: React.FC<SubmitButtonProps> = ({ label, onClick }) => {
 ### Passing component props
 
 Now, how do we use this `SubmitButton`?
-In [JSX syntax](intro-to-jsx.html) a component’s props look like an HTML tag's
+In [JSX syntax](intro-to-jsx.html) a component’s props look like an HTML tag’s
 "attributes" and accept a value.
 
-- If a prop's value type is a string then the prop value is set using quotes.
+- If a prop’s value type is a string then the prop value is set using quotes.
 - Any other type of prop value is set using braces with the value inside.
 
 In the
@@ -153,4 +160,4 @@ to do this exercise in an online code editor.
 
 ## Next steps
 
-TODO
+Next, let’s [learn about routing](./routing.html) to update the URL based on the view we’re looking at, and vice versa.
