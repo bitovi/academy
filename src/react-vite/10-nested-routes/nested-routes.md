@@ -55,7 +55,7 @@ The route config for our product page could look like this:
 
 ### Nesting component folders
 
-Notice that the child page components have simple names like `<Support />` instead of `<ProductSupport />`. Assuming this component is specifically designed for the product page and will not be reused elsewhere, the component file can reside within the product page's folder. Since the files live together, longer names aren't needed and will make your JSX a little harder to read.
+Notice that the child page components have simple names like `<Support />` instead of `<ProductSupport />`. Assuming this component is specifically designed for the product page and will not be reused elsewhere, the component file can reside within the product page's folder. Since the files live together, longer names aren’t needed and will make your JSX a little harder to read.
 
 The larger directory tree should look like the following:
 
@@ -138,7 +138,7 @@ The existing test already cover routing, so no new tests are needed. Ensure the 
 
 ### Exercise 1
 
-Let's reorganize the existing `/restaurants` routes so they are nested. For this exercise, change the routing config so the restaurant list and details pages are nested under `/restaurants`.
+Let’s reorganize the existing `/restaurants` routes so they are nested. For this exercise, change the routing config so the restaurant list and details pages are nested under `/restaurants`.
 
 Refactor the router config in **src/main.tsx** to nest the restaurant routes.
 
@@ -157,7 +157,7 @@ Refactor the router config in **src/main.tsx** to nest the restaurant routes.
 
 ## Objective 2: Create the order page
 
-We learned to create nested routes, let's practice by adding another page to our application. Add the order page to the route config and add a link to it.
+We learned to create nested routes, let’s practice by adding another page to our application. Add the order page to the route config and add a link to it.
 
 <img alt="Screenshot of the Place My Order app with a nested route, displaying the “/restaurants/brunch-place/order” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/objective-2.png" style="max-width: 640px;"/>
 
@@ -200,4 +200,4 @@ Add a link to the order page inside the `ListItem` component.
 
 ## Next steps
 
-Next we'll learn to handle form data.
+Next we’ll learn to handle form data.

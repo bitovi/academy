@@ -8,15 +8,15 @@
 
 ## Overview
 
-How do you know your code is working correctly? How will you know it's still working correctly in
+How do you know your code is working correctly? How will you know it’s still working correctly in
 the future after you make changes to it? Unit testing helps by verifying that given certain inputs
 our code generates expected outputs. So far we've copied existing tests to prove that we've
-completed the exercise correctly, now let's dive in and learn about how React testing is done.
+completed the exercise correctly, now let’s dive in and learn about how React testing is done.
 
 ## Objective 1: Render a component and verify the DOM structure
 
-The most basic test is to render a component and validate the DOM that is generated. That's what
-we'll do in this first section.
+The most basic test is to render a component and validate the DOM that is generated. That’s what
+we’ll do in this first section.
 
 ### Introducing React testing-library
 
@@ -35,7 +35,7 @@ a single component: passing it props and rendering it; and validating the genera
 
 ### Rendering and verifying a component in a test
 
-Let's take a look at some code that we added in [Handling User Inputs and
+Let’s take a look at some code that we added in [Handling User Inputs and
 Forms](./controlled-vs-uncontrolled.html).
 
 @sourceref ../../../exercises/react-vite/11-controlled-vs-uncontrolled/03-problem/src/components/FormTextField/FormTextField.test.tsx
@@ -54,9 +54,9 @@ elements created by our React code.
 render(<FormTextField label="Test Label" type="text" value="" onChange={mockOnChange} />);
 ```
 
-Now it's time to see if the DOM matches what we expected to create. The React Testing Library
+Now it’s time to see if the DOM matches what we expected to create. The React Testing Library
 provides the `screen` object that allows us to select elements from the DOM. In the current scenario
-we'll use `getByLabelText` which returns the `<input>` associated by `id` with a single `<label>`
+we’ll use `getByLabelText` which returns the `<input>` associated by `id` with a single `<label>`
 that has the text "Test Label". You may have intuited that `getByLabelText` accepts a string, but it
 also accepts a regex, in this case one that matches any part of the label text and ignores case.
 
@@ -125,7 +125,7 @@ Testing Library named [user-event](https://testing-library.com/docs/user-event/i
 
 `user-event` allows you to interact with your component similarly to a user some of its methods may
 raise more than one event to do so, for example emitting a focus event then a click event. It also
-has some helpful features such as not firing a click event on an element that's hidden.
+has some helpful features such as not firing a click event on an element that’s hidden.
 
 ### Key Concepts
 
@@ -165,11 +165,11 @@ common user actions such as clicking or typing.
 
 After calling `render` we verify that the component has initially rendered the proper DOM structure.
 Since the element is not expected the `queryByText` method is appropriate to use here, this method
-will return null if the element doesn't exist. We use `expect` with the `not` property to confirm
+will return null if the element doesn’t exist. We use `expect` with the `not` property to confirm
 that the DOM does not contain the element. In most cases prefer using the testing library's API
 methods rather than, for example, asserting on whether or not the result of `queryByText` is null.
 
-Now that we know the proper initial DOM was rendered let's use `user.click()` to click on an
+Now that we know the proper initial DOM was rendered let’s use `user.click()` to click on an
 element. We pass the element to be clicked to the `click` function as its argument. Once the call to
 click resolves the DOM can be queried again to see the effect. Assuming the component code made the
 right changes the call to `getByText("In-store Options")` should return the element so it exists in

@@ -40,7 +40,7 @@ In this section, we will:
 
 React Router works by matching the segments of the browser's URL path to
 components, i.e. each segment of the URL's path corresponds to a particular
-React component based on the segment's value. The mapping of a segment's value
+React component based on the segment’s value. The mapping of a segment’s value
 to a component is done through a collection of `RouteObject` items that are
 passed to the router when it is initialized.
 
@@ -63,7 +63,7 @@ it typically contains the following properties:
 
 The second argument to `createBrowserRouter` is an optional configuration object.
 In the code above, it sets the `basename`, which is the base URL for all locations.
-Here, it's dynamically set based on the environment variable `import.meta.env.BASE_URL`.
+Here, it’s dynamically set based on the environment variable `import.meta.env.BASE_URL`.
 This is useful for scenarios where your application is served from a subdirectory on your server.
 
 ### RouterProvider
@@ -91,9 +91,9 @@ The `Outlet` component is used within a parent route component to render its
 child route components. Think of it as a marker that tells React Router,
 “Insert the child route component here.”
 
-When you define nested routes in your route configuration above, you don't
-immediately specify where in the parent component's JSX the child components
-should appear. Instead, you use `Outlet` in the parent component's JSX as a
+When you define nested routes in your route configuration above, you don’t
+immediately specify where in the parent component’s JSX the child components
+should appear. Instead, you use `Outlet` in the parent component’s JSX as a
 placeholder for where the matched child route component should be rendered.
 
 In the example below, the child component (`<AboutPage>` or `<HomePage>` from
