@@ -8,16 +8,9 @@ import { Item } from '../order.component';
 })
 export class MenuItemsComponent {
   @Input() items: Item[] = [];
-  @Output() itemsChanged: EventEmitter<Item[]> = new EventEmitter();
-  selectedItems: Item[] = [];
+  @Output() itemChanged: EventEmitter<Item> = new EventEmitter();
 
-  updateItems(item: Item): void {
-    const index = this.selectedItems.indexOf(item);
-    if (index > -1) {
-      this.selectedItems.splice(index, 1);
-    } else {
-      this.selectedItems.push(item);
-    }
-    this.itemsChanged.emit(this.selectedItems);
+  updateItem(item: Item): void {
+    this.itemChanged.emit(item);
   }
 }

@@ -103,7 +103,7 @@ export class OrderComponent implements OnInit, OnDestroy {
       items.push(item);
     }
 
-    this.orderForm.controls.items.setValue(items);
+    // TO-DO: UPDATE ITEMS FORMCONTROL WITH ITEMS VALUE
   }
 
   onChanges(): void {

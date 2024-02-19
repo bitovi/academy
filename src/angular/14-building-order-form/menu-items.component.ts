@@ -43,7 +43,7 @@ export class MenuItemsComponent implements ControlValueAccessor {
     this.value = value;
   }
 
-  updateItems(item: Item): void {
+  updateItem(item: Item): void {
     const index = this._value?.indexOf(item) ?? -1;
     if (index !== -1) {
       this._value?.splice(index, 1);
