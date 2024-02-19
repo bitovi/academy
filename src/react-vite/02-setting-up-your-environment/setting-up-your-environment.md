@@ -152,6 +152,8 @@ npm run dev
 The server will output the "Local" URL for the dev server, copy and paste it
 into a browser. The browser will display a welcome page with "Vite + React."
 
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/02-solution?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/02-solution?file=src/App.tsx).
+
 ## Objective 3: Add testing infrastructure
 
 ### Testing code with React Testing Library
@@ -198,6 +200,8 @@ npm run test
 
 and "No test files found" will be written to the console.
 
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/03-solution?file=package.json) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/03-solution?file=package.json).
+
 ## Objective 4: Update our first page
 
 Now, let’s updated our generated app to include our own header:
@@ -224,8 +228,6 @@ code changes to accomplish the following:
 - The root `/` web page shall display a single heading element with the text
   "Place My Order App: Coming Soon!"
 
-<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/problem?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/problem?file=src/App.tsx) to do this exercise in an online code editor.
-
 ### Solution 4
 
 <details>
@@ -242,7 +244,7 @@ code changes to accomplish the following:
 
 @diff ../../../exercises/react-vite/02-setting-up-your-environment/03-solution/src/App.tsx ../../../exercises/react-vite/02-setting-up-your-environment/04-solution/src/App.tsx only
 
-<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/solution?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/solution?file=src/App.tsx).
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/04-solution?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/02-setting-up-your-environment/04-solution?file=src/App.tsx).
 
 </details>
 
