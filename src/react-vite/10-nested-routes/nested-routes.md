@@ -22,7 +22,7 @@ We want to have a component to display individual restaurants details, and want 
 
 React Router nested routes provide a way to modify smaller portions of a page, rather than reloading everything. With nested routes, we can alter just sections of a page while also maintaining state in the URL so the page can still be reloaded or shared.
 
-Imagine a manufacturer's product site. Not only do they have a lot of information about each product, but they also need to support both new and existing customers. New customers want to see list of features, specs, and where to buy the product. Old customers need to download owner's manuals and a way to contact customer support. Nested routes provide a mechanism to handle this structure
+Imagine a manufacturer’s product site. Not only do they have a lot of information about each product, but they also need to support both new and existing customers. New customers want to see list of features, specs, and where to buy the product. Old customers need to download owner’s manuals and a way to contact customer support. Nested routes provide a mechanism to handle this structure
 
 Our main product page loads at "/product/:id". The matching route will load the product name, picture, and basic description. Within the main product page, we can create a tabbed section with our various types of content. The route to show the main product info along with support information is "/product/:id/support". The full structure will look like the following tree:
 
@@ -55,7 +55,7 @@ The route config for our product page could look like this:
 
 ### Nesting component folders
 
-Notice that the child page components have simple names like `<Support />` instead of `<ProductSupport />`. Assuming this component is specifically designed for the product page and will not be reused elsewhere, the component file can reside within the product page's folder. Since the files live together, longer names aren’t needed and will make your JSX a little harder to read.
+Notice that the child page components have simple names like `<Support />` instead of `<ProductSupport />`. Assuming this component is specifically designed for the product page and will not be reused elsewhere, the component file can reside within the product page’s folder. Since the files live together, longer names aren’t needed and will make your JSX a little harder to read.
 
 The larger directory tree should look like the following:
 

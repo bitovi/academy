@@ -64,7 +64,7 @@ also accepts a regex, in this case one that matches any part of the label text a
 expect(screen.getByLabelText(/Test Label:/i)).toBeInTheDocument();
 ```
 
-Once `screen.getByLabelText` returns, its result can be passed to Vite's `expect` function to see if
+Once `screen.getByLabelText` returns, its result can be passed to Vite’s `expect` function to see if
 the result matches what we intended. We use `toBeInTheDocument` (`expect` was augmented with this
 method by importing `@testing-library/jest-dom`) to verify that the element exists in the DOM. This
 satisfies the first part of the test description, "renders with correct label."
