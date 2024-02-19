@@ -239,6 +239,8 @@ Now that we’ve learned to apply styling in React with CSS Modules, it’s time
   - Use `<Link>` (from the previous section!) to create a link to the `/restaurants` page.
   - Import the `styles` from `Home.module.css` and apply them to the new link.
 
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/07-styling-in-react/01-problem?file=src/pages/Home/Home.module.css) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/07-styling-in-react/01-problem?file=src/pages/Home/Home.module.css) to do this exercise in an online code editor.
+
 ### Solution
 
 <details>

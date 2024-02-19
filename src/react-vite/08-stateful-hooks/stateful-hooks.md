@@ -1,6 +1,6 @@
 @page learn-react/stateful-hooks Managing State in React
 @parent learn-react 8
-@outline 3
+@outline 2
 
 @description Work with React’s useState Hook to manage a component’s state.
 
@@ -10,11 +10,23 @@
 
 In this section, we will:
 
-- Cover the fundamentals of React Hooks.
+- Cover the fundamentals of React Hooks
+- Review the Rules of Hooks
+- Learn about the `useState` Hook
+- Discover how to create custom Hooks
 
-## Objective 1: Introducing React Hooks and useId
+## Objective 1: Add buttons to select a state
 
-### Overview of state
+Currently, our restaurant list is a static array of restaurants. We want to work towards
+having a `<select>` dropdown for choosing a _state_, then a _city_ in that state, then
+loading the list of restaurants for that city.
+
+To start, let’s focus on rendering buttons for each state that we can select. Then, when
+the button for a state is activated, we want to keep track of which state was choosen.
+
+<img alt="A web page titled “Restaurants” from place-my-order.com showing two buttons labeled “Illinois” and “Wisconsin”. There is also a “Current state” paragraph that shows that no state is selected." src="../../../static/img/react-vite/08-stateful-hooks/01-solution.png" style="max-width:689px">
+
+### Overview of state management
 
 State in React is a crucial concept, as it represents the parts of an app
 that can change over time. Each component can have its own state, allowing
@@ -27,7 +39,7 @@ There are different types of state within an application:
 - **URL State:** The state that exists on our URLs, including pathname and query parameters. We already covered this in our section about Routing!
 - **Global State:** This refers to data that is shared between multiple components. In React, global state can be managed using Context API or state management libraries; this is out of scope for this training.
 
-### React Hooks
+### Intro to React Hooks
 
 We’ve mentioned before that `useState` is a Hook for managing state, but what
 does that mean?
@@ -46,6 +58,8 @@ Do you remember this code from earlier?
 The `useMatch` Hook from `react-router-dom` allowed us to check whether a given
 path “matched” the current route.
 
+### The Rules of Hooks
+
 React imposes several rules around the use of Hooks:
 
 - **First,** only call Hooks from functional React components or your own custom Hook.
@@ -61,6 +75,36 @@ top of the React function body.
 Hooks can only be used in functional components. Almost anything that could be
 done in a class component can be done with Hooks. _The one thing that class
 component can do that Hooks cannot is implement error boundaries._
+
+### The useState Hook
+
+We can store state that persists through component rendering with the `useState`
+hook. You can set the initial state value when the component **first** renders
+by providing the value as an argument to the Hook. _If you do not provide a
+value the initial state value will be `undefined`._
+
+This example shows a `useState` Hook being set with an initial value of `"Auto"`:
+
+@sourceref ./useState.tsx
+@highlight 1, 4, only
+
+As you can see in the previous example, `useState` returns an array with two
+elements: the first is the current state value of the Hook, and the second is a
+setter function that is used to update the state value.
+
+In the following code, the value is being rendered and the setter is being used
+to keep track of which theme is chosen:
+
+@sourceref ./useState.tsx
+@highlight 8, 14, 16, 19, 22, only
+
+Every time a `useState`’s setter is invoked with a new value, React compares the
+new value with the current value. If the values are the same, nothing happens;
+**if the values are different, React will rerender the component** so the new
+state value can be used to update the component.
+
+In the example above, when the user makes a selection, the `Settings` component
+is rendered again, and the paragraph is updated with the current value.
 
 ### Setup 1
 
@@ -79,13 +123,15 @@ These tests will pass when the solution has been implemented properly.
 
 ### Exercise 1
 
-- Associate the `<label>` and `<select>` elements together using ID values provided by the `useId` Hook.
+Let’s create buttons for each state that we can select. Then, when the button
+for a state is activated, we want to keep track of which state was choosen.
 
-<strong>Having issues with your local setup?</strong> You can use either
-[StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-problem?file=src%2Fpages%2FRestaurantList%2FRestaurantList.tsx)
-or
-[CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-problem?file=src%2Fpages%2FRestaurantList%2FRestaurantList.tsx)
-to do this exercise in an online code editor.
+- Call `useState()` to get a `state` variable and `setState` setter.
+- Create a helper function that takes a `short` state name and calls `setState`.
+- Add an `onClick` handler to the `button` that calls your helper function.
+- Update the paragraph to show the currently-selected state.
+
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-problem?file=src/pages/RestaurantList/RestaurantList.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-problem?file=src/pages/RestaurantList/RestaurantList.tsx) to do this exercise in an online code editor.
 
 ### Solution 1
 
@@ -96,89 +142,19 @@ to do this exercise in an online code editor.
 
 @diff ../../../exercises/react-vite/08-stateful-hooks/01-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/08-stateful-hooks/01-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-solution?file=src/pages/RestaurantList/RestaurantList.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-solution?file=src/pages/RestaurantList/RestaurantList.tsx).
+
 </details>
 
-## Objective 2: Manage component state using Hooks
+## Objective 2: Add buttons to select a city
 
-When users make choices that need to be maintained or that affect other parts of
-the UI, we need to use `state`. That’s a pretty abstract concept so let’s look
-at a concrete example from the Place My Order Restaurants tab.
+Now that we have buttons for selecting the state, let’s add buttons for selecting the city:
 
-There are two dropdown lists — "State" which has a list of U.S. states, and
-another named "City" that displays a list of cities located in the selected
-"State" item. Until the user makes a choice in the "State" dropdown, the "City"
-dropdown has no additional options.
+<img alt="The same “Restaurants” web page from before, but this time the “Current state” is “Illinois” and there is a button for selecting “Springfield” as the city. The “Current city” is currently “none.”" src="../../../static/img/react-vite/08-stateful-hooks/02-solution-2.png" style="max-width:689px">
 
-<img alt="A web page titled “Restaurants” from place-my-order.com showing two dropdown menus labeled “State” and “City”. The “State” dropdown is set to “Choose a state” and the “City” dropdown shows the text “Choose a state before selecting a city”, indicating a two-step selection process where a state must be selected before a city." src="../../../static/img/react-vite/08-stateful-hooks/why-state-1.png" style="box-shadow:2px 2px 10px 3px rgb(0 0 0 / 70%);max-width:838px">
+After selecting both the state and city, we will see those values reflected in our UI:
 
-If “Illinois” is chosen in the “State” dropdown that value needs to persist
-through component rendering and be available for use throughout the code:
-getting the cities for Illinois, and enabling the “City” dropdown list. To
-accomplish that the value “Illinois” is stored in React `state`.
-
-<img alt="The same “Restaurants” web page from place-my-order.com, with the “State” dropdown menu now set to “Illinois”. The “City” dropdown menu is open with “Choose a city” highlighted and two options below it: “Chicago” and “Peoria”, indicating the user can now select a city within Illinois." src="../../../static/img/react-vite/08-stateful-hooks/why-state-2.png" style="box-shadow:2px 2px 10px 3px rgb(0 0 0 / 70%);max-width:839px">
-
-### useState
-
-We can store state that persists through component rendering with the `useState`
-hook. You can set the initial state value when the component **first** renders
-by providing the value as an argument to the Hook. _If you do not provide a
-value the initial state value will be `undefined`._
-
-This example shows a `useState` Hook being set with an initial value of an empty
-string.
-
-@sourceref ./useState.tsx
-@highlight 1, 4, only
-
-As you can see in the previous example, `useState` returns an array with two
-elements: the first is the current state value of the Hook, and the second is a
-setter function that is used to update the state value. In the following code,
-the value and setter are being used to update changes in a select component.
-
-@sourceref ./useState.tsx
-@highlight 13, only
-
-Every time a `useState`'s setter is invoked with a new value, React compares the
-new value with the current value. If the values are the same, nothing happens;
-**if the values are different, React will rerender the component** so the new
-state value can be used to update the component. In the example above, when the
-user makes a selection, the `List` component is rendered again, and the select
-is updated with the current value.
-
-### ChangeEvent
-
-`ChangeEvent` is a type provided by React’s TypeScript definitions. It’s used to
-type the `event` object that you receive when an event occurs, like a change in
-a form field. In TypeScript, when you’re working with event handlers in React,
-you often need to specify the type of the event object to get the full benefits
-of TypeScript’s type checking.
-
-The `<HTMLInputElement>` part of `ChangeEvent<HTMLInputElement>` specifies that
-this change event is specifically for an HTML `<input>` element. In HTML and the
-DOM, different elements have different properties. By specifying `<HTMLInputElement>`,
-TypeScript knows that this event is for an `<input>` element, and it will expect and
-allow properties specific to an `<input>` element, like `value`, `checked`, etc.
-
-### event.target.value
-
-When an event occurs, such as a user typing in an input field, an `event` object is
-passed to the event handler function. This event object contains various properties
-and methods that provide information about the event.
-
-One such property is `target`, which is a reference to the DOM element that triggered
-the event. In the case of an input field, target would refer to the specific `<input>`
-element where the user is typing.
-
-The property `event.target.value` is particularly important when dealing with input
-fields. The value property here holds the current content of the input field. It
-represents what the user has entered or selected. When you access `event.target.value`
-in your event handler function, you’re essentially retrieving the latest input
-provided by the user. This is commonly used to update the state of the component with
-the new input value, ensuring that the component’s state is in sync with what the user
-is entering. In a TypeScript context, this process not only manages the state
-dynamically but also ensures type safety, making your code more robust and less prone
-to errors.
+<img alt="The same “Restaurants” web page from before, but this time the “Current city” is set to “Springfield”." src="../../../static/img/react-vite/08-stateful-hooks/02-solution-3.png" style="max-width:689px">
 
 ### Setup 2
 
@@ -197,15 +173,18 @@ following:
 
 ### Exercise 2
 
-- The selected **state** value should be managed by a `useState` Hook.
-- The selected **city** value should be managed by a `useState` Hook.
-- The City select should only include cities for the selected state.
+Similar to our state buttons, let’s create buttons for selecting a city.
 
-<strong>Having issues with your local setup?</strong> You can use either
-[StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-solution?file=src%2Fpages%2FRestaurantList%2FRestaurantList.tsx)
-or
-[CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-solution?file=src%2Fpages%2FRestaurantList%2FRestaurantList.tsx)
-to do this exercise in an online code editor.
+- Call `useState()` to get a `city` variable and `setCity` setter.
+- Filter the `cities` list based on which state is selected.
+- Create a helper function that takes a `cityName` and calls `setCity`.
+- Add an `onClick` handler to the `button` that calls your helper function.
+- Update the paragraph to show the currently-selected city.
+
+Hint: Use [`Array.filter()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+to narrow down the list of cities based on which state is selected.
+
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/02-problem?file=src/pages/RestaurantList/RestaurantList.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/02-problem?file=src/pages/RestaurantList/RestaurantList.tsx) to do this exercise in an online code editor.
 
 ### Solution 2
 
@@ -216,25 +195,67 @@ to do this exercise in an online code editor.
 
 @diff ../../../exercises/react-vite/08-stateful-hooks/02-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/08-stateful-hooks/02-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/02-solution?file=src/pages/RestaurantList/RestaurantList.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/02-solution?file=src/pages/RestaurantList/RestaurantList.tsx).
+
 </details>
 
-## Objective 3
+## Objective 3: Refactor cities into a custom Hook
 
-TODO
+Our `RestaurantList.tsx` file has started to get long again. Let’s refactor the cities code
+into its own custom Hook so our code is more maintainable.
 
-### Concept 1
+### What are custom Hooks?
 
-TODO
+React’s Hooks API provides a powerful and flexible way to encapsulate and reuse functionality
+across our components. While React comes with a set of built-in Hooks, we can also create our
+own custom Hooks. This allows us to abstract component logic into reusable functions. Custom
+Hooks are particularly useful when we find ourselves repeating the same logic in multiple
+components.
 
-### Concept 2
+Custom Hooks are JavaScript functions that can use other React Hooks and provide a way to share
+logic across multiple components. Like built-in Hooks, custom Hooks must adhere to React’s rules
+of Hooks. The naming convention for custom Hooks is to start with `use`, like `useCustomHook`.
 
-TODO
+### Why use custom Hooks?
+
+- **Reusability:** write the Hook once and reuse it in multiple components.
+- **Simplicity:** break down complex components into simpler functions.
+- **Organization:** separate the concerns of components and organize logic effectively.
+
+### How to create a custom Hook
+
+To create a custom Hook, you start by defining a function that starts with `use`.
+This Hook can call other Hooks and return whatever value is necessary.
+
+Let’s create a Hook that keeps track of a boolean state, and also provides a function
+for toggling that state:
+
+@sourceref ./useToggle.tsx
+
+In the example above, you can see that our `useToggle` Hook is a function that has an internal
+`useState` to keep track of the toggle’s on/off status. This hook has a `handleToggle` function
+for changing its internal state. Lastly, we can see that the `useToggle` Hook returns an array
+with the `on` status and the `handleToggle` function.
+
+#### How to use a custom Hook
+
+How would we use this Hook? Let’s take a look at this example:
+
+@sourceref ./Toggle.tsx
+@highlight 2, 5, 12-13, 18, only
+
+In this component, we call our `useToggle` Hook with the initial “on” state (`true`). Our Hook
+returns the `on` state and `toggle` function for changing the on/off state.
+
+We will learn more about binding the `input` values in a later section, but for now the takeaway
+is that we can create our custom `useToggle` Hook and call it in our components, just like
+React’s built-in Hooks!
 
 ### Setup 3
 
-✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
+✏️ Create **src/services/** (folder)
 
-@diff ../../../exercises/react-vite/08-stateful-hooks/02-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/08-stateful-hooks/03-problem/src/pages/RestaurantList/RestaurantList.tsx only
+✏️ Create **src/services/restaurant/** (folder)
 
 ✏️ Create **src/services/restaurant/hooks.ts** and update it to be:
 
@@ -244,6 +265,10 @@ TODO
 
 @sourceref ../../../exercises/react-vite/09-making-http-requests/01-solution/src/services/restaurant/interfaces.ts
 
+✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
+
+@diff ../../../exercises/react-vite/08-stateful-hooks/02-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/08-stateful-hooks/03-problem/src/pages/RestaurantList/RestaurantList.tsx only
+
 ### Verify 3
 
 ✏️ Create **src/services/restaurant/hooks.test.ts** and update it to be:
@@ -252,7 +277,10 @@ TODO
 
 ### Exercise 3
 
-TODO
+- Move the `cities` logic (including the filtering) into our custom `useCities()` Hook.
+- Update the `<RestaurantList>` component to use the new `useCities()` Hook.
+
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-problem?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-problem?file=src/services/restaurant/hooks.ts) to do this exercise in an online code editor.
 
 ### Solution 3
 
@@ -267,8 +295,10 @@ TODO
 
 @diff ../../../exercises/react-vite/08-stateful-hooks/03-problem/src/services/restaurant/hooks.ts ../../../exercises/react-vite/08-stateful-hooks/03-solution/src/services/restaurant/hooks.ts only
 
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-solution?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/03-solution?file=src/services/restaurant/hooks.ts).
+
 </details>
 
 ## Next steps
 
-TODO
+Next, let’s learn how to [make HTTP requests](./making-http-requests.html) with `fetch` in React applications.
