@@ -8,70 +8,52 @@
 
 ## Overview
 
-## Objective 1: Add a form with controlled checkboxes
+In this section, we will:
 
-TODO
+- Learn about controlled vs. uncontrolled inputs
+- Work with change events
+- Use TypeScript’s `Record` interface
+- Set state using an updater function
+- Updating reference types and rendering
+- Learn about the `useId()` Hook
 
-### Key concepts
+## Objective 1: Add checkboxes to order menu items
 
-- A controlled input requires value (checked) and onChange props.
-- Form input events have a `target` property with current form values.
-- `Record` helper in TypeScript.
-- Store form data as a `Record` in state.
-- Update form data in state using an updater function.
-- Always create a new value for arrays and objects in state (don’t update the arrays and values).
+Now that we have our `RestaurantOrder` page, let’s start building the form for placing an order!
 
-### Controlled and uncontrolled inputs
+We’ll start with checkboxes to select menu items, with a message that warns users when no items
+are selected and a total that shows the sum of the selected items.
 
-React has special handling for `<input>` components that allow developers to create "controlled" or
-"uncontrolled" inputs. An input is **uncontrolled** when its `value` — or `checked` — prop is not
+### Controlled vs. uncontrolled inputs
+
+React has special handling for `<input>` components that allow developers to create “controlled” or
+“uncontrolled” inputs. An input is **uncontrolled** when its `value` (or `checked`) prop is not
 set, and it does not have a handler set for the `onChange` prop; an initial value may be set using
 the `defaultValue` prop.
 
-An input is **controlled** when both its `value`, or `checked`, and `onChange` props have values
-set; the term "controlled" refers to the fact that the value of the input is controlled by React.
-Most of the time, `<input>` components are controlled, and their value is stored in a state
+An input is **controlled** when both its `value` (or `checked`) and `onChange` props have values
+set. The term “controlled” refers to the fact that the value of the input is controlled by React.
+Most of the time, we want our `<input>` components to be controlled with their value stored in a state
 variable.
 
-> If an `<input>` only has the `value` or `onChange` prop set, React will log a warning to the
-> console in development mode.
+**Note:** If an `<input>` only has the `value` or `onChange` prop set, React will log a warning to the
+console in development mode.
 
-```tsx
-const ControlledInput: React.FC = () => {
-  const [name, setName] = useState("");
-  return (
-    <label>Name: 
-      <input onChange={(event) => setName(event.target.value)} value={name} />
-    </label>
-  )
-}
-```
+Let’s take a look at an example of a controlled input:
+
+@sourceref ./controlled.tsx
+@highlight 6-10, only
 
 Controlled components aren’t allowed to have a value of `null` or `undefined`. To set an input with
-"no value," use an empty string: `""`.
+“no value,” use an empty string: `""`.
 
-### Working with events
+### Working with change events
 
-In the previous example, the input prop `onChange` had its value set to a function known as an
-"event handler."
+In the previous example, the `<input>` prop `onChange` had its value set to a function known as an
+“event handler.”
 
-```tsx
-onChange={(event) => setName(event.target.value)}
-```
-
-TODO: Remove this explanation of `ChangeEvent`?
-
-The `onChange` prop requires a function that implements the `ChangeEventHandler` interface. When an
-event handler is called, it receives an argument named "event", which is a `SyntheticEvent` defined
-by React. While a `SyntheticEvent` is similar to a native DOM `Event` and has many of the same
-properties, they are not identical.
-
-A `ChangeEvent` — derived from `SyntheticEvent` — is the event argument provided to a
-`ChangeEventHandler`. A `ChangeEvent` always has a property named `target` that references the
-component that emitted the event. As you can see above, it’s possible to get the `target`'s new
-value using its `value` property.
-
-### event.target.value
+@sourceref ./controlled.tsx
+@highlight 7-8, only
 
 When an event occurs, such as a user typing in an input field, an `event` object is
 passed to the event handler function. This event object contains various properties
@@ -87,111 +69,104 @@ represents what the user has entered or selected. When you access `event.target.
 in your event handler function, you’re essentially retrieving the latest input
 provided by the user. This is commonly used to update the state of the component with
 the new input value, ensuring that the component’s state is in sync with what the user
-is entering. In a TypeScript context, this process not only manages the state
-dynamically but also ensures type safety, making your code more robust and less prone
-to errors.
+is entering.
 
-### TypeScript’s `Record` interface
-
-In our upcoming exercise, we want to store information in a JavaScript object. We also want to use
-TypeScript so we can constrain the types used as keys and values. TypeScript provides a handy
-interface named `Record` that we can use. `Record` is a generic interface that requires two types:
-the first is the type of the keys, and the second is the type of the values. For example, if we’re
-recording the items in a list that are selected, we might capture the item's name and whether or not
-it’s selected like this:
+For most input types, you’ll want to use `event.target.value` to get the value entered.
+But there are exceptions! For `<input type="checkbox">`, you’ll want to use
+`event.target.checked` instead:
 
 ```tsx
-const [selected, setSelected] = useState<Record<string, boolean>>({});
+const TodoItem: React.FC = () => {
+  const [isCompleted, setIsCompleted] = useState(false)
+  return (
+    <label>
+      <input
+        checked={isCompleted}
+        onChange={(event) => setIsCompleted(event.target.checked)}
+        type="checkbox"
+      />
+      Completed
+    </label>
+  )
+}
 ```
+@highlight 7-8, only
+
+### Using TypeScript’s `Record` interface
+
+In our upcoming exercise, we want to store information in a JavaScript object. We also want to use
+TypeScript so we can constrain the types used as keys and values.
+
+TypeScript provides a handy
+interface named `Record` that we can use. `Record` is a generic interface that requires two types:
+the first is the type of the keys, and the second is the type of the values.
+
+For example, if we’re recording the items in a list that are selected, we might capture the item’s
+name and whether or not it’s selected like this:
+
+@sourceref ./typescript-record-interface.tsx
+@highlight 9, 12, only
 
 We’ve explicitly defined the type of `useState` as a `Record<string, boolean>`; all the keys must be
 strings, and all the values must be booleans. Fortunately, JavaScript’s `object` implements the
 `Record` interface, so we can set the default value to an empty `object` instance. Now let’s see how
 we can use a `Record` to store state data.
 
-### Set state using a function
+### Setting state using an updater function
 
 One challenge we face when using an `object` for state is that we probably need to merge the current
 state value with the new state value. Why? Imagine we have a state object that already has multiple
-keys and values, and we need to add a new key and value. Well, we’re in luck! React already has a
-solution for this: the set function returned by `useState` will accept a function called an "updater
-function" that’s passed the "pending" state value and returns a "next" state value.
+keys and values, and we need to add a new key and value.
 
-```tsx
-const [selected, setSelected] = useState<Record<string, boolean>>({});
-setSelected((pending) => { /* Do something with the pending state value and return a next state value. */ });
-```
+Well, we’re in luck! React already has a solution for this: the setter function returned by `useState`
+will accept an “updater function” that’s passed the “current” state value and should return the “next”
+state value.
 
-In the example below, the `onChange` event handler calls `handleSelectedChange`, which accepts a
-name string and a boolean. In turn, `handleSelectedChange` calls `setSelected` with an updater
-function as the argument. In the updater function, the contents of the next state object are
-initially set by spreading the contents of the pending state object. Then the value of `checked`
-provided by the input is set on the next state value object.
+@sourceref ./set-state-with-function.tsx
+@highlight 14-15, 26, 39, only
 
-```tsx
-const Selected: React.FC = () => {
-  const [selected, setSelected] = useState<Record<string, boolean>>({});
+In the example above, the `onChange` event handler calls `handleSelectedChange`, which accepts a
+name `string` and a `boolean`.
 
-  function handleSelectedChange(name: string, isSelected: boolean){
-    setSelected((current) => {
-      return {
-        ...current,
-        [name]: isSelected
-      }
-    })
-  }
+In turn, `handleSelectedChange` calls `setSelected` with an updater function as the argument.
+The updater function accepts the `currentSelectedItems` argument, which is the object with the
+currently-selected items _before_ our checkbox was checked.
 
-  return (
-    <form>
-      {
-        items.map((item) => {
-          return (
-            <label>{item.name}:
-              <input
-                onChange={(event) => handleSelectedChange(item.name, event.target.checked)}
-                checked={selected[item.name]}
-                type="checkbox"
-              />
-            </label>
-          )
-        })
-      }
-    </form>
-  )
-}
-```
+We will dig into _how_ we create the `updatedSelectedItems` object in just a bit, but for now
+let’s take note that we create a new `updatedSelectedItems` object and return it from our
+updater function. This gives React the updated `selected` state and allows React to re-render
+the component.
 
 ### Updating reference types and rendering
 
-We'd like to call your attention again to how the updater function works in the example above. The
-updater function **does not mutate** the pending object, then return it; instead, it makes a new
-object and populates it with the contents of the pending object. This is an important detail
-because, after the updater function runs React will compare the values of the pending and next
-objects to determine if they are different. If they are **different**, React will render the
-`Selected` component; if they are the same React will do nothing.
+Now let’s explain how the updater function works in the example above. The
+updater function **does not mutate** the current object, then return it; instead, it makes a new
+object and populates it with the contents of the current object.
 
-The same rules apply when state is an array, create a new array, and update the contents of the new
+This is an important detail because, after the updater function runs, React will compare the
+values of the current and next objects to determine if they are different. If they are
+**different**, React will re-render the `Selected` component; if they are the same, then React
+will do nothing.
+
+The same rules apply when state is an array: create a new array, then update the contents of the new
 array.
 
 ```tsx
-// Adding an item when state (`pending`) is an array.
-setSelectedOrders(pending => {
-  const next = [...pending, newOrder];
+// Adding an item when state (`current`) is an array.
+setSelectedOrders(current => {
+  const next = [...current, newOrder];
   return next;
 });
 
-// Replacing an item when state (`pending`) is an array.
-setUpdatedRestaurant(pending => {
+// Replacing an item when state (`current`) is an array.
+setUpdatedRestaurant(current => {
   const next = [
-    ...pending.filter(item => item.id !== updatedRestaurant.id),
+    ...current.filter(item => item.id !== updatedRestaurant.id),
     updatedRestaurant
   ];
   return next;
 });
-
 ```
-
-> Now may be a good time to brush up on how different JavaScript types are compared for equality.
 
 OK, that was a lot. Let’s start making some code changes so we can select menu items for an order.
 
@@ -211,26 +186,21 @@ These tests will pass when the solution has been implemented properly.
 
 ### Exercise 1
 
-- Add `newOrder` state so that when menu items are selected, the state will look like:
+- Call `useState()` and use the `OrderItems` interface to create an `items` state.
+- Create a function for calling `setItems()` with the updated `items` state.
+- Add the `checked` and `onChange` props to all the checkboxes.
+- Update `subtotal` to use the `calculateTotal()` helper function.
+
+Hint: The `items` state will look like this when populated:
 
 ```tsx
 {
-  items: {
-    "Menu item 1 name": 1.23,// Menu item 1 price
-    "Menu item 2 name": 4.56,// Menu item 2 price
-  }
+  "Menu item 1 name": 1.23,// Menu item 1 price
+  "Menu item 2 name": 4.56,// Menu item 2 price
 }
 ```
 
-- Add the `onChange` listener to all the checkboxes.
-- Add the `checked` prop to all the checkboxes.
-- Update `subtotal` to use the `calculateTotal` helper function.
-
-**Having issues with your local setup?** You can use either
-[StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/01-problem?file=src%2Fpages%2FRestaurantOrder%2FRestaurantOrder.tsx)
-or
-[CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/01-problem?file=src%2Fpages%2FRestaurantOrder%2FRestaurantOrder.tsx)
-to do this exercise in an online code editor.
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/01-problem?file=src/pages/RestaurantOrder/RestaurantOrder.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/01-problem?file=src/pages/RestaurantOrder/RestaurantOrder.tsx) to do this exercise in an online code editor.
 
 ### Solution 1
 
@@ -241,19 +211,17 @@ to do this exercise in an online code editor.
 
 @diff ../../../exercises/react-vite/11-controlled-vs-uncontrolled/01-problem/src/pages/RestaurantOrder/RestaurantOrder.tsx ../../../exercises/react-vite/11-controlled-vs-uncontrolled/01-solution/src/pages/RestaurantOrder/RestaurantOrder.tsx only
 
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/01-solution?file=src/pages/RestaurantOrder/RestaurantOrder.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/01-solution?file=src/pages/RestaurantOrder/RestaurantOrder.tsx).
+
 </details>
 
 ## Objective 2: Create a reusable text field component
 
 The order form is going to be made up of many input fields with labels. Rather than repeat multiple
-components let’s compose that structure in a single component named `FormTextField`. Creating this
-component will involve using some of what we’ve learned from prior lessons.
+input components over and over, let’s compose that structure in a single component named `FormTextField`.
+Creating this component will involve using some of what we’ve learned from prior lessons.
 
-In this section, we will:
-
-- Learn how to use the `useId()` hook.
-
-### useId
+### The `useId()` Hook
 
 Since the value of every `id` attribute in an HTML document must be unique,
 this Hook is useful in creating a unique identifier string that can be used
@@ -298,12 +266,10 @@ used; this ideal for linking related components together.
 ✏️ Create **src/components/FormTextField/FormTextField.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-vite/11-controlled-vs-uncontrolled/02-problem/src/components/FormTextField/FormTextField.tsx
-@highlight 1-9
 
 ✏️ Create **src/components/FormTextField/index.ts** and update it to be:
 
 @sourceref ../../../exercises/react-vite/11-controlled-vs-uncontrolled/02-problem/src/components/FormTextField/index.ts
-@highlight 1
 
 ### Verify 2
 
@@ -316,25 +282,16 @@ These tests will pass when the solution has been implemented properly.
 
 ### Exercise 2
 
-- TODO: Associate the `<label>` and `<select>` elements together using ID values provided by the `useId` Hook.
+Let’s implement our `FormTextField` component and have it:
 
-- `FormTextField`:
-  - has the following props: `label`, `onChange`, `type`, and `value`.
-  - returns a `<div>` with the class name "form-group".
-  - `<div>` contains a `<label>` and `<input>` that are paired by a unique id
-- The `<label>` will:
-  - have its text set by a prop
-  - have its text positioned to the left of the input and will have a colon (:) appended
-  - include the class name "control-label"
-- The `<input>` will:
-  - have its props set by `FormTextField` props
-  - include the class name "form-control"
+- Accept `label`, `onChange`, `type`, and `value` props
+- Create a unique ID with `useId()`
+- Associate the `<label>` and `<input>` elements with `htmlFor` and `id` props
+- Add the `onChange`, `type`, and `value` props to the `<input>` element
 
-**Having issues with your local setup?** You can use either
-[StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/02-problem?file=src%2Fcomponents%2FFormTextField%2FFormTextField.tsx)
-or
-[CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/02-problem?file=src%2Fcomponents%2FFormTextField%2FFormTextField.tsx)
-to do this exercise in an online code editor.
+Hint: The `onChange` prop type can be defined as `(data: string) => void`
+
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/02-problem?file=src/components/FormTextField/FormTextField.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/02-problem?file=src/components/FormTextField/FormTextField.tsx) to do this exercise in an online code editor.
 
 ### Solution 2
 
@@ -345,33 +302,17 @@ to do this exercise in an online code editor.
 
 @diff ../../../exercises/react-vite/11-controlled-vs-uncontrolled/02-problem/src/components/FormTextField/FormTextField.tsx ../../../exercises/react-vite/11-controlled-vs-uncontrolled/02-solution/src/components/FormTextField/FormTextField.tsx only
 
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/02-solution?file=src/components/FormTextField/FormTextField.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/02-solution?file=src/components/FormTextField/FormTextField.tsx).
+
 </details>
 
-## Objective 3: Integrate `FormTextField` into `RestaurantOrder` and submit the form
+## Objective 3: Integrate `FormTextField` into `RestaurantOrder`
 
 Finally we’ll update the form to incorporate the `FormTextField` component so users can create and
 submit an order to the restaurant. We need to fill the form with input fields and handle the submit
 button.
 
-### Key concepts
-
-- Form submission: submit button, onSubmit handler, and managing the submit
-  event.
-- `[key]: value` syntax to make reusable setter functions.
-
-TODO: I’m not sure whether the submit button should be a part of the exercise. Maybe? For now I’d like to have the content to cover it, then figure out if we actually want it in the exercise after we see how it looks.
-
-### Concept 1
-
-TODO
-
-### Concept 2
-
-TODO
-
 ### Setup 3
-
-TODO
 
 ✏️ Update **src/pages/RestaurantOrder/RestaurantOrder.tsx** to be:
 
@@ -379,29 +320,30 @@ TODO
 
 ### Verify 3
 
-TODO
-
 ✏️ Update **src/pages/RestaurantOrder/RestaurantOrder.test.tsx.tsx** to be:
 
 @diff ../../../exercises/react-vite/11-controlled-vs-uncontrolled/02-solution/src/pages/RestaurantOrder/RestaurantOrder.test.tsx ../../../exercises/react-vite/11-controlled-vs-uncontrolled/03-solution/src/pages/RestaurantOrder/RestaurantOrder.test.tsx only
 
 ### Exercise 3
 
-TODO
+- Create state variables and setters for `address`, `name`, and `phone`.
+- Use `<FormTextField>` to create input fields for these three state variables.
+
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/03-problem?file=src/pages/RestaurantOrder/RestaurantOrder.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/03-problem?file=src/pages/RestaurantOrder/RestaurantOrder.tsx) to do this exercise in an online code editor.
 
 ### Solution 3
 
 <details>
 <summary>Click to see the solution</summary>
 
-TODO
-
 ✏️ Update **src/pages/RestaurantOrder/RestaurantOrder.tsx** to be:
 
 @diff ../../../exercises/react-vite/11-controlled-vs-uncontrolled/03-problem/src/pages/RestaurantOrder/RestaurantOrder.tsx ../../../exercises/react-vite/11-controlled-vs-uncontrolled/03-solution/src/pages/RestaurantOrder/RestaurantOrder.tsx only
+
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/03-solution?file=src/pages/RestaurantOrder/RestaurantOrder.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/03-solution?file=src/pages/RestaurantOrder/RestaurantOrder.tsx).
 
 </details>
 
 ## Next steps
 
-TODO
+Next, let’s learn how to [write tests with React Testing Library](./testing.html).
