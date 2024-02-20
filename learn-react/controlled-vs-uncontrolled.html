@@ -529,56 +529,66 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
-<h2>Objective 1: Add a form with controlled checkboxes</h2>
-<p>TODO</p>
-<h3>Key concepts</h3>
+<p>In this section, we will:</p>
 <ul>
-<li>A controlled input requires value (checked) and onChange props.</li>
-<li>Form input events have a <code>target</code> property with current form values.</li>
-<li><code>Record</code> helper in TypeScript.</li>
-<li>Store form data as a <code>Record</code> in state.</li>
-<li>Update form data in state using an updater function.</li>
-<li>Always create a new value for arrays and objects in state (don’t update the arrays and values).</li>
+<li>Learn about controlled vs. uncontrolled inputs</li>
+<li>Work with change events</li>
+<li>Use TypeScript’s <code>Record</code> interface</li>
+<li>Set state using an updater function</li>
+<li>Updating reference types and rendering</li>
+<li>Learn about the <code>useId()</code> Hook</li>
 </ul>
-<h3>Controlled and uncontrolled inputs</h3>
-<p>React has special handling for <code>&lt;input&gt;</code> components that allow developers to create &quot;controlled&quot; or
-&quot;uncontrolled&quot; inputs. An input is <strong>uncontrolled</strong> when its <code>value</code> — or <code>checked</code> — prop is not
+<h2>Objective 1: Add checkboxes to order menu items</h2>
+<p>Now that we have our <code>RestaurantOrder</code> page, let’s start building the form for placing an order!</p>
+<p>We’ll start with checkboxes to select menu items, with a message that warns users when no items
+are selected and a total that shows the sum of the selected items.</p>
+<h3>Controlled vs. uncontrolled inputs</h3>
+<p>React has special handling for <code>&lt;input&gt;</code> components that allow developers to create “controlled” or
+“uncontrolled” inputs. An input is <strong>uncontrolled</strong> when its <code>value</code> (or <code>checked</code>) prop is not
 set, and it does not have a handler set for the <code>onChange</code> prop; an initial value may be set using
 the <code>defaultValue</code> prop.</p>
-<p>An input is <strong>controlled</strong> when both its <code>value</code>, or <code>checked</code>, and <code>onChange</code> props have values
-set; the term &quot;controlled&quot; refers to the fact that the value of the input is controlled by React.
-Most of the time, <code>&lt;input&gt;</code> components are controlled, and their value is stored in a state
+<p>An input is <strong>controlled</strong> when both its <code>value</code> (or <code>checked</code>) and <code>onChange</code> props have values
+set. The term “controlled” refers to the fact that the value of the input is controlled by React.
+Most of the time, we want our <code>&lt;input&gt;</code> components to be controlled with their value stored in a state
 variable.</p>
-<blockquote>
-<p>If an <code>&lt;input&gt;</code> only has the <code>value</code> or <code>onChange</code> prop set, React will log a warning to the
+<p><strong>Note:</strong> If an <code>&lt;input&gt;</code> only has the <code>value</code> or <code>onChange</code> prop set, React will log a warning to the
 console in development mode.</p>
-</blockquote>
+<p>Let’s take a look at an example of a controlled input:</p>
 <pre><code class="language-tsx">const ControlledInput: React.FC = () =&gt; {
   const [name, setName] = useState(&quot;&quot;);
   return (
-    &lt;label&gt;Name: 
-      &lt;input onChange={(event) =&gt; setName(event.target.value)} value={name} /&gt;
+    &lt;label&gt;
+      Name:
+      &lt;input
+        onChange={(event) =&gt; setName(event.target.value)}
+        type=&quot;text&quot;
+        value={name}
+      /&gt;
     &lt;/label&gt;
   )
 }
 </code></pre>
+<div line-highlight='6-10, only'></div>
 <p>Controlled components aren’t allowed to have a value of <code>null</code> or <code>undefined</code>. To set an input with
-&quot;no value,&quot; use an empty string: <code>&quot;&quot;</code>.</p>
-<h3>Working with events</h3>
-<p>In the previous example, the input prop <code>onChange</code> had its value set to a function known as an
-&quot;event handler.&quot;</p>
-<pre><code class="language-tsx">onChange={(event) =&gt; setName(event.target.value)}
+“no value,” use an empty string: <code>&quot;&quot;</code>.</p>
+<h3>Working with change events</h3>
+<p>In the previous example, the <code>&lt;input&gt;</code> prop <code>onChange</code> had its value set to a function known as an
+“event handler.”</p>
+<pre><code class="language-tsx">const ControlledInput: React.FC = () =&gt; {
+  const [name, setName] = useState(&quot;&quot;);
+  return (
+    &lt;label&gt;
+      Name:
+      &lt;input
+        onChange={(event) =&gt; setName(event.target.value)}
+        type=&quot;text&quot;
+        value={name}
+      /&gt;
+    &lt;/label&gt;
+  )
+}
 </code></pre>
-<p>TODO: Remove this explanation of <code>ChangeEvent</code>?</p>
-<p>The <code>onChange</code> prop requires a function that implements the <code>ChangeEventHandler</code> interface. When an
-event handler is called, it receives an argument named &quot;event&quot;, which is a <code>SyntheticEvent</code> defined
-by React. While a <code>SyntheticEvent</code> is similar to a native DOM <code>Event</code> and has many of the same
-properties, they are not identical.</p>
-<p>A <code>ChangeEvent</code> — derived from <code>SyntheticEvent</code> — is the event argument provided to a
-<code>ChangeEventHandler</code>. A <code>ChangeEvent</code> always has a property named <code>target</code> that references the
-component that emitted the event. As you can see above, it’s possible to get the <code>target</code>'s new
-value using its <code>value</code> property.</p>
-<h3>event.target.value</h3>
+<div line-highlight='7-8, only'></div>
 <p>When an event occurs, such as a user typing in an input field, an <code>event</code> object is
 passed to the event handler function. This event object contains various properties
 and methods that provide information about the event.</p>
@@ -591,95 +601,161 @@ represents what the user has entered or selected. When you access <code>event.ta
 in your event handler function, you’re essentially retrieving the latest input
 provided by the user. This is commonly used to update the state of the component with
 the new input value, ensuring that the component’s state is in sync with what the user
-is entering. In a TypeScript context, this process not only manages the state
-dynamically but also ensures type safety, making your code more robust and less prone
-to errors.</p>
-<h3>TypeScript’s <code>Record</code> interface</h3>
-<p>In our upcoming exercise, we want to store information in a JavaScript object. We also want to use
-TypeScript so we can constrain the types used as keys and values. TypeScript provides a handy
-interface named <code>Record</code> that we can use. <code>Record</code> is a generic interface that requires two types:
-the first is the type of the keys, and the second is the type of the values. For example, if we’re
-recording the items in a list that are selected, we might capture the item's name and whether or not
-it’s selected like this:</p>
-<pre><code class="language-tsx">const [selected, setSelected] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
+is entering.</p>
+<p>For most input types, you’ll want to use <code>event.target.value</code> to get the value entered.
+But there are exceptions! For <code>&lt;input type=&quot;checkbox&quot;&gt;</code>, you’ll want to use
+<code>event.target.checked</code> instead:</p>
+<pre><code class="language-tsx">const TodoItem: React.FC = () =&gt; {
+  const [isCompleted, setIsCompleted] = useState(false)
+  return (
+    &lt;label&gt;
+      &lt;input
+        checked={isCompleted}
+        onChange={(event) =&gt; setIsCompleted(event.target.checked)}
+        type=&quot;checkbox&quot;
+      /&gt;
+      Completed
+    &lt;/label&gt;
+  )
+}
 </code></pre>
+<div line-highlight='7-8, only'></div>
+<h3>Using TypeScript’s <code>Record</code> interface</h3>
+<p>In our upcoming exercise, we want to store information in a JavaScript object. We also want to use
+TypeScript so we can constrain the types used as keys and values.</p>
+<p>TypeScript provides a handy
+interface named <code>Record</code> that we can use. <code>Record</code> is a generic interface that requires two types:
+the first is the type of the keys, and the second is the type of the values.</p>
+<p>For example, if we’re recording the items in a list that are selected, we might capture the item’s
+name and whether or not it’s selected like this:</p>
+<pre><code class="language-tsx">import React, { useState } from 'react';
+
+const landmarks = [
+    { id: '0b90c705', name: 'Eiffel Tower' },
+    { id: '5be758c1', name: 'Machu Picchu' },
+    { id: '206025c3', name: 'Taj Mahal' },
+]
+
+type SelectedItems = Record&lt;string, number&gt;
+
+const Selected: React.FC = () =&gt; {
+    const [selected, setSelected] = useState&lt;SelectedItems&gt;({});
+
+    function handleChange(name: string, isSelected: boolean) {
+        setSelected((current) =&gt; ({ ...current, [name]: isSelected }))
+    }
+
+    return (
+        &lt;form&gt;{
+            landmarks.map((landmark) =&gt; {
+                return (
+                    &lt;label key={landmark.id}&gt;{landmark.name}:
+                        &lt;input
+                            checked={selected[landmark.name]}
+                            onChange={(event) =&gt; handleChange(landmark.name, event.target.checked)}
+                            type=&quot;checkbox&quot;
+                        /&gt;
+                    &lt;/label&gt;
+                )
+            })
+        }&lt;/form&gt;
+    )
+}
+</code></pre>
+<div line-highlight='9, 12, only'></div>
 <p>We’ve explicitly defined the type of <code>useState</code> as a <code>Record&lt;string, boolean&gt;</code>; all the keys must be
 strings, and all the values must be booleans. Fortunately, JavaScript’s <code>object</code> implements the
 <code>Record</code> interface, so we can set the default value to an empty <code>object</code> instance. Now let’s see how
 we can use a <code>Record</code> to store state data.</p>
-<h3>Set state using a function</h3>
+<h3>Setting state using an updater function</h3>
 <p>One challenge we face when using an <code>object</code> for state is that we probably need to merge the current
 state value with the new state value. Why? Imagine we have a state object that already has multiple
-keys and values, and we need to add a new key and value. Well, we’re in luck! React already has a
-solution for this: the set function returned by <code>useState</code> will accept a function called an &quot;updater
-function&quot; that’s passed the &quot;pending&quot; state value and returns a &quot;next&quot; state value.</p>
-<pre><code class="language-tsx">const [selected, setSelected] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
-setSelected((pending) =&gt; { /* Do something with the pending state value and return a next state value. */ });
-</code></pre>
-<p>In the example below, the <code>onChange</code> event handler calls <code>handleSelectedChange</code>, which accepts a
-name string and a boolean. In turn, <code>handleSelectedChange</code> calls <code>setSelected</code> with an updater
-function as the argument. In the updater function, the contents of the next state object are
-initially set by spreading the contents of the pending state object. Then the value of <code>checked</code>
-provided by the input is set on the next state value object.</p>
-<pre><code class="language-tsx">const Selected: React.FC = () =&gt; {
-  const [selected, setSelected] = useState&lt;Record&lt;string, boolean&gt;&gt;({});
+keys and values, and we need to add a new key and value.</p>
+<p>Well, we’re in luck! React already has a solution for this: the setter function returned by <code>useState</code>
+will accept an “updater function” that’s passed the “current” state value and should return the “next”
+state value.</p>
+<pre><code class="language-tsx">import React, { useState } from 'react';
 
-  function handleSelectedChange(name: string, isSelected: boolean){
-    setSelected((current) =&gt; {
-      return {
-        ...current,
-        [name]: isSelected
+const landmarks = [
+  { id: '0b90c705', name: 'Eiffel Tower' },
+  { id: '5be758c1', name: 'Machu Picchu' },
+  { id: '206025c3', name: 'Taj Mahal' },
+]
+
+type SelectedItems = Record&lt;string, number&gt;
+
+const Selected: React.FC = () =&gt; {
+  const [selected, setSelected] = useState&lt;SelectedItems&gt;({});
+
+  function handleSelectedChange(name: string, isSelected: boolean) {
+    setSelected((currentSelectedItems) =&gt; {
+      const updatedSelectedItems = {
+        ...currentSelectedItems,
       }
+
+      if (isSelected) {
+        updatedSelectedItems[name] = true
+      } else {
+        delete updatedSelectedItems[name]
+      }
+
+      return updatedSelectedItems
     })
   }
 
   return (
-    &lt;form&gt;
-      {
-        items.map((item) =&gt; {
-          return (
-            &lt;label&gt;{item.name}:
-              &lt;input
-                onChange={(event) =&gt; handleSelectedChange(item.name, event.target.checked)}
-                checked={selected[item.name]}
-                type=&quot;checkbox&quot;
-              /&gt;
-            &lt;/label&gt;
-          )
-        })
-      }
-    &lt;/form&gt;
+    &lt;form&gt;{
+      landmarks.map((landmark) =&gt; {
+        return (
+          &lt;label key={landmark.id}&gt;
+            {landmark.name}:
+            &lt;input
+              checked={selected[landmark.name]}
+              onChange={(event) =&gt; handleSelectedChange(landmark.name, event.target.checked)}
+              type=&quot;checkbox&quot;
+            /&gt;
+          &lt;/label&gt;
+        )
+      })
+    }&lt;/form&gt;
   )
 }
 </code></pre>
+<div line-highlight='14-15, 26, 39, only'></div>
+<p>In the example above, the <code>onChange</code> event handler calls <code>handleSelectedChange</code>, which accepts a
+name <code>string</code> and a <code>boolean</code>.</p>
+<p>In turn, <code>handleSelectedChange</code> calls <code>setSelected</code> with an updater function as the argument.
+The updater function accepts the <code>currentSelectedItems</code> argument, which is the object with the
+currently-selected items <em>before</em> our checkbox was checked.</p>
+<p>We will dig into <em>how</em> we create the <code>updatedSelectedItems</code> object in just a bit, but for now
+let’s take note that we create a new <code>updatedSelectedItems</code> object and return it from our
+updater function. This gives React the updated <code>selected</code> state and allows React to re-render
+the component.</p>
 <h3>Updating reference types and rendering</h3>
-<p>We'd like to call your attention again to how the updater function works in the example above. The
-updater function <strong>does not mutate</strong> the pending object, then return it; instead, it makes a new
-object and populates it with the contents of the pending object. This is an important detail
-because, after the updater function runs React will compare the values of the pending and next
-objects to determine if they are different. If they are <strong>different</strong>, React will render the
-<code>Selected</code> component; if they are the same React will do nothing.</p>
-<p>The same rules apply when state is an array, create a new array, and update the contents of the new
+<p>Now let’s explain how the updater function works in the example above. The
+updater function <strong>does not mutate</strong> the current object, then return it; instead, it makes a new
+object and populates it with the contents of the current object.</p>
+<p>This is an important detail because, after the updater function runs, React will compare the
+values of the current and next objects to determine if they are different. If they are
+<strong>different</strong>, React will re-render the <code>Selected</code> component; if they are the same, then React
+will do nothing.</p>
+<p>The same rules apply when state is an array: create a new array, then update the contents of the new
 array.</p>
-<pre><code class="language-tsx">// Adding an item when state (`pending`) is an array.
-setSelectedOrders(pending =&gt; {
-  const next = [...pending, newOrder];
+<pre><code class="language-tsx">// Adding an item when state (`current`) is an array.
+setSelectedOrders(current =&gt; {
+  const next = [...current, newOrder];
   return next;
 });
 
-// Replacing an item when state (`pending`) is an array.
-setUpdatedRestaurant(pending =&gt; {
+// Replacing an item when state (`current`) is an array.
+setUpdatedRestaurant(current =&gt; {
   const next = [
-    ...pending.filter(item =&gt; item.id !== updatedRestaurant.id),
+    ...current.filter(item =&gt; item.id !== updatedRestaurant.id),
     updatedRestaurant
   ];
   return next;
 });
-
 </code></pre>
-<blockquote>
-<p>Now may be a good time to brush up on how different JavaScript types are compared for equality.</p>
-</blockquote>
 <p>OK, that was a lot. Let’s start making some code changes so we can select menu items for an order.</p>
 <h3>Setup 1</h3>
 <p>✏️ Update <strong>src/pages/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
@@ -885,25 +961,18 @@ describe('RestaurantOrder component', () =&gt; {
  <div line-highlight="3,14-19,29-38,78-80,82-85,87-89,91-92,94,96,98-99,only"></div>
 <h3>Exercise 1</h3>
 <ul>
-<li>Add <code>newOrder</code> state so that when menu items are selected, the state will look like:</li>
+<li>Call <code>useState()</code> and use the <code>OrderItems</code> interface to create an <code>items</code> state.</li>
+<li>Create a function for calling <code>setItems()</code> with the updated <code>items</code> state.</li>
+<li>Add the <code>checked</code> and <code>onChange</code> props to all the checkboxes.</li>
+<li>Update <code>subtotal</code> to use the <code>calculateTotal()</code> helper function.</li>
 </ul>
+<p>Hint: The <code>items</code> state will look like this when populated:</p>
 <pre><code class="language-tsx">{
-  items: {
-    &quot;Menu item 1 name&quot;: 1.23,// Menu item 1 price
-    &quot;Menu item 2 name&quot;: 4.56,// Menu item 2 price
-  }
+  &quot;Menu item 1 name&quot;: 1.23,// Menu item 1 price
+  &quot;Menu item 2 name&quot;: 4.56,// Menu item 2 price
 }
 </code></pre>
-<ul>
-<li>Add the <code>onChange</code> listener to all the checkboxes.</li>
-<li>Add the <code>checked</code> prop to all the checkboxes.</li>
-<li>Update <code>subtotal</code> to use the <code>calculateTotal</code> helper function.</li>
-</ul>
-<p><strong>Having issues with your local setup?</strong> You can use either
-<a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/01-problem?file=src%2Fpages%2FRestaurantOrder%2FRestaurantOrder.tsx">StackBlitz</a>
-or
-<a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/01-problem?file=src%2Fpages%2FRestaurantOrder%2FRestaurantOrder.tsx">CodeSandbox</a>
-to do this exercise in an online code editor.</p>
+<p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/01-problem?file=src/pages/RestaurantOrder/RestaurantOrder.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/01-problem?file=src/pages/RestaurantOrder/RestaurantOrder.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
 <h3>Solution 1</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1022,16 +1091,13 @@ function calculateTotal(items: OrderItems) {
 export default RestaurantOrder
 </code></pre>
  <div line-highlight="13,35-47,49,69-70,86-87,only"></div>
+<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/01-solution?file=src/pages/RestaurantOrder/RestaurantOrder.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/01-solution?file=src/pages/RestaurantOrder/RestaurantOrder.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Objective 2: Create a reusable text field component</h2>
 <p>The order form is going to be made up of many input fields with labels. Rather than repeat multiple
-components let’s compose that structure in a single component named <code>FormTextField</code>. Creating this
-component will involve using some of what we’ve learned from prior lessons.</p>
-<p>In this section, we will:</p>
-<ul>
-<li>Learn how to use the <code>useId()</code> hook.</li>
-</ul>
-<h3>useId</h3>
+input components over and over, let’s compose that structure in a single component named <code>FormTextField</code>.
+Creating this component will involve using some of what we’ve learned from prior lessons.</p>
+<h3>The <code>useId()</code> Hook</h3>
 <p>Since the value of every <code>id</code> attribute in an HTML document must be unique,
 this Hook is useful in creating a unique identifier string that can be used
 as the value for an <code>id</code> prop.</p>
@@ -1067,18 +1133,25 @@ used; this ideal for linking related components together.</p>
 <pre><code class="language-tsx">import { useId } from &quot;react&quot;
 
 const FormTextField: React.FC&lt;{
-}&gt; = ({ }) =&gt; {
+}&gt; = ({  }) =&gt; {
     return (
+        &lt;div className=&quot;form-group&quot;&gt;
+            &lt;label className=&quot;control-label&quot;&gt;
+                Label:
+            &lt;/label&gt;
+
+            &lt;input
+                className=&quot;form-control&quot;
+            /&gt;
+        &lt;/div&gt;
     )
 }
 
 export default FormTextField
 </code></pre>
-<div line-highlight='1-9'></div>
 <p>✏️ Create <strong>src/components/FormTextField/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./FormTextField&quot;
 </code></pre>
-<div line-highlight='1'></div>
 <h3>Verify 2</h3>
 <p>These tests will pass when the solution has been implemented properly.</p>
 <p>✏️ Create <strong>src/components/FormTextField/FormTextField.test.tsx</strong> and update it to be:</p>
@@ -1124,31 +1197,15 @@ describe('FormTextField component', () =&gt; {
 </code></pre>
 <div line-highlight='10-39, only'></div>
 <h3>Exercise 2</h3>
+<p>Let’s implement our <code>FormTextField</code> component and have it:</p>
 <ul>
-<li><p>TODO: Associate the <code>&lt;label&gt;</code> and <code>&lt;select&gt;</code> elements together using ID values provided by the <code>useId</code> Hook.</p></li>
-<li><p><code>FormTextField</code>:</p>
-<ul>
-<li>has the following props: <code>label</code>, <code>onChange</code>, <code>type</code>, and <code>value</code>.</li>
-<li>returns a <code>&lt;div&gt;</code> with the class name &quot;form-group&quot;.</li>
-<li><code>&lt;div&gt;</code> contains a <code>&lt;label&gt;</code> and <code>&lt;input&gt;</code> that are paired by a unique id</li>
-</ul></li>
-<li><p>The <code>&lt;label&gt;</code> will:</p>
-<ul>
-<li>have its text set by a prop</li>
-<li>have its text positioned to the left of the input and will have a colon (:) appended</li>
-<li>include the class name &quot;control-label&quot;</li>
-</ul></li>
-<li><p>The <code>&lt;input&gt;</code> will:</p>
-<ul>
-<li>have its props set by <code>FormTextField</code> props</li>
-<li>include the class name &quot;form-control&quot;</li>
-</ul></li>
+<li>Accept <code>label</code>, <code>onChange</code>, <code>type</code>, and <code>value</code> props</li>
+<li>Create a unique ID with <code>useId()</code></li>
+<li>Associate the <code>&lt;label&gt;</code> and <code>&lt;input&gt;</code> elements with <code>htmlFor</code> and <code>id</code> props</li>
+<li>Add the <code>onChange</code>, <code>type</code>, and <code>value</code> props to the <code>&lt;input&gt;</code> element</li>
 </ul>
-<p><strong>Having issues with your local setup?</strong> You can use either
-<a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/02-problem?file=src%2Fcomponents%2FFormTextField%2FFormTextField.tsx">StackBlitz</a>
-or
-<a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/02-problem?file=src%2Fcomponents%2FFormTextField%2FFormTextField.tsx">CodeSandbox</a>
-to do this exercise in an online code editor.</p>
+<p>Hint: The <code>onChange</code> prop type can be defined as <code>(data: string) =&gt; void</code></p>
+<p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/02-problem?file=src/components/FormTextField/FormTextField.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/02-problem?file=src/components/FormTextField/FormTextField.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
 <h3>Solution 2</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1182,25 +1239,14 @@ const FormTextField: React.FC&lt;{
 
 export default FormTextField
 </code></pre>
- <div line-highlight="4-9,12-15,17-24,only"></div>
+ <div line-highlight="4-9,13-14,19-22,only"></div>
+<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/02-solution?file=src/components/FormTextField/FormTextField.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/02-solution?file=src/components/FormTextField/FormTextField.tsx">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Objective 3: Integrate <code>FormTextField</code> into <code>RestaurantOrder</code> and submit the form</h2>
+<h2>Objective 3: Integrate <code>FormTextField</code> into <code>RestaurantOrder</code></h2>
 <p>Finally we’ll update the form to incorporate the <code>FormTextField</code> component so users can create and
 submit an order to the restaurant. We need to fill the form with input fields and handle the submit
 button.</p>
-<h3>Key concepts</h3>
-<ul>
-<li>Form submission: submit button, onSubmit handler, and managing the submit
-event.</li>
-<li><code>[key]: value</code> syntax to make reusable setter functions.</li>
-</ul>
-<p>TODO: I’m not sure whether the submit button should be a part of the exercise. Maybe? For now I’d like to have the content to cover it, then figure out if we actually want it in the exercise after we see how it looks.</p>
-<h3>Concept 1</h3>
-<p>TODO</p>
-<h3>Concept 2</h3>
-<p>TODO</p>
 <h3>Setup 3</h3>
-<p>TODO</p>
 <p>✏️ Update <strong>src/pages/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { FormEvent, useState } from &quot;react&quot;
 import { useParams } from &quot;react-router-dom&quot;
@@ -1333,7 +1379,6 @@ export default RestaurantOrder
 </code></pre>
  <div line-highlight="1,3,50-53,55,65-74,112-114,only"></div>
 <h3>Verify 3</h3>
-<p>TODO</p>
 <p>✏️ Update <strong>src/pages/RestaurantOrder/RestaurantOrder.test.tsx.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
@@ -1497,11 +1542,14 @@ describe('RestaurantOrder component', () =&gt; {
 </code></pre>
  <div line-highlight="5,13-24,33-35,37-38,40,42-43,46-48,130-131,133-134,136-137,139-141,143-145,147-149,151-153,155-158,only"></div>
 <h3>Exercise 3</h3>
-<p>TODO</p>
+<ul>
+<li>Create state variables and setters for <code>address</code>, <code>name</code>, and <code>phone</code>.</li>
+<li>Use <code>&lt;FormTextField&gt;</code> to create input fields for these three state variables.</li>
+</ul>
+<p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/03-problem?file=src/pages/RestaurantOrder/RestaurantOrder.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/03-problem?file=src/pages/RestaurantOrder/RestaurantOrder.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
 <h3>Solution 3</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
-<p>TODO</p>
 <p>✏️ Update <strong>src/pages/RestaurantOrder/RestaurantOrder.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import { FormEvent, useState } from &quot;react&quot;
 import { useParams } from &quot;react-router-dom&quot;
@@ -1655,9 +1703,10 @@ function calculateTotal(items: OrderItems) {
 export default RestaurantOrder
 </code></pre>
  <div line-highlight="14,16-17,113-130,only"></div>
+<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/03-solution?file=src/pages/RestaurantOrder/RestaurantOrder.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/11-controlled-vs-uncontrolled/03-solution?file=src/pages/RestaurantOrder/RestaurantOrder.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Next steps</h2>
-<p>TODO</p>
+<p>Next, let’s learn how to <a href="./testing.html">write tests with React Testing Library</a>.</p>
 
 </section>
 
