@@ -531,10 +531,11 @@ covering CanJS core libraries.">
     <h2>Overview</h2>
 <p>In this section, we will:</p>
 <ul>
+<li>Get an overview of state management</li>
 <li>Cover the fundamentals of React Hooks</li>
 <li>Review the Rules of Hooks</li>
 <li>Learn about the <code>useState</code> Hook</li>
-<li>Discover how to create custom Hooks</li>
+<li>Create custom Hooks as services</li>
 </ul>
 <h2>Objective 1: Add buttons to select a state</h2>
 <p>Currently, our restaurant list is a static array of restaurants. We want to work towards
@@ -1336,11 +1337,29 @@ components.</p>
 logic across multiple components. Like built-in Hooks, custom Hooks must adhere to React’s rules
 of Hooks. The naming convention for custom Hooks is to start with <code>use</code>, like <code>useCustomHook</code>.</p>
 <h3>Why use custom Hooks?</h3>
-<ul>
-<li><strong>Reusability:</strong> write the Hook once and reuse it in multiple components.</li>
-<li><strong>Simplicity:</strong> break down complex components into simpler functions.</li>
-<li><strong>Organization:</strong> separate the concerns of components and organize logic effectively.</li>
-</ul>
+<p>Putting stateful logic into a custom Hook has numerous benefits:</p>
+<p><strong>Reusability:</strong> One of the primary reasons for creating custom Hooks is reusability.
+You might find yourself repeating the same logic in different components—for
+example, fetching data from an API, handling form input, or managing a subscription.
+By refactoring this logic into a custom Hook, you can easily reuse this functionality
+across multiple components, keeping your code DRY (Don’t Repeat Yourself).</p>
+<p><strong>Separation of concerns:</strong> Custom Hooks allow you to separate complex logic from the
+component logic. This makes your main component code cleaner and more focused on
+rendering UI, while the custom Hook handles the business logic or side effects.
+It aligns well with the principle of single responsibility, where a function or
+module should ideally do one thing only.</p>
+<p><strong>Easier testing and maintenance:</strong> Isolating logic into custom Hooks can make your code
+easier to test and maintain. Since Hooks are just JavaScript functions, they can be
+tested independently of any component. This isolation can lead to more robust and
+reliable code.</p>
+<p><strong>Simplifying components:</strong> If your component is becoming too large and difficult to
+understand, moving some logic to a custom Hook can simplify it. This not only
+improves readability but also makes it easier for other developers to grasp what
+the component is doing.</p>
+<p><strong>Sharing stateful logic:</strong> Custom Hooks can contain stateful logic, which is not
+possible with regular JavaScript functions. This means you can have a Hook that
+manages its own state and shares this logic across multiple components, something
+that would be difficult or impossible with traditional class-based components.</p>
 <h3>How to create a custom Hook</h3>
 <p>To create a custom Hook, you start by defining a function that starts with <code>use</code>.
 This Hook can call other Hooks and return whatever value is necessary.</p>

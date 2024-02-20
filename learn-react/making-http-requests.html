@@ -529,21 +529,76 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
-<p>TODO</p>
-<h2>Objective 1: Add a <code>fetch</code> request for states</h2>
 <p>In this section, we will:</p>
 <ul>
-<li>Learn about the <code>useEffect</code> Hook</li>
-<li>TODO: Review TypeScript generics?</li>
+<li>Define interfaces for <code>useState</code></li>
+<li>Explore the <code>useEffect</code> Hook</li>
+<li>Understand the effect callback function</li>
+<li>Utilize the dependency array</li>
+<li>Perform async operations inside <code>useEffect</code></li>
+<li>Implement cleanup functions</li>
+<li>Manage environment variables</li>
+<li>Include query parameters in API calls</li>
+<li>Handle HTTP error statuses</li>
+<li>Catch network errors</li>
 </ul>
+<h2>Objective 1: Add a <code>fetch</code> request for states</h2>
+<p>So far we’ve only had hard-coded data for our states, cities, and restaurants.
+Let’s start loading data from an API server, beginning with the list of states!</p>
+<h3>Defining interfaces for <code>useState</code></h3>
+<p>When building React components, you may sometimes have local state variables that always
+change together, and thus would benefit by being in a single <code>useState()</code> variable together:</p>
+<pre><code class="language-tsx">import React, { useState } from 'react';
+
+interface UserProfile {
+    email: string;
+    name: string;
+}
+
+const UserProfileComponent: React.FC = () =&gt; {
+    const [userProfile, setUserProfile] = useState&lt;UserProfile&gt;({
+        email: 'grace.hopper@example.com',
+        name: 'Grace Hopper',
+    });
+
+    const updateProfile = () =&gt; {
+        setUserProfile({
+            email: 'ada.lovelace@example.com',
+            name: 'Ada Lovelace',
+        });
+    };
+
+    return (
+        &lt;form&gt;
+            &lt;p&gt;Name: {userProfile.name}&lt;/p&gt;
+            &lt;p&gt;Email: {userProfile.email}&lt;/p&gt;
+            &lt;button onClick={updateProfile}&gt;
+                Update profile
+            &lt;/button&gt;
+        &lt;/form&gt;
+    );
+};
+
+export default UserProfileComponent;
+
+</code></pre>
+<div line-highlight='3-6, 9, 15-18, only'></div>
+<p>In the example above, we have a <code>UserProfile</code> interface that keeps track of an <code>email</code> and <code>name</code>.
+We can use that interface when we call <code>useState()</code> so TypeScript is aware of the typing for
+the state variable and its setter.</p>
 <h3>The <code>useEffect</code> Hook</h3>
 <p><code>useEffect</code> is a React Hook that lets you perform side effects in your functional components.
 It serves as a powerful tool to execute code in response to component renders or state changes.</p>
 <p>Here is an example component with <code>useEffect</code>:</p>
 <pre><code class="language-tsx">import { useEffect, useState } from 'react';
 
+interface Coordinates {
+    latitude: number;
+    longitude: number;
+}
+
 const GeolocationComponent: React.FC = () =&gt; {
-    const [location, setLocation] = useState(null);
+    const [location, setLocation] = useState&lt;Coordinates | null&gt;(null);
 
     useEffect(() =&gt; { // Effect callback function
         navigator.geolocation.getCurrentPosition(position =&gt; {
@@ -570,7 +625,7 @@ const GeolocationComponent: React.FC = () =&gt; {
 export default GeolocationComponent;
 
 </code></pre>
-<div line-highlight='1, 6-12, only'></div>
+<div line-highlight='1, 11-17, only'></div>
 <p>Let’s break this example down by the two arguments that <code>useEffect</code> takes:</p>
 <h3>Effect callback function</h3>
 <p>The first argument of <code>useEffect</code> is a function, often referred to as the “effect” function.
@@ -592,8 +647,13 @@ contents of this array:</p>
 after the initial render.</p>
 <pre><code class="language-tsx">import { useEffect, useState } from 'react';
 
+interface Coordinates {
+    latitude: number;
+    longitude: number;
+}
+
 const GeolocationComponent: React.FC = () =&gt; {
-    const [location, setLocation] = useState(null);
+    const [location, setLocation] = useState&lt;Coordinates | null&gt;(null);
 
     useEffect(() =&gt; { // Effect callback function
         navigator.geolocation.getCurrentPosition(position =&gt; {
@@ -620,7 +680,7 @@ const GeolocationComponent: React.FC = () =&gt; {
 export default GeolocationComponent;
 
 </code></pre>
-<div line-highlight='6-12, only'></div>
+<div line-highlight='11-17, only'></div>
 <h4>Array with values</h4>
 <p>When you include values (variables, props, state) in the dependency array,
 the effect will only re-run if those specific values change between renders. This selective
@@ -739,8 +799,6 @@ you to gracefully handle any errors that occur during the execution of your asyn
 <p>In this example, if <code>fetch</code> throws an error, the <code>catch</code> block catches and handles it.
 This pattern is crucial to prevent unhandled promise rejections and ensure that your application
 can respond appropriately to failures in asynchronous tasks.</p>
-<h3>TypeScript generics</h3>
-<p>TODO? We’ve used generics, but maybe explain the ones we’re going to use so it’s a little familiar?</p>
 <h3>Cleanup functions</h3>
 <p>The effect function can optionally return another function, known as the “cleanup” function. The cleanup function is useful for performing any necessary cleanup activities when the component unmounts or before the component re-renders and the effect is re-invoked. Common examples include clearing timers, canceling network requests, or removing event listeners.</p>
 <pre><code class="language-tsx">import { useEffect, useState } from 'react';
@@ -775,7 +833,7 @@ function WebSocketComponent() {
 export default WebSocketComponent;
 
 </code></pre>
-<div line-highlight='7-21, only'></div>
+<div line-highlight='7, 15-18, only'></div>
 <p>In the example above, we’re creating a WebSocket connection to an API when the component
 is first rendered (note the empty dependency array).</p>
 <p>When the component is removed from the DOM, the cleanup function will run and tear down
@@ -784,10 +842,100 @@ the WebSocket connection.</p>
 <p>The way we’re accessing our locally run API during development may be different than how
 we access it in production. To prepare for this, we’ll set an environment variable to do
 what we need.</p>
-<p>TODO: Explain that setting environment variables is a generic thing you do, and on this
-project in particular, Vite will make anything prefixed with <code>VITE_</code> available in our
-client-side source code.</p>
+<p>Environment variables are dynamic-named values that can affect the way running processes
+on a computer will behave. In the context of software development, they are used to manage
+specific settings or configurations that should not be hardcoded within the application’s
+source code.</p>
+<p>This is particularly useful for:</p>
+<ul>
+<li><strong>Security:</strong> Keeping sensitive data like API keys or database passwords out of the source code.</li>
+<li><strong>Flexibility:</strong> Allowing configurations to change depending on the environment (development, staging, production).</li>
+<li><strong>Convenience:</strong> Making it easier to update configuration settings without changing the application’s code.</li>
+</ul>
+<p>In our project, we’ll utilize environment variables to set ourselves up to be able to differentiate
+between the development and production environments, especially in how we connect to different
+instances of our API.</p>
+<h4>Using environment variables with Vite</h4>
+<p>Vite, our build tool, provides an easy way to work with environment variables. In Vite, any
+environment variable prefixed with <code>VITE_</code> is made available in our client-side source code.
+This prefix is necessary because Vite only exposes variables that are explicitly meant for
+client-side consumption, ensuring server-side variables remain secure.</p>
+<p>Here’s how we can use it: in our project’s root directory, we can create a <code>.env</code> file with
+variables like this:</p>
+<pre><code>VITE_PMO_API = '//localhost:7070'
+</code></pre>
+<div line-highlight='1'></div>
+<p>Then we can access this variable using <code>import.meta.env</code>:</p>
+<pre><code class="language-tsx">const response = await fetch(`${import.meta.env.VITE_PMO_API}/data`, {
+    method: &quot;GET&quot;,
+})
+
+const data = await response.json()
+</code></pre>
+<div line-highlight='1'></div>
+<p>Concatenating the two, this will be the equivalent of making this <code>fetch</code> request:</p>
+<pre><code class="language-tsx">const response = await fetch(`//localhost:7070/data`, {
+    method: &quot;GET&quot;,
+})
+</code></pre>
+<div line-highlight='1'></div>
 <h3>Setup 1</h3>
+<h4>Install the Place My Order API</h4>
+<p>Before we begin requesting data from our API, we need to install the
+<code>place-my-order-api</code> module, which will generate fake restaurant data and
+serve it from port <code>7070</code>.</p>
+<p>✏️ Run:</p>
+<pre><code class="language-bash">npm install place-my-order-api@1
+</code></pre>
+<p>✏️ Next add an API script to your <code>package.json</code></p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;place-my-order&quot;,
+  &quot;private&quot;: true,
+  &quot;version&quot;: &quot;0.0.0&quot;,
+  &quot;type&quot;: &quot;module&quot;,
+  &quot;scripts&quot;: {
+    &quot;api&quot;: &quot;place-my-order-api --port 7070&quot;,
+    &quot;dev&quot;: &quot;vite&quot;,
+    &quot;build&quot;: &quot;tsc &amp;&amp; vite build&quot;,
+    &quot;lint&quot;: &quot;eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0&quot;,
+    &quot;test&quot;: &quot;vitest&quot;,
+    &quot;preview&quot;: &quot;vite preview&quot;
+  },
+  &quot;dependencies&quot;: {
+    &quot;place-my-order-api&quot;: &quot;^1.3.0&quot;,
+    &quot;place-my-order-assets&quot;: &quot;^0.2.2&quot;,
+    &quot;react&quot;: &quot;^18.2.0&quot;,
+    &quot;react-dom&quot;: &quot;^18.2.0&quot;,
+    &quot;react-router-dom&quot;: &quot;^6.22.0&quot;
+  },
+  &quot;devDependencies&quot;: {
+    &quot;@testing-library/jest-dom&quot;: &quot;^6.4.2&quot;,
+    &quot;@testing-library/react&quot;: &quot;^14.2.1&quot;,
+    &quot;@testing-library/user-event&quot;: &quot;^14.5.2&quot;,
+    &quot;@types/react&quot;: &quot;^18.2.43&quot;,
+    &quot;@types/react-dom&quot;: &quot;^18.2.17&quot;,
+    &quot;@typescript-eslint/eslint-plugin&quot;: &quot;^6.14.0&quot;,
+    &quot;@typescript-eslint/parser&quot;: &quot;^6.14.0&quot;,
+    &quot;@vitejs/plugin-react&quot;: &quot;^4.2.1&quot;,
+    &quot;eslint&quot;: &quot;^8.55.0&quot;,
+    &quot;eslint-plugin-react-hooks&quot;: &quot;^4.6.0&quot;,
+    &quot;eslint-plugin-react-refresh&quot;: &quot;^0.4.5&quot;,
+    &quot;jsdom&quot;: &quot;^24.0.0&quot;,
+    &quot;typescript&quot;: &quot;^5.2.2&quot;,
+    &quot;vite&quot;: &quot;^5.0.8&quot;,
+    &quot;vitest&quot;: &quot;^1.2.2&quot;
+  }
+}
+
+</code></pre>
+<div line-highlight='7, only'></div>
+<p>✏️ In a <strong>new</strong> terminal window, start the API server by running:</p>
+<pre><code class="language-bash">npm run api
+</code></pre>
+<p>Double check the API by navigating to <a href="http://localhost:7070/restaurants">localhost:7070/restaurants</a>.
+You should see a JSON list of restaurant data.</p>
+<p>It will be helpful to have a third terminal tab for the <code>npm run api</code> command.</p>
+<h4>Create and update files</h4>
 <p>✏️ Create <strong>.env</strong> and update it to be:</p>
 <pre><code>VITE_PMO_API = '//localhost:7070'
 </code></pre>
@@ -927,60 +1075,6 @@ const RestaurantList: React.FC = () =&gt; {
 export default RestaurantList
 </code></pre>
  <div line-highlight="3,6,8-11,74-97,130,only"></div>
-<h3>Install the Place My Order API</h3>
-<p>Before we begin requesting data from our API, we need to install the
-<code>place-my-order-api</code> module, which will generate fake restaurant data and
-serve it from port <code>7070</code>.</p>
-<p>✏️ Run:</p>
-<pre><code class="language-bash">npm install place-my-order-api@1
-</code></pre>
-<p>✏️ Next add an API script to your <code>package.json</code></p>
-<pre><code class="language-json">{
-  &quot;name&quot;: &quot;place-my-order&quot;,
-  &quot;private&quot;: true,
-  &quot;version&quot;: &quot;0.0.0&quot;,
-  &quot;type&quot;: &quot;module&quot;,
-  &quot;scripts&quot;: {
-    &quot;api&quot;: &quot;place-my-order-api --port 7070&quot;,
-    &quot;dev&quot;: &quot;vite&quot;,
-    &quot;build&quot;: &quot;tsc &amp;&amp; vite build&quot;,
-    &quot;lint&quot;: &quot;eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0&quot;,
-    &quot;test&quot;: &quot;vitest&quot;,
-    &quot;preview&quot;: &quot;vite preview&quot;
-  },
-  &quot;dependencies&quot;: {
-    &quot;place-my-order-api&quot;: &quot;^1.3.0&quot;,
-    &quot;place-my-order-assets&quot;: &quot;^0.2.2&quot;,
-    &quot;react&quot;: &quot;^18.2.0&quot;,
-    &quot;react-dom&quot;: &quot;^18.2.0&quot;,
-    &quot;react-router-dom&quot;: &quot;^6.22.0&quot;
-  },
-  &quot;devDependencies&quot;: {
-    &quot;@testing-library/jest-dom&quot;: &quot;^6.4.2&quot;,
-    &quot;@testing-library/react&quot;: &quot;^14.2.1&quot;,
-    &quot;@testing-library/user-event&quot;: &quot;^14.5.2&quot;,
-    &quot;@types/react&quot;: &quot;^18.2.43&quot;,
-    &quot;@types/react-dom&quot;: &quot;^18.2.17&quot;,
-    &quot;@typescript-eslint/eslint-plugin&quot;: &quot;^6.14.0&quot;,
-    &quot;@typescript-eslint/parser&quot;: &quot;^6.14.0&quot;,
-    &quot;@vitejs/plugin-react&quot;: &quot;^4.2.1&quot;,
-    &quot;eslint&quot;: &quot;^8.55.0&quot;,
-    &quot;eslint-plugin-react-hooks&quot;: &quot;^4.6.0&quot;,
-    &quot;eslint-plugin-react-refresh&quot;: &quot;^0.4.5&quot;,
-    &quot;jsdom&quot;: &quot;^24.0.0&quot;,
-    &quot;typescript&quot;: &quot;^5.2.2&quot;,
-    &quot;vite&quot;: &quot;^5.0.8&quot;,
-    &quot;vitest&quot;: &quot;^1.2.2&quot;
-  }
-}
-
-</code></pre>
-<div line-highlight='7, only'></div>
-<p>✏️ In a <strong>new</strong> terminal window, start the API server by running:</p>
-<pre><code class="language-bash">npm run api
-</code></pre>
-<p>Double check the API by navigating to <a href="http://localhost:7070/restaurants">localhost:7070/restaurants</a>.
-You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the <code>api</code> command from.</p>
 <h3>Verify 1</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import '@testing-library/jest-dom';
@@ -1081,6 +1175,7 @@ describe('RestaurantList component', () =&gt; {
 <li>Call <code>useEffect()</code> and <code>fetch</code> data from <code>${import.meta.env.VITE_PMO_API}/states</code>.</li>
 </ul>
 <p>Hint: Call your state setter after you parse the JSON response from <code>fetch()</code>.</p>
+<p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/01-problem?file=src/pages/RestaurantList/RestaurantList.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/01-problem?file=src/pages/RestaurantList/RestaurantList.tsx">CodeSandbox</a> to do this exercise in an online code editor.</p>
 <h3>Solution 1</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1237,37 +1332,13 @@ const RestaurantList: React.FC = () =&gt; {
 export default RestaurantList
 </code></pre>
  <div line-highlight="18-22,24-28,30,32-39,only"></div>
+<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/01-solution?file=src/pages/RestaurantList/RestaurantList.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/01-solution?file=src/pages/RestaurantList/RestaurantList.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Objective 2: Move the fetch to a <code>useStates</code> Hook</h2>
-<p>In this section, we will:</p>
-<ul>
-<li>Refactor our <code>&lt;RestaurantList&gt;</code> component to depend on a custom Hook.</li>
-</ul>
-<h3>Writing custom Hooks as services</h3>
-<p>In a previous section, we created a <code>useCities</code> Hook in our <code>hooks.ts</code> file.</p>
-<p>Putting stateful logic into a custom Hook has numerous benefits:</p>
-<p><strong>Reusability:</strong> One of the primary reasons for creating custom Hooks is reusability.
-You might find yourself repeating the same logic in different components—for
-example, fetching data from an API, handling form input, or managing a subscription.
-By refactoring this logic into a custom Hook, you can easily reuse this functionality
-across multiple components, keeping your code DRY (Don’t Repeat Yourself).</p>
-<p><strong>Separation of concerns:</strong> Custom Hooks allow you to separate complex logic from the
-component logic. This makes your main component code cleaner and more focused on
-rendering UI, while the custom Hook handles the business logic or side effects.
-It aligns well with the principle of single responsibility, where a function or
-module should ideally do one thing only.</p>
-<p><strong>Easier testing and maintenance:</strong> Isolating logic into custom Hooks can make your code
-easier to test and maintain. Since Hooks are just JavaScript functions, they can be
-tested independently of any component. This isolation can lead to more robust and
-reliable code.</p>
-<p><strong>Simplifying components:</strong> If your component is becoming too large and difficult to
-understand, moving some logic to a custom Hook can simplify it. This not only
-improves readability but also makes it easier for other developers to grasp what
-the component is doing.</p>
-<p><strong>Sharing stateful logic:</strong> Custom Hooks can contain stateful logic, which is not
-possible with regular JavaScript functions. This means you can have a Hook that
-manages its own state and shares this logic across multiple components, something
-that would be difficult or impossible with traditional class-based components.</p>
+<p>In a previous section, we created a <code>useCities</code> Hook in our <code>hooks.ts</code> file so that our code would
+be more maintainable, then we used the Hook in our <code>&lt;RestaurantList&gt;</code> component.</p>
+<p>Our <code>&lt;RestaurantList&gt;</code> component is starting to get long again with the new state list data fetching
+code that we just added. Let’s refactor it and move our <code>fetch</code> logic to a custom Hook!</p>
 <h3>Setup 2</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
@@ -1577,6 +1648,7 @@ describe('useStates Hook', () =&gt; {
 <li>Refactor the existing <code>useState</code> and <code>useEffect</code> logic into a new <code>useStates</code> Hook.</li>
 </ul>
 <p>Hint: After moving the state and effect logic into <code>hooks.ts</code>, use your new Hook in <code>RestaurantList.tsx</code>.</p>
+<p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-problem?file=src/services/restaurant/hooks.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-problem?file=src/services/restaurant/hooks.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
 <h3>Solution 2</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1753,12 +1825,13 @@ export function useStates(): StatesResponse {
 }
 </code></pre>
  <div line-highlight="4-7,18,20-25,27-31,33,35-42,44-45,only"></div>
+<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-solution?file=src/services/restaurant/hooks.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-solution?file=src/services/restaurant/hooks.ts">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Objective 3: Update the <code>useCities</code> Hook to fetch data from the API.</h2>
-<p>In this section, we will:</p>
-<ul>
-<li>Learn about including query parameters in our API calls.</li>
-</ul>
+<h2>Objective 3: Update the <code>useCities</code> Hook to fetch data from the API</h2>
+<p>Let’s continue our quest to load data from our API and update our <code>useCities</code>
+Hook to fetch data.</p>
+<p>To do this, we’ll need to include query parameters in our API call to the
+<code>/cities</code> endpoint.</p>
 <h3>Including query parameters in API calls</h3>
 <p>Query parameters are a defined set of parameters attached to the end of a URL.
 They are used to define and pass data in the form of key-value pairs. The
@@ -2062,10 +2135,12 @@ describe('useStates Hook', () =&gt; {
 </code></pre>
  <div line-highlight="6,10-12,15,17-18,23-27,29,31-32,34-35,42,49,53-54,56-57,only"></div>
 <h3>Exercise 3</h3>
-<p>Update our useCities Hook to fetch cities from the Place My Order API, given a selected state.</p>
+<p>Update our <code>useCities()</code> Hook to fetch cities from the Place My Order API, given a selected state.</p>
 <p>When calling the Place My Order API, include the <code>state</code> query parameter:</p>
 <pre><code>http://localhost:7070/cities?state=MO
 </code></pre>
+<p>Hint: Remember to include the <code>state</code> in the dependency array of the <code>useEffect()</code> in <code>useCities()</code>.</p>
+<p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-problem?file=src/services/restaurant/hooks.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-problem?file=src/services/restaurant/hooks.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
 <h3>Solution 3</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -2281,19 +2356,12 @@ export function useStates(): StatesResponse {
 }
 </code></pre>
  <div line-highlight="4-5,12-13,16-17,25,38,45-47,50-51,53-54,56,58-64,67-68,only"></div>
+<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-solution?file=src/services/restaurant/hooks.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-solution?file=src/services/restaurant/hooks.ts">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Objective 4: Create an <code>apiRequest</code> helper and use it in the Hooks.</h2>
-<p>In this section, we will learn how to:</p>
-<ul>
-<li>Handle HTTP error statuses (e.g. <code>404 Not Found</code>)</li>
-<li>Catch network errors from <code>fetch()</code></li>
-</ul>
-<h3>Checking for error responses</h3>
-<ul>
-<li><code>.ok</code></li>
-<li><code>.status</code></li>
-<li><code>.statusText</code></li>
-</ul>
+<p>Now that we have two Hooks that fetch data in a similar way, let’s create
+an <code>apiRequest</code> helper function that both Hooks can use.</p>
+<h3>Handle HTTP error statuses</h3>
 <p>When you make a request with the Fetch API, it does not reject on HTTP error
 statuses (like <code>404</code> or <code>500</code>). Instead, it resolves normally (with an <code>ok</code>
 status set to <code>false</code>), and it only rejects on network failure or if anything
@@ -2314,7 +2382,7 @@ const error = response.ok ? null : new Error(`${response.status} (${response.sta
 <p>In the example above, we check the <code>response.ok</code> property to see if the status
 code is in the <code>200</code>-<code>299</code> (successful) range. If not, we create an <code>error</code>
 object that contains the status code and text (e.g. <code>404 Not Found</code>).</p>
-<h3>Handling network errors</h3>
+<h3>Catch network errors</h3>
 <p>Network errors occur when there is a problem in completing the request, like when
 the user is offline, the server is unreachable, or there is a DNS lookup failure.</p>
 <p>In these cases, the <code>fetch</code> API will <em>not</em> resolve with data, but instead it will
@@ -2601,6 +2669,7 @@ describe('Hooks', () =&gt; {
     param2: &quot;value2&quot;,
 })
 </code></pre>
+<p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-problem?file=src/services/restaurant/hooks.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-problem?file=src/services/restaurant/hooks.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
 <h3>Solution 4</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -2721,18 +2790,14 @@ export function useStates(): StatesResponse {
 }
 </code></pre>
  <div line-highlight="26-31,36,55-57,62,only"></div>
+<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-solution?file=src/services/restaurant/hooks.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-solution?file=src/services/restaurant/hooks.ts">CodeSandbox</a>.</p>
 <p></details></p>
-<h2>Objective 5: Fetch restaurant data</h2>
-<p>In this section, we will:</p>
-<ul>
-<li>Create a <code>useRestaurants</code> Hook for fetching the restaurant data.</li>
-</ul>
-<p><img src="../static/img/react-vite/09-making-http-requests/5-problem.png"
-style="border: solid 1px black; max-width: 800px;"/></p>
+<h2>Objective 5: Fetch the list of restaurants</h2>
+<p>Let’s finish our quest to load data from our API by creating a Hook to fetch
+the list of restaurants and use it in our component.</p>
 <p>Now that we are able to capture a user’s state and city preferences, we want to only
-return restaurants in the selected city.:</p>
-<p><img src="../static/img/react-vite/09-making-http-requests/5-solution.png"
-style="border: solid 1px black; max-width: 800px;"/></p>
+show the restaurants in the selected city:</p>
+<p><img alt="A web page titled “Restaurants” from place-my-order.com showing that “Illinois” and “Chicago” are selected. Underneath the dropdowns is a list of restaurants that are in Chicago." src="../static/img/react-vite/09-making-http-requests/05-solution-with-selection.png" style="max-width: 689px;"/></p>
 <h3>Setup 5</h3>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'
@@ -3200,11 +3265,12 @@ describe('Hooks', () =&gt; {
  <div line-highlight="4,44-47,49,53,58-59,62,79-80,82-84,88,92-98,only"></div>
 <h3>Exercise 5</h3>
 <ul>
-<li>Implement a <code>useRestaurants</code> Hook to fetch restaurant data.</li>
-<li>Update <code>RestaurantList.tsx</code> to use your new <code>useRestaurants</code> Hook.</li>
+<li>Create a <code>useRestaurants</code> Hook for fetching the list of restaurants.</li>
+<li>Update <code>RestaurantList.tsx</code> to use our new <code>useRestaurants</code> Hook.</li>
 </ul>
 <p>Hint: The requested URL with query parameters should look like this:
-<code>'/api/restaurants?filter[address.state]=IL&amp;filter[address.city]=Chicago'</code></p>
+<code>'/restaurants?filter[address.state]=IL&amp;filter[address.city]=Chicago'</code></p>
+<p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/05-problem?file=src/services/restaurant/hooks.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/05-problem?file=src/services/restaurant/hooks.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
 <h3>Solution 5</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -3441,9 +3507,10 @@ export function useStates(): StatesResponse {
 }
 </code></pre>
  <div line-highlight="11-12,19-20,52-53,61,63-67,77,80,84-87,89-90,92,94,96-102,105-106,only"></div>
+<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/05-solution?file=src/services/restaurant/hooks.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/05-solution?file=src/services/restaurant/hooks.ts">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Next steps</h2>
-<p>TODO</p>
+<p>Next, let’s learn how to have <a href="./nested-routes.html">child routes within parent routes</a> with React Router.</p>
 
 </section>
 
