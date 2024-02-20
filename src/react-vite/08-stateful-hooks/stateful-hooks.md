@@ -10,10 +10,11 @@
 
 In this section, we will:
 
+- Get an overview of state management
 - Cover the fundamentals of React Hooks
 - Review the Rules of Hooks
 - Learn about the `useState` Hook
-- Discover how to create custom Hooks
+- Create custom Hooks as services
 
 ## Objective 1: Add buttons to select a state
 
@@ -218,9 +219,34 @@ of Hooks. The naming convention for custom Hooks is to start with `use`, like `u
 
 ### Why use custom Hooks?
 
-- **Reusability:** write the Hook once and reuse it in multiple components.
-- **Simplicity:** break down complex components into simpler functions.
-- **Organization:** separate the concerns of components and organize logic effectively.
+Putting stateful logic into a custom Hook has numerous benefits:
+
+**Reusability:** One of the primary reasons for creating custom Hooks is reusability.
+You might find yourself repeating the same logic in different components—for
+example, fetching data from an API, handling form input, or managing a subscription.
+By refactoring this logic into a custom Hook, you can easily reuse this functionality
+across multiple components, keeping your code DRY (Don’t Repeat Yourself).
+
+**Separation of concerns:** Custom Hooks allow you to separate complex logic from the
+component logic. This makes your main component code cleaner and more focused on
+rendering UI, while the custom Hook handles the business logic or side effects.
+It aligns well with the principle of single responsibility, where a function or
+module should ideally do one thing only.
+
+**Easier testing and maintenance:** Isolating logic into custom Hooks can make your code
+easier to test and maintain. Since Hooks are just JavaScript functions, they can be
+tested independently of any component. This isolation can lead to more robust and
+reliable code.
+
+**Simplifying components:** If your component is becoming too large and difficult to
+understand, moving some logic to a custom Hook can simplify it. This not only
+improves readability but also makes it easier for other developers to grasp what
+the component is doing.
+
+**Sharing stateful logic:** Custom Hooks can contain stateful logic, which is not
+possible with regular JavaScript functions. This means you can have a Hook that
+manages its own state and shares this logic across multiple components, something
+that would be difficult or impossible with traditional class-based components.
 
 ### How to create a custom Hook
 
