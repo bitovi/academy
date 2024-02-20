@@ -8,15 +8,17 @@
 
 ## Overview
 
-- Introduction to nested routes
-- Creating a nested routing configuration
-- Nesting component folders
+In this section, we will:
+
+- Learn about nested routes
+- Create a nested routing configuration
+- Nest component folders
 
 ## Objective 1: Restaurant details page
 
 We want to have a component to display individual restaurants details, and want the path to be nested under the restaurants path.
 
-<img alt="Screenshot of the Place My Order app with a nested route, displaying the “/restaurants/brunch-place” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/objective-1.png" style="max-width: 640px;"/>
+<img alt="Screenshot of the Place My Order app with a nested route, displaying the “/restaurants/lettuce-shack” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/01-solution.png" style="max-width: 735px;"/>
 
 ### Introduction to nested routes
 
@@ -44,7 +46,7 @@ You could create this sort of page without nested routes, but using nested route
 Recall our router config from the [first React Router lesson](./routing.html).
 
 @sourceref ../06-routing/createBrowserRouter.tsx
-@highlight 9-25, only
+@highlight 9-24, only
 
 Notice that our home and about pages are under the `children` key. These are actually nested routes of the root path. Route children can accept a `children` property themselves, on and on, until the browser runs out of resources.
 
@@ -88,6 +90,10 @@ The larger directory tree should look like the following:
 
 ### Setup 1
 
+✏️ Create **src/components/** (folder)
+
+✏️ Create **src/components/RestaurantHeader/** (folder)
+
 ✏️ Create **src/components/RestaurantHeader/index.ts** and update it to be:
 
 @sourceref ../../../exercises/react-vite/10-nested-routes/01-solution/src/components/RestaurantHeader/index.ts
@@ -95,6 +101,8 @@ The larger directory tree should look like the following:
 ✏️ Create **src/components/RestaurantHeader/RestaurantHeader.tsx** and update it to be:
 
 @sourceref ../../../exercises/react-vite/10-nested-routes/01-solution/src/components/RestaurantHeader/RestaurantHeader.tsx
+
+✏️ Create **src/pages/RestaurantDetails/** (folder)
 
 ✏️ Create **src/pages/RestaurantDetails/index.ts** and update it to be:
 
@@ -159,7 +167,7 @@ Refactor the router config in **src/main.tsx** to nest the restaurant routes.
 
 We learned to create nested routes, let’s practice by adding another page to our application. Add the order page to the route config and add a link to it.
 
-<img alt="Screenshot of the Place My Order app with a nested route, displaying the “/restaurants/brunch-place/order” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/objective-2.png" style="max-width: 640px;"/>
+<img alt="Screenshot of the Place My Order app with a nested route, displaying the “/restaurants/lettuce-shack/order” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/02-solution.png" style="max-width: 791px;"/>
 
 ### Setup 2
 
@@ -183,8 +191,6 @@ Add the order page files.
 
 Refactor the router config in **src/main.tsx** to contain the new RestaurantOrder components. You will need to come up with the route path on your own.
 
-Add a link to the order page inside the `ListItem` component.
-
 ### Solution 2
 
 <details>
@@ -194,10 +200,10 @@ Add a link to the order page inside the `ListItem` component.
 
 @diff ../../../exercises/react-vite/10-nested-routes/01-solution/src/main.tsx ../../../exercises/react-vite/10-nested-routes/02-solution/src/main.tsx only
 
-<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/01-solution?file=src/main.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/01-solution?file=src/main.tsx).
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/02-solution?file=src/main.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/02-solution?file=src/main.tsx).
 
 </details>
 
 ## Next steps
 
-Next we’ll learn to handle form data.
+Next, let’s learn how to [handle form data](./controlled-vs-uncontrolled.html).
