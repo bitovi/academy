@@ -1,6 +1,7 @@
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react'
-import { describe, expect, it } from 'vitest'
+import userEvent from '@testing-library/user-event'
+import { describe, expect, it, vi } from 'vitest'
 import FormSelect from './FormSelect'
 
 describe('FormSelect Component', () => {
@@ -18,5 +19,9 @@ describe('FormSelect Component', () => {
         // Check if select options are rendered
         expect(screen.getByRole('option', { name: 'Option 1' })).toBeInTheDocument()
         expect(screen.getByRole('option', { name: 'Option 2' })).toBeInTheDocument()
+    })
+
+    it('calls onChange with the correct value when selection changes', async () => {
+        throw new Error('Test needs to be implemented')
     })
 })
