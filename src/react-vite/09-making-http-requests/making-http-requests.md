@@ -8,14 +8,35 @@
 
 ## Overview
 
-TODO
+In this section, we will:
+
+- Define interfaces for `useState`
+- Explore the `useEffect` Hook
+- Understand the effect callback function
+- Utilize the dependency array
+- Perform async operations inside `useEffect`
+- Implement cleanup functions
+- Manage environment variables
+- Include query parameters in API calls
+- Handle HTTP error statuses
+- Catch network errors
 
 ## Objective 1: Add a `fetch` request for states
 
-In this section, we will:
+So far we’ve only had hard-coded data for our states, cities, and restaurants.
+Let’s start loading data from an API server, beginning with the list of states!
 
-- Learn about the `useEffect` Hook
-- TODO: Review TypeScript generics?
+### Defining interfaces for `useState`
+
+When building React components, you may sometimes have local state variables that always
+change together, and thus would benefit by being in a single `useState()` variable together:
+
+@sourceref useState-with-interface.tsx
+@highlight 3-6, 9, 15-18, only
+
+In the example above, we have a `UserProfile` interface that keeps track of an `email` and `name`.
+We can use that interface when we call `useState()` so TypeScript is aware of the typing for
+the state variable and its setter.
 
 ### The `useEffect` Hook
 
@@ -25,7 +46,7 @@ It serves as a powerful tool to execute code in response to component renders or
 Here is an example component with `useEffect`:
 
 @sourceref dependency-array-empty.tsx
-@highlight 1, 6-12, only
+@highlight 1, 11-17, only
 
 Let’s break this example down by the two arguments that `useEffect` takes:
 
@@ -57,7 +78,7 @@ If the dependency array is an empty array, the effect runs once
 after the initial render.
 
 @sourceref dependency-array-empty.tsx
-@highlight 6-12, only
+@highlight 11-17, only
 
 #### Array with values
 
@@ -100,16 +121,12 @@ In this example, if `fetch` throws an error, the `catch` block catches and handl
 This pattern is crucial to prevent unhandled promise rejections and ensure that your application
 can respond appropriately to failures in asynchronous tasks.
 
-### TypeScript generics
-
-TODO? We’ve used generics, but maybe explain the ones we’re going to use so it’s a little familiar?
-
 ### Cleanup functions
 
 The effect function can optionally return another function, known as the “cleanup” function. The cleanup function is useful for performing any necessary cleanup activities when the component unmounts or before the component re-renders and the effect is re-invoked. Common examples include clearing timers, canceling network requests, or removing event listeners.
 
 @sourceref useEffect-with-cleanup.tsx
-@highlight 7-21, only
+@highlight 7, 15-18, only
 
 In the example above, we’re creating a WebSocket connection to an API when the component
 is first rendered (note the empty dependency array).
@@ -123,22 +140,57 @@ The way we’re accessing our locally run API during development may be differen
 we access it in production. To prepare for this, we’ll set an environment variable to do
 what we need.
 
-TODO: Explain that setting environment variables is a generic thing you do, and on this
-project in particular, Vite will make anything prefixed with `VITE_` available in our
-client-side source code.
+Environment variables are dynamic-named values that can affect the way running processes
+on a computer will behave. In the context of software development, they are used to manage
+specific settings or configurations that should not be hardcoded within the application’s
+source code.
 
-### Setup 1
+This is particularly useful for:
 
-✏️ Create **.env** and update it to be:
+- **Security:** Keeping sensitive data like API keys or database passwords out of the source code.
+- **Flexibility:** Allowing configurations to change depending on the environment (development, staging, production).
+- **Convenience:** Making it easier to update configuration settings without changing the application’s code.
+
+In our project, we’ll utilize environment variables to set ourselves up to be able to differentiate
+between the development and production environments, especially in how we connect to different
+instances of our API.
+
+#### Using environment variables with Vite
+
+Vite, our build tool, provides an easy way to work with environment variables. In Vite, any
+environment variable prefixed with `VITE_` is made available in our client-side source code.
+This prefix is necessary because Vite only exposes variables that are explicitly meant for
+client-side consumption, ensuring server-side variables remain secure.
+
+Here’s how we can use it: in our project’s root directory, we can create a `.env` file with
+variables like this:
 
 @sourceref ../../../exercises/react-vite/09-making-http-requests/01-solution/.env
 @highlight 1
 
-✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
+Then we can access this variable using `import.meta.env`:
 
-@diff ../../../exercises/react-vite/08-stateful-hooks/03-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/01-problem/src/pages/RestaurantList/RestaurantList.tsx only
+```tsx
+const response = await fetch(`${import.meta.env.VITE_PMO_API}/data`, {
+    method: "GET",
+})
 
-### Install the Place My Order API
+const data = await response.json()
+```
+@highlight 1
+
+Concatenating the two, this will be the equivalent of making this `fetch` request:
+
+```tsx
+const response = await fetch(`//localhost:7070/data`, {
+    method: "GET",
+})
+```
+@highlight 1
+
+### Setup 1
+
+#### Install the Place My Order API
 
 Before we begin requesting data from our API, we need to install the
 `place-my-order-api` module, which will generate fake restaurant data and
@@ -162,7 +214,20 @@ npm run api
 ```
 
 Double check the API by navigating to <a href="http://localhost:7070/restaurants">localhost:7070/restaurants</a>.
-You should see a JSON list of restaurant data. It will be helpful to have a second terminal tab to run the `api` command from.
+You should see a JSON list of restaurant data.
+
+It will be helpful to have a third terminal tab for the `npm run api` command.
+
+#### Create and update files
+
+✏️ Create **.env** and update it to be:
+
+@sourceref ../../../exercises/react-vite/09-making-http-requests/01-solution/.env
+@highlight 1
+
+✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
+
+@diff ../../../exercises/react-vite/08-stateful-hooks/03-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/01-problem/src/pages/RestaurantList/RestaurantList.tsx only
 
 ### Verify 1
 
@@ -177,6 +242,8 @@ You should see a JSON list of restaurant data. It will be helpful to have a seco
 
 Hint: Call your state setter after you parse the JSON response from `fetch()`.
 
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/01-problem?file=src/pages/RestaurantList/RestaurantList.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/01-problem?file=src/pages/RestaurantList/RestaurantList.tsx) to do this exercise in an online code editor.
+
 ### Solution 1
 
 <details>
@@ -186,46 +253,17 @@ Hint: Call your state setter after you parse the JSON response from `fetch()`.
 
 @diff ../../../exercises/react-vite/09-making-http-requests/01-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/09-making-http-requests/01-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/01-solution?file=src/pages/RestaurantList/RestaurantList.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/01-solution?file=src/pages/RestaurantList/RestaurantList.tsx).
+
 </details>
 
 ## Objective 2: Move the fetch to a `useStates` Hook
 
-In this section, we will:
+In a previous section, we created a `useCities` Hook in our `hooks.ts` file so that our code would
+be more maintainable, then we used the Hook in our `<RestaurantList>` component.
 
-- Refactor our `<RestaurantList>` component to depend on a custom Hook.
-
-### Writing custom Hooks as services
-
-In a previous section, we created a `useCities` Hook in our `hooks.ts` file.
-
-Putting stateful logic into a custom Hook has numerous benefits:
-
-**Reusability:** One of the primary reasons for creating custom Hooks is reusability.
-You might find yourself repeating the same logic in different components—for
-example, fetching data from an API, handling form input, or managing a subscription.
-By refactoring this logic into a custom Hook, you can easily reuse this functionality
-across multiple components, keeping your code DRY (Don’t Repeat Yourself).
-
-**Separation of concerns:** Custom Hooks allow you to separate complex logic from the
-component logic. This makes your main component code cleaner and more focused on
-rendering UI, while the custom Hook handles the business logic or side effects.
-It aligns well with the principle of single responsibility, where a function or
-module should ideally do one thing only.
-
-**Easier testing and maintenance:** Isolating logic into custom Hooks can make your code
-easier to test and maintain. Since Hooks are just JavaScript functions, they can be
-tested independently of any component. This isolation can lead to more robust and
-reliable code.
-
-**Simplifying components:** If your component is becoming too large and difficult to
-understand, moving some logic to a custom Hook can simplify it. This not only
-improves readability but also makes it easier for other developers to grasp what
-the component is doing.
-
-**Sharing stateful logic:** Custom Hooks can contain stateful logic, which is not
-possible with regular JavaScript functions. This means you can have a Hook that
-manages its own state and shares this logic across multiple components, something
-that would be difficult or impossible with traditional class-based components.
+Our `<RestaurantList>` component is starting to get long again with the new state list data fetching
+code that we just added. Let’s refactor it and move our `fetch` logic to a custom Hook!
 
 ### Setup 2
 
@@ -253,6 +291,8 @@ that would be difficult or impossible with traditional class-based components.
 
 Hint: After moving the state and effect logic into `hooks.ts`, use your new Hook in `RestaurantList.tsx`.
 
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-problem?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-problem?file=src/services/restaurant/hooks.ts) to do this exercise in an online code editor.
+
 ### Solution 2
 
 <details>
@@ -266,13 +306,17 @@ Hint: After moving the state and effect logic into `hooks.ts`, use your new Hook
 
 @diff ../../../exercises/react-vite/09-making-http-requests/02-problem/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/02-solution/src/services/restaurant/hooks.ts only
 
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-solution?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/02-solution?file=src/services/restaurant/hooks.ts).
+
 </details>
 
-## Objective 3: Update the `useCities` Hook to fetch data from the API.
+## Objective 3: Update the `useCities` Hook to fetch data from the API
 
-In this section, we will:
+Let’s continue our quest to load data from our API and update our `useCities`
+Hook to fetch data.
 
-- Learn about including query parameters in our API calls.
+To do this, we’ll need to include query parameters in our API call to the
+`/cities` endpoint.
 
 ### Including query parameters in API calls
 
@@ -313,13 +357,17 @@ Here’s a breakdown of this URL:
 
 ### Exercise 3
 
-Update our useCities Hook to fetch cities from the Place My Order API, given a selected state.
+Update our `useCities()` Hook to fetch cities from the Place My Order API, given a selected state.
 
 When calling the Place My Order API, include the `state` query parameter:
 
 ```
 http://localhost:7070/cities?state=MO
 ```
+
+Hint: Remember to include the `state` in the dependency array of the `useEffect()` in `useCities()`.
+
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-problem?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-problem?file=src/services/restaurant/hooks.ts) to do this exercise in an online code editor.
 
 ### Solution 3
 
@@ -334,20 +382,16 @@ http://localhost:7070/cities?state=MO
 
 @diff ../../../exercises/react-vite/09-making-http-requests/03-problem/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/03-solution/src/services/restaurant/hooks.ts only
 
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-solution?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/03-solution?file=src/services/restaurant/hooks.ts).
+
 </details>
 
 ## Objective 4: Create an `apiRequest` helper and use it in the Hooks.
 
-In this section, we will learn how to:
+Now that we have two Hooks that fetch data in a similar way, let’s create
+an `apiRequest` helper function that both Hooks can use.
 
-- Handle HTTP error statuses (e.g. `404 Not Found`)
-- Catch network errors from `fetch()`
-
-### Checking for error responses
-
-- `.ok`
-- `.status`
-- `.statusText`
+### Handle HTTP error statuses
 
 When you make a request with the Fetch API, it does not reject on HTTP error
 statuses (like `404` or `500`). Instead, it resolves normally (with an `ok`
@@ -366,7 +410,7 @@ In the example above, we check the `response.ok` property to see if the status
 code is in the `200`-`299` (successful) range. If not, we create an `error`
 object that contains the status code and text (e.g. `404 Not Found`).
 
-### Handling network errors
+### Catch network errors
 
 Network errors occur when there is a problem in completing the request, like when
 the user is offline, the server is unreachable, or there is a DNS lookup failure.
@@ -417,6 +461,8 @@ stringifyQuery({
 })
 ```
 
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-problem?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-problem?file=src/services/restaurant/hooks.ts) to do this exercise in an online code editor.
+
 ### Solution 4
 
 <details>
@@ -430,22 +476,19 @@ stringifyQuery({
 
 @diff ../../../exercises/react-vite/09-making-http-requests/04-problem/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/04-solution/src/services/restaurant/hooks.ts only
 
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-solution?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/04-solution?file=src/services/restaurant/hooks.ts).
+
 </details>
 
-## Objective 5: Fetch restaurant data
+## Objective 5: Fetch the list of restaurants
 
-In this section, we will:
-
-- Create a `useRestaurants` Hook for fetching the restaurant data.
-
-<img src="../static/img/react-vite/09-making-http-requests/5-problem.png"
-  style="border: solid 1px black; max-width: 800px;"/>
+Let’s finish our quest to load data from our API by creating a Hook to fetch
+the list of restaurants and use it in our component.
 
 Now that we are able to capture a user’s state and city preferences, we want to only
-return restaurants in the selected city.:
+show the restaurants in the selected city:
 
-<img src="../static/img/react-vite/09-making-http-requests/5-solution.png"
-  style="border: solid 1px black; max-width: 800px;"/>
+<img alt="A web page titled “Restaurants” from place-my-order.com showing that “Illinois” and “Chicago” are selected. Underneath the dropdowns is a list of restaurants that are in Chicago." src="../static/img/react-vite/09-making-http-requests/05-solution-with-selection.png" style="max-width: 689px;"/>
 
 ### Setup 5
 
@@ -476,11 +519,13 @@ and city, you should see a list of just restaurants from the selected city retur
 
 ### Exercise 5
 
-- Implement a `useRestaurants` Hook to fetch restaurant data.
-- Update `RestaurantList.tsx` to use your new `useRestaurants` Hook.
+- Create a `useRestaurants` Hook for fetching the list of restaurants.
+- Update `RestaurantList.tsx` to use our new `useRestaurants` Hook.
 
 Hint: The requested URL with query parameters should look like this:
-`'/api/restaurants?filter[address.state]=IL&filter[address.city]=Chicago'`
+`'/restaurants?filter[address.state]=IL&filter[address.city]=Chicago'`
+
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/05-problem?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/05-problem?file=src/services/restaurant/hooks.ts) to do this exercise in an online code editor.
 
 ### Solution 5
 
@@ -495,8 +540,10 @@ Hint: The requested URL with query parameters should look like this:
 
 @diff ../../../exercises/react-vite/09-making-http-requests/05-problem/src/services/restaurant/hooks.ts ../../../exercises/react-vite/09-making-http-requests/05-solution/src/services/restaurant/hooks.ts only
 
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/05-solution?file=src/services/restaurant/hooks.ts) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/09-making-http-requests/05-solution?file=src/services/restaurant/hooks.ts).
+
 </details>
 
 ## Next steps
 
-TODO
+Next, let’s learn how to have [child routes within parent routes](./nested-routes.html) with React Router.
