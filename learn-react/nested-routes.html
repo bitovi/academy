@@ -529,14 +529,15 @@ covering CanJS core libraries.">
   			
   				<section class="body">
     <h2>Overview</h2>
+<p>In this section, we will:</p>
 <ul>
-<li>Introduction to nested routes</li>
-<li>Creating a nested routing configuration</li>
-<li>Nesting component folders</li>
+<li>Learn about nested routes</li>
+<li>Create a nested routing configuration</li>
+<li>Nest component folders</li>
 </ul>
 <h2>Objective 1: Restaurant details page</h2>
 <p>We want to have a component to display individual restaurants details, and want the path to be nested under the restaurants path.</p>
-<p><img alt="Screenshot of the Place My Order app with a nested route, displaying the “/restaurants/brunch-place” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/objective-1.png" style="max-width: 640px;"/></p>
+<p><img alt="Screenshot of the Place My Order app with a nested route, displaying the “/restaurants/lettuce-shack” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/01-solution.png" style="max-width: 735px;"/></p>
 <h3>Introduction to nested routes</h3>
 <p>React Router nested routes provide a way to modify smaller portions of a page, rather than reloading everything. With nested routes, we can alter just sections of a page while also maintaining state in the URL so the page can still be reloaded or shared.</p>
 <p>Imagine a manufacturer’s product site. Not only do they have a lot of information about each product, but they also need to support both new and existing customers. New customers want to see list of features, specs, and where to buy the product. Old customers need to download owner’s manuals and a way to contact customer support. Nested routes provide a mechanism to handle this structure</p>
@@ -591,7 +592,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   &lt;/React.StrictMode&gt;,
 )
 </code></pre>
-<div line-highlight='9-25, only'></div>
+<div line-highlight='9-24, only'></div>
 <p>Notice that our home and about pages are under the <code>children</code> key. These are actually nested routes of the root path. Route children can accept a <code>children</code> property themselves, on and on, until the browser runs out of resources.</p>
 <p>The route config for our product page could look like this:</p>
 <pre><code class="language-tsx">import React from 'react'
@@ -684,6 +685,8 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 </ul>
 </div>
 <h3>Setup 1</h3>
+<p>✏️ Create <strong>src/components/</strong> (folder)</p>
+<p>✏️ Create <strong>src/components/RestaurantHeader/</strong> (folder)</p>
 <p>✏️ Create <strong>src/components/RestaurantHeader/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./RestaurantHeader&quot;
 </code></pre>
@@ -725,6 +728,7 @@ const RestaurantHeader: React.FC&lt;{ restaurant: Restaurant }&gt; = ({
 
 export default RestaurantHeader
 </code></pre>
+<p>✏️ Create <strong>src/pages/RestaurantDetails/</strong> (folder)</p>
 <p>✏️ Create <strong>src/pages/RestaurantDetails/index.ts</strong> and update it to be:</p>
 <pre><code class="language-ts">export { default } from &quot;./RestaurantDetails&quot;
 </code></pre>
@@ -1485,7 +1489,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 <p></details></p>
 <h2>Objective 2: Create the order page</h2>
 <p>We learned to create nested routes, let’s practice by adding another page to our application. Add the order page to the route config and add a link to it.</p>
-<p><img alt="Screenshot of the Place My Order app with a nested route, displaying the “/restaurants/brunch-place/order” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/objective-2.png" style="max-width: 640px;"/></p>
+<p><img alt="Screenshot of the Place My Order app with a nested route, displaying the “/restaurants/lettuce-shack/order” URL in the browser’s address bar." src="../static/img/react-vite/10-nested-routes/02-solution.png" style="max-width: 791px;"/></p>
 <h3>Setup 2</h3>
 <p>Add the order page files.</p>
 <p>✏️ Create <strong>src/pages/RestaurantOrder/index.ts</strong> and update it to be:</p>
@@ -1606,7 +1610,6 @@ describe('RestaurantOrder component', () =&gt; {
 </code></pre>
 <h3>Exercise 2</h3>
 <p>Refactor the router config in <strong>src/main.tsx</strong> to contain the new RestaurantOrder components. You will need to come up with the route path on your own.</p>
-<p>Add a link to the order page inside the <code>ListItem</code> component.</p>
 <h3>Solution 2</h3>
 <p><details>
 <summary>Click to see the solution</summary></p>
@@ -1663,10 +1666,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 )
 </code></pre>
  <div line-highlight="7,32-35,37,only"></div>
-<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/01-solution?file=src/main.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/01-solution?file=src/main.tsx">CodeSandbox</a>.</p>
+<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/02-solution?file=src/main.tsx">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/10-nested-routes/02-solution?file=src/main.tsx">CodeSandbox</a>.</p>
 <p></details></p>
 <h2>Next steps</h2>
-<p>Next we’ll learn to handle form data.</p>
+<p>Next, let’s learn how to <a href="./controlled-vs-uncontrolled.html">handle form data</a>.</p>
 
 </section>
 
