@@ -87,6 +87,8 @@ production and deploying it for others to see ([learn-angular/deploy-app]).
 In order to complete this guide, you need to have [Node.js](https://nodejs.org/en/) version
 18.13 or later installed.
 
+[Chrome](https://www.google.com/chrome) browser is required for running automated tests, which ensure you have the correct solutions to the proposed exercises.
+
 ## Next steps
 
 ✏️ Head over to the [first lesson](learn-angular/why-angular.html) and get your environment setup.
