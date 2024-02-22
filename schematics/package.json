@@ -1,7 +1,7 @@
 {
   "name": "@bitovi/academy-schematics",
   "version": "0.0.1",
-  "description": "Schematics for Bitovi's Academy",
+  "description": "Schematics for Bitovi Academy",
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "test": "npm run build && jasmine src/**/*_spec.js"

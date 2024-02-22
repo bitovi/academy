@@ -74,10 +74,10 @@ export class OrderComponent implements OnInit, OnDestroy {
     // SUBSCRIBE TO THE ITEMS FORMCONTROL CHANGE TO CALCULATE A NEW TOTAL
   }
 
-  calculateTotal(value: Item[]): void {
+  calculateTotal(items: Item[]): void {
     let total = 0.0;
-    if (value.length) {
-      for (const item of value) {
+    if (items.length) {
+      for (const item of items) {
         total += item.price;
       }
       this.orderTotal = Math.round(total * 100) / 100;

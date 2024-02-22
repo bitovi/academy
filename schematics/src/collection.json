@@ -2,7 +2,7 @@
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
     "step": {
-      "description": "Setup code for Bitovi's Academy.",
+      "description": "Setup code for Bitovi Academy.",
       "factory": "./step/index#step",
       "schema": "./step/schema.json"
     }
