@@ -271,6 +271,9 @@ Now we want to let the form know what the selected items are as they change so w
 
 ## P5: What you need to know
 
+- How to emit a value to a parent component
+- How to programmatically update a `FormControl`’s value (you learned this in previous sections! ✔️)
+
 ## Emitting Data to Parent Components
 
 To pass data to parent components in Angular, the <a href="https://angular.io/api/core/EventEmitter">EventEmitter</a> class is used in combination with the <a href="https://angular.io/api/core/Output">Output decorator</a>. The Output decorator marks a property to be listened to during change detection, and we call the `emit` method to broadcast the property’s new value.
@@ -280,9 +283,6 @@ The parent component is listening for a change on the child component’s proper
 @sourceref ./event-emitter.html
 @codepen
 @highlight 31-33,44-46,65,70,78-80,only
-
-- How to emit a value to a parent component (you learned this in the section above! ✔️)
-- How to programmatically update a `FormControl`’s value (you learned this in previous sections! ✔️)
 
 ## P5: Technical requirements
 
