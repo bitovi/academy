@@ -168,6 +168,10 @@ npm install react-router-dom@6
 
 ### Verify 1
 
+✏️ Create **src/pages/Home/Home.test.tsx** and update it to be:
+
+@sourceref ../../../exercises/react-vite/06-routing/01-solution/src/pages/Home/Home.test.tsx
+
 ✏️ Update **src/App.test.tsx** to be:
 
 @diff ../../../exercises/react-vite/05-props/01-solution/src/App.test.tsx ../../../exercises/react-vite/06-routing/01-problem/src/App.test.tsx only
@@ -179,7 +183,7 @@ When the route is `""`, the `<Home>` component should display, and when
 the route is `/restaurants` then the `<RestaurantList>` component should
 display. These changes should be made in `src/App.tsx` and `src/main.tsx`.
 
-<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-problem?file=App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-problem?file=App.tsx) to do this exercise in an online code editor.
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-problem?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-problem?file=src/App.tsx) to do this exercise in an online code editor.
 
 ### Solution 1
 
@@ -195,7 +199,7 @@ display. These changes should be made in `src/App.tsx` and `src/main.tsx`.
 
 @diff ../../../exercises/react-vite/06-routing/01-problem/src/main.tsx ../../../exercises/react-vite/06-routing/01-solution/src/main.tsx only
 
-<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-solution?file=App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-solution?file=App.tsx).
+<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-solution?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/06-routing/01-solution?file=src/App.tsx).
 
 </details>
 
@@ -263,8 +267,8 @@ current route is something else.
 ### Exercise 2
 
 - Create links to the `/` (`Home`) and `/restaurants` (`RestaurantList`) pages.
-- When the current page is Home, give the parent `li` of the link an `active` class.
-- Likewise, on the `RestaurantList` page, the parent `li` of the `/restaurants` link should have an `active` class.
+- When the current page is Home, give the parent `<li>` of the link an `active` class.
+- Likewise, on the `RestaurantList` page, the parent `<li>` of the `/restaurants` link should have an `active` class.
 
 In the `<App>` component, we want to use React Router to add
 navigation links inside the `<nav>` component. Here’s an example

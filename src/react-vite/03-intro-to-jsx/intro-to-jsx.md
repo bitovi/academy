@@ -151,7 +151,7 @@ As we go through this training, you’ll learn additional differences.
 
 ### Setup 1
 
-We've created an assets package with images and CSS you’ll need to build the application. Install the `place-my-order-assets` package.
+We’ve created an assets package with images and CSS you’ll need to build the application. Install the `place-my-order-assets` package.
 
 ✏️ Run:
 

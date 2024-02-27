@@ -11,13 +11,14 @@
 In this section, we will:
 
 - Review how plain CSS works in React applications
-- Set up CSS Modules
+- Introduce CSS Modules
 - Create a component-specific stylesheet
-- Apply styles to a component
+- Apply styles in a component
 
-## Objective: Applying style with CSS Modules
+## Objective: Add a styled link
 
-Now that we've learned to apply styling in React with CSS Modules, it’s time to practice by styling a link in the Home component. You’ll bring in a `Link` component from React Router. 
+We have the navigation links in the header, but it’d be nice if our `Home` component had a nice
+big Call to Action (CTA) in it so our users were directed to the next step: Choose a Restaurant.
 
 ### Styling options in React applications
 
@@ -120,7 +121,7 @@ that `class` name is used globally throughout the entire application.
 
 Let’s solve this!
 
-### Scoped stylesheet
+### Introducing CSS modules
 
 CSS Modules works like regular CSS, but the class names are randomized to prevent
 conflicts between components. When using CSS Modules, if multiple components
@@ -152,22 +153,15 @@ That stylesheet is placed in the same folder as the component. In order to ident
 the file as a CSS Module, the filename should end with `.module.css`. The file
 structure for a BlogPost component will look like the following:
 
+<div class="directory-list">
+
 - BlogPost
   - BlogPost.module.css
   - BlogPost.test.tsx
   - BlogPost.tsx
   - index.ts
 
-Note that CSS Modules cannot rename HTML tags, so all of your styling should use
-classes to avoid unexpected styling bugs. The following will apply to all `img`
-elements in the project and should be avoided.
-
-```CSS
-/* Don’t do this with CSS Modules as tag names can not be randomized */
-img {
-  float: right;
-}
-```
+</div>
 
 ### Importing and applying styles
 
@@ -203,6 +197,19 @@ const BlogPost: React.FC = ({ authorAvatar, content }) => {
 ```
 @highlight 2, 9
 
+### Avoid plain selectors
+
+Note that CSS Modules cannot rename HTML tags, so all of your styling should use
+classes to avoid unexpected styling bugs. The following will apply to all `img`
+elements in the project and should be avoided.
+
+```CSS
+/* Don’t do this with CSS Modules as tag names can not be randomized */
+img {
+  float: right;
+}
+```
+
 ### Install CSS Modules
 
 Already done! Vite, our build tool, ships with first-class CSS Modules support.
@@ -211,13 +218,11 @@ out of the box.
 
 ### Setup
 
-We've created some CSS for this exercise. Create a CSS Modules file and copy the following styles into it.
+We’ve created some CSS for this exercise. Create a CSS Modules file and copy the following styles into it.
 
 ✏️ Create **src/pages/Home/Home.module.css** and update it to be:
 
 @sourceref ../../../exercises/react-vite/07-styling-in-react/01-problem/src/pages/Home/Home.module.css
-
-TODO: Clean up the extraneous styles in the code above. [Chasen can handle this.]
 
 ### Verify
 
@@ -227,10 +232,14 @@ TODO: Clean up the extraneous styles in the code above. [Chasen can handle this.
 
 ### Exercise
 
+Now that we’ve learned to apply styling in React with CSS Modules, it’s time to practice by styling a link in the Home component. You’ll bring in a `Link` component from React Router. 
+
 - Update the styles in `Home.module.css` to be usable as a CSS Module.
 - Update the `<Home>` component to include a styled link:
   - Use `<Link>` (from the previous section!) to create a link to the `/restaurants` page.
   - Import the `styles` from `Home.module.css` and apply them to the new link.
+
+<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/07-styling-in-react/01-problem?file=src/pages/Home/Home.module.css) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/07-styling-in-react/01-problem?file=src/pages/Home/Home.module.css) to do this exercise in an online code editor.
 
 ### Solution
 
