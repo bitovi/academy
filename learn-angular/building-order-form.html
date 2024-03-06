@@ -1227,6 +1227,18 @@ export class OrderComponent implements OnInit, OnDestroy {
     // SUBSCRIBE TO THE ITEMS FORMCONTROL CHANGE TO CALCULATE A NEW TOTAL
   }
 
+  calculateTotal(items: Item[]): void {
+    let total = 0.0;
+    if (items.length) {
+      for (const item of items) {
+        total += item.price;
+      }
+      this.orderTotal = Math.round(total * 100) / 100;
+    } else {
+      this.orderTotal = total;
+    }
+  }
+
   onSubmit(): void {}
 
   startNewOrder(): void {
@@ -1511,17 +1523,19 @@ export class OrderComponent implements OnInit, OnDestroy {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
     this.orderForm?.controls.items.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((value) =&gt; {
-        let total = 0.0;
-        if (value.length) {
-          for (const item of value) {
-            total += item.price;
-          }
-          this.orderTotal = Math.round(total * 100) / 100;
-        } else {
-          this.orderTotal = total;
-        }
-      });
+      .subscribe((value) =&gt; this.calculateTotal(value));
+  }
+
+  calculateTotal(items: Item[]): void {
+    let total = 0.0;
+    if (items.length) {
+      for (const item of items) {
+        total += item.price;
+      }
+      this.orderTotal = Math.round(total * 100) / 100;
+    } else {
+      this.orderTotal = total;
+    }
   }
 
   onSubmit(): void {}
@@ -1535,7 +1549,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="9,62-63,65-74,77-79,83-90,95-108,118,only"></div>
+ <div line-highlight="9,62-63,65-73,77-79,83-90,95-98,110,120,only"></div>
 <p></details></p>
 <h2>Importing third-party plugins</h2>
 <p>In our markup we would like to display our lunch and dinner menus in tabs. Instead of creating our own library, let’s import a well supported one, <a href="https://valor-software.com/ngx-bootstrap/#/documentation#getting-started">ngx-bootstrap</a>:</p>
@@ -2102,7 +2116,8 @@ export class MenuItemsComponent {
  <div line-highlight="13,18,only"></div>
 <p></details></p>
 <h2>Problem 4: Attaching event handlers to item checkboxes</h2>
-<p>Next, we want to know when a checkbox has been checked or unchecked, and update an array called <code>selectedItems</code> containing all checked items.</p>
+<p>Next, we want to know when a checkbox has been checked or unchecked.</p>
+<p>Before communicating between <code>MenuItemsComponent</code> and its parent <code>OrderComponent</code>, <code>MenuItemsComponent</code> will need to attach an event handler - a function - to the <code>change</code> event of the item checkboxes.</p>
 <h2>P4: What you need to know</h2>
 <h2>Event handlers in Angular</h2>
 <p>Event binding in Angular follows a simple pattern - the event name in parenthesis and a function to call in quotes on the other side of an equal sign. <code>(event)=&quot;functionToCall()&quot;</code>. Any parameter(s) can be passed to the event function, but to capture the event itself use the parameter <code>$event</code></p>
@@ -2191,14 +2206,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='24,26,32,41-43,45-47,49-51,only'></div>
 <h2>P4: Technical requirements</h2>
-<p>Create a function in the <code>MenuItemsComponent</code> called <code>updateItems</code> that fires whenever a checkbox is checked and takes a parameter of the item that has been checked. In the <code>updateItems</code> function use the following code to update the <code>selectedItems</code> array:</p>
-<pre><code class="language-typescript">let index = this.selectedItems.indexOf(item);
-if (index &gt; -1) {
-  this.selectedItems.splice(index, 1);
-} else {
-  this.selectedItems.push(item);
-}
-</code></pre>
+<p>Create a function in the <code>MenuItemsComponent</code> called <code>updateItem</code> that fires whenever a checkbox is checked and takes a parameter of the item that has been checked.</p>
 <h2>P4: How to verify your solution is correct</h2>
 <p>✏️ Update the menu-items spec file <strong>src/app/order/menu-items/menu-items.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { ComponentFixture, TestBed } from '@angular/core/testing';
@@ -2237,14 +2245,14 @@ describe('MenuItemsComponent', () =&gt; {
     expect(itemLabels.length).toEqual(3);
   });
 
-  it('should call an updateItems function when a checkbox is selected or unselected', () =&gt; {
+  it('should call an updateItem function when a checkbox is selected or unselected', () =&gt; {
     fixture.componentInstance.items = [
       { name: 'Charred Octopus', price: 25.99 },
       { name: 'Steamed Mussels', price: 21.99 },
       { name: 'Ricotta Gnocchi', price: 15.99 },
     ];
     fixture.detectChanges();
-    const changeSpy = spyOn(fixture.componentInstance, 'updateItems');
+    const changeSpy = spyOn(fixture.componentInstance, 'updateItem');
     const compiled = fixture.debugElement.nativeElement;
     const input = compiled.getElementsByTagName('input')[0];
     input.click();
@@ -2261,7 +2269,7 @@ describe('MenuItemsComponent', () =&gt; {
 ✏️ Update <strong>src/app/order/menu-items/menu-items.component.html</strong></p>
 <pre><code class="language-html">&lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of items&quot;&gt;
   &lt;label&gt;
-    &lt;input type=&quot;checkbox&quot; (change)=&quot;updateItems(item)&quot; /&gt;
+    &lt;input type=&quot;checkbox&quot; (change)=&quot;updateItem(item)&quot; /&gt;
     {{ item.name }} &lt;span class=&quot;badge&quot;&gt;${{ item.price }}&lt;/span&gt;
   &lt;/label&gt;
 &lt;/li&gt;
@@ -2279,24 +2287,22 @@ import { Item } from '../order.component';
 })
 export class MenuItemsComponent {
   @Input() items: Item[] = [];
-  selectedItems: Item[] = [];
 
-  updateItems(item: Item): void {
-    const index = this.selectedItems.indexOf(item);
-    if (index &gt; -1) {
-      this.selectedItems.splice(index, 1);
-    } else {
-      this.selectedItems.push(item);
-    }
+  updateItem(item: Item): void {
+
   }
 }
 
 </code></pre>
- <div line-highlight="11,13-20,only"></div>
+ <div line-highlight="12,14,only"></div>
 <p></details></p>
-<h2>Problem 5: Update <code>OrderFormComponent</code> with the <code>selectedItems</code> array from <code>MenuItemsComponent</code></h2>
+<h2>Problem 5: Update <code>OrderFormComponent</code> with the emitted <code>Item</code> from <code>MenuItemsComponent</code></h2>
 <p>Now we want to let the form know what the selected items are as they change so we can update the order total accordingly.</p>
 <h2>P5: What you need to know</h2>
+<ul>
+<li>How to emit a value to a parent component</li>
+<li>How to programmatically update a <code>FormControl</code>’s value (you learned this in previous sections! ✔️)</li>
+</ul>
 <h2>Emitting Data to Parent Components</h2>
 <p>To pass data to parent components in Angular, the <a href="https://angular.io/api/core/EventEmitter">EventEmitter</a> class is used in combination with the <a href="https://angular.io/api/core/Output">Output decorator</a>. The Output decorator marks a property to be listened to during change detection, and we call the <code>emit</code> method to broadcast the property’s new value.</p>
 <p>The parent component is listening for a change on the child component’s property and calls a function on that change that takes a parameter of the updated value.</p>
@@ -2405,106 +2411,149 @@ platformBrowserDynamic()
 </code></pre>
 <div class='codepen'></div>
 <div line-highlight='31-33,44-46,65,70,78-80,only'></div>
-<h2>Programmatically updating <code>FormArray</code> values</h2>
-<p>When we have a FormArray we need to update programmatically with a value we can use the <a href="https://angular.io/api/forms/FormArray#patchvalue"><code>patchValue</code></a> or <a href="https://angular.io/api/forms/FormArray#setvalue"><code>setValue</code></a> methods on the <code>FormArray</code> class.</p>
-<p>The difference between these two FormArray’s methods is that <code>setValue</code> replaces the current array with the new value, and <code>patchValue</code> updates the array with the new values, trying to update values where possible.</p>
-<pre><code class="language-html">&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/rxjs/6.2.1/rxjs.umd.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/core.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/core@7.2.0/bundles/core.umd.js&quot;/&gt;&lt;/script&gt;
-&lt;script src=&quot;https://cdnjs.cloudflare.com/ajax/libs/zone.js/0.8.26/zone.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/common@7.2.0/bundles/common.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/compiler@7.2.0/bundles/compiler.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/router@7.2.0/bundles/router.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser@7.2.0/bundles/platform-browser.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/platform-browser-dynamic@7.2.0/bundles/platform-browser-dynamic.umd.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://unpkg.com/@angular/forms@7.2.0/bundles/forms.umd.js&quot;&gt;&lt;/script&gt;
-&lt;base href=&quot;/&quot;&gt;
-&lt;my-app&gt;&lt;/my-app&gt;
-&lt;script type=&quot;typescript&quot;&gt;
-const { Component, NgModule, VERSION, OnInit } = ng.core;
-const { BrowserModule } = ng.platformBrowser;
-const { CommonModule } = ng.common;
-const { ReactiveFormsModule, FormGroup, FormBuilder } = ng.forms;
+<h2>P5: Technical requirements</h2>
+<p>Create an <code>itemsChanged</code> EventEmitter property that emits the checked/unchecked <code>Item</code> value every time it changes, and in the parent OrderForm component update the <code>items</code> FormControl with the updated <code>Item</code>s array using the provided <code>getChange</code> function.</p>
+<h2>P5: Setup</h2>
+<p>✏️ Update the <strong>src/app/order/order.component.ts</strong> file to be:</p>
+<pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+import { Restaurant } from '../restaurant/restaurant';
+import { RestaurantService } from '../restaurant/restaurant.service';
+
+export interface Item {
+  name: string;
+  price: number;
+}
+
+export interface OrderForm {
+  restaurant: FormControl&lt;string&gt;;
+  name: FormControl&lt;string&gt;;
+  address: FormControl&lt;string&gt;;
+  phone: FormControl&lt;string&gt;;
+  items: FormControl&lt;Item[]&gt;;
+}
+
+// CUSTOM VALIDATION FUNCTION TO ENSURE THAT THE ITEMS FORM VALUE CONTAINS AT LEAST ONE ITEM.
+function minLengthArray(min: number): ValidatorFn {
+  return (c: AbstractControl): ValidationErrors | null =&gt; {
+    if (c.value.length &gt;= min) {
+      return null;
+    }
+    return { minLengthArray: { valid: false } };
+  };
+}
 
 @Component({
-  selector: 'my-app',
-  template: `
-    &lt;p&gt;A home component!&lt;/p&gt;
-    &lt;label&gt;
-      Custom input:
-      &lt;input
-        (change)=&quot;customChange($event)&quot;
-        type=&quot;text&quot;
-      /&gt;
-    &lt;/label&gt;
-    
-    &lt;form [formGroup]=&quot;userForm&quot;&gt;
-      &lt;label&gt;
-        First name:
-        &lt;input type=&quot;text&quot; formControlName=&quot;firstName&quot;&gt;
-      &lt;/label&gt;
-      &lt;label&gt;
-        Last name:
-        &lt;input type=&quot;text&quot; formControlName=&quot;lastName&quot;&gt;
-      &lt;/label&gt;
-      &lt;label&gt;
-        Email:
-        &lt;input type=&quot;text&quot; formControlName=&quot;email&quot;&gt;
-      &lt;/label&gt;
-    &lt;/form&gt;
-  `
+  selector: 'pmo-order',
+  templateUrl: './order.component.html',
+  styleUrl: './order.component.less',
 })
-class AppComponent implements OnInit {
-  userForm: FormGroup;
+export class OrderComponent implements OnInit, OnDestroy {
+  orderForm?: FormGroup&lt;OrderForm&gt;;
+  restaurant?: Restaurant;
+  isLoading = true;
+  orderTotal = 0.0;
+  completedOrder: any;
+  orderComplete = false;
+  orderProcessing = false;
+  private onDestroy$ = new Subject&lt;void&gt;();
 
-  constructor(private fb:FormBuilder) {}
+  constructor(
+    private route: ActivatedRoute,
+    private restaurantService: RestaurantService,
+    private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-    this.userForm = this.fb.group({
-      firstName: {value: '', disabled: false},
-      lastName: {value: '', disabled: false},
-      email: {value: '', disabled: false}
-    });
+    // GETTING THE RESTAURANT FROM THE ROUTE SLUG
+    const slug = this.route.snapshot.paramMap.get('slug');
+
+    if (slug) {
+      this.restaurantService
+        .getRestaurant(slug)
+        .pipe(takeUntil(this.onDestroy$))
+        .subscribe((data: Restaurant) =&gt; {
+          this.restaurant = data;
+          this.isLoading = false;
+          this.createOrderForm();
+        });
+    }
   }
 
-  customChange(event): void {
-    const newVal = event.currentTarget.value;
-    const formControl = this.userForm.get('firstName');
-    formControl.patchValue(newVal);
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
+  }
+
+  createOrderForm(): void {
+    this.orderForm = this.formBuilder.nonNullable.group({
+      restaurant: [this.restaurant?._id ?? '', Validators.required],
+      name: ['', Validators.required],
+      address: ['', Validators.required],
+      phone: ['', Validators.required],
+      // PASSING OUR CUSTOM VALIDATION FUNCTION TO THIS FORM CONTROL
+      items: [[] as Item[], minLengthArray(1)],
+    });
+    this.onChanges();
+  }
+
+  getChange(item: Item): void {
+    if (!this.orderForm) {
+      return;
+    }
+    const items = this.orderForm.controls.items.value;
+    const index = items.indexOf(item);
+    if (index &gt; -1) {
+      items.splice(index, 1);
+    } else {
+      items.push(item);
+    }
+
+    // TO-DO: UPDATE ITEMS FORMCONTROL WITH ITEMS VALUE
+  }
+
+  onChanges(): void {
+    // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
+    this.orderForm?.controls.items.valueChanges
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((value) =&gt; this.calculateTotal(value));
+  }
+
+  calculateTotal(items: Item[]): void {
+    let total = 0.0;
+    if (items.length) {
+      for (const item of items) {
+        total += item.price;
+      }
+      this.orderTotal = Math.round(total * 100) / 100;
+    } else {
+      this.orderTotal = total;
+    }
+  }
+
+  onSubmit(): void {}
+
+  startNewOrder(): void {
+    this.orderComplete = false;
+    this.completedOrder = undefined;
+    // CLEAR THE ORDER FORM
+    this.createOrderForm();
   }
 }
-//THIS IS A HACK JUST FOR CODEPEN TO WORK
-AppComponent.parameters = [FormBuilder];
-
-@NgModule({
-  declarations: [AppComponent],
-  imports: [
-    BrowserModule,
-    CommonModule,
-    ReactiveFormsModule
-  ],
-  bootstrap: [AppComponent],
-  providers: []
-})
-class AppModule {}
-
-const { platformBrowserDynamic } = ng.platformBrowserDynamic;
-
-platformBrowserDynamic()
-  .bootstrapModule(AppModule)
-  .catch(err =&gt; console.error(err));
-&lt;/script&gt;
-
 
 </code></pre>
-<div class='codepen'></div>
-<div line-highlight='25-28,60-64,only'></div>
-<ul>
-<li>How to emit a value to a parent component (you learned this in the section above! ✔️)</li>
-<li>How to programmatically update a <code>FormArray</code>’s value (you learned this in the section above! ✔️)</li>
-</ul>
-<h2>P5: Technical requirements</h2>
-<p>Create an <code>itemsChanged</code> EventEmitter property that emits the <code>selectedItems</code> value every time it changes, and in the parent OrderForm component update the <code>items</code> FormControl with the value.</p>
+ <div line-highlight="94-96,98-101,103-104,106,123,125,135,only"></div>
 <h2>P5: How to verify your solution is correct</h2>
 <p>✏️ Update the menu-items spec file <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
 <pre><code class="language-ts">import { NO_ERRORS_SCHEMA } from '@angular/core';
@@ -2688,7 +2737,7 @@ describe('OrderComponent', () =&gt; {
     expect(changeSpy).toHaveBeenCalled();
   });
 
-  it('should update items FormControl when updateItems is called', () =&gt; {
+  it('should update items FormControl when updateItem is called', () =&gt; {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     const childInput = compiled
@@ -2735,22 +2784,15 @@ import { Item } from '../order.component';
 })
 export class MenuItemsComponent {
   @Input() items: Item[] = [];
-  @Output() itemsChanged: EventEmitter&lt;Item[]&gt; = new EventEmitter();
-  selectedItems: Item[] = [];
+  @Output() itemChanged: EventEmitter&lt;Item&gt; = new EventEmitter();
 
-  updateItems(item: Item): void {
-    const index = this.selectedItems.indexOf(item);
-    if (index &gt; -1) {
-      this.selectedItems.splice(index, 1);
-    } else {
-      this.selectedItems.push(item);
-    }
-    this.itemsChanged.emit(this.selectedItems);
+  updateItem(item: Item): void {
+    this.itemChanged.emit(item);
   }
 }
 
 </code></pre>
- <div line-highlight="1,11,21,only"></div>
+ <div line-highlight="1,11,14,only"></div>
 <p>✏️ Update <strong>src/app/order/order.component.html</strong></p>
 <pre><code class="language-html">&lt;div class=&quot;order-form&quot;&gt;
   &lt;ng-container *ngIf=&quot;orderComplete; else showOrderForm&quot;&gt;&lt;/ng-container&gt;
@@ -2905,25 +2947,38 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.onChanges();
   }
 
-  getChange(newItems: Item[]): void {
-    this.orderForm?.controls.items.patchValue(newItems);
+  getChange(item: Item): void {
+    if (!this.orderForm) {
+      return;
+    }
+    const items = this.orderForm.controls.items.value;
+    const index = items.indexOf(item);
+    if (index &gt; -1) {
+      items.splice(index, 1);
+    } else {
+      items.push(item);
+    }
+
+    this.orderForm.controls.items.setValue(items);
   }
 
   onChanges(): void {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
     this.orderForm?.controls.items.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((value) =&gt; {
-        let total = 0.0;
-        if (value.length) {
-          for (const item of value) {
-            total += item.price;
-          }
-          this.orderTotal = Math.round(total * 100) / 100;
-        } else {
-          this.orderTotal = total;
-        }
-      });
+      .subscribe((value) =&gt; this.calculateTotal(value));
+  }
+
+  calculateTotal(items: Item[]): void {
+    let total = 0.0;
+    if (items.length) {
+      for (const item of items) {
+        total += item.price;
+      }
+      this.orderTotal = Math.round(total * 100) / 100;
+    } else {
+      this.orderTotal = total;
+    }
   }
 
   onSubmit(): void {}
@@ -2937,7 +2992,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="94-95,122,only"></div>
+ <div line-highlight="106,only"></div>
 <p></details></p>
 <h2>Control Value Accessor</h2>
 <p>Using inputs and event emitters is a great way to pass data between components in a general sense. However this can be a very messy way to approach handling custom form situations. Some times a better approach can be to write a custom component that implements the <a href="https://angular.io/api/forms/ControlValueAccessor">Control Value Accessor</a> interface to just write the value straight to the form. Classes implementing the CVA must have 3 methods - <code>onChange</code>, <code>onTouched</code>, <code>setValue</code>. We call these methods when the user interacts with our checkboxes to let the parent form know that values have been touched, when they change, and what the value is.</p>
@@ -2987,7 +3042,7 @@ export class MenuItemsComponent implements ControlValueAccessor {
     this.value = value;
   }
 
-  updateItems(item: Item): void {
+  updateItem(item: Item): void {
     const index = this._value?.indexOf(item) ?? -1;
     if (index !== -1) {
       this._value?.splice(index, 1);
@@ -2999,7 +3054,7 @@ export class MenuItemsComponent implements ControlValueAccessor {
 }
 
 </code></pre>
- <div line-highlight="1-2,9-15,17,19,21-22,24-25,28-32,34-36,38-40,42-44,47-49,51,53-54,only"></div>
+ <div line-highlight="1-2,9-15,17,19,21-22,24-25,28-32,34-36,38-40,42-44,47-54,only"></div>
 <p>Other concepts used here:</p>
 <h3>forwardRef</h3>
 <p><a href="https://angular.io/api/core/forwardRef">forwardRef</a> is used to reference a token that may not be defined when we need it.</p>

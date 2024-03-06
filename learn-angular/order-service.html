@@ -1254,17 +1254,19 @@ export class OrderComponent implements OnInit, OnDestroy {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
     this.orderForm?.controls.items.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((value) =&gt; {
-        let total = 0.0;
-        if (value.length) {
-          for (const item of value) {
-            total += item.price;
-          }
-          this.orderTotal = Math.round(total * 100) / 100;
-        } else {
-          this.orderTotal = total;
-        }
-      });
+      .subscribe((value) =&gt; this.calculateTotal(value));
+  }
+
+  calculateTotal(items: Item[]): void {
+    let total = 0.0;
+    if (items.length) {
+      for (const item of items) {
+        total += item.price;
+      }
+      this.orderTotal = Math.round(total * 100) / 100;
+    } else {
+      this.orderTotal = total;
+    }
   }
 
   onSubmit(): void {
@@ -1281,7 +1283,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="115-117,125,only"></div>
+ <div line-highlight="94-95,117-119,127,only"></div>
 <h2>P3: How to verify your solution is correct</h2>
 <p>If you’ve implemented everything correctly, you should now be able to create an order from the UI and see a record of your completed order once it’s created.</p>
 <p>✏️ Update the menu-items spec file <strong>src/app/order/order.component.spec.ts</strong> to be:</p>
@@ -1707,17 +1709,19 @@ export class OrderComponent implements OnInit, OnDestroy {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
     this.orderForm?.controls.items.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((value) =&gt; {
-        let total = 0.0;
-        if (value.length) {
-          for (const item of value) {
-            total += item.price;
-          }
-          this.orderTotal = Math.round(total * 100) / 100;
-        } else {
-          this.orderTotal = total;
-        }
-      });
+      .subscribe((value) =&gt; this.calculateTotal(value));
+  }
+
+  calculateTotal(items: Item[]): void {
+    let total = 0.0;
+    if (items.length) {
+      for (const item of items) {
+        total += item.price;
+      }
+      this.orderTotal = Math.round(total * 100) / 100;
+    } else {
+      this.orderTotal = total;
+    }
   }
 
   onSubmit(): void {
@@ -1746,7 +1750,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="16,51,59,118-120,123-130,136,only"></div>
+ <div line-highlight="16,51,59,120-122,125-132,138,only"></div>
 <p></details></p>
 
 </section>

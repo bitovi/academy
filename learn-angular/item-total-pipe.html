@@ -1947,7 +1947,7 @@ export class OrderComponent implements OnInit, OnDestroy {
 }
 
 </code></pre>
- <div line-highlight="14,61-62,107,only"></div>
+ <div line-highlight="14,61-62,106-107,124,only"></div>
 <p>✏️ Update <strong>src/app/order/list/list.component.html</strong> to use the item total Pipe:</p>
 <pre><code class="language-html">&lt;h4&gt;{{ listTitle }}&lt;/h4&gt;
 &lt;ng-container *ngFor=&quot;let order of orders&quot;&gt;
@@ -2141,7 +2141,7 @@ Angular provides us with a <a href="https://angular.io/api/common/CurrencyPipe">
 <p>✏️ Update <strong>src/app/order/menu-items/menu-items.component.html</strong> to use the Currency Pipe:</p>
 <pre><code class="language-html">&lt;li class=&quot;list-group-item&quot; *ngFor=&quot;let item of items&quot;&gt;
   &lt;label&gt;
-    &lt;input type=&quot;checkbox&quot; (change)=&quot;updateItems(item)&quot; /&gt;
+    &lt;input type=&quot;checkbox&quot; (change)=&quot;updateItem(item)&quot; /&gt;
     {{ item.name }} &lt;span class=&quot;badge&quot;&gt;{{ item.price | currency }}&lt;/span&gt;
   &lt;/label&gt;
 &lt;/li&gt;
