@@ -19,9 +19,9 @@ In this section, we will:
 How do we know when our code is working correctly? How do we know it’s still working correctly in
 the future after we make changes to it?
 
-Unit testing helps by verifying that given certain inputs
-our code generates expected outputs. So far we’ve copied existing tests to prove that we’ve
-completed the exercise correctly, now let’s dive in and learn about how React testing is done.
+Unit testing helps by verifying that given certain inputs our code generates expected outputs. So
+far we’ve copied existing tests to prove that we’ve completed the exercise correctly, now let’s dive
+in and learn about how React testing is done.
 
 The most basic test is to render a component and validate the DOM that is generated. That’s what
 we’ll do in this first section.
@@ -40,14 +40,18 @@ React Testing Library’s north star is:
 
 This leads to three [Guiding Principles](https://testing-library.com/docs/guiding-principles/):
 
-> 1. If it relates to rendering components, then it should deal with DOM nodes rather than component instances, and it should not encourage dealing with component instances.
+> 1. If it relates to rendering components, then it should deal with DOM nodes rather than component
+>    instances, and it should not encourage dealing with component instances.
 
 React Testing Library encourages tests that focus on how the user interacts with the application,
 rather than the implementation details of the components. This approach makes the tests more
 resilient to changes in the application’s codebase, as they are less likely to break with
 refactoring if the user interface and behavior remain consistent.
 
-> 2. It should be generally useful for testing the application components in the way the user would use it. We are making some trade-offs here because we’re using a computer and often a simulated browser environment, but in general, utilities should encourage tests that use the components the way they're intended to be used.
+> 2. It should be generally useful for testing the application components in the way the user would
+>    use it. We are making some trade-offs here because we’re using a computer and often a simulated
+>    browser environment, but in general, utilities should encourage tests that use the components
+>    the way they're intended to be used.
 
 The library promotes accessibility in React applications by providing tools and encouraging patterns
 that make it easier to create accessible web interfaces. By using semantic HTML and ARIA roles in
@@ -56,12 +60,80 @@ including those using assistive technologies.
 
 > 3. Utility implementations and APIs should be simple and flexible.
 
-React Testing Library is designed to be lightweight and straightforward, avoiding the complexity that
-can sometimes come with extensive testing frameworks. It encourages good testing practices, such as
-avoiding testing the internal state of components and instead focusing on what the user would see
-and do. The library’s API is intentionally limited to encourage tests that align with these principles.
+React Testing Library is designed to be lightweight and straightforward, avoiding the complexity
+that can sometimes come with extensive testing frameworks. It encourages good testing practices,
+such as avoiding testing the internal state of components and instead focusing on what the user
+would see and do. The library’s API is intentionally limited to encourage tests that align with
+these principles.
 
-### Rendering and verifying a component in a test
+### <span id="rendering-and-verifying">Rendering and verifying a component in a test</span>
+
+OK, you're convinced that testing-library is a good idea, how do you create tests for your React
+components?
+
+Let's take a look at an example; say we want to test a component we created named `FormTextField`
+that renders a form field. We expect that the component will generate HTML that looks like this:
+
+```html
+<div>
+  <label htmlFor="inputId">Phone:</label>
+  <input id="inputId" type="tel" value="555-555-5555" />
+</div>
+```
+
+We want to test `FormTextField` to make sure it generates the DOM we expect. If you're already
+familiar with testing frontend JavaScript code the following pattern will probably be recognizable:
+each test consists of arguments to the Vite provided test function, `it`. The first argument is a
+short description of what the test is examining. The convention is that the description string takes
+"it" as a prefix and proceeds from there, e.g. "[it] renders correct label and value"
+
+The second argument to `it` is a callback function that runs the test. In the callback invoke the
+testing-library function `render` and pass it a single argument, JSX for your component including
+props. After `render` completes use `screen` to query the DOM and make assertions about the result.
+
+```tsx
+it("renders correct label and value", () => {
+  render(<FormTextField label="Phone" type="tel" value="555-555-5555">);
+  const label = screen.getByText("Phone:");
+  expect(label).toBeInTheDocument();
+});
+```
+
+In the test above we validate that the label is correct. We use the `getByText` function to select a
+single element whose `textContent` matches the string, "Phone:". If you look closely you can see
+that the `<label>` content in the HTML has a ":" (colon) at the end, but the `label` prop does not,
+we can conclude that FormTextField appends the colon — but **the purpose of the test isn't how
+FormTextField works, it's the DOM output that it returns**. After we get an element we then use
+`expect` and `toBeInTheDocument` to verify the element was rendered properly. Our test passes
+because the generated DOM is what we expect the user will perceive.
+
+We also want to validate the `<input>` element, let's update the test:
+
+```tsx
+it("generates a label from props", () => {
+  render(<FormTextField label="Phone" type="tel" value="555-555-5555">);
+  const label = screen.getByText("Phone:");
+  expect(label).toBeInTheDocument();
+
+  // Validate the input value.
+  const input = screen.getByDisplayValue("555-555-5555");
+  expect(input).toBeInTheDocument();
+});
+```
+
+We've used a different query to select the `<input>` element: `getByDisplayValue`. It returns an
+input element whose value matches the provided string. Our test continues to pass because the
+input's value in the DOM matches what we expect.
+
+Before we move on let's consider the `type` prop — shouldn't we test to be sure it was applied
+properly as the input's `type` attribute? The answer is, maybe. The `tel` value doesn't affect the
+appearance of the field in a browser, but it does affect the types of input that can be entered and
+it might affect how the user can enter input. For example a mobile device might display an on-screen
+keyboard that only includes numbers and separators. For now we'll hold off on writing tests that
+check attribute values and see if there is another, more user-focused way, to test this behavior.
+
+<details>
+<summary>Previous text</summary>
 
 Let’s take a look at some code that we added in [Handling User Inputs and
 Forms](./controlled-vs-uncontrolled.html).
@@ -154,6 +226,9 @@ Hint: Here’s the JSX you can use for the component:
 <strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/01-solution?file=src/components/FormSelect/FormSelect.test.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/01-solution?file=src/components/FormSelect/FormSelect.test.tsx).
 
 </details>
+
+</details>
+
 
 ## Objective 2: Write a test for handling user interactions
 
