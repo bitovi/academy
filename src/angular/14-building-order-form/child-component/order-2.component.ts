@@ -91,25 +91,38 @@ export class OrderComponent implements OnInit, OnDestroy {
     this.onChanges();
   }
 
-  getChange(newItems: Item[]): void {
-    this.orderForm?.controls.items.patchValue(newItems);
+  getChange(item: Item): void {
+    if (!this.orderForm) {
+      return;
+    }
+    const items = this.orderForm.controls.items.value;
+    const index = items.indexOf(item);
+    if (index > -1) {
+      items.splice(index, 1);
+    } else {
+      items.push(item);
+    }
+
+    this.orderForm.controls.items.setValue(items);
   }
 
   onChanges(): void {
     // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
     this.orderForm?.controls.items.valueChanges
       .pipe(takeUntil(this.onDestroy$))
-      .subscribe((value) => {
-        let total = 0.0;
-        if (value.length) {
-          for (const item of value) {
-            total += item.price;
-          }
-          this.orderTotal = Math.round(total * 100) / 100;
-        } else {
-          this.orderTotal = total;
-        }
-      });
+      .subscribe((value) => this.calculateTotal(value));
+  }
+
+  calculateTotal(items: Item[]): void {
+    let total = 0.0;
+    if (items.length) {
+      for (const item of items) {
+        total += item.price;
+      }
+      this.orderTotal = Math.round(total * 100) / 100;
+    } else {
+      this.orderTotal = total;
+    }
   }
 
   onSubmit(): void {}

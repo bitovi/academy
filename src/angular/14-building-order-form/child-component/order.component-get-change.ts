@@ -6,6 +6,7 @@ import {
   FormGroup,
   ValidationErrors,
   ValidatorFn,
+  Validators,
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -58,20 +59,58 @@ export class OrderComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    // GET THE RESTAURANT FROM THE ROUTE SLUG
+    // GETTING THE RESTAURANT FROM THE ROUTE SLUG
+    const slug = this.route.snapshot.paramMap.get('slug');
+
+    if (slug) {
+      this.restaurantService
+        .getRestaurant(slug)
+        .pipe(takeUntil(this.onDestroy$))
+        .subscribe((data: Restaurant) => {
+          this.restaurant = data;
+          this.isLoading = false;
+          this.createOrderForm();
+        });
+    }
   }
 
-  ngOnDestroy(): void {}
+  ngOnDestroy(): void {
+    this.onDestroy$.next();
+    this.onDestroy$.complete();
+  }
 
   createOrderForm(): void {
-    // CREATE AN ORDER FORM TO COLLECT: RESTAURANT ID, NAME, ADDRESS, PHONE, AND ITEMS
-    // ITEMS SHOULD USE THE CUSTOM MINLENGTH ARRAY VALIDATION
-    this.orderForm = this.formBuilder.nonNullable.group({});
+    this.orderForm = this.formBuilder.nonNullable.group({
+      restaurant: [this.restaurant?._id ?? '', Validators.required],
+      name: ['', Validators.required],
+      address: ['', Validators.required],
+      phone: ['', Validators.required],
+      // PASSING OUR CUSTOM VALIDATION FUNCTION TO THIS FORM CONTROL
+      items: [[] as Item[], minLengthArray(1)],
+    });
     this.onChanges();
   }
 
+  getChange(item: Item): void {
+    if (!this.orderForm) {
+      return;
+    }
+    const items = this.orderForm.controls.items.value;
+    const index = items.indexOf(item);
+    if (index > -1) {
+      items.splice(index, 1);
+    } else {
+      items.push(item);
+    }
+
+    // TO-DO: UPDATE ITEMS FORMCONTROL WITH ITEMS VALUE
+  }
+
   onChanges(): void {
-    // SUBSCRIBE TO THE ITEMS FORMCONTROL CHANGE TO CALCULATE A NEW TOTAL
+    // WHEN THE ITEMS CHANGE WE WANT TO CALCULATE A NEW TOTAL
+    this.orderForm?.controls.items.valueChanges
+      .pipe(takeUntil(this.onDestroy$))
+      .subscribe((value) => this.calculateTotal(value));
   }
 
   calculateTotal(items: Item[]): void {
