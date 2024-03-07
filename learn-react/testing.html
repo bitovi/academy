@@ -538,9 +538,9 @@ covering CanJS core libraries.">
 <h2>Objective 1: Write a test for rendering a component and verifying the DOM structure</h2>
 <p>How do we know when our code is working correctly? How do we know it’s still working correctly in
 the future after we make changes to it?</p>
-<p>Unit testing helps by verifying that given certain inputs
-our code generates expected outputs. So far we’ve copied existing tests to prove that we’ve
-completed the exercise correctly, now let’s dive in and learn about how React testing is done.</p>
+<p>Testing helps by verifying that given certain inputs our code generates expected outputs. So far
+we’ve copied existing tests to prove that we’ve completed the exercise correctly, now let’s dive in
+and learn about how React testing is done.</p>
 <p>The most basic test is to render a component and validate the DOM that is generated. That’s what
 we’ll do in this first section.</p>
 <h3>Introducing React Testing Library</h3>
@@ -553,182 +553,62 @@ with the DOM rendered by React components, allowing tests to cover a wide range 
 <blockquote>
 <p>The more your tests resemble the way your software is used, the more confidence they can give you.</p>
 </blockquote>
-<p>This leads to three <a href="https://testing-library.com/docs/guiding-principles/">Guiding Principles</a>:</p>
-<blockquote>
-<ol>
-<li>If it relates to rendering components, then it should deal with DOM nodes rather than component instances, and it should not encourage dealing with component instances.</li>
-</ol>
-</blockquote>
 <p>React Testing Library encourages tests that focus on how the user interacts with the application,
-rather than the implementation details of the components. This approach makes the tests more
-resilient to changes in the application’s codebase, as they are less likely to break with
-refactoring if the user interface and behavior remain consistent.</p>
-<blockquote>
-<ol start="2">
-<li>It should be generally useful for testing the application components in the way the user would use it. We are making some trade-offs here because we’re using a computer and often a simulated browser environment, but in general, utilities should encourage tests that use the components the way they're intended to be used.</li>
-</ol>
-</blockquote>
-<p>The library promotes accessibility in React applications by providing tools and encouraging patterns
-that make it easier to create accessible web interfaces. By using semantic HTML and ARIA roles in
-tests, developers are nudged towards building applications that are more accessible to all users,
-including those using assistive technologies.</p>
-<blockquote>
-<ol start="3">
-<li>Utility implementations and APIs should be simple and flexible.</li>
-</ol>
-</blockquote>
-<p>React Testing Library is designed to be lightweight and straightforward, avoiding the complexity that
-can sometimes come with extensive testing frameworks. It encourages good testing practices, such as
-avoiding testing the internal state of components and instead focusing on what the user would see
-and do. The library’s API is intentionally limited to encourage tests that align with these principles.</p>
-<h3>Rendering and verifying a component in a test</h3>
-<p>Let’s take a look at some code that we added in <a href="./controlled-vs-uncontrolled.html">Handling User Inputs and
-Forms</a>.</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi } from 'vitest';
-import FormTextField from './FormTextField';
-
-describe('FormTextField component', () =&gt; {
-  const mockOnChange = vi.fn();
-  
-  it('renders with correct label and type', () =&gt; {
-    render(&lt;FormTextField label=&quot;Test Label&quot; type=&quot;text&quot; value=&quot;&quot; onChange={mockOnChange} /&gt;);
-    
-    expect(screen.getByLabelText(/Test Label:/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/Test Label:/i)).toHaveAttribute('type', 'text');
-  });
-
-  it('renders with the correct value', () =&gt; {
-    render(&lt;FormTextField label=&quot;Test Label&quot; type=&quot;text&quot; value=&quot;Test Value&quot; onChange={mockOnChange} /&gt;);
-    
-    expect(screen.getByLabelText(/Test Label:/i)).toHaveValue('Test Value');
-  });
-
-  it('calls onChange prop when input changes', async () =&gt; {
-    render(&lt;FormTextField label=&quot;Test Label&quot; type=&quot;text&quot; value=&quot;&quot; onChange={mockOnChange} /&gt;);
-    
-    await userEvent.type(screen.getByLabelText(/Test Label:/i), 'New');
-    
-    expect(mockOnChange).toHaveBeenCalledTimes(3);
-    expect(mockOnChange).toHaveBeenCalledWith('N');
-    expect(mockOnChange).toHaveBeenCalledWith('e');
-    expect(mockOnChange).toHaveBeenCalledWith('w');
-  });
-
-  it('respects different input types', () =&gt; {
-    render(&lt;FormTextField label=&quot;Email&quot; type=&quot;email&quot; value=&quot;&quot; onChange={mockOnChange} /&gt;);
-    
-    expect(screen.getByLabelText(/Email:/i)).toHaveAttribute('type', 'email');
-  });
+rather than the implementation details of the components.</p>
+<h3><span id="rendering-and-verifying">Rendering and verifying a component in a test</span></h3>
+<p>OK, you're convinced that testing-library is a good idea, how do you use it to create tests for your
+React components?</p>
+<p>Let's take a look at an example; say we want to test a component we created named <code>FormTextField</code>
+that renders a form field. We expect that the component will generate HTML that looks like this:</p>
+<pre><code class="language-html">&lt;div&gt;
+  &lt;label htmlFor=&quot;inputId&quot;&gt;Phone:&lt;/label&gt;
+  &lt;input id=&quot;inputId&quot; type=&quot;tel&quot; value=&quot;555-555-5555&quot; /&gt;
+&lt;/div&gt;
+</code></pre>
+<p>We want to test <code>FormTextField</code> to make sure it generates the DOM we expect. If you're already
+familiar with testing frontend JavaScript code the following pattern will probably be recognizable:
+each test consists of arguments to the Vite provided test function, <code>it</code>. The first argument is a
+short description of what the test is verifying. The convention is that the description string takes
+&quot;it&quot; as a prefix and proceeds from there, e.g. &quot;[it] renders the correct label and value&quot;</p>
+<p>The second argument to <code>it</code> is a callback function that is called to run the test. Inside the
+callback invoke the testing-library function <code>render</code> and pass it a single argument, JSX for your
+component including props. After <code>render</code> completes use <code>screen</code> to query the DOM and make
+assertions about the result.</p>
+<pre><code class="language-tsx">it(&quot;renders the correct label and value&quot;, () =&gt; {
+  render(&lt;FormTextField label=&quot;Phone&quot; type=&quot;tel&quot; value=&quot;555-555-5555&quot; /&gt;);
+  const label = screen.getByText(&quot;Phone:&quot;);
+  expect(label).toBeInTheDocument();
 });
 </code></pre>
-<div line-highlight='10-15, only'></div>
-<p>Each test consists of arguments to the Vite provided test function, <code>it</code>. The first argument is a
-short description of what the test is examining. The convention is that the description string takes
-&quot;it&quot; as a prefix and proceeds from there, e.g. &quot;(it) renders with correct label and type.&quot;</p>
-<p>The second argument is a callback function that runs the test. In the example above the first line
-of the callback invokes <code>render</code> and passes it a single argument, JSX for the <code>FormTextField</code>
-component including props. After <code>render</code> completes the <code>screen</code> (a test DOM) will contain the
-elements created by our React code.</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi } from 'vitest';
-import FormTextField from './FormTextField';
+<p>In the test above we validate that the label is correct. We use the <code>getByText</code> function to select a
+single element whose <code>textContent</code> matches the string, &quot;Phone:&quot;. If you look closely you can see
+that the <code>&lt;label&gt;</code> content in the HTML has a &quot;:&quot; (colon) at the end, but the <code>label</code> prop does not,
+we can conclude that FormTextField appends the colon — but <strong>the purpose of the test isn't how
+FormTextField works, it's the DOM output that it returns</strong>. After we get an element we then use
+<code>expect</code> and <code>toBeInTheDocument</code> to verify the element was rendered properly. Our test passes
+because the generated DOM is what we expect the user will perceive.</p>
+<p>We also want to validate the <code>&lt;input&gt;</code> element, let's update the test:</p>
+<pre><code class="language-tsx">it(&quot;renders the correct label and value&quot;, () =&gt; {
+  render(&lt;FormTextField label=&quot;Phone&quot; type=&quot;tel&quot; value=&quot;555-555-5555&quot; /&gt;);
+  const label = screen.getByText(&quot;Phone:&quot;);
+  expect(label).toBeInTheDocument();
 
-describe('FormTextField component', () =&gt; {
-  const mockOnChange = vi.fn();
-  
-  it('renders with correct label and type', () =&gt; {
-    render(&lt;FormTextField label=&quot;Test Label&quot; type=&quot;text&quot; value=&quot;&quot; onChange={mockOnChange} /&gt;);
-    
-    expect(screen.getByLabelText(/Test Label:/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/Test Label:/i)).toHaveAttribute('type', 'text');
-  });
-
-  it('renders with the correct value', () =&gt; {
-    render(&lt;FormTextField label=&quot;Test Label&quot; type=&quot;text&quot; value=&quot;Test Value&quot; onChange={mockOnChange} /&gt;);
-    
-    expect(screen.getByLabelText(/Test Label:/i)).toHaveValue('Test Value');
-  });
-
-  it('calls onChange prop when input changes', async () =&gt; {
-    render(&lt;FormTextField label=&quot;Test Label&quot; type=&quot;text&quot; value=&quot;&quot; onChange={mockOnChange} /&gt;);
-    
-    await userEvent.type(screen.getByLabelText(/Test Label:/i), 'New');
-    
-    expect(mockOnChange).toHaveBeenCalledTimes(3);
-    expect(mockOnChange).toHaveBeenCalledWith('N');
-    expect(mockOnChange).toHaveBeenCalledWith('e');
-    expect(mockOnChange).toHaveBeenCalledWith('w');
-  });
-
-  it('respects different input types', () =&gt; {
-    render(&lt;FormTextField label=&quot;Email&quot; type=&quot;email&quot; value=&quot;&quot; onChange={mockOnChange} /&gt;);
-    
-    expect(screen.getByLabelText(/Email:/i)).toHaveAttribute('type', 'email');
-  });
+  // Validate the input value.
+  const input = screen.getByDisplayValue(&quot;555-555-5555&quot;);
+  expect(input).toBeInTheDocument();
 });
 </code></pre>
-<div line-highlight='11, only'></div>
-<p>Now it’s time to see if the DOM matches what we expected to create. The React Testing Library
-provides the <code>screen</code> object that allows us to select elements from the DOM. In the current scenario
-we’ll use <code>getByLabelText</code> which returns the <code>&lt;input&gt;</code> associated by <code>id</code> with a single <code>&lt;label&gt;</code>
-that has the text &quot;Test Label&quot;. You may have intuited that <code>getByLabelText</code> accepts a string, but it
-also accepts a regex, in this case one that matches any part of the label text and ignores case.</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
-import { render, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { describe, expect, it, vi } from 'vitest';
-import FormTextField from './FormTextField';
-
-describe('FormTextField component', () =&gt; {
-  const mockOnChange = vi.fn();
-  
-  it('renders with correct label and type', () =&gt; {
-    render(&lt;FormTextField label=&quot;Test Label&quot; type=&quot;text&quot; value=&quot;&quot; onChange={mockOnChange} /&gt;);
-    
-    expect(screen.getByLabelText(/Test Label:/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/Test Label:/i)).toHaveAttribute('type', 'text');
-  });
-
-  it('renders with the correct value', () =&gt; {
-    render(&lt;FormTextField label=&quot;Test Label&quot; type=&quot;text&quot; value=&quot;Test Value&quot; onChange={mockOnChange} /&gt;);
-    
-    expect(screen.getByLabelText(/Test Label:/i)).toHaveValue('Test Value');
-  });
-
-  it('calls onChange prop when input changes', async () =&gt; {
-    render(&lt;FormTextField label=&quot;Test Label&quot; type=&quot;text&quot; value=&quot;&quot; onChange={mockOnChange} /&gt;);
-    
-    await userEvent.type(screen.getByLabelText(/Test Label:/i), 'New');
-    
-    expect(mockOnChange).toHaveBeenCalledTimes(3);
-    expect(mockOnChange).toHaveBeenCalledWith('N');
-    expect(mockOnChange).toHaveBeenCalledWith('e');
-    expect(mockOnChange).toHaveBeenCalledWith('w');
-  });
-
-  it('respects different input types', () =&gt; {
-    render(&lt;FormTextField label=&quot;Email&quot; type=&quot;email&quot; value=&quot;&quot; onChange={mockOnChange} /&gt;);
-    
-    expect(screen.getByLabelText(/Email:/i)).toHaveAttribute('type', 'email');
-  });
-});
-</code></pre>
-<div line-highlight='13, only'></div>
-<p>Once <code>screen.getByLabelText</code> returns, its result can be passed to Vite’s <code>expect</code> function to see if
-the result matches what we intended. We use <code>toBeInTheDocument</code> (<code>expect</code> was augmented with this
-method by importing <code>@testing-library/jest-dom</code>) to verify that the element exists in the DOM. This
-satisfies the first part of the test description, &quot;renders with correct label.&quot;</p>
-<p>If a call to <code>expect</code> does not provide the expected result an error will be thrown ending the test.</p>
-<p>The second expect will verify the second half of the description, &quot;and type.&quot;  <code>expect</code> is passed
-the <code>&lt;input&gt;</code> element that was rendered and it is examined to see if the value of its <code>type</code>
-attribute is set to &quot;text.&quot;</p>
-<p>Note that this test could also have been written to assign the result of <code>getByLabelText</code> to a
-<code>const</code> then passed that const to both of the <code>expect</code> invocations.</p>
+<p>We've used a different query to select the <code>&lt;input&gt;</code> element: <code>getByDisplayValue</code>. It returns an
+input element whose value matches the provided string. React Testing Library has a <a href="https://testing-library.com/docs/queries/about">suite of &quot;query&quot;
+functions</a> that select elements based on
+characteristics like: role, label text, placeholder text, text, display value, alt text, and title.
+Our test continues to pass because the input's value in the DOM matches what we expect.</p>
+<p>Before we move on let's consider the <code>type</code> prop — shouldn't we test to be sure it was applied
+properly as the input's <code>type</code> attribute? The answer is, maybe. <code>type=&quot;tel&quot;</code> doesn't affect the
+appearance of the field in a browser, but it does affect the types of input that can be entered and
+it might affect how the user can enter input. For example a mobile device might display an on-screen
+keyboard that only includes numbers and separators. For now we'll hold off on writing tests that
+check attribute values and see if there is another, more user-focused way, to test this behavior.</p>
 <h3>Setup 1</h3>
 <p>✏️ Create <strong>src/components/FormSelect/FormSelect.tsx</strong> and update it to be:</p>
 <pre><code class="language-tsx">import { useId } from &quot;react&quot;
