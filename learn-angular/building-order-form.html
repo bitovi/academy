@@ -2412,7 +2412,7 @@ platformBrowserDynamic()
 <div class='codepen'></div>
 <div line-highlight='31-33,44-46,65,70,78-80,only'></div>
 <h2>P5: Technical requirements</h2>
-<p>Create an <code>itemsChanged</code> EventEmitter property that emits the checked/unchecked <code>Item</code> value every time it changes, and in the parent OrderForm component update the <code>items</code> FormControl with the updated <code>Item</code>s array using the provided <code>getChange</code> function.</p>
+<p>Create an <code>itemChanged</code> EventEmitter property that emits the checked/unchecked <code>Item</code> value every time it changes, and in the parent OrderComponent update the <code>items</code> FormControl with the updated <code>Item</code>s array using the provided <code>getChange</code> function.</p>
 <h2>P5: Setup</h2>
 <p>✏️ Update the <strong>src/app/order/order.component.ts</strong> file to be:</p>
 <pre><code class="language-ts">import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -2808,7 +2808,7 @@ export class MenuItemsComponent {
           &lt;ul class=&quot;list-group&quot;&gt;
             &lt;pmo-menu-items
               [items]=&quot;restaurant.menu.lunch&quot;
-              (itemsChanged)=&quot;getChange($event)&quot;
+              (itemChanged)=&quot;getChange($event)&quot;
             &gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
@@ -2816,7 +2816,7 @@ export class MenuItemsComponent {
           &lt;ul class=&quot;list-group&quot;&gt;
             &lt;pmo-menu-items
               [items]=&quot;restaurant.menu.dinner&quot;
-              (itemsChanged)=&quot;getChange($event)&quot;
+              (itemChanged)=&quot;getChange($event)&quot;
             &gt;&lt;/pmo-menu-items&gt;
           &lt;/ul&gt;
         &lt;/tab&gt;
