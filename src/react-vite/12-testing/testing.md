@@ -41,58 +41,58 @@ React Testing Library’s north star is:
 React Testing Library encourages tests that focus on how the user interacts with the application,
 rather than the implementation details of the components.
 
-### <span id="rendering-and-verifying">Rendering and verifying a component in a test</span>
+### Rendering and verifying a component in a test
 
 OK, you're convinced that testing-library is a good idea, how do you use it to create tests for your
 React components?
 
-Let's take a look at an example; say we want to test a component we created named `FormTextField`
+Let's take a look at an example: say we want to test a component we created named `EmailInputField`
 that renders a form field. We expect that the component will generate HTML that looks like this:
 
 ```html
-<div>
-  <label htmlFor="inputId">Phone:</label>
-  <input id="inputId" type="tel" value="555-555-5555" />
+<div class="form-field">
+  <label htmlFor="inputId">Email:</label>
+  <input id="inputId" type="email" value="test@example.com" />
 </div>
 ```
 
-We want to test `FormTextField` to make sure it generates the DOM we expect. If you're already
-familiar with testing frontend JavaScript code the following pattern will probably be recognizable:
-each test consists of arguments to the Vite provided test function, `it`. The first argument is a
-short description of what the test is verifying. The convention is that the description string takes
-"it" as a prefix and proceeds from there, e.g. "[it] renders the correct label and value"
+We want to test `EmailInputField` to make sure it generates the DOM we expect. If you're already
+familiar with testing frontend JavaScript code, the following pattern will probably be recognizable:
+each test consists of arguments to the `it` function provided by Vite. The first argument is a short
+description of what the test is verifying. The convention is that the description string takes "it"
+as a prefix and proceeds from there, e.g. "[it] renders the correct label and value"
 
 The second argument to `it` is a callback function that is called to run the test. Inside the
-callback invoke the testing-library function `render` and pass it a single argument, JSX for your
-component including props. After `render` completes use `screen` to query the DOM and make
+callback, invoke the testing-library function `render` and pass it a single argument, the JSX for
+your component including props. After `render` completes, use `screen` to query the DOM and make
 assertions about the result.
 
 ```tsx
 it("renders the correct label and value", () => {
-  render(<FormTextField label="Phone" type="tel" value="555-555-5555" />);
-  const label = screen.getByText("Phone:");
+  render(<EmailInputField label="Email" value="test@example.com" />);
+  const label = screen.getByText("Email:");
   expect(label).toBeInTheDocument();
 });
 ```
 
-In the test above we validate that the label is correct. We use the `getByText` function to select a
-single element whose `textContent` matches the string, "Phone:". If you look closely you can see
+In the test above, we validate that the label is correct. We use the `getByText` function to select
+a single element whose `textContent` matches the string, "Email:". If you look closely you can see
 that the `<label>` content in the HTML has a ":" (colon) at the end, but the `label` prop does not,
-we can conclude that FormTextField appends the colon — but **the purpose of the test isn't how
-FormTextField works, it's the DOM output that it returns**. After we get an element we then use
+we can conclude that EmailInputField appends the colon — but **the purpose of the test isn't how
+EmailInputField works, it's the DOM output that it returns**. After we get an element, we then use
 `expect` and `toBeInTheDocument` to verify the element was rendered properly. Our test passes
 because the generated DOM is what we expect the user will perceive.
 
-We also want to validate the `<input>` element, let's update the test:
+We also want to validate the `<input>` element; let's update the test:
 
 ```tsx
 it("renders the correct label and value", () => {
-  render(<FormTextField label="Phone" type="tel" value="555-555-5555" />);
-  const label = screen.getByText("Phone:");
+  render(<EmailInputField label="Email" value="test@example.com" />);
+  const label = screen.getByText("Email:");
   expect(label).toBeInTheDocument();
 
   // Validate the input value.
-  const input = screen.getByDisplayValue("555-555-5555");
+  const input = screen.getByDisplayValue("test@example.com");
   expect(input).toBeInTheDocument();
 });
 ```
@@ -104,11 +104,11 @@ characteristics like: role, label text, placeholder text, text, display value, a
 Our test continues to pass because the input's value in the DOM matches what we expect.
 
 Before we move on let's consider the `type` prop — shouldn't we test to be sure it was applied
-properly as the input's `type` attribute? The answer is, maybe. `type="tel"` doesn't affect the
-appearance of the field in a browser, but it does affect the types of input that can be entered and
-it might affect how the user can enter input. For example a mobile device might display an on-screen
-keyboard that only includes numbers and separators. For now we'll hold off on writing tests that
-check attribute values and see if there is another, more user-focused way, to test this behavior.
+properly as the input's `type` attribute? The answer is, maybe. `type="email"` doesn't affect the
+appearance of the field in a browser, but it might affect how the user can enter input. For example,
+a mobile device might display a special on-screen keyboard. For now we'll hold off on writing tests
+that check attribute values and see if there is another, more user-focused way, to test this
+behavior.
 
 ### Setup 1
 
@@ -167,14 +167,67 @@ Most components have ways to respond to events raised by user interaction, like 
 how can we test code that responds to these interactions? We use another library provided by React
 Testing Library named [user-event](https://testing-library.com/docs/user-event/intro).
 
-`user-event` allows you to interact with your component similarly to a user some of its methods may
-raise more than one event to do so, for example emitting a focus event then a click event. It also
-has some helpful features such as not firing a click event on an element that’s hidden.
+`user-event` allows you to interact with your component in a browser-like manner — some of its
+methods may raise more than one event. For example, when a button is "clicked" it emits both a focus
+event then a click event. It also has some helpful functionality to prevent interactions that are
+not possible in a browser environment such as, not firing a click event from an element that’s
+hidden.
 
 - The user-event library simulates user interactions - not events
 - Tests must be marked as `async` to work with user-event
 
 ### Using `@testing-library/user-event` to simulate user interactions
+
+Referring back to the rendered HTML output by the `EmailInputField` component:
+
+```html
+<div class="form-field">
+  <label htmlFor="inputId">Email:</label>
+  <input id="inputId" type="email" value="test@example.com" />
+</div>
+```
+
+We want to write a test to verify that what the user types is displayed as the `<input>`'s value.
+The user-event library includes a method named `keyboard`, that we can use to send a sequence of key
+events to the `<input>` element. The `keyboard` method provides a good simulation of what happens
+when a user is typing. Before we use `keyboard` in a test, we need to [initialize user events with
+the `setup` method](https://testing-library.com/docs/user-event/setup#direct-apis). Let's look at
+the test:
+
+```tsx
+import userEvent from "@testing-library/user-event";
+
+it("captures email input", async () => {
+  const user = userEvent.setup();
+
+  render(<EmailInputField label="Email" value="" />);
+
+  const input = screen.getByLabelText("Email:");
+  expect(input).toBeInTheDocument();
+  // Verify the beginning state: no value is set.
+  expect(input).toHaveDisplayValue("");
+
+  await user.click(input);
+  await user.keyboard("test@example.com");
+  expect(input).toHaveDisplayValue("test@example.com");
+});
+```
+
+There are some notable differences compared to the previous test:
+
+- The userEvent module is imported.
+- A `user` is created with the `userEvent.setup()` function.
+- The callback function in `it` is prefaced with `async`.
+- We need to `await` the `keyboard` method to let it complete.
+- We have to focus the input field before we "type" input, rather than using the input's `focus`
+  method we prefer the more performant `user.click` method.
+
+After `keyboard` completes we can make assertions about the current state of the input including the
+current value which should have been updated with the `keyboard` argument.
+
+TODO: input validation
+
+---
 
 Consider the following example:
 
