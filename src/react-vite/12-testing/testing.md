@@ -239,7 +239,7 @@ value](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/email):
 This is a great reason for choosing the "email" type rather than the "text" type. The "email" type
 prevents the user from entering an incorrectly formatted email address. This also helps guide our
 thinking — rather than testing an attribute **value**, we can test the input's **behavior**. We'll
-add another test to ensure incorrect email formats are invalid.
+add another test to ensure incorrect email formats are flagged as invalid.
 
 ```tsx
   it("flags an incorrectly formatted email address as invalid", async () => {
@@ -260,9 +260,9 @@ add another test to ensure incorrect email formats are invalid.
   });
 ```
 
-Compared to the prior test, this one adds three lines at the end that moves focus away from the
-`<input>` element, triggering the built-in validation to be executed, and then asserts that the
-`<input>` has been [marked as
+Compared to the prior test, this one inputs a string that is not a valid email address and has three
+additional lines at the end that move focus away from the `<input>` element, triggering the built-in
+validation to be executed, and then asserts that the `<input>` has been [marked as
 invalid](https://github.com/testing-library/jest-dom?tab=readme-ov-file#tobeinvalid).
 
 ### Verify 2
