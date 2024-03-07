@@ -286,7 +286,7 @@ The parent component is listening for a change on the child component’s proper
 
 ## P5: Technical requirements
 
-Create an `itemsChanged` EventEmitter property that emits the checked/unchecked `Item` value every time it changes, and in the parent OrderForm component update the `items` FormControl with the updated `Item`s array using the provided `getChange` function.
+Create an `itemChanged` EventEmitter property that emits the checked/unchecked `Item` value every time it changes, and in the parent OrderComponent update the `items` FormControl with the updated `Item`s array using the provided `getChange` function.
 
 ## P5: Setup
 

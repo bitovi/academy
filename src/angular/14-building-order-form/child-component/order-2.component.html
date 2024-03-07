@@ -12,7 +12,7 @@
           <ul class="list-group">
             <pmo-menu-items
               [items]="restaurant.menu.lunch"
-              (itemsChanged)="getChange($event)"
+              (itemChanged)="getChange($event)"
             ></pmo-menu-items>
           </ul>
         </tab>
@@ -20,7 +20,7 @@
           <ul class="list-group">
             <pmo-menu-items
               [items]="restaurant.menu.dinner"
-              (itemsChanged)="getChange($event)"
+              (itemChanged)="getChange($event)"
             ></pmo-menu-items>
           </ul>
         </tab>
