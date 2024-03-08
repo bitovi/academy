@@ -549,6 +549,9 @@ most operating systems and has extensive support for React and JSX including:
 code completion, code highlighting, and linting. It’s also used by cloud
 environments like CodeSandbox and StackBlitz, making it easy to switch among
 different runtime environments.</p>
+<p>The following VS Code extensions will help you format your code consistently:
+<a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint</a>, <a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier -
+Code formatter</a></p>
 <h3>Install Node.js and npm</h3>
 <p>Our solution requires the <a href="https://nodejs.org/">Node.js</a> JavaScript runtime
 environment. Node.js and its included package manager <code>npm</code> will be used to do a
@@ -561,8 +564,13 @@ support release of version 20).</p>
 <p><a href="https://nodejs.org/en/download">Download the Node.js installer</a> for your operating system.
 Any installation of Node.js will also include npm.</p>
 <p>Alternatively, you can <a href="https://nodejs.org/en/download/package-manager">install Node.js via package manager</a>.</p>
+<p>During the installation process you may be prompted to make selections or install prerequisites, use
+the default selections and proceed with the installation.</p>
+<p>The installation process can take 10 to 15 minutes to complete.</p>
 <h3>Verify 1</h3>
-<p>✏️ Run the following command in a terminal to verify Node.js is installed correctly:</p>
+<p>✏️ Run the following command in a terminal to verify Node.js is installed correctly.</p>
+<p>🔦 <em>If you encounter an error running <code>node --version</code> you may need to restart for node to be
+completely installed.</em></p>
 <pre><code class="language-shell">node --version
 </code></pre>
 <p>The output of the command will be the current version of Node.js, we expect it
@@ -618,8 +626,13 @@ required packages:</p>
 npm install
 </code></pre>
 <h3>Verify 2</h3>
-<p>Once you have completed the previous step you will be able to start the
-development server and see the default welcome page.</p>
+<p>Once you have completed the previous step you will be able to start the development server and see
+the default welcome page.</p>
+<p>The development server is a useful tool. When it starts, it
+<a href="https://en.wikipedia.org/wiki/Source-to-source_compiler">transpiles</a> the TypeScript and JSX code
+into JavaScript and bundles it for delivery to the browser. It also watches for changes to the
+source code, and when they occur, it repeats the process, then causes the browser to reload with
+those changes.</p>
 <p>✏️ Run the command:</p>
 <pre><code class="language-shell">npm run dev
 </code></pre>
@@ -638,10 +651,11 @@ the expected results.</p>
 <p>Before we can create or execute any tests, run the following command to
 install the packages related to the React Testing Library:</p>
 <p>✏️ Run:</p>
-<pre><code class="language-shell">npm install -D @testing-library/jest-dom@6 @testing-library/react@14 @testing-library/user-event@14 jsdom@24 vitest@1
+<pre><code class="language-shell">npm install --save-dev @testing-library/jest-dom@6 @testing-library/react@14 @testing-library/user-event@14 jsdom@24 vitest@1
 </code></pre>
 <p>✏️ Update <strong>vite.config.ts</strong> to be:</p>
-<pre><code class="language-ts">import { defineConfig } from 'vite'
+<pre><code class="language-ts">/// &lt;reference types=&quot;vitest&quot; /&gt;
+import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
@@ -655,7 +669,7 @@ export default defineConfig({
 })
 
 </code></pre>
- <div line-highlight="7-11,"></div>
+ <div line-highlight="1,8-12,"></div>
 <p>Once the packages are installed and the config file is updated, open the &quot;package.json&quot; file (in the
 project’s root) and add the &quot;test&quot; line to the <code>scripts</code> object; this simplifies
 running tests using Vite.</p>

@@ -1071,7 +1071,8 @@ describe('RestaurantHeader component', () =&gt; {
 
 </code></pre>
 <p>✏️ Create <strong>src/pages/RestaurantDetails/RestaurantDetails.test.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
+<pre><code class="language-tsx">import type { ReactNode } from 'react';
+import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
@@ -1103,7 +1104,7 @@ const mockRestaurantData = {
   error: null
 };
 
-const renderWithRouter = (ui, { route = '/restaurants/test-restaurant' } = {}) =&gt; {
+const renderWithRouter = (ui: ReactNode, { route = '/restaurants/test-restaurant' } = {}) =&gt; {
   window.history.pushState({}, 'Test page', route)
   return render(
     ui,
@@ -1143,14 +1144,15 @@ describe('RestaurantDetails component', () =&gt; {
 
 </code></pre>
 <p>✏️ Update <strong>src/pages/RestaurantList/ListItem.test.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
+<pre><code class="language-tsx">import type { ReactNode } from 'react';
+import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
 import ListItem from './ListItem';
 
 // Wrap component with MemoryRouter to mock routing
-const renderWithRouter = (ui, { route = '/' } = {}) =&gt; {
+const renderWithRouter = (ui: ReactNode, { route = '/' } = {}) =&gt; {
   window.history.pushState({}, 'Test page', route)
   return render(ui, { wrapper: MemoryRouter });
 };
@@ -1208,9 +1210,10 @@ describe('ListItem component', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="3,7-11,15,30,38,46,53,58,only"></div>
+ <div line-highlight="1,4,8-12,16,31,39,47,54,59,only"></div>
 <p>✏️ Update <strong>src/pages/RestaurantList/RestaurantList.test.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
+<pre><code class="language-tsx">import type { ReactNode } from 'react';
+import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router-dom';
@@ -1246,7 +1249,7 @@ vi.mock('../../services/restaurant/hooks', () =&gt; ({
 import { useCities, useRestaurants, useStates } from '../../services/restaurant/hooks'
 
 // Wrap component with MemoryRouter to mock routing
-const renderWithRouter = (ui, { route = '/' } = {}) =&gt; {
+const renderWithRouter = (ui: ReactNode, { route = '/' } = {}) =&gt; {
   window.history.pushState({}, 'Test page', route)
   return render(ui, { wrapper: MemoryRouter });
 };
@@ -1299,7 +1302,7 @@ describe('RestaurantList component', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="4,36-40,80,only"></div>
+ <div line-highlight="1,5,37-41,81,only"></div>
 <p>✏️ Update <strong>src/services/restaurant/hooks.test.ts</strong> to be:</p>
 <pre><code class="language-ts">import { renderHook, waitFor } from '@testing-library/react';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
@@ -1540,7 +1543,8 @@ export default RestaurantOrder
 </code></pre>
 <h3>Verify 2</h3>
 <p>✏️ Create <strong>src/pages/RestaurantOrder/RestaurantOrder.test.tsx</strong> and update it to be:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
+<pre><code class="language-tsx">import type { ReactNode } from 'react';
+import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it, vi } from 'vitest';
@@ -1572,7 +1576,7 @@ const mockRestaurantData = {
   error: null
 };
 
-const renderWithRouter = (ui, { route = '/restaurants/test-restaurant' } = {}) =&gt; {
+const renderWithRouter = (ui: ReactNode, { route = '/restaurants/test-restaurant' } = {}) =&gt; {
   window.history.pushState({}, 'Test page', route)
   return render(
     ui,

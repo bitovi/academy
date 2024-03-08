@@ -825,7 +825,8 @@ describe('Home component', () =&gt; {
 
 </code></pre>
 <p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
+<pre><code class="language-tsx">import type { ReactNode } from 'react';
+import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
@@ -833,7 +834,7 @@ import { describe, expect, it } from 'vitest';
 import App from './App';
 
 // Wrap App with MemoryRouter to mock routing
-const renderWithRouter = (ui, { route = '/' } = {}) =&gt; {
+const renderWithRouter = (ui: ReactNode, { route = '/' } = {}) =&gt; {
   window.history.pushState({}, 'Test page', route)
   return render(ui, { wrapper: MemoryRouter });
 };
@@ -858,7 +859,7 @@ describe('App component', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="3-4,8-12,14,16-17,20-23,25-26,28-30,only"></div>
+ <div line-highlight="1,4-5,9-13,15,17-18,21-24,26-27,29-31,only"></div>
 <h3>Exercise 1</h3>
 <p>Create routes for the <code>&lt;Home&gt;</code> component and <code>&lt;RestaurantList&gt;</code> component.
 When the route is <code>&quot;&quot;</code>, the <code>&lt;Home&gt;</code> component should display, and when
@@ -1005,7 +1006,8 @@ export default App
  <div line-highlight="1,only"></div>
 <h3>Verify 2</h3>
 <p>✏️ Update <strong>src/App.test.tsx</strong> to be:</p>
-<pre><code class="language-tsx">import '@testing-library/jest-dom';
+<pre><code class="language-tsx">import type { ReactNode } from 'react';
+import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { describe, expect, it } from 'vitest';
@@ -1013,7 +1015,7 @@ import { describe, expect, it } from 'vitest';
 import App from './App';
 
 // Wrap App with MemoryRouter to mock routing
-const renderWithRouter = (ui, { route = '/' } = {}) =&gt; {
+const renderWithRouter = (ui: ReactNode, { route = '/' } = {}) =&gt; {
   window.history.pushState({}, 'Test page', route)
   return render(ui, { wrapper: MemoryRouter });
 };
@@ -1044,7 +1046,7 @@ describe('App component', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="32-36,only"></div>
+ <div line-highlight="33-37,only"></div>
 <h3>Exercise 2</h3>
 <ul>
 <li>Create links to the <code>/</code> (<code>Home</code>) and <code>/restaurants</code> (<code>RestaurantList</code>) pages.</li>

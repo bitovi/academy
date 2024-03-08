@@ -617,6 +617,14 @@ In JSX, these are renamed to <code>className</code> and <code>htmlFor</code>, re
   &lt;input id=&quot;name-input&quot; /&gt;
 &lt;/p&gt;
 </code></pre>
+<h4>Style prop</h4>
+<p>In HTML, the appearance of most elements can be altered using the <code>style</code> attribute. React supports
+a <code>style</code> prop, but it accepts an object, not a string. The style object has properties whose names
+are camel-case versions of their CSS counterparts: &quot;font-style&quot; becomes <code>fontStyle</code>.</p>
+<pre><code class="language-tsx">&lt;p style={{ fontStyle: &quot;italic&quot; }}&gt;
+  Restaurants
+&lt;/p&gt;
+</code></pre>
 <p>As we go through this training, you’ll learn additional differences.</p>
 <h3>Setup 1</h3>
 <p>We’ve created an assets package with images and CSS you’ll need to build the application. Install the <code>place-my-order-assets</code> package.</p>
@@ -897,7 +905,7 @@ const content = (
 </code></pre>
 <p>There are lots of ways to iterate over arrays in JavaScript with functions like <code>Array.map</code>, <code>Array.filter</code>, and <code>Array.reduce</code>.
 These all work in JSX!</p>
-<h5>The <code>key</code> prop</h5>
+<h5><span id="the-key-prop">The <code>key</code> prop</span></h5>
 <p>Did you notice the <code>key</code> prop in the example above?</p>
 <p>When rendering a list of elements, React needs a way to uniquely identify each element. This helps React
 understand which items have changed, been added, or removed, which is crucial for efficient re-rendering.</p>
@@ -934,6 +942,11 @@ const content = (
   &lt;li&gt;Delta&lt;/li&gt;
 &lt;/ul&gt;
 </code></pre>
+<p>🔦 <em>During development, If you forget to provide a <code>key</code> prop for items in an array React will log
+the following error to the browser's console:</em></p>
+<p><img alt="A browser console with the error message 'Warning: Each child in a list should have a
+unique 'key' prop." src="../../../static/img/react-vite/03-intro-to-jsx/react-missing-key-error.png"
+style="width:100%" /></p>
 <h3>Setup 2</h3>
 <p>✏️ Update <strong>src/App.tsx</strong> to be:</p>
 <pre><code class="language-tsx">import CheeseThumbnail from 'place-my-order-assets/images/2-thumbnail.jpg'

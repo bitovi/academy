@@ -561,9 +561,11 @@ Let’s prepare now by moving all of the JSX from <code>App</code> to a new comp
 <p>React makes it relatively straightforward to create new components. Let’s learn to build our own.</p>
 <h3>Component structure</h3>
 <p>Let’s start by creating a component from a commonly reused element, the button.</p>
-<p>First, our component names must start with a capital letter, so we can call this <code>Button</code>. While it’s not required, the common practice is to use PascalCase when naming components so longer component names will look like <code>IconButton</code>.</p>
+<p>First, React component names <strong>must</strong> start with a capital letter, so we can call this <code>Button</code>. By
+convention component names use PascalCase when naming components, so longer component names will
+look like <code>IconButton</code>. Avoid hyphens and underscores.</p>
 <p>Second, our component must return either <code>null</code> or something renderable, like JSX. The return value of our components is almost always JSX, though JavaScript primitives like <code>string</code> and <code>number</code> are also valid. Components cannot return complex types like arrays or objects.</p>
-<pre><code class="language-tsx">const Button: React.FC = () =&gt; {
+<pre><code class="language-tsx">const Button = () =&gt; {
   return (
     &lt;button className=&quot;button primary&quot;&gt;
       Activate me
@@ -572,7 +574,7 @@ Let’s prepare now by moving all of the JSX from <code>App</code> to a new comp
 }
 </code></pre>
 <p>Components are like small containers which can be reused throughout your application. The <code>Button</code> component above returns JSX and could then be rendered and reused by another component like <code>App</code> below.</p>
-<pre><code class="language-tsx">const App: React.FC = () =&gt; {
+<pre><code class="language-tsx">const App = () =&gt; {
   return (
     &lt;main&gt;
       &lt;Button /&gt;
@@ -586,7 +588,9 @@ Let’s prepare now by moving all of the JSX from <code>App</code> to a new comp
 <p>The JSX syntax allows function components to look like HTML, but underneath they are still functions. The return of each component is unique and you can use the same component multiple times.</p>
 <p>You can think of components as fancy functions.</p>
 <p>While you shouldn’t do the following, you could:</p>
-<pre><code class="language-tsx">const App: React.FC = () =&gt; {
+<pre><code class="language-tsx">import type React from &quot;react&quot;;
+
+const App: React.FC = () =&gt; {
   return (
     &lt;main&gt;
       {Button()}
@@ -596,6 +600,11 @@ Let’s prepare now by moving all of the JSX from <code>App</code> to a new comp
   );
 }
 </code></pre>
+<p>Did you notice the <code>React.FC</code> that was used in the previous example to type the <code>App</code> const? Because
+we're using TypeScript with our project, we can apply types to help make sure the function component
+is properly formed. React provides the type <code>FC</code> (an abbreviation for &quot;function component&quot;) that can
+be applied to a function component. This type defines the arguments and return value that a function
+component must implement.</p>
 <p>Now you’re ready to create your first component.</p>
 <h3>Setup</h3>
 <p>It’s best practice to create a new folder that will contain all of the related files for that component, including test and CSS files.</p>
