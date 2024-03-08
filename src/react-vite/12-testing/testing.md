@@ -60,7 +60,7 @@ We want to test `EmailInputField` to make sure it generates the DOM we expect. I
 familiar with testing frontend JavaScript code, the following pattern will probably be recognizable:
 each test consists of arguments to the `it` function provided by Vite. The first argument is a short
 description of what the test is verifying. The convention is that the description string takes "it"
-as a prefix and proceeds from there, e.g. "[it] renders the correct label and value"
+as a prefix and proceeds from there, e.g. "[it] renders the correct label and value."
 
 The second argument to `it` is a callback function that is called to run the test. Inside the
 callback, invoke the React Testing Library function `render` and pass it a single argument, the JSX
@@ -103,11 +103,11 @@ functions](https://testing-library.com/docs/queries/about) that select elements 
 characteristics like: role, label text, placeholder text, text, display value, alt text, and title.
 Our test continues to pass because the input's value in the DOM matches what we expect.
 
-Before we move on let's consider the `type` prop — shouldn't we test to be sure it was applied
-properly as the input's `type` attribute? The answer is, maybe. `type="email"` doesn't affect the
+Before we move on, let's consider the `type` prop — shouldn't we test to be sure it was applied
+properly as the input's `type` attribute? The answer is maybe. `type="email"` doesn't affect the
 appearance of the field in a browser, but it might affect how the user can enter input. For example,
-a mobile device might display a special on-screen keyboard. For now we'll hold off on writing tests
-that check attribute values and see if there is another, more user-focused way, to test this
+a mobile device might display a special on-screen keyboard. For now, we'll hold off on writing tests
+that check attribute values and see if there is another, more user-focused way to test this
 behavior.
 
 ### Setup 1
@@ -242,22 +242,22 @@ thinking — rather than testing an attribute **value**, we can test the input's
 add another test to ensure incorrect email formats are flagged as invalid.
 
 ```tsx
-  it("flags an incorrectly formatted email address as invalid", async () => {
-    const user = userEvent.setup();
+it("flags an incorrectly formatted email address as invalid", async () => {
+  const user = userEvent.setup();
 
-    render(<EmailInputField label="Email" value="" />);
+  render(<EmailInputField label="Email" value="" />);
 
-    const input = screen.getByLabelText("Email:");
-    expect(input).toBeInTheDocument();
+  const input = screen.getByLabelText("Email:");
+  expect(input).toBeInTheDocument();
 
-    await user.click(input);
-    await user.keyboard("test");
-    expect(input).toHaveDisplayValue("test");
+  await user.click(input);
+  await user.keyboard("test");
+  expect(input).toHaveDisplayValue("test");
 
-    await user.tab();
-    expect(input).not.toHaveFocus();
-    expect(input).toBeInvalid();
-  });
+  await user.tab();
+  expect(input).not.toHaveFocus();
+  expect(input).toBeInvalid();
+});
 ```
 
 Compared to the prior test, this one inputs a string that is not a valid email address and has three
