@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event'
@@ -34,7 +35,7 @@ vi.mock('../../services/restaurant/hooks', () => ({
 import { useCities, useRestaurants, useStates } from '../../services/restaurant/hooks'
 
 // Wrap component with MemoryRouter to mock routing
-const renderWithRouter = (ui, { route = '/' } = {}) => {
+const renderWithRouter = (ui: ReactNode, { route = '/' } = {}) => {
   window.history.pushState({}, 'Test page', route)
   return render(ui, { wrapper: MemoryRouter });
 };

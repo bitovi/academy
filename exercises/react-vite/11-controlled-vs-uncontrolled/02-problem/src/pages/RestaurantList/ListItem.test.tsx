@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
@@ -5,7 +6,7 @@ import { describe, expect, it } from 'vitest';
 import ListItem from './ListItem';
 
 // Wrap component with MemoryRouter to mock routing
-const renderWithRouter = (ui, { route = '/' } = {}) => {
+const renderWithRouter = (ui: ReactNode, { route = '/' } = {}) => {
   window.history.pushState({}, 'Test page', route)
   return render(ui, { wrapper: MemoryRouter });
 };
