@@ -35,6 +35,10 @@ code completion, code highlighting, and linting. It’s also used by cloud
 environments like CodeSandbox and StackBlitz, making it easy to switch among
 different runtime environments.
 
+The following VS Code extensions will help you format your code consistently:
+[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), [Prettier -
+Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+
 ### Install Node.js and npm
 
 Our solution requires the [Node.js](https://nodejs.org/) JavaScript runtime
@@ -53,9 +57,17 @@ Any installation of Node.js will also include npm.
 
 Alternatively, you can [install Node.js via package manager](https://nodejs.org/en/download/package-manager).
 
+During the installation process you may be prompted to make selections or install prerequisites, use
+the default selections and proceed with the installation.
+
+The installation process can take 10 to 15 minutes to complete.
+
 ### Verify 1
 
-✏️ Run the following command in a terminal to verify Node.js is installed correctly:
+✏️ Run the following command in a terminal to verify Node.js is installed correctly.
+
+🔦 _If you encounter an error running `node --version` you may need to restart for node to be
+completely installed._
 
 ```shell
 node --version
@@ -140,8 +152,14 @@ npm install
 
 ### Verify 2
 
-Once you have completed the previous step you will be able to start the
-development server and see the default welcome page.
+Once you have completed the previous step you will be able to start the development server and see
+the default welcome page.
+
+The development server is a useful tool. When it starts, it
+[transpiles](https://en.wikipedia.org/wiki/Source-to-source_compiler) the TypeScript and JSX code
+into JavaScript and bundles it for delivery to the browser. It also watches for changes to the
+source code, and when they occur, it repeats the process, then causes the browser to reload with
+those changes.
 
 ✏️ Run the command:
 
@@ -173,7 +191,7 @@ install the packages related to the React Testing Library:
 ✏️ Run:
 
 ```shell
-npm install -D @testing-library/jest-dom@6 @testing-library/react@14 @testing-library/user-event@14 jsdom@24 vitest@1
+npm install --save-dev @testing-library/jest-dom@6 @testing-library/react@14 @testing-library/user-event@14 jsdom@24 vitest@1
 ```
 
 ✏️ Update **vite.config.ts** to be:

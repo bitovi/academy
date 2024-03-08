@@ -1,3 +1,4 @@
+import type { ReactNode } from 'react';
 import '@testing-library/jest-dom';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
@@ -30,7 +31,7 @@ const mockRestaurantData = {
   error: null
 };
 
-const renderWithRouter = (ui, { route = '/restaurants/test-restaurant' } = {}) => {
+const renderWithRouter = (ui: ReactNode, { route = '/restaurants/test-restaurant' } = {}) => {
   window.history.pushState({}, 'Test page', route)
   return render(
     ui,
