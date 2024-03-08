@@ -49,12 +49,14 @@ React makes it relatively straightforward to create new components. Let’s lear
 
 Let’s start by creating a component from a commonly reused element, the button.
 
-First, our component names must start with a capital letter, so we can call this `Button`. While it’s not required, the common practice is to use PascalCase when naming components so longer component names will look like `IconButton`.
+First, React component names **must** start with a capital letter, so we can call this `Button`. By
+convention component names use PascalCase when naming components, so longer component names will
+look like `IconButton`. Avoid hyphens and underscores.
 
 Second, our component must return either `null` or something renderable, like JSX. The return value of our components is almost always JSX, though JavaScript primitives like `string` and `number` are also valid. Components cannot return complex types like arrays or objects.
 
 ```tsx
-const Button: React.FC = () => {
+const Button = () => {
   return (
     <button className="button primary">
       Activate me
@@ -66,7 +68,7 @@ const Button: React.FC = () => {
 Components are like small containers which can be reused throughout your application. The `Button` component above returns JSX and could then be rendered and reused by another component like `App` below.
 
 ```tsx
-const App: React.FC = () => {
+const App = () => {
   return (
     <main>
       <Button />
@@ -86,6 +88,8 @@ You can think of components as fancy functions.
 While you shouldn’t do the following, you could:
 
 ```tsx
+import type React from "react";
+
 const App: React.FC = () => {
   return (
     <main>
@@ -96,6 +100,12 @@ const App: React.FC = () => {
   );
 }
 ```
+
+Did you notice the `React.FC` that was used in the previous example to type the `App` const? Because
+we're using TypeScript with our project, we can apply types to help make sure the function component
+is properly formed. React provides the type `FC` (an abbreviation for "function component") that can
+be applied to a function component. This type defines the arguments and return value that a function
+component must implement.
 
 Now you’re ready to create your first component.
 
