@@ -18,12 +18,12 @@ You can start a development server at `http://localhost:8080/academy/` by runnin
 npm run start
 ```
 
-`start` incorporates the `npm run dev` command and changes to the source code will cause a rebuild,
-however the browser will **not** reload when the source code changes.
+`start` runs **both** the dev server and watch mode (changes to the source code will cause a
+rebuild). However the browser will **not** reload when the source code changes.
 
 ### Watch mode
 
-When actively working on the content, the most useful option is the watch mode. Run:
+Watch mode will automatically trigger a rebuild when the source code changes. Run:
 
 ```sh
 npm run dev
