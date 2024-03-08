@@ -147,6 +147,18 @@ In JSX, these are renamed to `className` and `htmlFor`, respectively.
 </p>
 ```
 
+#### Style prop
+
+In HTML, the appearance of most elements can be altered using the `style` attribute. React supports
+a `style` prop, but it accepts an object, not a string. The style object has properties whose names
+are camel-case versions of their CSS counterparts: "font-style" becomes `fontStyle`.
+
+```tsx
+<p style={{ fontStyle: "italic" }}>
+  Restaurants
+</p>
+```
+
 As we go through this training, you’ll learn additional differences.
 
 ### Setup 1
