@@ -23,7 +23,7 @@ having a `<select>` dropdown for choosing a _state_, then a _city_ in that state
 loading the list of restaurants for that city.
 
 To start, let’s focus on rendering buttons for each state that we can select. Then, when
-the button for a state is activated, we want to keep track of which state was choosen.
+the button for a state is activated, we want to keep track of which state was chosen.
 
 <img alt="A web page titled “Restaurants” from place-my-order.com showing two buttons labeled “Illinois” and “Wisconsin”. There is also a “Current state” paragraph that shows that no state is selected." src="../../../static/img/react-vite/08-stateful-hooks/01-solution.png" style="max-width:689px">
 
@@ -74,8 +74,7 @@ top of the React function body.
 (e.g. `useMatch`).
 
 Hooks can only be used in functional components. Almost anything that could be
-done in a class component can be done with Hooks. _The one thing that class
-component can do that Hooks cannot is implement error boundaries._
+done in a class component can be done with Hooks.
 
 ### The useState Hook
 
