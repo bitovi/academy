@@ -35,6 +35,10 @@ code completion, code highlighting, and linting. It’s also used by cloud
 environments like CodeSandbox and StackBlitz, making it easy to switch among
 different runtime environments.
 
+The following VS Code extensions will help you format your code consistently:
+[ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint), [Prettier -
+Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+
 ### Install Node.js and npm
 
 Our solution requires the [Node.js](https://nodejs.org/) JavaScript runtime
