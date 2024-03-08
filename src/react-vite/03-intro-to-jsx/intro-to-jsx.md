@@ -390,7 +390,7 @@ That will produce the following HTML:
 There are lots of ways to iterate over arrays in JavaScript with functions like `Array.map`, `Array.filter`, and `Array.reduce`.
 These all work in JSX!
 
-##### The `key` prop
+##### <span id="the-key-prop">The `key` prop</span>
 
 Did you notice the `key` prop in the example above?
 
@@ -436,6 +436,13 @@ That will produce the following HTML:
   <li>Delta</li>
 </ul>
 ```
+
+🔦 _During development, If you forget to provide a `key` prop for items in an array React will log
+the following error to the browser's console:_
+
+<img alt="A browser console with the error message 'Warning: Each child in a list should have a
+unique 'key' prop." src="../../../static/img/react-vite/03-intro-to-jsx/react-missing-key-error.png"
+style="width:100%" />
 
 ### Setup 2
 

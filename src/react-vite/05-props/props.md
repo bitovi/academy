@@ -30,6 +30,9 @@ component to a child component. Since functional React components are fundamenta
 JavaScript functions, you can think of props like the arguments you pass to
 a function.
 
+Also note that React component props are not the same as the "properties" that exist on a DOM
+element.
+
 To receive props, functional components must implement a React API that
 allows an optional argument of type `object` that’s named `props`.
 
@@ -109,7 +112,10 @@ There are two prop names that you cannot use and are reserved by React:
 
 - `children`: this prop is automatically provided by React to every component. We will see this prop in later examples.
 
-- `key`: this prop is one you’ve seen in a previous section! It’s not actually part of the component’s props in a traditional sense. Instead, it’s used by React itself to manage lists of elements and identify which items have changed, been added, or been removed.
+- `key`: this prop is one you’ve seen before in the [Introduction to JSX
+  module](intro-to-jsx.html#the-key-prop)! It’s not actually part of the component’s props in a
+  traditional sense. Instead, it’s used by React itself to manage lists of elements and identify
+  which items have changed, been added, or been removed.
 
 ### Setup
 
