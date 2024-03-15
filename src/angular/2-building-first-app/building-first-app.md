@@ -90,7 +90,7 @@ cd place-my-order
 
 This will create a new Angular Workspace, generate an app module, needed config files, and test suite for your new Angular project. You’ll be asked a series of set-up questions:
 
-1. Which stylesheet format would you like to use? (**Less**)
+1. Which stylesheet format would you like to use? (**CSS**)
 2. Do you want to enable Server-Side Rendering (SSR) and Static Site Generation (SSG/Prerendering)? (**No**)
 
 Note that we used the `--prefix` property above to set our own default prefix. Angular’s default prefix is `app`, but a good naming convention is to use a short prefix related to your company or application name, which helps to easily differentiate from third-party utilities.
@@ -134,14 +134,14 @@ Let’s walk through some of the files that were generated.
 |   ├── app/
 |   |   ├── app-routing.module.ts
 |   |   ├── app.component.html
-|   |   ├── app.component.less
+|   |   ├── app.component.css
 |   |   ├── app.component.spec.ts
 |   |   ├── app.component.ts
 |   |   ├── app.module.ts
 |   ├── assets/
 |   ├── index.html
 |   ├── main.ts
-|   ├── styles.less
+|   ├── styles.css
 ├── angular.json
 ├── package-lock.json
 ├── package.json
