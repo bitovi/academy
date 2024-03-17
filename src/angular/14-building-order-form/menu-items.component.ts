@@ -5,7 +5,7 @@ import { Item } from '../order.component';
 @Component({
   selector: 'pmo-menu-items',
   templateUrl: './menu-items.component.html',
-  styleUrl: './menu-items.component.less',
+  styleUrl: './menu-items.component.css',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,

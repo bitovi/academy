@@ -5,7 +5,7 @@ import { Item, Order, OrderService } from '../order.service';
 @Component({
   selector: 'pmo-list',
   templateUrl: './list.component.html',
-  styleUrl: './list.component.less',
+  styleUrl: './list.component.css',
 })
 export class ListComponent implements OnDestroy {
   @Input() orders?: Order[];
