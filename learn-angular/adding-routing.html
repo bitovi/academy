@@ -1090,21 +1090,19 @@ platformBrowserDynamic()
 <div line-highlight='71, only'></div>
 <h2>Setting Paths to Modules</h2>
 <p>As our applications grow, it doesn’t make sense to load all the code at once. Thanks to <a href="https://angular.io/guide/lazy-loading-ngmodules">lazy loading</a>, we can wait to render modules until a specific route requiring them is hit.</p>
-<!-- [//]: # @sourceref ./lazyload-route.html
-[//]: # @codepen
-[//]: # @highlight 120, only -->
-<pre><code class="language-typescript">const routes: Routes = [
+<pre><code class="language-ts">const routes: Routes = [
   { path: 'about', component: AboutComponent },
   { path: 'team',  redirectTo: '/about', pathMatch: 'full' },
   {
     path: 'products',
     loadChildren: () =&gt; {
-      return import('./products/products.module').then(m =&gt; m.ProductsModule)
+      return import('./products/products.module').then(m =&gt; m.ProductsModule);
     }
   },
   { path: '**', component: PageNotFoundComponent }
 ];
 
+@NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
@@ -1284,7 +1282,7 @@ export class AppRoutingModule {}
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/angular/4-adding-routing/adding-routing.md"},"description":"Learn how to add basic routing to components in an Angular application. \n","name":"learn-angular/adding-routing","title":"Adding Routing","type":"page","parent":"learn-angular","order":4,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"ngmodule":"({","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/angular/4-adding-routing/adding-routing.md"},"description":"Learn how to add basic routing to components in an Angular application. \n","name":"learn-angular/adding-routing","title":"Adding Routing","type":"page","parent":"learn-angular","order":4,"comment":" ","codepen":[["\"can\"","\"//unpkg.com/can@5/core.mjs\""],["\"can/everything\"","\"//unpkg.com/can@5/everything.mjs\""]],"pathToRoot":"../.."};
     </script>
 
     

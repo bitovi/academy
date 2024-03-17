@@ -1134,7 +1134,7 @@ interface Data&lt;T&gt; {
 @Component({
   selector: 'pmo-history',
   templateUrl: './history.component.html',
-  styleUrl: './history.component.less',
+  styleUrl: './history.component.css',
 })
 export class HistoryComponent implements OnInit, OnDestroy {
   constructor() {}
@@ -1420,7 +1420,7 @@ interface Data&lt;T&gt; {
 @Component({
   selector: 'pmo-history',
   templateUrl: './history.component.html',
-  styleUrl: './history.component.less',
+  styleUrl: './history.component.css',
 })
 export class HistoryComponent implements OnInit, OnDestroy {
   orders: Data&lt;Order&gt; = { value: [], isPending: true };
@@ -1967,7 +1967,7 @@ import { Item, Order, OrderService } from '../order.service';
 @Component({
   selector: 'pmo-list',
   templateUrl: './list.component.html',
-  styleUrl: './list.component.less',
+  styleUrl: './list.component.css',
 })
 export class ListComponent implements OnDestroy {
   @Input() orders?: Order[];
