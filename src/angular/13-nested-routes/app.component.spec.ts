@@ -286,6 +286,7 @@ describe('AppComponent', () => {
     router.navigate(['']);
     fixture.detectChanges();
     tick();
+    fixture.detectChanges();
 
     const homeLinkLi = compiled.querySelector('li');
     expect(homeLinkLi?.classList).toContain('active');
