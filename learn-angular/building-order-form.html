@@ -986,6 +986,7 @@ describe('AppComponent', () =&gt; {
     router.navigate(['']);
     fixture.detectChanges();
     tick();
+    fixture.detectChanges();
 
     const homeLinkLi = compiled.querySelector('li');
     expect(homeLinkLi?.classList).toContain('active');
@@ -1009,7 +1010,7 @@ describe('AppComponent', () =&gt; {
 });
 
 </code></pre>
- <div line-highlight="18,208,270,273-276,308,312,319,only"></div>
+ <div line-highlight="18,208,270,273-276,309,313,320,only"></div>
 <blockquote>
 <p>If you’ve implemented the solution correctly, when you run <code>npm run test</code> all tests will pass!</p>
 </blockquote>
