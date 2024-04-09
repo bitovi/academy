@@ -1,5 +1,5 @@
 @page learn-typescript/configuration Configuration
-@parent learn-typescript 3
+@parent learn-typescript 4
 
 @description Learn about TypeScript Configurations and Linting
 
@@ -109,81 +109,3 @@ Yes, there is a `Yoda` rule in ESLint. It is a rule under "best practice" catego
 Here is a [list of ESLint rules](https://eslint.org/docs/rules/). Take some time getting to know them!
 
 For more information on TypeScript with ESLint, you can refer to the [typescript-eslint repository](https://github.com/typescript-eslint/typescript-eslint).
-
-## Exercise: Exporting and Importing
-
-### The Problem
-
-In this exercise, we will:
-
-- Update _1-ide-greeter.ts_ to export the `greeter` function as the `default`
-  export. _1-ide-greeter.ts_ currently looks like:
-  ```ts
-  function greeter(person: string) {
-    return "Hello, " + person;
-  }
-  ```
-- Update _1-ide-hello-earth.ts_, to import and use `greeter`. _1-ide-hello-earth.ts_ currently looks like:
-  ```ts
-  document.body.innerHTML = greeter("Earth");
-  ```
-- Compile _1-ide-hello-earth.ts_ to JavaScript so we can run it.
-
-### What you need to know
-
-- [Export](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export) a default value like:
-  ```typescript
-  const value = "My Value";
-  export default value;
-  ```
-- [Import](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) a default value like:
-  ```typescript
-  import value from "./value-exporter";
-  ```
-
-### Verify Your Solution
-
-✏️ Run the following to verify your solution works:
-
-```shell
-npm run 1-ide
-```
-
-### The solution
-
-<details>
-<summary>Click to see the solution</summary>
-✏️ Update `1-ide-greeter.ts` to:
-
-```typescript
-function greeter(person: string) {
-  return "Hello, " + person;
-}
-
-export default greeter;
-```
-
-@highlight 5
-
-✏️ Update `1-ide-hello-earth.ts` to:
-
-```typescript
-import greeter from "./1-ide-greeter";
-
-document.body.innerHTML = greeter("Earth");
-```
-
-@highlight 1
-
-✏️ Compile `1-ide-hello-earth.ts` with:
-
-```shell
-tsc 1-ide-hello-earth.ts
-```
-
-</details>
-
-### Things to Explore
-
-- Hover over `greeter`, what does your IDE show?
-- Pass a number to `greeter`, what does your IDE show?
