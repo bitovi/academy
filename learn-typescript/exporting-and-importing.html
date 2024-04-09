@@ -3,15 +3,15 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/typescript/1-why-typescript.md
-	@page learn-typescript/why-typescript
+	source: src/typescript/05-exporting-and-importing/exporting-and-importing.md
+	@page learn-typescript/exporting-and-importing
 ######################################################################## -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript. 
+  <meta name="description" content="Learn how to export and import values from a file. 
 ">
   
   <!-- Google Tag Manager -->
@@ -22,7 +22,7 @@
   })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
   <!-- End Google Tag Manager -->
 
-  <title>Bitovi Academy - Why TypeScript</title>
+  <title>Bitovi Academy - Exporting and Importing</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -119,17 +119,14 @@
 		
 			
 				
-					<li class="current
-           						parent
-           						expanded">
+					<li class="
+           						
+           						">
 						<a class="page"
 							href="why-typescript.html"
 							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript.">
 							Why TypeScript
 						</a>
-						
-							
-
 						
 					</li>
 				
@@ -182,14 +179,17 @@
 		
 			
 				
-					<li class="
-           						
-           						">
+					<li class="current
+           						parent
+           						expanded">
 						<a class="page"
 							href="exporting-and-importing.html"
 							title="Learn how to export and import values from a file.">
 							Exporting and Importing
 						</a>
+						
+							
+
 						
 					</li>
 				
@@ -494,7 +494,7 @@ covering CanJS core libraries.">
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Why TypeScript <code>page</code></h1>
+	<h1>Exporting and Importing <code>page</code></h1>
 </section>
 
   		
@@ -502,7 +502,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript.</p>
+    <p>Learn how to export and import values from a file.</p>
 
 </section>
 
@@ -515,125 +515,168 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>What is TypeScript?</h2>
-<p>TypeScript is a typed superset of JavaScript that compiles to plain
-JavaScript. Typing helps enhance code quality and readability, assists in self-documenting, and allows a compiler to perform <em>typechecking</em> to catch errors before runtime. TypeScript also offers modern (think ES6) features of JavaScript and the use of classes and interfaces to write code in an object oriented way.</p>
-<p>The following shows an IDE catching that <code>greeter</code> was expecting a <code>string</code>,
-but was passed a <code>number</code>:</p>
-<p><a href="../static/img/typescript-error-compiling.png"><img src="../static/img/typescript-error-compiling.png" width="100%"/></a></p>
-<h3>Typechecking</h3>
-<p>Typechecking is the process of verifying and enforcing the constraints of types.</p>
-<h3>Static vs. Dynamic Typing</h3>
-<p>JavaScript is an &quot;untyped&quot; or &quot;dynamically typed&quot; language. Type is associated with a value instead of a variable.
-JavaScript can assign variables to values of different types:</p>
-<pre><code class="language-js">let myVariable;
+    <h2>Overview</h2>
+<p>In this section, you will:</p>
+<ul>
+<li>Export values from a file</li>
+<li>Import values from another file</li>
+<li>Learn why named exports are preferred over default exports</li>
+</ul>
+<h2>Objective 1: Export and import values</h2>
+<p>A fundamental part of writing code is creating values that you can use across multiple files.
+This allows for modular, maintainable, and scalable code. Let’s break down how to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export">export</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import">import</a> values in TypeScript.</p>
+<p>In TypeScript, you can export any type of value: variables, functions, classes, interfaces, etc.</p>
+<p>There are two types of exports: default exports and named exports.</p>
+<h3>Default exports</h3>
+<p>Imagine we have a <code>config.ts</code> file:</p>
+<pre><code class="language-ts">const config = {
+    name: &quot;Bitovi Academy&quot;,
+    url: &quot;https://www.bitovi.com/academy/&quot;,
+};
 
-myVariable = 1;
-myVariable = &quot;2&quot;;
+export default config;
 </code></pre>
-<p>JavaScript can call a function with a type it doesn’t expect:</p>
-<pre><code class="language-js">function greeter(person) {
-    return &quot;Hello, &quot; + person;
+<div line-highlight='6'></div>
+<p>In the example above, we create a <code>config</code> variable and then use <code>export default</code> to export it.</p>
+<p>Then, we could consume the value in another file:</p>
+<pre><code class="language-ts">import appConfig from &quot;./config.ts&quot;;
+
+const appName = appConfig.name;
+</code></pre>
+<div line-highlight='1'></div>
+<p>In the code above, the <code>appConfig</code> variable is the same as the <code>config</code> variable exported from <code>config.ts</code>.
+Note that the <code>appConfig</code> variable name does not need to match the name in the file that has the <code>export</code>.</p>
+<h3>Named exports</h3>
+<p>Named exports are called that because there is an explicit name in the file with the <code>export</code>.</p>
+<p>Let’s imagine we have a <code>helpers.ts</code> file:</p>
+<pre><code class="language-ts">function clampNumber(value: number, min: number, max: number): number {
+    return Math.min(Math.max(value, min), max);
 }
 
-let user = {name: &quot;Justin&quot;};
-document.body.innerHTML = greeter(user);
+export {
+    constrain: clampNumber,
+};
 </code></pre>
-<p>If there’s a bug in the code related to falsely assuming a type, it won’t throw an error until we’re already running our code.</p>
-<p>TypeScript uses static typing, which allows us to specify what type a variable should hold, and types are checked when the code compiles alerting us of any incorrect usages of a variable assignment. The concept of &quot;static&quot; comes from the idea of variables being static, meaning once you set a variable to a type it can’t (shouldn’t) be changed. For a deeper dive into how typechecking works, the creators of typescript have a <a href="https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html">typechecking handbook</a> of more specific cases as well as their inspiration for the way these features were designed.</p>
-<h2>Using this Guide</h2>
-<p>In this guide we will teach you about TypeScript concepts and have an environment for you to practice in. Running the tests will catch any problems if the code was not written correctly or as expected. Pay close attention to how you name and save the files.</p>
-<p>When we give you a command to run to verify your work it will look for a file named respectively. If you run into issues you can look at the package.json file to see which file the command listed is looking for.</p>
-<h2>Exercise: <code>0-why-hello-world.ts</code></h2>
-<h3>The Problem</h3>
-<p>For this exercise, we will first clone the <strong>learn-typescript</strong> exercise repository.</p>
-<p>In that repository, there is a <em>0-why-hello-world.html</em> page that looks like the following:</p>
-<pre><code class="language-html">&lt;html&gt;
-  &lt;body&gt;
-    &lt;script src=&quot;./0-why-hello-world.js&quot;&gt;&lt;/script&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
+<div line-highlight='5-7'></div>
+<p>In the example above, we export a <code>constrain</code> function from our <code>helpers.ts</code> file. Note that the local function name is called something else (<code>clampNumber</code>) and we export it with a specific name (<code>constrain</code>).</p>
+<p>We can import the <code>constrain</code> function like so:</p>
+<pre><code class="language-ts">import { constrain } from &quot;./helpers.ts&quot;;
+
+const constrained = constrain(-18, 0, 100);
 </code></pre>
-<p>After cloning and installing the repository, we will:</p>
-<ol>
-<li>Create a simple <em>0-why-hello-world.ts</em> TypeScript file that writes out <code>&quot;Hello World&quot;</code>.</li>
-<li>Compile that code the <em>0-why-hello-world.ts</em> JavaScript file.</li>
-<li>Open <em>0-why-hello-world.html</em> and verify that we’ve written and compiled some TypeScript!</li>
-<li>Run the exercise repository’s tests for this exercise.</li>
-</ol>
+<div line-highlight='1'></div>
+<p>In the code above, we can import the <code>constrain</code> function by name from <code>helpers.ts</code> and use it in our code.</p>
+<h4>Shorthand</h4>
+<p>If the name of the function in the file matches what you want to export it as, you can use this shorthand in your export statement:</p>
+<pre><code class="language-ts">function constrain(value: number, min: number, max: number): number {
+    return Math.min(Math.max(value, min), max);
+}
+
+export {
+    constrain,
+};
+</code></pre>
+<div line-highlight='1, 6'></div>
+<h4>Exporting in place</h4>
+<p>You can also export values from where they’re declared in the file, without a separate <code>export</code> statement:</p>
+<pre><code class="language-ts">export function constrain(value: number, min: number, max: number): number {
+    return Math.min(Math.max(value, min), max);
+}
+</code></pre>
+<div line-highlight='1'></div>
+<h3>Default exports vs. named exports</h3>
+<p>While you can use both in projects and some APIs may require you to use one type of export vs. the other, we recommend you use named exports in all of the code you write.</p>
+<p>Here’s why:</p>
+<p><strong>Consistency:</strong> Named exports enforce consistency. The name of the export has to be used wherever it's imported unless explicitly renamed. This consistency makes it easier to trace through code and understand what is being imported and used.</p>
+<p><strong>Explicitness and clarity:</strong> Since you have to explicitly list what you are importing, it provides a clear overview of what dependencies a module has. This explicitness improves readability and maintainability of the code.</p>
+<p><strong>Better tooling support:</strong> Many IDEs and tools have easier times with auto-completion and refactoring when using named exports. This can lead to more efficient coding and a lower chance of errors.</p>
 <h3>Setup</h3>
-<p>For this and following TypeScript exercises, we will be working in the
-<a href="https://github.com/bitovi/learn-typescript">https://github.com/bitovi/learn-typescript</a>
-repository. To use it:</p>
-<ol>
-<li><p>✏️ Clone the learn-typescript repository from GitHub:</p>
-<pre><code class="language-shell">git clone https://github.com/bitovi/learn-typescript.git
-</code></pre></li>
-<li><p>✏️ Navigate into the learn-typescript folder:</p>
-<pre><code class="language-shell">cd learn-typescript
-</code></pre></li>
-<li><p>✏️ Install the node packages(these are already listed in the package.json file):</p>
-<pre><code class="language-shell">npm i
-</code></pre>
-<blockquote>
-<p>NOTE: You must have <code>node 8</code> or higher installed! You can use
-<a href="https://github.com/nvm-sh/nvm">nvm</a> to easily switch between
-node versions.</p>
-</blockquote></li>
-<li><p>✏️ Open the <code>learn-typescript</code> folder in your favorite editor:</p></li>
-</ol>
-<pre><code class="language-shell"> code . # if you are using VS Code
-</code></pre>
-<blockquote>
-<p>The '.' after the editor is a shorthand to refer to the folder you’re currently in</p>
-</blockquote>
-<h3>What you need to know</h3>
-<p>In order to use TypeScript in the browser, we must compile the TypeScript code to plain JavaScript first. We will do this using our terminal in this example, but most often TypeScript will be compiled during a build process.</p>
-<p>✏️ Let’s install TypeScript globally:</p>
-<pre><code class="language-shell">npm install -g typescript
-</code></pre>
-<p>✏️ Double check it has installed properly with:</p>
-<pre><code class="language-shell">tsc -v
-</code></pre>
-<p>✏️ Let’s create a new file called <em>0-why-hello-world.ts</em> and open it in our favorite editor.</p>
-<p>OSX</p>
-<pre><code class="language-shell">touch 0-why-hello-world.ts
-</code></pre>
-<p>WINDOWS</p>
-<pre><code class="language-shell">echo &gt; 0-why-hello-world.ts
-</code></pre>
-<blockquote>
-<p>The <code>touch</code> or <code>echo</code> command creates a new file</p>
-</blockquote>
-<p>✏️ We’ll write some basic TypeScript next:</p>
-<pre><code class="language-javascript">function greeter(person: string) {
+<p>✏️ Create <strong>src/exporting-and-importing/exporter.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">function greeter(person: string) {
     return &quot;Hello, &quot; + person;
 }
 
-let user = &quot;World&quot;;
+// Exercise: export greeter
+</code></pre>
+<p>✏️ Create <strong>src/exporting-and-importing/importer.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">// Exercise: import greeter
 
-document.body.innerHTML = greeter(user);
+export default function () {
+    return greeter(&quot;Earth&quot;);
+}
 </code></pre>
-<p>✏️ We’ll compile our code by running:</p>
-<pre><code class="language-shell">tsc 0-why-hello-world.ts
+<h3>Verify</h3>
+<p>✏️ Create <strong>src/exporting-and-importing/importer.test.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">import assert from 'node:assert';
+import { describe, it } from 'node:test';
+import getMessageWithGreeting from &quot;./importer&quot;;
+
+describe('Importer', () =&gt; {
+    it('should return a greeting', () =&gt; {
+        const message = getMessageWithGreeting();
+        assert.strictEqual(message, &quot;Hello, Earth&quot;, &quot;message should be correct&quot;);
+    });
+});
 </code></pre>
-<p>Provided there are no errors, this will compile the TypeScript to JavaScript file <code>0-why-hello-world.js</code></p>
-<h3>Verify Solution</h3>
-<p>Open <em>0-why-hello-world.html</em> in your browser.  You should see <code>&quot;Hello, World&quot;</code> in the page.</p>
-<p>The <strong>learn-typescript</strong> repository also tests to make sure your solution
-works.</p>
-<p>✏️ Once you’ve completed all of the previous steps, run the following to make sure your solution works:</p>
-<pre><code class="language-shell">npm run 0-why
+<p>✏️ Update <strong>package.json</strong> to be:</p>
+<pre><code class="language-json">{
+  &quot;name&quot;: &quot;learn-typescript&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;node --require ts-node/register --test src/**/**.test.**&quot;
+  },
+  &quot;keywords&quot;: [],
+  &quot;author&quot;: &quot;&quot;,
+  &quot;license&quot;: &quot;ISC&quot;,
+  &quot;devDependencies&quot;: {
+    &quot;ts-node&quot;: &quot;^10.9.2&quot;,
+    &quot;typescript&quot;: &quot;~5.4&quot;
+  }
+}
+
 </code></pre>
-<h2>Bonus Challenge</h2>
-<h3>The Problem</h3>
-<p>Change your <code>user</code> variable to a number and compile again. What do you think will happen?</p>
-<h3>The solution</h3>
-<p>You should see an error message.</p>
+<div line-highlight='7, only'></div>
+<h3>Exercise</h3>
+<p>Use your knowledge of named exports and imports to do the following:</p>
+<ul>
+<li>Export <code>greeter</code> from <code>exporter.ts</code></li>
+<li>Import <code>greeter</code> in <code>importer.ts</code></li>
+</ul>
+<p><strong>Having issues with your local setup?</strong> You can use either <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/04-exporting-and-importing/01-problem?file=src/exporting-and-importing/exporter.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/04-exporting-and-importing/01-problem?file=src/exporting-and-importing/exporter.ts">CodeSandbox</a> to do this exercise in an online code editor.</p>
+<h3>Solution</h3>
+<p>If you’ve implemented the solution correctly, the tests will pass when you run <code>npm test</code>!</p>
 <p><details>
-<summary>Click to see the error message.</summary>
-<a href="../static/img/typescript-error-compiling.png"><img src="../static/img/typescript-error-compiling.png" width="100%"/></a>
-</details></p>
+<summary>Click to see the solution</summary></p>
+<p>✏️ Update <strong>src/exporting-and-importing/exporter.ts</strong> to be:</p>
+<pre><code class="language-ts">function greeter(person: string) {
+    return &quot;Hello, &quot; + person;
+}
+
+export {
+    greeter,
+};
+</code></pre>
+ <div line-highlight="5-7,only"></div>
+<p>✏️ Update <strong>src/exporting-and-importing/importer.ts</strong> to be:</p>
+<pre><code class="language-ts">import { greeter } from &quot;./exporter&quot;
+
+export default function () {
+    return greeter(&quot;Earth&quot;);
+}
+
+</code></pre>
+ <div line-highlight="1,only"></div>
+<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/04-exporting-and-importing/01-solution?file=src/exporting-and-importing/exporter.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/04-exporting-and-importing/01-solution?file=src/exporting-and-importing/exporter.ts">CodeSandbox</a>.</p>
+<p></details></p>
+<h3>Bonus exploration</h3>
+<ul>
+<li>Hover over <code>greeter</code>, what does your IDE show?</li>
+<li>Pass a number to <code>greeter</code>, what does your IDE show?</li>
+</ul>
+<h2>Next steps</h2>
+<p>Next, let’s learn how to <a href="./types.html">declare types</a> in TypeScript.</p>
 
 </section>
 
@@ -672,7 +715,7 @@ works.</p>
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/typescript/1-why-typescript.md"},"description":"Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript. \n","name":"learn-typescript/why-typescript","title":"Why TypeScript","type":"page","parent":"learn-typescript","order":1,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/typescript/05-exporting-and-importing/exporting-and-importing.md"},"description":"Learn how to export and import values from a file. \n","name":"learn-typescript/exporting-and-importing","title":"Exporting and Importing","type":"page","parent":"learn-typescript","order":5,"outline":{"depth":2},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
