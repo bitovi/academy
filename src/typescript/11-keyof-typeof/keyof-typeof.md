@@ -1,5 +1,5 @@
 @page learn-typescript/keyof-typeof Keyof and Typeof
-@parent learn-typescript 8
+@parent learn-typescript 11
 
 @description Learn how to use `keyof` and `typeof` to create new types from types and objects!
 

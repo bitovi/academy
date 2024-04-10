@@ -1,5 +1,5 @@
 @page learn-typescript/classes Classes
-@parent learn-typescript 6
+@parent learn-typescript 8
 
 @description  Learn to use classes and inheritance in TypeScript, about the `constructor` method, and how to use public, private, protected, and readonly modifiers.
 
