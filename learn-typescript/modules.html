@@ -3,7 +3,7 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/typescript/modules.md
+	source: src/typescript/10-modules/modules.md
 	@page learn-typescript/modules
 ######################################################################## -->
 <html lang="en">
@@ -229,9 +229,9 @@ import { Dinosaur as InGenDinosaur } from &quot;./Dinosaur&quot;;
            						
            						">
 						<a class="page"
-							href="types.html"
-							title="Learn how to declare types in TypeScript.">
-							Types
+							href="exporting-and-importing.html"
+							title="Learn how to export and import values from a file.">
+							Exporting and Importing
 						</a>
 						
 					</li>
@@ -244,9 +244,9 @@ import { Dinosaur as InGenDinosaur } from &quot;./Dinosaur&quot;;
            						
            						">
 						<a class="page"
-							href="exporting-and-importing.html"
-							title="Learn how to export and import values from a file.">
-							Exporting and Importing
+							href="types.html"
+							title="Learn how to declare types in TypeScript.">
+							Types
 						</a>
 						
 					</li>
@@ -277,6 +277,21 @@ import { Dinosaur as InGenDinosaur } from &quot;./Dinosaur&quot;;
 							href="classes.html"
 							title="Learn to use classes and inheritance in TypeScript, about the constructor method, and how to use public, private, protected, and readonly modifiers.">
 							Classes
+						</a>
+						
+					</li>
+				
+			
+		
+			
+				
+					<li class="
+           						
+           						">
+						<a class="page"
+							href="interfaces.html"
+							title="Learn how to write Interfaces, set optional properties, and about the power of using interfaces in classes and functions">
+							Interfaces
 						</a>
 						
 					</li>
@@ -324,21 +339,6 @@ import { Dinosaur as InGenDinosaur } from &quot;./Dinosaur&quot;;
 							href="utility-types.html"
 							title="Learn About the Utility Types provided by TypeScript">
 							Utility Types
-						</a>
-						
-					</li>
-				
-			
-		
-			
-				
-					<li class="
-           						
-           						">
-						<a class="page"
-							href="interfaces.html"
-							title="Learn how to write Interfaces, set optional properties, and about the power of using interfaces in classes and functions">
-							Interfaces
 						</a>
 						
 					</li>
@@ -645,7 +645,7 @@ import { Dinosaur as InGenDinosaur } from &quot;./Dinosaur&quot;;
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/typescript/modules.md"},"description":"Modules \n\n## Modules\n\nModules are a way of grouping code to be executed within their own scope, opposed to a global scope. Modules give us a way to write DRY code, scope our variables, re-use parts of our code, are more easily tested, and mostly help us avoid writing applications full of that dreadful spaghetti code. In TypeScript, modules are categorized into two types - internal(called namespaces) and external(just called modules).\n\n### Exporting\n\nTo be able to use our declarations in other areas of our codebase, we can export them using the export keyword.\n\n```javascript\nexport interface Dinosaur {\n  name: string;\n  location: string;\n  teeth: number;\n}\n```\n\n#### Export statements\n\nWe can also rename our declarations when exporting if need be\n\n```javascript\ninterface Dinosaur {\n  name: string;\n  location: string;\n  teeth: number;\n}\n\nexport { Dinosaur as InGenDinosaur }\n```\n\n#### Default exports\n\nModules can export ONE default export using the keyword default.\n\nSecurity.ts\n```javascript\ndeclare let s: Security;\n\nexport default s;\n```\n\nApp.ts\n```javascript\nimport s from \"Security\";\n\ns.alert('the grid is down')\n```\n\n#### Re-exports\n\n\n### Importing\n\n```javascript\nimport { Dinosaur } from \"./Dinosaur\";\n\n// or\nimport { Dinosaur as InGenDinosaur } from \"./Dinosaur\";\n```\n\n","name":"learn-typescript/modules","title":"Modules","type":"page","parent":"learn-typescript","order":7,"hide":true,"pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/typescript/10-modules/modules.md"},"description":"Modules \n\n## Modules\n\nModules are a way of grouping code to be executed within their own scope, opposed to a global scope. Modules give us a way to write DRY code, scope our variables, re-use parts of our code, are more easily tested, and mostly help us avoid writing applications full of that dreadful spaghetti code. In TypeScript, modules are categorized into two types - internal(called namespaces) and external(just called modules).\n\n### Exporting\n\nTo be able to use our declarations in other areas of our codebase, we can export them using the export keyword.\n\n```javascript\nexport interface Dinosaur {\n  name: string;\n  location: string;\n  teeth: number;\n}\n```\n\n#### Export statements\n\nWe can also rename our declarations when exporting if need be\n\n```javascript\ninterface Dinosaur {\n  name: string;\n  location: string;\n  teeth: number;\n}\n\nexport { Dinosaur as InGenDinosaur }\n```\n\n#### Default exports\n\nModules can export ONE default export using the keyword default.\n\nSecurity.ts\n```javascript\ndeclare let s: Security;\n\nexport default s;\n```\n\nApp.ts\n```javascript\nimport s from \"Security\";\n\ns.alert('the grid is down')\n```\n\n#### Re-exports\n\n\n### Importing\n\n```javascript\nimport { Dinosaur } from \"./Dinosaur\";\n\n// or\nimport { Dinosaur as InGenDinosaur } from \"./Dinosaur\";\n```\n\n","name":"learn-typescript/modules","title":"Modules","type":"page","parent":"learn-typescript","order":10,"hide":true,"pathToRoot":"../.."};
     </script>
 
     
