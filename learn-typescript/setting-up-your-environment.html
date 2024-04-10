@@ -3,15 +3,15 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/typescript/01-why-typescript/1-why-typescript.md
-	@page learn-typescript/why-typescript
+	source: src/typescript/03-setting-up-your-environment/setting-up-your-environment.md
+	@page learn-typescript/setting-up-your-environment
 ######################################################################## -->
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="google-site-verification" content="UMCgjrWAjJW_tHmYo6AerdZvVdmh8QHdY9Ywb59tpHw" />
-  <meta name="description" content="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript. 
+  <meta name="description" content="Learn how to set up a Node environment with TypeScript. 
 ">
   
   <!-- Google Tag Manager -->
@@ -22,7 +22,7 @@
   })(window,document,'script','dataLayer','GTM-P9MQVJS');</script>
   <!-- End Google Tag Manager -->
 
-  <title>Bitovi Academy - Why TypeScript</title>
+  <title>Bitovi Academy - Setting Up Your Environment</title>
   
   <link rel="stylesheet" type="text/css" href="../static/bundles/bit-docs-site/static.css">
   
@@ -119,17 +119,14 @@
 		
 			
 				
-					<li class="current
-           						parent
-           						expanded">
+					<li class="
+           						
+           						">
 						<a class="page"
 							href="why-typescript.html"
 							title="Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript.">
 							Why TypeScript
 						</a>
-						
-							
-
 						
 					</li>
 				
@@ -152,14 +149,17 @@
 		
 			
 				
-					<li class="
-           						
-           						">
+					<li class="current
+           						parent
+           						expanded">
 						<a class="page"
 							href="setting-up-your-environment.html"
 							title="Learn how to set up a Node environment with TypeScript.">
 							Setting Up Your Environment
 						</a>
+						
+							
+
 						
 					</li>
 				
@@ -509,7 +509,7 @@ covering CanJS core libraries.">
     <div class="main-content">
   		
   			<section class="title">
-	<h1>Why TypeScript <code>page</code></h1>
+	<h1>Setting Up Your Environment <code>page</code></h1>
 </section>
 
   		
@@ -517,7 +517,7 @@ covering CanJS core libraries.">
   		
   			
   				<section class="description">
-    <p>Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript.</p>
+    <p>Learn how to set up a Node environment with TypeScript.</p>
 
 </section>
 
@@ -530,35 +530,133 @@ covering CanJS core libraries.">
   			
   			
   				<section class="body">
-    <h2>What is TypeScript?</h2>
-<p>TypeScript is a typed superset of JavaScript that compiles to plain
-JavaScript. Typing helps enhance code quality and readability, assists in self-documenting, and allows a compiler to perform <em>typechecking</em> to catch errors before runtime. TypeScript also offers modern (think ES6) features of JavaScript and the use of classes and interfaces to write code in an object oriented way.</p>
-<p>The following shows an IDE catching that <code>greeter</code> was expecting a <code>string</code>,
-but was passed a <code>number</code>:</p>
-<p><a href="../static/img/typescript-error-compiling.png"><img src="../static/img/typescript-error-compiling.png" width="100%"/></a></p>
-<h3>Typechecking</h3>
-<p>Typechecking is the process of verifying and enforcing the constraints of types.</p>
-<h3>Static vs. Dynamic Typing</h3>
-<p>JavaScript is an &quot;untyped&quot; or &quot;dynamically typed&quot; language. Type is associated with a value instead of a variable.
-JavaScript can assign variables to values of different types:</p>
-<pre><code class="language-js">let myVariable;
-
-myVariable = 1;
-myVariable = &quot;2&quot;;
+    <h2>Overview</h2>
+<p>In this section, you will:</p>
+<ul>
+<li>Install Node.js and npm</li>
+<li>Use npm to initialize a new Node application</li>
+<li>Add TypeScript to a project</li>
+<li>Use <code>ts-node</code> to run TypeScript</li>
+</ul>
+<h2>Objective 1: Install prerequisites</h2>
+<p>Before we start writing code, we need to install the prerequisites.</p>
+<h3>Installing Node.js and npm</h3>
+<p>This course requires the <a href="https://nodejs.org/">Node.js</a> JavaScript runtime
+environment. Node.js and its included package manager <code>npm</code> will be used to do a
+variety of tasks, including: installing required packages, compiling TypeScript files into JavaScript,
+and executing tests.</p>
+<p>This course requires Node.js v18.17.0 or newer, or v20.1.0 or newer.</p>
+<h3>Setup 1</h3>
+<p>Follow <a href="https://docs.npmjs.com/downloading-and-installing-node-js-and-npm">npm’s instructions to install Node.js</a>.</p>
+<p>During the installation process, you may be prompted to make selections or install prerequisites.
+Use the default selections and proceed with the installation.</p>
+<p>The installation process can take 10 to 15 minutes to complete.</p>
+<h4>macOS</h4>
+<p>On macOS, we recommend <a href="https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating">using nvm</a>
+to install Node because it allows you to manage multiple versions of Node for different projects.</p>
+<h4>Windows</h4>
+<p>On Windows, we recommend <a href="https://github.com/coreybutler/nvm-windows?tab=readme-ov-file#overview">using NVM for Windows</a>
+to install Node because it allows you to manage multiple versions of Node for different projects.</p>
+<p>You can also follow <a href="https://learn.microsoft.com/en-us/windows/dev-environment/javascript/nodejs-on-windows">Microsoft’s instructions for setting up Node.js on Windows</a>.</p>
+<p>For some of the instructions, you may need to <a href="https://www.howtogeek.com/194041/how-to-open-the-command-prompt-as-administrator-in-windows-10/">open the command prompt or PowerShell as an administrator</a>.</p>
+<h3>Verify 1</h3>
+<p>✏️ Run the following command to verify Node.js is installed correctly:</p>
+<pre><code class="language-shell">node --version
 </code></pre>
-<p>JavaScript can call a function with a type it doesn’t expect:</p>
-<pre><code class="language-js">function greeter(person) {
+<p>The output of the command will be the current version of Node.js.
+It should start with either “v18” or “v20”.</p>
+<p>✏️ Run the following command to verify <code>npm</code> is installed correctly:</p>
+<pre><code class="language-shell">npm --version
+</code></pre>
+<p>The output of the command will be the current version of <code>npm</code>.
+It should start with either “9” or “10”.</p>
+<h2>Objective 2: Initialize a Node project</h2>
+<p>Let’s create a new Node project that supports TypeScript and can be tested.</p>
+<h3>Using npm to initialize a new Node application</h3>
+<p>For this course, we will use <code>npm</code> to initialize our application.</p>
+<p><a href="https://www.npmjs.com">npm</a> is a command line interface (CLI) tool that is used
+in every Node.js project. npm’s primary purpose is to take a list of dependencies
+in a project (in the <code>package.json</code> file) and install them locally.</p>
+<p><a href="https://docs.npmjs.com/cli/v10/commands/npm-init"><code>npm init</code></a> is the command for
+creating a new <code>package.json</code> file.</p>
+<h3>Setup 2</h3>
+<p>✏️ Run the following command to create a new <code>learn-typescript</code> folder:</p>
+<pre><code class="language-shell">mkdir learn-typescript
+</code></pre>
+<p>✏️ Run the following command to change directories (<code>cd</code>):</p>
+<pre><code class="language-shell">cd learn-typescript
+</code></pre>
+<p>Now <code>cd</code> into the new directory created for the application, initialize the <code>package.json</code>,
+and install the required packages:</p>
+<p>✏️ Run the following command to create a new <code>package.json</code> file:</p>
+<pre><code class="language-shell">npm init --yes
+</code></pre>
+<h3>Verify 2</h3>
+<p>Your <code>learn-typescript</code> folder should now have one file:</p>
+<pre><code class="language-code">├── package.json
+</code></pre>
+<h2>Objective 3: Install TypeScript</h2>
+<h3>Adding TypeScript to a project</h3>
+<p>This entire course will focus on TypeScript, so we’ll need to add it to our project!</p>
+<p>Other tutorials may encourage you to install TypeScript globally, but this has the downside of
+using one TypeScript version for all of your projects.</p>
+<p>Instead, we think it’s best to install TypeScript as a dependency to your project so the
+version is always correct.</p>
+<h3>Setup 3</h3>
+<p>✏️ Run the following command to add the <code>typescript</code> package to your project:</p>
+<pre><code class="language-shell">npm install --save-dev typescript@~5.4
+</code></pre>
+<p>✏️ Run the following command to create the <code>tsconfig.json</code> file in your project:</p>
+<pre><code class="language-shell">npx tsc --init
+</code></pre>
+<p>In the command above, <code>npx</code> will find the <code>tsc</code> (TypeScript) binary in our <code>node_modules</code> folder.</p>
+<h3>Verify 3</h3>
+<p>Your <code>learn-typescript</code> folder should now have these files:</p>
+<pre><code class="language-code">├── node_modules/
+├── package-lock.json
+├── package.json
+├── tsconfig.json
+</code></pre>
+<h2>Objective 4: Create your first TypeScript file</h2>
+<h3>Using <code>ts-node</code> to run TypeScript</h3>
+<p>Out of the box, Node.js does not have any support for TypeScript.</p>
+<p>We will install a dependency called <code>ts-node</code> that will compile our TypeScript to JavaScript
+before running it.</p>
+<p>Once we have <code>ts-node</code> installed, we can use <code>npx</code> again to run the <code>ts-node</code> binary.</p>
+<h3>Setup 3</h3>
+<p>✏️ Run the following command to add the <code>ts-node</code> package to your project:</p>
+<pre><code class="language-shell">npm install --save-dev ts-node@10
+</code></pre>
+<p>✏️ Run the following command to create the <code>src</code> and <code>src/hello-world</code> folders:</p>
+<pre><code class="language-shell">mkdir -p src/hello-world
+</code></pre>
+<p>✏️ Create <strong>src/hello-world/hello-world.ts</strong> and update it to be:</p>
+<pre><code class="language-ts">function greeter(person: string) {
     return &quot;Hello, &quot; + person;
 }
 
-let user = {name: &quot;Justin&quot;};
-document.body.innerHTML = greeter(user);
+let user = &quot;World&quot;;
+
+console.info('Greeting:', greeter(user));
 </code></pre>
-<p>If there’s a bug in the code related to falsely assuming a type, it won’t throw an error until we’re already running our code.</p>
-<p>TypeScript uses static typing, which allows us to specify what type a variable should hold, and types are checked when the code compiles alerting us of any incorrect usages of a variable assignment. The concept of &quot;static&quot; comes from the idea of variables being static, meaning once you set a variable to a type it can’t (shouldn’t) be changed. For a deeper dive into how typechecking works, the creators of typescript have a <a href="https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html">typechecking handbook</a> of more specific cases as well as their inspiration for the way these features were designed.</p>
-<h2>Using this Guide</h2>
-<p>In this guide we will teach you about TypeScript concepts and have an environment for you to practice in. Running the tests will catch any problems if the code was not written correctly or as expected. Pay close attention to how you name and save the files.</p>
-<p>When we give you a command to run to verify your work it will look for a file named respectively. If you run into issues you can look at the package.json file to see which file the command listed is looking for.</p>
+<h3>Verify 4</h3>
+<p>✏️ Run the following command to run the TypeScript code:</p>
+<pre><code>npx ts-node src/hello-world/hello-world.ts
+</code></pre>
+<p>After running this command, you should see:</p>
+<pre><code>Greeting: Hello, World
+</code></pre>
+<p>Congrats! You’ve written and run your first TypeScript application.</p>
+<p><strong>Having issues with your local setup?</strong> See the solution in <a href="https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/typescript/02-setting-up-your-environment/04-solution?file=src/hello-world/hello-world.ts">StackBlitz</a> or <a href="https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/typescript/02-setting-up-your-environment/04-solution?file=src/hello-world/hello-world.ts">CodeSandbox</a>.</p>
+<h2>Bonus challenge</h2>
+<p>Change the <code>user</code> variable to a number and compile again. What do you think will happen?</p>
+<p>You should see an error message.</p>
+<p><details>
+<summary>View the error message.</summary>
+<a href="../static/img/typescript-error-compiling.png"><img alt="A screenshot of an Integrated Development Environment (IDE) showing TypeScript code. The code attempts to greet a user by displaying “Hello,” followed by a user’s name. However, a numeric value is passed instead of a string, causing a compilation error highlighted in the terminal at the bottom." src="../static/img/typescript-error-compiling.png" width="100%"/></a>
+</details></p>
+<h2>Next steps</h2>
+<p>Next, let’s <a href="./configuration.html">configure our TypeScript</a> project.</p>
 
 </section>
 
@@ -597,7 +695,7 @@ document.body.innerHTML = greeter(user);
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/typescript/01-why-typescript/1-why-typescript.md"},"description":"Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript. \n","name":"learn-typescript/why-typescript","title":"Why TypeScript","type":"page","parent":"learn-typescript","order":1,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/typescript/03-setting-up-your-environment/setting-up-your-environment.md"},"description":"Learn how to set up a Node environment with TypeScript. \n","name":"learn-typescript/setting-up-your-environment","title":"Setting Up Your Environment","type":"page","parent":"learn-typescript","order":3,"outline":{"depth":2},"comment":" ","pathToRoot":"../.."};
     </script>
 
     
