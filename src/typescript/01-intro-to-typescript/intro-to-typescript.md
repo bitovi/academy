@@ -1,4 +1,4 @@
-@page learn-typescript/why-typescript Why TypeScript
+@page learn-typescript/intro-to-typescript Introduction to TypeScript
 @parent learn-typescript 1
 
 @description Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript.
@@ -14,6 +14,8 @@ The following shows an IDE catching that `greeter` was expecting a `string`,
 but was passed a `number`:
 
 <a href="../static/img/typescript-error-compiling.png"><img src="../static/img/typescript-error-compiling.png" width="100%"/></a>
+
+## Why use TypeScript?
 
 ### Typechecking
 
@@ -51,3 +53,7 @@ TypeScript uses static typing, which allows us to specify what type a variable s
 In this guide we will teach you about TypeScript concepts and have an environment for you to practice in. Running the tests will catch any problems if the code was not written correctly or as expected. Pay close attention to how you name and save the files.
 
 When we give you a command to run to verify your work it will look for a file named respectively. If you run into issues you can look at the package.json file to see which file the command listed is looking for.
+
+## Next steps
+
+Next, let’s set up your system to develop and run a TypeScript app.
