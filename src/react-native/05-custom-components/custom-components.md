@@ -95,21 +95,18 @@ It's best practice to create a new folder that will contain all of the related f
 
 ✏️ Create **src/pages/RestaurantList/index.ts** and update it to be:
 
-@sourceref ../../../exercises/react-vite/04-components/01-solution/src/pages/RestaurantList/index.ts
 
 ✏️ Create **src/pages/RestaurantList/RestaurantList.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-vite/04-components/01-problem/src/pages/RestaurantList/RestaurantList.tsx
 
 ### Verify
 
 ✏️ Create **src/pages/RestaurantList/RestaurantList.test.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-vite/04-components/01-solution/src/pages/RestaurantList/RestaurantList.test.tsx
+
 
 ✏️ Update **src/App.test.tsx** to be a simple smoke test:
 
-@diff ../../../exercises/react-vite/03-intro-to-jsx/02-solution/src/App.test.tsx ../../../exercises/react-vite/04-components/01-solution/src/App.test.tsx only
 
 ### Exercise
 
@@ -124,13 +121,7 @@ Once the `Home` component is complete, add `<Home />` to the JSX response of `Ap
 
 ✏️ Update **src/App.tsx**
 
-@diff ../../../exercises/react-vite/04-components/01-problem/src/App.tsx ../../../exercises/react-vite/04-components/01-solution/src/App.tsx only
-
 ✏️ Update **src/pages/RestaurantList/RestaurantList.tsx**
-
-@diff ../../../exercises/react-vite/04-components/01-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/04-components/01-solution/src/pages/RestaurantList/RestaurantList.tsx only
-
-<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/04-components/01-solution?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/04-components/01-solution?file=src/App.tsx).
 
 </details>
 

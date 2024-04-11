@@ -76,7 +76,7 @@ npm install place-my-order-assets
 
 ✏️ Update **src/index.css** to be:
 
-@diff ../../../exercises/react-vite/02-setting-up-your-environment/solution/src/index.css ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/index.css only
+
 
 ### Verify
 
@@ -84,7 +84,6 @@ You should have already installed Vitest in the previous section. If you haven't
 
 ✏️ Copy: 
 
-@diff ../../../exercises/react-vite/02-setting-up-your-environment/solution/src/App.test.tsx ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/App.test.tsx only
 
 ✏️ Run: 
 
@@ -98,9 +97,6 @@ Note that we won't be able to write an automated test that verifies the styles a
 
 Take the below HTML and convert it to JSX:
 
-@sourceref ./template.html
-
-<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-problem?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-problem?file=src/App.tsx) to do this exercise in an online code editor.
 
 ### Solution
 
@@ -109,9 +105,8 @@ Take the below HTML and convert it to JSX:
 
 ✏️ Update **src/App.tsx**
 
-@diff ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/App.tsx ../../../exercises/react-vite/03-intro-to-jsx/01-solution/src/App.tsx only
+TODO: 
 
-<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-solution?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/01-solution?file=src/App.tsx).
 
 </details>
 
@@ -147,8 +142,6 @@ const person = {
   <p>I'm a {person.profession} living in Philadelphia</p>
 </div>;
 ```
-
-@highlight 7,8
 
 ### JSX is JavaScript
 
@@ -241,8 +234,6 @@ If ternaries seem excessive for any particular case, you can write all your logi
 
 If you want to iterate within JSX, use methods such as `Array.map`, `Array.filter` and `Array.reduce`:
 
-@highlight 3
-
 _✏️ Note: Due to how React stores elements in memory, list items require a stable `key` to identify them in the Virtual DOM. You can learn more in the [React docs](https://react.dev/learn/rendering-lists#why-does-react-need-keys)_
 
 ```jsx
@@ -281,17 +272,11 @@ Mapping over the array above will render as the following HTML.
 
 ✏️ Update **src/App.tsx** to be:
 
-@diff ../../../exercises/react-vite/03-intro-to-jsx/01-solution/src/App.tsx ../../../exercises/react-vite/03-intro-to-jsx/02-problem/src/App.tsx only
-
 ### Verify
 
 Add these tests into your application to verify you have met the acceptance criteria. Note how React Testing Library allows our tests to specify exact elements.
 
 ✏️ Update **src/App.test.tsx** to be:
-
-@diff ../../../exercises/react-vite/03-intro-to-jsx/01-solution/src/App.test.tsx ../../../exercises/react-vite/03-intro-to-jsx/02-solution/src/App.test.tsx only
-
-<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/02-problem?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/02-problem?file=src/App.tsx) to do this exercise in an online code editor.
 
 ### Solution
 
@@ -299,10 +284,6 @@ Add these tests into your application to verify you have met the acceptance crit
 <summary>Click to see the solution</summary>
 
 ✏️ Update **src/App.tsx**
-
-@diff ../../../exercises/react-vite/03-intro-to-jsx/02-problem/src/App.tsx ../../../exercises/react-vite/03-intro-to-jsx/02-solution/src/App.tsx only
-
-<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/02-solution?file=src/App.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/03-intro-to-jsx/02-solution?file=src/App.tsx).
 
 </details>
 

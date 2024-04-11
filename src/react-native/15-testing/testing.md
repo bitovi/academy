@@ -113,21 +113,14 @@ behavior.
 
 ✏️ Create **src/components/FormSelect/FormSelect.tsx** and update it to be:
 
-@sourceref ../../../exercises/react-vite/12-testing/01-solution/src/components/FormSelect/FormSelect.tsx
-
 ✏️ Create **src/components/FormSelect/index.ts** and update it to be:
-
-@sourceref ../../../exercises/react-vite/12-testing/01-solution/src/components/FormSelect/index.ts
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
 
-@diff ../../../exercises/react-vite/11-controlled-vs-uncontrolled/03-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/12-testing/01-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
 ### Verify 1
 
 ✏️ Create **src/components/FormSelect/FormSelect.test.tsx** and update it to be:
-
-@sourceref ../../../exercises/react-vite/12-testing/01-problem/src/components/FormSelect/FormSelect.test.tsx
 
 ### Exercise 1
 
@@ -145,18 +138,12 @@ Hint: Here’s the JSX you can use for the component:
 </FormSelect>
 ```
 
-<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/01-problem?file=src/components/FormSelect/FormSelect.test.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/01-problem?file=src/components/FormSelect/FormSelect.test.tsx) to do this exercise in an online code editor.
-
 ### Solution 1
 
 <details>
 <summary>Click to see the solution</summary>
 
 ✏️ Update **src/components/FormSelect/FormSelect.test.tsx** to be:
-
-@diff ../../../exercises/react-vite/12-testing/01-problem/src/components/FormSelect/FormSelect.test.tsx ../../../exercises/react-vite/12-testing/01-solution/src/components/FormSelect/FormSelect.test.tsx only
-
-<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/01-solution?file=src/components/FormSelect/FormSelect.test.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/01-solution?file=src/components/FormSelect/FormSelect.test.tsx).
 
 </details>
 
@@ -268,8 +255,6 @@ invalid](https://github.com/testing-library/jest-dom?tab=readme-ov-file#tobeinva
 
 ✏️ Update **src/components/FormSelect/FormSelect.test.tsx** to be:
 
-@diff ../../../exercises/react-vite/12-testing/01-solution/src/components/FormSelect/FormSelect.test.tsx ../../../exercises/react-vite/12-testing/02-problem/src/components/FormSelect/FormSelect.test.tsx only
-
 ### Exercise 2
 
 - Call `vi.fn()` to create a function you can observe.
@@ -277,18 +262,12 @@ invalid](https://github.com/testing-library/jest-dom?tab=readme-ov-file#tobeinva
 - Call `await user.selectOptions()` to simulate selecting an option in a `<select>` element.
 - Use `.toHaveBeenCalledWith()` to confirm whether the `onChange` handler is called.
 
-<strong>Having issues with your local setup?</strong> You can use either [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/02-problem?file=src/components/FormSelect/FormSelect.test.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/02-problem?file=src/components/FormSelect/FormSelect.test.tsx) to do this exercise in an online code editor.
-
 ### Solution 2
 
 <details>
 <summary>Click to see the solution</summary>
 
 ✏️ Update **src/components/FormSelect/FormSelect.test.tsx** to be:
-
-@diff ../../../exercises/react-vite/12-testing/02-problem/src/components/FormSelect/FormSelect.test.tsx ../../../exercises/react-vite/12-testing/02-solution/src/components/FormSelect/FormSelect.test.tsx only
-
-<strong>Having issues with your local setup?</strong> See the solution in [StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/02-solution?file=src/components/FormSelect/FormSelect.test.tsx) or [CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/12-testing/02-solution?file=src/components/FormSelect/FormSelect.test.tsx).
 
 </details>
 

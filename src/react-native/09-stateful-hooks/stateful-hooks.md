@@ -37,9 +37,6 @@ between components and simplifying what would be otherwise complex components.
 We’ve actually already seen and used a Hook while building Place My Order!
 Do you remember this code from earlier?
 
-@sourceref ../../../exercises/react-vite/06-routing/02-solution/src/App.tsx
-@highlight 1, 5-6, only
-
 The `useMatch` Hook from `react-router-dom` allowed us to check whether a given
 path “matched” the current route.
 
@@ -64,25 +61,16 @@ component can do that Hooks cannot is implement error boundaries._
 ✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to include the State
 and City dropdown lists.
 
-@diff ../../../exercises/react-vite/07-styling-in-react/01-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/08-stateful-hooks/01-problem/src/pages/RestaurantList/RestaurantList.tsx only
-
 ### Verify
 
 These tests will pass when the solution has been implemented properly.
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.test.tsx**:
 
-@diff ../../../exercises/react-vite/07-styling-in-react/01-solution/src/pages/RestaurantList/RestaurantList.test.tsx ../../../exercises/react-vite/08-stateful-hooks/01-problem/src/pages/RestaurantList/RestaurantList.test.tsx only
 
 ### Exercise
 
 - Associate the `<label>` and `<select>` elements together using ID values provided by the `useId` Hook.
-
-<strong>Having issues with your local setup?</strong> You can use either
-[StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-problem?file=src%2Fpages%2FRestaurantList%2FRestaurantList.tsx)
-or
-[CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-problem?file=src%2Fpages%2FRestaurantList%2FRestaurantList.tsx)
-to do this exercise in an online code editor.
 
 ### Solution
 
@@ -90,8 +78,6 @@ to do this exercise in an online code editor.
 <summary>Click to see the solution</summary>
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
-
-@diff ../../../exercises/react-vite/08-stateful-hooks/01-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/08-stateful-hooks/01-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
 </details>
 
@@ -125,16 +111,11 @@ value the initial state value will be `undefined`._
 This example shows a `useState` Hook being set with an initial value of an empty
 string.
 
-@sourceref ./useState.tsx
-@highlight 1, 4, only
-
 As you can see in the previous example, `useState` returns an array with two
 elements: the first is the current state value of the Hook, and the second is a
 setter function that is used to update the state value. In the following code,
 the value and setter are being used to update changes in a select component.
 
-@sourceref ./useState.tsx
-@highlight 13, only
 
 Every time a `useState`'s setter is invoked with a new value, React compares the
 new value with the current value. If the values are the same, nothing happens;
@@ -181,8 +162,6 @@ to errors.
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be the following:
 
-@diff ../../../exercises/react-vite/08-stateful-hooks/01-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/08-stateful-hooks/02-problem/src/pages/RestaurantList/RestaurantList.tsx only
-
 ### Verify
 
 These tests will pass when the solution has been implemented properly.
@@ -190,19 +169,11 @@ These tests will pass when the solution has been implemented properly.
 ✏️ Update **src/pages/RestaurantList/RestaurantList.test.tsx** to be the
 following:
 
-@diff ../../../exercises/react-vite/08-stateful-hooks/01-solution/src/pages/RestaurantList/RestaurantList.test.tsx ../../../exercises/react-vite/08-stateful-hooks/02-solution/src/pages/RestaurantList/RestaurantList.test.tsx only
-
 ### Exercise
 
 - The selected **state** value should be managed by a `useState` Hook.
 - The selected **city** value should be managed by a `useState` Hook.
 - The City select should only include cities for the selected state.
-
-<strong>Having issues with your local setup?</strong> You can use either
-[StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-solution?file=src%2Fpages%2FRestaurantList%2FRestaurantList.tsx)
-or
-[CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/08-stateful-hooks/01-solution?file=src%2Fpages%2FRestaurantList%2FRestaurantList.tsx)
-to do this exercise in an online code editor.
 
 ### Solution
 
@@ -210,8 +181,6 @@ to do this exercise in an online code editor.
 <summary>Click to see the solution</summary>
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
-
-@diff ../../../exercises/react-vite/08-stateful-hooks/02-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/08-stateful-hooks/02-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
 </details>
 
@@ -235,21 +204,13 @@ TODO
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
 
-@diff ../../../exercises/react-vite/08-stateful-hooks/02-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/08-stateful-hooks/03-problem/src/pages/RestaurantList/RestaurantList.tsx only
-
 ✏️ Create **src/services/restaurant/hooks.ts** and update it to be:
 
-@sourceref ../../../exercises/react-vite/08-stateful-hooks/03-problem/src/services/restaurant/hooks.ts
-
 ✏️ Create **src/services/restaurant/interfaces.ts** and update it to be:
-
-@sourceref ../../../exercises/react-vite/09-making-http-requests/01-solution/src/services/restaurant/interfaces.ts
 
 ### Verify
 
 ✏️ Create **src/services/restaurant/hooks.test.ts** and update it to be:
-
-@sourceref ../../../exercises/react-vite/08-stateful-hooks/03-solution/src/services/restaurant/hooks.test.ts
 
 ### Exercise
 
@@ -262,11 +223,8 @@ TODO
 
 ✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
 
-@diff ../../../exercises/react-vite/08-stateful-hooks/03-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/08-stateful-hooks/03-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
 ✏️ Update **src/services/restaurant/hooks.ts** to be:
-
-@diff ../../../exercises/react-vite/08-stateful-hooks/03-problem/src/services/restaurant/hooks.ts ../../../exercises/react-vite/08-stateful-hooks/03-solution/src/services/restaurant/hooks.ts only
 
 </details>
 

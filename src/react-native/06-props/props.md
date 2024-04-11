@@ -107,19 +107,7 @@ There are two prop names that you cannot use and are reserved by React:
 
 ✏️ Create **src/pages/RestaurantList/ListItem.tsx** and update it to contain:
 
-@sourceref ../../../exercises/react-vite/05-props/01-problem/src/pages/RestaurantList/ListItem.tsx
-
 ✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to import `ListItem`:
-
-@diff ../../../exercises/react-vite/04-components/01-solution/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/05-props/01-problem/src/pages/RestaurantList/RestaurantList.tsx only
-
-### Verify
-
-These tests will pass when the solution has been implemented properly.
-
-✏️ Create **src/pages/RestaurantList/ListItem.test.tsx** and update it to be:
-
-@sourceref ../../../exercises/react-vite/05-props/01-solution/src/pages/RestaurantList/ListItem.test.tsx
 
 ### Exercise
 
@@ -129,12 +117,6 @@ These tests will pass when the solution has been implemented properly.
 - Refactor `RestaurantList` to use `ListItem` to render the items in
   `restaurants.data`.
 
-<strong>Having issues with your local setup?</strong> You can use either
-[StackBlitz](https://stackblitz.com/fork/github/bitovi/academy/tree/main/exercises/react-vite/05-props/01-problem?file=src%2Fpages%2FRestaurantList%2FListItem.tsx)
-or
-[CodeSandbox](https://codesandbox.io/p/devbox/github/bitovi/academy/tree/main/exercises/react-vite/0props/01-problem?file=src%2Fpages%2FRestaurantList%2FListItem.tsx)
-to do this exercise in an online code editor.
-
 ### Solution
 
 <details>
@@ -142,10 +124,6 @@ to do this exercise in an online code editor.
 
 ✏️ Update **src/pages/RestaurantList/ListItem.tsx** to be:
 
-@diff ../../../exercises/react-vite/05-props/01-problem/src/pages/RestaurantList/ListItem.tsx ../../../exercises/react-vite/05-props/01-solution/src/pages/RestaurantList/ListItem.tsx only
-
 ✏️ Update **src/pages/RestaurantList/RestaurantList.tsx** to be:
-
-@diff ../../../exercises/react-vite/05-props/01-problem/src/pages/RestaurantList/RestaurantList.tsx ../../../exercises/react-vite/05-props/01-solution/src/pages/RestaurantList/RestaurantList.tsx only
 
 </details>
