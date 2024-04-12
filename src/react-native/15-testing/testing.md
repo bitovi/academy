@@ -1,5 +1,5 @@
 @page learn-react-native/testing Testing in React
-@parent learn-react 15
+@parent learn-react-native 15
 
 @description Write unit tests to verify components are functioning as expected.
 

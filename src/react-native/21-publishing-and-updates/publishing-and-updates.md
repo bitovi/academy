@@ -1,5 +1,5 @@
 @page learn-react-native/publishing-and-updates Publishing and Updates
-@parent learn-react 21
+@parent learn-react-native 21
 
 @description Publishing the app and making updates
 

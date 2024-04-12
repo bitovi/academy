@@ -1,5 +1,5 @@
 @page learn-react-native/intro-to-jsx Introduction to JSX
-@parent learn-react 3
+@parent learn-react-native 3
 @outline 3
 
 @description Learn how to use JSX to define your UI in React.
