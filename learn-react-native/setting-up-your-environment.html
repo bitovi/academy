@@ -88,7 +88,82 @@
   			
   			
   				<section class="body">
-    <h2>Overview</h2>
+    <h2>How to follow this course</h2>
+<p>This course will walk you through building an application with React Native. Each page of the guide is based on building a new feature, and may have multiple “objectives” to complete. Each objective will be explained and include the requirements and any setup steps needed. Most objectives will also include unit tests to update to verify when you have implemented the solution correctly.</p>
+<p>The ✏️ icon will be used to indicate when commands need to be run or when files need to be created or updated.</p>
+<p>If you have any issues or suggestions as you move through this training, we’d love for you to submit a GitHub issue for it! 💖</p>
+<h2>Overview</h2>
+<p>In this section, we will:</p>
+<ul>
+<li>Learn about Node.js</li>
+<li>Recommend tools to use in React development</li>
+<li>Setup emulators</li>
+<li>Generate a new React Native application</li>
+<li>Set up testing</li>
+<li>Verify that the new application can be served to the emulator and tested</li>
+<li></li>
+</ul>
+<h2>Objective 1: Install prerequisites</h2>
+<p>React Native works on a variety of platforms, but this training will only focus on Android. The Android platform is the easiest and most accessible platform, making it a good place to get started. The code across platforms will be mostly identical.</p>
+<h3>Install a code editor</h3>
+<p>There are a variety of code editors that support React, the most popular is Microsoft’s <a href="https://code.visualstudio.com/">Visual Studio Code</a>. VS Code is available for most operating systems and has extensive support for React and JSX including: code completion, code highlighting, and linting. It’s also used by cloud environments like CodeSandbox and StackBlitz, making it easy to switch among different runtime environments.</p>
+<p>We also recommend installing the following VS Code extensions to help you format your code consistently:</p>
+<ul>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint">ESLint</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode">Prettier</a></li>
+</ul>
+<h3>Install Node.js and npm</h3>
+<p>Our solution requires the <a href="https://nodejs.org/">Node.js</a> JavaScript runtime
+environment. Node.js and its included package manager <code>npm</code> will be used to do a
+variety of tasks including: installing required packages, running the
+development server, executing tests, and building the application for
+deployment.</p>
+<h3>Setup 1</h3>
+<p>This course requires Node.js version 18 or 20 (we suggest using the long-term
+support release of version 20).</p>
+<p><a href="https://nodejs.org/en/download">Download the Node.js installer</a> for your operating system.
+Any installation of Node.js will also include npm.</p>
+<p>Alternatively, you can <a href="https://nodejs.org/en/download/package-manager">install Node.js via package manager</a>.</p>
+<p>During the installation process you may be prompted to make selections or install prerequisites, use
+the default selections and proceed with the installation.</p>
+<p>The installation process can take 10 to 15 minutes to complete.</p>
+<h3>Verify 1</h3>
+<p>✏️ Run the following command in a terminal to verify Node.js is installed correctly.</p>
+<p>🔦 <em>If you encounter an error running <code>node --version</code> you may need to restart for node to be
+completely installed.</em></p>
+<pre><code class="language-shell">node --version
+</code></pre>
+<p>The output of the command will be the current version of Node.js, we expect it
+to start with either &quot;v18&quot; or &quot;v20&quot;.</p>
+<p>✏️ Run the following command in a terminal to verify <code>npm</code> is installed correctly:</p>
+<pre><code class="language-shell">npm --version
+</code></pre>
+<p>The output of the command will be the current version of <code>npm</code>, we expect it
+to start with either &quot;9&quot; or &quot;10&quot;.</p>
+<h2>Objective 3: Install Android development environment</h2>
+<p>Install Java Development Kit, Android Studio, Android SDK, and an Android emulator</p>
+<p>Please follow the environment setup instructions for your operating system using the following links:</p>
+<ul>
+<li><a href="https://reactnative.dev/docs/environment-setup?os=windows&amp;platform=android">Windows</a></li>
+<li><a href="https://reactnative.dev/docs/environment-setup?os=macos&amp;platform=android">Mac</a></li>
+<li><a href="https://reactnative.dev/docs/environment-setup?os=linux&amp;platform=android">Linux</a></li>
+</ul>
+<h2>Objective 4: Install Watchman and React Native</h2>
+<!-- TODO -->
+<h2>Objective 5: Generate the “Place My Order” application</h2>
+<p>Create a new React Native application named “Place My Order” that supports TypeScript.</p>
+<h3>Generate a new React Native application</h3>
+<pre><code>npx react-native@latest init PlaceMyOrder
+</code></pre>
+<p>CocoaPods is an iOS specific set of dependencies. If you are on a Mac, you will see the prompt &quot;Do you want to install CocoaPods now?&quot; You can say no if you only want to focus on Android for now. You can always install pods later.</p>
+<h3>Verify your application in the emulator</h3>
+<pre><code>npm run android
+</code></pre>
+<h3>Verify your tests work</h3>
+<pre><code>npm run test
+</code></pre>
+<h2>Next steps</h2>
+<p>Next, let’s learn about JSX to understand React’s templating language.</p>
 
 </section>
 
