@@ -190,8 +190,6 @@ We’ve created an assets package with images and styles you’ll need to build 
 npm install place-my-order-assets@0
 ```
 
-✏️ Remove the contents of the **src/App.css** file so it’s completely blank.
-
 ✏️ Update **src/index.css** to be:
 
 @diff ../../../exercises/react-vite/02-setting-up-your-environment/04-solution/src/index.css ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/index.css only

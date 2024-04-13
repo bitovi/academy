@@ -23,8 +23,9 @@ In this section, we will:
 There are a variety of code editors that support React, the most popular is Microsoft’s [Visual Studio Code](https://code.visualstudio.com/). VS Code is available for most operating systems and has extensive support for React and JSX including: code completion, code highlighting, and linting. It’s also used by cloud environments like CodeSandbox and StackBlitz, making it easy to switch among different runtime environments.
 
 These VS Code extensions will help you format your code consistently:
-* [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-* [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+- [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 
 ### Install Node.js and npm
 
@@ -184,30 +185,28 @@ Now, let’s updated our generated app to include our own header:
 
 Before we begin adding any content, its a good idea to clean up generated files and add code quality tools.
 
-Remove these generated files that we won't need. Some projets do need them, but this one won't.
-* `src/assets`
-* `src/App.css`
-* `tsconfig.node.json`
+Remove these generated files that we won't need. Some projects do need them, but this one won't.
 
-✏️ Update **src/main.tsx** to remove `import './index.css'`
+- `src/assets`
+- `src/App.css`
+- `tsconfig.node.json`
+- `.eslintrc.cjs`
 
+✏️ Uninstall unneeded packages and Install our eslint config and prettier:
+
+```shell
+npm uninstall @typescript-eslint/eslint-plugin @typescript-eslint/parser
+npm install --save-dev @bitovi/eslint-config prettier
+```
 
 ✏️ Update **tsconfig.json** to be:
 
 @diff ../../../exercises/react-vite/02-setting-up-your-environment/03-solution/tsconfig.json ../../../exercises/react-vite/02-setting-up-your-environment/04-solution/tsconfig.json
 
-✏️ Update **.eslintrc.cjs** to be:
-
-@diff ../../../exercises/react-vite/02-setting-up-your-environment/03-solution/.eslintrc.cjs ../../../exercises/react-vite/02-setting-up-your-environment/04-solution/.eslintrc.cjs
-
-✏️ Create **.prettierrc.cjs** and update it to be:
-
-@sourceref ../../../exercises/react-vite/02-setting-up-your-environment/04-solution/.prettierrc.cjs
-
 ✏️ Update **package.json** to be:
 
 @sourceref ../../../exercises/react-vite/02-setting-up-your-environment/03-solution/package.json
-@highlight 10, only
+@highlight 7-12, 14-17, 18-21, only
 
 ### Verify 4
 
@@ -215,12 +214,23 @@ Remove these generated files that we won't need. Some projets do need them, but 
 
 @sourceref ../../../exercises/react-vite/02-setting-up-your-environment/04-solution/src/App.test.tsx
 
+✏️ Run the new code quality scripts.
+
+```shell
+npm run typecheck
+npm run eslint
+npm run prettier
+```
+
+These scripts will pass when the solution has been implemented properly.
+
 ### Exercise 4
 
 This exercise will finish the objective of creating a new React application with TypeScript support that can be served and tested. To complete the exercise make code changes to accomplish the following:
 
 - The root `/` web page shall display a single heading element with the text "Place My Order App: Coming Soon!"
 - Make sure you remove the references to assets at the top, since they're no longer in use. (If you have the reccomended VS Code plugins installed, it should warn you about these!)
+- Resolve any error from the code quality scripts.
 
 ### Solution 4
 
@@ -229,7 +239,7 @@ This exercise will finish the objective of creating a new React application with
 <summary>Click to see the solution</summary>
 
 1. In your code editor open the file `src/App.tsx`
-2. Delete all the `import` lines **except** `import "./App.css";`.
+2. Delete all the `import` lines.
 3. Delete the line `const [count, setCount] = useState(0)`
 4. Replace the value of the return statement to be a single `<h1>` element
 5. The source code of App.tsx should now look like the example below.

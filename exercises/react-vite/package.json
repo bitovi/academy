@@ -1,15 +1,12 @@
 {
-  "name": "place-my-order",
+  "name": "bit-academy-react-vite",
   "private": true,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
     "typecheck": "tsc",
-    "eslint": "eslint vite.config.ts src",
-    "prettier": "prettier --check vite.config.ts src",
-    "test": "vitest",
-    "dev": "vite",
-    "build": "tsc && vite build"
+    "eslint": "eslint validate-react-vite.mjs */*/src",
+    "prettier": "prettier --check validate-react-vite.mjs */*/src"
   },
   "eslintConfig": {
     "root": true,
