@@ -33,49 +33,42 @@ JSX is a special syntax designed to look almost identical to HTML. Developers de
 const greeting = <h1>Hello, world!</h1>;
 ```
 
-This code snippet creates a simple JSX element, an `<h1>` header, with the text “Hello, world!”
-This is similar to writing HTML, but it’s actually JSX inside a JavaScript file.
+This code snippet creates a simple JSX element: an `<h1>` header with the text “Hello, world!” This is similar to writing HTML, but it’s actually JSX inside a JavaScript file.
 
 ### Embedding a JavaScript expression in JSX
 
 ```tsx
-const name = 'Alice';
+const name = "Alice";
 const greeting = <h1>Hello, {name}!</h1>;
 ```
 
-Here, we embed a JavaScript expression `{name}` within JSX.
-The value of the name variable is displayed within the `<h1>` tag.
+Here, we embed a JavaScript expression `{name}` within JSX. The value of the name variable is displayed within the `<h1>` tag.
 
 ### Combining JSX with standard JavaScript
 
 ```tsx
-function Welcome(name) {
+function welcome(name) {
   return <h1>Hello, {name}</h1>;
 }
 
-const welcomeMessage = Welcome('Alice');
+const welcomeMessage = welcome('Alice');
 ```
 
-This example illustrates a regular JavaScript function being called with a single argument.
-The `Welcome` function returns JSX, showing how JSX can be seamlessly integrated within
-standard JavaScript functions.
+This example illustrates a regular JavaScript function being called with a single argument. The `welcome` function returns JSX, showing how JSX can be seamlessly integrated within standard JavaScript functions.
 
 ### JSX transpiled
 
-React has a procedural `React.createElement` syntax, but most applications do not use it directly.
-Instead, views are defined and maintained in JSX and will automatically be transpiled into the
-equivalent `React.createElement` calls at build-time.
+React has a procedural `React.createElement` syntax, but most applications do not use it directly. Instead, views are defined and maintained in JSX and will automatically be transpiled into the equivalent `React.createElement` calls at build-time.
 
 ```tsx
-function Welcome(name) {
-  return React.createElement('h1', null, `Hello, ${name}!`);
+function welcome(name) {
+  return React.createElement("h1", null, `Hello, ${name}!`);
 }
 
-const welcomeMessage = Welcome('Alice');
+const welcomeMessage = welcome("Alice");
 ```
 
-This transformation is handled by tools like Vite during the build process,
-allowing us to write more readable and maintainable code using JSX.
+This transformation is handled by tools like Vite during the build process, allowing us to write more readable and maintainable code using JSX.
 
 ### Differences between JSX and HTML
 
@@ -115,8 +108,7 @@ In JSX, no elements are self-closing, which means that _all_ elements must have 
 
 #### Writing comments
 
-In HTML, comments are written using the `<!-- -->` syntax, seen below.
-Anything inside these comment tags is ignored by the browser and is not rendered or executed.
+In HTML, comments are written using the `<!-- -->` syntax, seen below. Anything inside these comment tags is ignored by the browser and is not rendered or executed.
 
 ```html
 <p>
@@ -125,8 +117,7 @@ Anything inside these comment tags is ignored by the browser and is not rendered
 </p>
 ```
 
-In JSX, comments follow the JavaScript comment syntax. Since JSX is transpiled into JavaScript,
-you must use JavaScript’s {/* */} syntax for comments within the JSX part of your code.
+In JSX, comments follow the JavaScript comment syntax. Since JSX is transpiled into JavaScript, you must use JavaScript’s {/* */} syntax for comments within the JSX part of your code.
 
 ```tsx
 <p>
@@ -137,8 +128,7 @@ you must use JavaScript’s {/* */} syntax for comments within the JSX part of y
 
 #### Reserved words are renamed
 
-The HTML attributes `class` and `for` are reserved words in JavaScript.
-In JSX, these are renamed to `className` and `htmlFor`, respectively.
+The HTML attributes `class` and `for` are reserved words in JavaScript. In JSX, these are renamed to `className` and `htmlFor`, respectively.
 
 ```tsx
 <p className="form-field">
@@ -149,9 +139,7 @@ In JSX, these are renamed to `className` and `htmlFor`, respectively.
 
 #### Style prop
 
-In HTML, the appearance of most elements can be altered using the `style` attribute. React supports
-a `style` prop, but it accepts an object, not a string. The style object has properties whose names
-are camel-case versions of their CSS counterparts: "font-style" becomes `fontStyle`.
+In HTML, the appearance of most elements can be altered using the `style` attribute. React supports a `style` prop, but it accepts an object, not a string. The style object has properties whose names are camel-case versions of their CSS counterparts. IE: "font-style" becomes `fontStyle`.
 
 ```tsx
 <p style={{ fontStyle: "italic" }}>
@@ -161,9 +149,40 @@ are camel-case versions of their CSS counterparts: "font-style" becomes `fontSty
 
 As we go through this training, you’ll learn additional differences.
 
+#### Convention: Parenthesis
+
+When dealing with JSX that needs multiple lines, the convention is to wrap it in parethesis. This helps keep your JSX clean and clear, rather than mixing it with the javascript around it.
+
+```tsx
+function Form() {
+  return (
+    <p className="form-field">
+      <label htmlFor="name-input">Name:</label>
+      <input id="name-input" />
+    </p>
+  )
+}
+```
+
+#### Convention: Implicit Returns
+
+When creating functions that have no logic and just return JSX, especially when they're an argument to a function, the convention is to use an arrow function with an implicit return. This is nearly always coupled with the parenthesis convention, too. (Don't worry: you'll learn about `.map` in the next objective.)
+
+```tsx
+function List() {
+  return (
+    <div>
+      {data.map((name) => (
+        <li>{name}</li>
+      ))}
+    </div>
+  )
+}
+```
+
 ### Setup 1
 
-We’ve created an assets package with images and CSS you’ll need to build the application. Install the `place-my-order-assets` package.
+We’ve created an assets package with images and styles you’ll need to build the application. Install the `place-my-order-assets` package.
 
 ✏️ Run:
 
@@ -183,7 +202,7 @@ npm install place-my-order-assets@0
 
 @diff ../../../exercises/react-vite/02-setting-up-your-environment/04-solution/src/App.test.tsx ../../../exercises/react-vite/03-intro-to-jsx/01-problem/src/App.test.tsx only
 
-✏️ Run: 
+✏️ Run:
 
 ```shell
 npm run test
@@ -193,7 +212,7 @@ Note that we won’t be able to write an automated test that verifies the styles
 
 ### Exercise 1
 
-Take the below HTML and convert it to JSX:
+Take the below HTML and convert it to JSX in `app.tsx`:
 
 @sourceref ./template.html
 
@@ -228,7 +247,7 @@ To do so, we‘ll learn about:
 JSX is dynamic. You can insert values from variables and objects into your JSX as we did with the image URL in the previous section.
 
 ```tsx
-const name = 'Bitovi'
+const name = "Bitovi"
 
 <p>Welcome to {name}!</p>
 ```
@@ -239,8 +258,8 @@ You can take this a step further by interpolating multiple values, and using Jav
 
 ```tsx
 const person = {
-  name: 'mike',
-  profession: 'programmer',
+  name: "mike",
+  profession: "programmer",
 };
 
 const content = (
@@ -255,11 +274,11 @@ const content = (
 
 ### JSX is a syntax extension for JavaScript
 
-Remember, JSX is an alternative syntax for normal JavaScript—it is not magic. This means that you can use JSX as a normal value.
+Remember, JSX is an alternative syntax for normal JavaScript—it is not magic. This means that you can use JSX as a normal value, too.
 
 ```tsx
 const header = <h1>Hello World</h1>;
-const body = <p>My name is {'Mike'}</p>;
+const body = <p>My name is {"Mike"}</p>;
 
 function MyPage() {
   return (
@@ -287,10 +306,10 @@ If rendered, `page` will output:
 If this surprises you, remember that underneath the syntactic sugar, JSX is nothing more than `React.createElement` calls:
 
 ```tsx
-const header = React.createElement('h1', null, 'Hello World');
-const body = React.createElement('p', null, `Hello ${'Mike'}`);
+const header = React.createElement("h1", null, "Hello World");
+const body = React.createElement("p", null, `My name is ${"Mike"}`);
 
-const page = React.createElement('main', null, [header, body]);
+const page = React.createElement("main", null, [header, body]);
 ```
 
 ### Working with conditionals and loops in JSX
@@ -317,7 +336,7 @@ Conditions can be re-written using the ternary operator.
 
 // But the same can be accomplished with ternaries
 <p>
-  {a === b // Ternaries are expressions. They return a value.
+  {a === b // Ternaries are expressions.
     ? 'a and b are equal'
     : 'a and b are different'}
 </p>
@@ -326,13 +345,13 @@ Conditions can be re-written using the ternary operator.
 If ternaries seem excessive for any particular case, you can write all your logic in a separate function and invoke it from within JSX.
 
 ```tsx
-function outputResult() {
+function makeResult() {
   return a === b
     ? 'a and b are equal'
     : 'a and b are different';
 }
 
-<p>{outputResult()}</p>
+<p>{makeResult()}</p>
 ```
 
 #### Using loops
@@ -387,21 +406,17 @@ That will produce the following HTML:
 </ul>
 ```
 
-There are lots of ways to iterate over arrays in JavaScript with functions like `Array.map`, `Array.filter`, and `Array.reduce`.
-These all work in JSX!
+There are lots of ways to iterate over arrays in JavaScript with functions like `Array.map`, `Array.filter`, and `Array.reduce`. These all work in JSX!
 
 ##### <span id="the-key-prop">The `key` prop</span>
 
 Did you notice the `key` prop in the example above?
 
-When rendering a list of elements, React needs a way to uniquely identify each element. This helps React
-understand which items have changed, been added, or removed, which is crucial for efficient re-rendering.
+When rendering a list of elements, React needs a way to uniquely identify each element. This helps React understand which items have changed, been added, or removed, which is crucial for efficient re-rendering.
 
-Each key should be a unique identifier among siblings. Keys should be stable (not change over time), predictable
-(generated in a predictable manner), and unique (no two elements in the list should have the same key).
+Each key should be a unique identifier among siblings. Keys should be stable (not change over time), predictable (generated in a predictable manner), and unique (no two elements in the list should have the same key).
 
-It’s often convenient to use IDs from your data as keys. For example, if our data had `id` properties for each name,
-then we could use those as the `key` prop, even if there were duplicate names in the array:
+It’s often convenient to use IDs from your data as keys. For example, if our data had `id` properties for each name, then we could use those as the `key` prop, even if there were duplicate names in the array:
 
 ```tsx
 const names = [
@@ -437,12 +452,9 @@ That will produce the following HTML:
 </ul>
 ```
 
-🔦 _During development, If you forget to provide a `key` prop for items in an array React will log
-the following error to the browser's console:_
+🔦 _During development, If you forget to provide a `key` prop for items in an array React will log the following error to the browser's console:_
 
-<img alt="A browser console with the error message 'Warning: Each child in a list should have a
-unique 'key' prop." src="../../../static/img/react-vite/03-intro-to-jsx/react-missing-key-error.png"
-style="width:100%" />
+<img alt="A browser console with the error message 'Warning: Each child in a list should have a unique 'key' prop." src="../../../static/img/react-vite/03-intro-to-jsx/react-missing-key-error.png" style="width:100%" />
 
 ### Setup 2
 

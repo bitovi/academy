@@ -17,33 +17,21 @@ In this section, we will:
 
 ## Objective: Add a styled link
 
-We have the navigation links in the header, but it’d be nice if our `Home` component had a nice
-big Call to Action (CTA) in it so our users were directed to the next step: Choose a Restaurant.
+We have the navigation links in the header, but it’d be nice if our `Home` component had a nice big Call to Action (CTA) in it so our users were directed to the next step: Choose a Restaurant.
 
 ### Styling options in React applications
 
-There is no prescribed approach for styling React apps. It’s entirely possible to
-style components using regular CSS. This approach works fine for many applications,
-especially smaller ones.
+There is no prescribed approach for styling React apps. It’s entirely possible to style components using regular CSS. This approach works fine for many applications, especially smaller ones.
 
-However, as your application grows in complexity, you might encounter challenges with
-style management. For instance, CSS written for one component can unintentionally
-affect other parts of your application.
+However, as your application grows in complexity, you might encounter challenges with style management. For instance, CSS written for one component can unintentionally affect other parts of your application.
 
-The community has built several styling options. We will be using CSS Modules as it is
-one of the most popular styling libraries and is very approachable for anyone that is
-used to styling in plain CSS. CSS Modules offer a way to write CSS that’s scoped to
-individual components, thus preventing style clashes and maintaining a cleaner codebase.
+The community has built several styling options. We will be using CSS Modules as it is one of the most popular styling libraries and is very approachable for anyone that is used to styling in plain CSS. CSS Modules offer a way to write CSS that’s scoped to individual components, thus preventing style clashes and maintaining a cleaner codebase.
 
 ### Reviewing how plain CSS works
 
-In a standard React application using regular CSS, styles are global.
-This means that any style you define can potentially affect any element
-in your application that matches the style’s selector.
+In a standard React application using regular CSS, styles are global. This means that any style you define can potentially affect any element in your application that matches the style’s selector.
 
-Let’s imagine that we have two components in our application:
-`<BlogPost>` and `<UserProfile>`. Both of them feature an avatar image,
-one for the author of a post and the other for the signed-in user.
+Let’s imagine that we have two components in our application: `<BlogPost>` and `<UserProfile>`. Both of them feature an avatar image, one for the author of a post and the other for the signed-in user.
 
 Here’s what the `BlogPost.css` file might look like:
 
@@ -115,23 +103,18 @@ In this case, the two style declarations combined will be applied to both images
 }
 ```
 
-This is no good! When someone edits one component, it looks like they’re only changing
-the styles for that single component, but in fact they are changing any instance where
-that `class` name is used globally throughout the entire application.
+This is no good! When someone edits one component, it looks like they’re only changing the styles for that single component, but in fact they are changing any instance where that `class` name is used globally throughout the entire application.
 
 Let’s solve this!
 
 ### Introducing CSS modules
 
-CSS Modules works like regular CSS, but the class names are randomized to prevent
-conflicts between components. When using CSS Modules, if multiple components
-implement a `.avatar` class, those classes will be unique and conflict-free because
-CSS Modules will rename each class with a unique random string like `.avatar_R8f2`. 
+CSS Modules works like regular CSS, but the class names are randomized to prevent conflicts between components. When using CSS Modules, if multiple components implement a `.avatar` class, those classes will be unique and conflict-free because CSS Modules will rename each class with a unique random string like `.avatar_R8f2`.
 
 For example, these styles in a CSS module:
 
 ```css
-/* BlogPost.css */
+/* BlogPost.module.css */
 .avatar {
   float: left;
   margin-right: 10px;
@@ -141,17 +124,14 @@ For example, these styles in a CSS module:
 Will be converted into the following:
 
 ```css
-/* BlogPost.module.css */
+/* bundle.css */
 .avatar_R8f2 {
   float: left;
   margin-right: 10px;
 }
 ```
 
-The standard procedure with CSS Modules is to create a stylesheet for each component.
-That stylesheet is placed in the same folder as the component. In order to identify
-the file as a CSS Module, the filename should end with `.module.css`. The file
-structure for a BlogPost component will look like the following:
+The standard procedure with CSS Modules is to create a stylesheet for each component. That stylesheet is placed in the same folder as the component. In order to identify the file as a CSS Module, the filename should end with `.module.css`. The file structure for a BlogPost component will look like the following:
 
 <div class="directory-list">
 
@@ -165,18 +145,15 @@ structure for a BlogPost component will look like the following:
 
 ### Importing and applying styles
 
-During the build process, the CSS classes will be randomized and added to a global stylesheet. The randomized class names are imported into components as an object where the key is the original class and the value is the new, randomized string. 
+During the build process, the CSS classes will be randomized and added to a global stylesheet. The randomized class names are imported into components as an object where the key is the original class and the value is the new, randomized string.
 
 Here’s an example of what the JS object imported from `BlogPost.module.css` might look like:
 
 ```tsx
-{ avatar: "avatar_R8f2" }
+export default { avatar: "avatar_R8f2" }
 ```
 
-In order to add the `.avatar` class to a component, import the CSS Modules
-styling object and apply the class using the original class name as the key. Note
-the HTML `class` attribute is renamed to `className` in JSX because `class` is a
-reserved word in JavaScript.
+In order to add the `.avatar` class to a component, import the CSS Modules styling object and apply the class using the original class name as the key. Note the HTML `class` attribute is renamed to `className` in JSX because `class` is a reserved word in JavaScript.
 
 ```tsx
 import React from 'react';
@@ -199,22 +176,30 @@ const BlogPost: React.FC = ({ authorAvatar, content }) => {
 
 ### Avoid plain selectors
 
-Note that CSS Modules cannot rename HTML tags, so all of your styling should use
-classes to avoid unexpected styling bugs. The following will apply to all `img`
-elements in the project and should be avoided.
+Note that CSS Modules cannot rename HTML tags, so all of your styling should use classes to avoid unexpected styling bugs. The following will apply to all `img` elements in the project and should be avoided.
 
-```CSS
+```css
 /* Don’t do this with CSS Modules as tag names can not be randomized */
 img {
   float: right;
 }
 ```
 
+Instead, make sure tags are used in conjunction with classes.
+
+```css
+img.fancyImage {
+  float: right;
+}
+
+.avatar img {
+  float: right;
+}
+```
+
 ### Install CSS Modules
 
-Already done! Vite, our build tool, ships with first-class CSS Modules support.
-Vite also supports a few [other styling options](https://vitejs.dev/guide/features#css)
-out of the box.
+Already done! Vite, our build tool, ships with first-class CSS Modules support. Vite also supports a few [other styling options](https://vitejs.dev/guide/features#css) out of the box.
 
 ### Setup
 
@@ -232,7 +217,7 @@ We’ve created some CSS for this exercise. Create a CSS Modules file and copy t
 
 ### Exercise
 
-Now that we’ve learned to apply styling in React with CSS Modules, it’s time to practice by styling a link in the Home component. You’ll bring in a `Link` component from React Router. 
+Now that we’ve learned to apply styling in React with CSS Modules, it’s time to practice by styling a link in the Home component. You’ll bring in a `Link` component from React Router.
 
 - Update the styles in `Home.module.css` to be usable as a CSS Module.
 - Update the `<Home>` component to include a styled link:
