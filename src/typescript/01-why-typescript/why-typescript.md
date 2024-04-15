@@ -9,7 +9,6 @@
 
 TypeScript is a typed superset of JavaScript that compiles to plain
 JavaScript. 
-<a href="../static/img/typescript-error-compiling.png"><img src="../static/img/typescript-error-compiling.png" width="100%"/></a>
 
 ### TypeScript
 ```typescript
@@ -124,4 +123,4 @@ In this guide we will teach you about TypeScript concepts and have an environmen
 
 ## Next steps
 
-Next, let’s set up your system to develop and run a TypeScript app.
+Next, let’s take a look at [IDEs](./ide-support.html) support building TypeScript projects.
