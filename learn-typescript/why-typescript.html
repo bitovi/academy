@@ -3,7 +3,7 @@
 	THIS IS A GENERATED FILE — ANY CHANGES MADE WILL BE OVERWRITTEN
 
 	INSTEAD CHANGE:
-	source: src/typescript/01-why-typescript/1-why-typescript.md
+	source: src/typescript/01-why-typescript/why-typescript.md
 	@page learn-typescript/why-typescript
 ######################################################################## -->
 <html lang="en">
@@ -532,12 +532,61 @@ covering CanJS core libraries.">
   				<section class="body">
     <h2>What is TypeScript?</h2>
 <p>TypeScript is a typed superset of JavaScript that compiles to plain
-JavaScript. Typing helps enhance code quality and readability, assists in self-documenting, and allows a compiler to perform <em>typechecking</em> to catch errors before runtime. TypeScript also offers modern (think ES6) features of JavaScript and the use of classes and interfaces to write code in an object oriented way.</p>
-<p>The following shows an IDE catching that <code>greeter</code> was expecting a <code>string</code>,
-but was passed a <code>number</code>:</p>
-<p><a href="../static/img/typescript-error-compiling.png"><img src="../static/img/typescript-error-compiling.png" width="100%"/></a></p>
+JavaScript.</p>
+<h3>TypeScript</h3>
+<pre><code class="language-typescript">const world: string = 'world';
+
+export function hello(who: string = world): string {
+  return `Hello ${who}! `;
+}
+</code></pre>
+<h3>JavaScript</h3>
+<pre><code class="language-js">&quot;use strict&quot;;
+Object.defineProperty(exports, &quot;__esModule&quot;, { value: true });
+exports.hello = void 0;
+const world = 'world';
+function hello(who = world) {
+    return `Hello ${who}! `;
+}
+exports.hello = hello;
+</code></pre>
+<p>Typing helps enhance code quality and readability, assists in self-documenting, and allows a compiler to perform <em>typechecking</em> to catch errors before runtime. TypeScript also offers modern (think ES6) features of JavaScript and the use of classes and interfaces to write code in an object oriented way.</p>
+<p>Below TypeScript labels the params and return with types, which makes the code a little more readable.</p>
+<h3>TypeScript</h3>
+<pre><code class="language-typescript">function calculateTotal(price: number, tax: number): number {
+    return price + (price * tax);
+}
+</code></pre>
+<h3>JavaScript</h3>
+<pre><code class="language-js">function calculateTotal(price, tax) {
+    return price + (price * tax);
+}
+</code></pre>
+<p>Below is an example of self-documenting, we know the structure for User and the function greet is expecting an User object.</p>
+<h3>TypeScript</h3>
+<pre><code class="language-typescript">interface User {
+    name: string;
+    age: number;
+}
+
+function greet(user: User) {
+    console.info(`Hello, ${user.name}`);
+}
+</code></pre>
+<h3>JavaScript</h3>
+<pre><code class="language-js">function greet(user) {
+    console.info(`Hello, ${user.name}`);
+}
+</code></pre>
+<h2>Why use TypeScript?</h2>
 <h3>Typechecking</h3>
-<p>Typechecking is the process of verifying and enforcing the constraints of types.</p>
+<p>Typechecking is the process of verifying and enforcing the constraints of types, checking each variable, function, and expression to ensure they all fit together correctly. It's like ensuring that you're using the right tools for the job and putting them in the right places, so your program runs smoothly without unexpected errors.</p>
+<p>In the TypeScript code provided, an attempt is made to assign a value to <code>itemCount</code>, which is expected to be a <code>number</code>, but instead, a <code>string</code> was passed:</p>
+<pre><code class="language-typescript">let itemCount: number = 'five'; // Incorrect assignment
+</code></pre>
+<p>TypeScript will throw an error at compile time:</p>
+<pre><code class="language-typescript">error TS2322: Type '&quot;five&quot;' is not assignable to type 'number'.
+</code></pre>
 <h3>Static vs. Dynamic Typing</h3>
 <p>JavaScript is an &quot;untyped&quot; or &quot;dynamically typed&quot; language. Type is associated with a value instead of a variable.
 JavaScript can assign variables to values of different types:</p>
@@ -556,9 +605,10 @@ document.body.innerHTML = greeter(user);
 </code></pre>
 <p>If there’s a bug in the code related to falsely assuming a type, it won’t throw an error until we’re already running our code.</p>
 <p>TypeScript uses static typing, which allows us to specify what type a variable should hold, and types are checked when the code compiles alerting us of any incorrect usages of a variable assignment. The concept of &quot;static&quot; comes from the idea of variables being static, meaning once you set a variable to a type it can’t (shouldn’t) be changed. For a deeper dive into how typechecking works, the creators of typescript have a <a href="https://www.typescriptlang.org/docs/handbook/type-checking-javascript-files.html">typechecking handbook</a> of more specific cases as well as their inspiration for the way these features were designed.</p>
-<h2>Using this Guide</h2>
+<h2>Using this guide</h2>
 <p>In this guide we will teach you about TypeScript concepts and have an environment for you to practice in. Running the tests will catch any problems if the code was not written correctly or as expected. Pay close attention to how you name and save the files.</p>
-<p>When we give you a command to run to verify your work it will look for a file named respectively. If you run into issues you can look at the package.json file to see which file the command listed is looking for.</p>
+<h2>Next steps</h2>
+<p>Next, let’s take a look at <a href="./ide-support.html">IDEs</a> support building TypeScript projects.</p>
 
 </section>
 
@@ -597,7 +647,7 @@ document.body.innerHTML = greeter(user);
 
   <div id="scripts">
     <script type="text/javascript">
-      var docObject = {"src":{"path":"src/typescript/01-why-typescript/1-why-typescript.md"},"description":"Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript. \n","name":"learn-typescript/why-typescript","title":"Why TypeScript","type":"page","parent":"learn-typescript","order":1,"comment":" ","pathToRoot":"../.."};
+      var docObject = {"src":{"path":"src/typescript/01-why-typescript/why-typescript.md"},"description":"Learn why TypeScript has secured a place in the JavaScript ecosystem and how to write and compile TypeScript. \n","name":"learn-typescript/why-typescript","title":"Why TypeScript","type":"page","parent":"learn-typescript","order":1,"comment":" ","pathToRoot":"../.."};
     </script>
 
     
